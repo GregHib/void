@@ -48,6 +48,7 @@ import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.encode.login
 import world.gregs.voidps.network.encode.logout
 import world.gregs.voidps.network.visual.PlayerVisuals
+import kotlin.coroutines.Continuation
 
 /**
  * A player controlled by client or bot
@@ -124,6 +125,9 @@ class Player(
             field?.cancel()
             field = value
         }
+
+    @get:JsonIgnore
+    override var delay: Continuation<Unit>? = null
 
     @get:JsonIgnore
     var dialogueSuspension: Suspension? = null

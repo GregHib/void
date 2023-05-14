@@ -5,11 +5,12 @@ import world.gregs.voidps.engine.client.clearMinimap
 import world.gregs.voidps.engine.client.minimap
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.queue.PlayerAction
+import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.dialogue.type.statement
 
 private val tabs = listOf(
@@ -25,7 +26,7 @@ private val tabs = listOf(
     "notes"
 )
 
-suspend fun PlayerAction.startCutscene(region: Region, statement: String = ""): Region {
+suspend fun Interaction.startCutscene(region: Region, statement: String = ""): Region {
     player.open("fade_out")
     statement(statement, clickToContinue = false)
     pause(2)
@@ -34,11 +35,11 @@ suspend fun PlayerAction.startCutscene(region: Region, statement: String = ""): 
     tabs.forEach {
         player.close(it)
     }
-    player.minimap(Minimap.HideMap)
+    player.minimap(Minimap.HideMap, Minimap.Unclickable)
     return instance
 }
 
-fun PlayerAction.stopCutscene(instance: Region) {
+fun Interaction.stopCutscene(instance: Region) {
     Instances.free(instance)
     get<DynamicChunks>().clear(instance)
     tabs.forEach {

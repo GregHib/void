@@ -38,6 +38,7 @@ import kotlin.system.measureTimeMillis
 val collisions: Collisions by inject()
 
 on<Command>({ prefix == "test" }) { player: Player ->
+
 }
 
 on<Command>({ prefix == "reset_cam" }) { player: Player ->

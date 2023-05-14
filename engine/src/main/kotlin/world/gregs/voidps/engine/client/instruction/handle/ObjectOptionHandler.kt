@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.client.instruction.handle
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.Transforms
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
@@ -24,6 +25,9 @@ class ObjectOptionHandler(
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractObject) {
+        if (player.hasClock("delay")) {
+            return
+        }
         val (objectId, x, y, option) = instruction
         val tile = player.tile.copy(x = x, y = y)
         val target = getObject(tile, objectId)

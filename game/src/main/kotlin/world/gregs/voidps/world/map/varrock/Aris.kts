@@ -27,7 +27,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.world.activity.quest.startCutscene
@@ -45,6 +45,8 @@ import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 on<NPCOption>({ npc.id == "gypsy_aris" && option == "Talk-to" }) { player: Player ->
+    cutscene()
+    return@on
     when (player["demon_slayer", "unstarted"]) {
         "unstarted" -> {
             npc<Talk>("Hello, young one.")
@@ -119,7 +121,7 @@ suspend fun NPCOption.howToDo() {
 suspend fun NPCOption.howWallyWon() {
     player<Unsure>("So, how did Wally kill Delrith?")
     player.playTrack("wally_the_hero") // TODO
-    cutscene(player, npc)
+    cutscene()
 }
 
 suspend fun NPCOption.finalQuestions() {
@@ -305,94 +307,90 @@ suspend fun NPCOption.whoYouCallingYoung() {
     }
 }
 
-fun cutscene(player: Player, npc: NPC) {
-    player.strongQueue("demon_slayer_wally_cutscene") {
-        player.start("movement_delay", -1)
-        val region = Region(12852)
-        val instance = startCutscene(region)
-        val offset = instance.offset(region)
-        pause(1)
-        player.tele(offset.add(3225, 3371), clearInterfaces = false)
-        pause(2)
+suspend fun NPCOption.cutscene() {
+    player.start("delay", -1)
+    val region = Region(12852)
+    val instance = startCutscene(region)
+    val offset = instance.offset(region)
+    pause(1)
+    player.tele(offset.add(3225, 3371), clearInterfaces = false)
+    pause(2)
+    player.transform("wally")
+    player.clearCamera()
+    player.moveCamera(offset.add(3227, 3369), 300)
+    player.turnCamera(offset.add(3229, 3367), 250)
+    player.shakeCamera(type = 1, intensity = 0, movement = 10, speed = 10, cycle = 0)
+    player.shakeCamera(type = 3, intensity = 0, movement = 90, speed = 1, cycle = 0)
+    player.playSound("rumbling")
+    pause(1)
+    player.open("fade_in")
+    npc<Talk>("gypsy_aris", """
+        Wally managed to arrive at the stone circle just as
+        Delrith was summoned by a cult of chaos druids...
+    """)
 
+    player.face(Direction.NORTH)
+    player.clearCamera()
+    player.turnCamera(offset.add(3227, 3367), height = 200, constantSpeed = 2, variableSpeed = 10)
+    player.turnCamera(offset.add(3227, 3367), height = 100, constantSpeed = 1, variableSpeed = 10)
+    player.shakeCamera(type = 3, intensity = 0, movement = 0, speed = 0, cycle = 0)
+    player.playSound("rumbling")
+    npc<Furious>("wally", "Die, foul demon!", clickToContinue = false)
+    player.tele(offset.add(3225, 3363), clearInterfaces = false)
 
-        player.transform("wally")
-        player.clearCamera()
-        player.moveCamera(offset.add(3227, 3369), 300)
-        player.turnCamera(offset.add(3229, 3367), 250)
-        player.shakeCamera(type = 1, intensity = 0, movement = 10, speed = 10, cycle = 0)
-        player.shakeCamera(type = 3, intensity = 0, movement = 90, speed = 1, cycle = 0)
-        player.playSound("rumbling")
-        pause(1)
-        player.open("fade_in")
-        npc<Talk>("gypsy_aris", """
-            Wally managed to arrive at the stone circle just as
-            Delrith was summoned by a cult of chaos druids...
-        """)
+    pause(2)
+    player.start("no_clip", 2)
+    player.walkTo(offset.add(3227, 3367))
+    player.running = true
+    pause(2)
+    player.face(Direction.NORTH)
+    player.setAnimation("wally_demon_slay")
+    player.playSound("demon_slayer_wally_sword", delay = 10)
+    pause(4)
 
-        player.face(Direction.NORTH)
-        player.clearCamera()
-        player.turnCamera(offset.add(3227, 3367), height = 200, constantSpeed = 2, variableSpeed = 10)
-        player.turnCamera(offset.add(3227, 3367), height = 100, constantSpeed = 1, variableSpeed = 10)
-        player.shakeCamera(type = 3, intensity = 0, movement = 0, speed = 0, cycle = 0)
-        player.playSound("rumbling")
-        npc<Furious>("wally", "Die, foul demon!", clickToContinue = false)
-        player.tele(offset.add(3225, 3363), clearInterfaces = false)
+    player.clearCamera()
+    player.moveCamera(offset.add(3227, 3369), height = 100, constantSpeed = 2, variableSpeed = 10)
+    player.shakeCamera(type = 1, intensity = 0, movement = 10, speed = 5, cycle = 0)
+    player.shakeCamera(type = 3, intensity = 0, movement = 2, speed = 50, cycle = 0)
+    player.playSound("rumbling")
+    npc<Unsure>("wally", "Now, what was that incantation again?")
+    randomiseOrder(player)
+    npc<Angry>("wally", "${getWord(player, 1)}... ${getWord(player, 2)}... ${getWord(player, 3)}... ${getWord(player, 4)}... ${getWord(player, 5)}!")
+    player.open("fade_out")
 
-        pause(2)
-        player.start("no_clip", 2)
-        player.walkTo(offset.add(3227, 3367))
-        player.running = true
-        pause(2)
-        player.face(Direction.NORTH)
-        player.setAnimation("wally_demon_slay")
-        player.playSound("demon_slayer_wally_sword", delay = 10)
-        pause(4)
+    pause(4)
+    player.close("fade_out")
+    player.clearCamera()
+    player.shakeCamera(type = 1, intensity = 0, movement = 0, speed = 0, cycle = 0)
+    player.shakeCamera(type = 3, intensity = 0, movement = 0, speed = 0, cycle = 0)
+    player.playSound("rumbling")
+    player.moveCamera(offset.add(3225, 3363), height = 500)
+    player.turnCamera(offset.add(3227, 3367), height = 200)
+    player.playSound("equip_silverlight")
+    player.playJingle("quest_complete_1")
+    player.face(Direction.SOUTH_WEST)
+      player.setAnimation("wally_demon_win")
+    player.setGraphic("wally_sword_glint")
+    npc<Happy>("wally", "I am the greatest demon slayer EVER!")
 
-        player.clearCamera()
-        player.moveCamera(offset.add(3227, 3369), height = 100, constantSpeed = 2, variableSpeed = 10)
-        player.shakeCamera(type = 1, intensity = 0, movement = 10, speed = 5, cycle = 0)
-        player.shakeCamera(type = 3, intensity = 0, movement = 2, speed = 50, cycle = 0)
-        player.playSound("rumbling")
-        npc<Unsure>("wally", "Now, what was that incantation again?")
-        randomiseOrder(player)
-        npc<Angry>("wally", "${getWord(player, 1)}... ${getWord(player, 2)}... ${getWord(player, 3)}... ${getWord(player, 4)}... ${getWord(player, 5)}!")
-        player.open("fade_out")
+    npc<Talk>("""
+        By reciting the correct magical incantation, and
+        thrusting Silverlight into Delrith while he was newly
+        summoned, Wally was able to imprison Delrith in the
+        stone table at the centre of the circle.
+    """)
 
-        pause(4)
-        player.close("fade_out")
-        player.clearCamera()
-        player.shakeCamera(type = 1, intensity = 0, movement = 0, speed = 0, cycle = 0)
-        player.shakeCamera(type = 3, intensity = 0, movement = 0, speed = 0, cycle = 0)
-        player.playSound("rumbling")
-        player.moveCamera(offset.add(3225, 3363), height = 500)
-        player.turnCamera(offset.add(3227, 3367), height = 200)
-        player.playSound("equip_silverlight")
-        player.playJingle("quest_complete_1")
-        player.face(Direction.SOUTH_WEST)
-//        player.setAnimation("wally_demon_win")
-        player.setGraphic("wally_sword_glint")
-        npc<Happy>("wally", "I am the greatest demon slayer EVER!")
-
-        npc<Talk>("""
-            By reciting the correct magical incantation, and
-            thrusting Silverlight into Delrith while he was newly
-            summoned, Wally was able to imprison Delrith in the
-            stone table at the centre of the circle.
-        """)
-
-        statement("", clickToContinue = false)
-        player.open("fade_out")
-        pause(2)
-        player.tele(3203, 3424)
-        player.face(Direction.WEST)
-        stopCutscene(instance)
-        player.stop("movement_delay")
-        player.clearCamera()
-        player.clearTransform()
-        player["demon_slayer"] = "wally_cutscene"
-        player.mode = Interact(player, npc, NPCOption(player, npc, npc.def, "Talk-to"))
-    }
+    statement("", clickToContinue = false)
+    player.open("fade_out")
+    pause(2)
+    player.tele(3203, 3424)
+    player.face(Direction.WEST)
+    stopCutscene(instance)
+    player.stop("delay")
+    player.clearCamera()
+    player.clearTransform()
+    player["demon_slayer"] = "wally_cutscene"
+    player.mode = Interact(player, npc, NPCOption(player, npc, npc.def, "Talk-to"))
 }
 
 fun randomiseOrder(player: Player) {

@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.timer.TimerSlot
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.network.visual.NPCVisuals
+import kotlin.coroutines.Continuation
 
 /**
  * A non-player character
@@ -37,6 +38,7 @@ data class NPC(
     lateinit var def: NPCDefinition
     override var queue = ActionQueue(this)
     override var softTimers: Timers = TimerSlot(events)
+    override var delay: Continuation<Unit>? = null
     override var suspension: Suspension? = null
         set(value) {
             field?.cancel()
