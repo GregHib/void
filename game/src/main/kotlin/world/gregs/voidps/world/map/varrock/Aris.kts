@@ -212,8 +212,8 @@ suspend fun NPCOption.incantation() {
     player<Talk>("What is the magical incantation?")
     npc<Talk>("Oh yes, let me think a second.")
     npc<Talking>("""
-        Aright, I think I've got it now, it goes... Camerinthum...
-        Aber... Purchai.,. Gabindo.,. Carlem. Have you got that?
+        Aright, I think I've got it now, it goes... ${getWord(player, 1)}...
+        ${getWord(player, 2)}... ${getWord(player, 3)}.,. ${getWord(player, 4)}.,. ${getWord(player, 5)}. Have you got that?
     """)
     player<Talking>("I think so, yes.")
 }
@@ -355,7 +355,8 @@ fun cutscene(player: Player, npc: NPC) {
         player.shakeCamera(type = 3, intensity = 0, movement = 2, speed = 50, cycle = 0)
         player.playSound("rumbling")
         npc<Unsure>("wally", "Now, what was that incantation again?")
-        npc<Angry>("wally", "Gabindo... Carlem... Camerinthum... Aber... Purchai!") // TODO Random order
+        randomiseOrder(player)
+        npc<Angry>("wally", "${getWord(player, 1)}... ${getWord(player, 2)}... ${getWord(player, 3)}... ${getWord(player, 4)}... ${getWord(player, 5)}!")
         player.open("fade_out")
 
         pause(4)
@@ -392,6 +393,24 @@ fun cutscene(player: Player, npc: NPC) {
         player["demon_slayer"] = "wally_cutscene"
         player.mode = Interact(player, npc, NPCOption(player, npc, npc.def, "Talk-to"))
     }
+}
+
+fun randomiseOrder(player: Player) {
+    val order = (1 .. 5).shuffled()
+    player["demon_aber"] = order[0]
+    player["demon_camerinthum"] = order[1]
+    player["demon_carlem"] = order[2]
+    player["demon_gabindo"] = order[3]
+    player["demon_purchai"] = order[4]
+}
+
+fun getWord(player: Player, index: Int): String = when (index) {
+    player["demon_aber", -1] -> "Aber"
+    player["demon_camerinthum", -1] -> "Camerinthum"
+    player["demon_carlem", -1] -> "Carlem"
+    player["demon_gabindo", -1] -> "Gabindo"
+    player["demon_purchai", -1] -> "Purchai"
+    else -> "null"
 }
 
 suspend fun NPCOption.withSilver() {
