@@ -1054,13 +1054,16 @@ wally:
   examine: "Wally."
 sir_prysin:
   id: 883
+  wander_radius: 3
   examine: "One of the king's knights."
 sir_prysin_silverlight:
   id: 4657
   examine: "One of the king's knights."
 captain_rovin:
   id: 884
+  wander_radius: 3
   examine: "The head of the palace guard."
 traiborn:
   id: 881
+  wander_radius: 3
   examine: "An old wizard."

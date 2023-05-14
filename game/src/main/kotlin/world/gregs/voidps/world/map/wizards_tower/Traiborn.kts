@@ -1,26 +1,30 @@
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
+import world.gregs.voidps.engine.client.update.batch.animate
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.removeToLimit
 import world.gregs.voidps.engine.contain.transact.TransactionError
+import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.mode.interact.NPCInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.obj.GameObjectFactory
+import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.map.collision.blocked
+import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val items: FloorItems by inject()
-val objects: GameObjectFactory by inject()
+val objects: CustomObjects by inject()
 
 var Player.bonesRequired: Int
     get() = get("demon_slayer_bones", -1)
@@ -35,6 +39,7 @@ on<NPCOption>({ npc.id == "traiborn" && option == "Talk-to" }) { player: Player 
 }
 
 on<InterfaceOnNPC>({ npc.id == "traiborn" && item.id == "bones" && player.bonesRequired > 0 }) { player: Player ->
+    player.talkWith(npc)
     giveBones()
 }
 
@@ -318,44 +323,11 @@ suspend fun NPCOption.needAKeyChoice() {
     }
 }
 
-/*
-
-[18791] 2023-05-12 19:31:06 Npc(Wizard Traiborn, idx: 2842, name: "traiborn", id = 5081, x = 3112, y = 3162, z = 1)FaceEntity(null, index: -1)
-[18791] 2023-05-12 19:31:06 Local sound                                                             SoundEffect(name = "ds_cupboard_appear", id = 2977)
-[18791] 2023-05-12 19:31:06 Close Sub Interface(name = "npc_dialogue", id = 231, modal = true)      IfCloseSub(topInterface = "chat", id = 162, topComponent = 559)
-[18791] 2023-05-12 19:31:06 Add map object                                                          LocAdd(name = "wardrobe_17434", id = 17434, slot = 2, rotation = 0, opflags = 31, Location(x = 3112, y = 3163, z = 1))
-[18791] 2023-05-12 19:31:06 Npc(Rick, idx: 2840, name: "rick_5931", id = 5931, x = 3108, y = 3165, z = 1)Movement(type = Walk, Location(x = 3108, y = 3164, z = 1))
-[18791] 2023-05-12 19:31:06 Npc(Wizard, idx: 2841, name: "wizard_wizards_tower", id = 3257, x = 3109, y = 3159, z = 1)Movement(type = Walk, Location(x = 3108, y = 3160, z = 1))
-
-[18792] 2023-05-12 19:31:06 Npc(Rick, idx: 2840, name: "rick_5931", id = 5931, x = 3108, y = 3164, z = 1)Movement(type = Walk, Location(x = 3109, y = 3163, z = 1))
-[18792] 2023-05-12 19:31:06 Npc(Wizard, idx: 2841, name: "wizard_wizards_tower", id = 3257, x = 3108, y = 3160, z = 1)Movement(type = Walk, Location(x = 3107, y = 3160, z = 1))
-
-[18793] 2023-05-12 19:31:07 Npc(Wizard Traiborn, idx: 2842, name: "traiborn", id = 5081, x = 3112, y = 3162, z = 1)Animation(name = "unlock_chest", id = 536)
-[18793] 2023-05-12 19:31:07 Local sound                                                             SoundEffect(name = "chest_open", id = 52)
-[18793] 2023-05-12 19:31:07 Npc(Wizard, idx: 2841, name: "wizard_wizards_tower", id = 3257, x = 3107, y = 3160, z = 1)Movement(type = Walk, Location(x = 3108, y = 3160, z = 1))
-
-[18794] 2023-05-12 19:31:08 Npc(Wizard Jalarast, idx: 2839, name: "wizard_3232", id = 3232, x = 3107, y = 3161, z = 1)Movement(type = Walk, Location(x = 3108, y = 3161, z = 1))
-[18794] 2023-05-12 19:31:08 Npc(Wizard, idx: 2841, name: "wizard_wizards_tower", id = 3257, x = 3108, y = 3160, z = 1)Movement(type = Walk, Location(x = 3109, y = 3159, z = 1))
-
-[18795] 2023-05-12 19:31:08 Local                                                                   Message(type = MESBOX, text = "Traiborn hands you a key.")
-[18795] 2023-05-12 19:31:08 Varbit (varp = "camera_base", id = 1021, oldValue: 1)                   Varbit(name = "dialogue_full_chatbox", id = 5983, value = 0)
-[18795] 2023-05-12 19:31:08 Map Object Animation                                                    LocAnim(animation = 4600, object = MapObject(id = 17434, type = 10, rotation = 0, Location(x = 3112, y = 3163, z = 1))
-[18795] 2023-05-12 19:31:08 Inventory update                                                        InvComponent(inventory = "inventory", id = 93)
-[18795] 2023-05-12 19:31:08 Inventory change                                                        Inv(slotId = 1, item = "silverlight_key", id = 2399, amount = 1)
-[18795] 2023-05-12 19:31:08 Local sound                                                             SoundEffect(name = "ds_cupboard_dissappear", id = 2978)
-[18795] 2023-05-12 19:31:08 Local                                                                   ClientScript(name = "toplevel_chatbox_resetbackground", id = 2379)
-[18795] 2023-05-12 19:31:08 Sub interface                                                           IfOpenSub(name = "item_dialogue", id = 193, topInterface = "chat", id = 162, topComponent = 559, modal = true)
-[18795] 2023-05-12 19:31:08 Local                                                                   ClientScript(name = "objbox_setbuttons", id = 2868, converted = ["Click here to continue"], raw = ["Click here to continue"], types = [s])
-[18795] 2023-05-12 19:31:08 Interface Object                                                        IfSetObject(interface = "item_dialogue", id = 193, componentId = 1, item = "silverlight_key", id = 2399, modelZoom = 400)
-[18795] 2023-05-12 19:31:08 Interface Text                                                          IfSetText(interface = "item_dialogue", id = 193, componentId = 2, text = "Traiborn hands you a key.")
-[18795] 2023-05-12 19:31:08 Local(previous = 3384)                                                  RunEnergy(value = 3392)
-[18795] 2023-05-12 19:31:08 Interface event                                                         IfSetEvents(interface = "item_dialogue", id = 193, componentId = 0, startIndex = 0, endIndex = 1, events = Continue)
-[18795] 2023-05-12 19:31:08 Npc(Wizard Jalarast, idx: 2839, name: "wizard_3232", id = 3232, x = 3108, y = 3161, z = 1)Movement(type = Walk, Location(x = 3109, y = 3160, z = 1))
-
-[18796] 2023-05-12 19:31:09 Npc(Wizard Traiborn, idx: 2842, name: "traiborn", id = 5081, x = 3112, y = 3162, z = 1)FaceEntity(Player(DinhoFury, idx: 1677, x = 3111, y = 3162, z = 1), index: 67213)
- */
 suspend fun NPCInteraction.startSpell() {
     npc<Talking>("Hurrah! That's all 25 sets of bones.")
+    npc.setAnimation("traiborn_bone_spell")
+    npc.setGraphic("traiborn_bone_spell")
+    player.playSound("demon_slayer_bone_spell")
     npc<Uncertain>("""
         Wings of dark and colour too,
         Spreading in the morning dew;
@@ -363,15 +335,19 @@ suspend fun NPCInteraction.startSpell() {
         Return it now, please, unto me.
     """)
     player.playSound("demon_slayer_cupboard_appear")
-    val obj = objects.spawn("demon_slayer_spell_wardrobe", npc.tile, 10, 0)
-    npc.setAnimation("4602")
-    npc.setGraphic("777")
-    player.playSound("ds_bone_spell")// 2973
-//                            LocAnim(animation = 4600, object = MapObject(id = 17434, type = 10, rotation = 0, Location(x = 3112, y = 3163, z = 1))
-//                                [18795] 2023-05-12 19:31:08 Inventory update
-//                                animateObject("4600")
-    player.playSound("ds_cupboard_dissappear")//2978
-    17434
+    val direction = Direction.westClockwise.first { !npc.blocked(it) }
+    val rotation = Direction.westClockwise.indexOf(direction.rotate(6))
+    val obj = objects.spawn("demon_slayer_spell_wardrobe", npc.tile.add(direction), 10, rotation, 5)
+    npc.clearWatch()
+    npc.face(obj)
+    delay(1)
+    npc.setAnimation("unlock_chest")
+    player.playSound("chest_open")
+    delay(1)
+    player.inventory.add("silverlight_key_wizard_traiborn")
+    obj.animate("demon_slayer_cupboard_disappear")
+    player.playSound("demon_slayer_cupboard_disappear")
+    npc.watch(player)
     item("Traiborn hands you a key.", "silverlight_key_wizard_traiborn", 400)
     player<Talking>("Thank you very much.")
     npc<Talking>("Not a problem for a friend of Sir What's-his-face.")
@@ -392,7 +368,7 @@ suspend fun NPCOption.somewhereToBe() {
     npc<Uncertain>("""
         Don't you have somewhere to be, young
         thingummywut? You still have that key you asked me
-        for.")
+        for.
     """)
     player<Talk>("You're right. I've got a demon to slay.")
 }

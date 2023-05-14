@@ -6,27 +6,27 @@ demon_slayer:
 fade_speed:
   id: 278
   format: int
-demon_aber:
+demon_slayer_aber:
   id: 2562
   persist: true
   format: int
-demon_camerinthum:
+demon_slayer_camerinthum:
   id: 2563
   persist: true
   format: int
-demon_carlem:
+demon_slayer_carlem:
   id: 2564
   persist: true
   format: int
-demon_gabindo:
+demon_slayer_gabindo:
   id: 2565
   persist: true
   format: int
-demon_purchai:
+demon_slayer_purchai:
   id: 2566
   persist: true
   format: int
-demon_silverlight:
+demon_slayer_silverlight:
   id: 2567
   persist: true
   format: boolean
@@ -34,16 +34,16 @@ demon_slayer_drain_dislodged:
   id: 2568
   persist: true
   format: boolean
-demon_summoned:
+demon_slayer_summoned:
   id: 2569
   persist: true
   format: boolean
-demon_silverlight_case:
+demon_slayer_silverlight_case:
   id: 6922
   persist: true
   format: list
   values: [ closed, open, empty ]
-demon_sir_prysin:
+demon_slayer_sir_prysin:
   id: 6923
   persist: true
   format: boolean

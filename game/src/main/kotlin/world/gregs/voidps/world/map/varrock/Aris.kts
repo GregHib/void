@@ -401,19 +401,19 @@ suspend fun NPCOption.endCutscene(instance: Region) {
 
 fun randomiseOrder(player: Player) {
     val order = (1 .. 5).shuffled()
-    player["demon_aber"] = order[0]
-    player["demon_camerinthum"] = order[1]
-    player["demon_carlem"] = order[2]
-    player["demon_gabindo"] = order[3]
-    player["demon_purchai"] = order[4]
+    player["demon_slayer_aber"] = order[0]
+    player["demon_slayer_camerinthum"] = order[1]
+    player["demon_slayer_carlem"] = order[2]
+    player["demon_slayer_gabindo"] = order[3]
+    player["demon_slayer_purchai"] = order[4]
 }
 
 fun getWord(player: Player, index: Int): String = when (index) {
-    player["demon_aber", -1] -> "Aber"
-    player["demon_camerinthum", -1] -> "Camerinthum"
-    player["demon_carlem", -1] -> "Carlem"
-    player["demon_gabindo", -1] -> "Gabindo"
-    player["demon_purchai", -1] -> "Purchai"
+    player["demon_slayer_aber", -1] -> "Aber"
+    player["demon_slayer_camerinthum", -1] -> "Camerinthum"
+    player["demon_slayer_carlem", -1] -> "Carlem"
+    player["demon_slayer_gabindo", -1] -> "Gabindo"
+    player["demon_slayer_purchai", -1] -> "Purchai"
     else -> "null"
 }
 

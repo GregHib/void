@@ -314,14 +314,14 @@ suspend fun NPCOption.giveSilverlight() {
     npc.setAnimation("4597", 19)
     player.playSound("cupboard_open", delay = 19)
     pause()
-    player["demon_silverlight_case"] = "open"
+    player["demon_slayer_silverlight_case"] = "open"
     player.playSound("casket_open")
     pause()
     npc.setAnimation("4598")
     npc.transform("sir_prysin_silverlight")
-    player["demon_silverlight_case"] = "empty"
+    player["demon_slayer_silverlight_case"] = "empty"
     pause()
-    player["demon_silverlight_case"] = "closed"
+    player["demon_slayer_silverlight_case"] = "closed"
     npc.setAnimation("4606")
     npc.face(player)
     pause()

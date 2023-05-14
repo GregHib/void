@@ -1,3 +1,4 @@
+chest_open: 52
 casket_open: 50
 cupboard_open: 58
 destroy_object: 2381
@@ -9,7 +10,7 @@ demon_slayer_break_table: 2974
 demon_slayer_crystal_ball_end: 2975
 demon_slayer_crystal_ball_start: 2976
 demon_slayer_cupboard_appear: 2977
-demon_slayer_cupboard_dissappear: 2978
+demon_slayer_cupboard_disappear: 2978
 demon_slayer_cupboard_fall: 2979
 demon_slayer_delrith_appear: 2980
 demon_slayer_delrith_banished: 2981
