@@ -43,12 +43,20 @@ val rect = Rectangle(3221, 3363, 3234, 3376)
 val objects: CustomObjects by inject()
 val npcs: NPCs by inject()
 val defaultTile = Tile(3220, 3367)
+val targets = listOf(
+    Tile(3224, 3366),
+    Tile(3231, 3366),
+    Tile(3224, 3373),
+    Tile(3231, 3373)
+)
 
-on<Moved>({ it["demon_slayer", "unstarted"] == "kill_demon" && !rect.contains(from) && rect.contains(to) }) { player: Player ->
+on<Moved>({ it["demon_slayer", "unstarted"] == "kill_demon" && enterArea(it, from, to) }) { player: Player ->
     val context = object : PlayerContext {
         override val player: Player = player
         override var onCancel: (() -> Unit)? = null
     }
+    cancel()
+    println("Cancel $this $cancelled")
     with(context) {
         val region = Region(12852)
         val instance = startCutscene(region)
@@ -61,6 +69,8 @@ on<Moved>({ it["demon_slayer", "unstarted"] == "kill_demon" && !rect.contains(fr
         val wizard2 = npcs.add("dark_wizard_water_2", offset.add(3229, 3371), Direction.SOUTH_WEST) ?: return@with
         val wizard3 = npcs.add("dark_wizard_earth", offset.add(3226, 3368), Direction.NORTH_EAST) ?: return@with
         val denath = npcs.add("denath", offset.add(3229, 3368), Direction.NORTH_WEST) ?: return@with
+        val delrith = npcs.add("delrith", offset.add(3227, 3369), Direction.SOUTH) ?: return@with
+        npcs.removeIndex(delrith)
         val wizards = listOf(wizard1, wizard2, wizard3, denath)
         for (wizard in wizards) {
             wizard.mode = PauseMode
@@ -73,6 +83,9 @@ on<Moved>({ it["demon_slayer", "unstarted"] == "kill_demon" && !rect.contains(fr
         player.playTrack("delrith") // TODO 239
 
         if (player["demon_slayer_summoned", false]) {
+            player.queue.clear("demon_slayer_delrith_cutscene_end")
+            delrith.tele(offset.add(3227, 3367))
+            npcs.index(delrith)
             return@with
         }
         delay(1)
@@ -103,14 +116,6 @@ on<Moved>({ it["demon_slayer", "unstarted"] == "kill_demon" && !rect.contains(fr
         player.playSound("summon_npc")
         player.playSound("demon_slayer_table_explosion")
         player.shakeCamera(15, 0, 0, 0, 0)
-        val targets = listOf(
-            Tile(3224, 3366),
-            Tile(3231, 3366),
-            Tile(3224, 3373),
-            Tile(3231, 3373)
-        )
-        val delrith = npcs.add("delrith", offset.add(3227, 3369), Direction.SOUTH) ?: return@with
-        npcs.removeIndex(delrith)
         for (target in targets) {
             delrith.shoot("782", offset.add(target))
         }
@@ -154,19 +159,17 @@ on<Moved>({ it["demon_slayer", "unstarted"] == "kill_demon" && !rect.contains(fr
         player.clearCamera()
         player.moveCamera(offset.add(3226, 3383), 1000, 1, 1)
         npc<Suspicious>("denath", "I've got to get out of here...")
-        println("Gotta go")
         player.queue.clear("demon_slayer_delrith_cutscene_end")
         showTabs()
         player.clearCamera()
-        // FIXME oh shit, cause we're pausing Moved,
-        //  that means once it's all done it finally moves and then calls on<Moved> exitArea with the old now outdated coords
+        for (wizard in wizards) {
+            wizard.mode = EmptyMode
+        }
     }
 }
 
-
 fun PlayerContext.setCutsceneEnd(instance: Region) {
     player.queue("demon_slayer_delrith_cutscene_end", 1, LogoutBehaviour.Accelerate) {
-        println("Erm what?")
         endCutscene(instance, defaultTile)
     }
 }
@@ -187,15 +190,21 @@ on<Unregistered>({ it.contains("demon_slayer_instance") }) { player: Player ->
     destroyInstance(player)
 }
 
+fun enterArea(player: Player, from: Tile, to: Tile): Boolean {
+    return !rect.contains(from) && rect.contains(to) && !player.hasClock("demon_slayer_instance_exit")
+}
+
 fun exitArea(player: Player, to: Tile): Boolean {
     val offset: Tile = player.getOrNull("demon_slayer_offset") ?: return false
     val actual = to.minus(offset)
-    return !rect.contains(actual)
+    return !rect.contains(actual) && !player.hasClock("demon_slayer_instance_exit")
 }
 
 fun destroyInstance(player: Player) {
     val offset: Tile? = player.remove("demon_slayer_offset")
-    player.tele(if (offset == null) defaultTile else player.tile.minus(offset))
+    val target = if (offset == null) defaultTile else player.tile.minus(offset)
+    player.start("demon_slayer_instance_exit", 2)
+    player.tele(target)
     val instance: Region = player.remove("demon_slayer_instance") ?: return
     Instances.free(instance)
     // TODO clear npcs and objects
