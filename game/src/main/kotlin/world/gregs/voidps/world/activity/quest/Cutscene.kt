@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.clearMinimap
 import world.gregs.voidps.engine.client.minimap
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.chunk.DynamicChunks
@@ -28,19 +27,27 @@ private val tabs = listOf(
 fun PlayerContext.startCutscene(region: Region): Region {
     val instance = Instances.small()
     get<DynamicChunks>().copy(region, instance)
+    hideTabs()
+    return instance
+}
+
+fun PlayerContext.hideTabs() {
     tabs.forEach {
         player.close(it)
     }
     player.minimap(Minimap.HideMap)
-    return instance
 }
 
-fun Interaction.stopCutscene(instance: Region) {
+fun PlayerContext.stopCutscene(instance: Region) {
     Instances.free(instance)
     get<DynamicChunks>().clear(instance)
+    player.open("fade_in")
+    showTabs()
+}
+
+fun PlayerContext.showTabs() {
     tabs.forEach {
         player.open(it)
     }
-    player.open("fade_in")
     player.clearMinimap()
 }

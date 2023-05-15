@@ -1068,7 +1068,7 @@ traiborn:
   wander_radius: 3
   examine: "An old wizard."
 denath:
-  id: 5091
+  id: 4663
   examine: "A practicer of dark arts."
 dark_wizard_water:
   id: 8871
@@ -1087,5 +1087,8 @@ dark_wizard_earth_2:
   wander_radius: 5
   examine: "He works evil magic."
 delrith:
-  id: 24599
+  id: 879
   examine: "A freshly summoned demon."
+delrith_weakened:
+  id: 880
+  examine: "The demon doesn't look so strong now."

@@ -400,7 +400,7 @@ suspend fun NPCOption.cutscene() {
 }
 
 fun NPCOption.setCutsceneEnd(instance: Region) {
-    player.queue("demon_slayer_wally_cutscene_end", 0, LogoutBehaviour.Accelerate) {
+    player.queue("demon_slayer_wally_cutscene_end", 1, LogoutBehaviour.Accelerate) {
         endCutscene(instance)
     }
 }

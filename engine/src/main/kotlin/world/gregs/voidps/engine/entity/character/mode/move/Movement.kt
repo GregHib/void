@@ -216,7 +216,7 @@ open class Movement(
             val from = character.tile
             character.tile = character.tile.add(delta)
             character.visuals.moved = true
-            character.events.emit(Moved(from, character.tile))
+            character.events.emit(Moved(character, from, character.tile))
         }
 
         private fun clockwise(step: Direction) = when (step) {
