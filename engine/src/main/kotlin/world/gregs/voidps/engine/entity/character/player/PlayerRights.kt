@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.character.player
 
-import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
+import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 
