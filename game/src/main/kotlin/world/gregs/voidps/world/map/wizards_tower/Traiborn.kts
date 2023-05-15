@@ -32,9 +32,10 @@ var Player.bonesRequired: Int
 
 on<NPCOption>({ operate && npc.id == "traiborn" && option == "Talk-to" }) { player: Player ->
     npc<Uncertain>("Ello young thingummywut.")
-    when (player["demon_slayer", "unstarted"]) {
-        "key_hunt" -> keyCheck()
-        else -> thingummywutChoice()
+    if (player["demon_slayer_sir_prysin", false]) {
+        keyCheck()
+    } else {
+        thingummywutChoice()
     }
 }
 

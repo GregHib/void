@@ -15,14 +15,6 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             "",
             "<navy>I must be able to defeat a level 27 <maroon>apocalyptic demon<navy>!"
         )
-        "sir_prysin" -> listOf(
-            "<str>I spoke to Aris in Varrock Square who saw my future.",
-            "<str>Unfortunately it involved killing a demon who nearly",
-            "<str>destroyed Varrock over 150 years ago.",
-            "",
-            "<navy>To defeat the <maroon>demon<navy> I need the magical sword <maroon>Silverlight<navy>.",
-            "<navy>I should ask <maroon>Sir Prysin<navy> in <maroon>Varrock Palace<navy> where it is."
-        )
         "key_hunt" -> {
             val list = mutableListOf(
                 "<str>I spoke to Aris in Varrock Square who saw my future.",
@@ -31,45 +23,20 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
                 "",
                 "<navy>To defeat the <maroon>demon<navy> I need the magical sword <maroon>Silverlight<navy>.",
             )
-            val prysin = player.inventory.contains("silverlight_key_sir_prysin")
-            val rovin = player.inventory.contains("silverlight_key_captain_rovin")
-            val traiborn = player.inventory.contains("silverlight_key_wizard_traiborn")
-            if (prysin && rovin && traiborn) {
-                list.add("<navy>Now I have all <maroon>3 keys<navy> I should go and speak to <maroon>Sir Prysin")
-                list.add("<navy>and collect the magical sword <maroon>Silverlight<navy> from him.")
+            if (player["demon_slayer_sir_prysin", false]) {
+                val prysin = player.inventory.contains("silverlight_key_sir_prysin")
+                val rovin = player.inventory.contains("silverlight_key_captain_rovin")
+                val traiborn = player.inventory.contains("silverlight_key_wizard_traiborn")
+                if (prysin && rovin && traiborn) {
+                    list.add("<navy>Now I have all <maroon>3 keys<navy> I should go and speak to <maroon>Sir Prysin")
+                    list.add("<navy>and collect the magical sword <maroon>Silverlight<navy> from him.")
+                } else {
+                    list.add("<maroon>Sir Prysin<navy> needs <maroon>3 keys<navy> before he can give me <maroon>Silverlight<navy>.")
+                    list.add("")
+                    listKeys(player, list, prysin, rovin, traiborn)
+                }
             } else {
-                list.add("<maroon>Sir Prysin<navy> needs <maroon>3 keys<navy> before he can give me <maroon>Silverlight<navy>.")
-                list.add("")
-                if (prysin) {
-                    list.add("<str>I have the 1st Key with me.")
-                } else {
-                    list.add("<navy>The <maroon>1st Key<navy> was dropped down the <maroon>palace kitchen drains<navy>.")
-                    if (player["demon_slayer_drain_dislodged", false]) {
-                        list.add("<navy>I have washed the key down the drain into the sewer. I")
-                        list.add("<navy>should go down there to fetch it. The <maroon>sewer entrance<navy> could")
-                        list.add("<navy>be found somewhere just <maroon>outside<navy> the <maroon>palace courtyard<navy> to")
-                        list.add("<maroon>the east.")
-                    } else {
-                        list.add("<navy>Maybe some water can dislodge it.")
-                    }
-                }
-
-                if (rovin) {
-                    list.add("<str>I have the 2nd Key with me.")
-                } else {
-                    list.add("<navyThe <maroon>2nd Key<navy> is with Captain Rovin in Varrock Palace.")
-                }
-
-                if (traiborn) {
-                    list.add("<str>I have the 3rd Key with me.")
-                } else {
-                    list.add("<navy>The <maroon>3rd Key<navy> is with Wizard Traiborn at the Wizards' Tower,")
-                    list.add("<navy>south of Draynor Village.")
-                    val bones = player["demon_slayer_bones", -1]
-                    if (bones != -1) {
-                        list.add("<maroon>Traiborn<navy> needs <maroon>${bones}<navy> more <maroon>bones<navy>.")
-                    }
-                }
+                list.add("<navy>I should ask <maroon>Sir Prysin<navy> in <maroon>Varrock Palace<navy> where it is.")
             }
             list
         }
@@ -98,4 +65,43 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
 
 on<VariableSet>({ key == "demon_slayer" }) { player: Player ->
     player.refreshQuestJournal()
+}
+
+fun listKeys(
+    player: Player,
+    list: MutableList<String>,
+    prysin: Boolean,
+    rovin: Boolean,
+    traiborn: Boolean
+) {
+    if (prysin) {
+        list.add("<str>I have the 1st Key with me.")
+    } else {
+        list.add("<navy>The <maroon>1st Key<navy> was dropped down the <maroon>palace kitchen drains<navy>.")
+        if (player["demon_slayer_drain_dislodged", false]) {
+            list.add("<navy>I have washed the key down the drain into the sewer. I")
+            list.add("<navy>should go down there to fetch it. The <maroon>sewer entrance<navy> could")
+            list.add("<navy>be found somewhere just <maroon>outside<navy> the <maroon>palace courtyard<navy> to")
+            list.add("<maroon>the east.")
+        } else {
+            list.add("<navy>Maybe some water can dislodge it.")
+        }
+    }
+
+    if (rovin) {
+        list.add("<str>I have the 2nd Key with me.")
+    } else {
+        list.add("<navyThe <maroon>2nd Key<navy> is with Captain Rovin in Varrock Palace.")
+    }
+
+    if (traiborn) {
+        list.add("<str>I have the 3rd Key with me.")
+    } else {
+        list.add("<navy>The <maroon>3rd Key<navy> is with Wizard Traiborn at the Wizards' Tower,")
+        list.add("<navy>south of Draynor Village.")
+        val bones = player["demon_slayer_bones", -1]
+        if (bones != -1) {
+            list.add("<maroon>Traiborn<navy> needs <maroon>${bones}<navy> more <maroon>bones<navy>.")
+        }
+    }
 }

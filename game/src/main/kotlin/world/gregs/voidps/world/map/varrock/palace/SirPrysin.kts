@@ -5,20 +5,19 @@ import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.mode.Face
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -28,11 +27,8 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-val items: FloorItems by inject()
-
 on<NPCOption>({ operate && npc.id == "sir_prysin" && option == "Talk-to" }) { player: Player ->
     when (player["demon_slayer", "unstarted"]) {
-        "sir_prysin" -> arisChoice()
         "key_hunt" -> keyProgressCheck()
         "kill_demon" -> {
             npc<Talk>("Have you sorted that demon out yet?")
@@ -155,7 +151,7 @@ suspend fun NPCOption.theKeys() {
     """)
     npc<Talk>("One I gave to Rovin, the captain of the palace guard.")
     npc<Talk>("I gave the other to the wizard Traiborn.")
-    player["demon_slayer"] = "key_hunt"
+    player["demon_slayer_sir_prysin"] = true
     val choice = choice("""
         Can you give me your key?
         Where can I find Captain Rovin?
@@ -206,6 +202,10 @@ suspend fun NPCOption.wheresCaptainRovin() {
 }
 
 suspend fun NPCOption.keyProgressCheck() {
+    if (!player["demon_slayer_sir_prysin", false]) {
+        arisChoice()
+        return
+    }
     npc<Talk>("So how are you doing with getting the keys?")
     val rovin = player.hasItem("silverlight_key_captain_rovin")
     val prysin = player.hasItem("silverlight_key_sir_prysin")
@@ -309,42 +309,50 @@ suspend fun NPCOption.stillLooking() {
 suspend fun NPCOption.giveSilverlight() {
     player<Talking>("I've got all three keys!")
     npc<Talking>("Excellent! Now I can give you Silverlight.")
-    player["demon_slayer"] = "kill_demon"
     val tile = Tile(3204, 3470)
-    npc.walkTo(tile)
-    pause(2)
+    npc.mode = PauseMode
+    npc.steps.clear()
     npc.tele(tile)
+    player.tele(tile.addY(1))
+    delay(1)
+    npc.tele(tile)
+    npc.clearWatch()
     npc.face(Direction.SOUTH)
-    pause()
+    delay()
     npc.setAnimation("4597", 19)
     player.playSound("cupboard_open", delay = 19)
-    pause()
+    delay()
     player["demon_slayer_silverlight_case"] = "open"
     player.playSound("casket_open")
-    pause()
+    delay()
     npc.setAnimation("4598")
     npc.transform("sir_prysin_silverlight")
     player["demon_slayer_silverlight_case"] = "empty"
-    pause()
+    delay()
     player["demon_slayer_silverlight_case"] = "closed"
     npc.setAnimation("4606")
     npc.face(player)
-    pause()
+    delay()
     npc.setAnimation("4607")
-    pause()
-    player.inventory.add("silverlight")
-    if (player.inventory.transaction.error != TransactionError.None) {
-        items.add("silverlight", 1, player.tile)
+    delay()
+    player["demon_slayer"] = "kill_demon"
+    player["demon_slayer_sir_prysin"] = false
+    player.inventory.transaction {
+        remove("silverlight_key_wizard_traiborn")
+        remove("silverlight_key_captain_rovin")
+        remove("silverlight_key_sir_prysin")
+        add("silverlight")
     }
-    item("Sir Prysin hands you a very shiny sword.", "silverlight", 400)
+    npc.mode = Face(npc, player, distance = 2)
+    item("Sir Prysin hands you a very shiny sword.", "silverlight", 200)
     player.setAnimation("4604")
     player.setGraphic("778")
     npc.setAnimation("4608")
     player.playSound("equip_silverlight")
     npc.transform("sir_prysin")
-    pause()
+    delay()
     npc.face(Direction.NONE)
-    pause()
+    delay()
     npc<Talk>("""
         That sword belonged to my great-grandfather. Make
         sure you treat it with respect!

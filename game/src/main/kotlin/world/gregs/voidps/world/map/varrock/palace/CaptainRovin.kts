@@ -17,9 +17,10 @@ on<NPCOption>({ operate && npc.id == "captain_rovin" && option == "Talk-to" }) {
         What are you doing up here? Only the palace guards
         are allowed up here.
     """)
-    when (player["demon_slayer", "unstarted"]) {
-        "key_hunt" -> introChoice()
-        else -> regularChoice()
+    if (player["demon_slayer_sir_prysin", false]) {
+        demonSlayerChoice()
+    } else {
+        regularChoice()
     }
 }
 
@@ -267,7 +268,7 @@ suspend fun NPCOption.whyDidHeGiveKeyToYou() {
     }
 }
 
-suspend fun NPCOption.introChoice() {
+suspend fun NPCOption.demonSlayerChoice() {
     val choice = choice("""
         I am one of the palace guards.
         What about the King?

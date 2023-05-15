@@ -75,7 +75,7 @@ on<NPCOption>({ operate && npc.id == "gypsy_aris" && option == "Talk-to" }) { pl
                 4 -> withSilver()
             }
         }
-        "sir_prysin" -> howGoesQuest()
+        "key_hunt" -> howGoesQuest()
         "completed" -> {
             npc<Talking>("Greetings young one.")
             npc<Cheerful>("You're a hero now. That was a good bit of demon-slaying.")
@@ -395,7 +395,7 @@ suspend fun NPCOption.cutscene() {
     statement("", clickToContinue = false)
     player.queue.clear("demon_slayer_wally_cutscene_end")
     endCutscene(instance)
-    player["demon_slayer"] = "sir_prysin"
+    player["demon_slayer"] = "key_hunt"
     delrithWillCome()
 }
 
