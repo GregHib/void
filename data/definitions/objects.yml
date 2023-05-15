@@ -11441,3 +11441,6 @@ silverlight_sword_case_open:
 silverlight_sword_case_empty:
   id: 12983
   examine: "This case used to contain silverlight."
+demon_slayer_stone_table:
+  id: 17436
+  examine: "An evil presence seems to rest in the stone table."

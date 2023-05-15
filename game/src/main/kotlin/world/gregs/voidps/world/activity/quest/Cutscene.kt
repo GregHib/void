@@ -6,12 +6,11 @@ import world.gregs.voidps.engine.client.minimap
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.suspend.delay
-import world.gregs.voidps.world.interact.dialogue.type.statement
 
 private val tabs = listOf(
     "combat_styles",
@@ -26,10 +25,7 @@ private val tabs = listOf(
     "notes"
 )
 
-suspend fun Interaction.startCutscene(region: Region, statement: String = ""): Region {
-    player.open("fade_out")
-    statement(statement, clickToContinue = false)
-    delay(2)
+fun PlayerContext.startCutscene(region: Region): Region {
     val instance = Instances.small()
     get<DynamicChunks>().copy(region, instance)
     tabs.forEach {

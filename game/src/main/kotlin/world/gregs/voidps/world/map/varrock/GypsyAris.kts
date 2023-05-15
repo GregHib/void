@@ -319,6 +319,9 @@ suspend fun NPCOption.whoYouCallingYoung() {
 
 suspend fun NPCOption.cutscene() {
     val region = Region(12852)
+    player.open("fade_out")
+    statement("", clickToContinue = false)
+    delay(2)
     val instance = startCutscene(region)
     val offset = instance.offset(region)
     setCutsceneEnd(instance)

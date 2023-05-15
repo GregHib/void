@@ -1067,3 +1067,25 @@ traiborn:
   id: 881
   wander_radius: 3
   examine: "An old wizard."
+denath:
+  id: 5091
+  examine: "A practicer of dark arts."
+dark_wizard_water:
+  id: 8871
+  wander_radius: 5
+  examine: "He works evil magic."
+dark_wizard_water_2:
+  id: 8872
+  wander_radius: 5
+  examine: "He works evil magic."
+dark_wizard_earth:
+  id: 8873
+  wander_radius: 5
+  examine: "He works evil magic."
+dark_wizard_earth_2:
+  id: 8874
+  wander_radius: 5
+  examine: "He works evil magic."
+delrith:
+  id: 24599
+  examine: "A freshly summoned demon."

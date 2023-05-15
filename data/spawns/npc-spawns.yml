@@ -364,6 +364,18 @@
 ## Palace
 - { id: sir_prysin, x: 3205, y: 3472 }
 - { id: captain_rovin, x: 3204, y: 3496, plane: 2 }
+## Stone circle
+- { id: dark_wizard_water, x: 3222, y: 3364, direction: NORTH }
+- { id: dark_wizard_water_2, x: 3222, y: 3374, direction: EAST }
+- { id: dark_wizard_earth_2, x: 3225, y: 3372, direction: SOUTH }
+- { id: dark_wizard_earth, x: 3226, y: 3366, direction: SOUTH }
+- { id: dark_wizard_earth_2, x: 3228, y: 3371, direction: NORTH }
+- { id: dark_wizard_water, x: 3228, y: 3372, direction: SOUTH_WEST }
+- { id: dark_wizard_water, x: 3231, y: 3367, direction: SOUTH }
+- { id: dark_wizard_water_2, x: 3231, y: 3362, direction: NORTH }
+- { id: dark_wizard_earth, x: 3231, y: 3375, direction: SOUTH }
+- { id: dark_wizard_earth, x: 3233, y: 3366, direction: WEST }
+- { id: dark_wizard_water_2, x: 3234, y: 3373, direction: SOUTH_EAST }
 # Champions Guild
 - { id: tarquin, x: 3203, y: 3344 }
 # Barbarian Village
