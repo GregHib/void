@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.dialogue.type
 
 import net.pearx.kasechange.toSnakeCase
+import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.get
@@ -31,7 +32,7 @@ suspend inline fun <reified E : Expression> PlayerContext.npc(npcId: String, tex
 @JvmName("npcExpression")
 suspend fun PlayerContext.npc(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val target: NPC = player.getOrNull("dialogue_target") ?: throw IllegalArgumentException("No npc specified for dialogue. Please use player.talkWith(npc) or npc(npcId, text).")
-    val id = target["transform_id", target.id]
+    val id = target["transform_id", player.getOrNull<NPCDefinition>("dialogue_def")?.stringId ?: target.id]
     target.mode = Face(target, player)
     npc(id, expression, text, largeHead, clickToContinue, title)
 }
