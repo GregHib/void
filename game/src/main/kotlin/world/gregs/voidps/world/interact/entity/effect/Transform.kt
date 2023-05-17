@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity.effect
 
 import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
 import world.gregs.voidps.engine.entity.Size
@@ -40,6 +41,7 @@ private fun Player.transform(definition: NPCDefinition) {
     flagAppearance()
 }
 
+@Deprecated("Use transform variable")
 fun NPC.transform(npc: String) {
     if (npc.isBlank() || npc == "-1") {
         softTimers.stop("transform")
@@ -52,3 +54,18 @@ fun NPC.transform(npc: String) {
     visuals.transform.id = definition.id
     flagTransform()
 }
+
+var NPC.transform: String
+    get() = this["transform_id", ""]
+    set(value) {
+        if (value.isBlank() || value == "-1") {
+            softTimers.stop("transform")
+            return
+        }
+        softTimers.start("transform")
+        this["transform_id"] = value
+        val definitions: NPCDefinitions = get()
+        val definition = definitions.get(value)
+        visuals.transform.id = definition.id
+        flagTransform()
+    }

@@ -30,6 +30,7 @@ import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.world.activity.quest.DemonSlayerSpell.getWord
 import world.gregs.voidps.world.activity.quest.startCutscene
 import world.gregs.voidps.world.activity.quest.stopCutscene
 import world.gregs.voidps.world.interact.dialogue.*
@@ -422,15 +423,6 @@ fun randomiseOrder(player: Player) {
     player["demon_slayer_carlem"] = order[2]
     player["demon_slayer_gabindo"] = order[3]
     player["demon_slayer_purchai"] = order[4]
-}
-
-fun getWord(player: Player, index: Int): String = when (index) {
-    player["demon_slayer_aber", -1] -> "Aber"
-    player["demon_slayer_camerinthum", -1] -> "Camerinthum"
-    player["demon_slayer_carlem", -1] -> "Carlem"
-    player["demon_slayer_gabindo", -1] -> "Gabindo"
-    player["demon_slayer_purchai", -1] -> "Purchai"
-    else -> "null"
 }
 
 suspend fun NPCOption.withSilver() {

@@ -27,7 +27,12 @@ class NPCOptionHandler(
             return
         }
         val npc = npcs.indexed(instruction.npcIndex) ?: return
-        val definition = getDefinition(player, definitions, npc.def, npc.def)
+        var def = npc.def
+        val transform = npc["transform_id", ""]
+        if (transform.isNotBlank()) {
+            def = definitions.get(transform)
+        }
+        val definition = getDefinition(player, definitions, def, def)
         val options = definition.options
         val index = instruction.option - 1
         val selectedOption = options.getOrNull(index)

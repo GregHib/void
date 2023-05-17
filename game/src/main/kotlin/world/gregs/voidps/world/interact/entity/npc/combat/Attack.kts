@@ -10,6 +10,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit
 
 on<CombatSwing>({ !swung() }, Priority.LOWEST) { npc: NPC ->
     npc.setAnimation(attackAnimation(npc))
+//    (target as? Player)?.playSound(attackSound(npc))
     npc.hit(target, delay = 1)
     delay = npc.def["attack_speed", 4]
 }
@@ -24,5 +25,13 @@ fun attackAnimation(npc: NPC): String {
     if (race != null) {
         return "${race}_attack"
     }
-    return npc.def["hit_anim"]
+    return npc.def.getOrNull("hit_anim") ?: ""
+}
+
+fun attackSound(npc: NPC): String {
+    val race: String? = npc.def.getOrNull("race")
+    if (race != null) {
+        return "${race}_attack"
+    }
+    return npc.def.getOrNull("hit_anim") ?: ""
 }

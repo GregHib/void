@@ -1540,3 +1540,6 @@ unlock_chest: 536
 traiborn_bone_spell: 4602
 summon_demon: 4617
 delrith_rise: 4623
+demon_attack: 64
+demon_hit: 65
+delrith_death: 4624

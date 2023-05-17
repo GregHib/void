@@ -13093,6 +13093,7 @@ silverlight:
   crush_def: 2.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   destroy: "You can obtain it from Gideon Bede in the Saradominist church in north-east Varrock. You can also reclaim it from the quest storage chest."
   examine: "The magical sword Silverlight."
   kept: "Reclaim"

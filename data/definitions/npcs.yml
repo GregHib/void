@@ -1088,6 +1088,7 @@ dark_wizard_earth_2:
   examine: "He works evil magic."
 delrith:
   id: 879
+  race: demon
   examine: "A freshly summoned demon."
 delrith_weakened:
   id: 880

@@ -59,6 +59,67 @@ data class ShootProjectile(
     }
 }
 
+fun Tile.shoot(
+    id: String,
+    target: Character,
+    delay: Int? = null,
+    flightTime: Int? = null,
+    height: Int? = null,
+    endHeight: Int? = null,
+    curve: Int? = null,
+    offset: Int? = null,
+) {
+    val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
+    val time = getFlightTime(definition, this, target.tile, flightTime)
+    if (time == -1) {
+        return
+    }
+    World.events.emit(
+        ShootProjectile(
+            id = id,
+            tile = this,
+            direction = target.tile.delta(this),
+            target = target,
+            delay = delay ?: definition["delay", DEFAULT_DELAY],
+            flightTime = time,
+            startHeight = height ?: definition["height", 0],
+            endHeight = endHeight ?: (target.height + definition["end_height", 0]),
+            curve = curve ?: definition["curve", DEFAULT_CURVE],
+            offset = 64 + (offset ?: definition["offset", DEFAULT_OFFSET])
+        )
+    )
+}
+
+fun Tile.shoot(
+    id: String,
+    tile: Tile,
+    delay: Int? = null,
+    flightTime: Int? = null,
+    height: Int? = null,
+    endHeight: Int? = null,
+    curve: Int? = null,
+    offset: Int? = null
+) {
+    val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
+    val time = getFlightTime(definition, this, tile, flightTime)
+    if (time == -1) {
+        return
+    }
+    World.events.emit(
+        ShootProjectile(
+            id = id,
+            tile = this,
+            direction = tile.delta(this),
+            delay = delay ?: definition["delay", DEFAULT_DELAY],
+            flightTime = time,
+            startHeight = height ?: definition["height", 0],
+            endHeight = endHeight ?: definition["end_height", 0],
+            curve = curve ?: definition["curve", DEFAULT_CURVE],
+            offset = 64 + (offset ?: definition["offset", DEFAULT_OFFSET])
+        )
+    )
+}
+
 fun Character.shoot(
     id: String,
     target: Character,
