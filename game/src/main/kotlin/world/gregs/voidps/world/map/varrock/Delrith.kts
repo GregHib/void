@@ -185,7 +185,7 @@ suspend fun PlayerContext.cutscene() {
     player.turnCamera(offset.add(3227, 3369), 100, 232, 232)
     player.moveCamera(offset.add(3227, 3365), 500, 232, 232)
     delay(1)
-    obj.animate("4622")
+    obj.animate("demon_slayer_table_light")
     player.playSound("summon_npc")
     player.playSound("demon_slayer_table_explosion")
     player.shakeCamera(15, 0, 0, 0, 0)
@@ -193,6 +193,7 @@ suspend fun PlayerContext.cutscene() {
         offset.add(source).shoot("demon_slayer_spell", offset.add(target))
     }
     delay(1)
+    obj.animate("demon_slayer_table_summon")
     player.shakeCamera(0, 0, 0, 0, 0)
     for ((_, target) in targets) {
         areaGraphic("demon_slayer_spell_hit", offset.add(target))
@@ -200,7 +201,7 @@ suspend fun PlayerContext.cutscene() {
     delay(2)
     npcs.index(delrith)
     delay(1)
-    delrith.setAnimation("delrith_rise")
+    delrith.setAnimation("delrith_appear")
     player.playSound("demon_slayer_break_table", delay = 10)
     player.playSound("demon_slayer_delrith_appear")
     player.turnCamera(offset.add(3227, 3369), 400, 1, 1)
@@ -302,8 +303,8 @@ on<CurrentLevelChanged>({ skill == Skill.Constitution && to <= 0 && it.id == "de
 }
 
 fun PlayerContext.questComplete() {
-    player.setAnimation("4604")
-    player.setGraphic("778")
+    player.setAnimation("silverlight_showoff")
+    player.setGraphic("silverlight_sparkle")
     player.playSound("equip_silverlight")
     player["demon_slayer"] = "completed"
     player.playJingle("quest_complete_1")

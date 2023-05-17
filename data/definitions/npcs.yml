@@ -1053,11 +1053,8 @@ wally:
   id: 4664
   examine: "Wally."
 sir_prysin:
-  id: 883
+  id: 9359
   wander_radius: 3
-  examine: "One of the king's knights."
-sir_prysin_silverlight:
-  id: 4657
   examine: "One of the king's knights."
 captain_rovin:
   id: 884

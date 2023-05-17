@@ -1,12 +1,12 @@
 package world.gregs.voidps.world.map.varrock.palace
 
+import world.gregs.voidps.engine.client.update.batch.animate
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
@@ -15,7 +15,9 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
+import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.world.activity.bank.hasBanked
@@ -24,7 +26,6 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 on<NPCOption>({ operate && npc.id == "sir_prysin" && option == "Talk-to" }) { player: Player ->
@@ -306,50 +307,59 @@ suspend fun NPCOption.stillLooking() {
     npc<Talk>("Ok, tell me when you've got them all.")
 }
 
+val objects: Objects by inject()
+val cupboardTile = Tile(3204, 3469)
+
 suspend fun NPCOption.giveSilverlight() {
     player<Talking>("I've got all three keys!")
     npc<Talking>("Excellent! Now I can give you Silverlight.")
-    val tile = Tile(3204, 3470)
-    npc.mode = PauseMode
-    npc.steps.clear()
-    npc.tele(tile)
-    player.tele(tile.addY(1))
-    delay(1)
-    npc.tele(tile)
-    npc.clearWatch()
-    npc.face(Direction.SOUTH)
-    delay()
-    npc.setAnimation("4597", 19)
-    player.playSound("cupboard_open", delay = 19)
-    delay()
-    player["demon_slayer_silverlight_case"] = "open"
-    player.playSound("casket_open")
-    delay()
-    npc.setAnimation("4598")
-    npc.transform("sir_prysin_silverlight")
-    player["demon_slayer_silverlight_case"] = "empty"
-    delay()
-    player["demon_slayer_silverlight_case"] = "closed"
-    npc.setAnimation("4606")
-    npc.face(player)
-    delay()
-    npc.setAnimation("4607")
-    delay()
-    player["demon_slayer"] = "kill_demon"
-    player["demon_slayer_sir_prysin"] = false
     player.inventory.transaction {
         remove("silverlight_key_wizard_traiborn")
         remove("silverlight_key_captain_rovin")
         remove("silverlight_key_sir_prysin")
+    }
+    val tile = Tile(3204, 3470)
+    npc.mode = PauseMode
+    npc.steps.clear()
+    npc.tele(tile, clearMode = false)
+    player.tele(tile.addY(1))
+    delay(1)
+    npc.face(Direction.SOUTH)
+    player.face(Direction.SOUTH)
+    val cupboard = objects[cupboardTile, "silverlight_sword_case_closed"]!!
+    cupboard.animate("silverlight_sword_case_open")
+    npc.setAnimation("silverlight_open_sword_case")
+    player.playSound("cupboard_open", delay = 19)
+    delay(3)
+    player.playSound("cupboard_open")
+    delay(2)
+    player.playSound("cupboard_open", delay = 10)
+    delay(2)
+    npc.setAnimation("silverlight_remove_sword")
+    cupboard.animate("silverlight_sword_removed")
+    delay(8)
+    player["demon_slayer_silverlight_case"] = "open"
+    player.playSound("casket_open")
+    npc.setAnimation("12628")
+    delay()
+    player["demon_slayer_sir_prysin_sword"] = true
+    player["demon_slayer_silverlight_case"] = "empty"
+    delay(2)
+    npc.face(player)
+    delay(2)
+    npc.setAnimation("silverlight_hand_over")
+    player.setAnimation("silverlight_take")
+    delay()
+    player["demon_slayer"] = "kill_demon"
+    player.inventory.transaction {
         add("silverlight")
     }
+    player["demon_slayer_sir_prysin_sword"] = false
     npc.mode = Face(npc, player, distance = 2)
-    item("Sir Prysin hands you a very shiny sword.", "silverlight", 200)
-    player.setAnimation("4604")
-    player.setGraphic("778")
-    npc.setAnimation("4608")
+    item("Sir Prysin hands you a very shiny sword.", "silverlight", 500)
+    player.setAnimation("silverlight_showoff")
+    player.setGraphic("silverlight_sparkle")
     player.playSound("equip_silverlight")
-    npc.transform("sir_prysin")
     delay()
     npc.face(Direction.NONE)
     delay()

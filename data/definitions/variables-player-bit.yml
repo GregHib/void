@@ -43,9 +43,9 @@ demon_slayer_silverlight_case:
   persist: true
   format: list
   values: [ closed, open, empty ]
-demon_slayer_sir_prysin:
+demon_slayer_sir_prysin_sword:
   id: 6923
-  persist: true
+  persist: false
   format: boolean
 assist_toggle_runecrafting:
   id: 4090

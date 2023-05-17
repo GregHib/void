@@ -1413,3 +1413,4 @@ demon_slayer_spell:
   height: 0
   flight_time: [ -1, -1, 30, 30 ]
 demon_slayer_spell_hit: 783
+silverlight_sparkle: 778
