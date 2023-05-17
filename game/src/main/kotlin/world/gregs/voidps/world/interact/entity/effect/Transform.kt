@@ -41,20 +41,6 @@ private fun Player.transform(definition: NPCDefinition) {
     flagAppearance()
 }
 
-@Deprecated("Use transform variable")
-fun NPC.transform(npc: String) {
-    if (npc.isBlank() || npc == "-1") {
-        softTimers.stop("transform")
-        return
-    }
-    softTimers.start("transform")
-    this["transform_id"] = npc
-    val definitions: NPCDefinitions = get()
-    val definition = definitions.get(npc)
-    visuals.transform.id = definition.id
-    flagTransform()
-}
-
 var NPC.transform: String
     get() = this["transform_id", ""]
     set(value) {

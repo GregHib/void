@@ -297,7 +297,7 @@ on<NPCOption>({ println(this);npc.id == "delrith" && npc.transform == "delrith_w
 on<CurrentLevelChanged>({ skill == Skill.Constitution && to <= 0 && it.id == "delrith" }, Priority.HIGH) { npc: NPC ->
     cancel()
 //    player.playSound("demon_slayer_portal_open")
-    npc.transform("delrith_weakened")
+    npc.transform = "delrith_weakened"
     npc.mode = PauseMode
 }
 
