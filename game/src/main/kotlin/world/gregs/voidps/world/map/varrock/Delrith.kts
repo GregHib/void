@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.CurrentLeve
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -65,7 +66,7 @@ val targets = listOf(
     Tile(3228, 3370) to Tile(3231, 3373)
 )
 
-on<Moved>({ it["demon_slayer_sir_prysin_sword", false] && enterArea(it, from, to) }) { player: Player ->
+on<Moved>({ it["demon_slayer_silverlight", false] && enterArea(it, from, to) }) { player: Player ->
     // FIXME temp hack. Add EnterArea + ExitArea event
     val context = object : PlayerContext {
         override val player: Player = player
@@ -157,8 +158,13 @@ suspend fun PlayerContext.cutscene() {
     if (player["demon_slayer_summoned", false]) {
         player.queue.clear("demon_slayer_delrith_cutscene_end")
         delrith.tele(offset.add(3227, 3367))
+        denath.tele(offset.add(3236, 3368))
         npcs.index(delrith)
         showTabs()
+        val obj = customObjects.spawn("demon_slayer_stone_table", offset.add(3227, 3369), 10, 0)
+        delay(1)
+        obj.animate("demon_slayer_table_summon")
+        obj.animate("demon_slayer_table_light")
         return
     }
     delay(1)
@@ -180,25 +186,28 @@ suspend fun PlayerContext.cutscene() {
     npc<Talking>("dark_wizard_water", "Arise, Delrith!", title = "Dark wizards")
 
     statement("The wizards cast an evil spell", clickToContinue = false)
-    val obj = customObjects.spawn("demon_slayer_stone_table", offset.add(3227, 3369), 10, 0)
+    println(objects[offset.add(3227, 3369)])
+    val regular = objects[offset.add(3227, 3369), "demon_slayer_stone_table"]!!
+    val table = regular.replace("demon_slayer_stone_table_summoning", ticks = 12)
     player.clearCamera()
     player.turnCamera(offset.add(3227, 3369), 100, 232, 232)
     player.moveCamera(offset.add(3227, 3365), 500, 232, 232)
-    delay(1)
-    obj.animate("demon_slayer_table_light")
     player.playSound("summon_npc")
     player.playSound("demon_slayer_table_explosion")
+    delay(1)
+    table.animate("demon_slayer_table_light")
+    delay(1)
+    table.animate("demon_slayer_table_summon")
     player.shakeCamera(15, 0, 0, 0, 0)
     for ((source, target) in targets) {
         offset.add(source).shoot("demon_slayer_spell", offset.add(target))
     }
     delay(1)
-    obj.animate("demon_slayer_table_summon")
     player.shakeCamera(0, 0, 0, 0, 0)
     for ((_, target) in targets) {
         areaGraphic("demon_slayer_spell_hit", offset.add(target))
     }
-    delay(2)
+    delay(3)
     npcs.index(delrith)
     delay(1)
     delrith.setAnimation("delrith_appear")

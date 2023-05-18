@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -320,13 +320,15 @@ suspend fun NPCOption.giveSilverlight() {
     }
     val tile = Tile(3204, 3470)
     npc.mode = PauseMode
+    npc.clearWatch()
     npc.steps.clear()
+    delay(1)
     npc.tele(tile, clearMode = false)
     player.tele(tile.addY(1))
-    delay(1)
-    npc.face(Direction.SOUTH)
-    player.face(Direction.SOUTH)
     val cupboard = objects[cupboardTile, "silverlight_sword_case_closed"]!!
+    delay(1)
+    npc.face(cupboard)
+    player.face(npc)
     cupboard.animate("silverlight_sword_case_open")
     npc.setAnimation("silverlight_open_sword_case")
     player.playSound("cupboard_open", delay = 19)
@@ -355,8 +357,7 @@ suspend fun NPCOption.giveSilverlight() {
     player.inventory.transaction {
         add("silverlight")
     }
-    npc.mode = Face(npc, player, distance = 2)
-    item("Sir Prysin hands you a very shiny sword.", "silverlight", 500)
+    item("Sir Prysin hands you a very shiny sword.", "silverlight", 600)
     player.setAnimation("silverlight_showoff")
     player.setGraphic("silverlight_sparkle")
     player.playSound("equip_silverlight")

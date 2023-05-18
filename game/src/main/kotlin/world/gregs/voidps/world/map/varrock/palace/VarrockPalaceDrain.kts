@@ -26,6 +26,13 @@ val logger = InlineLogger()
 
 on<ObjectOption>({ operate && obj.id == "varrock_palace_drain" && option == "Search" }) { player: Player ->
     player.setAnimation("climb_down")
+    if (player["demon_slayer", "unstarted"] == "unstarted") {
+        player<Suspicious>("""
+            This is the drainpipe running from the kitchen sink to
+            the sewer. I can see a key just inside the drain.
+        """)
+        return@on
+    }
     if (player["demon_slayer_drain_dislodged", false] || player.hasBanked("silverlight_key_sir_prysin")) {
         player.message("Nothing interesting seems to have been dropped down here today.")
     } else {
@@ -61,10 +68,17 @@ on<InterfaceOnObject>({ obj.id == "varrock_palace_drain" && item.id.endsWith("of
     player.playSound("demon_slayer_drain")
     player.playSound("demon_slayer_key_fall")
     player.weakQueue("demon_slayer_dislodge_key") {
-        player<Cheerful>("""
-            OK, I think I've washed the key down into the sewer.
-            I'd better go down and get it!
-        """)
+        if (player["demon_slayer", "unstarted"] == "key_hunt") {
+            player<Cheerful>("""
+                OK, I think I've washed the key down into the sewer.
+                I'd better go down and get it!
+            """)
+        } else {
+            player<Suspicious>("""
+                I think that dislodged something from the drain. It's
+                probably gone down to the sewers below.
+            """)
+        }
     }
 }
 

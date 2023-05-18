@@ -137,7 +137,7 @@ class CustomObjects(
         ticks: Int = -1,
         owner: String? = null,
         collision: Boolean = true
-    ) {
+    ): GameObject {
         val replacement = factory.spawn(id, tile, type, rotation, owner)
         switch(original, replacement, collision)
         // Revert
@@ -148,6 +148,7 @@ class CustomObjects(
             }
             objects.setTimer(replacement, name)
         }
+        return replacement
     }
 
     /**
@@ -228,8 +229,8 @@ fun GameObject.remove(ticks: Int = -1, owner: String? = null, collision: Boolean
  * [owner] is also optional to allow for an object to replaced just for one player.
  * [collision] can also be used to disable collision changes
  */
-fun GameObject.replace(id: String, tile: Tile = this.tile, type: Int = this.type, rotation: Int = this.rotation, ticks: Int = -1, owner: String? = null, collision: Boolean = true) {
-    get<CustomObjects>().replace(this, id, tile, type, rotation, ticks, owner, collision)
+fun GameObject.replace(id: String, tile: Tile = this.tile, type: Int = this.type, rotation: Int = this.rotation, ticks: Int = -1, owner: String? = null, collision: Boolean = true): GameObject {
+    return get<CustomObjects>().replace(this, id, tile, type, rotation, ticks, owner, collision)
 }
 
 /**
