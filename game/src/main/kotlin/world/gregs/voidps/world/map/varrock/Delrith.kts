@@ -152,7 +152,7 @@ suspend fun PlayerContext.cutscene() {
     setCutsceneEnd(instance)
     player.tele(offset.add(3222, 3367))
     player.face(Direction.NORTH_EAST)
-    player.playTrack("delrith") // TODO 239
+    player.playTrack("delrith")
 
     if (player["demon_slayer_summoned", false]) {
         player.queue.clear("demon_slayer_delrith_cutscene_end")

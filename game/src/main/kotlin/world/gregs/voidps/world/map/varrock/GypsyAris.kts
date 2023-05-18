@@ -131,7 +131,7 @@ suspend fun NPCOption.howToDo() {
 
 suspend fun NPCOption.howWallyWon() {
     player<Unsure>("So, how did Wally kill Delrith?")
-    player.playTrack("wally_the_hero") // TODO
+    player.playTrack("wally_the_hero")
     cutscene()
 }
 
