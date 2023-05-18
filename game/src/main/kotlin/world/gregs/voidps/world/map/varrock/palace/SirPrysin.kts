@@ -30,28 +30,32 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 on<NPCOption>({ operate && npc.id == "sir_prysin" && option == "Talk-to" }) { player: Player ->
     when (player["demon_slayer", "unstarted"]) {
-        "key_hunt" -> keyProgressCheck()
-        "kill_demon" -> {
-            npc<Talk>("Have you sorted that demon out yet?")
-            if (player.hasBanked("silverlight")) {
-                player<Upset>("No, not yet.")
-                npc<Talk>("""
+        "sir_prysin" -> arisChoice()
+        "key_hunt" -> {
+            if (player["demon_slayer_silverlight", false]) {
+                npc<Talk>("Have you sorted that demon out yet?")
+                if (player.hasBanked("silverlight")) {
+                    player<Upset>("No, not yet.")
+                    npc<Talk>("""
                     Well get on with it. He'll be pretty powerful when he
                     gets to full strength.
                 """)
-                return@on
-            }
-            player<Upset>("Not yet. And I, um, lost Silverlight.")
-            if (player.inventory.add("silverlight")) {
-                npc<Furious>("""
+                    return@on
+                }
+                player<Upset>("Not yet. And I, um, lost Silverlight.")
+                if (player.inventory.add("silverlight")) {
+                    npc<Furious>("""
                     Yes, I know, someone returned it to me. Take better
                     care of it this time.
                 """)
-            } else {
-                npc<Furious>("""
+                } else {
+                    npc<Furious>("""
                     Yes, I know, someone returned it to me. I'll keep it
                     until you have free inventory space.")
                 """)
+                }
+            } else {
+                keyProgressCheck()
             }
         }
         "completed" -> {
@@ -152,7 +156,7 @@ suspend fun NPCOption.theKeys() {
     """)
     npc<Talk>("One I gave to Rovin, the captain of the palace guard.")
     npc<Talk>("I gave the other to the wizard Traiborn.")
-    player["demon_slayer_sir_prysin"] = true
+    player["demon_slayer"] = "key_hunt"
     val choice = choice("""
         Can you give me your key?
         Where can I find Captain Rovin?
@@ -203,10 +207,6 @@ suspend fun NPCOption.wheresCaptainRovin() {
 }
 
 suspend fun NPCOption.keyProgressCheck() {
-    if (!player["demon_slayer_sir_prysin", false]) {
-        arisChoice()
-        return
-    }
     npc<Talk>("So how are you doing with getting the keys?")
     val rovin = player.hasItem("silverlight_key_captain_rovin")
     val prysin = player.hasItem("silverlight_key_sir_prysin")
@@ -350,11 +350,11 @@ suspend fun NPCOption.giveSilverlight() {
     npc.setAnimation("silverlight_hand_over")
     player.setAnimation("silverlight_take")
     delay()
-    player["demon_slayer"] = "kill_demon"
+    player["demon_slayer_silverlight"] = true
+    player["demon_slayer_sir_prysin_sword"] = false
     player.inventory.transaction {
         add("silverlight")
     }
-    player["demon_slayer_sir_prysin_sword"] = false
     npc.mode = Face(npc, player, distance = 2)
     item("Sir Prysin hands you a very shiny sword.", "silverlight", 500)
     player.setAnimation("silverlight_showoff")

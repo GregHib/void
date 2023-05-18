@@ -17,7 +17,7 @@ on<NPCOption>({ operate && npc.id == "captain_rovin" && option == "Talk-to" }) {
         What are you doing up here? Only the palace guards
         are allowed up here.
     """)
-    if (player["demon_slayer_sir_prysin", false]) {
+    if (player["demon_slayer", "unstarted"] == "key_hunt") {
         demonSlayerChoice()
     } else {
         regularChoice()

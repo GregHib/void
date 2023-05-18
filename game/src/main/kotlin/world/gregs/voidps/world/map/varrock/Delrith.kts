@@ -65,7 +65,7 @@ val targets = listOf(
     Tile(3228, 3370) to Tile(3231, 3373)
 )
 
-on<Moved>({ it["demon_slayer", "unstarted"] == "kill_demon" && enterArea(it, from, to) }) { player: Player ->
+on<Moved>({ it["demon_slayer_sir_prysin_sword", false] && enterArea(it, from, to) }) { player: Player ->
     // FIXME temp hack. Add EnterArea + ExitArea event
     val context = object : PlayerContext {
         override val player: Player = player

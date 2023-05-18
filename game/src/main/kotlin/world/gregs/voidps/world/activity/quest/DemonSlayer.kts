@@ -15,40 +15,38 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             "",
             "<navy>I must be able to defeat a level 27 <maroon>apocalyptic demon<navy>!"
         )
-        "key_hunt" -> {
+        "sir_prysin", "key_hunt" -> {
             val list = mutableListOf(
                 "<str>I spoke to Aris in Varrock Square who saw my future.",
                 "<str>Unfortunately it involved killing a demon who nearly",
                 "<str>destroyed Varrock over 150 years ago.",
-                "",
-                "<navy>To defeat the <maroon>demon<navy> I need the magical sword <maroon>Silverlight<navy>.",
             )
-            if (player["demon_slayer_sir_prysin", false]) {
-                val prysin = player.inventory.contains("silverlight_key_sir_prysin")
-                val rovin = player.inventory.contains("silverlight_key_captain_rovin")
-                val traiborn = player.inventory.contains("silverlight_key_wizard_traiborn")
-                if (prysin && rovin && traiborn) {
-                    list.add("<navy>Now I have all <maroon>3 keys<navy> I should go and speak to <maroon>Sir Prysin")
-                    list.add("<navy>and collect the magical sword <maroon>Silverlight<navy> from him.")
-                } else {
-                    list.add("<maroon>Sir Prysin<navy> needs <maroon>3 keys<navy> before he can give me <maroon>Silverlight<navy>.")
-                    list.add("")
-                    listKeys(player, list, prysin, rovin, traiborn)
-                }
+            if (player["demon_slayer_silverlight", false]) {
+                list.add("<str>I reclaimed the magical sword Silverlight from Sir Prysin.")
+                list.add("")
+                list.add("<navy>Now I should go to the stone circle south of the city and")
+                list.add("<navy>destroy <maroon>Delrith<navy> using <maroon>Silverlight<navy>!.")
             } else {
-                list.add("<navy>I should ask <maroon>Sir Prysin<navy> in <maroon>Varrock Palace<navy> where it is.")
+                list.add("")
+                list.add("<navy>To defeat the <maroon>demon<navy> I need the magical sword <maroon>Silverlight<navy>.")
+                if (player["demon_slayer", "unstarted"] == "sir_prysin") {
+                    list.add("<navy>I should ask <maroon>Sir Prysin<navy> in <maroon>Varrock Palace<navy> where it is.")
+                } else {
+                    val prysin = player.inventory.contains("silverlight_key_sir_prysin")
+                    val rovin = player.inventory.contains("silverlight_key_captain_rovin")
+                    val traiborn = player.inventory.contains("silverlight_key_wizard_traiborn")
+                    if (prysin && rovin && traiborn) {
+                        list.add("<navy>Now I have all <maroon>3 keys<navy> I should go and speak to <maroon>Sir Prysin")
+                        list.add("<navy>and collect the magical sword <maroon>Silverlight<navy> from him.")
+                    } else {
+                        list.add("<maroon>Sir Prysin<navy> needs <maroon>3 keys<navy> before he can give me <maroon>Silverlight<navy>.")
+                        list.add("")
+                        listKeys(player, list, prysin, rovin, traiborn)
+                    }
+                }
             }
             list
         }
-        "kill_demon" -> listOf(
-            "<str>I spoke to Aris in Varrock Square who saw my future.",
-            "<str>Unfortunately it involved killing a demon who nearly",
-            "<str>destroyed Varrock over 150 years ago.",
-            "<str>I reclaimed the magical sword Silverlight from Sir Prysin.",
-            "",
-            "<navy>Now I should go to the stone circle south of the city and",
-            "<navy>destroy <maroon>Delrith<navy> using <maroon>Silverlight<navy>!."
-        )
         "completed" -> listOf(
             "<str>I spoke to Aris in Varrock Square who saw my future.",
             "<str>Unfortunately it involved killing a demon who nearly",
