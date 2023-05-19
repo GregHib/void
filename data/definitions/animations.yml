@@ -1532,8 +1532,6 @@ pull_hopper_controls: 3571
 fill_hopper: 3572
 aris_orb: 4614
 open_map: 5354
-wally_demon_slay: 4603
-wally_demon_win: 4603
 toss_water: 12643
 demon_slayer_cupboard_disappear: 4600
 unlock_chest: 536
@@ -1544,6 +1542,7 @@ demon_hit: 65
 delrith_continue: 4620
 delrith_appear: 4623
 delrith_death: 4624
+wally_demon_slay: 4603
 silverlight_sword_case_open: 12630
 silverlight_open_sword_case: 12629
 silverlight_remove_sword: 12616

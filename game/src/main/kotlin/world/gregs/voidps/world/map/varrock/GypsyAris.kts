@@ -227,7 +227,8 @@ suspend fun NPCOption.incantation() {
     npc<Talk>("Oh yes, let me think a second.")
     npc<Talking>("""
         Aright, I think I've got it now, it goes... ${getWord(player, 1)}...
-        ${getWord(player, 2)}... ${getWord(player, 3)}.,. ${getWord(player, 4)}.,. ${getWord(player, 5)}. Have you got that?
+        ${getWord(player, 2)}... ${getWord(player, 3)}.,. ${getWord(player, 4)}.,. ${getWord(player, 5)}.
+        Have you got that?
     """)
     player<Talking>("I think so, yes.")
 }
@@ -354,10 +355,10 @@ suspend fun NPCOption.cutscene() {
     player.tele(offset.add(3225, 3363), clearInterfaces = false)
 
     delay(2)
-    player.start("no_clip", 2)
+    player.start("no_clip", 3)
     player.walkTo(offset.add(3227, 3367))
     player.running = true
-    delay(2)
+    delay(3)
     player.face(Direction.NORTH)
     player.setAnimation("wally_demon_slay")
     player.playSound("demon_slayer_wally_sword", delay = 10)
@@ -383,8 +384,8 @@ suspend fun NPCOption.cutscene() {
     player.playSound("equip_silverlight")
     player.playJingle("quest_complete_1")
     player.face(Direction.SOUTH_WEST)
-    player.setAnimation("wally_demon_win")
-    player.setGraphic("wally_sword_glint")
+    player.setAnimation("silverlight_showoff")
+    player.setGraphic("silverlight_sparkle")
     npc<Happy>("wally", "I am the greatest demon slayer EVER!")
 
     npc<Talk>("""
