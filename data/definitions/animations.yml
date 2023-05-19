@@ -1539,9 +1539,10 @@ demon_slayer_cupboard_disappear: 4600
 unlock_chest: 536
 traiborn_bone_spell: 4602
 summon_demon: 4617
-delrith_appear: 4623
 demon_attack: 64
 demon_hit: 65
+delrith_continue: 4620
+delrith_appear: 4623
 delrith_death: 4624
 silverlight_sword_case_open: 12630
 silverlight_open_sword_case: 12629
@@ -1551,4 +1552,3 @@ silverlight_hand_over: 12618
 silverlight_take: 12615
 silverlight_showoff: 12625
 demon_slayer_table_light: 12609
-demon_slayer_table_summon: 4622

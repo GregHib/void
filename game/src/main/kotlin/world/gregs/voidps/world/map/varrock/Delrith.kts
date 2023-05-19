@@ -161,10 +161,6 @@ suspend fun PlayerContext.cutscene() {
         denath.tele(offset.add(3236, 3368))
         npcs.index(delrith)
         showTabs()
-        val obj = customObjects.spawn("demon_slayer_stone_table", offset.add(3227, 3369), 10, 0)
-        delay(1)
-        obj.animate("demon_slayer_table_summon")
-        obj.animate("demon_slayer_table_light")
         return
     }
     delay(1)
@@ -186,9 +182,8 @@ suspend fun PlayerContext.cutscene() {
     npc<Talking>("dark_wizard_water", "Arise, Delrith!", title = "Dark wizards")
 
     statement("The wizards cast an evil spell", clickToContinue = false)
-    println(objects[offset.add(3227, 3369)])
     val regular = objects[offset.add(3227, 3369), "demon_slayer_stone_table"]!!
-    val table = regular.replace("demon_slayer_stone_table_summoning", ticks = 12)
+    val table = regular.replace("demon_slayer_stone_table_summoning", ticks = 8)
     player.clearCamera()
     player.turnCamera(offset.add(3227, 3369), 100, 232, 232)
     player.moveCamera(offset.add(3227, 3365), 500, 232, 232)
@@ -197,7 +192,6 @@ suspend fun PlayerContext.cutscene() {
     delay(1)
     table.animate("demon_slayer_table_light")
     delay(1)
-    table.animate("demon_slayer_table_summon")
     player.shakeCamera(15, 0, 0, 0, 0)
     for ((source, target) in targets) {
         offset.add(source).shoot("demon_slayer_spell", offset.add(target))
@@ -207,10 +201,10 @@ suspend fun PlayerContext.cutscene() {
     for ((_, target) in targets) {
         areaGraphic("demon_slayer_spell_hit", offset.add(target))
     }
-    delay(3)
+    delay(2)
     npcs.index(delrith)
-    delay(1)
     delrith.setAnimation("delrith_appear")
+    delay(2)
     player.playSound("demon_slayer_break_table", delay = 10)
     player.playSound("demon_slayer_delrith_appear")
     player.turnCamera(offset.add(3227, 3369), 400, 1, 1)
@@ -276,18 +270,21 @@ on<NPCOption>({ println(this);npc.id == "delrith" && npc.transform == "delrith_w
             val text = "$selected$suffix"
             player.forceChat = text
             player<Talk>(text, largeHead = true, clickToContinue = false)
-            delay(3)
             val expected = DemonSlayerSpell.getWord(player, index + 1)
             if (selected != expected) {
+                npc.setAnimation("delrith_continue")
+                delay(1)
                 correct = false
                 npcs.remove(npc)
                 npcs.removeIndex(npc)
                 npcs.releaseIndex(npc)
+                delay(2)
+            } else {
+                delay(3)
             }
         }
         if (correct) {
-            val duration = npc.setAnimation("delrith_death")
-            println(duration)
+            npc.setAnimation("delrith_death")
             player.playSound("demon_slayer_delrith_banished")
             statement("Delrith is sucked into the vortex...", clickToContinue = false)
             delay(14)
@@ -316,6 +313,7 @@ fun PlayerContext.questComplete() {
     player.setGraphic("silverlight_sparkle")
     player.playSound("equip_silverlight")
     player["demon_slayer"] = "completed"
+    DemonSlayerSpell.clear(player)
     player.playJingle("quest_complete_1")
     player.inc("quest_points", 3)
     player.sendQuestComplete("Demon Slayer", listOf(

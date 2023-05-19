@@ -31,6 +31,7 @@ import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.world.activity.quest.DemonSlayerSpell.getWord
+import world.gregs.voidps.world.activity.quest.DemonSlayerSpell.randomiseOrder
 import world.gregs.voidps.world.activity.quest.startCutscene
 import world.gregs.voidps.world.activity.quest.stopCutscene
 import world.gregs.voidps.world.interact.dialogue.*
@@ -414,15 +415,6 @@ suspend fun NPCOption.endCutscene(instance: Region) {
     stopCutscene(instance)
     player.clearCamera()
     player.clearTransform()
-}
-
-fun randomiseOrder(player: Player) {
-    val order = (1 .. 5).shuffled()
-    player["demon_slayer_aber"] = order[0]
-    player["demon_slayer_camerinthum"] = order[1]
-    player["demon_slayer_carlem"] = order[2]
-    player["demon_slayer_gabindo"] = order[3]
-    player["demon_slayer_purchai"] = order[4]
 }
 
 suspend fun NPCOption.withSilver() {

@@ -26,15 +26,13 @@ val logger = InlineLogger()
 
 on<ObjectOption>({ operate && obj.id == "varrock_palace_drain" && option == "Search" }) { player: Player ->
     player.setAnimation("climb_down")
-    if (player["demon_slayer", "unstarted"] == "unstarted") {
+    if (player["demon_slayer_drain_dislodged", false] || player.hasBanked("silverlight_key_sir_prysin")) {
+        player.message("Nothing interesting seems to have been dropped down here today.")
+    } else if (player["demon_slayer", "unstarted"] == "unstarted") {
         player<Suspicious>("""
             This is the drainpipe running from the kitchen sink to
             the sewer. I can see a key just inside the drain.
         """)
-        return@on
-    }
-    if (player["demon_slayer_drain_dislodged", false] || player.hasBanked("silverlight_key_sir_prysin")) {
-        player.message("Nothing interesting seems to have been dropped down here today.")
     } else {
         player<Talking>("That must be the key Sir Prysin dropped.")
         player<Suspicious>("""
