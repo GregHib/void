@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -18,22 +19,27 @@ import world.gregs.voidps.engine.map.collision.Collisions
 val collisions: Collisions by inject()
 val npcs: NPCs by inject()
 val players: Players by inject()
+val active = getProperty("characterCollision") == "true"
 
 on<Registered> { character: Character ->
-    collisions.add(character)
+    if (active) {
+        collisions.add(character)
+    }
     if (character is Player) {
         players.add(character)
     }
 }
 
 on<Unregistered> { character: Character ->
-    collisions.remove(character)
+    if (active) {
+        collisions.remove(character)
+    }
     if (character is Player) {
         players.remove(character)
     }
 }
 
-on<Moved> { character: Character ->
+on<Moved>({ active }) { character: Character ->
     collisions.move(character, from, to)
 }
 

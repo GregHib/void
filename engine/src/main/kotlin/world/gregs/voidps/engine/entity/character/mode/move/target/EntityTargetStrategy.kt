@@ -2,6 +2,8 @@ package world.gregs.voidps.engine.entity.character.mode.move.target
 
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
 
 data class EntityTargetStrategy(
@@ -14,6 +16,6 @@ data class EntityTargetStrategy(
         get() = entity.size
     override val rotation = 0
     override val exitStrategy = -2
-    override val width: Int = entity.size.width
-    override val height: Int = entity.size.height
+    override val width: Int = if (entity is NPC) entity.def.size else if (entity is GameObject) entity.def.sizeX else 1
+    override val height: Int = if (entity is NPC) entity.def.size else if (entity is GameObject) entity.def.sizeY else 1
 }

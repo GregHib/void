@@ -21,16 +21,16 @@ interface TargetStrategy {
     fun reached(character: Character): Boolean {
         return ReachStrategy.reached(
             flags = get(),
-            x = character.tile.x,
-            z = character.tile.y,
+            srcX = character.tile.x,
+            srcZ = character.tile.y,
             level = character.tile.plane,
             srcSize = character.size.width,
             destX = tile.x,
             destZ = tile.y,
-            destWidth = size.width,
-            destHeight = size.height,
-            rotation = rotation,
-            shape = exitStrategy,
+            destWidth = width,
+            destHeight = height,
+            objRot = rotation,
+            objShape = exitStrategy,
             blockAccessFlags = ((bitMask shl rotation) and 0xf) or (bitMask shr (4 - rotation))
         )
     }
