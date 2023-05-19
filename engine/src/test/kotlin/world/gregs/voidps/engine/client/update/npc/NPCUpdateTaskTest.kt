@@ -22,14 +22,15 @@ import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.visual.NPCVisuals
 import world.gregs.voidps.network.visual.VisualEncoder
-
+import world.gregs.voidps.network.visual.update.Animation
+import world.gregs.voidps.network.visual.update.Turn
 
 internal class NPCUpdateTaskTest : KoinMock() {
 
-    lateinit var task: NPCUpdateTask
-    lateinit var npcs: NPCs
-    lateinit var player: Player
-    lateinit var viewport: Viewport
+    private lateinit var task: NPCUpdateTask
+    private lateinit var npcs: NPCs
+    private lateinit var player: Player
+    private lateinit var viewport: Viewport
     override val modules = listOf(
         module {
             single { EventHandlerStore() }
@@ -37,6 +38,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         }
     )
     private lateinit var encoder: VisualEncoder<NPCVisuals>
+    private lateinit var initialEncoder: VisualEncoder<NPCVisuals>
 
     @BeforeEach
     fun setup() {
@@ -44,10 +46,13 @@ internal class NPCUpdateTaskTest : KoinMock() {
         viewport = mockk(relaxed = true)
         every { viewport.radius } returns 15
         npcs = mockk(relaxed = true)
+        initialEncoder = mockk(relaxed = true)
+        every { initialEncoder.initial } returns true
+        every { initialEncoder.mask } returns 2
         encoder = mockk(relaxed = true)
-        every { encoder.initial } returns true
-        every { encoder.mask } returns 2
-        task = spyk(NPCUpdateTask(npcs, listOf(encoder)))
+        every { encoder.initial } returns false
+        every { encoder.mask } returns 8
+        task = spyk(NPCUpdateTask(npcs, listOf(initialEncoder, encoder)))
     }
 
     @Test
@@ -67,7 +72,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         }
         verify(exactly = 0) {
             task.writeFlag(updates, any())
-            encoder.encode(updates, any(), any())
+            initialEncoder.encode(updates, any(), any())
         }
     }
 
@@ -97,7 +102,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
             sync.writeBits(1, update)
             if (update) {
                 task.writeFlag(updates, 2)
-                encoder.encode(updates, any(), any())
+                initialEncoder.encode(updates, any(), any())
             }
         }
     }
@@ -128,7 +133,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
             sync.writeBits(1, update)
             if (update) {
                 task.writeFlag(updates, 2)
-                encoder.encode(updates, any(), any())
+                initialEncoder.encode(updates, any(), any())
             }
         }
     }
@@ -161,7 +166,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
             sync.writeBits(1, update)
             if (update) {
                 task.writeFlag(updates, 2)
-                encoder.encode(updates, any(), any())
+                initialEncoder.encode(updates, any(), any())
             }
         }
     }
@@ -181,12 +186,13 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.tile } returns value(Tile(5, 3, 0))
         every { npc.index } returns index
         every { npc.def.id } returns id
-        every { npc.visuals.turn } returns mockk(relaxed = true)
-        every { npc.visuals.turn.direction } returns direction
+        every { npc.visuals.turn } returns Turn(direction = direction)
+        every { npc.visuals.animation } returns Animation(123)
         every { npcs.getDirect(player.tile.regionPlane) } returns listOf(index)
         every { npcs.indexed(index) } returns npc
-        every { npc.visuals.flag } returns if (update) 2 else 0
+        every { npc.visuals.flag } returns if (update) 10 else 0
         every { npc.visuals.flagged(2) } returns update
+        every { npc.visuals.flagged(8) } returns update
         // When
         task.processAdditions(player, viewport, sync, updates, entities)
         // Then
@@ -200,7 +206,8 @@ internal class NPCUpdateTaskTest : KoinMock() {
             sync.writeBits(1, update)
             sync.writeBits(14, id)
             if (update) {
-                task.writeFlag(updates, 2)
+                task.writeFlag(updates, 10)
+                initialEncoder.encode(updates, any(), any())
                 encoder.encode(updates, any(), any())
             }
             sync.writeBits(15, -1)
