@@ -1,6 +1,6 @@
-package world.gregs.voidps.network.chunk.update
+package world.gregs.voidps.network.encode.chunk
 
-import world.gregs.voidps.network.chunk.ChunkUpdate
+import world.gregs.voidps.network.Protocol
 
 class SoundAddition(
     val id: Int,
@@ -10,8 +10,11 @@ class SoundAddition(
     val delay: Int,
     val volume: Int,
     val speed: Int,
-    val midi: Boolean,
     val owner: String?
-) : ChunkUpdate(8) {
+) : ChunkUpdate(
+    Protocol.SOUND_AREA,
+    Protocol.Batch.SOUND_AREA,
+    8
+) {
     override fun visible(name: String) = owner == null || owner == name
 }

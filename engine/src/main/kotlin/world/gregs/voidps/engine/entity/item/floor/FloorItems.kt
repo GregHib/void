@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
-import world.gregs.voidps.network.chunk.update.FloorItemAddition
+import world.gregs.voidps.network.encode.chunk.FloorItemAddition
 
 class FloorItems(
     private val definitions: ItemDefinitions,

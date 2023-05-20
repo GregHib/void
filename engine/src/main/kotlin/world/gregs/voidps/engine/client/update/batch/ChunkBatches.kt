@@ -12,18 +12,16 @@ import world.gregs.voidps.engine.map.PooledIdMap
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.network.chunk.ChunkUpdate
-import world.gregs.voidps.network.chunk.ChunkUpdateEncoder
+import world.gregs.voidps.network.encode.chunk.ChunkUpdate
 import world.gregs.voidps.network.encode.clearChunk
+import world.gregs.voidps.network.encode.sendBatch
 
 /**
  * Groups messages by [Chunk] to send to all subscribed [Player]s
  * Batched messages are sent and cleared at the end of the tick
  * Initial messages are stored until removed and sent on subscription
  */
-class ChunkBatches(
-    private val encoders: ChunkUpdateEncoder = ChunkUpdateEncoder()
-) : Runnable {
+class ChunkBatches : Runnable {
     private val batches = PooledIdMap<MutableCollection<ChunkUpdate>, ChunkUpdate, Chunk>(
         pool = object : DefaultPool<MutableCollection<ChunkUpdate>>(MAX_PLAYERS) {
             override fun produceInstance() = ObjectLinkedOpenHashSet<ChunkUpdate>(EXPECTED_UPDATES)
@@ -92,8 +90,8 @@ class ChunkBatches(
         val area = tile.chunk.toCuboid(radius = player.viewport!!.localRadius)
         val max = Tile(area.maxX, area.maxY, area.maxPlane).chunk
         val min = Tile(area.minX, area.minY, area.minPlane).chunk
-        for (x in min.x..max.x) {
-            for (y in min.y..max.y) {
+        for (y in min.y..max.y) {
+            for (x in min.x..max.x) {
                 block(Chunk(x, y, tile.plane))
             }
         }
@@ -115,7 +113,7 @@ class ChunkBatches(
             return
         }
         val offset = getChunkOffset(player.viewport!!, chunk)
-        encoders.encode(client, messages, offset.x, offset.y, chunk.plane)
+        client.sendBatch(messages, offset.x, offset.y, chunk.plane)
     }
 
     companion object {

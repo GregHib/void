@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timer.TimerQueue
-import world.gregs.voidps.network.chunk.update.FloorItemAddition
+import world.gregs.voidps.network.encode.chunk.FloorItemAddition
 
 /**
  * An [Item] with physical location

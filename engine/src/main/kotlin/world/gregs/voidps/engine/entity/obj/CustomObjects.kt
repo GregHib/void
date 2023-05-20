@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.network.chunk.ChunkUpdate
+import world.gregs.voidps.network.encode.chunk.ChunkUpdate
 
 class CustomObjects(
     private val objects: Objects,
@@ -72,7 +72,7 @@ class CustomObjects(
 
     private fun remove(gameObject: GameObject, update: ChunkUpdate) {
         val previousUpdate = gameObject.update
-        if(previousUpdate != null) {
+        if (previousUpdate != null) {
             batches.removeInitial(gameObject.tile.chunk, previousUpdate)
             gameObject.update = null
         }
@@ -87,7 +87,11 @@ class CustomObjects(
         val update = addObject(gameObject)
         batches.update(gameObject.tile.chunk, update)
         if (updateCollision) {
-            collision.modifyCollision(gameObject, add = false)
+            collision.modifyCollision(gameObject, add = true)
+        }
+        if (objects.isOriginal(gameObject)) {
+            batches.addInitial(gameObject.tile.chunk, update)
+            gameObject.update = update
         }
         gameObject.events.emit(Registered)
     }

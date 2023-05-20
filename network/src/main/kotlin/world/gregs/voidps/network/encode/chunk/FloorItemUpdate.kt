@@ -1,6 +1,6 @@
-package world.gregs.voidps.network.chunk.update
+package world.gregs.voidps.network.encode.chunk
 
-import world.gregs.voidps.network.chunk.ChunkUpdate
+import world.gregs.voidps.network.Protocol
 
 /**
  * @param stack Previous item stack size
@@ -12,6 +12,10 @@ class FloorItemUpdate(
     val stack: Int,
     val combined: Int,
     val owner: String?
-) : ChunkUpdate(7) {
+) : ChunkUpdate(
+    Protocol.FLOOR_ITEM_UPDATE,
+    Protocol.Batch.FLOOR_ITEM_UPDATE,
+    7
+) {
     override fun visible(name: String) = owner == null || owner == name
 }

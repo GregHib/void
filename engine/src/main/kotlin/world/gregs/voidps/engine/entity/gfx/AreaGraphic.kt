@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.network.chunk.ChunkUpdate
+import world.gregs.voidps.network.encode.chunk.ChunkUpdate
 import world.gregs.voidps.network.visual.update.Graphic
 
 data class AreaGraphic(override var tile: Tile, val graphic: Graphic, val owner: String? = null) : Entity {

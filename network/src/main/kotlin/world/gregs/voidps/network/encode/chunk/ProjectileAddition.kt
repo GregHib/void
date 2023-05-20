@@ -1,6 +1,6 @@
-package world.gregs.voidps.network.chunk.update
+package world.gregs.voidps.network.encode.chunk
 
-import world.gregs.voidps.network.chunk.ChunkUpdate
+import world.gregs.voidps.network.Protocol
 
 class ProjectileAddition(
     val id: Int,
@@ -15,6 +15,10 @@ class ProjectileAddition(
     val curve: Int,
     val offset: Int,
     val owner: String?
-) : ChunkUpdate(16) {
+) : ChunkUpdate(
+    Protocol.PROJECTILE_ADD,
+    Protocol.Batch.PROJECTILE_ADD,
+    16
+) {
     override fun visible(name: String) = owner == null || owner == name
 }

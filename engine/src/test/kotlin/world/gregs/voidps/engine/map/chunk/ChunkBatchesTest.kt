@@ -15,14 +15,14 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.Client
-import world.gregs.voidps.network.chunk.ChunkUpdate
-import world.gregs.voidps.network.chunk.ChunkUpdateEncoder
+import world.gregs.voidps.network.encode.chunk.ChunkUpdate
 import world.gregs.voidps.network.encode.clearChunk
+import world.gregs.voidps.network.encode.send
+import world.gregs.voidps.network.encode.sendBatch
 
 internal class ChunkBatchesTest : KoinMock() {
 
     private lateinit var batches: ChunkBatches
-    private lateinit var encoders: ChunkUpdateEncoder
     private lateinit var player: Player
     private lateinit var client: Client
     private lateinit var update: ChunkUpdate
@@ -37,8 +37,8 @@ internal class ChunkBatchesTest : KoinMock() {
         player = Player()
         client = mockk(relaxed = true)
         update = mockk(relaxed = true)
-        encoders = mockk(relaxed = true)
         mockkStatic("world.gregs.voidps.network.encode.ChunkEncodersKt")
+        mockkStatic("world.gregs.voidps.network.encode.ChunkUpdateEncodersKt")
         mockkStatic("world.gregs.voidps.engine.entity.character.player.PlayerVisualsKt")
         every { update.visible(any()) } returns true
         every { update.size } returns 2
@@ -46,7 +46,7 @@ internal class ChunkBatchesTest : KoinMock() {
         player["logged_in"] = false
         player.viewport = Viewport()
         player.viewport!!.size = 0
-        batches = ChunkBatches(encoders)
+        batches = ChunkBatches()
     }
 
     @Test
@@ -62,7 +62,7 @@ internal class ChunkBatchesTest : KoinMock() {
         // Then
         verify {
             client.clearChunk(2, 2, 0)
-            encoders.encode(client, any(), 2, 2, 0)
+            client.sendBatch(match { it.contains(update) }, 2, 2, 0)
         }
     }
 
@@ -79,7 +79,7 @@ internal class ChunkBatchesTest : KoinMock() {
             client.clearChunk(0, 0, 0)
         }
         verify(exactly = 0) {
-            encoders.encode(client, any(), 0, 0, 0)
+            client.send(any<ChunkUpdate>())
         }
     }
 
@@ -99,10 +99,10 @@ internal class ChunkBatchesTest : KoinMock() {
         // Then
         verify {
             client.clearChunk(7, 7, 1)
-            encoders.encode(client, match { it.contains(update) }, 7, 7, 1)
+            client.sendBatch(match { it.contains(update) }, 7, 7, 1)
         }
         verify(exactly = 0) {
-            encoders.encode(client, match { it.contains(update2) }, 7, 7, 1)
+            client.sendBatch(match { it.contains(update2) }, 7, 7, 1)
         }
     }
 
@@ -124,10 +124,10 @@ internal class ChunkBatchesTest : KoinMock() {
         // Then
         verify(exactly = 0) {
             client.clearChunk(7, 7, 1)
-            encoders.encode(client, match { it.contains(update) }, 7, 7, 1)
+            client.sendBatch(match { it.contains(update) }, 7, 7, 1)
         }
         verify {
-            encoders.encode(client, match { it.contains(update2) }, 7, 7, 1)
+            client.sendBatch(match { it.contains(update2) }, 7, 7, 1)
         }
     }
 }

@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.network.chunk.ChunkUpdate
+import world.gregs.voidps.network.encode.chunk.ChunkUpdate
 
 /**
  * Interactive Object
