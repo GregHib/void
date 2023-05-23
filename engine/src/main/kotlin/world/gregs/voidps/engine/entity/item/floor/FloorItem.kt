@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timer.TimerQueue
-import world.gregs.voidps.network.encode.chunk.FloorItemAddition
 
 /**
  * An [Item] with physical location
@@ -26,8 +25,6 @@ data class FloorItem(
     var disappearTimer: Int = -1
     @Deprecated("Temp")
     var revealTimer: Int = -1
-    @Deprecated("Temp")
-    var update: FloorItemAddition? = null
     @Deprecated("Temp")
     var botJobs: MutableSet<CancellableContinuation<Unit>>? = null
     @Deprecated("Temp")
