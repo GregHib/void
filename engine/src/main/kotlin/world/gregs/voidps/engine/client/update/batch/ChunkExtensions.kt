@@ -44,4 +44,4 @@ fun addSound(soundArea: AreaSound) = if (soundArea.midi)
 else
     SoundAddition(soundArea.def.id, soundArea.tile.offset(), soundArea.radius, soundArea.repeat, soundArea.delay, soundArea.volume, soundArea.speed, soundArea.owner)
 
-fun GameObject.animate(id: String) = get<ChunkBatches>().update(tile.chunk, animateObject(id, this))
+fun GameObject.animate(id: String) = get<ChunkBatches>().add(tile.chunk, animateObject(id, this))
