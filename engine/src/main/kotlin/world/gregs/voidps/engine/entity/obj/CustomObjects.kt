@@ -59,8 +59,7 @@ class CustomObjects(
     }
 
     private fun despawn(gameObject: GameObject, updateCollision: Boolean) {
-        val update = removeObject(gameObject)
-        batches.add(gameObject.tile.chunk, update)
+        batches.add(gameObject.tile.chunk, removeObject(gameObject))
         objects.removeTemp(gameObject)
         if (updateCollision) {
             collision.modifyCollision(gameObject, add = false)

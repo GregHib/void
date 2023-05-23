@@ -49,17 +49,15 @@ class ChunkBatches(
         val previousChunk: Chunk? = player.getOrNull("previous_chunk")
         val previous = if (previousChunk != null) toChunkCuboid(previousChunk, player.viewport!!.localRadius) else null
         player["previous_chunk"] = player.tile.chunk
-
         for (chunk in player.tile.chunk.toRectangle(radius = player.viewport!!.localRadius).toChunks(player.tile.plane)) {
             val entered = previous == null || !previous.contains(chunk.x, chunk.y, chunk.plane)
             if (entered) {
                 player.clearChunk(chunk)
                 sendInitial(player, chunk)
-                player.sendBatch(chunk)
             }
             val updates = batches[chunk.id]?.filter { it.private() } ?: continue
             if (!entered) {
-                player.sendChunk(chunk)
+                player.sendBatch(chunk)
             }
             for (update in updates) {
                 player.client?.send(update)
@@ -73,7 +71,6 @@ class ChunkBatches(
         }
         for (obj in objects.getAdded(chunk) ?: emptySet()) {
             player.client?.send(ObjectAddition(obj.def.id, obj.tile.offset(), obj.type, obj.rotation, obj.owner))
-
         }
         for (item in floorItems[chunk]) {
             if (item.state == FloorItemState.Public || item.state == FloorItemState.Private && item.owner == player.name) {
