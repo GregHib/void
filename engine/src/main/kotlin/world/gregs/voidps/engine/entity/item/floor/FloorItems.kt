@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.timer.TimerTick
 class FloorItems(
     private val definitions: ItemDefinitions,
     private val store: EventHandlerStore,
-    private val batches: ChunkBatches,
+    private val batches: ChunkBatchUpdates,
     private val collisions: Collisions,
     override val chunks: MutableMap<Int, MutableList<FloorItem>> = Int2ObjectOpenHashMap()
 ) : BatchList<FloorItem> {

@@ -1,4 +1,4 @@
-import world.gregs.voidps.engine.client.update.batch.ChunkBatches
+import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.client.update.batch.addGraphic
 import world.gregs.voidps.engine.data.definition.extra.GraphicDefinitions
 import world.gregs.voidps.engine.entity.Registered
@@ -13,7 +13,7 @@ import world.gregs.voidps.network.visual.update.Graphic
 import world.gregs.voidps.world.interact.entity.gfx.SpawnGraphic
 
 val graphics: Graphics by inject()
-val batches: ChunkBatches by inject()
+val batches: ChunkBatchUpdates by inject()
 val definitions: GraphicDefinitions by inject()
 val store: EventHandlerStore by inject()
 

@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.obj
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.client.update.batch.ChunkBatches
+import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.client.update.batch.addObject
 import world.gregs.voidps.engine.client.update.batch.removeObject
 import world.gregs.voidps.engine.entity.Registered
@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.map.collision.GameObjectCollision
 
 class CustomObjects(
     private val objects: Objects,
-    private val batches: ChunkBatches,
+    private val batches: ChunkBatchUpdates,
     private val factory: GameObjectFactory,
     private val collision: GameObjectCollision,
 ) {

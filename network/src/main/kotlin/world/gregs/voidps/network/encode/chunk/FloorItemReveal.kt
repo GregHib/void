@@ -5,7 +5,7 @@ import world.gregs.voidps.network.Protocol
 /**
  * @param owner Client index if matches client's local index then item won't be displayed
  */
-class FloorItemReveal(
+data class FloorItemReveal(
     val id: Int,
     val amount: Int,
     val tileOffset: Int,

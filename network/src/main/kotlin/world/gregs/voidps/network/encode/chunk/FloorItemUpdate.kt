@@ -6,7 +6,7 @@ import world.gregs.voidps.network.Protocol
  * @param stack Previous item stack size
  * @param combined Updated item stack size
  */
-class FloorItemUpdate(
+data class FloorItemUpdate(
     val id: Int,
     val tileOffset: Int,
     val stack: Int,

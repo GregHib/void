@@ -24,7 +24,7 @@ import world.gregs.voidps.network.encode.chunk.ObjectRemoval
  * Batched messages are sent and cleared at the end of the tick
  * Initial messages are stored until removed and sent on subscription
  */
-class ChunkBatches(
+class ChunkBatchUpdates(
     private val objects: Objects
 ) : Runnable {
     private val batches: MutableMap<Int, MutableList<ChunkUpdate>> = Int2ObjectOpenHashMap()

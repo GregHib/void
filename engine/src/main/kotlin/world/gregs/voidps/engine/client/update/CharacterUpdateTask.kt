@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.client.update
 
-import world.gregs.voidps.engine.client.update.batch.ChunkBatches
+import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.client.update.npc.NPCUpdateTask
 import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
@@ -12,7 +12,7 @@ class CharacterUpdateTask(
     override val characters: CharacterList<Player>,
     private val playerUpdating: PlayerUpdateTask,
     private val npcUpdating: NPCUpdateTask,
-    private val batches: ChunkBatches
+    private val batches: ChunkBatchUpdates
 ) : CharacterTask<Player>(iterator) {
 
     override fun predicate(character: Player): Boolean {

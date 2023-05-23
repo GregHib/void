@@ -2,7 +2,7 @@ package world.gregs.voidps.network.encode.chunk
 
 import world.gregs.voidps.network.Protocol
 
-class GraphicAddition(
+data class GraphicAddition(
     val id: Int,
     val tileOffset: Int,
     val height: Int,

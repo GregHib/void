@@ -1,4 +1,4 @@
-import world.gregs.voidps.engine.client.update.batch.ChunkBatches
+import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.client.update.batch.addSound
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.sound.PlaySound
 
 val store: EventHandlerStore by inject()
-val batches: ChunkBatches by inject()
+val batches: ChunkBatchUpdates by inject()
 val sounds: Sounds by inject()
 
 on<World, PlaySound> {
