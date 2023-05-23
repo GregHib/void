@@ -69,6 +69,7 @@ class CustomObjects(
 
     private fun respawn(gameObject: GameObject, updateCollision: Boolean) {
         batches.add(gameObject.tile.chunk, addObject(gameObject))
+        objects.addTemp(gameObject)
         if (updateCollision) {
             collision.modifyCollision(gameObject, add = true)
         }
