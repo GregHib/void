@@ -77,6 +77,7 @@ internal class InteractTest : KoinMock() {
         target = NPC(tile = Tile(10, 10))
         target.visuals = NPCVisuals(0)
         target.collision = CollisionStrategies.Normal
+        target.def = NPCDefinition.EMPTY
     }
 
 

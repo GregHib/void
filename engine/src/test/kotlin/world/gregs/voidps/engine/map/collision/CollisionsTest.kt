@@ -29,7 +29,7 @@ internal class CollisionsTest {
         collisions.clear(Chunk(0, 0))
         // Then
         for (i in 0 until 8) {
-            assertEquals(0, i, i, 0)
+            assertEquals(-1, i, i, 0)
         }
     }
 
