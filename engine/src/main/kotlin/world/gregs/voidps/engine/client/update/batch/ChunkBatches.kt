@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItemState
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.offset
 import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.network.encode.*
@@ -40,46 +39,6 @@ class ChunkBatches(
         batches.getOrPut(chunk.id) { ObjectArrayList() }.add(update)
     }
 
-    /**
-     * Removes [update] from the batch update for [chunk]
-     */
-    fun remove(chunk: Chunk, update: ChunkUpdate) {
-        val list = batches[chunk.id] ?: return
-        if (list.remove(update) && list.isEmpty()) {
-            batches.remove(chunk.id)
-        }
-    }
-
-    /**
-     * Returns the chunk offset for [chunk] relative to [player]'s viewport
-     */
-    private fun getChunkOffset(viewport: Viewport, chunk: Chunk): Chunk {
-        val base = viewport.lastLoadChunk.safeMinus(viewport.chunkRadius, viewport.chunkRadius)
-        return chunk.safeMinus(base)
-    }
-
-    /**
-     * Adds [message] to the batch update for [chunk]
-     */
-    fun update(chunk: Chunk, message: ChunkUpdate) {
-    }
-
-    /**
-     * Adds initial messages for a chunk
-     */
-    fun addInitial(chunk: Chunk, message: ChunkUpdate) {
-    }
-
-    /**
-     * Removes an initial messages for a chunk
-     */
-    fun removeInitial(chunk: Chunk, message: ChunkUpdate) {
-    }
-
-    fun reset() {
-        batches.clear()
-    }
-
     override fun run() {
         for ((chunk, updates) in batches) {
             encoded[chunk] = encodeBatch(updates.filter { !it.private() })
@@ -90,14 +49,15 @@ class ChunkBatches(
         val previousChunk: Chunk? = player.getOrNull("previous_chunk")
         val previous = if (previousChunk != null) toChunkCuboid(previousChunk, player.viewport!!.localRadius) else null
         player["previous_chunk"] = player.tile.chunk
-        forEachChunk(player, player.tile) { chunk ->
+
+        for (chunk in player.tile.chunk.toRectangle(radius = player.viewport!!.localRadius).toChunks(player.tile.plane)) {
             val entered = previous == null || !previous.contains(chunk.x, chunk.y, chunk.plane)
             if (entered) {
                 player.clearChunk(chunk)
                 sendInitial(player, chunk)
                 player.sendBatch(chunk)
             }
-            val updates = batches[chunk.id]?.filter { it.private() } ?: return@forEachChunk
+            val updates = batches[chunk.id]?.filter { it.private() } ?: continue
             if (!entered) {
                 player.sendChunk(chunk)
             }
@@ -122,17 +82,11 @@ class ChunkBatches(
         }
     }
 
+    fun reset() {
+        batches.clear()
+    }
+
     private fun toChunkCuboid(chunk: Chunk, radius: Int) = Cuboid(chunk.x - radius, chunk.y - radius, chunk.x + radius * 2 + 1, chunk.y + radius * 2 + 1, chunk.plane, chunk.plane)
-
-    private fun Player.clearChunk(chunk: Chunk) {
-        val chunkOffset = getChunkOffset(viewport!!, chunk)
-        client?.clearChunk(chunkOffset.x, chunkOffset.y, chunk.plane)
-    }
-
-    private fun Player.sendChunk(chunk: Chunk) {
-        val chunkOffset = getChunkOffset(viewport!!, chunk)
-        client?.updateChunk(chunkOffset.x, chunkOffset.y, chunk.plane)
-    }
 
     private fun Player.sendBatch(chunk: Chunk) {
         val encoded = encoded[chunk.id] ?: return
@@ -140,14 +94,22 @@ class ChunkBatches(
         client?.sendBatch(encoded, chunkOffset.x, chunkOffset.y, chunk.plane)
     }
 
-    private fun forEachChunk(player: Player, tile: Tile, block: (Chunk) -> Unit) {
-        val area = tile.chunk.toCuboid(radius = player.viewport!!.localRadius)
-        val max = Tile(area.maxX, area.maxY, area.maxPlane).chunk
-        val min = Tile(area.minX, area.minY, area.minPlane).chunk
-        for (y in min.y..max.y) {
-            for (x in min.x..max.x) {
-                block(Chunk(x, y, tile.plane))
-            }
+    companion object {
+        /**
+         * Returns the chunk offset for [chunk] relative to [player]'s viewport
+         */
+        private fun getChunkOffset(viewport: Viewport, chunk: Chunk): Chunk {
+            val base = viewport.lastLoadChunk.safeMinus(viewport.chunkRadius, viewport.chunkRadius)
+            return chunk.safeMinus(base)
+        }
+        private fun Player.clearChunk(chunk: Chunk) {
+            val chunkOffset = getChunkOffset(viewport!!, chunk)
+            client?.clearChunk(chunkOffset.x, chunkOffset.y, chunk.plane)
+        }
+
+        private fun Player.sendChunk(chunk: Chunk) {
+            val chunkOffset = getChunkOffset(viewport!!, chunk)
+            client?.updateChunk(chunkOffset.x, chunkOffset.y, chunk.plane)
         }
     }
 }

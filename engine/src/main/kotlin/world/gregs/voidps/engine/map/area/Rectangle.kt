@@ -33,13 +33,13 @@ data class Rectangle(
         return list
     }
 
-    override fun toChunks(): List<Chunk> {
+    override fun toChunks(plane: Int): List<Chunk> {
         val list = mutableListOf<Chunk>()
         val max = Tile(maxX, maxY).chunk
         val min = Tile(minX, minY).chunk
         for (x in min.x..max.x) {
             for (y in min.y..max.y) {
-                list.add(Chunk(x, y))
+                list.add(Chunk(x, y, plane))
             }
         }
         return list
