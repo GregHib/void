@@ -18,4 +18,5 @@ class FloorItemUpdate(
     7
 ) {
     override fun visible(name: String) = owner == null || owner == name
+    override fun private() = true
 }

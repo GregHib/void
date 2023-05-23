@@ -19,7 +19,7 @@ class PlayerResetTask(
 
     override fun run() {
         super.run()
-        batches.run()
+        batches.reset()
         characters.shuffle()
     }
 

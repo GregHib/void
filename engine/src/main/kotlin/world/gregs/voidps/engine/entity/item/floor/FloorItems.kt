@@ -31,6 +31,7 @@ class FloorItems(
     private val logger = InlineLogger()
 
     init {
+        batches.floorItems = this
         val players: Players = world.gregs.voidps.engine.get()
         on<TimerStart>({ timer == "reveal" }) { item: FloorItem ->
             interval = item.revealTimer

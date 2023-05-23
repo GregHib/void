@@ -51,7 +51,7 @@ val engineModule = module {
     single { FileStorage() }
     single(named("jsonStorage")) { FileStorage(json = true) }
     // Map
-    single { ChunkBatches() }
+    single { ChunkBatches(get()) }
     single { DynamicChunks(get(), get(), get()) }
     single { EventHandlerStore() }
     single(createdAtStart = true) { Areas().load() }

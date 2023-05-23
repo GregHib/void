@@ -12,4 +12,5 @@ class FloorItemRemoval(
     3
 ) {
     override fun visible(name: String) = owner == null || owner == name
+    override fun private() = owner != null
 }

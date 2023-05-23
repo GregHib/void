@@ -66,6 +66,7 @@ fun getTickStages(
         NPCTask(sequentialNpc, npcs),
         PlayerTask(sequentialPlayer, players),
         // Update
+        batches,
         CharacterUpdateTask(
             parallelPlayer,
             players,

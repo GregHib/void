@@ -6,4 +6,7 @@ abstract class ChunkUpdate(
     val size: Int
 ) {
     abstract fun visible(name: String): Boolean
+
+    open fun private(): Boolean = false
+
 }

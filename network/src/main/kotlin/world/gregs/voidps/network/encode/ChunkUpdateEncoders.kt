@@ -1,8 +1,20 @@
 package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
+import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.network.*
 import world.gregs.voidps.network.encode.chunk.*
+
+fun encodeBatch(messages: Collection<ChunkUpdate>): ByteArray {
+    val writeChannel = ByteArrayChannel()
+    runBlocking {
+        messages.forEach { update ->
+            writeChannel.writeByte(update.packetIndex.toByte())
+            writeChannel.encode(update)
+        }
+    }
+    return writeChannel.toByteArray()
+}
 
 fun Client.sendBatch(messages: Collection<ChunkUpdate>, chunkOffsetX: Int, chunkOffsetY: Int, chunkPlane: Int) {
     send(Protocol.BATCH_UPDATE_CHUNK, messages.sumOf { it.size + 1 } + 3, Client.SHORT) {
@@ -16,23 +28,32 @@ fun Client.sendBatch(messages: Collection<ChunkUpdate>, chunkOffsetX: Int, chunk
     }
 }
 
+fun Client.sendBatch(messages: ByteArray, chunkOffsetX: Int, chunkOffsetY: Int, chunkPlane: Int) {
+    send(Protocol.BATCH_UPDATE_CHUNK, messages.size + 3, Client.SHORT) {
+        writeByteInverse(chunkOffsetX)
+        writeByteSubtract(chunkPlane)
+        writeByteSubtract(chunkOffsetY)
+        writeBytes(messages)
+    }
+}
+
 fun Client.send(update: ChunkUpdate) {
     send(update.packetId) {
         encode(update)
     }
 }
 
-private suspend fun ByteWriteChannel.encode(update: ChunkUpdate) {
+suspend fun ByteWriteChannel.encode(update: ChunkUpdate) {
     when (update) {
         is FloorItemAddition -> floorItemAddition(update)
-        is FloorItemRemoval -> floorItemRemoval(update)
-        is FloorItemReveal -> floorItemReveal(update)
-        is FloorItemUpdate -> floorItemUpdate(update)
+        is FloorItemRemoval -> floorItemRemoval(update) // update
+        is FloorItemReveal -> floorItemReveal(update) // update
+        is FloorItemUpdate -> floorItemUpdate(update) // update
         is GraphicAddition -> graphicAddition(update)
         is MidiAddition -> midiAddition(update)
         is ObjectAddition -> objectAddition(update)
-        is ObjectAnimation -> objectAnimation(update)
-        is ObjectRemoval -> objectRemoval(update)
+        is ObjectAnimation -> objectAnimation(update) // update
+        is ObjectRemoval -> objectRemoval(update) // update if removing a temp obj (not original)
         is ProjectileAddition -> projectileAddition(update)
         is SoundAddition -> soundAddition(update)
     }
