@@ -21,10 +21,7 @@ on<World, SpawnGraphic> {
     val graphic = AreaGraphic(tile, Graphic(definitions.get(id).id, delay, height, rotation, forceRefresh), owner)
     store.populate(graphic)
     graphics.add(graphic)
-    val update = addGraphic(graphic)
-    graphic.update = update
-    batches.addInitial(tile.chunk, update)
-    batches.update(tile.chunk, update)
+    batches.add(tile.chunk, addGraphic(graphic))
     decay(graphic)
     graphic.events.emit(Registered)
 }
@@ -36,11 +33,6 @@ fun decay(ag: AreaGraphic) {
     World.run("graphic_${ag.id}_${ag.tile}", ag.graphic.delay / 30) {
         ag.graphic.delay = 0
         graphics.remove(ag)
-        val update = ag.update
-        if (update != null) {
-            batches.removeInitial(ag.tile.chunk, update)
-            ag.update = null
-        }
         ag.events.emit(Unregistered)
     }
 }

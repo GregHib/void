@@ -17,14 +17,11 @@ val sounds: Sounds by inject()
 on<World, PlaySound> {
     val sound = AreaSound(tile, id, radius, repeat, delay, volume, speed, midi, owner)
     store.populate(sound)
-    val update = addSound(sound)
-    batches.addInitial(tile.chunk, update)
-    batches.update(tile.chunk, update)
+    batches.add(tile.chunk, addSound(sound))
     sound.events.emit(Registered)
     val duration = 10// TODO duration from definitions
     World.run("sound_${sound.id}_${sound.tile}", (sound.delay + duration * 30) * sound.repeat) {
         sounds.remove(sound)
         sound.events.emit(Unregistered)
-        batches.removeInitial(tile.chunk, update)
     }
 }

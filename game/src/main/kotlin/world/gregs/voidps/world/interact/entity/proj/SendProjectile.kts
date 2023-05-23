@@ -37,7 +37,7 @@ on<World, ShootProjectile> {
     projectile.def = definitions.get(id)
     store.populate(projectile)
     projectiles.add(projectile)
-    batches.update(tile.chunk, addProjectile(projectile))
+    batches.add(tile.chunk, addProjectile(projectile))
     decay(projectile)
     projectile.events.emit(Registered)
 }
