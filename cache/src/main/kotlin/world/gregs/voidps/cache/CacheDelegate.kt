@@ -86,6 +86,18 @@ class CacheDelegate(directory: String) : Cache {
         delegate.get()?.put(index, archive, file, data, xteas)
     }
 
+    override fun write(index: Int, archive: String, data: ByteArray, xteas: IntArray?) {
+        delegate.get()?.put(index, archive, data, xteas)
+    }
+
+    override fun writeArchiveSector(index: Int, archive: Int, data: ByteArray) {
+        delegate.get()?.index(index)?.writeArchiveSector(archive, data)
+    }
+
+    override fun readArchiveSector(index: Int, archive: Int): ByteArray {
+        return delegate.get()?.index(index)?.readArchiveSector(archive)?.data ?: byteArrayOf()
+    }
+
     override fun update(): Boolean {
         delegate.get()?.update()
         return true
