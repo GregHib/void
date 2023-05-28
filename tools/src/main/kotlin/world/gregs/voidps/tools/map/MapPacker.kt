@@ -20,7 +20,8 @@ object MapPacker {
         val target = CacheDelegate("./data/cache/")
         val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
         packMissingMaps(target, xteas, CacheDelegate("./727 cache with most xteas/"), Xteas(), all())
-        packMissingMaps(target, xteas, CacheDelegate("./cache-280/"), getKeys(280), all()) // 681
+        packMissingMaps(target, xteas, CacheDelegate("./cache-280/"), getKeys(280), all()) // revision 681
+        packEaster08Map(target, CacheDelegate("./cache-257/")) // revision 537
     }
 
     private fun packMissingMaps(target: CacheDelegate, sourceXteas: Xteas, source: CacheDelegate, targetXteas: Xteas, regions: List<Region>) {
@@ -51,6 +52,21 @@ object MapPacker {
         target.update()
     }
 
+    private fun packEaster08Map(target: CacheDelegate, source: CacheDelegate) {
+        val region = Region(9811)
+        val objData = source.getFile(Indices.MAPS, "l${region.x}_${region.y}", intArrayOf(-929935426, 1005492936, -2143736251, 386758357))
+        val tileData = source.getFile(Indices.MAPS, "m${region.x}_${region.y}")
+        if (objData == null || tileData == null) {
+            println("Can't find map $region")
+        } else {
+            val newRegion = Region(9555)
+            println("Written missing map $newRegion")
+            target.write(Indices.MAPS, "l${newRegion.x}_${newRegion.y}", objData)
+            target.write(Indices.MAPS, "m${newRegion.x}_${newRegion.y}", tileData)
+        }
+        target.update()
+    }
+
     private fun all(): List<Region> {
         val list = mutableListOf<Region>()
         for (regionX in 0 until 256) {
@@ -71,6 +87,7 @@ object MapPacker {
                 .get()
                 .body()
                 .ownText()
+            file.mkdirs()
             file.writeText(text)
             text
         }
