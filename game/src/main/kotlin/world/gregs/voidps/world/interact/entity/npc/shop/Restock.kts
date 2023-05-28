@@ -21,7 +21,7 @@ import kotlin.math.max
  * Every [restockTimeTicks] all players shops and [GeneralStores] update their stock by 10%
  */
 val containerDefs: ContainerDefinitions by inject()
-val restockTimeTicks = TimeUnit.SECONDS.toTicks(60)
+val restockTimeTicks = TimeUnit.SECONDS.toTicks(1)
 
 on<Registered> { player: Player ->
     player.softTimers.restart("shop_restock")
@@ -71,8 +71,9 @@ fun restock() {
 }
 
 fun restock(def: ContainerDefinition, container: world.gregs.voidps.engine.contain.Container) {
+    val defaults = def.getOrNull<List<Map<String, Int>>>("defaults")
     for (index in 0 until def.length) {
-        val map = def.getOrNull<List<Map<String, Int>>>("defaults")?.getOrNull(index)
+        val map = defaults?.getOrNull(index)
         var maximum = map?.values?.firstOrNull()
         val id = map?.keys?.firstOrNull()
         val item = container[index]

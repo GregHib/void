@@ -1,5 +1,6 @@
 bobs_brilliant_axes:
   id: 1
+  shop: true
   defaults:
     - bronze_pickaxe: 10
     - bronze_hatchet: 10
@@ -42,6 +43,7 @@ al_kharid_general_store:
     - security_book: 10
 auburys_rune_shop:
   id: 5
+  shop: true
   defaults:
     - fire_rune: 300
     - water_rune: 300
@@ -99,6 +101,7 @@ lowes_archery_emporium:
     - hard_leather_body: 10
 thessalias_fine_clothes:
   id: 8
+  shop: true
   defaults:
     - white_apron: 10
     - leather_body: 10
@@ -139,6 +142,7 @@ peksas_helmet_shop:
     - adamant_full_helm: 10
 zekes_superior_scimitars:
   id: 11
+  shop: true
   defaults:
     - bronze_scimitar: 10
     - iron_scimitar: 10
@@ -258,6 +262,7 @@ dwarven_shopping_store:
     - hammer: 10
 lumbridge_general_store:
   id: 24
+  shop: true
   defaults:
     - empty_pot: 30
     - jug: 10
@@ -1295,6 +1300,7 @@ razmire_builders_merchants:
     - plank: 50
 yrsas_shoe_store:
   id: 208
+  shop: true
   defaults:
     - fremennik_shirt_blue: 10
     - fremennik_shirt_red: 10
@@ -1776,6 +1782,7 @@ vigrs_warhammers:
     - adamant_warhammer: 10
 lumbridge_fishing_supplies:
   id: 562
+  shop: true
   defaults:
     - small_fishing_net: 5
     - fishing_rod: 10
@@ -2184,6 +2191,7 @@ white_knight_master_armoury:
     - white_halberd: 10
 shop_of_distaste:
   id: 334
+  shop: true
   defaults:
     - rotten_tomato: 100
 miscellanian_general_store:
@@ -3169,12 +3177,14 @@ faruqs_tools_for_games:
     - orb_of_oculus: 10
 lumbridge_general_store_sample:
   id: 553
+  shop: true
   defaults:
     - tinderbox: 1
     - hammer: 1
     - bronze_dagger: 1
 bobs_brilliant_axes_sample:
   id: 554
+  shop: true
   defaults:
     - bronze_pickaxe: 1
     - bronze_hatchet: 1
@@ -3211,6 +3221,7 @@ ignatiuss_hot_deals_trimmed:
     - firemaking_cape_t: 1
 lumbridge_fishing_supplies_sample:
   id: 561
+  shop: true
   defaults:
     - small_fishing_net: 1
     - crayfish_cage: 1

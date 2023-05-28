@@ -90,7 +90,6 @@ object ContainerConverter {
                         data[found!!] = mapOf("id" to i)
                     }
                     val map = (data[found] as Map<String, Any>).toMutableMap()
-                    map.remove("shop")
                     map["defaults"] = list
                     data[found!!] = map
                 } else {
