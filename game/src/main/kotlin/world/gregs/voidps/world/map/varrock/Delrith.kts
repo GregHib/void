@@ -253,7 +253,7 @@ on<CombatSwing>({ target is NPC && target.id == "delrith" && target.transform ==
 
 val words = listOf("Carlem", "Aber", "Camerinthum", "Purchai", "Gabindo")
 
-on<NPCOption>({ println(this);npc.id == "delrith" && npc.transform == "delrith_weakened" }) { player: Player ->
+on<NPCOption>({ npc.id == "delrith" && npc.transform == "delrith_weakened" }) { player: Player ->
     player.weakQueue("banish_delrith") {
         player<Furious>("Now what was that incantation again?")
         var correct = true
