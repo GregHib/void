@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.timedLoad
 private const val DEFAULT_TYPE = "main_screen"
 private const val DEFAULT_FIXED_PARENT = GAME_FRAME_NAME
 private const val DEFAULT_RESIZE_PARENT = GAME_FRAME_RESIZE_NAME
+private const val DEFAULT_PERMANENT = true
 
 @Suppress("UNCHECKED_CAST")
 class InterfaceDefinitions(
@@ -102,15 +103,18 @@ class InterfaceDefinitions(
         }
     }
 
-    private fun loadTypes(data: Map<String, Map<String, Any>>) = data.mapValues { (_, values) ->
-        val index = values["index"] as? Int
-        val parent = values["parent"] as? String
-        mapOf(
-            "parent_fixed" to (parent ?: values["fixedParent"] as? String ?: DEFAULT_FIXED_PARENT),
-            "parent_resize" to (parent ?: values["resizeParent"] as? String ?: DEFAULT_RESIZE_PARENT),
-            "index_fixed" to (index ?: values["fixedIndex"] as Int),
-            "index_resize" to (index ?: values["resizeIndex"] as Int)
-        )
+    private fun loadTypes(data: Map<String, Map<String, Any>>): Map<String, Map<String, Any>> {
+        return data.mapValues { (_, values) ->
+            val index = values["index"] as? Int
+            val parent = values["parent"] as? String
+            mapOf(
+                "parent_fixed" to (parent ?: values["fixedParent"] as? String ?: DEFAULT_FIXED_PARENT),
+                "parent_resize" to (parent ?: values["resizeParent"] as? String ?: DEFAULT_RESIZE_PARENT),
+                "index_fixed" to (index ?: values["fixedIndex"] as Int),
+                "index_resize" to (index ?: values["resizeIndex"] as Int),
+                "permanent" to (values["permanent"] as? Boolean ?: DEFAULT_PERMANENT)
+            )
+        }
     }
 
     private fun loadInterfaceExtras(

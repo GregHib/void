@@ -109,6 +109,7 @@ logout_tab:
 dialogue_box:
   parent: chat_box
   index: 13
+  permanent: false
 
 dialogue_box_small:
   parent: chat_box
@@ -120,14 +121,20 @@ area_status:
 
 underlay:
   index: 7
+  permanent: false
 
 overlay:
-  fixedIndex: 18
-  resizeIndex: 6
+  index: 7
 
 main_screen:
-  fixedIndex: 20
+  fixedIndex: 8
+  resizeIndex: 5
+  permanent: false
+
+bank_screen:
+  fixedIndex: 18
   resizeIndex: 8
+  permanent: false
 
 full_screen:
   parent: root

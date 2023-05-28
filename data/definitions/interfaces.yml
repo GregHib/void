@@ -1358,7 +1358,6 @@ barbarian_assult_healer: 488
 barbarian_assult_waiting: 489
 skill_guide:
   id: 499
-  type: underlay
   components:
     section1: 10-24
 dialogue_poh_hangman_german:
@@ -1798,6 +1797,7 @@ canoe_travel:
 vants_requests: 761
 bank:
   id: 762
+  type: bank_screen
   components:
     item_mode: 15
     note_mode: 19
