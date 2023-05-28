@@ -41227,7 +41227,7 @@ large_teak_bed:
   id: 8035
   weight: 1.0
   examine: "A ready-to-assemble large teak bed."
-"4_poster":
+four_poster:
   id: 8036
   weight: 1.0
   examine: "A ready-to-assemble four-poster bed."
@@ -54106,8 +54106,18 @@ dhide_body_g:
   slot: "Chest"
   material: "leather"
   type: "Sleeveless"
+dhide_body_t:
+  id: 10683
+  slot: "Chest"
+  material: "leather"
+  type: "Sleeveless"
 dhide_body_g_2:
   id: 10684
+  slot: "Chest"
+  material: "leather"
+  type: "Sleeveless"
+dhide_body_t_2:
+  id: 10685
   slot: "Chest"
   material: "leather"
   type: "Sleeveless"
@@ -107110,3 +107120,39 @@ hati_head:
   destroy: "You can reclaim the hat from Diango in Draynor Village if you destroy it."
   examine: "A hat made from the head of a legendary wolf."
   kept: "Wilderness"
+more: 10165
+back: 10166
+globe:
+  id: 8341
+  examine: "A wooden planet of your very own."
+character_creation_1: 19713
+character_creation_2: 19714
+character_creation_3: 19715
+character_creation_4: 19716
+character_creation_5: 19717
+character_creation_6: 19718
+character_creation_7: 19719
+character_creation_8: 19720
+character_creation_9: 19721
+character_creation_10: 19722
+character_creation_11: 19723
+character_creation_12: 19724
+character_creation_13: 19725
+character_creation_14: 19726
+character_creation_15: 19727
+character_creation_16: 19728
+character_creation_17: 19729
+character_creation_18: 19730
+character_creation_19: 19731
+character_creation_20: 19732
+character_creation_21: 19733
+character_creation_22: 19734
+small_portrait: 8086
+mounted_sword: 8090
+small_landscape: 8091
+guild_trophy: 8092
+large_portrait: 8093
+large_landscape: 8094
+low_level_plants: 8096
+mid_level_plants: 8097
+high_level_plants: 8098

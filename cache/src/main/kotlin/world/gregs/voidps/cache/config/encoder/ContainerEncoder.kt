@@ -11,16 +11,6 @@ class ContainerEncoder : ConfigEncoder<ContainerDefinition>() {
             writeByte(2)
             writeShort(definition.length)
         }
-        val ids = definition.ids
-        val amounts = definition.amounts
-        if (ids != null && amounts != null) {
-            writeByte(4)
-            writeByte(ids.size)
-            repeat(ids.size) {
-                writeShort(ids[it])
-                writeShort(amounts[it])
-            }
-        }
         writeByte(0)
     }
 

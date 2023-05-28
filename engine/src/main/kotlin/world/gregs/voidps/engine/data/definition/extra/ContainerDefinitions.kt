@@ -23,9 +23,17 @@ class ContainerDefinitions(
 
     override fun empty() = ContainerDefinition.EMPTY
 
-    fun load(storage: FileStorage = get(), path: String = getProperty("containerDefinitionsPath")): ContainerDefinitions {
+    fun load(storage: FileStorage = get(), path: String = getProperty("containerDefinitionsPath"), itemDefs: ItemDefinitions = get()): ContainerDefinitions {
         timedLoad("container extra") {
             decode(storage, path)
+            for (def in definitions) {
+                if (def.has("defaults")) {
+                    val list = def.get<List<Map<String, Int>>>("defaults")
+                    def.ids = IntArray(def.length) { itemDefs.get(list[it].keys.first()).id }
+                    def.amounts = IntArray(def.length) { list[it].values.first() }
+                }
+            }
+            definitions.size
         }
         return this
     }

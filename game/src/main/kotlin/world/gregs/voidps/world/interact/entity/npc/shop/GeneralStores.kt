@@ -20,13 +20,14 @@ object GeneralStores {
 
     fun get(key: String) = stores.getOrPut(key) {
         val def = containerDefs.get(key)
-        val minimumQuantities = IntArray(def.length) { if (def.ids?.getOrNull(it) != null) -1 else 0 }
+        val minimumQuantities = IntArray(def.length) { if (def.getOrNull<List<Map<String, Int>>>("defaults")?.getOrNull(it) != null) -1 else 0 }
         val checker = ItemIndexRemovalChecker(minimumQuantities)
         Container(
             data = ContainerData(Array(def.length) {
+                val map = def.getOrNull<List<Map<String, Int>>>("defaults")?.getOrNull(it)
                 Item(
-                    id = itemDefs.get(def.ids?.getOrNull(it) ?: -1).stringId,
-                    amount = def.amounts?.getOrNull(it) ?: 0
+                    id = map?.keys?.firstOrNull() ?: "",
+                    amount = map?.values?.firstOrNull() ?: 0
                 )
             }),
             id = key,
