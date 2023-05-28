@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -149,6 +150,7 @@ suspend fun PlayerContext.cutscene() {
         wizard.mode = PauseMode
         wizard.steps.clear()
     }
+    spawnEnergyBarrier(offset)
     delay(1)
     setCutsceneEnd(instance)
     player.tele(offset.add(3222, 3367))
@@ -320,4 +322,26 @@ fun PlayerContext.questComplete() {
         "3 Quest Points",
         "Silverlight"
     ), Item("silverlight"))
+}
+
+fun spawnEnergyBarrier(offset: Tile) {
+    var tile = offset.add(3221, 3367)
+    var rotation = 0
+    var direction = Direction.NORTH
+    while (rotation < 4) {
+        repeat(6) {
+            spawnObject("demon_slayer_energy_barrier", tile, 0, rotation)
+            tile = tile.add(direction)
+        }
+        direction = direction.rotate(1)
+        repeat(3) {
+            spawnObject("demon_slayer_energy_barrier", tile, 9, rotation)
+            spawnObject("demon_slayer_energy_barrier", tile.add(direction.rotate(1)), 1, rotation)
+            tile = tile.add(direction)
+        }
+        spawnObject("demon_slayer_energy_barrier", tile, 9, rotation)
+        rotation++
+        direction = direction.rotate(1)
+        tile = tile.add(direction)
+    }
 }
