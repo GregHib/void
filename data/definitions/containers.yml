@@ -41,6 +41,20 @@ al_kharid_general_store:
     - hammer: 10
     - newcomer_map: 10
     - security_book: 10
+container_4:
+  id: 4
+  defaults:
+    - empty_pot: 30
+    - jug: 10
+    - shears: 10
+    - bucket: 30
+    - bowl: 10
+    - cake_tin: 10
+    - tinderbox: 10
+    - chisel: 10
+    - hammer: 10
+    - newcomer_map: 10
+    - security_book: 10
 auburys_rune_shop:
   id: 5
   shop: true
@@ -521,6 +535,10 @@ arheins_store:
     - rope: 10
     - empty_pot: 30
     - knife: 10
+container_48:
+  id: 48
+  defaults:
+    - white_candle: 10
 hicktons_archery_emporium:
   id: 49
   defaults:
@@ -560,6 +578,15 @@ gruds_herblore_stall:
     - pestle_and_mortar: 10
     - eye_of_newt: 10
     - eye_of_newt_pack: 20
+container_51:
+  id: 51
+  defaults:
+    - staff: 10
+    - magic_staff: 10
+    - staff_of_air: 10
+    - staff_of_water: 10
+    - staff_of_earth: 10
+    - staff_of_fire: 10
 herquins_gems:
   id: 52
   defaults:
@@ -1091,2338 +1118,6 @@ giannes_restaurant:
     - premade_toad_crunchies: 10
     - premade_chocolate_chip_crunchies: 10
     - premade_spicy_crunchies: 10
-lundails_arena_side_rune_shop:
-  id: 131
-  defaults:
-    - fire_rune: 1000
-    - water_rune: 1000
-    - air_rune: 1000
-    - earth_rune: 1000
-    - mind_rune: 1000
-    - body_rune: 1000
-    - nature_rune: 300
-    - chaos_rune: 300
-    - law_rune: 100
-    - cosmic_rune: 100
-    - death_rune: 300
-mage_arena_staves:
-  id: 132
-  defaults:
-    - saradomin_staff: 10
-    - guthix_staff: 10
-    - zamorak_staff: 10
-oblis_general_store:
-  id: 138
-  defaults:
-    - tinderbox: 10
-    - vial: 10
-    - vial_pack: 20
-    - pestle_and_mortar: 10
-    - empty_pot: 30
-    - bronze_hatchet: 10
-    - bronze_pickaxe: 10
-    - iron_hatchet: 10
-    - leather_body: 10
-    - leather_gloves: 10
-    - leather_boots: 10
-    - cooked_meat: 10
-    - bread: 10
-    - spade: 10
-    - white_candle: 10
-    - unlit_torch: 10
-    - chisel: 10
-    - hammer: 10
-    - papyrus: 10
-    - charcoal: 10
-    - vial_of_water: 10
-    - vial_of_water_pack: 20
-    - machete: 10
-    - rope: 10
-west_ardougne_general_store:
-  id: 139
-  defaults:
-    - empty_pot: 30
-    - rope: 10
-    - bronze_pickaxe: 10
-    - bucket: 30
-    - tinderbox: 10
-    - hammer: 10
-    - leather_boots: 10
-    - longbow: 10
-    - bronze_arrow: 100
-    - salmon: 10
-    - meat_pie: 10
-    - bread: 10
-    - cooked_meat: 10
-rufuss_meat_emporium:
-  id: 143
-  defaults:
-    - raw_beef: 100
-    - raw_chicken: 30
-    - raw_rat_meat: 10
-    - raw_bear_meat: 10
-    - raw_trout: 0
-    - raw_pike: 0
-    - raw_salmon: 0
-    - raw_shark: 0
-barkers_haberdashery:
-  id: 144
-  defaults:
-    - boots_grey: 10
-    - robe_top_grey: 10
-    - robe_bottoms_grey: 10
-    - hat_grey: 10
-    - gloves_grey: 10
-    - boots_red: 10
-    - robe_top_red: 10
-    - robe_bottoms_red: 10
-    - hat_red: 10
-    - gloves_red: 10
-    - boots_yellow: 10
-    - robe_top_yellow: 10
-    - robe_bottoms_yellow: 10
-    - hat_yellow: 10
-    - gloves_yellow: 10
-    - boots_teal: 10
-    - robe_top_teal: 10
-    - robe_bottoms_teal: 10
-    - hat_teal: 10
-    - gloves_teal: 10
-    - boots_purple: 10
-    - robe_top_purple: 10
-    - robe_bottoms_purple: 10
-    - hat_purple: 10
-    - gloves_purple: 10
-    - cape_red: 10
-    - cape_black: 10
-    - cape_blue: 10
-    - cape_yellow: 10
-    - cape_green: 10
-canifis_general_store:
-  id: 145
-  defaults:
-    - needle: 10
-    - thread: 1000
-    - empty_pot: 30
-    - bucket: 30
-    - jug: 10
-    - tinderbox: 10
-    - chisel: 10
-    - hammer: 10
-    - sample_bottle: 10
-    - knife: 10
-burthorpe_supplies:
-  id: 148
-  defaults:
-    - empty_pot: 30
-    - jug: 10
-    - shears: 10
-    - bucket: 30
-    - tinderbox: 10
-    - chisel: 10
-    - hammer: 10
-    - knife: 10
-    - empty_cup: 10
-tiadeches_karambwan_stall:
-  id: 156
-  defaults:
-    - raw_karambwan: 10
-    - karambwan_vessel: 10
-the_shrimp_and_parrot:
-  id: 157
-  defaults:
-    - herring: 10
-    - cod: 10
-    - tuna: 10
-    - lobster: 10
-    - swordfish: 10
-    - cooked_karambwan: 10
-tamayus_spear_stall:
-  id: 158
-  defaults:
-    - bronze_spear_kp: 10
-    - iron_spear_kp: 10
-    - steel_spear_kp: 10
-    - mithril_spear_kp: 10
-    - adamant_spear_kp: 10
-    - rune_spear_kp: 10
-    - cleaning_cloth: 10
-quartermasters_stores:
-  id: 160
-  defaults:
-    - empty_pot: 30
-    - jug: 10
-    - shears: 10
-    - tinderbox: 10
-    - bread: 10
-    - bronze_halberd: 10
-    - iron_halberd: 10
-    - steel_halberd: 10
-    - black_halberd: 10
-    - mithril_halberd: 10
-    - adamant_halberd: 10
-    - rune_halberd: 10
-    - dragon_halberd: 10
-arnolds_eclectic_supplies:
-  id: 174
-  defaults:
-    - small_fishing_net: 10
-    - harpoon: 10
-    - bread: 10
-    - empty_pot: 30
-    - bucket_of_milk: 10
-    - needle: 10
-    - thread: 1000
-    - beer: 10
-    - glassblowing_pipe: 10
-    - knife: 10
-razmire_general_store:
-  id: 204
-  defaults:
-    - empty_pot: 30
-    - jug: 10
-    - shears: 10
-    - bucket: 30
-    - tinderbox: 10
-    - chisel: 10
-    - hammer: 10
-    - olive_oil_3: 500
-    - vial_of_water: 300
-    - pot_of_flour: 10
-    - flamtaer_hammer: 10
-razmire_builders_merchants:
-  id: 205
-  defaults:
-    - limestone: 1000
-    - limestone_brick: 1000
-    - timber_beam: 1000
-    - swamp_paste: 1500
-    - plank: 50
-yrsas_shoe_store:
-  id: 208
-  shop: true
-  defaults:
-    - fremennik_shirt_blue: 10
-    - fremennik_shirt_red: 10
-    - fremennik_shirt_brown: 10
-    - fremennik_shirt_grey: 10
-    - fremennik_shirt_tan: 10
-    - fremennik_robe: 10
-    - fremennik_skirt: 10
-    - fremennik_hat: 10
-    - gloves_fremennik: 10
-    - fremennik_boots: 10
-    - fremennik_cloak_green: 10
-    - fremennik_cloak_lavender: 10
-    - fremennik_cloak_brown: 10
-    - fremennik_cloak_cyan: 10
-    - fremennik_cloak_red: 10
-    - fremennik_cloak_grey: 10
-    - fremennik_cloak_gold: 10
-    - fremennik_cloak_teal: 10
-    - fremennik_cloak_purple: 10
-    - fremennik_cloak_pink: 10
-    - fremennik_cloak_black: 10
-skulgrimens_battle_gear:
-  id: 210
-  defaults:
-    - bronze_warhammer: 10
-    - iron_warhammer: 10
-    - steel_warhammer: 10
-    - black_warhammer: 10
-    - mithril_warhammer: 10
-    - adamant_warhammer: 10
-    - rune_warhammer: 0
-    - archer_helm: 10
-    - berserker_helm: 10
-    - warrior_helm: 10
-    - farseer_helm: 10
-sigmund_the_merchant:
-  id: 211
-  defaults:
-    - tinderbox: 10
-    - rope: 10
-    - pestle_and_mortar: 10
-    - empty_pot: 30
-    - cooked_meat: 10
-    - bread: 10
-    - spade: 10
-    - white_candle: 10
-    - chisel: 10
-    - hammer: 10
-    - vial: 10
-    - vial_pack: 6
-    - vial_of_water: 10
-    - vial_of_water_pack: 6
-    - bucket: 30
-    - bucket_of_water: 10
-    - egg: 10
-    - raw_potato: 10
-    - cabbage: 10
-fish_stall:
-  id: 212
-  defaults:
-    - small_fishing_net: 10
-    - fishing_rod: 10
-    - fly_fishing_rod: 10
-    - harpoon: 30
-    - lobster_pot: 10
-    - fishing_bait: 1000
-    - feather: 1000
-    - big_fishing_net: 10
-    - raw_shrimps: 10
-    - raw_sardine: 10
-    - raw_herring: 0
-    - raw_mackerel: 0
-    - raw_cod: 0
-    - raw_anchovies: 0
-    - raw_trout: 0
-    - raw_pike: 0
-    - raw_salmon: 0
-    - raw_tuna: 0
-    - raw_lobster: 0
-    - raw_bass: 0
-    - raw_swordfish: 0
-    - raw_shark: 0
-ardougne_fur_stall:
-  id: 213
-  defaults:
-    - bear_fur: 10
-    - grey_wolf_fur: 10
-    - polar_kebbit_fur: 0
-    - common_kebbit_fur: 0
-    - feldip_weasel_fur: 0
-    - desert_devil_fur: 0
-    - tatty_larupia_fur: 0
-    - larupia_fur: 0
-    - tatty_graahk_fur: 0
-    - graahk_fur: 0
-    - tatty_kyatt_fur: 0
-    - kyatt_fur: 0
-the_lighthouse_store:
-  id: 214
-  defaults:
-    - rope: 10
-    - hammer: 10
-    - chisel: 10
-    - knife: 10
-    - spade: 10
-    - tinderbox: 10
-    - white_candle: 10
-    - poison: 10
-    - pestle_and_mortar: 10
-    - empty_pot: 30
-    - bucket: 30
-    - bucket_of_water: 10
-    - jug: 10
-    - jug_of_water: 300
-    - vial: 10
-    - vial_pack: 20
-    - vial_of_water: 10
-    - vial_of_water_pack: 20
-    - gin: 10
-    - brandy: 10
-    - vodka: 10
-    - grog: 10
-    - whisky: 10
-    - greenmans_ale: 10
-    - dwarven_stout: 10
-    - wizards_mind_bomb: 10
-island_fishmonger:
-  id: 217
-  defaults:
-    - small_fishing_net: 10
-    - fishing_rod: 10
-    - fly_fishing_rod: 10
-    - harpoon: 30
-    - lobster_pot: 10
-    - fishing_bait: 1000
-    - feather: 1000
-    - big_fishing_net: 10
-    - raw_shrimps: 0
-    - raw_sardine: 10
-    - raw_herring: 0
-    - raw_mackerel: 0
-    - raw_cod: 0
-    - raw_anchovies: 0
-    - raw_trout: 0
-    - raw_pike: 0
-    - raw_salmon: 0
-    - raw_tuna: 0
-    - raw_lobster: 0
-    - raw_bass: 0
-    - raw_swordfish: 0
-    - raw_shark: 0
-greengrocer_of_miscellania:
-  id: 218
-  defaults:
-    - cabbage: 10
-    - raw_potato: 10
-    - onion: 10
-    - tomato: 10
-    - garlic: 10
-etceteria_fish:
-  id: 219
-  defaults:
-    - small_fishing_net: 10
-    - fishing_rod: 10
-    - fly_fishing_rod: 10
-    - harpoon: 30
-    - lobster_pot: 10
-    - fishing_bait: 1000
-    - feather: 1000
-    - big_fishing_net: 10
-    - raw_shrimps: 0
-    - raw_sardine: 10
-    - raw_herring: 0
-    - raw_mackerel: 0
-    - raw_cod: 0
-    - raw_anchovies: 0
-    - raw_trout: 0
-    - raw_pike: 0
-    - raw_salmon: 0
-    - raw_tuna: 0
-    - raw_lobster: 0
-    - raw_bass: 0
-    - raw_swordfish: 0
-    - raw_shark: 0
-island_greengrocer:
-  id: 220
-  defaults:
-    - cabbage: 0
-    - raw_potato: 0
-    - onion: 0
-    - tomato: 0
-    - garlic: 0
-tutabs_magical_market:
-  id: 223
-  defaults:
-    - fire_rune: 1000
-    - water_rune: 1000
-    - air_rune: 1000
-    - earth_rune: 1000
-    - law_rune: 100
-    - eye_of_gnome: 10
-    - monkey_dentures: 10
-    - monkey_talisman: 10
-solihibs_food_stall:
-  id: 225
-  defaults:
-    - monkey_nuts: 100
-    - banana: 10
-    - banana_stew: 10
-    - monkey_bar: 100
-hamabs_crafting_emporium:
-  id: 226
-  defaults:
-    - chisel: 10
-    - ring_mould: 10
-    - necklace_mould: 10
-    - monkeyspeak_amulet_mould: 10
-    - needle: 10
-    - thread: 1000
-    - ball_of_wool: 100
-    - bracelet_mould: 10
-ifabas_general_store:
-  id: 227
-  defaults:
-    - empty_pot: 30
-    - jug: 10
-    - rope: 10
-    - bucket: 30
-    - tinderbox: 10
-    - hammer: 10
-ranging_guild_ticket_exchange:
-  id: 228
-  currency: archery_ticket
-  defaults:
-    - barb_bolttips: 30
-    - studded_body: 1
-    - rune_arrow: 50
-    - studded_leather_coif: 1
-    - green_dragonhide_body: 1
-    - adamant_javelin: 20
-magic_guild_store_mystic_robes:
-  id: 232
-  defaults:
-    - mystic_hat_blue: 10
-    - mystic_robe_top_blue: 10
-    - mystic_robe_bottom_blue: 10
-    - mystic_gloves_blue: 10
-    - mystic_boots_blue: 10
-port_phasmatys_general_store:
-  id: 235
-  defaults:
-    - empty_pot: 300
-    - bucket: 300
-    - shears: 10
-    - jug: 10
-    - tinderbox: 10
-    - chisel: 10
-    - hammer: 10
-williams_wilderness_cape_shop:
-  id: 236
-  defaults:
-    - team_1_cape: 10
-    - team_11_cape: 10
-    - team_21_cape: 10
-    - team_31_cape: 10
-    - team_41_cape: 10
-ians_wilderness_cape_shop:
-  id: 237
-  defaults:
-    - team_2_cape: 10
-    - team_12_cape: 10
-    - team_22_cape: 10
-    - team_32_cape: 10
-    - team_42_cape: 10
-larrys_wilderness_cape_shop:
-  id: 238
-  defaults:
-    - team_3_cape: 10
-    - team_13_cape: 10
-    - team_23_cape: 10
-    - team_33_cape: 10
-    - team_43_cape: 10
-darrens_wilderness_cape_shop:
-  id: 239
-  defaults:
-    - team_4_cape: 10
-    - team_14_cape: 10
-    - team_24_cape: 10
-    - team_34_cape: 10
-    - team_44_cape: 10
-edwards_wilderness_cape_shop:
-  id: 240
-  defaults:
-    - team_5_cape: 10
-    - team_15_cape: 10
-    - team_25_cape: 10
-    - team_35_cape: 10
-    - team_45_cape: 10
-richards_wilderness_cape_shop:
-  id: 241
-  defaults:
-    - team_6_cape: 10
-    - team_16_cape: 10
-    - team_26_cape: 10
-    - team_36_cape: 10
-    - team_46_cape: 10
-neils_wilderness_cape_shop:
-  id: 242
-  defaults:
-    - team_7_cape: 10
-    - team_17_cape: 10
-    - team_27_cape: 10
-    - team_37_cape: 10
-    - team_47_cape: 10
-edmonds_wilderness_cape_shop:
-  id: 243
-  defaults:
-    - team_8_cape: 10
-    - team_18_cape: 10
-    - team_28_cape: 10
-    - team_38_cape: 10
-    - team_48_cape: 10
-simons_wilderness_cape_shop:
-  id: 244
-  defaults:
-    - team_9_cape: 10
-    - team_19_cape: 10
-    - team_29_cape: 10
-    - team_39_cape: 10
-    - team_49_cape: 10
-sams_wilderness_cape_shop:
-  id: 245
-  defaults:
-    - team_10_cape: 10
-    - team_20_cape: 10
-    - team_30_cape: 10
-    - team_40_cape: 10
-    - team_50_cape: 10
-brians_archery_supplies:
-  id: 250
-  defaults:
-    - steel_arrow: 100
-    - mithril_arrow: 30
-    - adamant_arrow: 0
-    - oak_shortbow: 10
-    - oak_longbow: 10
-    - willow_shortbow: 10
-    - willow_longbow: 10
-    - maple_shortbow: 10
-    - maple_longbow: 10
-dagas_scimitar_smithy:
-  id: 251
-  defaults:
-    - bronze_scimitar: 10
-    - iron_scimitar: 10
-    - steel_scimitar: 10
-    - mithril_scimitar: 10
-    - dragon_scimitar: 10
-alis_discount_wares:
-  id: 252
-  defaults:
-    - empty_pot: 30
-    - jug: 10
-    - waterskin_3: 30
-    - desert_shirt: 10
-    - desert_boots: 10
-    - bucket: 30
-    - fake_beard: 10
-    - kharidian_headpiece: 10
-    - papyrus: 10
-    - knife: 10
-    - tinderbox: 10
-    - bronze_pickaxe: 10
-    - raw_chicken: 10
-the_asp_and_snake_bar:
-  id: 253
-  defaults:
-    - beer: 10
-    - whisky: 10
-    - jug_of_wine: 10
-    - vodka: 10
-    - brandy: 10
-    - grog: 10
-pollnivneach_general_store:
-  id: 254
-  defaults:
-    - empty_pot: 30
-    - jug: 10
-    - waterskin_3: 30
-    - desert_shirt: 10
-    - desert_boots: 10
-    - bucket: 30
-    - fake_beard: 10
-    - kharidian_headpiece: 10
-    - cheese: 10
-    - lime: 10
-    - tomato: 10
-    - jug_of_water: 10
-    - bowl_of_water: 10
-    - bucket_of_water: 10
-bandit_bargains:
-  id: 255
-  defaults:
-    - waterskin_4: 30
-    - waterskin_0: 30
-    - jug_of_water: 10
-    - bowl_of_water: 10
-    - bucket_of_water: 10
-    - jug: 10
-    - bowl: 10
-    - bucket: 30
-    - desert_boots: 10
-    - desert_shirt: 10
-    - desert_robe: 10
-    - knife: 10
-rasolo_the_wandering_merchant:
-  id: 256
-  defaults:
-    - spinach_roll: 10
-    - cocktail_guide: 10
-    - blue_hat: 10
-    - dragon_dagger: 30
-    - newcomer_map: 10
-    - bailing_bucket: 10
-    - swamp_paste: 10
-    - poison: 10
-    - papyrus: 10
-    - machete: 10
-    - holy_mould: 10
-    - sickle_mould: 10
-    - waterskin_4: 30
-    - desert_boots: 10
-    - shantay_pass: 300
-    - toy_horsey_black: 10
-    - sample_bottle: 10
-    - boots_grey: 10
-    - greenmans_ale: 10
-    - fremennik_cloak_pink: 10
-    - keg_of_beer: 10
-    - flamtaer_hammer: 10
-    - olive_oil_3: 10
-    - limestone_brick: 10
-    - instruction_manual: 10
-the_big_heist_lodge:
-  id: 257
-  defaults:
-    - bandits_brew: 10
-ak_haranus_exotic_shop:
-  id: 259
-  defaults:
-    - bolt_rack: 100
-uglugs_stuffsies:
-  id: 260
-  defaults:
-    - relicyms_balm_3: 10
-    - sanfew_serum_3: 0
-    - bowstring: 0
-    - raw_chompy: 0
-    - cooked_chompy: 10
-    - ogre_coffin_key: 0
-    - knife: 10
-    - bronze_brutal: 0
-    - iron_brutal: 0
-    - steel_brutal: 0
-    - black_brutal: 0
-    - mithril_brutal: 0
-    - adamant_brutal: 0
-    - rune_brutal: 0
-    - comp_ogre_bow: 10
-vigrs_warhammers:
-  id: 261
-  defaults:
-    - bronze_warhammer: 10
-    - iron_warhammer: 10
-    - steel_warhammer: 10
-    - black_warhammer: 10
-    - mithril_warhammer: 10
-    - adamant_warhammer: 10
-lumbridge_fishing_supplies:
-  id: 562
-  shop: true
-  defaults:
-    - small_fishing_net: 5
-    - fishing_rod: 10
-    - fly_fishing_rod: 10
-    - crayfish_cage: 10
-    - fishing_bait: 1000
-    - feather: 1000
-    - raw_shrimps: 0
-    - raw_sardine: 0
-    - raw_herring: 0
-    - raw_anchovies: 0
-    - raw_trout: 0
-    - raw_pike: 0
-    - raw_salmon: 0
-    - raw_crayfish: 0
-quality_armour_shop:
-  id: 263
-  defaults:
-    - steel_chainbody: 10
-    - mithril_chainbody: 10
-    - black_chainbody: 10
-    - adamant_chainbody: 10
-    - steel_med_helm: 10
-    - mithril_med_helm: 10
-    - adamant_med_helm: 10
-    - steel_sq_shield: 10
-    - black_kiteshield: 10
-gunsliks_assorted_items:
-  id: 264
-  defaults:
-    - jug: 10
-    - bucket: 30
-    - tinderbox: 10
-    - chisel: 10
-    - hammer: 10
-    - white_candle: 10
-    - unlit_torch: 10
-    - charcoal: 10
-    - leather_gloves: 10
-    - vial: 300
-    - pestle_and_mortar: 10
-    - rope: 10
-agmundi_quality_clothes:
-  id: 266
-  defaults:
-    - skirt_lilac: 10
-    - skirt_blue: 10
-    - trousers_lilac: 10
-    - trousers_blue: 10
-    - shorts_tan: 10
-    - shorts_blue: 10
-    - woven_top_tan: 10
-    - woven_top_blue: 10
-    - shirt_tan: 10
-    - shirt_lilac: 10
-keldagrims_best_bread:
-  id: 267
-  defaults:
-    - bread: 10
-    - cake: 10
-    - chocolate_slice: 10
-carefree_crafting_stall:
-  id: 268
-  defaults:
-    - chisel: 10
-    - ring_mould: 10
-    - necklace_mould: 10
-    - needle: 10
-    - thread: 1000
-    - ball_of_wool: 100
-vermundis_clothes_stall:
-  id: 271
-  defaults:
-    - skirt_brown: 10
-    - trousers_brown: 10
-    - shorts_brown: 10
-    - woven_top_brown: 10
-    - shirt_brown: 10
-    - silk: 10
-mrs_winkins_world_of_seeds:
-  id: 273
-  defaults:
-    - potato_seed: 10
-    - onion_seed: 10
-    - cabbage_seed: 10
-    - tomato_seed: 0
-    - sweetcorn_seed: 0
-    - strawberry_seed: 0
-    - watermelon_seed: 0
-    - barley_seed: 10
-    - jute_seed: 10
-    - rosemary_seed: 10
-    - marigold_seed: 10
-    - hammerstone_seed: 10
-    - asgarnian_seed: 10
-    - yanillian_seed: 10
-    - krandorian_seed: 10
-    - wildblood_seed: 10
-battle_runes:
-  id: 276
-  defaults:
-    - fire_rune: 100
-    - water_rune: 100
-    - air_rune: 100
-    - earth_rune: 100
-    - mind_rune: 100
-    - body_rune: 100
-    - chaos_rune: 30
-    - death_rune: 30
-martin_thwaits_lost_and_found:
-  id: 279
-  defaults:
-    - rope: 10
-    - lockpick: 10
-    - chisel: 10
-    - knife: 10
-    - stethoscope: 10
-    - bronze_knife: 100
-    - iron_knife: 100
-    - steel_knife: 100
-    - bronze_claws: 100
-    - iron_claws: 10
-    - steel_claws: 10
-alices_farming_shop:
-  id: 280
-  defaults:
-    - rake: 10
-    - seed_dibber: 10
-    - secateurs: 10
-    - spade: 10
-    - gardening_trowel: 10
-    - watering_can: 30
-    - plant_pot: 100
-    - compost: 300
-    - bucket: 100
-    - empty_sack: 10
-    - empty_sack_pack: 1
-    - basket: 10
-    - basket_pack: 1
-    - raw_potato: 0
-    - onion: 0
-    - cabbage: 0
-    - tomato: 0
-    - sweetcorn: 0
-    - strawberry: 0
-    - watermelon: 0
-    - hammerstone_hops: 0
-    - asgarnian_hops: 0
-    - yanillian_hops: 0
-    - krandorian_hops: 0
-    - wildblood_hops: 0
-    - jute_fibre: 0
-    - barley: 0
-    - plant_cure: 10
-    - amulet_of_farming_8: 10
-richards_farming_shop:
-  id: 281
-  defaults:
-    - rake: 10
-    - seed_dibber: 10
-    - secateurs: 10
-    - spade: 10
-    - gardening_trowel: 10
-    - watering_can: 30
-    - plant_pot: 100
-    - compost: 300
-    - bucket: 100
-    - empty_sack: 10
-    - empty_sack_pack: 1
-    - basket: 10
-    - basket_pack: 1
-    - raw_potato: 0
-    - onion: 0
-    - cabbage: 0
-    - tomato: 0
-    - sweetcorn: 0
-    - strawberry: 0
-    - watermelon: 0
-    - hammerstone_hops: 0
-    - asgarnian_hops: 0
-    - yanillian_hops: 0
-    - krandorian_hops: 0
-    - wildblood_hops: 0
-    - jute_fibre: 0
-    - barley: 0
-    - plant_cure: 10
-    - amulet_of_farming_8: 10
-vanessas_farming_shop:
-  id: 283
-  defaults:
-    - rake: 10
-    - seed_dibber: 10
-    - secateurs: 10
-    - spade: 10
-    - gardening_trowel: 10
-    - watering_can: 30
-    - plant_pot: 100
-    - compost: 300
-    - bucket: 100
-    - empty_sack: 10
-    - empty_sack_pack: 1
-    - basket: 10
-    - basket_pack: 1
-    - raw_potato: 0
-    - onion: 0
-    - cabbage: 0
-    - tomato: 0
-    - sweetcorn: 0
-    - strawberry: 0
-    - watermelon: 0
-    - hammerstone_hops: 0
-    - asgarnian_hops: 0
-    - yanillian_hops: 0
-    - krandorian_hops: 0
-    - wildblood_hops: 0
-    - jute_fibre: 0
-    - barley: 0
-    - plant_cure: 10
-    - amulet_of_farming_8: 10
-lletya_general_store:
-  id: 301
-  defaults:
-    - empty_pot: 30
-    - jug: 10
-    - shears: 10
-    - bucket: 30
-    - tinderbox: 10
-    - chisel: 10
-    - hammer: 10
-    - spade: 10
-    - knife: 10
-lletya_seamstress:
-  id: 302
-  defaults:
-    - thread: 1000
-    - needle: 10
-    - ball_of_wool: 100
-    - red_dye: 10
-    - yellow_dye: 10
-    - blue_dye: 10
-    - orange_dye: 10
-    - green_dye: 10
-    - purple_dye: 10
-lletya_archery_shop:
-  id: 303
-  defaults:
-    - iron_arrow: 1000
-    - steel_arrow: 300
-    - mithril_arrow: 100
-    - adamant_arrow: 100
-    - rune_arrow: 30
-    - bronze_bolts: 1000
-    - oak_shortbow: 10
-    - oak_longbow: 10
-    - crossbow: 10
-    - willow_shortbow: 10
-    - willow_longbow: 10
-lletya_food_store:
-  id: 304
-  defaults:
-    - bread: 10
-    - lobster: 10
-    - jug_of_wine: 10
-    - cheese: 10
-    - cake: 10
-gabootys_tai_bwo_wannai_cooperative:
-  id: 305
-  currency: trading_sticks
-  defaults:
-    - tribal_top_brown: 10
-    - villager_robe_brown: 10
-    - villager_hat_brown: 10
-    - villager_sandals_brown: 10
-    - villager_armband_brown: 10
-    - opal_machete: 10
-    - jade_machete: 10
-    - red_topaz_machete: 10
-    - tribal_top_blue: 10
-    - villager_robe_blue: 10
-    - villager_hat_blue: 10
-    - villager_sandals_blue: 10
-    - villager_armband_blue: 10
-    - uncut_opal: 0
-    - uncut_jade: 0
-    - uncut_red_topaz: 0
-    - tribal_top_yellow: 10
-    - villager_robe_yellow: 10
-    - villager_hat_yellow: 10
-    - villager_sandals_yellow: 10
-    - villager_armband_yellow: 10
-    - opal: 0
-    - jade: 0
-    - red_topaz: 0
-    - tribal_top_pink: 10
-    - villager_robe_pink: 10
-    - villager_hat_pink: 10
-    - villager_sandals_pink: 10
-    - villager_armband_pink: 10
-    - gout_tuber: 0
-gabootys_tai_bwo_wannai_drinky_store:
-  id: 306
-  currency: trading_sticks
-  defaults:
-    - fruit_blast: 0
-    - drunk_dragon: 0
-    - pineapple_punch: 0
-    - wizard_blizzard: 0
-    - blurberry_special: 0
-    - chocolate_saturday: 0
-    - short_green_guy: 0
-ore_seller:
-  id: 318
-  defaults:
-    - copper_ore: 100
-    - tin_ore: 100
-    - iron_ore: 100
-    - mithril_ore: 100
-    - silver_ore: 100
-    - gold_ore: 100
-    - coal: 100
-armour_store:
-  id: 319
-  defaults:
-    - rune_med_helm: 0
-    - rune_full_helm: 0
-    - rune_platebody: 0
-    - rune_platelegs: 0
-    - rune_plateskirt: 0
-    - rune_sq_shield: 0
-    - rune_kiteshield: 0
-    - rune_chainbody: 0
-    - adamant_med_helm: 0
-    - adamant_full_helm: 0
-    - adamant_platebody: 0
-    - adamant_platelegs: 0
-    - adamant_plateskirt: 0
-    - adamant_sq_shield: 0
-    - adamant_kiteshield: 0
-    - adamant_chainbody: 0
-    - mithril_med_helm: 0
-    - mithril_full_helm: 0
-    - mithril_platebody: 0
-    - mithril_platelegs: 0
-    - mithril_plateskirt: 0
-    - mithril_sq_shield: 0
-    - mithril_kiteshield: 0
-    - mithril_chainbody: 0
-tzhaar_hur_tels_equipment_store:
-  id: 325
-  currency: tokkul
-  defaults:
-    - toktz_xil_ul: 10
-    - toktz_xil_ak: 10
-    - toktz_ket_xil: 10
-    - toktz_xil_ek: 10
-    - toktz_mej_tal: 10
-    - tzhaar_ket_em: 10
-    - tzhaar_ket_om: 10
-    - obsidian_cape: 10
-tzhaar_hur_leks_ore_and_gem_store:
-  id: 326
-  currency: tokkul
-  defaults:
-    - tin_ore: 5
-    - copper_ore: 5
-    - iron_ore: 2
-    - uncut_sapphire: 1
-    - uncut_emerald: 1
-    - uncut_onyx: 1
-    - onyx_bolt_tips: 50
-tzhaar_mej_rohs_rune_store:
-  id: 327
-  currency: tokkul
-  defaults:
-    - fire_rune: 1000
-    - water_rune: 1000
-    - air_rune: 1000
-    - earth_rune: 1000
-    - mind_rune: 1000
-    - body_rune: 1000
-    - chaos_rune: 300
-    - death_rune: 100
-white_knight_master_armoury:
-  id: 333
-  defaults:
-    - white_chainbody: 10
-    - white_platelegs: 10
-    - white_plateskirt: 10
-    - white_med_helm: 10
-    - white_sq_shield: 10
-    - white_full_helm: 10
-    - white_kiteshield: 10
-    - white_platebody: 10
-    - white_boots: 10
-    - white_gauntlets: 10
-    - white_dagger: 10
-    - white_sword: 10
-    - white_mace: 10
-    - white_magic_staff: 10
-    - white_longsword: 10
-    - white_warhammer: 10
-    - white_battleaxe: 10
-    - white_scimitar: 10
-    - white_claws: 10
-    - white_2h_sword: 10
-    - white_halberd: 10
-shop_of_distaste:
-  id: 334
-  shop: true
-  defaults:
-    - rotten_tomato: 100
-miscellanian_general_store:
-  id: 343
-  defaults:
-    - empty_pot: 30
-    - jug: 10
-    - shears: 10
-    - bucket: 30
-    - bowl: 10
-    - cake_tin: 10
-    - tinderbox: 10
-    - chisel: 10
-    - hammer: 10
-seddus_adventurers_store:
-  id: 344
-  defaults:
-    - rune_plateskirt: 10
-    - rune_platelegs: 10
-    - rune_chainbody: 10
-    - green_dragonhide_chaps: 10
-    - green_dragonhide_vambraces: 10
-    - steel_kiteshield: 10
-    - black_med_helm: 10
-roks_chocs_box:
-  id: 345
-  defaults:
-    - choc_ice: 10
-    - chocolate_bar: 10
-mage_training_arena:
-  id: 347
-  defaults:
-    - beginner_wand: 10
-    - apprentice_wand: 10
-    - teacher_wand: 10
-    - master_wand: 10
-    - infinity_top: 10
-    - infinity_hat: 10
-    - infinity_boots: 10
-    - infinity_gloves: 10
-    - infinity_bottoms: 10
-    - mages_book: 10
-    - bones_to_peaches_spell: 1
-    - battlestaff: 100
-    - mist_rune: 100
-    - dust_rune: 100
-    - mud_rune: 100
-    - smoke_rune: 100
-    - steam_rune: 100
-    - lava_rune: 100
-    - cosmic_rune: 100
-    - chaos_rune: 300
-    - nature_rune: 100
-    - death_rune: 100
-    - law_rune: 100
-    - soul_rune: 100
-    - blood_rune: 100
-    - arena_book: 1
-smithing_smiths_shop:
-  id: 348
-  defaults:
-    - bronze_scimitar: 10
-    - iron_scimitar: 10
-    - steel_scimitar: 10
-    - mithril_scimitar: 10
-    - hammer: 10
-harpoon_joes_house_of_rum:
-  id: 349
-  defaults:
-    - beer: 10
-    - braindeath_rum: 10
-    - jug_of_wine: 10
-    - stew: 10
-two_feet_charleys_fish_shop:
-  id: 350
-  defaults:
-    - raw_shrimps: 10
-    - raw_sardine: 10
-    - raw_herring: 10
-    - raw_mackerel: 10
-    - raw_cod: 10
-    - raw_anchovies: 10
-    - raw_tuna: 0
-    - raw_lobster: 0
-    - raw_bass: 0
-    - raw_swordfish: 0
-dodgy_mikes_second_hand_clothing:
-  id: 351
-  defaults:
-    - pirate_boots: 10
-    - pirate_shirt_white: 10
-    - pirate_bandana_white: 10
-    - pirate_leggings_white: 10
-    - pirate_shirt_red: 10
-    - pirate_bandana_red: 10
-    - pirate_leggings_red: 10
-    - pirate_shirt_blue: 10
-    - pirate_bandana_blue: 10
-    - pirate_leggings_blue: 10
-    - pirate_shirt_brown: 10
-    - pirate_bandana_brown: 10
-    - pirate_leggings_brown: 10
-pie_shop:
-  id: 352
-  defaults:
-    - pie_recipe_book: 10
-    - redberry_pie: 0
-    - meat_pie: 0
-    - mud_pie: 0
-    - apple_pie: 0
-    - garden_pie: 0
-    - fish_pie: 0
-    - admiral_pie: 0
-    - wild_pie: 0
-    - summer_pie: 0
-    - pot_of_flour: 100
-    - pie_dish: 100
-culinaromancers_chest:
-  id: 365
-  defaults:
-    - chocolate_bar: 300
-    - cheese: 10
-    - tomato: 10
-    - cooking_apple: 50
-    - grapes: 5
-    - pot_of_flour: 100
-    - pizza_base: 1
-    - egg: 10
-    - bucket_of_milk: 10
-    - pot_of_cream: 10
-    - pat_of_butter: 10
-    - spice: 10
-    - pie_dish: 10
-    - cake_tin: 10
-    - bowl: 10
-    - jug: 10
-    - empty_pot: 10
-    - empty_cup: 10
-    - bucket: 10
-lumbridge_guide_quiz_1:
-  id: 377
-  width: 5
-  height: 2
-  defaults:
-    - wolfbane: 1
-    - bloated_toad: 1
-    - distillator: 1
-    - cider: 1
-    - dwarven_stout: 1
-    - chefs_delight: 1
-    - jade: 1
-    - opal: 1
-    - chaos_talisman: 1
-    - mind_talisman: 1
-lumbridge_guide_quiz_2:
-  id: 378
-  defaults:
-    - silverlight: 1
-    - druid_pouch_3: 1
-    - ghostspeak_amulet: 1
-    - moonlight_mead: 1
-    - guthixs_book_of_balance: 1
-    - trout: 1
-    - pike: 1
-    - yew_logs: 1
-    - death_talisman: 1
-    - magic_logs: 1
-lumbridge_guide_quiz_3:
-  id: 379
-  defaults:
-    - ball: 1
-    - flypaper: 1
-    - potato_seed_2: 1
-    - onion_seed_2: 1
-    - cadava_berries: 1
-    - jangerberries: 1
-    - herring: 1
-    - salmon: 1
-    - dwellberries: 1
-    - mithril_arrow_2: 1
-lumbridge_guide_quiz_4:
-  id: 380
-  defaults:
-    - fire_rune_3: 1
-    - yew_shortbow: 1
-    - tin_ore: 1
-    - iron_ore: 1
-    - saradomins_book_of_wisdom: 1
-    - dwellberries: 1
-    - mithril_arrow_2: 1
-    - trout: 1
-    - silver_ore: 1
-    - chaos_rune_3: 1
-lumbridge_guide_quiz_5:
-  id: 381
-  defaults:
-    - air_rune_3: 1
-    - maple_longbow: 1
-    - magic_shortbow: 1
-    - tomato_seed_2: 1
-    - zamoraks_book_of_chaos: 1
-    - poison_ivy_berries: 1
-    - coconut: 1
-    - water_rune_3: 1
-    - logs: 1
-    - black_longsword: 1
-aurels_supplies:
-  id: 383
-  defaults:
-    - bronze_hatchet: 10
-    - tinderbox: 10
-    - thin_snail: 10
-    - raw_mackerel: 10
-    - spade: 10
-fortunatos_fine_wine:
-  id: 385
-  defaults:
-    - jug_of_wine: 10
-    - jug_of_vinegar: 10
-    - bottle_of_wine: 10
-    - jug: 10
-void_knight_archery_store:
-  id: 387
-  defaults:
-    - bronze_javelin: 300
-    - iron_javelin: 300
-    - steel_javelin: 100
-    - mithril_javelin: 100
-    - adamant_javelin: 250
-    - rune_javelin: 10
-    - bronze_arrowtips: 100
-    - iron_arrowtips: 100
-    - steel_arrowtips: 100
-    - mithril_arrowtips: 30
-    - adamant_arrowtips: 30
-    - rune_arrowtips: 10
-void_knight_magic_store:
-  id: 388
-  defaults:
-    - fire_rune: 1000
-    - water_rune: 1000
-    - air_rune: 1000
-    - earth_rune: 1000
-    - mind_rune: 1000
-    - body_rune: 1000
-    - chaos_rune: 300
-    - death_rune: 100
-void_knight_general_store:
-  id: 389
-  defaults:
-    - empty_pot: 30
-    - jug: 10
-    - shears: 10
-    - bucket: 30
-    - bowl: 10
-    - cake_tin: 10
-    - tinderbox: 10
-    - chisel: 10
-    - hammer: 10
-    - bronze_hatchet: 10
-    - field_ration: 50
-miscellanian_clothes_shop:
-  id: 392
-  defaults:
-    - fremennik_shirt_brown: 10
-    - fremennik_shirt_grey: 10
-    - fremennik_shirt_tan: 10
-    - fremennik_shirt_red: 10
-    - fremennik_shirt_blue: 10
-    - fremennik_robe: 10
-    - fremennik_skirt: 10
-    - skirt_lilac: 10
-    - skirt_blue: 10
-    - trousers_lilac: 10
-    - trousers_blue: 10
-    - shorts_tan: 10
-    - shorts_blue: 10
-    - woven_top_tan: 10
-    - woven_top_blue: 10
-    - shirt_tan: 10
-    - shirt_lilac: 10
-miscellanian_food_shop:
-  id: 394
-  defaults:
-    - bread: 10
-    - cheese: 10
-    - cabbage: 10
-    - raw_potato: 10
-    - onion: 10
-    - pot_of_flour: 10
-    - chocolate_bar: 10
-    - bucket_of_milk: 10
-construction_supplies:
-  id: 395
-  defaults:
-    - saw: 10
-    - bolt_of_cloth: 300
-    - bronze_nails: 300
-    - iron_nails: 300
-    - steel_nails: 300
-keldagrim_stonemason:
-  id: 396
-  defaults:
-    - limestone_brick: 500
-    - marble_block: 30
-    - gold_leaf: 30
-    - magic_stone: 30
-garden_centre:
-  id: 397
-  defaults:
-    - bagged_dead_tree: 10
-    - bagged_nice_tree: 10
-    - bagged_oak_tree: 10
-    - bagged_willow_tree: 10
-    - bagged_maple_tree: 10
-    - bagged_cactus: 10
-    - bagged_yew_tree: 10
-    - bagged_evergreen: 10
-    - bagged_magic_tree: 10
-    - bagged_plant_1: 1000
-    - bagged_plant_2: 10
-    - bagged_plant_3: 10
-    - thorny_hedge_bagged: 10
-    - nice_hedge_bagged: 10
-    - small_box_hedge_bagged: 10
-    - topiary_hedge_bagged: 10
-    - fancy_hedge_bagged: 10
-    - tall_fancy_hedge_bagged: 10
-    - tall_box_hedge_bagged: 10
-    - bagged_rosemary: 10
-    - bagged_daffodils: 10
-    - bagged_bluebells: 10
-    - bagged_sunflower: 10
-    - bagged_marigolds: 10
-    - bagged_roses: 10
-warriors_guild_food_shop:
-  id: 410
-  defaults:
-    - trout: 10
-    - bass: 10
-    - plain_pizza: 10
-    - potato_with_cheese: 10
-    - stew: 10
-warriors_guild_armoury:
-  id: 411
-  defaults:
-    - iron_battleaxe: 10
-    - steel_battleaxe: 10
-    - mithril_battleaxe: 10
-    - bronze_sword: 10
-    - iron_sword: 10
-    - steel_sword: 10
-    - black_sword: 10
-    - mithril_sword: 10
-    - adamant_sword: 10
-    - bronze_longsword: 10
-    - iron_longsword: 10
-    - steel_longsword: 10
-    - black_longsword: 10
-    - mithril_longsword: 10
-    - adamant_longsword: 10
-    - bronze_dagger: 10
-    - iron_dagger: 10
-    - steel_dagger: 10
-    - black_dagger: 10
-    - mithril_dagger: 10
-    - adamant_dagger: 10
-    - bronze_mace: 10
-    - iron_mace: 10
-    - steel_mace: 10
-    - mithril_mace: 10
-    - adamant_mace: 10
-    - bronze_2h_sword: 10
-    - iron_2h_sword: 10
-    - steel_2h_sword: 10
-    - black_2h_sword: 10
-    - mithril_2h_sword: 10
-    - adamant_2h_sword: 10
-    - bronze_chainbody: 10
-    - iron_chainbody: 10
-    - steel_chainbody: 10
-    - bronze_med_helm: 10
-    - iron_med_helm: 10
-    - steel_med_helm: 10
-warrior_guild_potion_shop:
-  id: 412
-  defaults:
-    - strength_potion_3: 10
-    - attack_potion_3: 10
-    - defence_potion_3: 10
-nardoks_bone_weapons:
-  id: 413
-  defaults:
-    - bone_club: 10
-    - bone_spear: 10
-    - bone_dagger: 10
-    - dorgeshuun_crossbow: 10
-    - bone_bolts: 300
-honest_jimmys_house_of_stuff:
-  id: 414
-  currency: pieces_of_eight
-  defaults:
-    - blue_naval_shirt: 10
-    - blue_tricorn_hat: 10
-    - blue_navy_slacks: 10
-    - green_naval_shirt: 10
-    - green_tricorn_hat: 10
-    - green_navy_slacks: 10
-    - red_naval_shirt: 10
-    - red_tricorn_hat: 10
-    - red_navy_slacks: 10
-    - brown_naval_shirt: 10
-    - brown_tricorn_hat: 10
-    - brown_navy_slacks: 10
-    - black_naval_shirt: 10
-    - black_tricorn_hat: 10
-    - black_navy_slacks: 10
-    - purple_naval_shirt: 10
-    - purple_tricorn_hat: 10
-    - purple_navy_slacks: 10
-    - grey_naval_shirt: 10
-    - grey_tricorn_hat: 10
-    - grey_navy_slacks: 10
-    - cutthroat_flag: 10
-    - guilded_smile_flag: 10
-    - bronze_fist_flag: 10
-    - lucky_shot_flag: 10
-    - treasure_flag: 10
-    - phasmatys_flag: 10
-    - the_stuff: 10
-    - rum_red: 30
-    - rum_blue: 30
-moon_clan_general_store:
-  id: 416
-  defaults:
-    - empty_pot: 30
-    - jug: 10
-    - shears: 10
-    - bucket: 30
-    - bowl: 10
-    - cake_tin: 10
-    - tinderbox: 10
-    - chisel: 10
-    - hammer: 10
-    - security_book: 10
-    - vial: 10
-    - vial_pack: 20
-moon_clan_fine_clothes:
-  id: 417
-  defaults:
-    - moonclan_helm: 10
-    - moonclan_hat: 10
-    - moonclan_armour: 10
-    - moonclan_skirt: 10
-    - moonclan_gloves: 10
-    - moonclan_boots: 10
-    - moonclan_cape: 10
-    - needle: 10
-    - thread: 1000
-baba_yagas_magic_shop:
-  id: 419
-  defaults:
-    - air_rune: 1000
-    - water_rune: 1000
-    - earth_rune: 1000
-    - fire_rune: 1000
-    - mind_rune: 1000
-    - body_rune: 1000
-    - chaos_rune: 300
-    - nature_rune: 300
-    - death_rune: 300
-    - law_rune: 100
-    - blood_rune: 100
-    - soul_rune: 100
-    - astral_rune: 100
-    - battlestaff: 20
-    - staff_of_fire: 10
-    - staff_of_water: 10
-    - staff_of_air: 10
-    - staff_of_earth: 10
-    - moonclan_manual: 10
-crossbow_shop:
-  id: 428
-  defaults:
-    - wooden_stock: 10
-    - oak_stock: 10
-    - willow_stock: 10
-    - teak_stock: 10
-    - maple_stock: 10
-    - mahogany_stock: 10
-    - yew_stock: 0
-    - bronze_limbs: 10
-    - iron_limbs: 10
-    - steel_limbs: 10
-    - mithril_limbs: 10
-    - adamant_limbs: 10
-    - rune_limbs: 0
-    - bronze_crossbow: 0
-    - iron_crossbow: 0
-    - steel_crossbow: 0
-    - mithril_crossbow: 0
-    - adamant_crossbow: 0
-    - rune_crossbow: 0
-trader_svens_black_market_goods:
-  id: 442
-  defaults:
-    - citizen_top: 10
-    - citizen_trousers: 10
-    - citizen_shoes: 10
-    - vyrewatch_top: 10
-    - vyrewatch_legs: 10
-    - vyrewatch_shoes: 10
-initiate_temple_knight_armoury:
-  id: 443
-  defaults:
-    - initiate_sallet: 10
-    - initiate_cuisse: 10
-    - initiate_hauberk: 10
-    - initiate_harness_m: 10
-proselyte_temple_knight_armoury:
-  id: 444
-  defaults:
-    - initiate_sallet: 10
-    - initiate_cuisse: 10
-    - initiate_hauberk: 10
-    - initiate_harness_m: 10
-    - proselyte_sallet: 10
-    - proselyte_cuisse: 10
-    - proselyte_hauberk: 10
-    - proselyte_tasset: 10
-    - proselyte_harness_m: 10
-    - proselyte_harness_f: 10
-castle_wars_ticket_exchange:
-  id: 447
-  currency: castle_wars_ticket
-  defaults:
-    - basic_decorative_platebody_2: 1
-    - void_knight_top_2: 1
-    - rogue_mask_2: 1
-    - spined_helm_2: 1
-    - rock_shell_helm_2: 1
-    - tribal_mask: 1
-    - tribal_mask_2: 1
-    - tribal_mask_3: 1
-    - white_platebody_2: 1
-    - initiate_hauberk_2: 1
-    - proselyte_hauberk_2: 1
-    - mourner_top_2: 1
-    - graahk_top_2: 1
-    - larupia_top_2: 1
-    - kyatt_top_2: 1
-    - polar_camo_top_2: 1
-    - jungle_camo_top_2: 1
-    - wood_camo_top_2: 1
-    - desert_camo_top_2: 1
-    - witchdoctor_mask_2: 1
-    - hard_hat_2: 1
-    - lumberjack_top_2: 1
-    - bomber_jacket_2: 1
-    - ham_shirt_2: 1
-    - void_melee_helm_2: 1
-    - void_ranger_helm_2: 1
-    - void_mage_helm_2: 1
-    - more: 1
-martin_thwaits_lost_and_found_skillcape:
-  id: 455
-  defaults:
-    - rope: 10
-    - lockpick: 10
-    - chisel: 10
-    - knife: 10
-    - stethoscope: 10
-    - bronze_knife: 100
-    - iron_knife: 100
-    - steel_knife: 100
-    - bronze_claws: 100
-    - iron_claws: 10
-    - steel_claws: 10
-    - thieving_cape: 1
-martin_thwaits_lost_and_found_trimmed:
-  id: 456
-  defaults:
-    - rope: 10
-    - lockpick: 10
-    - chisel: 10
-    - knife: 10
-    - stethoscope: 10
-    - bronze_knife: 100
-    - iron_knife: 100
-    - steel_knife: 100
-    - bronze_claws: 100
-    - iron_claws: 10
-    - steel_claws: 10
-    - thieving_cape_t: 1
-aarons_archery_appendages_skillcape:
-  id: 457
-  defaults:
-    - leather_body: 10
-    - hard_leather_body: 10
-    - studded_body: 10
-    - leather_chaps: 10
-    - studded_chaps: 10
-    - studded_leather_coif: 10
-    - leather_cowl: 10
-    - leather_vambraces: 10
-    - ranged_cape: 1
-aarons_archery_appendages_trimmed:
-  id: 458
-  defaults:
-    - leather_body: 10
-    - hard_leather_body: 10
-    - studded_body: 10
-    - leather_chaps: 10
-    - studded_chaps: 10
-    - studded_leather_coif: 10
-    - leather_cowl: 10
-    - leather_vambraces: 10
-    - ranged_cape_t: 1
-runecrafting_skillcape_skillcape:
-  id: 459
-  defaults:
-    - runecrafting_cape: 1
-runecrafting_skillcape_trimmed:
-  id: 460
-  defaults:
-    - runecrafting_cape_t: 1
-magic_guild_store_mystic_robes_skillcape:
-  id: 461
-  defaults:
-    - mystic_hat_blue: 10
-    - mystic_robe_top_blue: 10
-    - mystic_robe_bottom_blue: 10
-    - mystic_gloves_blue: 10
-    - mystic_boots_blue: 10
-    - magic_cape: 1
-magic_guild_store_mystic_robes_trimmed:
-  id: 462
-  defaults:
-    - mystic_hat_blue: 10
-    - mystic_robe_top_blue: 10
-    - mystic_robe_bottom_blue: 10
-    - mystic_gloves_blue: 10
-    - mystic_boots_blue: 10
-    - magic_cape_t: 1
-leprechaun_larrys_farming_supplies:
-  id: 465
-  defaults:
-    - rake: 10
-    - seed_dibber: 10
-    - secateurs: 10
-    - spade: 10
-    - gardening_trowel: 10
-    - watering_can: 10
-    - compost: 10
-    - plant_cure: 10
-    - cocktail_glass: 10
-    - rock_ore: 10
-alecks_hunter_emporium:
-  id: 483
-  defaults:
-    - butterfly_net: 10
-    - butterfly_jar: 300
-    - magic_box: 300
-    - noose_wand: 10
-    - bird_snare: 30
-    - box_trap: 30
-    - teasing_stick: 10
-    - unlit_torch: 10
-    - rabbit_snare: 30
-    - grenwall_spikes: 0
-avas_odds_and_ends:
-  id: 489
-  defaults:
-    - feather: 1000
-    - iron_arrow: 1000
-    - steel_arrow: 1000
-    - iron_arrowtips: 1000
-    - steel_arrowtips: 1000
-nathifas_bake_stall:
-  id: 492
-  defaults:
-    - bread: 10
-    - cake: 10
-    - chocolate_slice: 10
-    - waterskin_4: 30
-blades_by_urbi:
-  id: 493
-  defaults:
-    - bronze_dagger: 10
-    - iron_dagger: 10
-    - steel_dagger: 10
-    - black_dagger: 0
-    - mithril_dagger: 10
-    - adamant_dagger: 10
-    - rune_dagger: 10
-    - dragon_dagger: 0
-    - bronze_scimitar: 10
-    - iron_scimitar: 10
-    - steel_scimitar: 10
-the_spice_is_right:
-  id: 494
-  defaults:
-    - empty_pot: 30
-    - gnome_spice: 10
-    - curry_leaf: 0
-    - antipoison_3: 10
-raetul_and_cos_cloth_store:
-  id: 495
-  defaults:
-    - linen: 10
-    - desert_shirt: 10
-    - desert_robe: 10
-    - desert_boots: 10
-    - silk: 10
-    - thread: 1000
-    - needle: 10
-neitiznot_supplies:
-  id: 502
-  defaults:
-    - knife: 10
-    - hammer: 10
-    - thread: 1000
-    - needle: 10
-    - bronze_nails: 10
-    - bronze_hatchet: 10
-    - ball_of_wool: 100
-flosis_fishmongers:
-  id: 503
-  defaults:
-    - raw_lobster: 0
-    - raw_tuna: 0
-    - raw_salmon: 10
-    - raw_cod: 10
-    - raw_swordfish: 0
-    - raw_shark: 0
-keepa_kettilons_store:
-  id: 504
-  defaults:
-    - tuna: 0
-    - salmon: 10
-    - cod: 10
-    - lobster: 0
-    - swordfish: 0
-    - shark: 0
-armour_shop:
-  id: 505
-  defaults:
-    - mithril_chainbody: 10
-    - mithril_med_helm: 10
-    - mithril_full_helm: 10
-    - mithril_sq_shield: 10
-    - mithril_kiteshield: 10
-    - mithril_platelegs: 10
-    - mithril_plateskirt: 10
-    - mithril_platebody: 10
-weapons_galore:
-  id: 506
-  defaults:
-    - mithril_longsword: 10
-    - mithril_warhammer: 10
-    - mithril_battleaxe: 10
-    - mithril_claws: 10
-    - mithril_2h_sword: 10
-ore_store:
-  id: 507
-  defaults:
-    - copper_ore: 10
-    - tin_ore: 10
-    - iron_ore: 0
-    - silver_ore: 0
-    - coal: 0
-    - gold_ore: 0
-    - mithril_ore: 0
-    - adamantite_ore: 0
-contraband_yak_produce:
-  id: 508
-  defaults:
-    - yak_hide: 1000
-    - raw_yak_meat: 10
-    - yak_hair: 10
-miltogs_lamps:
-  id: 511
-  defaults:
-    - unlit_torch: 10
-    - oil_lamp_empty: 0
-    - oil_lantern_empty: 0
-    - bullseye_lantern_empty: 0
-    - mining_helmet: 10
-    - tinderbox: 10
-    - light_orb: 0
-    - oil_lamp_oil: 0
-    - oil_lantern_oil: 0
-    - bullseye_lantern_oil: 0
-reldaks_leather_armour:
-  id: 512
-  defaults:
-    - frog_leather_body: 10
-    - frog_leather_chaps: 10
-    - frog_leather_boots: 10
-dorgesh_kaan_general_supplies:
-  id: 513
-  defaults:
-    - unlit_torch: 10
-    - tinderbox: 10
-    - empty_pot: 30
-    - jug: 10
-    - bowl: 10
-    - cake_tin: 10
-    - rope: 10
-    - glassblowing_pipe: 10
-collection_box_1: 523
-collection_box_2: 524
-collection_box_3: 525
-collection_box_4: 526
-collection_box_5: 527
-collection_box_6: 528
-pet_shop:
-  id: 531
-  defaults:
-    - nuts: 10
-    - flies: 1000
-    - beetle_bits: 10
-    - spirit_shards: 65000
-    - spirit_shard_pack: 65000
-summoning_supplies:
-  id: 532
-  defaults:
-    - antlers: 10
-    - lizard_skull: 10
-    - feather_headdress_blue: 0
-    - feather_headdress_yellow: 0
-    - feather_headdress_red: 0
-    - feather_headdress_stripy: 0
-    - feather_headdress_orange: 0
-    - spirit_shards: 65000
-    - pouch: 5000
-    - spirit_shard_pack: 65000
-gift_shop:
-  id: 533
-  defaults:
-    - tinderbox: 10
-    - ogre_arrow: 100
-    - cooked_chompy: 10
-    - feather: 1000
-    - bronze_hatchet: 10
-    - rope: 10
-    - empty_pot: 30
-    - bucket: 30
-    - hammer: 10
-    - knife: 10
-    - ogre_kilt: 10
-    - ogre_top: 10
-    - ogre_boots: 10
-    - diseased_kebbit_fur: 0
-    - davy_kebbit_hat: 0
-    - ogre_wig: 0
-    - ogre_club: 0
-fresh_meat:
-  id: 534
-  defaults:
-    - raw_rat_meat: 10
-    - raw_beef: 300
-    - raw_bear_meat: 10
-    - cooked_meat: 10
-    - raw_chicken: 10
-    - cooked_chicken: 10
-    - raw_rabbit: 100
-    - skewered_rabbit: 0
-    - roast_rabbit: 0
-    - cooked_rabbit: 10
-    - raw_chompy: 0
-    - skewered_chompy: 0
-    - cooked_chompy: 0
-    - cooked_chompy_roasted: 0
-    - raw_jubbly: 0
-    - raw_oomlie: 0
-    - raw_bird_meat: 10
-    - raw_bird_meat_pack: 6
-    - skewered_bird_meat: 0
-    - roast_bird_meat: 0
-    - raw_beast_meat: 0
-    - skewered_beast: 0
-    - roast_beast_meat: 0
-beefy_bills_supplies:
-  id: 536
-  defaults:
-    - empty_pot: 30
-    - bucket_of_water: 10
-    - jug_of_water: 10
-    - pie_dish: 10
-    - cake_tin: 10
-    - tinderbox: 10
-    - shears: 10
-    - redberries: 10
-    - spinach_roll: 10
-    - chefs_hat: 10
-    - bronze_sword: 10
-    - bronze_sq_shield: 10
-    - shortbow: 10
-    - bronze_arrow: 30
-slayer_equipment:
-  id: 538
-  defaults:
-    - enchanted_gem: 300
-    - mirror_shield: 10
-    - leaf_bladed_spear: 10
-    - broad_arrow: 3000
-    - bag_of_salt: 1000
-    - rock_hammer: 10
-    - face_mask: 10
-    - earmuffs: 10
-    - nose_peg: 10
-    - slayers_staff: 10
-    - spiny_helmet: 10
-    - fishing_explosive: 1000
-    - ice_cooler: 1000
-    - slayer_gloves: 10
-    - unlit_bug_lantern: 10
-    - insulated_boots: 10
-    - fungicide_spray_10: 10
-    - fungicide: 1000
-    - witchwood_icon: 10
-    - slayer_bell: 10
-    - broad_arrow_heads: 3000
-    - unfinished_broad_bolts: 3000
-lent_collection_box:
-  id: 540
-  width: 0
-  height: 1
-item_loan:
-  id: 541
-  width: 0
-  height: 1
-candle_shop:
-  id: 547
-  defaults:
-    - white_candle: 10
-    - black_candle: 10
-party_petes_emporium:
-  id: 549
-  defaults:
-    - burgundy_afro: 10
-    - red_afro: 10
-    - vermilion_afro: 10
-    - pink_afro: 10
-    - orange_afro: 10
-    - yellow_afro: 10
-    - peach_afro: 10
-    - brown_afro: 10
-    - dark_brown_afro: 10
-    - light_brown_afro: 10
-    - mint_green_afro: 10
-    - green_afro: 10
-    - dark_green_afro: 10
-    - dark_blue_afro: 10
-    - turquoise_afro: 10
-    - light_blue_afro: 10
-    - purple_afro: 10
-    - violet_afro: 10
-    - indigo_afro: 10
-    - dark_grey_afro: 10
-    - military_grey_afro: 10
-    - white_afro: 10
-    - light_grey_afro: 10
-    - taupe_afro: 10
-    - black_afro: 10
-faruqs_tools_for_games:
-  id: 551
-  defaults:
-    - magic_skullball: 10
-    - ring_of_seeking_hide: 10
-    - ring_of_seeking_seek: 10
-    - ring_of_seeking_both: 10
-    - marker_seeds: 10
-    - ticker: 10
-    - empty_bag_caller: 10
-    - timepiece_stopped: 10
-    - racing_boots: 10
-    - starting_horn: 10
-    - voting_hat_red: 10
-    - orb_of_counting: 10
-    - faruqs_toolonomicon: 10
-    - orb_of_oculus: 10
-lumbridge_general_store_sample:
-  id: 553
-  shop: true
-  defaults:
-    - tinderbox: 1
-    - hammer: 1
-    - bronze_dagger: 1
-bobs_brilliant_axes_sample:
-  id: 554
-  shop: true
-  defaults:
-    - bronze_pickaxe: 1
-    - bronze_hatchet: 1
-lowes_archery_emporium_sample:
-  id: 556
-  defaults:
-    - bronze_arrow: 30
-    - shortbow: 1
-    - longbow: 1
-auburys_rune_shop_sample:
-  id: 557
-  defaults:
-    - air_rune: 30
-    - mind_rune: 30
-ignatiuss_hot_deals:
-  id: 558
-  defaults:
-    - tinderbox: 60000
-    - unlit_torch: 10
-    - bronze_hatchet: 10
-ignatiuss_hot_deals_skillcape:
-  id: 559
-  defaults:
-    - tinderbox: 60000
-    - unlit_torch: 10
-    - bronze_hatchet: 10
-    - firemaking_cape: 1
-ignatiuss_hot_deals_trimmed:
-  id: 560
-  defaults:
-    - tinderbox: 60000
-    - unlit_torch: 10
-    - bronze_hatchet: 10
-    - firemaking_cape_t: 1
-lumbridge_fishing_supplies_sample:
-  id: 561
-  shop: true
-  defaults:
-    - small_fishing_net: 1
-    - crayfish_cage: 1
-elnocks_backup_supply:
-  id: 564
-  defaults:
-    - impling_jar: 10
-urists_crafting_supplies:
-  id: 574
-  defaults:
-    - chisel: 10
-    - ring_mould: 10
-    - necklace_mould: 10
-    - amulet_unstrung_mould: 10
-    - needle: 10
-    - holy_mould: 10
-    - sickle_mould: 10
-    - tiara_mould: 10
-    - bolt_mould: 10
-    - bracelet_mould: 10
-dodgy_dereks_dirty_deals:
-  id: 575
-  defaults:
-    - lockpick: 2
-    - willow_blackjack: 5
-    - rubber_blackjack: 100
-    - tinderbox: 10
-    - rope: 10
-dealgas_scimitar_emporium:
-  id: 579
-  defaults:
-    - dragon_scimitar: 10
-the_milk_shop:
-  id: 580
-  defaults:
-    - bucket_of_milk: 200
-character_creation_1:
-  id: 594
-  defaults:
-    - character_creation_1: 1
-    - character_creation_18: 1
-character_creation_2:
-  id: 586
-  defaults:
-    - character_creation_1: 1
-    - character_creation_2: 1
-character_creation_3:
-  id: 463
-  defaults:
-    - character_creation_1: 1
-    - character_creation_14: 1
-    - character_creation_15: 1
-character_creation_4:
-  id: 592
-  defaults:
-    - character_creation_1: 1
-    - character_creation_16: 1
-character_creation_7:
-  id: 486
-  defaults:
-    - character_creation_1: 1
-    - character_creation_11: 1
-    - character_creation_10: 1
-character_creation_8:
-  id: 587
-  defaults:
-    - character_creation_1: 1
-    - character_creation_3: 1
-character_creation_9:
-  id: 591
-  defaults:
-    - character_creation_1: 1
-    - character_creation_13: 1
-character_creation_10:
-  id: 596
-  defaults:
-    - character_creation_1: 1
-    - character_creation_20: 1
-character_creation_11:
-  id: 595
-  defaults:
-    - character_creation_1: 1
-    - character_creation_19: 1
-character_creation_12:
-  id: 499
-  defaults:
-    - character_creation_1: 1
-    - character_creation_12: 1
-character_creation_13:
-  id: 597
-  defaults:
-    - character_creation_1: 1
-    - character_creation_5: 1
-character_creation_14:
-  id: 593
-  defaults:
-    - character_creation_1: 1
-    - character_creation_17: 1
-character_creation_15:
-  id: 588
-  defaults:
-    - character_creation_1: 1
-    - character_creation_4: 1
-character_creation_16:
-  id: 589
-  defaults:
-    - character_creation_1: 1
-    - character_creation_6: 1
-    - character_creation_7: 1
-character_creation_17:
-  id: 590
-  defaults:
-    - character_creation_1: 1
-    - character_creation_8: 1
-    - character_creation_9: 1
-character_creation_18:
-  id: 598
-  defaults:
-    - character_creation_1: 1
-    - character_creation_21: 1
-character_creation_19:
-  id: 599
-  defaults:
-    - character_creation_1: 1
-    - character_creation_22: 1
-naffs_knockoff_staves:
-  id: 600
-  defaults:
-    - battlestaff: 80
-yaktwees_invizzy_critters_stall:
-  id: 601
-  defaults:
-    - sprite_lure: 1
-    - yaktwee_stick: 1
-papa_mambos_shop:
-  id: 603
-  defaults:
-    - marasamaw_plant: 30
-    - noose_wand: 10
-    - tinderbox: 10
-    - unlit_torch: 10
-    - juju_vial_of_water: 100
-    - juju_vial_pack: 100
-    - rake: 10
-    - spade: 10
-    - seed_dibber: 10
-    - red_blossom_seed: 10
-    - blue_blossom_seed: 10
-    - green_blossom_seed: 10
-    - plant_pot_empty: 10
-    - gardening_trowel: 10
-    - plant_cure: 20
-    - secateurs: 10
-    - watering_can_8: 10
-    - bucket: 100
-    - basket: 100
-    - basket_pack: 100
-    - witchdoctor_robes: 0
-    - witchdoctor_legs: 0
-    - juju_teleport_spiritbag: 100
-bettamaxs_shop:
-  id: 604
-  defaults:
-    - juju_teleport_spiritbag: 100
-monkey_colony_general_store:
-  id: 605
-  defaults:
-    - waterskin_4: 3
-    - knife: 3
-    - desert_shirt: 1
-    - desert_robe: 1
-    - desert_boots: 1
-banana_store: 607
-diangos_toy_store: 609
-container_4:
-  id: 4
-  defaults:
-    - empty_pot: 30
-    - jug: 10
-    - shears: 10
-    - bucket: 30
-    - bowl: 10
-    - cake_tin: 10
-    - tinderbox: 10
-    - chisel: 10
-    - hammer: 10
-    - newcomer_map: 10
-    - security_book: 10
-container_48:
-  id: 48
-  defaults:
-    - white_candle: 10
-container_51:
-  id: 51
-  defaults:
-    - staff: 10
-    - magic_staff: 10
-    - staff_of_air: 10
-    - staff_of_water: 10
-    - staff_of_earth: 10
-    - staff_of_fire: 10
 container_101:
   id: 101
   defaults:
@@ -3642,6 +1337,26 @@ container_130:
     - rune_dart_tip: 10
     - rune_arrowtips: 15
     - rune_knife: 5
+lundails_arena_side_rune_shop:
+  id: 131
+  defaults:
+    - fire_rune: 1000
+    - water_rune: 1000
+    - air_rune: 1000
+    - earth_rune: 1000
+    - mind_rune: 1000
+    - body_rune: 1000
+    - nature_rune: 300
+    - chaos_rune: 300
+    - law_rune: 100
+    - cosmic_rune: 100
+    - death_rune: 300
+mage_arena_staves:
+  id: 132
+  defaults:
+    - saradomin_staff: 10
+    - guthix_staff: 10
+    - zamorak_staff: 10
 container_135:
   id: 135
   defaults:
@@ -3655,6 +1370,106 @@ container_137:
     - toy_horsey_grey: 10
     - spinning_plate: 10
     - toy_kite: 10
+oblis_general_store:
+  id: 138
+  defaults:
+    - tinderbox: 10
+    - vial: 10
+    - vial_pack: 20
+    - pestle_and_mortar: 10
+    - empty_pot: 30
+    - bronze_hatchet: 10
+    - bronze_pickaxe: 10
+    - iron_hatchet: 10
+    - leather_body: 10
+    - leather_gloves: 10
+    - leather_boots: 10
+    - cooked_meat: 10
+    - bread: 10
+    - spade: 10
+    - white_candle: 10
+    - unlit_torch: 10
+    - chisel: 10
+    - hammer: 10
+    - papyrus: 10
+    - charcoal: 10
+    - vial_of_water: 10
+    - vial_of_water_pack: 20
+    - machete: 10
+    - rope: 10
+west_ardougne_general_store:
+  id: 139
+  defaults:
+    - empty_pot: 30
+    - rope: 10
+    - bronze_pickaxe: 10
+    - bucket: 30
+    - tinderbox: 10
+    - hammer: 10
+    - leather_boots: 10
+    - longbow: 10
+    - bronze_arrow: 100
+    - salmon: 10
+    - meat_pie: 10
+    - bread: 10
+    - cooked_meat: 10
+rufuss_meat_emporium:
+  id: 143
+  defaults:
+    - raw_beef: 100
+    - raw_chicken: 30
+    - raw_rat_meat: 10
+    - raw_bear_meat: 10
+    - raw_trout: 0
+    - raw_pike: 0
+    - raw_salmon: 0
+    - raw_shark: 0
+barkers_haberdashery:
+  id: 144
+  defaults:
+    - boots_grey: 10
+    - robe_top_grey: 10
+    - robe_bottoms_grey: 10
+    - hat_grey: 10
+    - gloves_grey: 10
+    - boots_red: 10
+    - robe_top_red: 10
+    - robe_bottoms_red: 10
+    - hat_red: 10
+    - gloves_red: 10
+    - boots_yellow: 10
+    - robe_top_yellow: 10
+    - robe_bottoms_yellow: 10
+    - hat_yellow: 10
+    - gloves_yellow: 10
+    - boots_teal: 10
+    - robe_top_teal: 10
+    - robe_bottoms_teal: 10
+    - hat_teal: 10
+    - gloves_teal: 10
+    - boots_purple: 10
+    - robe_top_purple: 10
+    - robe_bottoms_purple: 10
+    - hat_purple: 10
+    - gloves_purple: 10
+    - cape_red: 10
+    - cape_black: 10
+    - cape_blue: 10
+    - cape_yellow: 10
+    - cape_green: 10
+canifis_general_store:
+  id: 145
+  defaults:
+    - needle: 10
+    - thread: 1000
+    - empty_pot: 30
+    - bucket: 30
+    - jug: 10
+    - tinderbox: 10
+    - chisel: 10
+    - hammer: 10
+    - sample_bottle: 10
+    - knife: 10
 container_146:
   id: 146
   defaults:
@@ -3677,6 +1492,18 @@ container_147:
     - thread: 1000
     - holy_mould: 10
     - tiara_mould: 10
+burthorpe_supplies:
+  id: 148
+  defaults:
+    - empty_pot: 30
+    - jug: 10
+    - shears: 10
+    - bucket: 30
+    - tinderbox: 10
+    - chisel: 10
+    - hammer: 10
+    - knife: 10
+    - empty_cup: 10
 container_149:
   id: 149
   defaults:
@@ -3707,6 +1534,30 @@ container_155:
   id: 155
   defaults:
     - rune_claws: 1
+tiadeches_karambwan_stall:
+  id: 156
+  defaults:
+    - raw_karambwan: 10
+    - karambwan_vessel: 10
+the_shrimp_and_parrot:
+  id: 157
+  defaults:
+    - herring: 10
+    - cod: 10
+    - tuna: 10
+    - lobster: 10
+    - swordfish: 10
+    - cooked_karambwan: 10
+tamayus_spear_stall:
+  id: 158
+  defaults:
+    - bronze_spear_kp: 10
+    - iron_spear_kp: 10
+    - steel_spear_kp: 10
+    - mithril_spear_kp: 10
+    - adamant_spear_kp: 10
+    - rune_spear_kp: 10
+    - cleaning_cloth: 10
 container_159:
   id: 159
   defaults:
@@ -3722,12 +1573,270 @@ container_159:
     - mithril_halberd: 10
     - adamant_halberd: 10
     - rune_halberd: 10
+quartermasters_stores:
+  id: 160
+  defaults:
+    - empty_pot: 30
+    - jug: 10
+    - shears: 10
+    - tinderbox: 10
+    - bread: 10
+    - bronze_halberd: 10
+    - iron_halberd: 10
+    - steel_halberd: 10
+    - black_halberd: 10
+    - mithril_halberd: 10
+    - adamant_halberd: 10
+    - rune_halberd: 10
+    - dragon_halberd: 10
+arnolds_eclectic_supplies:
+  id: 174
+  defaults:
+    - small_fishing_net: 10
+    - harpoon: 10
+    - bread: 10
+    - empty_pot: 30
+    - bucket_of_milk: 10
+    - needle: 10
+    - thread: 1000
+    - beer: 10
+    - glassblowing_pipe: 10
+    - knife: 10
+razmire_general_store:
+  id: 204
+  defaults:
+    - empty_pot: 30
+    - jug: 10
+    - shears: 10
+    - bucket: 30
+    - tinderbox: 10
+    - chisel: 10
+    - hammer: 10
+    - olive_oil_3: 500
+    - vial_of_water: 300
+    - pot_of_flour: 10
+    - flamtaer_hammer: 10
+razmire_builders_merchants:
+  id: 205
+  defaults:
+    - limestone: 1000
+    - limestone_brick: 1000
+    - timber_beam: 1000
+    - swamp_paste: 1500
+    - plank: 50
+yrsas_shoe_store:
+  id: 208
+  shop: true
+  defaults:
+    - fremennik_shirt_blue: 10
+    - fremennik_shirt_red: 10
+    - fremennik_shirt_brown: 10
+    - fremennik_shirt_grey: 10
+    - fremennik_shirt_tan: 10
+    - fremennik_robe: 10
+    - fremennik_skirt: 10
+    - fremennik_hat: 10
+    - gloves_fremennik: 10
+    - fremennik_boots: 10
+    - fremennik_cloak_green: 10
+    - fremennik_cloak_lavender: 10
+    - fremennik_cloak_brown: 10
+    - fremennik_cloak_cyan: 10
+    - fremennik_cloak_red: 10
+    - fremennik_cloak_grey: 10
+    - fremennik_cloak_gold: 10
+    - fremennik_cloak_teal: 10
+    - fremennik_cloak_purple: 10
+    - fremennik_cloak_pink: 10
+    - fremennik_cloak_black: 10
 container_209:
   id: 209
   defaults:
     - beer: 10
     - beer_tankard: 10
     - keg_of_beer: 10
+skulgrimens_battle_gear:
+  id: 210
+  defaults:
+    - bronze_warhammer: 10
+    - iron_warhammer: 10
+    - steel_warhammer: 10
+    - black_warhammer: 10
+    - mithril_warhammer: 10
+    - adamant_warhammer: 10
+    - rune_warhammer: 0
+    - archer_helm: 10
+    - berserker_helm: 10
+    - warrior_helm: 10
+    - farseer_helm: 10
+sigmund_the_merchant:
+  id: 211
+  defaults:
+    - tinderbox: 10
+    - rope: 10
+    - pestle_and_mortar: 10
+    - empty_pot: 30
+    - cooked_meat: 10
+    - bread: 10
+    - spade: 10
+    - white_candle: 10
+    - chisel: 10
+    - hammer: 10
+    - vial: 10
+    - vial_pack: 6
+    - vial_of_water: 10
+    - vial_of_water_pack: 6
+    - bucket: 30
+    - bucket_of_water: 10
+    - egg: 10
+    - raw_potato: 10
+    - cabbage: 10
+fish_stall:
+  id: 212
+  defaults:
+    - small_fishing_net: 10
+    - fishing_rod: 10
+    - fly_fishing_rod: 10
+    - harpoon: 30
+    - lobster_pot: 10
+    - fishing_bait: 1000
+    - feather: 1000
+    - big_fishing_net: 10
+    - raw_shrimps: 10
+    - raw_sardine: 10
+    - raw_herring: 0
+    - raw_mackerel: 0
+    - raw_cod: 0
+    - raw_anchovies: 0
+    - raw_trout: 0
+    - raw_pike: 0
+    - raw_salmon: 0
+    - raw_tuna: 0
+    - raw_lobster: 0
+    - raw_bass: 0
+    - raw_swordfish: 0
+    - raw_shark: 0
+ardougne_fur_stall:
+  id: 213
+  defaults:
+    - bear_fur: 10
+    - grey_wolf_fur: 10
+    - polar_kebbit_fur: 0
+    - common_kebbit_fur: 0
+    - feldip_weasel_fur: 0
+    - desert_devil_fur: 0
+    - tatty_larupia_fur: 0
+    - larupia_fur: 0
+    - tatty_graahk_fur: 0
+    - graahk_fur: 0
+    - tatty_kyatt_fur: 0
+    - kyatt_fur: 0
+the_lighthouse_store:
+  id: 214
+  defaults:
+    - rope: 10
+    - hammer: 10
+    - chisel: 10
+    - knife: 10
+    - spade: 10
+    - tinderbox: 10
+    - white_candle: 10
+    - poison: 10
+    - pestle_and_mortar: 10
+    - empty_pot: 30
+    - bucket: 30
+    - bucket_of_water: 10
+    - jug: 10
+    - jug_of_water: 300
+    - vial: 10
+    - vial_pack: 20
+    - vial_of_water: 10
+    - vial_of_water_pack: 20
+    - gin: 10
+    - brandy: 10
+    - vodka: 10
+    - grog: 10
+    - whisky: 10
+    - greenmans_ale: 10
+    - dwarven_stout: 10
+    - wizards_mind_bomb: 10
+island_fishmonger:
+  id: 217
+  defaults:
+    - small_fishing_net: 10
+    - fishing_rod: 10
+    - fly_fishing_rod: 10
+    - harpoon: 30
+    - lobster_pot: 10
+    - fishing_bait: 1000
+    - feather: 1000
+    - big_fishing_net: 10
+    - raw_shrimps: 0
+    - raw_sardine: 10
+    - raw_herring: 0
+    - raw_mackerel: 0
+    - raw_cod: 0
+    - raw_anchovies: 0
+    - raw_trout: 0
+    - raw_pike: 0
+    - raw_salmon: 0
+    - raw_tuna: 0
+    - raw_lobster: 0
+    - raw_bass: 0
+    - raw_swordfish: 0
+    - raw_shark: 0
+greengrocer_of_miscellania:
+  id: 218
+  defaults:
+    - cabbage: 10
+    - raw_potato: 10
+    - onion: 10
+    - tomato: 10
+    - garlic: 10
+etceteria_fish:
+  id: 219
+  defaults:
+    - small_fishing_net: 10
+    - fishing_rod: 10
+    - fly_fishing_rod: 10
+    - harpoon: 30
+    - lobster_pot: 10
+    - fishing_bait: 1000
+    - feather: 1000
+    - big_fishing_net: 10
+    - raw_shrimps: 0
+    - raw_sardine: 10
+    - raw_herring: 0
+    - raw_mackerel: 0
+    - raw_cod: 0
+    - raw_anchovies: 0
+    - raw_trout: 0
+    - raw_pike: 0
+    - raw_salmon: 0
+    - raw_tuna: 0
+    - raw_lobster: 0
+    - raw_bass: 0
+    - raw_swordfish: 0
+    - raw_shark: 0
+island_greengrocer:
+  id: 220
+  defaults:
+    - cabbage: 0
+    - raw_potato: 0
+    - onion: 0
+    - tomato: 0
+    - garlic: 0
+tutabs_magical_market:
+  id: 223
+  defaults:
+    - fire_rune: 1000
+    - water_rune: 1000
+    - air_rune: 1000
+    - earth_rune: 1000
+    - law_rune: 100
+    - eye_of_gnome: 10
+    - monkey_dentures: 10
+    - monkey_talisman: 10
 container_224:
   id: 224
   defaults:
@@ -3735,6 +1844,43 @@ container_224:
     - iron_scimitar: 10
     - steel_scimitar: 10
     - mithril_scimitar: 10
+solihibs_food_stall:
+  id: 225
+  defaults:
+    - monkey_nuts: 100
+    - banana: 10
+    - banana_stew: 10
+    - monkey_bar: 100
+hamabs_crafting_emporium:
+  id: 226
+  defaults:
+    - chisel: 10
+    - ring_mould: 10
+    - necklace_mould: 10
+    - monkeyspeak_amulet_mould: 10
+    - needle: 10
+    - thread: 1000
+    - ball_of_wool: 100
+    - bracelet_mould: 10
+ifabas_general_store:
+  id: 227
+  defaults:
+    - empty_pot: 30
+    - jug: 10
+    - rope: 10
+    - bucket: 30
+    - tinderbox: 10
+    - hammer: 10
+ranging_guild_ticket_exchange:
+  id: 228
+  currency: archery_ticket
+  defaults:
+    - barb_bolttips: 30
+    - studded_body: 1
+    - rune_arrow: 50
+    - studded_leather_coif: 1
+    - green_dragonhide_body: 1
+    - adamant_javelin: 20
 container_231:
   id: 231
   defaults:
@@ -3758,6 +1904,104 @@ container_231:
     - fungicide: 1000
     - witchwood_icon: 10
     - slayer_bell: 10
+magic_guild_store_mystic_robes:
+  id: 232
+  defaults:
+    - mystic_hat_blue: 10
+    - mystic_robe_top_blue: 10
+    - mystic_robe_bottom_blue: 10
+    - mystic_gloves_blue: 10
+    - mystic_boots_blue: 10
+port_phasmatys_general_store:
+  id: 235
+  defaults:
+    - empty_pot: 300
+    - bucket: 300
+    - shears: 10
+    - jug: 10
+    - tinderbox: 10
+    - chisel: 10
+    - hammer: 10
+williams_wilderness_cape_shop:
+  id: 236
+  defaults:
+    - team_1_cape: 10
+    - team_11_cape: 10
+    - team_21_cape: 10
+    - team_31_cape: 10
+    - team_41_cape: 10
+ians_wilderness_cape_shop:
+  id: 237
+  defaults:
+    - team_2_cape: 10
+    - team_12_cape: 10
+    - team_22_cape: 10
+    - team_32_cape: 10
+    - team_42_cape: 10
+larrys_wilderness_cape_shop:
+  id: 238
+  defaults:
+    - team_3_cape: 10
+    - team_13_cape: 10
+    - team_23_cape: 10
+    - team_33_cape: 10
+    - team_43_cape: 10
+darrens_wilderness_cape_shop:
+  id: 239
+  defaults:
+    - team_4_cape: 10
+    - team_14_cape: 10
+    - team_24_cape: 10
+    - team_34_cape: 10
+    - team_44_cape: 10
+edwards_wilderness_cape_shop:
+  id: 240
+  defaults:
+    - team_5_cape: 10
+    - team_15_cape: 10
+    - team_25_cape: 10
+    - team_35_cape: 10
+    - team_45_cape: 10
+richards_wilderness_cape_shop:
+  id: 241
+  defaults:
+    - team_6_cape: 10
+    - team_16_cape: 10
+    - team_26_cape: 10
+    - team_36_cape: 10
+    - team_46_cape: 10
+neils_wilderness_cape_shop:
+  id: 242
+  defaults:
+    - team_7_cape: 10
+    - team_17_cape: 10
+    - team_27_cape: 10
+    - team_37_cape: 10
+    - team_47_cape: 10
+edmonds_wilderness_cape_shop:
+  id: 243
+  defaults:
+    - team_8_cape: 10
+    - team_18_cape: 10
+    - team_28_cape: 10
+    - team_38_cape: 10
+    - team_48_cape: 10
+simons_wilderness_cape_shop:
+  id: 244
+  defaults:
+    - team_9_cape: 10
+    - team_19_cape: 10
+    - team_29_cape: 10
+    - team_39_cape: 10
+    - team_49_cape: 10
+sams_wilderness_cape_shop:
+  id: 245
+  defaults:
+    - team_10_cape: 10
+    - team_20_cape: 10
+    - team_30_cape: 10
+    - team_40_cape: 10
+    - team_50_cape: 10
 container_248:
   id: 248
   defaults:
@@ -3766,6 +2010,115 @@ container_249:
   id: 249
   defaults:
     - bullseye_lantern_frame: 1
+brians_archery_supplies:
+  id: 250
+  defaults:
+    - steel_arrow: 100
+    - mithril_arrow: 30
+    - adamant_arrow: 0
+    - oak_shortbow: 10
+    - oak_longbow: 10
+    - willow_shortbow: 10
+    - willow_longbow: 10
+    - maple_shortbow: 10
+    - maple_longbow: 10
+dagas_scimitar_smithy:
+  id: 251
+  defaults:
+    - bronze_scimitar: 10
+    - iron_scimitar: 10
+    - steel_scimitar: 10
+    - mithril_scimitar: 10
+    - dragon_scimitar: 10
+alis_discount_wares:
+  id: 252
+  defaults:
+    - empty_pot: 30
+    - jug: 10
+    - waterskin_3: 30
+    - desert_shirt: 10
+    - desert_boots: 10
+    - bucket: 30
+    - fake_beard: 10
+    - kharidian_headpiece: 10
+    - papyrus: 10
+    - knife: 10
+    - tinderbox: 10
+    - bronze_pickaxe: 10
+    - raw_chicken: 10
+the_asp_and_snake_bar:
+  id: 253
+  defaults:
+    - beer: 10
+    - whisky: 10
+    - jug_of_wine: 10
+    - vodka: 10
+    - brandy: 10
+    - grog: 10
+pollnivneach_general_store:
+  id: 254
+  defaults:
+    - empty_pot: 30
+    - jug: 10
+    - waterskin_3: 30
+    - desert_shirt: 10
+    - desert_boots: 10
+    - bucket: 30
+    - fake_beard: 10
+    - kharidian_headpiece: 10
+    - cheese: 10
+    - lime: 10
+    - tomato: 10
+    - jug_of_water: 10
+    - bowl_of_water: 10
+    - bucket_of_water: 10
+bandit_bargains:
+  id: 255
+  defaults:
+    - waterskin_4: 30
+    - waterskin_0: 30
+    - jug_of_water: 10
+    - bowl_of_water: 10
+    - bucket_of_water: 10
+    - jug: 10
+    - bowl: 10
+    - bucket: 30
+    - desert_boots: 10
+    - desert_shirt: 10
+    - desert_robe: 10
+    - knife: 10
+rasolo_the_wandering_merchant:
+  id: 256
+  defaults:
+    - spinach_roll: 10
+    - cocktail_guide: 10
+    - blue_hat: 10
+    - dragon_dagger: 30
+    - newcomer_map: 10
+    - bailing_bucket: 10
+    - swamp_paste: 10
+    - poison: 10
+    - papyrus: 10
+    - machete: 10
+    - holy_mould: 10
+    - sickle_mould: 10
+    - waterskin_4: 30
+    - desert_boots: 10
+    - shantay_pass: 300
+    - toy_horsey_black: 10
+    - sample_bottle: 10
+    - boots_grey: 10
+    - greenmans_ale: 10
+    - fremennik_cloak_pink: 10
+    - keg_of_beer: 10
+    - flamtaer_hammer: 10
+    - olive_oil_3: 10
+    - limestone_brick: 10
+    - instruction_manual: 10
+the_big_heist_lodge:
+  id: 257
+  defaults:
+    - bandits_brew: 10
 container_258:
   id: 258
   defaults:
@@ -3775,6 +2128,37 @@ container_258:
     - silk: 10
     - thread: 1000
     - needle: 10
+ak_haranus_exotic_shop:
+  id: 259
+  defaults:
+    - bolt_rack: 100
+uglugs_stuffsies:
+  id: 260
+  defaults:
+    - relicyms_balm_3: 10
+    - sanfew_serum_3: 0
+    - bowstring: 0
+    - raw_chompy: 0
+    - cooked_chompy: 10
+    - ogre_coffin_key: 0
+    - knife: 10
+    - bronze_brutal: 0
+    - iron_brutal: 0
+    - steel_brutal: 0
+    - black_brutal: 0
+    - mithril_brutal: 0
+    - adamant_brutal: 0
+    - rune_brutal: 0
+    - comp_ogre_bow: 10
+vigrs_warhammers:
+  id: 261
+  defaults:
+    - bronze_warhammer: 10
+    - iron_warhammer: 10
+    - steel_warhammer: 10
+    - black_warhammer: 10
+    - mithril_warhammer: 10
+    - adamant_warhammer: 10
 container_262:
   id: 262
   defaults:
@@ -3789,6 +2173,33 @@ container_262:
     - maple_longbow: 10
     - mithril_arrow: 100
     - adamant_arrow: 100
+quality_armour_shop:
+  id: 263
+  defaults:
+    - steel_chainbody: 10
+    - mithril_chainbody: 10
+    - black_chainbody: 10
+    - adamant_chainbody: 10
+    - steel_med_helm: 10
+    - mithril_med_helm: 10
+    - adamant_med_helm: 10
+    - steel_sq_shield: 10
+    - black_kiteshield: 10
+gunsliks_assorted_items:
+  id: 264
+  defaults:
+    - jug: 10
+    - bucket: 30
+    - tinderbox: 10
+    - chisel: 10
+    - hammer: 10
+    - white_candle: 10
+    - unlit_torch: 10
+    - charcoal: 10
+    - leather_gloves: 10
+    - vial: 300
+    - pestle_and_mortar: 10
+    - rope: 10
 container_265:
   id: 265
   defaults:
@@ -3797,6 +2208,34 @@ container_265:
     - mithril_pickaxe: 10
     - adamant_pickaxe: 10
     - rune_pickaxe: 10
+agmundi_quality_clothes:
+  id: 266
+  defaults:
+    - skirt_lilac: 10
+    - skirt_blue: 10
+    - trousers_lilac: 10
+    - trousers_blue: 10
+    - shorts_tan: 10
+    - shorts_blue: 10
+    - woven_top_tan: 10
+    - woven_top_blue: 10
+    - shirt_tan: 10
+    - shirt_lilac: 10
+keldagrims_best_bread:
+  id: 267
+  defaults:
+    - bread: 10
+    - cake: 10
+    - chocolate_slice: 10
+carefree_crafting_stall:
+  id: 268
+  defaults:
+    - chisel: 10
+    - ring_mould: 10
+    - necklace_mould: 10
+    - needle: 10
+    - thread: 1000
+    - ball_of_wool: 100
 container_269:
   id: 269
   defaults:
@@ -3810,6 +2249,45 @@ container_270:
     - unstrung_symbol: 10
     - silver_ore: 0
     - silver_bar: 0
+vermundis_clothes_stall:
+  id: 271
+  defaults:
+    - skirt_brown: 10
+    - trousers_brown: 10
+    - shorts_brown: 10
+    - woven_top_brown: 10
+    - shirt_brown: 10
+    - silk: 10
+mrs_winkins_world_of_seeds:
+  id: 273
+  defaults:
+    - potato_seed: 10
+    - onion_seed: 10
+    - cabbage_seed: 10
+    - tomato_seed: 0
+    - sweetcorn_seed: 0
+    - strawberry_seed: 0
+    - watermelon_seed: 0
+    - barley_seed: 10
+    - jute_seed: 10
+    - rosemary_seed: 10
+    - marigold_seed: 10
+    - hammerstone_seed: 10
+    - asgarnian_seed: 10
+    - yanillian_seed: 10
+    - krandorian_seed: 10
+    - wildblood_seed: 10
+battle_runes:
+  id: 276
+  defaults:
+    - fire_rune: 100
+    - water_rune: 100
+    - air_rune: 100
+    - earth_rune: 100
+    - mind_rune: 100
+    - body_rune: 100
+    - chaos_rune: 30
+    - death_rune: 30
 container_277:
   id: 277
   defaults:
@@ -3821,6 +2299,84 @@ container_277:
     - chaos_rune: 300
     - death_rune: 100
     - blood_rune: 100
+martin_thwaits_lost_and_found:
+  id: 279
+  defaults:
+    - rope: 10
+    - lockpick: 10
+    - chisel: 10
+    - knife: 10
+    - stethoscope: 10
+    - bronze_knife: 100
+    - iron_knife: 100
+    - steel_knife: 100
+    - bronze_claws: 100
+    - iron_claws: 10
+    - steel_claws: 10
+alices_farming_shop:
+  id: 280
+  defaults:
+    - rake: 10
+    - seed_dibber: 10
+    - secateurs: 10
+    - spade: 10
+    - gardening_trowel: 10
+    - watering_can: 30
+    - plant_pot: 100
+    - compost: 300
+    - bucket: 100
+    - empty_sack: 10
+    - empty_sack_pack: 1
+    - basket: 10
+    - basket_pack: 1
+    - raw_potato: 0
+    - onion: 0
+    - cabbage: 0
+    - tomato: 0
+    - sweetcorn: 0
+    - strawberry: 0
+    - watermelon: 0
+    - hammerstone_hops: 0
+    - asgarnian_hops: 0
+    - yanillian_hops: 0
+    - krandorian_hops: 0
+    - wildblood_hops: 0
+    - jute_fibre: 0
+    - barley: 0
+    - plant_cure: 10
+    - amulet_of_farming_8: 10
+richards_farming_shop:
+  id: 281
+  defaults:
+    - rake: 10
+    - seed_dibber: 10
+    - secateurs: 10
+    - spade: 10
+    - gardening_trowel: 10
+    - watering_can: 30
+    - plant_pot: 100
+    - compost: 300
+    - bucket: 100
+    - empty_sack: 10
+    - empty_sack_pack: 1
+    - basket: 10
+    - basket_pack: 1
+    - raw_potato: 0
+    - onion: 0
+    - cabbage: 0
+    - tomato: 0
+    - sweetcorn: 0
+    - strawberry: 0
+    - watermelon: 0
+    - hammerstone_hops: 0
+    - asgarnian_hops: 0
+    - yanillian_hops: 0
+    - krandorian_hops: 0
+    - wildblood_hops: 0
+    - jute_fibre: 0
+    - barley: 0
+    - plant_cure: 10
+    - amulet_of_farming_8: 10
 container_282:
   id: 282
   defaults:
@@ -3853,6 +2409,129 @@ container_282:
     - barley: 0
     - plant_cure: 10
     - amulet_of_farming_8: 10
+vanessas_farming_shop:
+  id: 283
+  defaults:
+    - rake: 10
+    - seed_dibber: 10
+    - secateurs: 10
+    - spade: 10
+    - gardening_trowel: 10
+    - watering_can: 30
+    - plant_pot: 100
+    - compost: 300
+    - bucket: 100
+    - empty_sack: 10
+    - empty_sack_pack: 1
+    - basket: 10
+    - basket_pack: 1
+    - raw_potato: 0
+    - onion: 0
+    - cabbage: 0
+    - tomato: 0
+    - sweetcorn: 0
+    - strawberry: 0
+    - watermelon: 0
+    - hammerstone_hops: 0
+    - asgarnian_hops: 0
+    - yanillian_hops: 0
+    - krandorian_hops: 0
+    - wildblood_hops: 0
+    - jute_fibre: 0
+    - barley: 0
+    - plant_cure: 10
+    - amulet_of_farming_8: 10
+lletya_general_store:
+  id: 301
+  defaults:
+    - empty_pot: 30
+    - jug: 10
+    - shears: 10
+    - bucket: 30
+    - tinderbox: 10
+    - chisel: 10
+    - hammer: 10
+    - spade: 10
+    - knife: 10
+lletya_seamstress:
+  id: 302
+  defaults:
+    - thread: 1000
+    - needle: 10
+    - ball_of_wool: 100
+    - red_dye: 10
+    - yellow_dye: 10
+    - blue_dye: 10
+    - orange_dye: 10
+    - green_dye: 10
+    - purple_dye: 10
+lletya_archery_shop:
+  id: 303
+  defaults:
+    - iron_arrow: 1000
+    - steel_arrow: 300
+    - mithril_arrow: 100
+    - adamant_arrow: 100
+    - rune_arrow: 30
+    - bronze_bolts: 1000
+    - oak_shortbow: 10
+    - oak_longbow: 10
+    - crossbow: 10
+    - willow_shortbow: 10
+    - willow_longbow: 10
+lletya_food_store:
+  id: 304
+  defaults:
+    - bread: 10
+    - lobster: 10
+    - jug_of_wine: 10
+    - cheese: 10
+    - cake: 10
+gabootys_tai_bwo_wannai_cooperative:
+  id: 305
+  currency: trading_sticks
+  defaults:
+    - tribal_top_brown: 10
+    - villager_robe_brown: 10
+    - villager_hat_brown: 10
+    - villager_sandals_brown: 10
+    - villager_armband_brown: 10
+    - opal_machete: 10
+    - jade_machete: 10
+    - red_topaz_machete: 10
+    - tribal_top_blue: 10
+    - villager_robe_blue: 10
+    - villager_hat_blue: 10
+    - villager_sandals_blue: 10
+    - villager_armband_blue: 10
+    - uncut_opal: 0
+    - uncut_jade: 0
+    - uncut_red_topaz: 0
+    - tribal_top_yellow: 10
+    - villager_robe_yellow: 10
+    - villager_hat_yellow: 10
+    - villager_sandals_yellow: 10
+    - villager_armband_yellow: 10
+    - opal: 0
+    - jade: 0
+    - red_topaz: 0
+    - tribal_top_pink: 10
+    - villager_robe_pink: 10
+    - villager_hat_pink: 10
+    - villager_sandals_pink: 10
+    - villager_armband_pink: 10
+    - gout_tuber: 0
+gabootys_tai_bwo_wannai_drinky_store:
+  id: 306
+  currency: trading_sticks
+  defaults:
+    - fruit_blast: 0
+    - drunk_dragon: 0
+    - pineapple_punch: 0
+    - wizard_blizzard: 0
+    - blurberry_special: 0
+    - chocolate_saturday: 0
+    - short_green_guy: 0
 container_309:
   id: 309
   defaults:
@@ -3907,6 +2586,43 @@ container_314:
     - blood_rune: 100
     - cosmic_rune: 300
     - soul_rune: 100
+ore_seller:
+  id: 318
+  defaults:
+    - copper_ore: 100
+    - tin_ore: 100
+    - iron_ore: 100
+    - mithril_ore: 100
+    - silver_ore: 100
+    - gold_ore: 100
+    - coal: 100
+armour_store:
+  id: 319
+  defaults:
+    - rune_med_helm: 0
+    - rune_full_helm: 0
+    - rune_platebody: 0
+    - rune_platelegs: 0
+    - rune_plateskirt: 0
+    - rune_sq_shield: 0
+    - rune_kiteshield: 0
+    - rune_chainbody: 0
+    - adamant_med_helm: 0
+    - adamant_full_helm: 0
+    - adamant_platebody: 0
+    - adamant_platelegs: 0
+    - adamant_plateskirt: 0
+    - adamant_sq_shield: 0
+    - adamant_kiteshield: 0
+    - adamant_chainbody: 0
+    - mithril_med_helm: 0
+    - mithril_full_helm: 0
+    - mithril_platebody: 0
+    - mithril_platelegs: 0
+    - mithril_plateskirt: 0
+    - mithril_sq_shield: 0
+    - mithril_kiteshield: 0
+    - mithril_chainbody: 0
 container_320:
   id: 320
   defaults:
@@ -3916,6 +2632,41 @@ container_320:
     - pet_kitten_4: 1
     - pet_kitten_5: 1
     - pet_kitten_6: 1
+tzhaar_hur_tels_equipment_store:
+  id: 325
+  currency: tokkul
+  defaults:
+    - toktz_xil_ul: 10
+    - toktz_xil_ak: 10
+    - toktz_ket_xil: 10
+    - toktz_xil_ek: 10
+    - toktz_mej_tal: 10
+    - tzhaar_ket_em: 10
+    - tzhaar_ket_om: 10
+    - obsidian_cape: 10
+tzhaar_hur_leks_ore_and_gem_store:
+  id: 326
+  currency: tokkul
+  defaults:
+    - tin_ore: 5
+    - copper_ore: 5
+    - iron_ore: 2
+    - uncut_sapphire: 1
+    - uncut_emerald: 1
+    - uncut_onyx: 1
+    - onyx_bolt_tips: 50
+tzhaar_mej_rohs_rune_store:
+  id: 327
+  currency: tokkul
+  defaults:
+    - fire_rune: 1000
+    - water_rune: 1000
+    - air_rune: 1000
+    - earth_rune: 1000
+    - mind_rune: 1000
+    - body_rune: 1000
+    - chaos_rune: 300
+    - death_rune: 100
 container_328:
   id: 328
   defaults:
@@ -4036,6 +2787,35 @@ container_332:
     - white_claws: 0
     - white_2h_sword: 0
     - white_halberd: 0
+white_knight_master_armoury:
+  id: 333
+  defaults:
+    - white_chainbody: 10
+    - white_platelegs: 10
+    - white_plateskirt: 10
+    - white_med_helm: 10
+    - white_sq_shield: 10
+    - white_full_helm: 10
+    - white_kiteshield: 10
+    - white_platebody: 10
+    - white_boots: 10
+    - white_gauntlets: 10
+    - white_dagger: 10
+    - white_sword: 10
+    - white_mace: 10
+    - white_magic_staff: 10
+    - white_longsword: 10
+    - white_warhammer: 10
+    - white_battleaxe: 10
+    - white_scimitar: 10
+    - white_claws: 10
+    - white_2h_sword: 10
+    - white_halberd: 10
+shop_of_distaste:
+  id: 334
+  shop: true
+  defaults:
+    - rotten_tomato: 100
 container_337:
   id: 337
   defaults:
@@ -4060,6 +2840,33 @@ container_342:
   id: 342
   defaults:
     - demonic_sigil: 1
+miscellanian_general_store:
+  id: 343
+  defaults:
+    - empty_pot: 30
+    - jug: 10
+    - shears: 10
+    - bucket: 30
+    - bowl: 10
+    - cake_tin: 10
+    - tinderbox: 10
+    - chisel: 10
+    - hammer: 10
+seddus_adventurers_store:
+  id: 344
+  defaults:
+    - rune_plateskirt: 10
+    - rune_platelegs: 10
+    - rune_chainbody: 10
+    - green_dragonhide_chaps: 10
+    - green_dragonhide_vambraces: 10
+    - steel_kiteshield: 10
+    - black_med_helm: 10
+roks_chocs_box:
+  id: 345
+  defaults:
+    - choc_ice: 10
+    - chocolate_bar: 10
 container_346:
   id: 346
   defaults:
@@ -4067,6 +2874,94 @@ container_346:
     - cake: 10
     - chocolate_slice: 10
     - chocolate_bar: 100
+mage_training_arena:
+  id: 347
+  defaults:
+    - beginner_wand: 10
+    - apprentice_wand: 10
+    - teacher_wand: 10
+    - master_wand: 10
+    - infinity_top: 10
+    - infinity_hat: 10
+    - infinity_boots: 10
+    - infinity_gloves: 10
+    - infinity_bottoms: 10
+    - mages_book: 10
+    - bones_to_peaches_spell: 1
+    - battlestaff: 100
+    - mist_rune: 100
+    - dust_rune: 100
+    - mud_rune: 100
+    - smoke_rune: 100
+    - steam_rune: 100
+    - lava_rune: 100
+    - cosmic_rune: 100
+    - chaos_rune: 300
+    - nature_rune: 100
+    - death_rune: 100
+    - law_rune: 100
+    - soul_rune: 100
+    - blood_rune: 100
+    - arena_book: 1
+smithing_smiths_shop:
+  id: 348
+  defaults:
+    - bronze_scimitar: 10
+    - iron_scimitar: 10
+    - steel_scimitar: 10
+    - mithril_scimitar: 10
+    - hammer: 10
+harpoon_joes_house_of_rum:
+  id: 349
+  defaults:
+    - beer: 10
+    - braindeath_rum: 10
+    - jug_of_wine: 10
+    - stew: 10
+two_feet_charleys_fish_shop:
+  id: 350
+  defaults:
+    - raw_shrimps: 10
+    - raw_sardine: 10
+    - raw_herring: 10
+    - raw_mackerel: 10
+    - raw_cod: 10
+    - raw_anchovies: 10
+    - raw_tuna: 0
+    - raw_lobster: 0
+    - raw_bass: 0
+    - raw_swordfish: 0
+dodgy_mikes_second_hand_clothing:
+  id: 351
+  defaults:
+    - pirate_boots: 10
+    - pirate_shirt_white: 10
+    - pirate_bandana_white: 10
+    - pirate_leggings_white: 10
+    - pirate_shirt_red: 10
+    - pirate_bandana_red: 10
+    - pirate_leggings_red: 10
+    - pirate_shirt_blue: 10
+    - pirate_bandana_blue: 10
+    - pirate_leggings_blue: 10
+    - pirate_shirt_brown: 10
+    - pirate_bandana_brown: 10
+    - pirate_leggings_brown: 10
+pie_shop:
+  id: 352
+  defaults:
+    - pie_recipe_book: 10
+    - redberry_pie: 0
+    - meat_pie: 0
+    - mud_pie: 0
+    - apple_pie: 0
+    - garden_pie: 0
+    - fish_pie: 0
+    - admiral_pie: 0
+    - wild_pie: 0
+    - summer_pie: 0
+    - pot_of_flour: 100
+    - pie_dish: 100
 container_356:
   id: 356
   defaults:
@@ -4265,6 +3160,28 @@ container_364:
     - empty_pot: 9
     - empty_cup: 9
     - bucket: 9
+culinaromancers_chest:
+  id: 365
+  defaults:
+    - chocolate_bar: 300
+    - cheese: 10
+    - tomato: 10
+    - cooking_apple: 50
+    - grapes: 5
+    - pot_of_flour: 100
+    - pizza_base: 1
+    - egg: 10
+    - bucket_of_milk: 10
+    - pot_of_cream: 10
+    - pat_of_butter: 10
+    - spice: 10
+    - pie_dish: 10
+    - cake_tin: 10
+    - bowl: 10
+    - jug: 10
+    - empty_pot: 10
+    - empty_cup: 10
+    - bucket: 10
 container_366:
   id: 366
   defaults:
@@ -4405,21 +3322,143 @@ container_375:
     - kitchen_knife: 10
     - meat_tenderiser: 10
     - cleaver: 10
+lumbridge_guide_quiz_1:
+  id: 377
+  width: 5
+  height: 2
+  defaults:
+    - wolfbane: 1
+    - bloated_toad: 1
+    - distillator: 1
+    - cider: 1
+    - dwarven_stout: 1
+    - chefs_delight: 1
+    - jade: 1
+    - opal: 1
+    - chaos_talisman: 1
+    - mind_talisman: 1
+lumbridge_guide_quiz_2:
+  id: 378
+  defaults:
+    - silverlight: 1
+    - druid_pouch_3: 1
+    - ghostspeak_amulet: 1
+    - moonlight_mead: 1
+    - guthixs_book_of_balance: 1
+    - trout: 1
+    - pike: 1
+    - yew_logs: 1
+    - death_talisman: 1
+    - magic_logs: 1
+lumbridge_guide_quiz_3:
+  id: 379
+  defaults:
+    - ball: 1
+    - flypaper: 1
+    - potato_seed_2: 1
+    - onion_seed_2: 1
+    - cadava_berries: 1
+    - jangerberries: 1
+    - herring: 1
+    - salmon: 1
+    - dwellberries: 1
+    - mithril_arrow_2: 1
+lumbridge_guide_quiz_4:
+  id: 380
+  defaults:
+    - fire_rune_3: 1
+    - yew_shortbow: 1
+    - tin_ore: 1
+    - iron_ore: 1
+    - saradomins_book_of_wisdom: 1
+    - dwellberries: 1
+    - mithril_arrow_2: 1
+    - trout: 1
+    - silver_ore: 1
+    - chaos_rune_3: 1
+lumbridge_guide_quiz_5:
+  id: 381
+  defaults:
+    - air_rune_3: 1
+    - maple_longbow: 1
+    - magic_shortbow: 1
+    - tomato_seed_2: 1
+    - zamoraks_book_of_chaos: 1
+    - poison_ivy_berries: 1
+    - coconut: 1
+    - water_rune_3: 1
+    - logs: 1
+    - black_longsword: 1
 container_382:
   id: 382
   defaults:
     - silvthrill_rod: 1
+aurels_supplies:
+  id: 383
+  defaults:
+    - bronze_hatchet: 10
+    - tinderbox: 10
+    - thin_snail: 10
+    - raw_mackerel: 10
+    - spade: 10
 container_384:
   id: 384
   defaults:
     - jug_of_wine: 10
     - jug: 10
     - bottle_of_wine: 10
+fortunatos_fine_wine:
+  id: 385
+  defaults:
+    - jug_of_wine: 10
+    - jug_of_vinegar: 10
+    - bottle_of_wine: 10
+    - jug: 10
 container_386:
   id: 386
   defaults:
     - jug_of_wine: 10
     - jug: 10
+void_knight_archery_store:
+  id: 387
+  defaults:
+    - bronze_javelin: 300
+    - iron_javelin: 300
+    - steel_javelin: 100
+    - mithril_javelin: 100
+    - adamant_javelin: 250
+    - rune_javelin: 10
+    - bronze_arrowtips: 100
+    - iron_arrowtips: 100
+    - steel_arrowtips: 100
+    - mithril_arrowtips: 30
+    - adamant_arrowtips: 30
+    - rune_arrowtips: 10
+void_knight_magic_store:
+  id: 388
+  defaults:
+    - fire_rune: 1000
+    - water_rune: 1000
+    - air_rune: 1000
+    - earth_rune: 1000
+    - mind_rune: 1000
+    - body_rune: 1000
+    - chaos_rune: 300
+    - death_rune: 100
+void_knight_general_store:
+  id: 389
+  defaults:
+    - empty_pot: 30
+    - jug: 10
+    - shears: 10
+    - bucket: 30
+    - bowl: 10
+    - cake_tin: 10
+    - tinderbox: 10
+    - chisel: 10
+    - hammer: 10
+    - bronze_hatchet: 10
+    - field_ration: 50
 container_391:
   id: 391
   defaults:
@@ -4432,6 +3471,26 @@ container_391:
     - tinderbox: 10
     - chisel: 10
     - hammer: 10
+miscellanian_clothes_shop:
+  id: 392
+  defaults:
+    - fremennik_shirt_brown: 10
+    - fremennik_shirt_grey: 10
+    - fremennik_shirt_tan: 10
+    - fremennik_shirt_red: 10
+    - fremennik_shirt_blue: 10
+    - fremennik_robe: 10
+    - fremennik_skirt: 10
+    - skirt_lilac: 10
+    - skirt_blue: 10
+    - trousers_lilac: 10
+    - trousers_blue: 10
+    - shorts_tan: 10
+    - shorts_blue: 10
+    - woven_top_tan: 10
+    - woven_top_blue: 10
+    - shirt_tan: 10
+    - shirt_lilac: 10
 container_393:
   id: 393
   defaults:
@@ -4439,6 +3498,60 @@ container_393:
     - cider: 10
     - jug_of_wine: 10
     - cup_of_tea: 10
+miscellanian_food_shop:
+  id: 394
+  defaults:
+    - bread: 10
+    - cheese: 10
+    - cabbage: 10
+    - raw_potato: 10
+    - onion: 10
+    - pot_of_flour: 10
+    - chocolate_bar: 10
+    - bucket_of_milk: 10
+construction_supplies:
+  id: 395
+  defaults:
+    - saw: 10
+    - bolt_of_cloth: 300
+    - bronze_nails: 300
+    - iron_nails: 300
+    - steel_nails: 300
+keldagrim_stonemason:
+  id: 396
+  defaults:
+    - limestone_brick: 500
+    - marble_block: 30
+    - gold_leaf: 30
+    - magic_stone: 30
+garden_centre:
+  id: 397
+  defaults:
+    - bagged_dead_tree: 10
+    - bagged_nice_tree: 10
+    - bagged_oak_tree: 10
+    - bagged_willow_tree: 10
+    - bagged_maple_tree: 10
+    - bagged_cactus: 10
+    - bagged_yew_tree: 10
+    - bagged_evergreen: 10
+    - bagged_magic_tree: 10
+    - bagged_plant_1: 1000
+    - bagged_plant_2: 10
+    - bagged_plant_3: 10
+    - thorny_hedge_bagged: 10
+    - nice_hedge_bagged: 10
+    - small_box_hedge_bagged: 10
+    - topiary_hedge_bagged: 10
+    - fancy_hedge_bagged: 10
+    - tall_fancy_hedge_bagged: 10
+    - tall_box_hedge_bagged: 10
+    - bagged_rosemary: 10
+    - bagged_daffodils: 10
+    - bagged_bluebells: 10
+    - bagged_sunflower: 10
+    - bagged_marigolds: 10
+    - bagged_roses: 10
 container_399:
   id: 399
   defaults:
@@ -4810,6 +3923,130 @@ container_409:
     - major_head: 1
     - large_map_2: 1
     - kite_shield: 1
+warriors_guild_food_shop:
+  id: 410
+  defaults:
+    - trout: 10
+    - bass: 10
+    - plain_pizza: 10
+    - potato_with_cheese: 10
+    - stew: 10
+warriors_guild_armoury:
+  id: 411
+  defaults:
+    - iron_battleaxe: 10
+    - steel_battleaxe: 10
+    - mithril_battleaxe: 10
+    - bronze_sword: 10
+    - iron_sword: 10
+    - steel_sword: 10
+    - black_sword: 10
+    - mithril_sword: 10
+    - adamant_sword: 10
+    - bronze_longsword: 10
+    - iron_longsword: 10
+    - steel_longsword: 10
+    - black_longsword: 10
+    - mithril_longsword: 10
+    - adamant_longsword: 10
+    - bronze_dagger: 10
+    - iron_dagger: 10
+    - steel_dagger: 10
+    - black_dagger: 10
+    - mithril_dagger: 10
+    - adamant_dagger: 10
+    - bronze_mace: 10
+    - iron_mace: 10
+    - steel_mace: 10
+    - mithril_mace: 10
+    - adamant_mace: 10
+    - bronze_2h_sword: 10
+    - iron_2h_sword: 10
+    - steel_2h_sword: 10
+    - black_2h_sword: 10
+    - mithril_2h_sword: 10
+    - adamant_2h_sword: 10
+    - bronze_chainbody: 10
+    - iron_chainbody: 10
+    - steel_chainbody: 10
+    - bronze_med_helm: 10
+    - iron_med_helm: 10
+    - steel_med_helm: 10
+warrior_guild_potion_shop:
+  id: 412
+  defaults:
+    - strength_potion_3: 10
+    - attack_potion_3: 10
+    - defence_potion_3: 10
+nardoks_bone_weapons:
+  id: 413
+  defaults:
+    - bone_club: 10
+    - bone_spear: 10
+    - bone_dagger: 10
+    - dorgeshuun_crossbow: 10
+    - bone_bolts: 300
+honest_jimmys_house_of_stuff:
+  id: 414
+  currency: pieces_of_eight
+  defaults:
+    - blue_naval_shirt: 10
+    - blue_tricorn_hat: 10
+    - blue_navy_slacks: 10
+    - green_naval_shirt: 10
+    - green_tricorn_hat: 10
+    - green_navy_slacks: 10
+    - red_naval_shirt: 10
+    - red_tricorn_hat: 10
+    - red_navy_slacks: 10
+    - brown_naval_shirt: 10
+    - brown_tricorn_hat: 10
+    - brown_navy_slacks: 10
+    - black_naval_shirt: 10
+    - black_tricorn_hat: 10
+    - black_navy_slacks: 10
+    - purple_naval_shirt: 10
+    - purple_tricorn_hat: 10
+    - purple_navy_slacks: 10
+    - grey_naval_shirt: 10
+    - grey_tricorn_hat: 10
+    - grey_navy_slacks: 10
+    - cutthroat_flag: 10
+    - guilded_smile_flag: 10
+    - bronze_fist_flag: 10
+    - lucky_shot_flag: 10
+    - treasure_flag: 10
+    - phasmatys_flag: 10
+    - the_stuff: 10
+    - rum_red: 30
+    - rum_blue: 30
+moon_clan_general_store:
+  id: 416
+  defaults:
+    - empty_pot: 30
+    - jug: 10
+    - shears: 10
+    - bucket: 30
+    - bowl: 10
+    - cake_tin: 10
+    - tinderbox: 10
+    - chisel: 10
+    - hammer: 10
+    - security_book: 10
+    - vial: 10
+    - vial_pack: 20
+moon_clan_fine_clothes:
+  id: 417
+  defaults:
+    - moonclan_helm: 10
+    - moonclan_hat: 10
+    - moonclan_armour: 10
+    - moonclan_skirt: 10
+    - moonclan_gloves: 10
+    - moonclan_boots: 10
+    - moonclan_cape: 10
+    - needle: 10
+    - thread: 1000
 container_418:
   id: 418
   defaults:
@@ -4831,6 +4068,28 @@ container_418:
     - staff_of_air: 10
     - staff_of_earth: 10
     - moonclan_manual: 10
+baba_yagas_magic_shop:
+  id: 419
+  defaults:
+    - air_rune: 1000
+    - water_rune: 1000
+    - earth_rune: 1000
+    - fire_rune: 1000
+    - mind_rune: 1000
+    - body_rune: 1000
+    - chaos_rune: 300
+    - nature_rune: 300
+    - death_rune: 300
+    - law_rune: 100
+    - blood_rune: 100
+    - soul_rune: 100
+    - astral_rune: 100
+    - battlestaff: 20
+    - staff_of_fire: 10
+    - staff_of_water: 10
+    - staff_of_air: 10
+    - staff_of_earth: 10
+    - moonclan_manual: 10
 container_427:
   id: 427
   defaults:
@@ -4846,6 +4105,28 @@ container_427:
     - steel_limbs: 10
     - mithril_limbs: 10
     - adamant_limbs: 0
+    - rune_limbs: 0
+    - bronze_crossbow: 0
+    - iron_crossbow: 0
+    - steel_crossbow: 0
+    - mithril_crossbow: 0
+    - adamant_crossbow: 0
+    - rune_crossbow: 0
+crossbow_shop:
+  id: 428
+  defaults:
+    - wooden_stock: 10
+    - oak_stock: 10
+    - willow_stock: 10
+    - teak_stock: 10
+    - maple_stock: 10
+    - mahogany_stock: 10
+    - yew_stock: 0
+    - bronze_limbs: 10
+    - iron_limbs: 10
+    - steel_limbs: 10
+    - mithril_limbs: 10
+    - adamant_limbs: 10
     - rune_limbs: 0
     - bronze_crossbow: 0
     - iron_crossbow: 0
@@ -4952,6 +4233,35 @@ container_441:
     - raw_rabbit: 10
     - eye_patch: 10
     - rosemary: 0
+trader_svens_black_market_goods:
+  id: 442
+  defaults:
+    - citizen_top: 10
+    - citizen_trousers: 10
+    - citizen_shoes: 10
+    - vyrewatch_top: 10
+    - vyrewatch_legs: 10
+    - vyrewatch_shoes: 10
+initiate_temple_knight_armoury:
+  id: 443
+  defaults:
+    - initiate_sallet: 10
+    - initiate_cuisse: 10
+    - initiate_hauberk: 10
+    - initiate_harness_m: 10
+proselyte_temple_knight_armoury:
+  id: 444
+  defaults:
+    - initiate_sallet: 10
+    - initiate_cuisse: 10
+    - initiate_hauberk: 10
+    - initiate_harness_m: 10
+    - proselyte_sallet: 10
+    - proselyte_cuisse: 10
+    - proselyte_hauberk: 10
+    - proselyte_tasset: 10
+    - proselyte_harness_m: 10
+    - proselyte_harness_f: 10
 container_446:
   id: 446
   defaults:
@@ -4972,6 +4282,38 @@ container_446:
     - commander_cap_2: 1
     - war_chief_cap_2: 1
     - lord_marshal_cap_2: 1
+castle_wars_ticket_exchange:
+  id: 447
+  currency: castle_wars_ticket
+  defaults:
+    - basic_decorative_platebody_2: 1
+    - void_knight_top_2: 1
+    - rogue_mask_2: 1
+    - spined_helm_2: 1
+    - rock_shell_helm_2: 1
+    - tribal_mask: 1
+    - tribal_mask_2: 1
+    - tribal_mask_3: 1
+    - white_platebody_2: 1
+    - initiate_hauberk_2: 1
+    - proselyte_hauberk_2: 1
+    - mourner_top_2: 1
+    - graahk_top_2: 1
+    - larupia_top_2: 1
+    - kyatt_top_2: 1
+    - polar_camo_top_2: 1
+    - jungle_camo_top_2: 1
+    - wood_camo_top_2: 1
+    - desert_camo_top_2: 1
+    - witchdoctor_mask_2: 1
+    - hard_hat_2: 1
+    - lumberjack_top_2: 1
+    - bomber_jacket_2: 1
+    - ham_shirt_2: 1
+    - void_melee_helm_2: 1
+    - void_ranger_helm_2: 1
+    - void_mage_helm_2: 1
+    - more: 1
 container_448:
   id: 448
   defaults:
@@ -5177,6 +4519,92 @@ container_454:
     - marble_cape_rack: 1
     - marble_magic_wardrobe: 1
     - magical_cape_rack: 1
+martin_thwaits_lost_and_found_skillcape:
+  id: 455
+  defaults:
+    - rope: 10
+    - lockpick: 10
+    - chisel: 10
+    - knife: 10
+    - stethoscope: 10
+    - bronze_knife: 100
+    - iron_knife: 100
+    - steel_knife: 100
+    - bronze_claws: 100
+    - iron_claws: 10
+    - steel_claws: 10
+    - thieving_cape: 1
+martin_thwaits_lost_and_found_trimmed:
+  id: 456
+  defaults:
+    - rope: 10
+    - lockpick: 10
+    - chisel: 10
+    - knife: 10
+    - stethoscope: 10
+    - bronze_knife: 100
+    - iron_knife: 100
+    - steel_knife: 100
+    - bronze_claws: 100
+    - iron_claws: 10
+    - steel_claws: 10
+    - thieving_cape_t: 1
+aarons_archery_appendages_skillcape:
+  id: 457
+  defaults:
+    - leather_body: 10
+    - hard_leather_body: 10
+    - studded_body: 10
+    - leather_chaps: 10
+    - studded_chaps: 10
+    - studded_leather_coif: 10
+    - leather_cowl: 10
+    - leather_vambraces: 10
+    - ranged_cape: 1
+aarons_archery_appendages_trimmed:
+  id: 458
+  defaults:
+    - leather_body: 10
+    - hard_leather_body: 10
+    - studded_body: 10
+    - leather_chaps: 10
+    - studded_chaps: 10
+    - studded_leather_coif: 10
+    - leather_cowl: 10
+    - leather_vambraces: 10
+    - ranged_cape_t: 1
+runecrafting_skillcape_skillcape:
+  id: 459
+  defaults:
+    - runecrafting_cape: 1
+runecrafting_skillcape_trimmed:
+  id: 460
+  defaults:
+    - runecrafting_cape_t: 1
+magic_guild_store_mystic_robes_skillcape:
+  id: 461
+  defaults:
+    - mystic_hat_blue: 10
+    - mystic_robe_top_blue: 10
+    - mystic_robe_bottom_blue: 10
+    - mystic_gloves_blue: 10
+    - mystic_boots_blue: 10
+    - magic_cape: 1
+magic_guild_store_mystic_robes_trimmed:
+  id: 462
+  defaults:
+    - mystic_hat_blue: 10
+    - mystic_robe_top_blue: 10
+    - mystic_robe_bottom_blue: 10
+    - mystic_gloves_blue: 10
+    - mystic_boots_blue: 10
+    - magic_cape_t: 1
+character_creation_3:
+  id: 463
+  defaults:
+    - character_creation_1: 1
+    - character_creation_14: 1
+    - character_creation_15: 1
 container_464:
   id: 464
   defaults:
@@ -5184,6 +4612,19 @@ container_464:
     - rope: 120
     - small_fishing_net: 120
     - knife: 100
+leprechaun_larrys_farming_supplies:
+  id: 465
+  defaults:
+    - rake: 10
+    - seed_dibber: 10
+    - secateurs: 10
+    - spade: 10
+    - gardening_trowel: 10
+    - watering_can: 10
+    - compost: 10
+    - plant_cure: 10
+    - cocktail_glass: 10
+    - rock_ore: 10
 container_466:
   id: 466
   defaults:
@@ -5271,6 +4712,19 @@ container_482:
     - kyatt_top: 1
     - kyatt_legs: 1
     - spottier_cape: 1
+alecks_hunter_emporium:
+  id: 483
+  defaults:
+    - butterfly_net: 10
+    - butterfly_jar: 300
+    - magic_box: 300
+    - noose_wand: 10
+    - bird_snare: 30
+    - box_trap: 30
+    - teasing_stick: 10
+    - unlit_torch: 10
+    - rabbit_snare: 30
+    - grenwall_spikes: 0
 container_484:
   id: 484
   defaults:
@@ -5290,6 +4744,12 @@ container_485:
     - black_cane_2: 1
     - spiked_helmet_2: 1
     - back: 1
+character_creation_7:
+  id: 486
+  defaults:
+    - character_creation_1: 1
+    - character_creation_11: 1
+    - character_creation_10: 1
 container_487:
   id: 487
   defaults:
@@ -5310,6 +4770,14 @@ container_488:
     - spottier_cape_3: 1
     - blue_cape_4: 1
     - back: 1
+avas_odds_and_ends:
+  id: 489
+  defaults:
+    - feather: 1000
+    - iron_arrow: 1000
+    - steel_arrow: 1000
+    - iron_arrowtips: 1000
+    - steel_arrowtips: 1000
 container_491:
   id: 491
   defaults:
@@ -5323,6 +4791,44 @@ container_491:
     - sickle_mould: 10
     - tiara_mould: 10
     - bracelet_mould: 10
+nathifas_bake_stall:
+  id: 492
+  defaults:
+    - bread: 10
+    - cake: 10
+    - chocolate_slice: 10
+    - waterskin_4: 30
+blades_by_urbi:
+  id: 493
+  defaults:
+    - bronze_dagger: 10
+    - iron_dagger: 10
+    - steel_dagger: 10
+    - black_dagger: 0
+    - mithril_dagger: 10
+    - adamant_dagger: 10
+    - rune_dagger: 10
+    - dragon_dagger: 0
+    - bronze_scimitar: 10
+    - iron_scimitar: 10
+    - steel_scimitar: 10
+the_spice_is_right:
+  id: 494
+  defaults:
+    - empty_pot: 30
+    - gnome_spice: 10
+    - curry_leaf: 0
+    - antipoison_3: 10
+raetul_and_cos_cloth_store:
+  id: 495
+  defaults:
+    - linen: 10
+    - desert_shirt: 10
+    - desert_robe: 10
+    - desert_boots: 10
+    - silk: 10
+    - thread: 1000
+    - needle: 10
 container_496:
   id: 496
   defaults:
@@ -5395,6 +4901,11 @@ container_498:
     - cat_mask: 1
     - pith_helmet: 1
     - more: 1
+character_creation_12:
+  id: 499
+  defaults:
+    - character_creation_1: 1
+    - character_creation_12: 1
 container_500:
   id: 500
   defaults:
@@ -5438,6 +4949,70 @@ container_501:
     - blue_dragon_mask: 1
     - red_dragon_mask: 1
     - back: 1
+neitiznot_supplies:
+  id: 502
+  defaults:
+    - knife: 10
+    - hammer: 10
+    - thread: 1000
+    - needle: 10
+    - bronze_nails: 10
+    - bronze_hatchet: 10
+    - ball_of_wool: 100
+flosis_fishmongers:
+  id: 503
+  defaults:
+    - raw_lobster: 0
+    - raw_tuna: 0
+    - raw_salmon: 10
+    - raw_cod: 10
+    - raw_swordfish: 0
+    - raw_shark: 0
+keepa_kettilons_store:
+  id: 504
+  defaults:
+    - tuna: 0
+    - salmon: 10
+    - cod: 10
+    - lobster: 0
+    - swordfish: 0
+    - shark: 0
+armour_shop:
+  id: 505
+  defaults:
+    - mithril_chainbody: 10
+    - mithril_med_helm: 10
+    - mithril_full_helm: 10
+    - mithril_sq_shield: 10
+    - mithril_kiteshield: 10
+    - mithril_platelegs: 10
+    - mithril_plateskirt: 10
+    - mithril_platebody: 10
+weapons_galore:
+  id: 506
+  defaults:
+    - mithril_longsword: 10
+    - mithril_warhammer: 10
+    - mithril_battleaxe: 10
+    - mithril_claws: 10
+    - mithril_2h_sword: 10
+ore_store:
+  id: 507
+  defaults:
+    - copper_ore: 10
+    - tin_ore: 10
+    - iron_ore: 0
+    - silver_ore: 0
+    - coal: 0
+    - gold_ore: 0
+    - mithril_ore: 0
+    - adamantite_ore: 0
+contraband_yak_produce:
+  id: 508
+  defaults:
+    - yak_hide: 1000
+    - raw_yak_meat: 10
+    - yak_hair: 10
 container_509:
   id: 509
   defaults:
@@ -5460,6 +5035,126 @@ container_509:
     - chocolate_cake: 1
     - cooked_sweetcorn: 1
     - potato_with_butter: 1
+miltogs_lamps:
+  id: 511
+  defaults:
+    - unlit_torch: 10
+    - oil_lamp_empty: 0
+    - oil_lantern_empty: 0
+    - bullseye_lantern_empty: 0
+    - mining_helmet: 10
+    - tinderbox: 10
+    - light_orb: 0
+    - oil_lamp_oil: 0
+    - oil_lantern_oil: 0
+    - bullseye_lantern_oil: 0
+reldaks_leather_armour:
+  id: 512
+  defaults:
+    - frog_leather_body: 10
+    - frog_leather_chaps: 10
+    - frog_leather_boots: 10
+dorgesh_kaan_general_supplies:
+  id: 513
+  defaults:
+    - unlit_torch: 10
+    - tinderbox: 10
+    - empty_pot: 30
+    - jug: 10
+    - bowl: 10
+    - cake_tin: 10
+    - rope: 10
+    - glassblowing_pipe: 10
+collection_box_1: 523
+collection_box_2: 524
+collection_box_3: 525
+collection_box_4: 526
+collection_box_5: 527
+collection_box_6: 528
+pet_shop:
+  id: 531
+  defaults:
+    - nuts: 10
+    - flies: 1000
+    - beetle_bits: 10
+    - spirit_shards: 65000
+    - spirit_shard_pack: 65000
+summoning_supplies:
+  id: 532
+  defaults:
+    - antlers: 10
+    - lizard_skull: 10
+    - feather_headdress_blue: 0
+    - feather_headdress_yellow: 0
+    - feather_headdress_red: 0
+    - feather_headdress_stripy: 0
+    - feather_headdress_orange: 0
+    - spirit_shards: 65000
+    - pouch: 5000
+    - spirit_shard_pack: 65000
+gift_shop:
+  id: 533
+  defaults:
+    - tinderbox: 10
+    - ogre_arrow: 100
+    - cooked_chompy: 10
+    - feather: 1000
+    - bronze_hatchet: 10
+    - rope: 10
+    - empty_pot: 30
+    - bucket: 30
+    - hammer: 10
+    - knife: 10
+    - ogre_kilt: 10
+    - ogre_top: 10
+    - ogre_boots: 10
+    - diseased_kebbit_fur: 0
+    - davy_kebbit_hat: 0
+    - ogre_wig: 0
+    - ogre_club: 0
+fresh_meat:
+  id: 534
+  defaults:
+    - raw_rat_meat: 10
+    - raw_beef: 300
+    - raw_bear_meat: 10
+    - cooked_meat: 10
+    - raw_chicken: 10
+    - cooked_chicken: 10
+    - raw_rabbit: 100
+    - skewered_rabbit: 0
+    - roast_rabbit: 0
+    - cooked_rabbit: 10
+    - raw_chompy: 0
+    - skewered_chompy: 0
+    - cooked_chompy: 0
+    - cooked_chompy_roasted: 0
+    - raw_jubbly: 0
+    - raw_oomlie: 0
+    - raw_bird_meat: 10
+    - raw_bird_meat_pack: 6
+    - skewered_bird_meat: 0
+    - roast_bird_meat: 0
+    - raw_beast_meat: 0
+    - skewered_beast: 0
+    - roast_beast_meat: 0
+beefy_bills_supplies:
+  id: 536
+  defaults:
+    - empty_pot: 30
+    - bucket_of_water: 10
+    - jug_of_water: 10
+    - pie_dish: 10
+    - cake_tin: 10
+    - tinderbox: 10
+    - shears: 10
+    - redberries: 10
+    - spinach_roll: 10
+    - chefs_hat: 10
+    - bronze_sword: 10
+    - bronze_sq_shield: 10
+    - shortbow: 10
+    - bronze_arrow: 30
 container_537:
   id: 537
   defaults:
@@ -5479,10 +5174,165 @@ container_537:
     - helmet_of_trials_2: 1
     - ancient_ceremonial_hood: 1
     - back: 1
+slayer_equipment:
+  id: 538
+  defaults:
+    - enchanted_gem: 300
+    - mirror_shield: 10
+    - leaf_bladed_spear: 10
+    - broad_arrow: 3000
+    - bag_of_salt: 1000
+    - rock_hammer: 10
+    - face_mask: 10
+    - earmuffs: 10
+    - nose_peg: 10
+    - slayers_staff: 10
+    - spiny_helmet: 10
+    - fishing_explosive: 1000
+    - ice_cooler: 1000
+    - slayer_gloves: 10
+    - unlit_bug_lantern: 10
+    - insulated_boots: 10
+    - fungicide_spray_10: 10
+    - fungicide: 1000
+    - witchwood_icon: 10
+    - slayer_bell: 10
+    - broad_arrow_heads: 3000
+    - unfinished_broad_bolts: 3000
+lent_collection_box:
+  id: 540
+  width: 0
+  height: 1
+item_loan:
+  id: 541
+  width: 0
+  height: 1
+candle_shop:
+  id: 547
+  defaults:
+    - white_candle: 10
+    - black_candle: 10
+party_petes_emporium:
+  id: 549
+  defaults:
+    - burgundy_afro: 10
+    - red_afro: 10
+    - vermilion_afro: 10
+    - pink_afro: 10
+    - orange_afro: 10
+    - yellow_afro: 10
+    - peach_afro: 10
+    - brown_afro: 10
+    - dark_brown_afro: 10
+    - light_brown_afro: 10
+    - mint_green_afro: 10
+    - green_afro: 10
+    - dark_green_afro: 10
+    - dark_blue_afro: 10
+    - turquoise_afro: 10
+    - light_blue_afro: 10
+    - purple_afro: 10
+    - violet_afro: 10
+    - indigo_afro: 10
+    - dark_grey_afro: 10
+    - military_grey_afro: 10
+    - white_afro: 10
+    - light_grey_afro: 10
+    - taupe_afro: 10
+    - black_afro: 10
+faruqs_tools_for_games:
+  id: 551
+  defaults:
+    - magic_skullball: 10
+    - ring_of_seeking_hide: 10
+    - ring_of_seeking_seek: 10
+    - ring_of_seeking_both: 10
+    - marker_seeds: 10
+    - ticker: 10
+    - empty_bag_caller: 10
+    - timepiece_stopped: 10
+    - racing_boots: 10
+    - starting_horn: 10
+    - voting_hat_red: 10
+    - orb_of_counting: 10
+    - faruqs_toolonomicon: 10
+    - orb_of_oculus: 10
+lumbridge_general_store_sample:
+  id: 553
+  shop: true
+  defaults:
+    - tinderbox: 1
+    - hammer: 1
+    - bronze_dagger: 1
+bobs_brilliant_axes_sample:
+  id: 554
+  shop: true
+  defaults:
+    - bronze_pickaxe: 1
+    - bronze_hatchet: 1
 container_555:
   id: 555
   defaults:
     - bronze_sword: 1
+lowes_archery_emporium_sample:
+  id: 556
+  defaults:
+    - bronze_arrow: 30
+    - shortbow: 1
+    - longbow: 1
+auburys_rune_shop_sample:
+  id: 557
+  defaults:
+    - air_rune: 30
+    - mind_rune: 30
+ignatiuss_hot_deals:
+  id: 558
+  defaults:
+    - tinderbox: 60000
+    - unlit_torch: 10
+    - bronze_hatchet: 10
+ignatiuss_hot_deals_skillcape:
+  id: 559
+  defaults:
+    - tinderbox: 60000
+    - unlit_torch: 10
+    - bronze_hatchet: 10
+    - firemaking_cape: 1
+ignatiuss_hot_deals_trimmed:
+  id: 560
+  defaults:
+    - tinderbox: 60000
+    - unlit_torch: 10
+    - bronze_hatchet: 10
+    - firemaking_cape_t: 1
+lumbridge_fishing_supplies_sample:
+  id: 561
+  shop: true
+  defaults:
+    - small_fishing_net: 1
+    - crayfish_cage: 1
+lumbridge_fishing_supplies:
+  id: 562
+  shop: true
+  defaults:
+    - small_fishing_net: 5
+    - fishing_rod: 10
+    - fly_fishing_rod: 10
+    - crayfish_cage: 10
+    - fishing_bait: 1000
+    - feather: 1000
+    - raw_shrimps: 0
+    - raw_sardine: 0
+    - raw_herring: 0
+    - raw_anchovies: 0
+    - raw_trout: 0
+    - raw_pike: 0
+    - raw_salmon: 0
+    - raw_crayfish: 0
+elnocks_backup_supply:
+  id: 564
+  defaults:
+    - impling_jar: 10
 container_565:
   id: 565
   defaults:
@@ -5523,6 +5373,27 @@ container_572:
   id: 572
   defaults:
     - air_rune: 300
+urists_crafting_supplies:
+  id: 574
+  defaults:
+    - chisel: 10
+    - ring_mould: 10
+    - necklace_mould: 10
+    - amulet_unstrung_mould: 10
+    - needle: 10
+    - holy_mould: 10
+    - sickle_mould: 10
+    - tiara_mould: 10
+    - bolt_mould: 10
+    - bracelet_mould: 10
+dodgy_dereks_dirty_deals:
+  id: 575
+  defaults:
+    - lockpick: 2
+    - willow_blackjack: 5
+    - rubber_blackjack: 100
+    - tinderbox: 10
+    - rope: 10
 container_576:
   id: 576
   defaults:
@@ -5541,6 +5412,14 @@ container_578:
   defaults:
     - tinderbox: 10
     - rope: 10
+dealgas_scimitar_emporium:
+  id: 579
+  defaults:
+    - dragon_scimitar: 10
+the_milk_shop:
+  id: 580
+  defaults:
+    - bucket_of_milk: 200
 container_581:
   id: 581
   defaults:
@@ -5587,10 +5466,129 @@ container_585:
   id: 585
   defaults:
     - character_creation_1: 1
+character_creation_2:
+  id: 586
+  defaults:
+    - character_creation_1: 1
+    - character_creation_2: 1
+character_creation_8:
+  id: 587
+  defaults:
+    - character_creation_1: 1
+    - character_creation_3: 1
+character_creation_15:
+  id: 588
+  defaults:
+    - character_creation_1: 1
+    - character_creation_4: 1
+character_creation_16:
+  id: 589
+  defaults:
+    - character_creation_1: 1
+    - character_creation_6: 1
+    - character_creation_7: 1
+character_creation_17:
+  id: 590
+  defaults:
+    - character_creation_1: 1
+    - character_creation_8: 1
+    - character_creation_9: 1
+character_creation_9:
+  id: 591
+  defaults:
+    - character_creation_1: 1
+    - character_creation_13: 1
+character_creation_4:
+  id: 592
+  defaults:
+    - character_creation_1: 1
+    - character_creation_16: 1
+character_creation_14:
+  id: 593
+  defaults:
+    - character_creation_1: 1
+    - character_creation_17: 1
+character_creation_1:
+  id: 594
+  defaults:
+    - character_creation_1: 1
+    - character_creation_18: 1
+character_creation_11:
+  id: 595
+  defaults:
+    - character_creation_1: 1
+    - character_creation_19: 1
+character_creation_10:
+  id: 596
+  defaults:
+    - character_creation_1: 1
+    - character_creation_20: 1
+character_creation_13:
+  id: 597
+  defaults:
+    - character_creation_1: 1
+    - character_creation_5: 1
+character_creation_18:
+  id: 598
+  defaults:
+    - character_creation_1: 1
+    - character_creation_21: 1
+character_creation_19:
+  id: 599
+  defaults:
+    - character_creation_1: 1
+    - character_creation_22: 1
+naffs_knockoff_staves:
+  id: 600
+  defaults:
+    - battlestaff: 80
+yaktwees_invizzy_critters_stall:
+  id: 601
+  defaults:
+    - sprite_lure: 1
+    - yaktwee_stick: 1
 container_602:
   id: 602
   defaults:
     - amulet_of_accuracy: 30
+papa_mambos_shop:
+  id: 603
+  defaults:
+    - marasamaw_plant: 30
+    - noose_wand: 10
+    - tinderbox: 10
+    - unlit_torch: 10
+    - juju_vial_of_water: 100
+    - juju_vial_pack: 100
+    - rake: 10
+    - spade: 10
+    - seed_dibber: 10
+    - red_blossom_seed: 10
+    - blue_blossom_seed: 10
+    - green_blossom_seed: 10
+    - plant_pot_empty: 10
+    - gardening_trowel: 10
+    - plant_cure: 20
+    - secateurs: 10
+    - watering_can_8: 10
+    - bucket: 100
+    - basket: 100
+    - basket_pack: 100
+    - witchdoctor_robes: 0
+    - witchdoctor_legs: 0
+    - juju_teleport_spiritbag: 100
+bettamaxs_shop:
+  id: 604
+  defaults:
+    - juju_teleport_spiritbag: 100
+monkey_colony_general_store:
+  id: 605
+  defaults:
+    - waterskin_4: 3
+    - knife: 3
+    - desert_shirt: 1
+    - desert_robe: 1
+    - desert_boots: 1
 container_606:
   id: 606
   defaults:
@@ -5598,3 +5596,5 @@ container_606:
     - uncut_emerald: 1
     - uncut_ruby: 0
     - uncut_diamond: 0
+banana_store: 607
+diangos_toy_store: 609
