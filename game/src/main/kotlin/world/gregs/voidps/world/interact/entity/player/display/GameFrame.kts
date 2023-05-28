@@ -68,7 +68,7 @@ on<InterfaceOpened>({ id == it.gameFrame.name }) { player: Player ->
     }
 }
 
-on<InterfaceRefreshed>({ id == it.gameFrame.name }) { player: Player ->
+on<InterfaceRefreshed>({ id == it.gameFrame.name || id.startsWith("dialogue_npc") }) { player: Player ->
     player.interfaces.sendVisibility(player.gameFrame.name, "wilderness_level", false)
     player.softQueue("wild_level", 1) {
         player.interfaces.sendVisibility(player.gameFrame.name, "wilderness_level", false)

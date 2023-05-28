@@ -6,6 +6,7 @@ import kotlinx.coroutines.coroutineScope
 import net.pearx.kasechange.toSentenceCase
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.bot.navigation.graph.NavigationGraph
+import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
@@ -228,6 +229,7 @@ on<Command>({ prefix == "reset" }) { player: Player ->
     }
     player[if (player.isCurses()) PrayerConfigs.QUICK_CURSES else PrayerConfigs.QUICK_PRAYERS] = emptyList<Any>()
     player["xp_counter"] = 0.0
+    player.clearCamera()
 }
 
 on<Command>({ prefix == "hide" }) { player: Player ->

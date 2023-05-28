@@ -127,13 +127,13 @@ overlay:
   index: 7
 
 main_screen:
-  fixedIndex: 8
-  resizeIndex: 5
-  permanent: false
-
-bank_screen:
   fixedIndex: 18
   resizeIndex: 8
+  permanent: false
+
+wide_screen:
+  fixedIndex: 8
+  resizeIndex: 5
   permanent: false
 
 full_screen:
