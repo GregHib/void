@@ -5,6 +5,9 @@
 *.dat*
 *.jct
 
+# tools
+*.jar
+
 # class files
 *.class
 /bin
