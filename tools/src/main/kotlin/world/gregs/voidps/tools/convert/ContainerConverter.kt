@@ -95,6 +95,7 @@ object ContainerConverter {
                 } else {
                     data["container_${i}"] = mapOf("id" to i, "defaults" to list)
                 }
+                println("$i ${cont.ids!!.mapIndexed { index, it -> "${itemDecoder.getOrNull(it)?.name} ${cont.amounts!![index]}" }.joinToString(separator = ", ")}")
             }
         }
         cache.update()
