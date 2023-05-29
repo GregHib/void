@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItemState
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.offset
 import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.network.encode.*
 import world.gregs.voidps.network.encode.chunk.ChunkUpdate
@@ -47,10 +46,10 @@ class ChunkBatchUpdates(
 
     fun run(player: Player) {
         val previousChunk: Chunk? = player.getOrNull("previous_chunk")
-        val previous = if (previousChunk != null) toChunkCuboid(previousChunk, player.viewport!!.localRadius) else null
+        val previous = previousChunk?.toRectangle(radius = player.viewport!!.localRadius)?.toChunks(player.tile.plane)?.toSet()
         player["previous_chunk"] = player.tile.chunk
         for (chunk in player.tile.chunk.toRectangle(radius = player.viewport!!.localRadius).toChunks(player.tile.plane)) {
-            val entered = previous == null || !previous.contains(chunk.x, chunk.y, chunk.plane)
+            val entered = previous == null || !previous.contains(chunk)
             if (entered) {
                 player.clearChunk(chunk)
                 sendInitial(player, chunk)
@@ -82,8 +81,6 @@ class ChunkBatchUpdates(
     fun reset() {
         batches.clear()
     }
-
-    private fun toChunkCuboid(chunk: Chunk, radius: Int) = Cuboid(chunk.x - radius, chunk.y - radius, chunk.x + radius * 2 + 1, chunk.y + radius * 2 + 1, chunk.plane, chunk.plane)
 
     private fun Player.sendBatch(chunk: Chunk) {
         val encoded = encoded[chunk.id] ?: return
