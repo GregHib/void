@@ -31,7 +31,7 @@ interface TargetStrategy {
             destHeight = height,
             objRot = rotation,
             objShape = exitStrategy,
-            blockAccessFlags = ((bitMask shl rotation) and 0xf) or (bitMask shr (4 - rotation))
+            blockAccessFlags = bitMask
         )
     }
 
