@@ -2,6 +2,7 @@ package world.gregs.voidps.world.interact.world
 
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.ObjectOption
@@ -50,6 +51,7 @@ suspend fun ObjectOption.climb(option: String) {
     } else {
         player.start("climb_delay", 1)
     }
-    teleport.apply(player)
+    val tile = teleport.apply(player.tile)
+    player.tele(tile)
     player.events.emit(Climb)
 }
