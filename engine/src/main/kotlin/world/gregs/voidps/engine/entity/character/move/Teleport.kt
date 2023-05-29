@@ -16,9 +16,9 @@ fun Character.tele(x: Int = tile.x, y: Int = tile.y, plane: Int = tile.plane) = 
 
 fun Character.tele(area: Area) = tele(area.random())
 
-fun Character.tele(tile: Tile, clearMode: Boolean = true) = tele(tile.delta(this.tile), clearMode)
+fun Character.tele(tile: Tile, clearMode: Boolean = true, clearInterfaces: Boolean = true) = tele(tile.delta(this.tile), clearMode, clearInterfaces)
 
-fun Character.tele(delta: Delta, clearMode: Boolean = true) {
+fun Character.tele(delta: Delta, clearMode: Boolean = true, clearInterfaces: Boolean = true) {
     if (delta == Delta.EMPTY) {
         return
     }
@@ -26,9 +26,12 @@ fun Character.tele(delta: Delta, clearMode: Boolean = true) {
         mode = EmptyMode
     }
     if (this is Player) {
-        closeInterfaces()
+        if (clearInterfaces) {
+            closeInterfaces()
+        }
         movementType = MoveType.Teleport
     }
+    steps.clear()
     previousTile = tile.add(delta).add(Direction.WEST)
     Movement.move(this, delta)
 }

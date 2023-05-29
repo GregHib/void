@@ -18,9 +18,6 @@ class NPCUpdateTask(
     private val encoders: List<VisualEncoder<NPCVisuals>>
 ) {
 
-    private val initialEncoders = encoders.filter { it.initial }
-    private val initialFlag = initialEncoders.sumOf { it.mask }
-
     fun run(player: Player) {
         val viewport = player.viewport ?: return
         val npcs = viewport.npcs
@@ -67,7 +64,7 @@ class NPCUpdateTask(
             }
 
             encodeMovement(change, sync, npc)
-            encodeVisuals(updates, npc.visuals.flag, npc.visuals, encoders, client.index)
+            encodeVisuals(updates, npc.visuals.flag, npc.visuals, client.index)
         }
     }
 
@@ -129,7 +126,7 @@ class NPCUpdateTask(
                     continue
                 }
                 val visuals = npc.visuals
-                val flag = visuals.flag and initialFlag
+                val flag = visuals.flag
                 val delta = npc.tile.delta(client.tile)
                 val teleporting = visuals.moved && visuals.walkStep == -1 && visuals.runStep == -1
                 set.add(npc.index)
@@ -141,7 +138,7 @@ class NPCUpdateTask(
                 sync.writeBits(3, (visuals.turn.direction shr 11) - 4)
                 sync.writeBits(1, flag != 0)
                 sync.writeBits(14, npc.def.id)
-                encodeVisuals(updates, flag, visuals, initialEncoders, client.index)
+                encodeVisuals(updates, flag, visuals, client.index)
             }
         }
         sync.writeBits(15, -1)
@@ -158,7 +155,7 @@ class NPCUpdateTask(
         return set.size < LOCAL_NPC_CAP && !set.contains(index) && npc.tile.within(client.tile, viewport.radius)
     }
 
-    private fun encodeVisuals(updates: Writer, flag: Int, visuals: NPCVisuals, encoders: List<VisualEncoder<NPCVisuals>>, index: Int) {
+    private fun encodeVisuals(updates: Writer, flag: Int, visuals: NPCVisuals, index: Int) {
         if (flag == 0) {
             return
         }
@@ -167,6 +164,7 @@ class NPCUpdateTask(
             if (flag and encoder.mask == 0) {
                 continue
             }
+
             encoder.encode(updates, visuals, index)
         }
     }

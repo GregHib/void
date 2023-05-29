@@ -11,8 +11,13 @@ import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.cache.config.encoder.ContainerEncoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
+import world.gregs.voidps.engine.data.FileStorage
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.get
 
+/**
+ * Converts containers from one cache into another, dumping the default values into containers.yml
+ */
 object ContainerConverter {
     @Suppress("USELESS_CAST")
     @JvmStatic
@@ -36,7 +41,12 @@ object ContainerConverter {
         val encoder = ContainerEncoder()
         val cache: Cache = get()
 
-        val itemDecoder = ItemDecoder(cache)
+        val storage = FileStorage()
+        val path = "./data/definitions/containers.yml"
+        val data: MutableMap<String, Any> = storage.load<Map<String, Any>>(path).toMutableMap()
+
+
+        val itemDecoder = ItemDefinitions(ItemDecoder(cache)).load(FileStorage(), "./data/definitions/items.yml")
         decoder = ContainerDecoder(cache)
         var counter = 0
         for (i in 0 until decoder.last) {
@@ -61,10 +71,35 @@ object ContainerConverter {
                 }
                 cache.write(Indices.CONFIGS, CONTAINERS, i, writer.toArray())
 
+                var found: String? = null
+                var int = false
+                data.forEach { (key, value) ->
+                    if (value is Int && value == i) {
+                        found = key
+                        int = true
+                    } else if (value is Map<*, *> && value["id"] as Int == i) {
+                        found = key
+                    }
+                }
+                val list = mutableListOf<Map<String, Int>>()
+                def.ids!!.forEachIndexed { index, id ->
+                    list.add(mapOf(itemDecoder.get(id).stringId to def.amounts!![index]))
+                }
+                if (found != null) {
+                    if (int) {
+                        data[found!!] = mapOf("id" to i)
+                    }
+                    val map = (data[found] as Map<String, Any>).toMutableMap()
+                    map["defaults"] = list
+                    data[found!!] = map
+                } else {
+                    data["container_${i}"] = mapOf("id" to i, "defaults" to list)
+                }
                 println("$i ${cont.ids!!.mapIndexed { index, it -> "${itemDecoder.getOrNull(it)?.name} ${cont.amounts!![index]}" }.joinToString(separator = ", ")}")
             }
         }
         cache.update()
         println("Shops: $counter")
+        storage.save("containers.yml", data)
     }
 }

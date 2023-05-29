@@ -1046,3 +1046,47 @@ cow_calf_light:
 seal:
   id: 13255
   examine: "Arf arf."
+gypsy_aris:
+  id: 9362
+  examine: "A fortune-teller."
+wally:
+  id: 4664
+  examine: "Wally."
+sir_prysin:
+  id: 9359
+  wander_radius: 3
+  examine: "One of the king's knights."
+captain_rovin:
+  id: 884
+  wander_radius: 3
+  examine: "The head of the palace guard."
+traiborn:
+  id: 881
+  wander_radius: 3
+  examine: "An old wizard."
+denath:
+  id: 4663
+  examine: "A practicer of dark arts."
+dark_wizard_water:
+  id: 8871
+  wander_radius: 5
+  examine: "He works evil magic."
+dark_wizard_water_2:
+  id: 8872
+  wander_radius: 5
+  examine: "He works evil magic."
+dark_wizard_earth:
+  id: 8873
+  wander_radius: 5
+  examine: "He works evil magic."
+dark_wizard_earth_2:
+  id: 8874
+  wander_radius: 5
+  examine: "He works evil magic."
+delrith:
+  id: 879
+  race: demon
+  examine: "A freshly summoned demon."
+delrith_weakened:
+  id: 880
+  examine: "The demon doesn't look so strong now."

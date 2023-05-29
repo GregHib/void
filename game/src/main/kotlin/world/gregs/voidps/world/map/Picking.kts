@@ -11,14 +11,16 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
 val GameObject.pickable: Pickable?
     get() = def.getOrNull("pickable")
 
-on<ObjectOption>({ option == "Pick" }) { player: Player ->
+on<ObjectOption>({ operate && option == "Pick" }) { player: Player ->
     val pickable: Pickable = obj.pickable ?: return@on
+    arriveDelay()
     if (player.inventory.add(pickable.item.id)) {
         player.setAnimation("climb_down")
         obj.remove(TimeUnit.SECONDS.toTicks(pickable.respawnDelay))

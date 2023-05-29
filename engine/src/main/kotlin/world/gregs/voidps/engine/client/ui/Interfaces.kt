@@ -126,15 +126,17 @@ class Interfaces(
         return definitions.get(id)["type", "main_screen"]
     }
 
+    private fun getPermanent(id: String): Boolean {
+        return definitions.get(id)["permanent", true]
+    }
+
     private fun sendOpen(id: String) {
         val parent = getParent(id)
         if (parent == ROOT_ID) {
             client?.updateInterface(definitions.get(id).id, 0)
         } else {
-            val type = getType(id)
-            val permanent = type != "main_screen" && type != "underlay" && type != "dialogue_box"
             client?.openInterface(
-                permanent = permanent,
+                permanent = getPermanent(id),
                 parent = definitions.get(parent).id,
                 component = getIndex(id),
                 id = definitions.get(id).id
@@ -220,7 +222,7 @@ fun Character.hasScreenOpen(): Boolean {
     if (this !is Player) {
         return false
     }
-    return hasTypeOpen("main_screen") || hasTypeOpen("underlay")
+    return hasTypeOpen("main_screen") || hasTypeOpen("wide_screen") || hasTypeOpen("underlay")
 }
 
 fun Player.close(interfaceId: String?) = interfaces.close(interfaceId)
@@ -236,7 +238,10 @@ val Player.dialogue: String?
     get() = interfaces.get("dialogue_box") ?: interfaces.get("dialogue_box_small")
 
 val Player.menu: String?
-    get() = interfaces.get("main_screen") ?: interfaces.get("underlay") ?: dialogue
+    get() = interfaces.get("main_screen") ?: interfaces.get("wide_screen") ?: interfaces.get("underlay")
+
+val Player.model: String?
+    get() = menu ?: dialogue
 
 fun Player.closeDialogue(): Boolean {
     if (dialogueSuspension != null) {

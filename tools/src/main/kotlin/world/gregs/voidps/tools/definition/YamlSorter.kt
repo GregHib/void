@@ -13,8 +13,8 @@ object YamlSorter {
     @JvmStatic
     fun main(args: Array<String>) {
         val storage = FileStorage()
-        val path = "./data/definitions/musics.yml"
-        val data: Map<String, Map<String, Any>> = storage.load(path)
-        storage.save(path, data.toList().sortedBy { it.second["id"] as Int }.toMap())
+        val path = "./data/definitions/containers.yml"
+        val data: Map<String, Any> = storage.load(path)
+        storage.save(path, data.toList().sortedBy { (_, value) -> if (value is Int) value else (value as Map<String, Any>)["id"] as Int }.toMap())
     }
 }

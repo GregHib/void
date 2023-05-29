@@ -18,7 +18,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 
-on<NPCOption>({ npc.id == "aubury" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "aubury" && option == "Talk-to" }) { player: Player ->
     if (player["rune_mysteries", "unstarted"] == "completed") {
         npc<Cheerful>("Do you want to buy some runes?")
             val choice = choice("""

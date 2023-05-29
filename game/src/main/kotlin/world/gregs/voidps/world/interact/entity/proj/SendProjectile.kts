@@ -1,4 +1,4 @@
-import world.gregs.voidps.engine.client.update.batch.ChunkBatches
+import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.client.update.batch.addProjectile
 import world.gregs.voidps.engine.data.definition.extra.GraphicDefinitions
 import world.gregs.voidps.engine.entity.Registered
@@ -14,7 +14,7 @@ import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 
 val projectiles: Projectiles by inject()
 val store: EventHandlerStore by inject()
-val batches: ChunkBatches by inject()
+val batches: ChunkBatchUpdates by inject()
 val definitions: GraphicDefinitions by inject()
 
 on<World, ShootProjectile> {
@@ -37,7 +37,7 @@ on<World, ShootProjectile> {
     projectile.def = definitions.get(id)
     store.populate(projectile)
     projectiles.add(projectile)
-    batches.update(tile.chunk, addProjectile(projectile))
+    batches.add(tile.chunk, addProjectile(projectile))
     decay(projectile)
     projectile.events.emit(Registered)
 }

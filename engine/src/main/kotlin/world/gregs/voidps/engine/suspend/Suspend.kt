@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.suspend
 
 import com.github.michaelbull.logging.InlineLogger
+import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.remaining
@@ -30,6 +31,22 @@ fun Player.resumeDialogueSuspension(): Boolean {
     return true
 }
 
+/**
+ * Prevents non-interface player input and most processing
+ */
+suspend fun CharacterContext.delay(ticks: Int = 1) {
+    if (ticks <= 0) {
+        return
+    }
+    character.start("delay", ticks)
+    suspendCancellableCoroutine {
+        character.delay = it
+    }
+}
+
+/**
+ * Interrupt-able pausing
+ */
 suspend fun CharacterContext.pause(ticks: Int = 1) {
     TickSuspension(ticks)
 }
@@ -48,12 +65,15 @@ suspend fun PlayerContext.pauseForever() {
     InfiniteSuspension()
 }
 
+/**
+ * Movement delay, typically used by interactions that perform animations or force movements
+ */
 suspend fun PlayerContext.arriveDelay() {
     val delay = player.remaining("last_movement")
     if (delay == -1) {
         return
     }
-    pause(delay)
+    delay(delay)
 }
 
 context(PlayerContext) fun Player.approachRange(range: Int?, update: Boolean = true) {

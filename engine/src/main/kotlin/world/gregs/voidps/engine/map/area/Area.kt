@@ -42,5 +42,5 @@ interface Area {
 
     fun toRegions(): List<Region>
 
-    fun toChunks(): List<Chunk>
+    fun toChunks(plane: Int = 0): List<Chunk>
 }

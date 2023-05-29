@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.interact.dialogue.Chuckle
 import world.gregs.voidps.world.interact.dialogue.Talk
@@ -22,7 +23,7 @@ import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 
-on<ObjectOption>({ obj.id == "prized_dairy_cow" && option == "Milk" }) { player: Player ->
+on<ObjectOption>({ operate && obj.id == "prized_dairy_cow" && option == "Milk" }) { player: Player ->
     if (!player.hasItem("bucket")) {
         player.message("You'll need an empty bucket to collect the milk.")
         return@on
@@ -34,6 +35,7 @@ on<ObjectOption>({ obj.id == "prized_dairy_cow" && option == "Milk" }) { player:
         player.message("You've already got some top-quality milk; you should take it to the cook.")
         return@on
     }
+    arriveDelay()
     player.setAnimation("milk_cow")
     player.playSound("milk_cow")
     player.start("delay", 5)
@@ -44,8 +46,9 @@ on<ObjectOption>({ obj.id == "prized_dairy_cow" && option == "Milk" }) { player:
     }
 }
 
-on<ObjectOption>({ obj.id == "dairy_cow" && option == "Milk" }) { player: Player ->
+on<ObjectOption>({ operate && obj.id == "dairy_cow" && option == "Milk" }) { player: Player ->
     if (player.hasItem("bucket")) {
+        arriveDelay()
         player.setAnimation("milk_cow")
         player.playSound("milk_cow")
         player.start("delay", 5)

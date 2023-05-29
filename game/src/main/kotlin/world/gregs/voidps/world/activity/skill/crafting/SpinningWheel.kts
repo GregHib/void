@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.activity.skill.crafting
 
 import net.pearx.kasechange.toLowerSpaceCase
+import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.replace
@@ -42,7 +42,7 @@ val treeRoots = listOf(
 val Item.spinning: Spinning
     get() = def["spinning"]
 
-on<ObjectOption>({ obj.id.startsWith("spinning_wheel") && option == "Spin" }) { player: Player ->
+on<ObjectOption>({ operate && obj.id.startsWith("spinning_wheel") && option == "Spin" }) { player: Player ->
     val strings = fibres.map { if (it.id == "tree_roots") "crossbow_string" else it.spinning.to }
     val (index, amount) = makeAmountIndex(
         items = strings,

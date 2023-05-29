@@ -50,4 +50,13 @@ object ObjectDefinitions {
             }
         }
     }
+
+    fun ObjectDecoder.findTransforms(id: Int) {
+        for (i in 0 until last) {
+            val def = getOrNull(i) ?: continue
+            if (def.transformIds?.contains(id) == true) {
+                println("Found $i ${def.transformIds?.contentToString()}")
+            }
+        }
+    }
 }

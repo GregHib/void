@@ -12,7 +12,17 @@ fun Collisions.check(x: Int, y: Int, plane: Int, flag: Int): Boolean {
 
 fun Collisions.check(tile: Tile, flag: Int) = check(tile.x, tile.y, tile.plane, flag)
 
+fun Collisions.print(chunk: Chunk) {
+    for (y in 7 downTo 0) {
+        for (x in 0 until 8) {
+            val value = get(chunk.tile.x + x, chunk.tile.y + y, chunk.plane)
+            print("${if (value == 0) 0 else 1} ")
+        }
+        println()
+    }
+    println()
+}
+
 fun Collisions.clear(chunk: Chunk) {
     deallocateIfPresent(chunk.tile.x, chunk.tile.y, chunk.plane)
-    allocateIfAbsent(chunk.tile.x, chunk.tile.y, chunk.plane)
 }

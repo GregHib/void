@@ -25,7 +25,7 @@ on<Command>({ prefix == "npcs" }) { player: Player ->
 
 on<Command>({ prefix == "npctfm" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)].first()
-    npc.transform(content)
+    npc.transform = content
 }
 
 on<Command>({ prefix == "npcturn" }) { player: Player ->

@@ -30,17 +30,19 @@ import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import kotlin.random.Random
 
 val objects: Objects by inject()
 
-on<ObjectOption>({ option == "Mine" }) { player: Player ->
+on<ObjectOption>({ operate && option == "Mine" }) { player: Player ->
     if (obj.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
         return@on
     }
+    arriveDelay()
     player.softTimers.start("mining")
     onCancel = {
         player.softTimers.stop("mining")
@@ -166,7 +168,7 @@ fun deplete(rock: Rock, obj: GameObject): Boolean {
     return false
 }
 
-on<ObjectOption>({ option == "Prospect" }) { player: Player ->
+on<ObjectOption>({ approach && option == "Prospect" }) { player: Player ->
     if (obj.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
         return@on

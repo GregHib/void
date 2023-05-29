@@ -26,8 +26,8 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<NPCOption>({ npc.id == "sedridor" && option == "Talk-to" }) { player: Player ->
-    when (player.get("rune_mysteries", "unstarted")) {
+on<NPCOption>({ operate && npc.id == "sedridor" && option == "Talk-to" }) { player: Player ->
+    when (player["rune_mysteries", "unstarted"]) {
         "unstarted" -> {
             npc<Cheerful>("""
                 Welcome adventurer, to the world renowned Wizards'
@@ -49,7 +49,7 @@ on<NPCOption>({ npc.id == "sedridor" && option == "Talk-to" }) { player: Player 
     }
 }
 
-on<NPCOption>({ npc.id == "sedridor" && option == "Teleport" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "sedridor" && option == "Teleport" }) { player: Player ->
     teleportEssenceMine()
 }
 

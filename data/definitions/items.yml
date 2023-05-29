@@ -13062,6 +13062,7 @@ silverlight_key_wizard_traiborn:
   tradeable: false
   weight: 1.0
   aka: [ traiborns_key ]
+  destroy: "You can get another one from the wizard Traiborn."
   examine: "The Wizard Traiborn gave me this key to Silverlight's case."
   kept: "Wilderness"
 silverlight_key_captain_rovin:
@@ -13069,6 +13070,7 @@ silverlight_key_captain_rovin:
   tradeable: false
   weight: 1.0
   aka: [ rovins_key ]
+  destroy: "You can get another one from Captain Rovin."
   examine: "Captain Rovin gave me this key to Silverlight's case."
   kept: "Wilderness"
 silverlight_key_sir_prysin:
@@ -13076,6 +13078,7 @@ silverlight_key_sir_prysin:
   tradeable: false
   weight: 1.0
   aka: [ sir_prysins_key ]
+  destroy: "You can get another one from the drain outside the Varrock Palace<br>kitchen."
   examine: "Sir Prysin dropped this key down the drain."
   kept: "Wilderness"
 silverlight:
@@ -13090,6 +13093,7 @@ silverlight:
   crush_def: 2.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   destroy: "You can obtain it from Gideon Bede in the Saradominist church in north-east Varrock. You can also reclaim it from the quest storage chest."
   examine: "The magical sword Silverlight."
   kept: "Reclaim"
@@ -14943,7 +14947,6 @@ casket_easy:
   id: 2714
   tradeable: false
   weight: 5.0
-  destroy: "Destroy"
   examine: "I hope there's treasure in it."
   kept: "Wilderness"
 casket_easy_2:
@@ -35038,7 +35041,6 @@ large_pouch_devious_minds:
   id: 6819
   tradeable: false
   weight: 1.0
-  destroy: "Destroy"
   examine: "A large pouch used for storing essence."
   use: "Quest"
   kept: "Wilderness"
@@ -41225,7 +41227,7 @@ large_teak_bed:
   id: 8035
   weight: 1.0
   examine: "A ready-to-assemble large teak bed."
-"4_poster":
+four_poster:
   id: 8036
   weight: 1.0
   examine: "A ready-to-assemble four-poster bed."
@@ -52212,7 +52214,6 @@ empty_sack_animal_magnetism:
   limit: 100
   tradeable: false
   weight: 0.3
-  destroy: "Destroy"
   examine: "A sack with no cows in it."
   kept: "Wilderness"
 undead_chicken:
@@ -54105,8 +54106,18 @@ dhide_body_g:
   slot: "Chest"
   material: "leather"
   type: "Sleeveless"
+dhide_body_t:
+  id: 10683
+  slot: "Chest"
+  material: "leather"
+  type: "Sleeveless"
 dhide_body_g_2:
   id: 10684
+  slot: "Chest"
+  material: "leather"
+  type: "Sleeveless"
+dhide_body_t_2:
+  id: 10685
   slot: "Chest"
   material: "leather"
   type: "Sleeveless"
@@ -56989,7 +57000,6 @@ karamja_gloves_1:
   range_def: 1.0
   summoning_def: 1.0
   slot: "Hands"
-  destroy: "Destroy"
   examine: "A pair of pale green Karamja gloves."
   kept: "Wilderness"
 antique_lamp_easy_karamja_tasks:
@@ -59467,14 +59477,12 @@ knights_notes:
   id: 11734
   tradeable: false
   weight: 0.085
-  destroy: "Destroy"
   examine: "A scroll for Sir Tiffy. It is sealed with a wax insignia."
   kept: "Vanish"
 knights_notes_opened:
   id: 11735
   tradeable: false
   weight: 0.085
-  destroy: "Destroy"
   examine: "A scroll for Sir Tiffy. The wax seal is broken."
   kept: "Vanish"
 steam_battlestaff:
@@ -69073,7 +69081,6 @@ rock_fragments:
   id: 13379
   tradeable: false
   weight: 0.005
-  destroy: "Destroy"
   examine: "Some rock fragments."
   kept: "Wilderness"
 introduction_letter:
@@ -72595,7 +72602,6 @@ corrupt_dragon_plateskirt:
   summoning_def: 20.0
   slot: "Legs"
   material: "metal"
-  destroy: "Destroy"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 9.071
 corrupt_dragon_plateskirt_noted: 13968
@@ -72615,7 +72621,6 @@ corrupt_dragon_plateskirt_degraded:
   summoning_def: 20.0
   slot: "Legs"
   material: "metal"
-  destroy: "Destroy"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 9.071
 corrupt_dragon_platelegs:
@@ -75539,13 +75544,11 @@ santa_costume_top:
   id: 14600
   weight: 0.25
   slot: "Chest"
-  destroy: "Destroy"
   examine: "A red and jolly top."
 santa_costume_top_2:
   id: 14601
   weight: 0.001
   slot: "Chest"
-  destroy: "Destroy"
   examine: "A red and jolly top."
 santa_costume_gloves:
   id: 14602
@@ -75559,13 +75562,11 @@ santa_costume_gloves:
 santa_costume_legs:
   id: 14603
   slot: "Legs"
-  destroy: "Destroy"
   examine: "Some red and jolly legs."
   weight: 0.25
 santa_costume_legs_2:
   id: 14604
   slot: "Legs"
-  destroy: "Destroy"
   examine: "Some red and jolly legs."
   weight: 0.25
 santa_costume_boots:
@@ -75698,7 +75699,6 @@ phoenix_egg:
   tradeable: false
   weight: 11.5
   examine: "I found this egg in the phoenix's lair, and clapped at it!"
-  destroy: "Destroy"
   kept: "Reclaim"
 cracked_phoenix_egg:
   id: 14630
@@ -76556,7 +76556,6 @@ impling_net:
   tradeable: false
   weight: 0.226
   slot: "Weapon"
-  destroy: "Destroy"
   examine: "For catching implings..."
   kept: "Vanish"
   use: "Removed"
@@ -76566,7 +76565,6 @@ impling_jar_2009_easter_event:
   bankable: false
   tradeable: false
   weight: 0.02
-  destroy: "Destroy"
   examine: "It's got little holes in the top."
   kept: "Vanish"
   use: "Removed"
@@ -77892,7 +77890,6 @@ lunar_ring_i:
   magic: 5.0
   magic_def: 5.0
   slot: "Ring"
-  destroy: "Destroy"
   examine: "A mysterious ring, imbued at Soul Wars."
   kept: "Reclaim"
 ring_of_charos_ai:
@@ -79722,7 +79719,6 @@ talisman_rune_mysteries:
   id: 15361
   tradeable: false
   weight: 0.015
-  destroy: "Destroy"
   examine: "A mysterious power emanates from the talisman..."
   kept: "Reclaim"
   use: "Removed"
@@ -79861,7 +79857,6 @@ experience_lamp:
   bankable: false
   tradeable: false
   weight: 0.02
-  destroy: "Destroy"
   examine: "A mystical lamp engraved with scenes of city life."
   use: "Quest"
   kept: "Vanish"
@@ -79955,7 +79950,6 @@ prophecy_tablet_lighthouse:
   id: 15404
   tradeable: false
   weight: 3.0
-  destroy: "Destroy"
   examine: "This one was found in Silas's dream lighthouse."
   use: "Quest"
   kept: "Wilderness"
@@ -81545,7 +81539,6 @@ dirty_cog:
   bankable: false
   tradeable: false
   weight: 0.085
-  destroy: "Destroy"
   examine: "Looks like this might fit onto the oven."
   kept: "Vanish"
   use: "Removed"
@@ -81557,7 +81550,6 @@ dirty_pistons:
   bankable: false
   tradeable: false
   weight: 0.085
-  destroy: "Destroy"
   examine: "Looks like these might fit onto the oven."
   kept: "Vanish"
   use: "Removed"
@@ -100857,7 +100849,6 @@ casket_elite:
   tradeable: false
   bank_stacks: false
   weight: 5.0
-  destroy: "Destroy"
   examine: "There's treasure in it!"
   kept: "Wilderness"
   use: "Limited"
@@ -107129,3 +107120,39 @@ hati_head:
   destroy: "You can reclaim the hat from Diango in Draynor Village if you destroy it."
   examine: "A hat made from the head of a legendary wolf."
   kept: "Wilderness"
+more: 10165
+back: 10166
+globe:
+  id: 8341
+  examine: "A wooden planet of your very own."
+character_creation_1: 19713
+character_creation_2: 19714
+character_creation_3: 19715
+character_creation_4: 19716
+character_creation_5: 19717
+character_creation_6: 19718
+character_creation_7: 19719
+character_creation_8: 19720
+character_creation_9: 19721
+character_creation_10: 19722
+character_creation_11: 19723
+character_creation_12: 19724
+character_creation_13: 19725
+character_creation_14: 19726
+character_creation_15: 19727
+character_creation_16: 19728
+character_creation_17: 19729
+character_creation_18: 19730
+character_creation_19: 19731
+character_creation_20: 19732
+character_creation_21: 19733
+character_creation_22: 19734
+small_portrait: 8086
+mounted_sword: 8090
+small_landscape: 8091
+guild_trophy: 8092
+large_portrait: 8093
+large_landscape: 8094
+low_level_plants: 8096
+mid_level_plants: 8097
+high_level_plants: 8098

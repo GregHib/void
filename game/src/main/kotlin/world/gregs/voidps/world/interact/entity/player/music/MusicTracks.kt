@@ -35,7 +35,7 @@ class MusicTracks {
         val names = mutableMapOf<String, Int>()
         for ((name, m) in data) {
             val index = m["index"] as Int
-            val areas = (m["areas"] as List<Map<String, List<Int>>>).map {
+            val areas = (m["areas"] as? List<Map<String, List<Int>>>)?.map {
                 if (it.containsKey("region")) {
                     val plane = it["plane"] as? Int ?: -1
                     val region = Region(it["region"] as Int)
@@ -54,7 +54,7 @@ class MusicTracks {
                         Polygon(x, y, plane ?: 0, plane ?: 4)
                     }
                 }
-            }
+            } ?: emptyList()
             for (area in areas) {
                 val track = Track(name, index, area)
                 for (region in area.toRegions()) {

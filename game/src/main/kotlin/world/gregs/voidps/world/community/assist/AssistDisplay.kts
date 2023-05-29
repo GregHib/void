@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.community.assist
 
+import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.set

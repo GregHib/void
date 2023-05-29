@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.weakQueue
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -27,6 +28,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 on<ObjectOption>({ operate && obj.id == "archery_target" && option == "Shoot-at" }, Priority.HIGH) { player: Player ->
     player.closeDialogue()
     player.face(obj)
+    arriveDelay()
     swing(player, obj, 0)
 }
 

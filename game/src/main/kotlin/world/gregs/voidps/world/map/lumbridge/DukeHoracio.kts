@@ -17,15 +17,11 @@ import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ npc.id == "duke_horacio" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "duke_horacio" && option == "Talk-to" }) { player: Player ->
     npc<Talking>("Greetings. Welcome to my castle.")
-        when (player.get("rune_mysteries", "unstarted")) {
-            "unstarted" -> {
-                unstarted()
-            }
-            "started" -> {
-                started()
-            }
+        when (player["rune_mysteries", "unstarted"]) {
+            "unstarted" -> unstarted()
+            "started" -> started()
             else -> completed()
         }
 }
@@ -69,9 +65,7 @@ suspend fun Interaction.started() {
                 item("The Duke hands you the talisman.", "air_talisman", 600)
             }
         }
-        2 -> {
-            findMoney()
-        }
+        2 -> findMoney()
     }
 }
 
@@ -132,9 +126,7 @@ suspend fun Interaction.unstarted() {
                 }
             }
         }
-        2 -> {
-            findMoney()
-        }
+        2 -> findMoney()
     }
 }
 
@@ -151,9 +143,7 @@ suspend fun Interaction.completed() {
                 I'm afraid not.
             """)
         }
-        2 -> {
-            findMoney()
-        }
+        2 -> findMoney()
     }
 }
 

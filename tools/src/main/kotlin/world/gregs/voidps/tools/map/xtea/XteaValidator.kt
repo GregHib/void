@@ -11,7 +11,7 @@ object XteaValidator {
     @JvmStatic
     fun main(args: Array<String>) = runBlocking {
         val cache = CacheDelegate("./data/cache/")
-        val xteas = Xteas().apply { XteaLoader().load(this, "./xteas/") }
+        val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
 
         val archives = cache.getArchives(Indices.MAPS).toSet()
         var total = 0
@@ -27,7 +27,7 @@ object XteaValidator {
                 total++
                 val data = cache.getFile(Indices.MAPS, archive, 0, xteas[region])
                 if (data == null) {
-                    if(xteas.containsKey(region.id)) {
+                    if (xteas.containsKey(region.id)) {
                         println("Failed key ${region.id} $archive ${xteas[region]?.toList()}")
                     }
                     invalid.add(region)

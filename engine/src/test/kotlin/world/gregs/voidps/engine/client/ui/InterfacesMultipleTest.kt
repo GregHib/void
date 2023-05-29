@@ -25,9 +25,9 @@ internal class InterfacesMultipleTest : InterfaceTest() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        every { definitions.get(zero) } returns InterfaceDefinition(id = 0, stringId = "0", extras = mapOf("parent_fixed" to one, "index_fixed" to ROOT_INDEX))
-        every { definitions.get(one) } returns InterfaceDefinition(id = 1, stringId = "1", extras = mapOf("parent_fixed" to two, "index_fixed" to ROOT_INDEX))
-        every { definitions.get(two) } returns InterfaceDefinition(id = 2, stringId = "2", extras = mapOf("parent_fixed" to ROOT_ID, "index_fixed" to ROOT_INDEX))
+        every { definitions.get(zero) } returns InterfaceDefinition(id = 0, stringId = "0", extras = mapOf("parent_fixed" to one, "index_fixed" to ROOT_INDEX, "permanent" to false))
+        every { definitions.get(one) } returns InterfaceDefinition(id = 1, stringId = "1", extras = mapOf("parent_fixed" to two, "index_fixed" to ROOT_INDEX, "permanent" to false))
+        every { definitions.get(two) } returns InterfaceDefinition(id = 2, stringId = "2", extras = mapOf("parent_fixed" to ROOT_ID, "index_fixed" to ROOT_INDEX, "permanent" to false))
     }
 
     @Test

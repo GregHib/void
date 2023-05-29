@@ -1,4 +1,4 @@
-import world.gregs.voidps.engine.client.update.batch.ChunkBatches
+import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.client.update.batch.addSound
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
@@ -11,20 +11,17 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.sound.PlaySound
 
 val store: EventHandlerStore by inject()
-val batches: ChunkBatches by inject()
+val batches: ChunkBatchUpdates by inject()
 val sounds: Sounds by inject()
 
 on<World, PlaySound> {
     val sound = AreaSound(tile, id, radius, repeat, delay, volume, speed, midi, owner)
     store.populate(sound)
-    val update = addSound(sound)
-    batches.addInitial(tile.chunk, update)
-    batches.update(tile.chunk, update)
+    batches.add(tile.chunk, addSound(sound))
     sound.events.emit(Registered)
     val duration = 10// TODO duration from definitions
     World.run("sound_${sound.id}_${sound.tile}", (sound.delay + duration * 30) * sound.repeat) {
         sounds.remove(sound)
         sound.events.emit(Unregistered)
-        batches.removeInitial(tile.chunk, update)
     }
 }

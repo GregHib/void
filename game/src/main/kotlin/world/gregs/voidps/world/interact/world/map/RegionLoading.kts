@@ -45,6 +45,7 @@ on<RegionLogin>({ it.networked }) { player: Player ->
 }
 
 on<RegionRetry>({ it.networked }) { player: Player ->
+    println("Failed to load region. Retrying...")
     updateRegion(player, initial = false, force = true)
 }
 

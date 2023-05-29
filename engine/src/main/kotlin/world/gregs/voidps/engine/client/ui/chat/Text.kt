@@ -1,9 +1,5 @@
 package world.gregs.voidps.engine.client.ui.chat
 
-import net.pearx.kasechange.formatter.CaseFormatterConfig
-import net.pearx.kasechange.splitter.WordSplitter
-import net.pearx.kasechange.toCase
-import net.pearx.kasechange.universalWordSplitter
 import java.text.DecimalFormat
 
 fun String.toIntRange(inclusive: Boolean = false, separator: String = "-"): IntRange {
@@ -73,7 +69,3 @@ fun Int?.toBoolean() = this == 1
 fun Int.nearby(size: Int): IntRange {
     return this - size..this + size
 }
-
-private val capitaliseFormat = CaseFormatterConfig(false, " ", wordCapitalize = false, firstWordCapitalize = true)
-
-fun String.toSentenceCase(from: WordSplitter = universalWordSplitter()): String = toCase(capitaliseFormat, from)

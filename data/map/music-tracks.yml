@@ -2984,3 +2984,7 @@ zaros_zeitgeist:
   areas:
     - x: [ 2900, 2940 ]
       y: [ 5188, 5219 ]
+delrith:
+  index: 195
+wally_the_hero:
+  index: 196

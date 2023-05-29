@@ -39,6 +39,10 @@ value class Region(override val id: Int) : Id {
 
     fun toCuboid(radius: Int) = Cuboid(minus(radius, radius).tile, (radius * 2 + 1) * 64, (radius * 2 + 1) * 64, 4)
 
+    fun offset(region: Region): Tile {
+        return tile.minus(region.tile)
+    }
+
     companion object {
         fun getId(x: Int, y: Int) = (y and 0xff) + ((x and 0xff) shl 8)
         fun getX(id: Int) = id shr 8

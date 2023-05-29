@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.entity.sound.areaSound
@@ -39,7 +40,7 @@ val objects: Objects by inject()
 val minPlayers = 0
 val maxPlayers = 2000
 
-on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
+on<ObjectOption>({ operate && def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
     val tree: Tree = def.getOrNull("woodcutting") ?: return@on
     val hatchet = getBestHatchet(player)
     if (hatchet == null) {
@@ -47,6 +48,7 @@ on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option ==
         player.message("You do not have a hatchet which you have the woodcutting level to use.")
         return@on
     }
+    arriveDelay()
     player.closeDialogue()
     player.softTimers.start("woodcutting")
     onCancel = {
@@ -170,7 +172,7 @@ fun deplete(tree: Tree, obj: GameObject): Boolean {
     if (definitions.contains(stumpId)) {
         val delay = getRegrowTickDelay(tree)
         obj.replace(stumpId, ticks = delay)
-        areaSound("fell_tree", obj.tile, 5)
+        areaSound("fell_tree", obj.tile)
     }
     return true
 }

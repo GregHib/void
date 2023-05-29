@@ -36,12 +36,12 @@ class XteaLoader {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun loadJson(text: String, key: String, value: String): Map<Int, Xtea> {
+    fun loadJson(text: String, key: String = DEFAULT_KEY, value: String = DEFAULT_VALUE): Map<Int, Xtea> {
         val mapper = ObjectMapper(JsonFactory())
         val map: Array<Map<String, Any>> = mapper.readValue(text)
         return map.associate {
             val id = it[key] as Int
-            val keys = it[value] as ArrayList<Int>
+            val keys = it[value] as? ArrayList<Int> ?: emptyList()
             id to keys.toIntArray()
         }
     }

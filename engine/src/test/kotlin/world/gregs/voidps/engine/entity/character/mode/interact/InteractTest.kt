@@ -77,6 +77,7 @@ internal class InteractTest : KoinMock() {
         target = NPC(tile = Tile(10, 10))
         target.visuals = NPCVisuals(0)
         target.collision = CollisionStrategies.Normal
+        target.def = NPCDefinition.EMPTY
     }
 
 
@@ -113,12 +114,7 @@ internal class InteractTest : KoinMock() {
         target.tele(10, 10)
         interact(operate = true, approach = false, suspend = false)
 
-
-        repeat(when (distance) {
-            1 -> 1
-            5 -> 5
-            else -> 2
-        }) {
+        repeat((distance - 1).coerceAtLeast(1)) {
             assertFalse(operated)
             interact.tick()
         }
@@ -138,10 +134,6 @@ internal class InteractTest : KoinMock() {
         repeat(2) {
             interact.tick()
         }
-        if (distance == 12) {
-            assertFalse(approached)
-            interact.tick()
-        }
 
         assertTrue(approached)
     }
@@ -156,7 +148,7 @@ internal class InteractTest : KoinMock() {
         interact.tick()
         assertTrue(approached)
         interact.updateRange(-1, false)
-        repeat(4) {
+        repeat(3) {
             assertFalse(operated)
             interact.tick()
         }

@@ -71,9 +71,11 @@ fun restock() {
 }
 
 fun restock(def: ContainerDefinition, container: world.gregs.voidps.engine.contain.Container) {
+    val defaults = def.getOrNull<List<Map<String, Int>>>("defaults")
     for (index in 0 until def.length) {
-        var maximum = def.amounts?.getOrNull(index)
-        val id = def.ids?.getOrNull(index)
+        val map = defaults?.getOrNull(index)
+        var maximum = map?.values?.firstOrNull()
+        val id = map?.keys?.firstOrNull()
         val item = container[index]
         if (id == null || maximum == null) {
             maximum = 0

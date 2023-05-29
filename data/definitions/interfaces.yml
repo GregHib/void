@@ -774,6 +774,7 @@ prayer_list:
     confirm: 43
 quest_scroll:
   id: 275
+  type: wide_screen
   components:  
     quest_name: 2
     line0: 16-315
@@ -1358,7 +1359,7 @@ barbarian_assult_healer: 488
 barbarian_assult_waiting: 489
 skill_guide:
   id: 499
-  type: underlay
+  type: wide_screen
   components:
     section1: 10-24
 dialogue_poh_hangman_german:
@@ -2127,3 +2128,12 @@ task_system:
     close_hint: 174
     hints: 36
 warriors_guild: 1057
+fade_out:
+  id: 120
+  type: overlay
+fade_in:
+  id: 170
+  type: overlay
+fade_out_smoke:
+  id: 162
+  type: overlay

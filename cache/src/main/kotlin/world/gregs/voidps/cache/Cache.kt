@@ -33,6 +33,12 @@ interface Cache {
 
     fun write(index: Int, archive: Int, file: Int, data: ByteArray, xteas: IntArray? = null)
 
+    fun write(index: Int, archive: String, data: ByteArray, xteas: IntArray? = null)
+
+    fun writeArchiveSector(index: Int, archive: Int, data: ByteArray)
+
+    fun readArchiveSector(index: Int, archive: Int): ByteArray
+
     fun update(): Boolean
 
 }

@@ -1,3 +1,11 @@
+traiborn_bone_spell: 777
+demon_slayer_spell:
+  id: 782
+  height: 0
+  flight_time: [ -1, -1, 30, 30 ]
+demon_slayer_spell_hit: 783
+silverlight_sparkle: 778
+toss_water: 779
 possessed_pickaxe: 309
 woodcutting_stump: 3
 rock: 2429

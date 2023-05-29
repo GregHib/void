@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.proj.Projectile
 import world.gregs.voidps.engine.entity.sound.AreaSound
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.network.chunk.update.*
+import world.gregs.voidps.network.encode.chunk.*
 
 fun addFloorItem(floorItem: FloorItem) = FloorItemAddition(floorItem.def.id, floorItem.amount, floorItem.tile.offset(), floorItem.owner)
 
@@ -26,8 +26,22 @@ fun animateObject(id: String, gameObject: GameObject) = ObjectAnimation(get<Anim
 
 fun removeObject(gameObject: GameObject) = ObjectRemoval(gameObject.tile.offset(), gameObject.type, gameObject.rotation, gameObject.owner)
 
-fun addProjectile(projectile: Projectile) = ProjectileAddition(projectile.def.id, projectile.index, projectile.tile.offset(3), projectile.direction.x, projectile.direction.y, projectile.startHeight, projectile.endHeight, projectile.delay, projectile.flightTime, projectile.curve, projectile.offset, projectile.owner)
+fun addProjectile(projectile: Projectile) = ProjectileAddition(projectile.def.id,
+    projectile.index,
+    projectile.tile.offset(3),
+    projectile.direction.x,
+    projectile.direction.y,
+    projectile.startHeight,
+    projectile.endHeight,
+    projectile.delay,
+    projectile.flightTime,
+    projectile.curve,
+    projectile.offset,
+    projectile.owner)
 
-fun addSound(soundArea: AreaSound) = SoundAddition(soundArea.def.id, soundArea.tile.offset(), soundArea.radius, soundArea.repeat, soundArea.delay, soundArea.volume, soundArea.speed, soundArea.midi, soundArea.owner)
+fun addSound(soundArea: AreaSound) = if (soundArea.midi)
+    MidiAddition(soundArea.def.id, soundArea.tile.offset(), soundArea.radius, soundArea.repeat, soundArea.delay, soundArea.volume, soundArea.speed, soundArea.owner)
+else
+    SoundAddition(soundArea.def.id, soundArea.tile.offset(), soundArea.radius, soundArea.repeat, soundArea.delay, soundArea.volume, soundArea.speed, soundArea.owner)
 
-fun GameObject.animate(id: String) = get<ChunkBatches>().update(tile.chunk, animateObject(id, this))
+fun GameObject.animate(id: String) = get<ChunkBatchUpdates>().add(tile.chunk, animateObject(id, this))

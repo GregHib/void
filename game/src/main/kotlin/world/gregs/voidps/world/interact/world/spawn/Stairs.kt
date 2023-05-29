@@ -2,8 +2,6 @@ package world.gregs.voidps.world.interact.world.spawn
 
 import org.koin.dsl.module
 import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
@@ -45,11 +43,13 @@ class Stairs(
     }
 
     data class Teleport(val id: Int, val option: String, val tile: Tile, val delta: Delta = Delta.EMPTY, val to: Tile = Tile.EMPTY) {
-        fun apply(character: Character) {
-            if (delta != Delta.EMPTY) {
-                character.tele(delta)
+        fun apply(tile: Tile): Tile {
+            return if (delta != Delta.EMPTY) {
+                tile.add(delta)
             } else if (to != Tile.EMPTY) {
-                character.tele(to)
+                to
+            } else {
+                tile
             }
         }
 

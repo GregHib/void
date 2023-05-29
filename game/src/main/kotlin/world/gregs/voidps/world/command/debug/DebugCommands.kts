@@ -1,14 +1,13 @@
 package world.gregs.voidps.world.command.debug
 
+import net.pearx.kasechange.toSentenceCase
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.bot.path.Dijkstra
 import world.gregs.voidps.bot.path.EdgeTraversal
 import world.gregs.voidps.bot.path.NodeTargetStrategy
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.sendContainerItems
-import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
+import world.gregs.voidps.engine.client.*
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
@@ -16,7 +15,6 @@ import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
@@ -28,8 +26,10 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.network.encode.clearCamera
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
+import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
@@ -39,9 +39,34 @@ import kotlin.system.measureTimeMillis
 val collisions: Collisions by inject()
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    player.experience.add(Skill.Prayer, 500.0)
-//    println(player.hasVar("unknown"))
-//    println(player.getVar<Int>("unknown", 0))
+    player.refreshQuestJournal()
+}
+
+on<Command>({ prefix == "reset_cam" }) { player: Player ->
+    player.client?.clearCamera()
+}
+
+on<Command>({ prefix == "move_to" }) { player: Player ->
+    val test = content.split(" ")
+    val viewport = player.viewport!!
+    val result = viewport.lastLoadChunk.safeMinus(viewport.chunkRadius, viewport.chunkRadius)
+    val local = Tile(test[0].toInt(), test[1].toInt()).minus(result.tile)
+    println(local)
+    player.moveCamera(local, test[2].toInt(), test[3].toInt(), test[4].toInt())
+}
+
+on<Command>({ prefix == "look_at" }) { player: Player ->
+    val test = content.split(" ")
+    val viewport = player.viewport!!
+    val result = viewport.lastLoadChunk.safeMinus(viewport.chunkRadius, viewport.chunkRadius)
+    val local = Tile(test[0].toInt(), test[1].toInt()).minus(result.tile)
+    println(local)
+    player.turnCamera(local, test[2].toInt(), test[3].toInt(), test[4].toInt())
+}
+
+on<Command>({ prefix == "shake" }) { player: Player ->
+    val test = content.split(" ")
+    player.shakeCamera(test[0].toInt(), test[1].toInt(), test[2].toInt(), test[3].toInt(), test[4].toInt())
 }
 
 on<Command>({ prefix == "timers" }) { player: Player ->

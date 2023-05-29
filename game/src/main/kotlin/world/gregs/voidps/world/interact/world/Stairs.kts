@@ -2,22 +2,25 @@ package world.gregs.voidps.world.interact.world
 
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.world.spawn.Stairs
 
 val stairs: Stairs by inject()
 
-on<ObjectOption>({ stairs.get(def.id, obj.tile, option) != null }) { _: Player ->
+on<ObjectOption>({ operate && stairs.get(def.id, obj.tile, option) != null }) { _: Player ->
+    arriveDelay()
     climb(option)
 }
 
-on<ObjectOption>({ option == "Climb" && (def.options?.count { it?.startsWith("Climb") == true } ?: 0) > 1 }) { _: Player ->
+on<ObjectOption>({ operate && operate && option == "Climb" && (def.options?.count { it?.startsWith("Climb") == true } ?: 0) > 1 }) { _: Player ->
     val choice = choice(
         title = "What would you like to do?",
         text = """
@@ -48,6 +51,7 @@ suspend fun ObjectOption.climb(option: String) {
     } else {
         player.start("climb_delay", 1)
     }
-    teleport.apply(player)
+    val tile = teleport.apply(player.tile)
+    player.tele(tile)
     player.events.emit(Climb)
 }

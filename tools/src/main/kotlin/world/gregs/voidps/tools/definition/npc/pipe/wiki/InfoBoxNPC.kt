@@ -1,6 +1,6 @@
 package world.gregs.voidps.tools.definition.npc.pipe.wiki
 
-import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
+import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.engine.entity.item.ItemUse
 import world.gregs.voidps.tools.Pipeline

@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.activity.skill.cooking
 
+import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.client.variable.get
@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.weakQueue
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 
@@ -38,6 +39,7 @@ val GameObject.cookingRange: Boolean get() = id.startsWith("cooking_range")
 val GameObject.heatSource: Boolean get() = id.startsWith("fire_") || cookingRange
 
 on<InterfaceOnObject>({ operate && obj.heatSource && item.def.has("cooking") }) { player: Player ->
+    arriveDelay()
     val definition = if (player["sinew", false]) definitions.get("sinew") else if (item.id == "sinew") return@on else item.def
     player["sinew"] = false
     val cooking: Uncooked = definition.getOrNull("cooking") ?: return@on

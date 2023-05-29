@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.network.visual.Visuals
+import kotlin.coroutines.Continuation
 
 interface Character : Entity, Comparable<Character> {
     val index: Int
@@ -20,6 +21,7 @@ interface Character : Entity, Comparable<Character> {
     var queue: ActionQueue
     var softTimers: Timers
     var suspension: Suspension?
+    var delay: Continuation<Unit>?
     var variables: Variables
     val steps: Steps
 

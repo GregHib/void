@@ -7,7 +7,7 @@ import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
-import world.gregs.voidps.engine.client.update.batch.ChunkBatches
+import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.data.definition.extra.*
@@ -30,7 +30,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.file.MapExtract
 import world.gregs.voidps.engine.map.file.MapObjectLoader
-import world.gregs.voidps.engine.map.instance.InstancePool
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
 
@@ -52,9 +51,8 @@ val engineModule = module {
     single { FileStorage() }
     single(named("jsonStorage")) { FileStorage(json = true) }
     // Map
-    single { ChunkBatches() }
+    single { ChunkBatchUpdates(get()) }
     single { DynamicChunks(get(), get(), get()) }
-    single { InstancePool() }
     single { EventHandlerStore() }
     single(createdAtStart = true) { Areas().load() }
     single(createdAtStart = true) {

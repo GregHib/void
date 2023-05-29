@@ -28,7 +28,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.community.clan.clan
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.damageDealers
@@ -86,7 +85,7 @@ fun deathAnimation(npc: NPC): String {
     if (race != null) {
         return "${race}_death"
     }
-    return npc.def["death_anim"]
+    return npc.def.getOrNull("death_anim") ?: ""
 }
 
 fun dropLoot(npc: NPC, killer: Character?, name: String, tile: Tile) {

@@ -24,7 +24,7 @@ on<InterfaceOption>({ id == it.gameFrame.name && component == "world_map" && opt
 on<InterfaceOption>({ id == "world_map" && component == "close" }) { player: Player ->
     // Mechanics are unknown, would need tracking last interface to handle inside Interfaces.kt
     player.client?.updateInterface(definitions.get(player.gameFrame.name).id, 2)
-    player.open(player.gameFrame.name)
+    player.open(player.gameFrame.name, close = false)
 }
 
 on<Moved>({ it.interfaces.contains("world_map") }) { player: Player ->

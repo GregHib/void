@@ -89,12 +89,11 @@ fun fillShop(container: Container, shopId: String) {
     if (!def.has("shop")) {
         logger.warn { "Invalid shop definition $shopId" }
     }
-    val ids = def.ids ?: return
-    val amounts = def.amounts ?: return
+    val list = def.getOrNull<List<Map<String, Int>>>("defaults") ?: return
     for (index in 0 until def.length) {
-        val intId = ids.getOrNull(index) ?: continue
-        val id = itemDefs.getOrNull(intId)?.stringId ?: continue
-        val amount = amounts.getOrNull(index) ?: 0
+        val map = list.getOrNull(index) ?: continue
+        val id = map.keys.firstOrNull() ?: continue
+        val amount = map.values.firstOrNull() ?: 0
         container.transaction { set(index, Item(id, amount)) }
     }
 }

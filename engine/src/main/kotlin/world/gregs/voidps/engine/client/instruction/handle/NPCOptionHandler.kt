@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.instruction.handle.ObjectOptionHandler.C
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -22,8 +23,16 @@ class NPCOptionHandler(
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractNPC) {
+        if (player.hasClock("delay")) {
+            return
+        }
         val npc = npcs.indexed(instruction.npcIndex) ?: return
-        val definition = getDefinition(player, definitions, npc.def, npc.def)
+        var def = npc.def
+        val transform = npc["transform_id", ""]
+        if (transform.isNotBlank()) {
+            def = definitions.get(transform)
+        }
+        val definition = getDefinition(player, definitions, def, def)
         val options = definition.options
         val index = instruction.option - 1
         val selectedOption = options.getOrNull(index)
@@ -36,7 +45,7 @@ class NPCOptionHandler(
             player.message("You are already resting.")
             return
         }
-        player.talkWith(npc)
+        player.talkWith(npc, definition)
         player.mode = Interact(player, npc, NPCOption(player, npc, definition, selectedOption))
     }
 

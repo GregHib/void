@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.obj
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.client.update.batch.ChunkBatches
+import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.client.update.batch.addObject
 import world.gregs.voidps.engine.client.update.batch.removeObject
 import world.gregs.voidps.engine.entity.Registered
@@ -10,11 +10,10 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.network.chunk.ChunkUpdate
 
 class CustomObjects(
     private val objects: Objects,
-    private val batches: ChunkBatches,
+    private val batches: ChunkBatchUpdates,
     private val factory: GameObjectFactory,
     private val collision: GameObjectCollision,
 ) {
@@ -54,55 +53,27 @@ class CustomObjects(
                 despawn(removal, collision)
             }
         } else {
-            val update = addObject(gameObject)
-            batches.update(gameObject.tile.chunk, update)
-            add(gameObject, update)
+            batches.add(gameObject.tile.chunk, addObject(gameObject))
+            objects.addTemp(gameObject)
         }
     }
 
     private fun despawn(gameObject: GameObject, updateCollision: Boolean) {
-        val update = removeObject(gameObject)
-        batches.update(gameObject.tile.chunk, update)
-        remove(gameObject, update)
+        batches.add(gameObject.tile.chunk, removeObject(gameObject))
+        objects.removeTemp(gameObject)
         if (updateCollision) {
             collision.modifyCollision(gameObject, add = false)
         }
         gameObject.events.emit(Unregistered)
     }
 
-    private fun remove(gameObject: GameObject, update: ChunkUpdate) {
-        val previousUpdate = gameObject.update
-        if(previousUpdate != null) {
-            batches.removeInitial(gameObject.tile.chunk, previousUpdate)
-            gameObject.update = null
-        }
-        if (objects.isOriginal(gameObject)) {
-            batches.addInitial(gameObject.tile.chunk, update)
-            gameObject.update = update
-        }
-        objects.removeTemp(gameObject)
-    }
-
     private fun respawn(gameObject: GameObject, updateCollision: Boolean) {
-        val update = addObject(gameObject)
-        batches.update(gameObject.tile.chunk, update)
+        batches.add(gameObject.tile.chunk, addObject(gameObject))
+        objects.addTemp(gameObject)
         if (updateCollision) {
-            collision.modifyCollision(gameObject, add = false)
+            collision.modifyCollision(gameObject, add = true)
         }
         gameObject.events.emit(Registered)
-    }
-
-    private fun add(gameObject: GameObject, update: ChunkUpdate) {
-        val previousUpdate = gameObject.update
-        if (previousUpdate != null) {
-            batches.removeInitial(gameObject.tile.chunk, previousUpdate)
-            gameObject.update = null
-        }
-        if (!objects.isOriginal(gameObject)) {
-            batches.addInitial(gameObject.tile.chunk, update)
-            gameObject.update = update
-        }
-        objects.addTemp(gameObject)
     }
 
     /**
@@ -137,7 +108,7 @@ class CustomObjects(
         ticks: Int = -1,
         owner: String? = null,
         collision: Boolean = true
-    ) {
+    ): GameObject {
         val replacement = factory.spawn(id, tile, type, rotation, owner)
         switch(original, replacement, collision)
         // Revert
@@ -148,6 +119,7 @@ class CustomObjects(
             }
             objects.setTimer(replacement, name)
         }
+        return replacement
     }
 
     /**
@@ -185,14 +157,12 @@ class CustomObjects(
     }
 
     private fun switch(original: GameObject, replacement: GameObject, updateCollision: Boolean) {
-        val removeUpdate = removeObject(original)
         if (original.tile != replacement.tile) {
-            batches.update(original.tile.chunk, removeUpdate)
+            batches.add(original.tile.chunk, removeObject(original))
         }
-        val addUpdate = addObject(replacement)
-        batches.update(replacement.tile.chunk, addUpdate)
-        remove(original, removeUpdate)
-        add(replacement, addUpdate)
+        batches.add(replacement.tile.chunk, addObject(replacement))
+        objects.removeTemp(original)
+        objects.addTemp(replacement)
         if (updateCollision) {
             collision.modifyCollision(original, add = false)
         }
@@ -228,8 +198,8 @@ fun GameObject.remove(ticks: Int = -1, owner: String? = null, collision: Boolean
  * [owner] is also optional to allow for an object to replaced just for one player.
  * [collision] can also be used to disable collision changes
  */
-fun GameObject.replace(id: String, tile: Tile = this.tile, type: Int = this.type, rotation: Int = this.rotation, ticks: Int = -1, owner: String? = null, collision: Boolean = true) {
-    get<CustomObjects>().replace(this, id, tile, type, rotation, ticks, owner, collision)
+fun GameObject.replace(id: String, tile: Tile = this.tile, type: Int = this.type, rotation: Int = this.rotation, ticks: Int = -1, owner: String? = null, collision: Boolean = true): GameObject {
+    return get<CustomObjects>().replace(this, id, tile, type, rotation, ticks, owner, collision)
 }
 
 /**

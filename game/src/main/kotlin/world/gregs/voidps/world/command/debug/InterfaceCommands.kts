@@ -42,7 +42,7 @@ on<Command>({ prefix == "inter" }) { player: Player ->
 }
 
 fun closeInterface(player: Player): Boolean {
-    val id = player.interfaces.get("main_screen") ?: player.interfaces.get("underlay") ?: return false
+    val id = player.interfaces.get("main_screen") ?: player.interfaces.get("wide_screen") ?: player.interfaces.get("underlay") ?: return false
     return player.interfaces.close(id)
 }
 

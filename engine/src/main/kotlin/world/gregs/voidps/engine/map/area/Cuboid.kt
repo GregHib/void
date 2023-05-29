@@ -41,7 +41,7 @@ data class Cuboid(
         return list
     }
 
-    override fun toChunks(): List<Chunk> {
+    override fun toChunks(p: Int): List<Chunk> {
         val list = mutableListOf<Chunk>()
         val max = Tile(maxX, maxY, maxPlane).chunk
         val min = Tile(minX, minY, minPlane).chunk

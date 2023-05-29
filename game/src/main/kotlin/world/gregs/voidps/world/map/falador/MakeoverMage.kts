@@ -301,7 +301,7 @@ on<TimerStart>({ timer == "makeover" }) { _: NPC ->
 on<TimerTick>({ timer == "makeover" }) { npc: NPC ->
     val current: String = npc["transform_id", "makeover_mage_male"]
     val toFemale = current == "makeover_mage_male"
-    npc.transform(if (toFemale) "makeover_mage_female" else "makeover_mage_male")
+    npc.transform = if (toFemale) "makeover_mage_female" else "makeover_mage_male"
     npc.setGraphic("curse_hit", delay = 15)
     npc.setAnimation("bind_staff")
     npc.softQueue("transform", 1) {

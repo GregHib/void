@@ -59,6 +59,46 @@ data class ShootProjectile(
     }
 }
 
+fun Tile.shoot(
+    id: String,
+    target: Character,
+    delay: Int? = null,
+    flightTime: Int? = null,
+    height: Int? = null,
+    endHeight: Int? = null,
+    curve: Int? = null,
+    offset: Int? = null,
+) = projectile(id = id,
+    target = target,
+    flightTime = flightTime,
+    delay = delay,
+    startHeight = height,
+    endHeight = endHeight,
+    curve = curve,
+    offset = offset,
+    targetHeight = target.height,
+    targetTile = target.tile,
+    sourceTile = this)
+
+fun Tile.shoot(
+    id: String,
+    tile: Tile,
+    delay: Int? = null,
+    flightTime: Int? = null,
+    height: Int? = null,
+    endHeight: Int? = null,
+    curve: Int? = null,
+    offset: Int? = null
+) = projectile(id = id,
+    flightTime = flightTime,
+    delay = delay,
+    startHeight = height,
+    endHeight = endHeight,
+    curve = curve,
+    offset = offset,
+    targetTile = tile,
+    sourceTile = this)
+
 fun Character.shoot(
     id: String,
     target: Character,
@@ -68,27 +108,19 @@ fun Character.shoot(
     endHeight: Int? = null,
     curve: Int? = null,
     offset: Int? = null,
-) {
-    val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
-    val time = getFlightTime(definition, tile, target.tile, flightTime)
-    if (time == -1) {
-        return
-    }
-    World.events.emit(
-        ShootProjectile(
-            id = id,
-            tile = tile,
-            direction = target.tile.delta(tile),
-            target = target,
-            delay = delay ?: definition["delay", DEFAULT_DELAY],
-            flightTime = time,
-            startHeight = height ?: (this.height + definition["height", 0]),
-            endHeight = endHeight ?: (target.height + definition["end_height", 0]),
-            curve = curve ?: definition["curve", DEFAULT_CURVE],
-            offset = (size.width * 64) + (offset ?: definition["offset", DEFAULT_OFFSET])
-        )
-    )
-}
+) = projectile(id = id,
+    target = target,
+    flightTime = flightTime,
+    delay = delay,
+    startHeight = height,
+    endHeight = endHeight,
+    curve = curve,
+    offset = offset,
+    width = size.width,
+    sourceHeight = this.height,
+    targetHeight = target.height,
+    targetTile = target.tile,
+    sourceTile = tile)
 
 fun Character.shoot(
     id: String,
@@ -99,23 +131,50 @@ fun Character.shoot(
     endHeight: Int? = null,
     curve: Int? = null,
     offset: Int? = null
+) = projectile(id = id,
+    targetTile = tile,
+    delay = delay,
+    flightTime = flightTime,
+    startHeight = height,
+    endHeight = endHeight,
+    curve = curve,
+    offset = offset,
+    width = size.width,
+    sourceHeight = this.height,
+    sourceTile = this.tile)
+
+private fun projectile(
+    id: String,
+    sourceTile: Tile,
+    delay: Int?,
+    flightTime: Int?,
+    startHeight: Int?,
+    endHeight: Int?,
+    curve: Int?,
+    offset: Int?,
+    targetTile: Tile,
+    target: Character? = null,
+    width: Int = 1,
+    sourceHeight: Int = 0,
+    targetHeight: Int = 0
 ) {
     val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
-    val time = getFlightTime(definition, this.tile, tile, flightTime)
+    val time = getFlightTime(definition, sourceTile, targetTile, flightTime)
     if (time == -1) {
         return
     }
     World.events.emit(
         ShootProjectile(
             id = id,
-            tile = this.tile,
-            direction = tile.delta(this.tile),
+            tile = sourceTile,
+            direction = targetTile.delta(sourceTile),
+            target = target,
             delay = delay ?: definition["delay", DEFAULT_DELAY],
             flightTime = time,
-            startHeight = height ?: (this.height + definition["height", 0]),
-            endHeight = endHeight ?: definition["end_height", 0],
+            startHeight = startHeight ?: (sourceHeight + definition["height", 0]),
+            endHeight = endHeight ?: (targetHeight + definition["end_height", 0]),
             curve = curve ?: definition["curve", DEFAULT_CURVE],
-            offset = (size.width * 64) + (offset ?: definition["offset", DEFAULT_OFFSET])
+            offset = (width * 64) + (offset ?: definition["offset", DEFAULT_OFFSET])
         )
     )
 }

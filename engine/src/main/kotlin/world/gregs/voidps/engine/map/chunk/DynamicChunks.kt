@@ -5,6 +5,7 @@ import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.clear
 import world.gregs.voidps.engine.map.file.MapExtract
 import world.gregs.voidps.engine.map.region.Region
 import java.util.*
@@ -61,9 +62,7 @@ class DynamicChunks(
 
     private fun update(from: Chunk, to: Chunk, rotation: Int, set: Boolean) {
         objects.clear(to)
-        for (tile in to.toRectangle()) {
-            collisions[tile.x, tile.y, tile.plane] = 0
-        }
+        collisions.clear(to)
         extract.loadChunk(from, to, rotation)
         for (region in to.toCuboid(radius = 3).toRegions()) {
             if (set) {

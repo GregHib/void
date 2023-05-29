@@ -1,14 +1,14 @@
 package world.gregs.voidps.engine.entity.character.npc
 
 import world.gregs.voidps.cache.definition.data.NPCDefinition
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.mode.interact.NPCInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
 
 data class NPCOption(
     override val player: Player,
-    val npc: NPC,
+    override val npc: NPC,
     val def: NPCDefinition,
     val option: String
-) : Interaction() {
+) : NPCInteraction() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 }
