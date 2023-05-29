@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
@@ -25,7 +26,8 @@ val doorResetDelay = TimeUnit.MINUTES.toTicks(5)
 // Times a door can be closed consecutively before getting stuck
 val doorStuckCount = 5
 
-on<ObjectOption>({ def.isDoor() && option == "Close" }) { player: Player ->
+on<ObjectOption>({ operate && def.isDoor() && option == "Close" }) { player: Player ->
+    arriveDelay()
     // Prevent players from trapping one another
     if (stuck(player)) {
         return@on
@@ -53,7 +55,8 @@ on<ObjectOption>({ def.isDoor() && option == "Close" }) { player: Player ->
     player.message("The ${def.name.lowercase()} won't budge.")
 }
 
-on<ObjectOption>({ def.isDoor() && option == "Open" }) { player: Player ->
+on<ObjectOption>({ operate && def.isDoor() && option == "Open" }) { player: Player ->
+    arriveDelay()
     val double = getDoubleDoor(objects, obj, def, 0)
 
     if (resetExisting(obj, double)) {
