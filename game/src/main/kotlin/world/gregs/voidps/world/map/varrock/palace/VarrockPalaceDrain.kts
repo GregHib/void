@@ -84,6 +84,7 @@ on<InterfaceOnObject>({ operate && obj.id == "varrock_palace_drain" && item.id.e
 }
 
 on<ObjectOption>({ operate && def.stringId == "demon_slayer_rusty_key" && option == "Take" }) { player: Player ->
+    arriveDelay()
     if (player.inventory.add("silverlight_key_sir_prysin")) {
         player["demon_slayer_drain_dislodged"] = false
         item("You pick up an old rusty key.", "silverlight_key_sir_prysin", 400)

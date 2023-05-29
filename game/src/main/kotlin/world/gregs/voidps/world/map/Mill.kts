@@ -45,6 +45,7 @@ on<ObjectOption>({ operate && obj.id == "hopper_controls" && option == "Operate"
 }
 
 on<InterfaceOnObject>({ operate && obj.id == "hopper" && item.id == "grain" }) { player: Player ->
+    arriveDelay()
     if (player["cooks_assistant", "unstarted"] != "started") {
         player.setAnimation("fill_hopper")
         player.inventory.remove("grain")
@@ -82,6 +83,7 @@ on<ObjectOption>({ operate && obj.id == "flour_bin_3" && option == "Take-flour" 
         player.message("You need an empty pot to hold the flour in.")
         return@on
     }
+    arriveDelay()
     if (player["cooks_assistant", "unstarted"] == "started" && player["cooks_assistant_talked_to_millie", 0] == 1) {
         player.inventory.remove("empty_pot")
         if (player.hasItem("extra_fine_flour") || player.bank.contains("extra_fine_flour")) {

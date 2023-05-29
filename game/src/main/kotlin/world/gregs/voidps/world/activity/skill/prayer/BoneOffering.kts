@@ -12,11 +12,13 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 
 on<InterfaceOnObject>({ operate && container == "inventory" && item.def.has("prayer_xp") && obj.id.startsWith("altar") }) { player: Player ->
+    arriveDelay()
     val tile = Distance.getNearest(obj.tile, obj.size, player.tile)
     val count = player.inventory.count(item.id)
     if (count > 1) {
