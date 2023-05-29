@@ -20,7 +20,17 @@ internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ContainerDefini
     }
 
     override fun expected(): ContainerDefinition {
-        return ContainerDefinition(intId, stringId = id, extras = mapOf("id" to intId, "shop" to true))
+        return ContainerDefinition(intId,
+            stringId = id,
+            extras = mapOf("id" to intId,
+                "shop" to true,
+                "defaults" to listOf(mapOf("bronze_pickaxe" to 10),
+                    mapOf("bronze_hatchet" to 10),
+                    mapOf("iron_hatchet" to 10),
+                    mapOf("steel_hatchet" to 10),
+                    mapOf("iron_battleaxe" to 10),
+                    mapOf("steel_battleaxe" to 10),
+                    mapOf("mithril_battleaxe" to 10))))
     }
 
     override fun empty(): ContainerDefinition {
@@ -32,6 +42,6 @@ internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ContainerDefini
     }
 
     override fun load(definitions: ContainerDefinitions) {
-        definitions.load(FileStorage(), "../data/definitions/containers.yml")
+        definitions.load(FileStorage(), "../data/definitions/containers.yml", mockk(relaxed = true))
     }
 }

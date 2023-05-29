@@ -101,6 +101,7 @@ class ByteArrayChannel : ByteWriteChannel {
         return 0
     }
 
+    @Deprecated("Use write { } instead.")
     override suspend fun writeSuspendSession(visitor: suspend WriterSuspendSession.() -> Unit) {
         // not supported
     }

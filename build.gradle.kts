@@ -30,11 +30,11 @@ allprojects {
 
     tasks {
         compileKotlin {
-            kotlinOptions.jvmTarget = "19"
+            kotlinOptions.jvmTarget = JavaVersion.VERSION_19.toString()
             kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers")
         }
         compileTestKotlin {
-            kotlinOptions.jvmTarget = "19"
+            kotlinOptions.jvmTarget = JavaVersion.VERSION_19.toString()
             kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers")
         }
     }

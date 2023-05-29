@@ -27,7 +27,7 @@ class ContainerDefinitions(
         timedLoad("container extra") {
             decode(storage, path)
             for (def in definitions) {
-                if (def.has("defaults")) {
+                if (def.has("defaults") && def.length > 0) {
                     val list = def.get<List<Map<String, Int>>>("defaults")
                     def.ids = IntArray(def.length) { itemDefs.get(list[it].keys.first()).id }
                     def.amounts = IntArray(def.length) { list[it].values.first() }

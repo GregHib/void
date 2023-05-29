@@ -40,7 +40,7 @@ class XteaLoader {
         val mapper = ObjectMapper(JsonFactory())
         val map: Array<Map<String, Any>> = mapper.readValue(text)
         return map.associate {
-            val id = it[key] as? Int ?: -1
+            val id = it[key] as Int
             val keys = it[value] as? ArrayList<Int> ?: emptyList()
             id to keys.toIntArray()
         }

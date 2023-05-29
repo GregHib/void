@@ -21,7 +21,7 @@ import kotlin.math.max
  * Every [restockTimeTicks] all players shops and [GeneralStores] update their stock by 10%
  */
 val containerDefs: ContainerDefinitions by inject()
-val restockTimeTicks = TimeUnit.SECONDS.toTicks(1)
+val restockTimeTicks = TimeUnit.SECONDS.toTicks(60)
 
 on<Registered> { player: Player ->
     player.softTimers.restart("shop_restock")
