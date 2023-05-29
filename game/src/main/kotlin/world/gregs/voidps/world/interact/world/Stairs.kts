@@ -15,12 +15,12 @@ import world.gregs.voidps.world.interact.world.spawn.Stairs
 
 val stairs: Stairs by inject()
 
-on<ObjectOption>({ stairs.get(def.id, obj.tile, option) != null }) { _: Player ->
+on<ObjectOption>({ operate && stairs.get(def.id, obj.tile, option) != null }) { _: Player ->
     arriveDelay()
     climb(option)
 }
 
-on<ObjectOption>({ option == "Climb" && (def.options?.count { it?.startsWith("Climb") == true } ?: 0) > 1 }) { _: Player ->
+on<ObjectOption>({ operate && operate && option == "Climb" && (def.options?.count { it?.startsWith("Climb") == true } ?: 0) > 1 }) { _: Player ->
     val choice = choice(
         title = "What would you like to do?",
         text = """

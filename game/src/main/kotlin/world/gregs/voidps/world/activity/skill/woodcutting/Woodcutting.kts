@@ -40,7 +40,7 @@ val objects: Objects by inject()
 val minPlayers = 0
 val maxPlayers = 2000
 
-on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
+on<ObjectOption>({ operate && def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
     val tree: Tree = def.getOrNull("woodcutting") ?: return@on
     val hatchet = getBestHatchet(player)
     if (hatchet == null) {

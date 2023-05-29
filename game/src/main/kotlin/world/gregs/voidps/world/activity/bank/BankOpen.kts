@@ -19,11 +19,11 @@ on<Command>({ prefix == "bank" }) { player: Player ->
     player.open("bank")
 }
 
-on<ObjectOption>({ option == "Use-quickly" }) { player: Player ->
+on<ObjectOption>({ operate && option == "Use-quickly" }) { player: Player ->
     player.open("bank")
 }
 
-on<ObjectOption>({ option == "Collect" }) { player: Player ->
+on<ObjectOption>({ operate && option == "Collect" }) { player: Player ->
     player.open("collection_box")
 }
 

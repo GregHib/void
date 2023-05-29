@@ -44,7 +44,7 @@ on<ObjectOption>({ operate && obj.id == "hopper_controls" && option == "Operate"
     }
 }
 
-on<InterfaceOnObject>({ obj.id == "hopper" && item.id == "grain" }) { player: Player ->
+on<InterfaceOnObject>({ operate && obj.id == "hopper" && item.id == "grain" }) { player: Player ->
     if (player["cooks_assistant", "unstarted"] != "started") {
         player.setAnimation("fill_hopper")
         player.inventory.remove("grain")

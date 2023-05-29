@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.weakQueue
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Suspicious
@@ -25,6 +26,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 val logger = InlineLogger()
 
 on<ObjectOption>({ operate && obj.id == "varrock_palace_drain" && option == "Search" }) { player: Player ->
+    arriveDelay()
     player.setAnimation("climb_down")
     if (player["demon_slayer_drain_dislodged", false] || player.hasBanked("silverlight_key_sir_prysin")) {
         player.message("Nothing interesting seems to have been dropped down here today.")
@@ -47,7 +49,8 @@ on<Registered>({ it["demon_slayer_drain_dislodged", false] }) { player: Player -
     player.sendVariable("demon_slayer_drain_dislodged")
 }
 
-on<InterfaceOnObject>({ obj.id == "varrock_palace_drain" && item.id.endsWith("of_water") }) { player: Player ->
+on<InterfaceOnObject>({ operate && obj.id == "varrock_palace_drain" && item.id.endsWith("of_water") }) { player: Player ->
+    arriveDelay()
     val replacement = when {
         item.id.startsWith("bucket_of") -> "bucket"
         item.id.startsWith("jug_of") -> "jug"
