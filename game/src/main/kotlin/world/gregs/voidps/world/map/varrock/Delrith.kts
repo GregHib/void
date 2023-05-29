@@ -35,10 +35,7 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.queue.LogoutBehaviour
-import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.engine.queue.weakQueue
+import world.gregs.voidps.engine.queue.*
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.world.activity.quest.*
 import world.gregs.voidps.world.interact.dialogue.*
@@ -314,14 +311,16 @@ fun PlayerContext.questComplete() {
     player.setAnimation("silverlight_showoff")
     player.setGraphic("silverlight_sparkle")
     player.playSound("equip_silverlight")
-    player["demon_slayer"] = "completed"
-    DemonSlayerSpell.clear(player)
     player.playJingle("quest_complete_1")
+    player["demon_slayer"] = "completed"
     player.inc("quest_points", 3)
-    player.sendQuestComplete("Demon Slayer", listOf(
-        "3 Quest Points",
-        "Silverlight"
-    ), Item("silverlight"))
+    DemonSlayerSpell.clear(player)
+    player.softQueue("quest_complete", 1) {
+        player.sendQuestComplete("Demon Slayer", listOf(
+            "3 Quest Points",
+            "Silverlight"
+        ), Item("silverlight"))
+    }
 }
 
 fun spawnEnergyBarrier(offset: Tile) {

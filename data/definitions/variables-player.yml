@@ -88,7 +88,7 @@ quest_points_total:
   format: map
   default: total
   values:
-    total: 3
+    total: 6
 cooks_assistant:
   id: 29
   persist: true
