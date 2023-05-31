@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.client.update.batch
 
 import world.gregs.voidps.engine.data.definition.extra.AnimationDefinitions
-import world.gregs.voidps.engine.entity.gfx.AreaGraphic
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.offset
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -15,8 +14,6 @@ fun removeFloorItem(floorItem: FloorItem) = FloorItemRemoval(floorItem.def.id, f
 fun revealFloorItem(floorItem: FloorItem, owner: Int) = FloorItemReveal(floorItem.def.id, floorItem.amount, floorItem.tile.offset(), owner, floorItem.owner)
 
 fun updateFloorItem(floorItem: FloorItem, stack: Int, combined: Int) = FloorItemUpdate(floorItem.def.id, floorItem.tile.offset(), stack, combined, floorItem.owner)
-
-fun addGraphic(graphic: AreaGraphic) = GraphicAddition(graphic.graphic.id, graphic.tile.offset(), graphic.graphic.height, graphic.graphic.delay, graphic.graphic.rotation, graphic.owner)
 
 fun addObject(gameObject: GameObject) = ObjectAddition(gameObject.def.id, gameObject.tile.offset(), gameObject.type, gameObject.rotation, gameObject.owner)
 
