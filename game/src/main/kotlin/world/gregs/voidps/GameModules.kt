@@ -6,8 +6,10 @@ import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.navigation.graph.NavigationGraph
 import world.gregs.voidps.bot.path.Dijkstra
 import world.gregs.voidps.bot.path.DijkstraFrontier
+import world.gregs.voidps.world.interact.world.spawn.ItemSpawns
 
 val gameModule = module {
+    single { ItemSpawns() }
     single { TaskManager() }
     single {
         val size = get<NavigationGraph>().size

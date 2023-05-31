@@ -32,7 +32,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevel
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
@@ -59,7 +58,6 @@ import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playMidi
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import world.gregs.voidps.world.interact.world.spawn.Stairs
-import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
 import world.gregs.voidps.world.interact.world.spawn.loadNpcSpawns
 import world.gregs.voidps.world.interact.world.spawn.loadObjectSpawns
 import java.util.concurrent.TimeUnit
@@ -343,12 +341,6 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "container defs", "containers" -> get<ContainerDefinitions>().load()
         "graphic defs", "graphics", "gfx" -> get<GraphicDefinitions>().load()
         "npc defs" -> get<NPCDefinitions>().load()
-        "item defs", "items", "floor items" -> {
-            val floorItems: FloorItems = get()
-            floorItems.clear()
-            get<ItemDefinitions>().load()
-            loadItemSpawns(floorItems)
-        }
         "item on item", "item-on-item" -> {
             get<ItemOnItemDefinitions>().load()
         }
