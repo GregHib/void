@@ -19,7 +19,7 @@ on<Registered> { _: World ->
     loadItemSpawns(items, spawns)
 }
 
-on<Command>({ prefix == "reload" && (content == "item defs" || content == "items" || content == "floor items") }) { player: Player ->
+on<Command>({ prefix == "reload" && (content == "item defs" || content == "items" || content == "floor items") }) { _: Player ->
     items.clear()
     get<ItemDefinitions>().load()
     loadItemSpawns(items, spawns)

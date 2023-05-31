@@ -33,10 +33,14 @@ private data class ItemSpawnData(
     val members: Boolean = false
 )
 
-fun loadItemSpawns(items: FloorItems, spawns: ItemSpawns, storage: FileStorage = get(), path: String = getProperty("itemSpawnsPath")) {
+fun loadItemSpawns(
+    items: FloorItems,
+    spawns: ItemSpawns,
+    storage: FileStorage = get(),
+    path: String = getProperty("itemSpawnsPath")
+) {
     timedLoad("item spawn") {
         spawns.clear()
-        var count = 0
         val data: List<ItemSpawnData> = storage.loadType(path)
         val membersWorld = World.members
         for (item in data) {
@@ -46,8 +50,7 @@ fun loadItemSpawns(items: FloorItems, spawns: ItemSpawns, storage: FileStorage =
             val tile = Tile(item.x, item.y, item.plane)
             spawns.set(tile, ItemSpawn(item.id, item.amount, item.delay))
             items.add(item.id, item.amount, tile)
-            count++
         }
-        count
+        data.size
     }
 }

@@ -325,14 +325,12 @@ on<Command>({ prefix == "reload" }) { player: Player ->
             val defs: ObjectDefinitions = get()
             val custom: CustomObjects = get()
             defs.load()
-            custom.clear()
-            loadObjectSpawns(custom, defs)
+            loadObjectSpawns(custom)
         }
         "nav graph", "ai graph" -> get<NavigationGraph>().load()
         "npcs" -> {
             get<NPCDefinitions>().load()
             val npcs: NPCs = get()
-            npcs.clear()
             loadNpcSpawns(npcs)
         }
         "areas" -> get<Areas>().load()
