@@ -1,62 +1,26 @@
 package world.gregs.voidps.world.interact.entity.proj
 
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
+import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.data.definition.extra.GraphicDefinitions
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.floor.offset
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.network.encode.chunk.ProjectileAddition
 import world.gregs.voidps.world.interact.entity.combat.height
-import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.Companion.DEFAULT_CURVE
-import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.Companion.DEFAULT_DELAY
-import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.Companion.DEFAULT_OFFSET
+import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.DEFAULT_CURVE
+import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.DEFAULT_DELAY
+import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.DEFAULT_OFFSET
 
-data class ShootProjectile(
-    val id: String,
-    val tile: Tile,
-    val direction: Delta,
-    val target: Character? = null,
-    val delay: Int = DEFAULT_DELAY,
-    val flightTime: Int = DEFAULT_FLIGHT,
-    val startHeight: Int = DEFAULT_HEIGHT,
-    val endHeight: Int = startHeight,
-    val curve: Int = DEFAULT_CURVE,
-    val offset: Int = DEFAULT_OFFSET
-) : Event {
-
-    constructor(
-        tile: Tile,
-        target: Character,
-        id: String,
-        delay: Int = DEFAULT_DELAY,
-        flightTime: Int = DEFAULT_FLIGHT,
-        startHeight: Int = DEFAULT_HEIGHT,
-        endHeight: Int = startHeight,
-        curve: Int = DEFAULT_CURVE,
-        offset: Int = DEFAULT_OFFSET,
-        sourceSize: Int = 1
-    ) : this(
-        id = id,
-        tile = tile,
-        direction = target.tile.delta(tile),
-        target = target,
-        delay = delay,
-        flightTime = flightTime,
-        startHeight = startHeight,
-        endHeight = endHeight,
-        curve = curve,
-        offset = (sourceSize * 64) + offset
-    )
-
-    companion object {
-        const val DEFAULT_FLIGHT = 40
-        const val DEFAULT_HEIGHT = 40
-        const val DEFAULT_CURVE = 0
-        const val DEFAULT_OFFSET = 0
-        const val DEFAULT_DELAY = 0
-    }
+object ShootProjectile {
+    const val DEFAULT_FLIGHT = 40
+    const val DEFAULT_HEIGHT = 40
+    const val DEFAULT_CURVE = 0
+    const val DEFAULT_OFFSET = 0
+    const val DEFAULT_DELAY = 0
 }
 
 fun Tile.shoot(
@@ -163,20 +127,52 @@ private fun projectile(
     if (time == -1) {
         return
     }
-    World.events.emit(
-        ShootProjectile(
-            id = id,
-            tile = sourceTile,
-            direction = targetTile.delta(sourceTile),
-            target = target,
-            delay = delay ?: definition["delay", DEFAULT_DELAY],
-            flightTime = time,
-            startHeight = startHeight ?: (sourceHeight + definition["height", 0]),
-            endHeight = endHeight ?: (targetHeight + definition["end_height", 0]),
-            curve = curve ?: definition["curve", DEFAULT_CURVE],
-            offset = (width * 64) + (offset ?: definition["offset", DEFAULT_OFFSET])
-        )
+    sendProjectile(
+        id = id,
+        tile = sourceTile,
+        direction = targetTile.delta(sourceTile),
+        target = target,
+        delay = delay ?: definition["delay", DEFAULT_DELAY],
+        flightTime = time,
+        startHeight = startHeight ?: (sourceHeight + definition["height", 0]),
+        endHeight = endHeight ?: (targetHeight + definition["end_height", 0]),
+        curve = curve ?: definition["curve", DEFAULT_CURVE],
+        offset = (width * 64) + (offset ?: definition["offset", DEFAULT_OFFSET])
     )
+}
+
+
+private fun sendProjectile(
+    id: String,
+    tile: Tile,
+    direction: Delta,
+    target: Character? = null,
+    delay: Int = DEFAULT_DELAY,
+    flightTime: Int = ShootProjectile.DEFAULT_FLIGHT,
+    startHeight: Int = ShootProjectile.DEFAULT_HEIGHT,
+    endHeight: Int = startHeight,
+    curve: Int = DEFAULT_CURVE,
+    offset: Int = DEFAULT_OFFSET
+) {
+    val batches: ChunkBatchUpdates = get()
+    val definitions: GraphicDefinitions = get()
+    var index = if (target != null) target.index + 1 else 0
+    if (target is Player) {
+        index = -index
+    }
+    batches.add(tile.chunk, ProjectileAddition(
+        id = definitions.get(id).id,
+        index = index,
+        tileOffset = tile.offset(3),
+        directionX = direction.x,
+        directionY = direction.y,
+        startHeight = startHeight,
+        endHeight = endHeight,
+        delay = delay,
+        flightTime = flightTime,
+        curve = curve,
+        offset = offset,
+        owner = null))
 }
 
 private fun getFlightTime(definition: GraphicDefinition, tile: Tile, target: Tile, flightTime: Int?): Int {

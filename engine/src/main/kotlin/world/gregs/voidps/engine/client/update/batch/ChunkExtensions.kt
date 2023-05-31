@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.gfx.AreaGraphic
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.offset
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.proj.Projectile
 import world.gregs.voidps.engine.entity.sound.AreaSound
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.encode.chunk.*
@@ -25,19 +24,6 @@ fun addObject(gameObject: GameObject) = ObjectAddition(gameObject.def.id, gameOb
 fun animateObject(id: String, gameObject: GameObject) = ObjectAnimation(get<AnimationDefinitions>().get(id).id, gameObject.tile.offset(), gameObject.type, gameObject.rotation)
 
 fun removeObject(gameObject: GameObject) = ObjectRemoval(gameObject.tile.offset(), gameObject.type, gameObject.rotation, gameObject.owner)
-
-fun addProjectile(projectile: Projectile) = ProjectileAddition(projectile.def.id,
-    projectile.index,
-    projectile.tile.offset(3),
-    projectile.direction.x,
-    projectile.direction.y,
-    projectile.startHeight,
-    projectile.endHeight,
-    projectile.delay,
-    projectile.flightTime,
-    projectile.curve,
-    projectile.offset,
-    projectile.owner)
 
 fun addSound(soundArea: AreaSound) = if (soundArea.midi)
     MidiAddition(soundArea.def.id, soundArea.tile.offset(), soundArea.radius, soundArea.repeat, soundArea.delay, soundArea.volume, soundArea.speed, soundArea.owner)
