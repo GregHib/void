@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.gfx.AreaGraphic
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.sound.AreaSound
 import world.gregs.voidps.engine.get
 import kotlin.reflect.KClass
 
@@ -20,7 +19,7 @@ class EventHandlerStore {
     private val handlers = mutableMapOf<KClass<out Entity>, MutableMap<KClass<out Event>, MutableList<EventHandler>>>()
 
     private val parents = mapOf(
-        Entity::class to listOf(World::class, AreaGraphic::class, FloorItem::class, GameObject::class, AreaSound::class, Character::class),
+        Entity::class to listOf(World::class, AreaGraphic::class, FloorItem::class, GameObject::class, Character::class),
         Character::class to listOf(Player::class, NPC::class)
     )
 
