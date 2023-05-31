@@ -2,6 +2,8 @@ package world.gregs.voidps.engine.client.update.batch
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import kotlinx.io.pool.DefaultPool
+import kotlinx.io.pool.ObjectPool
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.set
@@ -28,6 +30,16 @@ class ChunkBatchUpdates(
 ) : Runnable {
     private val batches: MutableMap<Int, MutableList<ChunkUpdate>> = Int2ObjectOpenHashMap()
     private val encoded: MutableMap<Int, ByteArray> = Int2ObjectOpenHashMap()
+    private val pool: ObjectPool<MutableList<ChunkUpdate>> = object : DefaultPool<MutableList<ChunkUpdate>>(UPDATE_POOL_SIZE) {
+        override fun produceInstance(): MutableList<ChunkUpdate> {
+            return ObjectArrayList()
+        }
+
+        override fun clearInstance(instance: MutableList<ChunkUpdate>): MutableList<ChunkUpdate> {
+            instance.clear()
+            return super.clearInstance(instance)
+        }
+    }
 
     lateinit var floorItems: FloorItems
 
@@ -79,6 +91,9 @@ class ChunkBatchUpdates(
     }
 
     fun reset() {
+        for (value in batches.values) {
+            pool.recycle(value)
+        }
         batches.clear()
     }
 
@@ -89,6 +104,7 @@ class ChunkBatchUpdates(
     }
 
     companion object {
+        private const val UPDATE_POOL_SIZE = 100
         /**
          * Returns the chunk offset for [chunk] relative to [player]'s viewport
          */
@@ -96,6 +112,7 @@ class ChunkBatchUpdates(
             val base = viewport.lastLoadChunk.safeMinus(viewport.chunkRadius, viewport.chunkRadius)
             return chunk.safeMinus(base)
         }
+
         private fun Player.clearChunk(chunk: Chunk) {
             val chunkOffset = getChunkOffset(viewport!!, chunk)
             client?.clearChunk(chunkOffset.x, chunkOffset.y, chunk.plane)
