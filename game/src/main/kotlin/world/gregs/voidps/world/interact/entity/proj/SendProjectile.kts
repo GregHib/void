@@ -6,13 +6,11 @@ import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.proj.Projectile
-import world.gregs.voidps.engine.entity.proj.Projectiles
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 
-val projectiles: Projectiles by inject()
 val store: EventHandlerStore by inject()
 val batches: ChunkBatchUpdates by inject()
 val definitions: GraphicDefinitions by inject()
@@ -36,7 +34,6 @@ on<World, ShootProjectile> {
     )
     projectile.def = definitions.get(id)
     store.populate(projectile)
-    projectiles.add(projectile)
     batches.add(tile.chunk, addProjectile(projectile))
     decay(projectile)
     projectile.events.emit(Registered)
@@ -49,7 +46,6 @@ fun decay(projectile: Projectile) {
     World.run("projectile_${projectile.id}_${projectile.tile}", projectile.delay / 30) {
         projectile.delay = 0
         projectile.flightTime = 0
-        projectiles.remove(projectile)
         projectile.events.emit(Unregistered)
     }
 }
