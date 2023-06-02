@@ -30,15 +30,9 @@ class ChunkBatchUpdates(
 ) : Runnable {
     private val batches: MutableMap<Int, MutableList<ChunkUpdate>> = Int2ObjectOpenHashMap()
     private val encoded: MutableMap<Int, ByteArray> = Int2ObjectOpenHashMap()
-    private val pool: ObjectPool<MutableList<ChunkUpdate>> = object : DefaultPool<MutableList<ChunkUpdate>>(UPDATE_POOL_SIZE) {
-        override fun produceInstance(): MutableList<ChunkUpdate> {
-            return ObjectArrayList()
-        }
-
-        override fun clearInstance(instance: MutableList<ChunkUpdate>): MutableList<ChunkUpdate> {
-            instance.clear()
-            return super.clearInstance(instance)
-        }
+    private val pool: ObjectPool<MutableList<ChunkUpdate>> = object : DefaultPool<MutableList<ChunkUpdate>>(INITIAL_UPDATE_POOL_SIZE) {
+        override fun produceInstance() = ObjectArrayList<ChunkUpdate>()
+        override fun clearInstance(instance: MutableList<ChunkUpdate>) = instance.apply { clear() }
     }
 
     lateinit var floorItems: FloorItems
@@ -83,9 +77,11 @@ class ChunkBatchUpdates(
         for (obj in objects.getAdded(chunk) ?: emptySet()) {
             player.client?.send(ObjectAddition(obj.def.id, obj.tile.offset(), obj.type, obj.rotation, obj.owner))
         }
-        for (item in floorItems[chunk]) {
-            if (item.state == FloorItemState.Public || item.state == FloorItemState.Private && item.owner == player.name) {
-                player.client?.send(FloorItemAddition(item.def.id, item.amount, item.tile.offset(), item.owner))
+        for (tile in chunk.toRectangle(8, 8)) {
+            for (item in floorItems[tile]) {
+                if (item.state == FloorItemState.Public || item.state == FloorItemState.Private && item.owner == player.name) {
+                    player.client?.send(FloorItemAddition(item.def.id, item.amount, tile.offset(), item.owner))
+                }
             }
         }
     }
@@ -104,7 +100,8 @@ class ChunkBatchUpdates(
     }
 
     companion object {
-        private const val UPDATE_POOL_SIZE = 100
+        private const val INITIAL_UPDATE_POOL_SIZE = 100
+
         /**
          * Returns the chunk offset for [chunk] relative to [player]'s viewport
          */
