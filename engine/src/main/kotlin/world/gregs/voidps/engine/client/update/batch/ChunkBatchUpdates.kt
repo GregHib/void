@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.network.encode.chunk.ChunkUpdate
 import world.gregs.voidps.network.encode.clearChunk
@@ -60,7 +61,7 @@ class ChunkBatchUpdates : Runnable {
                     sender.send(player, chunk)
                 }
             }
-            val updates = batches[chunk.id]?.filter { it.private } ?: continue
+            val updates = batches[chunk.id]?.filter { it.private && it.visible(player.name) } ?: continue
             if (!entered) {
                 player.sendBatch(chunk)
             }
