@@ -157,5 +157,5 @@ val players: Players by inject()
 on<Unregistered>({ it.id.startsWith("fire_") }) { gameObject: GameObject ->
     val ownerName = gameObject.owner
     val owner = if (ownerName != null) players.get(ownerName) else null
-    floorItems.add(gameObject.tile, "ashes", revealTicks = 0, disappearTicks = 60, owner = owner)
+    floorItems.add(gameObject.tile, "ashes", revealTicks = FloorItems.IMMEDIATE, disappearTicks = 60, owner = owner)
 }

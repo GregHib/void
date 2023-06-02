@@ -27,7 +27,7 @@ on<Command>({ prefix == "reload" && (content == "item defs" || content == "items
 
 on<Unregistered>({ isSpawnItem(it) }) { floorItem: FloorItem ->
     val spawn = spawns.get(floorItem.tile) ?: return@on
-    items.add(floorItem.tile, spawn.id, spawn.amount, spawn.delay)
+    items.add(floorItem.tile, spawn.id, spawn.amount, revealTicks = spawn.delay, owner = "")
 }
 
 fun isSpawnItem(item: FloorItem): Boolean {

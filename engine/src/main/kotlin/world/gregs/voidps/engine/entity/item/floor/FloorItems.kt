@@ -30,16 +30,17 @@ class FloorItems(
         override fun clearInstance(instance: MutableList<FloorItem>) = instance.apply { clear() }
     }
 
-    fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = -1, disappearTicks: Int = -1, owner: Player? = null): FloorItem {
+    fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = NEVER, disappearTicks: Int = NEVER, owner: Player?) = add(tile, id, amount, revealTicks, disappearTicks, owner?.name)
+
+    fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = NEVER, disappearTicks: Int = NEVER, owner: String? = null): FloorItem {
         val definition = definitions.get(id)
         if (definition.id == -1) {
             logger.warn { "Null floor item $id $tile" }
         }
-        val item = FloorItem(tile, id, amount, revealTicks, disappearTicks, if (revealTicks == 0) null else owner?.name)
+        val item = FloorItem(tile, id, amount, revealTicks, disappearTicks, if (revealTicks == 0) null else owner)
         item.def = definition
         store.populate(item)
         add(item)
-        item.events.emit(Registered)
         return item
     }
 
@@ -53,6 +54,7 @@ class FloorItems(
         }
         if (list.add(item)) {
             batches.add(item.tile.chunk, FloorItemAddition(item.tile.id, item.def.id, item.amount, item.owner))
+            item.events.emit(Registered)
         }
     }
 
@@ -97,6 +99,7 @@ class FloorItems(
             if (list.isEmpty() && data.remove<Int, Any>(item.tile.id, list)) {
                 pool.recycle(list)
             }
+            item.events.emit(Unregistered)
             return true
         }
         return false
@@ -125,6 +128,8 @@ class FloorItems(
     }
 
     companion object {
+        const val IMMEDIATE = 0
+        const val NEVER = -1
         private val logger = InlineLogger()
         private const val MAX_TILE_ITEMS = 128
         private const val INITIAL_POOL_CAPACITY = 10

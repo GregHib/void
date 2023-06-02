@@ -64,8 +64,8 @@ class FloorItemsTest {
         val item = items[Tile.EMPTY].first()
         assertEquals(item.id, "item")
         assertEquals(item.amount, 2)
-        assertEquals(item.disappearTimer, 5)
-        assertEquals(item.revealTimer, 5)
+        assertEquals(item.disappearTicks, 5)
+        assertEquals(item.revealTicks, 5)
         assertEquals(item.owner, "player")
         verify {
             batches.add(Chunk.EMPTY, FloorItemUpdate(

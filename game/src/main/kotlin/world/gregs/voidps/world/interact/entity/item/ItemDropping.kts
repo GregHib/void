@@ -19,7 +19,7 @@ on<ContainerOption>({ container == "inventory" && option == "Drop" }) { player: 
         if (item.tradeable) {
             floorItems.add(player.tile, item.id, item.amount, revealTicks = 100, disappearTicks = 200, owner = player)
         } else {
-            floorItems.add(player.tile, item.id, item.amount, revealTicks = -1, disappearTicks = 300, owner = player)
+            floorItems.add(player.tile, item.id, item.amount, revealTicks = FloorItems.NEVER, disappearTicks = 300, owner = player)
         }
         player.playSound("drop_item")
     } else {

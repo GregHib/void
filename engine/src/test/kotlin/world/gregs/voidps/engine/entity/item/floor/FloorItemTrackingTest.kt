@@ -26,7 +26,7 @@ class FloorItemTrackingTest {
 
     @Test
     fun `Private items are revealed after timer`() {
-        val item = FloorItem(Tile.EMPTY, "item", revealTimer = 10, owner = "player")
+        val item = FloorItem(Tile.EMPTY, "item", revealTicks = 10, owner = "player")
         item.def = ItemDefinition.EMPTY
         items.add(item)
 
@@ -37,12 +37,12 @@ class FloorItemTrackingTest {
 
         assertFalse(item.reveal())
         assertNull(item.owner)
-        assertEquals(0, item.revealTimer)
+        assertEquals(0, item.revealTicks)
     }
 
     @Test
     fun `Public items are removed after timer`() {
-        val item = FloorItem(Tile.EMPTY, "item", disappearTimer = 10, owner = null)
+        val item = FloorItem(Tile.EMPTY, "item", disappearTicks = 10, owner = null)
         item.def = ItemDefinition.EMPTY
         items.add(item)
 
