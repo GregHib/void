@@ -1,11 +1,15 @@
 package world.gregs.voidps.engine.entity.item.floor
 
+import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import kotlinx.io.pool.DefaultPool
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.network.encode.chunk.FloorItemAddition
@@ -15,7 +19,8 @@ import world.gregs.voidps.network.encode.send
 
 class FloorItems(
     private val batches: ChunkBatchUpdates,
-    private val factory: FloorItemFactory
+    private val definitions: ItemDefinitions,
+    private val store: EventHandlerStore
 ) : ChunkBatchUpdates.Sender {
 
     internal val data = Int2ObjectOpenHashMap<MutableList<FloorItem>>()
@@ -24,8 +29,18 @@ class FloorItems(
         override fun clearInstance(instance: MutableList<FloorItem>) = instance.apply { clear() }
     }
 
-    fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = -1, disappearTicks: Int = -1, owner: Player? = null) =
-        factory.spawn(id, amount, tile, revealTicks, disappearTicks, owner).apply { add(this) }
+    fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = -1, disappearTicks: Int = -1, owner: Player? = null): FloorItem {
+        val definition = definitions.get(id)
+        if (definition.id == -1) {
+            logger.warn { "Null floor item $id $tile" }
+        }
+        val item = FloorItem(id, tile, amount, revealTicks, disappearTicks, if (revealTicks == 0) 0 else owner?.index ?: 0)
+        item.def = definition
+        store.populate(item)
+        add(item)
+        item.events.emit(Registered)
+        return item
+    }
 
     fun add(item: FloorItem) {
         val list = data.getOrPut(item.tile.id) { pool.borrow() }
@@ -109,7 +124,9 @@ class FloorItems(
     }
 
     companion object {
+        private val logger = InlineLogger()
         private const val MAX_TILE_ITEMS = 128
         private const val INITIAL_POOL_CAPACITY = 10
     }
 }
+

@@ -12,8 +12,7 @@ data class FloorItemTargetStrategy(
     override val bitMask = 0
     override val tile: Tile
         get() = floorItem.tile
-    override val size: Size
-        get() = floorItem.size
+    override val size: Size = Size.ONE
     override val rotation = 0
     override val exitStrategy = 10
     override val width: Int = 1
