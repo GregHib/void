@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.world.spawn
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.Tile
@@ -34,7 +34,7 @@ private data class ItemSpawnData(
 )
 
 fun loadItemSpawns(
-    items: FloorItems,
+    items: FloorItemStorage,
     spawns: ItemSpawns,
     storage: FileStorage = get(),
     path: String = getProperty("itemSpawnsPath")
@@ -49,7 +49,7 @@ fun loadItemSpawns(
             }
             val tile = Tile(item.x, item.y, item.plane)
             spawns.set(tile, ItemSpawn(item.id, item.amount, item.delay))
-            items.add(item.id, item.amount, tile)
+            items.add(tile, item.id, item.amount)
         }
         data.size
     }

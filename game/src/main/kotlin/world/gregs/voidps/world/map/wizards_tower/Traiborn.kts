@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.mode.interact.NPCInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -23,7 +23,7 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-val items: FloorItems by inject()
+val floorItems: FloorItemStorage by inject()
 val objects: CustomObjects by inject()
 
 var Player.bonesRequired: Int
@@ -213,7 +213,7 @@ suspend fun NPCOption.spinachRoll() {
     player<Talking>("Yes please.")
     player.inventory.add("spinach_roll")
     if (player.inventory.transaction.error != TransactionError.None) {
-        items.add("spinach_roll", 1, player.tile)
+        floorItems.add(player.tile, "spinach_roll")
     }
     item("""
         Traiborn digs around in the pockets of his robes. After

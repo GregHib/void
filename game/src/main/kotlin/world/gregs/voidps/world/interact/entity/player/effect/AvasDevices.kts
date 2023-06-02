@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.TimerStart
@@ -69,7 +69,7 @@ val accumulator = setOf(
     "toy_mouse"
 )
 
-val floorItems: FloorItems by inject()
+val floorItems: FloorItemStorage by inject()
 
 on<Registered> { player: Player ->
     update(player)
@@ -100,7 +100,7 @@ on<TimerTick>({ timer == "junk_collection" }) { player: Player ->
     val junk = if (player.equipped(EquipSlot.Cape).id == "avas_attractor") attractor else accumulator
     val item = junk.random()
     if (!player.inventory.add(item)) {
-        floorItems.add(item, 1, player.tile, 100, 200, player)
+        floorItems.add(player.tile, item, revealTicks = 100, disappearTicks = 200, owner = player)
     }
 }
 

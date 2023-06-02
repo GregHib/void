@@ -27,7 +27,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
@@ -38,7 +38,7 @@ import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
 
-val items: FloorItems by inject()
+val floorItems: FloorItemStorage by inject()
 val objects: Objects by inject()
 
 on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } }) { player: Player ->
@@ -55,7 +55,7 @@ on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } })
     player.closeDialogue()
     player.queue.clearWeak()
     if (player.inventory[logSlot].id == log.id && player.inventory.clear(logSlot)) {
-        val floorItem = items.add(log.id, 1, player.tile, -1, 300, player)
+        val floorItem = floorItems.add(player.tile, log.id, disappearTicks = 300, owner = player)
         player.mode = Interact(player, floorItem, FloorItemOption(player, floorItem, "Light"))
     }
 }
@@ -100,7 +100,7 @@ suspend fun PlayerContext.lightFire(
         } else if (remaining > 0) {
             pause(remaining)
         }
-        if (Level.success(player.levels.get(Skill.Firemaking), fire.chance) && items.remove(floorItem)) {
+        if (Level.success(player.levels.get(Skill.Firemaking), fire.chance) && floorItems.remove(floorItem)) {
             player.message("The fire catches and the logs begin to burn.", ChatType.Filter)
             player.exp(Skill.Firemaking, fire.xp)
             spawnFire(player, floorItem.tile, fire)
@@ -126,7 +126,7 @@ fun Player.canLight(log: String, fire: Fire, item: FloorItem): Boolean {
         message("You can't light a fire here.")
         return false
     }
-    if (!items[item.tile].contains(item)) {
+    if (!floorItems[item.tile].contains(item)) {
         return false
     }
     return true
@@ -157,5 +157,5 @@ val players: Players by inject()
 on<Unregistered>({ it.id.startsWith("fire_") }) { gameObject: GameObject ->
     val ownerName = gameObject.owner
     val owner = if (ownerName != null) players.get(ownerName) else null
-    items.add("ashes", 1, gameObject.tile, 0, 60, owner)
+    floorItems.add(gameObject.tile, "ashes", revealTicks = 0, disappearTicks = 60, owner = owner)
 }

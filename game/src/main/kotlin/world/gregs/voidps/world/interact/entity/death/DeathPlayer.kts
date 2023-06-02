@@ -16,13 +16,12 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.getIntProperty
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.activity.combat.prayer.getActivePrayerVarKey
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.attackers
@@ -32,7 +31,7 @@ import world.gregs.voidps.world.interact.entity.item.tradeable
 import world.gregs.voidps.world.interact.entity.player.equip.ItemsKeptOnDeath
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
-val floorItems: FloorItems by inject()
+val floorItems: FloorItemStorage by inject()
 val enums: EnumDefinitions by inject()
 
 on<Registered> { character: Character ->
@@ -116,8 +115,8 @@ fun drop(
     killer: Character?
 ) {
     if (item.tradeable) {
-        floorItems.add(item.id, item.amount, tile, revealTicks = 180, disappearTicks = 240, owner = if (inWilderness && killer is Player) killer else player)
+        floorItems.add(tile, item.id, item.amount, revealTicks = 180, disappearTicks = 240, owner = if (inWilderness && killer is Player) killer else player)
     } else {
-        floorItems.add("coins", item.amount * item.def.cost, tile, revealTicks = 180, disappearTicks = 240, owner = if (inWilderness && killer is Player) killer else player)
+        floorItems.add(tile, "coins", item.amount * item.def.cost, revealTicks = 180, disappearTicks = 240, owner = if (inWilderness && killer is Player) killer else player)
     }
 }

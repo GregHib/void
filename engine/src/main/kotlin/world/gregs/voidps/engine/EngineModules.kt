@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObjectFactory
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -37,7 +36,6 @@ val engineModule = module {
     single { NPCs(get(), get(), get(), get()) }
     single { Players() }
     single { Objects() }
-    single { FloorItems(get(), get(), get(), get()) }
     single { FloorItemStorage(get(), get()) }
     single { FloorItemTracking(get(), get()) }
     single {
