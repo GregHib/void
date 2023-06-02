@@ -46,7 +46,7 @@ class ChunkBatchUpdates(
 
     override fun run() {
         for ((chunk, updates) in batches) {
-            encoded[chunk] = encodeBatch(updates.filter { !it.private() })
+            encoded[chunk] = encodeBatch(updates.filter { !it.private })
         }
     }
 
@@ -60,7 +60,7 @@ class ChunkBatchUpdates(
                 player.clearChunk(chunk)
                 sendInitial(player, chunk)
             }
-            val updates = batches[chunk.id]?.filter { it.private() && it.visible(player.index) } ?: continue
+            val updates = batches[chunk.id]?.filter { it.private && it.visible(player.index) } ?: continue
             if (!entered) {
                 player.sendBatch(chunk)
             }
