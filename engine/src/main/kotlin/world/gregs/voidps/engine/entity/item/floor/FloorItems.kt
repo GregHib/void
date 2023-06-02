@@ -35,7 +35,7 @@ class FloorItems(
         if (definition.id == -1) {
             logger.warn { "Null floor item $id $tile" }
         }
-        val item = FloorItem(id, tile, amount, revealTicks, disappearTicks, if (revealTicks == 0) null else owner?.name)
+        val item = FloorItem(tile, id, amount, revealTicks, disappearTicks, if (revealTicks == 0) null else owner?.name)
         item.def = definition
         store.populate(item)
         add(item)

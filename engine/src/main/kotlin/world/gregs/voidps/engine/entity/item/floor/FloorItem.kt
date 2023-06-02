@@ -11,8 +11,8 @@ import world.gregs.voidps.engine.map.Tile
  * Not a data class to prevent hash conflicts in lists
  */
 class FloorItem(
-    val id: String,
     override var tile: Tile,
+    val id: String,
     var amount: Int = 1,
     var disappearTimer: Int = -1,
     var revealTimer: Int = -1,
@@ -44,14 +44,14 @@ class FloorItem(
     }
 
     /**
-     * Reveal when owned item's countdown reaches 0
+     * Reveal when owned items countdown reaches 0
      */
-    fun reveal(): Boolean = owner != null && revealTimer >= 0 && revealTimer-- == 0
+    fun reveal(): Boolean = owner != null && revealTimer >= 0 && --revealTimer == 0
 
     /**
-     * Reveal when public item's countdown reaches 0
+     * Reveal when public items countdown reaches 0
      */
-    fun remove(): Boolean = owner == null && disappearTimer >= 0 && disappearTimer-- == 0
+    fun remove(): Boolean = owner == null && disappearTimer >= 0 && --disappearTimer == 0
 
     override fun toString(): String {
         return "FloorItem(id='$id', tile=$tile, amount=$amount, disappearTimer=$disappearTimer, revealTimer=$revealTimer, owner=$owner)"

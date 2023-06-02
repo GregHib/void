@@ -28,14 +28,15 @@ class FloorItemsTest {
     fun `Add floor items`() {
         val first = floorItem("item", Tile.EMPTY)
         items.add(first)
-        val second = floorItem("item", Tile(10, 10))
+        val second = floorItem("item", Tile(10, 10), owner = "player")
         items.add(second)
 
         assertEquals(items[Tile.EMPTY].first(), first)
         assertEquals(items[Tile(10, 10)].first(), second)
         assertTrue(items[Tile(100, 100)].isEmpty())
         verify {
-            batches.add(Chunk.EMPTY, any<FloorItemAddition>())
+            batches.add(Chunk.EMPTY, FloorItemAddition(tile = 0, id = -1, amount = 1, owner = null))
+            batches.add(Chunk(1, 1), FloorItemAddition(tile = 163850, id = -1, amount = 1, owner = "player"))
         }
     }
 
@@ -124,7 +125,7 @@ class FloorItemsTest {
         assertFalse(items.contains(first))
         assertTrue(items.contains(second))
         verify {
-            batches.add(Chunk.EMPTY, FloorItemRemoval(0, -1, null))
+            batches.add(Chunk.EMPTY, FloorItemRemoval(tile = 0, id = -1, owner = null))
         }
     }
 
@@ -167,12 +168,12 @@ class FloorItemsTest {
         val items = items[Tile.EMPTY]
         assertTrue(items.isEmpty())
         verify {
-            batches.add(Chunk.EMPTY, FloorItemRemoval(0, -1, null))
+            batches.add(Chunk.EMPTY, FloorItemRemoval(tile = 0, id = -1, owner = null))
         }
     }
 
     private fun floorItem(id: String, tile: Tile, amount: Int = 1, disappear: Int = -1, reveal: Int = -1, owner: String? = null): FloorItem {
-        val item = FloorItem(id, tile, amount, disappear, reveal, owner)
+        val item = FloorItem(tile, id, amount, disappear, reveal, owner)
         item.def = ItemDefinition.EMPTY
         return item
     }

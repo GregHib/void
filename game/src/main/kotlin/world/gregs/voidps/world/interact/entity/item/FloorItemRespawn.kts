@@ -7,13 +7,13 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.world.spawn.ItemSpawns
 import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
 
 val items: FloorItems by inject()
 val spawns: ItemSpawns by inject()
+val definitions: ItemDefinitions by inject()
 
 on<Registered> { _: World ->
     loadItemSpawns(items, spawns)
@@ -21,7 +21,7 @@ on<Registered> { _: World ->
 
 on<Command>({ prefix == "reload" && (content == "item defs" || content == "items" || content == "floor items") }) { _: Player ->
     items.clear()
-    get<ItemDefinitions>().load()
+    definitions.load()
     loadItemSpawns(items, spawns)
 }
 
