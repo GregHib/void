@@ -12,8 +12,7 @@ import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.EventHandlerStore
@@ -33,7 +32,7 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
     private lateinit var player: Player
     private lateinit var client: Client
     private lateinit var objects: Objects
-    private lateinit var items: FloorItems
+    private lateinit var items: FloorItemStorage
     private lateinit var update: ChunkUpdate
 
     override val modules = listOf(module {
@@ -110,7 +109,7 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
         player.index = 123
         player["previous_chunk"] = lastChunk
         every { update.private } returns true
-        every { update.visible(player.name) } returns true
+        every { update.visible(player.index) } returns true
         // Given
         batches.add(chunk, update)
         // When
@@ -133,7 +132,7 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
         player.index = 123
         player["previous_chunk"] = lastChunk
         every { update.private } returns true
-        every { update.visible(player.name) } returns false
+        every { update.visible(player.index) } returns false
         // Given
         batches.add(chunk, update)
         // When
