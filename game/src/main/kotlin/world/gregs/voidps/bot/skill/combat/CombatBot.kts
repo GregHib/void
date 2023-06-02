@@ -24,7 +24,7 @@ import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.equip.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.hasRequirements
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
@@ -44,7 +44,7 @@ import kotlin.random.Random
 
 val areas: Areas by inject()
 val tasks: TaskManager by inject()
-val floorItems: FloorItemStorage by inject()
+val floorItems: FloorItems by inject()
 
 onBot<VariableSet>({ key == "in_combat" && to == 0 }) { bot: Bot ->
     bot.resume("combat")

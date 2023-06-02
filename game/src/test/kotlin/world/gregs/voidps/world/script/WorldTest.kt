@@ -34,7 +34,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.spawnObject
@@ -66,7 +66,7 @@ abstract class WorldTest : KoinTest {
     private lateinit var store: EventHandlerStore
     private lateinit var players: Players
     private lateinit var npcs: NPCs
-    lateinit var floorItems: FloorItemStorage
+    lateinit var floorItems: FloorItems
     private lateinit var objects: CustomObjects
     private lateinit var accountDefs: AccountDefinitions
     private lateinit var collisions: Collisions

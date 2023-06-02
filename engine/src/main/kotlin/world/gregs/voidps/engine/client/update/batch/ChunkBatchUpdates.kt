@@ -8,32 +8,29 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
-import world.gregs.voidps.engine.entity.item.floor.offset
-import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.network.encode.*
 import world.gregs.voidps.network.encode.chunk.ChunkUpdate
-import world.gregs.voidps.network.encode.chunk.FloorItemAddition
-import world.gregs.voidps.network.encode.chunk.ObjectAddition
-import world.gregs.voidps.network.encode.chunk.ObjectRemoval
 
 /**
  * Groups messages by [Chunk] to send to all subscribed [Player]s
  * Batched messages are sent and cleared at the end of the tick
  * Initial messages are stored until removed and sent on subscription
  */
-class ChunkBatchUpdates(
-    private val objects: Objects
-) : Runnable {
+class ChunkBatchUpdates : Runnable {
     private val batches: MutableMap<Int, MutableList<ChunkUpdate>> = Int2ObjectOpenHashMap()
     private val encoded: MutableMap<Int, ByteArray> = Int2ObjectOpenHashMap()
     private val pool: ObjectPool<MutableList<ChunkUpdate>> = object : DefaultPool<MutableList<ChunkUpdate>>(INITIAL_UPDATE_POOL_SIZE) {
         override fun produceInstance() = ObjectArrayList<ChunkUpdate>()
         override fun clearInstance(instance: MutableList<ChunkUpdate>) = instance.apply { clear() }
     }
+    private val senders = mutableListOf<Sender>()
 
-    lateinit var floorItems: FloorItemStorage
+    interface Sender {
+        fun send(player: Player, chunk: Chunk)
+    }
+
+    fun register(sender: Sender) = senders.add(sender)
 
     /**
      * Adds [update] to the batch update for [chunk]
@@ -56,7 +53,9 @@ class ChunkBatchUpdates(
             val entered = previous == null || !previous.contains(chunk)
             if (entered) {
                 player.clearChunk(chunk)
-                sendInitial(player, chunk)
+                for (sender in senders) {
+                    sender.send(player, chunk)
+                }
             }
             val updates = batches[chunk.id]?.filter { it.private && it.visible(player.index) } ?: continue
             if (!entered) {
@@ -64,23 +63,6 @@ class ChunkBatchUpdates(
             }
             for (update in updates) {
                 player.client?.send(update)
-            }
-        }
-    }
-
-    private fun sendInitial(player: Player, chunk: Chunk) {
-        for (obj in objects.getRemoved(chunk) ?: emptySet()) {
-            player.client?.send(ObjectRemoval(obj.tile.offset(), obj.type, obj.rotation))
-        }
-        for (obj in objects.getAdded(chunk) ?: emptySet()) {
-            player.client?.send(ObjectAddition(obj.def.id, obj.tile.offset(), obj.type, obj.rotation))
-        }
-        for (tile in chunk.toRectangle(8, 8)) {
-            for (item in floorItems.get(tile)) {
-                if (item.owner != 0 && item.owner != player.index) {
-                    continue
-                }
-                player.client?.send(FloorItemAddition(item.def.id, item.amount, tile.offset(), item.owner))
             }
         }
     }

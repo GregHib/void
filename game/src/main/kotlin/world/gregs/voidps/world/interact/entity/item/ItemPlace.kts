@@ -7,13 +7,13 @@ import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Distance.getNearest
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-val floorItems: FloorItemStorage by inject()
+val floorItems: FloorItems by inject()
 
 on<InterfaceOnObject>({ operate && obj.id.startsWith("table") }) { player: Player ->
     if (!World.members && item.def["members", false]) {

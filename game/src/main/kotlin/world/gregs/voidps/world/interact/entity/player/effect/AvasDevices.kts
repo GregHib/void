@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.TimerStart
@@ -69,7 +69,7 @@ val accumulator = setOf(
     "toy_mouse"
 )
 
-val floorItems: FloorItemStorage by inject()
+val floorItems: FloorItems by inject()
 
 on<Registered> { player: Player ->
     update(player)

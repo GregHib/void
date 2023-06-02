@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.weaponStyle
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -300,7 +300,7 @@ private fun remove(player: Player, target: Character, ammo: String, required: In
             }
 
             if (random > 1.0 - dropChance && !get<Collisions>().check(target.tile.x, target.tile.y, target.tile.plane, CollisionFlag.FLOOR)) {
-                get<FloorItemStorage>().add(target.tile, ammo, required, revealTicks = 100, disappearTicks = 200, owner = player)
+                get<FloorItems>().add(target.tile, ammo, required, revealTicks = 100, disappearTicks = 200, owner = player)
             }
         }
     }

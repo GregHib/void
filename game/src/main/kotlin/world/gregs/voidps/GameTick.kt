@@ -22,8 +22,8 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.network.NetworkQueue
 import world.gregs.voidps.network.visual.NPCVisuals
@@ -42,7 +42,7 @@ import world.gregs.voidps.network.visual.encode.player.*
 fun getTickStages(
     players: Players,
     npcs: NPCs,
-    items: FloorItemStorage,
+    items: FloorItems,
     floorItems: FloorItemTracking,
     objects: Objects,
     queue: NetworkQueue,

@@ -14,8 +14,9 @@ import world.gregs.voidps.engine.data.definition.extra.*
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.drop.DropTables
-import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
+import world.gregs.voidps.engine.entity.item.floor.FloorItemFactory
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObjectFactory
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -35,8 +36,9 @@ val engineModule = module {
     // Entities
     single { NPCs(get(), get(), get(), get()) }
     single { Players() }
-    single { Objects() }
-    single { FloorItemStorage(get(), get()) }
+    single { Objects().apply { get<ChunkBatchUpdates>().register(this) } }
+    single { FloorItems(get(), get()).apply { get<ChunkBatchUpdates>().register(this) } }
+    single { FloorItemFactory(get(), get()) }
     single { FloorItemTracking(get(), get()) }
     single {
         PlayerFactory(get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath"), get(), get(), Tile(
@@ -47,7 +49,7 @@ val engineModule = module {
     single { FileStorage() }
     single(named("jsonStorage")) { FileStorage(json = true) }
     // Map
-    single { ChunkBatchUpdates(get()) }
+    single { ChunkBatchUpdates() }
     single { DynamicChunks(get(), get(), get()) }
     single { EventHandlerStore() }
     single(createdAtStart = true) { Areas().load() }

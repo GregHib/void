@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.network.encode.chunk.FloorItemReveal
 
 class FloorItemTracking(
-    private val items: FloorItemStorage,
+    private val items: FloorItems,
     private val batches: ChunkBatchUpdates
 ) : Runnable {
 

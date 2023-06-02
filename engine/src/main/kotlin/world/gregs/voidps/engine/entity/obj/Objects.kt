@@ -1,17 +1,23 @@
 package world.gregs.voidps.engine.entity.obj
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.entity.BatchList
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.floor.offset
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
+import world.gregs.voidps.network.encode.chunk.ObjectAddition
+import world.gregs.voidps.network.encode.chunk.ObjectRemoval
+import world.gregs.voidps.network.encode.send
 
 class Objects(
     override val chunks: MutableMap<Int, MutableList<GameObject>> = Int2ObjectOpenHashMap(),
     private val added: MutableMap<Int, MutableSet<GameObject>> = Int2ObjectOpenHashMap(),
     private val removed: MutableMap<Int, MutableSet<GameObject>> = Int2ObjectOpenHashMap(),
     private val timers: MutableMap<GameObject, String> = mutableMapOf()
-) : BatchList<GameObject> {
+) : BatchList<GameObject>, ChunkBatchUpdates.Sender {
 
     fun addTemp(gameObject: GameObject): Boolean {
         return if (isOriginal(gameObject)) {
@@ -102,4 +108,12 @@ class Objects(
         return added.values.flatten().union(removed.values.flatten())
     }
 
+    override fun send(player: Player, chunk: Chunk) {
+        for (obj in getRemoved(chunk) ?: emptySet()) {
+            player.client?.send(ObjectRemoval(obj.tile.offset(), obj.type, obj.rotation))
+        }
+        for (obj in getAdded(chunk) ?: emptySet()) {
+            player.client?.send(ObjectAddition(obj.def.id, obj.tile.offset(), obj.type, obj.rotation))
+        }
+    }
 }

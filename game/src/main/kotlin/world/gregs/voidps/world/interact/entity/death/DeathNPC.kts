@@ -23,7 +23,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
-import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
@@ -37,7 +37,7 @@ import world.gregs.voidps.world.interact.entity.item.tradeable
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val npcs: NPCs by inject()
-val floorItems: FloorItemStorage by inject()
+val floorItems: FloorItems by inject()
 val tables: DropTables by inject()
 
 on<Registered> { character: Character ->

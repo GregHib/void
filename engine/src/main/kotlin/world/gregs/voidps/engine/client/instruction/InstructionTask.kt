@@ -6,13 +6,13 @@ import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.Objects
 
 class InstructionTask(
     private val players: Players,
     npcs: NPCs,
-    items: FloorItemStorage,
+    items: FloorItems,
     objects: Objects,
     objectDefinitions: ObjectDefinitions,
     npcDefinitions: NPCDefinitions,

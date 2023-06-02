@@ -13,15 +13,15 @@ import world.gregs.voidps.network.encode.chunk.FloorItemAddition
 import world.gregs.voidps.network.encode.chunk.FloorItemRemoval
 import world.gregs.voidps.network.encode.chunk.FloorItemUpdate
 
-class FloorItemStorageTest {
+class FloorItemsTest {
 
-    private lateinit var items: FloorItemStorage
+    private lateinit var items: FloorItems
     private lateinit var batches: ChunkBatchUpdates
 
     @BeforeEach
     fun setup() {
         batches = mockk(relaxed = true)
-        items = FloorItemStorage(batches, mockk())
+        items = FloorItems(batches, mockk())
     }
 
     @Test

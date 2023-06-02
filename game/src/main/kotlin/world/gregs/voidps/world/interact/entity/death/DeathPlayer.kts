@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.getIntProperty
 import world.gregs.voidps.engine.inject
@@ -31,7 +31,7 @@ import world.gregs.voidps.world.interact.entity.item.tradeable
 import world.gregs.voidps.world.interact.entity.player.equip.ItemsKeptOnDeath
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
-val floorItems: FloorItemStorage by inject()
+val floorItems: FloorItems by inject()
 val enums: EnumDefinitions by inject()
 
 on<Registered> { character: Character ->

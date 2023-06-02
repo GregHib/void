@@ -7,22 +7,21 @@ import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.network.encode.chunk.FloorItemAddition
 import world.gregs.voidps.network.encode.chunk.FloorItemRemoval
 import world.gregs.voidps.network.encode.chunk.FloorItemUpdate
+import world.gregs.voidps.network.encode.send
 
-class FloorItemStorage(
+class FloorItems(
     private val batches: ChunkBatchUpdates,
     private val factory: FloorItemFactory
-) {
+) : ChunkBatchUpdates.Sender {
 
     internal val data = Int2ObjectOpenHashMap<MutableList<FloorItem>>()
     private val pool = object : DefaultPool<MutableList<FloorItem>>(INITIAL_POOL_CAPACITY) {
         override fun produceInstance() = ObjectArrayList<FloorItem>()
         override fun clearInstance(instance: MutableList<FloorItem>) = instance.apply { clear() }
-    }
-    init {
-        batches.floorItems = this
     }
 
     fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = -1, disappearTicks: Int = -1, owner: Player? = null): FloorItem {
@@ -99,6 +98,17 @@ class FloorItemStorage(
             pool.recycle(list)
         }
         data.clear()
+    }
+
+    override fun send(player: Player, chunk: Chunk) {
+        for (tile in chunk.toRectangle(8, 8)) {
+            for (item in data.get(tile.id) ?: continue) {
+                if (item.owner != 0 && item.owner != player.index) {
+                    continue
+                }
+                player.client?.send(FloorItemAddition(item.def.id, item.amount, tile.offset(), item.owner))
+            }
+        }
     }
 
     companion object {

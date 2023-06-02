@@ -5,14 +5,14 @@ import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
-import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.world.spawn.ItemSpawns
 import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
 
-val items: FloorItemStorage by inject()
+val items: FloorItems by inject()
 val spawns: ItemSpawns by inject()
 
 on<Registered> { _: World ->

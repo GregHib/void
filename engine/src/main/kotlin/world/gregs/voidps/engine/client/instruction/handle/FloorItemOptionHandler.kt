@@ -8,11 +8,11 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
-import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.network.instruct.InteractFloorItem
 
 class FloorItemOptionHandler(
-    private val items: FloorItemStorage
+    private val items: FloorItems
 ) : InstructionHandler<InteractFloorItem>() {
 
     private val logger = InlineLogger()
