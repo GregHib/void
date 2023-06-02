@@ -29,7 +29,7 @@ class FloorItem private constructor(
     }
 
     fun combine(other: FloorItem): Boolean {
-        if (def.stackable == 0) {
+        if (def.stackable != 1) {
             return false
         }
         val stack = amount

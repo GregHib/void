@@ -6,6 +6,6 @@ abstract class ChunkUpdate(
     val size: Int
 ) {
     open val private: Boolean = false
-    open fun visible(owner: Int): Boolean = false
+    open fun visible(owner: String): Boolean = false
 
 }

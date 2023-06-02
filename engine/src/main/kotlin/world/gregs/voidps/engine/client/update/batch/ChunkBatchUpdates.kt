@@ -60,7 +60,7 @@ class ChunkBatchUpdates(
                 player.clearChunk(chunk)
                 sendInitial(player, chunk)
             }
-            val updates = batches[chunk.id]?.filter { it.private && it.visible(player.index) } ?: continue
+            val updates = batches[chunk.id]?.filter { it.private && it.visible(player.name) } ?: continue
             if (!entered) {
                 player.sendBatch(chunk)
             }
@@ -80,7 +80,7 @@ class ChunkBatchUpdates(
         for (tile in chunk.toRectangle(8, 8)) {
             for (item in floorItems[tile]) {
                 if (item.state == FloorItemState.Public || item.state == FloorItemState.Private && item.owner == player.name) {
-                    player.client?.send(FloorItemAddition(item.def.id, item.amount, tile.offset(), 0))
+                    player.client?.send(FloorItemAddition(item.def.id, item.amount, tile.offset(), item.owner))
                 }
             }
         }
