@@ -15,25 +15,21 @@ class FloorItem private constructor(
     override var tile: Tile,
     var amount: Int,
     override val size: Size,
-    val owner: String?
+    var owner: Int
 ) : Entity {
 
-    constructor(id: String, tile: Tile, amount: Int = 1, disappear: Int = -1, reveal: Int = -1, owner: String? = null) : this(id, tile, amount, Size.ONE, owner) {
+    constructor(id: String, tile: Tile, amount: Int = 1, disappear: Int = -1, reveal: Int = -1, owner: Int = 0) : this(id, tile, amount, Size.ONE, owner) {
         this.disappearTimer = disappear
         this.revealTimer = reveal
     }
 
-    val value: Long
-        get() = def.cost * amount.toLong()
-
     override val events: Events = Events(this)
+    lateinit var def: ItemDefinition
     var disappearTimer: Int = -1
     var revealTimer: Int = -1
 
-    lateinit var def: ItemDefinition
-
-    var state: FloorItemState = if (owner == null) FloorItemState.Public else FloorItemState.Private
-
+    val value: Long
+        get() = def.cost * amount.toLong()
 
     fun combine(other: FloorItem): Boolean {
         if (def.stackable != 1) {

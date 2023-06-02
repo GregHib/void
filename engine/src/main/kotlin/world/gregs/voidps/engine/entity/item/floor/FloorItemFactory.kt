@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.item.floor
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 
@@ -25,7 +24,7 @@ class FloorItemFactory(
         if (definitions.getOrNull(id) == null) {
             logger.warn { "Null floor item $id $tile" }
         }
-        val item = FloorItem(id, tile, amount, revealTicks, disappearTicks, if (revealTicks == 0) null else owner?.name)
+        val item = FloorItem(id, tile, amount, revealTicks, disappearTicks, if (revealTicks == 0) 0 else owner?.index ?: 0)
         item.def = definition
         store.populate(item)
         return item

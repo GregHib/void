@@ -57,7 +57,7 @@ class FloorItemStorage(
      * Combine the amount's of two [FloorItem]
      */
     private fun combined(list: List<FloorItem>, item: FloorItem): Boolean {
-        if (item.owner == null) {
+        if (item.owner == 0) {
             return false
         }
         val existing = list.firstOrNull { it.owner == item.owner && it.id == item.id } ?: return false

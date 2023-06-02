@@ -53,10 +53,10 @@ class FloorItemStorageTest {
 
     @Test
     fun `Adding two private stackable items combines them`() {
-        val first = floorItem("item", Tile.EMPTY, owner = "player", disappear = 5, reveal = 5)
+        val first = floorItem("item", Tile.EMPTY, owner = 123, disappear = 5, reveal = 5)
         first.def = ItemDefinition(stackable = 1)
         items.add(first)
-        val second = floorItem("item", Tile.EMPTY, owner = "player", disappear = 10, reveal = 10)
+        val second = floorItem("item", Tile.EMPTY, owner = 123, disappear = 10, reveal = 10)
         second.def = ItemDefinition(stackable = 1)
         items.add(second)
 
@@ -65,23 +65,23 @@ class FloorItemStorageTest {
         assertEquals(item.amount, 2)
         assertEquals(item.disappearTimer, 5)
         assertEquals(item.revealTimer, 5)
-        assertEquals(item.owner, "player")
+        assertEquals(item.owner, 123)
         verify {
             batches.add(Chunk.EMPTY, FloorItemUpdate(
                 id = -1,
                 tileOffset = 0,
                 stack = 1,
                 combined = 2,
-                owner = "player"
+                owner = 123
             ))
         }
     }
 
     @Test
     fun `Don't combine non-stackable items`() {
-        val first = floorItem("item", Tile.EMPTY, owner = "player")
+        val first = floorItem("item", Tile.EMPTY, owner = 123)
         items.add(first)
-        val second = floorItem("item", Tile.EMPTY, owner = "player")
+        val second = floorItem("item", Tile.EMPTY, owner = 123)
         items.add(second)
         val items = items.get(Tile.EMPTY)
         assertEquals(first, items[0])
@@ -90,9 +90,9 @@ class FloorItemStorageTest {
 
     @Test
     fun `Don't combine two overflowing two private stacks`() {
-        val first = floorItem("item", Tile.EMPTY, Int.MAX_VALUE - 10, owner = "player")
+        val first = floorItem("item", Tile.EMPTY, Int.MAX_VALUE - 10, owner = 123)
         items.add(first)
-        val second = floorItem("item", Tile.EMPTY, 20, owner = "player")
+        val second = floorItem("item", Tile.EMPTY, 20, owner = 123)
         items.add(second)
 
         val items = items.get(Tile.EMPTY)
@@ -102,9 +102,9 @@ class FloorItemStorageTest {
 
     @Test
     fun `Public items aren't combined`() {
-        val first = floorItem("item", Tile.EMPTY, owner = null, disappear = 5, reveal = -1)
+        val first = floorItem("item", Tile.EMPTY, owner = 0, disappear = 5, reveal = -1)
         items.add(first)
-        val second = floorItem("item", Tile.EMPTY, owner = "player", disappear = 10, reveal = 10)
+        val second = floorItem("item", Tile.EMPTY, owner = 123, disappear = 10, reveal = 10)
         items.add(second)
 
         val items = items.get(Tile.EMPTY)
@@ -124,7 +124,7 @@ class FloorItemStorageTest {
         assertFalse(items.contains(first))
         assertTrue(items.contains(second))
         verify {
-            batches.add(Chunk.EMPTY, FloorItemRemoval(-1, 0, null))
+            batches.add(Chunk.EMPTY, FloorItemRemoval(-1, 0, 0))
         }
     }
 
@@ -136,7 +136,7 @@ class FloorItemStorageTest {
             items.add(item)
         }
 
-        val item = floorItem("item", Tile.EMPTY, owner = "player")
+        val item = floorItem("item", Tile.EMPTY, owner = 123)
         item.def = ItemDefinition(cost = 10)
         items.add(item)
 
@@ -167,11 +167,11 @@ class FloorItemStorageTest {
         val items = items.get(Tile.EMPTY)
         assertTrue(items.isEmpty())
         verify {
-            batches.add(Chunk.EMPTY, FloorItemRemoval(-1, 0, null))
+            batches.add(Chunk.EMPTY, FloorItemRemoval(-1, 0, 0))
         }
     }
 
-    private fun floorItem(id: String, tile: Tile, amount: Int = 1, disappear: Int = -1, reveal: Int = -1, owner: String? = null): FloorItem {
+    private fun floorItem(id: String, tile: Tile, amount: Int = 1, disappear: Int = -1, reveal: Int = -1, owner: Int = 0): FloorItem {
         val item = FloorItem(id, tile, amount, disappear, reveal, owner)
         item.def = ItemDefinition.EMPTY
         return item
