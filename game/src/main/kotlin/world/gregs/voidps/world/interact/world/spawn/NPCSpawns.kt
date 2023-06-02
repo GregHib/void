@@ -5,19 +5,25 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
+import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timedLoad
 
-fun loadNpcSpawns(npcs: NPCs, storage: FileStorage = get(), path: String = getProperty("npcSpawnsPath")) {
+fun loadNpcSpawns(
+    npcs: NPCs,
+    storage: FileStorage = get(),
+    path: String = getProperty("npcSpawnsPath")
+) {
     timedLoad("npc spawn") {
-        val data: List<Map<String, Any>> = storage.load(path)
-        val areas = data.map { NPCSpawn.fromMap(it) }
+        npcs.clear()
+        val data: List<NPCSpawn> = storage.loadType(path)
         val membersWorld = World.members
-        for (spawn in areas) {
+        for (spawn in data) {
             if (!membersWorld && spawn.members) {
                 continue
             }
-            npcs.add(spawn.id, spawn.tile, spawn.direction, spawn.delay)
+            val tile = Tile(spawn.x, spawn.y, spawn.plane)
+            npcs.add(spawn.id, tile, spawn.direction, spawn.delay)
         }
-        areas.size
+        data.size
     }
 }

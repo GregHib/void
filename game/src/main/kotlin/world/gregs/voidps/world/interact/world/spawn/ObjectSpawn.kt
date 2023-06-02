@@ -1,13 +1,11 @@
 package world.gregs.voidps.world.interact.world.spawn
 
-import world.gregs.voidps.engine.entity.Direction
-
-data class NPCSpawn(
+data class ObjectSpawn(
     val id: String,
     val x: Int,
     val y: Int,
     val plane: Int = 0,
-    val delay: Int? = null,
-    val direction: Direction = Direction.NONE,
+    val type: Int,
+    val rotation: Int = 0,
     val members: Boolean = false
 )

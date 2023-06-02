@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.data
 
 import com.fasterxml.jackson.core.JsonGenerator
+import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.exc.MismatchedInputException
 import com.fasterxml.jackson.databind.module.SimpleModule
@@ -28,6 +29,8 @@ class FileStorage private constructor(
     private val writer = mapper.writerWithDefaultPrettyPrinter()
 
     inline fun <reified T : Any> load(path: String): T = mapper.readValue(File(path), T::class.java)
+
+    inline fun <reified T : Any> loadType(path: String): T = mapper.readValue(File(path), object : TypeReference<T>() {})
 
     inline fun <reified T : Any> loadOrNull(path: String): T? {
         val file = File(path)

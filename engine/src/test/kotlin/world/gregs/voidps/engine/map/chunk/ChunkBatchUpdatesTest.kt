@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.EventHandlerStore
@@ -31,10 +31,7 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
     private lateinit var batches: ChunkBatchUpdates
     private lateinit var player: Player
     private lateinit var client: Client
-    private lateinit var objects: Objects
-    private lateinit var items: FloorItems
     private lateinit var update: ChunkUpdate
-    private val chunk = Chunk(0)
 
     override val modules = listOf(module {
         single { EventHandlerStore() }
@@ -44,20 +41,16 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
     fun setup() {
         player = Player()
         client = mockk(relaxed = true)
-        objects = mockk(relaxed = true)
         update = mockk(relaxed = true)
-        items = mockk(relaxed = true)
         mockkStatic("world.gregs.voidps.network.encode.ChunkEncodersKt")
         mockkStatic("world.gregs.voidps.network.encode.ChunkUpdateEncodersKt")
         mockkStatic("world.gregs.voidps.engine.entity.character.player.PlayerVisualsKt")
-        every { update.visible(any()) } returns true
         every { update.size } returns 2
         player.client = client
         player["logged_in"] = false
         player.viewport = Viewport()
         player.viewport!!.size = 0
-        batches = ChunkBatchUpdates(objects)
-        batches.floorItems = items
+        batches = ChunkBatchUpdates()
     }
 
     @Test
@@ -66,20 +59,23 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
         val chunk = Chunk(2, 2)
         batches.add(chunk, update)
         player.tile = Tile(20, 20)
+        val objects = Objects()
+        batches.register(objects)
         val added = GameObject("4321", Tile(20, 21), 10, 0)
         added.def = ObjectDefinition(id = 4321)
-        every { objects.getAdded(chunk) } returns setOf(added)
+        objects.addTemp(added)
         val removed = GameObject("1234", Tile(21, 20), 10, 0)
         removed.def = ObjectDefinition(id = 1234)
-        every { objects.getRemoved(chunk) } returns setOf(removed)
+        objects.add(removed)
+        objects.removeTemp(removed)
         player["logged_in"] = true
         // When
         batches.run(player)
         // Then
         verify {
             client.clearChunk(2, 2, 0)
-            client.send(ObjectRemoval(84, 10, 0, null))
-            client.send(ObjectAddition(4321, 69, 10, 0, null))
+            client.send(ObjectRemoval(tile = 344084, type = 10, rotation = 0))
+            client.send(ObjectAddition(tile = 327701, id = 4321, type = 10, rotation = 0))
         }
     }
 
@@ -109,7 +105,8 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
         val lastChunk = Chunk(10, 10, 1)
         player.tile = chunk.tile
         player["previous_chunk"] = lastChunk
-        every { update.private() } returns true
+        every { update.private } returns true
+        every { update.visible(player.name) } returns true
         // Given
         batches.add(chunk, update)
         // When
@@ -120,6 +117,25 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
         }
         verify(exactly = 0) {
             client.clearChunk(7, 7, 1)
+        }
+    }
+
+    @Test
+    fun `External private updates are ignored`() {
+        // Given
+        val chunk = Chunk(11, 11, 1)
+        val lastChunk = Chunk(10, 10, 1)
+        player.tile = chunk.tile
+        player["previous_chunk"] = lastChunk
+        every { update.private } returns true
+        every { update.visible(player.name) } returns false
+        // Given
+        batches.add(chunk, update)
+        // When
+        batches.run(player)
+        // Then
+        verify(exactly = 0) {
+            client.send(update)
         }
     }
 }

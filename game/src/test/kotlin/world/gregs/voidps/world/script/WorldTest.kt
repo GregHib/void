@@ -166,6 +166,7 @@ abstract class WorldTest : KoinTest {
                 get(),
                 get(),
                 get(),
+                get(),
                 get<ConnectionQueue>(),
                 get(),
                 get(),
@@ -194,8 +195,8 @@ abstract class WorldTest : KoinTest {
 
     @BeforeEach
     fun beforeEach() {
-        loadObjectSpawns(objects, get())
-        loadItemSpawns(floorItems)
+        loadObjectSpawns(objects)
+        loadItemSpawns(floorItems, get())
     }
 
     @AfterEach

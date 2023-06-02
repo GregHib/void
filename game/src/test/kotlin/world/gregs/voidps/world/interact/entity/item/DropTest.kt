@@ -32,7 +32,7 @@ internal class DropTest : WorldTest() {
     fun `Pickup item off the floor`() {
         val tile = emptyTile
         val player = createPlayer("player", tile)
-        val item = floorItems.add("bronze_sword", 1, tile.add(0, 2))
+        val item = floorItems.add(tile.add(0, 2), "bronze_sword")
 
         player.floorItemOption(item, "Take")
         tick(5)
@@ -59,7 +59,7 @@ internal class DropTest : WorldTest() {
     fun `Drop stackable items on one another`() {
         val tile = emptyTile
         val player = createPlayer("player", tile)
-        floorItems.add("coins", 500, tile, owner = player)
+        floorItems.add(tile, "coins", 500, owner = player)
         player.inventory.add("coins", 500)
 
         player.interfaceOption("inventory", "container", "Drop", 4, Item("coins", 500), 0)
@@ -73,7 +73,7 @@ internal class DropTest : WorldTest() {
     fun `Drop items on one another`() {
         val tile = emptyTile
         val player = createPlayer("player", tile)
-        floorItems.add("bronze_sword", 1, tile)
+        floorItems.add(tile, "bronze_sword")
         player.inventory.add("bronze_sword")
 
         player.interfaceOption("inventory", "container", "Drop", 4, Item("bronze_sword", 1), 0)
@@ -114,7 +114,7 @@ internal class DropTest : WorldTest() {
     fun `Pickup item up off a table`() {
         val tile = Tile(3212, 3218, 1)
         val player = createPlayer("player", tile)
-        val item = floorItems.add("bronze_sword", 1, tile.add(1, 0))
+        val item = floorItems.add(tile.add(1, 0), "bronze_sword")
 
         player.floorItemOption(item, "Take")
         tick(5)

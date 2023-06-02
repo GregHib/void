@@ -1,47 +1,16 @@
 package world.gregs.voidps.engine.client.update.batch
 
 import world.gregs.voidps.engine.data.definition.extra.AnimationDefinitions
-import world.gregs.voidps.engine.entity.gfx.AreaGraphic
-import world.gregs.voidps.engine.entity.item.floor.FloorItem
-import world.gregs.voidps.engine.entity.item.floor.offset
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.proj.Projectile
-import world.gregs.voidps.engine.entity.sound.AreaSound
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.network.encode.chunk.*
+import world.gregs.voidps.network.encode.chunk.ObjectAddition
+import world.gregs.voidps.network.encode.chunk.ObjectAnimation
+import world.gregs.voidps.network.encode.chunk.ObjectRemoval
 
-fun addFloorItem(floorItem: FloorItem) = FloorItemAddition(floorItem.def.id, floorItem.amount, floorItem.tile.offset(), floorItem.owner)
+fun addObject(gameObject: GameObject) = ObjectAddition(gameObject.tile.id, gameObject.def.id, gameObject.type, gameObject.rotation)
 
-fun removeFloorItem(floorItem: FloorItem) = FloorItemRemoval(floorItem.def.id, floorItem.tile.offset(), floorItem.owner)
+fun animateObject(id: String, gameObject: GameObject) = ObjectAnimation(gameObject.tile.id, get<AnimationDefinitions>().get(id).id, gameObject.type, gameObject.rotation)
 
-fun revealFloorItem(floorItem: FloorItem, owner: Int) = FloorItemReveal(floorItem.def.id, floorItem.amount, floorItem.tile.offset(), owner, floorItem.owner)
-
-fun updateFloorItem(floorItem: FloorItem, stack: Int, combined: Int) = FloorItemUpdate(floorItem.def.id, floorItem.tile.offset(), stack, combined, floorItem.owner)
-
-fun addGraphic(graphic: AreaGraphic) = GraphicAddition(graphic.graphic.id, graphic.tile.offset(), graphic.graphic.height, graphic.graphic.delay, graphic.graphic.rotation, graphic.owner)
-
-fun addObject(gameObject: GameObject) = ObjectAddition(gameObject.def.id, gameObject.tile.offset(), gameObject.type, gameObject.rotation, gameObject.owner)
-
-fun animateObject(id: String, gameObject: GameObject) = ObjectAnimation(get<AnimationDefinitions>().get(id).id, gameObject.tile.offset(), gameObject.type, gameObject.rotation)
-
-fun removeObject(gameObject: GameObject) = ObjectRemoval(gameObject.tile.offset(), gameObject.type, gameObject.rotation, gameObject.owner)
-
-fun addProjectile(projectile: Projectile) = ProjectileAddition(projectile.def.id,
-    projectile.index,
-    projectile.tile.offset(3),
-    projectile.direction.x,
-    projectile.direction.y,
-    projectile.startHeight,
-    projectile.endHeight,
-    projectile.delay,
-    projectile.flightTime,
-    projectile.curve,
-    projectile.offset,
-    projectile.owner)
-
-fun addSound(soundArea: AreaSound) = if (soundArea.midi)
-    MidiAddition(soundArea.def.id, soundArea.tile.offset(), soundArea.radius, soundArea.repeat, soundArea.delay, soundArea.volume, soundArea.speed, soundArea.owner)
-else
-    SoundAddition(soundArea.def.id, soundArea.tile.offset(), soundArea.radius, soundArea.repeat, soundArea.delay, soundArea.volume, soundArea.speed, soundArea.owner)
+fun removeObject(gameObject: GameObject) = ObjectRemoval(gameObject.tile.id, gameObject.type, gameObject.rotation)
 
 fun GameObject.animate(id: String) = get<ChunkBatchUpdates>().add(tile.chunk, animateObject(id, this))

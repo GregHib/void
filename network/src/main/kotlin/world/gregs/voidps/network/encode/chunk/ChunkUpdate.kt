@@ -5,8 +5,10 @@ abstract class ChunkUpdate(
     val packetIndex: Int,
     val size: Int
 ) {
-    abstract fun visible(name: String): Boolean
+    open val private: Boolean = false
 
-    open fun private(): Boolean = false
-
+    /**
+     * Compare with username as index could have changed on logout.
+     */
+    open fun visible(owner: String): Boolean = false
 }

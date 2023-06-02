@@ -16,18 +16,6 @@ fun encodeBatch(messages: Collection<ChunkUpdate>): ByteArray {
     return writeChannel.toByteArray()
 }
 
-fun Client.sendBatch(messages: Collection<ChunkUpdate>, chunkOffsetX: Int, chunkOffsetY: Int, chunkPlane: Int) {
-    send(Protocol.BATCH_UPDATE_CHUNK, messages.sumOf { it.size + 1 } + 3, Client.SHORT) {
-        writeByteInverse(chunkOffsetX)
-        writeByteSubtract(chunkPlane)
-        writeByteSubtract(chunkOffsetY)
-        messages.forEach { update ->
-            writeByte(update.packetIndex)
-            encode(update)
-        }
-    }
-}
-
 fun Client.sendBatch(messages: ByteArray, chunkOffsetX: Int, chunkOffsetY: Int, chunkPlane: Int) {
     send(Protocol.BATCH_UPDATE_CHUNK, messages.size + 3, Client.SHORT) {
         writeByteInverse(chunkOffsetX)
@@ -62,30 +50,30 @@ suspend fun ByteWriteChannel.encode(update: ChunkUpdate) {
 private suspend fun ByteWriteChannel.floorItemAddition(update: FloorItemAddition) {
     writeShortLittle(update.amount)
     writeShortLittle(update.id)
-    writeByte(update.tileOffset)
+    writeByte(offset(update.tile))
 }
 
 private suspend fun ByteWriteChannel.floorItemRemoval(update: FloorItemRemoval) {
     writeShortAddLittle(update.id)
-    writeByteSubtract(update.tileOffset)
+    writeByteSubtract(offset(update.tile))
 }
 
 private suspend fun ByteWriteChannel.floorItemReveal(update: FloorItemReveal) {
     writeShortLittle(update.amount)
-    writeByte(update.tileOffset)
+    writeByte(offset(update.tile))
     writeShortAdd(update.id)
     writeShortAdd(update.ownerIndex)
 }
 
 private suspend fun ByteWriteChannel.floorItemUpdate(update: FloorItemUpdate) {
-    writeByte(update.tileOffset)
+    writeByte(offset(update.tile))
     writeShort(update.id)
     writeShort(update.stack)
     writeShort(update.combined)
 }
 
 private suspend fun ByteWriteChannel.graphicAddition(update: GraphicAddition) {
-    writeByte(update.tileOffset)
+    writeByte(offset(update.tile))
     writeShort(update.id)
     writeByte(update.height)
     writeShort(update.delay)
@@ -93,7 +81,7 @@ private suspend fun ByteWriteChannel.graphicAddition(update: GraphicAddition) {
 }
 
 private suspend fun ByteWriteChannel.midiAddition(update: MidiAddition) {
-    writeByte(update.tileOffset)
+    writeByte(offset(update.tile))
     writeShort(update.id)
     writeByte((update.radius shl 4) or update.repeat)
     writeByte(update.delay)
@@ -104,22 +92,22 @@ private suspend fun ByteWriteChannel.midiAddition(update: MidiAddition) {
 private suspend fun ByteWriteChannel.objectAddition(update: ObjectAddition) {
     writeByteSubtract((update.type shl 2) or update.rotation)
     writeShort(update.id)
-    writeByteAdd(update.tileOffset)
+    writeByteAdd(offset(update.tile))
 }
 
 private suspend fun ByteWriteChannel.objectAnimation(update: ObjectAnimation) {
     writeShortLittle(update.id)
-    writeByteSubtract(update.tileOffset)
+    writeByteSubtract(offset(update.tile))
     writeByteInverse((update.type shl 2) or update.rotation)
 }
 
 private suspend fun ByteWriteChannel.objectRemoval(update: ObjectRemoval) {
     writeByteAdd((update.type shl 2) or update.rotation)
-    writeByte(update.tileOffset)
+    writeByte(offset(update.tile))
 }
 
 private suspend fun ByteWriteChannel.projectileAddition(update: ProjectileAddition) {
-    writeByte(update.tileOffset)
+    writeByte(offset(update.tile, 3))
     writeByte(update.directionX)
     writeByte(update.directionY)
     writeShort(update.index)
@@ -133,10 +121,13 @@ private suspend fun ByteWriteChannel.projectileAddition(update: ProjectileAdditi
 }
 
 private suspend fun ByteWriteChannel.soundAddition(update: SoundAddition) {
-    writeByte(update.tileOffset)
+    writeByte(offset(update.tile))
     writeShort(update.id)
     writeByte((update.radius shl 4) or update.repeat)
     writeByte(update.delay)
     writeByte(update.volume)
     writeShort(update.speed)
 }
+
+
+private fun offset(tile: Int, bit: Int = 4) = ((tile shr 14 and 0x3fff).rem(8) shl bit) or (tile and 0x3fff).rem(8)

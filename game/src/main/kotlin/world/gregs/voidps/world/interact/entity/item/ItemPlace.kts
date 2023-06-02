@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Distance.getNearest
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-val items: FloorItems by inject()
+val floorItems: FloorItems by inject()
 
 on<InterfaceOnObject>({ operate && obj.id.startsWith("table") }) { player: Player ->
     if (!World.members && item.def["members", false]) {
@@ -27,6 +27,7 @@ on<InterfaceOnObject>({ operate && obj.id.startsWith("table") }) { player: Playe
     if (player.inventory.clear(itemSlot)) {
         player.setAnimation("take")
         player.playSound("drop_item")
-        items.add(item.id, item.amount, getNearest(obj.tile, obj.size, player.tile), 100, 1000, player)
+        val tile = getNearest(obj.tile, obj.size, player.tile)
+        floorItems.add(tile, item.id, item.amount, revealTicks = 100, disappearTicks = 1000, owner = player)
     }
 }

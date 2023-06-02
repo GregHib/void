@@ -2,195 +2,141 @@ package world.gregs.voidps.engine.entity.item.floor
 
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-import world.gregs.voidps.engine.client.update.batch.*
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import kotlinx.io.pool.DefaultPool
+import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
-import world.gregs.voidps.engine.entity.BatchList
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.item.floor.FloorItems.Companion.MAX_TILE_ITEMS
 import world.gregs.voidps.engine.event.EventHandlerStore
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.Area
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerStop
-import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.engine.map.chunk.Chunk
+import world.gregs.voidps.network.encode.chunk.FloorItemAddition
+import world.gregs.voidps.network.encode.chunk.FloorItemRemoval
+import world.gregs.voidps.network.encode.chunk.FloorItemUpdate
+import world.gregs.voidps.network.encode.send
 
+/**
+ * Stores up to [MAX_TILE_ITEMS] [FloorItem]s per tile
+ */
 class FloorItems(
-    private val definitions: ItemDefinitions,
-    private val store: EventHandlerStore,
     private val batches: ChunkBatchUpdates,
-    private val collisions: Collisions,
-    override val chunks: MutableMap<Int, MutableList<FloorItem>> = Int2ObjectOpenHashMap()
-) : BatchList<FloorItem> {
+    private val definitions: ItemDefinitions,
+    private val store: EventHandlerStore
+) : ChunkBatchUpdates.Sender {
 
-    private val logger = InlineLogger()
-
-    init {
-        batches.floorItems = this
-        val players: Players = world.gregs.voidps.engine.get()
-        on<TimerStart>({ timer == "reveal" }) { item: FloorItem ->
-            interval = item.revealTimer
-        }
-        on<TimerTick>({ timer == "reveal" }) { _: FloorItem ->
-            cancel()
-        }
-        on<TimerStop>({ timer == "reveal" }) { item: FloorItem ->
-            val owner = item.owner
-            if (owner != null && item.state != FloorItemState.Removed) {
-                item.state = FloorItemState.Public
-                val index = players.get(owner)?.index ?: -1
-                batches.add(item.tile.chunk, revealFloorItem(item, index))
-            }
-        }
-        on<TimerStart>({ timer == "disappear" }) { item: FloorItem ->
-            interval = item.disappearTimer
-        }
-        on<TimerTick>({ timer == "disappear" }) { _: FloorItem ->
-            cancel()
-        }
-        on<TimerStop>({ timer == "disappear" }) { item: FloorItem ->
-            remove(item)
-        }
+    internal val data = Int2ObjectOpenHashMap<MutableList<FloorItem>>()
+    private val pool = object : DefaultPool<MutableList<FloorItem>>(INITIAL_POOL_CAPACITY) {
+        override fun produceInstance() = ObjectArrayList<FloorItem>()
+        override fun clearInstance(instance: MutableList<FloorItem>) = instance.apply { clear() }
     }
 
-    fun add(
-        id: String,
-        amount: Int,
-        area: Area,
-        revealTicks: Int = -1,
-        disappearTicks: Int = -1,
-        owner: Player? = null
-    ): FloorItem? {
-        val tile = area.random(collisions)
-        if (tile == null) {
-            logger.warn { "No free tile in item spawn area $area" }
-            return null
-        }
-        return addItem(id, amount, tile, revealTicks, disappearTicks, owner)
-    }
+    fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = NEVER, disappearTicks: Int = NEVER, owner: Player?) = add(tile, id, amount, revealTicks, disappearTicks, owner?.name)
 
-    /**
-     * Spawns a floor item
-     * Note: Not concerned with where the item is coming from
-     * @param id The id of the item to spawn
-     * @param amount The stack size of the item to spawn
-     * @param tile The tile on which to spawn the item
-     * @param revealTicks Number of ticks before the item is revealed to all
-     * @param disappearTicks Number of ticks before the item is removed
-     * @param owner The index of the owner of the item
-     */
-    fun add(
-        id: String,
-        amount: Int,
-        tile: Tile,
-        revealTicks: Int = -1,
-        disappearTicks: Int = -1,
-        owner: Player? = null
-    ): FloorItem = addItem(id, amount, tile, revealTicks, disappearTicks, owner)
-
-    private fun addItem(
-        id: String,
-        amount: Int,
-        tile: Tile,
-        revealTicks: Int = -1,
-        disappearTicks: Int = -1,
-        owner: Player? = null
-    ): FloorItem {
+    fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = NEVER, disappearTicks: Int = NEVER, owner: String? = null): FloorItem {
         val definition = definitions.get(id)
-        if (definitions.getOrNull(id) == null) {
+        if (definition.id == -1) {
             logger.warn { "Null floor item $id $tile" }
         }
-        if (definition.stackable == 1) {
-            val existing = getExistingStack(tile, id)
-            if (existing != null && combinedStacks(existing, amount, disappearTicks)) {
-                return existing
-            }
-        }
-        val item = FloorItem(tile, id, amount, owner = if (revealTicks == 0) null else owner?.name)
+        val item = FloorItem(tile, id, amount, revealTicks, disappearTicks, if (revealTicks == 0) null else owner)
         item.def = definition
         store.populate(item)
-        super.add(item)
-        batches.add(tile.chunk, addFloorItem(item))
-        reveal(item, revealTicks, owner?.index ?: -1)
-        disappear(item, disappearTicks)
-        item.events.emit(Registered)
+        add(item)
         return item
     }
 
-    private fun getExistingStack(tile: Tile, id: String): FloorItem? {
-        return get(tile).firstOrNull { it.state == FloorItemState.Private && it.id == id }
-    }
-
-    /**
-     * Combines both item stacks and resets disappear count down
-     * Note: If total of combined stacks exceeds [Int.MAX_VALUE] then returns false
-     */
-    private fun combinedStacks(existing: FloorItem, amount: Int, disappearTicks: Int): Boolean {
-        val stack = existing.amount
-        val combined = stack + amount
-        // Overflow should add as separate item
-        if (stack xor combined and (amount xor combined) < 0) {
-            return false
+    fun add(item: FloorItem) {
+        val list = data.getOrPut(item.tile.id) { pool.borrow() }
+        if (combined(list, item)) {
+            return
         }
-        // Floor item is mutable because we need to keep the reveal timer from before
-        existing.amount = combined
-        batches.add(existing.tile.chunk, updateFloorItem(existing, stack, combined))
-        disappear(existing, disappearTicks)
-        return true
-    }
-
-    /**
-     * Schedules disappearance after [ticks]
-     */
-    private fun disappear(item: FloorItem, ticks: Int) {
-        if (ticks >= 0) {
-            item.disappearTimer = ticks
-            item.timers.start("disappear")
+        if (full(list, item)) {
+            return
+        }
+        if (list.add(item)) {
+            batches.add(item.tile.chunk, FloorItemAddition(item.tile.id, item.def.id, item.amount, item.owner))
+            item.events.emit(Registered)
         }
     }
 
-    override fun remove(entity: FloorItem): Boolean {
-        if (entity.state != FloorItemState.Removed && super.remove(entity)) {
-            entity.state = FloorItemState.Removed
-            batches.add(entity.tile.chunk, removeFloorItem(entity))
-            entity.timers.stop("disappear")
-            entity.events.emit(Unregistered)
-            return true
+    /**
+     * If [MAX_TILE_ITEMS] is reached replace the least or an equally valuable item,
+     * otherwise prevent the item from being added.
+     */
+    private fun full(list: List<FloorItem>, item: FloorItem): Boolean {
+        if (list.size >= MAX_TILE_ITEMS) {
+            val min = list.firstOrNull { it.value < item.value }
+                ?: list.firstOrNull { it.value == item.value }
+                ?: return true
+            remove(min)
         }
         return false
     }
 
     /**
-     * Schedules public reveal of [owner]'s item after [ticks]
+     * Combine the amount's of two [FloorItem]
      */
-    private fun reveal(item: FloorItem, ticks: Int, owner: Int) {
-        if (ticks <= 0 || owner == -1) {
-            return
+    private fun combined(list: List<FloorItem>, item: FloorItem): Boolean {
+        if (item.owner == null) {
+            return false
         }
-        item.revealTimer = ticks
-        item.timers.start("reveal")
+        val existing = list.firstOrNull { it.owner == item.owner && it.id == item.id } ?: return false
+        val original = existing.amount
+        if (existing.merge(item)) {
+            batches.add(item.tile.chunk, FloorItemUpdate(item.tile.id, existing.def.id, original, existing.amount, existing.owner))
+            return true
+        }
+        return false
+    }
+
+    operator fun get(tile: Tile): List<FloorItem> {
+        return data.getOrDefault(tile.id, emptyList())
+    }
+
+    fun remove(item: FloorItem): Boolean {
+        val list = data.get(item.tile.id) ?: return false
+        if (list.remove(item)) {
+            batches.add(item.tile.chunk, FloorItemRemoval(item.tile.id, item.def.id, item.owner))
+            if (list.isEmpty() && data.remove<Int, Any>(item.tile.id, list)) {
+                pool.recycle(list)
+            }
+            item.events.emit(Unregistered)
+            return true
+        }
+        return false
     }
 
     fun clear() {
-        val events = mutableListOf<FloorItem>()
-        chunks.forEach { (_, set) ->
-            set.forEach { item ->
-                if (item.state != FloorItemState.Removed) {
-                    item.state = FloorItemState.Removed
-                    batches.add(item.tile.chunk, removeFloorItem(item))
-                    events.add(item)
+        for ((_, list) in data) {
+            for (item in list) {
+                batches.add(item.tile.chunk, FloorItemRemoval(item.tile.id, item.def.id, item.owner))
+                item.events.emit(Unregistered)
+            }
+            pool.recycle(list)
+        }
+        data.clear()
+    }
+
+    override fun send(player: Player, chunk: Chunk) {
+        for (tile in chunk.tile.toCuboid(8, 8)) {
+            for (item in data.get(tile.id) ?: continue) {
+                if (item.owner != null && item.owner != player.name) {
+                    continue
                 }
+                player.client?.send(FloorItemAddition(tile.id, item.def.id, item.amount, item.owner))
             }
         }
-        chunks.clear()
-        for (item in events) {
-            item.events.emit(Unregistered)
-        }
+    }
+
+    companion object {
+        private val logger = InlineLogger()
+        const val IMMEDIATE = 0
+        const val NEVER = -1
+        private const val MAX_TILE_ITEMS = 128
+        private const val INITIAL_POOL_CAPACITY = 10
     }
 }
 
-fun Tile.offset(bit: Int = 4) = (x.rem(8) shl bit) or y.rem(8)

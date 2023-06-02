@@ -10,16 +10,16 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-val items: FloorItems by inject()
+val floorItems: FloorItems by inject()
 val logger = InlineLogger()
 
 on<ContainerOption>({ container == "inventory" && option == "Drop" }) { player: Player ->
     player.queue.clearWeak()
     if (player.inventory.clear(slot) && item.isNotEmpty() && item.amount > 0) {
         if (item.tradeable) {
-            items.add(item.id, item.amount, player.tile, 100, 200, player)
+            floorItems.add(player.tile, item.id, item.amount, revealTicks = 100, disappearTicks = 200, owner = player)
         } else {
-            items.add(item.id, item.amount, player.tile, -1, 300, player)
+            floorItems.add(player.tile, item.id, item.amount, revealTicks = FloorItems.NEVER, disappearTicks = 300, owner = player)
         }
         player.playSound("drop_item")
     } else {

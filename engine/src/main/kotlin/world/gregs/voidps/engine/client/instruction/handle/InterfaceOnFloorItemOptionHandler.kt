@@ -19,7 +19,7 @@ class InterfaceOnFloorItemOptionHandler(
     override fun validate(player: Player, instruction: InteractInterfaceFloorItem) {
         val (floorItemId, x, y, interfaceId, componentId, itemId, itemSlot) = instruction
         val tile = player.tile.copy(x, y)
-        val floorItem = items[tile].firstOrNull { it.def.id == floorItemId && it.tile == tile }
+        val floorItem = items[tile].firstOrNull { it.def.id == floorItemId }
         if (floorItem == null) {
             logger.warn { "Invalid floor item $itemId $tile" }
             return

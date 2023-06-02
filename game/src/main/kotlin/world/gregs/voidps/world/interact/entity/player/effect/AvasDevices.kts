@@ -100,7 +100,7 @@ on<TimerTick>({ timer == "junk_collection" }) { player: Player ->
     val junk = if (player.equipped(EquipSlot.Cape).id == "avas_attractor") attractor else accumulator
     val item = junk.random()
     if (!player.inventory.add(item)) {
-        floorItems.add(item, 1, player.tile, 100, 200, player)
+        floorItems.add(player.tile, item, revealTicks = 100, disappearTicks = 200, owner = player)
     }
 }
 

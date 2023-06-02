@@ -300,7 +300,7 @@ private fun remove(player: Player, target: Character, ammo: String, required: In
             }
 
             if (random > 1.0 - dropChance && !get<Collisions>().check(target.tile.x, target.tile.y, target.tile.plane, CollisionFlag.FLOOR)) {
-                get<FloorItems>().add(ammo, required, target.tile, 100, 200, player)
+                get<FloorItems>().add(target.tile, ammo, required, revealTicks = 100, disappearTicks = 200, owner = player)
             }
         }
     }

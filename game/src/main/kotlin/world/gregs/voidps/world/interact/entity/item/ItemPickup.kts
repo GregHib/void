@@ -14,13 +14,13 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-val items: FloorItems by inject()
+val floorItems: FloorItems by inject()
 val logger = InlineLogger()
 
 on<FloorItemOption>({ operate && option == "Take" }) { player: Player ->
     if (player.inventory.isFull() && (!player.inventory.stackable(item.id) || !player.inventory.contains(item.id))) {
         player.inventoryFull()
-    } else if (items.remove(item)) {
+    } else if (floorItems.remove(item)) {
         player.inventory.add(item.id, item.amount)
         when (player.inventory.transaction.error) {
             TransactionError.None -> {

@@ -7,8 +7,8 @@ import world.gregs.voidps.network.Protocol
  * @param combined Updated item stack size
  */
 data class FloorItemUpdate(
+    val tile: Int,
     val id: Int,
-    val tileOffset: Int,
     val stack: Int,
     val combined: Int,
     val owner: String?
@@ -17,6 +17,6 @@ data class FloorItemUpdate(
     Protocol.Batch.FLOOR_ITEM_UPDATE,
     7
 ) {
-    override fun visible(name: String) = owner == null || owner == name
-    override fun private() = true
+    override val private = true
+    override fun visible(owner: String) = this.owner == null || this.owner == owner
 }

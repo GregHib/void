@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.getIntProperty
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.activity.combat.prayer.getActivePrayerVarKey
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.attackers
@@ -116,8 +115,8 @@ fun drop(
     killer: Character?
 ) {
     if (item.tradeable) {
-        floorItems.add(item.id, item.amount, tile, revealTicks = 180, disappearTicks = 240, owner = if (inWilderness && killer is Player) killer else player)
+        floorItems.add(tile, item.id, item.amount, revealTicks = 180, disappearTicks = 240, owner = if (inWilderness && killer is Player) killer else player)
     } else {
-        floorItems.add("coins", item.amount * item.def.cost, tile, revealTicks = 180, disappearTicks = 240, owner = if (inWilderness && killer is Player) killer else player)
+        floorItems.add(tile, "coins", item.amount * item.def.cost, revealTicks = 180, disappearTicks = 240, owner = if (inWilderness && killer is Player) killer else player)
     }
 }

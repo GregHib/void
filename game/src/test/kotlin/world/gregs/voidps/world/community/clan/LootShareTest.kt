@@ -130,10 +130,10 @@ internal class LootShareTest : WorldTest() {
         player.interfaceOption("combat_styles", "style1")
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
-        val chunk = npc["death_tile", npc.tile].chunk
+        val tile = npc["death_tile", npc.tile]
         tick(7)
 
-        assertTrue(floorItems[chunk].any { it.id == "bones" })
+        assertTrue(floorItems[tile].any { it.id == "bones" })
         verify(exactly = 0) {
             client.message(match { it.contains("received: ") }, ChatType.ClanChat.id)
         }
@@ -163,10 +163,10 @@ internal class LootShareTest : WorldTest() {
         player.interfaceOption("combat_styles", "style1")
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
-        val chunk = npc["death_tile", npc.tile].chunk
+        val tile = npc["death_tile", npc.tile]
         tick(7)
 
-        assertTrue(floorItems[chunk].any { it.id == "bones" })
+        assertTrue(floorItems[tile].any { it.id == "bones" })
         verify {
             client.message(match { it.contains("received: ") }, ChatType.ClanChat.id)
         }

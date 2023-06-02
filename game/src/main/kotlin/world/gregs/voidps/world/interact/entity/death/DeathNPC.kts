@@ -106,7 +106,7 @@ fun dropLoot(npc: NPC, killer: Character?, name: String, tile: Tile) {
     } else {
         drops.forEach { item ->
             if (!item.id.contains("clue_scroll") && item.amount > 0) {
-                floorItems.add(item.id, item.amount, tile, revealTicks = if (item.tradeable) 60 else -1, disappearTicks = 120, owner = if (killer is Player) killer else null)
+                floorItems.add(tile, item.id, item.amount, revealTicks = if (item.tradeable) 60 else FloorItems.NEVER, disappearTicks = 120, owner = if (killer is Player) killer else null)
             }
         }
     }
@@ -130,7 +130,7 @@ fun shareLoot(killer: Player, npc: NPC, tile: Tile, drops: List<Item>) {
         } else {
             val awardee = getAwardee(item, killer, members)
             notify(members, awardee, item)
-            floorItems.add(item.id, item.amount, tile, revealTicks = if (item.tradeable) 60 else -1, disappearTicks = 120, owner = awardee)
+            floorItems.add(tile, item.id, item.amount, revealTicks = if (item.tradeable) 60 else FloorItems.NEVER, disappearTicks = 120, owner = awardee)
             awardee.message("<dark_green>You received: ${item.amount} ${item.def.name.plural(item.amount)}.", ChatType.ClanChat)
         }
     }
@@ -140,7 +140,7 @@ fun shareCoin(item: Item, members: List<Player>, tile: Tile) {
     val total = item.def.cost * item.amount
     val split = total / members.size
     for (member in members) {
-        floorItems.add("coins", split, tile, revealTicks = 60, disappearTicks = 120, owner = member)
+        floorItems.add(tile, "coins", split, revealTicks = 60, disappearTicks = 120, owner = member)
         member.message("<dark_green>You received $split gold as your split of this drop: ${item.amount} x ${item.def.name}.", ChatType.ClanChat)
     }
 }
