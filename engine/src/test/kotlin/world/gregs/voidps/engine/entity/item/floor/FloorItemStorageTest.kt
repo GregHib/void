@@ -21,15 +21,15 @@ class FloorItemStorageTest {
     @BeforeEach
     fun setup() {
         batches = mockk(relaxed = true)
-        items = FloorItemStorage(batches)
+        items = FloorItemStorage(batches, mockk())
     }
 
     @Test
     fun `Add floor items`() {
         val first = floorItem("item", Tile.EMPTY)
-        items.add(Tile.EMPTY, first)
+        items.add(first)
         val second = floorItem("item", Tile(10, 10))
-        items.add(Tile(10, 10), second)
+        items.add(second)
 
         assertEquals(items.get(Tile.EMPTY).first(), first)
         assertEquals(items.get(Tile(10, 10)).first(), second)
@@ -42,9 +42,9 @@ class FloorItemStorageTest {
     @Test
     fun `Add floor items in order`() {
         val first = floorItem("item1", Tile.EMPTY)
-        items.add(Tile.EMPTY, first)
+        items.add(first)
         val second = floorItem("item2", Tile.EMPTY)
-        items.add(Tile.EMPTY, second)
+        items.add(second)
 
         val items = items.get(Tile.EMPTY)
         assertEquals(items[0], first)
@@ -55,10 +55,10 @@ class FloorItemStorageTest {
     fun `Adding two private stackable items combines them`() {
         val first = floorItem("item", Tile.EMPTY, owner = "player", disappear = 5, reveal = 5)
         first.def = ItemDefinition(stackable = 1)
-        items.add(Tile.EMPTY, first)
+        items.add(first)
         val second = floorItem("item", Tile.EMPTY, owner = "player", disappear = 10, reveal = 10)
         second.def = ItemDefinition(stackable = 1)
-        items.add(Tile.EMPTY, second)
+        items.add(second)
 
         val item = items.get(Tile.EMPTY).first()
         assertEquals(item.id, "item")
@@ -80,9 +80,9 @@ class FloorItemStorageTest {
     @Test
     fun `Don't combine non-stackable items`() {
         val first = floorItem("item", Tile.EMPTY, owner = "player")
-        items.add(Tile.EMPTY, first)
+        items.add(first)
         val second = floorItem("item", Tile.EMPTY, owner = "player")
-        items.add(Tile.EMPTY, second)
+        items.add(second)
         val items = items.get(Tile.EMPTY)
         assertEquals(first, items[0])
         assertEquals(second, items[1])
@@ -91,9 +91,9 @@ class FloorItemStorageTest {
     @Test
     fun `Don't combine two overflowing two private stacks`() {
         val first = floorItem("item", Tile.EMPTY, Int.MAX_VALUE - 10, owner = "player")
-        items.add(Tile.EMPTY, first)
+        items.add(first)
         val second = floorItem("item", Tile.EMPTY, 20, owner = "player")
-        items.add(Tile.EMPTY, second)
+        items.add(second)
 
         val items = items.get(Tile.EMPTY)
         assertEquals(first, items[0])
@@ -103,9 +103,9 @@ class FloorItemStorageTest {
     @Test
     fun `Public items aren't combined`() {
         val first = floorItem("item", Tile.EMPTY, owner = null, disappear = 5, reveal = -1)
-        items.add(Tile.EMPTY, first)
+        items.add(first)
         val second = floorItem("item", Tile.EMPTY, owner = "player", disappear = 10, reveal = 10)
-        items.add(Tile.EMPTY, second)
+        items.add(second)
 
         val items = items.get(Tile.EMPTY)
         assertEquals(first, items[0])
@@ -115,11 +115,11 @@ class FloorItemStorageTest {
     @Test
     fun `Remove floor item`() {
         val first = floorItem("item1", Tile.EMPTY)
-        items.add(Tile.EMPTY, first)
+        items.add(first)
         val second = floorItem("item1", Tile.EMPTY)
-        items.add(Tile.EMPTY, second)
+        items.add(second)
 
-        assertTrue(items.remove(Tile.EMPTY, first))
+        assertTrue(items.remove(first))
         val items = items.get(Tile.EMPTY)
         assertFalse(items.contains(first))
         assertTrue(items.contains(second))
@@ -133,12 +133,12 @@ class FloorItemStorageTest {
         repeat(128) {
             val item = floorItem("item", Tile.EMPTY)
             item.def = ItemDefinition(cost = if (it == 25) 5 else 10)
-            items.add(Tile.EMPTY, item)
+            items.add(item)
         }
 
         val item = floorItem("item", Tile.EMPTY, owner = "player")
         item.def = ItemDefinition(cost = 10)
-        items.add(Tile.EMPTY, item)
+        items.add(item)
 
         val items = items.get(Tile.EMPTY)
         assertTrue(items.none { it.def.cost == 5 })
@@ -150,7 +150,7 @@ class FloorItemStorageTest {
         repeat(128 * 2) {
             val item = floorItem(if (it >= 128) "equal_item" else "item", Tile.EMPTY)
             item.def = ItemDefinition(cost = 10)
-            items.add(Tile.EMPTY, item)
+            items.add(item)
         }
 
         val items = items.get(Tile.EMPTY)
