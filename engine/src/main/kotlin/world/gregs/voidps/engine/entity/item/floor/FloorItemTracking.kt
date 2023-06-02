@@ -4,6 +4,9 @@ import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.network.encode.chunk.FloorItemReveal
 
+/**
+ * Removes or reveals items once a floor items countdown is complete.
+ */
 class FloorItemTracking(
     private val items: FloorItems,
     private val players: Players,

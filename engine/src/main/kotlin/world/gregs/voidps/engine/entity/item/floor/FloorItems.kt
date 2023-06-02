@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.item.floor.FloorItems.Companion.MAX_TILE_ITEMS
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
@@ -18,6 +19,9 @@ import world.gregs.voidps.network.encode.chunk.FloorItemRemoval
 import world.gregs.voidps.network.encode.chunk.FloorItemUpdate
 import world.gregs.voidps.network.encode.send
 
+/**
+ * Stores up to [MAX_TILE_ITEMS] [FloorItem]s per tile
+ */
 class FloorItems(
     private val batches: ChunkBatchUpdates,
     private val definitions: ItemDefinitions,
@@ -81,7 +85,7 @@ class FloorItems(
         }
         val existing = list.firstOrNull { it.owner == item.owner && it.id == item.id } ?: return false
         val original = existing.amount
-        if (existing.combine(item)) {
+        if (existing.merge(item)) {
             batches.add(item.tile.chunk, FloorItemUpdate(item.tile.id, existing.def.id, original, existing.amount, existing.owner))
             return true
         }
@@ -128,9 +132,9 @@ class FloorItems(
     }
 
     companion object {
+        private val logger = InlineLogger()
         const val IMMEDIATE = 0
         const val NEVER = -1
-        private val logger = InlineLogger()
         private const val MAX_TILE_ITEMS = 128
         private const val INITIAL_POOL_CAPACITY = 10
     }

@@ -29,7 +29,7 @@ class FloorItem(
     /**
      * Adds [other] items amount to this item.
      */
-    fun combine(other: FloorItem): Boolean {
+    fun merge(other: FloorItem): Boolean {
         if (def.stackable != 1) {
             return false
         }
@@ -51,7 +51,7 @@ class FloorItem(
     /**
      * Reveal when public items countdown reaches 0
      */
-    fun remove(): Boolean = owner == null && disappearTicks >= 0 && --disappearTicks == 0
+    fun remove(): Boolean = disappearTicks == 0 || disappearTicks > 0 && --disappearTicks == 0
 
     override fun toString(): String {
         return "FloorItem(id='$id', tile=$tile, amount=$amount, disappear=$disappearTicks, reveal=$revealTicks, owner=$owner)"
