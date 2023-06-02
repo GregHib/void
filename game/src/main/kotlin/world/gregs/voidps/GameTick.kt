@@ -65,9 +65,9 @@ fun getTickStages(
         // Tick
         InstructionTask(players, npcs, items, objects, objectDefinitions, npcDefinitions, interfaceDefinitions, handler),
         World,
-        floorItems,
         NPCTask(sequentialNpc, npcs),
         PlayerTask(sequentialPlayer, players),
+        floorItems,
         // Update
         batches,
         CharacterUpdateTask(
