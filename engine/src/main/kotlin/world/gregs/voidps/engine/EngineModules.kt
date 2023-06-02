@@ -14,6 +14,8 @@ import world.gregs.voidps.engine.data.definition.extra.*
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.drop.DropTables
+import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
+import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObjectFactory
@@ -36,6 +38,8 @@ val engineModule = module {
     single { Players() }
     single { Objects() }
     single { FloorItems(get(), get(), get(), get()) }
+    single { FloorItemStorage(get(), get()) }
+    single { FloorItemTracking(get(), get()) }
     single {
         PlayerFactory(get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath"), get(), get(), Tile(
             getIntProperty("homeX", 0), getIntProperty("homeY", 0), getIntProperty("homePlane", 0)

@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.data.definition.extra.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
 import world.gregs.voidps.engine.map.file.Maps
 import world.gregs.voidps.network.Network
 import world.gregs.voidps.network.protocol
@@ -70,11 +70,11 @@ object Main {
 
         val interfaceDefinitions: InterfaceDefinitions = get()
         val npcs: NPCs = get()
-        val items: FloorItems = get()
+        val items: FloorItemStorage = get()
         val objectDefinitions: ObjectDefinitions = get()
 
         val handler = InterfaceHandler(get(), interfaceDefinitions, get())
-        val tickStages = getTickStages(players, npcs, items, get(), queue, get(), get(), objectDefinitions, get(), interfaceDefinitions, handler, ParallelIterator())
+        val tickStages = getTickStages(players, npcs, items, get(), get(), queue, get(), get(), objectDefinitions, get(), interfaceDefinitions, handler, ParallelIterator())
         val engine = GameLoop(tickStages)
 
         World.start(getProperty("members") == "true")

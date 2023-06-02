@@ -8,11 +8,11 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
 import world.gregs.voidps.network.instruct.InteractFloorItem
 
 class FloorItemOptionHandler(
-    private val items: FloorItems
+    private val items: FloorItemStorage
 ) : InstructionHandler<InteractFloorItem>() {
 
     private val logger = InlineLogger()
@@ -23,7 +23,7 @@ class FloorItemOptionHandler(
         }
         val (id, x, y, optionIndex) = instruction
         val tile = player.tile.copy(x, y)
-        val item = items[tile].firstOrNull { it.def.id == id && it.tile == tile }
+        val item = items[tile].firstOrNull { it.def.id == id }
         if (item == null) {
             logger.warn { "Invalid floor item $id $tile" }
             return

@@ -21,6 +21,9 @@ class FloorItemStorage(
         override fun produceInstance() = ObjectArrayList<FloorItem>()
         override fun clearInstance(instance: MutableList<FloorItem>) = instance.apply { clear() }
     }
+    init {
+        batches.floorItems = this
+    }
 
     fun add(id: String, tile: Tile, amount: Int = 1, revealTicks: Int = -1, disappearTicks: Int = -1, owner: Player? = null) {
         add(factory.spawn(id, amount, tile, revealTicks, disappearTicks, owner))
@@ -69,8 +72,8 @@ class FloorItemStorage(
         return false
     }
 
-    fun get(empty: Tile): List<FloorItem> {
-        return data.getOrDefault(empty.id, emptyList())
+    operator fun get(tile: Tile): List<FloorItem> {
+        return data.getOrDefault(tile.id, emptyList())
     }
 
     fun remove(item: FloorItem): Boolean {

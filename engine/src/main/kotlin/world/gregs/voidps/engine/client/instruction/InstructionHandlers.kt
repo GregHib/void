@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.network.Instruction
@@ -16,7 +16,7 @@ import world.gregs.voidps.network.instruct.*
 class InstructionHandlers(
     players: Players,
     npcs: NPCs,
-    items: FloorItems,
+    items: FloorItemStorage,
     objects: Objects,
     objectDefinitions: ObjectDefinitions,
     npcDefinitions: NPCDefinitions,

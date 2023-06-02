@@ -6,11 +6,11 @@ import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnFloorItem
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
 import world.gregs.voidps.network.instruct.InteractInterfaceFloorItem
 
 class InterfaceOnFloorItemOptionHandler(
-    private val items: FloorItems,
+    private val items: FloorItemStorage,
     private val handler: InterfaceHandler
 ) : InstructionHandler<InteractInterfaceFloorItem>() {
 
@@ -19,7 +19,7 @@ class InterfaceOnFloorItemOptionHandler(
     override fun validate(player: Player, instruction: InteractInterfaceFloorItem) {
         val (floorItemId, x, y, interfaceId, componentId, itemId, itemSlot) = instruction
         val tile = player.tile.copy(x, y)
-        val floorItem = items[tile].firstOrNull { it.def.id == floorItemId && it.tile == tile }
+        val floorItem = items[tile].firstOrNull { it.def.id == floorItemId }
         if (floorItem == null) {
             logger.warn { "Invalid floor item $itemId $tile" }
             return

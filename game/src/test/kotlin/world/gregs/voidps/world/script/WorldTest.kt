@@ -166,6 +166,7 @@ abstract class WorldTest : KoinTest {
                 get(),
                 get(),
                 get(),
+                get(),
                 get<ConnectionQueue>(),
                 get(),
                 get(),

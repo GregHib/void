@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.FloorItemStorage
 import world.gregs.voidps.engine.entity.item.floor.offset
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.chunk.Chunk
@@ -33,7 +33,7 @@ class ChunkBatchUpdates(
         override fun clearInstance(instance: MutableList<ChunkUpdate>) = instance.apply { clear() }
     }
 
-    lateinit var floorItems: FloorItems
+    lateinit var floorItems: FloorItemStorage
 
     /**
      * Adds [update] to the batch update for [chunk]
@@ -76,7 +76,7 @@ class ChunkBatchUpdates(
             player.client?.send(ObjectAddition(obj.def.id, obj.tile.offset(), obj.type, obj.rotation))
         }
         for (tile in chunk.toRectangle(8, 8)) {
-            for (item in floorItems[tile]) {
+            for (item in floorItems.get(tile)) {
                 if (item.owner != 0 && item.owner != player.index) {
                     continue
                 }
