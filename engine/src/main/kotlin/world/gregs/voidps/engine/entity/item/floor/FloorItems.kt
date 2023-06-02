@@ -24,11 +24,8 @@ class FloorItems(
         override fun clearInstance(instance: MutableList<FloorItem>) = instance.apply { clear() }
     }
 
-    fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = -1, disappearTicks: Int = -1, owner: Player? = null): FloorItem {
-        val floorItem = factory.spawn(id, amount, tile, revealTicks, disappearTicks, owner)
-        add(floorItem)
-        return floorItem
-    }
+    fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = -1, disappearTicks: Int = -1, owner: Player? = null) =
+        factory.spawn(id, amount, tile, revealTicks, disappearTicks, owner).apply { add(this) }
 
     fun add(item: FloorItem) {
         val list = data.getOrPut(item.tile.id) { pool.borrow() }
@@ -39,7 +36,7 @@ class FloorItems(
             return
         }
         if (list.add(item)) {
-            batches.add(item.tile.chunk, FloorItemAddition(item.def.id, item.amount, item.tile.offset(), item.owner))
+            batches.add(item.tile.chunk, FloorItemAddition(item.tile.id, item.def.id, item.amount, item.owner))
         }
     }
 
@@ -67,7 +64,7 @@ class FloorItems(
         val existing = list.firstOrNull { it.owner == item.owner && it.id == item.id } ?: return false
         val original = existing.amount
         if (existing.combine(item)) {
-            batches.add(item.tile.chunk, FloorItemUpdate(existing.def.id, item.tile.offset(), original, existing.amount, existing.owner))
+            batches.add(item.tile.chunk, FloorItemUpdate(item.tile.id, existing.def.id, original, existing.amount, existing.owner))
             return true
         }
         return false
@@ -80,7 +77,7 @@ class FloorItems(
     fun remove(item: FloorItem): Boolean {
         val list = data.get(item.tile.id) ?: return false
         if (list.remove(item)) {
-            batches.add(item.tile.chunk, FloorItemRemoval(item.def.id, item.tile.offset(), item.owner))
+            batches.add(item.tile.chunk, FloorItemRemoval(item.tile.id, item.def.id, item.owner))
             if (list.isEmpty() && data.remove<Int, Any>(item.tile.id, list)) {
                 pool.recycle(list)
             }
@@ -92,7 +89,7 @@ class FloorItems(
     fun clear() {
         for ((_, list) in data) {
             for (item in list) {
-                batches.add(item.tile.chunk, FloorItemRemoval(item.def.id, item.tile.offset(), item.owner))
+                batches.add(item.tile.chunk, FloorItemRemoval(item.tile.id, item.def.id, item.owner))
                 item.events.emit(Unregistered)
             }
             pool.recycle(list)
@@ -106,7 +103,7 @@ class FloorItems(
                 if (item.owner != 0 && item.owner != player.index) {
                     continue
                 }
-                player.client?.send(FloorItemAddition(item.def.id, item.amount, tile.offset(), item.owner))
+                player.client?.send(FloorItemAddition(tile.id, item.def.id, item.amount, item.owner))
             }
         }
     }
@@ -116,5 +113,3 @@ class FloorItems(
         private const val INITIAL_POOL_CAPACITY = 10
     }
 }
-
-fun Tile.offset(bit: Int = 4) = (x.rem(8) shl bit) or y.rem(8)

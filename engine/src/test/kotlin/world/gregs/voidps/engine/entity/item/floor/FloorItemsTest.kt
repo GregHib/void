@@ -31,9 +31,9 @@ class FloorItemsTest {
         val second = floorItem("item", Tile(10, 10))
         items.add(second)
 
-        assertEquals(items.get(Tile.EMPTY).first(), first)
-        assertEquals(items.get(Tile(10, 10)).first(), second)
-        assertTrue(items.get(Tile(100, 100)).isEmpty())
+        assertEquals(items[Tile.EMPTY].first(), first)
+        assertEquals(items[Tile(10, 10)].first(), second)
+        assertTrue(items[Tile(100, 100)].isEmpty())
         verify {
             batches.add(Chunk.EMPTY, any<FloorItemAddition>())
         }
@@ -46,7 +46,7 @@ class FloorItemsTest {
         val second = floorItem("item2", Tile.EMPTY)
         items.add(second)
 
-        val items = items.get(Tile.EMPTY)
+        val items = items[Tile.EMPTY]
         assertEquals(items[0], first)
         assertEquals(items[1], second)
     }
@@ -60,7 +60,7 @@ class FloorItemsTest {
         second.def = ItemDefinition(stackable = 1)
         items.add(second)
 
-        val item = items.get(Tile.EMPTY).first()
+        val item = items[Tile.EMPTY].first()
         assertEquals(item.id, "item")
         assertEquals(item.amount, 2)
         assertEquals(item.disappearTimer, 5)
@@ -68,8 +68,8 @@ class FloorItemsTest {
         assertEquals(item.owner, 123)
         verify {
             batches.add(Chunk.EMPTY, FloorItemUpdate(
+                tile = 0,
                 id = -1,
-                tileOffset = 0,
                 stack = 1,
                 combined = 2,
                 owner = 123
@@ -83,7 +83,7 @@ class FloorItemsTest {
         items.add(first)
         val second = floorItem("item", Tile.EMPTY, owner = 123)
         items.add(second)
-        val items = items.get(Tile.EMPTY)
+        val items = items[Tile.EMPTY]
         assertEquals(first, items[0])
         assertEquals(second, items[1])
     }
@@ -95,7 +95,7 @@ class FloorItemsTest {
         val second = floorItem("item", Tile.EMPTY, 20, owner = 123)
         items.add(second)
 
-        val items = items.get(Tile.EMPTY)
+        val items = items[Tile.EMPTY]
         assertEquals(first, items[0])
         assertEquals(second, items[1])
     }
@@ -107,7 +107,7 @@ class FloorItemsTest {
         val second = floorItem("item", Tile.EMPTY, owner = 123, disappear = 10, reveal = 10)
         items.add(second)
 
-        val items = items.get(Tile.EMPTY)
+        val items = items[Tile.EMPTY]
         assertEquals(first, items[0])
         assertEquals(second, items[1])
     }
@@ -120,11 +120,11 @@ class FloorItemsTest {
         items.add(second)
 
         assertTrue(items.remove(first))
-        val items = items.get(Tile.EMPTY)
+        val items = items[Tile.EMPTY]
         assertFalse(items.contains(first))
         assertTrue(items.contains(second))
         verify {
-            batches.add(Chunk.EMPTY, FloorItemRemoval(-1, 0, 0))
+            batches.add(Chunk.EMPTY, FloorItemRemoval(0, -1, 0))
         }
     }
 
@@ -140,7 +140,7 @@ class FloorItemsTest {
         item.def = ItemDefinition(cost = 10)
         items.add(item)
 
-        val items = items.get(Tile.EMPTY)
+        val items = items[Tile.EMPTY]
         assertTrue(items.none { it.def.cost == 5 })
         assertEquals(item, items[127])
     }
@@ -153,7 +153,7 @@ class FloorItemsTest {
             items.add(item)
         }
 
-        val items = items.get(Tile.EMPTY)
+        val items = items[Tile.EMPTY]
         assertTrue(items.none { it.id == "item" })
     }
 
@@ -164,10 +164,10 @@ class FloorItemsTest {
 
         items.clear()
 
-        val items = items.get(Tile.EMPTY)
+        val items = items[Tile.EMPTY]
         assertTrue(items.isEmpty())
         verify {
-            batches.add(Chunk.EMPTY, FloorItemRemoval(-1, 0, 0))
+            batches.add(Chunk.EMPTY, FloorItemRemoval(0, -1, 0))
         }
     }
 

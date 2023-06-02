@@ -14,7 +14,7 @@ class FloorItemTracking(
         for ((_, list) in items.data) {
             for (item in list) {
                 if (item.owner != 0 && item.revealTimer-- == 0) {
-                    batches.add(item.tile.chunk, FloorItemReveal(item.def.id, item.amount, item.tile.offset(), item.owner))
+                    batches.add(item.tile.chunk, FloorItemReveal(item.tile.id, item.def.id, item.amount, item.owner))
                     item.owner = 0
                 } else if (item.disappearTimer-- == 0) {
                     removal.add(item)

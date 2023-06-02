@@ -3,8 +3,8 @@ package world.gregs.voidps.network.encode.chunk
 import world.gregs.voidps.network.Protocol
 
 data class ObjectAddition(
+    val tile: Int,
     val id: Int,
-    val tileOffset: Int,
     val type: Int,
     val rotation: Int
 ) : ChunkUpdate(

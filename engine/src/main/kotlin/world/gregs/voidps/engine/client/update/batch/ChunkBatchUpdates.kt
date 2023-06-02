@@ -9,8 +9,11 @@ import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.network.encode.*
 import world.gregs.voidps.network.encode.chunk.ChunkUpdate
+import world.gregs.voidps.network.encode.clearChunk
+import world.gregs.voidps.network.encode.encodeBatch
+import world.gregs.voidps.network.encode.send
+import world.gregs.voidps.network.encode.sendBatch
 
 /**
  * Groups messages by [Chunk] to send to all subscribed [Player]s
@@ -84,7 +87,7 @@ class ChunkBatchUpdates : Runnable {
         private const val INITIAL_UPDATE_POOL_SIZE = 100
 
         /**
-         * Returns the chunk offset for [chunk] relative to [player]'s viewport
+         * Returns the chunk offset for [chunk] relative to player's [viewport]
          */
         private fun getChunkOffset(viewport: Viewport, chunk: Chunk): Chunk {
             val base = viewport.lastLoadChunk.safeMinus(viewport.chunkRadius, viewport.chunkRadius)
@@ -94,11 +97,6 @@ class ChunkBatchUpdates : Runnable {
         private fun Player.clearChunk(chunk: Chunk) {
             val chunkOffset = getChunkOffset(viewport!!, chunk)
             client?.clearChunk(chunkOffset.x, chunkOffset.y, chunk.plane)
-        }
-
-        private fun Player.sendChunk(chunk: Chunk) {
-            val chunkOffset = getChunkOffset(viewport!!, chunk)
-            client?.updateChunk(chunkOffset.x, chunkOffset.y, chunk.plane)
         }
     }
 }

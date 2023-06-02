@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.data.definition.extra.GraphicDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.floor.offset
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
@@ -161,9 +160,9 @@ private fun sendProjectile(
         index = -index
     }
     batches.add(tile.chunk, ProjectileAddition(
+        tile = tile.id,
         id = definitions.get(id).id,
         index = index,
-        tileOffset = tile.offset(3),
         directionX = direction.x,
         directionY = direction.y,
         startHeight = startHeight,

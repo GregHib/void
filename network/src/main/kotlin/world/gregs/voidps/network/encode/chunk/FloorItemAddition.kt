@@ -3,9 +3,9 @@ package world.gregs.voidps.network.encode.chunk
 import world.gregs.voidps.network.Protocol
 
 data class FloorItemAddition(
+    val tile: Int,
     val id: Int,
     val amount: Int,
-    val tileOffset: Int,
     val owner: Int
 ) : ChunkUpdate(
     Protocol.FLOOR_ITEM_ADD,

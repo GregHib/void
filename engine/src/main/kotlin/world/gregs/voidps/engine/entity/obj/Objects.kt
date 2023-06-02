@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.entity.BatchList
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.floor.offset
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.network.encode.chunk.ObjectAddition
@@ -110,10 +109,10 @@ class Objects(
 
     override fun send(player: Player, chunk: Chunk) {
         for (obj in getRemoved(chunk) ?: emptySet()) {
-            player.client?.send(ObjectRemoval(obj.tile.offset(), obj.type, obj.rotation))
+            player.client?.send(ObjectRemoval(obj.tile.id, obj.type, obj.rotation))
         }
         for (obj in getAdded(chunk) ?: emptySet()) {
-            player.client?.send(ObjectAddition(obj.def.id, obj.tile.offset(), obj.type, obj.rotation))
+            player.client?.send(ObjectAddition(obj.tile.id, obj.def.id, obj.type, obj.rotation))
         }
     }
 }

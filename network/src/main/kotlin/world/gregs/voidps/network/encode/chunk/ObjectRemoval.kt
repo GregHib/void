@@ -3,7 +3,7 @@ package world.gregs.voidps.network.encode.chunk
 import world.gregs.voidps.network.Protocol
 
 data class ObjectRemoval(
-    val tileOffset: Int,
+    val tile: Int,
     val type: Int,
     val rotation: Int
 ) : ChunkUpdate(

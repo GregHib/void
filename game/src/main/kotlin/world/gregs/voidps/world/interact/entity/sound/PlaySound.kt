@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.sound
 
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.data.definition.extra.SoundDefinitions
-import world.gregs.voidps.engine.entity.item.floor.offset
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.encode.chunk.MidiAddition
@@ -19,7 +18,7 @@ fun areaMidi(
 ) {
     val definitions: SoundDefinitions = get()
     val batches: ChunkBatchUpdates = get()
-    batches.add(tile.chunk, MidiAddition(definitions.get(id).id, tile.offset(), radius, repeat, delay, volume, speed))
+    batches.add(tile.chunk, MidiAddition(tile.id, definitions.get(id).id, radius, repeat, delay, volume, speed))
 }
 
 fun areaSound(
@@ -33,5 +32,5 @@ fun areaSound(
 ) {
     val definitions: SoundDefinitions = get()
     val batches: ChunkBatchUpdates = get()
-    batches.add(tile.chunk, SoundAddition(definitions.get(id).id, tile.offset(), radius, repeat, delay, volume, speed))
+    batches.add(tile.chunk, SoundAddition(tile.id, definitions.get(id).id, radius, repeat, delay, volume, speed))
 }

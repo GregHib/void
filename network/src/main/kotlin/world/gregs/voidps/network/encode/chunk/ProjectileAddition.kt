@@ -3,9 +3,9 @@ package world.gregs.voidps.network.encode.chunk
 import world.gregs.voidps.network.Protocol
 
 data class ProjectileAddition(
+    val tile: Int,
     val id: Int,
     val index: Int,
-    val tileOffset: Int,
     val directionX: Int,
     val directionY: Int,
     val startHeight: Int,
