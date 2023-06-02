@@ -3,6 +3,7 @@ package world.gregs.voidps.bot.item
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeoutOrNull
 import world.gregs.voidps.bot.Bot
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.timer.TICKS
@@ -15,10 +16,8 @@ suspend fun Bot.pickup(floorItem: FloorItem) {
     }
     withTimeoutOrNull(TICKS.toMillis(2)) {
         suspendCancellableCoroutine<Unit> { cont ->
-            if (floorItem.botJobs == null) {
-                floorItem.botJobs = mutableSetOf()
-            }
-            floorItem.botJobs!!.add(cont)
+            this@pickup["floor_item_job"] = cont
+            this@pickup["floor_item_hash"] = floorItem.hashCode()
         }
     }
 }

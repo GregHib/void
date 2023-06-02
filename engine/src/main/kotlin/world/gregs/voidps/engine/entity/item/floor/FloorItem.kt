@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.item.floor
 
-import kotlinx.coroutines.CancellableContinuation
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
@@ -19,14 +18,22 @@ class FloorItem private constructor(
     val owner: String?
 ) : Entity {
 
-
-    val value: Long
-        get() = def.cost * amount.toLong()
-
     constructor(id: String, tile: Tile, amount: Int = 1, disappear: Int = -1, reveal: Int = -1, owner: String? = null) : this(id, tile, amount, Size.ONE, owner) {
         this.disappearTimer = disappear
         this.revealTimer = reveal
     }
+
+    val value: Long
+        get() = def.cost * amount.toLong()
+
+    override val events: Events = Events(this)
+    var disappearTimer: Int = -1
+    var revealTimer: Int = -1
+
+    lateinit var def: ItemDefinition
+
+    var state: FloorItemState = if (owner == null) FloorItemState.Public else FloorItemState.Private
+
 
     fun combine(other: FloorItem): Boolean {
         if (def.stackable != 1) {
@@ -41,16 +48,5 @@ class FloorItem private constructor(
         amount = combined
         return true
     }
-
-    override val events: Events = Events(this)
-    var disappearTimer: Int = -1
-    var revealTimer: Int = -1
-
-    @Deprecated("Temp")
-    var botJobs: MutableSet<CancellableContinuation<Unit>>? = null
-
-    lateinit var def: ItemDefinition
-
-    var state: FloorItemState = if (owner == null) FloorItemState.Public else FloorItemState.Private
 
 }
