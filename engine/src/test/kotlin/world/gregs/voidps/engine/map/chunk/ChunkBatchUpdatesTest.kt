@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -109,7 +110,7 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
         player.index = 123
         player["previous_chunk"] = lastChunk
         every { update.private } returns true
-        every { update.visible(player.index) } returns true
+        every { update.visible(player.name) } returns true
         // Given
         batches.add(chunk, update)
         // When
@@ -132,7 +133,7 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
         player.index = 123
         player["previous_chunk"] = lastChunk
         every { update.private } returns true
-        every { update.visible(player.index) } returns false
+        every { update.visible(player.name) } returns false
         // Given
         batches.add(chunk, update)
         // When

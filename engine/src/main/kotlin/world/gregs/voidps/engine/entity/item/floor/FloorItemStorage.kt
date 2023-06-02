@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import kotlinx.io.pool.DefaultPool
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.encode.chunk.FloorItemAddition
@@ -82,6 +83,17 @@ class FloorItemStorage(
             return true
         }
         return false
+    }
+
+    fun clear() {
+        for ((_, list) in data) {
+            for (item in list) {
+                batches.add(item.tile.chunk, FloorItemRemoval(item.def.id, item.tile.offset(), item.owner))
+                item.events.emit(Unregistered)
+            }
+            pool.recycle(list)
+        }
+        data.clear()
     }
 
     companion object {

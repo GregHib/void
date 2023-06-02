@@ -154,8 +154,21 @@ class FloorItemStorageTest {
         }
 
         val items = items.get(Tile.EMPTY)
-        println(items.map { it.id })
         assertTrue(items.none { it.id == "item" })
+    }
+
+    @Test
+    fun `Clear sends batch update`() {
+        val first = floorItem("item", Tile.EMPTY)
+        items.add(first)
+
+        items.clear()
+
+        val items = items.get(Tile.EMPTY)
+        assertTrue(items.isEmpty())
+        verify {
+            batches.add(Chunk.EMPTY, FloorItemRemoval(-1, 0, null))
+        }
     }
 
     private fun floorItem(id: String, tile: Tile, amount: Int = 1, disappear: Int = -1, reveal: Int = -1, owner: String? = null): FloorItem {
