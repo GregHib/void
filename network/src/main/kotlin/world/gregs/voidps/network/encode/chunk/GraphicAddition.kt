@@ -7,12 +7,9 @@ data class GraphicAddition(
     val tileOffset: Int,
     val height: Int,
     val delay: Int,
-    val rotation: Int,
-    val owner: String?
+    val rotation: Int
 ) : ChunkUpdate(
     Protocol.GRAPHIC_AREA,
     Protocol.Batch.GRAPHIC_AREA,
     7
-) {
-    override fun visible(name: String) = owner == null || owner == name
-}
+)

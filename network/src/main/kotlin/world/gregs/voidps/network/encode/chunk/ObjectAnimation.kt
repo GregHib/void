@@ -11,6 +11,4 @@ data class ObjectAnimation(
     Protocol.OBJECT_ANIMATION_SPECIFIC,
     Protocol.Batch.OBJECT_ANIMATION_SPECIFIC,
     4
-) {
-    override fun visible(name: String) = true
-}
+)

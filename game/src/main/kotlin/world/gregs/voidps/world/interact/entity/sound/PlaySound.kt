@@ -16,11 +16,10 @@ fun areaMidi(
     delay: Int = 0,
     volume: Int = 255,
     speed: Int = 255,
-    owner: String? = null
 ) {
     val definitions: SoundDefinitions = get()
     val batches: ChunkBatchUpdates = get()
-    batches.add(tile.chunk, MidiAddition(definitions.get(id).id, tile.offset(), radius, repeat, delay, volume, speed, owner))
+    batches.add(tile.chunk, MidiAddition(definitions.get(id).id, tile.offset(), radius, repeat, delay, volume, speed))
 }
 
 fun areaSound(
@@ -31,9 +30,8 @@ fun areaSound(
     delay: Int = 0,
     volume: Int = 255,
     speed: Int = 255,
-    owner: String? = null
 ) {
     val definitions: SoundDefinitions = get()
     val batches: ChunkBatchUpdates = get()
-    batches.add(tile.chunk, SoundAddition(definitions.get(id).id, tile.offset(), radius, repeat, delay, volume, speed, owner))
+    batches.add(tile.chunk, SoundAddition(definitions.get(id).id, tile.offset(), radius, repeat, delay, volume, speed))
 }

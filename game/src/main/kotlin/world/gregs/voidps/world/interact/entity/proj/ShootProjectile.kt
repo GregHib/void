@@ -171,8 +171,7 @@ private fun sendProjectile(
         delay = delay,
         flightTime = flightTime,
         curve = curve,
-        offset = offset,
-        owner = null))
+        offset = offset))
 }
 
 private fun getFlightTime(definition: GraphicDefinition, tile: Tile, target: Tile, flightTime: Int?): Int {

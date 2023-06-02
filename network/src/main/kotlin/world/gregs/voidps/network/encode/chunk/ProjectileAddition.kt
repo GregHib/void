@@ -13,12 +13,9 @@ data class ProjectileAddition(
     val delay: Int,
     val flightTime: Int,
     val curve: Int,
-    val offset: Int,
-    val owner: String?
+    val offset: Int
 ) : ChunkUpdate(
     Protocol.PROJECTILE_ADD,
     Protocol.Batch.PROJECTILE_ADD,
     16
-) {
-    override fun visible(name: String) = owner == null || owner == name
-}
+)

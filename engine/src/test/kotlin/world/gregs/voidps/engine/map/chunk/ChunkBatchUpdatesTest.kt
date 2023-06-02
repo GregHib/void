@@ -34,7 +34,6 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
     private lateinit var objects: Objects
     private lateinit var items: FloorItems
     private lateinit var update: ChunkUpdate
-    private val chunk = Chunk(0)
 
     override val modules = listOf(module {
         single { EventHandlerStore() }
@@ -50,7 +49,6 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
         mockkStatic("world.gregs.voidps.network.encode.ChunkEncodersKt")
         mockkStatic("world.gregs.voidps.network.encode.ChunkUpdateEncodersKt")
         mockkStatic("world.gregs.voidps.engine.entity.character.player.PlayerVisualsKt")
-        every { update.visible(any()) } returns true
         every { update.size } returns 2
         player.client = client
         player["logged_in"] = false
@@ -78,8 +76,8 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
         // Then
         verify {
             client.clearChunk(2, 2, 0)
-            client.send(ObjectRemoval(84, 10, 0, null))
-            client.send(ObjectAddition(4321, 69, 10, 0, null))
+            client.send(ObjectRemoval(84, 10, 0))
+            client.send(ObjectAddition(4321, 69, 10, 0))
         }
     }
 
@@ -108,8 +106,10 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
         val chunk = Chunk(11, 11, 1)
         val lastChunk = Chunk(10, 10, 1)
         player.tile = chunk.tile
+        player.index = 123
         player["previous_chunk"] = lastChunk
-        every { update.private() } returns true
+        every { update.private } returns true
+        every { update.visible(player.index) } returns true
         // Given
         batches.add(chunk, update)
         // When
@@ -120,6 +120,26 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
         }
         verify(exactly = 0) {
             client.clearChunk(7, 7, 1)
+        }
+    }
+
+    @Test
+    fun `External private updates are ignored`() {
+        // Given
+        val chunk = Chunk(11, 11, 1)
+        val lastChunk = Chunk(10, 10, 1)
+        player.tile = chunk.tile
+        player.index = 123
+        player["previous_chunk"] = lastChunk
+        every { update.private } returns true
+        every { update.visible(player.index) } returns false
+        // Given
+        batches.add(chunk, update)
+        // When
+        batches.run(player)
+        // Then
+        verify(exactly = 0) {
+            client.send(update)
         }
     }
 }

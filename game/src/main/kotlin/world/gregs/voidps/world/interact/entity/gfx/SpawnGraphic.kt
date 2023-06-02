@@ -13,10 +13,9 @@ fun areaGraphic(
     tile: Tile,
     delay: Int = 0,
     height: Int = 0,
-    rotation: Direction = Direction.SOUTH,
-    owner: String? = null
+    rotation: Direction = Direction.SOUTH
 ) {
     val batches: ChunkBatchUpdates by inject()
     val definitions: GraphicDefinitions by inject()
-    batches.add(tile.chunk, GraphicAddition(definitions.get(id).id, tile.offset(), height, delay, rotation.ordinal, owner))
+    batches.add(tile.chunk, GraphicAddition(definitions.get(id).id, tile.offset(), height, delay, rotation.ordinal))
 }

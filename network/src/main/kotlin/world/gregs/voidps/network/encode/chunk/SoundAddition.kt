@@ -9,12 +9,9 @@ data class SoundAddition(
     val repeat: Int,
     val delay: Int,
     val volume: Int,
-    val speed: Int,
-    val owner: String?
+    val speed: Int
 ) : ChunkUpdate(
     Protocol.SOUND_AREA,
     Protocol.Batch.SOUND_AREA,
     8
-) {
-    override fun visible(name: String) = owner == null || owner == name
-}
+)

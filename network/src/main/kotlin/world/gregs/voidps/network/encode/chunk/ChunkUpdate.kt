@@ -5,8 +5,7 @@ abstract class ChunkUpdate(
     val packetIndex: Int,
     val size: Int
 ) {
-    abstract fun visible(name: String): Boolean
-
-    open fun private(): Boolean = false
+    open val private: Boolean = false
+    open fun visible(owner: Int): Boolean = false
 
 }

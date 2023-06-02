@@ -5,12 +5,13 @@ import world.gregs.voidps.network.Protocol
 data class FloorItemRemoval(
     val id: Int,
     val tileOffset: Int,
-    val owner: String?
+    val owner: Int
 ) : ChunkUpdate(
     Protocol.FLOOR_ITEM_REMOVE,
     Protocol.Batch.FLOOR_ITEM_REMOVE,
     3
 ) {
-    override fun visible(name: String) = owner == null || owner == name
-    override fun private() = owner != null
+    override val private: Boolean
+        get() = owner != 0
+    override fun visible(owner: Int) = this.owner == 0 || this.owner == owner
 }
