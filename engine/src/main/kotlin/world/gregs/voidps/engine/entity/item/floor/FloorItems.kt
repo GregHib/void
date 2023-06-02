@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
@@ -34,7 +35,7 @@ class FloorItems(
         if (definition.id == -1) {
             logger.warn { "Null floor item $id $tile" }
         }
-        val item = FloorItem(id, tile, amount, revealTicks, disappearTicks, if (revealTicks == 0) 0 else owner?.index ?: 0)
+        val item = FloorItem(id, tile, amount, revealTicks, disappearTicks, if (revealTicks == 0) null else owner?.name)
         item.def = definition
         store.populate(item)
         add(item)
@@ -73,7 +74,7 @@ class FloorItems(
      * Combine the amount's of two [FloorItem]
      */
     private fun combined(list: List<FloorItem>, item: FloorItem): Boolean {
-        if (item.owner == 0) {
+        if (item.owner == null) {
             return false
         }
         val existing = list.firstOrNull { it.owner == item.owner && it.id == item.id } ?: return false
@@ -113,9 +114,9 @@ class FloorItems(
     }
 
     override fun send(player: Player, chunk: Chunk) {
-        for (tile in chunk.toRectangle(8, 8)) {
+        for (tile in chunk.tile.toCuboid(8, 8)) {
             for (item in data.get(tile.id) ?: continue) {
-                if (item.owner != 0 && item.owner != player.index) {
+                if (item.owner != null && item.owner != player.name) {
                     continue
                 }
                 player.client?.send(FloorItemAddition(tile.id, item.def.id, item.amount, item.owner))

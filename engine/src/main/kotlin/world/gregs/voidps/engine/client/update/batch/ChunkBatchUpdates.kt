@@ -60,7 +60,7 @@ class ChunkBatchUpdates : Runnable {
                     sender.send(player, chunk)
                 }
             }
-            val updates = batches[chunk.id]?.filter { it.private && it.visible(player.index) } ?: continue
+            val updates = batches[chunk.id]?.filter { it.private } ?: continue
             if (!entered) {
                 player.sendBatch(chunk)
             }

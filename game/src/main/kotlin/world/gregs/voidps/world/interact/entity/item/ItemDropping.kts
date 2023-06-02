@@ -17,9 +17,9 @@ on<ContainerOption>({ container == "inventory" && option == "Drop" }) { player: 
     player.queue.clearWeak()
     if (player.inventory.clear(slot) && item.isNotEmpty() && item.amount > 0) {
         if (item.tradeable) {
-            floorItems.add(player.tile, item.id, item.amount, 100, 200, player)
+            floorItems.add(player.tile, item.id, item.amount, revealTicks = 100, disappearTicks = 200, owner = player)
         } else {
-            floorItems.add(player.tile, item.id, item.amount, -1, 300, player)
+            floorItems.add(player.tile, item.id, item.amount, revealTicks = -1, disappearTicks = 300, owner = player)
         }
         player.playSound("drop_item")
     } else {

@@ -16,18 +16,6 @@ fun encodeBatch(messages: Collection<ChunkUpdate>): ByteArray {
     return writeChannel.toByteArray()
 }
 
-fun Client.sendBatch(messages: Collection<ChunkUpdate>, chunkOffsetX: Int, chunkOffsetY: Int, chunkPlane: Int) {
-    send(Protocol.BATCH_UPDATE_CHUNK, messages.sumOf { it.size + 1 } + 3, Client.SHORT) {
-        writeByteInverse(chunkOffsetX)
-        writeByteSubtract(chunkPlane)
-        writeByteSubtract(chunkOffsetY)
-        messages.forEach { update ->
-            writeByte(update.packetIndex)
-            encode(update)
-        }
-    }
-}
-
 fun Client.sendBatch(messages: ByteArray, chunkOffsetX: Int, chunkOffsetY: Int, chunkPlane: Int) {
     send(Protocol.BATCH_UPDATE_CHUNK, messages.size + 3, Client.SHORT) {
         writeByteInverse(chunkOffsetX)

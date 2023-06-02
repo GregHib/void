@@ -37,7 +37,7 @@ val engineModule = module {
     single { Players() }
     single { Objects().apply { get<ChunkBatchUpdates>().register(this) } }
     single { FloorItems(get(), get(), get()).apply { get<ChunkBatchUpdates>().register(this) } }
-    single { FloorItemTracking(get(), get()) }
+    single { FloorItemTracking(get(), get(), get()) }
     single {
         PlayerFactory(get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath"), get(), get(), Tile(
             getIntProperty("homeX", 0), getIntProperty("homeY", 0), getIntProperty("homePlane", 0)

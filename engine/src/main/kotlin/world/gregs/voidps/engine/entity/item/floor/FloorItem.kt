@@ -16,7 +16,7 @@ class FloorItem(
     var amount: Int = 1,
     var disappearTimer: Int = -1,
     var revealTimer: Int = -1,
-    var owner: Int = 0
+    var owner: String? = null
 ) : Entity {
 
     override val size: Size = Size.ONE
@@ -43,4 +43,17 @@ class FloorItem(
         return true
     }
 
+    /**
+     * Reveal when owned item's countdown reaches 0
+     */
+    fun reveal(): Boolean = owner != null && revealTimer >= 0 && revealTimer-- == 0
+
+    /**
+     * Reveal when public item's countdown reaches 0
+     */
+    fun remove(): Boolean = owner == null && disappearTimer >= 0 && disappearTimer-- == 0
+
+    override fun toString(): String {
+        return "FloorItem(id='$id', tile=$tile, amount=$amount, disappearTimer=$disappearTimer, revealTimer=$revealTimer, owner=$owner)"
+    }
 }

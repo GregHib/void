@@ -32,5 +32,5 @@ on<Unregistered>({ isSpawnItem(it) }) { floorItem: FloorItem ->
 
 fun isSpawnItem(item: FloorItem): Boolean {
     val spawn = spawns.get(item.tile) ?: return false
-    return item.id == spawn.id && item.amount == spawn.amount && item.owner == 0
+    return item.id == spawn.id && item.amount == spawn.amount && item.owner == null
 }

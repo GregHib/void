@@ -11,12 +11,12 @@ data class FloorItemUpdate(
     val id: Int,
     val stack: Int,
     val combined: Int,
-    val owner: Int
+    val owner: String?
 ) : ChunkUpdate(
     Protocol.FLOOR_ITEM_UPDATE,
     Protocol.Batch.FLOOR_ITEM_UPDATE,
     7
 ) {
     override val private = true
-    override fun visible(owner: Int) = this.owner == 0 || this.owner == owner
+    override fun visible(owner: String) = this.owner == null || this.owner == owner
 }
