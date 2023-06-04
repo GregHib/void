@@ -134,7 +134,7 @@ class GameObjects(
         private fun replaced(value: Int) = value and REPLACED == REPLACED
 
         private const val REPLACED = 0x1
-        var LOAD_UNUSED = false
+        var LOAD_UNUSED = false // Don't bother loading objects which don't have options or configs (saves ~75MB ram)
 
         private fun index(x: Int, y: Int, level: Int, group: Int): Int {
             return level + (group shl 2) + (x shl 4) + (y shl 18)

@@ -28,6 +28,8 @@ class GameObjectsTest {
         assertEquals(obj, objects.get(tile, ObjectGroup.INTERACTIVE_OBJECT))
         assertNull(objects.get(tile, ObjectGroup.WALL))
         assertNull(objects.get(Tile(10, 9), ObjectGroup.INTERACTIVE_OBJECT))
+        objects.clear()
+        assertNull(objects.get(tile, ObjectGroup.INTERACTIVE_OBJECT))
     }
 
     @Test
