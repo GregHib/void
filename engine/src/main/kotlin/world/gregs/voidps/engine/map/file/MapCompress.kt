@@ -79,7 +79,7 @@ class MapCompress(
         writeFilledChunks(writer, full)
         val data = writer.toArray()
         file.writeBytes(data)
-        logger.info { "${regions.size} ${"map".plural(regions.size)} ($total objects, $count tiles) compressed to ${data.size / 1000000}mb in ${System.currentTimeMillis() - start}ms" }
+        logger.info { "Compressed ${regions.size} ${"map".plural(regions.size)} ($total objects, $count tiles) to ${data.size / 1000000}mb in ${System.currentTimeMillis() - start}ms" }
     }
 
     private fun writeObjects(writer: Writer, objects: Map<Chunk, List<ZoneObject>>) {

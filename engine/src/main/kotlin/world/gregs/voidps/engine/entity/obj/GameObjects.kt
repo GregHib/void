@@ -67,8 +67,8 @@ class GameObjects(
         }
         if (group == ObjectGroup.INTERACTIVE_OBJECT && interactive(definition)) {
             map[x, y, plane, group] = toValue(GameMapObject.value(id, type, rotation))
+            size++
         }
-        size++
     }
 
     private fun interactive(definition: ObjectDefinition) = LOAD_UNUSED || definition.options != null || definition.has("id")
