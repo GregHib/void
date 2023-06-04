@@ -71,7 +71,7 @@ class GameObjects(
         size++
     }
 
-    private fun interactive(definition: ObjectDefinition) = DEBUG || definition.options != null || definition.has("id")
+    private fun interactive(definition: ObjectDefinition) = LOAD_UNUSED || definition.options != null || definition.has("id")
 
     /**
      * Flags original objects as removed, or removes temporarily replaced objects
@@ -134,7 +134,7 @@ class GameObjects(
         private fun replaced(value: Int) = value and REPLACED == REPLACED
 
         private const val REPLACED = 0x1
-        var DEBUG = false
+        var LOAD_UNUSED = false
 
         private fun index(x: Int, y: Int, level: Int, group: Int): Int {
             return level + (group shl 2) + (x shl 4) + (y shl 18)

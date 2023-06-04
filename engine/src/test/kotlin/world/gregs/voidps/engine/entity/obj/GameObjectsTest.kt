@@ -15,7 +15,7 @@ class GameObjectsTest {
     @BeforeEach
     fun setup() {
         objects = GameObjects(mockk(relaxed = true), mockk(relaxed = true))
-        GameObjects.DEBUG = true
+        GameObjects.LOAD_UNUSED = true
     }
 
     @Test
