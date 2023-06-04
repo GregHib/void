@@ -79,7 +79,7 @@ val engineModule = module {
  */
 val postCacheModule = module {
     single { GameObjectFactory(get(), get()) }
-    single { MapExtract(get(), MapObjectLoader(get(), get(), get(), get())) }
+    single { MapExtract(get(), get(), get(), get()) }
     single(createdAtStart = true) { CustomObjects(get(), get(), get(), get()) }
     // Definitions
     single(createdAtStart = true) { SoundDefinitions().load() }

@@ -5,13 +5,24 @@ import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.definition.decoder.ItemDecoder
+import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.data.FileStorage
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.engine.map.region.XteaLoader
+import world.gregs.voidps.engine.map.region.Xteas
 import java.io.File
 import java.io.RandomAccessFile
+import java.lang.ref.WeakReference
 import kotlin.collections.set
 
 /**
@@ -19,92 +30,140 @@ import kotlin.collections.set
  */
 class MapExtract(
     private val collisions: Collisions,
-    private val loader: MapObjectLoader
+    private val definitions: ObjectDefinitions,
+    private val objects: GameObjects,
+    private val xteas: Xteas
 ) {
     private val logger = InlineLogger()
-    private val indices: MutableMap<Int, Int> = Int2IntOpenHashMap(140_000)
+    private val objectIndicies: MutableMap<Int, Int> = Int2IntOpenHashMap(140_000)
+    private val tileIndices: MutableMap<Int, Int> = Int2IntOpenHashMap(140_000)
+    private var fillMarker = 0
     private lateinit var raf: RandomAccessFile
-    private val body = ByteArray(512)
+    private val objectArray = ByteArray(2048)
+    private val tileArray = ByteArray(12)
 
     fun loadMap(file: File) {
         val start = System.currentTimeMillis()
         val reader = BufferReader(file.readBytes())
-        val regionCount = reader.readShort()
-        val chunks = BooleanArray(256)
-        repeat(regionCount) {
-            val id = reader.readShort()
+        for (id in xteas.keys) {
             val region = Region(id)
-            CollisionReader.allocate(collisions, region)
-            var count = 0
-            reader.startBitAccess()
-            for (chunk in region.toCuboid().toChunks()) {
-                chunks[count++] = reader.readBits(1) == 1
-            }
-            reader.stopBitAccess()
-            count = 0
-            for (chunk in region.toCuboid().toChunks()) {
-                if (!chunks[count++]) {
-                    continue
-                }
-                val position = reader.position()
-                if (loadChunk(reader, chunk)) {
-                    indices[chunk.id] = position
+            for (plane in 0 until 4) {
+                for (x in 0 until 8) {
+                    for (y in 0 until 8) {
+                        collisions.allocateIfAbsent(region.tile.x + x * 8, region.tile.x + y * 8, plane)
+                    }
                 }
             }
         }
+        readObjects(reader)
+        readTiles(reader)
+        fillMarker = reader.position()
+        readFullTiles(reader)
         raf = RandomAccessFile(file, "r")
-        logger.info { "$regionCount ${"region".plural(regionCount)} loaded from file in ${System.currentTimeMillis() - start}ms" }
+        logger.info {
+            "Loaded ${xteas.size} ${"region".plural(xteas.size)} (${objects.size} ${"object".plural(objects.size)}) from file in ${System.currentTimeMillis() - start}ms"
+        }
+    }
+
+    private fun readTiles(reader: BufferReader) {
+        for (i in 0 until reader.readInt()) {
+            val chunk = Chunk(reader.readInt())
+            tileIndices[chunk.id] = reader.position()
+            val intArray = collisions.allocateIfAbsent(
+                absoluteX = chunk.tile.x,
+                absoluteZ = chunk.tile.y,
+                level = chunk.plane
+            )
+            val value = reader.readLong()
+            for (index in 0 until 64) {
+                if (value ushr index and 0x1 == 1L) {
+                    intArray[index] = intArray[index] or CollisionFlag.FLOOR
+                }
+            }
+        }
+    }
+
+    private fun readObjects(reader: BufferReader) {
+        for (i in 0 until reader.readInt()) {
+            val chunk = Chunk(reader.readInt())
+            objectIndicies[chunk.id] = reader.position()
+            val chunkX = chunk.tile.x
+            val chunkY = chunk.tile.y
+            for (j in 0 until reader.readShort()) {
+                val obj = ZoneObject(reader.readInt())
+                val def = definitions.get(obj.id)
+                objects.set(chunkX + obj.x, chunkY + obj.y, obj.plane, obj.id, obj.type, obj.rotation, def)
+            }
+        }
+    }
+
+    private fun readFullTiles(reader: BufferReader) {
+        for (i in 0 until reader.readInt()) {
+            val chunk = Chunk(reader.readInt())
+            tileIndices[chunk.id] = reader.position()
+            fillTiles(chunk)
+        }
     }
 
     fun loadChunk(from: Chunk, to: Chunk, rotation: Int) {
-        val position = indices[from.id]?.toLong() ?: return
+        val objectPosition = objectIndicies[from.id]?.toLong()
+        val tilePosition = tileIndices[from.id]?.toLong()
         val start = System.currentTimeMillis()
-        raf.seek(position)
-        raf.read(body)
-        val reader = BufferReader(body)
-        loadChunk(reader, to, rotation)
-        logger.info { "$to loaded in ${System.currentTimeMillis() - start}ms" }
-    }
-
-    private fun loadChunk(reader: Reader, chunk: Chunk, rotation: Int = 0): Boolean {
-        reader.startBitAccess()
-        decompressWaterTiles(reader, chunk, rotation)
-        decompressObjects(reader, chunk, rotation)
-        reader.stopBitAccess()
-        return true
-    }
-
-    private fun decompressWaterTiles(reader: Reader, chunk: Chunk, rotation: Int) {
-        if (reader.readBits(1) == 0) {
-            return
+        if (objectPosition != null) {
+            raf.seek(objectPosition)
+            raf.read(objectArray)
+            val reader = BufferReader(objectArray)
+            readObjects(to, reader, rotation)
         }
-        for (x in 0 until 8) {
-            for (y in 0 until 8) {
-                if (reader.readBits(1) == 1) {
-                    collisions.add(
-                        absoluteX = chunk.tile.x + rotateX(x, y, rotation),
-                        absoluteZ = chunk.tile.y + rotateY(x, y, rotation),
-                        level = chunk.plane,
-                        mask = CollisionFlag.FLOOR
-                    )
-                }
+        if (tilePosition != null) {
+            if (tilePosition > fillMarker) {
+                fillTiles(to)
+            } else {
+                raf.seek(tilePosition)
+                raf.read(tileArray)
+                val reader = BufferReader(tileArray)
+                readTiles(to, reader, rotation)
+            }
+        }
+        logger.info { "Loaded $from -> $to $rotation in ${System.currentTimeMillis() - start}ms" }
+    }
+
+    private fun readObjects(chunk: Chunk, reader: Reader, chunkRotation: Int) {
+        val chunkX = chunk.tile.x
+        val chunkY = chunk.tile.y
+        for (i in 0 until reader.readShort()) {
+            val obj = ZoneObject(reader.readInt())
+            val def = definitions.get(obj.id)
+            val rotation = (obj.rotation + chunkRotation) and 0x3
+            val rotX = chunkX + rotateX(obj.x, obj.y, def.sizeX, def.sizeY, rotation, chunkRotation)
+            val rotY = chunkY + rotateY(obj.x, obj.y, def.sizeX, def.sizeY, rotation, chunkRotation)
+            objects.set(rotX, rotY, obj.plane, obj.id, obj.type, rotation, def)
+        }
+    }
+
+    private fun readTiles(chunk: Chunk, reader: Reader, chunkRotation: Int) {
+        val intArray = collisions.allocateIfAbsent(
+            absoluteX = chunk.tile.x,
+            absoluteZ = chunk.tile.y,
+            level = chunk.plane
+        )
+        val value = reader.readLong()
+        for (i in 0 until 64) {
+            if (value ushr i and 0x1 == 1L) {
+                val x = i and 0x7
+                val y = i shr 3 and 0x7
+                val index = (rotateX(x, y, chunkRotation) and 0x7) or ((rotateY(x, y, chunkRotation) and 0x7) shl 3)
+                intArray[index] = intArray[i] or CollisionFlag.FLOOR
             }
         }
     }
 
-    private fun decompressObjects(reader: Reader, chunk: Chunk, chunkRotation: Int) {
-        if (reader.readBits(1) == 0) {
-            return
-        }
-        val objectCount = reader.readBits(8)
-        repeat(objectCount) {
-            val id = reader.readBits(16)
-            val x = reader.readBits(3)
-            val y = reader.readBits(3)
-            val type = reader.readBits(5)
-            val rotation = reader.readBits(3)
-            loader.load(chunk, id, x, y, type, (rotation + chunkRotation) and 0x3, chunkRotation)
-        }
+    private fun fillTiles(chunk: Chunk) {
+        collisions.allocateIfAbsent(
+            absoluteX = chunk.tile.x,
+            absoluteZ = chunk.tile.y,
+            level = chunk.plane
+        ).fill(CollisionFlag.FLOOR)
     }
 
     companion object {
@@ -114,6 +173,70 @@ class MapExtract(
 
         private fun rotateY(x: Int, y: Int, rotation: Int): Int {
             return if (rotation == 1) 7 - x else if (rotation == 2) 7 - y else if (rotation == 3) x else y
+        }
+
+        private fun rotateX(
+            objX: Int,
+            objY: Int,
+            sizeX: Int,
+            sizeY: Int,
+            objRotation: Int,
+            chunkRotation: Int
+        ): Int {
+            var x = sizeX
+            var y = sizeY
+            val rotation = chunkRotation and 0x3
+            if (objRotation and 0x1 == 1) {
+                val temp = x
+                x = y
+                y = temp
+            }
+            if (rotation == 0) {
+                return objX
+            }
+            if (rotation == 1) {
+                return objY
+            }
+            return if (rotation == 2) 7 - objX - x + 1 else 7 - objY - y + 1
+        }
+
+        private fun rotateY(
+            objX: Int,
+            objY: Int,
+            sizeX: Int,
+            sizeY: Int,
+            objRotation: Int,
+            chunkRotation: Int
+        ): Int {
+            val rotation = chunkRotation and 0x3
+            var x = sizeY
+            var y = sizeX
+            if (objRotation and 0x1 == 1) {
+                val temp = y
+                y = x
+                x = temp
+            }
+            if (rotation == 0) {
+                return objY
+            }
+            if (rotation == 1) {
+                return 7 - objX - y + 1
+            }
+            return if (rotation == 2) 7 - objY - x + 1 else objX
+        }
+
+        @JvmStatic
+        fun main(args: Array<String>) {
+            val cache = WeakReference(CacheDelegate("./data/cache"))
+            val itemDefinitions = ItemDefinitions(ItemDecoder(cache.get()!!))
+                .load(FileStorage(), "./data/definitions/items.yml")
+            val definitions = ObjectDefinitions(ObjectDecoder(cache.get()!!, true, false))
+                .load(FileStorage(), "./data/definitions/objects.yml", itemDefinitions)
+            val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
+            val collisions = Collisions()
+            val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates())
+            val extract = MapExtract(collisions, definitions, objects, xteas)
+            extract.loadMap(File("./data/map-test.dat"))
         }
     }
 }
