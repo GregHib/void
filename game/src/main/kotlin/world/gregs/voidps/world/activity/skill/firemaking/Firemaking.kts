@@ -12,12 +12,10 @@ import world.gregs.voidps.engine.contain.clear
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.data.Fire
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -28,7 +26,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
@@ -136,6 +133,7 @@ val directions = listOf(Direction.WEST, Direction.EAST, Direction.SOUTH, Directi
 
 fun spawnFire(player: Player, tile: Tile, fire: Fire) {
     val obj = spawnObject("fire_${fire.colour}", tile, type = 10, rotation = 0, ticks = fire.life)
+    floorItems.add(tile, "ashes", revealTicks = fire.life, disappearTicks = 60, owner = "")
     val interact = player.mode as Interact
     for (dir in directions) {
         if (interact.canStep(dir.delta.x, dir.delta.y)) {
@@ -151,11 +149,3 @@ val Item.lighter: Boolean
 
 val Item.burnable: Boolean
     get() = def.has("firemaking")
-
-val players: Players by inject()
-
-on<Unregistered>({ it.id.startsWith("fire_") }) { gameObject: GameObject ->
-    val ownerName = gameObject.owner
-    val owner = if (ownerName != null) players.get(ownerName) else null
-    floorItems.add(gameObject.tile, "ashes", revealTicks = FloorItems.IMMEDIATE, disappearTicks = 60, owner = owner)
-}
