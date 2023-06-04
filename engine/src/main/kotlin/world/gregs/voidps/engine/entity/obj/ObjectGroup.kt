@@ -20,4 +20,35 @@ object ObjectGroup {
      * The ground decoration object group, which may block a tile.
      */
     const val GROUND_DECORATION = 3
+
+    private val groups = intArrayOf(
+        WALL,
+        WALL,
+        WALL,
+        WALL,
+        WALL_DECORATION,
+        WALL_DECORATION,
+        WALL_DECORATION,
+        WALL_DECORATION,
+        WALL_DECORATION,
+        INTERACTIVE_OBJECT,
+        INTERACTIVE_OBJECT,
+        INTERACTIVE_OBJECT,
+        INTERACTIVE_OBJECT,
+        INTERACTIVE_OBJECT,
+        INTERACTIVE_OBJECT,
+        INTERACTIVE_OBJECT,
+        INTERACTIVE_OBJECT,
+        INTERACTIVE_OBJECT,
+        INTERACTIVE_OBJECT,
+        INTERACTIVE_OBJECT,
+        INTERACTIVE_OBJECT,
+        INTERACTIVE_OBJECT,
+        GROUND_DECORATION
+    )
+
+    /**
+     * Get the [ObjectGroup] for an [ObjectType]
+     */
+    fun group(type: Int) = groups[type]
 }
