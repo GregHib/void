@@ -11,6 +11,8 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 
+// TODO how to handle pairs, so that when one object is replaced so is the other.
+
 class CustomObjects(
     private val objects: Objects,
     private val batches: ChunkBatchUpdates,
@@ -18,6 +20,21 @@ class CustomObjects(
     private val collision: GameObjectCollision,
 ) {
     private val logger = InlineLogger()
+
+    private val timers: MutableMap<GameObject, String> = mutableMapOf()
+
+    fun setTimer(gameObject: GameObject, timer: String) {
+        timers[gameObject] = timer
+    }
+
+    fun cancelTimer(gameObject: GameObject): Boolean {
+        val timer = timers.remove(gameObject) ?: return false
+        timers.filter { it.value == timer }.forEach { (key, _) ->
+            timers.remove(key)
+        }
+        World.stopTimer(timer)
+        return true
+    }
 
     /**
      * Spawns an object, optionally removing after a set time
@@ -38,8 +55,9 @@ class CustomObjects(
             val name = "object_despawn_${gameObject.id}_${gameObject.tile}"
             World.run(name, ticks) {
                 despawn(gameObject, collision)
+                timers.remove(gameObject)
             }
-            objects.setTimer(gameObject, name)
+            setTimer(gameObject, name)
         }
         return gameObject
     }
@@ -92,7 +110,7 @@ class CustomObjects(
             World.run(name, ticks) {
                 respawn(original, collision)
             }
-            objects.setTimer(original, name)
+            setTimer(original, name)
         }
     }
 
@@ -117,7 +135,7 @@ class CustomObjects(
             World.run(name, ticks) {
                 switch(replacement, original, collision)
             }
-            objects.setTimer(replacement, name)
+            setTimer(replacement, name)
         }
         return replacement
     }
@@ -150,8 +168,8 @@ class CustomObjects(
                 switch(firstReplacement, firstOriginal, collision)
                 switch(secondReplacement, secondOriginal, collision)
             }
-            objects.setTimer(firstReplacement, name)
-            objects.setTimer(secondReplacement, name)
+            setTimer(firstReplacement, name)
+            setTimer(secondReplacement, name)
         }
 
     }

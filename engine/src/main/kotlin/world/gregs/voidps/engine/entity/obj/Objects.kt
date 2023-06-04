@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.obj
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.entity.BatchList
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
@@ -14,8 +13,7 @@ import world.gregs.voidps.network.encode.send
 class Objects(
     override val chunks: MutableMap<Int, MutableList<GameObject>> = Int2ObjectOpenHashMap(),
     private val added: MutableMap<Int, MutableSet<GameObject>> = Int2ObjectOpenHashMap(),
-    private val removed: MutableMap<Int, MutableSet<GameObject>> = Int2ObjectOpenHashMap(),
-    private val timers: MutableMap<GameObject, String> = mutableMapOf()
+    private val removed: MutableMap<Int, MutableSet<GameObject>> = Int2ObjectOpenHashMap()
 ) : BatchList<GameObject>, ChunkBatchUpdates.Sender {
 
     fun addTemp(gameObject: GameObject): Boolean {
@@ -48,16 +46,6 @@ class Objects(
         super.clear(chunk)
         added.remove(chunk.id)
         removed.remove(chunk.id)
-    }
-
-    fun setTimer(gameObject: GameObject, timer: String) {
-        timers[gameObject] = timer
-    }
-
-    fun cancelTimer(gameObject: GameObject): Boolean {
-        val timer = timers.remove(gameObject) ?: return false
-        World.stopTimer(timer)
-        return true
     }
 
     override operator fun get(tile: Tile): List<GameObject> {
