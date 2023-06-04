@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectClick
+import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
@@ -91,7 +91,7 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
     while (player.levels.getMax(skill) < range.last + 1 && hasAmmo(skill)) {
         if (target is GameObject) {
             objectOption(target, "Shoot-at")
-            await<Player, ObjectClick>()
+            await<Player, ObjectOption>()
             await("tick")
         } else if (target is NPC) {
             npcOption(target, "Attack")
