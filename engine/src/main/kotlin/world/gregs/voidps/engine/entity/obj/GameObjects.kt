@@ -30,7 +30,7 @@ class GameObjects(
         if (replaced(value) && original == obj.value) {
             // Re-add original
             map.remove(tile.x, tile.y, tile.plane, group, REPLACED)
-            batches.add(tile.chunk, ObjectAddition(tile.id, obj.id, obj.type, obj.rotation))
+            batches.add(tile.chunk, ObjectAddition(tile.id, obj.intId, obj.type, obj.rotation))
             if (collision) {
                 collisions.modify(tile, obj, add = true)
             }
@@ -49,7 +49,7 @@ class GameObjects(
 
             // Add replacement
             replacements[index(tile.x, tile.y, tile.plane, group)] = obj.value
-            batches.add(tile.chunk, ObjectAddition(tile.id, obj.id, obj.type, obj.rotation))
+            batches.add(tile.chunk, ObjectAddition(tile.id, obj.intId, obj.type, obj.rotation))
             if (collision) {
                 collisions.modify(tile, obj, add = true)
             }
@@ -96,7 +96,7 @@ class GameObjects(
             if (original != 0) {
                 val originalObj = GameMapObject(original)
                 if (collision) {
-                    batches.add(tile.chunk, ObjectAddition(tile.id, originalObj.id, originalObj.type, originalObj.rotation))
+                    batches.add(tile.chunk, ObjectAddition(tile.id, originalObj.intId, originalObj.type, originalObj.rotation))
                     collisions.modify(tile, originalObj, add = true)
                 }
                 size++
@@ -134,7 +134,7 @@ class GameObjects(
         private fun replaced(value: Int) = value and REPLACED == REPLACED
 
         private const val REPLACED = 0x1
-        var LOAD_UNUSED = false // Don't bother loading objects which don't have options or configs (saves ~75MB ram)
+        var LOAD_UNUSED = true // Don't bother loading objects which don't have options or configs (saves ~75MB ram)
 
         private fun index(x: Int, y: Int, level: Int, group: Int): Int {
             return level + (group shl 2) + (x shl 4) + (y shl 18)

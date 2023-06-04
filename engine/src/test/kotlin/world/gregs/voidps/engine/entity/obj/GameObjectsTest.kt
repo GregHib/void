@@ -23,7 +23,7 @@ class GameObjectsTest {
         val obj = GameMapObject(1234, 10, 1)
         val tile = Tile(10, 10)
 
-        objects.set(tile.x, tile.y, tile.plane, obj.id, obj.type, obj.rotation, ObjectDefinition.EMPTY)
+        objects.set(tile.x, tile.y, tile.plane, obj.intId, obj.type, obj.rotation, ObjectDefinition.EMPTY)
 
         assertEquals(obj, objects.get(tile, ObjectGroup.INTERACTIVE_OBJECT))
         assertNull(objects.get(tile, ObjectGroup.WALL))
@@ -36,7 +36,7 @@ class GameObjectsTest {
     fun `Temporarily remove an object`() {
         val obj = GameMapObject(1234, 10, 1)
         val tile = Tile(10, 10)
-        objects.set(tile.x, tile.y, tile.plane, obj.id, obj.type, obj.rotation, ObjectDefinition.EMPTY)
+        objects.set(tile.x, tile.y, tile.plane, obj.intId, obj.type, obj.rotation, ObjectDefinition.EMPTY)
 
         objects.remove(tile, obj)
         assertNull(objects.get(tile, ObjectGroup.INTERACTIVE_OBJECT))
@@ -61,7 +61,7 @@ class GameObjectsTest {
     fun `Add and remove a temp object over an original`() {
         val original = GameMapObject(123, 10, 1)
         val tile = Tile(10, 10)
-        objects.set(tile.x, tile.y, tile.plane, original.id, original.type, original.rotation, ObjectDefinition.EMPTY)
+        objects.set(tile.x, tile.y, tile.plane, original.intId, original.type, original.rotation, ObjectDefinition.EMPTY)
 
         val obj = GameMapObject(1234, 10, 0)
         objects.add(tile, obj)

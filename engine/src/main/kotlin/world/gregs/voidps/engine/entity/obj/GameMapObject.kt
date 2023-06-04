@@ -9,7 +9,11 @@ value class GameMapObject(val value: Int) {
 
     constructor(id: Int, type: Int, rotation: Int) : this(value(id, type, rotation))
 
-    val id: Int
+    constructor(id: String, type: Int, rotation: Int) : this(get<ObjectDefinitions>().get(id).id, type, rotation)
+
+    val id: String
+        get() = def.stringId
+    val intId: Int
         get() = id(value)
     val type: Int
         get() = type(value)
@@ -18,7 +22,7 @@ value class GameMapObject(val value: Int) {
     val group: Int
         get() = ObjectGroup.group(type)
     val def: ObjectDefinition
-        get() = get<ObjectDefinitions>().get(id)
+        get() = get<ObjectDefinitions>().get(intId)
 
     companion object {
         fun value(id: Int, type: Int, rotation: Int) = rotation + (type shl 2) + (id shl 7)
