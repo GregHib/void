@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.map.collision
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.entity.Direction.*
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.obj.GameMapObject
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectType
@@ -36,7 +36,7 @@ class GameObjectCollision(
 
     private fun modifyWall(x: Int, y: Int, plane: Int, blockSky: Boolean, blockRoute: Boolean, direction: Int, add: Boolean) {
         modifyTile(x, y, plane, blockSky, blockRoute, direction, add)
-        modifyTile(x + deltaX[direction], y + deltaY[direction], plane, blockSky, blockRoute, (direction + 4) and 0x3, add)
+        modifyTile(x + deltaX[direction], y + deltaY[direction], plane, blockSky, blockRoute, inverse[direction], add)
     }
 
     private fun modifyWallCorner(x: Int, y: Int, plane: Int, blockSky: Boolean, blockRoute: Boolean, direction: Int, add: Boolean) {
@@ -82,13 +82,15 @@ class GameObjectCollision(
 
     companion object {
         // For performance reasons
-        private val deltaX = intArrayOf(-1, 0, 1, 1, 1, 0, -1, -1)
-        private val deltaY = intArrayOf(1, 1, 1, 0, -1, -1, -1, 0)
+        private val inverse = Direction.all.map { it.inverse().ordinal }.toIntArray()
 
-        private val cardinal = intArrayOf(NORTH.ordinal, SOUTH.ordinal, EAST.ordinal, WEST.ordinal)
-        private val ordinal = intArrayOf(NORTH_WEST.ordinal, NORTH_EAST.ordinal, SOUTH_EAST.ordinal, SOUTH_WEST.ordinal)
+        private val deltaX = Direction.all.map { it.delta.x }.toIntArray()
+        private val deltaY = Direction.all.map { it.delta.y }.toIntArray()
 
-        private val vertical = intArrayOf(NORTH.ordinal, NORTH.ordinal, NORTH.ordinal, -1, SOUTH.ordinal, SOUTH.ordinal, SOUTH.ordinal, -1)
-        private val horizontal = intArrayOf(WEST.ordinal, -1, EAST.ordinal, EAST.ordinal, EAST.ordinal, -1, WEST.ordinal, WEST.ordinal)
+        private val cardinal = Direction.cardinal.map(Direction::ordinal).toIntArray()
+        private val ordinal = Direction.ordinal.map(Direction::ordinal).toIntArray()
+
+        private val vertical = Direction.all.map { it.vertical().ordinal }.toIntArray()
+        private val horizontal = Direction.all.map { it.horizontal().ordinal }.toIntArray()
     }
 }
