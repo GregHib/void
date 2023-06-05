@@ -26,11 +26,11 @@ class GameObjectsTest {
 
         objects.set(obj.intId, obj.x, obj.y, obj.plane, obj.type, obj.rotation, ObjectDefinition.EMPTY)
 
-        assertEquals(obj, objects[obj.tile, ObjectGroup.INTERACTIVE])
-        assertNull(objects[obj.tile, ObjectGroup.WALL])
-        assertNull(objects[Tile(10, 10, 1), ObjectGroup.INTERACTIVE])
+        assertEquals(obj, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+        assertNull(objects.getGroup(obj.tile, ObjectGroup.WALL))
+        assertNull(objects.getGroup(Tile(10, 10, 1), ObjectGroup.INTERACTIVE))
         objects.clear()
-        assertNull(objects[obj.tile, ObjectGroup.INTERACTIVE])
+        assertNull(objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
     }
 
     @Test
@@ -39,10 +39,10 @@ class GameObjectsTest {
         objects.set(obj.intId, obj.x, obj.y, obj.plane, obj.type, obj.rotation, ObjectDefinition.EMPTY)
 
         objects.remove(obj)
-        assertNull(objects[obj.tile, ObjectGroup.INTERACTIVE])
+        assertNull(objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
 
         objects.add(obj)
-        assertEquals(obj, objects[obj.tile, ObjectGroup.INTERACTIVE])
+        assertEquals(obj, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
     }
 
     @Test
@@ -50,11 +50,11 @@ class GameObjectsTest {
         val obj = GameObject(id = 1234, x = 10, y = 10, plane = 0, type = 10, rotation = 1)
 
         objects.add(obj)
-        assertEquals(obj, objects[obj.tile, ObjectGroup.INTERACTIVE])
+        assertEquals(obj, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
         assertTrue(objects.contains(obj))
 
         objects.clear(obj.tile.chunk)
-        assertNull(objects[obj.tile, ObjectGroup.INTERACTIVE])
+        assertNull(objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
         assertFalse(objects.contains(obj))
     }
 
@@ -65,9 +65,9 @@ class GameObjectsTest {
 
         val obj = GameObject(id = 1234, x = 10, y = 10, plane = 0, type = 10, rotation = 0)
         objects.add(obj)
-        assertEquals(obj, objects[obj.tile, ObjectGroup.INTERACTIVE])
+        assertEquals(obj, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
 
         objects.remove(obj)
-        assertEquals(original, objects[obj.tile, ObjectGroup.INTERACTIVE])
+        assertEquals(original, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
     }
 }

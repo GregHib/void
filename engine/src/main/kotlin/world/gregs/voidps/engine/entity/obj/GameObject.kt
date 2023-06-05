@@ -47,6 +47,10 @@ value class GameObject(val hash: Long) : Entity {
     override val events: Events
         get() = Events(this)
 
+    override fun toString(): String {
+        return "GameObject(id=$intId, tile=$tile, type=$type, rotation=$rotation)"
+    }
+
     companion object {
         operator fun invoke(id: Int, tile: Tile, type: Int, rotation: Int): GameObject {
             return GameObject(id, tile.x, tile.y, tile.plane, type, rotation)

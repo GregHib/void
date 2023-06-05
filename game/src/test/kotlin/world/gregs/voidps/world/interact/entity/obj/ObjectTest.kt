@@ -40,7 +40,7 @@ internal class ObjectTest : WorldTest() {
     fun `Can open and walk through a door`() {
         val player = createPlayer("player", Tile(3227, 3214))
         tick()
-        val door = get<GameObjects>()[Tile(3226, 3214), ObjectGroup.INTERACTIVE]!!
+        val door = get<GameObjects>().getGroup(Tile(3226, 3214), ObjectGroup.INTERACTIVE)!!
 
         player.objectOption(door, "Open")
         tick()
@@ -54,7 +54,7 @@ internal class ObjectTest : WorldTest() {
     fun `Ladder ascending`() {
         val player = createPlayer("player", Tile(3229, 3214))
         tick()
-        val ladder = get<GameObjects>()[Tile(3229, 3213), ObjectGroup.INTERACTIVE]!!
+        val ladder = get<GameObjects>().getGroup(Tile(3229, 3213), ObjectGroup.INTERACTIVE)!!
 
         player.objectOption(ladder, "Climb-up")
         tick(3)

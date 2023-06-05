@@ -59,10 +59,10 @@ suspend fun Bot.light(map: MapArea, lighter: Item, logs: Item) {
     goToArea(map)
     val lighterIndex = player.inventory.indexOf(lighter.id)
     while (player.inventory.contains(logs.id)) {
-        if (objects[player.tile, ObjectGroup.INTERACTIVE] != null) {
+        if (objects.getGroup(player.tile, ObjectGroup.INTERACTIVE) != null) {
             val spot = player.tile
                 .toCuboid(1)
-                .firstOrNull { objects[it, ObjectGroup.INTERACTIVE] == null }
+                .firstOrNull { objects.getGroup(it, ObjectGroup.INTERACTIVE) == null }
             if (spot == null) {
                 await("tick")
                 if (player.inventory.spaces < 4) {

@@ -15,7 +15,7 @@ fun loadObjectSpawns(
     path: String = getProperty("objectsPath"),
     definitions: ObjectDefinitions = get(),
 ) = timedLoad("object spawn") {
-    objects.clear()
+    objects.reset()
     val data: List<ObjectSpawn> = storage.loadType(path)
     val membersWorld = World.members
     for (spawn in data) {

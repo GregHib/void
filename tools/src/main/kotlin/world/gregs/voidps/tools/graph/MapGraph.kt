@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.ObjectGroup
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
@@ -44,7 +43,7 @@ class MapGraph(
                 for (chunk in region.tile.chunk.toCuboid(width = 8, height = 8).toChunks()) {
                     val time = measureNanoTime {
 
-                        val loaded = chunk.toCuboid().flatMap { tile -> ObjectGroup.all.map { group -> objects[tile, group] }.filterNotNull() }
+                        val loaded = chunk.toCuboid().flatMap { tile -> objects[tile]  }
                         objs.addAll(loaded)
                         all.addAll(getCenterPoints(strategy, chunk.toCuboid(width = 2, height = 2)))
                     }

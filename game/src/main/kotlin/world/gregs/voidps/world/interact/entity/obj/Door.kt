@@ -111,23 +111,23 @@ object Door {
 
     fun getDoubleDoor(objects: GameObjects, gameObject: GameObject, def: ObjectDefinition, clockwise: Int): GameObject? {
         var orientation = Direction.cardinal[gameObject.rotation(clockwise)]
-        var door = objects[gameObject.tile.add(orientation.delta), gameObject.group]
+        var door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
         if (door != null && door.def.isDoor()) {
             return door
         }
         orientation = orientation.inverse()
-        door = objects[gameObject.tile.add(orientation.delta), gameObject.group]
+        door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
         if (door != null && door.def.isDoor()) {
             return door
         }
         if (def.isGate()) {
             orientation = orientation.rotate(2)
-            door = objects[gameObject.tile.add(orientation.delta), gameObject.group]
+            door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
             if (door != null && door.def.isGate()) {
                 return door
             }
             orientation = orientation.inverse()
-            door = objects[gameObject.tile.add(orientation.delta), gameObject.group]
+            door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
             if (door != null && door.def.isGate()) {
                 return door
             }

@@ -122,7 +122,7 @@ abstract class WorldTest : KoinTest {
     }
 
     fun createObject(id: String, tile: Tile = Tile.EMPTY): GameObject {
-        return spawnObject(id, tile, 0, 0)
+        return spawnObject(id, tile, 10, 0)
     }
 
     fun Container.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }

@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.ObjectGroup
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.network.instruct.InteractDialogue
@@ -99,7 +98,7 @@ fun Bot.getObject(filter: (GameObject) -> Boolean): GameObject? {
     val objects = get<GameObjects>()
     for (chunk in player.tile.chunk.spiral(2)) {
         val obj = chunk.toCuboid()
-            .mapNotNull { tile -> objects[tile, ObjectGroup.INTERACTIVE] }
+            .flatMap { tile -> objects[tile] }
             .firstOrNull(filter)
         if (obj != null) {
             return obj
@@ -113,7 +112,7 @@ fun Bot.getObjects(filter: (GameObject) -> Boolean): List<GameObject> {
     val list = mutableListOf<GameObject>()
     for (chunk in player.tile.chunk.spiral(2)) {
         list.addAll(chunk.toCuboid()
-            .mapNotNull { tile -> objects[tile, ObjectGroup.INTERACTIVE] }
+            .flatMap { tile -> objects[tile] }
             .filter(filter))
     }
     return list

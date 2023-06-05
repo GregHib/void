@@ -35,7 +35,7 @@ internal class MiningTest : WorldTest() {
 
         assertTrue(player.inventory.contains("tin_ore"))
         assertTrue(player.experience.get(Skill.Mining) > 0)
-        assertNotEquals(rocks.id, objects[tile, ObjectGroup.INTERACTIVE]?.id)
+        assertNotEquals(rocks.id, objects.getGroup(tile, ObjectGroup.INTERACTIVE)?.id)
     }
 
 

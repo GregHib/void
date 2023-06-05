@@ -18,10 +18,10 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
      */
     private fun isReused(obj: GameObject): Boolean {
         if (obj.tile.plane > 0) {
-            if (objs[obj.tile.addPlane(1), obj.group, obj.id] != null) {
+            if (objs[obj.tile.addPlane(1), obj.id] != null) {
                 return false
             }
-            if (objs[obj.tile.minus(plane = 1), obj.group, obj.id] != null) {
+            if (objs[obj.tile.minus(plane = 1), obj.id] != null) {
                 return false
             }
         }

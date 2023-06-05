@@ -68,12 +68,16 @@ class GameObjects(
         if (group != ObjectGroup.WALL_DECORATION) {
             collisions.modify(definition, x, y, plane, type, rotation, add = true)
         }
-        if (group == ObjectGroup.INTERACTIVE && interactive(definition)) {
+        if (interactive(definition)) {
             map[x, y, plane, group] = toValue(GameObject.value(id, type, rotation))
             size++
         }
     }
 
+    /**
+     * Decide to store [GameObject]s which don't have options or configs
+     * Skipping unused objects uses ~75MB less ram but makes content creation harder.
+     */
     private fun interactive(definition: ObjectDefinition) = LOAD_UNUSED || definition.options != null || definition.has("id")
 
     /**
@@ -115,31 +119,70 @@ class GameObjects(
         }
     }
 
-    operator fun get(tile: Tile, id: String) = get(tile, ObjectGroup.INTERACTIVE, id)
+    /**
+     * Get object by string [id]
+     */
+    operator fun get(tile: Tile, id: String) = get(tile, ObjectGroup.WALL, id)
+        ?: get(tile, ObjectGroup.WALL_DECORATION, id)
+        ?: get(tile, ObjectGroup.INTERACTIVE, id)
+        ?: get(tile, ObjectGroup.GROUND_DECORATION, id)
 
-    operator fun get(tile: Tile, group: Int, id: String): GameObject? {
-        val obj = get(tile, group) ?: return null
+    private fun get(tile: Tile, group: Int, id: String): GameObject? {
+        val obj = getGroup(tile, group) ?: return null
         if (obj.id == id) {
             return obj
         }
         return null
     }
 
-    operator fun get(tile: Tile, group: Int, id: Int): GameObject? {
-        val obj = get(tile, group) ?: return null
+    /**
+     * Get all objects on [tile]
+     */
+    operator fun get(tile: Tile) = listOfNotNull(
+        getGroup(tile, ObjectGroup.WALL),
+        getGroup(tile, ObjectGroup.WALL_DECORATION),
+        getGroup(tile, ObjectGroup.INTERACTIVE),
+        getGroup(tile, ObjectGroup.GROUND_DECORATION)
+    )
+
+    /**
+     * Get object by integer [id]
+     */
+    operator fun get(tile: Tile, id: Int) = get(tile, ObjectGroup.WALL, id)
+        ?: get(tile, ObjectGroup.WALL_DECORATION, id)
+        ?: get(tile, ObjectGroup.INTERACTIVE, id)
+        ?: get(tile, ObjectGroup.GROUND_DECORATION, id)
+
+    private fun get(tile: Tile, group: Int, id: Int): GameObject? {
+        val obj = getGroup(tile, group) ?: return null
         if (obj.intId == id) {
             return obj
         }
         return null
     }
 
-    operator fun get(tile: Tile, group: Int): GameObject? {
+    /**
+     * Get object by type [type]
+     */
+    fun getType(tile: Tile, type: Int): GameObject? {
+        val obj = getGroup(tile, ObjectGroup.group(type)) ?: return null
+        if (obj.type == type) {
+            return obj
+        }
+        return null
+    }
+
+    /**
+     * Get object by group [group]
+     */
+    fun getGroup(tile: Tile, group: Int): GameObject? {
         val value = map[tile.x, tile.y, tile.plane, group]
         if (value == -1 || value == 0) {
             return null
         }
         if (replaced(value)) {
-            return GameObject(replacements[index(tile.x, tile.y, tile.plane, group)] ?: return null, tile.x, tile.y, tile.plane)
+            val replacement = replacements[index(tile.x, tile.y, tile.plane, group)] ?: return null
+            return GameObject(replacement, tile.x, tile.y, tile.plane)
         }
         return GameObject(toObject(value), tile.x, tile.y, tile.plane)
     }
@@ -155,6 +198,10 @@ class GameObjects(
             replacements.remove(index(tile.x, tile.y, tile.plane, ObjectGroup.INTERACTIVE))
             replacements.remove(index(tile.x, tile.y, tile.plane, ObjectGroup.GROUND_DECORATION))
         }
+    }
+
+    fun reset() {
+        replacements.clear()
     }
 
     fun clear() {
@@ -185,7 +232,6 @@ class GameObjects(
                     if (int == -1 || int == 0) {
                         continue
                     }
-                    println("Check $int")
                     if (replaced(int)) {
                         val tile = chunk.tile.add(x, y)
                         val value = toObject(int)
@@ -209,7 +255,7 @@ class GameObjects(
         private fun replaced(value: Int) = value and REPLACED == REPLACED
         private const val REPLACED = 0x1
 
-        var LOAD_UNUSED = false // Don't bother loading objects which don't have options or configs (saves ~75MB ram)
+        internal var LOAD_UNUSED = false
 
         private val GameObject.index: Int
             get() = index(x, y, plane, group)

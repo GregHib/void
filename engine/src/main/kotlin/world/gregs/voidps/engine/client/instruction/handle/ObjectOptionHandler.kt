@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.entity.obj.ObjectType
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.instruct.InteractObject
@@ -57,7 +56,7 @@ class ObjectOptionHandler(
             return if (definition == null) {
                 objects[tile, objectId.toString()]
             } else {
-                objects[tile, ObjectType.INTERACTIVE, definition.id]
+                objects[tile, definition.id]
             }
         }
         return obj
