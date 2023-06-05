@@ -264,9 +264,9 @@ on<Command>({ prefix == "obj" }) { player: Player ->
         val id = parts.getOrNull(0)
         if (id != null) {
             val rotation = parts.getOrNull(1)?.toIntOrNull() ?: 0
-            spawnObject(id, player.tile.addY(1), 0, rotation, 10, null)
-            spawnObject(id, player.tile.addY(1), 10, rotation, 10, null)
-            spawnObject(id, player.tile.addY(1), 22, rotation, 10, null)
+            spawnObject(id, player.tile.addY(1), 0, rotation, 10)
+            spawnObject(id, player.tile.addY(1), 10, rotation, 10)
+            spawnObject(id, player.tile.addY(1), 22, rotation, 10)
         }
     } else {
         val objs = get<GameObjects>()
@@ -282,7 +282,7 @@ on<Command>({ prefix == "tree" }) { player: Player ->
     val tree = parts[0]
     val stump = parts[1]
     val type = parts.getOrNull(2)?.toIntOrNull() ?: 10
-    spawnObject(tree, player.tile, type, 0, 5, null)
+    spawnObject(tree, player.tile, type, 0, 5)
     pause(5)
-    spawnObject(stump, player.tile, type, 0, 5, null)
+    spawnObject(stump, player.tile, type, 0, 5)
 }

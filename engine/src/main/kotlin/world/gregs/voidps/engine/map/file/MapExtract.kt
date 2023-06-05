@@ -92,7 +92,7 @@ class MapExtract(
             for (j in 0 until reader.readShort()) {
                 val obj = ZoneObject(reader.readInt())
                 val def = definitions.get(obj.id)
-                objects.set(chunkX + obj.x, chunkY + obj.y, obj.plane, obj.id, obj.type, obj.rotation, def)
+                objects.set(obj.id, chunkX + obj.x, chunkY + obj.y, obj.plane, obj.type, obj.rotation, def)
             }
         }
     }
@@ -137,7 +137,7 @@ class MapExtract(
             val rotation = (obj.rotation + chunkRotation) and 0x3
             val rotX = chunkX + rotateX(obj.x, obj.y, def.sizeX, def.sizeY, rotation, chunkRotation)
             val rotY = chunkY + rotateY(obj.x, obj.y, def.sizeX, def.sizeY, rotation, chunkRotation)
-            objects.set(rotX, rotY, obj.plane, obj.id, obj.type, rotation, def)
+            objects.set(obj.id, rotX, rotY, obj.plane, obj.type, rotation, def)
         }
     }
 

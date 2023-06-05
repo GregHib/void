@@ -63,7 +63,7 @@ class GameObjects(
     /**
      * Sets the original placement of a game object
      */
-    fun set(x: Int, y: Int, plane: Int, id: Int, type: Int, rotation: Int, definition: ObjectDefinition) {
+    fun set(id: Int, x: Int, y: Int, plane: Int, type: Int, rotation: Int, definition: ObjectDefinition) {
         val group = ObjectGroup.group(type)
         if (group != ObjectGroup.WALL_DECORATION) {
             collisions.modify(definition, x, y, plane, type, rotation, add = true)
@@ -98,8 +98,8 @@ class GameObjects(
             map.remove(obj.tile.x, obj.tile.y, obj.tile.plane, group, REPLACED)
             if (original != 0) {
                 val originalObj = GameObject(original, obj.x, obj.y, obj.plane)
+                batches.add(obj.tile.chunk, ObjectAddition(obj.tile.id, originalObj.intId, originalObj.type, originalObj.rotation))
                 if (collision) {
-                    batches.add(obj.tile.chunk, ObjectAddition(obj.tile.id, originalObj.intId, originalObj.type, originalObj.rotation))
                     collisions.modify(originalObj, add = true)
                 }
                 size++
@@ -175,17 +175,27 @@ class GameObjects(
     }
 
     override fun send(player: Player, chunk: Chunk) {
-        for (tile in chunk.toCuboid()) {
-            for (group in ObjectGroup.all) {
-                val int = map[tile.x, tile.y, tile.plane, group]
-                if (replaced(int)) {
-                    val value = toObject(int)
-                    if (value != 0) {
-                        player.client?.send(ObjectRemoval(tile.id, GameObject.type(value), GameObject.rotation(value)))
+        val chunkX = chunk.tile.x
+        val chunkY = chunk.tile.y
+        val plane = chunk.plane
+        for (x in 0 until 8) {
+            for (y in 0 until 8) {
+                for (group in 0 until 4) {
+                    val int = map[chunkX + x, chunkY + y, plane, group]
+                    if (int == -1 || int == 0) {
+                        continue
                     }
-                    val replaced = replacements[index(tile.x, tile.y, tile.plane, group)]
-                    if (replaced != null) {
-                        player.client?.send(ObjectAddition(tile.id, GameObject.id(replaced), GameObject.type(replaced), GameObject.rotation(replaced)))
+                    println("Check $int")
+                    if (replaced(int)) {
+                        val tile = chunk.tile.add(x, y)
+                        val value = toObject(int)
+                        if (value != 0) {
+                            player.client?.send(ObjectRemoval(tile.id, GameObject.type(value), GameObject.rotation(value)))
+                        }
+                        val replaced = replacements[index(tile.x, tile.y, tile.plane, group)]
+                        if (replaced != null) {
+                            player.client?.send(ObjectAddition(tile.id, GameObject.id(replaced), GameObject.type(replaced), GameObject.rotation(replaced)))
+                        }
                     }
                 }
             }

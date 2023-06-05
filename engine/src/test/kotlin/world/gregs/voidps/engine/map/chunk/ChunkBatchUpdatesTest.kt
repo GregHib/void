@@ -7,6 +7,7 @@ import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.set
@@ -52,6 +53,7 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
         player.viewport = Viewport()
         player.viewport!!.size = 0
         batches = ChunkBatchUpdates()
+        GameObjects.LOAD_UNUSED = true
     }
 
     @Test
@@ -61,19 +63,17 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
         batches.add(chunk, update)
         player.tile = Tile(20, 20)
         val objects = GameObjects(GameObjectCollision(Collisions()), ChunkBatchUpdates())
+        objects.set(1234, 21, 20, 0, 10, 0, ObjectDefinition.EMPTY)
         batches.register(objects)
         val added = GameObject(4321, Tile(20, 21), 10, 0)
-//        added.def = ObjectDefinition(id = 4321)
-        objects.add(added)
+        objects.add(added, collision = false) // Avoid koin
         val removed = GameObject(1234, Tile(21, 20), 10, 0)
-//        removed.def = ObjectDefinition(id = 1234)
-        objects.add(removed)
-        objects.remove(removed)
+        objects.remove(removed, collision = false)
         player["logged_in"] = true
         // When
         batches.run(player)
         // Then
-        verify {
+        verify(exactly = 1) {
             client.clearChunk(2, 2, 0)
             client.send(ObjectRemoval(tile = 344084, type = 10, rotation = 0))
             client.send(ObjectAddition(tile = 327701, id = 4321, type = 10, rotation = 0))
