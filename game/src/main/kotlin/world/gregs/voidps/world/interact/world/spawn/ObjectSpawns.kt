@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.obj.GameMapObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
-import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timedLoad
 
 fun loadObjectSpawns(
@@ -23,8 +22,7 @@ fun loadObjectSpawns(
         if (!membersWorld && spawn.members) {
             continue
         }
-        val tile = Tile(spawn.x, spawn.y, spawn.plane)
-        objects.add(tile, GameMapObject(definitions.get(spawn.id).id, spawn.type, spawn.rotation))
+        objects.add(GameMapObject(definitions.get(spawn.id).id, spawn.x, spawn.y, spawn.plane, spawn.type, spawn.rotation))
     }
     data.size
 }

@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.network.encode.chunk.ObjectAddition
 import world.gregs.voidps.network.encode.chunk.ObjectRemoval
@@ -12,7 +13,7 @@ import world.gregs.voidps.network.encode.chunk.ObjectRemoval
  * Stores GameObjects and modifications mainly for verifying interactions
  */
 class GameObjects(
-    private val collisions:  GameObjectCollision,
+    private val collisions: GameObjectCollision,
     private val batches: ChunkBatchUpdates,
 ) {
     private val map = GameObjectMap()
@@ -23,35 +24,35 @@ class GameObjects(
     /**
      * Adds temporary objects to [replacements] or un-flags original removed objects
      */
-    fun add(tile: Tile, obj: GameMapObject, collision: Boolean = true) {
+    fun add(obj: GameMapObject, collision: Boolean = true) {
         val group = obj.group
-        val value = map[tile.x, tile.y, tile.plane, group]
+        val value = map[obj.x, obj.y, obj.plane, group]
         val original = toObject(value)
         if (replaced(value) && original == obj.value) {
             // Re-add original
-            map.remove(tile.x, tile.y, tile.plane, group, REPLACED)
-            batches.add(tile.chunk, ObjectAddition(tile.id, obj.intId, obj.type, obj.rotation))
+            map.remove(obj.x, obj.y, obj.plane, group, REPLACED)
+            batches.add(obj.tile.chunk, ObjectAddition(obj.tile.id, obj.intId, obj.type, obj.rotation))
             if (collision) {
-                collisions.modify(tile, obj, add = true)
+                collisions.modify(obj.tile, obj, add = true)
             }
             size++
         } else {
             // Remove original (if exists)
-            map.add(tile.x, tile.y, tile.plane, group, REPLACED)
+            map.add(obj.x, obj.y, obj.plane, group, REPLACED)
             if (original != 0) {
-                val originalObj = GameMapObject(original)
-                batches.add(tile.chunk, ObjectRemoval(tile.id, originalObj.type, originalObj.rotation))
+                val originalObj = GameMapObject(original, obj.x, obj.y, obj.plane)
+                batches.add(obj.tile.chunk, ObjectRemoval(obj.tile.id, originalObj.type, originalObj.rotation))
                 if (collision) {
-                    collisions.modify(tile, originalObj, add = false)
+                    collisions.modify(obj.tile, originalObj, add = false)
                 }
                 size--
             }
 
             // Add replacement
-            replacements[index(tile.x, tile.y, tile.plane, group)] = obj.value
-            batches.add(tile.chunk, ObjectAddition(tile.id, obj.intId, obj.type, obj.rotation))
+            replacements[index(obj.x, obj.y, obj.plane, group)] = obj.value
+            batches.add(obj.tile.chunk, ObjectAddition(obj.tile.id, obj.intId, obj.type, obj.rotation))
             if (collision) {
-                collisions.modify(tile, obj, add = true)
+                collisions.modify(obj.tile, obj, add = true)
             }
             size++
         }
@@ -79,53 +80,88 @@ class GameObjects(
      * Note: If a temp object is added and removed on top of an original removed object
      * then the original object will no longer be removed.
      */
-    fun remove(tile: Tile, obj: GameMapObject, collision: Boolean = true) {
+    fun remove(obj: GameMapObject, collision: Boolean = true) {
         val group = obj.group
-        val value = map[tile.x, tile.y, tile.plane, group]
+        val value = map[obj.x, obj.y, obj.plane, group]
         val original = toObject(value)
-        if (replaced(value) && replacements[index(tile.x, tile.y, tile.plane, group)] == obj.value) {
+        if (replaced(value) && replacements[index(obj.x, obj.y, obj.plane, group)] == obj.value) {
             // Remove replacement
-            replacements.remove(index(tile.x, tile.y, tile.plane, group))
-            batches.add(tile.chunk, ObjectRemoval(tile.id, obj.type, obj.rotation))
+            replacements.remove(index(obj.x, obj.y, obj.plane, group))
+            batches.add(obj.tile.chunk, ObjectRemoval(obj.tile.id, obj.type, obj.rotation))
             if (collision) {
-                collisions.modify(tile, obj, add = false)
+                collisions.modify(obj.tile, obj, add = false)
             }
             size--
             // Re-add original (if exists)
-            map.remove(tile.x, tile.y, tile.plane, group, REPLACED)
+            map.remove(obj.tile.x, obj.tile.y, obj.tile.plane, group, REPLACED)
             if (original != 0) {
-                val originalObj = GameMapObject(original)
+                val originalObj = GameMapObject(original, obj.x, obj.y, obj.plane)
                 if (collision) {
-                    batches.add(tile.chunk, ObjectAddition(tile.id, originalObj.intId, originalObj.type, originalObj.rotation))
-                    collisions.modify(tile, originalObj, add = true)
+                    batches.add(obj.tile.chunk, ObjectAddition(obj.tile.id, originalObj.intId, originalObj.type, originalObj.rotation))
+                    collisions.modify(obj.tile, originalObj, add = true)
                 }
                 size++
             }
         } else if (original == obj.value && original != 0) {
             // Remove original
-            map.add(tile.x, tile.y, tile.plane, group, REPLACED)
-            batches.add(tile.chunk, ObjectRemoval(tile.id, obj.type, obj.rotation))
+            map.add(obj.tile.x, obj.tile.y, obj.tile.plane, group, REPLACED)
+            batches.add(obj.tile.chunk, ObjectRemoval(obj.tile.id, obj.type, obj.rotation))
             if (collision) {
-                collisions.modify(tile, obj, add = true)
+                collisions.modify(obj.tile, obj, add = true)
             }
             size--
         }
     }
 
-    fun get(tile: Tile, group: Int): GameMapObject? {
+    operator fun get(tile: Tile, id: String) = get(tile, ObjectGroup.INTERACTIVE_OBJECT, id)
+
+    operator fun get(tile: Tile, group: Int, id: String): GameMapObject? {
+        val obj = get(tile, group) ?: return null
+        if (obj.id == id) {
+            return obj
+        }
+        return null
+    }
+
+    operator fun get(tile: Tile, group: Int): GameMapObject? {
         val value = map[tile.x, tile.y, tile.plane, group]
         if (value == -1 || value == 0) {
             return null
         }
         if (replaced(value)) {
-            return GameMapObject(replacements[index(tile.x, tile.y, tile.plane, group)] ?: return null)
+            return GameMapObject(replacements[index(tile.x, tile.y, tile.plane, group)] ?: return null, tile.x, tile.y, tile.plane)
         }
-        return GameMapObject(toObject(value))
+        return GameMapObject(toObject(value), tile.x, tile.y, tile.plane)
+    }
+
+    fun clear(chunk: Chunk) {
+        val array = map.allocateIfAbsent(chunk.tile.x, chunk.tile.y, chunk.plane)
+        for (i in array.indices) {
+            array[i] = array[i] and REPLACED.inv()
+        }
+        for (tile in chunk.toCuboid()) {
+            replacements.remove(index(tile.x, tile.y, tile.plane, ObjectGroup.WALL))
+            replacements.remove(index(tile.x, tile.y, tile.plane, ObjectGroup.WALL_DECORATION))
+            replacements.remove(index(tile.x, tile.y, tile.plane, ObjectGroup.INTERACTIVE_OBJECT))
+            replacements.remove(index(tile.x, tile.y, tile.plane, ObjectGroup.GROUND_DECORATION))
+        }
     }
 
     fun clear() {
         map.clear()
         replacements.clear()
+    }
+
+    fun contains(obj: GameMapObject): Boolean {
+        val value = map[obj.x, obj.y, obj.plane, obj.group]
+        if (value == -1 || value == 0) {
+            return false
+        }
+        if (replaced(value)) {
+            replacements[index(obj.x, obj.y, obj.plane, obj.group)] ?: return false
+            return true
+        }
+        return true
     }
 
     companion object {

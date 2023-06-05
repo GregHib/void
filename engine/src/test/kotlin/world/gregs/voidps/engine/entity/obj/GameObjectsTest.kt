@@ -20,54 +20,50 @@ class GameObjectsTest {
 
     @Test
     fun `Set an object to a tile`() {
-        val obj = GameMapObject(1234, 10, 1)
-        val tile = Tile(10, 10)
+        val obj = GameMapObject(id = 1234, x = 10, y = 10, plane = 0, type = 10, rotation = 1)
 
-        objects.set(tile.x, tile.y, tile.plane, obj.intId, obj.type, obj.rotation, ObjectDefinition.EMPTY)
+        objects.set(obj.x, obj.y, obj.plane, obj.intId, obj.type, obj.rotation, ObjectDefinition.EMPTY)
 
-        assertEquals(obj, objects.get(tile, ObjectGroup.INTERACTIVE_OBJECT))
-        assertNull(objects.get(tile, ObjectGroup.WALL))
-        assertNull(objects.get(Tile(10, 9), ObjectGroup.INTERACTIVE_OBJECT))
+        assertEquals(obj, objects[obj.tile, ObjectGroup.INTERACTIVE_OBJECT])
+        assertNull(objects[obj.tile, ObjectGroup.WALL])
+        assertNull(objects[Tile(10, 10, 1), ObjectGroup.INTERACTIVE_OBJECT])
         objects.clear()
-        assertNull(objects.get(tile, ObjectGroup.INTERACTIVE_OBJECT))
+        assertNull(objects[obj.tile, ObjectGroup.INTERACTIVE_OBJECT])
     }
 
     @Test
     fun `Temporarily remove an object`() {
-        val obj = GameMapObject(1234, 10, 1)
-        val tile = Tile(10, 10)
-        objects.set(tile.x, tile.y, tile.plane, obj.intId, obj.type, obj.rotation, ObjectDefinition.EMPTY)
+        val obj = GameMapObject(id = 1234, x = 10, y = 10, plane = 0, type = 10, rotation = 1)
+        objects.set(obj.x, obj.y, obj.plane, obj.intId, obj.type, obj.rotation, ObjectDefinition.EMPTY)
 
-        objects.remove(tile, obj)
-        assertNull(objects.get(tile, ObjectGroup.INTERACTIVE_OBJECT))
+        objects.remove(obj)
+        assertNull(objects[obj.tile, ObjectGroup.INTERACTIVE_OBJECT])
 
-        objects.add(tile, obj)
-        assertEquals(obj, objects.get(tile, ObjectGroup.INTERACTIVE_OBJECT))
+        objects.add(obj)
+        assertEquals(obj, objects[obj.tile, ObjectGroup.INTERACTIVE_OBJECT])
     }
 
     @Test
     fun `Temporarily add an object`() {
-        val obj = GameMapObject(1234, 10, 1)
-        val tile = Tile(10, 10)
+        val obj = GameMapObject(id = 1234, x = 10, y = 10, plane = 0, type = 10, rotation = 1)
 
-        objects.add(tile, obj)
-        assertEquals(obj, objects.get(tile, ObjectGroup.INTERACTIVE_OBJECT))
+        objects.add(obj)
+        assertEquals(obj, objects[obj.tile, ObjectGroup.INTERACTIVE_OBJECT])
 
-        objects.remove(tile, obj)
-        assertNull(objects.get(tile, ObjectGroup.INTERACTIVE_OBJECT))
+        objects.remove(obj)
+        assertNull(objects[obj.tile, ObjectGroup.INTERACTIVE_OBJECT])
     }
 
     @Test
     fun `Add and remove a temp object over an original`() {
-        val original = GameMapObject(123, 10, 1)
-        val tile = Tile(10, 10)
-        objects.set(tile.x, tile.y, tile.plane, original.intId, original.type, original.rotation, ObjectDefinition.EMPTY)
+        val original = GameMapObject(123, 10, 10, 0, 10, 1)
+        objects.set(original.x, original.y, original.plane, original.intId, original.type, original.rotation, ObjectDefinition.EMPTY)
 
-        val obj = GameMapObject(1234, 10, 0)
-        objects.add(tile, obj)
-        assertEquals(obj, objects.get(tile, ObjectGroup.INTERACTIVE_OBJECT))
+        val obj = GameMapObject(id = 1234, x = 10, y = 10, plane = 0, type = 10, rotation = 0)
+        objects.add(obj)
+        assertEquals(obj, objects[obj.tile, ObjectGroup.INTERACTIVE_OBJECT])
 
-        objects.remove(tile, obj)
-        assertEquals(original, objects.get(tile, ObjectGroup.INTERACTIVE_OBJECT))
+        objects.remove(obj)
+        assertEquals(original, objects[obj.tile, ObjectGroup.INTERACTIVE_OBJECT])
     }
 }
