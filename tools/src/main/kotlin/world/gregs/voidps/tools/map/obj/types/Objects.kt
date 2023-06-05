@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.map.obj.types
 
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameMapObject
 import world.gregs.voidps.engine.map.Distance.euclidean
 import world.gregs.voidps.engine.map.Distance.getNearest
 import world.gregs.voidps.engine.map.Distance.levenshtein
@@ -74,7 +74,7 @@ private const val dungeonDifference = 6400
 private fun onSurface(tile: Tile) = tile.y < dungeonDifference
 private fun inDungeon(tile: Tile) = tile.y > dungeonDifference
 
-private fun getDistance(tile: Tile, size: Size, target: GameObject): Double {
+private fun getDistance(tile: Tile, size: Size, target: GameMapObject): Double {
     val nearest = getNearest(tile, size, target.tile)
     val nearestTarget = getNearest(target.tile, target.size, tile)
     return euclidean(nearest, nearestTarget, plane = nearest.plane == 3 || nearest.x != nearestTarget.x || nearest.y != nearestTarget.y)

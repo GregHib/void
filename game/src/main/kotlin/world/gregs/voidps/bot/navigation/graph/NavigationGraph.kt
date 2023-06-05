@@ -5,7 +5,7 @@ import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import org.yaml.snakeyaml.LoaderOptions
 import org.yaml.snakeyaml.Yaml
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
-import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameMapObject
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
@@ -88,7 +88,7 @@ class NavigationGraph(
         adjacencyList.forEach { (node, _) ->
             val tile = when (node) {
                 is Tile -> node
-                is GameObject -> node.tile
+                is GameMapObject -> node.tile
                 else -> return@forEach
             }
             tags[node] = areas.getAll().filter { it.area.contains(tile) }.toSet()

@@ -8,6 +8,9 @@ import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 
+/**
+ * Interactive Object
+ */
 @JvmInline
 value class GameMapObject(val hash: Long) : Entity {
 

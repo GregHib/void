@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameMapObject
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
@@ -53,7 +53,7 @@ value class Tile(override val id: Int) : Id {
 
     fun distanceTo(entity: Entity) = when (entity) {
         is Character -> distanceTo(entity.tile, entity.size)
-        is GameObject -> distanceTo(entity.tile, entity.size)
+        is GameMapObject -> distanceTo(entity.tile, entity.size)
         else -> distanceTo(entity.tile)
     }
 

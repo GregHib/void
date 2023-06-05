@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameMapObject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 
@@ -199,7 +199,7 @@ internal class MapGraphTest {
 
     @Test
     fun `Identify portals`() {
-        val objects = mutableSetOf<GameObject>()
+        val objects = mutableSetOf<GameMapObject>()
         val results = graph.getPortals(objects)
         assertEquals(setOf<Tile>(), results)
     }

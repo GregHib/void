@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
-import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get
 import kotlin.reflect.KClass
 
@@ -18,7 +17,7 @@ class EventHandlerStore {
     private val handlers = mutableMapOf<KClass<out Entity>, MutableMap<KClass<out Event>, MutableList<EventHandler>>>()
 
     private val parents = mapOf(
-        Entity::class to listOf(World::class, FloorItem::class, GameObject::class, Character::class),
+        Entity::class to listOf(World::class, FloorItem::class, Character::class),
         Character::class to listOf(Player::class, NPC::class)
     )
 
@@ -78,8 +77,4 @@ inline fun <reified E : Event> on(noinline condition: E.(FloorItem) -> Boolean =
 
 @JvmName("onWorld")
 inline fun <reified E : Event> on(noinline condition: E.(World) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(World) -> Unit) =
-    addEvent(condition, priority, block)
-
-@JvmName("onObject")
-inline fun <reified E : Event> on(noinline condition: E.(GameObject) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(GameObject) -> Unit) =
     addEvent(condition, priority, block)

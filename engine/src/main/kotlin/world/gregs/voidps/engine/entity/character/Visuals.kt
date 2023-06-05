@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameMapObject
 import world.gregs.voidps.engine.entity.obj.ObjectType
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Delta
@@ -252,7 +252,7 @@ fun Character.facing(tile: Tile) = turn == tile.delta(this.tile)
 
 fun Character.face(entity: Entity, update: Boolean = true) {
     val tile = nearestTile(entity)
-    if (!face(tile, update) && entity is GameObject) {
+    if (!face(tile, update) && entity is GameMapObject) {
         when {
             ObjectType.isWall(entity.type) -> face(Direction.cardinal[(entity.rotation + 3) and 0x3], update)
             ObjectType.isCorner(entity.type) -> face(Direction.ordinal[entity.rotation], update)
@@ -268,7 +268,7 @@ fun Character.facing(entity: Entity) = turn == nearestTile(entity).delta(tile)
 
 fun Character.nearestTile(entity: Entity): Tile {
     return when (entity) {
-        is GameObject -> Distance.getNearest(entity.tile, entity.size, this.tile)
+        is GameMapObject -> Distance.getNearest(entity.tile, entity.size, this.tile)
         is NPC -> Distance.getNearest(entity.tile, entity.size, this.tile)
         is Player -> Distance.getNearest(entity.tile, entity.size, this.tile)
         else -> entity.tile

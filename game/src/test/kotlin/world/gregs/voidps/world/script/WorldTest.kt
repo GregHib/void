@@ -27,7 +27,6 @@ import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.data.definition.extra.*
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -36,7 +35,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
-import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameMapObject
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
@@ -122,10 +121,8 @@ abstract class WorldTest : KoinTest {
         return npc
     }
 
-    fun createObject(id: String, tile: Tile = Tile.EMPTY): GameObject {
-        val gameObject = spawnObject(id, tile, 0, 0)
-        gameObject.events.emit(Registered)
-        return gameObject
+    fun createObject(id: String, tile: Tile = Tile.EMPTY): GameMapObject {
+        return spawnObject(id, tile, 0, 0)
     }
 
     fun Container.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }

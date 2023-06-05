@@ -141,7 +141,7 @@ class CustomObjects(
 }
 
 /**
- * Removes an existing map [GameObject].
+ * Removes an existing map [GameMapObject].
  * The removal can be permanent if [ticks] is -1 or temporary
  * [owner] is also optional to allow for an object to removed just for one player.
  * [collision] can also be used to disable collision changes
