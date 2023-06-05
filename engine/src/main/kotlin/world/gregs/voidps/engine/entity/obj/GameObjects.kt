@@ -49,7 +49,7 @@ class GameObjects(
             }
 
             // Add replacement
-            replacements[index(obj.x, obj.y, obj.plane, group)] = obj.value
+            replacements[obj.index] = obj.value
             batches.add(obj.tile.chunk, ObjectAddition(obj.tile.id, obj.intId, obj.type, obj.rotation))
             if (collision) {
                 collisions.modify(obj.tile, obj, add = true)
@@ -66,7 +66,7 @@ class GameObjects(
         if (group != ObjectGroup.WALL_DECORATION) {
             collisions.modify(definition, x, y, plane, type, rotation, add = true)
         }
-        if (group == ObjectGroup.INTERACTIVE_OBJECT && interactive(definition)) {
+        if (group == ObjectGroup.INTERACTIVE && interactive(definition)) {
             map[x, y, plane, group] = toValue(GameMapObject.value(id, type, rotation))
             size++
         }
@@ -84,9 +84,9 @@ class GameObjects(
         val group = obj.group
         val value = map[obj.x, obj.y, obj.plane, group]
         val original = toObject(value)
-        if (replaced(value) && replacements[index(obj.x, obj.y, obj.plane, group)] == obj.value) {
+        if (replaced(value) && replacements[obj.index] == obj.value) {
             // Remove replacement
-            replacements.remove(index(obj.x, obj.y, obj.plane, group))
+            replacements.remove(obj.index)
             batches.add(obj.tile.chunk, ObjectRemoval(obj.tile.id, obj.type, obj.rotation))
             if (collision) {
                 collisions.modify(obj.tile, obj, add = false)
@@ -113,7 +113,7 @@ class GameObjects(
         }
     }
 
-    operator fun get(tile: Tile, id: String) = get(tile, ObjectGroup.INTERACTIVE_OBJECT, id)
+    operator fun get(tile: Tile, id: String) = get(tile, ObjectGroup.INTERACTIVE, id)
 
     operator fun get(tile: Tile, group: Int, id: String): GameMapObject? {
         val obj = get(tile, group) ?: return null
@@ -142,7 +142,7 @@ class GameObjects(
         for (tile in chunk.toCuboid()) {
             replacements.remove(index(tile.x, tile.y, tile.plane, ObjectGroup.WALL))
             replacements.remove(index(tile.x, tile.y, tile.plane, ObjectGroup.WALL_DECORATION))
-            replacements.remove(index(tile.x, tile.y, tile.plane, ObjectGroup.INTERACTIVE_OBJECT))
+            replacements.remove(index(tile.x, tile.y, tile.plane, ObjectGroup.INTERACTIVE))
             replacements.remove(index(tile.x, tile.y, tile.plane, ObjectGroup.GROUND_DECORATION))
         }
     }
@@ -158,7 +158,7 @@ class GameObjects(
             return false
         }
         if (replaced(value)) {
-            replacements[index(obj.x, obj.y, obj.plane, obj.group)] ?: return false
+            replacements[obj.index] ?: return false
             return true
         }
         return true
@@ -172,9 +172,10 @@ class GameObjects(
         private const val REPLACED = 0x1
         var LOAD_UNUSED = false // Don't bother loading objects which don't have options or configs (saves ~75MB ram)
 
-        private fun index(x: Int, y: Int, level: Int, group: Int): Int {
-            return level + (group shl 2) + (x shl 4) + (y shl 18)
-        }
+        private val GameMapObject.index: Int
+            get() = index(x, y, plane, group)
+
+        private fun index(x: Int, y: Int, level: Int, group: Int) = level + (group shl 2) + (x shl 4) + (y shl 18)
     }
 
 }

@@ -12,9 +12,9 @@ object ObjectGroup {
     const val WALL_DECORATION = 1
 
     /**
-     * The interactable object group, for objects that can be clicked and interacted with.
+     * The interactive object group, for objects that can be clicked and interacted with.
      */
-    const val INTERACTIVE_OBJECT = 2
+    const val INTERACTIVE = 2
 
     /**
      * The ground decoration object group, which may block a tile.
@@ -31,19 +31,19 @@ object ObjectGroup {
         WALL_DECORATION,
         WALL_DECORATION,
         WALL_DECORATION,
-        INTERACTIVE_OBJECT,
-        INTERACTIVE_OBJECT,
-        INTERACTIVE_OBJECT,
-        INTERACTIVE_OBJECT,
-        INTERACTIVE_OBJECT,
-        INTERACTIVE_OBJECT,
-        INTERACTIVE_OBJECT,
-        INTERACTIVE_OBJECT,
-        INTERACTIVE_OBJECT,
-        INTERACTIVE_OBJECT,
-        INTERACTIVE_OBJECT,
-        INTERACTIVE_OBJECT,
-        INTERACTIVE_OBJECT,
+        INTERACTIVE,
+        INTERACTIVE,
+        INTERACTIVE,
+        INTERACTIVE,
+        INTERACTIVE,
+        INTERACTIVE,
+        INTERACTIVE,
+        INTERACTIVE,
+        INTERACTIVE,
+        INTERACTIVE,
+        INTERACTIVE,
+        INTERACTIVE,
+        INTERACTIVE,
         GROUND_DECORATION
     )
 
