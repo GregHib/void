@@ -195,7 +195,7 @@ abstract class WorldTest : KoinTest {
 
     @BeforeEach
     fun beforeEach() {
-        loadObjectSpawns(objects)
+        loadObjectSpawns(get())
         loadItemSpawns(floorItems, get())
     }
 
