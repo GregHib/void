@@ -730,29 +730,17 @@ large_door_10_opened:
 large_door_10_closed:
   id: 1513
   examine: "A sturdy wooden door."
-large_door_11:
-  id: 1514
-  examine: "A sturdy wooden door."
-large_door_12:
-  id: 1515
-  examine: "A sturdy wooden door."
 large_door_13_opened:
   id: 41132
   examine: "Large double doors."
 large_door_13_closed:
   id: 1516
   examine: "A large double door."
-large_door_14:
-  id: 1517
-  examine: "A large double door."
 large_door_15_opened:
   id: 41134
   examine: "Large double doors."
 large_door_15_closed:
   id: 1519
-  examine: "A large double door."
-large_door_16:
-  id: 1520
   examine: "A large double door."
 magic_guild_door_opened:
   id: 1522
@@ -810,9 +798,6 @@ door_14_opened:
 door_14_closed:
   id: 1530
   examine: "The door is closed."
-door_15:
-  id: 1531
-  examine: "The door is open."
 door_26_opened:
   id: 1532
 door_26_closed:
@@ -823,9 +808,6 @@ door_16_opened:
   examine: "A nicely fitted door."
 door_16_closed:
   id: 1533
-  examine: "A nicely fitted door."
-door_17:
-  id: 1534
   examine: "A nicely fitted door."
 door_106_opened:
   id: 1535
@@ -838,25 +820,16 @@ door_18_opened:
 door_18_closed:
   id: 1536
   examine: "An ornately-fashioned door."
-door_19:
-  id: 1537
-  examine: "An elf-fashioned door."
 door_20_opened:
   id: 1540
   examine: "Solid bars of iron."
 door_20_closed:
   id: 1539
   examine: "Solid bars of iron."
-door_21:
-  id: 1540
-  examine: "Solid bars of iron."
 door_22_opened:
   id: 1541
 door_22_closed:
   id: 1542
-  examine: "Solid bars of iron."
-door_23:
-  id: 1543
   examine: "Solid bars of iron."
 gate_33_opened:
   id: 1543
@@ -886,9 +859,6 @@ door_24_opened:
   examine: "Solid bars of iron."
 door_24_closed:
   id: 1544
-  examine: "Solid bars of iron."
-door_25:
-  id: 1545
   examine: "Solid bars of iron."
 gate_18_opened:
   id: 1552
@@ -962,17 +932,11 @@ doors_opened:
 doors_closed:
   id: 1573
   examine: "A door to a grand place."
-doors_2:
-  id: 1574
-  examine: "A door to a grand place."
 doors_3_opened:
   id: 1576
   examine: "A door to a grand place."
 doors_3_closed:
   id: 1575
-  examine: "A door to a grand place."
-doors_4:
-  id: 1576
   examine: "A door to a grand place."
 door_28_opened:
   id: 2033
@@ -1713,17 +1677,11 @@ door_61_opened:
 door_61_closed:
   id: 2546
   examine: "A door."
-door_62:
-  id: 2547
-  examine: "A door."
 door_63_opened:
   id: 2549
   examine: "A door."
 door_63_closed:
   id: 2548
-  examine: "A door."
-door_64:
-  id: 2549
   examine: "A door."
 door_66_opened:
   id: 34233
@@ -1960,9 +1918,6 @@ door_85_opened:
 door_85_closed:
   id: 2997
   examine: "The door is closed."
-door_86:
-  id: 2998
-  examine: "The door is open."
 door_87_opened:
   id: 3271
   examine: "The door is open."
@@ -2073,9 +2028,6 @@ door_105_opened:
 door_105_closed:
   id: 3745
   examine: "The door is closed."
-door_97:
-  id: 3271
-  examine: "The door is open."
 tomb:
   id: 3353
   examine: "I don't much like the look of that..."
@@ -2190,17 +2142,11 @@ cell_door_5_opened:
 cell_door_5_closed:
   id: 3763
   examine: "The door is closed."
-cell_door_6:
-  id: 3764
-  examine: "The door is open."
 door_107_opened:
   id: 3777
   examine: "A door in the Stronghold."
 door_107_closed:
   id: 3776
-  examine: "A door in the Stronghold."
-door_108:
-  id: 3777
   examine: "A door in the Stronghold."
 corpse_9:
   id: 3797
@@ -2337,9 +2283,6 @@ door_113_opened:
 door_113_closed:
   id: 4148
   examine: "Allows performers backstage at the long hall."
-trapdoor_9:
-  id: 4173
-  examine: "I wonder what's down there?"
 trapdoor_10_opened:
   id: 4173
   examine: "I wonder what's down there?"
@@ -2358,9 +2301,6 @@ door_116_opened:
 door_116_closed:
   id: 4247
   examine: "Keeps the cold winds out."
-door_117:
-  id: 4248
-  examine: "Doesn't keep the wind out if it's open!"
 fur_door_single_opened:
   id: 4251
   examine: "I'm sure the animal is glad its fur was put to good use."
@@ -2405,17 +2345,11 @@ large_door_26_opened:
 large_door_26_closed:
   id: 4427
   examine: "Big and sturdy to keep others out."
-large_door_24:
-  id: 4425
-  examine: "Big and sturdy to keep others out."
 large_door_27_opened:
   id: 4426
   examine: "Big and sturdy to keep others out."
 large_door_27_closed:
   id: 4428
-  examine: "Big and sturdy to keep others out."
-large_door_25:
-  id: 4426
   examine: "Big and sturdy to keep others out."
 door_125_opened:
   id: 4491
@@ -2425,10 +2359,6 @@ door_126_opened:
   id: 4492
 door_126_closed:
   id: 4490
-door_127:
-  id: 4491
-door_128:
-  id: 4492
 corpse_16:
   id: 4518
   examine: "How do you make a skeleton laugh?"
@@ -2465,9 +2395,6 @@ door_134_opened:
 door_134_closed:
   id: 4696
   examine: "The door is closed."
-door_135:
-  id: 4697
-  examine: "The door is open."
 chair_17:
   id: 4702
   examine: "A nicely carved wooden chair."
@@ -2536,9 +2463,6 @@ trapdoor_16_opened:
 trapdoor_16_closed:
   id: 4879
   examine: "It's a trapdoor."
-trapdoor_17:
-  id: 4880
-  examine: "It's an open trapdoor."
 crate_53:
   id: 4944
   examine: "It doesn't look very watertight. Any contents will be ruined."
@@ -2564,17 +2488,12 @@ door_138_opened:
   id: 5128
 door_138_closed:
   id: 5126
-door_139:
-  id: 5128
 trapdoor_20_opened:
   id: 5132
   examine: "I wonder what's down there?"
 trapdoor_20_closed:
   id: 5131
   examine: "I wonder what's under it?"
-trapdoor_21:
-  id: 5132
-  examine: "I wonder what's down there?"
 door_140_opened:
   id: 5173
 door_140_closed:
@@ -2597,20 +2516,11 @@ door_143_opened:
 door_143_closed:
   id: 5186
   examine: "Looks wooden. Feels wooden. I wonder is it wooden?"
-door_144:
-  id: 5187
-  examine: "Looks wooden. Feels wooden. I wonder is it wooden?"
-door_145:
-  id: 5188
-  examine: "Looks wooden. Feels wooden. I wonder is it wooden?"
 door_146_opened:
   id: 5245
   examine: "Looks a bit tatty..."
 door_146_closed:
   id: 5244
-  examine: "Looks a bit tatty..."
-door_147:
-  id: 5245
   examine: "Looks a bit tatty..."
 trapdoor_22_opened:
   id: 5268
@@ -2618,9 +2528,6 @@ trapdoor_22_opened:
 trapdoor_22_closed:
   id: 5267
   examine: "I wonder what's under it."
-trapdoor_23:
-  id: 5268
-  examine: "I wonder what's down there."
 coffin_11:
   id: 5278
   examine: "The resting place of Necrovarus' mortal body."
@@ -2645,9 +2552,6 @@ trapdoor_24_opened:
 trapdoor_24_closed:
   id: 5490
   examine: "I wonder what's under it?"
-trapdoor_25:
-  id: 5491
-  examine: "I wonder what's down there?"
 door_148_opened:
   id: 31839
   examine: "A single door."
@@ -2893,12 +2797,6 @@ door_151_opened:
 door_151_closed:
   id: 6102
   examine: "The door is closed."
-door_150:
-  id: 6101
-  examine: "The door is open."
-door_152:
-  id: 6103
-  examine: "The door is open."
 door_153_opened:
   id: 6103
   examine: "The door is open."
@@ -2911,27 +2809,18 @@ door_155_opened:
 door_155_closed:
   id: 6106
   examine: "The door is closed."
-door_156:
-  id: 6107
-  examine: "The door is open."
 door_157_opened:
   id: 6109
   examine: "The door is open."
 door_157_closed:
   id: 6108
   examine: "The door is closed."
-door_158:
-  id: 6109
-  examine: "The door is open."
 door_159_opened:
   id: 6111
   examine: "The door is open."
 door_159_closed:
   id: 6110
   examine: "The door is closed."
-door_160:
-  id: 6111
-  examine: "The door is open."
 door_161_opened:
   id: 6980
 door_161_closed:
@@ -2943,9 +2832,6 @@ door_163_opened:
 door_163_closed:
   id: 6114
   examine: "The door is closed."
-door_162:
-  id: 6113
-  examine: "The door is open."
 crate_59:
   id: 6177
   examine: "Big mysterious crates. You wonder what could be inside."
@@ -3070,9 +2956,6 @@ door_181_opened:
 door_181_closed:
   id: 6975
   examine: "The door is closed."
-door_182:
-  id: 6976
-  examine: "The door is open."
 door_567_opened:
   id: 6979
 door_567_closed:
@@ -3122,9 +3005,6 @@ door_188_opened:
   examine: "This way to exit."
 door_188_closed:
   id: 7259
-  examine: "This way to exit."
-door_189:
-  id: 7260
   examine: "This way to exit."
 door_190_opened:
   id: 7503
@@ -3199,9 +3079,6 @@ trapdoor_38_opened:
 trapdoor_38_closed:
   id: 7434
   examine: "I wonder what's under it?"
-trapdoor_39:
-  id: 7435
-  examine: "I wonder what's down there?"
 chair_25:
   id: 7504
   examine: "For sitting."
@@ -3505,9 +3382,6 @@ cell_door_10_opened:
 cell_door_10_closed:
   id: 9563
   examine: "A locked prison cell door."
-cell_door_11:
-  id: 9564
-  examine: "A prison cell door."
 door_216_opened:
   id: 9564
   examine: "A prison cell door."
@@ -3630,27 +3504,18 @@ door_217_opened:
 door_217_closed:
   id: 10260
   examine: "The door is closed."
-door_218:
-  id: 10261
-  examine: "The door is open."
 door_219_opened:
   id: 10263
   examine: "The door is open."
 door_219_closed:
   id: 10262
   examine: "The door is closed."
-door_220:
-  id: 10263
-  examine: "The door is open."
 door_221_opened:
   id: 10265
   examine: "The door is open."
 door_221_closed:
   id: 10264
   examine: "The door is closed."
-door_222:
-  id: 10265
-  examine: "The door is open."
 crate_80:
   id: 10281
   examine: "It's a crate."
@@ -3745,17 +3610,11 @@ door_235_opened:
 door_235_closed:
   id: 10527
   examine: "a door."
-door_236:
-  id: 10528
-  examine: "a door."
 door_237_opened:
   id: 10530
   examine: "a door."
 door_237_closed:
   id: 10529
-  examine: "a door."
-door_238:
-  id: 10530
   examine: "a door."
 trapdoor_44_opened:
   id: 10559
@@ -3763,9 +3622,6 @@ trapdoor_44_opened:
 trapdoor_44_closed:
   id: 10558
   examine: "I wonder what's beneath it?"
-trapdoor_45:
-  id: 10559
-  examine: "I wonder what's down there?"
 toll_gate_al_kharid_opened:
   id: 35550
 toll_gate_al_kharid_closed:
@@ -4186,9 +4042,6 @@ door_263_opened:
 door_263_closed:
   id: 11616
   examine: "Keeps the wind out."
-door_264:
-  id: 11617
-  examine: "It would keep the wind out better if it were closed."
 long_hall_door_opened:
   id: 11624
   examine: "The entrance to the barbarians' long hall."
@@ -4200,12 +4053,6 @@ long_hall_door_2_opened:
   examine: "The entrance to the barbarians' long hall."
 long_hall_door_2_closed:
   id: 11621
-  examine: "The entrance to the barbarians' long hall."
-long_hall_door_3:
-  id: 11624
-  examine: "The entrance to the barbarians' long hall."
-long_hall_door_4:
-  id: 11625
   examine: "The entrance to the barbarians' long hall."
 furnace_al_kharid:
   id: 11666
@@ -4219,12 +4066,6 @@ door_265_opened:
 door_265_closed:
   id: 11707
   examine: "The door is closed."
-door_266:
-  id: 11708
-  examine: "The door is open."
-door_267:
-  id: 11712
-  examine: "The door is open."
 door_268_opened:
   id: 11712
   examine: "The door is open."
@@ -4237,9 +4078,6 @@ door_269_opened:
 door_269_closed:
   id: 11714
   examine: "The door is closed."
-door_270:
-  id: 11715
-  examine: "The door is open."
 castle_door_opened:
   id: 11722
   examine: "A grand door."
@@ -4251,12 +4089,6 @@ castle_door_6_opened:
   examine: "A grand door."
 castle_door_6_closed:
   id: 11721
-  examine: "A grand door."
-castle_door_7:
-  id: 11722
-  examine: "A grand door."
-castle_door_8:
-  id: 11723
   examine: "A grand door."
 fountain_9:
   id: 11759
@@ -4505,9 +4337,6 @@ magic_door_2_opened:
 magic_door_2_closed:
   id: 12045
   examine: "A magic door."
-magic_door_3:
-  id: 12046
-  examine: "A magic door."
 fairy_fountain:
   id: 12089
   examine: "A beautiful fairy fountain!"
@@ -4625,26 +4454,17 @@ door_274_opened:
 door_274_closed:
   id: 12444
   examine: "The door is closed."
-door_275:
-  id: 12445
-  examine: "The door is open."
 large_door_41_opened:
   id: 12447
   examine: "A large double door."
 large_door_41_closed:
   id: 12446
   examine: "A large double door."
-large_door_42:
-  id: 12447
-  examine: "A large double door."
 large_door_43_opened:
   id: 12449
   examine: "A large double door."
 large_door_43_closed:
   id: 12448
-  examine: "A large double door."
-large_door_44:
-  id: 12449
   examine: "A large double door."
 pen_door_opened:
   id: 12469
@@ -4683,9 +4503,6 @@ trapdoor_49_opened:
 trapdoor_49_closed:
   id: 12744
   examine: "I wonder what's under it?"
-trapdoor_50:
-  id: 12745
-  examine: "I wonder what's down there?"
 door_276_opened:
   id: 12856
   examine: "A door barely hanging onto it's hinges."
@@ -4749,9 +4566,6 @@ door_277_opened:
 door_277_closed:
   id: 13001
   examine: "The door is closed."
-door_278:
-  id: 13002
-  examine: "The door is open."
 door_279_opened:
   id: 13008
   examine: "A desert door."
@@ -4763,12 +4577,6 @@ door_280_opened:
   examine: "A desert door."
 door_280_closed:
   id: 13007
-  examine: "A desert door."
-door_281:
-  id: 13008
-  examine: "A desert door."
-door_282:
-  id: 13009
   examine: "A desert door."
 door_283_opened:
   id: 13017
@@ -4782,20 +4590,11 @@ door_284_opened:
 door_284_closed:
   id: 13016
   examine: "A timber door."
-door_285:
-  id: 13017
-  examine: "A timber door."
-door_286:
-  id: 13018
-  examine: "A timber door."
 large_door_45_opened:
   id: 13095
   examine: "A large double door."
 large_door_45_closed:
   id: 13094
-  examine: "A large double door."
-large_door_46:
-  id: 13095
   examine: "A large double door."
 large_door_64_opened:
   id: 13095
@@ -4808,9 +4607,6 @@ large_door_47_opened:
   examine: "A large double door."
 large_door_47_closed:
   id: 13096
-  examine: "A large double door."
-large_door_48:
-  id: 13097
   examine: "A large double door."
 large_door_63_opened:
   id: 13097
@@ -4830,29 +4626,17 @@ door_288_opened:
 door_288_closed:
   id: 13101
   examine: "A way in to the house."
-door_289:
-  id: 13102
-  examine: "A way in to the house."
-door_290:
-  id: 13103
-  examine: "A way in to the house."
 door_291_opened:
   id: 13108
   examine: "I'm sure the tree is glad its wood was put to good use."
 door_291_closed:
   id: 13107
   examine: "I'm sure the tree is glad its wood was put to good use."
-door_292:
-  id: 13108
-  examine: "I'm sure the tree is glad its wood was put to good use."
 door_293_opened:
   id: 13110
   examine: "I'm sure the tree is glad its wood was put to good use."
 door_293_closed:
   id: 13109
-  examine: "I'm sure the tree is glad its wood was put to good use."
-door_294:
-  id: 13110
   examine: "I'm sure the tree is glad its wood was put to good use."
 door_295_opened:
   id: 13120
@@ -4866,20 +4650,11 @@ door_296_opened:
 door_296_closed:
   id: 13119
   examine: "A posh door."
-door_297:
-  id: 13120
-  examine: "A posh door."
-door_298:
-  id: 13121
-  examine: "A posh door."
 door_299_opened:
   id: 13315
   examine: "Sturdy oak bars to keep prisoners in."
 door_299_closed:
   id: 13314
-  examine: "Sturdy oak bars to keep prisoners in."
-door_300:
-  id: 13315
   examine: "Sturdy oak bars to keep prisoners in."
 door_301_opened:
   id: 13318
@@ -4887,35 +4662,23 @@ door_301_opened:
 door_301_closed:
   id: 13317
   examine: "Oak and steel bars to keep prisoners in."
-door_302:
-  id: 13318
-  examine: "Oak and steel bars to keep prisoners in."
 door_303_opened:
   id: 13321
   examine: "teel bars to keep prisoners in."
 door_303_closed:
   id: 13320
   examine: "Steel bars to keep prisoners in."
-door_304:
-  id: 13321
-  examine: "teel bars to keep prisoners in."
 door_305_opened:
   id: 13324
   examine: "Steel bars with spikes!"
 door_305_closed:
   id: 13323
   examine: "Steel bars with spikes!"
-door_306:
-  id: 13324
-  examine: "Steel bars with spikes!"
 door_307_opened:
   id: 13327
   examine: "A cage of bones. How delightfully macabre."
 door_307_closed:
   id: 13326
-  examine: "A cage of bones. How delightfully macabre."
-door_308:
-  id: 13327
   examine: "A cage of bones. How delightfully macabre."
 candle:
   id: 13342
@@ -4955,24 +4718,6 @@ door_314_opened:
   examine: "Could anyone get through a solid marble door?"
 door_314_closed:
   id: 13349
-  examine: "Could anyone get through a solid marble door?"
-door_315:
-  id: 13350
-  examine: "A sturdy oak door."
-door_316:
-  id: 13351
-  examine: "A sturdy oak door."
-door_317:
-  id: 13352
-  examine: "A formidable steel door."
-door_318:
-  id: 13353
-  examine: "A formidable steel door."
-door_319:
-  id: 13354
-  examine: "Could anyone get through a solid marble door?"
-door_320:
-  id: 13355
   examine: "Could anyone get through a solid marble door?"
 dead_tree_20:
   id: 13411
@@ -5127,9 +4872,6 @@ door_321_opened:
 door_321_closed:
   id: 14749
   examine: "A tatty old door."
-door_322:
-  id: 14750
-  examine: "A tatty old door."
 door_323_opened:
   id: 14753
   examine: "Ominous."
@@ -5142,18 +4884,12 @@ door_324_opened:
 door_324_closed:
   id: 14752
   examine: "Ominous."
-door_325:
-  id: 14753
-  examine: "Ominous."
 barbarian_door_opened:
   id: 14753
   examine: "Ominous."
 barbarian_door_closed:
   id: 20195
   examine: "Your penance awaits..."
-door_326:
-  id: 14754
-  examine: "Ominous."
 barbarian_door_2_opened:
   id: 14754
   examine: "Ominous."
@@ -5305,9 +5041,6 @@ door_327_opened:
 door_327_closed:
   id: 14923
   examine: "A simple door."
-door_328:
-  id: 14924
-  examine: "A simple door, now open."
 colony_gate_opened:
   id: 14930
 colony_gate_closed:
@@ -5361,9 +5094,6 @@ door_330_opened:
 door_330_closed:
   id: 15204
   examine: "The door is closed."
-door_331:
-  id: 15205
-  examine: "The door is open."
 door_649_opened:
   id: 15205
   examine: "The door is open."
@@ -5472,9 +5202,6 @@ gate_177_opened:
 gate_177_closed:
   id: 24561
   examine: "A wooden gate."
-door_332:
-  id: 15535
-  examine: "The door is open."
 door_333_opened:
   id: 15535
   examine: "The door is open."
@@ -5607,9 +5334,6 @@ hidden_trapdoor_opened:
 hidden_trapdoor_closed:
   id: 15755
   examine: "You would never have seen this trapdoor if it wasn't for Zanik."
-trapdoor_60:
-  id: 15756
-  examine: "Where does this go?"
 jungle_tree_7:
   id: 15948
   copy: "tree"
@@ -5658,9 +5382,6 @@ door_340_opened:
 door_340_closed:
   id: 16343
   examine: "A metal door, firmly shut."
-door_341:
-  id: 16344
-  examine: "An open door."
 crate_142:
   id: 16559
   examine: "A large wooden box."
@@ -5709,17 +5430,11 @@ door_343_opened:
 door_343_closed:
   id: 16776
   examine: "Lets you walk through walls."
-door_344:
-  id: 16777
-  examine: "Lets you walk through walls."
 door_345_opened:
   id: 16779
   examine: "Lets you walk through walls."
 door_345_closed:
   id: 16778
-  examine: "Lets you walk through walls."
-door_346:
-  id: 16779
   examine: "Lets you walk through walls."
 crate_147:
   id: 16862
@@ -5811,26 +5526,17 @@ large_door_51_opened:
 large_door_51_closed:
   id: 17089
   examine: "A sturdy wooden door."
-large_door_52:
-  id: 17090
-  examine: "A sturdy wooden door."
 large_door_53_opened:
   id: 17092
   examine: "A large double door."
 large_door_53_closed:
   id: 17091
   examine: "A large double door."
-large_door_54:
-  id: 17092
-  examine: "A large double door."
 large_door_55_opened:
   id: 17094
   examine: "A large double door."
 large_door_55_closed:
   id: 17093
-  examine: "A large double door."
-large_door_56:
-  id: 17094
   examine: "A large double door."
 crate_153:
   id: 17100
@@ -5844,9 +5550,6 @@ door_349_opened:
 door_349_closed:
   id: 17114
   examine: "Keeps the wind out."
-door_350:
-  id: 17115
-  examine: "It would keep the wind out better if it were closed."
 chair_67:
   id: 17146
   examine: "The ideal thing to sit on"
@@ -5882,9 +5585,6 @@ door_352_opened:
   examine: "A door."
 door_352_closed:
   id: 17316
-  examine: "A door."
-door_353:
-  id: 17317
   examine: "A door."
 candles_14:
   id: 17323
@@ -5949,18 +5649,12 @@ crate_160:
 crate_161:
   id: 17908
   examine: "A wooden crate."
-door_359:
-  id: 18031
-  examine: "Blocking the path."
 door_519_opened:
   id: 18031
   examine: "Blocking the path."
 door_519_closed:
   id: 30503
   examine: "A crude-looking door fashioned from random bits of wood."
-door_360:
-  id: 18032
-  examine: "Blocking the path."
 door_365_opened:
   id: 18032
   examine: "Blocking the path."
@@ -6033,17 +5727,11 @@ mind_door_opened:
 mind_door_closed:
   id: 18698
   examine: "Has a mind symbol on it."
-mind_door_2:
-  id: 18699
-  examine: "Has a mind symbol on it."
 mind_door_3_opened:
   id: 18701
   examine: "Has a mind symbol on it."
 mind_door_3_closed:
   id: 18700
-  examine: "Has a mind symbol on it."
-mind_door_4:
-  id: 18701
   examine: "Has a mind symbol on it."
 crate_172:
   id: 18835
@@ -6470,9 +6158,6 @@ door_404_opened:
 door_404_closed:
   id: 21160
   examine: "Door-like."
-door_405:
-  id: 21161
-  examine: "Door-like."
 door_406_opened:
   id: 21161
   examine: "Door-like."
@@ -6609,9 +6294,6 @@ door_416_opened:
 door_416_closed:
   id: 21341
   examine: "Sturdy wooden door."
-door_417:
-  id: 21342
-  examine: "Sturdy wooden door."
 chair_88:
   id: 21354
   examine: "The ideal thing to sit on."
@@ -6626,9 +6308,6 @@ large_door_58_opened:
   examine: "A sturdy metal door."
 large_door_58_closed:
   id: 21400
-  examine: "A sturdy metal door."
-large_door_59:
-  id: 21401
   examine: "A sturdy metal door."
 gate_153_opened:
   id: 21404
@@ -6654,18 +6333,12 @@ door_419_opened:
 door_419_closed:
   id: 21505
   examine: "Keeps the trolls out."
-door_420:
-  id: 21506
-  examine: "Doesn't keep the trolls out if it's open!"
 door_421_opened:
   id: 21508
   examine: "Doesn't keep the trolls out if it's open!"
 door_421_closed:
   id: 21507
   examine: "Keeps the trolls out."
-door_422:
-  id: 21508
-  examine: "Doesn't keep the trolls out if it's open!"
 pillar_51:
   id: 21546
   examine: "A crystal needs to be placed here to charge the machine."
@@ -6746,9 +6419,6 @@ trapdoor_76_opened:
 trapdoor_76_closed:
   id: 21921
   examine: "I wonder what's under it?"
-trapdoor_77:
-  id: 21922
-  examine: "I wonder what's down there."
 crate_205:
   id: 21938
   examine: "For storage."
@@ -6854,18 +6524,12 @@ chair_96:
 crate_216:
   id: 22860
   examine: "A storage crate."
-door_430:
-  id: 22913
-  examine: "The door is open."
 door_431_opened:
   id: 22913
   examine: "The door is open."
 door_431_closed:
   id: 22914
   examine: "The door is closed."
-door_432:
-  id: 22920
-  examine: "The door is open."
 door_433_opened:
   id: 22920
   examine: "The door is open."
@@ -7029,18 +6693,12 @@ gate_250_opened:
 gate_250_closed:
   id: 45855
   examine: "A small door in a big gate."
-door_443:
-  id: 24375
-  examine: "The door is open."
 door_444_opened:
   id: 24375
   examine: "The door is open."
 door_444_closed:
   id: 24376
   examine: "The door is closed."
-door_445:
-  id: 24377
-  examine: "The door is open."
 door_446_opened:
   id: 24377
   examine: "The door is open."
@@ -7052,9 +6710,6 @@ door_448_opened:
 door_448_closed:
   id: 24381
   examine: "The door is closed."
-door_450:
-  id: 24383
-  examine: "The door is open."
 door_451_opened:
   id: 24383
   examine: "The door is open."
@@ -7088,9 +6743,6 @@ charms_4:
 chair_101:
   id: 24683
   examine: "An elegant chair."
-door_457:
-  id: 24685
-  examine: "The door is open."
 door_458_opened:
   id: 24685
   examine: "The door is open."
@@ -7117,9 +6769,6 @@ door_459_closed:
 chair_102:
   id: 24814
   examine: "Do I dare sit on this?"
-door_460:
-  id: 24815
-  examine: "The door is open."
 door_461_opened:
   id: 24815
   examine: "The door is open."
@@ -7129,27 +6778,18 @@ door_461_closed:
 crate_229:
   id: 24911
   examine: "An old crate for storage."
-door_462:
-  id: 24930
-  examine: "The door is open."
 door_463_opened:
   id: 24930
   examine: "The door is open."
 door_463_closed:
   id: 24931
   examine: "The door is closed."
-door_464:
-  id: 24932
-  examine: "The door is open."
 door_465_opened:
   id: 24932
   examine: "The door is open."
 door_465_closed:
   id: 24933
   examine: "The door is closed."
-door_467:
-  id: 24935
-  examine: "The door is open."
 door_468_opened:
   id: 24935
   examine: "The door is open."
@@ -7198,9 +6838,6 @@ mithril_rocks_ancient_cavern_2:
 mithril_rocks_ancient_cavern_3:
   id: 25370
   examine: "A rocky outcrop."
-door_470:
-  id: 25417
-  examine: "The door is open."
 door_471_opened:
   id: 25417
   examine: "The door is open."
@@ -7240,9 +6877,6 @@ door_474_opened:
 door_474_closed:
   id: 25642
   examine: "A nicely-fitted door."
-door_475:
-  id: 25643
-  examine: "A nicely-fitted door."
 crate_230:
   id: 25644
   examine: "An old crate for storage."
@@ -7267,17 +6901,11 @@ door_476_opened:
 door_476_closed:
   id: 25716
   examine: "The door is closed."
-door_477:
-  id: 25717
-  examine: "The door is open."
 door_478_opened:
   id: 25719
   examine: "A nicely-fitted door."
 door_478_closed:
   id: 25718
-  examine: "A nicely-fitted door."
-door_479:
-  id: 25719
   examine: "A nicely-fitted door."
 cooking_range_al_kharid:
   id: 25730
@@ -7322,9 +6950,6 @@ door_480_opened:
 door_480_closed:
   id: 25799
   examine: "A nicely-fitted door."
-door_481:
-  id: 25800
-  examine: "A nicely-fitted door."
 large_door_77_opened:
   id: 25815
   examine: "A sturdy wooden door."
@@ -7337,38 +6962,23 @@ large_door_78_opened:
 large_door_78_closed:
   id: 25814
   examine: "A sturdy wooden door."
-large_door_79:
-  id: 25815
-  examine: "A sturdy wooden door."
-large_door_80:
-  id: 25816
-  examine: "A sturdy wooden door."
 door_482_opened:
   id: 25820
   examine: "The door is open."
 door_482_closed:
   id: 25819
   examine: "The door is closed."
-door_483:
-  id: 25820
-  examine: "The door is open."
 door_484_opened:
   id: 25826
   examine: "A door."
 door_484_closed:
   id: 25825
   examine: "A door."
-door_485:
-  id: 25826
-  examine: "A door."
 door_486_opened:
   id: 25828
   examine: "A door."
 door_486_closed:
   id: 25827
-  examine: "A door."
-door_487:
-  id: 25828
   examine: "A door."
 chair_107:
   id: 25832
@@ -7484,17 +7094,11 @@ metal_door_3_opened:
 metal_door_3_closed:
   id: 26560
   examine: "A strong metal door."
-metal_door_4:
-  id: 26561
-  examine: "A strong metal door."
 metal_door_5_opened:
   id: 26707
   examine: "A strong metal door."
 metal_door_5_closed:
   id: 26706
-  examine: "A strong metal door."
-metal_door_6:
-  id: 26707
   examine: "A strong metal door."
 crate_241:
   id: 26771
@@ -7519,17 +7123,11 @@ crack_9:
 crack_10:
   id: 26845
   examine: "I might be able to squeeze through."
-big_door_8:
-  id: 26851
-  examine: "Looks foreboding!"
 large_door_82_opened:
   id: 26907
   examine: "A large double door."
 large_door_82_closed:
   id: 26906
-  examine: "A large double door."
-large_door_83:
-  id: 26907
   examine: "A large double door."
 large_door_84_opened:
   id: 26909
@@ -7537,26 +7135,17 @@ large_door_84_opened:
 large_door_84_closed:
   id: 26908
   examine: "A large double door."
-large_door_85:
-  id: 26909
-  examine: "A large double door."
 large_door_86_opened:
   id: 26911
   examine: "A large double door."
 large_door_86_closed:
   id: 26910
   examine: "A large double door."
-large_door_87:
-  id: 26911
-  examine: "A large double door."
 large_door_88_opened:
   id: 26914
   examine: "A large double door."
 large_door_88_closed:
   id: 26913
-  examine: "A large double door."
-large_door_89:
-  id: 26914
   examine: "A large double door."
 door_494_opened:
   id: 27989
@@ -7570,9 +7159,6 @@ trapdoor_80_opened:
 trapdoor_80_closed:
   id: 26933
   examine: "I wonder what's under it."
-trapdoor_81:
-  id: 26934
-  examine: "I wonder what's down there."
 coffin_18:
   id: 26935
   examine: "I hope no one's home."
@@ -7669,17 +7255,11 @@ door_499_opened:
 door_499_closed:
   id: 27988
   examine: "A shut door."
-door_500:
-  id: 27989
-  examine: "An open door."
 door_501_opened:
   id: 28408
   examine: "An old, carved door."
 door_501_closed:
   id: 28407
-  examine: "An old, carved door."
-door_502:
-  id: 28408
   examine: "An old, carved door."
 door_503_opened:
   id: 28408
@@ -7698,9 +7278,6 @@ gate_195_opened:
 gate_195_closed:
   id: 28514
   examine: "It looks like some kind of back door."
-door_505:
-  id: 28588
-  examine: "The door is open."
 door_506_opened:
   id: 28588
   examine: "The door is open."
@@ -7731,9 +7308,6 @@ trapdoor_83_opened:
 trapdoor_83_closed:
   id: 28675
   examine: "Where does it go?"
-trapdoor_84:
-  id: 28676
-  examine: "Where does it go?"
 gate_197_opened:
   id: 28692
   examine: "A thick wooden gate."
@@ -7758,9 +7332,6 @@ trapdoor_85_opened:
 trapdoor_85_closed:
   id: 28741
   examine: "The trapdoor is shut tight."
-trapdoor_86:
-  id: 28742
-  examine: "Allows access to the level below."
 crate_253:
   id: 28823
   examine: "A wooden storage crate."
@@ -7907,9 +7478,6 @@ metal_door_7_opened:
 metal_door_7_closed:
   id: 29261
   examine: "A strong metal door."
-metal_door_8:
-  id: 29262
-  examine: "A strong metal door."
 metal_door_9_opened:
   id: 29317
   examine: "A strong metal door."
@@ -7922,17 +7490,11 @@ metal_door_10_opened:
 metal_door_10_closed:
   id: 29316
   examine: "A strong metal door."
-metal_door_11:
-  id: 29317
-  examine: "A strong metal door."
 metal_door_13_opened:
   id: 29317
   examine: "A strong metal door."
 metal_door_13_closed:
   id: 29319
-  examine: "A strong metal door."
-metal_door_12:
-  id: 29318
   examine: "A strong metal door."
 metal_door_14_opened:
   id: 29318
@@ -8025,9 +7587,6 @@ trapdoor_87_opened:
 trapdoor_87_closed:
   id: 30571
   examine: "I wonder what's under it?"
-trapdoor_88:
-  id: 30572
-  examine: "Allows access to the level below."
 trapdoor_89_opened:
   id: 30572
   examine: "Allows access to the level below."
@@ -8068,15 +7627,9 @@ door_525_opened:
 door_525_closed:
   id: 30864
   examine: "A nicely-fitted door."
-door_526:
-  id: 30865
-  examine: "A nicely-fitted door."
 crate_267:
   id: 30925
   examine: "A wooden crate for storage."
-trapdoor_90:
-  id: 31010
-  examine: "A ladder leading down below."
 trapdoor_91_opened:
   id: 31010
   examine: "A ladder leading down below."
@@ -8266,17 +7819,11 @@ door_528_opened:
 door_528_closed:
   id: 31340
   examine: "An old, carved door."
-door_529:
-  id: 31341
-  examine: "An old, carved door."
 door_530_opened:
   id: 31343
   examine: "An old, carved door."
 door_530_closed:
   id: 31342
-  examine: "An old, carved door."
-door_531:
-  id: 31343
   examine: "An old, carved door."
 large_door_92_opened:
   id: 31809
@@ -8284,17 +7831,11 @@ large_door_92_opened:
 large_door_92_closed:
   id: 31808
   examine: "A large single door."
-large_door_93:
-  id: 31809
-  examine: "A large single door."
 large_door_94_opened:
   id: 31812
   examine: "A large single door."
 large_door_94_closed:
   id: 31811
-  examine: "A large single door."
-large_door_95:
-  id: 31812
   examine: "A large single door."
 large_door_97_opened:
   id: 31813
@@ -8307,17 +7848,11 @@ large_door_96_opened:
 large_door_96_closed:
   id: 31814
   examine: "A large double door."
-large_door_98:
-  id: 31816
-  examine: "A large double door."
 large_door_100_opened:
   id: 31821
   examine: "A large double door."
 large_door_100_closed:
   id: 31820
-  examine: "A large double door."
-large_door_101:
-  id: 31821
   examine: "A large double door."
 large_door_102_opened:
   id: 31823
@@ -8325,20 +7860,11 @@ large_door_102_opened:
 large_door_102_closed:
   id: 31822
   examine: "A large double door."
-large_door_103:
-  id: 31823
-  examine: "A large double door."
-door_539:
-  id: 31824
-  examine: "A wooden door."
 door_540_opened:
   id: 31824
   examine: "A wooden door."
 door_540_closed:
   id: 31825
-  examine: "A wooden door."
-door_541:
-  id: 31826
   examine: "A wooden door."
 door_542_opened:
   id: 31826
@@ -8346,26 +7872,17 @@ door_542_opened:
 door_542_closed:
   id: 31827
   examine: "A wooden door."
-large_door_104:
-  id: 31828
-  examine: "A sturdy wooden door."
 large_door_105_opened:
   id: 31828
   examine: "A sturdy wooden door."
 large_door_105_closed:
   id: 33060
   examine: "A sturdy wooden door."
-door_543:
-  id: 31829
-  examine: "The door is open."
 door_544_opened:
   id: 31829
   examine: "The door is open."
 door_544_closed:
   id: 31830
-  examine: "The door is open."
-door_545:
-  id: 31831
   examine: "The door is open."
 door_546_opened:
   id: 31831
@@ -8388,9 +7905,6 @@ door_547_opened:
   examine: "A single door."
 door_547_closed:
   id: 31838
-  examine: "A single door."
-door_548:
-  id: 31839
   examine: "A single door."
 door_549_opened:
   id: 31840
@@ -8647,18 +8161,12 @@ door_563_opened:
 door_563_closed:
   id: 34042
   examine: "The door is closed."
-door_564:
-  id: 34043
-  examine: "The door is open."
 door_565_opened:
   id: 34045
   examine: "The door is open."
 door_565_closed:
   id: 34044
   examine: "The door is closed."
-door_566:
-  id: 34045
-  examine: "The door is open."
 crate_271:
   id: 34225
   examine: "A wooden crate."
@@ -8673,9 +8181,6 @@ door_568_closed:
 burning_tomb:
   id: 34299
   examine: "It's on fire."
-door_574:
-  id: 34353
-  examine: "The door is open."
 door_575_opened:
   id: 34353
   examine: "The door is open."
@@ -8718,9 +8223,6 @@ door_576_opened:
 door_576_closed:
   id: 34807
   examine: "The door is closed."
-door_577:
-  id: 34808
-  examine: "The door is open."
 door_578_opened:
   id: 34826
   examine: "A heavy wooden door."
@@ -8739,26 +8241,17 @@ door_581_opened:
 door_581_closed:
   id: 34812
   examine: "The door is locked."
-door_582:
-  id: 34813
-  examine: "The door is open."
 door_583_opened:
   id: 34818
   examine: "The door is open."
 door_583_closed:
   id: 34816
   examine: "The door is closed."
-door_584:
-  id: 34818
-  examine: "The door is open."
 door_585_opened:
   id: 34820
   examine: "A heavy wooden door."
 door_585_closed:
   id: 34819
-  examine: "A heavy wooden door."
-door_586:
-  id: 34820
   examine: "A heavy wooden door."
 door_587_opened:
   id: 34823
@@ -8766,26 +8259,17 @@ door_587_opened:
 door_587_closed:
   id: 34822
   examine: "A heavily built wooden door."
-door_588:
-  id: 34823
-  examine: "A heavily built wooden door."
 wooden_door_opened:
   id: 34826
   examine: "A heavy wooden door."
 wooden_door_closed:
   id: 34825
   examine: "A heavy wooden door."
-wooden_door_2:
-  id: 34826
-  examine: "A heavy wooden door."
 wooden_door_3_opened:
   id: 34828
   examine: "A heavy wooden door."
 wooden_door_3_closed:
   id: 34827
-  examine: "A heavy wooden door."
-wooden_door_4:
-  id: 34828
   examine: "A heavy wooden door."
 crate_274:
   id: 35015
@@ -8820,9 +8304,6 @@ cell_door_14_opened:
 cell_door_14_closed:
   id: 35540
   examine: "This looks sturdier than the rest of the building."
-cell_door_15:
-  id: 35541
-  examine: "This looks sturdier than the rest of the building."
 toll_gate_al_kharid:
   id: 35549
 toll_gate_al_kharid_north:
@@ -8833,9 +8314,6 @@ door_593_opened:
 door_593_closed:
   id: 35630
   examine: "A shut door."
-door_594:
-  id: 35631
-  examine: "An open door."
 rope_swing_2:
   id: 35967
   examine: "An odd-looking rock with a rope tied to it"
@@ -8848,9 +8326,6 @@ door_597_opened:
 door_597_closed:
   id: 35991
   examine: "The door is closed."
-door_599:
-  id: 36021
-  examine: "The door is open."
 door_600_opened:
   id: 36021
   examine: "The door is open."
@@ -8881,9 +8356,6 @@ crate_275:
 crate_276:
   id: 36324
   examine: "For storage."
-door_617:
-  id: 36343
-  examine: "Security seems somewhat lax."
 door_618_opened:
   id: 36343
   examine: "Security seems somewhat lax."
@@ -8896,9 +8368,6 @@ crate_277:
 crate_278:
   id: 36352
   examine: "For storage."
-door_619:
-  id: 36359
-  examine: "Security seems somewhat lax."
 door_620_opened:
   id: 36359
   examine: "Security seems somewhat lax."
@@ -8925,12 +8394,6 @@ door_622_opened:
   examine: "A heavy door of dark wood."
 door_622_closed:
   id: 36625
-  examine: "A heavy door of dark wood."
-door_623:
-  id: 36639
-  examine: "A heavy door of dark wood."
-door_624:
-  id: 36649
   examine: "A heavy door of dark wood."
 fountain_of_heroes:
   id: 36695
@@ -8983,9 +8446,6 @@ door_625_opened:
 door_625_closed:
   id: 36844
   examine: "The door is closed."
-door_626:
-  id: 36845
-  examine: "The door is open."
 door_627_opened:
   id: 36848
   examine: "The door is open."
@@ -8998,9 +8458,6 @@ door_628_opened:
 door_628_closed:
   id: 36847
   examine: "The door is locked."
-door_629:
-  id: 36848
-  examine: "The door is open."
 door_630_opened:
   id: 36864
   examine: "The door is open."
@@ -9013,12 +8470,6 @@ door_631_opened:
 door_631_closed:
   id: 36863
   examine: "The door is closed."
-door_632:
-  id: 36864
-  examine: "The door is open."
-door_633:
-  id: 36865
-  examine: "The door is open."
 flour_bin:
   id: 36878
   examine: "I'll need an empty pot so I can collect my flour."
@@ -9406,9 +8857,6 @@ coffin_36:
 crate_296:
   id: 38048
   examine: "A wooden storage recepticle"
-door_651:
-  id: 38123
-  examine: "The door is open."
 door_652_opened:
   id: 38123
   examine: "The door is open."
@@ -9421,9 +8869,6 @@ door_653_opened:
 door_653_closed:
   id: 38141
   examine: "The door is closed."
-door_654:
-  id: 38142
-  examine: "The door is open."
 portal_runecrafting_guild:
   id: 38279
   examine: "Where could this lead?"
@@ -9478,9 +8923,6 @@ trapdoor_101_opened:
 trapdoor_101_closed:
   id: 39188
   examine: "A closed trapdoor."
-trapdoor_102:
-  id: 39189
-  examine: "An open trapdoor."
 door_656_opened:
   id: 39197
 door_656_closed:
@@ -9506,9 +8948,6 @@ trapdoor_103_opened:
 trapdoor_103_closed:
   id: 39274
   examine: "This trapdoor is tightly shut."
-trapdoor_104:
-  id: 39275
-  examine: "I can climb down this ladder."
 door_659_opened:
   id: 39307
   examine: "This closes when the pit guardian is spawned or activated."
@@ -9524,9 +8963,6 @@ trapdoor_105_opened:
 trapdoor_105_closed:
   id: 39330
   examine: "This trapdoor is tightly shut."
-trapdoor_106:
-  id: 39331
-  examine: "There appears to be a basement down here."
 crate_298:
   id: 39349
   examine: "A wooden crate, made for storage."
@@ -9535,9 +8971,6 @@ large_door_106_opened:
   examine: "A large door."
 large_door_106_closed:
   id: 39469
-  examine: "A large door."
-large_door_107:
-  id: 39470
   examine: "A large door."
 corpse_58:
   id: 39474
@@ -9592,9 +9025,6 @@ door_668_opened:
 door_668_closed:
   id: 40108
   examine: "A door."
-door_669:
-  id: 40109
-  examine: "A door."
 coffin_37:
   id: 40172
   examine: "It's been blessed."
@@ -9610,18 +9040,12 @@ cell_door_16_opened:
 cell_door_16_closed:
   id: 40184
   examine: "A locked prison cell door."
-cell_door_17:
-  id: 40185
-  examine: "A prison cell door."
 cell_door_18_opened:
   id: 40185
   examine: "A prison cell door."
 cell_door_18_closed:
   id: 40186
   examine: "Stops people getting out."
-large_doors:
-  id: 40361
-  examine: "The door is open."
 large_doors_2_opened:
   id: 40361
   examine: "The door is open."
@@ -9673,9 +9097,6 @@ door_671_opened:
 door_671_closed:
   id: 40893
   examine: "The door is closed."
-door_672:
-  id: 40894
-  examine: "The door is open."
 door_673_opened:
   id: 40903
   examine: "The door is open."
@@ -9711,9 +9132,6 @@ cell_door_19_closed:
 chair_142:
   id: 41116
   examine: "The ideal thing to sit on."
-door_676:
-  id: 41124
-  examine: "The door is open."
 door_677_opened:
   id: 41124
   examine: "The door is open."
@@ -9726,17 +9144,11 @@ door_679_opened:
 door_679_closed:
   id: 41127
   examine: "A nicely fitted door."
-door_680:
-  id: 41128
-  examine: "A nicely fitted door."
 door_681_opened:
   id: 41130
   examine: "A nicely fitted door."
 door_681_closed:
   id: 41129
-  examine: "A nicely fitted door."
-door_682:
-  id: 41130
   examine: "A nicely fitted door."
 large_door_108_opened:
   id: 41132
@@ -9744,17 +9156,11 @@ large_door_108_opened:
 large_door_108_closed:
   id: 41131
   examine: "Large double doors."
-large_door_109:
-  id: 41132
-  examine: "Large double doors."
 large_door_110_opened:
   id: 41134
   examine: "Large double doors."
 large_door_110_closed:
   id: 41133
-  examine: "Large double doors."
-large_door_111:
-  id: 41134
   examine: "Large double doors."
 large_door_112_opened:
   id: 41178
@@ -9767,12 +9173,6 @@ large_door_113_opened:
   examine: "A large double door."
 large_door_113_closed:
   id: 41175
-  examine: "A large double door."
-large_door_114:
-  id: 41178
-  examine: "A large double door."
-large_door_115:
-  id: 41179
   examine: "A large double door."
 crate_313:
   id: 41194
@@ -9819,9 +9219,6 @@ chair_143:
 fountain_22:
   id: 41448
   examine: "A pretty water feature."
-door_683:
-  id: 41463
-  examine: "The door is open."
 door_684_opened:
   id: 41463
   examine: "The door is open."
@@ -9834,35 +9231,23 @@ door_685_opened:
 door_685_closed:
   id: 41509
   examine: "The door is closed."
-door_686:
-  id: 41510
-  examine: "The door is open."
 door_687_opened:
   id: 41523
   examine: "The door is open."
 door_687_closed:
   id: 41522
   examine: "The door is closed."
-door_688:
-  id: 41523
-  examine: "The door is open."
 door_689_opened:
   id: 41526
   examine: "A nicely fitted door."
 door_689_closed:
   id: 41524
   examine: "A nicely fitted door."
-door_690:
-  id: 41526
-  examine: "A nicely fitted door."
 door_691_opened:
   id: 41530
   examine: "A magical device that enables one to walk through walls."
 door_691_closed:
   id: 41529
-  examine: "A magical device that enables one to walk through walls."
-door_692:
-  id: 41530
   examine: "A magical device that enables one to walk through walls."
 door_693_opened:
   id: 41530
@@ -9911,27 +9296,18 @@ prison_door_9_opened:
 prison_door_9_closed:
   id: 43045
   examine: "The door looks very secure."
-door_695:
-  id: 43176
-  examine: "The door is open."
 door_696_opened:
   id: 43176
   examine: "The door is open."
 door_696_closed:
   id: 43177
   examine: "The door is closed."
-door_697:
-  id: 43178
-  examine: "The door is open."
 door_698_opened:
   id: 43178
   examine: "The door is open."
 door_698_closed:
   id: 43179
   examine: "The door is closed."
-door_699:
-  id: 43180
-  examine: "The door is open."
 door_700_opened:
   id: 43180
   examine: "The door is open."
@@ -9953,17 +9329,11 @@ door_702_opened:
 door_702_closed:
   id: 43401
   examine: "The door is closed."
-door_703:
-  id: 43402
-  examine: "The door is open."
 door_704_opened:
   id: 43460
   examine: "Door-like."
 door_704_closed:
   id: 43459
-  examine: "Door-like."
-door_705:
-  id: 43460
   examine: "Door-like."
 rope_swing_4:
   id: 43526
@@ -10238,26 +9608,17 @@ door_721_opened:
 door_721_closed:
   id: 45537
   examine: "Keeps the wind out."
-door_722:
-  id: 45538
-  examine: "Keeps the wind out."
 door_723_opened:
   id: 45540
   examine: "Keeps the wind out."
 door_723_closed:
   id: 45539
   examine: "Keeps the wind out."
-door_724:
-  id: 45540
-  examine: "Keeps the wind out."
 cupboard_door_opened:
   id: 45790
   examine: "The door of a small cupboard."
 cupboard_door_closed:
   id: 45789
-  examine: "The door of a small cupboard."
-cupboard_door_2:
-  id: 45790
   examine: "The door of a small cupboard."
 border_guard_al_kharid:
   id: 45857
@@ -10290,18 +9651,12 @@ door_729_opened:
 door_729_closed:
   id: 45964
   examine: "The door is closed."
-door_730:
-  id: 45965
-  examine: "The door is open."
 door_731_opened:
   id: 45967
   examine: "The door is open."
 door_731_closed:
   id: 45966
   examine: "The door is closed."
-door_732:
-  id: 45967
-  examine: "The door is open."
 crate_342:
   id: 46238
   examine: "An old crate for storage."
@@ -10311,9 +9666,6 @@ door_733_opened:
 door_733_closed:
   id: 46251
   examine: "The door is closed."
-door_734:
-  id: 46252
-  examine: "The door is open."
 crate_343:
   id: 46266
   examine: "For storage."
@@ -10326,9 +9678,6 @@ crate_345:
 crate_346:
   id: 46294
   examine: "An old crate for storage."
-door_735:
-  id: 46305
-  examine: "A door."
 door_736_opened:
   id: 46305
   examine: "A door."
@@ -10498,18 +9847,12 @@ door_768_opened:
 door_768_closed:
   id: 47443
   examine: "The door is closed."
-door_769:
-  id: 47444
-  examine: "The door is open."
 door_770_opened:
   id: 47513
   examine: "The door is open."
 door_770_closed:
   id: 47512
   examine: "The door is closed."
-door_771:
-  id: 47513
-  examine: "The door is open."
 crate_354:
   id: 47559
   examine: "A wooden crate."
@@ -10625,17 +9968,11 @@ door_772_opened:
 door_772_closed:
   id: 48938
   examine: "A heavily built wooden door."
-door_773:
-  id: 48939
-  examine: "A heavily built wooden door."
 door_774_opened:
   id: 48941
   examine: "A heavily built wooden door."
 door_774_closed:
   id: 48940
-  examine: "A heavily built wooden door."
-door_775:
-  id: 48941
   examine: "A heavily built wooden door."
 door_776_opened:
   id: 48943
@@ -10643,17 +9980,11 @@ door_776_opened:
 door_776_closed:
   id: 48942
   examine: "A heavily built wooden door."
-door_777:
-  id: 48943
-  examine: "A heavily built wooden door."
 door_778_opened:
   id: 48945
   examine: "A heavily built wooden door."
 door_778_closed:
   id: 48944
-  examine: "A heavily built wooden door."
-door_779:
-  id: 48945
   examine: "A heavily built wooden door."
 door_780_opened:
   id: 48962
@@ -10661,9 +9992,6 @@ door_780_opened:
 door_780_closed:
   id: 48961
   examine: "The door is closed."
-door_781:
-  id: 48962
-  examine: "The door is open."
 crate_360:
   id: 48998
   examine: "Great for storing things."
@@ -11015,18 +10343,12 @@ door_879_opened:
 door_879_closed:
   id: 52312
   examine: "The door is closed."
-door_880:
-  id: 52313
-  examine: "The door is open."
 door_881_opened:
   id: 52313
   examine: "The door is open."
 door_881_closed:
   id: 52314
   examine: "The door is closed."
-door_882:
-  id: 52315
-  examine: "The door is open."
 locked_door_18_opened:
   id: 52315
   examine: "The door is open."
@@ -11070,12 +10392,6 @@ door_887_opened:
   examine: "A heavy door of dark wood."
 door_887_closed:
   id: 52779
-  examine: "A heavy door of dark wood."
-door_888:
-  id: 52780
-  examine: "A heavy door of dark wood."
-door_889:
-  id: 52781
   examine: "A heavy door of dark wood."
 dead_tree_41:
   id: 52786
@@ -11403,12 +10719,6 @@ door_986_opened:
 door_986_closed:
   id: 57137
   examine: "A door."
-door_987:
-  id: 57138
-  examine: "A door."
-big_door_10:
-  id: 57257
-  examine: "Looks foreboding!"
 big_door_11_opened:
   id: 57257
   examine: "Looks foreboding!"
@@ -11436,10 +10746,10 @@ silverlight_sword_case_closed:
   id: 12982
   examine: "A sword case containing silverlight."
 silverlight_sword_case_open:
-  id: 12983
+  id: 12984
   examine: "A sword case containing silverlight."
 silverlight_sword_case_empty:
-  id: 12983
+  id: 12985
   examine: "This case used to contain silverlight."
 demon_slayer_stone_table:
   id: 17454
