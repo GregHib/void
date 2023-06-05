@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
-import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameMapObject
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.instruct.*
@@ -122,7 +122,7 @@ fun Player.walk(toTile: Tile) = runTest {
     instructions.emit(Walk(toTile.x, toTile.y))
 }
 
-fun Player.itemOnObject(obj: GameObject, itemSlot: Int, id: String, component: String = "container", container: String = "inventory") {
+fun Player.itemOnObject(obj: GameMapObject, itemSlot: Int, id: String, component: String = "container", container: String = "inventory") {
     val item = containers.container(container)[itemSlot]
     events.emit(InterfaceOnObject(this, obj, id, component, item, itemSlot, container))
 }
@@ -150,7 +150,7 @@ fun Player.npcOption(npc: NPC, option: String) = runTest {
 }
 
 @OptIn(ExperimentalCoroutinesApi::class)
-fun Player.objectOption(gameObject: GameObject, option: String) = runTest {
+fun Player.objectOption(gameObject: GameMapObject, option: String) = runTest {
     val def = get<ObjectDefinitions>().get(gameObject.id)
     instructions.emit(InteractObject(def.id, gameObject.tile.x, gameObject.tile.y, def.optionsIndex(option) + 1))
 }

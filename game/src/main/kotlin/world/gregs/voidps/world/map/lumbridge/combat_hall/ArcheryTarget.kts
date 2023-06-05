@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameMapObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
@@ -32,7 +32,7 @@ on<ObjectOption>({ operate && obj.id == "archery_target" && option == "Shoot-at"
     swing(player, obj, 0)
 }
 
-fun swing(player: Player, obj: GameObject, delay: Int) {
+fun swing(player: Player, obj: GameMapObject, delay: Int) {
     player.weakQueue("archery", delay) {
         val weapon = player.weapon
         if (player.fightStyle != "range") {

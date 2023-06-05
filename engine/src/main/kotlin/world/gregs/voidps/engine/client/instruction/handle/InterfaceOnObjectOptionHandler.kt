@@ -6,19 +6,20 @@ import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
-import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectType
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.instruct.InteractInterfaceObject
 
 class InterfaceOnObjectOptionHandler(
-    private val objects: Objects,
+    private val objects: GameObjects,
     private val handler: InterfaceHandler
 ) : InstructionHandler<InteractInterfaceObject>() {
 
     override fun validate(player: Player, instruction: InteractInterfaceObject) {
         val (objectId, x, y, interfaceId, componentId, itemId, itemSlot) = instruction
         val tile = Tile(x, y, player.tile.plane)
-        val obj = objects[tile, objectId]
+        val obj = objects[tile, ObjectType.INTERACTIVE, objectId]
         if (obj == null) {
             player.noInterest()
             return

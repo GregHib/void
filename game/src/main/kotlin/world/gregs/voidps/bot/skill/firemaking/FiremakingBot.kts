@@ -16,7 +16,8 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectGroup
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Areas
@@ -26,7 +27,7 @@ import world.gregs.voidps.network.instruct.InteractInterfaceItem
 
 val areas: Areas by inject()
 val tasks: TaskManager by inject()
-val objects: Objects by inject()
+val objects: GameObjects by inject()
 
 onBot<TimerStop>({ timer == "firemaking" }) { bot: Bot ->
     bot.resume(timer)
@@ -58,10 +59,10 @@ suspend fun Bot.light(map: MapArea, lighter: Item, logs: Item) {
     goToArea(map)
     val lighterIndex = player.inventory.indexOf(lighter.id)
     while (player.inventory.contains(logs.id)) {
-        if (objects.getType(player.tile, 10) != null) {
+        if (objects[player.tile, ObjectGroup.INTERACTIVE] != null) {
             val spot = player.tile
                 .toCuboid(1)
-                .firstOrNull { objects.getType(it, 10) == null }
+                .firstOrNull { objects[it, ObjectGroup.INTERACTIVE] == null }
             if (spot == null) {
                 await("tick")
                 if (player.inventory.spaces < 4) {

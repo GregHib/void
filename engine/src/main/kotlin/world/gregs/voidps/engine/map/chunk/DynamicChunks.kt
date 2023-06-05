@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.map.chunk
 import it.unimi.dsi.fastutil.ints.Int2IntArrayMap
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.clear
 import world.gregs.voidps.engine.map.file.MapExtract
@@ -12,7 +12,7 @@ import java.util.*
 import kotlin.collections.set
 
 class DynamicChunks(
-    private val objects: Objects,
+    private val objects: GameObjects,
     private val collisions: Collisions,
     private val extract: MapExtract
 ) {

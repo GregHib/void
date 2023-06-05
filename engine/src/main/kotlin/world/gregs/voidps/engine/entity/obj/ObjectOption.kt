@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 
 data class ObjectOption(
     override val player: Player,
-    override val obj: GameObject,
+    override val obj: GameMapObject,
     val def: ObjectDefinition,
     val option: String
 ) : ObjectInteraction() {

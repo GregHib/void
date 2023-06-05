@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameMapObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.weakQueue
@@ -77,7 +77,7 @@ on<InterfaceOnObject>({ operate && obj.id.startsWith("spinning_wheel") && item.d
     start(player, obj, item, amount)
 }
 
-fun start(player: Player, obj: GameObject, fibre: Item, amount: Int) {
+fun start(player: Player, obj: GameMapObject, fibre: Item, amount: Int) {
     val data = fibre.spinning
     val current = player.inventory.count(fibre.id)
     if (current <= 0) {
@@ -88,7 +88,7 @@ fun start(player: Player, obj: GameObject, fibre: Item, amount: Int) {
     player.spin(obj, fibre, actualAmount)
 }
 
-fun Player.spin(obj: GameObject, fibre: Item, amount: Int) {
+fun Player.spin(obj: GameMapObject, fibre: Item, amount: Int) {
     if (amount <= 0) {
         return
     }

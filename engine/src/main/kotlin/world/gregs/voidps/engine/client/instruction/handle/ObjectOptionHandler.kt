@@ -9,15 +9,16 @@ import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.ObjectType
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.instruct.InteractObject
 
 class ObjectOptionHandler(
-    private val objects: Objects,
+    private val objects: GameObjects,
     private val definitions: ObjectDefinitions
 ) : InstructionHandler<InteractObject>() {
 
@@ -49,14 +50,14 @@ class ObjectOptionHandler(
         player.mode = Interact(player, target, ObjectOption(player, target, definition, selectedOption), approachRange = -1)
     }
 
-    private fun getObject(tile: Tile, objectId: Int): GameObject? {
+    private fun getObject(tile: Tile, objectId: Int): GameMapObject? {
         val obj = objects[tile, objectId]
         if (obj == null) {
             val definition = definitions.getOrNull(objectId)
             return if (definition == null) {
                 objects[tile, objectId.toString()]
             } else {
-                objects[tile, definition.id]
+                objects[tile, ObjectType.INTERACTIVE, definition.id]
             }
         }
         return obj

@@ -2,8 +2,8 @@ package world.gregs.voidps.world.interact.entity.obj
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.obj.replaceObjectPair
 import world.gregs.voidps.engine.map.Tile
@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.map.equals
 
 object Door {
 
-    fun openDoubleDoors(obj: GameObject, def: ObjectDefinition, double: GameObject, ticks: Int, collision: Boolean = true) {
+    fun openDoubleDoors(obj: GameMapObject, def: ObjectDefinition, double: GameMapObject, ticks: Int, collision: Boolean = true) {
         val delta = obj.tile.delta(double.tile)
         val dir = Direction.cardinal[obj.rotation]
         val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
@@ -33,7 +33,7 @@ object Door {
         }
     }
 
-    fun closeDoubleDoors(obj: GameObject, def: ObjectDefinition, double: GameObject, ticks: Int) {
+    fun closeDoubleDoors(obj: GameMapObject, def: ObjectDefinition, double: GameMapObject, ticks: Int) {
         val delta = obj.tile.delta(double.tile)
         val dir = Direction.cardinal[obj.rotation]
         val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
@@ -55,7 +55,18 @@ object Door {
         }
     }
 
-    private fun replaceGate(obj: GameObject, double: GameObject, flip: Boolean, ticks: Int, collision: Boolean, current: String, next: String, objRotation: Int, hingeTileRotation: Int, tileRotation: Int) {
+    private fun replaceGate(
+        obj: GameMapObject,
+        double: GameMapObject,
+        flip: Boolean,
+        ticks: Int,
+        collision: Boolean,
+        current: String,
+        next: String,
+        objRotation: Int,
+        hingeTileRotation: Int,
+        tileRotation: Int
+    ) {
         val first = if (flip) double else obj
         val second = if (flip) obj else double
         val tile = getTile(first, hingeTileRotation)
@@ -73,7 +84,7 @@ object Door {
         )
     }
 
-    fun replaceDoor(obj: GameObject, def: ObjectDefinition, current: String, next: String, tileRotation: Int, objRotation: Int, ticks: Int) {
+    fun replaceDoor(obj: GameMapObject, def: ObjectDefinition, current: String, next: String, tileRotation: Int, objRotation: Int, ticks: Int) {
         if (def.isHinged()) {
             obj.replace(
                 obj.id.replace(current, next),
@@ -90,32 +101,32 @@ object Door {
         }
     }
 
-    private fun getTile(gameObject: GameObject, anticlockwise: Int) = getTile(gameObject.tile, gameObject.rotation, anticlockwise)
+    private fun getTile(gameObject: GameMapObject, anticlockwise: Int) = getTile(gameObject.tile, gameObject.rotation, anticlockwise)
 
     private fun getTile(tile: Tile, rotation: Int, anticlockwise: Int): Tile {
         val orientation = Direction.cardinal[rotate(rotation, -anticlockwise)]
         return tile.add(orientation.delta)
     }
 
-    fun getDoubleDoor(objects: Objects, gameObject: GameObject, def: ObjectDefinition, clockwise: Int): GameObject? {
+    fun getDoubleDoor(objects: GameObjects, gameObject: GameMapObject, def: ObjectDefinition, clockwise: Int): GameMapObject? {
         var orientation = Direction.cardinal[gameObject.rotation(clockwise)]
-        var door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
+        var door = objects[gameObject.tile.add(orientation.delta), gameObject.group]
         if (door != null && door.def.isDoor()) {
             return door
         }
         orientation = orientation.inverse()
-        door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
+        door = objects[gameObject.tile.add(orientation.delta), gameObject.group]
         if (door != null && door.def.isDoor()) {
             return door
         }
         if (def.isGate()) {
             orientation = orientation.rotate(2)
-            door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
+            door = objects[gameObject.tile.add(orientation.delta), gameObject.group]
             if (door != null && door.def.isGate()) {
                 return door
             }
             orientation = orientation.inverse()
-            door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
+            door = objects[gameObject.tile.add(orientation.delta), gameObject.group]
             if (door != null && door.def.isGate()) {
                 return door
             }
@@ -123,7 +134,7 @@ object Door {
         return null
     }
 
-    private fun GameObject.rotation(clockwise: Int) = rotate(rotation, clockwise)
+    private fun GameMapObject.rotation(clockwise: Int) = rotate(rotation, clockwise)
 
     private fun rotate(rotation: Int, clockwise: Int) = (rotation + clockwise) and 0x3
 }

@@ -15,6 +15,13 @@ object Distance {
         x = getNearest(tile.x, size.width, target.x),
         y = getNearest(tile.y, size.height, target.y)
     )
+    /**
+     * Get the nearest point for [tile] with [size] to [target]
+     */
+    fun getNearest(tile: Tile, width: Int, height: Int, target: Tile) = tile.copy(
+        x = getNearest(tile.x, width, target.x),
+        y = getNearest(tile.y, height, target.y)
+    )
 
     fun Rectangle.nearestTo(tile: Tile) = Tile(
         x = getNearest(minX, width, tile.x),

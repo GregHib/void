@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.MapArea
@@ -112,7 +112,7 @@ private suspend fun Bot.navigate() {
             this.step = step
             player.instructions.emit(step)
             withTimeoutOrNull(TICKS.toMillis(20)) {
-                if (step is InteractObject && get<Objects>()[player.tile.copy(step.x, step.y), step.objectId] == null) {
+                if (step is InteractObject && get<GameObjects>()[player.tile.copy(step.x, step.y), step.objectId] == null) {
                     await("tick")
                 } else {
                     await("move")

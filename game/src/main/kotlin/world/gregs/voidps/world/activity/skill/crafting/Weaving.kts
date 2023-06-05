@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameMapObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.weakQueue
@@ -54,7 +54,7 @@ on<InterfaceOnObject>({ operate && obj.id.startsWith("loom_") && item.def.has("w
     weave(obj, item, amount)
 }
 
-fun PlayerContext.weave(obj: GameObject, item: Item, amount: Int) {
+fun PlayerContext.weave(obj: GameMapObject, item: Item, amount: Int) {
     val data = item.weaving
     val current = player.inventory.count(item.id)
     if (current < data.amount) {
@@ -65,7 +65,7 @@ fun PlayerContext.weave(obj: GameObject, item: Item, amount: Int) {
     player.weave(obj, item, actualAmount)
 }
 
-fun Player.weave(obj: GameObject, item: Item, amount: Int) {
+fun Player.weave(obj: GameMapObject, item: Item, amount: Int) {
     if (amount <= 0) {
         return
     }

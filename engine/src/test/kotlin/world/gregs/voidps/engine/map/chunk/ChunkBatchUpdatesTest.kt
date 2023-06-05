@@ -7,16 +7,17 @@ import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
-import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.chunk.ChunkUpdate
@@ -59,15 +60,15 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
         val chunk = Chunk(2, 2)
         batches.add(chunk, update)
         player.tile = Tile(20, 20)
-        val objects = Objects()
+        val objects = GameObjects(GameObjectCollision(Collisions()), ChunkBatchUpdates())
         batches.register(objects)
-        val added = GameObject("4321", Tile(20, 21), 10, 0)
-        added.def = ObjectDefinition(id = 4321)
-        objects.addTemp(added)
-        val removed = GameObject("1234", Tile(21, 20), 10, 0)
-        removed.def = ObjectDefinition(id = 1234)
+        val added = GameMapObject(4321, Tile(20, 21), 10, 0)
+//        added.def = ObjectDefinition(id = 4321)
+        objects.add(added)
+        val removed = GameMapObject(1234, Tile(21, 20), 10, 0)
+//        removed.def = ObjectDefinition(id = 1234)
         objects.add(removed)
-        objects.removeTemp(removed)
+        objects.remove(removed)
         player["logged_in"] = true
         // When
         batches.run(player)

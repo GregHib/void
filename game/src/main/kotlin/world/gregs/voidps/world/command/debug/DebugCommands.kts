@@ -15,7 +15,8 @@ import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectGroup
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
@@ -268,8 +269,10 @@ on<Command>({ prefix == "obj" }) { player: Player ->
             spawnObject(id, player.tile.addY(1), 22, rotation, 10, null)
         }
     } else {
-        get<Objects>()[player.tile].forEach {
-            println(it.def.id)
+        val objs = get<GameObjects>()
+        for (group in ObjectGroup.all) {
+            val obj = objs[player.tile, group] ?: continue
+            println(obj.intId)
         }
     }
 }

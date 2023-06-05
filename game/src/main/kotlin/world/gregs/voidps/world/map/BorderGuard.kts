@@ -8,8 +8,9 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectType
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Distance.nearestTo
@@ -20,7 +21,7 @@ import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.map.chunk.Chunk
 import kotlin.collections.set
 
-val objects: Objects by inject()
+val objects: GameObjects by inject()
 val areas: Areas by inject()
 
 val borders = mutableMapOf<Chunk, Rectangle>()
@@ -56,13 +57,17 @@ on<Moved>({ exitingBorder(from, to) }) { player: Player ->
     changeGuardState(guards, false)
 }
 
-val raised = mutableMapOf<GameObject, Boolean>()
+val raised = mutableMapOf<GameMapObject, Boolean>()
 
-fun getGuards(tile: Tile) = objects[tile.chunk]
-    .union(objects[tile.chunk.add(0, 1)])
-    .filter { it.id.startsWith("border_guard") }
+fun getGuards(tile: Tile) =
+    tile.chunk.toCuboid()
+        .mapNotNull {
+            objects[tile, ObjectType.INTERACTIVE]
+        }
+        .union(tile.chunk.add(0, 1).toCuboid().mapNotNull { objects[tile, ObjectType.INTERACTIVE] })
+        .filter { it.id.startsWith("border_guard") }
 
-fun changeGuardState(guards: List<GameObject>, raise: Boolean) {
+fun changeGuardState(guards: List<GameMapObject>, raise: Boolean) {
     for (guard in guards) {
         if (raised.getOrDefault(guard, false) != raise) {
             guard.animate(guard.def[if (raise) "raise" else "lower"])

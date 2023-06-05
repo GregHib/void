@@ -4,8 +4,9 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.instruction.handle.WalkHandler
-import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectGroup
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -39,7 +40,7 @@ internal class ObjectTest : WorldTest() {
     fun `Can open and walk through a door`() {
         val player = createPlayer("player", Tile(3227, 3214))
         tick()
-        val door = get<Objects>()[Tile(3226, 3214)].first()
+        val door = get<GameObjects>()[Tile(3226, 3214), ObjectGroup.INTERACTIVE]!!
 
         player.objectOption(door, "Open")
         tick()
@@ -53,7 +54,7 @@ internal class ObjectTest : WorldTest() {
     fun `Ladder ascending`() {
         val player = createPlayer("player", Tile(3229, 3214))
         tick()
-        val ladder = get<Objects>()[Tile(3229, 3213)].first()
+        val ladder = get<GameObjects>()[Tile(3229, 3213), ObjectGroup.INTERACTIVE]!!
 
         player.objectOption(ladder, "Climb-up")
         tick(3)
@@ -66,7 +67,7 @@ internal class ObjectTest : WorldTest() {
         val player = createPlayer("player", Tile(3229, 3214, 1))
         tick()
         // The one in Objects has wrong id as config replace id disabled.
-        val ladder = GameObject(id = "36769", tile = Tile(3229, 3213, 1), type = 22, rotation = 3)
+        val ladder = GameMapObject(id = 36769, tile = Tile(3229, 3213, 1), type = 22, rotation = 3)
         player.objectOption(ladder, "Climb-down")
         tick(3)
 

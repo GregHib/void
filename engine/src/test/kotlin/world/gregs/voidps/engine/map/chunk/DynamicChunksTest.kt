@@ -4,7 +4,7 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.file.MapExtract
 import world.gregs.voidps.engine.map.region.Region
@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.map.region.Region
 internal class DynamicChunksTest {
 
     private lateinit var chunks: DynamicChunks
-    private lateinit var objects: Objects
+    private lateinit var objects: GameObjects
     private lateinit var collisions: Collisions
     private lateinit var extract: MapExtract
 

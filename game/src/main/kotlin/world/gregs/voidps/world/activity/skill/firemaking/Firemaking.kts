@@ -26,7 +26,8 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectType
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -36,12 +37,12 @@ import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
 
 val floorItems: FloorItems by inject()
-val objects: Objects by inject()
+val objects: GameObjects by inject()
 
 on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } }) { player: Player ->
     val log = if (toItem.burnable) toItem else fromItem
     val logSlot = if (toItem.burnable) toSlot else fromSlot
-    if (objects.getType(player.tile, 10) != null) {
+    if (objects[player.tile, ObjectType.INTERACTIVE] != null) {
         player.message("You can't light a fire here.")
         player.clearAnimation()
         return@on
@@ -119,7 +120,7 @@ fun Player.canLight(log: String, fire: Fire, item: FloorItem): Boolean {
     if (!has(Skill.Firemaking, fire.level, true)) {
         return false
     }
-    if (objects.getType(item.tile, 10) != null) {
+    if (objects[item.tile, ObjectType.INTERACTIVE] != null) {
         message("You can't light a fire here.")
         return false
     }

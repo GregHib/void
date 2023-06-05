@@ -23,9 +23,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.succe
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.requiredEquipLevel
-import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -35,7 +35,7 @@ import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import kotlin.random.Random
 
-val objects: Objects by inject()
+val objects: GameObjects by inject()
 
 on<ObjectOption>({ operate && option == "Mine" }) { player: Player ->
     if (obj.id.startsWith("depleted")) {
@@ -49,7 +49,7 @@ on<ObjectOption>({ operate && option == "Mine" }) { player: Player ->
     }
     var first = true
     while (true) {
-        if (objects[obj.tile, obj.id] == null) {
+        if (!objects.contains(obj)) {
             break
         }
 
@@ -160,7 +160,7 @@ fun addOre(player: Player, ore: String): Boolean {
     return added
 }
 
-fun deplete(rock: Rock, obj: GameObject): Boolean {
+fun deplete(rock: Rock, obj: GameMapObject): Boolean {
     if (rock.life >= 0) {
         obj.replace("depleted${obj.id.dropWhile { it != '_' }}", ticks = rock.life)
         return true

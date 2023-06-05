@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.obj
 
 object ObjectGroup {
+
     /**
      * The wall object group, which may block a tile.
      */
@@ -51,4 +52,6 @@ object ObjectGroup {
      * Get the [ObjectGroup] for an [ObjectType]
      */
     fun group(type: Int) = groups[type]
+
+    val all = intArrayOf(WALL, WALL_DECORATION, INTERACTIVE, GROUND_DECORATION)
 }

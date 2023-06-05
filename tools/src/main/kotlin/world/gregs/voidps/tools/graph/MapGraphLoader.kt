@@ -5,7 +5,8 @@ import org.koin.dsl.module
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
@@ -23,7 +24,7 @@ object MapGraphLoader {
             ))
             modules(module {
                 single { EventHandlerStore() }
-                single { Objects() }
+                single { GameObjects(get(), ChunkBatchUpdates()) }
                 single(createdAtStart = true) {
                     Xteas(mutableMapOf()).apply {
                         XteaLoader().load(this, getProperty("xteaPath"), getPropertyOrNull("xteaJsonKey"), getPropertyOrNull("xteaJsonValue"))
@@ -34,7 +35,7 @@ object MapGraphLoader {
             }, cacheModule, cacheDefinitionModule)
         }.koin
         val collisions: Collisions = koin.get()
-        val objects: Objects = koin.get()
+        val objects: GameObjects = koin.get()
         val xteas: Xteas = koin.get()
         val cache: Cache = koin.get()
         val graph = MapGraph(objects, xteas, cache, collisions)

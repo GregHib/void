@@ -3,11 +3,13 @@ package world.gregs.voidps.engine.entity.obj
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.network.encode.chunk.ObjectAddition
 import world.gregs.voidps.network.encode.chunk.ObjectRemoval
+import world.gregs.voidps.network.encode.send
 
 /**
  * Stores GameObjects and modifications mainly for verifying interactions
@@ -15,7 +17,7 @@ import world.gregs.voidps.network.encode.chunk.ObjectRemoval
 class GameObjects(
     private val collisions: GameObjectCollision,
     private val batches: ChunkBatchUpdates,
-) {
+) : ChunkBatchUpdates.Sender {
     private val map = GameObjectMap()
     private val replacements: MutableMap<Int, Int> = Int2IntOpenHashMap()
     var size = 0
@@ -33,7 +35,7 @@ class GameObjects(
             map.remove(obj.x, obj.y, obj.plane, group, REPLACED)
             batches.add(obj.tile.chunk, ObjectAddition(obj.tile.id, obj.intId, obj.type, obj.rotation))
             if (collision) {
-                collisions.modify(obj.tile, obj, add = true)
+                collisions.modify(obj, add = true)
             }
             size++
         } else {
@@ -43,7 +45,7 @@ class GameObjects(
                 val originalObj = GameMapObject(original, obj.x, obj.y, obj.plane)
                 batches.add(obj.tile.chunk, ObjectRemoval(obj.tile.id, originalObj.type, originalObj.rotation))
                 if (collision) {
-                    collisions.modify(obj.tile, originalObj, add = false)
+                    collisions.modify(originalObj, add = false)
                 }
                 size--
             }
@@ -52,7 +54,7 @@ class GameObjects(
             replacements[obj.index] = obj.value
             batches.add(obj.tile.chunk, ObjectAddition(obj.tile.id, obj.intId, obj.type, obj.rotation))
             if (collision) {
-                collisions.modify(obj.tile, obj, add = true)
+                collisions.modify(obj, add = true)
             }
             size++
         }
@@ -89,7 +91,7 @@ class GameObjects(
             replacements.remove(obj.index)
             batches.add(obj.tile.chunk, ObjectRemoval(obj.tile.id, obj.type, obj.rotation))
             if (collision) {
-                collisions.modify(obj.tile, obj, add = false)
+                collisions.modify(obj, add = false)
             }
             size--
             // Re-add original (if exists)
@@ -98,7 +100,7 @@ class GameObjects(
                 val originalObj = GameMapObject(original, obj.x, obj.y, obj.plane)
                 if (collision) {
                     batches.add(obj.tile.chunk, ObjectAddition(obj.tile.id, originalObj.intId, originalObj.type, originalObj.rotation))
-                    collisions.modify(obj.tile, originalObj, add = true)
+                    collisions.modify(originalObj, add = true)
                 }
                 size++
             }
@@ -107,7 +109,7 @@ class GameObjects(
             map.add(obj.tile.x, obj.tile.y, obj.tile.plane, group, REPLACED)
             batches.add(obj.tile.chunk, ObjectRemoval(obj.tile.id, obj.type, obj.rotation))
             if (collision) {
-                collisions.modify(obj.tile, obj, add = true)
+                collisions.modify(obj, add = true)
             }
             size--
         }
@@ -118,6 +120,14 @@ class GameObjects(
     operator fun get(tile: Tile, group: Int, id: String): GameMapObject? {
         val obj = get(tile, group) ?: return null
         if (obj.id == id) {
+            return obj
+        }
+        return null
+    }
+
+    operator fun get(tile: Tile, group: Int, id: Int): GameMapObject? {
+        val obj = get(tile, group) ?: return null
+        if (obj.intId == id) {
             return obj
         }
         return null
@@ -164,12 +174,31 @@ class GameObjects(
         return true
     }
 
+    override fun send(player: Player, chunk: Chunk) {
+        for (tile in chunk.toCuboid()) {
+            for (group in ObjectGroup.all) {
+                val int = map[tile.x, tile.y, tile.plane, group]
+                if (replaced(int)) {
+                    val value = toObject(int)
+                    if (value != 0) {
+                        player.client?.send(ObjectRemoval(tile.id, GameMapObject.type(value), GameMapObject.rotation(value)))
+                    }
+                    val replaced = replacements[index(tile.x, tile.y, tile.plane, group)]
+                    if (replaced != null) {
+                        player.client?.send(ObjectAddition(tile.id, GameMapObject.id(replaced), GameMapObject.type(replaced), GameMapObject.rotation(replaced)))
+                    }
+                }
+            }
+        }
+    }
+
     companion object {
         private fun toValue(value: Int) = value shl 1
         private fun toObject(value: Int) = value shr 1
-        private fun replaced(value: Int) = value and REPLACED == REPLACED
 
+        private fun replaced(value: Int) = value and REPLACED == REPLACED
         private const val REPLACED = 0x1
+
         var LOAD_UNUSED = false // Don't bother loading objects which don't have options or configs (saves ~75MB ram)
 
         private val GameMapObject.index: Int

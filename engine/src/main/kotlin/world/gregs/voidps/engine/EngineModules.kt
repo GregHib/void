@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObjectFactory
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Areas
@@ -35,8 +34,7 @@ val engineModule = module {
     // Entities
     single { NPCs(get(), get(), get(), get()) }
     single { Players() }
-    single { Objects().apply { get<ChunkBatchUpdates>().register(this) } }
-    single { GameObjects(get(), get()) }
+    single { GameObjects(get(), get()).apply { get<ChunkBatchUpdates>().register(this) } }
     single { FloorItems(get(), get(), get()).apply { get<ChunkBatchUpdates>().register(this) } }
     single { FloorItemTracking(get(), get(), get()) }
     single {
@@ -80,7 +78,7 @@ val engineModule = module {
 val postCacheModule = module {
     single { GameObjectFactory(get(), get()) }
     single { MapExtract(get(), get(), get(), get()) }
-    single(createdAtStart = true) { CustomObjects(get(), get(), get(), get()) }
+    single(createdAtStart = true) { CustomObjects(get(), get()) }
     // Definitions
     single(createdAtStart = true) { SoundDefinitions().load() }
     single(createdAtStart = true) { MidiDefinitions().load() }
