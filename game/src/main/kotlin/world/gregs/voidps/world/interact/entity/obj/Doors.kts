@@ -36,13 +36,16 @@ on<ObjectOption>({ operate && def.isDoor() && option == "Close" }) { player: Pla
     }
 
     val double = getDoubleDoor(objects, obj, def, 1)
+    println(double)
     if (resetExisting(obj, double)) {
         player.playSound(if (def.isGate()) "close_gate" else "close_door")
         return@on
     }
 
+    println(obj.id)
     // Single door
     if (double == null && obj.id.endsWith("_opened")) {
+        println("Close door")
         replaceDoor(obj, def, "_opened", "_closed", 0, 3, doorResetDelay)
         player.playSound("close_door")
         return@on
@@ -105,12 +108,9 @@ fun stuck(player: Player): Boolean {
 }
 
 fun resetExisting(obj: GameObject, double: GameObject?): Boolean {
-    if (double == null && customObjects.cancelTimer(obj)) {
+    if (double == null && customObjects.executeTimer(obj)) {
         return true
     }
 
-    if (double != null && customObjects.cancelTimer(obj) && customObjects.cancelTimer(double)) {
-        return true
-    }
-    return false
+    return double != null && (customObjects.executeTimer(obj) || customObjects.executeTimer(double))
 }

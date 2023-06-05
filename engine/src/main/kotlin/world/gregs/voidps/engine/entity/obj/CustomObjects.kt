@@ -29,6 +29,7 @@ class CustomObjects(
         if (ticks <= 0) {
             return
         }
+        cancelTimer(gameObject)
         timers.add(Timer(setOf(gameObject), ticks, block))
     }
 
@@ -36,11 +37,25 @@ class CustomObjects(
         if (ticks <= 0) {
             return
         }
+        for (obj in gameObjects) {
+            cancelTimer(obj)
+        }
         timers.add(Timer(gameObjects, ticks, block))
     }
 
     fun cancelTimer(gameObject: GameObject): Boolean {
         return timers.removeIf { it.objs.contains(gameObject) }
+    }
+
+    fun executeTimer(gameObject: GameObject): Boolean {
+        return timers.removeIf {
+            if (it.objs.contains(gameObject)) {
+                it.block.invoke()
+                true
+            } else {
+                false
+            }
+        }
     }
 
 

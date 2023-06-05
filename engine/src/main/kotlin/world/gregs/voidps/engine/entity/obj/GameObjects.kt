@@ -113,7 +113,7 @@ class GameObjects(
             map.add(obj.tile.x, obj.tile.y, obj.tile.plane, group, REPLACED)
             batches.add(obj.tile.chunk, ObjectRemoval(obj.tile.id, obj.type, obj.rotation))
             if (collision) {
-                collisions.modify(obj, add = true)
+                collisions.modify(obj, add = false)
             }
             size--
         }
