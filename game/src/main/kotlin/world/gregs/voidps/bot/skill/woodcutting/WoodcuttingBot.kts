@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameMapObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Areas
@@ -72,7 +72,7 @@ suspend fun Bot.cutTrees(map: MapArea, type: String? = null) {
     }
 }
 
-fun Bot.isAvailableTree(map: MapArea, obj: GameObject, type: String?): Boolean {
+fun Bot.isAvailableTree(map: MapArea, obj: GameMapObject, type: String?): Boolean {
     if (!map.area.contains(obj.tile)) {
         return false
     }

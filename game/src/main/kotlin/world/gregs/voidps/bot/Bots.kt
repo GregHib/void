@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.entity.obj.GameMapObject
-import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectGroup
 import world.gregs.voidps.engine.get
@@ -85,7 +84,7 @@ suspend fun Bot.npcOption(npc: NPC, option: String) {
     player.instructions.emit(InteractNPC(npc.index, npc.def.options.indexOf(option) + 1))
 }
 
-suspend fun Bot.objectOption(obj: GameObject, option: String) {
+suspend fun Bot.objectOption(obj: GameMapObject, option: String) {
     player.instructions.emit(InteractObject(obj.def.id, obj.tile.x, obj.tile.y, obj.def.optionsIndex(option) + 1))
 }
 
