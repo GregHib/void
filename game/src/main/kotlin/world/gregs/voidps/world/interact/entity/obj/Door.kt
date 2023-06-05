@@ -2,10 +2,11 @@ package world.gregs.voidps.world.interact.entity.obj
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.entity.obj.replaceObjectPair
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
 
@@ -18,7 +19,7 @@ object Door {
         if (def.isGate()) {
             replaceGate(obj, double, flip, ticks, collision, "_closed", "_opened", 3, 1, 1)
         } else {
-            replaceObjectPair(
+            get<CustomObjects>().replace(
                 obj,
                 obj.id.replace("_closed", "_opened"),
                 getTile(obj, 1),
@@ -28,7 +29,7 @@ object Door {
                 getTile(double, 1),
                 double.rotation(if (flip) 3 else 1),
                 ticks,
-                collision = collision
+                collision
             )
         }
     }
@@ -41,7 +42,7 @@ object Door {
             replaceGate(obj, double, flip, ticks, true, "_opened", "_closed", 1, 2, 3)
         } else {
             val mirror = def.mirrored
-            replaceObjectPair(
+            get<CustomObjects>().replace(
                 obj,
                 obj.id.replace("_opened", "_closed"),
                 getTile(obj, if (mirror) 2 else 0),
@@ -70,7 +71,7 @@ object Door {
         val first = if (flip) double else obj
         val second = if (flip) obj else double
         val tile = getTile(first, hingeTileRotation)
-        replaceObjectPair(
+        get<CustomObjects>().replace(
             first,
             first.id.replace(current, next),
             tile,

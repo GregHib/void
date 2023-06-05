@@ -4,8 +4,6 @@ import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 
-// TODO how to handle pairs, so that when one object is replaced so is the other.
-
 class CustomObjects(
     private val objects: GameObjects,
     private val definitions: ObjectDefinitions
@@ -27,14 +25,14 @@ class CustomObjects(
         }
     }
 
-    fun setTimer(gameObject: GameObject, ticks: Int, block: () -> Unit) {
+    private fun setTimer(gameObject: GameObject, ticks: Int, block: () -> Unit) {
         if (ticks <= 0) {
             return
         }
         timers.add(Timer(setOf(gameObject), ticks, block))
     }
 
-    fun setTimer(gameObjects: Set<GameObject>, ticks: Int, block: () -> Unit) {
+    private fun setTimer(gameObjects: Set<GameObject>, ticks: Int, block: () -> Unit) {
         if (ticks <= 0) {
             return
         }
@@ -49,15 +47,7 @@ class CustomObjects(
     /**
      * Spawns an object, optionally removing after a set time
      */
-    fun spawn(
-        id: String,
-        tile: Tile,
-        type: Int,
-        rotation: Int,
-        ticks: Int = -1,
-        owner: String? = null,
-        collision: Boolean = true
-    ): GameObject {
+    fun spawn(id: String, tile: Tile, type: Int, rotation: Int, ticks: Int = -1, collision: Boolean = true): GameObject {
         val gameObject = GameObject(definitions.get(id).id, tile, type, rotation)
         objects.add(gameObject, collision)
         setTimer(gameObject, ticks) {
@@ -69,12 +59,7 @@ class CustomObjects(
     /**
      * Removes an object, optionally reverting after a set time
      */
-    fun remove(
-        original: GameObject,
-        ticks: Int = -1,
-        owner: String? = null,
-        collision: Boolean = true
-    ) {
+    fun remove(original: GameObject, ticks: Int = -1, collision: Boolean = true) {
         objects.remove(original, collision)
         setTimer(original, ticks) {
             objects.add(original, collision)
@@ -91,7 +76,6 @@ class CustomObjects(
         type: Int = 0,
         rotation: Int = 0,
         ticks: Int = -1,
-        owner: String? = null,
         collision: Boolean = true
     ): GameObject {
         val replacement = GameObject(definitions.get(id).id, tile, type, rotation)
@@ -105,7 +89,8 @@ class CustomObjects(
     }
 
     /**
-     * Replaces two objects, linking them to the same job so both revert after timeout
+     * Replaces two existing map objects with replacements provided.
+     * The replacements can be temporary or permanent if [ticks] is -1
      */
     fun replace(
         firstOriginal: GameObject,
@@ -117,8 +102,6 @@ class CustomObjects(
         secondTile: Tile,
         secondRotation: Int,
         ticks: Int,
-        firstOwner: String? = null,
-        secondOwner: String? = null,
         collision: Boolean = true
     ) {
         val first = GameObject(definitions.get(firstReplacement).id, firstTile, firstOriginal.type, firstRotation)
@@ -143,54 +126,20 @@ class CustomObjects(
 /**
  * Removes an existing map [GameObject].
  * The removal can be permanent if [ticks] is -1 or temporary
- * [owner] is also optional to allow for an object to removed just for one player.
  * [collision] can also be used to disable collision changes
  */
-fun GameObject.remove(ticks: Int = -1, owner: String? = null, collision: Boolean = true) {
-    get<CustomObjects>().remove(this, ticks, owner, collision)
+fun GameObject.remove(ticks: Int = -1, collision: Boolean = true) {
+    get<CustomObjects>().remove(this, ticks, collision)
 }
 
 /**
  * Replaces an existing map objects with [id] [tile] [type] and [rotation] provided.
  * The replacement can be permanent if [ticks] is -1 or temporary
- * [owner] is also optional to allow for an object to replaced just for one player.
  * [collision] can also be used to disable collision changes
  */
-fun GameObject.replace(id: String, tile: Tile = this.tile, type: Int = this.type, rotation: Int = this.rotation, ticks: Int = -1, owner: String? = null, collision: Boolean = true): GameObject {
-    return get<CustomObjects>().replace(this, id, tile, type, rotation, ticks, owner, collision)
+fun GameObject.replace(id: String, tile: Tile = this.tile, type: Int = this.type, rotation: Int = this.rotation, ticks: Int = -1, collision: Boolean = true): GameObject {
+    return get<CustomObjects>().replace(this, id, tile, type, rotation, ticks, collision)
 }
-
-/**
- * Replaces two existing map objects with replacements provided.
- * The replacements can be permanent if [ticks] is -1 or temporary
- * [owner] is also optional to allow for objects to replace just for one player.
- */
-fun replaceObjectPair(
-    firstOriginal: GameObject,
-    firstReplacement: String,
-    firstTile: Tile,
-    firstRotation: Int,
-    secondOriginal: GameObject,
-    secondReplacement: String,
-    secondTile: Tile,
-    secondRotation: Int,
-    ticks: Int,
-    owner: String? = null,
-    collision: Boolean = true
-) = get<CustomObjects>().replace(
-    firstOriginal,
-    firstReplacement,
-    firstTile,
-    firstRotation,
-    secondOriginal,
-    secondReplacement,
-    secondTile,
-    secondRotation,
-    ticks,
-    owner,
-    owner,
-    collision
-)
 
 /**
  * Spawns a temporary object with [id] [tile] [type] and [rotation] provided.
@@ -202,7 +151,6 @@ fun spawnObject(
     type: Int,
     rotation: Int,
     ticks: Int = -1,
-    owner: String? = null,
     collision: Boolean = true
 ) = get<CustomObjects>().spawn(
     id,
@@ -210,6 +158,5 @@ fun spawnObject(
     type,
     rotation,
     ticks,
-    owner,
     collision
 )
