@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity
 
-import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 
 /**
@@ -9,5 +8,4 @@ import world.gregs.voidps.engine.map.Tile
 interface Entity {
     var tile: Tile
     val size: Size // Entity contains size so that archery objects can be targeted in combat
-    val events: Events
 }

@@ -6,13 +6,14 @@ import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
+import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.network.visual.Visuals
 import kotlin.coroutines.Continuation
 
-interface Character : Entity, Comparable<Character> {
+interface Character : Entity, EventDispatcher, Comparable<Character> {
     val index: Int
     val visuals: Visuals
     val levels: Levels

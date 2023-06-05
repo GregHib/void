@@ -14,32 +14,32 @@ import kotlin.reflect.KClass
  */
 class EventHandlerStore {
 
-    private val handlers = mutableMapOf<KClass<out Entity>, MutableMap<KClass<out Event>, MutableList<EventHandler>>>()
+    private val handlers = mutableMapOf<KClass<out EventDispatcher>, MutableMap<KClass<out Event>, MutableList<EventHandler>>>()
 
-    private val parents = mapOf(
-        Entity::class to listOf(World::class, FloorItem::class, Character::class),
+    private val parents = mapOf<KClass<out EventDispatcher>, List<KClass<out EventDispatcher>>>(
+        EventDispatcher::class to listOf(World::class, FloorItem::class, Character::class),
         Character::class to listOf(Player::class, NPC::class)
     )
 
-    fun populate(clazz: KClass<out Entity>, events: Events) {
+    fun populate(clazz: KClass<out EventDispatcher>, events: Events) {
         events.set(get(clazz))
     }
 
-    fun <T : Entity> populate(entity: T) {
+    fun <T : EventDispatcher> populate(entity: T) {
         populate(entity::class, entity.events)
     }
 
-    fun get(entity: KClass<out Entity>): Map<KClass<out Event>, MutableList<EventHandler>> {
+    fun get(entity: KClass<out EventDispatcher>): Map<KClass<out Event>, MutableList<EventHandler>> {
         return handlers[entity] ?: emptyMap()
     }
 
-    fun add(entity: KClass<out Entity>, event: KClass<out Event>, handler: EventHandler) {
+    fun add(entity: KClass<out EventDispatcher>, event: KClass<out Event>, handler: EventHandler) {
         val list = handlers.getOrPut(entity) { mutableMapOf() }.getOrPut(event) { mutableListOf() }
         list.add(handler)
         list.sort()
     }
 
-    fun add(entity: KClass<out Entity>, event: KClass<out Event>, condition: Event.(Entity) -> Boolean, priority: Priority, block: suspend Event.(Entity) -> Unit) {
+    fun add(entity: KClass<out EventDispatcher>, event: KClass<out Event>, condition: Event.(Entity) -> Boolean, priority: Priority, block: suspend Event.(Entity) -> Unit) {
         add(entity, event, EventHandler(event, condition, priority, block))
         for (parent in parents[entity] ?: return) {
             add(parent, event, EventHandler(event, condition, priority, block))
@@ -52,7 +52,7 @@ class EventHandlerStore {
 }
 
 @Suppress("UNCHECKED_CAST")
-inline fun <reified T : Entity, reified E : Event> addEvent(noinline condition: E.(T) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(T) -> Unit) {
+inline fun <reified T : EventDispatcher, reified E : Event> addEvent(noinline condition: E.(T) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(T) -> Unit) {
     get<EventHandlerStore>().add(T::class, E::class, condition as Event.(Entity) -> Boolean, priority, block as suspend Event.(Entity) -> Unit)
 }
 

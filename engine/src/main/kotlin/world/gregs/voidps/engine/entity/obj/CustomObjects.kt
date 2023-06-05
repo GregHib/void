@@ -43,7 +43,7 @@ class CustomObjects(
         timers.add(Timer(gameObjects, ticks, block))
     }
 
-    fun cancelTimer(gameObject: GameObject): Boolean {
+    private fun cancelTimer(gameObject: GameObject): Boolean {
         return timers.removeIf { it.objs.contains(gameObject) }
     }
 
@@ -57,7 +57,6 @@ class CustomObjects(
             }
         }
     }
-
 
     /**
      * Spawns an object, optionally removing after a set time

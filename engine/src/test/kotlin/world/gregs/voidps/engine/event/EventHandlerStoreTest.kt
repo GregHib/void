@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.event
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.entity.Entity
 import kotlin.reflect.KClass
 
 internal class EventHandlerStoreTest {
@@ -12,7 +11,7 @@ internal class EventHandlerStoreTest {
     fun `Populated event handlers are in priority order`() {
         val events = Events(mockk())
 
-        val entity: KClass<out Entity> = Entity::class
+        val entity: KClass<out EventDispatcher> = EventDispatcher::class
         val event: KClass<out Event> = Event::class
         val handler1 = EventHandler(event, { true }, Priority.HIGHISH, {})
         val handler2 = EventHandler(event, { true }, Priority.LOW, {})
@@ -34,7 +33,7 @@ internal class EventHandlerStoreTest {
     fun `Populated two handlers of same priority`() {
         val events = Events(mockk())
 
-        val entity: KClass<out Entity> = Entity::class
+        val entity: KClass<out EventDispatcher> = EventDispatcher::class
         val event: KClass<out Event> = Event::class
         val handler1 = EventHandler(event, { true }, Priority.LOW, {})
         val handler2 = EventHandler(event, { true }, Priority.LOW, {})
