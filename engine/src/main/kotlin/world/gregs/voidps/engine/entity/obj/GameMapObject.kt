@@ -16,7 +16,7 @@ value class GameMapObject(val hash: Long) : Entity {
     constructor(value: Int, x: Int, y: Int, plane: Int) : this(id(value), x, y, plane, type(value), rotation(value))
 
     override val size: Size
-        get() = Size(def.sizeX, def.sizeY)
+        get() = Size(if (rotation and 0x1 == 1) def.sizeY else def.sizeX, if (rotation and 0x1 == 1) def.sizeX else def.sizeY)
     val value: Int
         get() = value(intId, type, rotation)
     val intId: Int

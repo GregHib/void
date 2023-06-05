@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
-import world.gregs.voidps.engine.entity.obj.GameObjectFactory
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
@@ -76,7 +75,6 @@ val engineModule = module {
  * Modules which depend on cache definitions
  */
 val postCacheModule = module {
-    single { GameObjectFactory(get(), get()) }
     single { MapExtract(get(), get(), get(), get()) }
     single(createdAtStart = true) { CustomObjects(get(), get()) }
     // Definitions
