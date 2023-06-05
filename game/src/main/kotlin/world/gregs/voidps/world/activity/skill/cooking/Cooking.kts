@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -34,9 +34,9 @@ import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 val definitions: ItemDefinitions by inject()
 val objects: GameObjects by inject()
 
-val GameMapObject.cookingRange: Boolean get() = id.startsWith("cooking_range")
+val GameObject.cookingRange: Boolean get() = id.startsWith("cooking_range")
 
-val GameMapObject.heatSource: Boolean get() = id.startsWith("fire_") || cookingRange
+val GameObject.heatSource: Boolean get() = id.startsWith("fire_") || cookingRange
 
 on<InterfaceOnObject>({ operate && obj.heatSource && item.def.has("cooking") }) { player: Player ->
     arriveDelay()
@@ -57,7 +57,7 @@ on<InterfaceOnObject>({ operate && obj.heatSource && item.def.has("cooking") }) 
     player.cook(item, amount, obj, cooking, true)
 }
 
-fun Player.cook(item: Item, count: Int, obj: GameMapObject, cooking: Uncooked, first: Boolean = false) {
+fun Player.cook(item: Item, count: Int, obj: GameObject, cooking: Uncooked, first: Boolean = false) {
     if (count <= 0 || objects[obj.tile, obj.id] == null) {
         softTimers.stop("cooking")
         return

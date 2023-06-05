@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
@@ -44,7 +44,7 @@ suspend fun InterfaceOnObject.make(animation: String) {
     player.make(animation, obj, item, id, data, actualAmount)
 }
 
-fun Player.make(animation: String, obj: GameMapObject, item: Item, id: String, data: Pottery.Ceramic, amount: Int) {
+fun Player.make(animation: String, obj: GameObject, item: Item, id: String, data: Pottery.Ceramic, amount: Int) {
     if (amount <= 0) {
         return
     }

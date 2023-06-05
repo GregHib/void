@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.ObjectType
@@ -50,7 +50,7 @@ class ObjectOptionHandler(
         player.mode = Interact(player, target, ObjectOption(player, target, definition, selectedOption), approachRange = -1)
     }
 
-    private fun getObject(tile: Tile, objectId: Int): GameMapObject? {
+    private fun getObject(tile: Tile, objectId: Int): GameObject? {
         val obj = objects[tile, objectId]
         if (obj == null) {
             val definition = definitions.getOrNull(objectId)

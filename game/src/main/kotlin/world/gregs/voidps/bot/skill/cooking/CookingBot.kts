@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Areas
@@ -85,7 +85,7 @@ suspend fun Bot.cook(map: MapArea, rawItem: Item, set: GearDefinition) {
     }
 }
 
-fun isRange(map: MapArea, obj: GameMapObject): Boolean {
+fun isRange(map: MapArea, obj: GameObject): Boolean {
     if (!map.area.contains(obj.tile)) {
         return false
     }

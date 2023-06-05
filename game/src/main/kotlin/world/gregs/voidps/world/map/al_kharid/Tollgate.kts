@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
@@ -85,7 +85,7 @@ suspend fun Interaction.dialogue(player: Player, npc: NPC? = getGuard(player)) {
     }
 }
 
-fun getGate(player: Player): GameMapObject {
+fun getGate(player: Player): GameObject {
     val tile = gates.nearestTo(player.tile)
     return objects[tile, "toll_gate_al_kharid"]!!
 }

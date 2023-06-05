@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.map.obj.types
 
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.tools.map.obj.GameObjectOption
 import world.gregs.voidps.tools.map.obj.ObjectIdentificationContext
@@ -55,7 +55,7 @@ val interactTileDistance: ObjectIdentificationContext.(GameObjectOption) -> Doub
     }
 }
 
-private fun hasOppositeTile(obj1: GameMapObject, tiles1: Set<Tile>, obj2: GameMapObject, tiles2: Set<Tile>): Boolean {
+private fun hasOppositeTile(obj1: GameObject, tiles1: Set<Tile>, obj2: GameObject, tiles2: Set<Tile>): Boolean {
     for (dir in Direction.cardinal) {
         if (check(obj1, tiles1, dir) && check(obj2, tiles2, dir.inverse())) {
             return true
@@ -64,7 +64,7 @@ private fun hasOppositeTile(obj1: GameMapObject, tiles1: Set<Tile>, obj2: GameMa
     return false
 }
 
-private fun hasVerticalTile(obj1: GameMapObject, tiles1: Set<Tile>, obj2: GameMapObject, tiles2: Set<Tile>): Boolean {
+private fun hasVerticalTile(obj1: GameObject, tiles1: Set<Tile>, obj2: GameObject, tiles2: Set<Tile>): Boolean {
     for (dir in Direction.values) {
         if (check(obj1, tiles1, dir) && check(obj2, tiles2, dir)) {
             return true
@@ -73,7 +73,7 @@ private fun hasVerticalTile(obj1: GameMapObject, tiles1: Set<Tile>, obj2: GameMa
     return false
 }
 
-private fun check(obj: GameMapObject, tiles: Set<Tile>, dir: Direction): Boolean {
+private fun check(obj: GameObject, tiles: Set<Tile>, dir: Direction): Boolean {
     val tile = when (dir) {
         Direction.NORTH -> obj.tile.addY(obj.size.height)
         Direction.EAST -> obj.tile.addX( obj.size.width)

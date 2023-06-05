@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectType
 import world.gregs.voidps.engine.event.on
@@ -57,7 +57,7 @@ on<Moved>({ exitingBorder(from, to) }) { player: Player ->
     changeGuardState(guards, false)
 }
 
-val raised = mutableMapOf<GameMapObject, Boolean>()
+val raised = mutableMapOf<GameObject, Boolean>()
 
 fun getGuards(tile: Tile) =
     tile.chunk.toCuboid()
@@ -67,7 +67,7 @@ fun getGuards(tile: Tile) =
         .union(tile.chunk.add(0, 1).toCuboid().mapNotNull { objects[tile, ObjectType.INTERACTIVE] })
         .filter { it.id.startsWith("border_guard") }
 
-fun changeGuardState(guards: List<GameMapObject>, raise: Boolean) {
+fun changeGuardState(guards: List<GameObject>, raise: Boolean) {
     for (guard in guards) {
         if (raised.getOrDefault(guard, false) != raise) {
             guard.animate(guard.def[if (raise) "raise" else "lower"])

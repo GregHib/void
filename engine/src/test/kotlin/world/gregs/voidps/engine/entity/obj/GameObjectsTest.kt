@@ -22,7 +22,7 @@ class GameObjectsTest {
 
     @Test
     fun `Set an object to a tile`() {
-        val obj = GameMapObject(id = 1234, x = 10, y = 10, plane = 0, type = 10, rotation = 1)
+        val obj = GameObject(id = 1234, x = 10, y = 10, plane = 0, type = 10, rotation = 1)
 
         objects.set(obj.x, obj.y, obj.plane, obj.intId, obj.type, obj.rotation, ObjectDefinition.EMPTY)
 
@@ -35,7 +35,7 @@ class GameObjectsTest {
 
     @Test
     fun `Temporarily remove an object`() {
-        val obj = GameMapObject(id = 1234, x = 10, y = 10, plane = 0, type = 10, rotation = 1)
+        val obj = GameObject(id = 1234, x = 10, y = 10, plane = 0, type = 10, rotation = 1)
         objects.set(obj.x, obj.y, obj.plane, obj.intId, obj.type, obj.rotation, ObjectDefinition.EMPTY)
 
         objects.remove(obj)
@@ -47,7 +47,7 @@ class GameObjectsTest {
 
     @Test
     fun `Temporarily add an object`() {
-        val obj = GameMapObject(id = 1234, x = 10, y = 10, plane = 0, type = 10, rotation = 1)
+        val obj = GameObject(id = 1234, x = 10, y = 10, plane = 0, type = 10, rotation = 1)
 
         objects.add(obj)
         assertEquals(obj, objects[obj.tile, ObjectGroup.INTERACTIVE])
@@ -60,10 +60,10 @@ class GameObjectsTest {
 
     @Test
     fun `Add and remove a temp object over an original`() {
-        val original = GameMapObject(123, 10, 10, 0, 10, 1)
+        val original = GameObject(123, 10, 10, 0, 10, 1)
         objects.set(original.x, original.y, original.plane, original.intId, original.type, original.rotation, ObjectDefinition.EMPTY)
 
-        val obj = GameMapObject(id = 1234, x = 10, y = 10, plane = 0, type = 10, rotation = 0)
+        val obj = GameObject(id = 1234, x = 10, y = 10, plane = 0, type = 10, rotation = 0)
         objects.add(obj)
         assertEquals(obj, objects[obj.tile, ObjectGroup.INTERACTIVE])
 

@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.world.spawn
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
@@ -22,7 +22,7 @@ fun loadObjectSpawns(
         if (!membersWorld && spawn.members) {
             continue
         }
-        objects.add(GameMapObject(definitions.get(spawn.id).id, spawn.x, spawn.y, spawn.plane, spawn.type, spawn.rotation))
+        objects.add(GameObject(definitions.get(spawn.id).id, spawn.x, spawn.y, spawn.plane, spawn.type, spawn.rotation))
     }
     data.size
 }

@@ -2,13 +2,13 @@ package world.gregs.voidps.engine.map.collision
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectType
 
 class GameObjectCollision(
     private val collisions: Collisions
 ) {
-    fun modify(obj: GameMapObject, add: Boolean) {
+    fun modify(obj: GameObject, add: Boolean) {
         modify(obj.def, obj.x, obj.y, obj.plane, obj.type, obj.rotation, add)
     }
 

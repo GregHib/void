@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.CustomObjects
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
@@ -104,7 +104,7 @@ fun stuck(player: Player): Boolean {
     return false
 }
 
-fun resetExisting(obj: GameMapObject, double: GameMapObject?): Boolean {
+fun resetExisting(obj: GameObject, double: GameObject?): Boolean {
     if (double == null && customObjects.cancelTimer(obj)) {
         return true
     }

@@ -1,10 +1,10 @@
 package world.gregs.voidps.tools.map.obj
 
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
 
 class ObjectIdentificationContext(
-    val obj: GameMapObject,
+    val obj: GameObject,
     val availableTiles: Set<Tile>,
     option: String
 ) {

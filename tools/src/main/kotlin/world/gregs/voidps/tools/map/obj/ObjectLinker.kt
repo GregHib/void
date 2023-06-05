@@ -1,19 +1,19 @@
 package world.gregs.voidps.tools.map.obj
 
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 
 class ObjectLinker(private val collisions: Collisions) {
-    fun deltaBetween(one: GameMapObject, two: GameMapObject): Delta? {
+    fun deltaBetween(one: GameObject, two: GameObject): Delta? {
         val pair = linkedPoints(one, two) ?: return null
         return pair.second.delta(pair.first)
     }
 
-    fun linkedPoints(one: GameMapObject, two: GameMapObject): Pair<Tile, Tile>? {
+    fun linkedPoints(one: GameObject, two: GameObject): Pair<Tile, Tile>? {
         val ones = getAvailableTiles(one)
         if (ones.isEmpty()) {
             return null
@@ -57,7 +57,7 @@ class ObjectLinker(private val collisions: Collisions) {
         return null
     }
 
-    fun getAvailableTiles(obj: GameMapObject, plane: Int = obj.tile.plane, list: MutableList<Tile> = mutableListOf()): List<Tile> {
+    fun getAvailableTiles(obj: GameObject, plane: Int = obj.tile.plane, list: MutableList<Tile> = mutableListOf()): List<Tile> {
         for (dir in Direction.values) {
             val tile = getSizedTile(obj, dir).copy(plane = plane)
             when (dir) {
@@ -83,7 +83,7 @@ class ObjectLinker(private val collisions: Collisions) {
         return list
     }
 
-    fun getAllTiles(obj: GameMapObject): List<Tile> {
+    fun getAllTiles(obj: GameObject): List<Tile> {
         val list = mutableListOf<Tile>()
         for (plane in 0 until 4) {
             getAvailableTiles(obj, plane, list)
@@ -91,7 +91,7 @@ class ObjectLinker(private val collisions: Collisions) {
         return list
     }
 
-    fun isReachable(obj: GameMapObject): Boolean {
+    fun isReachable(obj: GameObject): Boolean {
         for (dir in Direction.values()) {
             val tile = getSizedTile(obj, dir)
 
@@ -118,11 +118,11 @@ class ObjectLinker(private val collisions: Collisions) {
         return false
     }
 
-    private fun GameMapObject.reachableFrom(tile: Tile): Boolean {
+    private fun GameObject.reachableFrom(tile: Tile): Boolean {
         return false//interactTarget.reached(tile, Size.ONE) && !collisions.check(tile.x, tile.y, tile.plane, 0x100) // BLOCKED
     }
 
-    private fun getSizedTile(obj: GameMapObject, dir: Direction): Tile {
+    private fun getSizedTile(obj: GameObject, dir: Direction): Tile {
         var tile = obj.tile.add(dir.delta)
         if (dir.horizontal() == Direction.EAST) {
             tile = tile.addX(obj.size.width - 1)

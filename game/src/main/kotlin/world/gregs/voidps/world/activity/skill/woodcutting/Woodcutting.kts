@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.requiredUseLevel
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.replace
@@ -163,7 +163,7 @@ fun addLog(player: Player, tree: Tree): Boolean {
     return added
 }
 
-fun deplete(tree: Tree, obj: GameMapObject): Boolean {
+fun deplete(tree: Tree, obj: GameObject): Boolean {
     val depleted = Random.nextDouble() <= tree.depleteRate
     if (!depleted) {
         return false

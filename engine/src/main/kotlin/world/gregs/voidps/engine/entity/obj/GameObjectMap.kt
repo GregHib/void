@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.entity.obj
 import world.gregs.voidps.engine.map.collision.Collisions
 
 /**
- * Much like [Collisions] this stores [GameMapObject]s by zone + group
+ * Much like [Collisions] this stores [GameObject]s by zone + group
  */
 class GameObjectMap {
     private val flags: Array<IntArray?> = arrayOfNulls(TOTAL_ZONE_COUNT)

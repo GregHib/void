@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.instruction.handle.WalkHandler
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectGroup
 import world.gregs.voidps.engine.get
@@ -67,7 +67,7 @@ internal class ObjectTest : WorldTest() {
         val player = createPlayer("player", Tile(3229, 3214, 1))
         tick()
         // The one in Objects has wrong id as config replace id disabled.
-        val ladder = GameMapObject(id = 36769, tile = Tile(3229, 3213, 1), type = 22, rotation = 3)
+        val ladder = GameObject(id = 36769, tile = Tile(3229, 3213, 1), type = 22, rotation = 3)
         player.objectOption(ladder, "Climb-down")
         tick(3)
 

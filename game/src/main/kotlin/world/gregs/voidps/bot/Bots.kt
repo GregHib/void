@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.data.definition.extra.getComponentIntId
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.slot
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectGroup
 import world.gregs.voidps.engine.get
@@ -84,7 +84,7 @@ suspend fun Bot.npcOption(npc: NPC, option: String) {
     player.instructions.emit(InteractNPC(npc.index, npc.def.options.indexOf(option) + 1))
 }
 
-suspend fun Bot.objectOption(obj: GameMapObject, option: String) {
+suspend fun Bot.objectOption(obj: GameObject, option: String) {
     player.instructions.emit(InteractObject(obj.def.id, obj.tile.x, obj.tile.y, obj.def.optionsIndex(option) + 1))
 }
 
@@ -95,7 +95,7 @@ suspend fun Bot.dialogueOption(option: String) {
     await("tick")
 }
 
-fun Bot.getObject(filter: (GameMapObject) -> Boolean): GameMapObject? {
+fun Bot.getObject(filter: (GameObject) -> Boolean): GameObject? {
     val objects = get<GameObjects>()
     for (chunk in player.tile.chunk.spiral(2)) {
         val obj = chunk.toCuboid()
@@ -108,9 +108,9 @@ fun Bot.getObject(filter: (GameMapObject) -> Boolean): GameMapObject? {
     return null
 }
 
-fun Bot.getObjects(filter: (GameMapObject) -> Boolean): List<GameMapObject> {
+fun Bot.getObjects(filter: (GameObject) -> Boolean): List<GameObject> {
     val objects = get<GameObjects>()
-    val list = mutableListOf<GameMapObject>()
+    val list = mutableListOf<GameObject>()
     for (chunk in player.tile.chunk.spiral(2)) {
         list.addAll(chunk.toCuboid()
             .mapNotNull { tile -> objects[tile, ObjectGroup.INTERACTIVE] }

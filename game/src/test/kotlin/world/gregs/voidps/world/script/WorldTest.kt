@@ -35,7 +35,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
@@ -121,7 +121,7 @@ abstract class WorldTest : KoinTest {
         return npc
     }
 
-    fun createObject(id: String, tile: Tile = Tile.EMPTY): GameMapObject {
+    fun createObject(id: String, tile: Tile = Tile.EMPTY): GameObject {
         return spawnObject(id, tile, 0, 0)
     }
 

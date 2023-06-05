@@ -4,7 +4,7 @@ import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectGroup
 import world.gregs.voidps.engine.map.Distance
@@ -30,7 +30,7 @@ class MapGraph(
     fun load(regionId: Int) {
 //        216, 320 - 487, 504
         val all = mutableSetOf<Tile>()
-        val objs = mutableSetOf<GameMapObject>()
+        val objs = mutableSetOf<GameObject>()
         val links = mutableSetOf<Triple<Tile, Tile, Int>>()
         val strategy = SmallTraversal
 
@@ -197,7 +197,7 @@ class MapGraph(
         stream.close()
     }
 
-    fun getPortals(objects: Set<GameMapObject>): Set<Pair<Tile, Tile>> {
+    fun getPortals(objects: Set<GameObject>): Set<Pair<Tile, Tile>> {
         val portals = mutableSetOf<Pair<Tile, Tile>>()
         for (gameObject in objects) {
             if (gameObject.def.isDoor() && gameObject.def.options?.any { it?.contains("open", true) == true } == true) {

@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
@@ -70,12 +70,12 @@ object WorldMapLinkIdentifier {
         }
         val start = System.currentTimeMillis()
         val objCollision = GameObjectCollision(collisions)
-        val list = mutableListOf<GameMapObject>()
+        val list = mutableListOf<GameObject>()
         for (region in regions) {
             val def = mapDecoder.getOrNull(region.id) ?: continue
             def.objects.forEach { loc ->
                 val tile = Tile(region.tile.x + loc.x, region.tile.y + loc.y, loc.plane)
-                val obj = GameMapObject(loc.id, tile, loc.type, loc.rotation)
+                val obj = GameObject(loc.id, tile, loc.type, loc.rotation)
                 list.add(obj)
                 objects.add(obj)
                 objCollision.modify(obj, add = true)

@@ -26,7 +26,7 @@ class GameObjects(
     /**
      * Adds temporary objects to [replacements] or un-flags original removed objects
      */
-    fun add(obj: GameMapObject, collision: Boolean = true) {
+    fun add(obj: GameObject, collision: Boolean = true) {
         val group = obj.group
         val value = map[obj.x, obj.y, obj.plane, group]
         val original = toObject(value)
@@ -42,7 +42,7 @@ class GameObjects(
             // Remove original (if exists)
             map.add(obj.x, obj.y, obj.plane, group, REPLACED)
             if (original != 0) {
-                val originalObj = GameMapObject(original, obj.x, obj.y, obj.plane)
+                val originalObj = GameObject(original, obj.x, obj.y, obj.plane)
                 batches.add(obj.tile.chunk, ObjectRemoval(obj.tile.id, originalObj.type, originalObj.rotation))
                 if (collision) {
                     collisions.modify(originalObj, add = false)
@@ -69,7 +69,7 @@ class GameObjects(
             collisions.modify(definition, x, y, plane, type, rotation, add = true)
         }
         if (group == ObjectGroup.INTERACTIVE && interactive(definition)) {
-            map[x, y, plane, group] = toValue(GameMapObject.value(id, type, rotation))
+            map[x, y, plane, group] = toValue(GameObject.value(id, type, rotation))
             size++
         }
     }
@@ -82,7 +82,7 @@ class GameObjects(
      * Note: If a temp object is added and removed on top of an original removed object
      * then the original object will no longer be removed.
      */
-    fun remove(obj: GameMapObject, collision: Boolean = true) {
+    fun remove(obj: GameObject, collision: Boolean = true) {
         val group = obj.group
         val value = map[obj.x, obj.y, obj.plane, group]
         val original = toObject(value)
@@ -97,7 +97,7 @@ class GameObjects(
             // Re-add original (if exists)
             map.remove(obj.tile.x, obj.tile.y, obj.tile.plane, group, REPLACED)
             if (original != 0) {
-                val originalObj = GameMapObject(original, obj.x, obj.y, obj.plane)
+                val originalObj = GameObject(original, obj.x, obj.y, obj.plane)
                 if (collision) {
                     batches.add(obj.tile.chunk, ObjectAddition(obj.tile.id, originalObj.intId, originalObj.type, originalObj.rotation))
                     collisions.modify(originalObj, add = true)
@@ -117,7 +117,7 @@ class GameObjects(
 
     operator fun get(tile: Tile, id: String) = get(tile, ObjectGroup.INTERACTIVE, id)
 
-    operator fun get(tile: Tile, group: Int, id: String): GameMapObject? {
+    operator fun get(tile: Tile, group: Int, id: String): GameObject? {
         val obj = get(tile, group) ?: return null
         if (obj.id == id) {
             return obj
@@ -125,7 +125,7 @@ class GameObjects(
         return null
     }
 
-    operator fun get(tile: Tile, group: Int, id: Int): GameMapObject? {
+    operator fun get(tile: Tile, group: Int, id: Int): GameObject? {
         val obj = get(tile, group) ?: return null
         if (obj.intId == id) {
             return obj
@@ -133,15 +133,15 @@ class GameObjects(
         return null
     }
 
-    operator fun get(tile: Tile, group: Int): GameMapObject? {
+    operator fun get(tile: Tile, group: Int): GameObject? {
         val value = map[tile.x, tile.y, tile.plane, group]
         if (value == -1 || value == 0) {
             return null
         }
         if (replaced(value)) {
-            return GameMapObject(replacements[index(tile.x, tile.y, tile.plane, group)] ?: return null, tile.x, tile.y, tile.plane)
+            return GameObject(replacements[index(tile.x, tile.y, tile.plane, group)] ?: return null, tile.x, tile.y, tile.plane)
         }
-        return GameMapObject(toObject(value), tile.x, tile.y, tile.plane)
+        return GameObject(toObject(value), tile.x, tile.y, tile.plane)
     }
 
     fun clear(chunk: Chunk) {
@@ -162,7 +162,7 @@ class GameObjects(
         replacements.clear()
     }
 
-    fun contains(obj: GameMapObject): Boolean {
+    fun contains(obj: GameObject): Boolean {
         val value = map[obj.x, obj.y, obj.plane, obj.group]
         if (value == -1 || value == 0) {
             return false
@@ -181,11 +181,11 @@ class GameObjects(
                 if (replaced(int)) {
                     val value = toObject(int)
                     if (value != 0) {
-                        player.client?.send(ObjectRemoval(tile.id, GameMapObject.type(value), GameMapObject.rotation(value)))
+                        player.client?.send(ObjectRemoval(tile.id, GameObject.type(value), GameObject.rotation(value)))
                     }
                     val replaced = replacements[index(tile.x, tile.y, tile.plane, group)]
                     if (replaced != null) {
-                        player.client?.send(ObjectAddition(tile.id, GameMapObject.id(replaced), GameMapObject.type(replaced), GameMapObject.rotation(replaced)))
+                        player.client?.send(ObjectAddition(tile.id, GameObject.id(replaced), GameObject.type(replaced), GameObject.rotation(replaced)))
                     }
                 }
             }
@@ -201,7 +201,7 @@ class GameObjects(
 
         var LOAD_UNUSED = false // Don't bother loading objects which don't have options or configs (saves ~75MB ram)
 
-        private val GameMapObject.index: Int
+        private val GameObject.index: Int
             get() = index(x, y, plane, group)
 
         private fun index(x: Int, y: Int, level: Int, group: Int) = level + (group shl 2) + (x shl 4) + (y shl 18)

@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
-import world.gregs.voidps.engine.entity.obj.GameMapObject
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 
@@ -38,7 +38,7 @@ interface TargetStrategy {
     companion object {
         operator fun <T : Any> invoke(entity: T): TargetStrategy = when (entity) {
             is Tile -> TileTargetStrategy(entity)
-            is GameMapObject -> if (entity.id == "archery_target") TileTargetStrategy(entity.tile.addX(5)) else ObjectTargetStrategy(entity)
+            is GameObject -> if (entity.id == "archery_target") TileTargetStrategy(entity.tile.addX(5)) else ObjectTargetStrategy(entity)
             is FloorItem -> FloorItemTargetStrategy(entity)
             is Entity -> EntityTargetStrategy(entity)
             else -> DefaultTargetStrategy

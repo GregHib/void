@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.map.Tile
  * Interactive Object
  */
 @JvmInline
-value class GameMapObject(val hash: Long) : Entity {
+value class GameObject(val hash: Long) : Entity {
 
     constructor(id: Int, x: Int, y: Int, plane: Int, type: Int, rotation: Int) : this(getHash(id, x, y, plane, type, rotation))
 
@@ -48,8 +48,8 @@ value class GameMapObject(val hash: Long) : Entity {
         get() = Events(this)
 
     companion object {
-        operator fun invoke(id: Int, tile: Tile, type: Int, rotation: Int): GameMapObject {
-            return GameMapObject(id, tile.x, tile.y, tile.plane, type, rotation)
+        operator fun invoke(id: Int, tile: Tile, type: Int, rotation: Int): GameObject {
+            return GameObject(id, tile.x, tile.y, tile.plane, type, rotation)
         }
 
         fun value(id: Int, type: Int, rotation: Int) = rotation + (type shl 2) + (id shl 7)
