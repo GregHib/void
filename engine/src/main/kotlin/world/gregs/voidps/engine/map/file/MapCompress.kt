@@ -127,7 +127,7 @@ class MapCompress(
             val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
             val decoder = MapDecoder(cache.get()!!, xteas)
             val collisions = Collisions()
-            val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates())
+            val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions)
             MapLoader(decoder, CollisionReader(collisions), definitions, objects).run()
             MapCompress(File("./data/map-test.dat"), collisions, decoder).run()
         }

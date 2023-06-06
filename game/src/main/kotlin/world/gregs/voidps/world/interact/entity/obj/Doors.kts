@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.obj
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
@@ -21,7 +20,6 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
 val objects: GameObjects by inject()
-val customObjects: CustomObjects by inject()
 
 // Delay in ticks before a door closes itself
 val doorResetDelay = TimeUnit.MINUTES.toTicks(5)
@@ -36,16 +34,13 @@ on<ObjectOption>({ operate && def.isDoor() && option == "Close" }) { player: Pla
     }
 
     val double = getDoubleDoor(objects, obj, def, 1)
-    println(double)
     if (resetExisting(obj, double)) {
         player.playSound(if (def.isGate()) "close_gate" else "close_door")
         return@on
     }
 
-    println(obj.id)
     // Single door
     if (double == null && obj.id.endsWith("_opened")) {
-        println("Close door")
         replaceDoor(obj, def, "_opened", "_closed", 0, 3, doorResetDelay)
         player.playSound("close_door")
         return@on
@@ -108,9 +103,9 @@ fun stuck(player: Player): Boolean {
 }
 
 fun resetExisting(obj: GameObject, double: GameObject?): Boolean {
-    if (double == null && customObjects.executeTimer(obj)) {
+    if (double == null && objects.timers.execute(obj)) {
         return true
     }
 
-    return double != null && (customObjects.executeTimer(obj) || customObjects.executeTimer(double))
+    return double != null && (objects.timers.execute(obj) || objects.timers.execute(double))
 }

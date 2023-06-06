@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.entity.item.requiredUseLevel
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.arriveDelay
@@ -171,7 +170,7 @@ fun deplete(tree: Tree, obj: GameObject): Boolean {
     val stumpId = "${obj.id}_stump"
     if (definitions.contains(stumpId)) {
         val delay = getRegrowTickDelay(tree)
-        obj.replace(stumpId, ticks = delay)
+        objects.replace(obj, stumpId, ticks = delay)
         areaSound("fell_tree", obj.tile)
     }
     return true

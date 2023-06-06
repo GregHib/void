@@ -3,7 +3,9 @@ package world.gregs.voidps.engine.entity.obj
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
@@ -14,22 +16,40 @@ import world.gregs.voidps.network.encode.send
 /**
  * Stores GameObjects and modifications mainly for verifying interactions
  * "original" objects refer to those [set] on game load from the cache or map file
- * "temporary" objects are [CustomObjects] with a timer
- * "permanent" objects are [add]ed or [remove]ed without a [CustomObjects] reset timer
+ * "temporary" objects are [add]ed or [remove]ed with a reset timer
+ * "permanent" objects are [add]ed or [remove]ed without a reset timer (but don't persist after server restart)
  */
 class GameObjects(
     private val collisions: GameObjectCollision,
     private val batches: ChunkBatchUpdates,
+    private val definitions: ObjectDefinitions
 ) : ChunkBatchUpdates.Sender {
     private val map = GameObjectMap()
     private val replacements: MutableMap<Int, Int> = Int2IntOpenHashMap()
+    val timers = GameObjectTimers()
     var size = 0
         private set
+
+    /**
+     * Adds a temporary object with [id] [tile] [type] and [rotation]
+     * Optionally removed after [ticks]
+     */
+    fun add(id: String, tile: Tile, type: Int = ObjectType.INTERACTIVE, rotation: Int = 0, ticks: Int = NEVER, collision: Boolean = true): GameObject {
+        val obj = GameObject(definitions.get(id).id, tile, type, rotation)
+        add(obj)
+        timers.add(obj, ticks) {
+            remove(obj, collision)
+        }
+        return obj
+    }
 
     /**
      * Adds temporary objects to [replacements] or un-flags original removed objects
      */
     fun add(obj: GameObject, collision: Boolean = true) {
+        if (obj.intId == -1) {
+            return
+        }
         val group = obj.group
         val value = map[obj.x, obj.y, obj.plane, group]
         val original = toObject(value)
@@ -67,6 +87,9 @@ class GameObjects(
      * Sets the original placement of a game object
      */
     fun set(id: Int, x: Int, y: Int, plane: Int, type: Int, rotation: Int, definition: ObjectDefinition) {
+        if (id == -1) {
+            return
+        }
         val group = ObjectGroup.group(type)
         if (group != ObjectGroup.WALL_DECORATION) {
             collisions.modify(definition, x, y, plane, type, rotation, add = true)
@@ -84,12 +107,25 @@ class GameObjects(
     private fun interactive(definition: ObjectDefinition) = LOAD_UNUSED || definition.options != null || definition.has("id")
 
     /**
+     * Removes an object, optionally reverting after [ticks]
+     */
+    fun remove(obj: GameObject, ticks: Int = NEVER, collision: Boolean = true) {
+        remove(obj)
+        timers.add(obj, ticks) {
+            add(obj, collision)
+        }
+    }
+
+    /**
      * Flags original objects as removed, or removes temporarily replaced objects
      *
      * Note: If a temp object is added and removed on top of an original removed object
      * then the original object will no longer be removed.
      */
     fun remove(obj: GameObject, collision: Boolean = true) {
+        if (obj.intId == -1) {
+            return
+        }
         val group = obj.group
         val value = map[obj.x, obj.y, obj.plane, group]
         val original = toObject(value)
@@ -119,6 +155,27 @@ class GameObjects(
                 collisions.modify(obj, add = false)
             }
             size--
+        }
+    }
+
+    /**
+     * Replaces [original] object with [id], optionally reverting after [ticks]
+     */
+    fun replace(original: GameObject, id: String, tile: Tile = original.tile, type: Int = original.type, rotation: Int = original.rotation, ticks: Int = NEVER, collision: Boolean = true): GameObject {
+        val replacement = GameObject(definitions.get(id).id, tile, type, rotation)
+        replace(original, replacement, ticks, collision)
+        return replacement
+    }
+
+    /**
+     * Replaces [original] object with [replacement], optionally reverting after [ticks]
+     */
+    fun replace(original: GameObject, replacement: GameObject, ticks: Int = NEVER, collision: Boolean = true) {
+        remove(original, collision)
+        add(replacement, collision)
+        timers.add(setOf(original, replacement), ticks) {
+            remove(replacement, collision)
+            add(original, collision)
         }
     }
 
@@ -180,7 +237,7 @@ class GameObjects(
      */
     fun getGroup(tile: Tile, group: Int): GameObject? {
         val value = map[tile.x, tile.y, tile.plane, group]
-        if (value == -1 || value == 0) {
+        if (empty(value)) {
             return null
         }
         if (replaced(value)) {
@@ -195,14 +252,12 @@ class GameObjects(
      */
     fun contains(obj: GameObject): Boolean {
         val value = map[obj.x, obj.y, obj.plane, obj.group]
-        if (value == -1 || value == 0) {
-            return false
-        }
-        if (replaced(value)) {
+        val replacement = if (replaced(value)) {
             replacements[obj.index] ?: return false
-            return true
+        } else {
+            toObject(value)
         }
-        return true
+        return GameObject.id(replacement) == obj.intId && GameObject.type(replacement) == obj.type && GameObject.rotation(replacement) == obj.rotation
     }
 
     /**
@@ -226,6 +281,7 @@ class GameObjects(
      * Note: this won't reset permanently removed original objects
      */
     fun reset() {
+        timers.reset()
         replacements.map { (index, value) ->
             GameObject(GameObject.id(value), x(index), y(index), level(index), GameObject.type(value), GameObject.rotation(value))
         }.forEach {
@@ -272,7 +328,7 @@ class GameObjects(
             for (y in 0 until 8) {
                 for (group in 0 until 4) {
                     val value = map[chunkX + x, chunkY + y, plane, group]
-                    if (value == -1 || value == 0 || !replaced(value)) {
+                    if (!replaced(value)) {
                         continue
                     }
                     val tile = chunk.tile.add(x, y)
@@ -283,10 +339,14 @@ class GameObjects(
     }
 
     companion object {
+        const val NEVER = -1
+
         private fun toValue(value: Int) = value shl 1
         private fun toObject(value: Int) = value shr 1
 
-        private fun replaced(value: Int) = value and REPLACED == REPLACED
+        private fun replaced(value: Int) = empty(value) || value and REPLACED == REPLACED
+
+        private fun empty(value: Int) = value == -1 || value == 0
         private const val REPLACED = 0x1
 
         internal var LOAD_UNUSED = false
@@ -300,5 +360,19 @@ class GameObjects(
         private fun x(index: Int) = index shr 4 and 0x3fff
         private fun y(index: Int) = index shr 18 and 0x3fff
     }
+}
 
+/**
+ * Replaces an existing map objects with [id] [tile] [type] and [rotation], modifying [collision] and
+ * optionally removed after [ticks]
+ */
+fun GameObject.replace(id: String, tile: Tile = this.tile, type: Int = this.type, rotation: Int = this.rotation, ticks: Int = -1, collision: Boolean = true): GameObject {
+    return get<GameObjects>().replace(this, id, tile, type, rotation, ticks, collision)
+}
+
+/**
+ * Removes an existing map [GameObject] and its [collision], optionally reverted after [ticks]
+ */
+fun GameObject.remove(ticks: Int = -1, collision: Boolean = true) {
+    get<GameObjects>().remove(this, ticks, collision)
 }

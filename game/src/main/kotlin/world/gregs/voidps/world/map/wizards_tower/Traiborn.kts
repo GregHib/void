@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.character.mode.interact.NPCInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.obj.CustomObjects
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.blocked
@@ -24,7 +24,7 @@ import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val floorItems: FloorItems by inject()
-val objects: CustomObjects by inject()
+val objects: GameObjects by inject()
 
 var Player.bonesRequired: Int
     get() = get("demon_slayer_bones", -1)
@@ -338,7 +338,7 @@ suspend fun NPCInteraction.startSpell() {
     player.playSound("demon_slayer_cupboard_appear")
     val direction = Direction.westClockwise.first { !npc.blocked(it) }
     val rotation = Direction.westClockwise.indexOf(direction.rotate(6))
-    val obj = objects.spawn("demon_slayer_spell_wardrobe", npc.tile.add(direction), 10, rotation, 5)
+    val obj = objects.add("demon_slayer_spell_wardrobe", npc.tile.add(direction), 10, rotation, 5)
     npc.clearWatch()
     npc.face(obj)
     delay(1)

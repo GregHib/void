@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
@@ -37,6 +36,7 @@ import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 
 val collisions: Collisions by inject()
+val objects: GameObjects by inject()
 
 on<Command>({ prefix == "test" }) { player: Player ->
     player.refreshQuestJournal()
@@ -263,9 +263,9 @@ on<Command>({ prefix == "obj" }) { player: Player ->
         val id = parts.getOrNull(0)
         if (id != null) {
             val rotation = parts.getOrNull(1)?.toIntOrNull() ?: 0
-            spawnObject(id, player.tile.addY(1), 0, rotation, 10)
-            spawnObject(id, player.tile.addY(1), 10, rotation, 10)
-            spawnObject(id, player.tile.addY(1), 22, rotation, 10)
+            objects.add(id, player.tile.addY(1), 0, rotation, 10)
+            objects.add(id, player.tile.addY(1), 10, rotation, 10)
+            objects.add(id, player.tile.addY(1), 22, rotation, 10)
         }
     } else {
         val objs = get<GameObjects>()
@@ -280,7 +280,7 @@ on<Command>({ prefix == "tree" }) { player: Player ->
     val tree = parts[0]
     val stump = parts[1]
     val type = parts.getOrNull(2)?.toIntOrNull() ?: 10
-    spawnObject(tree, player.tile, type, 0, 5)
+    objects.add(tree, player.tile, type, 0, 5)
     pause(5)
-    spawnObject(stump, player.tile, type, 0, 5)
+    objects.add(stump, player.tile, type, 0, 5)
 }

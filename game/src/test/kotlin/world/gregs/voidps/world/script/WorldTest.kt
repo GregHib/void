@@ -34,9 +34,9 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectType
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -68,7 +68,6 @@ abstract class WorldTest : KoinTest {
     private lateinit var npcs: NPCs
     lateinit var floorItems: FloorItems
     private lateinit var objects: GameObjects
-    private lateinit var customObjects: CustomObjects
     private lateinit var accountDefs: AccountDefinitions
     private lateinit var collisions: Collisions
     private var saves: File? = null
@@ -122,8 +121,8 @@ abstract class WorldTest : KoinTest {
         return npc
     }
 
-    fun createObject(id: String, tile: Tile = Tile.EMPTY): GameObject {
-        return customObjects.spawn(id, tile, 10, 0)
+    fun createObject(id: String, tile: Tile = Tile.EMPTY, type: Int = ObjectType.INTERACTIVE, rotation: Int = 0): GameObject {
+        return objects.add(id, tile, type, rotation)
     }
 
     fun Container.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }
@@ -165,7 +164,6 @@ abstract class WorldTest : KoinTest {
                 get(),
                 get(),
                 get(),
-                get(),
                 get<ConnectionQueue>(),
                 get(),
                 get(),
@@ -182,7 +180,6 @@ abstract class WorldTest : KoinTest {
         players = get()
         npcs = get()
         floorItems = get()
-        customObjects = get()
         objects = get()
         accountDefs = get()
         collisions = get()
@@ -205,7 +202,6 @@ abstract class WorldTest : KoinTest {
         players.clear()
         npcs.clear()
         floorItems.clear()
-        customObjects.reset()
         objects.reset()
         World.clearTimers()
     }

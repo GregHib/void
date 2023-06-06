@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.network.NetworkQueue
 import world.gregs.voidps.network.visual.NPCVisuals
@@ -46,7 +45,6 @@ fun getTickStages(
     items: FloorItems,
     floorItems: FloorItemTracking,
     objects: GameObjects,
-    customObjects: CustomObjects,
     queue: NetworkQueue,
     factory: PlayerFactory,
     batches: ChunkBatchUpdates,
@@ -70,7 +68,7 @@ fun getTickStages(
         NPCTask(sequentialNpc, npcs),
         PlayerTask(sequentialPlayer, players),
         floorItems,
-        customObjects,
+        objects.timers,
         // Update
         batches,
         CharacterUpdateTask(

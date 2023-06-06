@@ -247,7 +247,7 @@ class MapExtract(
                 .load(FileStorage(), "./data/definitions/objects.yml", itemDefinitions)
             val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
             val collisions = Collisions()
-            val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates())
+            val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions)
             val extract = MapExtract(collisions, definitions, objects, xteas)
             extract.loadMap(File("./data/map-test.dat"))
         }

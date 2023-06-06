@@ -26,7 +26,6 @@ import world.gregs.voidps.engine.entity.item.requiredEquipLevel
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
@@ -162,7 +161,7 @@ fun addOre(player: Player, ore: String): Boolean {
 
 fun deplete(rock: Rock, obj: GameObject): Boolean {
     if (rock.life >= 0) {
-        obj.replace("depleted${obj.id.dropWhile { it != '_' }}", ticks = rock.life)
+        objects.replace(obj, "depleted${obj.id.dropWhile { it != '_' }}", ticks = rock.life)
         return true
     }
     return false

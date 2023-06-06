@@ -28,7 +28,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectGroup
-import world.gregs.voidps.engine.entity.obj.spawnObject
+import world.gregs.voidps.engine.entity.obj.ObjectType
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
@@ -124,16 +124,13 @@ fun Player.canLight(log: String, fire: Fire, item: FloorItem): Boolean {
         message("You can't light a fire here.")
         return false
     }
-    if (!floorItems[item.tile].contains(item)) {
-        return false
-    }
-    return true
+    return floorItems[item.tile].contains(item)
 }
 
 val directions = listOf(Direction.WEST, Direction.EAST, Direction.SOUTH, Direction.NORTH)
 
 fun spawnFire(player: Player, tile: Tile, fire: Fire) {
-    val obj = spawnObject("fire_${fire.colour}", tile, type = 10, rotation = 0, ticks = fire.life)
+    val obj = objects.add("fire_${fire.colour}", tile, type = ObjectType.INTERACTIVE, rotation = 0, ticks = fire.life)
     floorItems.add(tile, "ashes", revealTicks = fire.life, disappearTicks = 60, owner = "")
     val interact = player.mode as Interact
     for (dir in directions) {
