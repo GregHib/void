@@ -62,7 +62,11 @@ class CustomObjects(
      * Spawns an object, optionally removing after a set time
      */
     fun spawn(id: String, tile: Tile, type: Int, rotation: Int, ticks: Int = -1, collision: Boolean = true): GameObject {
-        val gameObject = GameObject(definitions.get(id).id, tile, type, rotation)
+        val intId = definitions.get(id).id
+        val gameObject = GameObject(intId, tile, type, rotation)
+        if (intId == -1) {
+            return gameObject
+        }
         objects.add(gameObject, collision)
         setTimer(gameObject, ticks) {
             objects.remove(gameObject, collision)
@@ -92,7 +96,11 @@ class CustomObjects(
         ticks: Int = -1,
         collision: Boolean = true
     ): GameObject {
-        val replacement = GameObject(definitions.get(id).id, tile, type, rotation)
+        val intId = definitions.get(id).id
+        val replacement = GameObject(intId, tile, type, rotation)
+        if (intId == -1) {
+            return replacement
+        }
         objects.remove(original, collision)
         objects.add(replacement, collision)
         setTimer(setOf(original, replacement), ticks) {
@@ -118,8 +126,13 @@ class CustomObjects(
         ticks: Int,
         collision: Boolean = true
     ) {
-        val first = GameObject(definitions.get(firstReplacement).id, firstTile, firstOriginal.type, firstRotation)
-        val second = GameObject(definitions.get(secondReplacement).id, secondTile, secondOriginal.type, secondRotation)
+        val firstId = definitions.get(firstReplacement).id
+        val secondId = definitions.get(secondReplacement).id
+        if (firstId == -1 || secondId == -1) {
+            return
+        }
+        val first = GameObject(firstId, firstTile, firstOriginal.type, firstRotation)
+        val second = GameObject(secondId, secondTile, secondOriginal.type, secondRotation)
         objects.remove(firstOriginal, collision)
         objects.remove(secondOriginal, collision)
         objects.add(first, collision)
