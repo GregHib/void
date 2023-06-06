@@ -35,7 +35,7 @@ class MapExtract(
     private val xteas: Xteas
 ) {
     private val logger = InlineLogger()
-    private val objectIndicies: MutableMap<Int, Int> = Int2IntOpenHashMap(140_000)
+    private val objectIndices: MutableMap<Int, Int> = Int2IntOpenHashMap(140_000)
     private val tileIndices: MutableMap<Int, Int> = Int2IntOpenHashMap(140_000)
     private var fillMarker = 0
     private lateinit var raf: RandomAccessFile
@@ -43,26 +43,17 @@ class MapExtract(
     private val tileArray = ByteArray(12)
 
     fun loadMap(file: File) {
-        val start = System.currentTimeMillis()
+        var start = System.currentTimeMillis()
         val reader = BufferReader(file.readBytes())
-        for (id in xteas.keys) {
-            val region = Region(id)
-            for (plane in 0 until 4) {
-                for (x in 0 until 8) {
-                    for (y in 0 until 8) {
-                        collisions.allocateIfAbsent(region.tile.x + x * 8, region.tile.x + y * 8, plane)
-                    }
-                }
-            }
-        }
         readObjects(reader)
         readTiles(reader)
         fillMarker = reader.position()
         readFullTiles(reader)
+        logger.info { "Loaded ${objects.size} ${"object".plural(objects.size)} from file in ${System.currentTimeMillis() - start}ms" }
+        start = System.currentTimeMillis()
+        val zones = fillEmptyZones()
         raf = RandomAccessFile(file, "r")
-        logger.info {
-            "Loaded ${xteas.size} ${"region".plural(xteas.size)} (${objects.size} ${"object".plural(objects.size)}) from file in ${System.currentTimeMillis() - start}ms"
-        }
+        logger.info { "Loaded $zones ${"empty zones".plural(zones)} in ${System.currentTimeMillis() - start}ms" }
     }
 
     private fun readTiles(reader: BufferReader) {
@@ -86,7 +77,7 @@ class MapExtract(
     private fun readObjects(reader: BufferReader) {
         for (i in 0 until reader.readInt()) {
             val chunk = Chunk(reader.readInt())
-            objectIndicies[chunk.id] = reader.position()
+            objectIndices[chunk.id] = reader.position()
             val chunkX = chunk.tile.x
             val chunkY = chunk.tile.y
             for (j in 0 until reader.readShort()) {
@@ -105,8 +96,30 @@ class MapExtract(
         }
     }
 
+    private fun fillEmptyZones(): Int {
+        var zones = 0
+        for (id in xteas.keys) {
+            val region = Region(id)
+            val regionX = region.tile.x
+            val regionY = region.tile.y
+            for (plane in 0 until 4) {
+                for (zoneX in 0 until 8) {
+                    for (zoneY in 0 until 8) {
+                        val x = regionX + zoneX * 8
+                        val y = regionY + zoneY * 8
+                        if (!collisions.isZoneAllocated(x, y, plane)) {
+                            zones++
+                        }
+                        collisions.allocateIfAbsent(x, y, plane)
+                    }
+                }
+            }
+        }
+        return zones
+    }
+
     fun loadChunk(from: Chunk, to: Chunk, rotation: Int) {
-        val objectPosition = objectIndicies[from.id]?.toLong()
+        val objectPosition = objectIndices[from.id]?.toLong()
         val tilePosition = tileIndices[from.id]?.toLong()
         val start = System.currentTimeMillis()
         if (objectPosition != null) {

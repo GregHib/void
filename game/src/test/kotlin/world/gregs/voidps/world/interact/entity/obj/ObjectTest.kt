@@ -40,7 +40,7 @@ internal class ObjectTest : WorldTest() {
     fun `Can open and walk through a door`() {
         val player = createPlayer("player", Tile(3227, 3214))
         tick()
-        val door = get<GameObjects>().getGroup(Tile(3226, 3214), ObjectGroup.INTERACTIVE)!!
+        val door = get<GameObjects>().getGroup(Tile(3226, 3214), ObjectGroup.WALL)!!
 
         player.objectOption(door, "Open")
         tick()
