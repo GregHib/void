@@ -13,7 +13,6 @@ const val MAX_NPCS = 0x8000 // 32768
 
 object World : Entity, EventDispatcher, Runnable {
     override var tile = Tile.EMPTY
-    override val size: Size = Size.ONE
     override val events: Events = Events(this)
 
     const val id = 16

@@ -1,8 +1,6 @@
 package world.gregs.voidps.engine.entity.character.mode.move.target
 
 import org.rsmod.game.pathfinder.reach.ReachStrategy
-import world.gregs.voidps.engine.entity.Entity
-import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -12,9 +10,10 @@ import world.gregs.voidps.engine.map.Tile
 interface TargetStrategy {
     val bitMask: Int
     val tile: Tile
-    val size: Size // Rotated values
-    val width: Int // Temp width
-    val height: Int // Temp height
+    val width: Int
+    val height: Int
+    val sizeX: Int
+    val sizeY: Int
     val rotation: Int
     val exitStrategy: Int
 
@@ -27,8 +26,8 @@ interface TargetStrategy {
             srcSize = character.size.width,
             destX = tile.x,
             destZ = tile.y,
-            destWidth = width,
-            destHeight = height,
+            destWidth = sizeX,
+            destHeight = sizeY,
             objRot = rotation,
             objShape = exitStrategy,
             blockAccessFlags = bitMask
@@ -40,7 +39,7 @@ interface TargetStrategy {
             is Tile -> TileTargetStrategy(entity)
             is GameObject -> if (entity.id == "archery_target") TileTargetStrategy(entity.tile.addX(5)) else ObjectTargetStrategy(entity)
             is FloorItem -> FloorItemTargetStrategy(entity)
-            is Entity -> EntityTargetStrategy(entity)
+            is Character -> CharacterTargetStrategy(entity)
             else -> DefaultTargetStrategy
         }
     }

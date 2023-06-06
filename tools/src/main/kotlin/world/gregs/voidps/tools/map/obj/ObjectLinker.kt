@@ -62,14 +62,14 @@ class ObjectLinker(private val collisions: Collisions) {
             val tile = getSizedTile(obj, dir).copy(plane = plane)
             when (dir) {
                 Direction.WEST, Direction.EAST -> {
-                    for (y in 0 until obj.size.height) {
+                    for (y in 0 until obj.height) {
                         if (obj.reachableFrom(tile.addY(y))) {
                             list.add(tile.addY(y))
                         }
                     }
                 }
                 Direction.SOUTH, Direction.NORTH -> {
-                    for (x in 0 until obj.size.width) {
+                    for (x in 0 until obj.width) {
                         if (obj.reachableFrom(tile.addX(x))) {
                             list.add(tile.addX(x))
                         }
@@ -97,14 +97,14 @@ class ObjectLinker(private val collisions: Collisions) {
 
             when (dir) {
                 Direction.WEST, Direction.EAST -> {
-                    for (y in 0 until obj.size.height) {
+                    for (y in 0 until obj.height) {
                         if (obj.reachableFrom(tile.addY(y))) {
                             return true
                         }
                     }
                 }
                 Direction.SOUTH, Direction.NORTH -> {
-                    for (x in 0 until obj.size.width) {
+                    for (x in 0 until obj.width) {
                         if (obj.reachableFrom(tile.addX(x))) {
                             return true
                         }
@@ -125,10 +125,10 @@ class ObjectLinker(private val collisions: Collisions) {
     private fun getSizedTile(obj: GameObject, dir: Direction): Tile {
         var tile = obj.tile.add(dir.delta)
         if (dir.horizontal() == Direction.EAST) {
-            tile = tile.addX(obj.size.width - 1)
+            tile = tile.addX(obj.width - 1)
         }
         if (dir.vertical() == Direction.NORTH) {
-            tile = tile.addY(obj.size.height - 1)
+            tile = tile.addY(obj.height - 1)
         }
         return tile
     }

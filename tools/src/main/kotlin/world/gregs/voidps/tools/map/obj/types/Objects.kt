@@ -1,10 +1,10 @@
 package world.gregs.voidps.tools.map.obj.types
 
-import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Distance.euclidean
 import world.gregs.voidps.engine.map.Distance.getNearest
 import world.gregs.voidps.engine.map.Distance.levenshtein
+import world.gregs.voidps.engine.map.Distance.nearestTo
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.tools.map.obj.GameObjectOption
 import world.gregs.voidps.tools.map.obj.ObjectIdentificationContext
@@ -22,8 +22,8 @@ val differenceBetweenNames: ObjectIdentificationContext.(GameObjectOption) -> Do
 }
 
 val sizeDifference: ObjectIdentificationContext.(GameObjectOption) -> Double = {
-    val difX = abs(obj.size.width - it.obj.size.width)
-    val difY = abs(obj.size.height - it.obj.size.height)
+    val difX = abs(obj.width - it.obj.width)
+    val difY = abs(obj.height - it.obj.height)
     (difX + difY)
         .toDouble()
         .scale(0.0, 8.0)
@@ -60,11 +60,11 @@ fun Double.cosine(steepness: Double = 0.5, offset: Double = 0.0): Double {
  * Distance between objects taking size into account
  */
 val objectDistance: ObjectIdentificationContext.(GameObjectOption) -> Double = { target ->
-    val dist = getDistance(obj.tile, obj.size, target.obj)
+    val dist = getDistance(obj.tile, obj.width, obj.height, target.obj)
     if (onSurface(obj.tile) && inDungeon(target.obj.tile)) {
-        max(dist, getDistance(obj.tile.addY(dungeonDifference), obj.size, target.obj))
+        max(dist, getDistance(obj.tile.addY(dungeonDifference), obj.width, obj.height, target.obj))
     } else if (inDungeon(obj.tile) && onSurface(target.obj.tile)) {
-        max(dist, getDistance(obj.tile.minus(y = dungeonDifference), obj.size, target.obj))
+        max(dist, getDistance(obj.tile.minus(y = dungeonDifference), obj.width, obj.height, target.obj))
     } else {
         dist
     }
@@ -74,9 +74,9 @@ private const val dungeonDifference = 6400
 private fun onSurface(tile: Tile) = tile.y < dungeonDifference
 private fun inDungeon(tile: Tile) = tile.y > dungeonDifference
 
-private fun getDistance(tile: Tile, size: Size, target: GameObject): Double {
-    val nearest = getNearest(tile, size, target.tile)
-    val nearestTarget = getNearest(target.tile, target.size, tile)
+private fun getDistance(tile: Tile, width: Int, height: Int, target: GameObject): Double {
+    val nearest = getNearest(tile, width, height, target.tile)
+    val nearestTarget = target.nearestTo(tile)
     return euclidean(nearest, nearestTarget, plane = nearest.plane == 3 || nearest.x != nearestTarget.x || nearest.y != nearestTarget.y)
         .scale(0.0, 5.0)
         .inverse()

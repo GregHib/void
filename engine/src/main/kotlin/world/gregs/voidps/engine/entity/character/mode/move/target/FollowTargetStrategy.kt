@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.character.mode.move.target
 
-import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.move.followTile
 import world.gregs.voidps.engine.map.Tile
@@ -11,10 +10,12 @@ data class FollowTargetStrategy(
     override val bitMask = 0
     override val tile: Tile
         get() = character.followTile
-    override val size: Size
-        get() = character.size
+    override val width: Int
+        get() = character.size.width
+    override val height: Int
+        get() = character.size.height
     override val rotation = 0
     override val exitStrategy = -1
-    override val width: Int = size.width
-    override val height: Int = size.height
+    override val sizeX: Int = character.size.width
+    override val sizeY: Int = character.size.height
 }

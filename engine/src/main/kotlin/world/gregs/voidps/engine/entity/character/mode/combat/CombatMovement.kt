@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
-import world.gregs.voidps.engine.entity.character.mode.move.target.EntityTargetStrategy
+import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -25,7 +25,7 @@ import world.gregs.voidps.engine.map.Tile
 class CombatMovement(
     character: Character,
     var target: Character,
-    strategy: TargetStrategy = EntityTargetStrategy(target),
+    strategy: TargetStrategy = CharacterTargetStrategy(target),
 ) : Movement(character, strategy) {
 
     override fun start() {

@@ -89,7 +89,6 @@ internal class DropTest : WorldTest() {
         player.inventory.add("bronze_sword")
         val objects: GameObjects = get()
         val drawers = objects[tile.addX(1), "table_lumbridge"]!!
-
         player.itemOnObject(drawers, itemSlot = 0, id = "bronze_sword")
 
         assertTrue(player.inventory.isEmpty())

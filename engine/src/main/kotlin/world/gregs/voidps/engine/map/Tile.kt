@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.map
 
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Entity
-import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.area.Cuboid
@@ -52,12 +51,12 @@ value class Tile(override val id: Int) : Id {
     fun delta(direction: Direction) = delta(direction.delta)
 
     fun distanceTo(entity: Entity) = when (entity) {
-        is Character -> distanceTo(entity.tile, entity.size)
-        is GameObject -> distanceTo(entity.tile, entity.size)
+        is Character -> distanceTo(entity.tile, entity.size.width, entity.size.height)
+        is GameObject -> distanceTo(entity.tile, entity.width, entity.height)
         else -> distanceTo(entity.tile)
     }
 
-    fun distanceTo(other: Tile, size: Size) = distanceTo(Distance.getNearest(other, size, this))
+    fun distanceTo(other: Tile, width: Int, height: Int) = distanceTo(Distance.getNearest(other, width, height, this))
 
     fun distanceTo(other: Tile): Int {
         if (plane != other.plane) {

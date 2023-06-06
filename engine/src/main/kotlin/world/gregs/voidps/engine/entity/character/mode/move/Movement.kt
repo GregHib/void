@@ -52,8 +52,8 @@ open class Movement(
                 destX = strategy.tile.x,
                 destZ = strategy.tile.y,
                 srcSize = character.size.width,
-                destWidth = strategy.width,
-                destHeight = strategy.height,
+                destWidth = strategy.sizeX,
+                destHeight = strategy.sizeY,
                 objShape = shape ?: strategy.exitStrategy,
                 objRot = strategy.rotation,
                 blockAccessFlags = strategy.bitMask
@@ -192,7 +192,7 @@ open class Movement(
         if (distance == -1) {
             return strategy.reached(character)
         }
-        if (Overlap.isUnder(character.tile, character.size, strategy.tile, strategy.size)) {
+        if (Overlap.isUnder(character.tile, character.size.width, character.size.height, strategy.tile, strategy.width, strategy.height)) {
             return false
         }
         if (!character.tile.within(strategy.tile, distance)) {
@@ -205,8 +205,8 @@ open class Movement(
             srcSize = character.size.width,
             destX = strategy.tile.x,
             destZ = strategy.tile.y,
-            destWidth = strategy.size.width,
-            destHeight = strategy.size.height
+            destWidth = strategy.width,
+            destHeight = strategy.height
         )
     }
 

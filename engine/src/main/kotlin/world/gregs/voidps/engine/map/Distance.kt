@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.map
 
-import world.gregs.voidps.engine.entity.Size
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.area.Rectangle
 import kotlin.math.abs
 import kotlin.math.min
@@ -9,18 +9,17 @@ import kotlin.math.sqrt
 object Distance {
 
     /**
-     * Get the nearest point for [tile] with [size] to [target]
-     */
-    fun getNearest(tile: Tile, size: Size, target: Tile) = tile.copy(
-        x = getNearest(tile.x, size.width, target.x),
-        y = getNearest(tile.y, size.height, target.y)
-    )
-    /**
-     * Get the nearest point for [tile] with [size] to [target]
+     * Get the nearest point for [tile] with [width], [height] to [target]
      */
     fun getNearest(tile: Tile, width: Int, height: Int, target: Tile) = tile.copy(
         x = getNearest(tile.x, width, target.x),
         y = getNearest(tile.y, height, target.y)
+    )
+
+    fun GameObject.nearestTo(tile: Tile) = Tile(
+        x = getNearest(x, width, tile.x),
+        y = getNearest(y, height, tile.y),
+        plane = plane
     )
 
     fun Rectangle.nearestTo(tile: Tile) = Tile(

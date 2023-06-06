@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.obj
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Entity
-import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 
@@ -17,8 +16,10 @@ value class GameObject(val hash: Long) : Entity {
 
     constructor(value: Int, x: Int, y: Int, plane: Int) : this(id(value), x, y, plane, type(value), rotation(value))
 
-    override val size: Size
-        get() = Size(if (rotation and 0x1 == 1) def.sizeY else def.sizeX, if (rotation and 0x1 == 1) def.sizeX else def.sizeY)
+    val width: Int
+        get() = if (rotation and 0x1 == 1) def.sizeY else def.sizeX
+    val height: Int
+        get() = if (rotation and 0x1 == 1) def.sizeX else def.sizeY
     val value: Int
         get() = value(intId, type, rotation)
     val intId: Int

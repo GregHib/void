@@ -7,5 +7,4 @@ import world.gregs.voidps.engine.map.Tile
  */
 interface Entity {
     var tile: Tile
-    val size: Size // Entity contains size so that archery objects can be targeted in combat
 }
