@@ -24,7 +24,7 @@ object MapGraphLoader {
             ))
             modules(module {
                 single { EventHandlerStore() }
-                single { GameObjects(get(), ChunkBatchUpdates()) }
+                single { GameObjects(get(), ChunkBatchUpdates(), get()) }
                 single(createdAtStart = true) {
                     Xteas(mutableMapOf()).apply {
                         XteaLoader().load(this, getProperty("xteaPath"), getPropertyOrNull("xteaJsonKey"), getPropertyOrNull("xteaJsonValue"))

@@ -264,8 +264,7 @@ class GameObjects(
      * Resets all original objects in [chunk]
      */
     fun reset(chunk: Chunk, collision: Boolean = true) {
-        forEachReplaced(chunk) { tile, group, int ->
-            val value = toObject(int)
+        forEachReplaced(chunk) { tile, group, value ->
             if (value != 0) {
                 add(GameObject(GameObject.id(value), tile, GameObject.type(value), GameObject.rotation(value)), collision)
             }
@@ -308,11 +307,8 @@ class GameObjects(
     }
 
     override fun send(player: Player, chunk: Chunk) {
-        forEachReplaced(chunk) { tile, group, int ->
-            val value = toObject(int)
-            if (value != 0) {
-                player.client?.send(ObjectRemoval(tile.id, GameObject.type(value), GameObject.rotation(value)))
-            }
+        forEachReplaced(chunk) { tile, group, value ->
+            player.client?.send(ObjectRemoval(tile.id, GameObject.type(value), GameObject.rotation(value)))
             val replaced = replacements[index(tile.x, tile.y, tile.plane, group)]
             if (replaced != null) {
                 player.client?.send(ObjectAddition(tile.id, GameObject.id(replaced), GameObject.type(replaced), GameObject.rotation(replaced)))
@@ -328,11 +324,11 @@ class GameObjects(
             for (y in 0 until 8) {
                 for (group in 0 until 4) {
                     val value = map[chunkX + x, chunkY + y, plane, group]
-                    if (!replaced(value)) {
+                    if (empty(value) || !replaced(value)) {
                         continue
                     }
                     val tile = chunk.tile.add(x, y)
-                    block.invoke(tile, group, value)
+                    block.invoke(tile, group, toObject(value))
                 }
             }
         }
@@ -344,7 +340,7 @@ class GameObjects(
         private fun toValue(value: Int) = value shl 1
         private fun toObject(value: Int) = value shr 1
 
-        private fun replaced(value: Int) = empty(value) || value and REPLACED == REPLACED
+        private fun replaced(value: Int) = value and REPLACED == REPLACED
 
         private fun empty(value: Int) = value == -1 || value == 0
         private const val REPLACED = 0x1

@@ -41,7 +41,7 @@ object WorldMapLinkIdentifier {
                     single(named("jsonStorage")) { FileStorage(json = true) }
                     single { ObjectDecoder(get(), member = true, lowDetail = false) }
                     single(createdAtStart = true) { ObjectDefinitions(get()).load(path = getProperty("objectDefinitionsPath")) }
-                    single { GameObjects(get(), ChunkBatchUpdates()) }
+                    single { GameObjects(get(), ChunkBatchUpdates(), get()) }
                     single { Collisions() }
                     single { MapDecoder(get(), get<Xteas>()) }
                     single(createdAtStart = true) {
