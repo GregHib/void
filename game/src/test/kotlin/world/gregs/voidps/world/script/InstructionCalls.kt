@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.script
 
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions
 import world.gregs.voidps.cache.definition.data.ItemDefinition
@@ -112,12 +111,10 @@ private fun getOptionIndex(id: String, componentId: String, option: String): Int
     return options.indexOf(option)
 }
 
-@OptIn(ExperimentalCoroutinesApi::class)
 fun Player.playerOption(player: Player, option: String) = runTest {
     instructions.emit(InteractPlayer(player.index, player.options.indexOf(option)))
 }
 
-@OptIn(ExperimentalCoroutinesApi::class)
 fun Player.walk(toTile: Tile) = runTest {
     instructions.emit(Walk(toTile.x, toTile.y))
 }
@@ -144,18 +141,15 @@ fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstContainer: String = 
     ))
 }
 
-@OptIn(ExperimentalCoroutinesApi::class)
 fun Player.npcOption(npc: NPC, option: String) = runTest {
     instructions.emit(InteractNPC(npc.index, npc.def.options.indexOf(option) + 1))
 }
 
-@OptIn(ExperimentalCoroutinesApi::class)
 fun Player.objectOption(gameObject: GameObject, option: String) = runTest {
     val def = get<ObjectDefinitions>().get(gameObject.id)
     instructions.emit(InteractObject(def.id, gameObject.tile.x, gameObject.tile.y, def.optionsIndex(option) + 1))
 }
 
-@OptIn(ExperimentalCoroutinesApi::class)
 fun Player.floorItemOption(floorItem: FloorItem, option: String) = runTest {
     instructions.emit(InteractFloorItem(floorItem.def.id, floorItem.tile.x, floorItem.tile.y, floorItem.def.floorOptions.indexOf(option)))
 }

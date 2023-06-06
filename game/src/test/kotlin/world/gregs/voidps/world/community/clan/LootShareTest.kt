@@ -3,7 +3,6 @@ package world.gregs.voidps.world.community.clan
 import io.mockk.every
 import io.mockk.mockkStatic
 import io.mockk.verify
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -26,7 +25,6 @@ import kotlin.collections.set
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-@OptIn(ExperimentalCoroutinesApi::class)
 internal class LootShareTest : WorldTest() {
 
     @BeforeEach
