@@ -13,6 +13,9 @@ import world.gregs.voidps.network.encode.send
 
 /**
  * Stores GameObjects and modifications mainly for verifying interactions
+ * "original" objects refer to those [set] on game load from the cache or map file
+ * "temporary" objects are [CustomObjects] with a timer
+ * "permanent" objects are [add]ed or [remove]ed without a [CustomObjects] reset timer
  */
 class GameObjects(
     private val collisions: GameObjectCollision,
@@ -187,28 +190,9 @@ class GameObjects(
         return GameObject(toObject(value), tile.x, tile.y, tile.plane)
     }
 
-    fun clear(chunk: Chunk) {
-        val array = map.allocateIfAbsent(chunk.tile.x, chunk.tile.y, chunk.plane)
-        for (i in array.indices) {
-            array[i] = array[i] and REPLACED.inv()
-        }
-        for (tile in chunk.toCuboid()) {
-            replacements.remove(index(tile.x, tile.y, tile.plane, ObjectGroup.WALL))
-            replacements.remove(index(tile.x, tile.y, tile.plane, ObjectGroup.WALL_DECORATION))
-            replacements.remove(index(tile.x, tile.y, tile.plane, ObjectGroup.INTERACTIVE))
-            replacements.remove(index(tile.x, tile.y, tile.plane, ObjectGroup.GROUND_DECORATION))
-        }
-    }
-
-    fun reset() {
-        replacements.clear()
-    }
-
-    fun clear() {
-        map.clear()
-        replacements.clear()
-    }
-
+    /**
+     * Checks if an object exists
+     */
     fun contains(obj: GameObject): Boolean {
         val value = map[obj.x, obj.y, obj.plane, obj.group]
         if (value == -1 || value == 0) {
@@ -221,28 +205,78 @@ class GameObjects(
         return true
     }
 
+    /**
+     * Resets all original objects in [chunk]
+     */
+    fun reset(chunk: Chunk, collision: Boolean = true) {
+        forEachReplaced(chunk) { tile, group, int ->
+            val value = toObject(int)
+            if (value != 0) {
+                add(GameObject(GameObject.id(value), tile, GameObject.type(value), GameObject.rotation(value)), collision)
+            }
+            val replaced = replacements[index(tile.x, tile.y, tile.plane, group)]
+            if (replaced != null) {
+                remove(GameObject(GameObject.id(replaced), tile, GameObject.type(replaced), GameObject.rotation(replaced)), collision)
+            }
+        }
+    }
+
+    /**
+     * Clears all replacement objects
+     * Note: this won't reset permanently removed original objects
+     */
+    fun reset() {
+        replacements.map { (index, value) ->
+            GameObject(GameObject.id(value), x(index), y(index), level(index), GameObject.type(value), GameObject.rotation(value))
+        }.forEach {
+            remove(it)
+        }
+        replacements.clear()
+    }
+
+    /**
+     * Clears [chunk] of all original and replacement objects
+     * Note: Doesn't undo collision changes
+     */
+    fun clear(chunk: Chunk) {
+        map.deallocateIfPresent(chunk.tile.x, chunk.tile.y, chunk.plane)
+    }
+
+    /**
+     * Clears all original and replacement objects
+     * Note: Doesn't undo collision changes
+     */
+    fun clear() {
+        map.clear()
+        replacements.clear()
+    }
+
     override fun send(player: Player, chunk: Chunk) {
+        forEachReplaced(chunk) { tile, group, int ->
+            val value = toObject(int)
+            if (value != 0) {
+                player.client?.send(ObjectRemoval(tile.id, GameObject.type(value), GameObject.rotation(value)))
+            }
+            val replaced = replacements[index(tile.x, tile.y, tile.plane, group)]
+            if (replaced != null) {
+                player.client?.send(ObjectAddition(tile.id, GameObject.id(replaced), GameObject.type(replaced), GameObject.rotation(replaced)))
+            }
+        }
+    }
+
+    private fun forEachReplaced(chunk: Chunk, block: (Tile, Int, Int) -> Unit) {
         val chunkX = chunk.tile.x
         val chunkY = chunk.tile.y
         val plane = chunk.plane
         for (x in 0 until 8) {
             for (y in 0 until 8) {
                 for (group in 0 until 4) {
-                    val int = map[chunkX + x, chunkY + y, plane, group]
-                    if (int == -1 || int == 0) {
+                    val value = map[chunkX + x, chunkY + y, plane, group]
+                    if (value == -1 || value == 0 || !replaced(value)) {
                         continue
                     }
-                    if (replaced(int)) {
-                        val tile = chunk.tile.add(x, y)
-                        val value = toObject(int)
-                        if (value != 0) {
-                            player.client?.send(ObjectRemoval(tile.id, GameObject.type(value), GameObject.rotation(value)))
-                        }
-                        val replaced = replacements[index(tile.x, tile.y, tile.plane, group)]
-                        if (replaced != null) {
-                            player.client?.send(ObjectAddition(tile.id, GameObject.id(replaced), GameObject.type(replaced), GameObject.rotation(replaced)))
-                        }
-                    }
+                    val tile = chunk.tile.add(x, y)
+                    block.invoke(tile, group, value)
                 }
             }
         }
@@ -261,6 +295,10 @@ class GameObjects(
             get() = index(x, y, plane, group)
 
         private fun index(x: Int, y: Int, level: Int, group: Int) = level + (group shl 2) + (x shl 4) + (y shl 18)
+        private fun level(index: Int) = index and 0x2
+        private fun group(index: Int) = index shr 2 and 0x2
+        private fun x(index: Int) = index shr 4 and 0x3fff
+        private fun y(index: Int) = index shr 18 and 0x3fff
     }
 
 }

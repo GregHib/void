@@ -9,4 +9,5 @@ interface NetworkGatekeeper {
     fun connect(name: String, address: String? = null): Int?
     fun disconnect(name: String, address: String)
     fun releaseIndex(index: Int)
+    fun clear()
 }

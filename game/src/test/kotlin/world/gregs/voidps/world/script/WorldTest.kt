@@ -36,7 +36,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.spawnObject
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -44,11 +44,11 @@ import world.gregs.voidps.engine.map.file.Maps
 import world.gregs.voidps.gameModule
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.NetworkGatekeeper
 import world.gregs.voidps.postCacheGameModule
 import world.gregs.voidps.script.loadScripts
 import world.gregs.voidps.world.interact.entity.player.music.musicModule
 import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
-import world.gregs.voidps.world.interact.world.spawn.loadObjectSpawns
 import world.gregs.voidps.world.interact.world.spawn.stairsModule
 import java.io.File
 import kotlin.system.measureTimeMillis
@@ -64,9 +64,11 @@ abstract class WorldTest : KoinTest {
     private lateinit var engine: GameLoop
     private lateinit var store: EventHandlerStore
     private lateinit var players: Players
+    private lateinit var gatekeeper: NetworkGatekeeper
     private lateinit var npcs: NPCs
     lateinit var floorItems: FloorItems
-    private lateinit var objects: CustomObjects
+    private lateinit var objects: GameObjects
+    private lateinit var customObjects: CustomObjects
     private lateinit var accountDefs: AccountDefinitions
     private lateinit var collisions: Collisions
     private var saves: File? = null
@@ -99,7 +101,6 @@ abstract class WorldTest : KoinTest {
     }
 
     fun createPlayer(name: String, tile: Tile = Tile.EMPTY): Player {
-        val gatekeeper: ConnectionGatekeeper = get()
         val factory: PlayerFactory = get()
         val index = gatekeeper.connect(name)!!
         val player = Player(tile = tile, accountName = name, passwordHash = "")
@@ -122,7 +123,7 @@ abstract class WorldTest : KoinTest {
     }
 
     fun createObject(id: String, tile: Tile = Tile.EMPTY): GameObject {
-        return spawnObject(id, tile, 10, 0)
+        return customObjects.spawn(id, tile, 10, 0)
     }
 
     fun Container.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }
@@ -177,9 +178,11 @@ abstract class WorldTest : KoinTest {
             store.populate(World)
             World.start(true)
         }
+        gatekeeper = get<ConnectionGatekeeper>()
         players = get()
         npcs = get()
         floorItems = get()
+        customObjects = get()
         objects = get()
         accountDefs = get()
         collisions = get()
@@ -193,16 +196,17 @@ abstract class WorldTest : KoinTest {
 
     @BeforeEach
     fun beforeEach() {
-        loadObjectSpawns(get())
         loadItemSpawns(floorItems, get())
     }
 
     @AfterEach
     fun afterEach() {
+        gatekeeper.clear()
         players.clear()
         npcs.clear()
         floorItems.clear()
-        objects.clear()
+        customObjects.reset()
+        objects.reset()
         World.clearTimers()
     }
 

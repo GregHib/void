@@ -45,6 +45,10 @@ class GameObjectMap {
         flags[zoneIndex(absoluteX, absoluteY, level)] = null
     }
 
+    fun isZoneAllocated(absoluteX: Int, absoluteY: Int, level: Int): Boolean {
+        return flags[zoneIndex(absoluteX, absoluteY, level)] != null
+    }
+
     fun clear() {
         flags.fill(null)
     }

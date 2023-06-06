@@ -61,7 +61,7 @@ class DynamicChunks(
     }
 
     private fun update(from: Chunk, to: Chunk, rotation: Int, set: Boolean) {
-        objects.clear(to)
+        objects.reset(to)
         collisions.clear(to)
         extract.loadChunk(from, to, rotation)
         for (region in to.toCuboid(radius = 3).toRegions()) {

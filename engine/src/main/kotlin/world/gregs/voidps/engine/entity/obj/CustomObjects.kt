@@ -1,9 +1,14 @@
 package world.gregs.voidps.engine.entity.obj
 
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
+import world.gregs.voidps.engine.entity.obj.CustomObjects.Timer
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 
+/**
+ * Wrapper of [GameObjects] for simplifying [spawn] and [remove]als with the addition of [Timer]s
+ * for undoing the changes after a set number of ticks.
+ */
 class CustomObjects(
     private val objects: GameObjects,
     private val definitions: ObjectDefinitions
@@ -145,7 +150,13 @@ class CustomObjects(
         }
     }
 
-    fun clear() {
+    /**
+     * Fires all timers to reset all custom objects to their original states
+     */
+    fun reset() {
+        timers.forEach {
+            it.block.invoke()
+        }
         timers.clear()
     }
 }

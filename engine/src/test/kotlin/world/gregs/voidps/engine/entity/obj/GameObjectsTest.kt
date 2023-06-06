@@ -53,7 +53,7 @@ class GameObjectsTest {
         assertEquals(obj, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
         assertTrue(objects.contains(obj))
 
-        objects.clear(obj.tile.chunk)
+        objects.reset(obj.tile.chunk)
         assertNull(objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
         assertFalse(objects.contains(obj))
     }
