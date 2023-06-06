@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.event
 
 import io.mockk.mockk
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.entity.Entity
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -14,11 +13,11 @@ internal class EventsTest {
         val event = object : CancellableEvent() {}
         val klass = event::class
         var cancelled = false
-        val block: CancellableEvent.(Entity) -> Unit = {
+        val block: CancellableEvent.(EventDispatcher) -> Unit = {
             cancelled = true
             cancel()
         }
-        val handler1 = EventHandler(klass, { true }, Priority.HIGH, block as Event.(Entity) -> Unit)
+        val handler1 = EventHandler(klass, { true }, Priority.HIGH, block as Event.(EventDispatcher) -> Unit)
         var called = false
         val handler2 = EventHandler(klass, { true }, Priority.MEDIUM, { called = true })
         events.set(mapOf(klass to listOf(handler1, handler2)))
