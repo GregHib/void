@@ -1,6 +1,8 @@
 package world.gregs.voidps.engine.entity.obj
 
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
+import world.gregs.voidps.engine.map.chunk.Chunk
+import world.gregs.voidps.engine.map.file.ZoneObject
 
 /**
  * Stores [GameObject]s by zone + group
@@ -18,12 +20,11 @@ class GameObjectHashMap : GameObjectMap {
     }
 
     override fun set(zone: Int, tile: Int, mask: Int) {
-        data[zone or tile shl 6] = mask
+        data[index(zone, tile)] = mask
     }
 
     override operator fun set(x: Int, y: Int, level: Int, group: Int, mask: Int) {
-        val index = index(x, y, level, group)
-        data[index] = mask
+        data[index(x, y, level, group)] = mask
     }
 
     override fun add(obj: GameObject, mask: Int) {
@@ -56,6 +57,7 @@ class GameObjectHashMap : GameObjectMap {
     companion object {
         private const val EXPECTED_OBJECT_COUNT = 74_000
         private fun index(obj: GameObject): Int = index(obj.x, obj.y, obj.plane, ObjectGroup.group(obj.type))
-        private fun index(x: Int, y: Int, level: Int, group: Int): Int = level + (group shl 2) + (x shl 4) + (y shl 18)
+        private fun index(x: Int, y: Int, level: Int, group: Int): Int = index(Chunk.index(x shr 3, y shr 3, level), ZoneObject.tile(x, y, group))
+        private fun index(zone: Int, tile: Int): Int = zone or (tile shl 24)
     }
 }

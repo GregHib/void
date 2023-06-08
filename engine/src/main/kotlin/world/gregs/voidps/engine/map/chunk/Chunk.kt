@@ -57,6 +57,12 @@ value class Chunk(override val id: Int) : Id {
         fun getY(id: Int) = id and 0xfff
         fun getPlane(id: Int) = id shr 24
         val EMPTY = Chunk(0, 0, 0)
+
+
+        fun indexX(index: Int) = index and 0x7ff
+        fun indexY(index: Int) = index shr 11 and 0x7ff
+        fun indexLevel(index: Int) = index shr 22 and 0x3
+        fun index(x: Int, y: Int, level: Int): Int = (x and 0x7ff) or ((y and 0x7ff) shl 11) or ((level and 0x3) shl 22)
     }
 }
 

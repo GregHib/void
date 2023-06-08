@@ -31,8 +31,8 @@ class GameObjectCollision(
         if (def.solid == 0) {
             return
         }
-        val x = obj.x + Chunk.getX(chunk)
-        val y = obj.y + Chunk.getY(chunk)
+        val x = obj.x + (Chunk.indexX(chunk) shl 3)
+        val y = obj.y + (Chunk.indexY(chunk) shl 3)
         val plane = obj.plane
         val rotation = obj.rotation
         when (obj.type) {
@@ -75,47 +75,30 @@ class GameObjectCollision(
         modifyTile(x, y, plane, block, 7, add)
     }
 
-    private fun tileIndex(x: Int, z: Int): Int = (x and 0x7) or ((z and 0x7) shl 3)
-
-    private fun zoneIndex(x: Int, z: Int, level: Int): Int = ((x shr 3) and 0x7FF) or
-            (((z shr 3) and 0x7FF) shl 11) or ((level and 0x3) shl 22)
-
     private fun modifyTile(x: Int, y: Int, plane: Int, block: Int, direction: Int, add: Boolean) {
         val flags = collisions.flags[zoneIndex(x, y, plane)] ?: return
         val tile = tileIndex(x, y)
+        var mask = CollisionFlags.wallFlags[direction]
+        if (block and 8 == 8) {
+            mask = mask or CollisionFlags.routeFlags[direction]
+        }
+        if (block and 4 == 4) {
+            mask = mask or CollisionFlags.projectileFlags[direction]
+        }
         if (add) {
-            flags[tile] = flags[tile] or CollisionFlags.array[block or direction]
+            flags[tile] = flags[tile] or mask
         } else {
-            flags[tile] = flags[tile] and CollisionFlags.array[block or direction].inv()
+            flags[tile] = flags[tile] and mask.inv()
         }
     }
 
+    // For performance reasons
     companion object {
+        fun tileIndex(x: Int, z: Int): Int = (x and 0x7) or ((z and 0x7) shl 3)
 
+        fun zoneIndex(x: Int, z: Int, level: Int): Int = ((x shr 3) and 0x7FF) or
+                (((z shr 3) and 0x7FF) shl 11) or ((level and 0x3) shl 22)
 
-        fun addTile(tile: Int, x: Int, y: Int): Int {
-            val adjustedX = tile + x and 0x7
-            val adjustedY = (tile shr 3) + y
-            return adjustedX or (adjustedY shl 3) and 0x3f
-        }
-
-
-        fun addZone(zone: Int, tile: Int, x: Int, y: Int): Int {
-            val x = (tile and 0x7 + x).mod(0x7ff)
-            val y = (tile shr 3 + y).mod(0x7ff)
-            val adjustedX = zone + x and 0x7ff
-            val adjustedY = (zone shr 12) + y
-            return adjustedX or (adjustedY shl 12)
-        }
-
-        fun zoneIndex(zoneX: Int, zoneY: Int, level: Int): Int = zoneX or (zoneY shl 11) or (level shl 22)
-        fun tileX(zone: Int) = zone shl 3 and 0x7ff
-        fun tileY(zone: Int) = (zone shr 11 shl 3) and 0x7ff
-        fun zoneX(zone: Int) = zone and 0x7ff
-        fun zoneY(zone: Int) = (zone shr 11) and 0x7ff
-        fun level(zone: Int) = zone shr 22 and 0x3
-
-        // For performance reasons
         private val inverse = Direction.all.map { it.inverse().ordinal }.toIntArray()
 
         private val deltaX = Direction.all.map { it.delta.x }.toIntArray()

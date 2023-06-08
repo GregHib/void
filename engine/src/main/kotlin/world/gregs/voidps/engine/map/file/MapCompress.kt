@@ -85,7 +85,7 @@ class MapCompress(
     private fun writeObjects(writer: Writer, objects: Map<Chunk, List<ZoneObject>>) {
         writer.writeInt(objects.size)
         objects.forEach { (chunk, objs) ->
-            writer.writeInt(chunk.id)
+            writer.writeInt(Chunk.index(chunk.x, chunk.y, chunk.plane))
             writer.writeShort(objs.size)
             for (obj in objs) {
                 writer.writeInt(obj.value)

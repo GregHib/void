@@ -37,9 +37,11 @@ value class ZoneObject(val value: Int) {
 
         fun type(value: Int): Int = value shr 10 and 0x1f
 
+        fun tile(x: Int, y: Int, group: Int): Int = (x and 0x7) or ((y and 0x7) shl 3) or (group shl 6)
         fun tile(value: Int): Int = value and 0x3f
         fun tileX(tile: Int) = tile and 0x7
         fun tileY(tile: Int) = tile shr 3 and 0x7
+        fun tileGroup(tile: Int) = tile shr 6 and 0x7
 
         fun info(value: Int): Int = value shr 8
         fun infoId(info: Int) = info shr 7

@@ -78,12 +78,12 @@ class MapExtract(
 
     private fun readObjects(reader: BufferReader) {
         for (i in 0 until reader.readInt()) {
-            val chunkId = reader.readInt()
-            objectIndices[chunkId] = reader.position()
+            val chunkIndex = reader.readInt()
+            objectIndices[chunkIndex] = reader.position()
             for (j in 0 until reader.readShort()) {
                 val obj = ZoneObject(reader.readInt())
                 val def = definitions.get(obj.id)
-                objects.set(obj, chunkId, def)
+                objects.set(obj, chunkIndex, def)
             }
         }
     }
@@ -247,8 +247,9 @@ class MapExtract(
             cache.clear()
             val collisions = Collisions()
             val objcol = GameObjectCollision(collisions)
-            val objects = GameObjects(objcol, ChunkBatchUpdates(), definitions, storeUnused = true)
+            val objects = GameObjects(objcol, ChunkBatchUpdates(), definitions, storeUnused = false)
             val extract = MapExtract(collisions, definitions, objects, xteas)
+            objects.clear()
             extract.loadMap(File("./data/map-test.dat"))
         }
     }

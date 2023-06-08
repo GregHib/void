@@ -66,7 +66,7 @@ class GameObjects(
         } else {
             // Remove original (if exists)
             map.add(obj, REPLACED)
-            if (original != 0) {
+            if (original > 0) {
                 val originalObj = GameObject(id(original), obj.x, obj.y, obj.plane, type(original), rotation(original))
                 batches.add(obj.tile.chunk, ObjectRemoval(obj.tile.id, originalObj.type, originalObj.rotation))
                 if (collision) {
@@ -102,7 +102,7 @@ class GameObjects(
     fun set(obj: ZoneObject, chunk: Int, definition: ObjectDefinition) {
         collisions.modify(obj, chunk, definition)
         if (interactive(definition)) {
-            map[chunk, ZoneObject.tile(obj.value)] = ZoneObject.info(obj.value) shl 1
+            map[chunk or (obj.plane shl 22), ZoneObject.tile(obj.value) or (ObjectGroup.group(obj.type) shl 6)] = ZoneObject.info(obj.value) shl 1
             size++
         }
     }
@@ -144,7 +144,7 @@ class GameObjects(
             size--
             // Re-add original (if exists)
             map.remove(obj, REPLACED)
-            if (original != 0) {
+            if (original > 0) {
                 val originalObj = GameObject(id(original), obj.x, obj.y, obj.plane, type(original), rotation(original))
                 batches.add(obj.tile.chunk, ObjectAddition(obj.tile.id, originalObj.intId, originalObj.type, originalObj.rotation))
                 if (collision) {
@@ -347,7 +347,7 @@ class GameObjects(
          * Value represents an objects id, type and rotation stored within [map] and [replacements]
          */
         private fun empty(value: Int) = value == -1 || value == 0
-        private fun value(replaced: Boolean, id: Int, type: Int, rotation: Int) = replaced.toInt() or (rotation shl 1) + (type shl 3) + (id shl 8)
+        fun value(replaced: Boolean, id: Int, type: Int, rotation: Int) = replaced.toInt() or (rotation shl 1) + (type shl 3) + (id shl 8)
         private fun id(value: Int): Int = value shr 8 and 0x1ffff
         private fun type(value: Int): Int = value shr 3 and 0x1f
         private fun rotation(value: Int): Int = value shr 1 and 0x3

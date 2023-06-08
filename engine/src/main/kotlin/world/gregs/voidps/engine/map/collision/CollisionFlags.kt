@@ -69,6 +69,7 @@ enum class CollisionFlags {
         )
 
         val array: IntArray = IntArray(32)
+        val inverse: IntArray = IntArray(32)
         init {
             for (direction in 0 until 4) {
                 for (blockRoute in 0 until 2) {
@@ -84,6 +85,7 @@ enum class CollisionFlags {
                             index = index or 4
                         }
                         array[index] = mask
+                        inverse[index] = mask.inv()
                     }
                 }
             }
