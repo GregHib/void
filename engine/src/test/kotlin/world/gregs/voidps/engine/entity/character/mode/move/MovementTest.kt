@@ -13,7 +13,6 @@ import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.facing
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.mode.move.target.TileTargetStrategy
@@ -151,7 +150,8 @@ internal class MovementTest : KoinMock() {
             override val bitMask: Int = 0
             override val tile: Tile
                 get() = target
-            override val size: Size = Size.ONE
+            override val width: Int = 1
+            override val height: Int = 1
             override val sizeX: Int = 1
             override val sizeY: Int = 1
             override val rotation: Int = 0
