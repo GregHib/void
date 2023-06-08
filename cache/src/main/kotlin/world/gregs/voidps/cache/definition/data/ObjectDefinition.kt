@@ -86,6 +86,8 @@ data class ObjectDefinition(
     override var extras: Map<String, Any>? = null
 ) : Definition, Transforms, Recolourable, ColourPalette, Parameterized, Extra {
 
+    var block: Int = 8
+
     fun optionsIndex(option: String): Int = if (options != null) {
         options!!.indexOf(option)
     } else {

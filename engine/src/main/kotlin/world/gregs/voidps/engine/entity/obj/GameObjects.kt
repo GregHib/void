@@ -103,7 +103,7 @@ class GameObjects(
     }
 
     fun set(info: Int, chunk: Int, tile: Int, definition: ObjectDefinition) {
-        collisions.modify(definition, chunk, tile, info, add = true)
+        collisions.modify(definition, chunk, tile, info)
         if (interactive(definition)) {
             val group = ObjectGroup.group(ZoneObject.infoType(info))
             val x = GameObjectCollision.zoneX(chunk) + ZoneObject.tileX(tile)

@@ -67,5 +67,26 @@ enum class CollisionFlags {
             ROUTE_SOUTH_WEST.bit,
             ROUTE_WEST.bit
         )
+
+        val array: IntArray = IntArray(32)
+        init {
+            for (direction in 0 until 4) {
+                for (blockRoute in 0 until 2) {
+                    for (blockSky in 0 until 2) {
+                        var index = direction or 8
+                        var mask = CollisionFlags.wallFlags[direction]
+                        if (blockRoute == 0) {
+                            mask = mask or CollisionFlags.routeFlags[direction]
+                            index = index and 8.inv()
+                        }
+                        if (blockSky == 1) {
+                            mask = mask or CollisionFlags.projectileFlags[direction]
+                            index = index or 4
+                        }
+                        array[index] = mask
+                    }
+                }
+            }
+        }
     }
 }

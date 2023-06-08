@@ -44,16 +44,17 @@ class MapExtract(
 
     fun loadMap(file: File) {
         var start = System.currentTimeMillis()
+        val zones = fillEmptyZones()
+        logger.info { "Loaded $zones ${"empty zones".plural(zones)} in ${System.currentTimeMillis() - start}ms" }
+        start = System.currentTimeMillis()
         val reader = BufferReader(file.readBytes())
         readObjects(reader)
         readTiles(reader)
         fillMarker = reader.position()
         readFullTiles(reader)
         logger.info { "Loaded ${objects.size} ${"object".plural(objects.size)} from file in ${System.currentTimeMillis() - start}ms" }
-        start = System.currentTimeMillis()
-        val zones = fillEmptyZones()
+
         raf = RandomAccessFile(file, "r")
-        logger.info { "Loaded $zones ${"empty zones".plural(zones)} in ${System.currentTimeMillis() - start}ms" }
     }
 
     private fun readTiles(reader: BufferReader) {
@@ -107,14 +108,12 @@ class MapExtract(
             val region = Region(id)
             val regionX = region.tile.x
             val regionY = region.tile.y
+            zones += 64
             for (plane in 0 until 4) {
                 for (zoneX in 0 until 8) {
                     for (zoneY in 0 until 8) {
                         val x = regionX + zoneX * 8
                         val y = regionY + zoneY * 8
-                        if (!collisions.isZoneAllocated(x, y, plane)) {
-                            zones++
-                        }
                         collisions.allocateIfAbsent(x, y, plane)
                     }
                 }
@@ -253,9 +252,11 @@ class MapExtract(
             val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
             cache.clear()
             val collisions = Collisions()
-            val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = true)
+            val objcol = GameObjectCollision(collisions)
+            val objects = GameObjects(objcol, ChunkBatchUpdates(), definitions, storeUnused = true)
             val extract = MapExtract(collisions, definitions, objects, xteas)
             extract.loadMap(File("./data/map-test.dat"))
+            println(objcol.count)
         }
     }
 }
