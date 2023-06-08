@@ -16,9 +16,7 @@ import world.gregs.voidps.world.interact.world.spawn.Stairs
 val stairs: Stairs by inject()
 
 on<ObjectOption>({ operate && stairs.get(def.id, obj.tile, option) != null }) { _: Player ->
-    println("Arrive delay")
     arriveDelay()
-    println("Climb")
     climb(option)
 }
 

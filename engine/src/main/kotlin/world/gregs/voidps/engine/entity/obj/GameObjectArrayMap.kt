@@ -23,7 +23,7 @@ class GameObjectArrayMap : GameObjectMap {
     }
 
     override operator fun set(x: Int, y: Int, level: Int, group: Int, mask: Int) {
-        val tiles = data[zoneIndex(x, y, level)] ?: allocateIfAbsent(x, y, level)
+        val tiles = data[zoneIndex(x, y, level)] ?: getOrAllocate(x, y, level)
         tiles[tileIndex(x, y, group)] = mask
     }
 
@@ -47,7 +47,11 @@ class GameObjectArrayMap : GameObjectMap {
         this[x, y, level, group] = currentFlags and mask.inv()
     }
 
-    private fun allocateIfAbsent(absoluteX: Int, absoluteY: Int, level: Int): IntArray {
+    override fun allocateIfAbsent(absoluteX: Int, absoluteY: Int, level: Int) {
+        getOrAllocate(absoluteX, absoluteY, level)
+    }
+
+    private fun getOrAllocate(absoluteX: Int, absoluteY: Int, level: Int): IntArray {
         val zoneIndex = zoneIndex(absoluteX, absoluteY, level)
         val existingFlags = data[zoneIndex]
         if (existingFlags != null) return existingFlags

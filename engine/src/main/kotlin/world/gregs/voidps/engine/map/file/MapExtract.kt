@@ -111,6 +111,7 @@ class MapExtract(
                     for (zoneY in 0 until 64 step 8) {
                         val x = regionX + zoneX
                         val y = regionY + zoneY
+                        objects.map.allocateIfAbsent(x, y, plane)
                         collisions.allocateIfAbsent(x, y, plane)
                     }
                 }

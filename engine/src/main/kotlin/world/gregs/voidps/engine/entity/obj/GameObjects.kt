@@ -102,7 +102,9 @@ class GameObjects(
     fun set(obj: ZoneObject, chunk: Int, definition: ObjectDefinition) {
         collisions.modify(obj, chunk, definition)
         if (interactive(definition)) {
-            map[chunk or (obj.plane shl 22), ZoneObject.tile(obj.value) or (ObjectGroup.group(obj.type) shl 6)] = ZoneObject.info(obj.value) shl 1
+            val zone = chunk or (obj.plane shl 22)
+            val tile = ZoneObject.tile(obj.value) or (ObjectGroup.group(obj.type) shl 6)
+            map[zone, tile] = ZoneObject.info(obj.value) shl 1
             size++
         }
     }
@@ -318,7 +320,6 @@ class GameObjects(
             }
             val replaced = replacements[index(tile, group)]
             if (replaced != null) {
-                println("Replacement $tile $replaced")
                 player.client?.send(ObjectAddition(tile.id, id(replaced), type(replaced), rotation(replaced)))
             }
         }

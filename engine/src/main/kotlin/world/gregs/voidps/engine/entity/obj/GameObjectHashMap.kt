@@ -39,6 +39,9 @@ class GameObjectHashMap : GameObjectMap {
         data[index] = currentFlags and mask.inv()
     }
 
+    override fun allocateIfAbsent(absoluteX: Int, absoluteY: Int, level: Int) {
+    }
+
     override fun deallocateZone(zoneX: Int, zoneY: Int, level: Int) {
         for (x in 0 until 8) {
             for (y in 0 until 8) {
