@@ -74,16 +74,21 @@ class MapExtract(
         }
     }
 
+
     private fun readObjects(reader: BufferReader) {
         for (i in 0 until reader.readInt()) {
             val chunk = Chunk(reader.readInt())
             objectIndices[chunk.id] = reader.position()
-            val chunkX = chunk.tile.x
-            val chunkY = chunk.tile.y
+            val index = GameObjectCollision.zoneIndex(chunk.x, chunk.y, chunk.plane)
+//            val chunkX = chunk.tile.x
+//            val chunkY = chunk.tile.y
             for (j in 0 until reader.readShort()) {
-                val obj = ZoneObject(reader.readInt())
-                val def = definitions.get(obj.id)
-                objects.set(obj.id, chunkX + obj.x, chunkY + obj.y, obj.plane, obj.type, obj.rotation, def)
+//                val obj = ZoneObject(reader.readInt())
+//                val def = definitions.get(obj.id)
+//                objects.set(obj.id, chunkX + obj.x, chunkY + obj.y, obj.plane, obj.type, obj.rotation, def)
+                val obj = reader.readInt()
+                val def = definitions.get(ZoneObject.id(obj))
+                objects.set(ZoneObject.info(obj), index, ZoneObject.tile(obj), def)
             }
         }
     }
@@ -248,9 +253,9 @@ class MapExtract(
             val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
             cache.clear()
             val collisions = Collisions()
-            val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = false)
+            val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = true)
             val extract = MapExtract(collisions, definitions, objects, xteas)
-            extract.loadMap(File("./data/map.dat"))
+            extract.loadMap(File("./data/map-test.dat"))
         }
     }
 }

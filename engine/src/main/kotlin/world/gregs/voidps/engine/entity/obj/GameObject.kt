@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.map.Tile
  * Interactive Object
  */
 @JvmInline
-value class GameObject(val hash: Long) : Entity {
+value class GameObject(internal val hash: Long) : Entity {
 
     constructor(id: Int, x: Int, y: Int, plane: Int, type: Int, rotation: Int) : this(getHash(id, x, y, plane, type, rotation))
 
@@ -53,19 +53,19 @@ value class GameObject(val hash: Long) : Entity {
         }
 
         fun getHash(id: Long, x: Long, y: Long, plane: Long, type: Long, rotation: Long): Long {
-            return rotation + (type shl 2) + (plane shl 7) + (y shl 9) + (x shl 23) + (id shl 37)
+            return y or (x shl 14) or (plane shl 28) or (rotation shl 30) or (type shl 32) or (id shl 37)
         }
 
         fun getId(hash: Long): Int = (hash shr 37 and 0x1ffff).toInt()
 
-        fun getX(hash: Long): Int = (hash shr 23 and 0x3fff).toInt()
+        fun getX(hash: Long): Int = (hash shr 14 and 0x3fff).toInt()
 
-        fun getY(hash: Long): Int = (hash shr 9 and 0x3fff).toInt()
+        fun getY(hash: Long): Int = (hash and 0x3fff).toInt()
 
-        fun getPlane(hash: Long): Int = (hash shr 7 and 0x3).toInt()
+        fun getPlane(hash: Long): Int = (hash shr 28 and 0x3).toInt()
 
-        fun getType(hash: Long): Int = (hash shr 2 and 0x1f).toInt()
+        fun getType(hash: Long): Int = (hash shr 32 and 0x1f).toInt()
 
-        fun getRotation(hash: Long): Int = (hash and 0x3).toInt()
+        fun getRotation(hash: Long): Int = (hash shr 30 and 0x3).toInt()
     }
 }

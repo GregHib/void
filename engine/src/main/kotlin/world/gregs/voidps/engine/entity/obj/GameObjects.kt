@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
+import world.gregs.voidps.engine.map.file.ZoneObject
 import world.gregs.voidps.network.encode.chunk.ObjectAddition
 import world.gregs.voidps.network.encode.chunk.ObjectRemoval
 import world.gregs.voidps.network.encode.send
@@ -97,6 +98,18 @@ class GameObjects(
         }
         if (interactive(definition)) {
             map[x, y, plane, group] = value(false, id, type, rotation)
+            size++
+        }
+    }
+
+    fun set(info: Int, chunk: Int, tile: Int, definition: ObjectDefinition) {
+        collisions.modify(definition, chunk, tile, info, add = true)
+        if (interactive(definition)) {
+            val group = ObjectGroup.group(ZoneObject.infoType(info))
+            val x = GameObjectCollision.zoneX(chunk) + ZoneObject.tileX(tile)
+            val y = GameObjectCollision.zoneY(chunk) + ZoneObject.tileX(tile)
+            val plane = GameObjectCollision.level(chunk)
+            map[ZoneObject.tileX(x), y, plane, group] = info shr 1
             size++
         }
     }
@@ -240,7 +253,7 @@ class GameObjects(
             return null
         }
         if (replaced(value)) {
-            val replacement = replacements[index(tile.x, tile.y, tile.plane, group)] ?: return null
+            val replacement = replacements[index(tile, group)] ?: return null
             return GameObject(id(replacement), tile.x, tile.y, tile.plane, type(replacement), rotation(replacement))
         }
         return GameObject(id(value), tile.x, tile.y, tile.plane, type(value), rotation(value))
@@ -267,7 +280,7 @@ class GameObjects(
             if (value != 0) {
                 add(GameObject(id(value), tile, type(value), rotation(value)), collision)
             }
-            val replaced = replacements[index(tile.x, tile.y, tile.plane, group)]
+            val replaced = replacements[index(tile, group)]
             if (replaced != null) {
                 remove(GameObject(id(replaced), tile, type(replaced), rotation(replaced)), collision)
             }
@@ -308,7 +321,7 @@ class GameObjects(
     override fun send(player: Player, chunk: Chunk) {
         forEachReplaced(chunk) { tile, group, value ->
             player.client?.send(ObjectRemoval(tile.id, type(value), rotation(value)))
-            val replaced = replacements[index(tile.x, tile.y, tile.plane, group)]
+            val replaced = replacements[index(tile, group)]
             if (replaced != null) {
                 player.client?.send(ObjectAddition(tile.id, id(replaced), type(replaced), rotation(replaced)))
             }
@@ -352,9 +365,10 @@ class GameObjects(
          * Index represents a [Tile] and [ObjectGroup], for storing [replacements]
          */
         private val GameObject.index: Int
-            get() = index(x, y, plane, ObjectGroup.group(type))
+            get() = index(x, y, plane, ObjectGroup.group(type))//hash and 0x3fffffff).toInt() or (ObjectGroup.group(type) shl 30)
 
-        private fun index(x: Int, y: Int, level: Int, group: Int) = level + (group shl 2) + (x shl 4) + (y shl 18)
+        private fun index(x: Int, y: Int, plane: Int, group: Int) = y or (x shl 14) or (plane shl 28) or (group shl 30)
+        private fun index(tile: Tile, group: Int) = tile.id or (group shl 30)
         private fun level(index: Int) = index and 0x2
         private fun group(index: Int) = index shr 2 and 0x2
         private fun x(index: Int) = index shr 4 and 0x3fff
