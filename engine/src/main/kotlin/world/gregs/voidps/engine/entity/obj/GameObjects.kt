@@ -89,27 +89,20 @@ class GameObjects(
      * Sets the original placement of a game object
      */
     fun set(id: Int, x: Int, y: Int, plane: Int, type: Int, rotation: Int, definition: ObjectDefinition) {
-        if (id == -1) {
-            return
-        }
-        val group = ObjectGroup.group(type)
-        if (group != ObjectGroup.WALL_DECORATION) {
-            collisions.modify(definition, x, y, plane, type, rotation, add = true)
-        }
+        collisions.modify(definition, x, y, plane, type, rotation, add = true)
         if (interactive(definition)) {
-            map[x, y, plane, group] = value(false, id, type, rotation)
+            map[x, y, plane, ObjectGroup.group(type)] = value(false, id, type, rotation)
             size++
         }
     }
 
-    fun set(info: Int, chunk: Int, tile: Int, definition: ObjectDefinition) {
-        collisions.modify(definition, chunk, tile, info)
+    /**
+     * Sets the original placement of a game object (but faster)
+     */
+    fun set(obj: ZoneObject, chunk: Int, definition: ObjectDefinition) {
+        collisions.modify(obj, chunk, definition)
         if (interactive(definition)) {
-            val group = ObjectGroup.group(ZoneObject.infoType(info))
-            val x = GameObjectCollision.zoneX(chunk) + ZoneObject.tileX(tile)
-            val y = GameObjectCollision.zoneY(chunk) + ZoneObject.tileX(tile)
-            val plane = GameObjectCollision.level(chunk)
-            map[ZoneObject.tileX(x), y, plane, group] = info shr 1
+            map[chunk, ZoneObject.tile(obj.value)] = ZoneObject.info(obj.value) shl 1
             size++
         }
     }

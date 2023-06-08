@@ -4,6 +4,7 @@ import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectType
+import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.file.ZoneObject
 
 class GameObjectCollision(
@@ -17,132 +18,76 @@ class GameObjectCollision(
         if (def.solid == 0) {
             return
         }
-        val blockSky = def.blocksSky
-        val blockRoute = def.ignoreOnRoute
         when (type) {
-            ObjectType.LENGTHWISE_WALL -> modifyWall(x, y, plane, blockSky, blockRoute, cardinal[(rotation + 3) and 0x3], add)
-            ObjectType.TRIANGULAR_CORNER, ObjectType.RECTANGULAR_CORNER -> modifyWall(x, y, plane, blockSky, blockRoute, ordinal[rotation], add)
-            ObjectType.WALL_CORNER -> modifyWallCorner(x, y, plane, blockSky, blockRoute, ordinal[rotation], add)
-            in ObjectType.DIAGONAL_WALL until ObjectType.FLOOR_DECORATION -> modifyObject(def, x, y, plane, rotation, blockSky, blockRoute, add)
-            ObjectType.FLOOR_DECORATION -> if (def.interactive == 1 && def.solid == 1) modifyCardinal(x, y, plane, blockSky, blockRoute, add)
+            ObjectType.LENGTHWISE_WALL -> modifyWall(x, y, plane, def.block, cardinal[(rotation + 3) and 0x3], add)
+            ObjectType.TRIANGULAR_CORNER, ObjectType.RECTANGULAR_CORNER -> modifyWall(x, y, plane, def.block, ordinal[rotation], add)
+            ObjectType.WALL_CORNER -> modifyWallCorner(x, y, plane, def.block, ordinal[rotation], add)
+            in ObjectType.DIAGONAL_WALL until ObjectType.FLOOR_DECORATION -> modifyObject(def, x, y, plane, rotation, def.block, add)
+            ObjectType.FLOOR_DECORATION -> if (def.interactive == 1 && def.solid == 1) modifyCardinal(x, y, plane, def.block, add)
         }
     }
 
-    private fun modifyWall(x: Int, y: Int, plane: Int, blockSky: Boolean, blockRoute: Boolean, direction: Int, add: Boolean) {
-        modifyTile(x, y, plane, blockSky, blockRoute, direction, add)
-        modifyTile(x + deltaX[direction], y + deltaY[direction], plane, blockSky, blockRoute, inverse[direction], add)
-    }
-
-    private fun modifyWallCorner(x: Int, y: Int, plane: Int, blockSky: Boolean, blockRoute: Boolean, direction: Int, add: Boolean) {
-        modifyWall(x, y, plane, blockSky, blockRoute, vertical[direction], add)
-        modifyWall(x, y, plane, blockSky, blockRoute, horizontal[direction], add)
-    }
-
-    private fun modifyObject(def: ObjectDefinition, x: Int, y: Int, plane: Int, rotation: Int, blockSky: Boolean, blockRoute: Boolean, add: Boolean) {
-        val width = if (rotation and 0x1 == 1) def.sizeY else def.sizeX
-        val height = if (rotation and 0x1 == 1) def.sizeX else def.sizeY
-        for (dx in 0 until width) {
-            for (dy in 0 until height) {
-                modifyCardinal(x + dx, y + dy, plane, blockSky, blockRoute, add)
-            }
-        }
-    }
-
-    private fun modifyCardinal(x: Int, y: Int, plane: Int, blockSky: Boolean, blockRoute: Boolean, add: Boolean) {
-        modifyTile(x, y, plane, blockSky, blockRoute, 1, add)
-        modifyTile(x, y, plane, blockSky, blockRoute, 3, add)
-        modifyTile(x, y, plane, blockSky, blockRoute, 5, add)
-        modifyTile(x, y, plane, blockSky, blockRoute, 7, add)
-    }
-
-    private fun modifyTile(x: Int, y: Int, plane: Int, blockSky: Boolean, blockRoute: Boolean, direction: Int, add: Boolean) {
-        var mask = CollisionFlags.wallFlags[direction]
-        if (!blockRoute) {
-            mask = mask or CollisionFlags.routeFlags[direction]
-        }
-        if (blockSky) {
-            mask = mask or CollisionFlags.projectileFlags[direction]
-        }
-        modifyMask(x, y, plane, mask, add)
-    }
-
-    private fun modifyMask(x: Int, y: Int, plane: Int, mask: Int, add: Boolean) {
-        if (add) {
-            collisions.add(x, y, plane, mask)
-        } else {
-            collisions.remove(x, y, plane, mask)
-        }
-    }
-
-
-    fun modify(def: ObjectDefinition, zone: Int, tile: Int, info: Int) {
+    fun modify(obj: ZoneObject, chunk: Int, def: ObjectDefinition) {
         if (def.solid == 0) {
             return
         }
-        val rotation = ZoneObject.infoRotation(info)
-        when (ZoneObject.infoType(info)) {
-            ObjectType.LENGTHWISE_WALL -> modifyWall(zone, tile, def.block, cardinal[(rotation + 3) and 0x3])
-            ObjectType.TRIANGULAR_CORNER, ObjectType.RECTANGULAR_CORNER -> modifyWall(zone, tile, def.block, ordinal[rotation])
-            ObjectType.WALL_CORNER -> modifyWallCorner(zone, tile, def.block, ordinal[rotation])
-            in ObjectType.DIAGONAL_WALL until ObjectType.FLOOR_DECORATION -> modifyObject(def, zone, tile, def.block, rotation)
-            ObjectType.FLOOR_DECORATION -> if (def.interactive == 1 && def.solid == 1) modifyCardinal(zone, tile, def.block)
+        val x = obj.x + Chunk.getX(chunk)
+        val y = obj.y + Chunk.getY(chunk)
+        val plane = obj.plane
+        val rotation = obj.rotation
+        when (obj.type) {
+            ObjectType.LENGTHWISE_WALL -> modifyWall(x, y, plane, def.block, cardinal[(rotation + 3) and 0x3], true)
+            ObjectType.TRIANGULAR_CORNER, ObjectType.RECTANGULAR_CORNER -> modifyWall(x, y, plane, def.block, ordinal[rotation], true)
+            ObjectType.WALL_CORNER -> modifyWallCorner(x, y, plane, def.block, ordinal[rotation], true)
+            in ObjectType.DIAGONAL_WALL until ObjectType.FLOOR_DECORATION -> modifyObject(def, x, y, plane, rotation, def.block, true)
+            ObjectType.FLOOR_DECORATION -> if (def.interactive == 1 && def.solid == 1) modifyCardinal(x, y, plane, def.block, true)
         }
     }
 
-    var count = 0
-    private fun modifyWall(zone: Int, tile: Int, block: Int, direction: Int) {
-        modifyTile(zone, tile, block or direction)
-        modifyTile(zone, tile, deltaX[direction], deltaY[direction], block or inverse[direction])
+    private fun modifyWall(x: Int, y: Int, plane: Int, block: Int, direction: Int, add: Boolean) {
+        modifyTile(x, y, plane, block, direction, add)
+        modifyTile(x + deltaX[direction], y + deltaY[direction], plane, block, inverse[direction], add)
     }
 
-    private fun modifyWallCorner(zone: Int, tile: Int, block: Int, direction: Int) {
-        modifyWall(zone, tile, block, vertical[direction])
-        modifyWall(zone, tile, block, horizontal[direction])
+    private fun modifyWallCorner(x: Int, y: Int, plane: Int, block: Int, direction: Int, add: Boolean) {
+        modifyWall(x, y, plane, block, vertical[direction], add)
+        modifyWall(x, y, plane, block, horizontal[direction], add)
     }
 
-    private fun modifyObject(def: ObjectDefinition, zone: Int, tile: Int, block: Int, rotation: Int) {
+    private fun modifyObject(def: ObjectDefinition, x: Int, y: Int, plane: Int, rotation: Int, block: Int, add: Boolean) {
         if (def.sizeX == 1 && def.sizeY == 1) {
-            modifyCardinal(zone, tile, block or rotation)
+            modifyCardinal(x, y, plane, block, add)
             return
         }
         val width = if (rotation and 0x1 == 1) def.sizeY else def.sizeX
         val height = if (rotation and 0x1 == 1) def.sizeX else def.sizeY
         for (dx in 0 until width) {
             for (dy in 0 until height) {
-                modifyCardinal(zone, tile, dx, dy, block)
+                modifyCardinal(x + dx, y + dy, plane, block, add)
             }
         }
     }
 
-    private fun modifyCardinal(zone: Int, tile: Int, block: Int) {
-        modifyTile(zone, tile, block or 1) // North
-        modifyTile(zone, tile, block or 3) // East
-        modifyTile(zone, tile, block or 5) // South
-        modifyTile(zone, tile, block or 7) // West
+    private fun modifyCardinal(x: Int, y: Int, plane: Int, block: Int, add: Boolean) {
+        modifyTile(x, y, plane, block, 1, add)
+        modifyTile(x, y, plane, block, 3, add)
+        modifyTile(x, y, plane, block, 5, add)
+        modifyTile(x, y, plane, block, 7, add)
     }
 
-    private fun modifyCardinal(zone: Int, tile: Int, dx: Int, dy: Int, block: Int) {
-        modifyTile(zone, tile, dx, dy, block or 1) // North
-        modifyTile(zone, tile, dx, dy, block or 3) // East
-        modifyTile(zone, tile, dx, dy, block or 5) // South
-        modifyTile(zone, tile, dx, dy, block or 7) // West
-    }
+    private fun tileIndex(x: Int, z: Int): Int = (x and 0x7) or ((z and 0x7) shl 3)
 
-    private fun modifyTile(zone: Int, tile: Int, x: Int, y: Int, block: Int) {
-        val adjustedX = tile + x and 0x7
-        val adjustedY = (tile shr 3) + y
-        val newTile = adjustedX or (adjustedY shl 3) and 0x3f
-        val tileX = ZoneObject.tileX(tile)
-        val tileY = ZoneObject.tileY(tile)
-        val remX = tileX + x shr 3
-        val remY = tileY + y shr 3
-        val newZone = zone + (remX or (remY shl 12))
-        modifyTile(newZone, newTile, block)
-    }
+    private fun zoneIndex(x: Int, z: Int, level: Int): Int = ((x shr 3) and 0x7FF) or
+            (((z shr 3) and 0x7FF) shl 11) or ((level and 0x3) shl 22)
 
-    private fun modifyTile(zone: Int, tile: Int, block: Int) {
-        val flags = collisions.flags[zone] ?: return
-        flags[tile] = flags[tile] or CollisionFlags.array[block]
+    private fun modifyTile(x: Int, y: Int, plane: Int, block: Int, direction: Int, add: Boolean) {
+        val flags = collisions.flags[zoneIndex(x, y, plane)] ?: return
+        val tile = tileIndex(x, y)
+        if (add) {
+            flags[tile] = flags[tile] or CollisionFlags.array[block or direction]
+        } else {
+            flags[tile] = flags[tile] and CollisionFlags.array[block or direction].inv()
+        }
     }
 
     companion object {

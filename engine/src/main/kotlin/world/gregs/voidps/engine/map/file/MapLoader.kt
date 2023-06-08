@@ -40,9 +40,11 @@ class MapLoader(
     fun load(region: Region): Boolean {
         val def = decoder.getOrNull(region.id) ?: return false
         reader.read(region, def)
+        val x = region.tile.x
+        val y = region.tile.y
         for (location in def.objects) {
             val definition = definitions.get(location.id)
-            objects.set(location.id, region.tile.x + location.x, region.tile.y + location.y, location.plane, location.type, location.rotation, definition)
+            objects.set(location.id, x + location.x, y + location.y, location.plane, location.type, location.rotation, definition)
         }
         return true
     }

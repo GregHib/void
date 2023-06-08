@@ -17,6 +17,10 @@ class GameObjectHashMap : GameObjectMap {
         return data.getOrDefault(index(x, y, level, group), -1)
     }
 
+    override fun set(zone: Int, tile: Int, mask: Int) {
+        data[zone or tile shl 6] = mask
+    }
+
     override operator fun set(x: Int, y: Int, level: Int, group: Int, mask: Int) {
         val index = index(x, y, level, group)
         data[index] = mask

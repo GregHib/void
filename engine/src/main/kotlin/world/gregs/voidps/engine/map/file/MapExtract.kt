@@ -78,18 +78,12 @@ class MapExtract(
 
     private fun readObjects(reader: BufferReader) {
         for (i in 0 until reader.readInt()) {
-            val chunk = Chunk(reader.readInt())
-            objectIndices[chunk.id] = reader.position()
-            val index = GameObjectCollision.zoneIndex(chunk.x, chunk.y, chunk.plane)
-//            val chunkX = chunk.tile.x
-//            val chunkY = chunk.tile.y
+            val chunkId = reader.readInt()
+            objectIndices[chunkId] = reader.position()
             for (j in 0 until reader.readShort()) {
-//                val obj = ZoneObject(reader.readInt())
-//                val def = definitions.get(obj.id)
-//                objects.set(obj.id, chunkX + obj.x, chunkY + obj.y, obj.plane, obj.type, obj.rotation, def)
-                val obj = reader.readInt()
-                val def = definitions.get(ZoneObject.id(obj))
-                objects.set(ZoneObject.info(obj), index, ZoneObject.tile(obj), def)
+                val obj = ZoneObject(reader.readInt())
+                val def = definitions.get(obj.id)
+                objects.set(obj, chunkId, def)
             }
         }
     }
@@ -185,11 +179,11 @@ class MapExtract(
 
     companion object {
         private fun rotateX(x: Int, y: Int, rotation: Int): Int {
-            return if (rotation == 1) y else if (rotation == 2) 7 - x else if (rotation == 3) 7 - y else x
+            return (if (rotation == 1) y else if (rotation == 2) 7 - x else if (rotation == 3) 7 - y else x) and 0x7
         }
 
         private fun rotateY(x: Int, y: Int, rotation: Int): Int {
-            return if (rotation == 1) 7 - x else if (rotation == 2) 7 - y else if (rotation == 3) x else y
+            return (if (rotation == 1) 7 - x else if (rotation == 2) 7 - y else if (rotation == 3) x else y) and 0x7
         }
 
         private fun rotateX(
@@ -256,7 +250,6 @@ class MapExtract(
             val objects = GameObjects(objcol, ChunkBatchUpdates(), definitions, storeUnused = true)
             val extract = MapExtract(collisions, definitions, objects, xteas)
             extract.loadMap(File("./data/map-test.dat"))
-            println(objcol.count)
         }
     }
 }
