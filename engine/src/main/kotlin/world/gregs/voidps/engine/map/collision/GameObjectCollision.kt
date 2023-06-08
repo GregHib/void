@@ -57,13 +57,33 @@ class GameObjectCollision(
     private fun modifyObject(def: ObjectDefinition, x: Int, y: Int, plane: Int, rotation: Int, block: Int, add: Boolean) {
         if (def.sizeX == 1 && def.sizeY == 1) {
             modifyCardinal(x, y, plane, block, add)
-            return
-        }
-        val width = if (rotation and 0x1 == 1) def.sizeY else def.sizeX
-        val height = if (rotation and 0x1 == 1) def.sizeX else def.sizeY
-        for (dx in 0 until width) {
-            for (dy in 0 until height) {
-                modifyCardinal(x + dx, y + dy, plane, block, add)
+        } else if (def.sizeX == 2 && def.sizeY == 2) {
+            modifyCardinal(x, y, plane, block, add)
+            modifyCardinal(x + 1, y, plane, block, add)
+            modifyCardinal(x, y + 1, plane, block, add)
+            modifyCardinal(x + 1, y + 1, plane, block, add)
+        } else if (def.sizeX == 3 && def.sizeY == 3) {
+            modifyCardinal(x, y + 1, plane, block, add)
+            modifyCardinal(x, y + 2, plane, block, add)
+            modifyCardinal(x + 1, y, plane, block, add)
+            modifyCardinal(x + 1, y + 1, plane, block, add)
+            modifyCardinal(x + 2, y, plane, block, add)
+            modifyCardinal(x + 2, y + 2, plane, block, add)
+        } else {
+            val width = if (rotation and 0x1 == 1) def.sizeY else def.sizeX
+            val height = if (rotation and 0x1 == 1) def.sizeX else def.sizeY
+            if (width == 1 && height == 2) {
+                modifyCardinal(x, y, plane, block, add)
+                modifyCardinal(x, y + 1, plane, block, add)
+            } else if (width == 2 && height == 1) {
+                modifyCardinal(x, y, plane, block, add)
+                modifyCardinal(x + 1, y, plane, block, add)
+            } else {
+                for (dx in 0 until width) {
+                    for (dy in 0 until height) {
+                        modifyCardinal(x + dx, y + dy, plane, block, add)
+                    }
+                }
             }
         }
     }
@@ -77,27 +97,19 @@ class GameObjectCollision(
 
     private fun modifyTile(x: Int, y: Int, plane: Int, block: Int, direction: Int, add: Boolean) {
         val flags = collisions.flags[zoneIndex(x, y, plane)] ?: return
-        val tile = tileIndex(x, y)
-        var mask = CollisionFlags.wallFlags[direction]
-        if (block and 8 == 8) {
-            mask = mask or CollisionFlags.routeFlags[direction]
-        }
-        if (block and 4 == 4) {
-            mask = mask or CollisionFlags.projectileFlags[direction]
-        }
         if (add) {
-            flags[tile] = flags[tile] or mask
+            flags[tileIndex(x, y)] = flags[tileIndex(x, y)] or CollisionFlags.blocked[direction or block]
         } else {
-            flags[tile] = flags[tile] and mask.inv()
+            flags[tileIndex(x, y)] = flags[tileIndex(x, y)] and CollisionFlags.inverse[direction or block]
         }
     }
 
     // For performance reasons
     companion object {
-        fun tileIndex(x: Int, z: Int): Int = (x and 0x7) or ((z and 0x7) shl 3)
+        private fun tileIndex(x: Int, y: Int): Int = (x and 0x7) or ((y and 0x7) shl 3)
 
-        fun zoneIndex(x: Int, z: Int, level: Int): Int = ((x shr 3) and 0x7FF) or
-                (((z shr 3) and 0x7FF) shl 11) or ((level and 0x3) shl 22)
+        private fun zoneIndex(x: Int, z: Int, level: Int): Int = ((x shr 3) and 0x7ff) or
+                (((z shr 3) and 0x7ff) shl 11) or ((level and 0x3) shl 22)
 
         private val inverse = Direction.all.map { it.inverse().ordinal }.toIntArray()
 

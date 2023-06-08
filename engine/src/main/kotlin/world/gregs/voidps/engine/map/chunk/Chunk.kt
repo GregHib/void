@@ -25,6 +25,8 @@ value class Chunk(override val id: Int) : Id {
         get() = RegionPlane(x / 8, y / 8, plane)
     val tile: Tile
         get() = Tile(x * 8, y * 8, plane)
+    val index: Int
+        get() = index(x, y, plane)
 
     fun copy(x: Int = this.x, y: Int = this.y, plane: Int = this.plane) = Chunk(x, y, plane)
     fun add(x: Int, y: Int, plane: Int = 0) = copy(x = this.x + x, y = this.y + y, plane = this.plane + plane)

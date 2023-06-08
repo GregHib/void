@@ -86,7 +86,7 @@ data class ObjectDefinition(
     override var extras: Map<String, Any>? = null
 ) : Definition, Transforms, Recolourable, ColourPalette, Parameterized, Extra {
 
-    var block: Int = 8
+    var block: Int = PROJECTILE or ROUTE
 
     fun optionsIndex(option: String): Int = if (options != null) {
         options!!.indexOf(option)
@@ -315,6 +315,8 @@ data class ObjectDefinition(
     }
 
     companion object {
+        const val ROUTE = 0x10
+        const val PROJECTILE = 0x8
         val EMPTY = ObjectDefinition()
     }
 }

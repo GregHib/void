@@ -75,7 +75,7 @@ class MapCompress(
             }
         }
         writeObjects(writer, objects)
-        writeChunks(writer, chunks)
+        writeTiles(writer, chunks)
         writeFilledChunks(writer, full)
         val data = writer.toArray()
         file.writeBytes(data)
@@ -85,7 +85,7 @@ class MapCompress(
     private fun writeObjects(writer: Writer, objects: Map<Chunk, List<ZoneObject>>) {
         writer.writeInt(objects.size)
         objects.forEach { (chunk, objs) ->
-            writer.writeInt(Chunk.index(chunk.x, chunk.y, chunk.plane))
+            writer.writeInt(chunk.index)
             writer.writeShort(objs.size)
             for (obj in objs) {
                 writer.writeInt(obj.value)
@@ -93,10 +93,10 @@ class MapCompress(
         }
     }
 
-    private fun writeChunks(writer: BufferWriter, chunks: MutableSet<Chunk>) {
+    private fun writeTiles(writer: BufferWriter, chunks: MutableSet<Chunk>) {
         writer.writeInt(chunks.size)
         for (chunk in chunks) {
-            writer.writeInt(chunk.id)
+            writer.writeInt(chunk.index)
             val array = collisions.allocateIfAbsent(
                 chunk.tile.x,
                 chunk.tile.y,
@@ -115,7 +115,7 @@ class MapCompress(
     private fun writeFilledChunks(writer: BufferWriter, full: MutableSet<Chunk>) {
         writer.writeInt(full.size)
         for (chunk in full) {
-            writer.writeInt(chunk.id)
+            writer.writeInt(chunk.index)
         }
     }
 

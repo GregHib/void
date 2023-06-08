@@ -2,6 +2,8 @@ package world.gregs.voidps.engine.map.file
 
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
@@ -59,22 +61,23 @@ class MapExtract(
 
     private fun readTiles(reader: BufferReader) {
         for (i in 0 until reader.readInt()) {
-            val chunk = Chunk(reader.readInt())
-            tileIndices[chunk.id] = reader.position()
-            val intArray = collisions.allocateIfAbsent(
-                absoluteX = chunk.tile.x,
-                absoluteZ = chunk.tile.y,
-                level = chunk.plane
-            )
+            val chunkIndex = reader.readInt()
+            tileIndices[chunkIndex] = reader.position()
+            val intArray = collisions.flags[chunkIndex]
             val value = reader.readLong()
-            for (index in 0 until 64) {
+            if (intArray == null) {
+                collisions.flags[chunkIndex] = IntArray(CHUNK_SIZE) {
+                    if (value ushr it and 0x1 == 1L) CollisionFlag.FLOOR else 0
+                }
+                return
+            }
+            for (index in 0 until CHUNK_SIZE) {
                 if (value ushr index and 0x1 == 1L) {
                     intArray[index] = intArray[index] or CollisionFlag.FLOOR
                 }
             }
         }
     }
-
 
     private fun readObjects(reader: BufferReader) {
         for (i in 0 until reader.readInt()) {
@@ -90,9 +93,9 @@ class MapExtract(
 
     private fun readFullTiles(reader: BufferReader) {
         for (i in 0 until reader.readInt()) {
-            val chunk = Chunk(reader.readInt())
-            tileIndices[chunk.id] = reader.position()
-            fillTiles(chunk)
+            val chunkIndex = reader.readInt()
+            tileIndices[chunkIndex] = reader.position()
+            fillTiles(chunkIndex)
         }
     }
 
@@ -104,10 +107,10 @@ class MapExtract(
             val regionY = region.tile.y
             zones += 64
             for (plane in 0 until 4) {
-                for (zoneX in 0 until 8) {
-                    for (zoneY in 0 until 8) {
-                        val x = regionX + zoneX * 8
-                        val y = regionY + zoneY * 8
+                for (zoneX in 0 until 64 step 8) {
+                    for (zoneY in 0 until 64 step 8) {
+                        val x = regionX + zoneX
+                        val y = regionY + zoneY
                         collisions.allocateIfAbsent(x, y, plane)
                     }
                 }
@@ -117,8 +120,8 @@ class MapExtract(
     }
 
     fun loadChunk(from: Chunk, to: Chunk, rotation: Int) {
-        val objectPosition = objectIndices[from.id]?.toLong()
-        val tilePosition = tileIndices[from.id]?.toLong()
+        val objectPosition = objectIndices[from.index]?.toLong()
+        val tilePosition = tileIndices[from.index]?.toLong()
         val start = System.currentTimeMillis()
         if (objectPosition != null) {
             raf.seek(objectPosition)
@@ -128,7 +131,7 @@ class MapExtract(
         }
         if (tilePosition != null) {
             if (tilePosition > fillMarker) {
-                fillTiles(to)
+                fillTiles(to.index)
             } else {
                 raf.seek(tilePosition)
                 raf.read(tileArray)
@@ -159,7 +162,7 @@ class MapExtract(
             level = chunk.plane
         )
         val value = reader.readLong()
-        for (i in 0 until 64) {
+        for (i in 0 until CHUNK_SIZE) {
             if (value ushr i and 0x1 == 1L) {
                 val x = i and 0x7
                 val y = i shr 3 and 0x7
@@ -169,15 +172,18 @@ class MapExtract(
         }
     }
 
-    private fun fillTiles(chunk: Chunk) {
-        collisions.allocateIfAbsent(
-            absoluteX = chunk.tile.x,
-            absoluteZ = chunk.tile.y,
-            level = chunk.plane
-        ).fill(CollisionFlag.FLOOR)
+    private fun fillTiles(chunkIndex: Int) {
+        val array = collisions.flags[chunkIndex]
+        if (array == null) {
+            collisions.flags[chunkIndex] = IntArray(CHUNK_SIZE) { CollisionFlag.FLOOR }
+            return
+        }
+        array.fill(CollisionFlag.FLOOR)
     }
 
     companion object {
+        private const val CHUNK_SIZE = 64
+
         private fun rotateX(x: Int, y: Int, rotation: Int): Int {
             return (if (rotation == 1) y else if (rotation == 2) 7 - x else if (rotation == 3) 7 - y else x) and 0x7
         }
@@ -246,11 +252,14 @@ class MapExtract(
             val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
             cache.clear()
             val collisions = Collisions()
-            val objcol = GameObjectCollision(collisions)
-            val objects = GameObjects(objcol, ChunkBatchUpdates(), definitions, storeUnused = false)
+            val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = true)
             val extract = MapExtract(collisions, definitions, objects, xteas)
-            objects.clear()
             extract.loadMap(File("./data/map-test.dat"))
+            println(objects.size)
+            runBlocking {
+                delay(10000)
+            }
+            println(objects.size)
         }
     }
 }
