@@ -22,8 +22,7 @@ class GameObjectsTest {
         val definitions = mockk<ObjectDefinitions>(relaxed = true)
         every { definitions.get("test") } returns ObjectDefinition(123)
         every { definitions.get("test2") } returns ObjectDefinition(456)
-        objects = GameObjects(mockk(relaxed = true), mockk(relaxed = true), definitions)
-        GameObjects.LOAD_UNUSED = true
+        objects = GameObjects(mockk(relaxed = true), mockk(relaxed = true), definitions, storeUnused = true)
     }
 
     @Test

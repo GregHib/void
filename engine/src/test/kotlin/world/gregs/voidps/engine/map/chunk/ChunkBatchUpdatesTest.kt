@@ -54,7 +54,6 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
         player.viewport = Viewport()
         player.viewport!!.size = 0
         batches = ChunkBatchUpdates()
-        GameObjects.LOAD_UNUSED = true
     }
 
     @Test
@@ -63,7 +62,7 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
         val chunk = Chunk(2, 2)
         batches.add(chunk, update)
         player.tile = Tile(20, 20)
-        val objects = GameObjects(GameObjectCollision(Collisions()), ChunkBatchUpdates(), mockk(relaxed = true))
+        val objects = GameObjects(GameObjectCollision(Collisions()), ChunkBatchUpdates(), mockk(relaxed = true), storeUnused = true)
         objects.set(1234, 21, 20, 0, 10, 0, ObjectDefinition.EMPTY)
         batches.register(objects)
         val added = GameObject(4321, Tile(20, 21), 10, 0)

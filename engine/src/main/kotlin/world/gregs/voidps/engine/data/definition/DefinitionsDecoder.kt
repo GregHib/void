@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.definition
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.engine.data.FileStorage
@@ -68,7 +69,7 @@ interface DefinitionsDecoder<D> where D : Definition, D : Extra {
             val name = names[i]
             definition.stringId = name ?: i.toString()
             val extra = extras[name] ?: continue
-            definition.extras = extra
+            definition.extras = Object2ObjectOpenHashMap(extra)
             block.invoke(definition)
         }
     }
