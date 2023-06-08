@@ -9,6 +9,8 @@ import world.gregs.voidps.engine.map.collision.Collisions
 class GameObjectArrayMap : GameObjectMap {
     private val data: Array<IntArray?> = arrayOfNulls(TOTAL_ZONE_COUNT)
 
+    override fun get(obj: GameObject) = get(obj.x, obj.y, obj.plane, ObjectGroup.group(obj.type))
+
     override operator fun get(x: Int, y: Int, level: Int, group: Int): Int {
         val zoneIndex = zoneIndex(x, y, level)
         val tileIndex = tileIndex(x, y, group)
@@ -20,14 +22,22 @@ class GameObjectArrayMap : GameObjectMap {
         tiles[tileIndex(x, y, group)] = mask
     }
 
-    override fun add(x: Int, y: Int, level: Int, group: Int, mask: Int) {
+    override fun add(obj: GameObject, mask: Int) {
+        val x = obj.x
+        val y = obj.x
+        val level = obj.plane
+        val group = ObjectGroup.group(obj.type)
         val zoneIndex = zoneIndex(x, y, level)
         val tileIndex = tileIndex(x, y, group)
         val currentFlags = data[zoneIndex]?.get(tileIndex) ?: 0
         this[x, y, level, group] = currentFlags or mask
     }
 
-    override fun remove(x: Int, y: Int, level: Int, group: Int, mask: Int) {
+    override fun remove(obj: GameObject, mask: Int) {
+        val x = obj.x
+        val y = obj.x
+        val level = obj.plane
+        val group = ObjectGroup.group(obj.type)
         val currentFlags = this[x, y, level, group]
         this[x, y, level, group] = currentFlags and mask.inv()
     }
