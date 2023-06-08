@@ -313,9 +313,12 @@ class GameObjects(
 
     override fun send(player: Player, chunk: Chunk) {
         forEachReplaced(chunk) { tile, group, value ->
-            player.client?.send(ObjectRemoval(tile.id, type(value), rotation(value)))
+            if (value != 1) {
+                player.client?.send(ObjectRemoval(tile.id, type(value), rotation(value)))
+            }
             val replaced = replacements[index(tile, group)]
             if (replaced != null) {
+                println("Replacement $tile $replaced")
                 player.client?.send(ObjectAddition(tile.id, id(replaced), type(replaced), rotation(replaced)))
             }
         }
@@ -330,6 +333,9 @@ class GameObjects(
                 for (group in 0 until 4) {
                     val value = map[chunkX + x, chunkY + y, plane, group]
                     if (empty(value) || !replaced(value)) {
+                        if(!empty(value)) {
+                            println("WHy ${value and 0x1} ${chunkX + x} ${chunkY + y} $value")
+                        }
                         continue
                     }
                     val tile = chunk.tile.add(x, y)
@@ -347,7 +353,7 @@ class GameObjects(
          * Value represents an objects id, type and rotation stored within [map] and [replacements]
          */
         private fun empty(value: Int) = value == -1 || value == 0
-        fun value(replaced: Boolean, id: Int, type: Int, rotation: Int) = replaced.toInt() or (rotation shl 1) + (type shl 3) + (id shl 8)
+        internal fun value(replaced: Boolean, id: Int, type: Int, rotation: Int) = replaced.toInt() or (rotation shl 1) + (type shl 3) + (id shl 8)
         private fun id(value: Int): Int = value shr 8 and 0x1ffff
         private fun type(value: Int): Int = value shr 3 and 0x1f
         private fun rotation(value: Int): Int = value shr 1 and 0x3

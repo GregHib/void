@@ -29,7 +29,7 @@ class GameObjectArrayMap : GameObjectMap {
 
     override fun add(obj: GameObject, mask: Int) {
         val x = obj.x
-        val y = obj.x
+        val y = obj.y
         val level = obj.plane
         val group = ObjectGroup.group(obj.type)
         val zoneIndex = zoneIndex(x, y, level)
@@ -40,7 +40,7 @@ class GameObjectArrayMap : GameObjectMap {
 
     override fun remove(obj: GameObject, mask: Int) {
         val x = obj.x
-        val y = obj.x
+        val y = obj.y
         val level = obj.plane
         val group = ObjectGroup.group(obj.type)
         val currentFlags = this[x, y, level, group]
@@ -76,5 +76,14 @@ class GameObjectArrayMap : GameObjectMap {
 
         private fun zoneIndex(x: Int, y: Int, level: Int): Int = ((x shr 3) and 0x7FF) or
                 (((y shr 3) and 0x7FF) shl 11) or ((level and 0x3) shl 22)
+
+        @JvmStatic
+        fun main(args: Array<String>) {
+
+            println(zoneIndex(20, 20, 0))
+            println(tileIndex(4, 4, 2))
+            println(zoneIndex(20, 21, 0))
+            println(tileIndex(4, 5, 2))
+        }
     }
 }

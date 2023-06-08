@@ -32,7 +32,7 @@ val engineModule = module {
     // Entities
     single { NPCs(get(), get(), get(), get()) }
     single { Players() }
-    single { GameObjects(get(), get(), get()).apply { get<ChunkBatchUpdates>().register(this) } }
+    single { GameObjects(get(), get(), get(), getProperty<String>("loadUnusedObjects") == "true").apply { get<ChunkBatchUpdates>().register(this) } }
     single { FloorItems(get(), get(), get()).apply { get<ChunkBatchUpdates>().register(this) } }
     single { FloorItemTracking(get(), get(), get()) }
     single {
