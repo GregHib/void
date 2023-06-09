@@ -25,8 +25,6 @@ value class Chunk(override val id: Int) : Id {
         get() = RegionPlane(x shr 3, y shr 3, plane)
     val tile: Tile
         get() = Tile(x shl 3, y shl 3, plane)
-    val index: Int
-        get() = index(x, y, plane)
 
     fun copy(x: Int = this.x, y: Int = this.y, plane: Int = this.plane) = Chunk(x, y, plane)
     fun add(x: Int, y: Int, plane: Int = 0) = copy(x = this.x + x, y = this.y + y, plane = this.plane + plane)
@@ -54,22 +52,16 @@ value class Chunk(override val id: Int) : Id {
     }
 
     companion object {
-        fun id(x: Int, y: Int, plane: Int) = (y and 0xfff) + ((x and 0xfff) shl 12) + ((plane and 0x3) shl 24)
-        fun x(id: Int) = id shr 12 and 0xfff
-        fun y(id: Int) = id and 0xfff
-        fun plane(id: Int) = id shr 24
+        fun id(x: Int, y: Int, plane: Int) = (x and 0x7ff) + ((y and 0x7ff) shl 11) + ((plane and 0x3) shl 22)
+        fun x(id: Int) = id and 0x7ff
+        fun y(id: Int) = id shr 11 and 0x7ff
+        fun plane(id: Int) = id shr 22 and 0x3
         val EMPTY = Chunk(0, 0, 0)
 
         /**
-         * Index; used for indexing chunks in arrays
-         * @see world.gregs.voidps.engine.map.collision.Collisions
-         * @see world.gregs.voidps.engine.entity.obj.GameObjectMap
+         * Index of a local tile within a chunk
          */
-        fun indexX(index: Int) = index and 0x7ff
-        fun indexY(index: Int) = index shr 11 and 0x7ff
-        fun indexLevel(index: Int) = index shr 22 and 0x3
-        fun index(x: Int, y: Int, level: Int): Int = (x and 0x7ff) or ((y and 0x7ff) shl 11) or ((level and 0x3) shl 22)
-        fun indexTile(tileX: Int, tileY: Int, level: Int): Int = index(tileX shr 3, tileY shr 3, level)
+        fun tileIndex(tileX: Int, tileY: Int, level: Int): Int = id(tileX shr 3, tileY shr 3, level)
     }
 }
 

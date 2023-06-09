@@ -40,7 +40,7 @@ class GameObjectHashMapTest {
         val obj = GameObject(1234, 2500, 3900, 1, 10, 2)
         val value = GameObjects.value(false, obj.intId, obj.type, obj.rotation)
         val tileIndex = Tile.index(obj.x, obj.y, ObjectGroup.INTERACTIVE)
-        val zoneIndex = Chunk.indexTile(obj.x, obj.y, obj.plane)
+        val zoneIndex = Chunk.tileIndex(obj.x, obj.y, obj.plane)
         map[zoneIndex, tileIndex] = value
         val result = map.get(x = 2500, y = 3900, level = 1, group = ObjectGroup.INTERACTIVE)
         assertEquals(value, result)

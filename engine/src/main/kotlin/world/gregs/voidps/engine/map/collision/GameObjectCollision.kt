@@ -32,8 +32,8 @@ class GameObjectCollision(
         if (def.solid == 0) {
             return
         }
-        val x = obj.x + (Chunk.indexX(chunk) shl 3)
-        val y = obj.y + (Chunk.indexY(chunk) shl 3)
+        val x = obj.x + (Chunk.x(chunk) shl 3)
+        val y = obj.y + (Chunk.y(chunk) shl 3)
         val plane = obj.plane
         val rotation = obj.rotation
         when (obj.type) {
@@ -97,7 +97,7 @@ class GameObjectCollision(
     }
 
     private fun modifyTile(x: Int, y: Int, plane: Int, block: Int, direction: Int, add: Boolean) {
-        val flags = collisions.flags[Chunk.indexTile(x, y, plane)] ?: return
+        val flags = collisions.flags[Chunk.tileIndex(x, y, plane)] ?: return
         if (add) {
             flags[Tile.index(x, y)] = flags[Tile.index(x, y)] or CollisionFlags.blocked[direction or block]
         } else {

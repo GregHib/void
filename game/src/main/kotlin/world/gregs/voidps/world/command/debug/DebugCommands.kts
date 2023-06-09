@@ -202,7 +202,7 @@ on<Command>({ prefix == "col" }) { player: Player ->
 operator fun Array<IntArray?>.get(baseX: Int, baseY: Int, localX: Int, localY: Int, z: Int): Int {
     val x = baseX + localX
     val y = baseY + localY
-    val zone = this[Chunk.indexTile(x, y, z)] ?: return 0
+    val zone = this[Chunk.tileIndex(x, y, z)] ?: return 0
     return zone[Tile.index(x, y)]
 }
 

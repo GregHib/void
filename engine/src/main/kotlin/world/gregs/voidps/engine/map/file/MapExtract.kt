@@ -66,7 +66,7 @@ class MapExtract(
                 collisions.flags[chunkIndex] = IntArray(CHUNK_SIZE) {
                     if (value ushr it and 0x1 == 1L) CollisionFlag.FLOOR else 0
                 }
-                return
+                continue
             }
             for (index in 0 until CHUNK_SIZE) {
                 if (value ushr index and 0x1 == 1L) {
@@ -117,8 +117,8 @@ class MapExtract(
     }
 
     fun loadChunk(from: Chunk, to: Chunk, rotation: Int) {
-        val objectPosition = objectIndices[from.index]?.toLong()
-        val tilePosition = tileIndices[from.index]?.toLong()
+        val objectPosition = objectIndices[from.id]?.toLong()
+        val tilePosition = tileIndices[from.id]?.toLong()
         val start = System.currentTimeMillis()
         if (objectPosition != null) {
             raf.seek(objectPosition)
@@ -128,7 +128,7 @@ class MapExtract(
         }
         if (tilePosition != null) {
             if (tilePosition > fillMarker) {
-                fillTiles(to.index)
+                fillTiles(to.id)
             } else {
                 raf.seek(tilePosition)
                 raf.read(tileArray)

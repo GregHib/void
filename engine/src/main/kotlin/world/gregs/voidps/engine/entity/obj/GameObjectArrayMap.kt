@@ -14,7 +14,7 @@ class GameObjectArrayMap : GameObjectMap {
     override fun get(obj: GameObject) = get(obj.x, obj.y, obj.plane, ObjectGroup.group(obj.type))
 
     override operator fun get(x: Int, y: Int, level: Int, group: Int): Int {
-        val zoneIndex = Chunk.indexTile(x, y, level)
+        val zoneIndex = Chunk.tileIndex(x, y, level)
         val tileIndex = Tile.index(x, y, group)
         return data[zoneIndex]?.get(tileIndex) ?: -1
     }
@@ -25,7 +25,7 @@ class GameObjectArrayMap : GameObjectMap {
     }
 
     override operator fun set(x: Int, y: Int, level: Int, group: Int, mask: Int) {
-        val tiles = data[Chunk.indexTile(x, y, level)] ?: allocateIfAbsent(x, y, level)
+        val tiles = data[Chunk.tileIndex(x, y, level)] ?: allocateIfAbsent(x, y, level)
         tiles[Tile.index(x, y, group)] = mask
     }
 
@@ -34,7 +34,7 @@ class GameObjectArrayMap : GameObjectMap {
         val y = obj.y
         val level = obj.plane
         val group = ObjectGroup.group(obj.type)
-        val zoneIndex = Chunk.indexTile(x, y, level)
+        val zoneIndex = Chunk.tileIndex(x, y, level)
         val tileIndex = Tile.index(x, y, group)
         val currentFlags = data[zoneIndex]?.get(tileIndex) ?: 0
         this[x, y, level, group] = currentFlags or mask
@@ -50,7 +50,7 @@ class GameObjectArrayMap : GameObjectMap {
     }
 
     private fun allocateIfAbsent(absoluteX: Int, absoluteY: Int, level: Int): IntArray {
-        val zoneIndex = Chunk.indexTile(absoluteX, absoluteY, level)
+        val zoneIndex = Chunk.tileIndex(absoluteX, absoluteY, level)
         return allocateIfAbsent(zoneIndex)
     }
 
@@ -63,11 +63,11 @@ class GameObjectArrayMap : GameObjectMap {
     }
 
     override fun deallocateZone(zoneX: Int, zoneY: Int, level: Int) {
-        data[Chunk.indexTile(zoneX, zoneY, level)] = null
+        data[Chunk.tileIndex(zoneX, zoneY, level)] = null
     }
 
     fun isZoneAllocated(absoluteX: Int, absoluteY: Int, level: Int): Boolean {
-        return data[Chunk.indexTile(absoluteX, absoluteY, level)] != null
+        return data[Chunk.tileIndex(absoluteX, absoluteY, level)] != null
     }
 
     override fun clear() {
