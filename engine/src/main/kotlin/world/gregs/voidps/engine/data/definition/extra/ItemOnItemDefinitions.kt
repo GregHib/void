@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.definition.extra
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.mapIds
 import world.gregs.voidps.engine.data.definition.config.ItemOnItemDefinition
@@ -44,7 +45,7 @@ class ItemOnItemDefinitions {
                 }
             }
         }
-        definitions = map
+        definitions = Object2ObjectOpenHashMap(map)
         return definitions.size
     }
 

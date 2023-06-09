@@ -1,10 +1,11 @@
 package world.gregs.voidps.engine.data.definition.extra
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.config.GearDefinition
-import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
+import world.gregs.voidps.engine.timedLoad
 
 class GearDefinitions {
 
@@ -27,7 +28,7 @@ class GearDefinitions {
             val list = map.getOrPut(type) { mutableListOf() }
             list.add(GearDefinition(type, item))
         }
-        definitions = map
+        definitions = Object2ObjectOpenHashMap(map)
         return definitions.size
     }
 

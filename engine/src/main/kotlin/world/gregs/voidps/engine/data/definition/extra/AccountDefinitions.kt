@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.definition.extra
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.data.FileStorage
@@ -21,9 +22,9 @@ class AccountDefinitions(
     private val variableDefinitions: VariableDefinitions
 ) {
 
-    private val definitions = mutableMapOf<String, AccountDefinition>()
-    private val displayNames = mutableMapOf<String, String>()
-    private val clans = mutableMapOf<String, Clan>()
+    private val definitions: MutableMap<String, AccountDefinition> = Object2ObjectOpenHashMap()
+    private val displayNames: MutableMap<String, String> = Object2ObjectOpenHashMap()
+    private val clans: MutableMap<String, Clan> = Object2ObjectOpenHashMap()
 
     fun add(player: Player) {
         displayNames[player.accountName] = player.name
