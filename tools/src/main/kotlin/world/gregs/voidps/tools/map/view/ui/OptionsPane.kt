@@ -14,7 +14,7 @@ class OptionsPane(private val view: MapView) : JPanel() {
         tileX.text = mapX.toString()
         tileY.text = mapY.toString()
         tilePlane.text = plane.toString()
-        region.text = Region.getId(mapX / 64, mapY / 64).toString()
+        region.text = Region.id(mapX / 64, mapY / 64).toString()
     }
 
     init {

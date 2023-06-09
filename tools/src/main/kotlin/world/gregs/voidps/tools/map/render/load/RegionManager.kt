@@ -30,7 +30,7 @@ class RegionManager(
     fun loadTiles(regionX: Int, regionY: Int) {
         for (rX in regionX until regionX + regionRenderSize) {
             for (rY in regionY until regionY + regionRenderSize) {
-                setOrLoadTiles(Region.getId(rX, rY))
+                setOrLoadTiles(Region.id(rX, rY))
             }
         }
     }

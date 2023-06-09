@@ -12,21 +12,21 @@ import world.gregs.voidps.engine.map.region.RegionPlane
 @JvmInline
 value class Tile(override val id: Int) : Id {
 
-    constructor(x: Int, y: Int, plane: Int = 0) : this(getId(x, y, plane))
+    constructor(x: Int, y: Int, plane: Int = 0) : this(id(x, y, plane))
 
     val x: Int
-        get() = getX(id)
+        get() = x(id)
     val y: Int
-        get() = getY(id)
+        get() = y(id)
     val plane: Int
-        get() = getPlane(id)
+        get() = plane(id)
 
     val chunk: Chunk
-        get() = Chunk(x / 8, y / 8, plane)
+        get() = Chunk(x shr 3, y shr 3, plane)
     val region: Region
-        get() = Region(x / 64, y / 64)
+        get() = Region(x shr 6, y shr 6)
     val regionPlane: RegionPlane
-        get() = RegionPlane(x / 64, y / 64, plane)
+        get() = RegionPlane(x shr 6, y shr 6, plane)
 
     fun copy(x: Int = this.x, y: Int = this.y, plane: Int = this.plane) = Tile(x, y, plane)
     fun add(x: Int, y: Int, plane: Int = 0) = copy(x = this.x + x, y = this.y + y, plane = this.plane + plane)
@@ -74,7 +74,6 @@ value class Tile(override val id: Int) : Id {
     }
 
     fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(this, width, height, 1)
-
     fun toCuboid(radius: Int) = Cuboid(minus(radius, radius), radius * 2 + 1, radius * 2 + 1, 1)
 
     override fun toString(): String {
@@ -82,10 +81,10 @@ value class Tile(override val id: Int) : Id {
     }
 
     companion object {
-        fun getId(x: Int, y: Int, plane: Int = 0) = (y and 0x3fff) + ((x and 0x3fff) shl 14) + ((plane and 0x3) shl 28)
-        fun getX(id: Int) = id shr 14 and 0x3fff
-        fun getY(id: Int) = id and 0x3fff
-        fun getPlane(id: Int) = id shr 28
+        fun id(x: Int, y: Int, plane: Int = 0) = (y and 0x3fff) + ((x and 0x3fff) shl 14) + ((plane and 0x3) shl 28)
+        fun x(id: Int) = id shr 14 and 0x3fff
+        fun y(id: Int) = id and 0x3fff
+        fun plane(id: Int) = id shr 28
 
         val EMPTY = Tile(0)
 

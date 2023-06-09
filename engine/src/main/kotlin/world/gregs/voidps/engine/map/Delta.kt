@@ -8,14 +8,14 @@ import world.gregs.voidps.engine.entity.Direction
 @JvmInline
 value class Delta(val id: Long) {
 
-    constructor(x: Int, y: Int, plane: Int = 0) : this(getId(x, y, plane))
+    constructor(x: Int, y: Int, plane: Int = 0) : this(id(x, y, plane))
 
     val x: Int
-        get() = getX(id)
+        get() = x(id)
     val y: Int
-        get() = getY(id)
+        get() = y(id)
     val plane: Int
-        get() = getPlane(id)
+        get() = plane(id)
 
     fun isDiagonal() = isHorizontal() && isVertical()
 
@@ -69,13 +69,10 @@ value class Delta(val id: Long) {
     }
 
     companion object {
-        fun getId(x: Int, y: Int, plane: Int = 0) = ((plane + 0x3L) and 0x7) + (((x + 0x7fffL) and 0xffff) shl 3) + (((y + 0x7fffL) and 0xffff) shl 19)
-
-        fun getX(id: Long) = (id shr 3 and 0xffff).toInt() - 0x7fff
-
-        fun getY(id: Long) = (id shr 19 and 0xffff).toInt() - 0x7fff
-
-        fun getPlane(id: Long) = (id and 0x7).toInt() - 0x3
+        fun id(x: Int, y: Int, plane: Int = 0) = ((plane + 0x3L) and 0x7) + (((x + 0x7fffL) and 0xffff) shl 3) + (((y + 0x7fffL) and 0xffff) shl 19)
+        fun x(id: Long) = (id shr 3 and 0xffff).toInt() - 0x7fff
+        fun y(id: Long) = (id shr 19 and 0xffff).toInt() - 0x7fff
+        fun plane(id: Long) = (id and 0x7).toInt() - 0x3
 
         val EMPTY = Delta(0, 0, 0)
 

@@ -9,16 +9,14 @@ import world.gregs.voidps.engine.map.area.Rectangle
 @JvmInline
 value class Region(override val id: Int) : Id {
 
-    constructor(x: Int, y: Int) : this(getId(x, y))
+    constructor(x: Int, y: Int) : this(id(x, y))
 
     val x: Int
-        get() = getX(id)
-
+        get() = x(id)
     val y: Int
-        get() = getY(id)
-
+        get() = y(id)
     val tile: Tile
-        get() = Tile(x * 64, y * 64, 0)
+        get() = Tile(x shl 6, y shl 6, 0)
 
     fun copy(x: Int = this.x, y: Int = this.y) = Region(x, y)
     fun add(x: Int, y: Int) = copy(x = this.x + x, y = this.y + y)
@@ -31,12 +29,9 @@ value class Region(override val id: Int) : Id {
 
     fun toPlane(plane: Int) = RegionPlane(x, y, plane)
 
-    fun toRectangle(width: Int = 1, height: Int = 1) = Rectangle(tile, width * 64, height * 64)
-
-    fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(tile, width * 64, height * 64, 4)
-
     fun toRectangle(radius: Int) = Rectangle(minus(radius, radius).tile, (radius * 2 + 1) * 64, (radius * 2 + 1) * 64)
-
+    fun toRectangle(width: Int = 1, height: Int = 1) = Rectangle(tile, width * 64, height * 64)
+    fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(tile, width * 64, height * 64, 4)
     fun toCuboid(radius: Int) = Cuboid(minus(radius, radius).tile, (radius * 2 + 1) * 64, (radius * 2 + 1) * 64, 4)
 
     fun offset(region: Region): Tile {
@@ -44,9 +39,9 @@ value class Region(override val id: Int) : Id {
     }
 
     companion object {
-        fun getId(x: Int, y: Int) = (y and 0xff) + ((x and 0xff) shl 8)
-        fun getX(id: Int) = id shr 8
-        fun getY(id: Int) = id and 0xff
+        fun id(x: Int, y: Int) = (y and 0xff) + ((x and 0xff) shl 8)
+        fun x(id: Int) = id shr 8
+        fun y(id: Int) = id and 0xff
         val EMPTY = Region(0, 0)
     }
 }

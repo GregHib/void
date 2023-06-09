@@ -121,7 +121,7 @@ fun update(player: Player, initial: Boolean, force: Boolean) {
     val radius = viewport.chunkRadius
     for (regionX in (chunk.x - radius) / 8..(chunk.x + radius) / 8) {
         for (regionY in (chunk.y - radius) / 8..(chunk.y + radius) / 8) {
-            val xtea = xteas[Region.getId(regionX, regionY)] ?: blankXtea
+            val xtea = xteas[Region.id(regionX, regionY)] ?: blankXtea
             xteaList.add(xtea)
         }
     }

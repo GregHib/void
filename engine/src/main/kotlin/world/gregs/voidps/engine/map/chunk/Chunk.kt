@@ -11,20 +11,20 @@ import world.gregs.voidps.engine.map.region.RegionPlane
 @JvmInline
 value class Chunk(override val id: Int) : Id {
 
-    constructor(x: Int, y: Int, plane: Int = 0) : this(getId(x, y, plane))
+    constructor(x: Int, y: Int, plane: Int = 0) : this(id(x, y, plane))
 
     val x: Int
-        get() = getX(id)
+        get() = x(id)
     val y: Int
-        get() = getY(id)
+        get() = y(id)
     val plane: Int
-        get() = getPlane(id)
+        get() = plane(id)
     val region: Region
-        get() = Region(x / 8, y / 8)
+        get() = Region(x shr 3, y shr 3)
     val regionPlane: RegionPlane
-        get() = RegionPlane(x / 8, y / 8, plane)
+        get() = RegionPlane(x shr 3, y shr 3, plane)
     val tile: Tile
-        get() = Tile(x * 8, y * 8, plane)
+        get() = Tile(x shl 3, y shl 3, plane)
     val index: Int
         get() = index(x, y, plane)
 
@@ -44,20 +44,20 @@ value class Chunk(override val id: Int) : Id {
         return Chunk((this.x - x).coerceAtLeast(0), (this.y - y).coerceAtLeast(0), (this.plane - plane).coerceAtLeast(0))
     }
 
-    fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(tile, width * 8, height * 8, 1)
-    fun toCuboid(radius: Int) = Cuboid(safeMinus(radius, radius).tile, (radius * 2 + 1) * 8, (radius * 2 + 1) * 8, 1)
     fun toRectangle(radius: Int) = Rectangle(safeMinus(radius, radius).tile, (radius * 2 + 1) * 8, (radius * 2 + 1) * 8)
     fun toRectangle(width: Int = 1, height: Int = 1) = Rectangle(tile, width * 8, height * 8)
+    fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(tile, width * 8, height * 8, 1)
+    fun toCuboid(radius: Int) = Cuboid(safeMinus(radius, radius).tile, (radius * 2 + 1) * 8, (radius * 2 + 1) * 8, 1)
 
     override fun toString(): String {
         return "Chunk($x, $y, $plane)"
     }
 
     companion object {
-        fun getId(x: Int, y: Int, plane: Int) = (y and 0xfff) + ((x and 0xfff) shl 12) + ((plane and 0x3) shl 24)
-        fun getX(id: Int) = id shr 12 and 0xfff
-        fun getY(id: Int) = id and 0xfff
-        fun getPlane(id: Int) = id shr 24
+        fun id(x: Int, y: Int, plane: Int) = (y and 0xfff) + ((x and 0xfff) shl 12) + ((plane and 0x3) shl 24)
+        fun x(id: Int) = id shr 12 and 0xfff
+        fun y(id: Int) = id and 0xfff
+        fun plane(id: Int) = id shr 24
         val EMPTY = Chunk(0, 0, 0)
 
         /**
