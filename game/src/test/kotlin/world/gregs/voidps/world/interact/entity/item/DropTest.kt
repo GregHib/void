@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.floorItemOption
@@ -87,7 +85,6 @@ internal class DropTest : WorldTest() {
         val tile = Tile(3212, 3218, 1)
         val player = createPlayer("player", tile)
         player.inventory.add("bronze_sword")
-        val objects: GameObjects = get()
         val drawers = objects[tile.addX(1), "table_lumbridge"]!!
         player.itemOnObject(drawers, itemSlot = 0, id = "bronze_sword")
 
@@ -100,7 +97,6 @@ internal class DropTest : WorldTest() {
         val tile = Tile(3212, 3218, 1)
         val player = createPlayer("player")
         player.inventory.add("toolkit")
-        val objects: GameObjects = get()
         val drawers = objects[tile.addX(1), "table_lumbridge"]!!
 
         player.itemOnObject(drawers, itemSlot = 0, id = "toolkit")

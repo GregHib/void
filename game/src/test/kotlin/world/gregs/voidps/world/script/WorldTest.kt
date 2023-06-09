@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
+import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.set
@@ -40,7 +41,11 @@ import world.gregs.voidps.engine.entity.obj.ObjectType
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.GameObjectCollision
+import world.gregs.voidps.engine.map.file.MapExtract
 import world.gregs.voidps.engine.map.file.Maps
+import world.gregs.voidps.engine.map.region.XteaLoader
+import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.gameModule
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.Client
@@ -67,9 +72,8 @@ abstract class WorldTest : KoinTest {
     private lateinit var gatekeeper: NetworkGatekeeper
     private lateinit var npcs: NPCs
     lateinit var floorItems: FloorItems
-    private lateinit var objects: GameObjects
+    lateinit var objects: GameObjects
     private lateinit var accountDefs: AccountDefinitions
-    private lateinit var collisions: Collisions
     private var saves: File? = null
 
     val extraProperties: MutableMap<String, Any> = mutableMapOf()
@@ -149,6 +153,11 @@ abstract class WorldTest : KoinTest {
                 single(createdAtStart = true) { structDefinitions }
                 single(createdAtStart = true) { quickChatPhraseDefinitions }
                 single(createdAtStart = true) { styleDefinitions }
+                single { xteas }
+                single { gameObjects }
+                single { extract }
+                single { collisions }
+                single { objectCollision }
             })
             modules(postCacheModule, postCacheGameModule)
         }
@@ -182,13 +191,12 @@ abstract class WorldTest : KoinTest {
         floorItems = get()
         objects = get()
         accountDefs = get()
-        collisions = get()
+        logger.info { "World startup took ${millis}ms" }
         for (x in 0 until 24 step 8) {
             for (y in 0 until 24 step 8) {
                 collisions.allocateIfAbsent(x, y, 0)
             }
         }
-        logger.info { "World startup took ${millis}ms" }
     }
 
     @BeforeEach
@@ -228,7 +236,15 @@ abstract class WorldTest : KoinTest {
         private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder(cache), structDefinitions).load() }
         private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cache)).load() }
         private val styleDefinitions: StyleDefinitions by lazy { StyleDefinitions().load(ClientScriptDecoder(cache, revision634 = true)) }
-
+        private val collisions: Collisions by lazy { Collisions() }
+        private val objectCollision: GameObjectCollision by lazy { GameObjectCollision(collisions) }
+        private val xteas: Xteas by lazy { Xteas().apply { XteaLoader().load(this, getProperty("xteaPath")) } }
+        private val gameObjects: GameObjects by lazy { GameObjects(objectCollision, ChunkBatchUpdates(), objectDefinitions, storeUnused = true) }
+        private val extract: MapExtract by lazy {
+            val extract = MapExtract(collisions, objectDefinitions, gameObjects, xteas)
+            extract.loadMap(File(getProperty("mapPath")))
+            extract
+        }
         val emptyTile = Tile(2655, 4640)
     }
 }

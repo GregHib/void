@@ -267,6 +267,10 @@ class GameObjects(
         return id(replacement) == obj.intId && type(replacement) == obj.type && rotation(replacement) == obj.rotation
     }
 
+    fun allocate(x: Int, y: Int, plane: Int) {
+        map.allocateIfAbsent(x, y, plane)
+    }
+
     /**
      * Resets all original objects in [chunk]
      */
@@ -369,10 +373,10 @@ class GameObjects(
 
         private fun index(x: Int, y: Int, plane: Int, group: Int) = y or (x shl 14) or (plane shl 28) or (group shl 30)
         private fun index(tile: Tile, group: Int) = tile.id or (group shl 30)
-        private fun level(index: Int) = index and 0x2
-        private fun group(index: Int) = index shr 2 and 0x2
-        private fun x(index: Int) = index shr 4 and 0x3fff
-        private fun y(index: Int) = index shr 18 and 0x3fff
+        private fun level(index: Int) = index shr 28 and 0x2
+        private fun group(index: Int) = index shr 30 and 0x2
+        private fun x(index: Int) = index shr 14 and 0x3fff
+        private fun y(index: Int) = index and 0x3fff
     }
 }
 

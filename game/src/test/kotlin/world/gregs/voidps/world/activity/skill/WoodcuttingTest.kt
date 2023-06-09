@@ -2,25 +2,15 @@ package world.gregs.voidps.world.activity.skill
 
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectGroup
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.objectOption
 
 internal class WoodcuttingTest : WorldTest() {
-
-    private lateinit var objects: GameObjects
-
-    @BeforeEach
-    fun start() {
-        objects = get()
-    }
 
     @Test
     fun `Woodcutting gives log and depletes`() {

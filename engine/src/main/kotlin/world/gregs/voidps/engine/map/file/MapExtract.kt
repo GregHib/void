@@ -55,7 +55,6 @@ class MapExtract(
         fillMarker = reader.position()
         readFullTiles(reader)
         logger.info { "Loaded ${objects.size} ${"object".plural(objects.size)} from file in ${System.currentTimeMillis() - start}ms" }
-
         raf = RandomAccessFile(file, "r")
     }
 
@@ -111,7 +110,7 @@ class MapExtract(
                     for (zoneY in 0 until 64 step 8) {
                         val x = regionX + zoneX
                         val y = regionY + zoneY
-                        objects.map.allocateIfAbsent(x, y, plane)
+                        objects.allocate(x, y, plane)
                         collisions.allocateIfAbsent(x, y, plane)
                     }
                 }
