@@ -7,8 +7,7 @@ data class ObjectTargetStrategy(
     private val obj: GameObject
 ) : TargetStrategy {
     override val bitMask: Int = obj.def.blockFlag
-    override val tile: Tile
-        get() = obj.tile
+    override val tile: Tile = obj.tile
     override val width: Int = obj.width
     override val height: Int = obj.height
     override val sizeX = obj.def.sizeX
