@@ -31,7 +31,7 @@ class RegionLoader(private val grid: MapView) {
     }, AffineTransformOp.TYPE_BILINEAR)
 
     fun getRegion(regionX: Int, regionY: Int, plane: Int): BufferedImage? {
-        val regionId = Tile.getId(regionX, regionY, plane)
+        val regionId = Tile.id(regionX, regionY, plane)
         val region = regions[regionId]
         if (region == null) {
             loadQueue.add(regionId)
@@ -51,9 +51,9 @@ class RegionLoader(private val grid: MapView) {
                 if (regions.containsKey(regionId)) {
                     continue
                 }
-                val regionX = Tile.getX(regionId)
-                val regionY = Tile.getY(regionId)
-                val plane = Tile.getPlane(regionId)
+                val regionX = Tile.x(regionId)
+                val regionY = Tile.y(regionId)
+                val plane = Tile.plane(regionId)
                 loadRegion(regionX, regionY, regionId, plane)
                 it.remove()
             }
@@ -75,7 +75,7 @@ class RegionLoader(private val grid: MapView) {
     }
 
     private fun loadRegionImage(regionX: Int, regionY: Int, plane: Int): BufferedImage? {
-        val id = Region.getId(regionX, regionY)
+        val id = Region.id(regionX, regionY)
         val file = File("./images/$plane/$id.png")
         return if (file.exists()) ImageIO.read(file) else null
     }
@@ -87,7 +87,7 @@ class RegionLoader(private val grid: MapView) {
     fun remove(rangeX: IntRange, rangeY: IntRange) {
         for (regionX in rangeX) {
             for (regionY in rangeY) {
-                val id = Region.getId(regionX, flipRegionY(regionY))
+                val id = Region.id(regionX, flipRegionY(regionY))
                 loadQueue.remove(id)
                 if (regions[id] != null) {
                     regions.remove(id)

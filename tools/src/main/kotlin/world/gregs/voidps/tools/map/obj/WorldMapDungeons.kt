@@ -1,12 +1,12 @@
 package world.gregs.voidps.tools.map.obj
 
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.tools.ClientScriptDefinitions
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
 import world.gregs.voidps.cache.definition.decoder.WorldMapDetailsDecoder
 import world.gregs.voidps.cache.definition.decoder.WorldMapIconDecoder
+import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.tools.ClientScriptDefinitions
 
 class WorldMapDungeons(
     private val detailsDecoder: WorldMapDetailsDecoder,
@@ -28,19 +28,19 @@ class WorldMapDungeons(
 
                     when (position) {
                         // Manual fixes
-                        Tile.getId(2827, 3646) -> {
+                        Tile.id(2827, 3646) -> {
                             // entrance can only be used during troll stronghold quest
                         }
-                        Tile.getId(2998, 3376) -> {
+                        Tile.id(2998, 3376) -> {
 //                            val link = graph.addLink(Tile(position), Tile(targetPos))
 //                            link.actions = mutableListOf("item 952 Dig")
                         }
-                        Tile.getId(2163, 5115) -> list.add(Tile(2162, 5112, 1) to Tile(targetPos))
-                        Tile.getId(3821, 9462) -> {
+                        Tile.id(2163, 5115) -> list.add(Tile(2162, 5112, 1) to Tile(targetPos))
+                        Tile.id(3821, 9462) -> {
                             list.add(Tile(3815, 9463) to Tile(3815, 3063))
                             list.add(Tile(3830, 9463) to Tile(3830, 3063))
                         }
-                        Tile.getId(3821, 3062) -> {
+                        Tile.id(3821, 3062) -> {
                             list.add(Tile(3815, 3063) to Tile(3815, 9463))
                             list.add(Tile(3830, 3063) to Tile(3830, 9463))
                         }

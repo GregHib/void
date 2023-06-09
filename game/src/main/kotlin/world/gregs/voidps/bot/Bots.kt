@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.network.instruct.InteractDialogue
@@ -95,10 +95,12 @@ suspend fun Bot.dialogueOption(option: String) {
 }
 
 fun Bot.getObject(filter: (GameObject) -> Boolean): GameObject? {
-    val objects = get<Objects>()
+    val objects = get<GameObjects>()
     for (chunk in player.tile.chunk.spiral(2)) {
-        val obj = objects[chunk, filter]
-        if(obj != null) {
+        val obj = chunk.toCuboid()
+            .flatMap { tile -> objects[tile] }
+            .firstOrNull(filter)
+        if (obj != null) {
             return obj
         }
     }
@@ -106,13 +108,12 @@ fun Bot.getObject(filter: (GameObject) -> Boolean): GameObject? {
 }
 
 fun Bot.getObjects(filter: (GameObject) -> Boolean): List<GameObject> {
-    val objects = get<Objects>()
+    val objects = get<GameObjects>()
     val list = mutableListOf<GameObject>()
     for (chunk in player.tile.chunk.spiral(2)) {
-        val obj = objects[chunk, filter]
-        if(obj != null) {
-            list.add(obj)
-        }
+        list.addAll(chunk.toCuboid()
+            .flatMap { tile -> objects[tile] }
+            .filter(filter))
     }
     return list
 }

@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.definition.extra
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.mapIds
 import world.gregs.voidps.engine.data.definition.config.SpellDefinition
@@ -22,7 +23,7 @@ class SpellDefinitions {
     }
 
     fun load(data: Map<String, Map<String, Any>>): Int {
-        definitions = data.map { (key, value) -> key to SpellDefinition(key, value) }.toMap()
+        definitions = Object2ObjectOpenHashMap(data.map { (key, value) -> key to SpellDefinition(key, value) }.toMap())
         return definitions.size
     }
 

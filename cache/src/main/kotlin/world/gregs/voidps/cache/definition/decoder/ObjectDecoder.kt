@@ -46,8 +46,12 @@ open class ObjectDecoder(
             17 -> {
                 blocksSky = false
                 solid = 0
+                block = block and ObjectDefinition.PROJECTILE.inv()
             }
-            18 -> blocksSky = false
+            18 -> {
+                blocksSky = false
+                block = block and ObjectDefinition.PROJECTILE.inv()
+            }
             19 -> interactive = buffer.readUnsignedByte()
             21 -> contouredGround = 1
             22 -> delayShading = true
@@ -81,7 +85,10 @@ open class ObjectDecoder(
             71 -> offsetZ = buffer.readUnsignedShort() shl 2
             72 -> offsetY = buffer.readUnsignedShort() shl 2
             73 -> blocksLand = true
-            74 -> ignoreOnRoute = true
+            74 -> {
+                ignoreOnRoute = true
+                block = block and ObjectDefinition.ROUTE.inv()
+            }
             75 -> supportItems = buffer.readUnsignedByte()
             77, 92 -> readTransforms(buffer, opcode == 92)
             78 -> {

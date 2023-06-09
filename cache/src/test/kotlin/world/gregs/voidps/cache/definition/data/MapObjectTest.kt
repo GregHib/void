@@ -2,23 +2,23 @@ package world.gregs.voidps.cache.definition.data
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.cache.definition.data.MapObject.Companion.getHash
-import world.gregs.voidps.cache.definition.data.MapObject.Companion.getId
-import world.gregs.voidps.cache.definition.data.MapObject.Companion.getPlane
-import world.gregs.voidps.cache.definition.data.MapObject.Companion.getRotation
-import world.gregs.voidps.cache.definition.data.MapObject.Companion.getType
-import world.gregs.voidps.cache.definition.data.MapObject.Companion.getX
-import world.gregs.voidps.cache.definition.data.MapObject.Companion.getY
+import world.gregs.voidps.cache.definition.data.MapObject.Companion.id
+import world.gregs.voidps.cache.definition.data.MapObject.Companion.pack
+import world.gregs.voidps.cache.definition.data.MapObject.Companion.plane
+import world.gregs.voidps.cache.definition.data.MapObject.Companion.rotation
+import world.gregs.voidps.cache.definition.data.MapObject.Companion.type
+import world.gregs.voidps.cache.definition.data.MapObject.Companion.x
+import world.gregs.voidps.cache.definition.data.MapObject.Companion.y
 
 internal class MapObjectTest {
     @Test
-    fun `Get values from hash`() {
-        val hash = getHash(43200, 12000, 9600, 3, 22, 3)
-        assertEquals(43200, getId(hash))
-        assertEquals(12000, getX(hash))
-        assertEquals(9600, getY(hash))
-        assertEquals(3, getPlane(hash))
-        assertEquals(22, getType(hash))
-        assertEquals(3, getRotation(hash))
+    fun `Get values from packed`() {
+        val packed = pack(43200, 12000, 9600, 3, 22, 3)
+        assertEquals(43200, id(packed))
+        assertEquals(12000, x(packed))
+        assertEquals(9600, y(packed))
+        assertEquals(3, plane(packed))
+        assertEquals(22, type(packed))
+        assertEquals(3, rotation(packed))
     }
 }

@@ -9,7 +9,8 @@ import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectGroup
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Distance.nearestTo
@@ -20,47 +21,48 @@ import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.map.chunk.Chunk
 import kotlin.collections.set
 
-val objects: Objects by inject()
+val objects: GameObjects by inject()
 val areas: Areas by inject()
 
 val borders = mutableMapOf<Chunk, Rectangle>()
+val guards = mutableMapOf<Rectangle, List<GameObject>>()
 
 on<World, Registered> {
     for (border in areas.getTagged("border")) {
         val passage = border.area as Cuboid
         for (chunk in passage.toChunks()) {
-            borders[chunk] = passage.toRectangles().first()
+            val rectangle = passage.toRectangles().first()
+            borders[chunk] = rectangle
+            guards[rectangle] = chunk.toRectangle().mapNotNull {
+                val obj = objects.getGroup(it, ObjectGroup.INTERACTIVE)
+                if (obj != null && obj.id.startsWith("border_guard")) obj else null
+            }
         }
     }
 }
 
 on<Moved>({ enteringBorder(from, to) }) { player: Player ->
     val border = borders[to.chunk] ?: return@on
-    val tile = border.nearestTo(player.tile)
     player.start("no_clip", 3)
     player.start("slow_run", 3)
     if (player.steps.destination in border) {
+        val tile = border.nearestTo(player.tile)
         val endSide = getOppositeSide(border, tile)
         player.walkTo(endSide)
     }
-    val guards = getGuards(tile)
+    val guards = guards[border] ?: return@on
     changeGuardState(guards, true)
 }
 
 on<Moved>({ exitingBorder(from, to) }) { player: Player ->
     val border = borders[to.chunk] ?: return@on
-    val tile = border.nearestTo(player.tile)
     player.stop("no_clip")
     player.stop("slow_run")
-    val guards = getGuards(tile)
+    val guards = guards[border] ?: return@on
     changeGuardState(guards, false)
 }
 
 val raised = mutableMapOf<GameObject, Boolean>()
-
-fun getGuards(tile: Tile) = objects[tile.chunk]
-    .union(objects[tile.chunk.add(0, 1)])
-    .filter { it.id.startsWith("border_guard") }
 
 fun changeGuardState(guards: List<GameObject>, raise: Boolean) {
     for (guard in guards) {

@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.definition.extra
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.definition.data.EnumDefinition
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.engine.data.FileStorage
@@ -40,15 +41,17 @@ class EnumDefinitions(
 
     override fun empty() = EnumDefinition.EMPTY
 
-    fun load(storage: FileStorage = get(),
-             path: String = getProperty("enumDefinitionsPath"),
-             structPath: String = getProperty("structParamDefinitionsPath")
+    fun load(
+        storage: FileStorage = get(),
+        path: String = getProperty("enumDefinitionsPath"),
+        structPath: String = getProperty("structParamDefinitionsPath")
     ): EnumDefinitions {
         timedLoad("enum extra") {
             decode(storage, path)
         }
         timedLoad("struct param") {
-            parameters = storage.load(structPath)
+            val data: Map<String, Map<String, Int>> = storage.load(structPath)
+            parameters = Object2ObjectOpenHashMap(data)
             parameters.size
         }
         return this

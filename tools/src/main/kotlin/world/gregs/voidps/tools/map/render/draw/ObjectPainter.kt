@@ -187,8 +187,8 @@ class ObjectPainter(
         if (obj.plane != plane) {//FIXME should render more than one plane at once
             return
         }
-        offsetX = Region.getX(regionId) - region.x + 1
-        offsetY = Region.getY(regionId) - region.y + 1
+        offsetX = Region.x(regionId) - region.x + 1
+        offsetY = Region.y(regionId) - region.y + 1
         val localX = obj.x
         val localY = obj.y
         val rotation = obj.rotation

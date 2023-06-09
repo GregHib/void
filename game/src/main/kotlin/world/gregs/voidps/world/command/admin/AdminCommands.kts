@@ -32,7 +32,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevel
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
-import world.gregs.voidps.engine.entity.obj.CustomObjects
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
@@ -323,9 +323,9 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "tracks", "songs" -> get<MusicTracks>().load()
         "objects" -> {
             val defs: ObjectDefinitions = get()
-            val custom: CustomObjects = get()
+            val custom: GameObjects = get()
             defs.load()
-            loadObjectSpawns(custom)
+            loadObjectSpawns(custom, definitions = defs)
         }
         "nav graph", "ai graph" -> get<NavigationGraph>().load()
         "npcs" -> {

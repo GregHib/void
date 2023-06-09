@@ -77,7 +77,7 @@ class TilePlane(
     fun tile(x: Int, y: Int): MapTile {
         val regionX = x / 64
         val regionY = y / 64
-        val regionId = Region.getId(regionX, regionY)
+        val regionId = Region.id(regionX, regionY)
         return tiles[regionId]?.getTile(x.rem(64), y.rem(64), plane) ?: MapTile.EMPTY
     }
 

@@ -22,9 +22,8 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.requiredUseLevel
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.arriveDelay
@@ -35,7 +34,7 @@ import kotlin.random.Random
 
 val players: Players by inject()
 val definitions: ObjectDefinitions by inject()
-val objects: Objects by inject()
+val objects: GameObjects by inject()
 
 val minPlayers = 0
 val maxPlayers = 2000
@@ -57,7 +56,7 @@ on<ObjectOption>({ operate && def.has("woodcutting") && (option == "Chop down" |
     val ivy = tree.log.isEmpty()
     var first = true
     while (awaitDialogues()) {
-        if (objects[obj.tile, obj.id] == null) {
+        if (!objects.contains(obj)) {
             break
         }
 
@@ -171,7 +170,7 @@ fun deplete(tree: Tree, obj: GameObject): Boolean {
     val stumpId = "${obj.id}_stump"
     if (definitions.contains(stumpId)) {
         val delay = getRegrowTickDelay(tree)
-        obj.replace(stumpId, ticks = delay)
+        objects.replace(obj, stumpId, ticks = delay)
         areaSound("fell_tree", obj.tile)
     }
     return true

@@ -10,12 +10,11 @@ import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.cacheConfigModule
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
+import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.GameObjectFactory
-import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.event.EventHandlerStore
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionReader
@@ -42,7 +41,7 @@ object WorldMapLinkIdentifier {
                     single(named("jsonStorage")) { FileStorage(json = true) }
                     single { ObjectDecoder(get(), member = true, lowDetail = false) }
                     single(createdAtStart = true) { ObjectDefinitions(get()).load(path = getProperty("objectDefinitionsPath")) }
-                    single { Objects() }
+                    single { GameObjects(get(), ChunkBatchUpdates(), get()) }
                     single { Collisions() }
                     single { MapDecoder(get(), get<Xteas>()) }
                     single(createdAtStart = true) {
@@ -54,7 +53,7 @@ object WorldMapLinkIdentifier {
             )
 
         }.koin
-        val objects: Objects = koin.get()
+        val objects: GameObjects = koin.get()
         val cache: Cache = koin.get()
         val definitions: ObjectDefinitions = koin.get()
         val collisionReader = CollisionReader(koin.get())
@@ -71,16 +70,15 @@ object WorldMapLinkIdentifier {
         }
         val start = System.currentTimeMillis()
         val objCollision = GameObjectCollision(collisions)
-        val factory = GameObjectFactory(EventHandlerStore(), definitions)
         val list = mutableListOf<GameObject>()
         for (region in regions) {
             val def = mapDecoder.getOrNull(region.id) ?: continue
             def.objects.forEach { loc ->
                 val tile = Tile(region.tile.x + loc.x, region.tile.y + loc.y, loc.plane)
-                val obj = factory.spawn(loc.id.toString(), tile, loc.type, loc.rotation)
+                val obj = GameObject(loc.id, tile, loc.type, loc.rotation)
                 list.add(obj)
                 objects.add(obj)
-                objCollision.modifyCollision(obj, add = true)
+                objCollision.modify(obj, add = true)
             }
             collisionReader.read(region, def)
         }

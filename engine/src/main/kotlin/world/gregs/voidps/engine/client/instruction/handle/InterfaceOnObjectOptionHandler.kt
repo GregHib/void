@@ -6,12 +6,12 @@ import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
-import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.instruct.InteractInterfaceObject
 
 class InterfaceOnObjectOptionHandler(
-    private val objects: Objects,
+    private val objects: GameObjects,
     private val handler: InterfaceHandler
 ) : InstructionHandler<InteractInterfaceObject>() {
 

@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity
 
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.get
@@ -10,9 +11,8 @@ import java.util.concurrent.ConcurrentHashMap
 const val MAX_PLAYERS = 0x800 // 2048
 const val MAX_NPCS = 0x8000 // 32768
 
-object World : Entity, Runnable {
+object World : Entity, EventDispatcher, Runnable {
     override var tile = Tile.EMPTY
-    override val size: Size = Size.ONE
     override val events: Events = Events(this)
 
     const val id = 16

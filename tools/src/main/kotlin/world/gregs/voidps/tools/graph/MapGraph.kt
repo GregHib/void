@@ -5,7 +5,7 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
@@ -20,7 +20,7 @@ import kotlin.math.sqrt
 import kotlin.system.measureNanoTime
 
 class MapGraph(
-    private val objects: Objects,
+    private val objects: GameObjects,
     private val xteas: Xteas,
     private val cache: Cache,
     private val collision: Collisions
@@ -42,7 +42,8 @@ class MapGraph(
 
                 for (chunk in region.tile.chunk.toCuboid(width = 8, height = 8).toChunks()) {
                     val time = measureNanoTime {
-                        val loaded = objects[chunk]
+
+                        val loaded = chunk.toCuboid().flatMap { tile -> objects[tile]  }
                         objs.addAll(loaded)
                         all.addAll(getCenterPoints(strategy, chunk.toCuboid(width = 2, height = 2)))
                     }

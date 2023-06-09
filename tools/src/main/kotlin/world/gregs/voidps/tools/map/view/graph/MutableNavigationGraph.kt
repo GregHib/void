@@ -15,7 +15,7 @@ class MutableNavigationGraph {
 
     fun addNode(x: Int, y: Int, z: Int): Tile = getNodeOrNull(x, y, z) ?: createNode(x, y, z)
 
-    fun getNodeOrNull(x: Int, y: Int, z: Int) = getNodeOrNull(Tile.getId(x, y, z))
+    fun getNodeOrNull(x: Int, y: Int, z: Int) = getNodeOrNull(Tile.id(x, y, z))
 
     fun getNodeOrNull(id: Int) = adjacencyList.keys.firstOrNull { it.id == id }
 

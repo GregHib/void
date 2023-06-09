@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.definition.extra
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.data.Instructions
@@ -43,7 +44,7 @@ class StyleDefinitions {
             }
         }
         map[0] = getStyles(default, script.instructions, strings)
-        definitions = map
+        definitions = Int2ObjectOpenHashMap(map)
         return definitions.size
     }
 

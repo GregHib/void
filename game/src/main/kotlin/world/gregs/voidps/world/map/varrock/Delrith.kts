@@ -24,15 +24,14 @@ import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.CurrentLevelChanged
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.obj.CustomObjects
-import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.entity.obj.spawnObject
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Rectangle
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.clear
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.queue.*
@@ -51,8 +50,8 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-val customObjects: CustomObjects by inject()
-val objects: Objects by inject()
+val objects: GameObjects by inject()
+val collisions: Collisions by inject()
 val npcs: NPCs by inject()
 
 val rect = Rectangle(3221, 3363, 3234, 3376)
@@ -125,6 +124,7 @@ fun destroyInstance(player: Player) {
     }
     for (chunk in regionPlane.toCuboid().toChunks()) {
         objects.clear(chunk)
+        collisions.clear(chunk)
     }
 }
 
@@ -182,7 +182,7 @@ suspend fun PlayerContext.cutscene() {
 
     statement("The wizards cast an evil spell", clickToContinue = false)
     val regular = objects[offset.add(3227, 3369), "demon_slayer_stone_table"]!!
-    val table = regular.replace("demon_slayer_stone_table_summoning", ticks = 8)
+    val table = objects.replace(regular, "demon_slayer_stone_table_summoning", ticks = 8)
     player.clearCamera()
     player.turnCamera(offset.add(3227, 3369), 100, 232, 232)
     player.moveCamera(offset.add(3227, 3365), 500, 232, 232)
@@ -329,16 +329,16 @@ fun spawnEnergyBarrier(offset: Tile) {
     var direction = Direction.NORTH
     while (rotation < 4) {
         repeat(6) {
-            spawnObject("demon_slayer_energy_barrier", tile, 0, rotation)
+            objects.add("demon_slayer_energy_barrier", tile, 0, rotation)
             tile = tile.add(direction)
         }
         direction = direction.rotate(1)
         repeat(3) {
-            spawnObject("demon_slayer_energy_barrier", tile, 9, rotation)
-            spawnObject("demon_slayer_energy_barrier", tile.add(direction.rotate(1)), 1, rotation)
+            objects.add("demon_slayer_energy_barrier", tile, 9, rotation)
+            objects.add("demon_slayer_energy_barrier", tile.add(direction.rotate(1)), 1, rotation)
             tile = tile.add(direction)
         }
-        spawnObject("demon_slayer_energy_barrier", tile, 9, rotation)
+        objects.add("demon_slayer_energy_barrier", tile, 9, rotation)
         rotation++
         direction = direction.rotate(1)
         tile = tile.add(direction)

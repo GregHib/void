@@ -10,15 +10,14 @@ import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectClick
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.instruct.InteractObject
 
 class ObjectOptionHandler(
-    private val objects: Objects,
+    private val objects: GameObjects,
     private val definitions: ObjectDefinitions
 ) : InstructionHandler<InteractObject>() {
 
@@ -45,12 +44,6 @@ class ObjectOptionHandler(
         val selectedOption = options.getOrNull(index)
         if (selectedOption == null) {
             logger.warn { "Invalid object option $target $index" }
-            return
-        }
-
-        val click = ObjectClick(target, definition, selectedOption)
-        player.events.emit(click)
-        if (click.cancelled) {
             return
         }
         player.mode = Interact(player, target, ObjectOption(player, target, definition, selectedOption), approachRange = -1)

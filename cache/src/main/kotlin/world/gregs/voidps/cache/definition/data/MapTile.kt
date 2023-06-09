@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache.definition.data
 
 @JvmInline
-value class MapTile(val hash: Long) {
+value class MapTile(val packed: Long) {
 
     constructor(
         height: Int = 0,
@@ -11,28 +11,22 @@ value class MapTile(val hash: Long) {
         rotation: Int = 0,
         settings: Int = 0,
         underlay: Int = 0
-    ) : this(getHash(height, opcode, overlay, path, rotation, settings, underlay))
+    ) : this(pack(height, opcode, overlay, path, rotation, settings, underlay))
 
     val height: Int
-        get() = getHeight(hash)
-
+        get() = height(packed)
     val attrOpcode: Int
-        get() = getOpcode(hash)
-
+        get() = opcode(packed)
     val overlayId: Int
-        get() = getOverlay(hash)
-
+        get() = overlay(packed)
     val overlayPath: Int
-        get() = getPath(hash)
-
+        get() = path(packed)
     val overlayRotation: Int
-        get() = getRotation(hash)
-
+        get() = rotation(packed)
     val settings: Int
-        get() = getSettings(hash)
-
+        get() = settings(packed)
     val underlayId: Int
-        get() = getUnderlay(hash)
+        get() = underlay(packed)
 
     fun isTile(flag: Int) = settings and flag == flag
 
@@ -40,20 +34,20 @@ value class MapTile(val hash: Long) {
 
         val EMPTY = MapTile()
 
-        fun getHash(height: Int, opcode: Int, overlay: Int, path: Int, rotation: Int, settings: Int, underlay: Int): Long {
-            return getHash(height.toLong(), opcode.toLong(), overlay.toLong(), path.toLong(), rotation.toLong(), settings.toLong(), underlay.toLong())
+        fun pack(height: Int, opcode: Int, overlay: Int, path: Int, rotation: Int, settings: Int, underlay: Int): Long {
+            return pack(height.toLong(), opcode.toLong(), overlay.toLong(), path.toLong(), rotation.toLong(), settings.toLong(), underlay.toLong())
         }
 
-        fun getHash(height: Long, opcode: Long, overlay: Long, path: Long, rotation: Long, settings: Long, underlay: Long): Long {
+        fun pack(height: Long, opcode: Long, overlay: Long, path: Long, rotation: Long, settings: Long, underlay: Long): Long {
             return height + (opcode shl 8) + (overlay shl 16) + (path shl 24) + (rotation shl 32) + (settings shl 40) + (underlay shl 48)
         }
 
-        fun getHeight(hash: Long): Int = (hash and 0xff).toInt()
-        fun getOpcode(hash: Long): Int = (hash shr 8 and 0xff).toInt()
-        fun getOverlay(hash: Long): Int = (hash shr 16 and 0xff).toInt()
-        fun getPath(hash: Long): Int = (hash shr 24 and 0xff).toInt()
-        fun getRotation(hash: Long): Int = (hash shr 32 and 0xff).toInt()
-        fun getSettings(hash: Long): Int = (hash shr 40 and 0xff).toInt()
-        fun getUnderlay(hash: Long): Int = (hash shr 48 and 0xff).toInt()
+        fun height(packed: Long): Int = (packed and 0xff).toInt()
+        fun opcode(packed: Long): Int = (packed shr 8 and 0xff).toInt()
+        fun overlay(packed: Long): Int = (packed shr 16 and 0xff).toInt()
+        fun path(packed: Long): Int = (packed shr 24 and 0xff).toInt()
+        fun rotation(packed: Long): Int = (packed shr 32 and 0xff).toInt()
+        fun settings(packed: Long): Int = (packed shr 40 and 0xff).toInt()
+        fun underlay(packed: Long): Int = (packed shr 48 and 0xff).toInt()
     }
 }

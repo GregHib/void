@@ -16,8 +16,8 @@ class MapObjectEncoder : DefinitionEncoder<MapDefinition> {
             id += difference
             writeLargeSmart(difference)
             var location = 0
-            objects.sortedBy { MapDefinition.getHash(it.x, it.y, it.plane) }.forEach { loc ->
-                val local = MapDefinition.getHash(loc.x, loc.y, loc.plane)
+            objects.sortedBy { MapDefinition.index(it.x, it.y, it.plane) }.forEach { loc ->
+                val local = MapDefinition.index(loc.x, loc.y, loc.plane)
                 val dif = local - location
                 location += dif
                 writeSmart(dif + 1)

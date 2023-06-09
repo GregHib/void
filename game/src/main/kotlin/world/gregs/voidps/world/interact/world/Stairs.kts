@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.arriveDelay
-import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.world.spawn.Stairs
 
@@ -42,11 +42,11 @@ suspend fun ObjectOption.climb(option: String) {
     if (name.contains("ladder") || name.contains("trapdoor")) {
         val remaining = player.remaining("climb_delay")
         if (remaining > 0) {
-            pause(remaining)
+            delay(remaining)
         } else if (remaining < 0) {
             player.setAnimation(if (option == "Climb-down") "climb_down" else "climb_up")
             player.start("climb_delay", 2)
-            pause(2)
+            delay(2)
         }
     } else {
         player.start("climb_delay", 1)

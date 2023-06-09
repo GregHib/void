@@ -70,7 +70,7 @@ class MinimapIconPainter(
             val plane = positions[i] shr 28 and 0x3
             for (it in sections) {
                 if (plane == it.plane && it.minX <= x && x <= it.maxX && y >= it.minY && y <= it.maxY) {
-                    val key = Tile.getId(x, y, plane)
+                    val key = Tile.id(x, y, plane)
                     val list = nameAreas.getOrPut(key) { mutableListOf() }
                     list.add(worldMapInfoDefinitions.get(ids[i]))
                     break
@@ -83,11 +83,11 @@ class MinimapIconPainter(
         val iconScale = 2
         for (regionX in region.x - 1..region.x + 1) {
             for (regionY in region.y - 1..region.y + 1) {
-                val id = Region.getId(regionX, regionY)
+                val id = Region.id(regionX, regionY)
                 val images = loadIcons(regionX, regionY, objects[id] ?: continue)
                 for (x in 0..64) {
                     for (y in 0..64) {
-                        val it = images[Tile.getId(x, y, plane)] ?: continue
+                        val it = images[Tile.id(x, y, plane)] ?: continue
                         val width = it.bi.width * iconScale
                         val height = it.bi.height * iconScale
                         val regionX = (region.x - 1) * 64
@@ -109,7 +109,7 @@ class MinimapIconPainter(
                 if (sprite != null) {
                     val x = regionX * 64 + it.x
                     val y = regionY * 64 + it.y
-                    images[Tile.getId(it.x, it.y, it.plane)] = MapIcon(x, y, it.plane, sprite.toBufferedImage())
+                    images[Tile.id(it.x, it.y, it.plane)] = MapIcon(x, y, it.plane, sprite.toBufferedImage())
                 }
             }
         }

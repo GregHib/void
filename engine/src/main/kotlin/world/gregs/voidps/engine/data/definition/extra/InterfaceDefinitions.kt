@@ -1,5 +1,8 @@
 package world.gregs.voidps.engine.data.definition.extra
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
@@ -48,7 +51,7 @@ class InterfaceDefinitions(
                 checkNotNull(id) { "Missing interface id $id" }
                 id to name
             }.toMap()
-            ids = data.map { it.key to it.value["id"] as Int }.toMap()
+            ids = Object2IntOpenHashMap(data.map { it.key to it.value["id"] as Int }.toMap())
             val types = loadTypes(typeData)
             val components = getComponentsMap(data)
             val idToNames = components.mapValues { it.value.toMap() }
@@ -60,7 +63,7 @@ class InterfaceDefinitions(
                 it.components?.forEach { (id, component) ->
                     componentExtra?.get(id)?.let { extras ->
                         component.stringId = extras["name"] as String
-                        component.extras = extras
+                        component.extras = Object2ObjectOpenHashMap(extras)
                     }
                 }
             }
@@ -130,12 +133,11 @@ class InterfaceDefinitions(
             putAll(type)
             this["name"] = name
             components[name]?.let {
-                this["componentInts"] = it
+                this["componentInts"] = Object2IntOpenHashMap(it)
             }
             componentNames[name]?.let {
-                this["componentIds"] = it
+                this["componentIds"] = Int2ObjectOpenHashMap(it)
             }
-
         }
     }
 

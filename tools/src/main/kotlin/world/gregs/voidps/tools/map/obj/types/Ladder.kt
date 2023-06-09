@@ -75,8 +75,8 @@ private fun hasVerticalTile(obj1: GameObject, tiles1: Set<Tile>, obj2: GameObjec
 
 private fun check(obj: GameObject, tiles: Set<Tile>, dir: Direction): Boolean {
     val tile = when (dir) {
-        Direction.NORTH -> obj.tile.addY(obj.size.height)
-        Direction.EAST -> obj.tile.addX( obj.size.width)
+        Direction.NORTH -> obj.tile.addY(obj.height)
+        Direction.EAST -> obj.tile.addX(obj.width)
         else -> obj.tile.add(dir.delta)
     }
     return tiles.contains(tile)

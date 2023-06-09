@@ -15,12 +15,12 @@ import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.entity.obj.spawnObject
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.suspend.pause
@@ -37,6 +37,7 @@ import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 
 val collisions: Collisions by inject()
+val objects: GameObjects by inject()
 
 on<Command>({ prefix == "test" }) { player: Player ->
     player.refreshQuestJournal()
@@ -201,16 +202,8 @@ on<Command>({ prefix == "col" }) { player: Player ->
 operator fun Array<IntArray?>.get(baseX: Int, baseY: Int, localX: Int, localY: Int, z: Int): Int {
     val x = baseX + localX
     val y = baseY + localY
-    val zone = this[getZoneIndex(x, y, z)] ?: return 0
-    return zone[getIndexInZone(x, y)]
-}
-
-fun getZoneIndex(x: Int, y: Int, z: Int): Int {
-    return (x shr 3) or ((y shr 3) shl 11) or (z shl 22)
-}
-
-fun getIndexInZone(x: Int, y: Int): Int {
-    return (x and 0x7) or ((y and 0x7) shl 3)
+    val zone = this[Chunk.tileIndex(x, y, z)] ?: return 0
+    return zone[Tile.index(x, y)]
 }
 
 on<Command>({ prefix == "walkToBank" }) { player: Player ->
@@ -263,13 +256,14 @@ on<Command>({ prefix == "obj" }) { player: Player ->
         val id = parts.getOrNull(0)
         if (id != null) {
             val rotation = parts.getOrNull(1)?.toIntOrNull() ?: 0
-            spawnObject(id, player.tile.addY(1), 0, rotation, 10, null)
-            spawnObject(id, player.tile.addY(1), 10, rotation, 10, null)
-            spawnObject(id, player.tile.addY(1), 22, rotation, 10, null)
+            objects.add(id, player.tile.addY(1), 0, rotation, 10)
+            objects.add(id, player.tile.addY(1), 10, rotation, 10)
+            objects.add(id, player.tile.addY(1), 22, rotation, 10)
         }
     } else {
-        get<Objects>()[player.tile].forEach {
-            println(it.def.id)
+        val objs = get<GameObjects>()
+        objs[player.tile].forEach {
+            println(it.intId)
         }
     }
 }
@@ -279,7 +273,7 @@ on<Command>({ prefix == "tree" }) { player: Player ->
     val tree = parts[0]
     val stump = parts[1]
     val type = parts.getOrNull(2)?.toIntOrNull() ?: 10
-    spawnObject(tree, player.tile, type, 0, 5, null)
+    objects.add(tree, player.tile, type, 0, 5)
     pause(5)
-    spawnObject(stump, player.tile, type, 0, 5, null)
+    objects.add(stump, player.tile, type, 0, 5)
 }

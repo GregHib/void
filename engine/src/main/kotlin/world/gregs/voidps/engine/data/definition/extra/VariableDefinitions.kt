@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.data.definition.extra
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.mapIds
 import world.gregs.voidps.engine.data.definition.config.VariableDefinition
@@ -49,9 +51,9 @@ class VariableDefinitions {
                     }
                 }
             }
-            this.varbitIds = varbitIds
-            this.varpIds = varpIds
-            definitions = map
+            this.varbitIds = Int2ObjectOpenHashMap(varbitIds)
+            this.varpIds = Int2ObjectOpenHashMap(varpIds)
+            definitions = Object2ObjectOpenHashMap(map)
             definitions.size
         }
         return this

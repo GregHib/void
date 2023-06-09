@@ -2,26 +2,26 @@ package world.gregs.voidps.cache.definition.data
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.cache.definition.data.MapTile.Companion.getHash
-import world.gregs.voidps.cache.definition.data.MapTile.Companion.getHeight
-import world.gregs.voidps.cache.definition.data.MapTile.Companion.getOpcode
-import world.gregs.voidps.cache.definition.data.MapTile.Companion.getOverlay
-import world.gregs.voidps.cache.definition.data.MapTile.Companion.getPath
-import world.gregs.voidps.cache.definition.data.MapTile.Companion.getRotation
-import world.gregs.voidps.cache.definition.data.MapTile.Companion.getSettings
-import world.gregs.voidps.cache.definition.data.MapTile.Companion.getUnderlay
+import world.gregs.voidps.cache.definition.data.MapTile.Companion.height
+import world.gregs.voidps.cache.definition.data.MapTile.Companion.opcode
+import world.gregs.voidps.cache.definition.data.MapTile.Companion.overlay
+import world.gregs.voidps.cache.definition.data.MapTile.Companion.pack
+import world.gregs.voidps.cache.definition.data.MapTile.Companion.path
+import world.gregs.voidps.cache.definition.data.MapTile.Companion.rotation
+import world.gregs.voidps.cache.definition.data.MapTile.Companion.settings
+import world.gregs.voidps.cache.definition.data.MapTile.Companion.underlay
 
 internal class MapTileTest {
 
     @Test
-    fun `Get values from hash`() {
-        val hash = getHash(255, 49, 255, 11, 4, 32, 174)
-        assertEquals(255, getHeight(hash))
-        assertEquals(49, getOpcode(hash))
-        assertEquals(255, getOverlay(hash))
-        assertEquals(11, getPath(hash))
-        assertEquals(4, getRotation(hash))
-        assertEquals(32, getSettings(hash))
-        assertEquals(174, getUnderlay(hash))
+    fun `Get values from packed`() {
+        val packed = pack(255, 49, 255, 11, 4, 32, 174)
+        assertEquals(255, height(packed))
+        assertEquals(49, opcode(packed))
+        assertEquals(255, overlay(packed))
+        assertEquals(11, path(packed))
+        assertEquals(4, rotation(packed))
+        assertEquals(32, settings(packed))
+        assertEquals(174, underlay(packed))
     }
 }

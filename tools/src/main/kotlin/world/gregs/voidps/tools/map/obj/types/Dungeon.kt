@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.tools.map.obj.ObjectIdentificationContext
 
 val distanceToTile: ObjectIdentificationContext.(Pair<Tile, Tile>) -> Double = { target ->
-    val nearest = getNearest(obj.tile, obj.size, target.first)
+    val nearest = getNearest(obj.tile, obj.width, obj.height, target.first)
     val distance = euclidean(nearest, target.first)
     if (distance >= 10.0) {
         0.0

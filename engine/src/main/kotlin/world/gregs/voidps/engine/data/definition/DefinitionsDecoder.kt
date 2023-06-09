@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.data.definition
 
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.engine.data.FileStorage
@@ -56,7 +58,7 @@ interface DefinitionsDecoder<D> where D : Definition, D : Extra {
 
     fun decode(data: Map<String, Map<String, Any>>, modifications: DefinitionModifications = DefinitionModifications()): Int {
         val names = data.map { it.value["id"] as Int to it.key }.toMap()
-        ids = data.map { it.key to it.value["id"] as Int }.toMap()
+        ids = Object2IntOpenHashMap(data.map { it.key to it.value["id"] as Int }.toMap())
         apply(names, modifications.apply(data))
         modifications.apply(definitions, names)
         return names.size
@@ -68,7 +70,7 @@ interface DefinitionsDecoder<D> where D : Definition, D : Extra {
             val name = names[i]
             definition.stringId = name ?: i.toString()
             val extra = extras[name] ?: continue
-            definition.extras = extra
+            definition.extras = Object2ObjectOpenHashMap(extra)
             block.invoke(definition)
         }
     }

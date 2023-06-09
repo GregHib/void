@@ -8,7 +8,7 @@ import world.gregs.voidps.network.Instruction
 class WindowClickDecoder : Decoder(6) {
 
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
-        val hash = packet.readShort().toInt()
+        val packed = packet.readShort().toInt()
         val position = packet.readInt()
     }
 

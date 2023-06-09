@@ -26,7 +26,7 @@ internal class PlayerTest : WorldTest() {
     @Test
     fun `Run to location`() {
         val start = emptyTile
-        val player = createPlayer("walker", start)
+        val player = createPlayer("runner", start)
         val handler = WalkHandler()
 
         player.interfaceOption("energy_orb", "", "Turn Run mode on")

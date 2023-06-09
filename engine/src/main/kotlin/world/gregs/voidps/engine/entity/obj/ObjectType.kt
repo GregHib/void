@@ -51,15 +51,6 @@ object ObjectType {
      */
     const val FLOOR_DECORATION = 22
 
-    /**
-     * Get the [ObjectGroup] for an [ObjectType]
-     */
-    fun group(type: Int) = when (type) {
-        INTERACTIVE, DIAGONAL_INTERACTIVE -> ObjectGroup.INTERACTIVE_OBJECT
-        FLOOR_DECORATION -> ObjectGroup.GROUND_DECORATION
-        else -> ObjectGroup.WALL
-    }
-
     fun isWall(type: Int): Boolean = type == LENGTHWISE_WALL || type in INTERACTIVE_WALL_DECORATION..DIAGONAL_WALL
 
     fun isCorner(type: Int) = type in TRIANGULAR_CORNER..RECTANGULAR_CORNER

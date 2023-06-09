@@ -40,4 +40,10 @@ class ConnectionGatekeeper(
     override fun releaseIndex(index: Int) {
         indices.release(index)
     }
+
+    override fun clear() {
+        online.clear()
+        indices.clear()
+        logins.clear()
+    }
 }

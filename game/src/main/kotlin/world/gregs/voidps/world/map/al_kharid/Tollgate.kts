@@ -14,8 +14,8 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
@@ -33,7 +33,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.obj.Door
 
-val objects: Objects by inject()
+val objects: GameObjects by inject()
 val southGate = Tile(3268, 3227)
 
 on<ObjectOption>({ operate && obj.id.startsWith("toll_gate_al_kharid") && option == "Pay-toll(10gp)" }) { player: Player ->
@@ -87,7 +87,7 @@ suspend fun Interaction.dialogue(player: Player, npc: NPC? = getGuard(player)) {
 
 fun getGate(player: Player): GameObject {
     val tile = gates.nearestTo(player.tile)
-    return objects[tile].first { it.id.startsWith("toll_gate_al_kharid") }
+    return objects[tile, "toll_gate_al_kharid"]!!
 }
 
 val rect = Rectangle(Tile(3267, 3227), 2, 2)

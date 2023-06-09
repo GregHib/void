@@ -4,8 +4,8 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.arriveDelay
@@ -19,7 +19,7 @@ import world.gregs.voidps.world.interact.entity.obj.Door.replaceDoor
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
-val objects: Objects by inject()
+val objects: GameObjects by inject()
 
 // Delay in ticks before a door closes itself
 val doorResetDelay = TimeUnit.MINUTES.toTicks(5)
@@ -103,12 +103,9 @@ fun stuck(player: Player): Boolean {
 }
 
 fun resetExisting(obj: GameObject, double: GameObject?): Boolean {
-    if (double == null && objects.cancelTimer(obj)) {
+    if (double == null && objects.timers.execute(obj)) {
         return true
     }
 
-    if (double != null && objects.cancelTimer(obj) && objects.cancelTimer(double)) {
-        return true
-    }
-    return false
+    return double != null && (objects.timers.execute(obj) || objects.timers.execute(double))
 }

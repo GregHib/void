@@ -2,7 +2,6 @@ package world.gregs.voidps.world.community.friend
 
 import io.mockk.mockkStatic
 import io.mockk.verify
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
@@ -19,9 +18,7 @@ import kotlin.collections.set
 import kotlin.test.assertContains
 import kotlin.test.assertTrue
 
-@OptIn(ExperimentalCoroutinesApi::class)
 internal class IgnoreTest : WorldTest() {
-
 
     @BeforeAll
     fun start() {

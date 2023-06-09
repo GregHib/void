@@ -1,12 +1,11 @@
 package world.gregs.voidps.engine.event
 
 import kotlinx.coroutines.*
-import world.gregs.voidps.engine.entity.Entity
 import kotlin.coroutines.CoroutineContext
 import kotlin.reflect.KClass
 
 class Events(
-    private val entity: Entity,
+    private val dispatcher: EventDispatcher,
 ) : CoroutineScope {
     override val coroutineContext: CoroutineContext = Dispatchers.Unconfined + errorHandler
     private var events: Map<KClass<out Event>, List<EventHandler>> = emptyMap()
@@ -26,10 +25,10 @@ class Events(
                 if (event is CancellableEvent && event.cancelled) {
                     return true
                 }
-                if (handler.condition(event, entity)) {
+                if (handler.condition(event, dispatcher)) {
                     called = true
                     runBlocking {
-                        handler.block(event, entity)
+                        handler.block(event, dispatcher)
                     }
                 }
             }
@@ -39,7 +38,7 @@ class Events(
     fun <E : SuspendableEvent> emit(event: E): Boolean {
         all?.invoke(event)
         val eventHandlers = events[event::class]
-        if (eventHandlers == null || eventHandlers.none { it.condition(event, entity) }) {
+        if (eventHandlers == null || eventHandlers.none { it.condition(event, dispatcher) }) {
             return false
         }
         launch {
@@ -47,8 +46,8 @@ class Events(
                 if (event is CancellableEvent && event.cancelled) {
                     return@launch
                 }
-                if (handler.condition(event, entity)) {
-                    handler.block(event, entity)
+                if (handler.condition(event, dispatcher)) {
+                    handler.block(event, dispatcher)
                 }
             }
         }
@@ -57,7 +56,7 @@ class Events(
 
     fun <E : SuspendableEvent> contains(event: E): Boolean {
         val eventHandlers = events[event::class]
-        return eventHandlers != null && eventHandlers.any { it.condition(event, entity) }
+        return eventHandlers != null && eventHandlers.any { it.condition(event, dispatcher) }
     }
 
     companion object {

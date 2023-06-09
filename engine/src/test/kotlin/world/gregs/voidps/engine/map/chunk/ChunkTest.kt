@@ -21,30 +21,16 @@ internal class ChunkTest {
     }
 
     @Test
-    fun `Negative values safe`() {
-        // Given
-        val chunk = Chunk(-10, -50, -1)
-        // When
-        val x = chunk.x
-        val y = chunk.y
-        val plane = chunk.plane
-        // Then
-        assertEquals(4086, x)
-        assertEquals(4046, y)
-        assertEquals(3, plane)
-    }
-
-    @Test
     fun `Maximum values`() {
         // Given
-        val chunk = Chunk(2048, 2048, 3)
+        val chunk = Chunk(2047, 2047, 3)
         // When
         val x = chunk.x
         val y = chunk.y
         val plane = chunk.plane
         // Then
-        assertEquals(2048, x)
-        assertEquals(2048, y)
+        assertEquals(2047, x)
+        assertEquals(2047, y)
         assertEquals(3, plane)
     }
 

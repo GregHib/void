@@ -2,7 +2,6 @@ package world.gregs.voidps.world.community.friend
 
 import io.mockk.mockkStatic
 import io.mockk.verify
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
@@ -18,7 +17,6 @@ import world.gregs.voidps.world.script.WorldTest
 import kotlin.test.assertContains
 import kotlin.test.assertTrue
 
-@OptIn(ExperimentalCoroutinesApi::class)
 internal class FriendTest : WorldTest() {
 
     @BeforeAll
