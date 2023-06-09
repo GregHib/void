@@ -47,6 +47,10 @@ class Maps(
             if (reader.length < 4) {
                 return true
             }
+            val version = reader.readShort()
+            if (version != VERSION) {
+                return true
+            }
             val expectedCrc = reader.readInt()
             if (expectedCrc != crc) {
                 return true
@@ -70,9 +74,14 @@ class Maps(
     }
 
     private fun writeChecksumFile(checksumFile: File, crc: Int, md5: String) {
-        val writer = BufferWriter(md5.length + 5)
+        val writer = BufferWriter(md5.length + 7)
+        writer.writeShort(VERSION)
         writer.writeInt(crc)
         writer.writeString(md5)
         checksumFile.writeBytes(writer.array())
+    }
+
+    companion object {
+        private const val VERSION = 1
     }
 }
