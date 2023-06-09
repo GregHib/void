@@ -66,7 +66,7 @@ class GameObjects(
         } else {
             // Remove original (if exists)
             map.add(obj, REPLACED)
-            if (original > 0) {
+            if (original > 0 && !replaced(original)) {
                 val originalObj = GameObject(id(original), obj.x, obj.y, obj.plane, type(original), rotation(original))
                 batches.add(obj.tile.chunk, ObjectRemoval(obj.tile.id, originalObj.type, originalObj.rotation))
                 if (collision) {
@@ -146,7 +146,7 @@ class GameObjects(
             size--
             // Re-add original (if exists)
             map.remove(obj, REPLACED)
-            if (original > 0) {
+            if (original > 1) {
                 val originalObj = GameObject(id(original), obj.x, obj.y, obj.plane, type(original), rotation(original))
                 batches.add(obj.tile.chunk, ObjectAddition(obj.tile.id, originalObj.intId, originalObj.type, originalObj.rotation))
                 if (collision) {

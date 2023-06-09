@@ -2,11 +2,15 @@ package world.gregs.voidps.engine.entity.obj
 
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.network.encode.chunk.ObjectAddition
+import world.gregs.voidps.network.encode.chunk.ObjectRemoval
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
@@ -15,6 +19,7 @@ import kotlin.test.assertTrue
 class GameObjectsTest {
 
     private lateinit var objects: GameObjects
+    private lateinit var updates: ChunkBatchUpdates
 
     @BeforeEach
     fun setup() {
@@ -22,7 +27,8 @@ class GameObjectsTest {
         val definitions = mockk<ObjectDefinitions>(relaxed = true)
         every { definitions.get("test") } returns ObjectDefinition(123)
         every { definitions.get("test2") } returns ObjectDefinition(456)
-        objects = GameObjects(mockk(relaxed = true), mockk(relaxed = true), definitions, storeUnused = true)
+        updates = mockk(relaxed = true)
+        objects = GameObjects(mockk(relaxed = true), updates, definitions, storeUnused = true)
     }
 
     @Test
@@ -48,6 +54,9 @@ class GameObjectsTest {
 
         objects.add(obj)
         assertEquals(obj, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+        verify {
+            updates.add(obj.tile.chunk, ObjectRemoval(tile = obj.tile.id, type = ObjectType.INTERACTIVE, rotation = 1))
+        }
     }
 
     @Test
@@ -61,11 +70,39 @@ class GameObjectsTest {
         objects.reset(obj.tile.chunk)
         assertNull(objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
         assertFalse(objects.contains(obj))
+        verify {
+            updates.add(obj.tile.chunk, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectType.INTERACTIVE, rotation = 1))
+        }
+    }
+
+    @Test
+    fun `Override temporary object`() {
+        val obj = GameObject(id = 1234, x = 10, y = 10, plane = 0, type = ObjectType.INTERACTIVE, rotation = 1)
+        val override = GameObject(id = 4321, x = 10, y = 10, plane = 0, type = ObjectType.INTERACTIVE, rotation = 0)
+
+        objects.add(obj)
+        assertEquals(obj, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+        assertTrue(objects.contains(obj))
+        assertFalse(objects.contains(override))
+        objects.add(override)
+        assertEquals(override, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+        assertTrue(objects.contains(override))
+        assertFalse(objects.contains(obj))
+
+        objects.remove(override)
+        assertNull(objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+        assertFalse(objects.contains(obj))
+        assertFalse(objects.contains(override))
+        verify {
+            updates.add(obj.tile.chunk, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectType.INTERACTIVE, rotation = 1))
+            updates.add(obj.tile.chunk, ObjectAddition(tile = obj.tile.id, id = 4321, type = ObjectType.INTERACTIVE, rotation = 0))
+            updates.add(obj.tile.chunk, ObjectRemoval(tile = obj.tile.id, type = ObjectType.INTERACTIVE, rotation = 0))
+        }
     }
 
     @Test
     fun `Add and remove a temp object over an original`() {
-        val original = GameObject(123, 10, 10, 0, 10, 1)
+        val original = GameObject(id = 123, x = 10, y = 10, plane = 0, type = 10, rotation = 1)
         objects.set(original.intId, original.x, original.y, original.plane, original.type, original.rotation, ObjectDefinition.EMPTY)
 
         val obj = GameObject(id = 1234, x = 10, y = 10, plane = 0, type = ObjectType.INTERACTIVE, rotation = 0)
@@ -74,6 +111,39 @@ class GameObjectsTest {
 
         objects.remove(obj)
         assertEquals(original, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+
+        verify {
+            updates.add(obj.tile.chunk, ObjectRemoval(tile = obj.tile.id, type = ObjectType.INTERACTIVE, rotation = 1))
+            updates.add(obj.tile.chunk, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectType.INTERACTIVE, rotation = 0))
+            updates.add(obj.tile.chunk, ObjectRemoval(tile = obj.tile.id, type = ObjectType.INTERACTIVE, rotation = 0))
+            updates.add(obj.tile.chunk, ObjectAddition(tile = obj.tile.id, id = 123, type = ObjectType.INTERACTIVE, rotation = 1))
+        }
+    }
+
+    @Test
+    fun `Override temp over an original object`() {
+        val original = GameObject(id = 123, x = 10, y = 10, plane = 0, type = 10, rotation = 1)
+        objects.set(original.intId, original.x, original.y, original.plane, original.type, original.rotation, ObjectDefinition.EMPTY)
+
+        val obj = GameObject(id = 1234, x = 10, y = 10, plane = 0, type = ObjectType.INTERACTIVE, rotation = 0)
+        objects.add(obj)
+        assertEquals(obj, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+
+        val override = GameObject(id = 4321, x = 10, y = 10, plane = 0, type = ObjectType.INTERACTIVE, rotation = 0)
+        objects.add(override)
+        assertEquals(override, objects.getGroup(override.tile, ObjectGroup.INTERACTIVE))
+
+        objects.remove(override)
+        assertEquals(original, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+
+        verify {
+            updates.add(obj.tile.chunk, ObjectRemoval(tile = obj.tile.id, type = ObjectType.INTERACTIVE, rotation = 1))
+            updates.add(obj.tile.chunk, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectType.INTERACTIVE, rotation = 0))
+            updates.add(obj.tile.chunk, ObjectRemoval(tile = obj.tile.id, type = ObjectType.INTERACTIVE, rotation = 0))
+            updates.add(obj.tile.chunk, ObjectAddition(tile = obj.tile.id, id = 4321, type = ObjectType.INTERACTIVE, rotation = 0))
+            updates.add(obj.tile.chunk, ObjectRemoval(tile = obj.tile.id, type = ObjectType.INTERACTIVE, rotation = 0))
+            updates.add(obj.tile.chunk, ObjectAddition(tile = obj.tile.id, id = 123, type = ObjectType.INTERACTIVE, rotation = 1))
+        }
     }
 
     @Test
