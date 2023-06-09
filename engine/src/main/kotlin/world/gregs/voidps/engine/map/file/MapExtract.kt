@@ -2,8 +2,6 @@ package world.gregs.voidps.engine.map.file
 
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
@@ -110,7 +108,6 @@ class MapExtract(
                     for (zoneY in 0 until 64 step 8) {
                         val x = regionX + zoneX
                         val y = regionY + zoneY
-                        objects.allocate(x, y, plane)
                         collisions.allocateIfAbsent(x, y, plane)
                     }
                 }
@@ -252,13 +249,9 @@ class MapExtract(
             val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
             cache.clear()
             val collisions = Collisions()
-            val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = true)
+            val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = false)
             val extract = MapExtract(collisions, definitions, objects, xteas)
             extract.loadMap(File("./data/map-test.dat"))
-            println(objects.size)
-            runBlocking {
-                delay(10000)
-            }
             println(objects.size)
         }
     }

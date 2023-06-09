@@ -28,7 +28,7 @@ class GameObjects(
     private val definitions: ObjectDefinitions,
     private val storeUnused: Boolean = false
 ) : ChunkBatchUpdates.Sender {
-    private val map: GameObjectMap = if (storeUnused) GameObjectArrayMap() else GameObjectHashMap()
+    private val map = if (storeUnused) GameObjectArrayMap() else GameObjectHashMap()
     private val replacements: MutableMap<Int, Int> = Int2IntOpenHashMap()
     val timers = GameObjectTimers()
     var size = 0
@@ -265,10 +265,6 @@ class GameObjects(
             value
         }
         return id(replacement) == obj.intId && type(replacement) == obj.type && rotation(replacement) == obj.rotation
-    }
-
-    fun allocate(x: Int, y: Int, plane: Int) {
-        map.allocateIfAbsent(x, y, plane)
     }
 
     /**

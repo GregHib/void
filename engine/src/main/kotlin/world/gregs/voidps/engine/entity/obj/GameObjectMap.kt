@@ -13,8 +13,6 @@ interface GameObjectMap {
 
     operator fun set(x: Int, y: Int, level: Int, group: Int, mask: Int)
 
-    fun allocateIfAbsent(absoluteX: Int, absoluteY: Int, level: Int)
-
     fun add(obj: GameObject, mask: Int)
 
     fun remove(obj: GameObject, mask: Int)
