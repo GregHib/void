@@ -96,8 +96,6 @@ open class Movement(
      */
     private fun step(runStep: Boolean): Boolean {
         val target = getTarget()
-        if(character is Player)
-        println("Step $target")
         if (target == null) {
             onCompletion()
             return false
