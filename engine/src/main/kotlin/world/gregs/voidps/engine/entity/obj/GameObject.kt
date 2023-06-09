@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.map.Tile
  * Interactive Object
  */
 @JvmInline
-value class GameObject(private val packed: Long) : Entity {
+value class GameObject(internal val packed: Long) : Entity {
 
     constructor(id: Int, x: Int, y: Int, plane: Int, type: Int, rotation: Int) : this(pack(id, x, y, plane, type, rotation))
 
@@ -48,11 +48,11 @@ value class GameObject(private val packed: Long) : Entity {
             return GameObject(id, tile.x, tile.y, tile.plane, type, rotation)
         }
 
-        fun pack(id: Int, x: Int, y: Int, plane: Int, type: Int, rotation: Int): Long {
+        internal fun pack(id: Int, x: Int, y: Int, plane: Int, type: Int, rotation: Int): Long {
             return pack(id.toLong(), x.toLong(), y.toLong(), plane.toLong(), type.toLong(), rotation.toLong())
         }
 
-        fun pack(id: Long, x: Long, y: Long, plane: Long, type: Long, rotation: Long): Long {
+        private fun pack(id: Long, x: Long, y: Long, plane: Long, type: Long, rotation: Long): Long {
             return y or (x shl 14) or (plane shl 28) or (rotation shl 30) or (type shl 32) or (id shl 37)
         }
 

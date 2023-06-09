@@ -48,7 +48,7 @@ class GameObjects(
     }
 
     /**
-     * Adds temporary objects to [replacements] or un-flags original removed objects
+     * Adds temporary objects to [replacements] or un-flags the original removed object
      */
     fun add(obj: GameObject, collision: Boolean = true) {
         if (obj.intId == -1) {
@@ -111,7 +111,7 @@ class GameObjects(
 
     /**
      * Decide to store [GameObject]s which don't have options or configs
-     * Skipping unused objects uses ~75MB less ram but makes content creation harder.
+     * Skipping unused objects uses less ram but makes content creation harder.
      */
     private fun interactive(definition: ObjectDefinition) = storeUnused || definition.options != null || definition.has("id")
 
@@ -272,7 +272,7 @@ class GameObjects(
      */
     fun reset(chunk: Chunk, collision: Boolean = true) {
         forEachReplaced(chunk) { tile, group, value ->
-            if (value != 0) {
+            if (value != 1) {
                 add(GameObject(id(value), tile, type(value), rotation(value)), collision)
             }
             val replaced = replacements[index(tile, group)]
@@ -347,29 +347,31 @@ class GameObjects(
         const val NEVER = -1
         private const val REPLACED = 0x1
 
-        /**
-         * Value represents an objects id, type and rotation stored within [map] and [replacements]
-         */
         private fun empty(value: Int) = value == -1 || value == 0
-        internal fun value(replaced: Boolean, id: Int, type: Int, rotation: Int) = replaced.toInt() or (rotation shl 1) + (type shl 3) + (id shl 8)
+        /**
+         * Value represents an objects id, type and rotation plus and extra bit for whether the object has been [REPLACED] or removed.
+         */
+        internal fun value(replaced: Boolean, id: Int, type: Int, rotation: Int): Int {
+            return replaced.toInt() or (rotation shl 1) + (type shl 3) + (id shl 8)
+        }
         private fun id(value: Int): Int = value shr 8 and 0x1ffff
         private fun type(value: Int): Int = value shr 3 and 0x1f
         private fun rotation(value: Int): Int = value shr 1 and 0x3
         private fun replaced(value: Int) = value and REPLACED == REPLACED
-        private fun GameObject.value(replaced: Boolean): Int = value(replaced, intId, type, rotation)
+        private fun GameObject.value(replaced: Boolean): Int {
+            return replaced.toInt() or ((packed shr 30).toInt() shl 1)
+        }
 
         /**
-         * Index represents a [Tile] and [ObjectGroup], for storing [replacements]
+         * Index represents a [Tile] and [ObjectGroup]
          */
-        private val GameObject.index: Int
-            get() = index(x, y, plane, ObjectGroup.group(type))//hash and 0x3fffffff).toInt() or (ObjectGroup.group(type) shl 30)
-
-        private fun index(x: Int, y: Int, plane: Int, group: Int) = y or (x shl 14) or (plane shl 28) or (group shl 30)
         private fun index(tile: Tile, group: Int) = tile.id or (group shl 30)
         private fun level(index: Int) = index shr 28 and 0x2
         private fun group(index: Int) = index shr 30 and 0x2
         private fun x(index: Int) = index shr 14 and 0x3fff
         private fun y(index: Int) = index and 0x3fff
+        private val GameObject.index: Int
+            get() = (packed and 0x3fffffff).toInt() or (ObjectGroup.group(type) shl 30)
     }
 }
 

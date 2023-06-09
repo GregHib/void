@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.map.collision.Collisions
 
 /**
  * Much like [Collisions] this stores [GameObject]s by zone + group
- * Large memory footprint but faster when storing millions of objects.
+ * Large memory footprint but faster then [GameObjectHashMap] when storing millions of objects.
  */
 class GameObjectArrayMap : GameObjectMap {
     private val data: Array<IntArray?> = arrayOfNulls(TOTAL_ZONE_COUNT)
@@ -77,7 +77,6 @@ class GameObjectArrayMap : GameObjectMap {
         private const val ZONE_TILE_COUNT: Int = 8 * 8 * 4
 
         private fun tileIndex(x: Int, y: Int, group: Int): Int = (x and 0x7) or ((y and 0x7) shl 3) or ((group and 0x7) shl 6)
-
         private fun zoneIndex(x: Int, y: Int, level: Int): Int = ((x shr 3) and 0x7FF) or
                 (((y shr 3) and 0x7FF) shl 11) or ((level and 0x3) shl 22)
     }
