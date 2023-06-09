@@ -88,7 +88,7 @@ class MapCompress(
             writer.writeInt(chunk.index)
             writer.writeShort(objs.size)
             for (obj in objs) {
-                writer.writeInt(obj.value)
+                writer.writeInt(obj.packed)
             }
         }
     }

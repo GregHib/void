@@ -98,11 +98,6 @@ class MapDecoder(cache: Cache, private val xteas: Map<Int, IntArray>) : Definiti
                 var plane = tile shr 12
                 val obj = reader.readUnsignedByte()
 
-                // Validate region
-                if (localX < 0 || localX > 64 || localY < 0 || localY > 64) {
-                    continue
-                }
-
                 // Decrease bridges
                 if (getTile(localX, localY, 1).isTile(BRIDGE_TILE)) {
                     plane--

@@ -103,8 +103,8 @@ class GameObjects(
         collisions.modify(obj, chunk, definition)
         if (interactive(definition)) {
             val zone = chunk or (obj.plane shl 22)
-            val tile = ZoneObject.tile(obj.value) or (ObjectGroup.group(obj.type) shl 6)
-            map[zone, tile] = ZoneObject.info(obj.value) shl 1
+            val tile = ZoneObject.tile(obj.packed) or (ObjectGroup.group(obj.type) shl 6)
+            map[zone, tile] = ZoneObject.info(obj.packed) shl 1
             size++
         }
     }

@@ -11,7 +11,7 @@ class MapDefinition(
     fun getTile(localX: Int, localY: Int, plane: Int) = MapTile(tiles[getHash(localX, localY, plane)])
 
     fun setTile(localX: Int, localY: Int, plane: Int, tile: MapTile) {
-        tiles[getHash(localX, localY, plane)] = tile.hash
+        tiles[getHash(localX, localY, plane)] = tile.packed
     }
 
     companion object {
