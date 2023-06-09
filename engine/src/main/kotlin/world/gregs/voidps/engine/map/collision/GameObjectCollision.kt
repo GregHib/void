@@ -4,6 +4,7 @@ import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectType
+import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.file.ZoneObject
 
@@ -96,21 +97,16 @@ class GameObjectCollision(
     }
 
     private fun modifyTile(x: Int, y: Int, plane: Int, block: Int, direction: Int, add: Boolean) {
-        val flags = collisions.flags[zoneIndex(x, y, plane)] ?: return
+        val flags = collisions.flags[Chunk.indexTile(x, y, plane)] ?: return
         if (add) {
-            flags[tileIndex(x, y)] = flags[tileIndex(x, y)] or CollisionFlags.blocked[direction or block]
+            flags[Tile.index(x, y)] = flags[Tile.index(x, y)] or CollisionFlags.blocked[direction or block]
         } else {
-            flags[tileIndex(x, y)] = flags[tileIndex(x, y)] and CollisionFlags.inverse[direction or block]
+            flags[Tile.index(x, y)] = flags[Tile.index(x, y)] and CollisionFlags.inverse[direction or block]
         }
     }
 
-    // For performance reasons
     companion object {
-        private fun tileIndex(x: Int, y: Int): Int = (x and 0x7) or ((y and 0x7) shl 3)
-
-        private fun zoneIndex(x: Int, z: Int, level: Int): Int = ((x shr 3) and 0x7ff) or
-                (((z shr 3) and 0x7ff) shl 11) or ((level and 0x3) shl 22)
-
+        // For performance reasons
         private val inverse = Direction.all.map { it.inverse().ordinal }.toIntArray()
 
         private val deltaX = Direction.all.map { it.delta.x }.toIntArray()

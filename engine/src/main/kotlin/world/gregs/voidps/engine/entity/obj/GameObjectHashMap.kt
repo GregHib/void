@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.entity.obj
 
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
+import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.engine.map.file.ZoneObject
 
 /**
  * Stores [GameObject]s by zone + group
@@ -40,12 +40,13 @@ class GameObjectHashMap : GameObjectMap {
     }
 
     override fun deallocateZone(zoneX: Int, zoneY: Int, level: Int) {
+        val zone = Chunk.index(zoneX, zoneY, level)
         for (x in 0 until 8) {
             for (y in 0 until 8) {
-                data.remove(index(zoneX + x, zoneY + y, level, ObjectGroup.WALL))
-                data.remove(index(zoneX + x, zoneY + y, level, ObjectGroup.WALL_DECORATION))
-                data.remove(index(zoneX + x, zoneY + y, level, ObjectGroup.INTERACTIVE))
-                data.remove(index(zoneX + x, zoneY + y, level, ObjectGroup.GROUND_DECORATION))
+                data.remove(index(zone, Tile.index(x, y, ObjectGroup.WALL)))
+                data.remove(index(zone, Tile.index(x, y, ObjectGroup.WALL_DECORATION)))
+                data.remove(index(zone, Tile.index(x, y, ObjectGroup.INTERACTIVE)))
+                data.remove(index(zone, Tile.index(x, y, ObjectGroup.GROUND_DECORATION)))
             }
         }
     }
@@ -57,7 +58,7 @@ class GameObjectHashMap : GameObjectMap {
     companion object {
         private const val EXPECTED_OBJECT_COUNT = 74_000
         private fun index(obj: GameObject): Int = index(obj.x, obj.y, obj.plane, ObjectGroup.group(obj.type))
-        private fun index(x: Int, y: Int, level: Int, group: Int): Int = index(Chunk.index(x shr 3, y shr 3, level), ZoneObject.tile(x, y, group))
+        private fun index(x: Int, y: Int, level: Int, group: Int): Int = index(Chunk.indexTile(x, y, level), Tile.index(x, y, group))
         private fun index(zone: Int, tile: Int): Int = zone or (tile shl 24)
     }
 }

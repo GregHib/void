@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
@@ -160,9 +161,9 @@ class MapExtract(
         val value = reader.readLong()
         for (i in 0 until CHUNK_SIZE) {
             if (value ushr i and 0x1 == 1L) {
-                val x = i and 0x7
-                val y = i shr 3 and 0x7
-                val index = (rotateX(x, y, chunkRotation) and 0x7) or ((rotateY(x, y, chunkRotation) and 0x7) shl 3)
+                val x = Tile.indexX(i)
+                val y = Tile.indexY(i)
+                val index = Tile.index(rotateX(x, y, chunkRotation), rotateY(x, y, chunkRotation))
                 intArray[index] = intArray[i] or CollisionFlag.FLOOR
             }
         }

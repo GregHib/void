@@ -35,12 +35,15 @@ value class ZoneObject(val packed: Int) {
         fun type(packed: Int): Int = packed shr 10 and 0x1f
         fun rotation(packed: Int): Int = packed shr 8 and 0x3
 
-        fun tile(x: Int, y: Int, group: Int): Int = (x and 0x7) or ((y and 0x7) shl 3) or (group shl 6)
+        /**
+         * Takes the first half of the [packed] value which is equivalent to Tile#index
+         */
         fun tile(value: Int): Int = value and 0x3f
-        fun tileX(tile: Int) = tile and 0x7
-        fun tileY(tile: Int) = tile shr 3 and 0x7
-        fun tileGroup(tile: Int) = tile shr 6 and 0x7
 
+        /**
+         * Takes the second half of [packed] which is the id, rotation and type
+         * @see world.gregs.voidps.engine.entity.obj.GameObjects for usage
+         */
         fun info(value: Int): Int = value shr 8
         fun infoId(info: Int) = info shr 7
         fun infoRotation(info: Int) = info and 0x3

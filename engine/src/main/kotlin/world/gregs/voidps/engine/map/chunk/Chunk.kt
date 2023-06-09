@@ -60,11 +60,16 @@ value class Chunk(override val id: Int) : Id {
         fun getPlane(id: Int) = id shr 24
         val EMPTY = Chunk(0, 0, 0)
 
-
+        /**
+         * Index; used for indexing chunks in arrays
+         * @see world.gregs.voidps.engine.map.collision.Collisions
+         * @see world.gregs.voidps.engine.entity.obj.GameObjectMap
+         */
         fun indexX(index: Int) = index and 0x7ff
         fun indexY(index: Int) = index shr 11 and 0x7ff
         fun indexLevel(index: Int) = index shr 22 and 0x3
         fun index(x: Int, y: Int, level: Int): Int = (x and 0x7ff) or ((y and 0x7ff) shl 11) or ((level and 0x3) shl 22)
+        fun indexTile(tileX: Int, tileY: Int, level: Int): Int = index(tileX shr 3, tileY shr 3, level)
     }
 }
 

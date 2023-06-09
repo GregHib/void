@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.suspend.pause
@@ -201,16 +202,8 @@ on<Command>({ prefix == "col" }) { player: Player ->
 operator fun Array<IntArray?>.get(baseX: Int, baseY: Int, localX: Int, localY: Int, z: Int): Int {
     val x = baseX + localX
     val y = baseY + localY
-    val zone = this[getZoneIndex(x, y, z)] ?: return 0
-    return zone[getIndexInZone(x, y)]
-}
-
-fun getZoneIndex(x: Int, y: Int, z: Int): Int {
-    return (x shr 3) or ((y shr 3) shl 11) or (z shl 22)
-}
-
-fun getIndexInZone(x: Int, y: Int): Int {
-    return (x and 0x7) or ((y and 0x7) shl 3)
+    val zone = this[Chunk.indexTile(x, y, z)] ?: return 0
+    return zone[Tile.index(x, y)]
 }
 
 on<Command>({ prefix == "walkToBank" }) { player: Player ->

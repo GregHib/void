@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.map.file
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.map.Tile
 
 class ZoneObjectTest {
 
@@ -20,8 +21,8 @@ class ZoneObjectTest {
     fun `Get tile from hash`() {
         val value = ZoneObject.pack(43200, 7, 6, 3, 22, 3)
         val tile = ZoneObject.tile(value)
-        assertEquals(7, ZoneObject.tileX(tile))
-        assertEquals(6, ZoneObject.tileY(tile))
+        assertEquals(7, Tile.indexX(tile))
+        assertEquals(6, Tile.indexY(tile))
     }
 
     @Test

@@ -3,8 +3,8 @@ package world.gregs.voidps.engine.entity.obj
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.engine.map.file.ZoneObject
 
 class GameObjectHashMapTest {
 
@@ -39,8 +39,8 @@ class GameObjectHashMapTest {
     fun `Set directly`() {
         val obj = GameObject(1234, 2500, 3900, 1, 10, 2)
         val value = GameObjects.value(false, obj.intId, obj.type, obj.rotation)
-        val tileIndex = ZoneObject.tile(obj.x, obj.y, ObjectGroup.INTERACTIVE)
-        val zoneIndex = Chunk.index(obj.x / 8, obj.y / 8, obj.plane)
+        val tileIndex = Tile.index(obj.x, obj.y, ObjectGroup.INTERACTIVE)
+        val zoneIndex = Chunk.indexTile(obj.x, obj.y, obj.plane)
         map[zoneIndex, tileIndex] = value
         val result = map.get(x = 2500, y = 3900, level = 1, group = ObjectGroup.INTERACTIVE)
         assertEquals(value, result)
