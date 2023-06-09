@@ -12,9 +12,9 @@ class InterfaceOnPlayerDecoder : Decoder(11) {
         val slot = packet.readShortAddLittle()
         val index = packet.readShortLittleEndian().toInt()
         val itemId = packet.readShortLittleEndian().toInt()
-        val hash = packet.readUnsignedIntInverseMiddle()
+        val packed = packet.readUnsignedIntInverseMiddle()
         val run = packet.readBooleanInverse()
-        instructions.emit(InteractInterfacePlayer(index, Interface.getId(hash), Interface.getComponentId(hash), itemId, slot))
+        instructions.emit(InteractInterfacePlayer(index, Interface.getId(packed), Interface.getComponentId(packed), itemId, slot))
     }
 
 }

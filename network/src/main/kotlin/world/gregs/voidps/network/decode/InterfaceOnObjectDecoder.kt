@@ -11,12 +11,12 @@ class InterfaceOnObjectDecoder : Decoder(15) {
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         val item = packet.readShort().toInt()
         val x = packet.readShortAddLittle()
-        val hash = packet.readIntLittleEndian()
+        val packed = packet.readIntLittleEndian()
         val y = packet.readUnsignedShortAdd()
         val run = packet.readBooleanSubtract()
         val index = packet.readShortLittleEndian().toInt()
         val objectId = packet.readUnsignedShortLittle()
-        instructions.emit(InteractInterfaceObject(objectId, x, y, Interface.getId(hash), Interface.getComponentId(hash), item, index))
+        instructions.emit(InteractInterfaceObject(objectId, x, y, Interface.getId(packed), Interface.getComponentId(packed), item, index))
     }
 
 }

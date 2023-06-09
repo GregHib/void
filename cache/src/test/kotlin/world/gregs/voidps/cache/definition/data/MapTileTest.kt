@@ -14,14 +14,14 @@ import world.gregs.voidps.cache.definition.data.MapTile.Companion.underlay
 internal class MapTileTest {
 
     @Test
-    fun `Get values from hash`() {
-        val hash = pack(255, 49, 255, 11, 4, 32, 174)
-        assertEquals(255, height(hash))
-        assertEquals(49, opcode(hash))
-        assertEquals(255, overlay(hash))
-        assertEquals(11, path(hash))
-        assertEquals(4, rotation(hash))
-        assertEquals(32, settings(hash))
-        assertEquals(174, underlay(hash))
+    fun `Get values from packed`() {
+        val packed = pack(255, 49, 255, 11, 4, 32, 174)
+        assertEquals(255, height(packed))
+        assertEquals(49, opcode(packed))
+        assertEquals(255, overlay(packed))
+        assertEquals(11, path(packed))
+        assertEquals(4, rotation(packed))
+        assertEquals(32, settings(packed))
+        assertEquals(174, underlay(packed))
     }
 }

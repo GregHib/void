@@ -12,13 +12,13 @@ import world.gregs.voidps.cache.definition.data.MapObject.Companion.y
 
 internal class MapObjectTest {
     @Test
-    fun `Get values from hash`() {
-        val hash = pack(43200, 12000, 9600, 3, 22, 3)
-        assertEquals(43200, id(hash))
-        assertEquals(12000, x(hash))
-        assertEquals(9600, y(hash))
-        assertEquals(3, plane(hash))
-        assertEquals(22, type(hash))
-        assertEquals(3, rotation(hash))
+    fun `Get values from packed`() {
+        val packed = pack(43200, 12000, 9600, 3, 22, 3)
+        assertEquals(43200, id(packed))
+        assertEquals(12000, x(packed))
+        assertEquals(9600, y(packed))
+        assertEquals(3, plane(packed))
+        assertEquals(22, type(packed))
+        assertEquals(3, rotation(packed))
     }
 }
