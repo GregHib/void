@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
 import java.io.File
 import java.io.RandomAccessFile
-import java.lang.ref.WeakReference
 import kotlin.collections.set
 
 /**
@@ -241,15 +240,14 @@ class MapExtract(
 
         @JvmStatic
         fun main(args: Array<String>) {
-            val cache = WeakReference(CacheDelegate("./data/cache"))
-            val itemDefinitions = ItemDefinitions(ItemDecoder(cache.get()!!))
+            val cache = CacheDelegate("./data/cache")
+            val itemDefinitions = ItemDefinitions(ItemDecoder(cache))
                 .load(FileStorage(), "./data/definitions/items.yml")
-            val definitions = ObjectDefinitions(ObjectDecoder(cache.get()!!, true, false))
+            val definitions = ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false))
                 .load(FileStorage(), "./data/definitions/objects.yml", itemDefinitions)
             val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
-            cache.clear()
             val collisions = Collisions()
-            val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = false)
+            val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = true)
             val extract = MapExtract(collisions, definitions, objects, xteas)
             extract.loadMap(File("./data/map-test.dat"))
             println(objects.size)

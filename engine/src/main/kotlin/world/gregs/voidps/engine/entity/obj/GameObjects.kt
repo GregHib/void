@@ -334,9 +334,6 @@ class GameObjects(
                 for (group in 0 until 4) {
                     val value = map[chunkX + x, chunkY + y, plane, group]
                     if (empty(value) || !replaced(value)) {
-                        if(!empty(value)) {
-                            println("WHy ${value and 0x1} ${chunkX + x} ${chunkY + y} $value")
-                        }
                         continue
                     }
                     val tile = chunk.tile.add(x, y)
