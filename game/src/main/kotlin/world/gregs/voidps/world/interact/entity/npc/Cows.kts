@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.npc
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
+import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -27,6 +27,6 @@ on<TimerTick>({ timer == "eat_grass" }) { npc: NPC ->
     npc.setAnimation("cow_eat_grass")
 }
 
-on<InterfaceOnNPC>({ operate && npc.def.name == "cow" }) { player: Player ->
+on<ItemOnNPC>({ operate && npc.def.name == "cow" }) { player: Player ->
     player.message("The cow doesn't want that.")
 }

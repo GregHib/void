@@ -2,8 +2,8 @@ package world.gregs.voidps.world.activity.skill.firemaking
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnFloorItem
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
+import world.gregs.voidps.engine.client.ui.interact.ItemOnFloorItem
+import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
 import world.gregs.voidps.engine.client.ui.interact.either
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.set
@@ -39,7 +39,7 @@ import world.gregs.voidps.engine.suspend.pause
 val floorItems: FloorItems by inject()
 val objects: GameObjects by inject()
 
-on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } }) { player: Player ->
+on<ItemOnItem>({ either { from, to -> from.lighter && to.burnable } }) { player: Player ->
     val log = if (toItem.burnable) toItem else fromItem
     val logSlot = if (toItem.burnable) toSlot else fromSlot
     if (objects.getGroup(player.tile, ObjectGroup.INTERACTIVE) != null) {
@@ -58,7 +58,7 @@ on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } })
     }
 }
 
-on<InterfaceOnFloorItem>({ operate && item.lighter && floorItem.def.has("firemaking") }) { player: Player ->
+on<ItemOnFloorItem>({ operate && item.lighter && floorItem.def.has("firemaking") }) { player: Player ->
     arriveDelay()
     lightFire(player, floorItem)
 }

@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.skill.cooking
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
+import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
@@ -38,7 +38,7 @@ val GameObject.cookingRange: Boolean get() = id.startsWith("cooking_range")
 
 val GameObject.heatSource: Boolean get() = id.startsWith("fire_") || cookingRange
 
-on<InterfaceOnObject>({ operate && obj.heatSource && item.def.has("cooking") }) { player: Player ->
+on<ItemOnObject>({ operate && obj.heatSource && item.def.has("cooking") }) { player: Player ->
     arriveDelay()
     val definition = if (player["sinew", false]) definitions.get("sinew") else if (item.id == "sinew") return@on else item.def
     player["sinew"] = false

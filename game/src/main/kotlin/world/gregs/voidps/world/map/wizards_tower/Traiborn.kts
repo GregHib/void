@@ -1,6 +1,6 @@
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
+import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
 import world.gregs.voidps.engine.client.update.batch.animate
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
@@ -39,7 +39,7 @@ on<NPCOption>({ operate && npc.id == "traiborn" && option == "Talk-to" }) { play
     }
 }
 
-on<InterfaceOnNPC>({ operate && npc.id == "traiborn" && item.id == "bones" && player.bonesRequired > 0 }) { player: Player ->
+on<ItemOnNPC>({ operate && npc.id == "traiborn" && item.id == "bones" && player.bonesRequired > 0 }) { player: Player ->
     player.talkWith(npc)
     giveBones()
 }

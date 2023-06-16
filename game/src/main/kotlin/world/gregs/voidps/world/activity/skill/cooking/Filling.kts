@@ -1,5 +1,5 @@
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
+import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.replace
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.suspend.pause
 val GameObject.waterSource: Boolean
     get() = def.name == "Sink" || def.name == "Fountain" || def.name == "Well" || def.name == "Water trough" || def.name == "Pump and drain"
 
-on<InterfaceOnObject>({ operate && obj.waterSource && item.def.has("full") }) { player: Player ->
+on<ItemOnObject>({ operate && obj.waterSource && item.def.has("full") }) { player: Player ->
     arriveDelay()
     while (player.inventory.contains(item.id)) {
         player.setAnimation("take")

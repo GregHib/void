@@ -3,11 +3,10 @@ package world.gregs.voidps.engine.client.ui.interact
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.floor.FloorItem
 
-data class InterfaceOnFloorItem(
+data class ItemOnPlayer(
     override val player: Player,
-    val floorItem: FloorItem,
+    val target: Player,
     val id: String,
     val component: String,
     val item: Item,

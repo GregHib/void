@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
+import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.client.update.batch.animate
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.add
@@ -44,7 +44,7 @@ on<ObjectOption>({ operate && obj.id == "hopper_controls" && option == "Operate"
     }
 }
 
-on<InterfaceOnObject>({ operate && obj.id == "hopper" && item.id == "grain" }) { player: Player ->
+on<ItemOnObject>({ operate && obj.id == "hopper" && item.id == "grain" }) { player: Player ->
     arriveDelay()
     if (player["cooks_assistant", "unstarted"] != "started") {
         player.setAnimation("fill_hopper")

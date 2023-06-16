@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.Event
  * @author Jacob Rhiel <jacob.rhiel@gmail.com>
  * @created Jun 20, 2021
  */
-data class InterfaceOnInterface(
+data class ItemOnItem(
     val fromItem: Item,
     val toItem: Item,
     val fromSlot: Int,
@@ -20,11 +20,11 @@ data class InterfaceOnInterface(
     val toContainer: String
 ) : Event
 
-fun InterfaceOnInterface.either(block: (Item, Item) -> Boolean): Boolean {
+fun ItemOnItem.either(block: (Item, Item) -> Boolean): Boolean {
     return block.invoke(fromItem, toItem) || block.invoke(toItem, fromItem)
 }
 
-fun InterfaceOnInterface.sort(condition: (Item) -> Boolean): Pair<Item, Item> {
+fun ItemOnItem.sort(condition: (Item) -> Boolean): Pair<Item, Item> {
     val flip = condition(toItem)
     return (if (flip) toItem else fromItem) to (if (flip) fromItem else toItem)
 }
