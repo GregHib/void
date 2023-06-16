@@ -77,6 +77,7 @@ val postCacheModule = module {
     single { MapExtract(get(), get(), get(), get()) }
     // Definitions
     single(createdAtStart = true) { SoundDefinitions().load() }
+    single(createdAtStart = true) { RenderEmoteDefinitions().load() }
     single(createdAtStart = true) { MidiDefinitions().load() }
     single(createdAtStart = true) { VariableDefinitions().load() }
     single(createdAtStart = true) { JingleDefinitions().load() }

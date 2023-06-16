@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.entity.character.player.emote
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.equip.has
@@ -77,7 +77,7 @@ fun getOtherHandSlot(slot: EquipSlot) = if (slot == EquipSlot.Shield) EquipSlot.
 fun updateWeaponEmote(player: Player) {
     val weapon = player.equipped(EquipSlot.Weapon)
     val anim = weapon.def.getParam(644, 1426)
-    player.emote = anim
+    player.appearance.emote = anim
     player.flagAppearance()
 }
 
