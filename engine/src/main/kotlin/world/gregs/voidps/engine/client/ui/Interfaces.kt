@@ -26,7 +26,7 @@ import world.gregs.voidps.network.encode.*
 class Interfaces(
     private val events: Events,
     var client: Client? = null,
-    val definitions: InterfaceDefinitions,
+    private val definitions: InterfaceDefinitions,
     private val gameFrame: GameFrame,
     private val openInterfaces: MutableSet<String> = ObjectOpenHashSet()
 ) {

@@ -24,9 +24,9 @@ import world.gregs.voidps.network.visual.PlayerVisuals
 
 class PlayerFactory(
     private val store: EventHandlerStore,
-    private val interfaces: InterfaceDefinitions,
-    private val containerDefs: ContainerDefinitions,
-    private val itemDefs: ItemDefinitions,
+    private val interfaceDefinitions: InterfaceDefinitions,
+    private val containerDefinitions: ContainerDefinitions,
+    private val itemDefinitions: ItemDefinitions,
     private val accountDefinitions: AccountDefinitions,
     private val fileStorage: FileStorage,
     private val path: String,
@@ -35,7 +35,7 @@ class PlayerFactory(
     private val homeTile: Tile
 ) : Runnable {
 
-    private val validItems = ValidItemRestriction(itemDefs)
+    private val validItems = ValidItemRestriction(itemDefinitions)
 
     private val saveQueue = mutableSetOf<Player>()
 
@@ -76,14 +76,14 @@ class PlayerFactory(
         store.populate(player)
         player.index = index
         player.visuals = PlayerVisuals(index, player.body)
-        player.interfaces = Interfaces(player.events, player.client, interfaces, player.gameFrame)
-        player.interfaceOptions = InterfaceOptions(player, interfaces, containerDefs)
+        player.interfaces = Interfaces(player.events, player.client, interfaceDefinitions, player.gameFrame)
+        player.interfaceOptions = InterfaceOptions(player, interfaceDefinitions, containerDefinitions)
         player.options = PlayerOptions(player)
         (player.variables as PlayerVariables).definitions = variableDefinitions
-        player.containers.definitions = containerDefs
-        player.containers.itemDefinitions = itemDefs
+        player.containers.definitions = containerDefinitions
+        player.containers.itemDefinitions = itemDefinitions
         player.containers.validItemRule = validItems
-        player.containers.normalStack = DependentOnItem(itemDefs)
+        player.containers.normalStack = DependentOnItem(itemDefinitions)
         player.containers.events = player.events
         player.previousTile = player.tile.add(Direction.WEST.delta)
         player.experience.events = player.events
