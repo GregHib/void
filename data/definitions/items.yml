@@ -6292,6 +6292,7 @@ green_dragonhide_body:
   magic_def: 20.0
   range_def: 40.0
   summoning_def: 40.0
+  aka: [ green_dhide_body ]
   slot: "Chest"
   material: "leather"
   type: "Sleeveless"
@@ -13676,6 +13677,7 @@ blue_dragonhide_body:
   magic_def: 30.0
   range_def: 45.0
   summoning_def: 45.0
+  aka: [ blue_dhide_body ]
   slot: "Chest"
   material: "leather"
   type: "Sleeveless"
@@ -13696,6 +13698,7 @@ red_dragonhide_body:
   magic_def: 40.0
   range_def: 50.0
   summoning_def: 50.0
+  aka: [ red_dhide_body ]
   slot: "Chest"
   material: "leather"
   type: "Sleeveless"
@@ -13716,6 +13719,7 @@ black_dragonhide_body:
   magic_def: 50.0
   range_def: 55.0
   summoning_def: 55.0
+  aka: [ black_dhide_body ]
   slot: "Chest"
   material: "leather"
   type: "Sleeveless"
