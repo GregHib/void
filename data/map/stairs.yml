@@ -1,79 +1,2384 @@
-# Tutorial island
-- id: 36773
-  option: Climb-up
-  tile:
-    x: 3082
-    y: 3124
-  delta:
-    plane: 1
-- id: 36775
+######## 6475 ########
+- id: 27243
   option: Climb-down
   tile:
-    x: 3082
-    y: 3124
+    x: 1636
+    y: 4835
+  to:
+    x: 1703
+    y: 4826
+######## 6726 ########
+- id: 10708
+  option: Climb-down
+  tile:
+    x: 1698
+    y: 4515
+    plane: 1
+  delta:
+    x: -2
+    plane: -1
+- id: 10707
+  option: Climb-up
+  tile:
+    x: 1698
+    y: 4515
+  delta:
+    x: 2
+    plane: 1
+- id: 10708
+  option: Climb-down
+  tile:
+    x: 1695
+    y: 4515
+    plane: 1
+  delta:
+    x: 2
+    plane: -1
+- id: 10707
+  option: Climb-up
+  tile:
+    x: 1695
+    y: 4515
+  delta:
+    x: -2
+    plane: 1
+- id: 10699
+  option: Climb-up
+  tile:
+    x: 1693
+    y: 4510
+    plane: 1
+  to:
+    x: 3091
+    y: 3275
+######## 6731 ########
+- id: 27242
+  option: Climb-up
+  tile:
+    x: 1700
+    y: 4824
+  to:
+    x: 1639
+    y: 4835
+######## 6989 ########
+- id: 24427
+  option: Walk-up
+  tile:
+    x: 1758
+    y: 4959
+  delta:
+    x: 1500
+    y: -1505
+######## 7505 ########
+- id: 16148
+  option: Climb-up
+  tile:
+    x: 1859
+    y: 5244
+  to:
+    x: 3081
+    y: 3421
+- id: 16146
+  option: Climb-up
+  tile:
+    x: 1881
+    y: 5232
+  to:
+    x: 1859
+    y: 5243
+- id: 16148
+  option: Climb-up
+  tile:
+    x: 1913
+    y: 5226
+  to:
+    x: 3081
+    y: 3421
+- id: 16149
+  option: Climb-down
+  tile:
+    x: 1902
+    y: 5222
+  to:
+    x: 2042
+    y: 5245
+######## 8005 ########
+- id: 10708
+  option: Climb-down
+  tile:
+    x: 2009
+    y: 4431
+    plane: 1
+  delta:
+    x: -2
+    plane: -1
+- id: 10707
+  option: Climb-up
+  tile:
+    x: 2009
+    y: 4431
+  delta:
+    x: 2
+    plane: 1
+- id: 10708
+  option: Climb-down
+  tile:
+    x: 2006
+    y: 4431
+    plane: 1
+  delta:
+    x: 2
+    plane: -1
+- id: 10707
+  option: Climb-up
+  tile:
+    x: 2006
+    y: 4431
+  delta:
+    x: -2
+    plane: 1
+- id: 10699
+  option: Climb-up
+  tile:
+    x: 2004
+    y: 4426
+    plane: 1
+  to:
+    x: 3091
+    y: 3275
+######## 8017 ########
+- id: 16080
+  option: Climb-up
+  tile:
+    x: 2042
+    y: 5246
+  to:
+    x: 1859
+    y: 5243
+- id: 16078
+  option: Climb-up
+  tile:
+    x: 2040
+    y: 5208
+  to:
+    x: 2042
+    y: 5245
+- id: 16078
+  option: Climb-up
+  tile:
+    x: 2031
+    y: 5189
+  to:
+    x: 2042
+    y: 5245
+- id: 16078
+  option: Climb-up
+  tile:
+    x: 2011
+    y: 5192
+  to:
+    x: 2042
+    y: 5245
+- id: 16078
+  option: Climb-up
+  tile:
+    x: 2017
+    y: 5210
+  to:
+    x: 2042
+    y: 5245
+- id: 16081
+  option: Climb-down
+  tile:
+    x: 2026
+    y: 5218
+  to:
+    x: 2123
+    y: 5252 
+######## 8530 ########
+- id: 16114
+  option: Climb-up
+  tile:
+    x: 2123
+    y: 5251
+  to:
+    x: 2042
+    y: 5245
+- id: 16112
+  option: Climb-up
+  tile:
+    x: 2150
+    y: 5278
+  to:
+    x: 2123
+    y: 5252
+- id: 16115
+  option: Climb-down
+  tile:
+    x: 2148
+    y: 5284
+  to:
+    x: 2358
+    y: 5215
+######## 8787 ########
+- id: 28714
+  option: Climb
+  tile:
+    x: 2209
+    y: 5349
+  to:
+    x: 2926
+    y: 3444
+######## 9297 ########
+- id: 16049
+  option: Climb-up
+  tile:
+    x: 2358
+    y: 5216
+  to:
+    x: 2123
+    y: 5252
+- id: 16048
+  option: Climb-up
+  tile:
+    x: 2309
+    y: 5240
+  to:
+    x: 3081
+    y: 3421
+- id: 16048
+  option: Climb-up
+  tile:
+    x: 2350
+    y: 5215
+  to:
+    x: 3081
+    y: 3421
+######## 11313 ########
+- id: 492
+  option: Climb-down
+  tile:
+    x: 2856
+    y: 3168
+  to:
+    x: 2857
+    y: 9569
+######## 11314 ########
+- id: 25154
+  option: Enter
+  tile:
+    x: 2833
+    y: 3255
+  to:
+    x: 2833
+    y: 9658
+- id: 272
+  option: Climb-up
+  tile:
+    x: 2847
+    y: 3235
+  delta:
+    plane: 1
+- id: 273
+  option: Climb-down
+  tile:
+    x: 2847
+    y: 3235
     plane: 1
   delta:
     plane: -1
-- id: 36945
+######## 11413 ########
+- id: 1764
+  option: Climb
+  tile:
+    x: 2856
+    y: 9569
+  to:
+    x: 2856
+    y: 3167
+######## 11414 ########
+- id: 25213
+  option: Climb
+  tile:
+    x: 2833
+    y: 9657
+  to:
+    x: 2834
+    y: 3258
+######## 11570 ########
+- id: 1747
   option: Climb-up
   tile:
-    x: 3116
-    y: 3126
+    x: 2928
+    y: 3256
   delta:
     plane: 1
-- id: 36770
+- id: 1746
   option: Climb-down
   tile:
-    x: 3116
-    y: 3126
+    x: 2928
+    y: 3256
     plane: 1
   delta:
     plane: -1
-- id: 36945
-  option: Climb-up
-  tile:
-    x: 3123
-    y: 3128
-  delta:
-    plane: 1
-- id: 36770
+- id: 25045
   option: Climb-down
   tile:
-    x: 3123
-    y: 3128
+    x: 2925
+    y: 3258
     plane: 1
   delta:
-    plane: -1    
-- id: 36773
+    plane: -1
+- id: 1747
   option: Climb-up
   tile:
-    x: 3115
-    y: 3107
+    x: 2923
+    y: 3248
   delta:
     plane: 1
-- id: 36775
+- id: 1746
   option: Climb-down
   tile:
-    x: 3115
-    y: 3107
+    x: 2923
+    y: 3248
     plane: 1
   delta:
-    plane: -1    
+    plane: -1
+- id: 1747
+  option: Climb-up
+  tile:
+    x: 2923
+    y: 3240
+  delta:
+    plane: 1
+- id: 1746
+  option: Climb-down
+  tile:
+    x: 2923
+    y: 3240
+    plane: 1
+  delta:
+    plane: -1
+- id: 2605
+  option: Climb-down
+  tile:
+    x: 2932
+    y: 3240
+  delta:
+    y: 6400
+- id: 1754
+  option: Climb-down
+  tile:
+    x: 2924
+    y: 3250
+  delta:
+    y: 6400
+- id: 1754
+  option: Climb-down
+  tile:
+    x: 2939
+    y: 3257
+  delta:
+    y: 6400
+- id: 1746
+  option: Climb-down
+  tile:
+    x: 2929
+    y: 3240
+    plane: 1
+  delta:
+    plane: -1
+- id: 1747
+  option: Climb-up
+  tile:
+    x: 2934
+    y: 3254
+    plane: 1
+  delta:
+    plane: 1
+- id: 1746
+  option: Climb-down
+  tile:
+    x: 2934
+    y: 3254
+    plane: 2
+  delta:
+    plane: -1
+- id: 1747
+  option: Climb-up
+  tile:
+    x: 2932
+    y: 3244
+    plane: 1
+  delta:
+    plane: 1
+- id: 1746
+  option: Climb-down
+  tile:
+    x: 2932
+    y: 3244
+    plane: 2
+  delta:
+    plane: -1 
+- id: 1747
+  option: Climb-up
+  tile:
+    x: 2934
+    y: 3244
+    plane: 1
+  delta:
+    plane: 1
+- id: 1746
+  option: Climb-down
+  tile:
+    x: 2934
+    y: 3244
+    plane: 2
+  delta:
+    plane: -1
+- id: 1747
+  option: Climb-up
+  tile:
+    x: 2940
+    y: 3257
+    plane: 1
+  delta:
+    plane: 1
+- id: 1746
+  option: Climb-down
+  tile:
+    x: 2940
+    y: 3257
+    plane: 2
+  delta:
+    plane: -1
+- id: 1747
+  option: Climb-up
+  tile:
+    x: 2938
+    y: 3250
+    plane: 1
+  delta:
+    plane: 1
+- id: 1746
+  option: Climb-down
+  tile:
+    x: 2938
+    y: 3250
+    plane: 2
+  delta:
+    plane: -1 
+- id: 1746
+  option: Climb-down
+  tile:
+    x: 2937
+    y: 3240
+    plane: 1
+  delta:
+    plane: -1 
+- id: 1746
+  option: Climb-down
+  tile:
+    x: 2930
+    y: 3258
+    plane: 2
+  delta:
+    plane: -1
+- id: 1746
+  option: Climb-down
+  tile:
+    x: 2929
+    y: 3245
+    plane: 2
+  delta:
+    plane: -1
+- id: 1746
+  option: Climb-down
+  tile:
+    x: 2934
+    y: 3243
+    plane: 2
+  delta:
+    plane: -1
+- id: 1746
+  option: Climb-down
+  tile:
+    x: 2940
+    y: 3240
+    plane: 2
+  delta:
+    plane: -1
+- id: 1746
+  option: Climb-down
+  tile:
+    x: 2937
+    y: 3247
+    plane: 2
+  delta:
+    plane: -1
+- id: 1746
+  option: Climb-down
+  tile:
+    x: 2938
+    y: 3255
+    plane: 2
+  delta:
+    plane: -1
+######## 11571 ########
+- id: 9582
+  option: Climb-up
+  tile:
+    x: 2931
+    y: 3282
+  to:
+    x: 2933
+    y: 3282
+    plane: 1
+- id: 9584
+  option: Climb-down
+  tile:
+    x: 2932
+    y: 3282
+    plane: 1
+  to:
+    x: 2932
+    y: 3281
+- id: 9558
+  option: Climb-up
+  tile:
+    x: 2915
+    y: 3323
+  delta:
+    plane: 1
+- id: 9559
+  option: Climb-down
+  tile:
+    x: 2915
+    y: 3323
+    plane: 1
+  delta:
+    plane: -1
+######## 11572 ########
+- id: 11888
+  option: Climb-up
+  tile:
+    x: 2907
+    y: 3334
+  to:
+    x: 2908
+    y: 3336
+    plane: 1
+- id: 11889
+  option: Climb-down
+  tile:
+    x: 2907
+    y: 3334
+    plane: 1
+  to:
+    x: 2909
+    y: 3335
+- id: 11889
+  option: Climb-up
+  tile:
+    x: 2907
+    y: 3334
+    plane: 1
+  delta:
+    plane: 1
+- id: 11890
+  option: Climb-down
+  tile:
+    x: 2908
+    y: 3335
+    plane: 2
+  delta:
+    plane: -1 
+######## 11573 ########
+- id: 55404
+  option: Climb-down
+  tile:
+    x: 2884
+    y: 3397
+  delta:
+    y: 6398
+- id: 35125
+  option: Climb-up
+  tile:
+    x: 2898
+    y: 3428
+  delta:
+    plane: 1
+- id: 28652
+  option: Climb-down
+  tile:
+    x: 2898
+    y: 3428
+    plane: 1
+  delta:
+    plane: -1
+- id: 35125
+  option: Climb-up
+  tile:
+    x: 2914
+    y: 3441
+  delta:
+    plane: 1
+- id: 28652
+  option: Climb-down
+  tile:
+    x: 2914
+    y: 3441
+    plane: 1
+  delta:
+    plane: -1
+- id: 35125
+  option: Climb-up
+  tile:
+    x: 2915
+    y: 3450
+  delta:
+    plane: 1
+- id: 28652
+  option: Climb-down
+  tile:
+    x: 2915
+    y: 3450
+    plane: 1
+  delta:
+    plane: -1
+- id: 28572
+  option: Climb-up
+  tile:
+    x: 2925
+    y: 3442
+  delta:
+    x: 2
+    plane: 1
+- id: 28653
+  option: Climb-down
+  tile:
+    x: 2925
+    y: 3442
+    plane: 1
+  delta:
+    x: -2
+    plane: -1
+- id: 28676
+  option: Climb-down
+  tile:
+    x: 2927
+    y: 3444
+  to:
+    x: 2209
+    y: 5348 
+######## 11574 ########
+- id: 1738
+  option: Climb-up
+  tile:
+    x: 2895
+    y: 3513
+  to:
+    x: 2897
+    y: 3513
+    plane: 1
+- id: 1740
+  option: Climb-down
+  tile:
+    x: 2896
+    y: 3513
+    plane: 1
+  to:
+    x: 2896
+    y: 3512
+- id: 1747
+  option: Climb-up
+  tile:
+    x: 2895
+    y: 3516
+    plane: 1
+  delta:
+    plane: 1
+- id: 1746
+  option: Climb-down
+  tile:
+    x: 2895
+    y: 3516
+    plane: 2
+  delta:
+    plane: -1
+- id: 1747
+  option: Climb-up
+  tile:
+    x: 2890
+    y: 3508
+    plane: 1
+  delta:
+    plane: 1
+- id: 1746
+  option: Climb-down
+  tile:
+    x: 2890
+    y: 3508
+    plane: 2
+  delta:
+    plane: -1
+- id: 1747
+  option: Climb-up
+  tile:
+    x: 2895
+    y: 3505
+    plane: 1
+  delta:
+    plane: 1
+- id: 1746
+  option: Climb-down
+  tile:
+    x: 2895
+    y: 3505
+    plane: 2
+  delta:
+    plane: -1
+- id: 1754
+  option: Climb-down
+  tile:
+    x: 2892
+    y: 3507
+  delta:
+    y: 6400
+- id: 24672
+  option: Walk-up
+  tile:
+    x: 2906
+    y: 3469
+  delta:
+    y: 4
+    plane: 1
+- id: 24673
+  option: Walk-down
+  tile:
+    x: 2906
+    y: 3470
+    plane: 1
+  delta:
+    y: -4
+    plane: -1
+- id: 24718
+  option: Climb-down
+  tile:
+    x: 2907
+    y: 3476
+  delta:
+    y: 6400
+- id: 24842
+  option: Enter
+  tile:
+    x: 2899
+    y: 3469
+  to:
+    x: 2901
+    y: 9867
+######## 11599 ########
+- id: 32015
+  option: Climb-up
+  tile:
+    x: 2895
+    y: 5097
+  to:
+    x: 3268
+    y: 3400
+######## 11670 ########
+- id: 32015
+  option: Climb-up
+  tile:
+    x: 2924
+    y: 9650
+  delta:
+    y: -6400
+- id: 32015
+  option: Climb-up
+  tile:
+    x: 2939
+    y: 9657
+  delta:
+    y: -6400
+- id: 25038
+  option: Climb-up
+  tile:
+    x: 2928
+    y: 9658
+  delta:
+    y: -6400
+######## 11673 ########
+- id: 32015
+  option: Climb-up
+  tile:
+    x: 2884
+    y: 9797
+  delta:
+    y: -6398
+######## 11674 ########
+- id: 1757
+  option: Climb-up
+  tile:
+    x: 2892
+    y: 9907
+  delta:
+    y: -6400
+- id: 24717
+  option: Climb-up
+  tile:
+    x: 2907
+    y: 9876
+  delta:
+    y: -6400
+- id: 24687
+  option: Climb-up
+  tile:
+    x: 2898
+    y: 9867
+  to:
+    x: 2898
+    y: 3469
+######## 11825 ########
+- id: 273
+  option: Climb-down
+  tile:
+    x: 2953
+    y: 3141
+    plane: 1
+  delta:
+    plane: -1
+- id: 272
+  option: Climb-up
+  tile:
+    x: 2953
+    y: 3141
+  delta:
+    plane: 1
+- id: 273
+  option: Climb-down
+  tile:
+    x: 2957
+    y: 3141
+    plane: 1
+  delta:
+    plane: -1
+- id: 272
+  option: Climb-up
+  tile:
+    x: 2957
+    y: 3141
+  delta:
+    plane: 1 
+- id: 273
+  option: Climb-down
+  tile:
+    x: 2961
+    y: 3141
+    plane: 1
+  delta:
+    plane: -1
+- id: 272
+  option: Climb-up
+  tile:
+    x: 2961
+    y: 3141
+  delta:
+    plane: 1
+######## 11826 ########
+- id: 9470
+  option: Climb-up
+  tile:
+    x: 2965
+    y: 3215
+  delta:
+    x: 4
+    plane: 1
+- id: 9471
+  option: Climb-down
+  tile:
+    x: 2966
+    y: 3215
+    plane: 1
+  delta:
+    x: -4
+    plane: -1
+- id: 9558
+  option: Climb-up
+  tile:
+    x: 2948
+    y: 3213
+  delta:
+    plane: 1
+- id: 9559
+  option: Climb-down
+  tile:
+    x: 2948
+    y: 3213
+    plane: 1
+  delta:
+    plane: -1
+- id: 39331
+  option: Climb-down
+  tile:
+    x: 2968
+    y: 3201
+  delta:
+    x: 198
+    y: 1314
+######## 11828 ########
+- id: 11740
+  option: Climb-up
+  tile:
+    x: 2954
+    y: 3389
+  delta:
+    y: -2
+    plane: 1
+- id: 11741
+  option: Climb-down
+  tile:
+    x: 2954
+    y: 3389
+    plane: 1
+  delta:
+    y: 2
+    plane: -1
+- id: 11739
+  option: Climb-up
+  tile:
+    x: 2954
+    y: 3390
+    plane: 1
+  delta:
+    x: -2
+    plane: 1
+- id: 11741
+  option: Climb-down
+  tile:
+    x: 2954
+    y: 3390
+    plane: 2
+  delta:
+    x: 2
+    plane: -1
+- id: 11739
+  option: Climb-up
+  tile:
+    x: 2954
+    y: 3389
+    plane: 2
+  delta:
+    y: 2
+    plane: 1
+- id: 11741
+  option: Climb-down
+  tile:
+    x: 2954
+    y: 3389
+    plane: 3
+  delta:
+    y: -2
+    plane: -1
+- id: 11739
+  option: Climb-up
+  tile:
+    x: 2946
+    y: 3378
+  delta:
+    y: -2
+    plane: 1
+- id: 11741
+  option: Climb-down
+  tile:
+    x: 2946
+    y: 3378
+    plane: 1
+  delta:
+    y: 2
+    plane: -1
+- id: 11736
+  option: Climb-up
+  tile:
+    x: 2959
+    y: 3369
+  delta:
+    y: 4
+    plane: 1
+- id: 11737
+  option: Climb-down
+  tile:
+    x: 2959
+    y: 3370
+    plane: 1
+  delta:
+    y: -4
+    plane: -1
+- id: 11739
+  option: Climb-up
+  tile:
+    x: 2946
+    y: 3363
+  delta:
+    plane: 1
+- id: 11741
+  option: Climb-down
+  tile:
+    x: 2946
+    y: 3363
+    plane: 1
+  delta:
+    plane: -1
+- id: 11732
+  option: Climb-up
+  tile:
+    x: 2973
+    y: 3384
+  to:
+    x: 2972
+    y: 3385
+    plane: 1
+- id: 35782
+  option: Climb-down
+  tile:
+    x: 2973
+    y: 3385
+    plane: 1
+  to:
+    x: 2973
+    y: 3386
+- id: 11736
+  option: Climb-up
+  tile:
+    x: 2971
+    y: 3370
+  delta:
+    y: 4
+    plane: 1
+- id: 11737
+  option: Climb-down
+  tile:
+    x: 2971
+    y: 3371
+    plane: 1
+  delta:
+    y: -4
+    plane: -1
+- id: 11729
+  option: Climb-up
+  tile:
+    x: 2954
+    y: 3338
+  to:
+    x: 2956
+    y: 3338
+    plane: 1
+- id: 11731
+  option: Climb-down
+  tile:
+    x: 2955
+    y: 3338
+    plane: 1
+  to:
+    x: 2955
+    y: 3337
+- id: 11729
+  option: Climb-up
+  tile:
+    x: 2960
+    y: 3338
+    plane: 1
+  to:
+    x: 2959
+    y: 3339
+    plane: 2
+- id: 11731
+  option: Climb-down
+  tile:
+    x: 2960
+    y: 3339
+    plane: 2
+  to:
+    x: 2960
+    y: 3340
+    plane: 1
+- id: 11729
+  option: Climb-up
+  tile:
+    x: 2957
+    y: 3338
+    plane: 2
+  to:
+    x: 2959
+    y: 3338
+    plane: 3
+- id: 11731
+  option: Climb-down
+  tile:
+    x: 2958
+    y: 3338
+    plane: 3
+  to:
+    x: 2958
+    y: 3337
+    plane: 2
+- id: 11724
+  option: Climb-up
+  tile:
+    x: 2968
+    y: 3347
+  delta:
+    x: -3
+    y: 1
+    plane: 1
+- id: 11725
+  option: Climb-down
+  tile:
+    x: 2968
+    y: 3347
+    plane: 1
+  delta:
+    x: 3
+    y: -1
+    plane: -1
+- id: 11727
+  option: Climb-up
+  tile:
+    x: 2983
+    y: 3351
+  delta:
+    plane: 1
+- id: 11728
+  option: Climb-down
+  tile:
+    x: 2983
+    y: 3351
+    plane: 1
+  delta:
+    plane: -1
+- id: 11727
+  option: Climb-up
+  tile:
+    x: 2983
+    y: 3352
+    plane: 1
+  delta:
+    plane: 1
+- id: 11728
+  option: Climb-down
+  tile:
+    x: 2983
+    y: 3352
+    plane: 2
+  delta:
+    plane: -1
+- id: 11727
+  option: Climb-up
+  tile:
+    x: 2983
+    y: 3351
+    plane: 2
+  delta:
+    plane: 1
+- id: 11728
+  option: Climb-down
+  tile:
+    x: 2983
+    y: 3351
+    plane: 3
+  delta:
+    plane: -1
+- id: 11727
+  option: Climb-up
+  tile:
+    x: 2994
+    y: 3341
+  delta:
+    plane: 1
+- id: 11728
+  option: Climb-down
+  tile:
+    x: 2994
+    y: 3341
+    plane: 1
+  delta:
+    plane: -1
+- id: 11727
+  option: Climb-up
+  tile:
+    x: 2996
+    y: 3341
+    plane: 1
+  delta:
+    plane: 1
+- id: 11728
+  option: Climb-down
+  tile:
+    x: 2996
+    y: 3341
+    plane: 2
+  delta:
+    plane: -1
+- id: 11727
+  option: Climb-up
+  tile:
+    x: 2994
+    y: 3341
+    plane: 2
+  delta:
+    plane: 1
+- id: 11728
+  option: Climb-down
+  tile:
+    x: 2994
+    y: 3341
+    plane: 3
+  delta:
+    plane: -1
+- id: 11734
+  option: Climb-up
+  tile:
+    x: 2984
+    y: 3337
+    plane: 1
+  delta:
+    y: 4
+    plane: 1
+- id: 35783
+  option: Climb-down
+  tile:
+    x: 2984
+    y: 3338
+    plane: 2
+  delta:
+    y: -4
+    plane: -1
+######## 11829 ########
+- id: 31010
+  option: Climb-down
+  tile:
+    x: 2998
+    y: 3453
+  delta:
+    y: 6393
+    x: -2
+######## 11830 ######## 
+- id: 16450
+  option: Climb-up
+  tile:
+    x: 2954
+    y: 3497
+  to:
+    x: 2955
+    y: 3497
+    plane: 2
+- id: 16556
+  option: Climb-down
+  tile:
+    x: 2954
+    y: 3497
+    plane: 2
+  to:   
+    x: 2955
+    y: 3497
+######## 11837 ######## 
+- id: 14758
+  option: Climb-down
+  tile:
+    x: 3005
+    y: 3963
+  delta:
+    y: 6400
+######## 11926 ########
+- id: 32015
+  option: Climb-up
+  tile:
+    x: 2962
+    y: 9651
+  to:   
+    x: 3018
+    y: 3231
+######## 11929 ######## 
+- id: 31002
+  option: Climb-up
+  tile:
+    x: 2996
+    y: 9846
+  delta:
+    y: -6393
+    x: 2
+######## 11937 ######## 
+- id: 32015
+  option: Climb-up
+  tile:
+    x: 3005
+    y: 10363
+  delta:
+    y: -6400
+######## 12081 ########
+- id: 9472
+  option: Climb-down
+  tile:
+    x: 3008
+    y: 3150
+  delta:
+    y: 6400
+- id: 40114
+  option: Climb-up
+  tile:
+    x: 3010
+    y: 3184
+  delta:
+    plane: 1
+- id: 55450
+  option: Climb-down
+  tile:
+    x: 3010
+    y: 3184
+    plane: 1
+  delta:
+    plane: -1
+- id: 40114
+  option: Climb-up
+  tile:
+    x: 3013
+    y: 3179
+    plane: 1
+  delta:
+    plane: 1
+- id: 40113
+  option: Climb-down
+  tile:
+    x: 3013
+    y: 3179
+    plane: 2
+  delta:
+    plane: -1
+- id: 287
+  option: Climb-down
+  tile:
+    x: 3042
+    y: 3198
+    plane: 1
+  delta:
+    plane: -1
+- id: 272
+  option: Climb-up
+  tile:
+    x: 3042
+    y: 3198
+  delta:
+    plane: 1
+######## 12082 ########
+- id: 2590
+  option: Climb-down
+  tile:
+    x: 3049
+    y: 3208
+    plane: 1
+  to:
+    x: 3049
+    y: 3208
+- id: 272
+  option: Climb-up
+  tile:
+    x: 3049
+    y: 3208
+  delta:
+    plane: 1
+- id: 273
+  option: Climb-down
+  tile:
+    x: 3034
+    y: 3214
+    plane: 1
+  delta:
+    plane: -1
+- id: 272
+  option: Climb-up
+  tile:
+    x: 3034
+    y: 3214
+  delta:
+    plane: 1
+- id: 273
+  option: Climb-down
+  tile:
+    x: 3034
+    y: 3218
+    plane: 1
+  delta:
+    plane: -1
+- id: 272
+  option: Climb-up
+  tile:
+    x: 3034
+    y: 3218
+  delta:
+    plane: 1 
+- id: 273
+  option: Climb-down
+  tile:
+    x: 3034
+    y: 3222
+    plane: 1
+  delta:
+    plane: -1
+- id: 272
+  option: Climb-up
+  tile:
+    x: 3034
+    y: 3222
+  delta:
+    plane: 1
+- id: 273
+  option: Climb-down
+  tile:
+    x: 3052
+    y: 3229
+    plane: 1
+  delta:
+    plane: -1
+- id: 272
+  option: Climb-up
+  tile:
+    x: 3052
+    y: 3229
+  delta:
+    plane: 1
+- id: 40026
+  option: Climb-up
+  tile:
+    x: 3011
+    y: 3235
+  delta:
+    plane: 1
+- id: 40027
+  option: Climb-down
+  tile:
+    x: 3011
+    y: 3235
+    plane: 1
+  delta:
+    plane: -1
+- id: 10321
+  option: Climb-down
+  tile:
+    x: 3018
+    y: 3232
+  to:
+    x: 2962
+    y: 9650
+- id: 40026
+  option: Climb-up
+  tile:
+    x: 3013
+    y: 3244
+  delta:
+    plane: 1
+- id: 40027
+  option: Climb-down
+  tile:
+    x: 3013
+    y: 3244
+    plane: 1
+  delta:
+    plane: -1
+- id: 39275
+  option: Climb-down
+  tile:
+    x: 3015
+    y: 3257
+  to:
+    x: 3221
+    y: 4522
+- id: 40057
+  option: Climb-up
+  tile:
+    x: 3023
+    y: 3261
+  to:
+    x: 3025
+    y: 3261
+    plane: 1
+- id: 40059
+  option: Climb-down
+  tile:
+    x: 3024
+    y: 3261
+    plane: 1
+  to:
+    x: 3024
+    y: 3260
+- id: 40057
+  option: Climb-up
+  tile:
+    x: 3026
+    y: 3248
+  to:
+    x: 3026
+    y: 3247
+    plane: 1
+- id: 40059
+  option: Climb-down
+  tile:
+    x: 3026
+    y: 3248
+    plane: 1
+  to:
+    x: 3025
+    y: 3248
+######## 12084 ########
+- id: 26144
+  option: Climb-up
+  tile:
+    x: 3037
+    y: 3383
+  to:
+    x: 3039
+    y: 3383
+    plane: 1
+- id: 26148
+  option: Climb-down
+  tile:
+    x: 3037
+    y: 3383
+    plane: 1
+  to:
+    x: 3037
+    y: 3382
+- id: 26145
+  option: Climb-up
+  tile:
+    x: 3053
+    y: 3383
+  to:
+    x: 3052
+    y: 3383
+    plane: 1
+- id: 26150
+  option: Climb-down
+  tile:
+    x: 3053
+    y: 3383
+    plane: 1
+  to:
+    x: 3054
+    y: 3382 
+- id: 26147
+  option: Climb-up
+  tile:
+    x: 3053
+    y: 3372
+    plane: 1
+  to:
+    x: 3053
+    y: 3374
+    plane: 2
+- id: 26151
+  option: Climb-down
+  tile:
+    x: 3053
+    y: 3372
+    plane: 2
+  to:
+    x: 3052
+    y: 3372
+    plane: 1
+- id: 26146
+  option: Climb-up
+  tile:
+    x: 3037
+    y: 3372
+    plane: 1
+  to:
+    x: 3038
+    y: 3374
+    plane: 2
+- id: 26149
+  option: Climb-down
+  tile:
+    x: 3037
+    y: 3372
+    plane: 2
+  to:
+    x: 3039
+    y: 3372
+    plane: 1
+- id: 30944
+  option: Climb-down
+  tile:
+    x: 3059
+    y: 3376
+  delta:
+    x: -3 
+    y: 6400 
+- id: 35781
+  option: Climb-up
+  tile:
+    x: 3034
+    y: 3363
+  to:
+    x: 3036
+    y: 3363
+    plane: 1
+- id: 35782
+  option: Climb-down
+  tile:
+    x: 3035
+    y: 3363
+    plane: 1
+  to:
+    x: 3035
+    y: 3362
+- id: 11736
+  option: Climb-up
+  tile:
+    x: 3045
+    y: 3363
+  delta:
+    y: 4
+    plane: 1
+- id: 11737
+  option: Climb-down
+  tile:
+    x: 3045
+    y: 3364
+    plane: 1
+  delta:
+    y: -4
+    plane: -1
+- id: 35781
+  option: Climb-up
+  tile:
+    x: 3048
+    y: 3352
+  to:
+    x: 3049
+    y: 3354
+    plane: 1
+- id: 35782
+  option: Climb-down
+  tile:
+    x: 3049
+    y: 3353
+    plane: 1
+  to:
+    x: 3050
+    y: 3353
+- id: 11739
+  option: Climb-up
+  tile:
+    x: 3035
+    y: 3344
+  delta:
+    plane: 1
+- id: 11742
+  option: Climb-down
+  tile:
+    x: 3035
+    y: 3344
+    plane: 1
+  delta:
+    plane: -1
+- id: 11739
+  option: Climb-up
+  tile:
+    x: 3027
+    y: 3353
+  delta:
+    y: -2
+    plane: 1
+- id: 11741
+  option: Climb-down
+  tile:
+    x: 3027
+    y: 3353
+    plane: 1
+  delta:
+    y: 2
+    plane: -1
+- id: 11734
+  option: Climb-up
+  tile:
+    x: 3018
+    y: 3343
+  delta:
+    x: 4
+    plane: 1
+- id: 35783
+  option: Climb-down
+  tile:
+    x: 3019
+    y: 3343
+    plane: 1
+  delta:
+    x: -4
+    plane: -1
+- id: 11729
+  option: Climb-up
+  tile:
+    x: 3011
+    y: 3338
+  to:
+    x: 3011
+    y: 3337
+    plane: 1
+- id: 11731
+  option: Climb-down
+  tile:
+    x: 3011
+    y: 3338
+    plane: 1
+  to:
+    x: 3010
+    y: 3338
+- id: 11734
+  option: Climb-up
+  tile:
+    x: 3021
+    y: 3332
+  delta:
+    x: 4
+    plane: 1
+- id: 35783
+  option: Climb-down
+  tile:
+    x: 3022
+    y: 3332
+    plane: 1
+  delta:
+    x: -4
+    plane: -1
+- id: 2113
+  option: Climb-down
+  tile:
+    x: 3018
+    y: 3339
+  delta:
+    y: 6400
+- id: 2113
+  option: Climb-down
+  tile:
+    x: 3019
+    y: 3338
+  delta:
+    y: 6400
+- id: 2113
+  option: Climb-down
+  tile:
+    x: 3020
+    y: 3339
+  delta:
+    y: 6400
+- id: 2113
+  option: Climb-down
+  tile:
+    x: 3019
+    y: 3340
+  delta:
+    y: 6400
+- id: 11727
+  option: Climb-up
+  tile:
+    x: 3058
+    y: 3356
+  delta:
+    plane: 1
+- id: 11728
+  option: Climb-down
+  tile:
+    x: 3058
+    y: 3356
+    plane: 1
+  delta:
+    plane: -1 
+######## 12085 ########
+- id: 30942
+  option: Climb-down
+  tile:
+    x: 3019
+    y: 3450
+  delta:
+    y: 6400
+######## 12086 ######## 
+- id: 26197
+  option: Climb-up
+  tile:
+    x: 3010
+    y: 3514
+  to:
+    x: 3012
+    y: 3514
+    plane: 1
+- id: 26199
+  option: Climb-down
+  tile:
+    x: 3010
+    y: 3514
+    plane: 1
+  to:
+    x: 3012
+    y: 3515 
+- id: 17148
+  option: Climb-up
+  tile:
+    x: 3015
+    y: 3519
+  delta:
+    plane: 1
+- id: 17149
+  option: Climb-down
+  tile:
+    x: 3015
+    y: 3519
+    plane: 1
+  delta:
+    plane: -1
+- id: 17148
+  option: Climb-up
+  tile:
+    x: 3016
+    y: 3519
+    plane: 1
+  delta:
+    plane: 1
+- id: 17149
+  option: Climb-down
+  tile:
+    x: 3016
+    y: 3519
+    plane: 2
+  delta:
+    plane: -1
+- id: 17148
+  option: Climb-up
+  tile:
+    x: 3017
+    y: 3516
+    plane: 1
+  delta:
+    plane: 1
+- id: 17149
+  option: Climb-down
+  tile:
+    x: 3017
+    y: 3516
+    plane: 2
+  delta:
+    plane: -1
+- id: 26197
+  option: Climb-up
+  tile:
+    x: 3010
+    y: 3516
+    plane: 2
+  to:
+    x: 3010
+    y: 3515
+    plane: 3
+- id: 26199
+  option: Climb-down
+  tile:
+    x: 3010
+    y: 3516
+    plane: 3
+  to:
+    x: 3010
+    y: 3515
+    plane: 2 
+- id: 17159
+  option: Climb-up
+  tile:
+    x: 3022
+    y: 3518
+  delta:
+    plane: 1
+- id: 17160
+  option: Climb-down
+  tile:
+    x: 3022
+    y: 3518
+    plane: 1
+  delta:
+    plane: -1
+- id: 17148
+  option: Climb-up
+  tile:
+    x: 3023
+    y: 3513
+    plane: 1
+  delta:
+    plane: 1
+- id: 17149
+  option: Climb-down
+  tile:
+    x: 3023
+    y: 3513
+    plane: 2
+  delta:
+    plane: -1
+- id: 17148
+  option: Climb-up
+  tile:
+    x: 3025
+    y: 3513
+    plane: 1
+  delta:
+    plane: 1
+- id: 17149
+  option: Climb-down
+  tile:
+    x: 3025
+    y: 3513
+    plane: 2
+  delta:
+    plane: -1
+- id: 17148
+  option: Climb-up
+  tile:
+    x: 3021
+    y: 3510
+  delta:
+    plane: 1
+- id: 17149
+  option: Climb-down
+  tile:
+    x: 3021
+    y: 3510
+    plane: 1
+  delta:
+    plane: -1
+- id: 26197
+  option: Climb-up
+  tile:
+    x: 3029
+    y: 3506
+    plane: 2
+  to:
+    x: 3028
+    y: 3507
+    plane: 3
+- id: 26199
+  option: Climb-down
+  tile:
+    x: 3029
+    y: 3506
+    plane: 3
+  to:
+    x: 3029
+    y: 3508
+    plane: 2 
+- id: 26982
+  option: Climb-up
+  tile:
+    x: 3069
+    y: 3517
+  delta:
+    plane: 1
+- id: 26983
+  option: Climb-down
+  tile:
+    x: 3069
+    y: 3517
+    plane: 1
+  delta:
+    plane: -1
+- id: 2641
+  option: Climb-up
+  tile:
+    x: 3057
+    y: 3483
+  delta:
+    plane: 1
+- id: 30863
+  option: Climb-down
+  tile:
+    x: 3057
+    y: 3483
+    plane: 1
+  delta:
+    plane: -1
+- id: 2641
+  option: Climb-up
+  tile:
+    x: 3046
+    y: 3483
+  delta:
+    plane: 1
+- id: 30863
+  option: Climb-down
+  tile:
+    x: 3046
+    y: 3483
+    plane: 1
+  delta:
+    plane: -1
+######## 12088 ######## 
+- id: 14745
+  option: Climb-up
+  tile:
+    x: 3022
+    y: 3625
+  delta:
+    plane: 1
+- id: 14747
+  option: Climb-down
+  tile:
+    x: 3022
+    y: 3625
+    plane: 1
+  delta:
+    plane: -1
+- id: 14747
+  option: Climb-up
+  tile:
+    x: 3022
+    y: 3625
+    plane: 1
+  delta:
+    plane: 1
+- id: 14747
+  option: Climb-down
+  tile:
+    x: 3022
+    y: 3625
+    plane: 2
+  delta:
+    plane: -1
+- id: 14747
+  option: Climb-up
+  tile:
+    x: 3022
+    y: 3625
+    plane: 2
+  delta:
+    plane: 1
+- id: 14746
+  option: Climb-down
+  tile:
+    x: 3022
+    y: 3625
+    plane: 3
+  delta:
+    plane: -1
+- id: 14745
+  option: Climb-up
+  tile:
+    x: 3036
+    y: 3625
+  delta:
+    plane: 1
+- id: 14747
+  option: Climb-down
+  tile:
+    x: 3036
+    y: 3625
+    plane: 1
+  delta:
+    plane: -1
+- id: 14747
+  option: Climb-up
+  tile:
+    x: 3036
+    y: 3625
+    plane: 1
+  delta:   
+    plane: 1
+- id: 14747
+  option: Climb-down
+  tile:
+    x: 3036
+    y: 3625
+    plane: 2
+  delta:
+    plane: -1
+- id: 14747
+  option: Climb-up
+  tile:
+    x: 3036
+    y: 3625
+    plane: 2
+  delta:
+    plane: 1
+- id: 14746
+  option: Climb-down
+  tile:
+    x: 3036
+    y: 3625
+    plane: 3
+  delta:
+    plane: -1 
+- id: 14745
+  option: Climb-up
+  tile:
+    x: 3036
+    y: 3638
+  delta:
+    plane: 1
+- id: 14747
+  option: Climb-down
+  tile:
+    x: 3036
+    y: 3638
+    plane: 1
+  delta:
+    plane: -1
+- id: 14747
+  option: Climb-up
+  tile:
+    x: 3036
+    y: 3638
+    plane: 1
+  delta:
+    plane: 1
+- id: 14747
+  option: Climb-down
+  tile:
+    x: 3036
+    y: 3638
+    plane: 2
+  delta:
+    plane: -1
+- id: 14747
+  option: Climb-up
+  tile:
+    x: 3036
+    y: 3638
+    plane: 2
+  delta:
+    plane: 1
+- id: 14746
+  option: Climb-down
+  tile:
+    x: 3036
+    y: 3638
+    plane: 3
+  delta:
+    plane: -1
+- id: 14747
+  option: Climb-down
+  tile:
+    x: 3022
+    y: 3638
+    plane: 1
+  delta:
+    plane: -1
+- id: 14747
+  option: Climb-up
+  tile:
+    x: 3022
+    y: 3638
+    plane: 1
+  delta:
+    plane: 1
+- id: 14747
+  option: Climb-down
+  tile:
+    x: 3022
+    y: 3638
+    plane: 2
+  delta:
+    plane: -1
+- id: 14747
+  option: Climb-up
+  tile:
+    x: 3022
+    y: 3638
+    plane: 2
+  delta:
+    plane: 1
+- id: 14746
+  option: Climb-down
+  tile:
+    x: 3022
+    y: 3638
+    plane: 3
+  delta:
+    plane: -1
+######## 12092 ########
+- id: 1765
+  option: Climb-down
+  tile:
+    x: 3017
+    y: 3849
+  delta:
+    y: 6400
+- id: 1767
+  option: Climb-down
+  tile:
+    x: 3069
+    y: 3857
+  delta:
+    y: 6399
+######## 12093 ########
+- id: 1733
+  option: Climb-down
+  tile:
+    x: 3044
+    y: 3924
+  delta:
+    y: 6400
+######## 12181 ########
+- id: 32015
+  option: Climb-up
+  tile:
+    x: 3008
+    y: 9550
+  delta:
+    y: -6400
+######## 12184 ########
+- id: 30943
+  option: Climb-up
+  tile:
+    x: 3059
+    y: 9776
+  delta:
+    x: 3 
+    y: -6400
+- id: 6226
+  option: Climb-up
+  tile:
+    x: 3018
+    y: 9739
+  delta:
+    y: -6400
+- id: 6226
+  option: Climb-up
+  tile:
+    x: 3019
+    y: 9738
+  delta:
+    y: -6400
+- id: 6226
+  option: Climb-up
+  tile:
+    x: 3020
+    y: 9739
+  delta:
+    y: -6400
+- id: 6226
+  option: Climb-up
+  tile:
+    x: 3019
+    y: 9740
+  delta:
+    y: -6400
+######## 12185 ########
+- id: 6226
+  option: Climb-up
+  tile:
+    x: 3019
+    y: 9850
+  delta:
+    y: -6400
+######## 12192 ######## 
+- id: 32015
+  option: Climb-up
+  tile:
+    x: 3017
+    y: 10249
+  delta:
+    y: -6400
+- id: 32015
+  option: Climb-up
+  tile:
+    x: 3069
+    y: 10256
+  delta:
+    y: -6399
+######## 12193 ########
+- id: 32048
+  option: Climb-up
+  tile:
+    x: 3043
+    y: 10328
+  delta:
+    y: -6400
+######## 12336 ########
 - id: 36768
   option: Climb-up
   tile:
-    x: 3139
-    y: 3078
+    x: 3126
+    y: 3124
+    plane: 1
   delta:
     plane: 1
 - id: 36770
   option: Climb-down
   tile:
-    x: 3139
-    y: 3078
+    x: 3126
+    y: 3124
+    plane: 2
+  delta:
+    plane: -1
+- id: 36945
+  option: Climb-up
+  tile:
+    x: 3123
+    y: 3128
+  delta:
+    plane: 1
+- id: 36770
+  option: Climb-down
+  tile:
+    x: 3123
+    y: 3128
     plane: 1
   delta:
-    plane: -1    
+    plane: -1
+- id: 36770
+  option: Climb-down
+  tile:
+    x: 3116
+    y: 3126
+    plane: 1
+  delta:
+    plane: -1
+- id: 36945
+  option: Climb-up
+  tile:
+    x: 3116
+    y: 3126
+  delta:
+    plane: 1
+- id: 3031
+  option: Climb-down
+  tile:
+    x: 3111
+    y: 3126
+  delta:
+    y: 6400
+- id: 36773
+  option: Climb-up
+  tile:
+    x: 3115
+    y: 3107
+  delta:
+    plane: 1
+- id: 36775
+  option: Climb-down
+  tile:
+    x: 3115
+    y: 3107
+    plane: 1
+  delta:
+    plane: -1
+- id: 36773
+  option: Climb-up
+  tile:
+    x: 3082
+    y: 3124
+  delta:
+    plane: 1
+- id: 36775
+  option: Climb-down
+  tile:
+    x: 3082
+    y: 3124
+    plane: 1
+  delta:
+    plane: -1
 - id: 3029
   option: Climb-down
   tile:
@@ -81,6 +2386,298 @@
     y: 3119
   delta:
     y: 6400
+######## 12337 ########
+- id: 2147
+  option: Climb-down
+  tile:
+    x: 3104
+    y: 3162
+  to:
+    x: 3104
+    y: 9576
+- id: 12536
+  option: Climb-up
+  tile:
+    x: 3103
+    y: 3159
+  delta:
+    x: -1
+    y: 1
+    plane: 1
+- id: 12537
+  option: Climb-down
+  tile:
+    x: 3103
+    y: 3159
+    plane: 1
+  delta:
+    x: 1
+    y: -1
+    plane: -1
+- id: 12537
+  option: Climb-up
+  tile:
+    x: 3103
+    y: 3159
+    plane: 1
+  delta:
+    plane: 1
+- id: 12538
+  option: Climb-down
+  tile:
+    x: 3104
+    y: 3160
+    plane: 2
+  delta:
+    plane: -1
+######## 12338 ########
+- id: 7057
+  option: Climb-up
+  tile:
+    x: 3090
+    y: 3251
+  delta:
+    x: 4
+    plane: 1
+- id: 7056
+  option: Climb-down
+  tile:
+    x: 3091
+    y: 3251
+    plane: 1
+  delta:
+    x: -4
+    plane: -1 
+- id: 6435
+  option: Climb-down
+  tile:
+    x: 3118
+    y: 3244
+  to:
+    x: 3118
+    y: 9644
+######## 12339 ########
+- id: 6435
+  option: Climb-down
+  tile:
+    x: 3084
+    y: 3272
+  delta:
+    y: 6400
+- id: 46244
+  option: Climb-up
+  tile:
+    x: 3099
+    y: 3266
+  delta:
+    x: 4
+    plane: 1
+- id: 46245
+  option: Climb-down
+  tile:
+    x: 3100
+    y: 3266
+    plane: 1
+  delta:
+    x: -4
+    plane: -1
+######## 12340 ########
+- id: 47364
+  option: Climb-up
+  tile:
+    x: 3107
+    y: 3362
+  delta:
+    y: 5
+    plane: 1
+- id: 47657
+  option: Climb-down
+  tile:
+    x: 3108
+    y: 3364
+    plane: 1
+  delta:
+    y: -5
+    plane: -1
+- id: 47574
+  option: Climb-up
+  tile:
+    x: 3105
+    y: 3363
+    plane: 1
+  delta:
+    y: -2
+    plane: 1
+- id: 47575
+  option: Climb-down
+  tile:
+    x: 3105
+    y: 3363
+    plane: 2
+  delta:
+    y: 2
+    plane: -1
+- id: 47643
+  option: Walk-down
+  tile:
+    x: 3115
+    y: 3356
+  delta:
+    x: -35
+    y: 6421
+- id: 133
+  option: Climb-down
+  tile:
+    x: 3092
+    y: 3362
+  delta:
+    x: 25 
+    y: 6392
+######## 12341 ########
+- id: 16154
+  option: Climb-down
+  tile:
+    x: 3081
+    y: 3420
+  to:
+    x: 1859
+    y: 5243
+- id: 1750
+  option: Climb-up
+  tile:
+    x: 3096
+    y: 3433
+  delta:
+    plane: 1
+- id: 1749
+  option: Climb-down
+  tile:
+    x: 3096
+    y: 3433
+    plane: 1
+  delta:
+    plane: -1
+- id: 1750
+  option: Climb-up
+  tile:
+    x: 3097
+    y: 3433
+    plane: 1
+  delta:
+    plane: 1
+- id: 1749
+  option: Climb-down
+  tile:
+    x: 3097
+    y: 3433
+    plane: 2
+  delta:
+    plane: -1
+- id: 12389
+  option: Climb-Down
+  tile:
+    x: 3116
+    y: 3452
+  delta:
+    y: 6400
+- id: 29592
+  option: Climb-down
+  tile:
+    x: 3084
+    y: 3452
+  to:
+    x: 3086
+    y: 4247
+######## 12342 ######## 
+- id: 29728
+  option: Enter
+  tile:
+    x: 3076
+    y: 3463
+  to:
+    x: 3157
+    y: 4279
+    plane: 3
+- id: 29603
+  option: Use
+  tile:
+    x: 3075
+    y: 3456
+  to:
+    x: 3082
+    y: 4229 
+- id: 26934
+  option: Climb-down
+  tile:
+    x: 3097
+    y: 3468
+  delta:
+    y: 6399
+- id: 12268
+  option: Go-down
+  tile:
+    x: 3077
+    y: 3493
+  delta:
+    y: 6400
+    x: -1
+- id: 26982
+  option: Climb-up
+  tile:
+    x: 3082
+    y: 3513
+  delta:
+    plane: 1
+- id: 26983
+  option: Climb-down
+  tile:
+    x: 3082
+    y: 3513
+    plane: 1
+  delta:
+    plane: -1
+- id: 26982
+  option: Climb-up
+  tile:
+    x: 3096
+    y: 3511
+  delta:
+    plane: 1
+- id: 26983
+  option: Climb-down
+  tile:
+    x: 3096
+    y: 3511
+    plane: 1
+  delta:
+    plane: -1
+######## 12343 ########
+- id: 29358
+  option: Climb-down
+  tile:
+    x: 3088
+    y: 3571
+  to:
+    x: 3089
+    y: 9971
+######## 12354 ########
+- id: 29589
+  option: Climb-up
+  tile:
+    x: 3086
+    y: 4244
+  to:
+    x: 3083
+    y: 3452
+- id: 29602
+  option: Leave
+  tile:
+    x: 3082
+    y: 4228
+  to:
+    x: 3074
+    y: 3456
+######## 12436 ########
 - id: 3028
   option: Climb-up
   tile:
@@ -95,30 +2692,548 @@
     y: 9526
   delta:
     y: -6400
-- id: 3031
-  option: Climb-down
+######## 12437 ########
+- id: 32015
+  option: Climb-up
   tile:
-    x: 3111
-    y: 3126
+    x: 3103
+    y: 9576
   delta:
-    y: 6400
+    y: -6415
+######## 12438 ########
+- id: 26518
+  option: Climb-up
+  tile:
+    x: 3118
+    y: 9643
+  delta:
+    y: -6400
+######## 12439 ########
+- id: 32015
+  option: Climb-up
+  tile:
+    x: 3084
+    y: 9672
+  delta:
+    y: -6400
+######## 12440 ########
+- id: 164
+  option: Climb-up
+  tile:
+    x: 3080
+    y: 9772
+  delta:
+    x: 35
+    y: -6421
+- id: 32015
+  option: Climb-up
+  tile:
+    x: 3117
+    y: 9754
+  delta:
+    x: -25
+    y: -6392
+######## 12441 ########
+- id: 29355
+  option: Climb-up
+  tile:
+    x: 3116
+    y: 9852
+  delta:
+    y: -6400
+######## 12442 ######## 
+- id: 29355
+  option: Climb-up
+  tile:
+    x: 3097
+    y: 9867
+  delta:
+    y: -6399
+- id: 12265
+  option: Climb
+  tile:
+    x: 3076
+    y: 9893
+  delta:
+    y: -6400
+    x: 1
+######## 12443 ######## 
+- id: 29355
+  option: Climb-up
+  tile:
+    x: 3088
+    y: 9971
+  to:
+    x: 3089
+    y: 3571
+######## 12592 ########
 - id: 36768
   option: Climb-up
   tile:
-    x: 3126
-    y: 3124
-    plane: 1
+    x: 3139
+    y: 3078
   delta:
     plane: 1
 - id: 36770
   option: Climb-down
   tile:
-    x: 3126
-    y: 3124
+    x: 3139
+    y: 3078
+    plane: 1
+  delta:
+    plane: -1
+######## 12594 ########
+- id: 36768
+  option: Climb-up
+  tile:
+    x: 3198
+    y: 3219
+  delta:
+    plane: 1
+- id: 36769
+  option: Climb-up
+  tile:
+    x: 3198
+    y: 3219
+    plane: 1
+  delta:
+    plane: 1
+- id: 36769
+  option: Climb-down
+  tile:
+    x: 3198
+    y: 3219
+    plane: 1
+  delta:
+    plane: -1
+- id: 36770
+  option: Climb-down
+  tile:
+    x: 3198
+    y: 3219
     plane: 2
   delta:
-    plane: -1    
-# Lumbridge castle staircase
+    plane: -1
+- id: 45481
+  option: Climb-up
+  tile:
+    x: 3193
+    y: 3255
+  delta:
+    x: 3
+    plane: 1
+- id: 45482
+  option: Climb-down
+  tile:
+    x: 3193
+    y: 3255
+    plane: 1
+  delta:
+    x: -3
+    plane: -1
+######## 12595 ########
+- id: 45483
+  option: Climb-up
+  tile:
+    x: 3186
+    y: 3270
+  delta:
+    x: 3
+    plane: 1
+- id: 45484
+  option: Climb-down
+  tile:
+    x: 3186
+    y: 3270
+    plane: 1
+  delta:
+    x: -3
+    plane: -1
+- id: 36795
+  option: Climb-up
+  tile:
+    x: 3164
+    y: 3307
+  delta:
+    plane: 1
+- id: 36796
+  option: Climb-up
+  tile:
+    x: 3164
+    y: 3307
+    plane: 1
+  delta:
+    plane: 1
+- id: 36796
+  option: Climb-down
+  tile:
+    x: 3164
+    y: 3307
+    plane: 1
+  delta:
+    plane: -1
+- id: 36797
+  option: Climb-down
+  tile:
+    x: 3164
+    y: 3307
+    plane: 2
+  delta:
+    plane: -1
+- id: 52833
+  option: Climb-up
+  tile:
+    x: 3140
+    y: 3305
+  delta:
+    plane: 1
+- id: 52834
+  option: Climb-down
+  tile:
+    x: 3140
+    y: 3305
+    plane: 1
+  delta:
+    plane: -1
+######## 12596 ########
+- id: 24357
+  option: Climb-up
+  tile:
+    x: 3188
+    y: 3355
+  delta:
+    y: -4
+    plane: 1
+- id: 24359
+  option: Climb-down
+  tile:
+    x: 3188
+    y: 3355
+    plane: 1
+  delta:
+    y: 4
+    plane: -1
+- id: 24356
+  option: Climb-up
+  tile:
+    x: 3188
+    y: 3389
+  delta:
+    y: 4
+    plane: 1
+- id: 24359
+  option: Climb-down
+  tile:
+    x: 3188
+    y: 3390
+    plane: 1
+  delta:
+    y: -4
+    plane: -1
+- id: 10559
+  option: Climb-down
+  tile:
+    x: 3190
+    y: 3355
+  delta:
+    x: -1
+    y: 6410 
+######## 12597 ######## 
+- id: 24073
+  option: Climb-up
+  tile:
+    x: 3144
+    y: 3447
+  delta:
+    plane: 1
+- id: 24074
+  option: Climb-down
+  tile:
+    x: 3144
+    y: 3447
+    plane: 1
+  delta:
+    plane: -1
+- id: 24074
+  option: Climb-up
+  tile:
+    x: 3144
+    y: 3447
+    plane: 1
+  delta:
+    y: -3
+    plane: 1
+- id: 24075
+  option: Climb-down
+  tile:
+    x: 3144
+    y: 3447
+    plane: 2
+  delta:
+    y: 3
+    plane: -1
+- id: 24357
+  option: Climb-up
+  tile:
+    x: 3156
+    y: 3435
+  delta:
+    x: -4
+    plane: 1
+- id: 24359
+  option: Climb-down
+  tile:
+    x: 3156
+    y: 3435
+    plane: 1
+  delta:
+    x: 4
+    plane: -1
+- id: 24361
+  option: Climb-up
+  tile:
+    x: 3175
+    y: 3420
+  delta:
+    y: -2
+    plane: 1
+- id: 24362
+  option: Climb-down
+  tile:
+    x: 3175
+    y: 3420
+    plane: 1
+  delta:
+    y: 2
+    plane: -1
+- id: 24361
+  option: Climb-up
+  tile:
+    x: 3178
+    y: 3401
+  delta:
+    x: -2
+    plane: 1
+- id: 24362
+  option: Climb-down
+  tile:
+    x: 3178
+    y: 3401
+    plane: 1
+  delta:
+    x: 2
+    plane: -1
+- id: 24354
+  option: Climb-up
+  tile:
+    x: 3187
+    y: 3415
+  delta:
+    plane: 1
+- id: 24355
+  option: Climb-down
+  tile:
+    x: 3187
+    y: 3415
+    plane: 1
+  delta:
+    plane: -1
+- id: 24354
+  option: Climb-up
+  tile:
+    x: 3183
+    y: 3446
+  delta:
+    plane: 1
+- id: 24355
+  option: Climb-down
+  tile:
+    x: 3183
+    y: 3446
+    plane: 1
+  delta:
+    plane: -1
+- id: 24360
+  option: Climb-down
+  tile:
+    x: 3189
+    y: 3432
+  delta:
+    y: 6401
+    x: 2
+######## 12610 ########
+- id: 29729
+  option: Climb
+  tile:
+    x: 3159
+    y: 4280
+    plane: 3
+  to:
+    x: 3077
+    y: 3462
+- id: 29660
+  option: Climb-up
+  tile:
+    x: 3147
+    y: 4249
+    plane: 1
+  delta:
+    x: 3
+    y: 2
+    plane: 1
+- id: 29659
+  option: Climb-down
+  tile:
+    x: 3149
+    y: 4250
+    plane: 2
+  delta:
+    x: -3
+    y: -2
+    plane: -1
+- id: 29656
+  option: Climb-up
+  tile:
+    x: 3147
+    y: 4246
+    plane: 1
+  delta:
+    x: 3
+    y: -2
+    plane: 1
+- id: 29655
+  option: Climb-down
+  tile:
+    x: 3149
+    y: 4245
+    plane: 2
+  delta:
+    x: -3
+    y: 2
+    plane: -1
+- id: 29664
+  option: Climb-up
+  tile:
+    x: 3157
+    y: 4246
+    plane: 1
+  delta:
+    x: -3
+    y: -2
+    plane: 1
+- id: 29663
+  option: Climb-down
+  tile:
+    x: 3157
+    y: 4245
+    plane: 2
+  delta:
+    x: 3
+    y: 2
+    plane: -1
+- id: 29668
+  option: Climb-up
+  tile:
+    x: 3157
+    y: 4249
+    plane: 1
+  delta:
+    x: -3
+    y: 2
+    plane: 1
+- id: 29667
+  option: Climb-down
+  tile:
+    x: 3157
+    y: 4250
+    plane: 2
+  delta:
+    x: 3
+    y: -2
+    plane: -1
+- id: 29672
+  option: Climb-up
+  tile:
+    x: 3171
+    y: 4273
+    plane: 2
+  delta:
+    x: -3
+    y: -2
+    plane: 1
+- id: 29671
+  option: Climb-down
+  tile:
+    x: 3171
+    y: 4272
+    plane: 3
+  to:
+    x: 3174
+    y: 4273
+    plane: 2
+######## 12614 ########
+- id: 39329
+  option: Climb-up
+  tile:
+    x: 3165
+    y: 4514
+  delta:
+    x: -198
+    y: -1314
+######## 12696 ########
+- id: 10560
+  option: Climb-up
+  tile:
+    x: 3190
+    y: 9766
+  delta:
+    x: 1
+    y: -6410
+######## 12697 ########
+- id: 24365
+  option: Climb-up
+  tile:
+    x: 3187
+    y: 9833
+  delta:
+    x: -2
+    y: -6401
+######## 12849 ########
+- id: 45481
+  option: Climb-up
+  tile:
+    x: 3237
+    y: 3196
+  delta:
+    y: -3
+    plane: 1
+- id: 45482
+  option: Climb-down
+  tile:
+    x: 3237
+    y: 3196
+    plane: 1
+  delta:
+    y: 3
+    plane: -1
+- id: 48797
+  option: Climb-down
+  tile:
+    x: 3247
+    y: 3197
+  to:
+    x: 3877
+    y: 5526
+    plane: 1
+######## 12850 ########
+- id: 36687
+  option: Climb-down
+  tile:
+    x: 3209
+    y: 3216
+  delta:
+    x: -2
+    y: 6400
 - id: 36773
   option: Climb-up
   tile:
@@ -149,25 +3264,14 @@
     y: 3207
     plane: 2
   delta:
-    plane: -1
-- id: 36771
+    plane: -1 
+- id: 36776
   option: Climb-up
   tile:
-    x: 3207
-    y: 3223
-    plane: 2
+    x: 3204
+    y: 3229
   delta:
-    y: -2
     plane: 1
-- id: 36772
-  option: Climb-down
-  tile:
-    x: 3207
-    y: 3223
-    plane: 3
-  delta:
-    y: 2
-    plane: -1
 - id: 36778
   option: Climb-down
   tile:
@@ -192,51 +3296,24 @@
     plane: 1
   delta:
     plane: -1
-- id: 36776
+- id: 36771
   option: Climb-up
   tile:
-    x: 3204
-    y: 3229
+    x: 3207
+    y: 3223
+    plane: 2
   delta:
+    y: -2
     plane: 1
-# Lumbridge cellar
-- id: 36687
+- id: 36772
   option: Climb-down
   tile:
-    x: 3209
-    y: 3216
+    x: 3207
+    y: 3223
+    plane: 3
   delta:
-    x: -2
-    y: 6400
-- id: 29355
-  option: Climb-up
-  tile:
-    x: 3209
-    y: 9616
-  delta:
-    x: 2
-    y: -6400
-# Lumbridge catacombs
-- id: 48797
-  option: Climb-down
-  tile:
-    x: 3247
-    y: 3197
-  to:
-    x: 3877
-    y: 5526
-    plane: 1
-- id: 48798
-  option: Climb-up
-  tile:
-    x: 3877
-    y: 5525
-    plane: 1
-  delta:
-    x: -631
-    y: -2328
+    y: 2
     plane: -1
-## Lumbridge courtyard ladders
 - id: 36768
   option: Climb-up
   tile:
@@ -244,6 +3321,30 @@
     y: 3213
   delta:
     plane: 1
+- id: 36769
+  option: Climb-up
+  tile:
+    x: 3229
+    y: 3213
+    plane: 1
+  delta:
+    plane: 1
+- id: 36769
+  option: Climb-down
+  tile:
+    x: 3229
+    y: 3213
+    plane: 1
+  delta:
+    plane: -1
+- id: 36770
+  option: Climb-down
+  tile:
+    x: 3229
+    y: 3213
+    plane: 2
+  delta:
+    plane: -1
 - id: 36768
   option: Climb-up
   tile:
@@ -251,22 +3352,6 @@
     y: 3224
   delta:
     plane: 1
-- id: 36769
-  option: Climb-up
-  tile:
-    x: 3229
-    y: 3213
-    plane: 1
-  delta:
-    plane: 1
-- id: 36769
-  option: Climb-down
-  tile:
-    x: 3229
-    y: 3213
-    plane: 1
-  delta:
-    plane: -1
 - id: 36769
   option: Climb-up
   tile:
@@ -287,189 +3372,10 @@
   option: Climb-down
   tile:
     x: 3229
-    y: 3213
-    plane: 2
-  delta:
-    plane: -1
-- id: 36770
-  option: Climb-down
-  tile:
-    x: 3229
     y: 3224
     plane: 2
   delta:
     plane: -1
-# Lumbridge combat instructor building
-- id: 45481
-  option: Climb-up
-  tile:
-    x: 3212
-    y: 3256
-  delta:
-    x: 3
-    plane: 1
-- id: 45482
-  option: Climb-down
-  tile:
-    x: 3212
-    y: 3256
-    plane: 1
-  delta:
-    x: -3
-    plane: -1
-# Lumbridge Zamorakian herbalis house
-- id: 45481
-  option: Climb-up
-  tile:
-    x: 3225
-    y: 3265
-  delta:
-    y: -3
-    plane: 1
-- id: 45482
-  option: Climb-down
-  tile:
-    x: 3225
-    y: 3265
-    plane: 1
-  delta:
-    y: 3
-    plane: -1
-# Lumbridge Explorer Jack's house
-- id: 45481
-  option: Climb-up
-  tile:
-    x: 3200
-    y: 3243
-  delta:
-    y: -3
-    plane: 1
-- id: 45482
-  option: Climb-down
-  tile:
-    x: 3200
-    y: 3243
-    plane: 1
-  delta:
-    y: 3
-    plane: -1
-# Lumbridge fishing store
-- id: 45481
-  option: Climb-up
-  tile:
-    x: 3193
-    y: 3255
-  delta:
-    x: 3
-    plane: 1
-- id: 45482
-  option: Climb-down
-  tile:
-    x: 3193
-    y: 3255
-    plane: 1
-  delta:
-    x: -3
-    plane: -1
-# Lumbridge general store
-- id: 45481
-  option: Climb-up
-  tile:
-    x: 3215
-    y: 3239
-  delta:
-    x: -3
-    plane: 1
-- id: 45482
-  option: Climb-down
-  tile:
-    x: 3215
-    y: 3239
-    plane: 1
-  delta:
-    x: 3
-    plane: -1
-# Lumbridge chicken_farm
-- id: 45483
-  option: Climb-up
-  tile:
-    x: 3225
-    y: 3288
-  delta:
-    y: -3
-    plane: 1
-- id: 45484
-  option: Climb-down
-  tile:
-    x: 3225
-    y: 3288
-    plane: 1
-  delta:
-    y: 3
-    plane: -1
-# Lumbridge Fred the Farmers house
-- id: 45483
-  option: Climb-up
-  tile:
-    x: 3186
-    y: 3270
-  delta:
-    x: 3
-    plane: 1
-- id: 45484
-  option: Climb-down
-  tile:
-    x: 3186
-    y: 3270
-    plane: 1
-  delta:
-    x: -3
-    plane: -1  
-# tutorial unstable foundations
-- id: 45784
-  option: Climb
-  tile:
-    x: 3654
-    y: 4949
-  delta:
-    x: -447
-    y: -1708     
-# tutorial learning the ropes
-- id: 37684
-  option: Climb-up
-  tile:
-    x: 3290
-    y: 4935
-  delta:
-    x: -60
-    y: -1696     
-# Lumbridge tutorial learning the ropes house
-- id: 37683
-  option: Climb-down
-  tile:
-    x: 3230
-    y: 3241
-  delta:
-    x: 60
-    y: 1696
-- id: 45483
-  option: Climb-up
-  tile:
-    x: 3232
-    y: 3239
-  delta:
-    y: 3
-    plane: 1
-- id: 45484
-  option: Climb-down
-  tile:
-    x: 3232
-    y: 3239
-    plane: 1
-  delta:
-    y: -3
-    plane: -1
-# Lumbridge south village
 - id: 45483
   option: Climb-up
   tile:
@@ -504,24 +3410,6 @@
   delta:
     x: 3
     plane: -1
-- id: 45481
-  option: Climb-up
-  tile:
-    x: 3237
-    y: 3196
-  delta:
-    y: -3
-    plane: 1
-- id: 45482
-  option: Climb-down
-  tile:
-    x: 3237
-    y: 3196
-    plane: 1
-  delta:
-    y: 3
-    plane: -1
-# Lumbridge church
 - id: 36984
   option: Climb-up
   tile:
@@ -596,288 +3484,693 @@
     x: 1
     y: 1
     plane: -1
-# Lumbridge castle west tower
-- id: 36768
-  option: Climb-up
-  tile:
-    x: 3198
-    y: 3219
-  delta:
-    plane: 1
-- id: 36769
-  option: Climb-up
-  tile:
-    x: 3198
-    y: 3219
-    plane: 1
-  delta:
-    plane: 1
-- id: 36769
+- id: 37683
   option: Climb-down
   tile:
-    x: 3198
-    y: 3219
+    x: 3230
+    y: 3241
+  delta:
+    x: 60
+    y: 1696
+- id: 45483
+  option: Climb-up
+  tile:
+    x: 3232
+    y: 3239
+  delta:
+    y: 3
+    plane: 1
+- id: 45484
+  option: Climb-down
+  tile:
+    x: 3232
+    y: 3239
     plane: 1
   delta:
+    y: -3
     plane: -1
-- id: 36770
+- id: 45481
+  option: Climb-up
+  tile:
+    x: 3215
+    y: 3239
+  delta:
+    x: -3
+    plane: 1
+- id: 45482
   option: Climb-down
   tile:
-    x: 3198
-    y: 3219
-    plane: 2
+    x: 3215
+    y: 3239
+    plane: 1
   delta:
+    x: 3
     plane: -1
-# Lumbridge north
-- id: 52833
+- id: 45481
   option: Climb-up
   tile:
-    x: 3140
-    y: 3305
+    x: 3200
+    y: 3243
   delta:
+    y: -3
     plane: 1
-- id: 52834
+- id: 45482
   option: Climb-down
   tile:
-    x: 3140
-    y: 3305
+    x: 3200
+    y: 3243
     plane: 1
   delta:
+    y: 3
     plane: -1
-- id: 36795
+- id: 45481
   option: Climb-up
   tile:
-    x: 3164
-    y: 3307
+    x: 3212
+    y: 3256
   delta:
+    x: 3
     plane: 1
-- id: 36796
-  option: Climb-up
-  tile:
-    x: 3164
-    y: 3307
-    plane: 1
-  delta:
-    plane: 1
-- id: 36796
+- id: 45482
   option: Climb-down
   tile:
-    x: 3164
-    y: 3307
+    x: 3212
+    y: 3256
     plane: 1
   delta:
+    x: -3
     plane: -1
-- id: 36797
+######## 12851 ########
+- id: 45481
+  option: Climb-up
+  tile:
+    x: 3225
+    y: 3265
+  delta:
+    y: -3
+    plane: 1
+- id: 45482
   option: Climb-down
   tile:
-    x: 3164
-    y: 3307
-    plane: 2
+    x: 3225
+    y: 3265
+    plane: 1
   delta:
+    y: 3
     plane: -1
-# Wizard tower
-- id: 2147
-  option: Climb-down
-  tile:
-    x: 3104
-    y: 3162
-  to:
-    x: 3104
-    y: 9576
-- id: 32015
+- id: 45483
   option: Climb-up
   tile:
-    x: 3103
-    y: 9576
+    x: 3225
+    y: 3288
   delta:
-    y: -6415
-- id: 12536
-  option: Climb-up
-  tile:
-    x: 3103
-    y: 3159
-  delta:
-    x: -1
-    y: 1
+    y: -3
     plane: 1
-- id: 12537
+- id: 45484
   option: Climb-down
   tile:
-    x: 3103
-    y: 3159
+    x: 3225
+    y: 3288
     plane: 1
   delta:
-    x: 1
-    y: -1
+    y: 3
     plane: -1
-- id: 12537
+######## 12852 ########
+- id: 24361
   option: Climb-up
   tile:
-    x: 3103
-    y: 3159
-    plane: 1
+    x: 3204
+    y: 3389
   delta:
+    x: -2
     plane: 1
-- id: 12538
+- id: 24362
   option: Climb-down
   tile:
-    x: 3104
-    y: 3160
-    plane: 2
+    x: 3204
+    y: 3389
+    plane: 1
   delta:
+    x: 2
     plane: -1
-# Draynor
-- id: 7057
+- id: 24354
   option: Climb-up
   tile:
-    x: 3090
-    y: 3251
+    x: 3223
+    y: 3387
   delta:
-    x: 4
+    x: 2
     plane: 1
-- id: 7056
+- id: 24362
   option: Climb-down
   tile:
-    x: 3091
-    y: 3251
+    x: 3223
+    y: 3387
     plane: 1
   delta:
-    x: -4
+    x: -2
     plane: -1
-- id: 46244
+- id: 24357
   option: Climb-up
   tile:
-    x: 3099
-    y: 3266
+    x: 3230
+    y: 3383
   delta:
-    x: 4
+    y: -4
     plane: 1
-- id: 46245
+- id: 24359
   option: Climb-down
   tile:
-    x: 3100
-    y: 3266
+    x: 3230
+    y: 3383
     plane: 1
   delta:
-    x: -4
+    y: 4
     plane: -1
-# Draynor Manor
-- id: 47364
-  option: Climb-up
-  tile:
-    x: 3107
-    y: 3362
-  delta:
-    y: 5
-    plane: 1
-- id: 47657
+- id: 24363
   option: Climb-down
   tile:
-    x: 3108
-    y: 3364
-    plane: 1
+    x: 3244
+    y: 3383
   delta:
-    y: -5
-    plane: -1
-- id: 47574
+    y: 6400
+- id: 24354
   option: Climb-up
   tile:
-    x: 3105
-    y: 3363
-    plane: 1
+    x: 3252
+    y: 3384
   delta:
     y: -2
     plane: 1
-- id: 47575
+- id: 24362
   option: Climb-down
   tile:
-    x: 3105
-    y: 3363
-    plane: 2
+    x: 3252
+    y: 3384
+    plane: 1
   delta:
     y: 2
     plane: -1
-- id: 47643
+######## 12853 ########
+- id: 24354
+  option: Climb-up
+  tile:
+    x: 3202
+    y: 3434
+  delta:
+    plane: 1
+- id: 24355
+  option: Climb-down
+  tile:
+    x: 3202
+    y: 3434
+    plane: 1
+  delta:
+    plane: -1
+- id: 24354
+  option: Climb-up
+  tile:
+    x: 3202
+    y: 3416
+  delta:
+    plane: 1
+- id: 24355
+  option: Climb-down
+  tile:
+    x: 3202
+    y: 3416
+    plane: 1
+  delta:
+    plane: -1
+- id: 24354
+  option: Climb-up
+  tile:
+    x: 3205
+    y: 3395
+  delta:
+    plane: 1
+- id: 37116
+  option: Climb-down
+  tile:
+    x: 3205
+    y: 3395
+    plane: 1
+  delta:
+    plane: -1
+- id: 24354
+  option: Climb-up
+  tile:
+    x: 3214
+    y: 3410
+  delta:
+    plane: 1
+- id: 24355
+  option: Climb-down
+  tile:
+    x: 3214
+    y: 3410
+    plane: 1
+  delta:
+    plane: -1
+- id: 24356
+  option: Climb-up
+  tile:
+    x: 3227
+    y: 3393
+  delta:
+    x: 4
+    plane: 1
+- id: 37117
+  option: Climb-down
+  tile:
+    x: 3228
+    y: 3393
+    plane: 1
+  delta:
+    x: -4
+    plane: -1
+- id: 24363
+  option: Climb-down
+  tile:
+    x: 3231
+    y: 3401
+  delta:
+    y: 6400
+- id: 24354
+  option: Climb-up
+  tile:
+    x: 3233
+    y: 3424
+  delta:
+    plane: 1
+- id: 37116
+  option: Climb-down
+  tile:
+    x: 3233
+    y: 3424
+    plane: 1
+  delta:
+    plane: -1
+- id: 31615
+  option: Climb-up
+  tile:
+    x: 3237
+    y: 3447
+  to:
+    x: 3239
+    y: 3447
+    plane: 1
+- id: 31616
+  option: Climb-down
+  tile:
+    x: 3237
+    y: 3447
+    plane: 1
+  to:
+    x: 3238
+    y: 3446
+- id: 24428
   option: Walk-down
   tile:
-    x: 3115
-    y: 3356
-  delta:
-    x: -35
-    y: 6421
-- id: 164
+    x: 3255
+    y: 3451
+  to:
+    x: 1759
+    y: 4958
+- id: 24357
   option: Climb-up
   tile:
-    x: 3080
-    y: 9772
+    x: 3253
+    y: 3443
+    plane: 1
   delta:
-    x: 35
-    y: -6421
-- id: 133
+    y: 4
+    plane: 1
+- id: 24359
   option: Climb-down
   tile:
-    x: 3092
-    y: 3362
+    x: 3253
+    y: 3444
+    plane: 2
   delta:
-    x: 25 
-    y: 6392
-- id: 32015
+    y: -4
+    plane: -1
+- id: 24349
   option: Climb-up
   tile:
-    x: 3117
-    y: 9754
-  delta:
-    x: -25
-    y: -6392
-# Draynor trapdoors
-- id: 6435
+    x: 3255
+    y: 3421
+  to:
+    x: 3257
+    y: 3421
+    plane: 1
+- id: 24353
   option: Climb-down
   tile:
-    x: 3084
-    y: 3272
-  delta:   
+    x: 3255
+    y: 3421
+    plane: 1
+  to:
+    x: 3256
+    y: 3420 
+- id: 24354
+  option: Climb-up
+  tile:
+    x: 3247
+    y: 3409
+  delta:
+    plane: 1
+- id: 24355
+  option: Climb-down
+  tile:
+    x: 3247
+    y: 3409
+    plane: 1
+  delta:
+    plane: -1
+- id: 24354
+  option: Climb-up
+  tile:
+    x: 3262
+    y: 3403
+  delta:
+    plane: 1
+- id: 24355
+  option: Climb-down
+  tile:
+    x: 3262
+    y: 3403
+    plane: 1
+  delta:
+    plane: -1
+######## 12854 ########
+- id: 24350
+  option: Climb-up
+  tile:
+    x: 3202
+    y: 3497
+  delta:
+    x: 1
+    y: 1
+    plane: 1
+- id: 24352
+  option: Climb-up
+  tile:
+    x: 3202
+    y: 3497
+    plane: 1
+  delta:
+    plane: 1
+- id: 24352
+  option: Climb-down
+  tile:
+    x: 3202
+    y: 3497
+    plane: 1
+  delta:
+    x: -1
+    y: -1
+    plane: -1
+- id: 24353
+  option: Climb-down
+  tile:
+    x: 3202
+    y: 3497
+    plane: 2
+  delta:
+    plane: -1
+- id: 24361
+  option: Climb-up
+  tile:
+    x: 3205
+    y: 3497
+    plane: 2
+  delta:
+    x: 2
+    plane: 1
+- id: 24362
+  option: Climb-down
+  tile:
+    x: 3205
+    y: 3497
+    plane: 3
+  delta:
+    x: -2
+    plane: -1
+- id: 24349
+  option: Climb-up
+  tile:
+    x: 3218
+    y: 3496
+  to:
+    x: 3220
+    y: 3496
+    plane: 1
+- id: 24353
+  option: Climb-down
+  tile:
+    x: 3218
+    y: 3496
+    plane: 1
+  delta:
+    x: -1
+    y: -1
+    plane: -1
+- id: 24264
+  option: Climb-down
+  tile:
+    x: 3230
+    y: 3504
+  delta:
     y: 6400
-- id: 32015
+- id: 24367
   option: Climb-up
   tile:
-    x: 3084
-    y: 9672
+    x: 3212
+    y: 3473
   delta:
-    y: -6400
-- id: 6435
+    y: 4
+    plane: 1
+- id: 24359
   option: Climb-down
   tile:
-    x: 3118
-    y: 3244
-  to:
-    x: 3118
-    y: 9644
-- id: 26518
-  option: Climb-up
-  tile:
-    x: 3118
-    y: 9643
-  delta:
-    y: -6400
-# Al Kharid
-- id: 35646
-  option: Climb-up
-  tile:
-    x: 3325
-    y: 3142
-  to:
-    x: 3324
-    y: 3139
+    x: 3212
+    y: 3474
     plane: 1
-- id: 35645
+  delta:
+    y: -4
+    plane: -1
+- id: 24361
+  option: Climb-up
+  tile:
+    x: 3224
+    y: 3472
+    plane: 1
+  delta:
+    x: 2
+    plane: 1
+- id: 24362
   option: Climb-down
   tile:
-    x: 3325
-    y: 3139
+    x: 3224
+    y: 3472
+    plane: 2
+  delta:
+    x: -2
+    plane: -1
+- id: 24350
+  option: Climb-up
+  tile:
+    x: 3221
+    y: 3472
+    plane: 2
+  to:
+    x: 3223
+    y: 3472
+    plane: 3
+- id: 24353
+  option: Climb-down
+  tile:
+    x: 3221
+    y: 3472
+    plane: 3
+  delta:
+    x: -1
+    y: -1
+    plane: -1
+- id: 24357
+  option: Climb-up
+  tile:
+    x: 3241
+    y: 3489
+  delta:
+    x: 4
+    plane: 1
+- id: 24359
+  option: Climb-down
+  tile:
+    x: 3242
+    y: 3489
+    plane: 1
+  delta:
+    x: -4
+    plane: -1
+- id: 24350
+  option: Climb-up
+  tile:
+    x: 3258
+    y: 3487
+  to:
+    x: 3258
+    y: 3486
+    plane: 1
+- id: 24352
+  option: Climb-down
+  tile:
+    x: 3258
+    y: 3487
+    plane: 1
+  delta:
+    x: -1
+    y: 1
+    plane: -1
+- id: 24352
+  option: Climb-up
+  tile:
+    x: 3258
+    y: 3487
+    plane: 1
+  delta:
+    plane: 1
+- id: 24352
+  option: Climb-down
+  tile:
+    x: 3258
+    y: 3487
+    plane: 2
+  delta:
+    plane: -1
+- id: 24352
+  option: Climb-up
+  tile:
+    x: 3258
+    y: 3487
+    plane: 2
+  delta:
+    plane: 1
+- id: 24353
+  option: Climb-down
+  tile:
+    x: 3258
+    y: 3487
+    plane: 3
+  delta:
+    plane: -1 
+- id: 882
+  option: Climb-down
+  tile:
+    x: 3237
+    y: 3458
+  delta:
+    x: -1
+    y: 6400 
+######## 12870 ########
+- id: 39273
+  option: Climb-up
+  tile:
+    x: 3220
+    y: 4522
+  to:
+    x: 3014
+    y: 3257
+######## 12879 ########
+- id: 27668
+  option: Climb-up
+  tile:
+    x: 3232
+    y: 5091
+  to:
+    x: 3368
+    y: 3268
+######## 12950 ########
+- id: 29355
+  option: Climb-up
+  tile:
+    x: 3209
+    y: 9616
+  delta:
+    x: 2
+    y: -6400
+######## 12952 ######## 
+- id: 2405
+  option: Climb-up
+  tile:
+    x: 3244
+    y: 9783
+  to:
+    x: 3244
+    y: 3382
+######## 12953 ########
+- id: 24364
+  option: Climb-up
+  tile:
+    x: 3231
+    y: 9801
+  delta:
+    y: -6400
+######## 12954 ######## 
+- id: 29355
+  option: Climb-up
+  tile:
+    x: 3230
+    y: 9904
+  delta:
+    y: -6400
+- id: 24366
+  option: Climb-up
+  tile:
+    x: 3237
+    y: 9858
+  delta:
+    x: 1
+    y: -6400
+######## 13105 ########
+- id: 35533
+  option: Climb-up
+  tile:
+    x: 3284
+    y: 3165
+  to:
+    x: 3285
+    y: 3164
+    plane: 1
+- id: 35534
+  option: Climb-down
+  tile:
+    x: 3284
+    y: 3165
     plane: 1
   to:
-    x: 3325
-    y: 3143
+    x: 3284
+    y: 3164
+- id: 35516
+  option: Climb-up
+  tile:
+    x: 3292
+    y: 3169
+    plane: 1
+  delta:
+    y: -1
+    plane: 1
+- id: 35518
+  option: Climb-down
+  tile:
+    x: 3292
+    y: 3168
+    plane: 2
+  delta:
+    y: 1
+    plane: -1
 - id: 35646
   option: Climb-up
   tile:
@@ -930,43 +4223,197 @@
     plane: 2
   delta:
     plane: -1
-- id: 35533
+- id: 35646
   option: Climb-up
   tile:
-    x: 3284
-    y: 3165
+    x: 3325
+    y: 3142
   to:
-    x: 3285
-    y: 3164
+    x: 3324
+    y: 3139
     plane: 1
-- id: 35534
+- id: 35645
   option: Climb-down
   tile:
-    x: 3284
-    y: 3165
+    x: 3325
+    y: 3139
     plane: 1
   to:
-    x: 3284
-    y: 3164
-- id: 35516
+    x: 3325
+    y: 3143
+######## 13108 ########
+- id: 24354
   option: Climb-up
   tile:
-    x: 3292
-    y: 3169
+    x: 3268
+    y: 3379
+  delta:
+    plane: 1
+- id: 24355
+  option: Climb-down
+  tile:
+    x: 3268
+    y: 3379
     plane: 1
   delta:
-    y: -1
+    plane: -1
+######## 13109 ########
+- id: 24358
+  option: Climb-up
+  tile:
+    x: 3266
+    y: 3452
+  delta:
+    y: 4
     plane: 1
-- id: 35518
+- id: 24359
   option: Climb-down
   tile:
-    x: 3292
-    y: 3168
+    x: 3266
+    y: 3453
+    plane: 1
+  delta:
+    y: -4
+    plane: -1
+- id: 24361
+  option: Climb-up
+  tile:
+    x: 3283
+    y: 3398
+  delta:
+    y: 2
+    plane: 1
+- id: 24362
+  option: Climb-down
+  tile:
+    x: 3283
+    y: 3398
+    plane: 1
+  delta:
+    y: -2
+    plane: -1 
+- id: 10321
+  option: Climb-down
+  tile:
+    x: 3267
+    y: 3400
+  to:
+    x: 2894
+    y: 5097 
+######## 13110 ######## 
+- id: 24357
+  option: Climb-up
+  tile:
+    x: 3285
+    y: 3493
+  delta:
+    y: -4
+    plane: 1
+- id: 24359
+  option: Climb-down
+  tile:
+    x: 3285
+    y: 3493
+    plane: 1
+  delta:
+    y: 4
+    plane: -1
+- id: 24354
+  option: Climb-up
+  tile:
+    x: 3304
+    y: 3494
+  delta:
+    y: 2
+    plane: 1
+- id: 24362
+  option: Climb-down
+  tile:
+    x: 3304
+    y: 3494
+    plane: 1
+  delta:
+    y: -2
+    plane: -1
+- id: 24354
+  option: Climb-up
+  tile:
+    x: 3310
+    y: 3509
+  delta:
+    plane: 1
+- id: 24355
+  option: Climb-down
+  tile:
+    x: 3310
+    y: 3509
+    plane: 1
+  delta:
+    plane: -1 
+######## 13117 ########
+- id: 38854
+  option: Climb-up
+  tile:
+    x: 3280
+    y: 3936
+  to:
+    x: 3281
+    y: 3935
+    plane: 1
+- id: 38855
+  option: Climb-down
+  tile:
+    x: 3280
+    y: 3936
+    plane: 1
+  delta:
+    plane: -1
+- id: 38855
+  option: Climb-up
+  tile:
+    x: 3280
+    y: 3936
+    plane: 1
+  delta:
+    plane: 1
+- id: 38855
+  option: Climb-down
+  tile:
+    x: 3280
+    y: 3936
     plane: 2
   delta:
-    y: 1
     plane: -1
-# Duel Tournament
+- id: 38855
+  option: Climb-up
+  tile:
+    x: 3280
+    y: 3936
+    plane: 2
+  to:
+    x: 3282
+    y: 3936
+    plane: 3
+- id: 38856
+  option: Climb-down
+  tile:
+    x: 3280
+    y: 3936
+    plane: 3
+  to:
+    x: 3281
+    y: 3935
+    plane: 2
+######## 13133 ########
+- id: 37684
+  option: Climb-up
+  tile:
+    x: 3290
+    y: 4935
+  delta:
+    x: -60
+    y: -1696
+######## 13363 ########
 - id: 27669
   option: Climb-down
   tile:
@@ -975,258 +4422,253 @@
   to:
     x: 3231
     y: 5091
-- id: 27668
+- id: 10775
   option: Climb-up
   tile:
-    x: 3232
-    y: 5091
+    x: 3357
+    y: 3306
   to:
-    x: 3368
-    y: 3268
-# Asgarnian ice dungeon 
-- id: 9472
+    x: 3357
+    y: 3307
+    plane: 1
+- id: 10776
   option: Climb-down
   tile:
-    x: 3008
-    y: 3150
-  delta:   
-    y: 6400
-- id: 32015
-  option: Climb-up
-  tile:
-    x: 3008
-    y: 9550
-  delta:   
-    y: -6400
-#Port sarim
-- id: 40114
-  option: Climb-up
-  tile:
-    x: 3010
-    y: 3184
-  delta:   
+    x: 3357
+    y: 3306
     plane: 1
-- id: 55450
+  to:
+    x: 3360
+    y: 3306
+- id: 10771
+  option: Climb-up
+  tile:
+    x: 3367
+    y: 3306
+  to:
+    x: 3369
+    y: 3307
+    plane: 1
+- id: 10773
   option: Climb-down
   tile:
-    x: 3010
-    y: 3184
+    x: 3367
+    y: 3306
     plane: 1
-  delta:   
-    plane: -1
-- id: 40114
-  option: Climb-up
-  tile:
-    x: 3013
-    y: 3179
-    plane: 1
-  delta:   
-    plane: 1
-- id: 40113
+  to:
+    x: 3366
+    y: 3306
+- id: 527
   option: Climb-down
   tile:
-    x: 3013
-    y: 3179
+    x: 3357
+    y: 3305
+  to:
+    x: 3619
+    y: 4814
+######## 14411 ########
+- id: 528
+  option: Climb-up
+  tile:
+    x: 3618
+    y: 4814
+  to:
+    x: 3358
+    y: 3305
+######## 14669 ########
+- id: 45784
+  option: Climb
+  tile:
+    x: 3654
+    y: 4949
+  delta:
+    x: -447
+    y: -1708
+######## 14930 ########
+- id: 46936
+  option: Climb-down
+  tile:
+    x: 3744
+    y: 5288
+  to:
+    x: 3936
+    y: 5372
     plane: 2
-  delta:   
-    plane: -1
-- id: 40026
+- id: 46938
   option: Climb-up
   tile:
-    x: 3011
-    y: 3235
-  delta:   
-    plane: 1
-- id: 40027
-  option: Climb-down
-  tile:
-    x: 3011
-    y: 3235
-    plane: 1
-  delta:   
-    plane: -1
-- id: 40026
-  option: Climb-up
-  tile:
-    x: 3013
-    y: 3244
+    x: 3744
+    y: 5275
   delta:
+    x: 65
+    y: 1
+######## 15184 ########
+- id: 27866
+  option: Climb-up
+  tile:
+    x: 3807
+    y: 5154
+  delta:
+    x: -5
     plane: 1
-- id: 40027
+- id: 27870
   option: Climb-down
   tile:
-    x: 3013
-    y: 3244
+    x: 3804
+    y: 5155
     plane: 1
   delta:
+    x: 5
     plane: -1
-- id: 40057
-  option: Climb-up
-  tile:
-    x: 3026
-    y: 3248
-  to:
-    x: 3026
-    y: 3247
-    plane: 1
-- id: 40059
+######## 15186 ########
+- id: 46936
   option: Climb-down
   tile:
-    x: 3026
-    y: 3248
-    plane: 1
-  to:
-    x: 3025
-    y: 3248
-- id: 40057
-  option: Climb-up
-  tile:
-    x: 3023
-    y: 3261
-  to:
-    x: 3025
-    y: 3261
-    plane: 1
-- id: 40059
-  option: Climb-down
-  tile:
-    x: 3024
-    y: 3261
-    plane: 1
-  to:
-    x: 3024
-    y: 3260
-- id: 39275
-  option: Climb-down
-  tile:
-    x: 3015
-    y: 3257
-  to:
-    x: 3221
-    y: 4522
-- id: 39273
-  option: Climb-up
-  tile:
-    x: 3220
-    y: 4522
-  to:
-    x: 3014
-    y: 3257
-- id: 10321
-  option: Climb-down
-  tile:
-    x: 3018
-    y: 3232
-  to:   
-    x: 2962
-    y: 9650
-- id: 32015
-  option: Climb-up
-  tile:
-    x: 2962
-    y: 9651
-  to:   
-    x: 3018
-    y: 3231
-# Rimmington
-- id: 9470
-  option: Climb-up
-  tile:
-    x: 2965
-    y: 3215
+    x: 3809
+    y: 5276
   delta:
-    x: 4
+    x: -65
+    y: -1
+######## 15446 ########
+- id: 48798
+  option: Climb-up
+  tile:
+    x: 3877
+    y: 5525
     plane: 1
-- id: 9471
+  delta:
+    x: -631
+    y: -2328
+    plane: -1
+- id: 48680
   option: Climb-down
   tile:
-    x: 2966
-    y: 3215
+    x: 3874
+    y: 5527
     plane: 1
+  to:
+    x: 3869
+    y: 5524
+- id: 48679
+  option: Climb-up
+  tile:
+    x: 3870
+    y: 5524
+  to:
+    x: 3875
+    y: 5527
+    plane: 1
+- id: 48677
+  option: Climb-up
+  tile:
+    x: 3858
+    y: 5533
   delta:
     x: -4
-    plane: -1
-- id: 9558
-  option: Climb-up
-  tile:
-    x: 2948
-    y: 3213
-  delta:
     plane: 1
-- id: 9559
+- id: 48678
   option: Climb-down
   tile:
-    x: 2948
-    y: 3213
+    x: 3858
+    y: 5533
     plane: 1
   delta:
-    plane: -1
-- id: 39331
-  option: Climb-down
-  tile:
-    x: 2968
-    y: 3201
-  delta:
-    x: 198
-    y: 1314
-- id: 39329
+    x: 4
+    plane: -1 
+- id: 48677
   option: Climb-up
   tile:
-    x: 3165
-    y: 4514
+    x: 3858
+    y: 5543
   delta:
-    x: -198
-    y: -1314
-# Varrock
-- id: 24366
-  option: Climb-up
-  tile:
-    x: 3237
-    y: 9858
-  delta:
-    x: 1
-    y: -6400
-- id: 882
+    x: -4
+    plane: 1
+- id: 48678
   option: Climb-down
   tile:
-    x: 3237
-    y: 3458
-  delta:
-    x: -1
-    y: 6400
-## Palace
-- id: 24350
-  option: Climb-up
-  tile:
-    x: 3202
-    y: 3497
-  delta:
-    x: 1
-    y: 1
-    plane: 1
-- id: 24352
-  option: Climb-up
-  tile:
-    x: 3202
-    y: 3497
+    x: 3858
+    y: 5543
     plane: 1
   delta:
-    plane: 1
-- id: 24352
+    x: 4
+    plane: -1 
+- id: 48688
   option: Climb-down
   tile:
-    x: 3202
-    y: 3497
-    plane: 1
-  delta:
-    x: -1
-    y: -1
-    plane: -1
-- id: 24353
-  option: Climb-down
+    x: 3865
+    y: 5524
+  to:
+    x: 3972
+    y: 5565
+######## 15696 ########
+- id: 46731
+  option: Climb
   tile:
-    x: 3202
-    y: 3497
+    x: 3936
+    y: 5151
     plane: 2
   delta:
+    y: 165
+######## 15699 ########
+- id: 46939
+  option: Climb-down
+  tile:
+    x: 3936
+    y: 5314
+    plane: 2
+  delta:
+    y: -165
+- id: 46731
+  option: Climb
+  tile:
+    x: 3936
+    y: 5373
+    plane: 2
+  to:
+    x: 3744
+    y: 5287
+######## 15958 ########
+- id: 48683
+  option: Climb-up
+  tile:
+    x: 3972
+    y: 5566
+  to:
+    x: 3868
+    y: 5524
+######## 17235 ######## 
+- id: 27866
+  option: Climb-up
+  tile:
+    x: 4319
+    y: 5346
+  delta:
+    x: -5
+    plane: 1
+- id: 27870
+  option: Climb-down
+  tile:
+    x: 4316
+    y: 5347
+    plane: 1
+  delta:
+    x: 5
+    plane: -1
+######## 17237 ########
+- id: 27866
+  option: Climb-up
+  tile:
+    x: 4319
+    y: 5474
+  delta:
+    x: -5
+    plane: 1
+- id: 27870
+  option: Climb-down
+  tile:
+    x: 4316
+    y: 5475
+    plane: 1
+  delta:
+    x: 5
     plane: -1

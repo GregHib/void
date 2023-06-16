@@ -39,7 +39,7 @@ on<ObjectOption>({ operate && operate && option == "Climb" && (def.options?.coun
 suspend fun ObjectOption.climb(option: String) {
     val teleport = stairs.get(def.id, obj.tile, option) ?: return
     val name = def.name.lowercase()
-    if (name.contains("ladder") || name.contains("trapdoor")) {
+    if (name.isLadder()) {
         val remaining = player.remaining("climb_delay")
         if (remaining > 0) {
             delay(remaining)
@@ -54,4 +54,11 @@ suspend fun ObjectOption.climb(option: String) {
     val tile = teleport.apply(player.tile)
     player.tele(tile)
     player.events.emit(Climb)
+}
+
+fun String.isLadder() = contains("ladder") || contains("rope") || contains("chain") || contains("vine") || isTrapDoor()
+
+fun String.isTrapDoor(): Boolean {
+    val name = replace(" ", "").lowercase()
+    return name == "trapdoor" || name == "manhole"
 }
