@@ -51,7 +51,10 @@ class YamlParser {
             currentIndex = 0
             val indent = skipWhitespaces()
             if (currentIndent == indent) {
-                val listItem = readListItem()
+                currentIndex++ // skip '-'
+                skipWhitespaces()
+                lines.pop()
+                val listItem = input.substring(currentIndex, input.length).trim()
                 list.add(parseValue(listItem, currentIndent + 1))
             } else if (indent > currentIndent) {
                 if (indent != currentIndent + 1) {
