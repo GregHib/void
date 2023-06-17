@@ -30,17 +30,13 @@ class YamlParser {
     }
 
     private fun readCollection(): Any {
-        val line = lines.peek()
-        val index = line.indexOfFirst { it != ' ' }
-        return if (index == -1) {
-            emptyList<Any>()
+        input = lines.peek()
+        currentIndex = 0
+        val indent = skipWhitespaces()
+        return if (currentIndex < input.length && input[currentIndex] == '-') {
+            readList(indent)
         } else {
-            val currentIndent = index / 2
-            if (line[index] == '-') {
-                readList(currentIndent)
-            } else {
-                readMap(lines.pop().trim(), currentIndent)
-            }
+            readMap(lines.pop().trim(), indent)
         }
     }
 
@@ -83,7 +79,8 @@ class YamlParser {
                 val k = readKey()
                 currentIndex++ // skip ':'
                 // TODO replace with input[currentIndex] == '\n'
-                if (currentIndex == input.length && lines.isNotEmpty() && getIndent(lines.peek()) != indent) { // value is blank
+                val nextIndent = if (lines.isEmpty()) -1 else getIndent(lines.peek())
+                if (currentIndex == input.length && lines.isNotEmpty() && nextIndent != indent) { // value is blank
                     map[k] = readCollection()
                 } else {
                     map[k] = parseValue(input.substring(currentIndex, input.length).trim(), currentIndent + 1)
@@ -123,17 +120,6 @@ class YamlParser {
             currentIndex++
         }
         return input.substring(start, currentIndex)
-    }
-
-    private fun readListItem(): String {
-        val line = lines.pop()
-        val index = line.indexOf("-")
-        return line.substring(index + 1, line.length).trim()
-    }
-
-    private fun readMapEntry(): Pair<String, String> {
-        val line = lines.pop().trim()
-        return parseMapEntry(line)
     }
 
     private fun parseMapEntry(line: String): Pair<String, String> {
