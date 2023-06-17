@@ -47,18 +47,20 @@ class YamlParser {
     private fun readList(currentIndent: Int): MutableList<Any> {
         val list = mutableListOf<Any>()
         while (lines.isNotEmpty()) {
-            val line = lines.peek()
-            val index = line.indexOf('-')
-            if (index == -1) {
-                break
+            input = lines.peek()
+            currentIndex = 0
+            var counter = 0
+            while (currentIndex < input.length && input[currentIndex] == ' ') {
+                currentIndex++
+                counter++
             }
-            val indent = index / 2
+            val indent = counter / 2
             if (currentIndent == indent) {
                 val listItem = readListItem()
                 list.add(parseValue(listItem, currentIndent + 1))
             } else if (indent > currentIndent) {
                 if (indent != currentIndent + 1) {
-                    throw IllegalArgumentException("Invalid indent on line '$line'")
+                    throw IllegalArgumentException("Invalid indent on line '$input'")
                 }
                 list.add(readCollection())
             } else {
