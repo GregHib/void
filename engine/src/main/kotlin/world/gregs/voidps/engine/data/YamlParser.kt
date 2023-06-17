@@ -75,15 +75,16 @@ class YamlParser {
             map[key] = parseValue(entry, currentIndent + 1)
         }
         while (lines.isNotEmpty()) {
-            val line = lines.peek()
-            val index = line.indexOfFirst { it != ' ' }
-            if (index == -1) {
-                break
+            input = lines.peek()
+            currentIndex = 0
+            var counter = 0
+            while (currentIndex < input.length && input[currentIndex] == ' ') {
+                currentIndex++
+                counter++
             }
-            val indent = index / 2
+            val indent = counter / 2
             if (indent == currentIndent) {
-                input = lines.pop()
-                currentIndex = 0
+                lines.pop()
                 val k = readKey()
                 currentIndex++ // skip ':'
                 // TODO replace with input[currentIndex] == '\n'
@@ -94,7 +95,7 @@ class YamlParser {
                 }
             } else if (indent > currentIndent) {
                 if (indent != currentIndent + 1) {
-                    throw IllegalArgumentException("Invalid indent on line '$line'")
+                    throw IllegalArgumentException("Invalid indent on line '$input'")
                 }
                 map[key] = readCollection()
             } else {
@@ -113,9 +114,6 @@ class YamlParser {
     }
 
     private fun readKey(): String {
-        while (currentIndex < input.length && input[currentIndex] == ' ' && input[currentIndex] != ':') {
-            currentIndex++
-        }
         val start = currentIndex
         while (currentIndex < input.length && input[currentIndex] != ':') {
             currentIndex++
