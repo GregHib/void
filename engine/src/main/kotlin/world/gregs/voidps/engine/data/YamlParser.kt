@@ -36,7 +36,7 @@ class YamlParser {
         return if (currentIndex < input.length && input[currentIndex] == '-') {
             readList(indent)
         } else {
-            readMap(lines.pop().trim(), indent)
+            readMap(null, indent)
         }
     }
 
@@ -64,9 +64,28 @@ class YamlParser {
         return list
     }
 
-    private fun readMap(value: String, currentIndent: Int): MutableMap<String, Any> {
+    private fun readMap(value: String?, currentIndent: Int): MutableMap<String, Any> {
         val map = mutableMapOf<String, Any>()
-        val (key, entry) = parseMapEntry(value)
+        var key: String
+        var entry: String
+        if (value == null) {
+            var start = currentIndex
+            while (currentIndex < input.length && input[currentIndex] != ':') {
+                currentIndex++
+            }
+            key = input.substring(start, currentIndex)
+            currentIndex++// skip ':'
+            skipWhitespaces()
+            start = currentIndex
+            while (currentIndex < input.length && input[currentIndex] != '\n') {
+                currentIndex++
+            }
+            entry = input.substring(start, currentIndex)
+        } else {
+            val parts = parseMapEntry(value)
+            key = parts.first
+            entry = parts.second
+        }
         if (entry.isNotBlank()) {
             map[key] = parseValue(entry, currentIndent + 1)
         }
