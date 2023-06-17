@@ -36,7 +36,7 @@ class YamlParser {
         return if (currentIndex < input.length && input[currentIndex] == '-') {
             readList(indent)
         } else {
-            readMap(null, indent)
+            readMap(indent)
         }
     }
 
@@ -64,7 +64,7 @@ class YamlParser {
         return list
     }
 
-    private fun readMap(value: String?, currentIndent: Int): MutableMap<String, Any> {
+    private fun readMap(currentIndent: Int): MutableMap<String, Any> {
         val map = mutableMapOf<String, Any>()
         // read key
         var start = currentIndex
@@ -174,7 +174,7 @@ class YamlParser {
                 if (s.isBlank()) {
                     mapOf(key to readCollection())
                 } else {
-                    readMap(null, indent)
+                    readMap(indent)
                 }
             }
             else -> value
