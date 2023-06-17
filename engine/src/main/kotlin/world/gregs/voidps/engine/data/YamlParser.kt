@@ -49,12 +49,7 @@ class YamlParser {
         while (lines.isNotEmpty()) {
             input = lines.peek()
             currentIndex = 0
-            var counter = 0
-            while (currentIndex < input.length && input[currentIndex] == ' ') {
-                currentIndex++
-                counter++
-            }
-            val indent = counter / 2
+            val indent = skipWhitespaces()
             if (currentIndent == indent) {
                 val listItem = readListItem()
                 list.add(parseValue(listItem, currentIndent + 1))
@@ -79,12 +74,7 @@ class YamlParser {
         while (lines.isNotEmpty()) {
             input = lines.peek()
             currentIndex = 0
-            var counter = 0
-            while (currentIndex < input.length && input[currentIndex] == ' ') {
-                currentIndex++
-                counter++
-            }
-            val indent = counter / 2
+            val indent = skipWhitespaces()
             if (indent == currentIndent) {
                 lines.pop()
                 val k = readKey()
@@ -105,6 +95,15 @@ class YamlParser {
             }
         }
         return map
+    }
+
+    private fun skipWhitespaces(): Int {
+        var count = 0
+        while (currentIndex < input.length && input[currentIndex] == ' ') {
+            currentIndex++
+            count++
+        }
+        return count / 2
     }
 
     private fun getIndent(line: String): Int {
