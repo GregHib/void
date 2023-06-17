@@ -66,27 +66,21 @@ class YamlParser {
 
     private fun readMap(value: String?, currentIndent: Int): MutableMap<String, Any> {
         val map = mutableMapOf<String, Any>()
-        var key: String
-        var entry: String
-        if (value == null) {
-            var start = currentIndex
-            while (currentIndex < input.length && input[currentIndex] != ':') {
-                currentIndex++
-            }
-            key = input.substring(start, currentIndex)
-            currentIndex++// skip ':'
-            skipWhitespaces()
-            start = currentIndex
-            while (currentIndex < input.length && input[currentIndex] != '\n') {
-                currentIndex++
-            }
-            entry = input.substring(start, currentIndex)
-        } else {
-            val parts = parseMapEntry(value)
-            key = parts.first
-            entry = parts.second
+        // read key
+        var start = currentIndex
+        while (currentIndex < input.length && input[currentIndex] != ':') {
+            currentIndex++
         }
-        if (entry.isNotBlank()) {
+        val key = input.substring(start, currentIndex)
+        currentIndex++// skip ':'
+        skipWhitespaces()
+        // continue till the end of the line
+        start = currentIndex
+        while (currentIndex < input.length && input[currentIndex] != '\n') {
+            currentIndex++
+        }
+        if (start != currentIndex) {
+            val entry = input.substring(start, currentIndex)
             map[key] = parseValue(entry, currentIndent + 1)
         }
         while (lines.isNotEmpty()) {
@@ -180,7 +174,7 @@ class YamlParser {
                 if (s.isBlank()) {
                     mapOf(key to readCollection())
                 } else {
-                    readMap(value, indent)
+                    readMap(null, indent)
                 }
             }
             else -> value
