@@ -5,12 +5,25 @@ import java.util.*
 class YamlParser {
     private lateinit var lines: Stack<String>
 
+    private var input = ""
+    private var currentIndex = 0
+
     fun parse(yaml: String): Any {
         val input = yaml.trim()
         lines = Stack()
         input.lines().reversed().forEach {
             if (!it.trim().startsWith('#')) {
                 lines.add(it)
+            }
+        }
+        return readCollection()
+    }
+
+    fun parse(lines: List<String>): Any {
+        this.lines = Stack()
+        lines.reversed().forEach {
+            if (!it.trim().startsWith('#')) {
+                this.lines.add(it)
             }
         }
         return readCollection()
@@ -69,11 +82,15 @@ class YamlParser {
             }
             val indent = index / 2
             if (indent == currentIndent) {
-                val (k, s) = readMapEntry()
-                if (s.isBlank() && lines.isNotEmpty() && getIndent(lines.peek()) != indent) {
+                input = lines.pop()
+                currentIndex = 0
+                val k = readKey()
+                currentIndex++ // skip ':'
+                // TODO replace with input[currentIndex] == '\n'
+                if (currentIndex == input.length && lines.isNotEmpty() && getIndent(lines.peek()) != indent) { // value is blank
                     map[k] = readCollection()
                 } else {
-                    map[k] = parseValue(s, currentIndent + 1)
+                    map[k] = parseValue(input.substring(currentIndex, input.length).trim(), currentIndent + 1)
                 }
             } else if (indent > currentIndent) {
                 if (indent != currentIndent + 1) {
@@ -93,6 +110,17 @@ class YamlParser {
             return -1
         }
         return index / 2
+    }
+
+    private fun readKey(): String {
+        while (currentIndex < input.length && input[currentIndex] == ' ' && input[currentIndex] != ':') {
+            currentIndex++
+        }
+        val start = currentIndex
+        while (currentIndex < input.length && input[currentIndex] != ':') {
+            currentIndex++
+        }
+        return input.substring(start, currentIndex)
     }
 
     private fun readListItem(): String {
