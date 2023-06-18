@@ -17,7 +17,7 @@ class FinalYamlParserTest {
             - some line
         """.trimIndent())
 
-        parser.parseComment()
+        parser.skipComment()
         assertEquals(12, parser.index)
     }
 
@@ -25,7 +25,7 @@ class FinalYamlParserTest {
     fun `Single line comment doesn't go out of bounds`() {
         parser.set("# a comment")
 
-        parser.parseComment()
+        parser.skipComment()
         assertEquals(11, parser.index)
     }
 
@@ -33,7 +33,7 @@ class FinalYamlParserTest {
     fun `Limit comment length`() {
         parser.set("# a comment")
 
-        parser.parseComment(4)
+        parser.skipComment(4)
         assertEquals(4, parser.index)
     }
 
@@ -169,6 +169,30 @@ class FinalYamlParserTest {
     }
 
     @Test
+    fun `Parse double type with spaces`() {
+        parser.set("12.3 ".trimIndent())
+        val output = parser.parseScalar()
+        assertEquals(12.3, output)
+        assertEquals(5, parser.index)
+    }
+
+    @Test
+    fun `Parse int type with spaces`() {
+        parser.set("1234567 ".trimIndent())
+        val output = parser.parseScalar()
+        assertEquals(1234567, output)
+        assertEquals(8, parser.index)
+    }
+
+    @Test
+    fun `Parse int with space as string`() {
+        parser.set("123 4567".trimIndent())
+        val output = parser.parseScalar()
+        assertEquals("123 4567", output)
+        assertEquals(8, parser.index)
+    }
+
+    @Test
     fun `Parse string type`() {
         parser.set("1234w567")
         val output = parser.parseScalar()
@@ -230,9 +254,9 @@ class FinalYamlParserTest {
 
     @Test
     fun `Parse explicit single line list`() {
-        parser.set("[ one, two , three]")
+        parser.set("[ one, 2 , three]")
         val output = parser.parseExplicitList()
-        val expected = listOf("one", "two", "three")
+        val expected = listOf("one", 2, "three")
         assertEquals(expected, output)
     }
 
@@ -290,24 +314,24 @@ class FinalYamlParserTest {
     @Test
     fun `Parse key-value pair`() {
         parser.set("key: value")
-        val output = parser.parseKeyValuePair(0)
-        val expected = mapOf("key" to "value")
+        val output = parser.parseKeyValuePair()
+        val expected = "key" to "value"
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse empty key-value end of fine`() {
         parser.set("key:")
-        val output = parser.parseKeyValuePair(0)
-        val expected = mapOf("key" to "")
+        val output = parser.parseKeyValuePair()
+        val expected = "key" to null
         assertEquals(expected, output)
     }
 
     @Test
     fun `Limit parse key-value pair`() {
         parser.set("key:value")
-        val output = parser.parseKeyValuePair(0, 4)
-        val expected = mapOf("key" to "")
+        val output = parser.parseKeyValuePair(4)
+        val expected = "key" to null
         assertEquals(expected, output)
     }
 
@@ -317,8 +341,8 @@ class FinalYamlParserTest {
             key:
             # something else
         """.trimIndent())
-        val output = parser.parseKeyValuePair(0)
-        val expected = mapOf("key" to "")
+        val output = parser.parseKeyValuePair()
+        val expected = "key" to null
         assertEquals(expected, output)
     }
 
@@ -345,6 +369,20 @@ class FinalYamlParserTest {
     }
 
     @Test
+    fun `Parse map with comments`() {
+        parser.set("""
+            person: # people
+                # ignore me
+              name: John Doe
+            # seriously
+              age: 30
+        """.trimIndent())
+        val output = parser.parseMap(0)
+        val expected = mapOf("person" to mapOf("name" to "John Doe", "age" to 30))
+        assertEquals(expected, output)
+    }
+
+    @Test
     fun `Parse indented multi-line map`() {
         parser.set("""
             person:
@@ -357,6 +395,30 @@ class FinalYamlParserTest {
     }
 
     @Test
+    fun `Parse list in map`() {
+        parser.set("""
+            person:
+              name: John Doe
+              - item
+        """.trimIndent())
+        assertThrows<IllegalArgumentException> {
+            parser.parseMap(0)
+        }
+    }
+
+    @Test
+    fun `Parse list indented in map`() {
+        parser.set("""
+            person:
+              name: John Doe
+                - item
+        """.trimIndent())
+        assertThrows<IllegalArgumentException> {
+            parser.parseMap(0)
+        }
+    }
+
+    @Test
     fun `Parse mixed multi-line map`() {
         parser.set("""
             - person:
@@ -366,6 +428,198 @@ class FinalYamlParserTest {
         parser.index = 2
         val output = parser.parseMap(1)
         val expected = mapOf("person" to "", "name" to "John Doe", "age" to 30)
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse list`() {
+        parser.set("""
+            - one
+            -   two  
+            - three
+        """.trimIndent())
+        val output = parser.parseList(0)
+        val expected = listOf("one", "two", "three")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse commented list`() {
+        parser.set("""
+            - one # 1
+              # ignore me
+            - two  
+            # really though
+            - three
+        """.trimIndent())
+        val output = parser.parseList(0)
+        val expected = listOf("one", "two", "three")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Limit parse list`() {
+        parser.set("""
+            - one
+            - two
+            - three
+        """.trimIndent())
+        val output = parser.parseList(0, 11)
+        val expected = listOf("one", "two")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse nested indented lists`() {
+        parser.set("""
+            - one
+            - two
+              - three
+        """.trimIndent())
+        assertThrows<IllegalArgumentException> {
+            parser.parseList(0)
+        }
+    }
+
+    @Test
+    fun `Parse map in list`() {
+        parser.set("""
+            - one
+            - two
+            key: value
+        """.trimIndent())
+        assertThrows<IllegalArgumentException> {
+            parser.parseList(0)
+        }
+    }
+
+    @Test
+    fun `Parse map indented in list`() {
+        parser.set("""
+            - one
+            - two
+              key:value
+        """.trimIndent())
+        assertThrows<IllegalArgumentException> {
+            parser.parseList(0)
+        }
+    }
+
+    @Test
+    fun `Parse list lower indentation`() {
+        parser.set("""
+            list:
+              - one
+              - two
+            key:value
+        """.trimIndent())
+        val output = parser.parseMap(0)
+        val expected = mapOf("list" to listOf("one", "two"), "key" to "value")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse explicit single line map`() {
+        parser.set("{ name: John Doe , age : 30 }")
+        val output = parser.parseExplicitMap()
+        val expected = mapOf("name" to "John Doe", "age" to 30)
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse explicit nested maps`() {
+        parser.set("{ name: John Doe , age : 30, address: { city: New York, country: USA } }")
+        val output = parser.parseExplicitMap()
+        val expected = mapOf("name" to "John Doe", "age" to 30, "address" to mapOf("city" to "New York", "country" to "USA"))
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse explicit multi-line map`() {
+        parser.set("""
+            {
+                name : John Doe 
+                ,
+                    age : 30
+                }
+        """.trimIndent())
+        val output = parser.parseExplicitMap()
+        val expected = mapOf("name" to "John Doe", "age" to 30)
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse explicit flat multi-line map`() {
+        parser.set("""
+            {
+                name: John Doe,
+                middle:  ,
+                age: 30,
+                address: { country: USA,
+                    street: 
+                    {
+                      number: 123,
+                      name: Main Str
+                    }
+                    zip: 12-34,
+                    city: 
+                }
+            }
+        """.trimIndent())
+        val output = parser.parseExplicitMap()
+        val expected =
+            mapOf(
+                "name" to "John Doe",
+                "middle" to "",
+                "age" to 30,
+                "address" to mapOf(
+                    "country" to "USA",
+                    "street" to mapOf("number" to 123, "name" to "Main Str"),
+                    "zip" to "12-34",
+                    "city" to ""
+                ))
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse map with list`() {
+        parser.set("""
+            fruits:
+              - apple
+              - banana
+        """.trimIndent())
+
+        val expected = mapOf("fruits" to listOf("apple", "banana"))
+        val output = parser.parseMap(0)
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse mixed`() {
+        val yaml = """
+            person:
+              name: John Doe
+              age: 30
+              favourite_fruits:
+                - apple
+                - banana
+              info:
+                height: 180
+                employed: true
+        """.trimIndent()
+
+        val expected = mapOf(
+            "person" to mapOf(
+                "name" to "John Doe",
+                "age" to 30,
+                "favourite_fruits" to listOf("apple", "banana"),
+                "info" to mapOf(
+                    "height" to 180,
+                    "employed" to true
+                )
+            )
+        )
+        val output = parser.parse(yaml)
         assertEquals(expected, output)
     }
 }
