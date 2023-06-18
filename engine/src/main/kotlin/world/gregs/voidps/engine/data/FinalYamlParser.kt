@@ -59,7 +59,7 @@ class FinalYamlParser {
         val key = parseQuotedString()
         skipSpaces()
         if (index == input.length || (index < input.length && input[index] != ':')) {
-            throw IllegalArgumentException("Expected ':' at $index")
+            throw IllegalArgumentException("Expected ':' at index $index")
         }
         return key
     }
@@ -73,7 +73,7 @@ class FinalYamlParser {
             index++
         }
         if (index == limit || (index < limit && (input[index] != '"' || input[index] == '\n'))) {
-            throw IllegalArgumentException("Expected '\"' at $index")
+            throw IllegalArgumentException("Expected '\"' at index $index")
         }
         val end = index
         index++ // skip closing '"'
@@ -86,7 +86,7 @@ class FinalYamlParser {
             index++
         }
         if (index == input.length || (index < input.length && (input[index] != ':' || input[index] == '\n'))) {
-            throw IllegalArgumentException("Expected ':' at $index")
+            throw IllegalArgumentException("Expected ':' at index $index")
         }
         return input.substring(start, index).trim()
     }
@@ -102,25 +102,6 @@ class FinalYamlParser {
             '"' -> parseQuotedString(limit)
             else -> parseScalar(limit)
         }
-
-
-        //parse type (with limit)
-        //            if char is false
-        //                return false
-        //            else if char is true
-        //                return true
-        //            else if char first is [
-        //                return parse line list
-        //            else if char first is {
-        //                return parse line map
-        //            else if char first is "
-        //                return parse quoted string
-        //            else
-        //                while index isn't ':' or \n or greater than limit
-        //                    increase index
-        //                if char is \n
-        //                    consume \n
-        //                return string
     }
 
     private val longRegex = Regex("-?\\d+L")
@@ -178,7 +159,7 @@ class FinalYamlParser {
                 } else if (!escaped && input[temp] == ']') { // Exist out of a nested list
                     if (--depth == 0) {
                         // Found the end of the list
-                        addListItem(limit, temp, list)
+                        addListItem(list, limit, temp)
                         if (index < limit && input[index] == ']') {
                             index++ // skip ']'
                             skipSpaces(limit)
@@ -200,13 +181,13 @@ class FinalYamlParser {
                     throw IllegalStateException("Unable to find comma or end of list.")
                 }
             } else {
-                addListItem(limit, nextComma, list)
+                addListItem(list, limit, nextComma)
             }
         }
         return list
     }
 
-    private fun addListItem(limit: Int, nextComma: Int, list: MutableList<Any>) {
+    private fun addListItem(list: MutableList<Any>, limit: Int, nextComma: Int) {
         skipWhitespace(limit)
         val parsed = parseValue(nextComma)
         list.add(parsed)
@@ -216,7 +197,31 @@ class FinalYamlParser {
         }
     }
 
-    fun parseValue(limit: Int = input.length): Any {
+    fun parseMap(currentIndent: Int, limit: Int = input.length): Map<String, Any> {
+        val map = mutableMapOf<String, Any>()
+        var count = 0
+        while (count++ < 10 && index < limit) {
+            val indent = if (map.isEmpty()) currentIndent else peekIndent(limit)
+            if (indent > currentIndent) {
+                skipSpaces()
+                val value = parseValue(limit, indent)
+                if (value is Map<*, *>) {
+                    map.putAll(value as Map<String, Any>)
+                } else {
+                    throw IllegalStateException("Read non-map value in map: $value")
+                }
+            } else {
+                val pair = parseKeyValuePair(indent, limit)
+                map.putAll(pair)
+            }
+        }
+        return map
+    }
+
+    /**
+     * Expects no whitespace or indent
+     */
+    fun parseValue(limit: Int = input.length, indent: Int = -1): Any {
         return when (input[index]) {
             '-' -> {
                 index++ // skip '-'
@@ -226,7 +231,7 @@ class FinalYamlParser {
             '#' -> {
                 parseComment(limit)
                 skipSpaces(limit)
-                parseValue(limit)
+                parseValue(limit, indent)
             }
             else -> {
                 // Look ahead for ':'
@@ -237,7 +242,7 @@ class FinalYamlParser {
                     temp++
                 }
                 if (temp < limit && input[temp] == ':') {
-                    parseMap(limit)
+                    parseMap(indent, limit)
                 } else {
                     parseType(limit)
                 }
@@ -245,20 +250,16 @@ class FinalYamlParser {
         }
     }
 
-    fun parseMap(limit: Int): Map<String, Any> {
-        return emptyMap()
-    }
-
-    fun parseKeyValuePair(currentIndent: Int, limit: Int = input.length): Any {
+    fun parseKeyValuePair(currentIndent: Int, limit: Int = input.length): Map<String, Any> {
         val key = parseKey()
         skipSpaces()
         return if (index == limit) { // end of file
             mapOf(key to "")
         } else if (index < limit && input[index] == '\n') { // end of line
             skipLineBreaks()
-            val indent = countIndent(limit)
+            val indent = peekIndent(limit)
             if (indent > currentIndent) {
-                mapOf(key to parseValue(limit))
+                mapOf(key to parseValue(limit, currentIndent))
             } else {
                 mapOf(key to "")
             }
@@ -267,7 +268,7 @@ class FinalYamlParser {
         }
     }
 
-    private fun countIndent(limit: Int): Int {
+    private fun peekIndent(limit: Int): Int {
         var temp = index
         while (temp < limit && input[temp] == ' ') {
             temp++

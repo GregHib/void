@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -208,7 +207,8 @@ class FinalYamlParserTest {
     fun `Parse map value`() {
         parser.set("key: value")
         val output = parser.parseValue()
-        assertEquals(emptyMap<String, Any>(), output) // TODO
+        val expected = mapOf("key" to "value")
+        assertEquals(expected, output)
     }
 
     @Test
@@ -323,14 +323,49 @@ class FinalYamlParserTest {
     }
 
     @Test
-    @Disabled("Waiting on parseMap")
-    fun `Parse indented multi-line key-value map`() {
+    fun `Parse map`() {
         parser.set("""
-            key:
-              key name: value
+            key  : value
+            name : bob
         """.trimIndent())
-        val output = parser.parseKeyValuePair(0)
-        val expected = mapOf("key" to mapOf("key name" to "value"))
+        val output = parser.parseMap(0)
+        val expected = mapOf("key" to "value", "name" to "bob")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Limit parse map`() {
+        parser.set("""
+            key: value
+            name : bob
+        """.trimIndent())
+        val output = parser.parseMap(0, 10)
+        val expected = mapOf("key" to "value")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse indented multi-line map`() {
+        parser.set("""
+            person:
+              name: John Doe
+              age: 30
+        """.trimIndent())
+        val output = parser.parseMap(0)
+        val expected = mapOf("person" to mapOf("name" to "John Doe", "age" to 30))
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse mixed multi-line map`() {
+        parser.set("""
+            - person:
+              name: John Doe
+              age: 30
+        """.trimIndent())
+        parser.index = 2
+        val output = parser.parseMap(1)
+        val expected = mapOf("person" to "", "name" to "John Doe", "age" to 30)
         assertEquals(expected, output)
     }
 }
