@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.data
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -30,11 +31,59 @@ class FinalYamlParserTest {
     }
 
     @Test
+    fun `Limit comment length`() {
+        parser.set("# a comment")
+
+        parser.parseComment(4)
+        assertEquals(4, parser.index)
+    }
+
+    @Test
     fun `Skip excess space`() {
         parser.set("   lots of space")
 
-        parser.skipExcessSpace()
+        parser.skipSpaces()
         assertEquals(3, parser.index)
+    }
+
+    @Test
+    fun `Limit excess space`() {
+        parser.set("   lots of space")
+
+        parser.skipSpaces(2)
+        assertEquals(2, parser.index)
+    }
+
+    @Test
+    fun `Skip line breaks`() {
+        parser.set("\n\n\n \n")
+
+        parser.skipLineBreaks()
+        assertEquals(3, parser.index)
+    }
+
+    @Test
+    fun `Limit skip line breaks`() {
+        parser.set("\n\n\n \n")
+
+        parser.skipLineBreaks(2)
+        assertEquals(2, parser.index)
+    }
+
+    @Test
+    fun `Skip whitespace`() {
+        parser.set("\n\n\n \n")
+
+        parser.skipWhitespace()
+        assertEquals(5, parser.index)
+    }
+
+    @Test
+    fun `Limit skip whitespace`() {
+        parser.set("\n\n\n \n")
+
+        parser.skipWhitespace(4)
+        assertEquals(4, parser.index)
     }
 
     @Test
@@ -128,6 +177,13 @@ class FinalYamlParserTest {
     }
 
     @Test
+    fun `Limit parse type`() {
+        parser.set("1234w567")
+        val output = parser.parseScalar(4)
+        assertEquals(1234, output)
+    }
+
+    @Test
     fun `Parse empty type`() {
         parser.set("")
         val output = parser.parseScalar()
@@ -139,6 +195,13 @@ class FinalYamlParserTest {
         parser.set("- item")
         val output = parser.parseValue()
         assertEquals("item", output)
+    }
+
+    @Test
+    fun `Limit parse list item value`() {
+        parser.set("- item")
+        val output = parser.parseValue(4)
+        assertEquals("it", output)
     }
 
     @Test
@@ -170,6 +233,15 @@ class FinalYamlParserTest {
         parser.set("[ one, two , three]")
         val output = parser.parseExplicitList()
         val expected = listOf("one", "two", "three")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Limit parse explicit single line list`() {
+        parser.set("[ one, [two, three], four]")
+        parser.index = 7
+        val output = parser.parseExplicitList(19)
+        val expected = listOf("two", "three")
         assertEquals(expected, output)
     }
 
@@ -212,6 +284,53 @@ class FinalYamlParserTest {
         """.trimIndent())
         val output = parser.parseExplicitList()
         val expected = listOf("one", listOf("two", "three", listOf("four", "five", "six")), "seven")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse key-value pair`() {
+        parser.set("key: value")
+        val output = parser.parseKeyValuePair(0)
+        val expected = mapOf("key" to "value")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse empty key-value end of fine`() {
+        parser.set("key:")
+        val output = parser.parseKeyValuePair(0)
+        val expected = mapOf("key" to "")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Limit parse key-value pair`() {
+        parser.set("key:value")
+        val output = parser.parseKeyValuePair(0, 4)
+        val expected = mapOf("key" to "")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse empty key-value end of line`() {
+        parser.set("""
+            key:
+            # something else
+        """.trimIndent())
+        val output = parser.parseKeyValuePair(0)
+        val expected = mapOf("key" to "")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    @Disabled("Waiting on parseMap")
+    fun `Parse indented multi-line key-value map`() {
+        parser.set("""
+            key:
+              key name: value
+        """.trimIndent())
+        val output = parser.parseKeyValuePair(0)
+        val expected = mapOf("key" to mapOf("key name" to "value"))
         assertEquals(expected, output)
     }
 }

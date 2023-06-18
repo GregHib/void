@@ -13,9 +13,9 @@ class FinalYamlParser {
         this.index = 0
     }
 
-    fun parseComment() {
-        if (index < input.length && input[index] == '#') {
-            while (index < input.length && input[index] != '\n') {
+    fun parseComment(limit: Int = input.length) {
+        if (index < limit && input[index] == '#') {
+            while (index < limit && input[index] != '\n') {
                 index++
             }
             skipLineBreaks()
@@ -31,7 +31,7 @@ class FinalYamlParser {
         }
     }
 
-    fun skipExcessSpace(limit: Int = input.length) {
+    fun skipSpaces(limit: Int = input.length) {
         while (index < limit && input[index] == ' ') {
             index++
         }
@@ -44,35 +44,35 @@ class FinalYamlParser {
     }
 
     fun parseKey(): String {
-        skipExcessSpace()
+        skipSpaces()
         val key = if (index < input.length && input[index] == '"') {
             parseQuotedKey()
         } else {
             parseScalarKey()
         }
         index++ // skip ':'
-        skipExcessSpace()
+        skipSpaces()
         return key
     }
 
     private fun parseQuotedKey(): String {
         val key = parseQuotedString()
-        skipExcessSpace()
+        skipSpaces()
         if (index == input.length || (index < input.length && input[index] != ':')) {
             throw IllegalArgumentException("Expected ':' at $index")
         }
         return key
     }
 
-    private fun parseQuotedString(): String {
+    private fun parseQuotedString(limit: Int = input.length): String {
         index++ // skip opening '"'
         val start = index
         var escaped = false
-        while (index < input.length && (!escaped && input[index] != '"') && input[index] != '\n') {
+        while (index < limit && (!escaped && input[index] != '"') && input[index] != '\n') {
             escaped = input[index] == '\\'
             index++
         }
-        if (index == input.length || (index < input.length && (input[index] != '"' || input[index] == '\n'))) {
+        if (index == limit || (index < limit && (input[index] != '"' || input[index] == '\n'))) {
             throw IllegalArgumentException("Expected '\"' at $index")
         }
         val end = index
@@ -93,13 +93,13 @@ class FinalYamlParser {
 
     private fun parseType(limit: Int): Any {
         if (index == input.length) {
-            throw IllegalStateException("Unexpected end of tile")
+            throw IllegalStateException("Unexpected end of file")
         }
 
         return when (input[index]) {
             '[' -> parseExplicitList(limit)
             '{' -> {}
-            '"' -> parseQuotedString()
+            '"' -> parseQuotedString(limit)
             else -> parseScalar(limit)
         }
 
@@ -157,7 +157,7 @@ class FinalYamlParser {
 
     fun parseExplicitList(limit: Int = input.length): List<Any> {
         val list = mutableListOf<Any>()
-        skipExcessSpace(limit)
+        skipSpaces(limit)
         index++ // skip '['
         skipWhitespace(limit)
         var depth = 1
@@ -170,17 +170,18 @@ class FinalYamlParser {
             var temp = index
             while (depth != 0 && index < limit) {
                 if (!escaped && depth == 1 && input[temp] == ',') {
+                    // Found a base level comma
                     nextComma = temp
                     break
-                } else if (!escaped && input[temp] == '[') {
+                } else if (!escaped && input[temp] == '[') { // Enter into a nested list
                     depth++
-                } else if (!escaped && input[temp] == ']') {
+                } else if (!escaped && input[temp] == ']') { // Exist out of a nested list
                     if (--depth == 0) {
-                        // break when the end of list is found
+                        // Found the end of the list
                         addListItem(limit, temp, list)
                         if (index < limit && input[index] == ']') {
                             index++ // skip ']'
-                            skipExcessSpace(limit)
+                            skipSpaces(limit)
                         }
                         break@outer
                     }
@@ -189,9 +190,10 @@ class FinalYamlParser {
                 temp++
             }
             if (nextComma == -1) {
+                // Add what's remaining if end of list found
                 if (temp < limit && input[temp] == ']') {
                     index = temp + 1 // skip ']'
-                    skipExcessSpace(limit)
+                    skipSpaces(limit)
                     skipLineBreaks(limit)
                     return list
                 } else {
@@ -218,12 +220,12 @@ class FinalYamlParser {
         return when (input[index]) {
             '-' -> {
                 index++ // skip '-'
-                skipExcessSpace()
+                skipSpaces(limit)
                 parseType(limit)
             }
             '#' -> {
-                parseComment()
-                skipExcessSpace()
+                parseComment(limit)
+                skipSpaces(limit)
                 parseValue(limit)
             }
             else -> {
@@ -245,6 +247,32 @@ class FinalYamlParser {
 
     fun parseMap(limit: Int): Map<String, Any> {
         return emptyMap()
+    }
+
+    fun parseKeyValuePair(currentIndent: Int, limit: Int = input.length): Any {
+        val key = parseKey()
+        skipSpaces()
+        return if (index == limit) { // end of file
+            mapOf(key to "")
+        } else if (index < limit && input[index] == '\n') { // end of line
+            skipLineBreaks()
+            val indent = countIndent(limit)
+            if (indent > currentIndent) {
+                mapOf(key to parseValue(limit))
+            } else {
+                mapOf(key to "")
+            }
+        } else {
+            mapOf(key to parseType(limit))
+        }
+    }
+
+    private fun countIndent(limit: Int): Int {
+        var temp = index
+        while (temp < limit && input[temp] == ' ') {
+            temp++
+        }
+        return (temp - index) / 2
     }
 
     /*
