@@ -5,8 +5,258 @@ class FinalYamlParser {
     var input = ""
     var index = 0
 
+    val pretty: String
+        get() = input.substring(index, (index + 15).coerceAtMost(input.length)).replace("\n", "\\n")
+
+    fun set(input: String) {
+        this.input = input
+        this.index = 0
+    }
+
+    fun parseComment() {
+        if (index < input.length && input[index] == '#') {
+            while (index < input.length && input[index] != '\n') {
+                index++
+            }
+            skipLineBreaks()
+        }
+    }
+
+    /**
+     * Skip space or line breaks
+     */
+    fun skipWhitespace(limit: Int = input.length) {
+        while (index < limit && input[index].isWhitespace()) {
+            index++
+        }
+    }
+
+    fun skipExcessSpace(limit: Int = input.length) {
+        while (index < limit && input[index] == ' ') {
+            index++
+        }
+    }
+
+    fun skipLineBreaks(limit: Int = input.length) {
+        while (index < limit && input[index] == '\n') {
+            index++
+        }
+    }
+
+    fun parseKey(): String {
+        skipExcessSpace()
+        val key = if (index < input.length && input[index] == '"') {
+            parseQuotedKey()
+        } else {
+            parseScalarKey()
+        }
+        index++ // skip ':'
+        skipExcessSpace()
+        return key
+    }
+
+    private fun parseQuotedKey(): String {
+        val key = parseQuotedString()
+        skipExcessSpace()
+        if (index == input.length || (index < input.length && input[index] != ':')) {
+            throw IllegalArgumentException("Expected ':' at $index")
+        }
+        return key
+    }
+
+    private fun parseQuotedString(): String {
+        index++ // skip opening '"'
+        val start = index
+        var escaped = false
+        while (index < input.length && (!escaped && input[index] != '"') && input[index] != '\n') {
+            escaped = input[index] == '\\'
+            index++
+        }
+        if (index == input.length || (index < input.length && (input[index] != '"' || input[index] == '\n'))) {
+            throw IllegalArgumentException("Expected '\"' at $index")
+        }
+        val end = index
+        index++ // skip closing '"'
+        return input.substring(start, end)
+    }
+
+    private fun parseScalarKey(): String {
+        val start = index
+        while (index < input.length && input[index] != ':' && input[index] != '\n') {
+            index++
+        }
+        if (index == input.length || (index < input.length && (input[index] != ':' || input[index] == '\n'))) {
+            throw IllegalArgumentException("Expected ':' at $index")
+        }
+        return input.substring(start, index).trim()
+    }
+
+    private fun parseType(limit: Int): Any {
+        if (index == input.length) {
+            throw IllegalStateException("Unexpected end of tile")
+        }
+
+        return when (input[index]) {
+            '[' -> parseExplicitList(limit)
+            '{' -> {}
+            '"' -> parseQuotedString()
+            else -> parseScalar(limit)
+        }
+
+
+        //parse type (with limit)
+        //            if char is false
+        //                return false
+        //            else if char is true
+        //                return true
+        //            else if char first is [
+        //                return parse line list
+        //            else if char first is {
+        //                return parse line map
+        //            else if char first is "
+        //                return parse quoted string
+        //            else
+        //                while index isn't ':' or \n or greater than limit
+        //                    increase index
+        //                if char is \n
+        //                    consume \n
+        //                return string
+    }
+
+    private val longRegex = Regex("-?\\d+L")
+
+    fun parseScalar(limit: Int = input.length): Any {
+        val start = index
+        var digit = true
+        var double = false
+        while (index < limit && input[index] != ':' && input[index] != '\n') {
+            if (input[index] != '-' && input[index] != 'L') {
+                if (input[index] == '.') {
+                    double = true
+                } else if (digit && !input[index].isDigit()) {
+                    digit = false
+                }
+            }
+            index++
+        }
+        if (start == index) {
+            return ""
+        }
+        val end = index
+        skipLineBreaks(limit)
+        val text = input.substring(start, end).trimEnd()
+        return when {
+            text.equals("true", true) -> true
+            text.equals("false", true) -> false
+            digit && double -> text.toDouble()
+            digit && text.matches(longRegex) -> text.trimEnd('L').toLong()
+            digit -> text.toInt()
+            else -> text
+        }
+    }
+
+    fun parseExplicitList(limit: Int = input.length): List<Any> {
+        val list = mutableListOf<Any>()
+        skipExcessSpace(limit)
+        index++ // skip '['
+        skipWhitespace(limit)
+        var depth = 1
+        var escaped = false
+        var count = 0
+        // For n number of items
+        outer@ while (count++ < 10) {
+            // Peek ahead for the index of the next comma
+            var nextComma = -1
+            var temp = index
+            while (depth != 0 && index < limit) {
+                if (!escaped && depth == 1 && input[temp] == ',') {
+                    nextComma = temp
+                    break
+                } else if (!escaped && input[temp] == '[') {
+                    depth++
+                } else if (!escaped && input[temp] == ']') {
+                    if (--depth == 0) {
+                        // break when the end of list is found
+                        addListItem(limit, temp, list)
+                        if (index < limit && input[index] == ']') {
+                            index++ // skip ']'
+                            skipExcessSpace(limit)
+                        }
+                        break@outer
+                    }
+                }
+                escaped = input[temp] == '\\'
+                temp++
+            }
+            if (nextComma == -1) {
+                if (temp < limit && input[temp] == ']') {
+                    index = temp + 1 // skip ']'
+                    skipExcessSpace(limit)
+                    skipLineBreaks(limit)
+                    return list
+                } else {
+                    throw IllegalStateException("Unable to find comma or end of list.")
+                }
+            } else {
+                addListItem(limit, nextComma, list)
+            }
+        }
+        return list
+    }
+
+    private fun addListItem(limit: Int, nextComma: Int, list: MutableList<Any>) {
+        skipWhitespace(limit)
+        val parsed = parseValue(nextComma)
+        list.add(parsed)
+        if (index < limit && input[index] == ',') {
+            index++ // skip ','
+            skipWhitespace(limit)
+        }
+    }
+
+    fun parseValue(limit: Int = input.length): Any {
+        return when (input[index]) {
+            '-' -> {
+                index++ // skip '-'
+                skipExcessSpace()
+                parseType(limit)
+            }
+            '#' -> {
+                parseComment()
+                skipExcessSpace()
+                parseValue(limit)
+            }
+            else -> {
+                // Look ahead for ':'
+                var escaped = false
+                var temp = index
+                while (temp < limit && !escaped && input[temp] != ':' && input[temp] != '\n') {
+                    escaped = input[temp] == '\\'
+                    temp++
+                }
+                if (temp < limit && input[temp] == ':') {
+                    parseMap(limit)
+                } else {
+                    parseType(limit)
+                }
+            }
+        }
+    }
+
+    fun parseMap(limit: Int): Map<String, Any> {
+        return emptyMap()
+    }
+
     /*
 
+    TODO handle lists on same line as map
+    TODO multi-line {} and [] maps/lists (explicit maps/lists?)
+    TODO ignore quotes used for keys too
+    TODO ignore escaped characters (just have: escaped = prev == \)
+    TODO ignore empty lines
+    TODO toggle for filling nulls as empty strings instead
+    TODO allow nulls for keys
+    TODO allow nulls as types
     TODO impl the single lines and helper functions first as they can be tested stand alone
 
 
