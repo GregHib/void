@@ -87,18 +87,28 @@ class FinalYamlParser {
         index++ // skip opening '"'
         val start = index
         var escaped = false
-        while (index < limit && (!escaped && input[index] != '"') && input[index] != '\n' && input[index] != '\r') {
+        while (index < limit) {
+            when (input[index]) {
+                '"' -> if (!escaped) {
+                    val end = index
+                    index++ // skip '"'
+                    skipSpaces(limit)
+                    skipLineBreaks(limit)
+                    return substring(start, end)
+                }
+                '\n', '\r' -> {
+                    val end = index
+                    skipLineBreaks(limit)
+                    return substring(start, end)
+                }
+            }
             escaped = input[index] == '\\'
             index++
         }
-        if (index == limit || (index < limit && (input[index] != '"' || input[index] == '\r' || input[index] == '\n'))) {
-            throw IllegalArgumentException("Expected '\"' at index $index")
+        if (index == limit) {
+            return substring(start, index)
         }
-        val end = index
-        index++ // skip closing '"'
-        skipSpaces(limit)
-        skipLineBreaks(limit)
-        return substring(start, end)
+        throw IllegalArgumentException("Expected '\"' at index $index")
     }
 
     private fun parseScalarKey(limit: Int = size): String {
@@ -388,7 +398,10 @@ class FinalYamlParser {
         return if (index == limit) { // end of file
             key to null
         } else if (index < limit && (input[index] == '\n' || input[index] == '\r')) { // end of line
-            skipLineBreaks()
+            index++ // skip line break
+            if (index < limit && input[index] == '\n') { // skip windows line breaks
+                index++
+            }
             val index = simpleColonLookAhead(limit)
             if (index >= limit || input[index] == ':') { // if next line is a key-value pair
                 key to null
@@ -448,6 +461,7 @@ class FinalYamlParser {
         return temp
     }
 
+    // TODO return index of : or the index of spaces before it, else return null - so can remove trim from parseScalarkey
     fun colonLookAhead(limit: Int = size, skipCommentLines: Boolean = true): Int {
         var temp = index
         // Skip whitespaces
