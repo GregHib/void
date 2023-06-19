@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import kotlin.test.assertNull
 
 class FinalYamlParserTest {
     private val parser = FinalYamlParser()
@@ -578,7 +579,7 @@ class FinalYamlParserTest {
             key: value
         """.trimIndent())
         val output = parser.colonLookAhead()
-        assertEquals(11, output)
+        assertNull(output)
     }
 
     @Test
@@ -597,7 +598,7 @@ class FinalYamlParserTest {
             - "key: value"
         """.trimIndent())
         val output = parser.colonLookAhead()
-        assertEquals(14, output)
+        assertNull(output)
     }
 
     @Test

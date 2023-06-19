@@ -68,6 +68,7 @@ class FinalYamlParser {
         } else {
             parseScalarKey()
         }
+        skipSpaces(limit)
         index++ // skip ':'
         skipSpaces(limit)
         skipComment(limit, false)
@@ -86,10 +87,10 @@ class FinalYamlParser {
     private fun parseQuotedString(limit: Int = size): String {
         index++ // skip opening '"'
         val start = index
-        var escaped = false
         while (index < limit) {
             when (input[index]) {
-                '"' -> if (!escaped) {
+                '\\' -> index++ // escaped
+                '"' -> {
                     val end = index
                     index++ // skip '"'
                     skipSpaces(limit)
@@ -102,7 +103,6 @@ class FinalYamlParser {
                     return substring(start, end)
                 }
             }
-            escaped = input[index] == '\\'
             index++
         }
         if (index == limit) {
@@ -113,11 +113,10 @@ class FinalYamlParser {
 
     private fun parseScalarKey(limit: Int = size): String {
         val start = index
-        index = colonLookAhead(limit, false)
-        if (index == size || (index < size && (input[index] != ':' || input[index] == '\n' || input[index] == '\r'))) {
-            throw IllegalArgumentException("Expected ':' at index $index")
-        }
-        return substring(start, index).trim()
+        val colon = colonLookAhead(limit, false)
+            ?: throw IllegalArgumentException("Expected ':' at index $index")
+        index = colon
+        return substring(start, index)
     }
 
     /**
@@ -268,7 +267,6 @@ class FinalYamlParser {
         index++ // skip '['
         skipWhitespace(limit)
         var depth = 1
-        var escaped = false
         var count = 0
         // For n number of items
         outer@ while (count++ < LIST_MAXIMUM && index < limit) {
@@ -276,13 +274,15 @@ class FinalYamlParser {
             var nextComma = -1
             var temp = index
             while (depth != 0) {
-                if (!escaped && depth == 1 && input[temp] == ',') {
+                if (input[temp] == '\\') {
+                    temp++ // escaped
+                } else if (depth == 1 && input[temp] == ',') {
                     // Found a base level comma
                     nextComma = temp
                     break
-                } else if (!escaped && input[temp] == '[') { // Enter into a nested list
+                } else if (input[temp] == '[') { // Enter into a nested list
                     depth++
-                } else if (!escaped && input[temp] == ']') { // Exist out of a nested list
+                } else if (input[temp] == ']') { // Exist out of a nested list
                     if (--depth == 0) {
                         // Found the end of the list
                         addListItem(list, limit, temp)
@@ -294,7 +294,6 @@ class FinalYamlParser {
                         break@outer
                     }
                 }
-                escaped = input[temp] == '\\'
                 temp++
             }
             if (nextComma == -1) {
@@ -439,7 +438,7 @@ class FinalYamlParser {
             }
             else -> {
                 val colonIndex = colonLookAhead(limit, false)
-                if (colonIndex < limit && input[colonIndex] == ':') {
+                if (colonIndex != null) {
                     parseMap(currentIndent, limit)
                 } else {
                     parseType(currentIndent, limit)
@@ -461,42 +460,60 @@ class FinalYamlParser {
         return temp
     }
 
-    // TODO return index of : or the index of spaces before it, else return null - so can remove trim from parseScalarkey
-    fun colonLookAhead(limit: Int = size, skipCommentLines: Boolean = true): Int {
+    fun colonLookAhead(limit: Int = size, skipCommentLines: Boolean = true): Int? {
         var temp = index
-        // Skip whitespaces
-        while (temp < limit && input[temp] == ' ') {
+        var end = -1
+        // Find the first colon followed by a space or end line, unless reached a terminator symbol
+        var previous = ' '
+        while (temp < limit) {
+            when (input[temp]) {
+                '\\' -> {
+                    temp += 2
+                    continue
+                }
+                ' ' -> if (previous != ' ') {
+                    end = temp
+                }
+                ':' -> {
+                    if ((temp + 1 == limit || (temp + 1 <= limit && (input[temp + 1].isWhitespace() || input[temp + 1] == '#')))) {
+                        if (input[temp - 1] == ' ' && end != -1) {
+                            return end
+                        }
+                        return temp
+                    }
+                }
+                ',' -> return null
+                '[', '{' -> return null
+                '\r', '\n' -> return null
+                '"' -> {
+                    temp++
+                    while (temp < limit && input[temp] != '"' && input[temp] != '\n' && input[temp] != '\r') {
+                        temp++
+                    }
+                    if (temp < limit && input[temp] == '"') {
+                        temp++
+                    }
+                    continue
+                }
+                '#' -> {
+                    while (temp < limit && input[temp] != '\n' && input[temp] != '\r') {
+                        temp++
+                    }
+                    if (skipCommentLines) {
+                        if (temp < limit && input[temp] == '\r') {
+                            temp++ // skip \r
+                        }
+                        if (temp < limit && input[temp] == '\n') {
+                            temp++ // skip \n
+                        }
+                    }
+                    continue
+                }
+            }
+            previous = input[temp]
             temp++
         }
-        var escaped = false
-        // Find the first colon followed by a space or end line, unless reached a terminator symbol
-        while (temp < limit && !escaped && !(input[temp] == ':' && temp + 1 <= limit && (temp + 1 == limit || input[temp + 1].isWhitespace() || input[temp + 1] == '#')) && input[temp] != '\r' && input[temp] != '\n' && input[temp] != ',' && input[temp] != '{' && input[temp] != '[') {
-            if (input[temp] == '"') {
-                temp++
-                while (temp < limit && input[temp] != '"' && input[temp] != '\n' && input[temp] != '\r') {
-                    temp++
-                }
-                if (temp < limit && input[temp] == '"') {
-                    temp++
-                }
-            } else if (input[temp] == '#') {
-                while (temp < limit && input[temp] != '\n' && input[temp] != '\r') {
-                    temp++
-                }
-                if (skipCommentLines) {
-                    if (temp < limit && input[temp] == '\r') {
-                        temp++ // skip \r
-                    }
-                    if (temp < limit && input[temp] == '\n') {
-                        temp++ // skip \n
-                    }
-                }
-            } else {
-                escaped = input[temp] == '\\'
-                temp++
-            }
-        }
-        return temp
+        return null
     }
 
     private fun peekIndent(limit: Int): Int {
@@ -513,20 +530,23 @@ class FinalYamlParser {
         index++ // skip '{'
         skipWhitespace(limit)
         var depth = 1
-        var escaped = false
         var count = 0
         outer@ while (count++ < MAP_MAXIMUM && index < limit) {
             // Peek ahead for the index of the next comma
             var nextComma = -1
             var temp = index
             while (depth != 0) {
-                if (!escaped && depth == 1 && input[temp] == ',') {
+                if (input[temp] == '\\') {
+                    temp += 2
+                    continue
+                }
+                if (depth == 1 && input[temp] == ',') {
                     // Found a base level comma
                     nextComma = temp
                     break
-                } else if (!escaped && input[temp] == '{') { // Enter into a nested map
+                } else if (input[temp] == '{') { // Enter into a nested map
                     depth++
-                } else if (!escaped && input[temp] == '}') { // Exist out of a nested map
+                } else if (input[temp] == '}') { // Exist out of a nested map
                     if (--depth == 0) {
                         // Found the end of the map
                         addMapEntry(map, limit, temp)
@@ -538,7 +558,6 @@ class FinalYamlParser {
                         break@outer
                     }
                 }
-                escaped = input[temp] == '\\'
                 temp++
             }
             if (nextComma == -1) {
