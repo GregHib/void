@@ -348,7 +348,7 @@ class FinalYamlParserTest {
     fun `Don't parse key-value pair without a space`() {
         parser.set("key:value")
         assertThrows<IllegalArgumentException> {
-            val output = parser.parseKeyValuePair(0, 4)
+            val output = parser.parseKeyValuePair(0, 5)
         }
     }
 
