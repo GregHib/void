@@ -113,7 +113,7 @@ class FinalYamlParser {
 
     private fun parseScalarKey(limit: Int = size): String {
         val start = index
-        val colon = colonLookAhead(limit, false)
+        val colon = colonLookAhead(limit)
             ?: throw IllegalArgumentException("Expected ':' at index $index")
         index = colon
         return substring(start, index)
@@ -437,7 +437,7 @@ class FinalYamlParser {
                 parseAnchorString(currentIndent, limit)
             }
             else -> {
-                val colonIndex = colonLookAhead(limit, false)
+                val colonIndex = colonLookAhead(limit)
                 if (colonIndex != null) {
                     parseMap(currentIndent, limit)
                 } else {
@@ -460,23 +460,18 @@ class FinalYamlParser {
         return temp
     }
 
-    fun colonLookAhead(limit: Int = size, skipCommentLines: Boolean = true): Int? {
+    fun colonLookAhead(limit: Int = size): Int? {
         var temp = index
         var end = -1
         // Find the first colon followed by a space or end line, unless reached a terminator symbol
         var previous = ' '
         while (temp < limit) {
             when (input[temp]) {
-                '\\' -> {
-                    temp += 2
-                    continue
-                }
-                ' ' -> if (previous != ' ') {
-                    end = temp
-                }
+                '\\' -> temp++
+                ' ' -> if (previous != ' ') end = temp // Mark end of key
                 ':' -> {
                     if ((temp + 1 == limit || (temp + 1 <= limit && (input[temp + 1].isWhitespace() || input[temp + 1] == '#')))) {
-                        if (input[temp - 1] == ' ' && end != -1) {
+                        if (previous == ' ' && end != -1) {
                             return end
                         }
                         return temp
@@ -498,14 +493,6 @@ class FinalYamlParser {
                 '#' -> {
                     while (temp < limit && input[temp] != '\n' && input[temp] != '\r') {
                         temp++
-                    }
-                    if (skipCommentLines) {
-                        if (temp < limit && input[temp] == '\r') {
-                            temp++ // skip \r
-                        }
-                        if (temp < limit && input[temp] == '\n') {
-                            temp++ // skip \n
-                        }
                     }
                     continue
                 }
