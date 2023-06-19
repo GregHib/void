@@ -320,7 +320,7 @@ class FinalYamlParserTest {
     }
 
     @Test
-    fun `Parse empty key-value end of fine`() {
+    fun `Parse empty key-value end of file`() {
         parser.set("key:")
         val output = parser.parseKeyValuePair(0)
         val expected = "key" to null
@@ -329,10 +329,18 @@ class FinalYamlParserTest {
 
     @Test
     fun `Limit parse key-value pair`() {
-        parser.set("key:value")
-        val output = parser.parseKeyValuePair(0, 4)
+        parser.set("key: value")
+        val output = parser.parseKeyValuePair(0, 5)
         val expected = "key" to null
         assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Don't parse key-value pair without a space`() {
+        parser.set("key:value")
+        assertThrows<IllegalArgumentException> {
+            val output = parser.parseKeyValuePair(0, 4)
+        }
     }
 
     @Test
@@ -477,7 +485,8 @@ class FinalYamlParserTest {
               - three
         """.trimIndent())
         assertThrows<IllegalArgumentException> {
-            parser.parseList(0)
+            val output = parser.parseList(0)
+            println(output)
         }
     }
 
@@ -489,7 +498,8 @@ class FinalYamlParserTest {
             key: value
         """.trimIndent())
         assertThrows<IllegalArgumentException> {
-            parser.parseList(0)
+            val output = parser.parseList(0)
+            println(output)
         }
     }
 
@@ -511,10 +521,92 @@ class FinalYamlParserTest {
             list:
               - one
               - two
-            key:value
+            key: value
         """.trimIndent())
         val output = parser.parseMap(0)
         val expected = mapOf("list" to listOf("one", "two"), "key" to "value")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Allow lists without indentation`() {
+        val output = parser.parse("""
+            list:
+            - one
+            - two
+            key: value
+        """.trimIndent())
+        val expected = mapOf(
+            "list" to listOf("one", "two"),
+            "key" to "value"
+        )
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Skip comments after type`() {
+        val output = parser.parse("""
+            id: 26037 # rs3
+            format: int
+        """.trimIndent())
+        val expected = mapOf(
+            "id" to 26037,
+            "format" to "int"
+        )
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Look ahead`() {
+        parser.set("  - key: value")
+        val output = parser.colonLookAhead()
+        assertEquals(7, output)
+    }
+
+    @Test
+    fun `Look ahead end of line`() {
+        parser.set("""
+            - list item
+            key: value
+        """.trimIndent())
+        val output = parser.colonLookAhead()
+        assertEquals(11, output)
+    }
+
+    @Test
+    fun `Look ahead with comment`() {
+        parser.set("""
+            # ignore: me
+            key: value
+        """.trimIndent())
+        val output = parser.colonLookAhead()
+        assertEquals(16, output)
+    }
+
+    @Test
+    fun `Look ahead with quotes`() {
+        parser.set("""
+            - "key: value"
+        """.trimIndent())
+        val output = parser.colonLookAhead()
+        assertEquals(14, output)
+    }
+
+    @Test
+    fun `Look ahead with key in quotes`() {
+        parser.set("\"key:what\": value")
+        val output = parser.colonLookAhead()
+        assertEquals(10, output)
+    }
+
+    @Test
+    fun `Get colon`() {
+        val output = parser.parse("""
+            map: [ conspiracy:_part_1, conspiracy:_part_2 ]
+        """.trimIndent())
+        val expected = mapOf(
+            "map" to listOf("conspiracy:_part_1", "conspiracy:_part_2")
+        )
         assertEquals(expected, output)
     }
 
@@ -540,31 +632,90 @@ class FinalYamlParserTest {
     }
 
     @Test
-    fun `Scenario test 5`() {
+    fun `Scenario test 9`() {
         val output = parser.parse("""
-            longbow:
-              id: 839
-              price: 68
-              limit: 5000
-              weight: 1.814
-              range: 8.0
-              attack_range: 10
-              attack_speed: 6
-              slot: "Weapon"
-              type: "TwoHanded"
-              examine: "A nice sturdy bow."
-              kept: "Wilderness"
-              ammo:
-                - "bronze_arrow"
-                - "bronze_fire_arrows_lit"
-                - "bronze_fire_arrows_unlit"
-                - "iron_arrow"
-                - "iron_fire_arrows_lit"
-                - "iron_fire_arrows_unlit"
+            options:
+              "‘Until Logout‘": 0
         """.trimIndent())
-        val expected = listOf(
-            mapOf("id" to "prison_pete", "x" to 2084, "y" to 4460, "direction" to "NORTH"),
-            mapOf("id" to "balloon_animal", "x" to 2078, "y" to 4462)
+        val expected = mapOf(
+            "options" to mapOf("‘Until Logout‘" to 0)
+        )
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Treat anchors as maps`() {
+        val output = parser.parse("""
+                south-tower:
+                  - &south-tower-door [ 3226, 3214 ]
+                  - &south-tower-ground-floor [ 3227, 3214 ]
+                  - &south-tower-1st-floor [ 3229, 3214, 1 ]
+                  - &south-tower-2nd-floor [ 3229, 3214, 2 ]
+                  - &south-tower-1st-floor-ladder
+                    type: "object"
+                    object: 36769
+                    tile: [ 3229, 3213, 1 ]
+        """.trimIndent())
+        val expected = mapOf(
+            "south-tower" to listOf(
+                "&south-tower-door [ 3226, 3214 ]",
+                "&south-tower-ground-floor [ 3227, 3214 ]",
+                "&south-tower-1st-floor [ 3229, 3214, 1 ]",
+                "&south-tower-2nd-floor [ 3229, 3214, 2 ]",
+                "&south-tower-1st-floor-ladder\n    type: \"object\"\n    object: 36769\n    tile: [ 3229, 3213, 1 ]",
+            )
+        )
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Ignore quoted hashes in look aheads`() {
+        val output = parser.parse("""
+            examine: "Oh no a hash #broken."
+            use: Quest
+        """.trimIndent())
+        val expected = mapOf("examine" to "Oh no a hash #broken.", "use" to "Quest")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Handle quotes in lists`() {
+        val output = parser.parse("""
+            combination: [ "smoke_rune", "steam_rune", "lava_rune", "elemental_rune" ]
+            examine: "One of the four basic elemental runes."
+        """.trimIndent())
+        val expected = mapOf(
+            "combination" to listOf("smoke_rune", "steam_rune", "lava_rune", "elemental_rune"),
+            "examine" to "One of the four basic elemental runes."
+        )
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Handle spaces after quoted strings`() {
+        val output = parser.parse("""
+            key: "string." 
+            weight: 0.5
+        """.trimIndent())
+        val expected = mapOf(
+            "key" to "string.",
+            "weight" to 0.5
+        )
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Scenario 8`() {
+        val output = parser.parse("""
+            crab_helm:
+              message: "You chisel the carapace into a helmet."
+              failure: "Oops! You accidentally break the shell."
+        """.trimIndent())
+        val expected = mapOf(
+            "crab_helm" to mapOf(
+                "message" to "You chisel the carapace into a helmet.",
+                "failure" to "Oops! You accidentally break the shell."
+            )
         )
         assertEquals(expected, output)
     }
@@ -616,7 +767,7 @@ class FinalYamlParserTest {
                     mapOf("item" to "tribal_mask_blue"),
                     mapOf("item" to "snakeskin", "amount" to 2)
                 )
-                )
+            )
         )
         assertEquals(expected, output)
     }

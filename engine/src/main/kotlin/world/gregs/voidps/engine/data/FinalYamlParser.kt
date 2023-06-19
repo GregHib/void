@@ -6,7 +6,7 @@ class FinalYamlParser {
     var index = 0
 
     val pretty: String
-        get() = input.substring(index, (index + 15).coerceAtMost(input.length)).replace("\n", "\\n")
+        get() = input.substring(index, (index + 25).coerceAtMost(input.length)).replace("\n", "\\n")
 
     fun parse(text: String): Any {
         set(text)
@@ -84,15 +84,14 @@ class FinalYamlParser {
         }
         val end = index
         index++ // skip closing '"'
-        skipLineBreaks()
+        skipSpaces(limit)
+        skipLineBreaks(limit)
         return input.substring(start, end)
     }
 
-    private fun parseScalarKey(): String {
+    private fun parseScalarKey(limit: Int = input.length): String {
         val start = index
-        while (index < input.length && input[index] != ':') {
-            index++
-        }
+        index = colonLookAhead(limit, false)
         if (index == input.length || (index < input.length && (input[index] != ':' || input[index] == '\n' || input[index] == '\r'))) {
             throw IllegalArgumentException("Expected ':' at index $index")
         }
@@ -102,7 +101,7 @@ class FinalYamlParser {
     /**
      * Expect no spaces
      */
-    private fun parseType(limit: Int): Any {
+    private fun parseType(currentIndent: Int, limit: Int): Any {
         if (index == input.length) {
             throw IllegalStateException("Unexpected end of file")
         }
@@ -110,6 +109,7 @@ class FinalYamlParser {
             '[' -> parseExplicitList(limit)
             '{' -> parseExplicitMap(limit)
             '"' -> parseQuotedString(limit)
+            '&' -> parseAnchorString(currentIndent, limit)
             else -> parseScalar(limit)
         }
     }
@@ -121,7 +121,7 @@ class FinalYamlParser {
     fun parseScalar(limit: Int = input.length): Any {
         val start = index
         var digit = true // gives a rough check
-        while (index < limit && input[index] != ':' && input[index] != '\n' && input[index] != '\r' && input[index] != '#') {
+        while (!(index >= limit || (input[index] == ':' && input[index + 1].isWhitespace()) || input[index] == '\n' || input[index] == '\r' || input[index] == '#')) {
             if (input[index] != '-' && input[index] != 'L') {
                 if (digit && !input[index].isDigit() && input[index] != '.' && input[index] != ' ') {
                     digit = false
@@ -146,6 +146,29 @@ class FinalYamlParser {
         }
     }
 
+    fun parseAnchorString(currentIndent: Int, limit: Int = input.length): Any {
+        val start = index
+        while (index < limit && input[index] != '\r' && input[index] != '\n') {
+            index++
+        }
+        var end = index
+        skipLineBreaks(limit)
+        var count = 0
+        while (count++ < LIST_MAXIMUM && index < limit) {
+            val indent = peekIndent(limit)
+            if (indent != currentIndent) {
+                break
+            } else {
+                while (index < limit && input[index] != '\r' && input[index] != '\n') {
+                    index++
+                }
+                end = index
+                skipLineBreaks(limit)
+            }
+        }
+        return input.substring(start, end)
+    }
+
     fun parseExplicitList(limit: Int = input.length): List<Any> {
         val list = mutableListOf<Any>()
         skipSpaces(limit)
@@ -155,7 +178,7 @@ class FinalYamlParser {
         var escaped = false
         var count = 0
         // For n number of items
-        outer@ while (count++ < 10_000 && index < limit) {
+        outer@ while (count++ < LIST_MAXIMUM && index < limit) {
             // Peek ahead for the index of the next comma
             var nextComma = -1
             var temp = index
@@ -202,16 +225,17 @@ class FinalYamlParser {
         skipWhitespace(limit)
         val parsed = parseValue(0, nextComma)
         list.add(parsed)
+        skipWhitespace(limit)
         if (index < limit && input[index] == ',') {
             index++ // skip ','
             skipWhitespace(limit)
         }
     }
 
-    fun parseList(currentIndent: Int, limit: Int = input.length): List<Any> {
+    fun parseList(currentIndent: Int, limit: Int = input.length, nestedMap: Boolean = false): List<Any> {
         val list = mutableListOf<Any>()
         var count = 0
-        while (count++ < 10_000 && index < limit) {
+        while (count++ < LIST_MAXIMUM && index < limit) {
             val indent = peekIndent(limit)
             val peek = input[index + (indent * 2)]
             val second = input.getOrNull(index + (indent * 2) + 1)
@@ -221,6 +245,8 @@ class FinalYamlParser {
             } else if (list.isNotEmpty() && indent < currentIndent) {
                 break
             } else if (peek != '-' || second != ' ' || indent > currentIndent) {
+                if (indent == currentIndent && nestedMap)
+                    break
                 throw IllegalArgumentException("Expected list item at index index=${index + (indent * 2)} indent=$indent current=$currentIndent")
             } else {
                 skipSpaces(limit)
@@ -237,7 +263,7 @@ class FinalYamlParser {
     fun parseMap(currentIndent: Int, limit: Int = input.length): Map<String, Any> {
         val map = mutableMapOf<String, Any>()
         var count = 0
-        while (count++ < 10_000 && index < limit) {
+        while (count++ < MAP_MAXIMUM && index < limit) {
             var indent = peekIndent(limit)
             var peek = input[index + (indent * 2)]
             if (peek == '#') {
@@ -261,7 +287,7 @@ class FinalYamlParser {
                 // Look ahead to find out the next type of line
                 val colonIndex = colonLookAhead(limit)
                 // If key-value pair on same level then this value is null
-                if (indent == currentIndent && input[colonIndex] == ':') {
+                if (indent == currentIndent && colonIndex < limit && input[colonIndex] == ':') {
                     map[key] = ""
                 } else if (input[index + (peekIndent(limit) * 2)] == '#') {
                     skipSpaces(limit)
@@ -275,16 +301,17 @@ class FinalYamlParser {
     }
 
     fun parseKeyValuePair(currentIndent: Int, limit: Int = input.length): Pair<String, Any?> {
-        val key = parseKey()
+        val key = parseKey(limit)
         return if (index == limit) { // end of file
             key to null
         } else if (index < limit && (input[index] == '\n' || input[index] == '\r')) { // end of line
             skipLineBreaks()
-            val index = colonLookAhead(limit)
-            if (index >= limit || input[index] == ':') {
+            val index = colonLookAhead(limit, false)
+            if (index >= limit || input[index] == ':') { // if next line is a key-value pair
                 key to null
             } else {
-                val value = parseValue(currentIndent + 1, limit)
+                val indent = peekIndent(limit)
+                val value = parseValue(if (indent > currentIndent) currentIndent + 1 else currentIndent, limit, true)
                 key to value
             }
         } else {
@@ -292,46 +319,71 @@ class FinalYamlParser {
         }
     }
 
-    fun parseValue(currentIndent: Int, limit: Int = input.length): Any {
+    fun parseValue(currentIndent: Int, limit: Int = input.length, nestedMap: Boolean = false): Any {
         val indent = peekIndent(limit)
         val index = index + (indent * 2)
         return when {
-            input[index] == '-' && index + 1 < limit && input[index + 1] == ' ' -> parseList(currentIndent, limit)
+            input[index] == '-' && index + 1 < limit && input[index + 1] == ' ' -> parseList(currentIndent, limit, nestedMap)
             input[index] == '#' -> {
                 skipSpaces(limit)
                 skipComment(limit)
                 parseValue(currentIndent, limit)
             }
+            input[index] == '[' -> {
+                skipSpaces(limit)
+                parseExplicitList(limit)
+            }
+            input[index] == '{' -> {
+                skipSpaces(limit)
+                parseExplicitMap(limit)
+            }
+            input[index] == '&' -> {
+                skipSpaces(limit)
+                parseAnchorString(currentIndent, limit)
+            }
             else -> {
-                val colonIndex = colonLookAhead(limit)
+                val colonIndex = colonLookAhead(limit, false)
                 if (colonIndex < limit && input[colonIndex] == ':') {
                     parseMap(currentIndent, limit)
                 } else {
-                    parseType(limit)
+                    parseType(currentIndent, limit)
                 }
             }
         }
     }
 
-    private fun colonLookAhead(limit: Int): Int {
-        var escaped = false
+    fun colonLookAhead(limit: Int = input.length, skipCommentLines: Boolean = true): Int {
         var temp = index
-        while (temp < limit && !escaped && input[temp] != ':' && input[temp] != '\n' && input[temp] != '\r' && input[temp] != '{') {
-            if (input[temp] == '#') {
+        // Skip whitespaces
+        while (temp < limit && input[temp] == ' ') {
+            temp++
+        }
+        var escaped = false
+        while (temp < limit && !escaped && !(input[temp] == ':' && temp + 1 <= limit && (temp + 1 == limit || input[temp + 1].isWhitespace() || input[temp + 1] == '#')) && input[temp] != '\r' && input[temp] != '\n' && input[temp] != ',' && input[temp] != '{' && input[temp] != '[') {
+            if (input[temp] == '"') {
+                temp++
+                while (temp < limit && input[temp] != '"' && input[temp] != '\n' && input[temp] != '\r') {
+                    temp++
+                }
+                if (temp < limit && input[temp] == '"') {
+                    temp++
+                }
+            } else if (input[temp] == '#') {
                 while (temp < limit && input[temp] != '\n' && input[temp] != '\r') {
                     temp++
                 }
-                if (temp < limit && input[temp] == '\r') {
-                    temp++ // skip \r
-                }
-                if (temp < limit && input[temp] == '\n') {
-                    temp++ // skip \n
+                if (skipCommentLines) {
+                    if (temp < limit && input[temp] == '\r') {
+                        temp++ // skip \r
+                    }
+                    if (temp < limit && input[temp] == '\n') {
+                        temp++ // skip \n
+                    }
                 }
             } else {
                 escaped = input[temp] == '\\'
+                temp++
             }
-            if (temp < limit)
-                temp++ // skip end
         }
         return temp
     }
@@ -352,7 +404,7 @@ class FinalYamlParser {
         var depth = 1
         var escaped = false
         var count = 0
-        outer@ while (count++ < 10_000 && index < limit) {
+        outer@ while (count++ < MAP_MAXIMUM && index < limit) {
             // Peek ahead for the index of the next comma
             var nextComma = -1
             var temp = index
@@ -397,17 +449,22 @@ class FinalYamlParser {
 
     private fun addMapEntry(map: MutableMap<String, Any>, limit: Int, nextComma: Int) {
         skipWhitespace(limit)
-        val key = parseKey()
+        val key = parseKey(limit)
         skipWhitespace(limit)
         skipComment(limit)
         skipWhitespace(limit)
-        val parsed = parseType(nextComma)
+        val parsed = parseType(0, nextComma)
         map[key] = parsed
         skipWhitespace()
         if (index < limit && input[index] == ',') {
             index++ // skip ','
             skipWhitespace(limit)
         }
+    }
+
+    companion object {
+        private const val LIST_MAXIMUM = 1_000_000
+        private const val MAP_MAXIMUM = 1_000_000
     }
 
     /*

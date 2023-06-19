@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.data
 
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.core.type.TypeReference
+import com.fasterxml.jackson.databind.MapperFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.exc.MismatchedInputException
 import com.fasterxml.jackson.databind.module.SimpleModule
@@ -60,12 +61,15 @@ class FileStorage private constructor(
 
     companion object {
         val logger = InlineLogger()
-        private fun yamlMapper(quotes: Boolean) = ObjectMapper(YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER).apply {
+        fun yamlMapper(quotes: Boolean) = ObjectMapper(YAMLFactory().apply {
+            disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER)
             if (!quotes) {
                 enable(YAMLGenerator.Feature.MINIMIZE_QUOTES)
             }
             disable(YAMLGenerator.Feature.SPLIT_LINES)
-        })
+        }).apply {
+            disable(MapperFeature.ALLOW_COERCION_OF_SCALARS)
+        }
 
         private fun jsonMapper() = jacksonObjectMapper().apply {
             enable(JsonGenerator.Feature.WRITE_BIGDECIMAL_AS_PLAIN)
