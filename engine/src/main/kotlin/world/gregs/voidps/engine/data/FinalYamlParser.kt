@@ -381,10 +381,8 @@ class FinalYamlParser {
                     skipSpaces(limit)
                     skipComment(limit)
                 }
-                // Look ahead to find out the next type of line
-                val colonIndex = simpleColonLookAhead(limit)
                 // If key-value pair on same level then this value is null
-                if (indent == currentIndent && colonIndex < limit && input[colonIndex] == ':') {
+                if (indent == currentIndent) {
                     map[key] = ""
                 } else if (input[index + (peekIndent(limit) * 2)] == '#') {
                     skipSpaces(limit)
@@ -403,11 +401,10 @@ class FinalYamlParser {
             key to null
         } else if (index < limit && (input[index] == '\n' || input[index] == '\r')) { // end of line
             index++ // skip line break
-            if (index < limit && input[index] == '\n') { // skip windows line breaks
-                index++
+            if (index < limit && input[index] == '\n') {
+                index++ // skip windows line breaks
             }
-            val index = simpleColonLookAhead(limit)
-            if (index >= limit || input[index] == ':') { // if next line is a key-value pair
+            if (simpleColonLookAhead(limit)) { // if next line is a key-value pair
                 key to null
             } else {
                 val indent = peekIndent(limit)
@@ -451,7 +448,7 @@ class FinalYamlParser {
         }
     }
 
-    fun simpleColonLookAhead(limit: Int = size): Int {
+    fun simpleColonLookAhead(limit: Int = size): Boolean {
         var temp = index
         // Skip whitespaces
         while (temp < limit && input[temp] == ' ') {
@@ -461,7 +458,7 @@ class FinalYamlParser {
         while (temp < limit && !(input[temp] == ':' && temp + 1 <= limit && (temp + 1 == limit || input[temp + 1].isWhitespace() || input[temp + 1] == '#')) && input[temp] != '\r' && input[temp] != '\n') {
             temp++
         }
-        return temp
+        return temp >= limit || input[temp] == ':'
     }
 
     fun peekColonIndex(limit: Int = size): Int? {
