@@ -527,6 +527,35 @@ class FinalYamlParserTest {
     }
 
     @Test
+    fun `Scenario test`() {
+        val output = parser.parse("""
+            - { id: prison_pete, x: 2084, y: 4460, direction: NORTH }
+            - { id: balloon_animal, x: 2078, y: 4462 }
+        """.trimIndent())
+        val expected = listOf(
+            mapOf("id" to "prison_pete", "x" to 2084, "y" to 4460, "direction" to "NORTH"),
+            mapOf("id" to "balloon_animal", "x" to 2078, "y" to 4462)
+        )
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Scenario test 2`() {
+        val output = parser.parse("""
+            - type: cooking
+              levels: 1-15
+              inventory:
+                - id: [ raw_anchovies, raw_shrimps, raw_beef, raw_rat_meat, raw_chicken, raw_crayfish ]
+                  amount: 28
+        """.trimIndent())
+        val expected = listOf(
+            mapOf("id" to "prison_pete", "x" to 2084, "y" to 4460, "direction" to "NORTH"),
+            mapOf("id" to "balloon_animal", "x" to 2078, "y" to 4462)
+        )
+        assertEquals(expected, output)
+    }
+
+    @Test
     fun `Parse explicit nested maps`() {
         parser.set("{ name: John Doe , age : 30, address: { city: New York, country: USA } }")
         val output = parser.parseExplicitMap()

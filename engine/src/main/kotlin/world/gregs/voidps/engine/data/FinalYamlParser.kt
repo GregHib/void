@@ -10,12 +10,31 @@ class FinalYamlParser {
 
     fun parse(text: String): Any {
         set(text)
-        return parseValue()
+        return parseRoot()
     }
 
     fun set(input: String) {
         this.input = input
         this.index = 0
+    }
+
+    private fun parseRoot(): Any {
+        if (index == input.length) {
+            throw IllegalArgumentException("Empty value")
+        }
+        skipSpaces()
+        return when (input[index]) {
+            '-' -> parseList(0)
+            '#' -> skipComment()
+            else -> {
+                val colonIndex = colonLookAhead(input.length)
+                if (colonIndex < input.length && input[colonIndex] == ':') {
+                    parseMap(0)
+                } else {
+                    parseType(input.length)
+                }
+            }
+        }
     }
 
     fun skipComment(limit: Int = input.length, breaks: Boolean = true) {
@@ -215,13 +234,15 @@ class FinalYamlParser {
             if (peek == '#') {
                 skipSpaces(limit)
                 skipComment(limit)
-            } else if(indent < currentIndent) {
+            } else if (indent < currentIndent) {
                 break
             } else if (peek != '-' || indent > currentIndent) {
                 throw IllegalArgumentException("Expected list item at index $index")
             } else {
                 skipSpaces(limit)
-                list.add(parseValue(limit, indent))
+                val parsed = parseValue(limit, indent)
+                list.add(parsed)
+                skipLineBreaks()
             }
         }
         return list
