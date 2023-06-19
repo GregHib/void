@@ -640,6 +640,40 @@ class FinalYamlParserTest {
     }
 
     @Test
+    fun `Scenario test 10`() {
+        val output = parser.parse("""
+            quest_complete:
+              id: 277
+              components:
+                quest_name: 4    
+                item_slot: 5    
+                quest_points: 7  
+                line1: 10-17
+        """.trimIndent())
+        val expected = mapOf(
+            "quest_complete" to mapOf(
+                "id" to 277,
+                "components" to mapOf(
+                    "quest_name" to 4,
+                    "item_slot" to 5,
+                    "quest_points" to 7,
+                    "line1" to "10-17"
+                )
+            )
+        )
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse spaces after boolean`() {
+        val output = parser.parse("""
+            persist: true  
+        """.trimIndent())
+        val expected = mapOf("persist" to true)
+        assertEquals(expected, output)
+    }
+
+    @Test
     fun `Scenario test 9`() {
         val output = parser.parse("""
             options:

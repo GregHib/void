@@ -2,23 +2,35 @@ package world.gregs.voidps.engine.data
 
 class FinalYamlParser {
 
-    var input = ""
+    var input = CharArray(0)
+    var size = 0
     var index = 0
 
+    private fun substring(start: Int, end: Int) = String(input, start, end - start)
+
     val pretty: String
-        get() = input.substring(index, (index + 25).coerceAtMost(input.length)).replace("\n", "\\n")
+        get() = substring(index, (index + 25).coerceAtMost(size)).replace("\n", "\\n")
 
     fun parse(text: String): Any {
-        set(text)
+        return parse(text.toCharArray())
+    }
+
+    fun parse(charArray: CharArray, length: Int = charArray.size): Any {
+        set(charArray, length)
         return parseValue(0)
     }
 
     fun set(input: String) {
-        this.input = input
+        set(input.toCharArray())
+    }
+
+    fun set(charArray: CharArray, size: Int = charArray.size) {
+        this.input = charArray
+        this.size = size
         this.index = 0
     }
 
-    fun skipComment(limit: Int = input.length, breaks: Boolean = true) {
+    fun skipComment(limit: Int = size, breaks: Boolean = true) {
         if (index < limit && input[index] == '#') {
             while (index < limit && input[index] != '\n' && input[index] != '\r') {
                 index++
@@ -31,27 +43,27 @@ class FinalYamlParser {
     /**
      * Skip space or line breaks
      */
-    fun skipWhitespace(limit: Int = input.length) {
+    fun skipWhitespace(limit: Int = size) {
         while (index < limit && input[index].isWhitespace()) {
             index++
         }
     }
 
-    fun skipSpaces(limit: Int = input.length) {
+    fun skipSpaces(limit: Int = size) {
         while (index < limit && input[index] == ' ') {
             index++
         }
     }
 
-    fun skipLineBreaks(limit: Int = input.length) {
+    fun skipLineBreaks(limit: Int = size) {
         while (index < limit && (input[index] == '\n' || input[index] == '\r')) {
             index++
         }
     }
 
-    fun parseKey(limit: Int = input.length): String {
+    fun parseKey(limit: Int = size): String {
         skipSpaces(limit)
-        val key = if (index < input.length && input[index] == '"') {
+        val key = if (index < size && input[index] == '"') {
             parseQuotedKey()
         } else {
             parseScalarKey()
@@ -65,13 +77,13 @@ class FinalYamlParser {
     private fun parseQuotedKey(): String {
         val key = parseQuotedString()
         skipSpaces()
-        if (index == input.length || (index < input.length && input[index] != ':')) {
+        if (index == size || (index < size && input[index] != ':')) {
             throw IllegalArgumentException("Expected ':' at index $index")
         }
         return key
     }
 
-    private fun parseQuotedString(limit: Int = input.length): String {
+    private fun parseQuotedString(limit: Int = size): String {
         index++ // skip opening '"'
         val start = index
         var escaped = false
@@ -86,23 +98,23 @@ class FinalYamlParser {
         index++ // skip closing '"'
         skipSpaces(limit)
         skipLineBreaks(limit)
-        return input.substring(start, end)
+        return substring(start, end)
     }
 
-    private fun parseScalarKey(limit: Int = input.length): String {
+    private fun parseScalarKey(limit: Int = size): String {
         val start = index
         index = colonLookAhead(limit, false)
-        if (index == input.length || (index < input.length && (input[index] != ':' || input[index] == '\n' || input[index] == '\r'))) {
+        if (index == size || (index < size && (input[index] != ':' || input[index] == '\n' || input[index] == '\r'))) {
             throw IllegalArgumentException("Expected ':' at index $index")
         }
-        return input.substring(start, index).trim()
+        return substring(start, index).trim()
     }
 
     /**
      * Expect no spaces
      */
     private fun parseType(currentIndent: Int, limit: Int): Any {
-        if (index == input.length) {
+        if (index == size) {
             throw IllegalStateException("Unexpected end of file")
         }
         return when (input[index]) {
@@ -114,74 +126,110 @@ class FinalYamlParser {
         }
     }
 
-    fun parseScalar(limit: Int = input.length): Any {
+    private fun isFalse(limit: Int): Boolean {
+        index += 5
+        return isEnd(limit)
+    }
+
+    private fun isTrue(limit: Int): Boolean {
+        index += 4
+        return isEnd(limit)
+    }
+
+    private fun isEnd(limit: Int): Boolean {
+        skipSpaces(limit)
+        if (index == limit) {
+            return true
+        }
+        if (input[index] == '\n' || input[index] == '\r') {
+            skipLineBreaks(limit)
+            return true
+        }
+        if (input[index] == '#') {
+            skipComment(limit)
+            skipLineBreaks(limit)
+            return true
+        }
+        return false
+    }
+
+    private fun isNumber(start: Int, limit: Int): Any? {
+        index++ // skip first
+        var decimal = false
+        while (index < limit) {
+            when (input[index]) {
+                '\n', '\r' -> {
+                    val number = number(decimal, start, index)
+                    skipLineBreaks(limit)
+                    return number
+                }
+                '#' -> {
+                    val number = number(decimal, start, index)
+                    skipComment(limit)
+                    skipLineBreaks(limit)
+                    return number
+                }
+                ' ' -> {
+                    val end = index
+                    return if (isEnd(limit)) number(decimal, start, end) else null
+                }
+                '.' -> if (!decimal) decimal = true else return null
+                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> {
+
+                }
+                else -> return null
+            }
+            index++
+        }
+        return number(decimal, start, index) // End of file
+    }
+
+    private fun number(decimal: Boolean, start: Int, end: Int) = if (decimal) {
+        substring(start, end).toDouble()
+    } else {
+        val long = substring(start, end).toLong()
+        if (long <= Int.MAX_VALUE) long.toInt() else long
+    }
+
+
+    fun parseScalar(limit: Int = size): Any {
         if (index == limit) {
             return ""
         }
         val start = index
-        val char = input[index]
+        var char = input[index]
         if (char == '\n' || char == '\t') {
             index++
             return ""
         }
-        if (char == 't' && index + 3 < limit && input[index + 1] == 'r' && input[index + 2] == 'u' && input[index + 3] == 'e' && isEnd(4, limit)) {
-            index += 4
-            skipComment(limit)
-            skipLineBreaks(limit)
-            return true
-        } else if (char == 'f' && index + 4 < limit && input[index + 1] == 'a' && input[index + 2] == 'l' && input[index + 3] == 's' && input[index + 4] == 'e' && isEnd(5, limit)) {
-            index += 5
-            skipComment(limit)
-            skipLineBreaks(limit)
-            return false
-        } else if (char.isDigit() || char == '-') {
-            index++ // skip first
-            var decimals = 0
-            var digit = true
-            var end = -1
-            while (index < limit && input[index] != '\n' && input[index] != '\r' && input[index] != '#') {
-                if (input[index] == '.') {
-                    decimals++
-                } else if (end == -1 && input[index] == ' ') {
-                    end = index
-                } else if (end != -1 && input[index] != ' ') {
-                    digit = false
-                    break
-                } else if (!input[index].isDigit()) {
-                    digit = false
-                    break
-                }
-                index++
+        if (char == 't' && index + 3 < limit && input[index + 1] == 'r' && input[index + 2] == 'u' && input[index + 3] == 'e') {
+            if (isTrue(limit)) {
+                return true
             }
-            if (digit) {
-                if (end == -1) {
-                    end = index
-                }
-                if (decimals == 1) {
-                    val double = input.substring(start, end).toDouble()
-                    skipComment(limit)
-                    skipLineBreaks(limit)
-                    return double
-                } else if (decimals == 0) {
-                    val long = input.substring(start, end).toLong()
-                    skipComment(limit)
-                    skipLineBreaks(limit)
-                    return if (long <= Int.MAX_VALUE) long.toInt() else long
-                }
+        } else if (char == 'f' && index + 4 < limit && input[index + 1] == 'a' && input[index + 2] == 'l' && input[index + 3] == 's' && input[index + 4] == 'e') {
+            if (isFalse(limit)) {
+                return false
+            }
+        } else if (char == '-' || char == '0' || char == '1' || char == '2' || char == '3' || char == '4' || char == '5' || char == '6' || char == '7' || char == '8' || char == '9') {
+            val number = isNumber(start, limit)
+            if (number != null) {
+                return number
             }
         }
-        while (index < limit && input[index] != '\n' && input[index] != '\r' && input[index] != '#') {
+        while (index < limit) {
+            char = input[index]
+            if (char == '\n' || char == '\r' || char == '#') {
+                break
+            }
             index++
         }
         val end = index
         skipComment(limit)
         skipLineBreaks(limit)
-        return input.substring(start, end).trimEnd()
+        return substring(start, end).trimEnd()
     }
 
-    private fun isEnd(offset: Int, limit: Int) = index + offset == limit || input[index + offset] == '\n' || input[index + offset] == '\r' || input[index + offset] == '#'
-
-    fun parseAnchorString(currentIndent: Int, limit: Int = input.length): Any {
+    fun parseAnchorString(currentIndent: Int, limit: Int = size): Any {
         val start = index
         while (index < limit && input[index] != '\r' && input[index] != '\n') {
             index++
@@ -201,10 +249,10 @@ class FinalYamlParser {
                 skipLineBreaks(limit)
             }
         }
-        return input.substring(start, end)
+        return substring(start, end)
     }
 
-    fun parseExplicitList(limit: Int = input.length): List<Any> {
+    fun parseExplicitList(limit: Int = size): List<Any> {
         val list = mutableListOf<Any>()
         skipSpaces(limit)
         index++ // skip '['
@@ -267,7 +315,7 @@ class FinalYamlParser {
         }
     }
 
-    fun parseList(currentIndent: Int, limit: Int = input.length, nestedMap: Boolean = false): List<Any> {
+    fun parseList(currentIndent: Int, limit: Int = size, nestedMap: Boolean = false): List<Any> {
         val list = mutableListOf<Any>()
         var count = 0
         while (count++ < LIST_MAXIMUM && index < limit) {
@@ -277,7 +325,7 @@ class FinalYamlParser {
             if (peek == '#') {
                 skipSpaces(limit)
                 skipComment(limit)
-            } else if (list.isNotEmpty() && indent < currentIndent) {
+            } else if (indent < currentIndent) {
                 break
             } else if (peek != '-' || second != ' ' || indent > currentIndent) {
                 if (indent == currentIndent && nestedMap)
@@ -295,7 +343,7 @@ class FinalYamlParser {
         return list
     }
 
-    fun parseMap(currentIndent: Int, limit: Int = input.length): Map<String, Any> {
+    fun parseMap(currentIndent: Int, limit: Int = size): Map<String, Any> {
         val map = mutableMapOf<String, Any>()
         var count = 0
         while (count++ < MAP_MAXIMUM && index < limit) {
@@ -335,8 +383,8 @@ class FinalYamlParser {
         return map
     }
 
-    fun parseKeyValuePair(currentIndent: Int, limit: Int = input.length): Pair<String, Any?> {
-        val key = parseKey(limit)
+    fun parseKeyValuePair(currentIndent: Int, limit: Int = size): Pair<String, Any?> {
+        val key = parseKey(limit) // this doesn't need to check multi-lines
         return if (index == limit) { // end of file
             key to null
         } else if (index < limit && (input[index] == '\n' || input[index] == '\r')) { // end of line
@@ -354,7 +402,7 @@ class FinalYamlParser {
         }
     }
 
-    fun parseValue(currentIndent: Int, limit: Int = input.length, nestedMap: Boolean = false): Any {
+    fun parseValue(currentIndent: Int, limit: Int = size, nestedMap: Boolean = false): Any {
         val indent = peekIndent(limit)
         val index = index + (indent * 2)
         return when {
@@ -387,7 +435,7 @@ class FinalYamlParser {
         }
     }
 
-    fun simpleColonLookAhead(limit: Int = input.length): Int {
+    fun simpleColonLookAhead(limit: Int = size): Int {
         var temp = index
         // Skip whitespaces
         while (temp < limit && input[temp] == ' ') {
@@ -400,7 +448,7 @@ class FinalYamlParser {
         return temp
     }
 
-    fun colonLookAhead(limit: Int = input.length, skipCommentLines: Boolean = true): Int {
+    fun colonLookAhead(limit: Int = size, skipCommentLines: Boolean = true): Int {
         var temp = index
         // Skip whitespaces
         while (temp < limit && input[temp] == ' ') {
@@ -445,7 +493,7 @@ class FinalYamlParser {
         return (temp - index) / 2
     }
 
-    fun parseExplicitMap(limit: Int = input.length): Map<String, Any> {
+    fun parseExplicitMap(limit: Int = size): Map<String, Any> {
         val map = mutableMapOf<String, Any>()
         skipSpaces(limit)
         index++ // skip '{'
@@ -498,7 +546,7 @@ class FinalYamlParser {
 
     private fun addMapEntry(map: MutableMap<String, Any>, limit: Int, nextComma: Int) {
         skipWhitespace(limit)
-        val key = parseKey(limit)
+        val key = parseKey(limit) // this needs to check multi-lines a
         skipWhitespace(limit)
         skipComment(limit)
         skipWhitespace(limit)
