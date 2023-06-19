@@ -1,5 +1,10 @@
 package world.gregs.voidps.engine.data
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
+
+private const val i = 8
+
 class FinalYamlParser {
 
     var input = CharArray(0)
@@ -113,7 +118,7 @@ class FinalYamlParser {
 
     private fun parseScalarKey(limit: Int = size): String {
         val start = index
-        val colon = colonLookAhead(limit)
+        val colon = peekColonIndex(limit)
             ?: throw IllegalArgumentException("Expected ':' at index $index")
         index = colon
         return substring(start, index)
@@ -262,7 +267,7 @@ class FinalYamlParser {
     }
 
     fun parseExplicitList(limit: Int = size): List<Any> {
-        val list = mutableListOf<Any>()
+        val list = ObjectArrayList<Any>(EXPECTED_EXPLICIT_LIST_SIZE)
         skipSpaces(limit)
         index++ // skip '['
         skipWhitespace(limit)
@@ -325,7 +330,7 @@ class FinalYamlParser {
     }
 
     fun parseList(currentIndent: Int, limit: Int = size, nestedMap: Boolean = false): List<Any> {
-        val list = mutableListOf<Any>()
+        val list = ObjectArrayList<Any>(EXPECTED_LIST_SIZE)
         var count = 0
         while (count++ < LIST_MAXIMUM && index < limit) {
             val indent = peekIndent(limit)
@@ -353,7 +358,7 @@ class FinalYamlParser {
     }
 
     fun parseMap(currentIndent: Int, limit: Int = size): Map<String, Any> {
-        val map = mutableMapOf<String, Any>()
+        val map = Object2ObjectOpenHashMap<String, Any>(EXPECTED_MAP_SIZE)
         var count = 0
         while (count++ < MAP_MAXIMUM && index < limit) {
             var indent = peekIndent(limit)
@@ -437,8 +442,7 @@ class FinalYamlParser {
                 parseAnchorString(currentIndent, limit)
             }
             else -> {
-                val colonIndex = colonLookAhead(limit)
-                if (colonIndex != null) {
+                if (peekColonIndex(limit) != null) {
                     parseMap(currentIndent, limit)
                 } else {
                     parseType(currentIndent, limit)
@@ -460,7 +464,7 @@ class FinalYamlParser {
         return temp
     }
 
-    fun colonLookAhead(limit: Int = size): Int? {
+    fun peekColonIndex(limit: Int = size): Int? {
         var temp = index
         var end = -1
         // Find the first colon followed by a space or end line, unless reached a terminator symbol
@@ -477,16 +481,14 @@ class FinalYamlParser {
                         return temp
                     }
                 }
-                ',' -> return null
-                '[', '{' -> return null
-                '\r', '\n' -> return null
+                ',', '[', '{', '\r', '\n' -> return null
                 '"' -> {
                     temp++
                     while (temp < limit && input[temp] != '"' && input[temp] != '\n' && input[temp] != '\r') {
                         temp++
                     }
                     if (temp < limit && input[temp] == '"') {
-                        temp++
+                        temp++ // skip closing '"'
                     }
                     continue
                 }
@@ -512,7 +514,7 @@ class FinalYamlParser {
     }
 
     fun parseExplicitMap(limit: Int = size): Map<String, Any> {
-        val map = mutableMapOf<String, Any>()
+        val map = Object2ObjectOpenHashMap<String, Any>(EXPECTED_EXPLICIT_MAP_SIZE)
         skipSpaces(limit)
         index++ // skip '{'
         skipWhitespace(limit)
@@ -580,6 +582,10 @@ class FinalYamlParser {
     }
 
     companion object {
+        private const val EXPECTED_LIST_SIZE = 2
+        private const val EXPECTED_EXPLICIT_LIST_SIZE = 2
+        private const val EXPECTED_EXPLICIT_MAP_SIZE = 5
+        private const val EXPECTED_MAP_SIZE = 8
         private const val LIST_MAXIMUM = 1_000_000
         private const val MAP_MAXIMUM = 1_000_000
     }
