@@ -216,21 +216,21 @@ class FinalYamlParserTest {
     @Test
     fun `Parse list item value`() {
         parser.set("- item")
-        val output = parser.parseValue()
-        assertEquals("item", output)
+        val output = parser.parseValue(0)
+        assertEquals(listOf("item"), output)
     }
 
     @Test
     fun `Limit parse list item value`() {
         parser.set("- item")
-        val output = parser.parseValue(4)
-        assertEquals("it", output)
+        val output = parser.parseValue(0, 4)
+        assertEquals(listOf("it"), output)
     }
 
     @Test
     fun `Parse map value`() {
         parser.set("key: value")
-        val output = parser.parseValue()
+        val output = parser.parseValue(0)
         val expected = mapOf("key" to "value")
         assertEquals(expected, output)
     }
@@ -238,7 +238,7 @@ class FinalYamlParserTest {
     @Test
     fun `Parse string value`() {
         parser.set("words")
-        val output = parser.parseValue()
+        val output = parser.parseValue(0)
         assertEquals("words", output)
     }
 
@@ -248,8 +248,8 @@ class FinalYamlParserTest {
             # comment
             - item
         """.trimIndent())
-        val output = parser.parseValue()
-        assertEquals("item", output)
+        val output = parser.parseValue(0)
+        assertEquals(listOf("item"), output)
     }
 
     @Test
@@ -314,7 +314,7 @@ class FinalYamlParserTest {
     @Test
     fun `Parse key-value pair`() {
         parser.set("key: value")
-        val output = parser.parseKeyValuePair()
+        val output = parser.parseKeyValuePair(0)
         val expected = "key" to "value"
         assertEquals(expected, output)
     }
@@ -322,7 +322,7 @@ class FinalYamlParserTest {
     @Test
     fun `Parse empty key-value end of fine`() {
         parser.set("key:")
-        val output = parser.parseKeyValuePair()
+        val output = parser.parseKeyValuePair(0)
         val expected = "key" to null
         assertEquals(expected, output)
     }
@@ -330,7 +330,7 @@ class FinalYamlParserTest {
     @Test
     fun `Limit parse key-value pair`() {
         parser.set("key:value")
-        val output = parser.parseKeyValuePair(4)
+        val output = parser.parseKeyValuePair(0, 4)
         val expected = "key" to null
         assertEquals(expected, output)
     }
@@ -341,7 +341,7 @@ class FinalYamlParserTest {
             key:
             # something else
         """.trimIndent())
-        val output = parser.parseKeyValuePair()
+        val output = parser.parseKeyValuePair(0)
         val expected = "key" to null
         assertEquals(expected, output)
     }
@@ -540,17 +540,96 @@ class FinalYamlParserTest {
     }
 
     @Test
-    fun `Scenario test 2`() {
+    fun `Scenario test 5`() {
         val output = parser.parse("""
-            - type: cooking
-              levels: 1-15
-              inventory:
-                - id: [ raw_anchovies, raw_shrimps, raw_beef, raw_rat_meat, raw_chicken, raw_crayfish ]
-                  amount: 28
+            longbow:
+              id: 839
+              price: 68
+              limit: 5000
+              weight: 1.814
+              range: 8.0
+              attack_range: 10
+              attack_speed: 6
+              slot: "Weapon"
+              type: "TwoHanded"
+              examine: "A nice sturdy bow."
+              kept: "Wilderness"
+              ammo:
+                - "bronze_arrow"
+                - "bronze_fire_arrows_lit"
+                - "bronze_fire_arrows_unlit"
+                - "iron_arrow"
+                - "iron_fire_arrows_lit"
+                - "iron_fire_arrows_unlit"
         """.trimIndent())
         val expected = listOf(
             mapOf("id" to "prison_pete", "x" to 2084, "y" to 4460, "direction" to "NORTH"),
             mapOf("id" to "balloon_animal", "x" to 2078, "y" to 4462)
+        )
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Scenario test 2`() {
+        val output = parser.parse("""
+            - type: cooking
+        """.trimIndent())
+        val expected = listOf(
+            mapOf("type" to "cooking")
+        )
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Scenario test 3`() {
+        val output = parser.parse("""
+            root:
+              id: -1
+              type: full_screen
+        """.trimIndent())
+        val expected = mapOf(
+            "root" to mapOf("id" to -1, "type" to "full_screen")
+        )
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Scenario test 6`() {
+        val output = parser.parse("""
+            broodoo_shield_blue:
+              skill: crafting
+              level: 35
+              xp: 100.0
+              requires: [ hammer ]
+              remove:
+                - item: tribal_mask_blue
+                - item: snakeskin
+                  amount: 2
+        """.trimIndent())
+        val expected = mapOf(
+            "broodoo_shield_blue" to mapOf(
+                "skill" to "crafting",
+                "level" to 35,
+                "xp" to 100.0,
+                "requires" to listOf("hammer"),
+                "remove" to listOf(
+                    mapOf("item" to "tribal_mask_blue"),
+                    mapOf("item" to "snakeskin", "amount" to 2)
+                )
+                )
+        )
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse with windows line breaks`() {
+        val output = parser.parse("""
+            root:${'\r'}
+              id: -1${'\r'}
+              type: full_screen${'\r'}
+        """.trimIndent())
+        val expected = mapOf(
+            "root" to mapOf("id" to -1, "type" to "full_screen")
         )
         assertEquals(expected, output)
     }
