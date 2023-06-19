@@ -152,7 +152,7 @@ class FinalYamlParserTest {
 
     @Test
     fun `Parse long type`() {
-        parser.set("12345678910L")
+        parser.set("12345678910")
         val output = parser.parseScalar()
         assertEquals(12345678910L, output)
     }
@@ -173,6 +173,14 @@ class FinalYamlParserTest {
         parser.set("12.3 ".trimIndent())
         val output = parser.parseScalar()
         assertEquals(12.3, output)
+        assertEquals(5, parser.index)
+    }
+
+    @Test
+    fun `Don't parse digit with spaces within`() {
+        parser.set("12. 3".trimIndent())
+        val output = parser.parseScalar()
+        assertEquals("12. 3", output)
         assertEquals(5, parser.index)
     }
 
