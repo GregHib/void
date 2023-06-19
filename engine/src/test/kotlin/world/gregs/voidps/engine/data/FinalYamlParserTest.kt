@@ -584,12 +584,23 @@ class FinalYamlParserTest {
 
     @Test
     fun `Look ahead with comment`() {
-        parser.set("""
+        val output = parser.parse("""
             # ignore: me
             key: value
         """.trimIndent())
-        val output = parser.colonLookAhead()
-        assertEquals(16, output)
+        val expected = mapOf("key" to "value")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Look ahead with interjecting comment`() {
+        val output = parser.parse("""
+            one: two
+            # ignore: me
+            key: value
+        """.trimIndent())
+        val expected = mapOf("one" to "two", "key" to "value")
+        assertEquals(expected, output)
     }
 
     @Test
