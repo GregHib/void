@@ -313,6 +313,7 @@ class FinalYamlParser {
                     nextComma = temp
                     break
                 } else if (input[temp] == open) { // Enter into a nested list
+                    skipWhitespace(limit)
                     depth++
                 } else if (input[temp] == close) { // Exist out of a nested list
                     if (--depth == 0) {
@@ -346,12 +347,12 @@ class FinalYamlParser {
     }
 
     private fun addListItem(list: MutableList<Any>, limit: Int, nextComma: Int) {
-        skipWhitespace(limit)
         val parsed = parseValue(0, nextComma)
         list.add(parsed)
         skipWhitespace(limit)
         if (index < limit && input[index] == ',') {
             index++ // skip ','
+            skipWhitespace(limit)
         }
     }
 
@@ -577,7 +578,6 @@ class FinalYamlParser {
     }
 
     private fun addMapEntry(map: MutableMap<String, Any>, limit: Int, nextComma: Int) {
-        skipWhitespace(limit)
         val key = parseKey(limit) // this needs to check multi-lines a
         skipWhitespace(limit)
         skipComment(limit)
@@ -587,6 +587,7 @@ class FinalYamlParser {
         skipWhitespace()
         if (index < limit && input[index] == ',') {
             index++ // skip ','
+            skipWhitespace(limit)
         }
     }
 
