@@ -469,7 +469,7 @@ class FinalYamlParser {
             }
             else -> if (input[index] == '-' && index + 1 < limit && input[index + 1] == ' ') {
                 parseList(currentIndent, limit, nestedMap)
-            } else if (peekKeyIndex(limit) != null) {
+            } else if (peekKeyIndex(limit, index) != null) {
                 parseMap(currentIndent, limit)
             } else {
                 parseType(currentIndent, limit)
@@ -527,8 +527,8 @@ class FinalYamlParser {
      * Finds the end index of the next valid key or null
      * Unlike [peekHasKeyValuePair] this method ignores line comments and quotes
      */
-    fun peekKeyIndex(limit: Int = size): Int? {
-        var temp = index
+    fun peekKeyIndex(limit: Int = size, start: Int = index): Int? {
+        var temp = start
         var end = -1
         // Find the first colon followed by a space or end line, unless reached a terminator symbol
         var previous = ' '
@@ -536,7 +536,6 @@ class FinalYamlParser {
             when (input[temp]) {
                 '\\' -> temp++
                 ',', '[', '{', '\r', '\n', '#' -> return null
-                ' ' -> if (previous != ' ') end = temp // Mark end of key
                 ':' -> {
                     if (temp + 1 > limit) {
                         continue
@@ -548,6 +547,7 @@ class FinalYamlParser {
                         return temp
                     }
                 }
+                ' ' -> if (previous != ' ') end = temp // Mark end of key
                 '"' -> temp = peekQuote(temp, limit) ?: return null
             }
             previous = input[temp]
