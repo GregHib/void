@@ -59,7 +59,7 @@ class FinalYamlParser {
         while (index < limit) {
             val char = input[index]
             if (!linebreak(char)) {
-                break
+                return
             }
             index++
         }
@@ -69,7 +69,7 @@ class FinalYamlParser {
         while (index < limit) {
             val char = input[index]
             if (linebreak(char)) {
-                break
+                return
             }
             index++
         }
@@ -79,7 +79,7 @@ class FinalYamlParser {
         while (index < limit) {
             val char = input[index]
             if (linebreak(char) || char == '#') {
-                break
+                return
             }
             index++
         }
@@ -268,7 +268,7 @@ class FinalYamlParser {
         while (count++ < LIST_MAXIMUM && index < limit) {
             val indent = peekIndent(limit)
             if (indent != currentIndent) {
-                break
+                return substring(start, end)
             } else {
                 skipExceptLineBreaks(limit)
                 end = index
