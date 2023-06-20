@@ -11,6 +11,7 @@ class FinalYamlParser {
 
     private fun substring(start: Int, end: Int) = String(input, start, end - start)
 
+    fun index(index: Int) = substring(index, (index + 25).coerceAtMost(size)).replace("\n", "\\n")
     val pretty: String
         get() = substring(index, (index + 25).coerceAtMost(size)).replace("\n", "\\n")
 
@@ -509,11 +510,11 @@ class FinalYamlParser {
     }
 
     private fun peekQuote(temp: Int, limit: Int): Int? {
-        var index = temp + 1 // skip opening '"'
+        var index = temp + 1 // skip opening quote
         while (index < limit) {
             val char = input[index]
             if (char == '"') {
-                return index
+                return index + 1
             }
             if (linebreak(char)) {
                 return null
@@ -526,29 +527,31 @@ class FinalYamlParser {
     /**
      * Finds the end index of the next valid key or null
      * Unlike [peekHasKeyValuePair] this method ignores line comments and quotes
+     * Assumes no spaces prefixed after [start]
      */
     fun peekKeyIndex(limit: Int = size, start: Int = index): Int? {
         var temp = start
         var end = -1
+        if (temp == limit) {
+            return null
+        }
+        when (input[temp]) {
+            '-', '[', '{', '\r', '\n', '#' -> return null
+            '"' -> temp = peekQuote(temp, limit) ?: return null
+        }
         // Find the first colon followed by a space or end line, unless reached a terminator symbol
         var previous = ' '
         while (temp < limit) {
             when (input[temp]) {
-                '\\' -> temp++
-                ',', '[', '{', '\r', '\n', '#' -> return null
-                ':' -> {
-                    if (temp + 1 > limit) {
-                        continue
-                    }
-                    if (temp + 1 == limit || input[temp + 1].isWhitespace() || input[temp + 1] == '#') {
-                        if (previous == ' ' && end != -1) {
-                            return end
-                        }
-                        return temp
-                    }
-                }
+                ',', '\r', '\n', '#' -> return null
                 ' ' -> if (previous != ' ') end = temp // Mark end of key
-                '"' -> temp = peekQuote(temp, limit) ?: return null
+                ':' -> if (temp + 1 == limit || input[temp + 1] == ' ' || linebreak(input[temp + 1]) || input[temp + 1] == '#') {
+                    if (previous == ' ' && end != -1) {
+                        return end
+                    }
+                    return temp
+                }
+                '\\' -> temp++
             }
             previous = input[temp]
             temp++
