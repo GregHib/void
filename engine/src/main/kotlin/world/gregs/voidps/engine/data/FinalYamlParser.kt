@@ -418,6 +418,7 @@ class FinalYamlParser {
                 key to null
             } else {
                 val indent = peekIndent(limit)
+                // support both flat and indented lists after open-ended map pairs
                 val value = parseValue(if (indent > currentIndent) currentIndent + 1 else currentIndent, limit, true)
                 key to value
             }
@@ -489,6 +490,20 @@ class FinalYamlParser {
         return true
     }
 
+    private fun peekQuote(temp: Int, limit: Int): Int? {
+        var index = temp + 1 // skip opening '"'
+        while (index < limit) {
+            val char = input[index]
+            if (char == '"') {
+                return index
+            }
+            if (char == '\n' || char == '\r') {
+                return null
+            }
+            index++
+        }
+        return null
+    }
     /**
      * Finds the end index of the next valid key or null
      * Unlike [peekHasKeyValuePair] this method ignores line comments and quotes
@@ -498,44 +513,23 @@ class FinalYamlParser {
         var end = -1
         // Find the first colon followed by a space or end line, unless reached a terminator symbol
         var previous = ' '
-        outer@ while (temp < limit) {
+        while (temp < limit) {
             when (input[temp]) {
                 '\\' -> temp++
-                ',', '[', '{', '\r', '\n' -> return null
+                ',', '[', '{', '\r', '\n', '#' -> return null
                 ' ' -> if (previous != ' ') end = temp // Mark end of key
                 ':' -> {
-                    if (temp + 1 == limit || (temp + 1 <= limit && (input[temp + 1].isWhitespace() || input[temp + 1] == '#'))) {
+                    if (temp + 1 > limit) {
+                        continue
+                    }
+                    if (temp + 1 == limit || input[temp + 1].isWhitespace() || input[temp + 1] == '#') {
                         if (previous == ' ' && end != -1) {
                             return end
                         }
                         return temp
                     }
                 }
-                '"' -> {
-                    temp++
-                    while (temp < limit) {
-                        val char = input[temp]
-                        if (char == '"') {
-                            temp++ // skip closing '"'
-                            continue@outer
-                        }
-                        if (char == '\n' || char == '\r') {
-                            continue@outer
-                        }
-                        temp++
-                    }
-                    continue
-                }
-                '#' -> {
-                    while (temp < limit) {
-                        val char = input[temp]
-                        if (char == '\n' || char == '\r') {
-                            continue@outer
-                        }
-                        temp++
-                    }
-                    continue
-                }
+                '"' -> temp = peekQuote(temp, limit) ?: return null
             }
             previous = input[temp]
             temp++
