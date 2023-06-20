@@ -75,14 +75,23 @@ class FinalYamlParser {
         }
     }
 
-    private fun skipExceptLineBreaksAndComments(limit: Int) {
+    private fun skipValueIndex(limit: Int): Int {
+        var end = -1
+        var previous = ' '
         while (index < limit) {
             val char = input[index]
             if (linebreak(char) || char == '#') {
-                return
+                break
+            } else if (char == ' ' && previous != ' ') {
+                end = index
             }
+            previous = char
             index++
         }
+        if (previous != ' ') {
+            return index
+        }
+        return end
     }
 
     fun parseKey(limit: Int = size): String {
@@ -252,11 +261,10 @@ class FinalYamlParser {
                 return number
             }
         }
-        skipExceptLineBreaksAndComments(limit)
-        val end = index
+        val end = skipValueIndex(limit)
         skipComment(limit)
         skipLineBreaks(limit)
-        return substring(start, end).trimEnd()
+        return substring(start, end)
     }
 
     fun parseAnchorString(currentIndent: Int, limit: Int = size): Any {
