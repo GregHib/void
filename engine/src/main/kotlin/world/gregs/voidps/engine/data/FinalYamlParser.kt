@@ -95,8 +95,10 @@ class FinalYamlParser {
         return end
     }
 
+    /**
+     * Presumes no spaces before
+     */
     fun parseKey(limit: Int = size): String {
-        skipSpaces(limit)
         val key = if (index < size && input[index] == '"') {
             parseQuotedKey()
         } else {
@@ -119,14 +121,14 @@ class FinalYamlParser {
     }
 
     private fun parseQuotedString(limit: Int = size): String {
-        index++ // skip opening '"'
+        index++ // skip opening quote
         val start = index
         while (index < limit) {
             when (input[index]) {
                 '\\' -> index++ // escaped
                 '"' -> {
                     val string = substring(start, index)
-                    index++ // skip '"'
+                    index++ // skip closing quote
                     skipSpaces(limit)
                     skipLineBreaks(limit)
                     return string
@@ -426,6 +428,7 @@ class FinalYamlParser {
     }
 
     fun parseKeyValuePair(currentIndent: Int, limit: Int = size): Pair<String, Any?> {
+        skipSpaces(limit)
         val key = parseKey(limit) // this doesn't need to check multi-lines
         return if (index == limit) { // end of file
             key to null
@@ -540,7 +543,7 @@ class FinalYamlParser {
             '"' -> temp = peekQuote(temp, limit) ?: return null
         }
         // Find the first colon followed by a space or end line, unless reached a terminator symbol
-        var previous = ' '
+        var previous = if (temp <= 1) ' ' else input[temp - 1]
         while (temp < limit) {
             when (input[temp]) {
                 ',', '\r', '\n', '#' -> return null
