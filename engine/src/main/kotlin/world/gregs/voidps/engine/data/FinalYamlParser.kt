@@ -352,7 +352,6 @@ class FinalYamlParser {
         skipWhitespace(limit)
         if (index < limit && input[index] == ',') {
             index++ // skip ','
-            skipWhitespace(limit)
         }
     }
 
@@ -400,6 +399,7 @@ class FinalYamlParser {
             if (map.isNotEmpty() && indent < currentIndent) {
                 return map
             }
+            index = spaceIndex
             val (key, value) = parseKeyValuePair(currentIndent, limit)
             if (value != null) {
                 map[key] = value
@@ -428,7 +428,6 @@ class FinalYamlParser {
     }
 
     fun parseKeyValuePair(currentIndent: Int, limit: Int = size): Pair<String, Any?> {
-        skipSpaces(limit)
         val key = parseKey(limit) // this doesn't need to check multi-lines
         return if (index == limit) { // end of file
             key to null
@@ -588,7 +587,6 @@ class FinalYamlParser {
         skipWhitespace()
         if (index < limit && input[index] == ',') {
             index++ // skip ','
-            skipWhitespace(limit)
         }
     }
 

@@ -90,11 +90,11 @@ class FinalYamlParserTest {
 
     @Test
     fun `Parse key`() {
-        parser.set("  key name   :   value")
+        parser.set("key name   :   value")
 
         val key = parser.parseKey()
         assertEquals("key name", key)
-        assertEquals(17, parser.index)
+        assertEquals(15, parser.index)
     }
 
     @Test
