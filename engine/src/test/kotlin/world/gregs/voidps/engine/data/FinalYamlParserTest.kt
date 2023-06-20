@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.data
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -538,6 +540,17 @@ class FinalYamlParserTest {
     }
 
     @Test
+    fun `Colon in key quote`() {
+        parser.set("""
+            list:
+                "key: " : value
+        """.trimIndent())
+        val output = parser.parseMap(0)
+        val expected = mapOf("list" to mapOf("key: " to "value"))
+        assertEquals(expected, output)
+    }
+
+    @Test
     fun `Allow lists without indentation`() {
         val output = parser.parse("""
             list:
@@ -568,7 +581,7 @@ class FinalYamlParserTest {
     @Test
     fun `Look ahead`() {
         parser.set("  - key: value")
-        val output = parser.peekColonIndex()
+        val output = parser.peekKeyIndex()
         assertEquals(7, output)
     }
 
@@ -578,7 +591,7 @@ class FinalYamlParserTest {
             - list item
             key: value
         """.trimIndent())
-        val output = parser.peekColonIndex()
+        val output = parser.peekKeyIndex()
         assertNull(output)
     }
 
@@ -608,14 +621,14 @@ class FinalYamlParserTest {
         parser.set("""
             - "key: value"
         """.trimIndent())
-        val output = parser.peekColonIndex()
+        val output = parser.peekKeyIndex()
         assertNull(output)
     }
 
     @Test
     fun `Look ahead with key in quotes`() {
         parser.set("\"key:what\": value")
-        val output = parser.peekColonIndex()
+        val output = parser.peekKeyIndex()
         assertEquals(10, output)
     }
 
@@ -934,5 +947,20 @@ class FinalYamlParserTest {
         )
         val output = parser.parse(yaml)
         assertEquals(expected, output)
+    }
+
+    private fun FinalYamlParser.parse(text: String) = parse(text.toCharArray())
+    private fun FinalYamlParser.set(text: String) = set(text.toCharArray())
+
+    private fun mapOf(vararg pairs: Pair<String, Any>): Map<String, Any> {
+        return Object2ObjectOpenHashMap<String, Any>().apply {
+            putAll(pairs)
+        }
+    }
+
+    private fun listOf(vararg pairs: Any): List<Any> {
+        return ObjectArrayList<Any>().apply {
+            addAll(pairs)
+        }
     }
 }

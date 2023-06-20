@@ -3,8 +3,6 @@ package world.gregs.voidps.engine.data
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 
-private const val i = 8
-
 class FinalYamlParser {
 
     var input = CharArray(0)
@@ -16,17 +14,9 @@ class FinalYamlParser {
     val pretty: String
         get() = substring(index, (index + 25).coerceAtMost(size)).replace("\n", "\\n")
 
-    fun parse(text: String): Any {
-        return parse(text.toCharArray())
-    }
-
     fun parse(charArray: CharArray, length: Int = charArray.size): Any {
         set(charArray, length)
         return parseValue(0)
-    }
-
-    fun set(input: String) {
-        set(input.toCharArray())
     }
 
     fun set(charArray: CharArray, size: Int = charArray.size) {
@@ -37,11 +27,16 @@ class FinalYamlParser {
 
     fun skipComment(limit: Int = size, breaks: Boolean = true) {
         if (index < limit && input[index] == '#') {
-            while (index < limit && input[index] != '\n' && input[index] != '\r') {
+            while (index < limit) {
+                val char = input[index]
+                if (char == '\n' || char == '\r') {
+                    break
+                }
                 index++
             }
-            if (breaks)
+            if (breaks) {
                 skipLineBreaks()
+            }
         }
     }
 
@@ -61,7 +56,31 @@ class FinalYamlParser {
     }
 
     fun skipLineBreaks(limit: Int = size) {
-        while (index < limit && (input[index] == '\n' || input[index] == '\r')) {
+        while (index < limit) {
+            val char = input[index]
+            if (char != '\n' && char != '\r') {
+                break
+            }
+            index++
+        }
+    }
+
+    private fun skipExceptLineBreaks(limit: Int) {
+        while (index < limit) {
+            val char = input[index]
+            if (char == '\r' || char == '\n') {
+                break
+            }
+            index++
+        }
+    }
+
+    private fun skipExceptLineBreaksAndComments(limit: Int) {
+        while (index < limit) {
+            val char = input[index]
+            if (char == '\n' || char == '\r' || char == '#') {
+                break
+            }
             index++
         }
     }
@@ -118,9 +137,8 @@ class FinalYamlParser {
 
     private fun parseScalarKey(limit: Int = size): String {
         val start = index
-        val colon = peekColonIndex(limit)
+        this.index = peekKeyIndex(limit)
             ?: throw IllegalArgumentException("Expected ':' at index $index")
-        index = colon
         return substring(start, index)
     }
 
@@ -189,7 +207,6 @@ class FinalYamlParser {
                 }
                 '.' -> if (!decimal) decimal = true else return null
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> {
-
                 }
                 else -> return null
             }
@@ -198,11 +215,14 @@ class FinalYamlParser {
         return number(decimal, start, index) // End of file
     }
 
-    private fun number(decimal: Boolean, start: Int, end: Int) = if (decimal) {
-        substring(start, end).toDouble()
-    } else {
-        val long = substring(start, end).toLong()
-        if (long <= Int.MAX_VALUE) long.toInt() else long
+    private fun number(decimal: Boolean, start: Int, end: Int): Any {
+        val string = substring(start, end)
+        return if (decimal) {
+            string.toDouble()
+        } else {
+            val long = string.toLong()
+            if (long <= Int.MAX_VALUE) long.toInt() else long
+        }
     }
 
 
@@ -211,7 +231,7 @@ class FinalYamlParser {
             return ""
         }
         val start = index
-        var char = input[index]
+        val char = input[index]
         if (char == '\n' || char == '\t') {
             index++
             return ""
@@ -230,13 +250,7 @@ class FinalYamlParser {
                 return number
             }
         }
-        while (index < limit) {
-            char = input[index]
-            if (char == '\n' || char == '\r' || char == '#') {
-                break
-            }
-            index++
-        }
+        skipExceptLineBreaksAndComments(limit)
         val end = index
         skipComment(limit)
         skipLineBreaks(limit)
@@ -245,9 +259,7 @@ class FinalYamlParser {
 
     fun parseAnchorString(currentIndent: Int, limit: Int = size): Any {
         val start = index
-        while (index < limit && input[index] != '\r' && input[index] != '\n') {
-            index++
-        }
+        skipExceptLineBreaks(limit)
         var end = index
         skipLineBreaks(limit)
         var count = 0
@@ -256,9 +268,7 @@ class FinalYamlParser {
             if (indent != currentIndent) {
                 break
             } else {
-                while (index < limit && input[index] != '\r' && input[index] != '\n') {
-                    index++
-                }
+                skipExceptLineBreaks(limit)
                 end = index
                 skipLineBreaks(limit)
             }
@@ -404,7 +414,7 @@ class FinalYamlParser {
             if (index < limit && input[index] == '\n') {
                 index++ // skip windows line breaks
             }
-            if (simpleColonLookAhead(limit)) { // if next line is a key-value pair
+            if (peekHasKeyValuePair(limit)) { // if next line is a key-value pair
                 key to null
             } else {
                 val indent = peekIndent(limit)
@@ -439,7 +449,7 @@ class FinalYamlParser {
                 parseAnchorString(currentIndent, limit)
             }
             else -> {
-                if (peekColonIndex(limit) != null) {
+                if (peekKeyIndex(limit) != null) {
                     parseMap(currentIndent, limit)
                 } else {
                     parseType(currentIndent, limit)
@@ -448,49 +458,80 @@ class FinalYamlParser {
         }
     }
 
-    fun simpleColonLookAhead(limit: Int = size): Boolean {
+    /**
+     * Checks if there's a valid key-value pair on the current line
+     * Simplified version of [peekKeyIndex]
+     */
+    fun peekHasKeyValuePair(limit: Int = size): Boolean {
         var temp = index
         // Skip whitespaces
         while (temp < limit && input[temp] == ' ') {
             temp++
         }
         // Find the first colon followed by a space or end line, unless reached a terminator symbol
-        while (temp < limit && !(input[temp] == ':' && temp + 1 <= limit && (temp + 1 == limit || input[temp + 1].isWhitespace() || input[temp + 1] == '#')) && input[temp] != '\r' && input[temp] != '\n') {
+        while (temp < limit) {
+            when (input[temp]) {
+                '\r', '\n' -> return false
+                ':' -> {
+                    if (temp + 1 == limit) {
+                        return true
+                    }
+                    if (temp + 1 > limit) {
+                        return false
+                    }
+                    if (input[temp + 1].isWhitespace() || input[temp + 1] == '#') {
+                        return true
+                    }
+                }
+            }
             temp++
         }
-        return temp >= limit || input[temp] == ':'
+        return true
     }
 
-    fun peekColonIndex(limit: Int = size): Int? {
+    /**
+     * Finds the end index of the next valid key or null
+     * Unlike [peekHasKeyValuePair] this method ignores line comments and quotes
+     */
+    fun peekKeyIndex(limit: Int = size): Int? {
         var temp = index
         var end = -1
         // Find the first colon followed by a space or end line, unless reached a terminator symbol
         var previous = ' '
-        while (temp < limit) {
+        outer@ while (temp < limit) {
             when (input[temp]) {
                 '\\' -> temp++
+                ',', '[', '{', '\r', '\n' -> return null
                 ' ' -> if (previous != ' ') end = temp // Mark end of key
                 ':' -> {
-                    if ((temp + 1 == limit || (temp + 1 <= limit && (input[temp + 1].isWhitespace() || input[temp + 1] == '#')))) {
+                    if (temp + 1 == limit || (temp + 1 <= limit && (input[temp + 1].isWhitespace() || input[temp + 1] == '#'))) {
                         if (previous == ' ' && end != -1) {
                             return end
                         }
                         return temp
                     }
                 }
-                ',', '[', '{', '\r', '\n' -> return null
                 '"' -> {
                     temp++
-                    while (temp < limit && input[temp] != '"' && input[temp] != '\n' && input[temp] != '\r') {
+                    while (temp < limit) {
+                        val char = input[temp]
+                        if (char == '"') {
+                            temp++ // skip closing '"'
+                            continue@outer
+                        }
+                        if (char == '\n' || char == '\r') {
+                            continue@outer
+                        }
                         temp++
-                    }
-                    if (temp < limit && input[temp] == '"') {
-                        temp++ // skip closing '"'
                     }
                     continue
                 }
                 '#' -> {
-                    while (temp < limit && input[temp] != '\n' && input[temp] != '\r') {
+                    while (temp < limit) {
+                        val char = input[temp]
+                        if (char == '\n' || char == '\r') {
+                            continue@outer
+                        }
                         temp++
                     }
                     continue
@@ -581,22 +622,9 @@ class FinalYamlParser {
     companion object {
         private const val EXPECTED_LIST_SIZE = 2
         private const val EXPECTED_EXPLICIT_LIST_SIZE = 2
-        private const val EXPECTED_EXPLICIT_MAP_SIZE = 5
         private const val EXPECTED_MAP_SIZE = 8
+        private const val EXPECTED_EXPLICIT_MAP_SIZE = 5
         private const val LIST_MAXIMUM = 1_000_000
         private const val MAP_MAXIMUM = 1_000_000
     }
-
-    /*
-
-    TODO handle lists on same line as map
-    TODO multi-line {} and [] maps/lists (explicit maps/lists?)
-    TODO ignore quotes used for keys too
-    TODO ignore escaped characters (just have: escaped = prev == \)
-    TODO ignore empty lines
-    TODO toggle for filling nulls as empty strings instead
-    TODO allow nulls for keys
-    TODO allow nulls as types
-    TODO impl the single lines and helper functions first as they can be tested stand alone
-     */
 }
