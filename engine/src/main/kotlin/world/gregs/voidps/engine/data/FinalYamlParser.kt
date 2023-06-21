@@ -463,25 +463,64 @@ class FinalYamlParser : CharArrayReader() {
     }
 
     private fun addMapEntry(map: MutableMap<String, Any>, limit: Int, nextComma: Int) {
-        val key = if (index < size && input[index] == '"') {
-            parseQuotedString()
+        if (index < size && input[index] == '"') {
+            val key = parseQuotedString()
+            skipWhitespace(limit)
+            index++ // skip ':'
+            skipWhitespace(limit)
+            skipComment(limit)
+            skipWhitespace(limit)
+            val parsed = parseMapValue(nextComma)
+            map[key] = mapModifier(key, parsed)
+            skipWhitespace()
+            if (index < limit && input[index] == ',') {
+                index++ // skip ','
+                skipWhitespace(limit)
+            }
         } else {
             val start = index
-            val end = skipKeyIndex(limit)
-                ?: throw IllegalArgumentException("Expected ':' at index $index")
-            substring(start, end)// this needs to check multi-lines
-        }
-        skipWhitespace(limit)
-        index++ // skip ':'
-        skipWhitespace(limit)
-        skipComment(limit)
-        skipWhitespace(limit)
-        val parsed = parseMapValue(nextComma)
-        map[key] = mapModifier(key, parsed)
-        skipWhitespace()
-        if (index < limit && input[index] == ',') {
-            index++ // skip ','
-            skipWhitespace(limit)
+            var end = -1
+            if (index == limit) {
+                throw IllegalArgumentException("Expected ':' at index $index")
+            }
+            when (input[index]) {
+                '-', '[', '{', '\r', '\n', '#' -> throw IllegalArgumentException("Expected ':' at index $index")
+                '"' -> index = peekQuote(index, limit) ?: throw IllegalArgumentException("Expected ':' at index $index")
+            }
+            // Find the first colon followed by a space or end line, unless reached a terminator symbol
+            var previous = if (index <= 1) ' ' else input[index - 1]
+            while (index < limit) {
+                when (input[index]) {
+                    ',', '\r', '\n', '#' -> throw IllegalArgumentException("Expected ':' at index $index")
+                    ' ' -> if (previous != ' ') end = index // Mark end of key
+                    ':' -> {
+                        if (index + 1 == limit) {
+                            map[substring(start, index)] = ""
+                            return
+                        }
+                        val key = substring(start, if (previous == ' ' && end != -1) end else index)
+                        index++ // skip ':'
+                        if (input[index + 1] == '#') {
+                            skipComment(limit)
+                        } else if (input[index + 1] == ' ') {
+                            skipWhitespace(limit)
+                        }
+                        skipWhitespace(limit)
+                        val parsed = parseMapValue(nextComma)
+                        map[key] = mapModifier(key, parsed)
+                        skipWhitespace()
+                        if (index < limit && input[index] == ',') {
+                            index++ // skip ','
+                            skipWhitespace(limit)
+                        }
+                        return
+                    }
+                    '\\' -> index++
+                }
+                previous = input[index]
+                index++
+            }
+            throw IllegalArgumentException("Expected ':' at index $index")
         }
     }
 
