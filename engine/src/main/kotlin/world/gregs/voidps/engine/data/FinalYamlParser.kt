@@ -13,22 +13,6 @@ class FinalYamlParser : CharArrayReader() {
         return parseValue(0)
     }
 
-    /**
-     * Presumes no spaces before
-     */
-    fun parseKey(limit: Int = size): String {
-        val key = if (index < size && input[index] == '"') {
-            parseQuotedString()
-        } else {
-            parseScalarKey()
-        }
-        skipSpaces(limit)
-        index++ // skip ':'
-        skipSpaces(limit)
-        skipComment(limit, false)
-        return key
-    }
-
     private fun parseQuotedString(limit: Int = size): String {
         index++ // skip opening quote
         val start = index
@@ -281,7 +265,15 @@ class FinalYamlParser : CharArrayReader() {
                 return map
             }
             index = spaceIndex
-            val key = parseKey(limit) // this doesn't need to check multi-lines
+            val key = if (index < size && input[index] == '"') {
+                parseQuotedString()
+            } else {
+                parseScalarKey() // this doesn't need to check multi-lines
+            }
+            skipSpaces(limit)
+            index++ // skip ':'
+            skipSpaces(limit)
+            skipComment(limit, false)
             if (index < limit && linebreak(input[index])) { // end of line
                 index++ // skip line break
                 if (index < limit && input[index] == '\n') {
@@ -476,7 +468,13 @@ class FinalYamlParser : CharArrayReader() {
     }
 
     private fun addMapEntry(map: MutableMap<String, Any>, limit: Int, nextComma: Int) {
-        val key = parseKey(limit) // this needs to check multi-lines
+        val key = if (index < size && input[index] == '"') {
+            parseQuotedString()
+        } else {
+            parseScalarKey()// this needs to check multi-lines
+        }
+        skipSpaces(limit)
+        index++ // skip ':'
         skipWhitespace(limit)
         skipComment(limit)
         skipWhitespace(limit)

@@ -88,7 +88,7 @@ class FinalYamlParserTest {
         assertEquals(4, parser.index)
     }
 
-    @Test
+    /*@Test
     fun `Parse key`() {
         parser.set("key name   :   value")
 
@@ -125,7 +125,7 @@ class FinalYamlParserTest {
         assertThrows<IllegalArgumentException> {
             parser.parseKey()
         }
-    }
+    }*/
 
     @ValueSource(booleans = [true, false])
     @ParameterizedTest
