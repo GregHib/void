@@ -322,7 +322,7 @@ class FinalYamlParserTest {
         assertEquals(expected, output)
     }
 
-    @Test
+    /*@Test
     fun `Parse key-value pair`() {
         parser.set("key: value")
         val output = parser.parseKeyValuePair(0)
@@ -363,7 +363,7 @@ class FinalYamlParserTest {
         val output = parser.parseKeyValuePair(0)
         val expected = "key" to null
         assertEquals(expected, output)
-    }
+    }*/
 
     @Test
     fun `Parse map`() {

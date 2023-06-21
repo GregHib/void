@@ -281,53 +281,44 @@ class FinalYamlParser : CharArrayReader() {
                 return map
             }
             index = spaceIndex
-            val (key, value) = parseKeyValuePair(currentIndent, limit)
-            if (value != null) {
-                map[key] = mapModifier(key, value)
-            } else {
-                indent = peekIndent(limit)
-                spaceIndex = indentIndex(indent)
-                peek = input[spaceIndex]
-                if (peek == '#') {
-                    index = spaceIndex
-                    skipComment(limit)
+            val key = parseKey(limit) // this doesn't need to check multi-lines
+            if (index < limit && linebreak(input[index])) { // end of line
+                index++ // skip line break
+                if (index < limit && input[index] == '\n') {
+                    index++ // skip windows line breaks
                 }
-                // If key-value pair on same level then this value is null
-                spaceIndex = indentIndex(peekIndent(limit))
-                peek = input[spaceIndex]
-                if (indent == currentIndent) {
-                    map[key] = ""
-                } else if (peek == '#') {
-                    index = spaceIndex
-                    skipComment(limit)
-                } else if (indent >= currentIndent) {
-                    map[key] = mapModifier(key, parseValue(currentIndent + 1, limit))
+                // if next line is a key-value pair
+                if (!peekHasKeyValuePair(limit)) {
+                    // support both flat and indented lists after open-ended map pairs
+                    val indentation = if (peekIndent(limit) > currentIndent) currentIndent + 1 else currentIndent
+                    map[key] = mapModifier(key, parseValue(indentation, limit, true))
+                    continue
                 }
+            } else if (index != limit) {
+                map[key] = mapModifier(key, parseValue(currentIndent, limit))
+                continue
             }
+            indent = peekIndent(limit)
+            spaceIndex = indentIndex(indent)
+            peek = input[spaceIndex]
+            if (peek == '#') {
+                index = spaceIndex
+                skipComment(limit)
+            }
+            // If key-value pair on same level then this value is null
+            spaceIndex = indentIndex(peekIndent(limit))
+            peek = input[spaceIndex]
+            if (indent == currentIndent) {
+                map[key] = ""
+            } else if (peek == '#') {
+                index = spaceIndex
+                skipComment(limit)
+            } else if (indent >= currentIndent) {
+                map[key] = mapModifier(key, parseValue(currentIndent + 1, limit))
+            }
+            // end of file
         }
         return map
-    }
-
-    fun parseKeyValuePair(currentIndent: Int, limit: Int = size): Pair<String, Any?> {
-        val key = parseKey(limit) // this doesn't need to check multi-lines
-        return if (index == limit) { // end of file
-            key to null
-        } else if (index < limit && linebreak(input[index])) { // end of line
-            index++ // skip line break
-            if (index < limit && input[index] == '\n') {
-                index++ // skip windows line breaks
-            }
-            if (peekHasKeyValuePair(limit)) { // if next line is a key-value pair
-                key to null
-            } else {
-                val indent = peekIndent(limit)
-                // support both flat and indented lists after open-ended map pairs
-                val value = parseValue(if (indent > currentIndent) currentIndent + 1 else currentIndent, limit, true)
-                key to value
-            }
-        } else {
-            key to parseValue(currentIndent, limit)
-        }
     }
 
     fun parseValue(currentIndent: Int, limit: Int = size, nestedMap: Boolean = false): Any {
@@ -433,6 +424,7 @@ class FinalYamlParser : CharArrayReader() {
         }
         return false
     }
+
     /**
      * Finds the end index of the next valid key or null
      * Unlike [peekHasKeyValuePair] this method ignores line comments and quotes
@@ -484,7 +476,7 @@ class FinalYamlParser : CharArrayReader() {
     }
 
     private fun addMapEntry(map: MutableMap<String, Any>, limit: Int, nextComma: Int) {
-        val key = parseKey(limit) // this needs to check multi-lines a
+        val key = parseKey(limit) // this needs to check multi-lines
         skipWhitespace(limit)
         skipComment(limit)
         skipWhitespace(limit)
