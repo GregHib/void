@@ -13,7 +13,7 @@ abstract class CharArrayReader {
 
     fun substring(start: Int, end: Int) = String(input, start, end - start)
 
-    fun skipIfComment(limit: Int = size, breaks: Boolean = true) {
+    fun skipComment(limit: Int = size, breaks: Boolean = true) {
         if (index < limit && input[index] == '#') {
             while (index < limit) {
                 val char = input[index]
@@ -25,15 +25,6 @@ abstract class CharArrayReader {
             if (breaks) {
                 skipLineBreaks()
             }
-        }
-    }
-    fun skipComment(limit: Int = size) {
-        while (index < limit) {
-            val char = input[index]
-            if (linebreak(char)) {
-                break
-            }
-            index++
         }
     }
 

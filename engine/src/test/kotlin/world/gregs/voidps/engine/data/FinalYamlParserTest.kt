@@ -20,7 +20,7 @@ class FinalYamlParserTest {
             - some line
         """.trimIndent())
 
-        parser.skipIfComment()
+        parser.skipComment()
         assertEquals(12, parser.index)
     }
 
@@ -28,7 +28,7 @@ class FinalYamlParserTest {
     fun `Single line comment doesn't go out of bounds`() {
         parser.set("# a comment")
 
-        parser.skipIfComment()
+        parser.skipComment()
         assertEquals(11, parser.index)
     }
 
@@ -36,7 +36,7 @@ class FinalYamlParserTest {
     fun `Limit comment length`() {
         parser.set("# a comment")
 
-        parser.skipIfComment(4)
+        parser.skipComment(4)
         assertEquals(4, parser.index)
     }
 

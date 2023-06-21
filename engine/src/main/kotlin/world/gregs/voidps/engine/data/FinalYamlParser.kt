@@ -122,7 +122,7 @@ class FinalYamlParser : CharArrayReader() {
             }
         }
         val end = skipValueIndex(limit)
-        skipIfComment(limit)
+        skipComment(limit)
         skipLineBreaks(limit)
         return substring(start, end)
     }
@@ -251,7 +251,7 @@ class FinalYamlParser : CharArrayReader() {
             var peek = input[spaceIndex]
             if (peek == '#') {
                 index = spaceIndex
-                skipIfComment(limit)
+                skipComment(limit)
                 continue
             }
             if (map.isNotEmpty() && indent < currentIndent) {
@@ -269,7 +269,7 @@ class FinalYamlParser : CharArrayReader() {
             skipSpaces(limit)
             index++ // skip ':'
             skipSpaces(limit)
-            skipIfComment(limit, false)
+            skipComment(limit, false)
             if (index < limit && linebreak(input[index])) { // end of line
                 index++ // skip line break
                 if (index < limit && input[index] == '\n') {
