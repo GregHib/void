@@ -3,98 +3,14 @@ package world.gregs.voidps.engine.data
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 
-class FinalYamlParser {
+class FinalYamlParser : CharArrayReader() {
 
-    var input = CharArray(0)
-    var size = 0
-    var index = 0
     var mapModifier: (key: String, value: Any) -> Any = { _, value -> value }
     var listModifier: (value: Any) -> Any = { it }
-
-    private fun substring(start: Int, end: Int) = String(input, start, end - start)
-
-    fun index(index: Int) = substring(index, (index + 25).coerceAtMost(size)).replace("\n", "\\n")
-    val pretty: String
-        get() = substring(index, (index + 25).coerceAtMost(size)).replace("\n", "\\n")
 
     fun parse(charArray: CharArray, length: Int = charArray.size): Any {
         set(charArray, length)
         return parseValue(0)
-    }
-
-    fun set(charArray: CharArray, size: Int = charArray.size) {
-        this.input = charArray
-        this.size = size
-        this.index = 0
-    }
-
-    fun skipComment(limit: Int = size, breaks: Boolean = true) {
-        if (index < limit && input[index] == '#') {
-            while (index < limit) {
-                val char = input[index]
-                if (linebreak(char)) {
-                    break
-                }
-                index++
-            }
-            if (breaks) {
-                skipLineBreaks()
-            }
-        }
-    }
-
-    /**
-     * Skip space or line breaks
-     */
-    fun skipWhitespace(limit: Int = size) {
-        while (index < limit && (input[index] == ' ' || linebreak(input[index]))) {
-            index++
-        }
-    }
-
-    fun skipSpaces(limit: Int = size) {
-        while (index < limit && input[index] == ' ') {
-            index++
-        }
-    }
-
-    fun skipLineBreaks(limit: Int = size) {
-        while (index < limit) {
-            val char = input[index]
-            if (!linebreak(char)) {
-                return
-            }
-            index++
-        }
-    }
-
-    private fun skipExceptLineBreaks(limit: Int) {
-        while (index < limit) {
-            val char = input[index]
-            if (linebreak(char)) {
-                return
-            }
-            index++
-        }
-    }
-
-    private fun skipValueIndex(limit: Int): Int {
-        var end = -1
-        var previous = ' '
-        while (index < limit) {
-            val char = input[index]
-            if (linebreak(char) || char == '#') {
-                break
-            } else if (char == ' ' && previous != ' ') {
-                end = index
-            }
-            previous = char
-            index++
-        }
-        if (previous != ' ') {
-            return index
-        }
-        return end
     }
 
     /**
@@ -183,8 +99,6 @@ class FinalYamlParser {
         return false
     }
 
-    private fun linebreak(char: Char) = char == '\r' || char == '\n'
-
     private fun isNumber(start: Int, limit: Int): Any? {
         index++ // skip first
         var decimal = false
@@ -255,14 +169,13 @@ class FinalYamlParser {
         return substring(start, end)
     }
 
-
     fun parseAnchorString(currentIndent: Int, limit: Int = size): Any {
         val start = index
         skipExceptLineBreaks(limit)
         var end = index
         skipLineBreaks(limit)
         var count = 0
-        while (count++ < LIST_MAXIMUM && index < limit) {
+        while (count++ < MAP_MAXIMUM && index < limit) {
             val indent = peekIndent(limit)
             if (indent != currentIndent) {
                 return substring(start, end)
