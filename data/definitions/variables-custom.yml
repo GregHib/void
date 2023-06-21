@@ -180,15 +180,15 @@ assist_timeout:
 public_status:
   format: list
   persist: true
-  values: [ on, friends, off, hide ]
+  values: [ "on", friends, "off", hide ]
 private_status:
   format: list
   persist: true
-  values: [ on, friends, off ]
+  values: [ "on", friends, "off" ]
 trade_status:
   format: list
   persist: true
-  values: [ on, friends off ]
+  values: [ "on", friends, "off" ]
 clan_name:
   persist: true
   default: ""
