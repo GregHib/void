@@ -464,19 +464,41 @@ class FinalYamlParser : CharArrayReader() {
 
     private fun addMapEntry(map: MutableMap<String, Any>, limit: Int, nextComma: Int) {
         if (index < size && input[index] == '"') {
-            val key = parseQuotedString()
-            skipWhitespace(limit)
-            index++ // skip ':'
-            skipWhitespace(limit)
-            skipComment(limit)
-            skipWhitespace(limit)
-            val parsed = parseMapValue(nextComma)
-            map[key] = mapModifier(key, parsed)
-            skipWhitespace()
-            if (index < limit && input[index] == ',') {
-                index++ // skip ','
-                skipWhitespace(limit)
+            index++ // skip opening quote
+            val start = index
+            while (index < limit) {
+                when (input[index]) {
+                    '\\' -> index++ // escaped
+                    '"' -> {
+                        val key = substring(start, index)
+                        index++ // skip closing quote
+                        // Skip spaces, lines, comments and ':' until the next value
+                        while (index < limit) {
+                            if (input[index] == '#') {
+                                while (index < limit) {
+                                    val char = input[index]
+                                    if (linebreak(char)) {
+                                        break
+                                    }
+                                    index++
+                                }
+                            } else if (input[index] != ' ' && input[index] != ':' && !linebreak(input[index])) {
+                                break
+                            }
+                            index++
+                        }
+                        val parsed = parseMapValue(nextComma)
+                        map[key] = mapModifier(key, parsed)
+                        skipWhitespace()
+                        if (index < limit && input[index] == ',') {
+                            index++ // skip ','
+                            skipWhitespace(limit)
+                        }
+                    }
+                }
+                index++
             }
+            throw IllegalArgumentException("Expected closing quote at index $index")
         } else {
             val start = index
             var end = -1
@@ -500,12 +522,21 @@ class FinalYamlParser : CharArrayReader() {
                         }
                         val key = substring(start, if (previous == ' ' && end != -1) end else index)
                         index++ // skip ':'
-                        if (input[index + 1] == '#') {
-                            skipComment(limit)
-                        } else if (input[index + 1] == ' ') {
-                            skipWhitespace(limit)
+                        // Skip spaces, lines and comments until the next value
+                        while (index < limit) {
+                            if (input[index] == '#') {
+                                while (index < limit) {
+                                    val char = input[index]
+                                    if (linebreak(char)) {
+                                        break
+                                    }
+                                    index++
+                                }
+                            } else if (input[index] != ' ' && !linebreak(input[index])) {
+                                break
+                            }
+                            index++
                         }
-                        skipWhitespace(limit)
                         val parsed = parseMapValue(nextComma)
                         map[key] = mapModifier(key, parsed)
                         skipWhitespace()
