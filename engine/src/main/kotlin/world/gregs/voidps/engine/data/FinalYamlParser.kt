@@ -353,7 +353,7 @@ class FinalYamlParser : CharArrayReader() {
             }
             else -> if (input[index] == '-' && index + 1 < limit && input[index + 1] == ' ') {
                 parseList(currentIndent, limit, nestedMap)
-            } else if (peekKeyIndex(limit, index) != null) {
+            } else if (isKeyValuePair(limit)) {
                 parseMap(currentIndent, limit)
             } else if (input[index] == '"') {
                 this.index = index
@@ -414,6 +414,25 @@ class FinalYamlParser : CharArrayReader() {
         return null
     }
 
+    fun isKeyValuePair(limit: Int = size): Boolean {
+        var temp = index
+        when (input[temp]) {
+            '-', '[', '{', '\r', '\n', '#' -> return false
+            '"' -> temp = peekQuote(temp, limit) ?: return false
+        }
+        // Find the first colon followed by a space or end line, unless reached a terminator symbol
+        while (temp < limit) {
+            when (input[temp]) {
+                ',', '\r', '\n', '#' -> return false
+                ':' -> if (temp + 1 == limit || input[temp + 1] == ' ' || linebreak(input[temp + 1]) || input[temp + 1] == '#') {
+                    return true
+                }
+                '\\' -> temp++
+            }
+            temp++
+        }
+        return false
+    }
     /**
      * Finds the end index of the next valid key or null
      * Unlike [peekHasKeyValuePair] this method ignores line comments and quotes
