@@ -477,15 +477,7 @@ class FinalYamlParser : CharArrayReader() {
                     '"' -> {
                         val key = substring(start, index)
                         index++ // skip closing quote
-                        // Skip spaces, lines, comments and ':' until the next value
-                        while (index < limit) {
-                            if (input[index] == '#') {
-                                skipComment(limit)
-                            } else if (input[index] != ' ' && input[index] != ':' && !linebreak(input[index])) {
-                                break
-                            }
-                            index++
-                        }
+                        skipWhitespaceCommentColon(limit)
                         val parsed = parseMapValue(nextComma)
                         map[key] = mapModifier(key, parsed)
                         skipWhitespace()
@@ -522,14 +514,7 @@ class FinalYamlParser : CharArrayReader() {
                         val key = substring(start, if (previous == ' ' && end != -1) end else index)
                         index++ // skip ':'
                         // Skip spaces, lines and comments until the next value
-                        while (index < limit) {
-                            if (input[index] == '#') {
-                                skipComment(limit)
-                            } else if (input[index] != ' ' && !linebreak(input[index])) {
-                                break
-                            }
-                            index++
-                        }
+                        skipWhitespaceComments(limit)
                         val parsed = parseMapValue(nextComma)
                         map[key] = mapModifier(key, parsed)
                         skipWhitespace()
@@ -558,12 +543,7 @@ class FinalYamlParser : CharArrayReader() {
         return when (input[index]) {
             '[' -> parseExplicitList(limit)
             '{' -> parseExplicitMap(limit)
-            '"' -> {
-                val string = parseQuotedString(limit)
-                skipSpaces(limit)
-                skipLineBreaks(limit)
-                string
-            }
+            '"' -> parseQuotedString(limit)
             '&' -> parseAnchorString(0, limit)
             else -> parseScalar(limit)
         }

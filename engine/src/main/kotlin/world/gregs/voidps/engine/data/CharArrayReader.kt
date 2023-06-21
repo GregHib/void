@@ -13,6 +13,29 @@ abstract class CharArrayReader {
 
     fun substring(start: Int, end: Int) = String(input, start, end - start)
 
+
+    fun skipWhitespaceCommentColon(limit: Int) {
+        while (index < limit) {
+            if (input[index] == '#') {
+                skipComment(limit)
+            } else if (input[index] != ' ' && input[index] != ':' && !linebreak(input[index])) {
+                break
+            }
+            index++
+        }
+    }
+
+    fun skipWhitespaceComments(limit: Int) {
+        while (index < limit) {
+            if (input[index] == '#') {
+                skipComment(limit)
+            } else if (input[index] != ' ' && !linebreak(input[index])) {
+                break
+            }
+            index++
+        }
+    }
+
     fun skipIfComment(limit: Int = size, breaks: Boolean = true) {
         if (index < limit && input[index] == '#') {
             while (index < limit) {
