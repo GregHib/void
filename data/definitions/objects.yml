@@ -640,6 +640,18 @@ dead_tree_25:
 dead_tree_25_stump:
   id: 1347
   examine: "This tree has been cut down."
+willow:
+  id: 5551
+  woodcutting:
+    log: willow_logs
+    level: 30
+    xp: 67.5
+    deplete_rate: 0.125
+    chance: 16-50
+    hatchet_low_dif: 4-8
+    hatchet_high_dif: 13-25
+    respawn: 23-45
+  examine: "A droopy tree."
 willow_5:
   id: 37480
   copy: "willow"
@@ -669,14 +681,14 @@ dead_tree_10_stump:
   examine: "This tree has been cut down."
 oak_tree_dark:
   id: 3037
-  copy: "oak_tree"
+  copy: "oak"
   examine: "A beautiful old oak."
 oak_tree_dark_stump:
   id: 1355
   examine: "This tree has been cut down."
 oak_tree_3:
   id: 37479
-  copy: "oak_tree"
+  copy: "oak"
   examine: "A beautiful old oak."
 oak_tree_3_stump:
   id: 1356
@@ -2584,18 +2596,6 @@ heather_9:
 heather_10:
   id: 5549
   examine: "I wonder why it's purple?"
-willow:
-  id: 5551
-  woodcutting:
-    log: willow_logs
-    level: 30
-    xp: 67.5
-    deplete_rate: 0.125
-    chance: 16-50
-    hatchet_low_dif: 4-8
-    hatchet_high_dif: 13-25
-    respawn: 23-45
-  examine: "A droopy tree."
 willow_stump:
   id: 5554
   examine: "This is what is left of a willow tree."
@@ -3155,7 +3155,7 @@ maple_tree_farming_stump:
   examine: "You can uproot this stump with a spade."
 oak_tree_farming:
   id: 8467
-  copy: "oak_tree"
+  copy: "oak"
   examine: "A fully grown Oak tree."
 oak_tree_farming_stump:
   id: 8468
@@ -4319,7 +4319,7 @@ door_271_closed:
   examine: "The door is closed."
 oak_tree_pale:
   id: 11999
-  copy: "oak_tree"
+  copy: "oak"
   examine: "A beautiful, old oak."
 oak_tree_pale_stump:
   id: 12007
@@ -4725,7 +4725,7 @@ dead_tree_20:
 fern_4:
   id: 13425
   examine: "A plant."
-small_fern_:2:
+small_fern_2:
   id: 13432
   examine: "A plant."
 fern_5:
@@ -8671,7 +8671,7 @@ runite_rocks_grey_1:
   examine: "A rocky outcrop."
 runite_rocks_grey_2:
   id: 37466
-  copy: "runite_rocks_old_13"
+  copy: "runite_rocks_old_1"
   examine: "A rocky outcrop."
 runite_rocks_grey_3:
   id: 37467
@@ -10396,7 +10396,7 @@ door_887_closed:
 dead_tree_41:
   id: 52786
   examine: "It makes this place look very sad."
-small_fern_:3:
+small_fern_3:
   id: 52794
   examine: "A plant."
 fern_17:
