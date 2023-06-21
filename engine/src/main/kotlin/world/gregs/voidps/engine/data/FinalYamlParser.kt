@@ -122,7 +122,7 @@ class FinalYamlParser : CharArrayReader() {
             }
         }
         val end = skipValueIndex(limit)
-        skipComment(limit)
+        skipIfComment(limit)
         skipLineBreaks(limit)
         return substring(start, end)
     }
@@ -224,6 +224,7 @@ class FinalYamlParser : CharArrayReader() {
             if (peek == '#') {
                 index = spaceIndex
                 skipComment(limit)
+                skipLineBreaks(limit)
             } else if (indent < currentIndent) {
                 return list
             } else if (peek != '-' || second != ' ' || indent > currentIndent) {
@@ -252,6 +253,7 @@ class FinalYamlParser : CharArrayReader() {
             if (peek == '#') {
                 index = spaceIndex
                 skipComment(limit)
+                skipLineBreaks(limit)
                 continue
             }
             if (map.isNotEmpty() && indent < currentIndent) {
@@ -269,7 +271,7 @@ class FinalYamlParser : CharArrayReader() {
             skipSpaces(limit)
             index++ // skip ':'
             skipSpaces(limit)
-            skipComment(limit, false)
+            skipIfComment(limit, false)
             if (index < limit && linebreak(input[index])) { // end of line
                 index++ // skip line break
                 if (index < limit && input[index] == '\n') {
@@ -292,6 +294,7 @@ class FinalYamlParser : CharArrayReader() {
             if (peek == '#') {
                 index = spaceIndex
                 skipComment(limit)
+                skipLineBreaks(limit)
             }
             // If key-value pair on same level then this value is null
             spaceIndex = indentIndex(peekIndent(limit))
@@ -301,6 +304,7 @@ class FinalYamlParser : CharArrayReader() {
             } else if (peek == '#') {
                 index = spaceIndex
                 skipComment(limit)
+                skipLineBreaks(limit)
             } else if (indent >= currentIndent) {
                 map[key] = mapModifier(key, parseValue(currentIndent + 1, limit))
             }
@@ -316,6 +320,7 @@ class FinalYamlParser : CharArrayReader() {
             '#' -> {
                 this.index = index
                 skipComment(limit)
+                skipLineBreaks(limit)
                 parseValue(currentIndent, limit)
             }
             '[' -> {
@@ -475,13 +480,7 @@ class FinalYamlParser : CharArrayReader() {
                         // Skip spaces, lines, comments and ':' until the next value
                         while (index < limit) {
                             if (input[index] == '#') {
-                                while (index < limit) {
-                                    val char = input[index]
-                                    if (linebreak(char)) {
-                                        break
-                                    }
-                                    index++
-                                }
+                                skipComment(limit)
                             } else if (input[index] != ' ' && input[index] != ':' && !linebreak(input[index])) {
                                 break
                             }
@@ -525,13 +524,7 @@ class FinalYamlParser : CharArrayReader() {
                         // Skip spaces, lines and comments until the next value
                         while (index < limit) {
                             if (input[index] == '#') {
-                                while (index < limit) {
-                                    val char = input[index]
-                                    if (linebreak(char)) {
-                                        break
-                                    }
-                                    index++
-                                }
+                                skipComment(limit)
                             } else if (input[index] != ' ' && !linebreak(input[index])) {
                                 break
                             }
