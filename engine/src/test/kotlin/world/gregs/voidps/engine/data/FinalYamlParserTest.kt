@@ -652,19 +652,6 @@ class FinalYamlParserTest {
     }
 
     @Test
-    fun `Scenario test`() {
-        val output = parser.parse("""
-            - { id: prison_pete, x: 2084, y: 4460, direction: NORTH }
-            - { id: balloon_animal, x: 2078, y: 4462 }
-        """.trimIndent())
-        val expected = listOf(
-            mapOf("id" to "prison_pete", "x" to 2084, "y" to 4460, "direction" to "NORTH"),
-            mapOf("id" to "balloon_animal", "x" to 2078, "y" to 4462)
-        )
-        assertEquals(expected, output)
-    }
-
-    @Test
     fun `Scenario test 10`() {
         val output = parser.parse("""
             quest_complete:
@@ -917,6 +904,30 @@ class FinalYamlParserTest {
 
         val expected = mapOf("fruits" to listOf("apple", "banana"))
         val output = parser.parseMap(0)
+        assertEquals(expected, output)
+    }
+
+    private data class SpawnData(val id: String, val x: Int, val y: Int, val direction: String = "NONE") {
+        constructor(map: Map<String, Any>) : this(map["id"] as String, map["x"] as Int, map["y"] as Int, map["direction"] as? String ?: "NONE")
+    }
+
+    @Test
+    fun `Parse list with modifier`() {
+        parser.listModifier = {
+            if (it is Map<*, *> && it.containsKey("id")) {
+                SpawnData(it as Map<String, Any>)
+            } else {
+                it
+            }
+        }
+        val output = parser.parse("""
+            - { id: prison_pete, x: 2084, y: 4460, direction: NORTH }
+            - { id: balloon_animal, x: 2078, y: 4462 }
+        """.trimIndent())
+        val expected = listOf(
+            SpawnData("prison_pete", 2084, 4460, "NORTH"),
+            SpawnData("balloon_animal", 2078, 4462)
+        )
         assertEquals(expected, output)
     }
 

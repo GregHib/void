@@ -8,6 +8,8 @@ class FinalYamlParser {
     var input = CharArray(0)
     var size = 0
     var index = 0
+    var mapModifier: (key: String, value: Any) -> Any = { _, value -> value }
+    var listModifier: (value: Any) -> Any = { it }
 
     private fun substring(start: Int, end: Int) = String(input, start, end - start)
 
@@ -154,22 +156,6 @@ class FinalYamlParser {
         return substring(start, index)
     }
 
-    /**
-     * Expect no spaces
-     */
-    private fun parseType(currentIndent: Int, limit: Int): Any {
-        if (index == size) {
-            throw IllegalStateException("Unexpected end of file")
-        }
-        return when (input[index]) {
-            '[' -> parseExplicitList(limit)
-            '{' -> parseExplicitMap(limit)
-            '"' -> parseQuotedString(limit)
-            '&' -> parseAnchorString(currentIndent, limit)
-            else -> parseScalar(limit)
-        }
-    }
-
     private fun isFalse(limit: Int): Boolean {
         index += 5
         return isEnd(limit)
@@ -239,7 +225,6 @@ class FinalYamlParser {
         }
     }
 
-
     fun parseScalar(limit: Int = size): Any {
         if (index == limit) {
             return ""
@@ -269,6 +254,7 @@ class FinalYamlParser {
         skipLineBreaks(limit)
         return substring(start, end)
     }
+
 
     fun parseAnchorString(currentIndent: Int, limit: Int = size): Any {
         val start = index
@@ -348,7 +334,7 @@ class FinalYamlParser {
 
     private fun addListItem(list: MutableList<Any>, limit: Int, nextComma: Int) {
         val parsed = parseValue(0, nextComma)
-        list.add(parsed)
+        list.add(listModifier(parsed))
         skipWhitespace(limit)
         if (index < limit && input[index] == ',') {
             index++ // skip ','
@@ -378,7 +364,7 @@ class FinalYamlParser {
                 index = spaceIndex + 1 // skip '-'
                 skipSpaces(limit)
                 val parsed = parseValue(currentIndent + 1, limit)
-                list.add(parsed)
+                list.add(listModifier(parsed))
                 skipLineBreaks()
             }
         }
@@ -403,7 +389,7 @@ class FinalYamlParser {
             index = spaceIndex
             val (key, value) = parseKeyValuePair(currentIndent, limit)
             if (value != null) {
-                map[key] = value
+                map[key] = mapModifier(key, value)
             } else {
                 indent = peekIndent(limit)
                 spaceIndex = indentIndex(indent)
@@ -421,7 +407,7 @@ class FinalYamlParser {
                     index = spaceIndex
                     skipComment(limit)
                 } else if (indent >= currentIndent) {
-                    map[key] = parseValue(currentIndent + 1, limit)
+                    map[key] = mapModifier(key, parseValue(currentIndent + 1, limit))
                 }
             }
         }
@@ -475,8 +461,12 @@ class FinalYamlParser {
                 parseList(currentIndent, limit, nestedMap)
             } else if (peekKeyIndex(limit, index) != null) {
                 parseMap(currentIndent, limit)
+            } else if (input[index] == '"') {
+                this.index = index
+                parseQuotedString(limit)
             } else {
-                parseType(currentIndent, limit)
+                this.index = index
+                parseScalar(limit)
             }
         }
     }
@@ -582,12 +572,28 @@ class FinalYamlParser {
         skipWhitespace(limit)
         skipComment(limit)
         skipWhitespace(limit)
-        val parsed = parseType(0, nextComma)
-        map[key] = parsed
+        val parsed = parseMapValue(nextComma)
+        map[key] = mapModifier(key, parsed)
         skipWhitespace()
         if (index < limit && input[index] == ',') {
             index++ // skip ','
             skipWhitespace(limit)
+        }
+    }
+
+    /**
+     * Expect no spaces
+     */
+    private fun parseMapValue(limit: Int): Any {
+        if (index == size) {
+            throw IllegalStateException("Unexpected end of file")
+        }
+        return when (input[index]) {
+            '[' -> parseExplicitList(limit)
+            '{' -> parseExplicitMap(limit)
+            '"' -> parseQuotedString(limit)
+            '&' -> parseAnchorString(0, limit)
+            else -> parseScalar(limit)
         }
     }
 
