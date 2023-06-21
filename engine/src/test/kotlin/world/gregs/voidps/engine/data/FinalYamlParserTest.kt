@@ -581,7 +581,7 @@ class FinalYamlParserTest {
     @Test
     fun `Look ahead`() {
         parser.set("  - key: value")
-        val output = parser.peekKeyIndex()
+        val output = parser.skipKeyIndex()
         assertEquals(7, output)
     }
 
@@ -591,7 +591,7 @@ class FinalYamlParserTest {
             - list item
             key: value
         """.trimIndent())
-        val output = parser.peekKeyIndex()
+        val output = parser.skipKeyIndex()
         assertNull(output)
     }
 
@@ -621,14 +621,14 @@ class FinalYamlParserTest {
         parser.set("""
             - "key: value"
         """.trimIndent())
-        val output = parser.peekKeyIndex()
+        val output = parser.skipKeyIndex()
         assertNull(output)
     }
 
     @Test
     fun `Look ahead with key in quotes`() {
         parser.set("\"key:what\": value")
-        val output = parser.peekKeyIndex()
+        val output = parser.skipKeyIndex()
         assertEquals(10, output)
     }
 

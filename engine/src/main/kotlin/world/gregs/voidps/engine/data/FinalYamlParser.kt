@@ -262,9 +262,9 @@ class FinalYamlParser : CharArrayReader() {
                 parseQuotedString()
             } else {
                 val start = index
-                peekKeyIndex(limit) // this doesn't need to check multi-lines
+                val end = skipKeyIndex(limit)
                     ?: throw IllegalArgumentException("Expected ':' at index $index")
-                substring(start, index)
+                substring(start, end)// this doesn't need to check multi-lines
             }
             skipSpaces(limit)
             index++ // skip ':'
@@ -349,7 +349,7 @@ class FinalYamlParser : CharArrayReader() {
 
     /**
      * Checks if there's a valid key-value pair on the current line
-     * Simplified version of [peekKeyIndex]
+     * Simplified version of [skipKeyIndex]
      */
     fun peekHasKeyValuePair(limit: Int = size): Boolean {
         var temp = index
@@ -418,7 +418,7 @@ class FinalYamlParser : CharArrayReader() {
      * Unlike [peekHasKeyValuePair] this method ignores line comments and quotes
      * Assumes no spaces prefixed after [start]
      */
-    fun peekKeyIndex(limit: Int = size): Int? {
+    fun skipKeyIndex(limit: Int = size): Int? {
         var end = -1
         if (index == limit) {
             return null
@@ -467,11 +467,11 @@ class FinalYamlParser : CharArrayReader() {
             parseQuotedString()
         } else {
             val start = index
-            peekKeyIndex(limit)// this needs to check multi-lines
+            val end = skipKeyIndex(limit)
                 ?: throw IllegalArgumentException("Expected ':' at index $index")
-            substring(start, index)
+            substring(start, end)// this needs to check multi-lines
         }
-        skipSpaces(limit)
+        skipWhitespace(limit)
         index++ // skip ':'
         skipWhitespace(limit)
         skipComment(limit)
