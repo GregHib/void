@@ -30,13 +30,6 @@ class FinalYamlParser : CharArrayReader() {
         throw IllegalArgumentException("Expected closing quote at index $index")
     }
 
-    private fun parseScalarKey(limit: Int = size): String {
-        val start = index
-        this.index = peekKeyIndex(limit)
-            ?: throw IllegalArgumentException("Expected ':' at index $index")
-        return substring(start, index)
-    }
-
     private fun isFalse(limit: Int): Boolean {
         index += 5
         return isEnd(limit)
@@ -268,7 +261,10 @@ class FinalYamlParser : CharArrayReader() {
             val key = if (index < size && input[index] == '"') {
                 parseQuotedString()
             } else {
-                parseScalarKey() // this doesn't need to check multi-lines
+                val start = index
+                peekKeyIndex(limit) // this doesn't need to check multi-lines
+                    ?: throw IllegalArgumentException("Expected ':' at index $index")
+                substring(start, index)
             }
             skipSpaces(limit)
             index++ // skip ':'
@@ -422,32 +418,31 @@ class FinalYamlParser : CharArrayReader() {
      * Unlike [peekHasKeyValuePair] this method ignores line comments and quotes
      * Assumes no spaces prefixed after [start]
      */
-    fun peekKeyIndex(limit: Int = size, start: Int = index): Int? {
-        var temp = start
+    fun peekKeyIndex(limit: Int = size): Int? {
         var end = -1
-        if (temp == limit) {
+        if (index == limit) {
             return null
         }
-        when (input[temp]) {
+        when (input[index]) {
             '-', '[', '{', '\r', '\n', '#' -> return null
-            '"' -> temp = peekQuote(temp, limit) ?: return null
+            '"' -> index = peekQuote(index, limit) ?: return null
         }
         // Find the first colon followed by a space or end line, unless reached a terminator symbol
-        var previous = if (temp <= 1) ' ' else input[temp - 1]
-        while (temp < limit) {
-            when (input[temp]) {
+        var previous = if (index <= 1) ' ' else input[index - 1]
+        while (index < limit) {
+            when (input[index]) {
                 ',', '\r', '\n', '#' -> return null
-                ' ' -> if (previous != ' ') end = temp // Mark end of key
-                ':' -> if (temp + 1 == limit || input[temp + 1] == ' ' || linebreak(input[temp + 1]) || input[temp + 1] == '#') {
+                ' ' -> if (previous != ' ') end = index // Mark end of key
+                ':' -> if (index + 1 == limit || input[index + 1] == ' ' || linebreak(input[index + 1]) || input[index + 1] == '#') {
                     if (previous == ' ' && end != -1) {
                         return end
                     }
-                    return temp
+                    return index
                 }
-                '\\' -> temp++
+                '\\' -> index++
             }
-            previous = input[temp]
-            temp++
+            previous = input[index]
+            index++
         }
         return null
     }
@@ -471,7 +466,10 @@ class FinalYamlParser : CharArrayReader() {
         val key = if (index < size && input[index] == '"') {
             parseQuotedString()
         } else {
-            parseScalarKey()// this needs to check multi-lines
+            val start = index
+            peekKeyIndex(limit)// this needs to check multi-lines
+                ?: throw IllegalArgumentException("Expected ':' at index $index")
+            substring(start, index)
         }
         skipSpaces(limit)
         index++ // skip ':'
