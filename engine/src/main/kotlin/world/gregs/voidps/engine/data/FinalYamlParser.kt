@@ -18,7 +18,7 @@ class FinalYamlParser : CharArrayReader() {
      */
     fun parseKey(limit: Int = size): String {
         val key = if (index < size && input[index] == '"') {
-            parseQuotedKey()
+            parseQuotedString()
         } else {
             parseScalarKey()
         }
@@ -26,15 +26,6 @@ class FinalYamlParser : CharArrayReader() {
         index++ // skip ':'
         skipSpaces(limit)
         skipComment(limit, false)
-        return key
-    }
-
-    private fun parseQuotedKey(): String {
-        val key = parseQuotedString()
-        skipSpaces()
-        if (index == size || (index < size && input[index] != ':')) {
-            throw IllegalArgumentException("Expected ':' at index $index")
-        }
         return key
     }
 
@@ -47,8 +38,6 @@ class FinalYamlParser : CharArrayReader() {
                 '"' -> {
                     val string = substring(start, index)
                     index++ // skip closing quote
-                    skipSpaces(limit)
-                    skipLineBreaks(limit)
                     return string
                 }
             }
@@ -368,7 +357,10 @@ class FinalYamlParser : CharArrayReader() {
                 parseMap(currentIndent, limit)
             } else if (input[index] == '"') {
                 this.index = index
-                parseQuotedString(limit)
+                val string = parseQuotedString(limit)
+                skipSpaces(limit)
+                skipLineBreaks(limit)
+                string
             } else {
                 this.index = index
                 parseScalar(limit)
@@ -496,7 +488,12 @@ class FinalYamlParser : CharArrayReader() {
         return when (input[index]) {
             '[' -> parseExplicitList(limit)
             '{' -> parseExplicitMap(limit)
-            '"' -> parseQuotedString(limit)
+            '"' -> {
+                val string = parseQuotedString(limit)
+                skipSpaces(limit)
+                skipLineBreaks(limit)
+                string
+            }
             '&' -> parseAnchorString(0, limit)
             else -> parseScalar(limit)
         }
