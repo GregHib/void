@@ -51,18 +51,10 @@ class FinalYamlParser : CharArrayReader() {
                     skipLineBreaks(limit)
                     return string
                 }
-                '\n', '\r' -> {
-                    val string = substring(start, index)
-                    skipLineBreaks(limit)
-                    return string
-                }
             }
             index++
         }
-        if (index == limit) {
-            return substring(start, index)
-        }
-        throw IllegalArgumentException("Expected '\"' at index $index")
+        throw IllegalArgumentException("Expected closing quote at index $index")
     }
 
     private fun parseScalarKey(limit: Int = size): String {
