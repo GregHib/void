@@ -152,7 +152,6 @@ class FinalYamlParser : CharArrayReader() {
     }
 
     private inline fun <T> parseExplicit(list: T, limit: Int = size, open: Char, close: Char, add: (T, Int, Int) -> Unit): T {
-        skipSpaces(limit)
         index++ // skip '['
         skipWhitespace(limit)
         var depth = 1
