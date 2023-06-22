@@ -384,68 +384,6 @@ class FinalYamlParser : CharArrayReader() {
         return substring(start, end)
     }
 
-    fun parseExplicitList(limit: Int = size): List<Any> {
-        val list = ObjectArrayList<Any>(EXPECTED_EXPLICIT_LIST_SIZE)
-        return parseExplicit(list, limit, '[', ']', ::addListItem)
-    }
-
-    private inline fun <T> parseExplicit(list: T, limit: Int = size, open: Char, close: Char, add: (T, Int, Int) -> Unit): T {
-        index++ // skip opening char
-        skipWhitespace(limit)
-        var depth = 1
-        var count = 0
-        // For n number of items
-        while (count++ < LIST_MAXIMUM && index < limit) {
-            // Peek ahead for the index of the next comma
-            var nextComma = -1
-            var temp = index
-            while (depth != 0) {
-                if (input[temp] == '\\') {
-                    temp++ // escaped
-                } else if (depth == 1 && input[temp] == ',') {
-                    // Found a base level comma
-                    nextComma = temp
-                    break
-                } else if (input[temp] == open) { // Enter into a nested list
-                    skipWhitespace(limit)
-                    depth++
-                } else if (input[temp] == close) { // Exist out of a nested list
-                    if (--depth == 0) {
-                        // Found the end of the list
-                        add(list, limit, temp)
-                        if (index < limit && input[index] == close) {
-                            index++ // skip closing char
-                        }
-                        return list
-                    }
-                }
-                temp++
-            }
-            if (nextComma == -1) {
-                // Add what's remaining if end of list found
-                if (temp < limit && input[temp] == close) {
-                    index = temp + 1 // skip closing char
-                    return list
-                } else {
-                    throw IllegalStateException("Unable to find comma or end of list.")
-                }
-            } else {
-                add(list, limit, nextComma)
-            }
-        }
-        return list
-    }
-
-    private fun addListItem(list: MutableList<Any>, limit: Int, nextComma: Int) {
-        val parsed = parseVal(0, nextComma)
-        list.add(listModifier(parsed))
-        skipWhitespace(limit)
-        if (index < limit && input[index] == ',') {
-            index++ // skip ','
-            skipWhitespace(limit)
-        }
-    }
-
     fun parseList(currentIndent: Int, limit: Int = size, nestedMap: Boolean = false): List<Any> {
         val list = ObjectArrayList<Any>(EXPECTED_LIST_SIZE)
         var count = 0
@@ -695,8 +633,6 @@ class FinalYamlParser : CharArrayReader() {
 
     private fun indentIndex(indent: Int) = index + (indent * 2)
 
-    // TODO add support to parseVal to stop at comma's
-    // TODO same impl for explicit list
     // TODO remove old impl usages
     // TODO remove peek usages
     fun parseExplicitMap(limit: Int = size): Map<String, Any> {
@@ -727,86 +663,25 @@ class FinalYamlParser : CharArrayReader() {
         return map
     }
 
-    private fun addMapEntry(map: MutableMap<String, Any>, limit: Int, nextComma: Int) {
-        if (index < size && input[index] == '"') {
-            index++ // skip opening quote
-            val start = index
-            while (index < limit) {
-                when (input[index]) {
-                    '\\' -> index++ // escaped
-                    '"' -> {
-                        val key = substring(start, index)
-                        index++ // skip closing quote
-                        skipWhitespaceCommentColon(limit)
-                        val parsed = parseMapValue(nextComma)
-                        map[key] = mapModifier(key, parsed)
-                        skipWhitespace()
-                        if (index < limit && input[index] == ',') {
-                            index++ // skip ','
-                            skipWhitespace(limit)
-                        }
-                    }
-                }
+    fun parseExplicitList(limit: Int = size): List<Any> {
+        val list = ObjectArrayList<Any>(EXPECTED_EXPLICIT_LIST_SIZE)
+        index++ // skip opening char
+        while (index < limit) {
+            nextLine()
+            if (index >= limit) {
+                return list
+            }
+            val value = parseExplicitVal(limit)
+            list.add(listModifier(value))
+            nextLine()
+            if (input[index] == ',') {
                 index++
+            } else if (input[index] == ']') {
+                index++ // skip closing char
+                return list
             }
-            throw IllegalArgumentException("Expected closing quote at index $index")
-        } else {
-            val start = index
-            var end = -1
-            if (index == limit) {
-                throw IllegalArgumentException("Expected ':' at index $index")
-            }
-            when (input[index]) {
-                '-', '[', '{', '\r', '\n', '#' -> throw IllegalArgumentException("Expected ':' at index $index")
-                '"' -> index = peekQuote(index, limit) ?: throw IllegalArgumentException("Expected ':' at index $index")
-            }
-            // Find the first colon followed by a space or end line, unless reached a terminator symbol
-            var previous = if (index <= 1) ' ' else input[index - 1]
-            while (index < limit) {
-                when (input[index]) {
-                    ',', '\r', '\n', '#' -> throw IllegalArgumentException("Expected ':' at index $index")
-                    ' ' -> if (previous != ' ') end = index // Mark end of key
-                    ':' -> {
-                        if (index + 1 == limit) {
-                            map[substring(start, index)] = ""
-                            return
-                        }
-                        val key = substring(start, if (previous == ' ' && end != -1) end else index)
-                        index++ // skip ':'
-                        // Skip spaces, lines and comments until the next value
-                        skipWhitespaceComments(limit)
-                        val parsed = parseMapValue(nextComma)
-                        map[key] = mapModifier(key, parsed)
-                        skipWhitespace()
-                        if (index < limit && input[index] == ',') {
-                            index++ // skip ','
-                            skipWhitespace(limit)
-                        }
-                        return
-                    }
-                    '\\' -> index++
-                }
-                previous = input[index]
-                index++
-            }
-            throw IllegalArgumentException("Expected ':' at index $index")
         }
-    }
-
-    /**
-     * Expect no spaces
-     */
-    private fun parseMapValue(limit: Int): Any {
-        if (index == size) {
-            throw IllegalStateException("Unexpected end of file")
-        }
-        return when (input[index]) {
-            '[' -> parseExplicitList(limit)
-            '{' -> parseExplicitMap(limit)
-            '"' -> parseQuotedString(limit)
-            '&' -> parseAnchorString(0, limit)
-            else -> parseScalar(limit)
-        }
+        return list
     }
 
     companion object {
