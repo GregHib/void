@@ -37,9 +37,9 @@ class FinalYamlParser : CharArrayReader() {
             '{' -> parseExplicitMap()
             '&' -> skipAnchorString()
             else -> {
-                val value = parseType()
+                val value = parseExplicitType()
                 if (index < size && input[index] == ':') {
-                    map(0, value.toString())
+                    map(0, value.toString()) // TODO explicit?
                 } else {
                     value
                 }
@@ -153,35 +153,44 @@ class FinalYamlParser : CharArrayReader() {
         return map
     }
 
-    private fun isLineEnd() = linebreak(input[index]) || input[index] == '#' || input[index] == '{' || input[index] == '['
+    private fun isLineEnd() = isOpeningTerminator(input[index])
+    
+    private fun nextCharEmpty() = index + 1 < size && input[index + 1] == ' '
 
-    private fun isListItem() = input[index] == '-' && index + 1 < size && input[index + 1] == ' '
+    private fun isListItem() = input[index] == '-' && nextCharEmpty()
+
+    private fun isTerminator(char: Char) = linebreak(char) || char == '#'
+    
+    private fun isClosingTerminator(char: Char) = linebreak(char) || char == '#' || char == '}' || char == ']' || char == ','
+    
+    private fun isOpeningTerminator(char: Char) = linebreak(char) || char == '#' || char == '{' || char == '['
+
+    private fun isFalse(char: Char) = char == 'f' && index + 4 < size && input[index + 1] == 'a' && input[index + 2] == 'l' && input[index + 3] == 's' && input[index + 4] == 'e'
+
+    private fun isTrue(char: Char) = char == 't' && index + 3 < size && input[index + 1] == 'r' && input[index + 2] == 'u' && input[index + 3] == 'e'
 
     private fun reachedEnd(): Boolean {
         skipSpaces()
         if (index == size) {
             return true
         }
-        if (linebreak(input[index])) {
+        return isTerminator(input[index])
+    }
+    
+    private fun reachedExplicitEnd(): Boolean {
+        skipSpaces()
+        if (index == size) {
             return true
         }
-        return input[index] == '#' || input[index] == '}' || input[index] == ']' || input[index] == ','
+        return isClosingTerminator(input[index])
     }
 
+    private fun isNumber(char: Char) = char == '0' || char == '1' || char == '2' || char == '3' || char == '4' || char == '5' || char == '6' || char == '7' || char == '8' || char == '9'
     fun parseType(): Any {
         if (index >= size) {
             return ""
         } else if (input[index] == '"') {
-            index++ // skip opening quote
-            val start = index
-            while (index < size) {
-                if (input[index] == '"') {
-                    break
-                }
-                index++
-            }
-            val quoted = substring(start, index)
-            index++ // skip closing quote
+            val quoted = parseQuote()
             if (index < size && input[index] == ' ') {
                 skipSpaces()
             }
@@ -189,17 +198,17 @@ class FinalYamlParser : CharArrayReader() {
         }
         val start = index
         var char = input[index]
-        if (char == 't' && index + 3 < size && input[index + 1] == 'r' && input[index + 2] == 'u' && input[index + 3] == 'e') {
+        if (isTrue(char)) {
             index += 4
-            if (reachedEnd() || (input[index] == ':' && index + 1 < size && input[index + 1] == ' ')) {
+            if (reachedEnd() || (input[index] == ':' && nextCharEmpty())) {
                 return true
             }
-        } else if (char == 'f' && index + 4 < size && input[index + 1] == 'a' && input[index + 2] == 'l' && input[index + 3] == 's' && input[index + 4] == 'e') {
+        } else if (isFalse(char)) {
             index += 5
-            if (reachedEnd() || (input[index] == ':' && index + 1 < size && input[index + 1] == ' ')) {
+            if (reachedEnd() || (input[index] == ':' && nextCharEmpty())) {
                 return false
             }
-        } else if (char == '-' || char == '0' || char == '1' || char == '2' || char == '3' || char == '4' || char == '5' || char == '6' || char == '7' || char == '8' || char == '9') {
+        } else if (char == '-' || isNumber(char)) {
             val number = number(start)
             if (number != null) {
                 return number
@@ -209,12 +218,12 @@ class FinalYamlParser : CharArrayReader() {
         var previous = ' '
         while (index < size) {
             char = input[index]
-            if (linebreak(char) || char == '#' || char == '}' || char == ']' || char == ',') {
+            if (isTerminator(char)) {
                 break
             } else if (char == ' ' && previous != ' ') {
                 end = index
-            } else if (char == ':' && (index + 1 == size || (index + 1 < size && (input[index + 1] == ' ' || linebreak(input[index + 1]) || input[index + 1] == '#' || input[index + 1] == '{' || input[index + 1] == '[')))) {
-                return substring(start, if (previous != ' ') index else end) // Return the key
+            } else if (char == ':' && (index + 1 == size || (index + 1 < size && (input[index + 1] == ' ' || isTerminator(input[index + 1]))))) {
+                return substring(start, if (previous != ' ' || end == -1) index else end) // Return the key
             }
             previous = char
             index++
@@ -222,12 +231,70 @@ class FinalYamlParser : CharArrayReader() {
         return substring(start, if (previous != ' ' || end == -1) index else end) // Return the value
     }
 
+    private fun parseQuote(): String {
+        index++ // skip opening quote
+        val start = index
+        while (index < size) {
+            if (input[index] == '"') {
+                break
+            }
+            index++
+        }
+        val quoted = substring(start, index)
+        index++ // skip closing quote
+        return quoted
+    }
+
+    fun parseExplicitType(): Any {
+        if (index >= size) {
+            return ""
+        } else if (input[index] == '"') {
+            val quoted = parseQuote()
+            if (index < size && input[index] == ' ') {
+                skipSpaces()
+            }
+            return quoted
+        }
+        val start = index
+        var char = input[index]
+        if (isTrue(char)) {
+            index += 4
+            if (reachedExplicitEnd() || (input[index] == ':' && nextCharEmpty())) {
+                return true
+            }
+        } else if (isFalse(char)) {
+            index += 5
+            if (reachedExplicitEnd() || (input[index] == ':' && nextCharEmpty())) {
+                return false
+            }
+        } else if (char == '-' || isNumber(char)) {
+            val number = explicitNumber(start)
+            if (number != null) {
+                return number
+            }
+        }
+        var end = -1
+        var previous = ' '
+        while (index < size) {
+            char = input[index]
+            if (isClosingTerminator(char)) {
+                break
+            } else if (char == ' ' && previous != ' ') {
+                end = index
+            } else if (char == ':' && (index + 1 == size || (index + 1 < size && (input[index + 1] == ' ' || isOpeningTerminator(input[index + 1]))))) {
+                return substring(start, if (previous != ' ' || end == -1) index else end) // Return the key
+            }
+            previous = char
+            index++
+        }
+        return substring(start, if (previous != ' ' || end == -1) index else end) // Return the value
+    }
     private fun number(start: Int): Any? {
         index++ // skip first
         var decimal = false
         while (index < size) {
             when (input[index]) {
-                '\n', '\r', '#', ',', '}', ']' -> return number(decimal, start, index)
+                '\n', '\r', '#' -> return number(decimal, start, index)
                 ' ' -> {
                     val end = index
                     return if (reachedEnd()) number(decimal, start, end) else null
@@ -235,7 +302,32 @@ class FinalYamlParser : CharArrayReader() {
                 '.' -> if (!decimal) decimal = true else return null
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> {
                 }
-                ':' -> return if (index + 1 < size && input[index + 1] == ' ') {
+                ':' -> return if (nextCharEmpty()) {
+                    number(decimal, start, index)
+                } else {
+                    null
+                }
+                else -> return null
+            }
+            index++
+        }
+        return number(decimal, start, index) // End of file
+    }
+
+    private fun explicitNumber(start: Int): Any? {
+        index++ // skip first
+        var decimal = false
+        while (index < size) {
+            when (input[index]) {
+                '\n', '\r', '#', ',', '}', ']' -> return number(decimal, start, index)
+                ' ' -> {
+                    val end = index
+                    return if (reachedExplicitEnd()) number(decimal, start, end) else null
+                }
+                '.' -> if (!decimal) decimal = true else return null
+                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> {
+                }
+                ':' -> return if (nextCharEmpty()) {
                     number(decimal, start, index)
                 } else {
                     null
@@ -280,8 +372,7 @@ class FinalYamlParser : CharArrayReader() {
             if (index >= size) {
                 return map
             }
-
-            val key = parseType().toString()
+            val key = parseExplicitType().toString()
             if (index < size && input[index] != ':') {
                 throw IllegalArgumentException("Expected key-pair value line=$lineCount char=$char '$line'")
             }
