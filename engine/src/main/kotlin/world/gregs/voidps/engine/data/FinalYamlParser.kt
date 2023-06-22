@@ -310,6 +310,7 @@ class FinalYamlParser : CharArrayReader() {
             nextLine()
             val value = parseExplicitVal(limit)
             map[key] = mapModifier(key, value)
+            nextLine()
             if (input[index] == ',') {
                 index++
             } else if (input[index] == '}') {
@@ -330,6 +331,7 @@ class FinalYamlParser : CharArrayReader() {
             }
             val value = parseExplicitVal(limit)
             list.add(listModifier(value))
+            nextLine()
             if (input[index] == ',') {
                 index++
             } else if (input[index] == ']') {

@@ -445,7 +445,8 @@ class YamlParserTest {
         """
             - [one,
                [
-               two,
+               two
+               ,
                three  , 
                ["four", "five", "six"]],
             seven]
