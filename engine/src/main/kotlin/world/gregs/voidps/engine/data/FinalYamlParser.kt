@@ -17,7 +17,7 @@ class FinalYamlParser : CharArrayReader() {
         return when (input[index]) {
             '[' -> parseExplicitList(limit)
             '{' -> parseExplicitMap(limit)
-            '&' -> parseAnchorString(0, limit)
+            '&' -> skipAnchorString(limit)
             else -> if (isListItem(size)) {
                 list(limit, withinMap)
             } else {
@@ -35,7 +35,7 @@ class FinalYamlParser : CharArrayReader() {
         return when (input[index]) {
             '[' -> parseExplicitList(limit)
             '{' -> parseExplicitMap(limit)
-            '&' -> parseAnchorString(0, limit)
+            '&' -> skipAnchorString(limit)
             else -> if (isListItem(size)) {
                 throw IllegalArgumentException("List items not allowed within explicit collections. $lineCount $char '$line'")
             } else {
@@ -365,23 +365,19 @@ class FinalYamlParser : CharArrayReader() {
         return substring(start, end)
     }
 
-    fun parseAnchorString(currentIndent: Int, limit: Int = size): Any {
-        val start = index
-        skipExceptLineBreaks(limit)
-        var end = index
-        skipLineBreaks(limit)
-        var count = 0
-        while (count++ < MAP_MAXIMUM && index < limit) {
-            val indent = peekIndent(limit)
-            if (indent != currentIndent) {
-                return substring(start, end)
-            } else {
-                skipExceptLineBreaks(limit)
-                end = index
-                skipLineBreaks(limit)
+    fun skipAnchorString(limit: Int = size): Any {
+        while (index < limit) {
+            val char = input[index]
+            if (char == ' ') {
+                break
             }
+            if (linebreak(char)) {
+                break
+            }
+            index++
         }
-        return substring(start, end)
+        nextLine()
+        return parseVal(0, limit)
     }
 
     fun parseList(currentIndent: Int, limit: Int = size, nestedMap: Boolean = false): List<Any> {
@@ -504,7 +500,7 @@ class FinalYamlParser : CharArrayReader() {
             }
             '&' -> {
                 this.index = index
-                parseAnchorString(currentIndent, limit)
+                skipAnchorString(limit)
             }
             else -> if (input[index] == '-' && index + 1 < limit && input[index + 1] == ' ') {
                 parseList(currentIndent, limit, nestedMap)

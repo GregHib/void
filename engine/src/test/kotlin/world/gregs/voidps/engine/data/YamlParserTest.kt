@@ -316,6 +316,31 @@ class YamlParserTest {
     }
 
     @Test
+    fun `Ignore anchors`() {
+        val output = parser.parse("""
+                south-tower:
+                  - &south-tower-door [ 3226, 3214 ]
+                  - &south-tower-ground-floor [ 3227, 3214 ]
+                  - &south-tower-1st-floor [ 3229, 3214, 1 ]
+                  - &south-tower-2nd-floor [ 3229, 3214, 2 ]
+                  - &south-tower-1st-floor-ladder
+                    type: "object"
+                    object: 36769
+                    tile: [ 3229, 3213, 1 ]
+        """.trimIndent())
+        val expected = mapOf(
+            "south-tower" to listOf(
+                listOf(3226, 3214),
+                listOf(3227, 3214),
+                listOf(3229, 3214, 1),
+                listOf(3229, 3214, 2),
+                mapOf("type" to "object", "object" to 36769, "tile" to listOf(3229, 3213, 1)),
+            )
+        )
+        assertEquals(expected, output)
+    }
+
+    @Test
     fun `Parse quoted map`() {
         val output = parser.parse("""
             "person: "  : " value: #"
