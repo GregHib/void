@@ -23,9 +23,9 @@ class YamlParser : CharArrayReader() {
             } else {
                 val value = parseType()
                 if (index < size && input[index] == ':') {
-                    map(indentOffset, value.toString())
+                    map(value.toString(), indentOffset)
                 } else {
-                    value
+                    return value
                 }
             }
         }
@@ -99,13 +99,7 @@ class YamlParser : CharArrayReader() {
         return map
     }
 
-    private fun map(indentOffset: Int): Any {
-        val value = parseType()
-        val key = if (index >= size || input[index] != ':') {
-            return value
-        } else {
-            value.toString()
-        }
+    private fun map(key: String, indentOffset: Int): Any {
         val map = Object2ObjectOpenHashMap<String, Any>(EXPECTED_MAP_SIZE)
         index++ // skip colon
         skipSpaces()
@@ -131,12 +125,12 @@ class YamlParser : CharArrayReader() {
             val value = parseVal(withinMap = true)
             map[key] = mapModifier(key, value)
         }
+        nextLine()
         while (index < size) {
-            nextLine()
             if (!openEnded && indentation > currentIndent) {
                 throw IllegalArgumentException("Not allowed indented values after a key-value pair. Line $lineCount '$line'")
             }
-            if (indentation < currentIndent || index >= size) {
+            if (indentation < currentIndent) {
                 return map
             }
             if (isListItem()) {
@@ -176,6 +170,7 @@ class YamlParser : CharArrayReader() {
             } else {
                 println("Unknown '$key'")
             }
+            nextLine()
         }
         return map
     }
@@ -401,7 +396,7 @@ class YamlParser : CharArrayReader() {
             }
             val key = parseExplicitType().toString()
             if (index < size && input[index] != ':') {
-                throw IllegalArgumentException("Expected key-pair value line=$lineCount char=$char '$line'")
+                throw IllegalArgumentException("Expected key-pair value line=$lineCount char=$charInLine '$line'")
             }
             index++ // skip colon
             nextLine()
