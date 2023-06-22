@@ -10,10 +10,10 @@ class YamlParser : CharArrayReader() {
     fun parse(charArray: CharArray, length: Int = charArray.size): Any {
         set(charArray, length)
         nextLine()
-        return parseVal(0)
+        return parseVal()
     }
 
-    fun parseVal(indentOffset: Int, withinMap: Boolean = false): Any {
+    fun parseVal(indentOffset: Int = 0, withinMap: Boolean = false): Any {
         return when (input[index]) {
             '[' -> parseExplicitList()
             '{' -> parseExplicitMap()
@@ -93,11 +93,11 @@ class YamlParser : CharArrayReader() {
             } else if (indentation == currentIndent && !isListItem()) {
                 map[key] = ""
             } else {
-                val value = parseVal(0, true)
+                val value = parseVal(withinMap = true)
                 map[key] = mapModifier(key, value)
             }
         } else {
-            val value = parseVal(0, true)
+            val value = parseVal(withinMap = true)
             map[key] = mapModifier(key, value)
         }
         return map
@@ -122,11 +122,11 @@ class YamlParser : CharArrayReader() {
                 openEnded = true
                 map[key] = ""
             } else {
-                val value = parseVal(0, true)
+                val value = parseVal(withinMap = true)
                 map[key] = mapModifier(key, value)
             }
         } else {
-            val value = parseVal(0, true)
+            val value = parseVal(withinMap = true)
             map[key] = mapModifier(key, value)
         }
         while (index < size) {
@@ -161,12 +161,12 @@ class YamlParser : CharArrayReader() {
                         map[key] = ""
                     } else {
                         openEnded = true
-                        val type = parseVal(0, true)
+                        val type = parseVal(withinMap = true)
                         map[key] = mapModifier(key, type)
                     }
                 } else {
                     openEnded = false
-                    map[key] = mapModifier(key, parseVal(0, true))
+                    map[key] = mapModifier(key, parseVal(withinMap = true))
                 }
             } else if (isLineEnd()) {
                 openEnded = true
@@ -179,15 +179,15 @@ class YamlParser : CharArrayReader() {
     }
 
     private fun isLineEnd() = isOpeningTerminator(input[index])
-    
+
     private fun nextCharEmpty() = index + 1 < size && input[index + 1] == ' '
 
     private fun isListItem() = input[index] == '-' && nextCharEmpty()
 
     private fun isTerminator(char: Char) = linebreak(char) || char == '#'
-    
+
     private fun isClosingTerminator(char: Char) = linebreak(char) || char == '#' || char == '}' || char == ']' || char == ','
-    
+
     private fun isOpeningTerminator(char: Char) = linebreak(char) || char == '#' || char == '{' || char == '['
 
     private fun isFalse(char: Char) = char == 'f' && index + 4 < size && input[index + 1] == 'a' && input[index + 2] == 'l' && input[index + 3] == 's' && input[index + 4] == 'e'
@@ -201,7 +201,7 @@ class YamlParser : CharArrayReader() {
         }
         return isTerminator(input[index])
     }
-    
+
     private fun reachedExplicitEnd(): Boolean {
         skipSpaces()
         if (index == size) {
@@ -386,7 +386,7 @@ class YamlParser : CharArrayReader() {
             index++
         }
         nextLine()
-        return parseVal(0)
+        return parseVal()
     }
 
     fun parseExplicitMap(): Map<String, Any> {
