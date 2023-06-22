@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.data
 
 object Yaml {
 
-    private val parser = FinalYamlParser()
+    private val parser = YamlParser()
 
     fun setMap(map: (key: String, value: Any) -> Any) {
         parser.mapModifier = map

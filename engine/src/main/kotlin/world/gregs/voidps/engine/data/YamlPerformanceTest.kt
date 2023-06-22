@@ -5,7 +5,7 @@ import java.io.File
 object YamlPerformanceTest {
     @JvmStatic
     fun main(args: Array<String>) {
-        val parser = FinalYamlParser()
+        val parser = YamlParser()
         val files = File("./data/definitions/").listFiles()
             .union(File("./data/map/").listFiles().toList())
             .union(File("./data/spawns/").listFiles().toList())

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.api.assertThrows
 
 class YamlParserTest {
-    private val parser = FinalYamlParser()
+    private val parser = YamlParser()
 
 
     @Test
@@ -672,7 +672,7 @@ class YamlParserTest {
         return input.toList().chunked(3) { Triple(it[0] as String, it[1] as String, it[2]) }
     }
 
-    private fun FinalYamlParser.parse(text: String) = parse(text.toCharArray())
+    private fun YamlParser.parse(text: String) = parse(text.toCharArray())
 
     private fun mapOf(vararg pairs: Pair<String, Any>): Map<String, Any> {
         return Object2ObjectOpenHashMap<String, Any>().apply {

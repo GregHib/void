@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.data
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 
-class FinalYamlParser : CharArrayReader() {
+class YamlParser : CharArrayReader() {
     var mapModifier: (key: String, value: Any) -> Any = { _, value -> value }
     var listModifier: (value: Any) -> Any = { it }
 
