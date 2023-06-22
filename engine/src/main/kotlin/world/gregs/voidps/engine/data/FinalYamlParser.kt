@@ -268,63 +268,6 @@ class FinalYamlParser : CharArrayReader() {
         throw IllegalArgumentException("Expected closing quote at index $index")
     }
 
-    private fun isFalse(limit: Int): Boolean {
-        index += 5
-        return isEnd(limit)
-    }
-
-    private fun isTrue(limit: Int): Boolean {
-        index += 4
-        return isEnd(limit)
-    }
-
-    private fun isEnd(limit: Int): Boolean {
-        skipSpaces(limit)
-        if (index == limit) {
-            return true
-        }
-        if (linebreak(input[index])) {
-            skipLineBreaks(limit)
-            return true
-        }
-        if (input[index] == '#') {
-            skipComment(limit)
-            skipLineBreaks(limit)
-            return true
-        }
-        return false
-    }
-
-    private fun isNumber(start: Int, limit: Int): Any? {
-        index++ // skip first
-        var decimal = false
-        while (index < limit) {
-            when (input[index]) {
-                '\n', '\r' -> {
-                    val number = number(decimal, start, index)
-                    skipLineBreaks(limit)
-                    return number
-                }
-                '#' -> {
-                    val number = number(decimal, start, index)
-                    skipComment(limit)
-                    skipLineBreaks(limit)
-                    return number
-                }
-                ' ' -> {
-                    val end = index
-                    return if (isEnd(limit)) number(decimal, start, end) else null
-                }
-                '.' -> if (!decimal) decimal = true else return null
-                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> {
-                }
-                else -> return null
-            }
-            index++
-        }
-        return number(decimal, start, index) // End of file
-    }
-
     private fun number(decimal: Boolean, start: Int, end: Int): Any {
         val string = substring(start, end)
         return if (decimal) {
@@ -333,36 +276,6 @@ class FinalYamlParser : CharArrayReader() {
             val long = string.toLong()
             if (long <= Int.MAX_VALUE) long.toInt() else long
         }
-    }
-
-    fun parseScalar(limit: Int = size): Any {
-        if (index == limit) {
-            return ""
-        }
-        val start = index
-        val char = input[index]
-        if (linebreak(char)) {
-            index++
-            return ""
-        }
-        if (char == 't' && index + 3 < limit && input[index + 1] == 'r' && input[index + 2] == 'u' && input[index + 3] == 'e') {
-            if (isTrue(limit)) {
-                return true
-            }
-        } else if (char == 'f' && index + 4 < limit && input[index + 1] == 'a' && input[index + 2] == 'l' && input[index + 3] == 's' && input[index + 4] == 'e') {
-            if (isFalse(limit)) {
-                return false
-            }
-        } else if (char == '-' || char == '0' || char == '1' || char == '2' || char == '3' || char == '4' || char == '5' || char == '6' || char == '7' || char == '8' || char == '9') {
-            val number = isNumber(start, limit)
-            if (number != null) {
-                return number
-            }
-        }
-        val end = skipValueIndex(limit)
-        skipIfComment(limit)
-        skipLineBreaks(limit)
-        return substring(start, end)
     }
 
     fun skipAnchorString(limit: Int = size): Any {
@@ -378,86 +291,6 @@ class FinalYamlParser : CharArrayReader() {
         }
         nextLine()
         return parseVal(0, limit)
-    }
-
-    /**
-     * Checks if there's a valid key-value pair on the current line
-     * Simplified version of [skipKeyIndex]
-     */
-    fun peekHasKeyValuePair(limit: Int = size): Boolean {
-        var temp = index
-        // Skip whitespaces
-        while (temp < limit && input[temp] == ' ') {
-            temp++
-        }
-        // Find the first colon followed by a space or end line, unless reached a terminator symbol
-        while (temp < limit) {
-            when (input[temp]) {
-                '\r', '\n' -> return false
-                ':' -> {
-                    if (temp + 1 == limit) {
-                        return true
-                    }
-                    if (temp + 1 > limit) {
-                        return false
-                    }
-                    if (input[temp + 1].isWhitespace() || input[temp + 1] == '#') {
-                        return true
-                    }
-                }
-            }
-            temp++
-        }
-        return true
-    }
-
-    private fun peekQuote(temp: Int, limit: Int): Int? {
-        var index = temp + 1 // skip opening quote
-        while (index < limit) {
-            val char = input[index]
-            if (char == '"') {
-                return index + 1
-            }
-            if (linebreak(char)) {
-                return null
-            }
-            index++
-        }
-        return null
-    }
-
-    /**
-     * Finds the end index of the next valid key or null
-     * Unlike [peekHasKeyValuePair] this method ignores line comments and quotes
-     * Assumes no spaces prefixed after [start]
-     */
-    fun skipKeyIndex(limit: Int = size): Int? {
-        var end = -1
-        if (index == limit) {
-            return null
-        }
-        when (input[index]) {
-            '-', '[', '{', '\r', '\n', '#' -> return null
-            '"' -> index = peekQuote(index, limit) ?: return null
-        }
-        // Find the first colon followed by a space or end line, unless reached a terminator symbol
-        var previous = if (index <= 1) ' ' else input[index - 1]
-        while (index < limit) {
-            when (input[index]) {
-                ',', '\r', '\n', '#' -> return null
-                ' ' -> if (previous != ' ') end = index // Mark end of key
-                ':' -> if (index + 1 == limit || input[index + 1] == ' ' || linebreak(input[index + 1]) || input[index + 1] == '#') {
-                    if (previous == ' ' && end != -1) {
-                        return end
-                    }
-                    return index
-                }
-                '\\' -> index++
-            }
-            previous = input[index]
-            index++
-        }
-        return null
     }
 
     fun parseExplicitMap(limit: Int = size): Map<String, Any> {
