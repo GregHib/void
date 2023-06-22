@@ -212,49 +212,8 @@ class YamlParserTest {
         "Map windows line breaks",
         "one:\r\ntwo:",
         mapOf("one" to "", "two" to ""),
-
-        "Map key list aligned",
-        """
-            key:
-              one:
-              - value
-              - value
-              two:
-              - value
-        """.trimIndent(),
-        mapOf("key" to mapOf("one" to listOf("value", "value"), "two" to listOf("value"))),
-
-        "Map nested keys aligned",
-        """
-            - one: value
-              two:
-                three:
-                  - value
-                four:
-        """.trimIndent(),
-        listOf(mapOf("one" to "value",
-            "two" to mapOf(
-                "three" to listOf("value"),
-                "four" to ""
-            ))),
-
-        "Use types in map keys",
-        """
-            values:
-              false: 0
-              true: 7
-              4: 2
-        """.trimIndent(),
-        mapOf("values" to mapOf("false" to 0, "true" to 7, "4" to 2)),
     )
 
-    /*
-
-            - type: melee
-              weapon:
-                - id: iron_scimitar
-                - id: bronze_scimitar
-     */
     private fun situations(vararg values: Any) = values.toList().chunked(3) { Triple(it[0] as String , it[1] as String , it[2]) }
 
     @TestFactory
@@ -499,6 +458,39 @@ class YamlParserTest {
         """.trimIndent(),
         listOf(mapOf("type" to "cooking", "levels" to "5-15", "inventory" to listOf(mapOf("id" to "raw_herring", "amount" to 28)))),
 
+        "Map key list aligned",
+        """
+            key:
+              one:
+              - value
+              - value
+              two:
+              - value
+        """.trimIndent(),
+        mapOf("key" to mapOf("one" to listOf("value", "value"), "two" to listOf("value"))),
+
+        "Map nested keys aligned",
+        """
+            - one: value
+              two:
+                three:
+                  - value
+                four:
+        """.trimIndent(),
+        listOf(mapOf("one" to "value",
+            "two" to mapOf(
+                "three" to listOf("value"),
+                "four" to ""
+            ))),
+
+        "Use types in map keys",
+        """
+            values:
+              false: 0
+              true: 7
+              4: 2
+        """.trimIndent(),
+        mapOf("values" to mapOf("false" to 0, "true" to 7, "4" to 2)),
         "Scenario 1",
         """
             - type: cooking
@@ -507,6 +499,7 @@ class YamlParserTest {
                 - id: [ raw_anchovies, raw_shrimps, raw_beef, raw_rat_meat, raw_chicken, raw_crayfish ]
                   amount: 28
         """.trimIndent(),
+
         listOf(mapOf(
             "type" to "cooking",
             "levels" to "1-15",
@@ -632,20 +625,6 @@ class YamlParserTest {
         """.trimIndent(),
         listOf(mapOf(
             "type" to "range",
-            "equipment" to mapOf(
-                "weapon" to listOf(mapOf("id" to "shortbow")),
-                "ammo" to ""
-            ),
-        )),
-
-        "Scenario 6",
-        """
-            - equipment:
-                weapon:
-                  - id: shortbow
-                ammo:
-        """.trimIndent(),
-        listOf(mapOf(
             "equipment" to mapOf(
                 "weapon" to listOf(mapOf("id" to "shortbow")),
                 "ammo" to ""
