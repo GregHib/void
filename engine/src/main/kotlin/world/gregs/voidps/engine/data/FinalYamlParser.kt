@@ -31,6 +31,24 @@ class FinalYamlParser : CharArrayReader() {
         }
     }
 
+    fun parseExplicitVal(limit: Int): Any {
+        return when (input[index]) {
+            '[' -> parseExplicitList(limit)
+            '{' -> parseExplicitMap(limit)
+            '&' -> parseAnchorString(0, limit)
+            else -> if (isListItem(size)) {
+                throw IllegalArgumentException("List items not allowed within explicit collections. $lineCount $char '$line'")
+            } else {
+                val value = parseType(limit)
+                if (index < limit && input[index] == ':') {
+                    map(0, value.toString(), limit) // TODO
+                } else {
+                    value
+                }
+            }
+        }
+    }
+
     private fun list(limit: Int, withinMap: Boolean = false): List<Any> {
         val list = ObjectArrayList<Any>(EXPECTED_LIST_SIZE)
         index += 2
@@ -137,7 +155,7 @@ class FinalYamlParser : CharArrayReader() {
         return map
     }
 
-    private fun isLineEnd() = linebreak(input[index]) || input[index] == '#'
+    private fun isLineEnd() = linebreak(input[index]) || input[index] == '#' || input[index] == '{' || input[index] == '['
 
     private fun isListItem(limit: Int) = input[index] == '-' && index + 1 < limit && input[index + 1] == ' '
 
@@ -149,7 +167,7 @@ class FinalYamlParser : CharArrayReader() {
         if (linebreak(input[index])) {
             return true
         }
-        return input[index] == '#'
+        return input[index] == '#' || input[index] == '}' || input[index] == ']' || input[index] == ','
     }
 
     fun parseType(limit: Int = size): Any {
@@ -193,17 +211,17 @@ class FinalYamlParser : CharArrayReader() {
         var previous = ' '
         while (index < limit) {
             char = input[index]
-            if (linebreak(char) || char == '#') {
+            if (linebreak(char) || char == '#' || char == '}' || char == ']' || char == ',') {
                 break
             } else if (char == ' ' && previous != ' ') {
                 end = index
-            } else if (char == ':' && (index + 1 == limit || (index + 1 < limit && (input[index + 1] == ' ' || linebreak(input[index + 1]) || input[index + 1] == '#')))) {
+            } else if (char == ':' && (index + 1 == limit || (index + 1 < limit && (input[index + 1] == ' ' || linebreak(input[index + 1]) || input[index + 1] == '#' || input[index + 1] == '{' || input[index + 1] == '[')))) {
                 return substring(start, if (previous != ' ') index else end) // Return the key
             }
             previous = char
             index++
         }
-        return substring(start, if (previous != ' ') index else end) // Return the value
+        return substring(start, if (previous != ' ' || end == -1) index else end) // Return the value
     }
 
     private fun number(start: Int, limit: Int): Any? {
@@ -211,7 +229,7 @@ class FinalYamlParser : CharArrayReader() {
         var decimal = false
         while (index < limit) {
             when (input[index]) {
-                '\n', '\r', '#' -> return number(decimal, start, index)
+                '\n', '\r', '#', ',', '}', ']' -> return number(decimal, start, index)
                 ' ' -> {
                     val end = index
                     return if (reachedEnd(limit)) number(decimal, start, end) else null
@@ -677,9 +695,36 @@ class FinalYamlParser : CharArrayReader() {
 
     private fun indentIndex(indent: Int) = index + (indent * 2)
 
+    // TODO add support to parseVal to stop at comma's
+    // TODO same impl for explicit list
+    // TODO remove old impl usages
+    // TODO remove peek usages
     fun parseExplicitMap(limit: Int = size): Map<String, Any> {
         val map = Object2ObjectOpenHashMap<String, Any>(EXPECTED_EXPLICIT_MAP_SIZE)
-        return parseExplicit(map, limit, '{', '}', ::addMapEntry)
+        index++ // skip opening char
+        while (index < limit) {
+            nextLine()
+            if (index >= limit) {
+                return map
+            }
+
+            val key = parseType(limit).toString()
+            if (index < limit && input[index] != ':') {
+                throw IllegalArgumentException("Expected key-pair value line=$lineCount char=$char '$line'")
+            }
+            index++ // skip colon
+            nextLine()
+            val value = parseExplicitVal(limit)
+            map[key] = mapModifier(key, value)
+            nextLine()
+            if (input[index] == ',') {
+                index++
+            } else if (input[index] == '}') {
+                index++ // skip closing char
+                return map
+            }
+        }
+        return map
     }
 
     private fun addMapEntry(map: MutableMap<String, Any>, limit: Int, nextComma: Int) {
