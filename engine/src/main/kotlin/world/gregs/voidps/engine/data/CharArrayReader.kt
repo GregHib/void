@@ -72,7 +72,7 @@ open class CharArrayReader {
     fun skipWhitespaceCommentColon(limit: Int) {
         while (index < limit) {
             if (input[index] == '#') {
-                skipComment(limit)
+                skipComment()
             } else if (input[index] != ' ' && input[index] != ':' && !linebreak(input[index])) {
                 break
             }
@@ -83,7 +83,7 @@ open class CharArrayReader {
     fun skipWhitespaceComments(limit: Int) {
         while (index < limit) {
             if (input[index] == '#') {
-                skipComment(limit)
+                skipComment()
             } else if (input[index] != ' ' && !linebreak(input[index])) {
                 break
             }
@@ -106,8 +106,8 @@ open class CharArrayReader {
         }
     }
 
-    fun skipComment(limit: Int = size) {
-        while (index < limit) {
+    fun skipComment() {
+        while (index < size) {
             val char = input[index]
             if (linebreak(char)) {
                 break
@@ -119,8 +119,8 @@ open class CharArrayReader {
     /**
      * Skip space or line breaks
      */
-    fun skipWhitespace(limit: Int = size) {
-        while (index < limit && (input[index] == ' ' || linebreak(input[index]))) {
+    fun skipWhitespace() {
+        while (index < size && (input[index] == ' ' || linebreak(input[index]))) {
             if (linebreak(input[index])) {
                 lastLine = index + 1
             }
@@ -128,14 +128,14 @@ open class CharArrayReader {
         }
     }
 
-    fun skipSpaces(limit: Int = size) {
-        while (index < limit && input[index] == ' ') {
+    fun skipSpaces() {
+        while (index < size && input[index] == ' ') {
             index++
         }
     }
 
-    fun skipLineBreaks(limit: Int = size) {
-        while (index < limit) {
+    fun skipLineBreaks() {
+        while (index < size) {
             val char = input[index]
             if (!linebreak(char)) {
                 return
