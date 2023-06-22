@@ -68,109 +68,10 @@ open class CharArrayReader {
         return String(input, start, end - start)
     }
 
-
-    fun skipWhitespaceCommentColon(limit: Int) {
-        while (index < limit) {
-            if (input[index] == '#') {
-                skipComment()
-            } else if (input[index] != ' ' && input[index] != ':' && !linebreak(input[index])) {
-                break
-            }
-            index++
-        }
-    }
-
-    fun skipWhitespaceComments(limit: Int) {
-        while (index < limit) {
-            if (input[index] == '#') {
-                skipComment()
-            } else if (input[index] != ' ' && !linebreak(input[index])) {
-                break
-            }
-            index++
-        }
-    }
-
-    fun skipIfComment(limit: Int = size, breaks: Boolean = true) {
-        if (index < limit && input[index] == '#') {
-            while (index < limit) {
-                val char = input[index]
-                if (linebreak(char)) {
-                    break
-                }
-                index++
-            }
-            if (breaks) {
-                skipLineBreaks()
-            }
-        }
-    }
-
-    fun skipComment() {
-        while (index < size) {
-            val char = input[index]
-            if (linebreak(char)) {
-                break
-            }
-            index++
-        }
-    }
-
-    /**
-     * Skip space or line breaks
-     */
-    fun skipWhitespace() {
-        while (index < size && (input[index] == ' ' || linebreak(input[index]))) {
-            if (linebreak(input[index])) {
-                lastLine = index + 1
-            }
-            index++
-        }
-    }
-
     fun skipSpaces() {
         while (index < size && input[index] == ' ') {
             index++
         }
-    }
-
-    fun skipLineBreaks() {
-        while (index < size) {
-            val char = input[index]
-            if (!linebreak(char)) {
-                return
-            }
-            index++
-        }
-    }
-
-    fun skipExceptLineBreaks(limit: Int) {
-        while (index < limit) {
-            val char = input[index]
-            if (linebreak(char)) {
-                return
-            }
-            index++
-        }
-    }
-
-    fun skipValueIndex(limit: Int): Int {
-        var end = -1
-        var previous = ' '
-        while (index < limit) {
-            val char = input[index]
-            if (linebreak(char) || char == '#') {
-                break
-            } else if (char == ' ' && previous != ' ') {
-                end = index
-            }
-            previous = char
-            index++
-        }
-        if (previous != ' ') {
-            return index
-        }
-        return end
     }
 
     fun linebreak(char: Char) = char == '\r' || char == '\n'
