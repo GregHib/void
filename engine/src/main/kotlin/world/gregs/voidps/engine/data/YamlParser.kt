@@ -47,31 +47,27 @@ class YamlParser : CharArrayReader() {
         }
     }
 
-    private fun list(withinMap: Boolean = false): List<Any> {
+    private fun list(withinMap: Boolean = false): Any {
         val list = ObjectArrayList<Any>(EXPECTED_LIST_SIZE)
-        index += 2
-        skipSpaces()
         val currentIndent = indentation
-        val parsed = listModifier(parseVal(1))
-        list.add(parsed)
         while (index < size) {
-            nextLine()
             // Finished if found dented
-            if (indentation < currentIndent || index >= size) {
+            if (indentation < currentIndent) {
                 return list
             }
             if (indentation > currentIndent) {
-                throw IllegalArgumentException("Expected aligned list item at line=$lineCount char=$char '$line'")
+                throw IllegalArgumentException("Expected aligned list item at line=$lineCount char=$charInLine '$line'")
             }
             if (input[index] != '-' || input[index + 1] != ' ') {
                 if (withinMap) {
                     return list
                 }
-                throw IllegalArgumentException("Expected list item at line=$lineCount char=$char '$line'")
+                throw IllegalArgumentException("Expected list item at line=$lineCount char=$charInLine '$line'")
             }
             index += 2
             skipSpaces()
             list.add(listModifier(parseVal(1)))
+            nextLine()
         }
         return list
     }
@@ -103,7 +99,13 @@ class YamlParser : CharArrayReader() {
         return map
     }
 
-    private fun map(indentOffset: Int, key: String): Map<String, Any> {
+    private fun map(indentOffset: Int): Any {
+        val value = parseType()
+        val key = if (index >= size || input[index] != ':') {
+            return value
+        } else {
+            value.toString()
+        }
         val map = Object2ObjectOpenHashMap<String, Any>(EXPECTED_MAP_SIZE)
         index++ // skip colon
         skipSpaces()
