@@ -380,145 +380,6 @@ class FinalYamlParser : CharArrayReader() {
         return parseVal(0, limit)
     }
 
-    fun parseList(currentIndent: Int, limit: Int = size, nestedMap: Boolean = false): List<Any> {
-        val list = ObjectArrayList<Any>(EXPECTED_LIST_SIZE)
-        var count = 0
-        while (count++ < LIST_MAXIMUM && index < limit) {
-            val indent = peekIndent(limit)
-            val spaceIndex = indentIndex(indent)
-            val peek = input[spaceIndex]
-            val second = input.getOrNull(spaceIndex + 1)
-            if (peek == '#') {
-                index = spaceIndex
-                skipComment(limit)
-                skipLineBreaks(limit)
-            } else if (indent < currentIndent) {
-                return list
-            } else if (peek != '-' || second != ' ' || indent > currentIndent) {
-                if (indent == currentIndent && nestedMap) {
-                    return list
-                }
-                throw IllegalArgumentException("Expected list item at index index=${indentIndex(indent)} indent=$indent current=$currentIndent")
-            } else {
-                index = spaceIndex + 1 // skip '-'
-                skipSpaces(limit)
-                val parsed = parseValue(currentIndent + 1, limit)
-                list.add(listModifier(parsed))
-                skipLineBreaks()
-            }
-        }
-        return list
-    }
-
-    fun parseMap(currentIndent: Int, limit: Int = size): Map<String, Any> {
-        val map = Object2ObjectOpenHashMap<String, Any>(EXPECTED_MAP_SIZE)
-        var count = 0
-        while (count++ < MAP_MAXIMUM && index < limit) {
-            var indent = peekIndent(limit)
-            var spaceIndex = indentIndex(indent)
-            var peek = input[spaceIndex]
-            if (peek == '#') {
-                index = spaceIndex
-                skipComment(limit)
-                skipLineBreaks(limit)
-                continue
-            }
-            if (map.isNotEmpty() && indent < currentIndent) {
-                return map
-            }
-            index = spaceIndex
-            val key = if (index < size && input[index] == '"') {
-                parseQuotedString()
-            } else {
-                val start = index
-                val end = skipKeyIndex(limit)
-                    ?: throw IllegalArgumentException("Expected ':' at index $index")
-                substring(start, end)// this doesn't need to check multi-lines
-            }
-            skipSpaces(limit)
-            index++ // skip ':'
-            skipSpaces(limit)
-            skipIfComment(limit, false)
-            if (index < limit && linebreak(input[index])) { // end of line
-                index++ // skip line break
-                if (index < limit && input[index] == '\n') {
-                    index++ // skip windows line breaks
-                }
-                // if next line is a key-value pair
-                if (!peekHasKeyValuePair(limit)) {
-                    // support both flat and indented lists after open-ended map pairs
-                    val indentation = if (peekIndent(limit) > currentIndent) currentIndent + 1 else currentIndent
-                    map[key] = mapModifier(key, parseValue(indentation, limit, true))
-                    continue
-                }
-            } else if (index != limit) {
-                map[key] = mapModifier(key, parseValue(currentIndent, limit))
-                continue
-            }
-            indent = peekIndent(limit)
-            spaceIndex = indentIndex(indent)
-            peek = input[spaceIndex]
-            if (peek == '#') {
-                index = spaceIndex
-                skipComment(limit)
-                skipLineBreaks(limit)
-            }
-            // If key-value pair on same level then this value is null
-            spaceIndex = indentIndex(peekIndent(limit))
-            peek = input[spaceIndex]
-            if (indent == currentIndent) {
-                map[key] = ""
-            } else if (peek == '#') {
-                index = spaceIndex
-                skipComment(limit)
-                skipLineBreaks(limit)
-            } else if (indent >= currentIndent) {
-                map[key] = mapModifier(key, parseValue(currentIndent + 1, limit))
-            }
-            // end of file
-        }
-        return map
-    }
-
-    fun parseValue(currentIndent: Int, limit: Int = size, nestedMap: Boolean = false): Any {
-        val indent = peekIndent(limit)
-        val index = indentIndex(indent)
-        return when (input[index]) {
-            '#' -> {
-                this.index = index
-                skipComment(limit)
-                skipLineBreaks(limit)
-                parseValue(currentIndent, limit)
-            }
-            '[' -> {
-                this.index = index
-                parseExplicitList(limit)
-            }
-            '{' -> {
-                this.index = index
-                parseExplicitMap(limit)
-            }
-            '&' -> {
-                this.index = index
-                skipAnchorString(limit)
-            }
-            else -> if (input[index] == '-' && index + 1 < limit && input[index + 1] == ' ') {
-                parseList(currentIndent, limit, nestedMap)
-            } else if (isKeyValuePair(limit)) {
-                parseMap(currentIndent, limit)
-            } else if (input[index] == '"') {
-                this.index = index
-                val string = parseQuotedString(limit)
-                skipSpaces(limit)
-                skipLineBreaks(limit)
-                string
-            } else {
-                this.index = index
-                parseScalar(limit)
-            }
-        }
-    }
-
     /**
      * Checks if there's a valid key-value pair on the current line
      * Simplified version of [skipKeyIndex]
@@ -565,26 +426,6 @@ class FinalYamlParser : CharArrayReader() {
         return null
     }
 
-    fun isKeyValuePair(limit: Int = size): Boolean {
-        var temp = index
-        when (input[temp]) {
-            '-', '[', '{', '\r', '\n', '#' -> return false
-            '"' -> temp = peekQuote(temp, limit) ?: return false
-        }
-        // Find the first colon followed by a space or end line, unless reached a terminator symbol
-        while (temp < limit) {
-            when (input[temp]) {
-                ',', '\r', '\n', '#' -> return false
-                ':' -> if (temp + 1 == limit || input[temp + 1] == ' ' || linebreak(input[temp + 1]) || input[temp + 1] == '#') {
-                    return true
-                }
-                '\\' -> temp++
-            }
-            temp++
-        }
-        return false
-    }
-
     /**
      * Finds the end index of the next valid key or null
      * Unlike [peekHasKeyValuePair] this method ignores line comments and quotes
@@ -619,18 +460,6 @@ class FinalYamlParser : CharArrayReader() {
         return null
     }
 
-    private fun peekIndent(limit: Int): Int {
-        var temp = index
-        while (temp < limit && input[temp] == ' ') {
-            temp++
-        }
-        return (temp - index) / 2
-    }
-
-    private fun indentIndex(indent: Int) = index + (indent * 2)
-
-    // TODO remove old impl usages
-    // TODO remove peek usages
     fun parseExplicitMap(limit: Int = size): Map<String, Any> {
         val map = Object2ObjectOpenHashMap<String, Any>(EXPECTED_EXPLICIT_MAP_SIZE)
         index++ // skip opening char
@@ -648,7 +477,6 @@ class FinalYamlParser : CharArrayReader() {
             nextLine()
             val value = parseExplicitVal(limit)
             map[key] = mapModifier(key, value)
-            nextLine()
             if (input[index] == ',') {
                 index++
             } else if (input[index] == '}') {
@@ -669,7 +497,6 @@ class FinalYamlParser : CharArrayReader() {
             }
             val value = parseExplicitVal(limit)
             list.add(listModifier(value))
-            nextLine()
             if (input[index] == ',') {
                 index++
             } else if (input[index] == ']') {
@@ -685,7 +512,5 @@ class FinalYamlParser : CharArrayReader() {
         private const val EXPECTED_EXPLICIT_LIST_SIZE = 2
         private const val EXPECTED_MAP_SIZE = 8
         private const val EXPECTED_EXPLICIT_MAP_SIZE = 5
-        private const val LIST_MAXIMUM = 1_000_000
-        private const val MAP_MAXIMUM = 1_000_000
     }
 }

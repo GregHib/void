@@ -4,7 +4,6 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import kotlin.test.assertNull
@@ -223,7 +222,7 @@ class FinalYamlParserTest {
         val output = parser.parseScalar()
         assertEquals("", output)
     }
-
+/*
     @Test
     fun `Parse list item value`() {
         parser.set("- item")
@@ -261,7 +260,7 @@ class FinalYamlParserTest {
         """.trimIndent())
         val output = parser.parseValue(0)
         assertEquals(listOf("item"), output)
-    }
+    }*/
 
     @Test
     fun `Parse explicit single line list`() {
@@ -365,7 +364,7 @@ class FinalYamlParserTest {
         assertEquals(expected, output)
     }*/
 
-    @Test
+    /*@Test
     fun `Parse map`() {
         parser.set("""
             key  : value
@@ -548,7 +547,7 @@ class FinalYamlParserTest {
         val output = parser.parseMap(0)
         val expected = mapOf("list" to mapOf("key: " to "value"))
         assertEquals(expected, output)
-    }
+    }*/
 
     @Test
     fun `Allow lists without indentation`() {
@@ -894,7 +893,7 @@ class FinalYamlParserTest {
         assertEquals(expected, output)
     }
 
-    @Test
+    /*@Test
     fun `Parse map with list`() {
         parser.set("""
             fruits:
@@ -905,7 +904,7 @@ class FinalYamlParserTest {
         val expected = mapOf("fruits" to listOf("apple", "banana"))
         val output = parser.parseMap(0)
         assertEquals(expected, output)
-    }
+    }*/
 
     private data class SpawnData(val id: String, val x: Int, val y: Int, val direction: String = "NONE") {
         constructor(map: Map<String, Any>) : this(map["id"] as String, map["x"] as Int, map["y"] as Int, map["direction"] as? String ?: "NONE")
