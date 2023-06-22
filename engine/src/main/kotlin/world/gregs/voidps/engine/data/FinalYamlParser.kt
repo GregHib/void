@@ -39,7 +39,7 @@ class FinalYamlParser : CharArrayReader() {
             else -> {
                 val value = parseExplicitType()
                 if (index < size && input[index] == ':') {
-                    map(0, value.toString()) // TODO explicit?
+                    mapExplicit(value.toString())
                 } else {
                     value
                 }
@@ -51,7 +51,7 @@ class FinalYamlParser : CharArrayReader() {
         val list = ObjectArrayList<Any>(EXPECTED_LIST_SIZE)
         index += 2
         skipSpaces()
-        val currentIndent = indentation// + indentOffset
+        val currentIndent = indentation
         val parsed = listModifier(parseVal(1))
         list.add(parsed)
         while (index < size) {
@@ -60,11 +60,9 @@ class FinalYamlParser : CharArrayReader() {
             if (indentation < currentIndent || index >= size) {
                 return list
             }
-
             if (indentation > currentIndent) {
                 throw IllegalArgumentException("Expected aligned list item at line=$lineCount char=$char '$line'")
             }
-
             if (input[index] != '-' || input[index + 1] != ' ') {
                 if (withinMap) {
                     return list
@@ -76,6 +74,33 @@ class FinalYamlParser : CharArrayReader() {
             list.add(listModifier(parseVal(1)))
         }
         return list
+    }
+
+    private fun mapExplicit(key: String): Map<String, Any> {
+        val map = Object2ObjectOpenHashMap<String, Any>(EXPECTED_MAP_SIZE)
+        index++ // skip colon
+        skipSpaces()
+        if (index >= size) {
+            map[key] = ""
+            return map
+        }
+        val currentIndent = indentation
+        if (isLineEnd()) {
+            nextLine()
+            if (indentation < currentIndent) {
+                map[key] = ""
+                return map
+            } else if (indentation == currentIndent && !isListItem()) {
+                map[key] = ""
+            } else {
+                val value = parseVal(0, true)
+                map[key] = mapModifier(key, value)
+            }
+        } else {
+            val value = parseVal(0, true)
+            map[key] = mapModifier(key, value)
+        }
+        return map
     }
 
     private fun map(indentOffset: Int, key: String): Map<String, Any> {
@@ -186,6 +211,7 @@ class FinalYamlParser : CharArrayReader() {
     }
 
     private fun isNumber(char: Char) = char == '0' || char == '1' || char == '2' || char == '3' || char == '4' || char == '5' || char == '6' || char == '7' || char == '8' || char == '9'
+
     fun parseType(): Any {
         if (index >= size) {
             return ""
@@ -240,9 +266,7 @@ class FinalYamlParser : CharArrayReader() {
             }
             index++
         }
-        val quoted = substring(start, index)
-        index++ // skip closing quote
-        return quoted
+        return substring(start, index++) // skip closing quote
     }
 
     fun parseExplicitType(): Any {
@@ -289,6 +313,7 @@ class FinalYamlParser : CharArrayReader() {
         }
         return substring(start, if (previous != ' ' || end == -1) index else end) // Return the value
     }
+
     private fun number(start: Int): Any? {
         index++ // skip first
         var decimal = false
