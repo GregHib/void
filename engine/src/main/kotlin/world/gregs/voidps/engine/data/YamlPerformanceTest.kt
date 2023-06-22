@@ -24,36 +24,31 @@ object YamlPerformanceTest {
         val start = System.currentTimeMillis()
         repeat(iterations) {
             files.forEach {
-//            println(it.name)
-                /*if (it.name == "gear-sets.yml" || it.name == "stairs.yml" || it.name.endsWith("spawns.yml")) {
+                /*println(it.name)
+                if (it.name == "gear-sets.yml" || it.name == "stairs.yml" || it.name.endsWith("spawns.yml")) {
                     val one = loader.load<List<Any>>(it.path)
                     val fr = it.reader()
                     val length = fr.read(chars)
-                    val two = parser.parse(chars, length)
-                    if(one != two) {
-                        println(it.name)
-                        println("one $one")
-                        println("two $two")
+                    val two = parser.parse(chars, length) as List<Any>
+                    if (one != two) {
+                        for ((index, value) in one.withIndex()) {
+                            if (value != two[index]) {
+                                println(value)
+                                println(two[index])
+                                System.exit(0)
+                            }
+                        }
                     }
                 } else {
                     val one = loader.load<Map<String, Any>>(it.path)
                     val fr = it.reader()
                     val length = fr.read(chars)
                     val two = parser.parse(chars, length) as Map<String, Any>
-                    if(one != two) {
-                        println(it.name)
+                    if (one != two) {
                         for ((key, value) in one) {
-                            if(value != two[key]) {
-                                println(key)
-    //                            println("one $value")
-    //                            println("two ${two[key]}")
-                                fun p(m: Map<String, Any>) {
-                                    println(m)
-    //                                println(m["format"]!!::class.java.simpleName)
-    //                                println(m["persist"]!!::class.java.simpleName)
-                                }
-                                p(value as Map<String, Any>)
-                                p(two[key] as Map<String, Any>)
+                            if (value != two[key]) {
+                                println(value as Map<String, Any>)
+                                println(two[key] as Map<String, Any>)
                                 System.exit(0)
                             }
                         }
