@@ -7,7 +7,7 @@ class LineParser(
     reader: CharReader,
     var collection: CollectionFactory,
     private val explicit: ExplicitParser
-) : ValueParser(reader) {
+) : Parser(reader) {
 
     override fun explicitList() = explicit.explicitList()
 

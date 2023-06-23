@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.data.yaml.factory.CollectionFactory
 class ExplicitParser(
     reader: CharReader,
     var collection: CollectionFactory
-) : ValueParser(reader) {
+) : Parser(reader) {
 
     override fun isClosingTerminator(char: Char) = super.isClosingTerminator(char) || char == '}' || char == ']' || char == ','
 

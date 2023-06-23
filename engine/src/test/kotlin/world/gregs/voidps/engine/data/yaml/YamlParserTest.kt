@@ -4,7 +4,7 @@ import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import world.gregs.voidps.engine.data.yaml.factory.CollectionFactory
-import world.gregs.voidps.engine.data.yaml.parse.ValueParser
+import world.gregs.voidps.engine.data.yaml.parse.Parser
 
 class YamlParserTest {
     private lateinit var parser: YamlParser
@@ -360,13 +360,9 @@ class YamlParserTest {
     fun `Parse list with modifier`() {
         parser = YamlParser(
             object : CollectionFactory() {
-                override fun addListItem(value: ValueParser, list: MutableList<Any>, indentOffset: Int, withinMap: Boolean) {
-                    val element = value.value(indentOffset, withinMap)
-                    if (element is Map<*, *> && element.containsKey("id")) {
-                        list.add(SpawnData(element as Map<String, Any>))
-                    } else {
-                        list.add(element)
-                    }
+                override fun addListItem(parser: Parser, list: MutableList<Any>, indentOffset: Int, withinMap: Boolean) {
+                    val element = parser.value(indentOffset, withinMap)
+                    list.add(SpawnData(element as Map<String, Any>))
                 }
             }
         )

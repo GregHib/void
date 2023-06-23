@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.data.yaml.factory
 
-import world.gregs.voidps.engine.data.yaml.parse.ValueParser
+import world.gregs.voidps.engine.data.yaml.parse.Parser
 
 open class CollectionFactory {
 
@@ -12,11 +12,11 @@ open class CollectionFactory {
         map[key] = ""
     }
 
-    open fun addListItem(value: ValueParser, list: MutableList<Any>, indentOffset: Int, withinMap: Boolean) {
-        list.add(value.value(indentOffset, withinMap))
+    open fun addListItem(parser: Parser, list: MutableList<Any>, indentOffset: Int, withinMap: Boolean) {
+        list.add(parser.value(indentOffset, withinMap))
     }
 
-    open fun setMapValue(value: ValueParser, map: MutableMap<String, Any>, key: String, indentOffset: Int, withinMap: Boolean) {
-        map[key] = value.value(indentOffset, withinMap)
+    open fun setMapValue(parser: Parser, map: MutableMap<String, Any>, key: String, indentOffset: Int, withinMap: Boolean) {
+        map[key] = parser.value(indentOffset, withinMap)
     }
 }

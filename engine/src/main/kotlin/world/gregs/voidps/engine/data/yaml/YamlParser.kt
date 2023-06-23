@@ -8,12 +8,12 @@ class YamlParser(
     var collection: CollectionFactory = CollectionFactory(),
     val reader: CharReader = CharReader(),
     private val explicit: ExplicitParser = ExplicitParser(reader, collection),
-    private val lineParser: LineParser = LineParser(reader, collection, explicit)
+    private val line: LineParser = LineParser(reader, collection, explicit)
 ) {
     fun parse(charArray: CharArray, length: Int = charArray.size): Any {
         explicit.collection = collection
         reader.set(charArray, length)
         reader.nextLine()
-        return lineParser.value(0, false)
+        return line.value(0, false)
     }
 }
