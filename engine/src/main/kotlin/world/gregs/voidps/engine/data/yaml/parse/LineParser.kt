@@ -1,10 +1,11 @@
-package world.gregs.voidps.engine.data.yaml
+package world.gregs.voidps.engine.data.yaml.parse
 
-import world.gregs.voidps.engine.data.CharArrayReader
+import world.gregs.voidps.engine.data.yaml.CharReader
+import world.gregs.voidps.engine.data.yaml.factory.CollectionFactory
 
 class LineParser(
-    reader: CharArrayReader,
-    private val collection: CollectionFactory,
+    reader: CharReader,
+    var collection: CollectionFactory,
     private val explicit: ExplicitParser
 ) : ValueParser(reader) {
 
@@ -61,12 +62,12 @@ class LineParser(
             reader.skip() // skip :
             reader.skipSpaces()
             if (reader.outBounds) {
-                collection.setEmptyMapValue(map, key)
+                collection.setEmpty(map, key)
                 return true
             } else if (explicit.isOpeningTerminator(reader.char)) {
                 reader.nextLine()
                 if (reader.indentation < currentIndent || reader.indentation == currentIndent && reader.char != '-') {
-                    collection.setEmptyMapValue(map, key)
+                    collection.setEmpty(map, key)
                 } else {
                     openEnded = true
                     collection.setMapValue(this, map, key, indentOffset = 0, withinMap = true)
@@ -99,7 +100,7 @@ class LineParser(
             }
             val key = type().toString()
             if (reader.outBounds) {
-                collection.setEmptyMapValue(map, key)
+                collection.setEmpty(map, key)
                 return map
             } else if (reader.char == ':') {
                 if (addValue(key)) {
@@ -107,7 +108,7 @@ class LineParser(
                 }
             } else if (explicit.isOpeningTerminator(reader.char)) {
                 openEnded = true
-                collection.setEmptyMapValue(map, key)
+                collection.setEmpty(map, key)
             } else {
                 throw IllegalArgumentException("Found unknown map value for key '$key' at ${reader.exception}")
             }

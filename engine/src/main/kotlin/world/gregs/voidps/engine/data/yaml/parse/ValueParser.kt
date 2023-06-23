@@ -1,8 +1,8 @@
-package world.gregs.voidps.engine.data.yaml
+package world.gregs.voidps.engine.data.yaml.parse
 
-import world.gregs.voidps.engine.data.CharArrayReader
+import world.gregs.voidps.engine.data.yaml.CharReader
 
-abstract class ValueParser(val reader: CharArrayReader) {
+abstract class ValueParser(val reader: CharReader) {
 
     abstract fun explicitList(): Any
 

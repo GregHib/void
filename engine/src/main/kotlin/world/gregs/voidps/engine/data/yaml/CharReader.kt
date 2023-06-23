@@ -1,6 +1,6 @@
-package world.gregs.voidps.engine.data
+package world.gregs.voidps.engine.data.yaml
 
-class CharArrayReader {
+class CharReader {
     private var input = CharArray(0)
     var size = 0
     var index = 0

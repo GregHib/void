@@ -1,4 +1,6 @@
-package world.gregs.voidps.engine.data.yaml
+package world.gregs.voidps.engine.data.yaml.factory
+
+import world.gregs.voidps.engine.data.yaml.parse.ValueParser
 
 open class CollectionFactory {
 
@@ -6,7 +8,7 @@ open class CollectionFactory {
 
     open fun createMap(): MutableMap<String, Any> = mutableMapOf()
 
-    open fun setEmptyMapValue(map: MutableMap<String, Any>, key: String) {
+    open fun setEmpty(map: MutableMap<String, Any>, key: String) {
         map[key] = ""
     }
 

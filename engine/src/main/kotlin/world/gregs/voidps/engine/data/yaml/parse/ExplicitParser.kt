@@ -1,10 +1,11 @@
-package world.gregs.voidps.engine.data.yaml
+package world.gregs.voidps.engine.data.yaml.parse
 
-import world.gregs.voidps.engine.data.CharArrayReader
+import world.gregs.voidps.engine.data.yaml.CharReader
+import world.gregs.voidps.engine.data.yaml.factory.CollectionFactory
 
 class ExplicitParser(
-    reader: CharArrayReader,
-    private val collection: CollectionFactory
+    reader: CharReader,
+    var collection: CollectionFactory
 ) : ValueParser(reader) {
 
     override fun isClosingTerminator(char: Char) = super.isClosingTerminator(char) || char == '}' || char == ']' || char == ','
@@ -25,17 +26,17 @@ class ExplicitParser(
         reader.skip() // skip colon
         reader.skipSpaces()
         if (reader.outBounds) {
-            collection.setEmptyMapValue(map, key)
+            collection.setEmpty(map, key)
             return map
         }
         val currentIndent = reader.indentation
         if (isOpeningTerminator(reader.char)) {
             reader.nextLine()
             if (reader.indentation < currentIndent) {
-                collection.setEmptyMapValue(map, key)
+                collection.setEmpty(map, key)
                 return map
             } else if (reader.indentation == currentIndent && reader.char != '-') {
-                collection.setEmptyMapValue(map, key)
+                collection.setEmpty(map, key)
             } else {
                 collection.setMapValue(this, map, key, indentOffset = 0, withinMap = true)
             }

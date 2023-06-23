@@ -1,10 +1,10 @@
-package world.gregs.voidps.engine.data
+package world.gregs.voidps.engine.data.yaml
 
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DynamicTest.dynamicTest
-import world.gregs.voidps.engine.data.yaml.CollectionFactory
-import world.gregs.voidps.engine.data.yaml.ValueParser
+import world.gregs.voidps.engine.data.yaml.factory.CollectionFactory
+import world.gregs.voidps.engine.data.yaml.parse.ValueParser
 
 class YamlParserTest {
     private lateinit var parser: YamlParser

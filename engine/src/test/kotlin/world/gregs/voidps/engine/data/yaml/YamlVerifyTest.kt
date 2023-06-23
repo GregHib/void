@@ -1,5 +1,6 @@
-package world.gregs.voidps.engine.data
+package world.gregs.voidps.engine.data.yaml
 
+import world.gregs.voidps.engine.data.FileStorage
 import java.io.File
 
 object YamlVerifyTest {

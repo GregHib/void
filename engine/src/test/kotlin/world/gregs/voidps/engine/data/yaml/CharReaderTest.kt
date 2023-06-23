@@ -1,11 +1,11 @@
-package world.gregs.voidps.engine.data
+package world.gregs.voidps.engine.data.yaml
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class CharArrayReaderTest {
+class CharReaderTest {
 
-    private val reader = CharArrayReader()
+    private val reader = CharReader()
 
     @Test
     fun `Read initial line`() {
@@ -126,5 +126,5 @@ class CharArrayReaderTest {
         return string.length
     }
 
-    private fun CharArrayReader.set(text: String) = set(text.toCharArray(), text.length)
+    private fun CharReader.set(text: String) = set(text.toCharArray(), text.length)
 }
