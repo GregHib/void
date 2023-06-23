@@ -1,29 +1,29 @@
 package world.gregs.voidps.engine.data
 
-open class CharArrayReader {
-    var input = CharArray(0)
-    var size = 0
-    var index = 0
-    var indentation = 0
-    var lineCount = 0
+abstract class CharArrayReader : CharReader {
+    override var input = CharArray(0)
+    override var size = 0
+    override var index = 0
+    override var indentation = 0
+    override var lineCount = 0
     private var lastLine = 0
 
-    val char: Char
+    override val char: Char
         get() = input[index]
 
-    val next: Char
+    override val next: Char
         get() = input[index + 1]
 
-    val outBounds: Boolean
+    override val outBounds: Boolean
         get() = index >= size
 
-    val inBounds: Boolean
+    override val inBounds: Boolean
         get() = index < size
 
-    val charInLine: Int
+    override val charInLine: Int
         get() = index - lastLine
 
-    val line: String
+    override val line: String
         get() {
             var end = lastLine
             while (end < size) {
@@ -35,12 +35,12 @@ open class CharArrayReader {
             }
             return substring(lastLine, end).replace("\n", "\\n").trim()
         }
-    fun debug(length: Int) = substring(index, (index + length).coerceAtMost(size)).replace("\n", "\\n")
+    override fun debug(length: Int) = substring(index, (index + length).coerceAtMost(size)).replace("\n", "\\n")
 
-    val debug: String
+    override val debug: String
         get() = debug(20)
 
-    fun nextLine() {
+    override fun nextLine() {
         while (index < size) {
             when (input[index]) {
                 ' ' -> {}
@@ -64,7 +64,7 @@ open class CharArrayReader {
         }
     }
 
-    fun set(charArray: CharArray, size: Int = charArray.size) {
+    override fun set(charArray: CharArray, size: Int) {
         this.input = charArray
         this.size = size
         index = 0
@@ -73,18 +73,18 @@ open class CharArrayReader {
         lineCount = 1
     }
 
-    fun substring(start: Int, end: Int): String {
+    override fun substring(start: Int, end: Int): String {
         if (end == -1) {
             throw IndexOutOfBoundsException("")
         }
         return String(input, start, end - start)
     }
 
-    fun skipSpaces() {
+    override fun skipSpaces() {
         while (index < size && input[index] == ' ') {
             index++
         }
     }
 
-    fun linebreak(char: Char) = char == '\r' || char == '\n'
+    override fun linebreak(char: Char) = char == '\r' || char == '\n'
 }
