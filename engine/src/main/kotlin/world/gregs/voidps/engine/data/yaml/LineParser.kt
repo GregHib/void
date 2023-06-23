@@ -2,7 +2,15 @@ package world.gregs.voidps.engine.data.yaml
 
 import world.gregs.voidps.engine.data.CharArrayReader
 
-open class LineParser(reader: CharArrayReader, val collection: CollectionFactory, override val explicit: ExplicitParser) : ValueParser(reader) {
+open class LineParser(
+    reader: CharArrayReader,
+    val collection: CollectionFactory,
+    private val explicit: ExplicitParser
+) : ValueParser(reader) {
+
+    override fun parseExplicitList() = explicit.parseExplicitList()
+
+    override fun parseExplicitMap() = explicit.parseExplicitMap()
 
     override fun parseCollection(indentOffset: Int, withinMap: Boolean): Any {
         return if (reader.isListItem()) {
@@ -15,31 +23,6 @@ open class LineParser(reader: CharArrayReader, val collection: CollectionFactory
                 return value
             }
         }
-    }
-
-    fun list(withinMap: Boolean): Any {
-        val list = collection.createList()
-        val currentIndent = reader.indentation
-        while (reader.inBounds) {
-            // Finished if found dented
-            if (reader.indentation < currentIndent) {
-                return list
-            }
-            if (reader.indentation > currentIndent) {
-                throw IllegalArgumentException("Expected aligned list item at ${reader.exception}")
-            }
-            if (reader.char != '-' || reader.next != ' ') {
-                if (withinMap) {
-                    return list
-                }
-                throw IllegalArgumentException("Expected list item at ${reader.exception}")
-            }
-            reader.skip(2)
-            reader.skipSpaces()
-            collection.addListItem(this, list, 1, false)
-            reader.nextLine()
-        }
-        return list
     }
 
     fun map(firstKey: String, indentOffset: Int): Any {
@@ -113,5 +96,30 @@ open class LineParser(reader: CharArrayReader, val collection: CollectionFactory
             reader.nextLine()
         }
         return map
+    }
+
+    fun list(withinMap: Boolean): Any {
+        val list = collection.createList()
+        val currentIndent = reader.indentation
+        while (reader.inBounds) {
+            // Finished if found dented
+            if (reader.indentation < currentIndent) {
+                return list
+            }
+            if (reader.indentation > currentIndent) {
+                throw IllegalArgumentException("Expected aligned list item at ${reader.exception}")
+            }
+            if (reader.char != '-' || reader.next != ' ') {
+                if (withinMap) {
+                    return list
+                }
+                throw IllegalArgumentException("Expected list item at ${reader.exception}")
+            }
+            reader.skip(2)
+            reader.skipSpaces()
+            collection.addListItem(this, list, 1, false)
+            reader.nextLine()
+        }
+        return list
     }
 }

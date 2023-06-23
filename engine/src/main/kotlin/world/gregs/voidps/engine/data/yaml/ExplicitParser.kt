@@ -2,20 +2,25 @@ package world.gregs.voidps.engine.data.yaml
 
 import world.gregs.voidps.engine.data.CharArrayReader
 
-open class ExplicitParser(reader: CharArrayReader, val collection: CollectionFactory) : ValueParser(reader) {
+open class ExplicitParser(
+    reader: CharArrayReader,
+    val collection: CollectionFactory
+) : ValueParser(reader) {
 
-    override val explicit: ExplicitParser = this
+    override fun isClosingTerminator(char: Char) = super.isClosingTerminator(char) || char == '}' || char == ']' || char == ','
+
+    override fun isOpeningTerminator(char: Char) = super.isOpeningTerminator(char) || char == '{' || char == '['
 
     override fun parseCollection(indentOffset: Int, withinMap: Boolean): Any {
         val value = parseType()
         return if (reader.inBounds && reader.char == ':') {
-            mapExplicit(value.toString())
+            keyValuePair(value.toString())
         } else {
             value
         }
     }
 
-    private fun mapExplicit(key: String): Map<String, Any> {
+    private fun keyValuePair(key: String): Map<String, Any> {
         val map = collection.createMap()
         reader.skip() // skip colon
         reader.skipSpaces()
@@ -40,7 +45,7 @@ open class ExplicitParser(reader: CharArrayReader, val collection: CollectionFac
         return map
     }
 
-    fun parseExplicitMap(): Map<String, Any> {
+    override fun parseExplicitMap(): Map<String, Any> {
         val map = collection.createMap()
         reader.skip() // skip opening char
         reader.nextLine()
@@ -64,7 +69,7 @@ open class ExplicitParser(reader: CharArrayReader, val collection: CollectionFac
         return map
     }
 
-    fun parseExplicitList(): List<Any> {
+    override fun parseExplicitList(): List<Any> {
         val list = collection.createList()
         reader.skip() // skip opening char
         reader.nextLine()
@@ -81,8 +86,5 @@ open class ExplicitParser(reader: CharArrayReader, val collection: CollectionFac
         }
         return list
     }
-
-    override fun isClosingTerminator(char: Char) = super.isClosingTerminator(char) || char == '}' || char == ']' || char == ','
-    override fun isOpeningTerminator(char: Char) = super.isOpeningTerminator(char) || char == '{' || char == '['
 
 }

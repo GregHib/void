@@ -4,12 +4,14 @@ import world.gregs.voidps.engine.data.CharArrayReader
 
 abstract class ValueParser(val reader: CharArrayReader) {
 
-    abstract val explicit: ExplicitParser
+    abstract fun parseExplicitList(): Any
+
+    abstract fun parseExplicitMap(): Any
 
     fun parseValue(indentOffset: Int, withinMap: Boolean): Any {
         return when (reader.char) {
-            '[' -> explicit.parseExplicitList()
-            '{' -> explicit.parseExplicitMap()
+            '[' -> parseExplicitList()
+            '{' -> parseExplicitMap()
             '&' -> {
                 reader.skipAnchorString()
                 reader.nextLine()
@@ -74,8 +76,10 @@ abstract class ValueParser(val reader: CharArrayReader) {
         reader.skip() // skip first
         var decimal = false
         while (reader.inBounds) {
+            if (isClosingTerminator(reader.char)) {
+                return reader.number(decimal, start, reader.index)
+            }
             when (reader.char) {
-                '\n', '\r', '#', ',', '}', ']' -> return reader.number(decimal, start, reader.index)
                 ' ' -> {
                     val end = reader.index
                     return if (reachedEnd()) reader.number(decimal, start, end) else null
