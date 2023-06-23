@@ -7,7 +7,7 @@ open class ExplicitParser(reader: CharArrayReader, val collection: CollectionFac
     override val explicit: ExplicitParser = this
 
     override fun parseCollection(indentOffset: Int, withinMap: Boolean): Any {
-        val value = parseExplicitType()
+        val value = parseType()
         return if (reader.inBounds && reader.char == ':') {
             mapExplicit(value.toString())
         } else {
@@ -40,58 +40,12 @@ open class ExplicitParser(reader: CharArrayReader, val collection: CollectionFac
         return map
     }
 
-
-    fun parseExplicitType(): Any {
-        if (reader.outBounds) {
-            return ""
-        } else if (reader.char == '"') {
-            val quoted = reader.parseQuote()
-            if (reader.inBounds && reader.char == ' ') {
-                reader.skipSpaces()
-            }
-            return quoted
-        }
-        val start = reader.index
-        var char = reader.char
-        if (reader.isTrue(char)) {
-            reader.skip(4)
-            if (reachedEnd() || (reader.char == ':' && reader.nextCharEmpty())) {
-                return true
-            }
-        } else if (reader.isFalse(char)) {
-            reader.skip(5)
-            if (reachedEnd() || (reader.char == ':' && reader.nextCharEmpty())) {
-                return false
-            }
-        } else if (char == '-' || reader.isNumber(char)) {
-            val number = number(start)
-            if (number != null) {
-                return number
-            }
-        }
-        var end = -1
-        var previous = ' '
-        while (reader.inBounds) {
-            char = reader.char
-            if (isClosingTerminator(char)) {
-                break
-            } else if (char == ' ' && previous != ' ') {
-                end = reader.index
-            } else if (char == ':' && (reader.index + 1 == reader.size || (reader.index + 1 < reader.size && (reader.next == ' ' || reader.isOpeningTerminator(reader.next))))) {
-                return reader.substring(start, if (previous != ' ' || end == -1) reader.index else end) // Return the key
-            }
-            previous = char
-            reader.skip()
-        }
-        return reader.substring(start, if (previous != ' ' || end == -1) reader.index else end) // Return the value
-    }
-
     fun parseExplicitMap(): Map<String, Any> {
         val map = collection.createMap()
         reader.skip() // skip opening char
         reader.nextLine()
         while (reader.inBounds) {
-            val key = parseExplicitType().toString()
+            val key = parseType().toString()
             if (reader.inBounds && reader.char != ':') {
                 throw IllegalArgumentException("Expected key-pair value ${reader.exception}")
             }
@@ -129,5 +83,6 @@ open class ExplicitParser(reader: CharArrayReader, val collection: CollectionFac
     }
 
     override fun isClosingTerminator(char: Char) = super.isClosingTerminator(char) || char == '}' || char == ']' || char == ','
+    override fun isOpeningTerminator(char: Char) = super.isOpeningTerminator(char) || char == '{' || char == '['
 
 }

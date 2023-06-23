@@ -114,49 +114,4 @@ open class LineParser(reader: CharArrayReader, val collection: CollectionFactory
         }
         return map
     }
-
-    fun parseType(): Any {
-        if (reader.outBounds) {
-            return ""
-        } else if (reader.char == '"') {
-            val quoted = reader.parseQuote()
-            if (reader.inBounds && reader.char == ' ') {
-                reader.skipSpaces()
-            }
-            return quoted
-        }
-        val start = reader.index
-        var char = reader.char
-        if (reader.isTrue(char)) {
-            reader.skip(4)
-            if (reachedEnd() || (reader.char == ':' && reader.nextCharEmpty())) {
-                return true
-            }
-        } else if (reader.isFalse(char)) {
-            reader.skip(5)
-            if (reachedEnd() || (reader.char == ':' && reader.nextCharEmpty())) {
-                return false
-            }
-        } else if (char == '-' || reader.isNumber(char)) {
-            val number = number(start)
-            if (number != null) {
-                return number
-            }
-        }
-        var end = -1
-        var previous = ' '
-        while (reader.inBounds) {
-            char = reader.char
-            if (reader.isTerminator(char)) {
-                break
-            } else if (char == ' ' && previous != ' ') {
-                end = reader.index
-            } else if (char == ':' && (reader.index + 1 == reader.size || (reader.index + 1 < reader.size && (reader.next == ' ' || reader.isTerminator(reader.next))))) {
-                return reader.substring(start, if (previous != ' ' || end == -1) reader.index else end) // Return the key
-            }
-            previous = char
-            reader.skip()
-        }
-        return reader.substring(start, if (previous != ' ' || end == -1) reader.index else end) // Return the value
-    }
 }
