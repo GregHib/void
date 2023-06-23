@@ -11,9 +11,7 @@ abstract class ExplicitParser(val delegate: YamlParserI, val reader: CharArrayRe
 
     abstract fun setEmptyMapValue(map: MutableMap<String, Any>, key: String)
 
-
     abstract fun setMapValue(map: MutableMap<String, Any>, key: String)
-
 
     abstract fun setExplicitMapValue(map: MutableMap<String, Any>, key: String)
 

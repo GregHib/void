@@ -1,9 +1,8 @@
 package world.gregs.voidps.engine.data.yaml
 
 import world.gregs.voidps.engine.data.CharArrayReader
-import world.gregs.voidps.engine.data.YamlParserI
 
-abstract class LineParser(val parser: YamlParserI, val reader: CharArrayReader) {
+abstract class LineParser(val reader: CharArrayReader) {
 
     abstract fun createMap(): MutableMap<String, Any>
 

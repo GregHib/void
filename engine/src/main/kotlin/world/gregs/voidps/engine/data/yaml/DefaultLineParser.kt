@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.data.yaml
 import world.gregs.voidps.engine.data.CharArrayReader
 import world.gregs.voidps.engine.data.YamlParserI
 
-open class DefaultLineParser(parser: YamlParserI, reader: CharArrayReader) : LineParser(parser, reader) {
+open class DefaultLineParser(val parser: YamlParserI, reader: CharArrayReader) : LineParser(reader) {
 
     override fun createMap(): MutableMap<String, Any> = mutableMapOf()
 
