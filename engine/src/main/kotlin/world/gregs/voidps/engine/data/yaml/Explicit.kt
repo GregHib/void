@@ -2,10 +2,10 @@ package world.gregs.voidps.engine.data.yaml
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
-import world.gregs.voidps.engine.data.CharReader
 import world.gregs.voidps.engine.data.YamlParser
+import world.gregs.voidps.engine.data.YamlParserI
 
-interface Explicit : CharReader {
+interface Explicit : YamlParserI {
 
     fun parseExplicitVal(): Any {
         return when (input[index]) {
@@ -174,27 +174,7 @@ interface Explicit : CharReader {
         return list
     }
 
-
-
-    private fun isLineEnd() = isOpeningTerminator(input[index])
-
-    private fun nextCharEmpty() = index + 1 < size && input[index + 1] == ' '
-
-    private fun isListItem() = input[index] == '-' && nextCharEmpty()
-
-    private fun isTerminator(char: Char) = linebreak(char) || char == '#'
-
-    private fun isOpeningTerminator(char: Char) = linebreak(char) || char == '#' || char == '{' || char == '['
-
-    private fun isFalse(char: Char) = char == 'f' && index + 4 < size && input[index + 1] == 'a' && input[index + 2] == 'l' && input[index + 3] == 's' && input[index + 4] == 'e'
-
-    private fun isTrue(char: Char) = char == 't' && index + 3 < size && input[index + 1] == 'r' && input[index + 2] == 'u' && input[index + 3] == 'e'
-
-
-
     private fun isClosingTerminator(char: Char) = linebreak(char) || char == '#' || char == '}' || char == ']' || char == ','
-
-    private fun isNumber(char: Char) = char == '0' || char == '1' || char == '2' || char == '3' || char == '4' || char == '5' || char == '6' || char == '7' || char == '8' || char == '9'
 
     private fun reachedExplicitEnd(): Boolean {
         skipSpaces()
@@ -217,26 +197,5 @@ interface Explicit : CharReader {
         }
         nextLine()
         return parseVal()
-    }
-    private fun parseQuote(): String {
-        index++ // skip opening quote
-        val start = index
-        while (index < size) {
-            if (input[index] == '"') {
-                break
-            }
-            index++
-        }
-        return substring(start, index++) // skip closing quote
-    }
-
-    private fun number(decimal: Boolean, start: Int, end: Int): Any {
-        val string = substring(start, end)
-        return if (decimal) {
-            string.toDouble()
-        } else {
-            val long = string.toLong()
-            if (long <= Int.MAX_VALUE) long.toInt() else long
-        }
     }
 }

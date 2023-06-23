@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.data
 
-object Yaml {
-
-    private val parser = YamlParser()
+class Yaml(
+    val parser: YamlParserI = YamlParser()
+) {
 
     fun setMap(map: (key: String, value: Any) -> Any) {
         parser.mapModifier = map

@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.data
 
-abstract class CharArrayReader : CharReader {
+abstract class CharArrayReader : YamlParserI {
     override var input = CharArray(0)
     override var size = 0
     override var index = 0
