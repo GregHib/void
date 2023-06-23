@@ -55,16 +55,16 @@ open class ExplicitParser(reader: CharArrayReader, val collection: CollectionFac
         var char = reader.char
         if (reader.isTrue(char)) {
             reader.skip(4)
-            if (reachedExplicitEnd() || (reader.char == ':' && reader.nextCharEmpty())) {
+            if (reachedEnd() || (reader.char == ':' && reader.nextCharEmpty())) {
                 return true
             }
         } else if (reader.isFalse(char)) {
             reader.skip(5)
-            if (reachedExplicitEnd() || (reader.char == ':' && reader.nextCharEmpty())) {
+            if (reachedEnd() || (reader.char == ':' && reader.nextCharEmpty())) {
                 return false
             }
         } else if (char == '-' || reader.isNumber(char)) {
-            val number = explicitNumber(start)
+            val number = number(start)
             if (number != null) {
                 return number
             }
@@ -85,33 +85,6 @@ open class ExplicitParser(reader: CharArrayReader, val collection: CollectionFac
         }
         return reader.substring(start, if (previous != ' ' || end == -1) reader.index else end) // Return the value
     }
-
-
-    private fun explicitNumber(start: Int): Any? {
-        reader.skip() // skip first
-        var decimal = false
-        while (reader.inBounds) {
-            when (reader.char) {
-                '\n', '\r', '#', ',', '}', ']' -> return reader.number(decimal, start, reader.index)
-                ' ' -> {
-                    val end = reader.index
-                    return if (reachedExplicitEnd()) reader.number(decimal, start, end) else null
-                }
-                '.' -> if (!decimal) decimal = true else return null
-                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> {
-                }
-                ':' -> return if (reader.nextCharEmpty()) {
-                    reader.number(decimal, start, reader.index)
-                } else {
-                    null
-                }
-                else -> return null
-            }
-            reader.skip()
-        }
-        return reader.number(decimal, start, reader.index) // End of file
-    }
-
 
     fun parseExplicitMap(): Map<String, Any> {
         val map = collection.createMap()
@@ -155,13 +128,6 @@ open class ExplicitParser(reader: CharArrayReader, val collection: CollectionFac
         return list
     }
 
-    private fun isClosingTerminator(char: Char) = reader.linebreak(char) || char == '#' || char == '}' || char == ']' || char == ','
+    override fun isClosingTerminator(char: Char) = super.isClosingTerminator(char) || char == '}' || char == ']' || char == ','
 
-    private fun reachedExplicitEnd(): Boolean {
-        reader.skipSpaces()
-        if (reader.end) {
-            return true
-        }
-        return isClosingTerminator(reader.char)
-    }
 }
