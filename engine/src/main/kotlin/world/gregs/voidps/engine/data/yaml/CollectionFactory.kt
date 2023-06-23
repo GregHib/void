@@ -10,14 +10,6 @@ open class CollectionFactory {
         map[key] = ""
     }
 
-    open fun setMapValue(map: MutableMap<String, Any>, key: String, value: Any) {
-        map[key] = value
-    }
-
-    open fun addListItem(list: MutableList<Any>, value: Any) {
-        list.add(value)
-    }
-
     open fun addListItem(value: ValueParser, list: MutableList<Any>, indentOffset: Int, withinMap: Boolean) {
         list.add(value.parseValue(indentOffset, withinMap))
     }

@@ -60,8 +60,10 @@ open class ExplicitParser(
             reader.nextLine()
             val char = reader.char
             reader.skip()// skip comma/closing char
+            reader.nextLine()
             when (char) {
-                ',' -> reader.nextLine()
+                ',' -> {
+                }
                 '}' -> return map
                 else -> throw IllegalArgumentException("Expecting key-value pair or end of map ${reader.exception}")
             }
@@ -78,8 +80,11 @@ open class ExplicitParser(
             reader.nextLine()
             val char = reader.char
             reader.skip() // skip comma / closing char
+            reader.nextLine()
             when (char) {
-                ',' -> reader.nextLine()
+                ',' -> {
+
+                }
                 ']' -> return list
                 else -> throw IllegalArgumentException("Expecting item or end of list ${reader.exception}")
             }

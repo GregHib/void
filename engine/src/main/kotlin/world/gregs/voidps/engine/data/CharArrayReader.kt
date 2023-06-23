@@ -22,10 +22,18 @@ class CharArrayReader {
         get() = index < size
 
     val end: Boolean
-        get() = index == size
+        get() = index >= size
 
     val charInLine: Int
         get() = index - lastLine
+
+    fun peek(offset: Int) = input[this.index + offset]
+
+    fun next(): Char {
+        return input[++index]
+    }
+
+    fun inBounds(offset: Int) = this.index + offset < size
 
     val line: String
         get() {
@@ -51,12 +59,6 @@ class CharArrayReader {
 
     val exception: String
         get() = "line=$lineCount char=$charInLine '$line'"
-
-    fun isFalse(char: Char) = char == 'f' && index + 4 < size && input[index + 1] == 'a' && input[index + 2] == 'l' && input[index + 3] == 's' && input[index + 4] == 'e'
-
-    fun isTrue(char: Char) = char == 't' && index + 3 < size && input[index + 1] == 'r' && input[index + 2] == 'u' && input[index + 3] == 'e'
-
-    fun isNumber(char: Char) = char == '0' || char == '1' || char == '2' || char == '3' || char == '4' || char == '5' || char == '6' || char == '7' || char == '8' || char == '9'
 
     fun isTerminator(char: Char) = linebreak(char) || char == '#'
 

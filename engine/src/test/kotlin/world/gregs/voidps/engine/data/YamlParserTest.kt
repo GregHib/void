@@ -1,11 +1,10 @@
 package world.gregs.voidps.engine.data
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import world.gregs.voidps.engine.data.yaml.CollectionFactory
+import world.gregs.voidps.engine.data.yaml.ValueParser
 
 class YamlParserTest {
     private lateinit var parser: YamlParser
@@ -361,11 +360,12 @@ class YamlParserTest {
     fun `Parse list with modifier`() {
         parser = YamlParser(
             object : CollectionFactory() {
-                override fun addListItem(list: MutableList<Any>, value: Any) {
-                    if (value is Map<*, *> && value.containsKey("id")) {
-                        list.add(SpawnData(value as Map<String, Any>))
+                override fun addListItem(value: ValueParser, list: MutableList<Any>, indentOffset: Int, withinMap: Boolean) {
+                    val element = value.parseValue(indentOffset, withinMap)
+                    if (element is Map<*, *> && element.containsKey("id")) {
+                        list.add(SpawnData(element as Map<String, Any>))
                     } else {
-                        super.addListItem(list, value)
+                        list.add(element)
                     }
                 }
             }
@@ -678,17 +678,5 @@ class YamlParserTest {
         return input.toList().chunked(3) { Triple(it[0] as String, it[1] as String, it[2]) }
     }
 
-    private fun YamlParser.parse(text: String) = parse(text.toCharArray())
-
-    private fun mapOf(vararg pairs: Pair<String, Any>): Map<String, Any> {
-        return Object2ObjectOpenHashMap<String, Any>().apply {
-            putAll(pairs)
-        }
-    }
-
-    private fun listOf(vararg pairs: Any): List<Any> {
-        return ObjectArrayList<Any>().apply {
-            addAll(pairs)
-        }
-    }
+    private fun YamlParser.parse(text: String) = parse(text.toCharArray(), text.length)
 }

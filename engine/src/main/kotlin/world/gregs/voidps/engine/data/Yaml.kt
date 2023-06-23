@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.data
 
-class Yaml(
-    val parser: YamlParserI = YamlParser()
-) {
+class Yaml {
+
+    val parser = YamlParser()
 
     fun parse(
         charArray: CharArray,
