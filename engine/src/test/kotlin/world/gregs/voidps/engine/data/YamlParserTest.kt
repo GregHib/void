@@ -2,16 +2,18 @@ package world.gregs.voidps.engine.data
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.DynamicTest.dynamicTest
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestFactory
-import org.junit.jupiter.api.assertThrows
+import world.gregs.voidps.engine.data.yaml.CollectionFactory
 
 class YamlParserTest {
-    private val parser = YamlParser()
+    private lateinit var parser: YamlParser
 
+    @BeforeEach
+    fun setup() {
+        parser = YamlParser()
+    }
 
     @Test
     fun `Parse list`() {
@@ -357,13 +359,17 @@ class YamlParserTest {
 
     @Test
     fun `Parse list with modifier`() {
-        parser.listModifier = {
-            if (it is Map<*, *> && it.containsKey("id")) {
-                SpawnData(it as Map<String, Any>)
-            } else {
-                it
+        parser = YamlParser(
+            object : CollectionFactory() {
+                override fun addListItem(list: MutableList<Any>, value: Any) {
+                    if (value is Map<*, *> && value.containsKey("id")) {
+                        list.add(SpawnData(value as Map<String, Any>))
+                    } else {
+                        super.addListItem(list, value)
+                    }
+                }
             }
-        }
+        )
         val output = parser.parse("""
             - { id: prison_pete, x: 2084, y: 4460, direction: NORTH }
             - { id: balloon_animal, x: 2078, y: 4462 }

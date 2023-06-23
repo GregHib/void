@@ -1,24 +1,15 @@
 package world.gregs.voidps.engine.data.yaml
 
 import world.gregs.voidps.engine.data.CharArrayReader
-import world.gregs.voidps.engine.data.YamlParserI
 
-open class DefaultLineParser(val parser: YamlParserI, reader: CharArrayReader) : LineParser(reader) {
-
-    override fun createMap(): MutableMap<String, Any> = mutableMapOf()
-
-    override fun createList(): MutableList<Any> = mutableListOf()
+open class DefaultLineParser(reader: CharArrayReader, collection: CollectionFactory, explicit: ExplicitParser) : LineParser(reader, collection, explicit) {
 
     override fun addListItem(list: MutableList<Any>) {
-        list.add(parser.parseValue(1))
+        collection.addListItem(list, parseValue(1, false))
     }
 
     override fun setMapValue(map: MutableMap<String, Any>, key: String) {
-        map[key] = parser.parseValue(withinMap = true)
-    }
-
-    override fun setEmptyMapValue(map: MutableMap<String, Any>, key: String) {
-        map[key] = ""
+        collection.setMapValue(map, key, parseValue(0, true))
     }
 
 }

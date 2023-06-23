@@ -1,15 +1,14 @@
 package world.gregs.voidps.engine.data
 
-import world.gregs.voidps.engine.data.yaml.DefaultExplicitParser
-import world.gregs.voidps.engine.data.yaml.DefaultLineParser
-import world.gregs.voidps.engine.data.yaml.ExplicitParser
-import world.gregs.voidps.engine.data.yaml.LineParser
+import world.gregs.voidps.engine.data.yaml.*
 
-class YamlParser : YamlParserI {
+class YamlParser(
+    var factory: CollectionFactory = CollectionFactory()
+) : YamlParserI {
     val reader = CharArrayReader()
 
-    val explicit: ExplicitParser = DefaultExplicitParser(this, reader)
-    val lineParser: LineParser = DefaultLineParser(this, reader)
+    val explicit: ExplicitParser = DefaultExplicitParser(reader, factory)
+    val lineParser: LineParser = DefaultLineParser(reader, factory, explicit)
 
     override var mapModifier: (key: String, value: Any) -> Any = { _, value -> value }
     override var listModifier: (value: Any) -> Any = { it }

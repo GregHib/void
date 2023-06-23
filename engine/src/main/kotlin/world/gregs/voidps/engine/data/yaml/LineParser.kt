@@ -2,20 +2,27 @@ package world.gregs.voidps.engine.data.yaml
 
 import world.gregs.voidps.engine.data.CharArrayReader
 
-abstract class LineParser(val reader: CharArrayReader) {
-
-    abstract fun createMap(): MutableMap<String, Any>
-
-    abstract fun createList(): MutableList<Any>
+abstract class LineParser(reader: CharArrayReader, val collection: CollectionFactory, override val explicit: ExplicitParser) : ValueParser(reader) {
 
     abstract fun addListItem(list: MutableList<Any>)
 
     abstract fun setMapValue(map: MutableMap<String, Any>, key: String)
 
-    abstract fun setEmptyMapValue(map: MutableMap<String, Any>, key: String)
+    override fun parseCollection(indentOffset: Int, withinMap: Boolean): Any {
+        return if (reader.isListItem()) {
+            list(withinMap)
+        } else {
+            val value = parseType()
+            if (reader.inBounds && reader.char == ':') {
+                map(value.toString(), indentOffset)
+            } else {
+                return value
+            }
+        }
+    }
 
     fun list(withinMap: Boolean): Any {
-        val list = createList()
+        val list = collection.createList()
         val currentIndent = reader.indentation
         while (reader.inBounds) {
             // Finished if found dented
@@ -40,11 +47,11 @@ abstract class LineParser(val reader: CharArrayReader) {
     }
 
     fun map(firstKey: String, indentOffset: Int): Any {
-        val map = createMap()
+        val map = collection.createMap()
         reader.skip() // skip colon
         reader.skipSpaces()
         if (reader.outBounds) {
-            setEmptyMapValue(map, firstKey)
+            collection.setEmptyMapValue(map, firstKey)
             return map
         }
         var openEnded = false
@@ -52,11 +59,11 @@ abstract class LineParser(val reader: CharArrayReader) {
         if (reader.isLineEnd()) {
             reader.nextLine()
             if (reader.indentation < currentIndent) {
-                setEmptyMapValue(map, firstKey)
+                collection.setEmptyMapValue(map, firstKey)
                 return map
             } else if (reader.indentation == currentIndent && !reader.isListItem()) {
                 openEnded = true
-                setEmptyMapValue(map, firstKey)
+                collection.setEmptyMapValue(map, firstKey)
             } else {
                 setMapValue(map, firstKey)
             }
@@ -81,18 +88,18 @@ abstract class LineParser(val reader: CharArrayReader) {
             }
             val key = parseType().toString()
             if (reader.outBounds) {
-                setEmptyMapValue(map, key)
+                collection.setEmptyMapValue(map, key)
                 return map
             } else if (reader.char == ':') {
                 reader.skip() // skip :
                 reader.skipSpaces()
                 if (reader.outBounds) {
-                    setEmptyMapValue(map, key)
+                    collection.setEmptyMapValue(map, key)
                     return map
                 } else if (reader.isLineEnd()) {
                     reader.nextLine()
                     if (reader.indentation < currentIndent || reader.indentation == currentIndent && !reader.isListItem()) {
-                        setEmptyMapValue(map, key)
+                        collection.setEmptyMapValue(map, key)
                     } else {
                         openEnded = true
                         setMapValue(map, key)
@@ -103,7 +110,7 @@ abstract class LineParser(val reader: CharArrayReader) {
                 }
             } else if (reader.isLineEnd()) {
                 openEnded = true
-                setEmptyMapValue(map, key)
+                collection.setEmptyMapValue(map, key)
             } else {
                 throw IllegalArgumentException("Found unknown map value for key '$key' at ${reader.exception}")
             }

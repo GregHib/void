@@ -1,27 +1,14 @@
 package world.gregs.voidps.engine.data.yaml
 
 import world.gregs.voidps.engine.data.CharArrayReader
-import world.gregs.voidps.engine.data.YamlParserI
 
-open class DefaultExplicitParser(parser: YamlParserI, reader: CharArrayReader) : ExplicitParser(parser, reader) {
+open class DefaultExplicitParser(reader: CharArrayReader, collection: CollectionFactory) : ExplicitParser(reader, collection) {
 
-    override fun createList(): MutableList<Any> = mutableListOf()
-
-    override fun createMap(): MutableMap<String, Any> = mutableMapOf()
-
-    override fun setEmptyMapValue(map: MutableMap<String, Any>, key: String) {
-        map[key] = ""
-    }
-
-    override fun setMapValue(map: MutableMap<String, Any>, key: String) {
-        map[key] = delegate.parseValue(withinMap = true)
-    }
-
-    override fun setExplicitMapValue(map: MutableMap<String, Any>, key: String) {
-        map[key] = parseExplicitValue()
+    override fun setMapValue(map: MutableMap<String, Any>, key: String, withinMap: Boolean) {
+        collection.setMapValue(map, key, parseValue(0, withinMap))
     }
 
     override fun addListItem(list: MutableList<Any>) {
-        list.add(parseExplicitValue())
+        collection.addListItem(list, parseValue(0, false))
     }
 }
