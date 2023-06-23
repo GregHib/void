@@ -215,6 +215,7 @@ class Network(
         private const val LOGIN = 16
         private const val RECONNECT = 18
         private const val SESSION = 10
+        private const val SIGN_UP = 28
 
         private const val ACCEPT_SESSION = 0
     }
