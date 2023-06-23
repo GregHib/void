@@ -17,4 +17,12 @@ open class CollectionFactory {
     open fun addListItem(list: MutableList<Any>, value: Any) {
         list.add(value)
     }
+
+    open fun addListItem(value: ValueParser, list: MutableList<Any>, indentOffset: Int, withinMap: Boolean) {
+        list.add(value.parseValue(indentOffset, withinMap))
+    }
+
+    open fun setMapValue(value: ValueParser, map: MutableMap<String, Any>, key: String, indentOffset: Int, withinMap: Boolean) {
+        map[key] = value.parseValue(indentOffset, withinMap)
+    }
 }

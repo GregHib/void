@@ -2,11 +2,7 @@ package world.gregs.voidps.engine.data.yaml
 
 import world.gregs.voidps.engine.data.CharArrayReader
 
-abstract class LineParser(reader: CharArrayReader, val collection: CollectionFactory, override val explicit: ExplicitParser) : ValueParser(reader) {
-
-    abstract fun addListItem(list: MutableList<Any>)
-
-    abstract fun setMapValue(map: MutableMap<String, Any>, key: String)
+open class LineParser(reader: CharArrayReader, val collection: CollectionFactory, override val explicit: ExplicitParser) : ValueParser(reader) {
 
     override fun parseCollection(indentOffset: Int, withinMap: Boolean): Any {
         return if (reader.isListItem()) {
@@ -40,7 +36,7 @@ abstract class LineParser(reader: CharArrayReader, val collection: CollectionFac
             }
             reader.skip(2)
             reader.skipSpaces()
-            addListItem(list)
+            collection.addListItem(this, list, 1, false)
             reader.nextLine()
         }
         return list
@@ -65,10 +61,10 @@ abstract class LineParser(reader: CharArrayReader, val collection: CollectionFac
                 openEnded = true
                 collection.setEmptyMapValue(map, firstKey)
             } else {
-                setMapValue(map, firstKey)
+                collection.setMapValue(this, map, firstKey, 0, true)
             }
         } else {
-            setMapValue(map, firstKey)
+            collection.setMapValue(this, map, firstKey, 0, true)
         }
         reader.nextLine()
         while (reader.inBounds) {
@@ -80,7 +76,7 @@ abstract class LineParser(reader: CharArrayReader, val collection: CollectionFac
             }
             if (reader.isListItem()) {
                 if (openEnded) {
-                    setMapValue(map, firstKey)
+                    collection.setMapValue(this, map, firstKey, 0, true)
                     continue
                 } else {
                     throw IllegalArgumentException("Not allowed list items in a map. Line ${reader.exception}")
@@ -102,11 +98,11 @@ abstract class LineParser(reader: CharArrayReader, val collection: CollectionFac
                         collection.setEmptyMapValue(map, key)
                     } else {
                         openEnded = true
-                        setMapValue(map, key)
+                        collection.setMapValue(this, map, key, 0, true)
                     }
                 } else {
                     openEnded = false
-                    setMapValue(map, key)
+                    collection.setMapValue(this, map, key, 0, true)
                 }
             } else if (reader.isLineEnd()) {
                 openEnded = true

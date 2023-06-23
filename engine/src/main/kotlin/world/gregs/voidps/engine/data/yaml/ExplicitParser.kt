@@ -2,13 +2,9 @@ package world.gregs.voidps.engine.data.yaml
 
 import world.gregs.voidps.engine.data.CharArrayReader
 
-abstract class ExplicitParser(reader: CharArrayReader, val collection: CollectionFactory) : ValueParser(reader) {
+open class ExplicitParser(reader: CharArrayReader, val collection: CollectionFactory) : ValueParser(reader) {
 
     override val explicit: ExplicitParser = this
-
-    abstract fun setMapValue(map: MutableMap<String, Any>, key: String, withinMap: Boolean)
-
-    abstract fun addListItem(list: MutableList<Any>)
 
     override fun parseCollection(indentOffset: Int, withinMap: Boolean): Any {
         val value = parseExplicitType()
@@ -36,10 +32,10 @@ abstract class ExplicitParser(reader: CharArrayReader, val collection: Collectio
             } else if (reader.indentation == currentIndent && !reader.isListItem()) {
                 collection.setEmptyMapValue(map, key)
             } else {
-                setMapValue(map, key, true)
+                collection.setMapValue(this, map, key, 0, true)
             }
         } else {
-            setMapValue(map, key, true)
+            collection.setMapValue(this, map, key, 0, true)
         }
         return map
     }
@@ -128,7 +124,7 @@ abstract class ExplicitParser(reader: CharArrayReader, val collection: Collectio
             }
             reader.skip() // skip colon
             reader.nextLine()
-            setMapValue(map, key, false)
+            collection.setMapValue(this, map, key, 0, false)
             reader.nextLine()
             val char = reader.char
             reader.skip()// skip comma/closing char
@@ -146,7 +142,7 @@ abstract class ExplicitParser(reader: CharArrayReader, val collection: Collectio
         reader.skip() // skip opening char
         reader.nextLine()
         while (reader.inBounds) {
-            addListItem(list)
+            collection.addListItem(this, list, 0, false)
             reader.nextLine()
             val char = reader.char
             reader.skip() // skip comma / closing char

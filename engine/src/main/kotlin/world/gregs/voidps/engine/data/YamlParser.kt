@@ -1,17 +1,15 @@
 package world.gregs.voidps.engine.data
 
-import world.gregs.voidps.engine.data.yaml.*
+import world.gregs.voidps.engine.data.yaml.CollectionFactory
+import world.gregs.voidps.engine.data.yaml.ExplicitParser
+import world.gregs.voidps.engine.data.yaml.LineParser
 
 class YamlParser(
-    var factory: CollectionFactory = CollectionFactory()
+    var factory: CollectionFactory = CollectionFactory(),
+    val reader: CharArrayReader = CharArrayReader(),
+    private val explicit: ExplicitParser = ExplicitParser(reader, factory),
+    private val lineParser: LineParser = LineParser(reader, factory, explicit)
 ) : YamlParserI {
-    val reader = CharArrayReader()
-
-    val explicit: ExplicitParser = DefaultExplicitParser(reader, factory)
-    val lineParser: LineParser = DefaultLineParser(reader, factory, explicit)
-
-    override var mapModifier: (key: String, value: Any) -> Any = { _, value -> value }
-    override var listModifier: (value: Any) -> Any = { it }
 
     override fun parse(charArray: CharArray, length: Int): Any {
         reader.set(charArray, length)
@@ -39,12 +37,5 @@ class YamlParser(
                 }
             }
         }
-    }
-
-    companion object {
-        const val EXPECTED_LIST_SIZE = 2
-        const val EXPECTED_EXPLICIT_LIST_SIZE = 2
-        const val EXPECTED_MAP_SIZE = 8
-        const val EXPECTED_EXPLICIT_MAP_SIZE = 5
     }
 }
