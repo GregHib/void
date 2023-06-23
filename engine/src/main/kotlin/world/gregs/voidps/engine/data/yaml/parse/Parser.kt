@@ -62,7 +62,7 @@ abstract class Parser(val reader: CharReader) {
         return when (reader.char) {
             't' -> if (isTrue()) true else string(start)
             'f' -> if (isFalse()) false else string(start)
-            '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ->
+            '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.' ->
                 return number(start) ?: string(start)
             else -> string(start)
         }
@@ -130,8 +130,8 @@ abstract class Parser(val reader: CharReader) {
     open fun isOpeningTerminator(char: Char) = char == '\r' || char == '\n' || char == '#'
 
     private fun number(start: Int): Any? {
+        var decimal = reader.char == '.'
         reader.skip() // skip first
-        var decimal = false
         while (reader.inBounds) {
             when (reader.char) {
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> {

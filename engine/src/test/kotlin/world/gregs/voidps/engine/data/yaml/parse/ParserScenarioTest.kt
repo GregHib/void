@@ -1,0 +1,198 @@
+package world.gregs.voidps.engine.data.yaml.parse
+
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.data.yaml.YamlParser
+import world.gregs.voidps.engine.data.yaml.manage.CollectionManager
+
+class ParserScenarioTest {
+
+    private var parser: YamlParser = YamlParser()
+
+    private data class SpawnData(val id: String, val x: Int, val y: Int, val direction: String = "NONE") {
+        constructor(map: Map<String, Any>) : this(map["id"] as String, map["x"] as Int, map["y"] as Int, map["direction"] as? String ?: "NONE")
+    }
+
+    @Test
+    fun `Parse list with modifier`() {
+        parser = YamlParser(
+            object : CollectionManager() {
+                override fun addListItem(parser: Parser, list: MutableList<Any>, indentOffset: Int, withinMap: Boolean) {
+                    val element = parser.value(indentOffset, withinMap)
+                    list.add(SpawnData(element as Map<String, Any>))
+                }
+            }
+        )
+        val output = parser.parse("""
+            - { id: prison_pete, x: 2084, y: 4460, direction: NORTH }
+            - { id: balloon_animal, x: 2078, y: 4462 }
+        """.trimIndent())
+        val expected = listOf(
+            SpawnData("prison_pete", 2084, 4460, "NORTH"),
+            SpawnData("balloon_animal", 2078, 4462)
+        )
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse map with windows line breaks`() {
+        val output = parser.parse("one:\r\ntwo:")
+        val expected = mapOf("one" to "", "two" to "")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse nested normal explicit lists`() {
+        val output = parser.parse("""
+            - type: cooking
+              levels: 1-15
+              inventory:
+                - id: [ raw_anchovies, raw_shrimps, raw_beef, raw_rat_meat, raw_chicken, raw_crayfish ]
+                  amount: 28
+        """.trimIndent())
+        val expected = listOf(mapOf(
+            "type" to "cooking",
+            "levels" to "1-15",
+            "inventory" to listOf(
+                mapOf(
+                    "id" to listOf("raw_anchovies", "raw_shrimps", "raw_beef", "raw_rat_meat", "raw_chicken", "raw_crayfish"),
+                    "amount" to 28
+                )
+            ),
+        ))
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse nested map lists`() {
+        val output = parser.parse("""
+            - type: melee
+              levels: 1-5
+              equipment:
+                weapon:
+                  - id: iron_scimitar
+                  - id: bronze_scimitar
+                  - id: iron_battleaxe
+                  - id: iron_longsword
+                  - id: iron_sword
+                  - id: bronze_sword
+                  - id: bronze_longsword
+                  - id: bronze_dagger
+              inventory:
+                - id: [ cooked_chicken, cooked_meat, shrimps, anchovies, sardine, herring ]
+                  amount: 5
+        """.trimIndent())
+        val expected = listOf(mapOf(
+            "type" to "melee", "levels" to "1-5",
+            "equipment" to mapOf(
+                "weapon" to listOf(
+                    mapOf("id" to "iron_scimitar"),
+                    mapOf("id" to "bronze_scimitar"),
+                    mapOf("id" to "iron_battleaxe"),
+                    mapOf("id" to "iron_longsword"),
+                    mapOf("id" to "iron_sword"),
+                    mapOf("id" to "bronze_sword"),
+                    mapOf("id" to "bronze_longsword"),
+                    mapOf("id" to "bronze_dagger"),
+                )
+            ),
+            "inventory" to listOf(mapOf(
+                "id" to listOf("cooked_chicken", "cooked_meat", "shrimps", "anchovies", "sardine", "herring"),
+                "amount" to 5)),
+        )
+        )
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse nested flat list`() {
+        val output = parser.parse("""
+            fishing_spot_lure_bait:
+              id: 329
+              fishing:
+                Lure:
+                  items:
+                  - fly_fishing_rod
+                  bait:
+                    feather:
+                    - raw_trout
+                    - raw_salmon
+                    stripy_feather:
+                    - raw_rainbow_fish
+                Bait:
+                  items:
+                  - fishing_rod
+                  bait:
+                    fishing_bait:
+                    - pike
+        """.trimIndent())
+        val expected = mapOf("fishing_spot_lure_bait" to mapOf(
+            "id" to 329,
+            "fishing" to mapOf(
+                "Lure" to mapOf(
+                    "items" to listOf("fly_fishing_rod"),
+                    "bait" to mapOf("feather" to listOf("raw_trout", "raw_salmon"), "stripy_feather" to listOf("raw_rainbow_fish"))
+                ),
+                "Bait" to mapOf(
+                    "items" to listOf("fishing_rod"),
+                    "bait" to mapOf("fishing_bait" to listOf("pike"))
+                )
+            )
+        ))
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse nested flat maps`() {
+        val output = parser.parse("""
+            - type: range
+              levels: 1-5
+              equipment:
+                weapon:
+                  - id: shortbow
+                ammo:
+                  - id: bronze_arrow
+                    amount: 50
+                  - id: iron_arrow
+                    amount: 50
+              inventory:
+                - id: [ cooked_chicken, cooked_meat, shrimps, anchovies, sardine, herring ]
+                  amount: 5
+        """.trimIndent())
+        val expected = listOf(mapOf(
+            "type" to "range",
+            "levels" to "1-5",
+            "equipment" to mapOf(
+                "weapon" to listOf(mapOf("id" to "shortbow")),
+                "ammo" to listOf(
+                    mapOf("id" to "bronze_arrow", "amount" to 50),
+                    mapOf("id" to "iron_arrow", "amount" to 50),
+                )
+            ),
+            "inventory" to listOf(mapOf(
+                "id" to listOf("cooked_chicken", "cooked_meat", "shrimps", "anchovies", "sardine", "herring"),
+                "amount" to 5
+            )),
+        ))
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse nested indented key`() {
+        val output = parser.parse("""
+            - type: range
+              equipment:
+                weapon:
+                  - id: shortbow
+                ammo:
+        """.trimIndent())
+        val expected = listOf(mapOf(
+            "type" to "range",
+            "equipment" to mapOf(
+                "weapon" to listOf(mapOf("id" to "shortbow")),
+                "ammo" to ""
+            ),
+        ))
+        assertEquals(expected, output)
+    }
+}

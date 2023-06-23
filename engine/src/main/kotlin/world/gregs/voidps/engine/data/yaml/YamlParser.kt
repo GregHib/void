@@ -13,6 +13,8 @@ class YamlParser(
     private val explicit: ExplicitParser = ExplicitParser(reader, collection),
     private val normal: NormalParser = NormalParser(reader, collection, explicit)
 ) {
+    fun parse(string: String) = parse(string.toCharArray())
+
     fun parse(charArray: CharArray, length: Int = charArray.size): Any {
         explicit.collection = collection
         reader.anchors.clear()
