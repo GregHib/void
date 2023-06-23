@@ -1,29 +1,33 @@
 package world.gregs.voidps.engine.data
 
-abstract class CharArrayReader : YamlParserI {
-    override var input = CharArray(0)
-    override var size = 0
-    override var index = 0
-    override var indentation = 0
-    override var lineCount = 0
+class CharArrayReader {
+    var input = CharArray(0)
+    var size = 0
+    var index = 0
+        private set
+    var indentation = 0
+    var lineCount = 0
     private var lastLine = 0
 
-    override val char: Char
+    val char: Char
         get() = input[index]
 
-    override val next: Char
+    val next: Char
         get() = input[index + 1]
 
-    override val outBounds: Boolean
+    val outBounds: Boolean
         get() = index >= size
 
-    override val inBounds: Boolean
+    val inBounds: Boolean
         get() = index < size
 
-    override val charInLine: Int
+    val end: Boolean
+        get() = index == size
+
+    val charInLine: Int
         get() = index - lastLine
 
-    override val line: String
+    val line: String
         get() {
             var end = lastLine
             while (end < size) {
@@ -35,12 +39,63 @@ abstract class CharArrayReader : YamlParserI {
             }
             return substring(lastLine, end).replace("\n", "\\n").trim()
         }
-    override fun debug(length: Int) = substring(index, (index + length).coerceAtMost(size)).replace("\n", "\\n")
 
-    override val debug: String
+    fun skip() {
+        index++
+    }
+
+    fun skip(count: Int) {
+        index += count
+    }
+
+
+    val exception: String
+        get() = "line=$lineCount char=$charInLine '$line'"
+
+    fun isFalse(char: Char) = char == 'f' && index + 4 < size && input[index + 1] == 'a' && input[index + 2] == 'l' && input[index + 3] == 's' && input[index + 4] == 'e'
+
+    fun isTrue(char: Char) = char == 't' && index + 3 < size && input[index + 1] == 'r' && input[index + 2] == 'u' && input[index + 3] == 'e'
+
+    fun isNumber(char: Char) = char == '0' || char == '1' || char == '2' || char == '3' || char == '4' || char == '5' || char == '6' || char == '7' || char == '8' || char == '9'
+
+    fun isTerminator(char: Char) = linebreak(char) || char == '#'
+
+    fun isOpeningTerminator(char: Char) = linebreak(char) || char == '#' || char == '{' || char == '['
+
+    fun isLineEnd() = isOpeningTerminator(input[index])
+
+    fun nextCharEmpty() = index + 1 < size && input[index + 1] == ' '
+
+    fun isListItem() = input[index] == '-' && nextCharEmpty()
+
+    fun number(decimal: Boolean, start: Int, end: Int): Any {
+        val string = substring(start, end)
+        return if (decimal) {
+            string.toDouble()
+        } else {
+            val long = string.toLong()
+            if (long <= Int.MAX_VALUE) long.toInt() else long
+        }
+    }
+
+    fun parseQuote(): String {
+        index++ // skip opening quote
+        val start = index
+        while (index < size) {
+            if (input[index] == '"') {
+                break
+            }
+            index++
+        }
+        return substring(start, index++) // skip closing quote
+    }
+
+    fun debug(length: Int) = substring(index, (index + length).coerceAtMost(size)).replace("\n", "\\n")
+
+    val debug: String
         get() = debug(20)
 
-    override fun nextLine() {
+    fun nextLine() {
         while (index < size) {
             when (input[index]) {
                 ' ' -> {}
@@ -64,7 +119,7 @@ abstract class CharArrayReader : YamlParserI {
         }
     }
 
-    override fun set(charArray: CharArray, size: Int) {
+    fun set(charArray: CharArray, size: Int) {
         this.input = charArray
         this.size = size
         index = 0
@@ -73,18 +128,18 @@ abstract class CharArrayReader : YamlParserI {
         lineCount = 1
     }
 
-    override fun substring(start: Int, end: Int): String {
+    fun substring(start: Int, end: Int): String {
         if (end == -1) {
             throw IndexOutOfBoundsException("")
         }
         return String(input, start, end - start)
     }
 
-    override fun skipSpaces() {
+    fun skipSpaces() {
         while (index < size && input[index] == ' ') {
             index++
         }
     }
 
-    override fun linebreak(char: Char) = char == '\r' || char == '\n'
+    fun linebreak(char: Char) = char == '\r' || char == '\n'
 }

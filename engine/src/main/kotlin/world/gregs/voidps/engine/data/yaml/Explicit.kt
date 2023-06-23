@@ -2,19 +2,20 @@ package world.gregs.voidps.engine.data.yaml
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.voidps.engine.data.CharArrayReader
 import world.gregs.voidps.engine.data.YamlParser
 import world.gregs.voidps.engine.data.YamlParserI
 
-class Explicit(val delegate: YamlParserI) : YamlParserI by delegate {
+class Explicit(val delegate: YamlParserI, val reader: CharArrayReader) {
 
     fun parseExplicitVal(): Any {
-        return when (input[index]) {
+        return when (reader.char) {
             '[' -> parseExplicitList()
             '{' -> parseExplicitMap()
             '&' -> skipAnchorString()
             else -> {
                 val value = parseExplicitType()
-                if (index < size && input[index] == ':') {
+                if (reader.inBounds && reader.char == ':') {
                     mapExplicit(value.toString())
                 } else {
                     value
@@ -25,27 +26,27 @@ class Explicit(val delegate: YamlParserI) : YamlParserI by delegate {
 
     private fun mapExplicit(key: String): Map<String, Any> {
         val map = Object2ObjectOpenHashMap<String, Any>(YamlParser.EXPECTED_MAP_SIZE)
-        index++ // skip colon
-        skipSpaces()
-        if (index >= size) {
+        reader.skip() // skip colon
+        reader.skipSpaces()
+        if (reader.outBounds) {
             map[key] = ""
             return map
         }
-        val currentIndent = indentation
-        if (isLineEnd()) {
-            nextLine()
-            if (indentation < currentIndent) {
+        val currentIndent = reader.indentation
+        if (reader.isLineEnd()) {
+            reader.nextLine()
+            if (reader.indentation < currentIndent) {
                 map[key] = ""
                 return map
-            } else if (indentation == currentIndent && !isListItem()) {
+            } else if (reader.indentation == currentIndent && !reader.isListItem()) {
                 map[key] = ""
             } else {
-                val value = parseVal(withinMap = true)
-                map[key] = mapModifier(key, value)
+                val value = delegate.parseVal(withinMap = true)
+                map[key] = delegate.mapModifier(key, value)
             }
         } else {
-            val value = parseVal(withinMap = true)
-            map[key] = mapModifier(key, value)
+            val value = delegate.parseVal(withinMap = true)
+            map[key] = delegate.mapModifier(key, value)
         }
         return map
     }
@@ -53,28 +54,28 @@ class Explicit(val delegate: YamlParserI) : YamlParserI by delegate {
 
 
     fun parseExplicitType(): Any {
-        if (index >= size) {
+        if (reader.outBounds) {
             return ""
-        } else if (input[index] == '"') {
-            val quoted = parseQuote()
-            if (index < size && input[index] == ' ') {
-                skipSpaces()
+        } else if (reader.char == '"') {
+            val quoted = reader.parseQuote()
+            if (reader.inBounds && reader.char == ' ') {
+                reader.skipSpaces()
             }
             return quoted
         }
-        val start = index
-        var char = input[index]
-        if (isTrue(char)) {
-            index += 4
-            if (reachedExplicitEnd() || (input[index] == ':' && nextCharEmpty())) {
+        val start = reader.index
+        var char = reader.char
+        if (reader.isTrue(char)) {
+            reader.skip(4)
+            if (reachedExplicitEnd() || (reader.char == ':' && reader.nextCharEmpty())) {
                 return true
             }
-        } else if (isFalse(char)) {
-            index += 5
-            if (reachedExplicitEnd() || (input[index] == ':' && nextCharEmpty())) {
+        } else if (reader.isFalse(char)) {
+            reader.skip(5)
+            if (reachedExplicitEnd() || (reader.char == ':' && reader.nextCharEmpty())) {
                 return false
             }
-        } else if (char == '-' || isNumber(char)) {
+        } else if (char == '-' || reader.isNumber(char)) {
             val number = explicitNumber(start)
             if (number != null) {
                 return number
@@ -82,72 +83,72 @@ class Explicit(val delegate: YamlParserI) : YamlParserI by delegate {
         }
         var end = -1
         var previous = ' '
-        while (index < size) {
-            char = input[index]
+        while (reader.inBounds) {
+            char = reader.char
             if (isClosingTerminator(char)) {
                 break
             } else if (char == ' ' && previous != ' ') {
-                end = index
-            } else if (char == ':' && (index + 1 == size || (index + 1 < size && (input[index + 1] == ' ' || isOpeningTerminator(input[index + 1]))))) {
-                return substring(start, if (previous != ' ' || end == -1) index else end) // Return the key
+                end = reader.index
+            } else if (char == ':' && (reader.index + 1 == reader.size || (reader.index + 1 < reader.size && (reader.next == ' ' || reader.isOpeningTerminator(reader.next))))) {
+                return reader.substring(start, if (previous != ' ' || end == -1) reader.index else end) // Return the key
             }
             previous = char
-            index++
+            reader.skip()
         }
-        return substring(start, if (previous != ' ' || end == -1) index else end) // Return the value
+        return reader.substring(start, if (previous != ' ' || end == -1) reader.index else end) // Return the value
     }
 
 
 
     private fun explicitNumber(start: Int): Any? {
-        index++ // skip first
+        reader.skip() // skip first
         var decimal = false
-        while (index < size) {
-            when (input[index]) {
-                '\n', '\r', '#', ',', '}', ']' -> return number(decimal, start, index)
+        while (reader.inBounds) {
+            when (reader.char) {
+                '\n', '\r', '#', ',', '}', ']' -> return reader.number(decimal, start, reader.index)
                 ' ' -> {
-                    val end = index
-                    return if (reachedExplicitEnd()) number(decimal, start, end) else null
+                    val end = reader.index
+                    return if (reachedExplicitEnd()) reader.number(decimal, start, end) else null
                 }
                 '.' -> if (!decimal) decimal = true else return null
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> {
                 }
-                ':' -> return if (nextCharEmpty()) {
-                    number(decimal, start, index)
+                ':' -> return if (reader.nextCharEmpty()) {
+                    reader.number(decimal, start, reader.index)
                 } else {
                     null
                 }
                 else -> return null
             }
-            index++
+            reader.skip()
         }
-        return number(decimal, start, index) // End of file
+        return reader.number(decimal, start, reader.index) // End of file
     }
 
 
 
     fun parseExplicitMap(): Map<String, Any> {
         val map = Object2ObjectOpenHashMap<String, Any>(YamlParser.EXPECTED_EXPLICIT_MAP_SIZE)
-        index++ // skip opening char
-        nextLine()
-        while (index < size) {
+        reader.skip() // skip opening char
+        reader.nextLine()
+        while (reader.inBounds) {
             val key = parseExplicitType().toString()
-            if (index < size && input[index] != ':') {
-                throw IllegalArgumentException("Expected key-pair value line=$lineCount char=$charInLine '$line'")
+            if (reader.inBounds && reader.char != ':') {
+                throw IllegalArgumentException("Expected key-pair value ${reader.exception}")
             }
-            index++ // skip colon
-            nextLine()
+            reader.skip() // skip colon
+            reader.nextLine()
             val value = parseExplicitVal()
-            map[key] = mapModifier(key, value)
-            nextLine()
-            if (input[index] == ',') {
-                index++
-                nextLine()
-            } else if (input[index] == '}') {
-                index++ // skip closing char
+            map[key] = delegate.mapModifier(key, value)
+            reader.nextLine()
+            if (reader.char == ',') {
+                reader.skip()
+                reader.nextLine()
+            } else if (reader.char == '}') {
+                reader.skip() // skip closing char
                 return map
             } else {
-                throw IllegalArgumentException("Expecting key-value pair or end of map line=$lineCount char=$charInLine '$line'")
+                throw IllegalArgumentException("Expecting key-value pair or end of map ${reader.exception}")
             }
         }
         return map
@@ -155,47 +156,47 @@ class Explicit(val delegate: YamlParserI) : YamlParserI by delegate {
 
     fun parseExplicitList(): List<Any> {
         val list = ObjectArrayList<Any>(YamlParser.EXPECTED_EXPLICIT_LIST_SIZE)
-        index++ // skip opening char
-        nextLine()
-        while (index < size) {
+        reader.skip() // skip opening char
+        reader.nextLine()
+        while (reader.inBounds) {
             val value = parseExplicitVal()
-            list.add(listModifier(value))
-            nextLine()
-            if (input[index] == ',') {
-                index++
-                nextLine()
-            } else if (input[index] == ']') {
-                index++ // skip closing char
+            list.add(delegate.listModifier(value))
+            reader.nextLine()
+            if (reader.char == ',') {
+                reader.skip()
+                reader.nextLine()
+            } else if (reader.char == ']') {
+                reader.skip() // skip closing char
                 return list
             } else {
-                throw IllegalArgumentException("Expecting item or end of list line=$lineCount char=$charInLine '$line'")
+                throw IllegalArgumentException("Expecting item or end of list ${reader.exception}")
             }
         }
         return list
     }
 
-    private fun isClosingTerminator(char: Char) = linebreak(char) || char == '#' || char == '}' || char == ']' || char == ','
+    private fun isClosingTerminator(char: Char) = reader.linebreak(char) || char == '#' || char == '}' || char == ']' || char == ','
 
     private fun reachedExplicitEnd(): Boolean {
-        skipSpaces()
-        if (index == size) {
+        reader.skipSpaces()
+        if (reader.end) {
             return true
         }
-        return isClosingTerminator(input[index])
+        return isClosingTerminator(reader.char)
     }
 
     fun skipAnchorString(): Any {
-        while (index < size) {
-            val char = input[index]
+        while (reader.inBounds) {
+            val char = reader.char
             if (char == ' ') {
                 break
             }
-            if (linebreak(char)) {
+            if (reader.linebreak(char)) {
                 break
             }
-            index++
+            reader.skip()
         }
-        nextLine()
-        return parseVal()
+        reader.nextLine()
+        return delegate.parseVal()
     }
 }
