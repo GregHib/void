@@ -27,8 +27,6 @@ class CharArrayReader {
     val charInLine: Int
         get() = index - lastLine
 
-    fun peek(offset: Int) = input[this.index + offset]
-
     fun next(): Char {
         return input[++index]
     }
@@ -91,18 +89,6 @@ class CharArrayReader {
             }
             skip()
         }
-    }
-
-    fun parseQuote(): String {
-        index++ // skip opening quote
-        val start = index
-        while (index < size) {
-            if (input[index] == '"') {
-                break
-            }
-            index++
-        }
-        return substring(start, index++) // skip closing quote
     }
 
     fun debug(length: Int) = substring(index, (index + length).coerceAtMost(size)).replace("\n", "\\n")

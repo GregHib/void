@@ -24,27 +24,38 @@ abstract class ValueParser(val reader: CharArrayReader) {
     abstract fun parseCollection(indentOffset: Int, withinMap: Boolean): Any
 
     fun parseType(): Any {
-        if (reader.outBounds) {
-            return ""
-        } else if (reader.char == '"') {
-            val quoted = reader.parseQuote()
-            if (reader.inBounds && reader.char == ' ') {
-                reader.skipSpaces()
-            }
-            return quoted
+        if (reader.char == '"') {
+            return parseQuote()
         }
         val start = reader.index
-        var char = reader.char
-        if (isTrue(char)) {
-            return true
-        } else if (isFalse(char)) {
-            return false
-        } else if (char == '-' || char == '0' || char == '1' || char == '2' || char == '3' || char == '4' || char == '5' || char == '6' || char == '7' || char == '8' || char == '9') {
-            val number = number(start)
-            if (number != null) {
-                return number
-            }
+        return when (reader.char) {
+            't' -> if (isTrue()) true else readString(start)
+            'f' -> if (isFalse()) false else readString(start)
+            '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ->
+                return number(start) ?: readString(start)
+            else -> readString(start)
         }
+    }
+
+    private fun parseQuote(): String {
+        reader.skip() // skip opening quote
+        val start = reader.index
+        while (reader.inBounds) {
+            if (reader.char == '"') {
+                reader.skip() // skip closing quote
+                break
+            }
+            reader.skip()
+        }
+        val quoted = reader.substring(start, reader.index - 1)
+        if (reader.inBounds && reader.char == ' ') {
+            reader.skipSpaces()
+        }
+        return quoted
+    }
+
+    private fun readString(start: Int): String {
+        var char: Char
         var end = -1
         var previous = ' '
         while (reader.inBounds) {
@@ -53,7 +64,7 @@ abstract class ValueParser(val reader: CharArrayReader) {
                 break
             } else if (char == ' ' && previous != ' ') {
                 end = reader.index
-            } else if (char == ':' && (reader.index + 1 == reader.size || (reader.index + 1 < reader.size && (reader.next == ' ' || isOpeningTerminator(reader.next))))) {
+            } else if (char == ':' && (reader.index + 1 == reader.size || (reader.inBounds(1) && (reader.next == ' ' || isOpeningTerminator(reader.next))))) {
                 return reader.substring(start, if (previous != ' ' || end == -1) reader.index else end) // Return the key
             }
             previous = char
@@ -62,13 +73,12 @@ abstract class ValueParser(val reader: CharArrayReader) {
         return reader.substring(start, if (previous != ' ' || end == -1) reader.index else end) // Return the value
     }
 
-    fun isFalse(char: Char): Boolean {
-        return char == 'f' && reader.inBounds(4) && reader.next() == 'a' && reader.next() == 'l' && reader.next() == 's' && reader.next() == 'e' && atEnd()
+    private fun isFalse(): Boolean {
+        return reader.inBounds(4) && reader.next() == 'a' && reader.next() == 'l' && reader.next() == 's' && reader.next() == 'e' && atEnd()
     }
 
-
-    fun isTrue(char: Char): Boolean {
-        return char == 't' && reader.inBounds(3) && reader.next() == 'r' && reader.next() == 'u' && reader.next() == 'e' && atEnd()
+    private fun isTrue(): Boolean {
+        return reader.inBounds(3) && reader.next() == 'r' && reader.next() == 'u' && reader.next() == 'e' && atEnd()
     }
 
     private fun atEnd(): Boolean {
@@ -89,32 +99,21 @@ abstract class ValueParser(val reader: CharArrayReader) {
 
     open fun isOpeningTerminator(char: Char) = char == '\r' || char == '\n' || char == '#'
 
-    fun number(start: Int): Any? {
+    private fun number(start: Int): Any? {
         reader.skip() // skip first
         var decimal = false
         while (reader.inBounds) {
-            if (isClosingTerminator(reader.char)) {
-                return reader.number(decimal, start, reader.index)
-            }
             when (reader.char) {
+                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> {
+                }
+                '.' -> if (!decimal) decimal = true else return null
                 ' ' -> {
                     val end = reader.index
                     reader.skipSpaces()
-                    return if (reader.end || isClosingTerminator(reader.char)) {
-                        reader.number(decimal, start, end)
-                    } else {
-                        null
-                    }
+                    return if (reader.end || isClosingTerminator(reader.char)) reader.number(decimal, start, end) else null
                 }
-                '.' -> if (!decimal) decimal = true else return null
-                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> {
-                }
-                ':' -> return if (reader.nextCharEmpty()) {
-                    reader.number(decimal, start, reader.index)
-                } else {
-                    null
-                }
-                else -> return null
+                ':' -> return if (reader.nextCharEmpty()) reader.number(decimal, start, reader.index) else null
+                else -> return if (isClosingTerminator(reader.char)) reader.number(decimal, start, reader.index) else null
             }
             reader.skip()
         }

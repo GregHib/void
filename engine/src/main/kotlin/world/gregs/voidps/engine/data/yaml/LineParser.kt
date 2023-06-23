@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.data.CharArrayReader
 
 open class LineParser(
     reader: CharArrayReader,
-    val collection: CollectionFactory,
+    private val collection: CollectionFactory,
     private val explicit: ExplicitParser
 ) : ValueParser(reader) {
 
