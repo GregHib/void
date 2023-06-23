@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.data.yaml
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DynamicTest.dynamicTest
-import world.gregs.voidps.engine.data.yaml.factory.CollectionFactory
+import world.gregs.voidps.engine.data.yaml.manage.CollectionManager
 import world.gregs.voidps.engine.data.yaml.parse.Parser
 
 class YamlParserTest {
@@ -12,6 +12,17 @@ class YamlParserTest {
     @BeforeEach
     fun setup() {
         parser = YamlParser()
+    }
+
+    @Test
+    fun `Parse anchors`() {
+        val output = parser.parse("""
+            - &anchor-name one
+            - two  
+            - *anchor-name
+        """.trimIndent())
+        val expected = listOf("one", "two", "one")
+        assertEquals(expected, output)
     }
 
     @Test
@@ -359,7 +370,7 @@ class YamlParserTest {
     @Test
     fun `Parse list with modifier`() {
         parser = YamlParser(
-            object : CollectionFactory() {
+            object : CollectionManager() {
                 override fun addListItem(parser: Parser, list: MutableList<Any>, indentOffset: Int, withinMap: Boolean) {
                     val element = parser.value(indentOffset, withinMap)
                     list.add(SpawnData(element as Map<String, Any>))

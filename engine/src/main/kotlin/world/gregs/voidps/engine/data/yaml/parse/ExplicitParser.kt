@@ -1,14 +1,14 @@
 package world.gregs.voidps.engine.data.yaml.parse
 
 import world.gregs.voidps.engine.data.yaml.CharReader
-import world.gregs.voidps.engine.data.yaml.factory.CollectionFactory
+import world.gregs.voidps.engine.data.yaml.manage.CollectionManager
 
 /**
  * Parses maps and lists wrapped in square or curley brackets
  */
 class ExplicitParser(
     reader: CharReader,
-    var collection: CollectionFactory
+    var collection: CollectionManager
 ) : Parser(reader) {
 
     override fun isClosingTerminator(char: Char) = super.isClosingTerminator(char) || char == '}' || char == ']' || char == ','

@@ -1,14 +1,14 @@
 package world.gregs.voidps.engine.data.yaml.parse
 
 import world.gregs.voidps.engine.data.yaml.CharReader
-import world.gregs.voidps.engine.data.yaml.factory.CollectionFactory
+import world.gregs.voidps.engine.data.yaml.manage.CollectionManager
 
 /**
  * Parses regular lists and maps
  */
 class NormalParser(
     reader: CharReader,
-    var collection: CollectionFactory,
+    var collection: CollectionManager,
     private val explicit: ExplicitParser
 ) : Parser(reader) {
 

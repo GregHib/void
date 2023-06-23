@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 class CharReaderTest {
 
-    private val reader = CharReader()
+    private val reader = CharReader(mutableMapOf())
 
     @Test
     fun `Read initial line`() {

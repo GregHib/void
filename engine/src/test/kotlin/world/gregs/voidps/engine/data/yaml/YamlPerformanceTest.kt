@@ -1,12 +1,12 @@
 package world.gregs.voidps.engine.data.yaml
 
-import world.gregs.voidps.engine.data.yaml.factory.FastUtilFactory
+import world.gregs.voidps.engine.data.yaml.manage.FastUtilManager
 import java.io.File
 
 object YamlPerformanceTest {
     @JvmStatic
     fun main(args: Array<String>) {
-        val parser = YamlParser(FastUtilFactory())
+        val parser = YamlParser(FastUtilManager())
         val files = File("./data/definitions/").listFiles()
             .union(File("./data/map/").listFiles().toList())
             .union(File("./data/spawns/").listFiles().toList())
@@ -20,7 +20,7 @@ object YamlPerformanceTest {
 //                output = parser.parse(chars, length)
 //            }
 //        }
-        val iterations = 1000
+        val iterations = 1
         val start = System.currentTimeMillis()
         repeat(iterations) {
             files.forEach {

@@ -3,7 +3,9 @@ package world.gregs.voidps.engine.data.yaml
 /**
  * Reads a string of characters one at a time
  */
-class CharReader {
+class CharReader(
+    val anchors: MutableMap<String, Any>
+) {
     private var input = CharArray(0)
     var size = 0
     var index = 0
@@ -87,16 +89,6 @@ class CharReader {
     fun skipSpaces() {
         while (index < size && input[index] == ' ') {
             index++
-        }
-    }
-
-    fun skipAnchorString() {
-        while (inBounds) {
-            val char = char
-            if (char == ' ' || linebreak(char)) {
-                break
-            }
-            skip()
         }
     }
 

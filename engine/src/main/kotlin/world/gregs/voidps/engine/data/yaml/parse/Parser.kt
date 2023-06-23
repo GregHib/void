@@ -24,12 +24,32 @@ abstract class Parser(val reader: CharReader) {
             '[' -> explicitList()
             '{' -> explicitMap()
             '&' -> {
-                reader.skipAnchorString()
-                reader.nextLine()
-                value(indentOffset = 0, withinMap = false)
+                val alias = alias()
+                val value = value(indentOffset = 0, withinMap = false)
+                reader.anchors[alias] = value
+                value
+            }
+            '*' -> {
+                val alias = alias()
+                reader.anchors[alias] ?: throw IllegalArgumentException("Unable to find anchor for alias '$alias'")
             }
             else -> collection(indentOffset, withinMap)
         }
+    }
+
+    private fun alias(): String {
+        reader.skip() // skip anchor or alias marker
+        val start = reader.index
+        while (reader.inBounds) {
+            val char = reader.char
+            if (char == ' ' || char == '\r' || char == '\n') {
+                val alias = reader.substring(start, reader.index)
+                reader.nextLine()
+                return alias
+            }
+            reader.skip()
+        }
+        return reader.substring(start, reader.index) // end of line
     }
 
     abstract fun collection(indentOffset: Int, withinMap: Boolean): Any
