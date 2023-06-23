@@ -2,21 +2,21 @@ package world.gregs.voidps.engine.data.yaml
 
 import world.gregs.voidps.engine.data.CharArrayReader
 
-open class ExplicitParser(
+class ExplicitParser(
     reader: CharArrayReader,
-    val collection: CollectionFactory
+    private val collection: CollectionFactory
 ) : ValueParser(reader) {
 
     override fun isClosingTerminator(char: Char) = super.isClosingTerminator(char) || char == '}' || char == ']' || char == ','
 
     override fun isOpeningTerminator(char: Char) = super.isOpeningTerminator(char) || char == '{' || char == '['
 
-    override fun parseCollection(indentOffset: Int, withinMap: Boolean): Any {
-        val value = parseType()
+    override fun collection(indentOffset: Int, withinMap: Boolean): Any {
+        val type = type()
         return if (reader.inBounds && reader.char == ':') {
-            keyValuePair(value.toString())
+            keyValuePair(type.toString())
         } else {
-            value
+            type
         }
     }
 
@@ -29,64 +29,61 @@ open class ExplicitParser(
             return map
         }
         val currentIndent = reader.indentation
-        if (reader.isLineEnd()) {
+        if (isOpeningTerminator(reader.char)) {
             reader.nextLine()
             if (reader.indentation < currentIndent) {
                 collection.setEmptyMapValue(map, key)
                 return map
-            } else if (reader.indentation == currentIndent && !reader.isListItem()) {
+            } else if (reader.indentation == currentIndent && reader.char != '-') {
                 collection.setEmptyMapValue(map, key)
             } else {
-                collection.setMapValue(this, map, key, 0, true)
+                collection.setMapValue(this, map, key, indentOffset = 0, withinMap = true)
             }
         } else {
-            collection.setMapValue(this, map, key, 0, true)
+            collection.setMapValue(this, map, key, indentOffset = 0, withinMap = true)
         }
         return map
     }
 
-    override fun parseExplicitMap(): Map<String, Any> {
+    override fun explicitMap(): Map<String, Any> {
         val map = collection.createMap()
         reader.skip() // skip opening char
         reader.nextLine()
         while (reader.inBounds) {
-            val key = parseType().toString()
+            val key = type().toString()
             if (reader.inBounds && reader.char != ':') {
                 throw IllegalArgumentException("Expected key-pair value ${reader.exception}")
             }
             reader.skip() // skip colon
             reader.nextLine()
-            collection.setMapValue(this, map, key, 0, false)
+            collection.setMapValue(this, map, key, indentOffset = 0, withinMap = false)
             reader.nextLine()
             val char = reader.char
             reader.skip()// skip comma/closing char
             reader.nextLine()
-            when (char) {
-                ',' -> {
-                }
-                '}' -> return map
-                else -> throw IllegalArgumentException("Expecting key-value pair or end of map ${reader.exception}")
+            if (char == '}') {
+                return map
+            } else if (char != ',') {
+                throw IllegalArgumentException("Expecting key-value pair or end of map ${reader.exception}")
             }
         }
         return map
     }
 
-    override fun parseExplicitList(): List<Any> {
+    override fun explicitList(): List<Any> {
         val list = collection.createList()
         reader.skip() // skip opening char
         reader.nextLine()
         while (reader.inBounds) {
-            collection.addListItem(this, list, 0, false)
+            collection.addListItem(this, list, indentOffset = 0, withinMap = false)
             reader.nextLine()
             val char = reader.char
             reader.skip() // skip comma / closing char
             reader.nextLine()
-            when (char) {
-                ',' -> {
-
-                }
-                ']' -> return list
-                else -> throw IllegalArgumentException("Expecting item or end of list ${reader.exception}")
+            if (char == ']') {
+                return list
+            } else if (char != ',') {
+                throw IllegalArgumentException("Expecting item or end of list ${reader.exception}")
             }
         }
         return list

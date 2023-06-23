@@ -1,11 +1,12 @@
 package world.gregs.voidps.engine.data
 
+import world.gregs.voidps.engine.data.yaml.OptimisedCollectionFactory
 import java.io.File
 
 object YamlPerformanceTest {
     @JvmStatic
     fun main(args: Array<String>) {
-        val parser = YamlParser()
+        val parser = YamlParser(OptimisedCollectionFactory())
         val files = File("./data/definitions/").listFiles()
             .union(File("./data/map/").listFiles().toList())
             .union(File("./data/spawns/").listFiles().toList())

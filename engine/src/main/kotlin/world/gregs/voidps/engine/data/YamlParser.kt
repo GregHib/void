@@ -13,6 +13,6 @@ class YamlParser(
     fun parse(charArray: CharArray, length: Int): Any {
         reader.set(charArray, length)
         reader.nextLine()
-        return lineParser.parseValue(0, false)
+        return lineParser.value(0, false)
     }
 }

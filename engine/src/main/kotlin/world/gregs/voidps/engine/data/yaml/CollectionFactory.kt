@@ -11,10 +11,10 @@ open class CollectionFactory {
     }
 
     open fun addListItem(value: ValueParser, list: MutableList<Any>, indentOffset: Int, withinMap: Boolean) {
-        list.add(value.parseValue(indentOffset, withinMap))
+        list.add(value.value(indentOffset, withinMap))
     }
 
     open fun setMapValue(value: ValueParser, map: MutableMap<String, Any>, key: String, indentOffset: Int, withinMap: Boolean) {
-        map[key] = value.parseValue(indentOffset, withinMap)
+        map[key] = value.value(indentOffset, withinMap)
     }
 }

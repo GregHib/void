@@ -4,40 +4,40 @@ import world.gregs.voidps.engine.data.CharArrayReader
 
 abstract class ValueParser(val reader: CharArrayReader) {
 
-    abstract fun parseExplicitList(): Any
+    abstract fun explicitList(): Any
 
-    abstract fun parseExplicitMap(): Any
+    abstract fun explicitMap(): Any
 
-    fun parseValue(indentOffset: Int, withinMap: Boolean): Any {
+    fun value(indentOffset: Int, withinMap: Boolean): Any {
         return when (reader.char) {
-            '[' -> parseExplicitList()
-            '{' -> parseExplicitMap()
+            '[' -> explicitList()
+            '{' -> explicitMap()
             '&' -> {
                 reader.skipAnchorString()
                 reader.nextLine()
-                parseValue(0, false)
+                value(0, false)
             }
-            else -> parseCollection(indentOffset, withinMap)
+            else -> collection(indentOffset, withinMap)
         }
     }
 
-    abstract fun parseCollection(indentOffset: Int, withinMap: Boolean): Any
+    abstract fun collection(indentOffset: Int, withinMap: Boolean): Any
 
-    fun parseType(): Any {
+    fun type(): Any {
         if (reader.char == '"') {
-            return parseQuote()
+            return quote()
         }
         val start = reader.index
         return when (reader.char) {
-            't' -> if (isTrue()) true else readString(start)
-            'f' -> if (isFalse()) false else readString(start)
+            't' -> if (isTrue()) true else string(start)
+            'f' -> if (isFalse()) false else string(start)
             '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ->
-                return number(start) ?: readString(start)
-            else -> readString(start)
+                return number(start) ?: string(start)
+            else -> string(start)
         }
     }
 
-    private fun parseQuote(): String {
+    private fun quote(): String {
         reader.skip() // skip opening quote
         val start = reader.index
         while (reader.inBounds) {
@@ -54,18 +54,17 @@ abstract class ValueParser(val reader: CharArrayReader) {
         return quoted
     }
 
-    private fun readString(start: Int): String {
+    private fun string(start: Int): String {
         var char: Char
         var end = -1
         var previous = ' '
         while (reader.inBounds) {
             char = reader.char
-            if (isClosingTerminator(char)) {
-                break
-            } else if (char == ' ' && previous != ' ') {
-                end = reader.index
-            } else if (char == ':' && (reader.index + 1 == reader.size || (reader.inBounds(1) && (reader.next == ' ' || isOpeningTerminator(reader.next))))) {
-                return reader.substring(start, if (previous != ' ' || end == -1) reader.index else end) // Return the key
+            when (char) {
+                ':' -> if ((reader.index + 1 >= reader.size || reader.peekNext == ' ' || isOpeningTerminator(reader.peekNext)))
+                    return reader.substring(start, if (previous != ' ' || end == -1) reader.index else end) // Return the key
+                ' ' -> if (previous != ' ') end = reader.index
+                else -> if (isClosingTerminator(char)) break
             }
             previous = char
             reader.skip()
@@ -74,21 +73,21 @@ abstract class ValueParser(val reader: CharArrayReader) {
     }
 
     private fun isFalse(): Boolean {
-        return reader.inBounds(4) && reader.next() == 'a' && reader.next() == 'l' && reader.next() == 's' && reader.next() == 'e' && atEnd()
+        return reader.inBounds(4) && reader.next() == 'a' && reader.next() == 'l' && reader.next() == 's' && reader.next() == 'e' && end()
     }
 
     private fun isTrue(): Boolean {
-        return reader.inBounds(3) && reader.next() == 'r' && reader.next() == 'u' && reader.next() == 'e' && atEnd()
+        return reader.inBounds(3) && reader.next() == 'r' && reader.next() == 'u' && reader.next() == 'e' && end()
     }
 
-    private fun atEnd(): Boolean {
+    private fun end(): Boolean {
         reader.skip()
-        if (reader.end) {
+        if (reader.outBounds) {
             return true
         }
         if (reader.char == ' ') {
             reader.skipSpaces()
-            if (reader.end) {
+            if (reader.outBounds) {
                 return true
             }
         }
@@ -110,7 +109,7 @@ abstract class ValueParser(val reader: CharArrayReader) {
                 ' ' -> {
                     val end = reader.index
                     reader.skipSpaces()
-                    return if (reader.end || isClosingTerminator(reader.char)) reader.number(decimal, start, end) else null
+                    return if (reader.outBounds || isClosingTerminator(reader.char)) reader.number(decimal, start, end) else null
                 }
                 ':' -> return if (reader.nextCharEmpty()) reader.number(decimal, start, reader.index) else null
                 else -> return if (isClosingTerminator(reader.char)) reader.number(decimal, start, reader.index) else null

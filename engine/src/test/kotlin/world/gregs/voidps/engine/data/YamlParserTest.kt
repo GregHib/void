@@ -361,7 +361,7 @@ class YamlParserTest {
         parser = YamlParser(
             object : CollectionFactory() {
                 override fun addListItem(value: ValueParser, list: MutableList<Any>, indentOffset: Int, withinMap: Boolean) {
-                    val element = value.parseValue(indentOffset, withinMap)
+                    val element = value.value(indentOffset, withinMap)
                     if (element is Map<*, *> && element.containsKey("id")) {
                         list.add(SpawnData(element as Map<String, Any>))
                     } else {
