@@ -153,7 +153,7 @@ class YamlParser : CharArrayReader() {
                     return map
                 } else if (isLineEnd()) {
                     nextLine()
-                    if (indentation == currentIndent && !isListItem()) {
+                    if (indentation < currentIndent || indentation == currentIndent && !isListItem()) {
                         map[key] = ""
                     } else {
                         openEnded = true
@@ -168,7 +168,7 @@ class YamlParser : CharArrayReader() {
                 openEnded = true
                 map[key] = ""
             } else {
-                println("Unknown '$key'")
+                throw IllegalArgumentException("Found unknown map value for key '$key' at line=${lineCount} char=${charInLine} '${line}'")
             }
             nextLine()
         }
@@ -389,11 +389,8 @@ class YamlParser : CharArrayReader() {
     fun parseExplicitMap(): Map<String, Any> {
         val map = Object2ObjectOpenHashMap<String, Any>(EXPECTED_EXPLICIT_MAP_SIZE)
         index++ // skip opening char
+        nextLine()
         while (index < size) {
-            nextLine()
-            if (index >= size) {
-                return map
-            }
             val key = parseExplicitType().toString()
             if (index < size && input[index] != ':') {
                 throw IllegalArgumentException("Expected key-pair value line=$lineCount char=$charInLine '$line'")
@@ -405,9 +402,12 @@ class YamlParser : CharArrayReader() {
             nextLine()
             if (input[index] == ',') {
                 index++
+                nextLine()
             } else if (input[index] == '}') {
                 index++ // skip closing char
                 return map
+            } else {
+                throw IllegalArgumentException("Expecting key-value pair or end of map line=$lineCount char=$charInLine '$line'")
             }
         }
         return map
@@ -416,19 +416,19 @@ class YamlParser : CharArrayReader() {
     fun parseExplicitList(): List<Any> {
         val list = ObjectArrayList<Any>(EXPECTED_EXPLICIT_LIST_SIZE)
         index++ // skip opening char
+        nextLine()
         while (index < size) {
-            nextLine()
-            if (index >= size) {
-                return list
-            }
             val value = parseExplicitVal()
             list.add(listModifier(value))
             nextLine()
             if (input[index] == ',') {
                 index++
+                nextLine()
             } else if (input[index] == ']') {
                 index++ // skip closing char
                 return list
+            } else {
+                throw IllegalArgumentException("Expecting item or end of list line=$lineCount char=$charInLine '$line'")
             }
         }
         return list

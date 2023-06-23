@@ -8,7 +8,19 @@ open class CharArrayReader {
     var lineCount = 0
     private var lastLine = 0
 
-    val char: Int
+    val char: Char
+        get() = input[index]
+
+    val next: Char
+        get() = input[index + 1]
+
+    val outBounds: Boolean
+        get() = index >= size
+
+    val inBounds: Boolean
+        get() = index < size
+
+    val charInLine: Int
         get() = index - lastLine
 
     val line: String
