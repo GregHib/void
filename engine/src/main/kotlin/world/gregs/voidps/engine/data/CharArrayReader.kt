@@ -78,6 +78,19 @@ class CharArrayReader {
         }
     }
 
+    fun skipAnchorString() {
+        while (inBounds) {
+            val char = char
+            if (char == ' ') {
+                break
+            }
+            if (linebreak(char)) {
+                break
+            }
+            skip()
+        }
+    }
+
     fun parseQuote(): String {
         index++ // skip opening quote
         val start = index

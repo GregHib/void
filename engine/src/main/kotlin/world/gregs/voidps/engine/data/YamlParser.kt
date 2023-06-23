@@ -15,14 +15,18 @@ class YamlParser : YamlParserI {
     override fun parse(charArray: CharArray, length: Int): Any {
         reader.set(charArray, length)
         reader.nextLine()
-        return parseVal()
+        return parseValue()
     }
 
-    override fun parseVal(indentOffset: Int, withinMap: Boolean): Any {
+    override fun parseValue(indentOffset: Int, withinMap: Boolean): Any {
         return when (reader.char) {
             '[' -> explicit.parseExplicitList()
             '{' -> explicit.parseExplicitMap()
-            '&' -> explicit.skipAnchorString()
+            '&' -> {
+                reader.skipAnchorString()
+                reader.nextLine()
+                parseValue()
+            }
             else -> if (reader.isListItem()) {
                 normal.list(withinMap)
             } else {

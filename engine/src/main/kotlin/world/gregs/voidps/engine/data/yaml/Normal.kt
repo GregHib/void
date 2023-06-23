@@ -27,7 +27,7 @@ class Normal(val parserI: YamlParserI, val reader: CharArrayReader) {
             }
             reader.skip(2)
             reader.skipSpaces()
-            list.add(parserI.listModifier(parserI.parseVal(1)))
+            list.add(parserI.listModifier(parserI.parseValue(1)))
             reader.nextLine()
         }
         return list
@@ -52,11 +52,11 @@ class Normal(val parserI: YamlParserI, val reader: CharArrayReader) {
                 openEnded = true
                 map[key] = ""
             } else {
-                val value = parserI.parseVal(withinMap = true)
+                val value = parserI.parseValue(withinMap = true)
                 map[key] = parserI.mapModifier(key, value)
             }
         } else {
-            val value = parserI.parseVal(withinMap = true)
+            val value = parserI.parseValue(withinMap = true)
             map[key] = parserI.mapModifier(key, value)
         }
         reader.nextLine()
@@ -91,12 +91,12 @@ class Normal(val parserI: YamlParserI, val reader: CharArrayReader) {
                         map[key] = ""
                     } else {
                         openEnded = true
-                        val type = parserI.parseVal(withinMap = true)
+                        val type = parserI.parseValue(withinMap = true)
                         map[key] = parserI.mapModifier(key, type)
                     }
                 } else {
                     openEnded = false
-                    map[key] = parserI.mapModifier(key, parserI.parseVal(withinMap = true))
+                    map[key] = parserI.mapModifier(key, parserI.parseValue(withinMap = true))
                 }
             } else if (reader.isLineEnd()) {
                 openEnded = true
