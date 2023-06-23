@@ -31,8 +31,6 @@ class FileStorage private constructor(
 
     inline fun <reified T : Any> load(path: String): T = mapper.readValue(File(path), T::class.java)
 
-    inline fun <reified T : Any> load2(text: String): T = mapper.readValue(text, T::class.java)
-
     inline fun <reified T : Any> loadType(path: String): T = mapper.readValue(File(path), object : TypeReference<T>() {})
 
     inline fun <reified T : Any> loadOrNull(path: String): T? {
