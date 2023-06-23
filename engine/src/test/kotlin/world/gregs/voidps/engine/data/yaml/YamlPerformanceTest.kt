@@ -10,7 +10,6 @@ object YamlPerformanceTest {
         val files = File("./data/definitions/").listFiles()
             .union(File("./data/map/").listFiles().toList())
             .union(File("./data/spawns/").listFiles().toList())
-            .filter { it.name != "nav-graph.yml" }
         val chars = CharArray(3_000_000)
         var output: Any = ""
 //        repeat(10) {
