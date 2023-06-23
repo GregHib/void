@@ -122,9 +122,9 @@ class CharArrayReaderTest {
     }
 
     private fun skip(string: String): Int {
-        reader.index += string.length
+        reader.skip(string.length)
         return string.length
     }
 
-    private fun CharArrayReader.set(text: String) = set(text.toCharArray())
+    private fun CharArrayReader.set(text: String) = set(text.toCharArray(), text.length)
 }

@@ -1,15 +1,22 @@
 package world.gregs.voidps.engine.data.yaml
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.data.CharArrayReader
-import world.gregs.voidps.engine.data.YamlParser
 import world.gregs.voidps.engine.data.YamlParserI
 
-class Normal(val parserI: YamlParserI, val reader: CharArrayReader) {
+abstract class LineParser(val parser: YamlParserI, val reader: CharArrayReader) {
+
+    abstract fun createMap(): MutableMap<String, Any>
+
+    abstract fun createList(): MutableList<Any>
+
+    abstract fun addListItem(list: MutableList<Any>)
+
+    abstract fun setMapValue(map: MutableMap<String, Any>, key: String)
+
+    abstract fun setEmptyMapValue(map: MutableMap<String, Any>, key: String)
 
     fun list(withinMap: Boolean): Any {
-        val list = ObjectArrayList<Any>(YamlParser.EXPECTED_LIST_SIZE)
+        val list = createList()
         val currentIndent = reader.indentation
         while (reader.inBounds) {
             // Finished if found dented
@@ -27,18 +34,18 @@ class Normal(val parserI: YamlParserI, val reader: CharArrayReader) {
             }
             reader.skip(2)
             reader.skipSpaces()
-            list.add(parserI.listModifier(parserI.parseValue(1)))
+            addListItem(list)
             reader.nextLine()
         }
         return list
     }
 
-    fun map(key: String, indentOffset: Int): Any {
-        val map = Object2ObjectOpenHashMap<String, Any>(YamlParser.EXPECTED_MAP_SIZE)
+    fun map(firstKey: String, indentOffset: Int): Any {
+        val map = createMap()
         reader.skip() // skip colon
         reader.skipSpaces()
         if (reader.outBounds) {
-            map[key] = ""
+            setEmptyMapValue(map, firstKey)
             return map
         }
         var openEnded = false
@@ -46,18 +53,16 @@ class Normal(val parserI: YamlParserI, val reader: CharArrayReader) {
         if (reader.isLineEnd()) {
             reader.nextLine()
             if (reader.indentation < currentIndent) {
-                map[key] = ""
+                setEmptyMapValue(map, firstKey)
                 return map
             } else if (reader.indentation == currentIndent && !reader.isListItem()) {
                 openEnded = true
-                map[key] = ""
+                setEmptyMapValue(map, firstKey)
             } else {
-                val value = parserI.parseValue(withinMap = true)
-                map[key] = parserI.mapModifier(key, value)
+                setMapValue(map, firstKey)
             }
         } else {
-            val value = parserI.parseValue(withinMap = true)
-            map[key] = parserI.mapModifier(key, value)
+            setMapValue(map, firstKey)
         }
         reader.nextLine()
         while (reader.inBounds) {
@@ -69,7 +74,7 @@ class Normal(val parserI: YamlParserI, val reader: CharArrayReader) {
             }
             if (reader.isListItem()) {
                 if (openEnded) {
-                    map[key] = parserI.mapModifier(key, list(true))
+                    setMapValue(map, firstKey)
                     continue
                 } else {
                     throw IllegalArgumentException("Not allowed list items in a map. Line ${reader.exception}")
@@ -77,30 +82,29 @@ class Normal(val parserI: YamlParserI, val reader: CharArrayReader) {
             }
             val key = parseType().toString()
             if (reader.outBounds) {
-                map[key] = ""
+                setEmptyMapValue(map, key)
                 return map
             } else if (reader.char == ':') {
                 reader.skip() // skip :
                 reader.skipSpaces()
                 if (reader.outBounds) {
-                    map[key] = ""
+                    setEmptyMapValue(map, key)
                     return map
                 } else if (reader.isLineEnd()) {
                     reader.nextLine()
                     if (reader.indentation < currentIndent || reader.indentation == currentIndent && !reader.isListItem()) {
-                        map[key] = ""
+                        setEmptyMapValue(map, key)
                     } else {
                         openEnded = true
-                        val type = parserI.parseValue(withinMap = true)
-                        map[key] = parserI.mapModifier(key, type)
+                        setMapValue(map, key)
                     }
                 } else {
                     openEnded = false
-                    map[key] = parserI.mapModifier(key, parserI.parseValue(withinMap = true))
+                    setMapValue(map, key)
                 }
             } else if (reader.isLineEnd()) {
                 openEnded = true
-                map[key] = ""
+                setEmptyMapValue(map, key)
             } else {
                 throw IllegalArgumentException("Found unknown map value for key '$key' at ${reader.exception}")
             }

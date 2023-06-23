@@ -1,26 +1,26 @@
 package world.gregs.voidps.engine.data.yaml
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.data.CharArrayReader
-import world.gregs.voidps.engine.data.YamlParser
 import world.gregs.voidps.engine.data.YamlParserI
 
-open class Explicit(val delegate: YamlParserI, val reader: CharArrayReader) {
+abstract class ExplicitParser(val delegate: YamlParserI, val reader: CharArrayReader) {
 
-    open fun readMapValue(key: String, withinMap: Boolean): Any {
-        return delegate.mapModifier(key, delegate.parseValue(withinMap = withinMap))
-    }
+    abstract fun createList(): MutableList<Any>
 
-    open fun readExplicitValue(key: String): Any {
-        return delegate.mapModifier(key, parseExplicitVal())
-    }
+    abstract fun createMap(): MutableMap<String, Any>
 
-    open fun readExplicitListValue(): Any {
-        return delegate.listModifier(parseExplicitVal())
-    }
+    abstract fun setEmptyMapValue(map: MutableMap<String, Any>, key: String)
 
-    fun parseExplicitVal(): Any {
+
+    abstract fun setMapValue(map: MutableMap<String, Any>, key: String)
+
+
+    abstract fun setExplicitMapValue(map: MutableMap<String, Any>, key: String)
+
+    abstract fun addListItem(list: MutableList<Any>)
+
+
+    fun parseExplicitValue(): Any {
         return when (reader.char) {
             '[' -> parseExplicitList()
             '{' -> parseExplicitMap()
@@ -41,26 +41,26 @@ open class Explicit(val delegate: YamlParserI, val reader: CharArrayReader) {
     }
 
     private fun mapExplicit(key: String): Map<String, Any> {
-        val map = Object2ObjectOpenHashMap<String, Any>(YamlParser.EXPECTED_MAP_SIZE)
+        val map = createMap()
         reader.skip() // skip colon
         reader.skipSpaces()
         if (reader.outBounds) {
-            map[key] = ""
+            setEmptyMapValue(map, key)
             return map
         }
         val currentIndent = reader.indentation
         if (reader.isLineEnd()) {
             reader.nextLine()
             if (reader.indentation < currentIndent) {
-                map[key] = ""
+                setEmptyMapValue(map, key)
                 return map
             } else if (reader.indentation == currentIndent && !reader.isListItem()) {
-                map[key] = ""
+                setEmptyMapValue(map, key)
             } else {
-                map[key] = readMapValue(key, true)
+                setMapValue(map, key)
             }
         } else {
-            map[key] = readMapValue(key, true)
+            setMapValue(map, key)
         }
         return map
     }
@@ -139,7 +139,7 @@ open class Explicit(val delegate: YamlParserI, val reader: CharArrayReader) {
 
 
     fun parseExplicitMap(): Map<String, Any> {
-        val map = Object2ObjectOpenHashMap<String, Any>(YamlParser.EXPECTED_EXPLICIT_MAP_SIZE)
+        val map = createMap()
         reader.skip() // skip opening char
         reader.nextLine()
         while (reader.inBounds) {
@@ -149,7 +149,7 @@ open class Explicit(val delegate: YamlParserI, val reader: CharArrayReader) {
             }
             reader.skip() // skip colon
             reader.nextLine()
-            map[key] = readExplicitValue(key)
+            setExplicitMapValue(map, key)
             reader.nextLine()
             val char = reader.char
             reader.skip()// skip comma/closing char
@@ -163,11 +163,11 @@ open class Explicit(val delegate: YamlParserI, val reader: CharArrayReader) {
     }
 
     fun parseExplicitList(): List<Any> {
-        val list = ObjectArrayList<Any>(YamlParser.EXPECTED_EXPLICIT_LIST_SIZE)
+        val list = createList()
         reader.skip() // skip opening char
         reader.nextLine()
         while (reader.inBounds) {
-            list.add(readExplicitListValue())
+            addListItem(list)
             reader.nextLine()
             val char = reader.char
             reader.skip() // skip comma / closing char

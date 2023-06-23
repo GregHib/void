@@ -1,13 +1,15 @@
 package world.gregs.voidps.engine.data
 
-import world.gregs.voidps.engine.data.yaml.Explicit
-import world.gregs.voidps.engine.data.yaml.Normal
+import world.gregs.voidps.engine.data.yaml.DefaultExplicitParser
+import world.gregs.voidps.engine.data.yaml.DefaultLineParser
+import world.gregs.voidps.engine.data.yaml.ExplicitParser
+import world.gregs.voidps.engine.data.yaml.LineParser
 
 class YamlParser : YamlParserI {
     val reader = CharArrayReader()
 
-    val explicit = Explicit(this, reader)
-    val normal = Normal(this, reader)
+    val explicit: ExplicitParser = DefaultExplicitParser(this, reader)
+    val lineParser: LineParser = DefaultLineParser(this, reader)
 
     override var mapModifier: (key: String, value: Any) -> Any = { _, value -> value }
     override var listModifier: (value: Any) -> Any = { it }
@@ -28,11 +30,11 @@ class YamlParser : YamlParserI {
                 parseValue()
             }
             else -> if (reader.isListItem()) {
-                normal.list(withinMap)
+                lineParser.list(withinMap)
             } else {
-                val value = normal.parseType()
+                val value = lineParser.parseType()
                 if (reader.inBounds && reader.char == ':') {
-                    normal.map(value.toString(), indentOffset)
+                    lineParser.map(value.toString(), indentOffset)
                 } else {
                     return value
                 }
