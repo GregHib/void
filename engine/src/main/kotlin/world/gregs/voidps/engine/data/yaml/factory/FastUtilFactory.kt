@@ -3,6 +3,9 @@ package world.gregs.voidps.engine.data.yaml.factory
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 
+/**
+ * Handles creation and modification of collections to allow custom changes during parsing
+ */
 open class FastUtilFactory : CollectionFactory() {
     override fun createList(): MutableList<Any> = ObjectArrayList(EXPECTED_LIST_SIZE)
 

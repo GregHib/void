@@ -3,6 +3,9 @@ package world.gregs.voidps.engine.data.yaml.parse
 import world.gregs.voidps.engine.data.yaml.CharReader
 import world.gregs.voidps.engine.data.yaml.factory.CollectionFactory
 
+/**
+ * Parses maps and lists wrapped in square or curley brackets
+ */
 class ExplicitParser(
     reader: CharReader,
     var collection: CollectionFactory

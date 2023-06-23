@@ -1,5 +1,8 @@
 package world.gregs.voidps.engine.data.yaml
 
+/**
+ * Reads a string of characters one at a time
+ */
 class CharReader {
     private var input = CharArray(0)
     var size = 0
@@ -50,12 +53,13 @@ class CharReader {
     }
 
     fun substring(start: Int, end: Int): String {
-        if (end == -1) {
-            throw IndexOutOfBoundsException("")
-        }
         return String(input, start, end - start)
     }
 
+    /**
+     * Skips over spaces, line breaks and comments to reach the next line
+     * Records the start of the [lastLine] and the [indentation] of current line
+     */
     fun nextLine() {
         while (index < size) {
             when (input[index]) {
@@ -96,6 +100,9 @@ class CharReader {
         }
     }
 
+    /**
+     * Parses a string as a number
+     */
     fun number(decimal: Boolean, start: Int, end: Int): Any {
         val string = substring(start, end)
         return if (decimal) {

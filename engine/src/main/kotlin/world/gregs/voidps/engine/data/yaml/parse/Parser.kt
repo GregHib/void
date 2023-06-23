@@ -2,6 +2,17 @@ package world.gregs.voidps.engine.data.yaml.parse
 
 import world.gregs.voidps.engine.data.yaml.CharReader
 
+/**
+ * Parsing keys and values as their original types.
+ * Supported types:
+ * - String (with or without double quotes)
+ * - Boolean (lower case only)
+ * - Double
+ * - Int
+ * - Long
+ * - Map (explicit or normal)
+ * - List (explicit or normal)
+ */
 abstract class Parser(val reader: CharReader) {
 
     abstract fun explicitList(): Any
@@ -15,7 +26,7 @@ abstract class Parser(val reader: CharReader) {
             '&' -> {
                 reader.skipAnchorString()
                 reader.nextLine()
-                value(0, false)
+                value(indentOffset = 0, withinMap = false)
             }
             else -> collection(indentOffset, withinMap)
         }
