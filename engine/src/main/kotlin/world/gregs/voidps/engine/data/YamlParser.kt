@@ -3,7 +3,9 @@ package world.gregs.voidps.engine.data
 import world.gregs.voidps.engine.data.yaml.Explicit
 import world.gregs.voidps.engine.data.yaml.Normal
 
-class YamlParser : CharArrayReader(), Explicit, Normal {
+class YamlParser : CharArrayReader() {
+    val explicit = Explicit(this)
+    val normal = Normal(this)
     override var mapModifier: (key: String, value: Any) -> Any = { _, value -> value }
     override var listModifier: (value: Any) -> Any = { it }
 
@@ -15,15 +17,15 @@ class YamlParser : CharArrayReader(), Explicit, Normal {
 
     override fun parseVal(indentOffset: Int, withinMap: Boolean): Any {
         return when (input[index]) {
-            '[' -> parseExplicitList()
-            '{' -> parseExplicitMap()
-            '&' -> skipAnchorString()
+            '[' -> explicit.parseExplicitList()
+            '{' -> explicit.parseExplicitMap()
+            '&' -> explicit.skipAnchorString()
             else -> if (isListItem()) {
-                list(withinMap)
+                normal.list(withinMap)
             } else {
-                val value = parseType()
+                val value = normal.parseType()
                 if (index < size && input[index] == ':') {
-                    map(value.toString(), indentOffset)
+                    normal.map(value.toString(), indentOffset)
                 } else {
                     return value
                 }

@@ -5,9 +5,9 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.data.YamlParser
 import world.gregs.voidps.engine.data.YamlParserI
 
-interface Normal : YamlParserI {
+class Normal(val delegate: YamlParserI) : YamlParserI by delegate {
 
-    override fun list(withinMap: Boolean): Any {
+    fun list(withinMap: Boolean): Any {
         val list = ObjectArrayList<Any>(YamlParser.EXPECTED_LIST_SIZE)
         val currentIndent = indentation
         while (index < size) {
@@ -32,7 +32,7 @@ interface Normal : YamlParserI {
         return list
     }
 
-    override fun map(key: String, indentOffset: Int): Any {
+    fun map(key: String, indentOffset: Int): Any {
         val map = Object2ObjectOpenHashMap<String, Any>(YamlParser.EXPECTED_MAP_SIZE)
         index++ // skip colon
         skipSpaces()
@@ -116,7 +116,7 @@ interface Normal : YamlParserI {
         return isTerminator(input[index])
     }
 
-    override fun parseType(): Any {
+    fun parseType(): Any {
         if (index >= size) {
             return ""
         } else if (input[index] == '"') {

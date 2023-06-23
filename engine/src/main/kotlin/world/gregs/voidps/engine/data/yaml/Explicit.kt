@@ -5,7 +5,7 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.data.YamlParser
 import world.gregs.voidps.engine.data.YamlParserI
 
-interface Explicit : YamlParserI {
+class Explicit(val delegate: YamlParserI) : YamlParserI by delegate {
 
     fun parseExplicitVal(): Any {
         return when (input[index]) {
@@ -126,7 +126,7 @@ interface Explicit : YamlParserI {
 
 
 
-    override fun parseExplicitMap(): Map<String, Any> {
+    fun parseExplicitMap(): Map<String, Any> {
         val map = Object2ObjectOpenHashMap<String, Any>(YamlParser.EXPECTED_EXPLICIT_MAP_SIZE)
         index++ // skip opening char
         nextLine()
@@ -153,7 +153,7 @@ interface Explicit : YamlParserI {
         return map
     }
 
-    override fun parseExplicitList(): List<Any> {
+    fun parseExplicitList(): List<Any> {
         val list = ObjectArrayList<Any>(YamlParser.EXPECTED_EXPLICIT_LIST_SIZE)
         index++ // skip opening char
         nextLine()

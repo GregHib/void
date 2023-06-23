@@ -4,17 +4,7 @@ interface YamlParserI {
     var mapModifier: (key: String, value: Any) -> Any
     var listModifier: (value: Any) -> Any
 
-    fun parseExplicitList(): List<Any>
-
-    fun parseExplicitMap(): Map<String, Any>
-
     fun parseVal(indentOffset: Int = 0, withinMap: Boolean = false): Any
-
-    fun list(withinMap: Boolean = false): Any
-
-    fun map(key: String, indentOffset: Int): Any
-
-    fun parseType(): Any
 
     var input: CharArray
     var size: Int
