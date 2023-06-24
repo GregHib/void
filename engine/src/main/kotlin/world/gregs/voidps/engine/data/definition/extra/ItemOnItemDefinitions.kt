@@ -21,6 +21,7 @@ class ItemOnItemDefinitions {
     fun load(parser: YamlParser = get(), path: String = getProperty("itemOnItemDefinitionsPath")): ItemOnItemDefinitions {
         timedLoad("item on item definition") {
             val definitions = Object2ObjectOpenHashMap<String, MutableList<ItemOnItemDefinition>>()
+            var count = 0
             val config = object : DefinitionIdsConfig() {
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int) {
                     if (indent == 0) {
@@ -40,14 +41,15 @@ class ItemOnItemDefinitions {
                                 }
                             }
                         }
+                        count++
                     } else {
                         super.set(map, key, value, indent)
                     }
                 }
             }
-            val size = parser.load<Map<String, Any>>(path, config).size
+            parser.load<Map<String, Any>>(path, config)
             this.definitions = definitions
-            size
+            count
         }
         return this
     }

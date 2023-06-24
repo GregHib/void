@@ -60,8 +60,8 @@ interface DefinitionsDecoder<D> where D : Definition, D : Extra {
 
     fun decode(parser: YamlParser, path: String, modifications: DefinitionModifications = DefinitionModifications()): Int {
         val ids = Object2IntOpenHashMap<String>()
-        parser.config = DefinitionConfig(ids, definitions)
-        parser.load<Any>(path)
+        val config = DefinitionConfig(ids, definitions)
+        parser.load<Any>(path, config)
         this.ids = ids
         return ids.size
     }
