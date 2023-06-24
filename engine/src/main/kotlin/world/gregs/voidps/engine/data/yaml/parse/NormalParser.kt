@@ -1,14 +1,14 @@
 package world.gregs.voidps.engine.data.yaml.parse
 
 import world.gregs.voidps.engine.data.yaml.CharReader
-import world.gregs.voidps.engine.data.yaml.manage.CollectionManager
+import world.gregs.voidps.engine.data.yaml.config.CollectionConfiguration
 
 /**
  * Parses regular lists and maps
  */
 class NormalParser(
     reader: CharReader,
-    var collection: CollectionManager,
+    var config: CollectionConfiguration,
     private val explicit: ExplicitParser
 ) : Parser(reader) {
 
@@ -32,7 +32,7 @@ class NormalParser(
     private fun isListItem() = reader.char == '-' && reader.nextCharEmpty()
 
     private fun list(withinMap: Boolean): Any {
-        val list = collection.createList()
+        val list = config.createList()
         val currentIndent = reader.indentation
         while (reader.inBounds) {
             // Finished if found dented
@@ -50,14 +50,14 @@ class NormalParser(
             }
             reader.skip(2)
             reader.skipSpaces()
-            collection.addListItem(this, list, indentOffset = 1, withinMap = false)
+            config.addListItem(this, list, indentOffset = 1, withinMap = false)
             reader.nextLine()
         }
         return list
     }
 
     private fun map(firstKey: String, indentOffset: Int): Any {
-        val map = collection.createMap()
+        val map = config.createMap()
         var openEnded = false
         val currentIndent = reader.indentation + indentOffset
 
@@ -65,19 +65,19 @@ class NormalParser(
             reader.skip() // skip :
             reader.skipSpaces()
             if (reader.outBounds) {
-                collection.setEmpty(map, key)
+                config.setEmpty(map, key)
                 return true
             } else if (explicit.isOpeningTerminator(reader.char)) {
                 reader.nextLine()
                 if (reader.indentation < currentIndent || reader.indentation == currentIndent && reader.char != '-') {
-                    collection.setEmpty(map, key)
+                    config.setEmpty(map, key)
                 } else {
                     openEnded = true
-                    collection.setMapValue(this, map, key, indentOffset = 0, withinMap = true)
+                    config.setMapValue(this, map, key, indentOffset = 0, withinMap = true)
                 }
             } else {
                 openEnded = false
-                collection.setMapValue(this, map, key, indentOffset = 0, withinMap = true)
+                config.setMapValue(this, map, key, indentOffset = 0, withinMap = true)
             }
             return false
         }
@@ -95,7 +95,7 @@ class NormalParser(
             }
             if (isListItem()) {
                 if (openEnded) {
-                    collection.setMapValue(this, map, firstKey, indentOffset = 0, withinMap = true)
+                    config.setMapValue(this, map, firstKey, indentOffset = 0, withinMap = true)
                     continue
                 } else {
                     throw IllegalArgumentException("Not allowed list items in a map. Line ${reader.exception}")
@@ -103,7 +103,7 @@ class NormalParser(
             }
             val key = type().toString()
             if (reader.outBounds) {
-                collection.setEmpty(map, key)
+                config.setEmpty(map, key)
                 return map
             } else if (reader.char == ':') {
                 if (addValue(key)) {
@@ -111,7 +111,7 @@ class NormalParser(
                 }
             } else if (explicit.isOpeningTerminator(reader.char)) {
                 openEnded = true
-                collection.setEmpty(map, key)
+                config.setEmpty(map, key)
             } else {
                 throw IllegalArgumentException("Found unknown map value for key '$key' at ${reader.exception}")
             }

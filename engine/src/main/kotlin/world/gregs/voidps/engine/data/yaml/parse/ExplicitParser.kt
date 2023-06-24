@@ -1,14 +1,14 @@
 package world.gregs.voidps.engine.data.yaml.parse
 
 import world.gregs.voidps.engine.data.yaml.CharReader
-import world.gregs.voidps.engine.data.yaml.manage.CollectionManager
+import world.gregs.voidps.engine.data.yaml.config.CollectionConfiguration
 
 /**
  * Parses maps and lists wrapped in square or curley brackets
  */
 class ExplicitParser(
     reader: CharReader,
-    var collection: CollectionManager
+    var config: CollectionConfiguration
 ) : Parser(reader) {
 
     override fun isClosingTerminator(char: Char) = super.isClosingTerminator(char) || char == '}' || char == ']' || char == ','
@@ -25,32 +25,32 @@ class ExplicitParser(
     }
 
     private fun keyValuePair(key: String): Map<String, Any> {
-        val map = collection.createMap()
+        val map = config.createMap()
         reader.skip() // skip colon
         reader.skipSpaces()
         if (reader.outBounds) {
-            collection.setEmpty(map, key)
+            config.setEmpty(map, key)
             return map
         }
         val currentIndent = reader.indentation
         if (isOpeningTerminator(reader.char)) {
             reader.nextLine()
             if (reader.indentation < currentIndent) {
-                collection.setEmpty(map, key)
+                config.setEmpty(map, key)
                 return map
             } else if (reader.indentation == currentIndent && reader.char != '-') {
-                collection.setEmpty(map, key)
+                config.setEmpty(map, key)
             } else {
-                collection.setMapValue(this, map, key, indentOffset = 0, withinMap = true)
+                config.setMapValue(this, map, key, indentOffset = 0, withinMap = true)
             }
         } else {
-            collection.setMapValue(this, map, key, indentOffset = 0, withinMap = true)
+            config.setMapValue(this, map, key, indentOffset = 0, withinMap = true)
         }
         return map
     }
 
     override fun explicitMap(): Map<String, Any> {
-        val map = collection.createMap()
+        val map = config.createMap()
         reader.skip() // skip opening char
         reader.nextLine()
         while (reader.inBounds) {
@@ -60,7 +60,7 @@ class ExplicitParser(
             }
             reader.skip() // skip colon
             reader.nextLine()
-            collection.setMapValue(this, map, key, indentOffset = 0, withinMap = false)
+            config.setMapValue(this, map, key, indentOffset = 0, withinMap = false)
             reader.nextLine()
             val char = reader.char
             reader.skip()// skip comma/closing char
@@ -75,11 +75,11 @@ class ExplicitParser(
     }
 
     override fun explicitList(): List<Any> {
-        val list = collection.createList()
+        val list = config.createList()
         reader.skip() // skip opening char
         reader.nextLine()
         while (reader.inBounds) {
-            collection.addListItem(this, list, indentOffset = 0, withinMap = false)
+            config.addListItem(this, list, indentOffset = 0, withinMap = false)
             reader.nextLine()
             val char = reader.char
             reader.skip() // skip comma / closing char

@@ -1,11 +1,11 @@
-package world.gregs.voidps.engine.data.yaml.manage
+package world.gregs.voidps.engine.data.yaml.config
 
 import world.gregs.voidps.engine.data.yaml.parse.Parser
 
 /**
  * Handles creation and modification of collections to allow custom changes during parsing
  */
-open class CollectionManager {
+open class CollectionConfiguration {
 
     open fun createList(): MutableList<Any> = mutableListOf()
 

@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.data.yaml.parse
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.yaml.YamlParser
-import world.gregs.voidps.engine.data.yaml.manage.CollectionManager
+import world.gregs.voidps.engine.data.yaml.config.CollectionConfiguration
 
 class ParserScenarioTest {
 
@@ -16,7 +16,7 @@ class ParserScenarioTest {
     @Test
     fun `Parse list with modifier`() {
         parser = YamlParser(
-            object : CollectionManager() {
+            object : CollectionConfiguration() {
                 override fun addListItem(parser: Parser, list: MutableList<Any>, indentOffset: Int, withinMap: Boolean) {
                     val element = parser.value(indentOffset, withinMap)
                     list.add(SpawnData(element as Map<String, Any>))
@@ -30,6 +30,40 @@ class ParserScenarioTest {
         val expected = listOf(
             SpawnData("prison_pete", 2084, 4460, "NORTH"),
             SpawnData("balloon_animal", 2078, 4462)
+        )
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse map with mixed id format`() {
+        parser = YamlParser(object : CollectionConfiguration() {
+            override fun setMapValue(parser: Parser, map: MutableMap<String, Any>, key: String, indentOffset: Int, withinMap: Boolean) {
+                val indent = parser.reader.indentation
+                val value = parser.value(indentOffset, withinMap)
+                if (value is Int && indent == 0) {
+                    map[key] = mapOf("id" to value)
+                } else {
+                    map[key] = value
+                }
+            }
+        })
+        val output = parser.parse("""
+            one:
+              id: 1
+              key: value
+            two: 2
+            three: 3
+            four:
+              id: 4
+              number: 6
+            five: 5
+        """.trimIndent())
+        val expected = mapOf<String, Any>(
+            "one" to mapOf("id" to 1, "key" to "value"),
+            "two" to mapOf("id" to 2),
+            "three" to mapOf("id" to 3),
+            "four" to mapOf("id" to 4, "number" to 6),
+            "five" to mapOf("id" to 5)
         )
         assertEquals(expected, output)
     }
