@@ -15,12 +15,16 @@ open class CollectionConfiguration {
         map[key] = ""
     }
 
-    open fun addListItem(parser: Parser, list: MutableList<Any>, indentOffset: Int, withinMap: Boolean) {
-        list.add(parser.value(indentOffset, withinMap))
+    open fun addListItem(parser: Parser, list: MutableList<Any>, indentOffset: Int, parentMap: String?) {
+        add(list, parser.value(indentOffset, null), parentMap)
     }
 
-    open fun setMapValue(parser: Parser, map: MutableMap<String, Any>, key: String, indent: Int, indentOffset: Int, withinMap: Boolean) {
+    open fun setMapValue(parser: Parser, map: MutableMap<String, Any>, key: String, indent: Int, indentOffset: Int, withinMap: String?) {
         set(map, key, parser.value(indentOffset, withinMap), indent)
+    }
+
+    open fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
+        list.add(value)
     }
 
     open fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int) {

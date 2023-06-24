@@ -15,17 +15,17 @@ import world.gregs.voidps.engine.data.yaml.CharReader
  */
 abstract class Parser(val reader: CharReader) {
 
-    abstract fun explicitList(): Any
+    abstract fun explicitList(withinMap: String?): Any
 
     abstract fun explicitMap(): Any
 
-    fun value(indentOffset: Int, withinMap: Boolean): Any {
+    fun value(indentOffset: Int, withinMap: String?): Any {
         return when (reader.char) {
-            '[' -> explicitList()
+            '[' -> explicitList(withinMap)
             '{' -> explicitMap()
             '&' -> {
                 val alias = alias()
-                val value = value(indentOffset = 0, withinMap = false)
+                val value = value(indentOffset = 0, withinMap = null)
                 reader.anchors[alias] = value
                 value
             }
@@ -52,7 +52,7 @@ abstract class Parser(val reader: CharReader) {
         return reader.substring(start, reader.index) // end of line
     }
 
-    abstract fun collection(indentOffset: Int, withinMap: Boolean): Any
+    abstract fun collection(indentOffset: Int, withinMap: String?): Any
 
     fun type(): Any {
         if (reader.char == '"') {

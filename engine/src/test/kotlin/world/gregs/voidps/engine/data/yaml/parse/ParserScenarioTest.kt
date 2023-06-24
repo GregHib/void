@@ -17,8 +17,8 @@ class ParserScenarioTest {
     fun `Parse list with modifier`() {
         parser = YamlParser(
             object : CollectionConfiguration() {
-                override fun addListItem(parser: Parser, list: MutableList<Any>, indentOffset: Int, withinMap: Boolean) {
-                    val element = parser.value(indentOffset, withinMap)
+                override fun addListItem(parser: Parser, list: MutableList<Any>, indentOffset: Int, parentMap: String?) {
+                    val element = parser.value(indentOffset, parentMap)
                     list.add(SpawnData(element as Map<String, Any>))
                 }
             }
@@ -106,6 +106,11 @@ class ParserScenarioTest {
               inventory:
                 - id: [ raw_anchovies, raw_shrimps, raw_beef, raw_rat_meat, raw_chicken, raw_crayfish ]
                   amount: 28
+            - type: cooking
+              levels: 5-15
+              inventory:
+                - id: raw_herring
+                  amount: 28
         """.trimIndent())
         val expected = listOf(mapOf(
             "type" to "cooking",
@@ -113,6 +118,15 @@ class ParserScenarioTest {
             "inventory" to listOf(
                 mapOf(
                     "id" to listOf("raw_anchovies", "raw_shrimps", "raw_beef", "raw_rat_meat", "raw_chicken", "raw_crayfish"),
+                    "amount" to 28
+                )
+            ),
+        ), mapOf(
+            "type" to "cooking",
+            "levels" to "5-15",
+            "inventory" to listOf(
+                mapOf(
+                    "id" to "raw_herring",
                     "amount" to 28
                 )
             ),

@@ -15,7 +15,7 @@ class ExplicitParser(
 
     override fun isOpeningTerminator(char: Char) = super.isOpeningTerminator(char) || char == '{' || char == '['
 
-    override fun collection(indentOffset: Int, withinMap: Boolean): Any {
+    override fun collection(indentOffset: Int, withinMap: String?): Any {
         val type = type()
         return if (reader.inBounds && reader.char == ':') {
             keyValuePair(type.toString())
@@ -41,10 +41,10 @@ class ExplicitParser(
             } else if (reader.indentation == currentIndent && reader.char != '-') {
                 config.setEmpty(map, key)
             } else {
-                config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = true)
+                config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = key)
             }
         } else {
-            config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = true)
+            config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = key)
         }
         return map
     }
@@ -60,7 +60,7 @@ class ExplicitParser(
             }
             reader.skip() // skip colon
             reader.nextLine()
-            config.setMapValue(this, map, key, reader.indentation, indentOffset = 0, withinMap = false)
+            config.setMapValue(this, map, key, reader.indentation, indentOffset = 0, withinMap = null)
             reader.nextLine()
             val char = reader.char
             reader.skip()// skip comma/closing char
@@ -74,12 +74,12 @@ class ExplicitParser(
         return map
     }
 
-    override fun explicitList(): List<Any> {
+    override fun explicitList(withinMap: String?): List<Any> {
         val list = config.createList()
         reader.skip() // skip opening char
         reader.nextLine()
         while (reader.inBounds) {
-            config.addListItem(this, list, indentOffset = 0, withinMap = false)
+            config.addListItem(this, list, indentOffset = 0, parentMap = withinMap)
             reader.nextLine()
             val char = reader.char
             reader.skip() // skip comma / closing char

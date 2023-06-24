@@ -12,11 +12,11 @@ class NormalParser(
     private val explicit: ExplicitParser
 ) : Parser(reader) {
 
-    override fun explicitList() = explicit.explicitList()
+    override fun explicitList(withinMap: String?) = explicit.explicitList(withinMap)
 
     override fun explicitMap() = explicit.explicitMap()
 
-    override fun collection(indentOffset: Int, withinMap: Boolean): Any {
+    override fun collection(indentOffset: Int, withinMap: String?): Any {
         return if (isListItem()) {
             list(withinMap)
         } else {
@@ -31,7 +31,7 @@ class NormalParser(
 
     private fun isListItem() = reader.char == '-' && reader.nextCharEmpty()
 
-    private fun list(withinMap: Boolean): Any {
+    private fun list(withinMap: String?): Any {
         val list = config.createList()
         val currentIndent = reader.indentation
         while (reader.inBounds) {
@@ -43,14 +43,14 @@ class NormalParser(
                 throw IllegalArgumentException("Expected aligned list item at ${reader.exception}")
             }
             if (reader.char != '-' || reader.peekNext != ' ') {
-                if (withinMap) {
+                if (withinMap != null) {
                     return list
                 }
                 throw IllegalArgumentException("Expected list item at ${reader.exception}")
             }
             reader.skip(2)
             reader.skipSpaces()
-            config.addListItem(this, list, indentOffset = 1, withinMap = false)
+            config.addListItem(this, list, indentOffset = 1, parentMap = withinMap)
             reader.nextLine()
         }
         return list
@@ -73,11 +73,11 @@ class NormalParser(
                     config.setEmpty(map, key)
                 } else {
                     openEnded = true
-                    config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = true)
+                    config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = key)
                 }
             } else {
                 openEnded = false
-                config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = true)
+                config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = key)
             }
             return false
         }
@@ -95,7 +95,7 @@ class NormalParser(
             }
             if (isListItem()) {
                 if (openEnded) {
-                    config.setMapValue(this, map, firstKey, currentIndent, indentOffset = 0, withinMap = true)
+                    config.setMapValue(this, map, firstKey, currentIndent, indentOffset = 0, withinMap = firstKey)
                     continue
                 } else {
                     throw IllegalArgumentException("Not allowed list items in a map. Line ${reader.exception}")

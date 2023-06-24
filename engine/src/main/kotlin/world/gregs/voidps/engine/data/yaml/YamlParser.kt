@@ -34,7 +34,7 @@ class YamlParser(
         reader.anchors.clear()
         reader.set(charArray, length)
         reader.nextLine()
-        val output = normal.value(indentOffset = 0, withinMap = false)
+        val output = normal.value(indentOffset = 0, withinMap = null)
         config = defaultConfig
         return output
     }
