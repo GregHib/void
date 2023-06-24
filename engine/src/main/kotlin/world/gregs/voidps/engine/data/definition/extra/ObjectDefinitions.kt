@@ -17,7 +17,7 @@ class ObjectDefinitions(
     decoder: ObjectDecoder
 ) : DefinitionsDecoder<ObjectDefinition> {
 
-    override val definitions: Array<ObjectDefinition>
+    override lateinit var definitions: Array<ObjectDefinition>
     override lateinit var ids: Map<String, Int>
 
     init {

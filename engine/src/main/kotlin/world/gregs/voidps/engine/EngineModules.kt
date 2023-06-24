@@ -11,6 +11,8 @@ import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.data.definition.extra.*
+import world.gregs.voidps.engine.data.yaml.YamlParser
+import world.gregs.voidps.engine.data.yaml.config.FastUtilConfiguration
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.drop.DropTables
@@ -41,6 +43,7 @@ val engineModule = module {
         ))
     }
     // IO
+    single { YamlParser(FastUtilConfiguration()) }
     single { FileStorage() }
     single(named("jsonStorage")) { FileStorage(json = true) }
     // Map

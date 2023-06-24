@@ -5,13 +5,15 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.engine.data.FileStorage
+import world.gregs.voidps.engine.data.yaml.YamlParser
+import world.gregs.voidps.engine.data.yaml.config.DefinitionConfig
 
 /**
  * Looks up [Definition]'s using Definitions unique string identifier
  * Sets [Extra] values inside [Definition]
  */
 interface DefinitionsDecoder<D> where D : Definition, D : Extra {
-    val definitions: Array<D>
+    var definitions: Array<D>
     var ids: Map<String, Int>
 
     fun getOrNull(id: Int): D? {
@@ -56,6 +58,14 @@ interface DefinitionsDecoder<D> where D : Definition, D : Extra {
         return decode(storage.loadMapIds(path), modifications)
     }
 
+    fun decode(parser: YamlParser, path: String, modifications: DefinitionModifications = DefinitionModifications()): Int {
+        val ids = Object2IntOpenHashMap<String>()
+        parser.config = DefinitionConfig(ids, definitions)
+        parser.load<Any>(path)
+        this.ids = ids
+        return ids.size
+    }
+
     fun decode(data: Map<String, Map<String, Any>>, modifications: DefinitionModifications = DefinitionModifications()): Int {
         val names = data.map { it.value["id"] as Int to it.key }.toMap()
         ids = Object2IntOpenHashMap(data.map { it.key to it.value["id"] as Int }.toMap())
@@ -91,6 +101,7 @@ interface DefinitionsDecoder<D> where D : Definition, D : Extra {
         private val chars = "[\"',()?.!]".toRegex()
         private val underscoreChars = "[ /-]".toRegex()
 
-        fun toIdentifier(name: String) = removeTags(name.lowercase().replace(underscoreChars, "_")).replace(chars, "").replace("&", "and").replace("à", "a").replace("é", "e").replace("ï", "i").replace("&#39;", "")
+        fun toIdentifier(name: String) =
+            removeTags(name.lowercase().replace(underscoreChars, "_")).replace(chars, "").replace("&", "and").replace("à", "a").replace("é", "e").replace("ï", "i").replace("&#39;", "")
     }
 }

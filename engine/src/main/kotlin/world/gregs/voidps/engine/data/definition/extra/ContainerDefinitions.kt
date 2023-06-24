@@ -2,8 +2,8 @@ package world.gregs.voidps.engine.data.definition.extra
 
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
+import world.gregs.voidps.engine.data.yaml.YamlParser
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
@@ -12,7 +12,7 @@ class ContainerDefinitions(
     decoder: ContainerDecoder
 ) : DefinitionsDecoder<ContainerDefinition> {
 
-    override val definitions: Array<ContainerDefinition>
+    override lateinit var definitions: Array<ContainerDefinition>
     override lateinit var ids: Map<String, Int>
 
     init {
@@ -23,9 +23,9 @@ class ContainerDefinitions(
 
     override fun empty() = ContainerDefinition.EMPTY
 
-    fun load(storage: FileStorage = get(), path: String = getProperty("containerDefinitionsPath"), itemDefs: ItemDefinitions = get()): ContainerDefinitions {
+    fun load(parser: YamlParser = get(), path: String = getProperty("containerDefinitionsPath"), itemDefs: ItemDefinitions = get()): ContainerDefinitions {
         timedLoad("container extra") {
-            decode(storage, path)
+            decode(parser, path)
             for (def in definitions) {
                 if (def.has("defaults") && def.length > 0) {
                     val list = def.get<List<Map<String, Int>>>("defaults")

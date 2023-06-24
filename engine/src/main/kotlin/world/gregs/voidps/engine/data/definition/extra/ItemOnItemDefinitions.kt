@@ -1,9 +1,9 @@
 package world.gregs.voidps.engine.data.definition.extra
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.mapIds
 import world.gregs.voidps.engine.data.definition.config.ItemOnItemDefinition
+import world.gregs.voidps.engine.data.yaml.YamlParser
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
@@ -17,9 +17,9 @@ class ItemOnItemDefinitions {
 
     fun contains(one: Item, two: Item) = definitions.containsKey(id(one, two)) || definitions.containsKey(id(two, one))
 
-    fun load(storage: FileStorage = get(), path: String = getProperty("itemOnItemDefinitionsPath")): ItemOnItemDefinitions {
+    fun load(parser: YamlParser = get(), path: String = getProperty("itemOnItemDefinitionsPath")): ItemOnItemDefinitions {
         timedLoad("item on item definition") {
-            val data: Map<String, Any> = storage.load(path)
+            val data: Map<String, Any> = parser.load(path)
             load(data.mapIds())
         }
         return this

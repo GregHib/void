@@ -9,7 +9,7 @@ class StructDefinitions(
     decoder: StructDecoder
 ) : DefinitionsDecoder<StructDefinition> {
 
-    override val definitions: Array<StructDefinition>
+    override lateinit var definitions: Array<StructDefinition>
     override lateinit var ids: Map<String, Int>
 
     init {

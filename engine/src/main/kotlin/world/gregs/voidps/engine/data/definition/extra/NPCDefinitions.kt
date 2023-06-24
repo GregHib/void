@@ -15,7 +15,7 @@ class NPCDefinitions(
     decoder: NPCDecoder
 ) : DefinitionsDecoder<NPCDefinition> {
 
-    override val definitions: Array<NPCDefinition>
+    override lateinit var definitions: Array<NPCDefinition>
     override lateinit var ids: Map<String, Int>
 
     init {

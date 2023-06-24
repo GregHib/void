@@ -19,7 +19,7 @@ class ItemDefinitions(
     decoder: ItemDecoder
 ) : DefinitionsDecoder<ItemDefinition> {
 
-    override val definitions: Array<ItemDefinition>
+    override lateinit var definitions: Array<ItemDefinition>
     override lateinit var ids: Map<String, Int>
 
     val size = decoder.last

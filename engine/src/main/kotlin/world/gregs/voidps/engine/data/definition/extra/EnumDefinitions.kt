@@ -1,10 +1,9 @@
 package world.gregs.voidps.engine.data.definition.extra
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.definition.data.EnumDefinition
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
+import world.gregs.voidps.engine.data.yaml.YamlParser
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
@@ -14,7 +13,7 @@ class EnumDefinitions(
     private val structs: StructDefinitions
 ) : DefinitionsDecoder<EnumDefinition> {
 
-    override val definitions: Array<EnumDefinition>
+    override lateinit var definitions: Array<EnumDefinition>
     override lateinit var ids: Map<String, Int>
     private lateinit var parameters: Map<String, Map<String, Int>>
 
@@ -42,16 +41,15 @@ class EnumDefinitions(
     override fun empty() = EnumDefinition.EMPTY
 
     fun load(
-        storage: FileStorage = get(),
+        parser: YamlParser = get(),
         path: String = getProperty("enumDefinitionsPath"),
         structPath: String = getProperty("structParamDefinitionsPath")
     ): EnumDefinitions {
         timedLoad("enum extra") {
-            decode(storage, path)
+            decode(parser, path)
         }
         timedLoad("struct param") {
-            val data: Map<String, Map<String, Int>> = storage.load(structPath)
-            parameters = Object2ObjectOpenHashMap(data)
+            parameters = parser.load(structPath)
             parameters.size
         }
         return this

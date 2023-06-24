@@ -25,7 +25,7 @@ class InterfaceDefinitions(
     decoder: InterfaceDecoder
 ) : DefinitionsDecoder<InterfaceDefinition> {
 
-    override val definitions: Array<InterfaceDefinition>
+    override lateinit var definitions: Array<InterfaceDefinition>
     override lateinit var ids: Map<String, Int>
 
     init {

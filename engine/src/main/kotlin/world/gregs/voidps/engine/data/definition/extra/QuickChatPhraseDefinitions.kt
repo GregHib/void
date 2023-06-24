@@ -9,7 +9,7 @@ class QuickChatPhraseDefinitions(
     decoder: QuickChatPhraseDecoder
 ) : DefinitionsDecoder<QuickChatPhraseDefinition> {
 
-    override val definitions: Array<QuickChatPhraseDefinition>
+    override lateinit var definitions: Array<QuickChatPhraseDefinition>
     override lateinit var ids: Map<String, Int>
 
     init {
