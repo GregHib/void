@@ -4,8 +4,8 @@ import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoderTest
+import world.gregs.voidps.engine.data.yaml.YamlParser
 
 internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefinition, AnimationDecoder, AnimationDefinitions>() {
 
@@ -32,7 +32,7 @@ internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefini
     }
 
     override fun load(definitions: AnimationDefinitions) {
-        definitions.load(FileStorage(), "../data/definitions/animations.yml")
+        definitions.load(YamlParser(), "../data/definitions/animations.yml")
     }
 
 }

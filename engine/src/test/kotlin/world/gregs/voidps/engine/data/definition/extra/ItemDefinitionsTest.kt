@@ -4,8 +4,8 @@ import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoderTest
+import world.gregs.voidps.engine.data.yaml.YamlParser
 
 internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, ItemDecoder, ItemDefinitions>() {
 
@@ -36,7 +36,7 @@ internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, Item
     }
 
     override fun load(definitions: ItemDefinitions) {
-        definitions.load(FileStorage(), "../data/definitions/items.yml")
+        definitions.load(YamlParser(), "../data/definitions/items.yml")
     }
 
 
