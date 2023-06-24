@@ -8,7 +8,6 @@ data class Spinning(
 
     companion object {
 
-        @Suppress("UNCHECKED_CAST")
         operator fun invoke(map: Map<String, Any>) = Spinning(
             to = map["to"] as? String ?: "",
             level = map["level"] as? Int ?: EMPTY.level,

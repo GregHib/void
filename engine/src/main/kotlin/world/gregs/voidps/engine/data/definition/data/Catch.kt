@@ -1,7 +1,5 @@
 package world.gregs.voidps.engine.data.definition.data
 
-import world.gregs.voidps.engine.client.ui.chat.toIntRange
-
 data class Catch(
     val level: Int = 1,
     val xp: Double = 0.0,
@@ -12,7 +10,7 @@ data class Catch(
         operator fun invoke(map: Map<String, Any>) = Catch(
             level = map["level"] as? Int ?: EMPTY.level,
             xp = map["xp"] as? Double ?: EMPTY.xp,
-            chance = (map["chance"] as? String)?.toIntRange() ?: EMPTY.chance
+            chance = map["chance"] as? IntRange ?: EMPTY.chance
         )
 
         val EMPTY = Catch()

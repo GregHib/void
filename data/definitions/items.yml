@@ -10200,8 +10200,8 @@ cowhide:
   limit: 10000
   weight: 2.721
   tanning:
-    leather: 1
-    hard_leather: 3
+    - [ leather, 1 ]
+    - [ hard_leather, 3 ]
   examine: "I should take this to the tannery."
 cowhide_noted: 1740
 leather:
@@ -10231,7 +10231,7 @@ black_dragonhide:
   limit: 10000
   weight: 3.175
   tanning:
-    black_dragon_leather: 20
+    - [ black_dragon_leather, 20 ]
   examine: "The scaly rough hide from a black dragon."
 black_dragonhide_noted: 1748
 red_dragonhide:
@@ -10240,7 +10240,7 @@ red_dragonhide:
   limit: 10000
   weight: 3.175
   tanning:
-    red_dragon_leather: 20
+    - [ red_dragon_leather, 20 ]
   examine: "The scaly rough hide from a red dragon."
 red_dragonhide_noted: 1750
 blue_dragonhide:
@@ -10249,7 +10249,7 @@ blue_dragonhide:
   limit: 10000
   weight: 3.175
   tanning:
-    blue_dragon_leather: 20
+    - [ blue_dragon_leather, 20 ]
   examine: "The scaly rough hide from a blue dragon."
 blue_dragonhide_noted: 1752
 green_dragonhide:
@@ -10258,7 +10258,7 @@ green_dragonhide:
   limit: 10000
   weight: 3.175
   tanning:
-    green_dragon_leather: 20
+    - [ green_dragon_leather, 20 ]
   examine: "The scaly rough hide from a green dragon."
 green_dragonhide_noted: 1754
 chisel:
@@ -32281,7 +32281,7 @@ snake_hide:
   limit: 10000
   weight: 0.5
   tanning:
-    snakeskin: 15
+    - [ snakeskin, 15 ]
   examine: "Scaly but not slimy!"
 snake_hide_noted: 6288
 snakeskin:
@@ -40075,7 +40075,7 @@ snake_hide_swamp:
   limit: 10000
   weight: 1.0
   tanning:
-    snakeskin: 20
+    - [ snakeskin, 20 ]
   examine: "Scaly but not slimy!"
 snake_hide_noted_2: 7802
 yin_yang_amulet:

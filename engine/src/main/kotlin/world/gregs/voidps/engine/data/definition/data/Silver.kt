@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.data.definition.data
 
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 
 /**
@@ -19,10 +18,9 @@ data class Silver(
 ) {
     companion object {
 
-        @Suppress("UNCHECKED_CAST")
-        operator fun invoke(map: Map<String, Any>, itemDefinitions: ItemDefinitions) = Silver(
+        operator fun invoke(map: Map<String, Any>) = Silver(
             name = map["name"] as? String ?: EMPTY.name,
-            item = (map["item"] as? String)?.let { Item(it, map["amount"] as? Int ?: 1, def = itemDefinitions.get(it)) } ?: EMPTY.item,
+            item = map["item"] as? Item ?: EMPTY.item,
             xp = map["xp"] as? Double ?: EMPTY.xp,
             level = map["level"] as? Int ?: EMPTY.level,
             quest = map["quest"] as? String ?: EMPTY.quest,

@@ -8,7 +8,9 @@ import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.data.definition.data.*
 import world.gregs.voidps.engine.data.yaml.YamlParser
 import world.gregs.voidps.engine.data.yaml.config.DefinitionConfig
+import world.gregs.voidps.engine.data.yaml.parse.Parser
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
@@ -45,11 +47,21 @@ class ItemDefinitions(
             val ids = Object2IntOpenHashMap<String>()
             this.ids = ids
             val config = object : DefinitionConfig<ItemDefinition>(ids, definitions) {
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int) {
-                    super.set(map, key, when(indent) {
-                        0 -> when(key) {
+
+                override fun setMapValue(parser: Parser, map: MutableMap<String, Any>, key: String, indent: Int, indentOffset: Int, withinMap: String?, parentMap: String?) {
+                    if (indent > 1 && parentMap == "pottery") {
+                        val value = parser.value(indentOffset, withinMap)
+                        super.set(map, key, Pottery.Ceramic(value as Map<String, Any>), indent, parentMap)
+                    } else {
+                        super.setMapValue(parser, map, key, indent, indentOffset, withinMap, parentMap)
+                    }
+                }
+
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+                    super.set(map, key, when (indent) {
+                        0 -> when (key) {
                             "id" -> {
-                                super.set(map, "equip", equipment.getOrDefault(value as Int, -1), indent)
+                                super.set(map, "equip", equipment.getOrDefault(value as Int, -1), indent, parentMap)
                                 value
                             }
                             "slot" -> EquipSlot.valueOf(value as String)
@@ -62,19 +74,31 @@ class ItemDefinitions(
                             "firemaking" -> Fire(value as Map<String, Any>)
                             "mining" -> Ore(value as Map<String, Any>)
                             "cooking" -> Uncooked(value as Map<String, Any>)
-                            "tanning" -> Tanning(value as Map<String, Any>)
+                            "tanning" -> Tanning(value as List<List<Any>>)
                             "spinning" -> Spinning(value as Map<String, Any>)
-                            "pottery" -> Pottery(value as Map<String, Any>)
+                            "pottery" -> Pottery(value as Map<String, Pottery.Ceramic>)
                             "weaving" -> Weaving(value as Map<String, Any>)
                             "jewellery" -> Jewellery(value as Map<String, Any>)
-                            "silver_jewellery" -> Silver(value as Map<String, Any>, this@ItemDefinitions)
+                            "silver_jewellery" -> Silver(value as Map<String, Any>)
                             "heals" -> {
                                 if (value is Int) value..value else if (value is String) value.toIntRange() else 0..0
                             }
                             else -> value
                         }
-                        else -> value
-                    }, indent)
+                        else -> when (key) {
+                            "chance" -> (value as String).toIntRange()
+                            "item" -> {
+                                val id = value as String
+                                Item(id, def = get(id))
+                            }
+                            else -> if (parentMap == "chances") {
+                                (value as String).toIntRange()
+                            } else {
+                                value
+                            }
+                        }
+
+                    }, indent, parentMap)
                 }
             }
             parser.load<Any>(path, config)

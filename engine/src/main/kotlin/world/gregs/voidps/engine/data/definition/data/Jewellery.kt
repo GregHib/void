@@ -6,8 +6,6 @@ data class Jewellery(
 ) {
 
     companion object {
-
-        @Suppress("UNCHECKED_CAST")
         operator fun invoke(map: Map<String, Any>) = Jewellery(
             level = map["level"] as? Int ?: Spinning.EMPTY.level,
             xp = map["xp"] as? Double ?: Spinning.EMPTY.xp,

@@ -32,13 +32,13 @@ class NPCDefinitions(
             val ids = Object2IntOpenHashMap<String>()
             this.ids = ids
             val config = object : DefinitionConfig<NPCDefinition>(ids, definitions) {
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int) {
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
                     super.set(map, key,
                         if (indent == 0 && key == "fishing") {
                             (value as Map<String, Map<String, Any>>).mapValues { Spot(it.value, itemDefinitions) }
                         } else {
                             value
-                        }, indent)
+                        }, indent, parentMap)
                 }
             }
             parser.load<Any>(path, config)

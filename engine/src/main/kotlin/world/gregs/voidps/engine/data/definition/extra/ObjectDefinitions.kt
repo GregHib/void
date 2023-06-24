@@ -34,7 +34,7 @@ class ObjectDefinitions(
             val ids = Object2IntOpenHashMap<String>()
             this.ids = ids
             val config = object : DefinitionConfig<ObjectDefinition>(ids, definitions) {
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int) {
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
                     if(indent == 1) {
                         super.set(map, key,
                             when (key) {
@@ -42,9 +42,9 @@ class ObjectDefinitions(
                                 "woodcutting" -> Tree(value as Map<String, Any>, itemDefinitions!!)
                                 "mining" -> Rock(value as Map<String, Any>, itemDefinitions!!)
                                 else -> value
-                            }, indent)
+                            }, indent, parentMap)
                     } else {
-                        super.set(map, key, value, indent)
+                        super.set(map, key, value, indent, parentMap)
                     }
                 }
             }

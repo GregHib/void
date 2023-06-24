@@ -40,7 +40,7 @@ class VariableDefinitions {
                     else -> VariableDefinition.custom()
                 }
                 val config = object : DefinitionIdsConfig() {
-                    override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int) {
+                    override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
                         if (indent == 0) {
                             val definition = factory.invoke(if (value is Int) {
                                 mapOf("id" to value)
@@ -54,7 +54,7 @@ class VariableDefinitions {
                                 varbitIds[definition.id] = key
                             }
                         } else {
-                            super.set(map, key, value, indent)
+                            super.set(map, key, value, indent, parentMap)
                         }
                     }
                 }

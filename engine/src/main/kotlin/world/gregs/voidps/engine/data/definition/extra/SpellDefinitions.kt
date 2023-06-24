@@ -19,7 +19,7 @@ class SpellDefinitions {
         timedLoad("spell definition") {
             val definitions = Object2ObjectOpenHashMap<String, SpellDefinition>()
             val config = object : FastUtilConfiguration() {
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int) {
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
                     if (indent == 0) {
                         definitions[key] = if (value is Map<*, *>) {
                             SpellDefinition(key, value as MutableMap<String, Any>)
@@ -27,7 +27,7 @@ class SpellDefinitions {
                             SpellDefinition(stringId = key)
                         }
                     } else {
-                        super.set(map, key, value, indent)
+                        super.set(map, key, value, indent, parentMap)
                     }
                 }
             }

@@ -23,7 +23,7 @@ class ItemOnItemDefinitions {
             val definitions = Object2ObjectOpenHashMap<String, MutableList<ItemOnItemDefinition>>()
             var count = 0
             val config = object : DefinitionIdsConfig() {
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int) {
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
                     if (indent == 0) {
                         val definition = ItemOnItemDefinition(value as Map<String, Any>)
                         val usable = definition.requires.toMutableList()
@@ -43,7 +43,7 @@ class ItemOnItemDefinitions {
                         }
                         count++
                     } else {
-                        super.set(map, key, value, indent)
+                        super.set(map, key, value, indent, parentMap)
                     }
                 }
             }

@@ -53,11 +53,11 @@ class GearDefinitions {
                     }
                 }
 
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int) {
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
                     super.set(map, key, when (key) {
                         "levels" -> (value as String).toIntRange()
                         else -> value
-                    }, indent)
+                    }, indent, parentMap)
                 }
             }
             this.definitions = parser.load(path, config)
