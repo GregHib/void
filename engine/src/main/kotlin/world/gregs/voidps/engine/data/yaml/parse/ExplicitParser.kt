@@ -41,10 +41,10 @@ class ExplicitParser(
             } else if (reader.indentation == currentIndent && reader.char != '-') {
                 config.setEmpty(map, key)
             } else {
-                config.setMapValue(this, map, key, indentOffset = 0, withinMap = true)
+                config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = true)
             }
         } else {
-            config.setMapValue(this, map, key, indentOffset = 0, withinMap = true)
+            config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = true)
         }
         return map
     }
@@ -60,7 +60,7 @@ class ExplicitParser(
             }
             reader.skip() // skip colon
             reader.nextLine()
-            config.setMapValue(this, map, key, indentOffset = 0, withinMap = false)
+            config.setMapValue(this, map, key, reader.indentation, indentOffset = 0, withinMap = false)
             reader.nextLine()
             val char = reader.char
             reader.skip()// skip comma/closing char

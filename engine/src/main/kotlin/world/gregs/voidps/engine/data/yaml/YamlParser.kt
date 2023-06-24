@@ -9,25 +9,33 @@ import java.io.File
  * High performance parser for simplified YAML
  */
 class YamlParser(
-    var config: CollectionConfiguration = CollectionConfiguration(),
-    val reader: CharReader = CharReader(config.createMap()),
-    private val explicit: ExplicitParser = ExplicitParser(reader, config),
-    private val normal: NormalParser = NormalParser(reader, config, explicit)
+    private val defaultConfig: CollectionConfiguration = CollectionConfiguration(),
+    val reader: CharReader = CharReader(defaultConfig.createMap()),
+    private val explicit: ExplicitParser = ExplicitParser(reader, defaultConfig),
+    private val normal: NormalParser = NormalParser(reader, defaultConfig, explicit)
 ) {
-    fun parse(file: File, fileSize: Int = 3_000_000): Any {
+
+    var config: CollectionConfiguration = defaultConfig
+
+    @Suppress("UNCHECKED_CAST")
+    fun <T : Any> load(path: String, config: CollectionConfiguration = defaultConfig, fileSize: Int = 3_000_000): T {
+        this.config = config
         val charArray = CharArray(fileSize)
-        val fr = file.reader()
+        val fr = File(path).reader()
         val length = fr.read(charArray)
-        return parse(charArray, length)
+        return parse(charArray, length) as T
     }
 
     fun parse(string: String) = parse(string.toCharArray())
 
     fun parse(charArray: CharArray, length: Int = charArray.size): Any {
         explicit.config = config
+        normal.config = config
         reader.anchors.clear()
         reader.set(charArray, length)
         reader.nextLine()
-        return normal.value(indentOffset = 0, withinMap = false)
+        val output = normal.value(indentOffset = 0, withinMap = false)
+        config = defaultConfig
+        return output
     }
 }

@@ -73,11 +73,11 @@ class NormalParser(
                     config.setEmpty(map, key)
                 } else {
                     openEnded = true
-                    config.setMapValue(this, map, key, indentOffset = 0, withinMap = true)
+                    config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = true)
                 }
             } else {
                 openEnded = false
-                config.setMapValue(this, map, key, indentOffset = 0, withinMap = true)
+                config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = true)
             }
             return false
         }
@@ -95,7 +95,7 @@ class NormalParser(
             }
             if (isListItem()) {
                 if (openEnded) {
-                    config.setMapValue(this, map, firstKey, indentOffset = 0, withinMap = true)
+                    config.setMapValue(this, map, firstKey, currentIndent, indentOffset = 0, withinMap = true)
                     continue
                 } else {
                     throw IllegalArgumentException("Not allowed list items in a map. Line ${reader.exception}")
