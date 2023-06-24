@@ -9,8 +9,9 @@ import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.client.ui.GameFrame.Companion.GAME_FRAME_NAME
 import world.gregs.voidps.engine.client.ui.GameFrame.Companion.GAME_FRAME_RESIZE_NAME
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
+import world.gregs.voidps.engine.data.yaml.YamlParser
+import world.gregs.voidps.engine.data.yaml.config.DefinitionIdsConfig
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
@@ -39,19 +40,25 @@ class InterfaceDefinitions(
     override fun empty() = InterfaceDefinition.EMPTY
 
     fun load(
-        storage: FileStorage = get(),
+        parser: YamlParser = get(),
         path: String = getProperty("interfacesPath"),
         typePath: String = getProperty("interfaceTypesPath")
     ): InterfaceDefinitions {
         timedLoad("interface extra") {
-            val data = storage.loadMapIds(path)
-            val typeData: Map<String, Map<String, Any>> = storage.load(typePath)
+            val count = decode(parser, path)
+            val ids = Object2IntOpenHashMap<String>()
+            val config = object: DefinitionIdsConfig() {
+                override fun set(map: MutableMap<String, Any>, key: String, id: Int, extras: Map<String, Any>?) {
+                    ids[key] = id
+                }
+            }
+            val data: Map<String, Map<String, Any>> = parser.load(path, config)
+            val typeData: Map<String, Map<String, Any>> = parser.load(typePath)
             val names = data.map { (name, values) ->
                 val id = values["id"] as? Int
                 checkNotNull(id) { "Missing interface id $id" }
                 id to name
             }.toMap()
-            ids = Object2IntOpenHashMap(data.map { it.key to it.value["id"] as Int }.toMap())
             val types = loadTypes(typeData)
             val components = getComponentsMap(data)
             val idToNames = components.mapValues { it.value.toMap() }
@@ -67,7 +74,7 @@ class InterfaceDefinitions(
                     }
                 }
             }
-            names.size
+            count
         }
         return this
     }

@@ -1,9 +1,11 @@
 package world.gregs.voidps.engine.data.definition.extra
 
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.data.yaml.YamlParser
+import world.gregs.voidps.engine.data.yaml.config.DefinitionConfig
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
@@ -23,17 +25,25 @@ class ContainerDefinitions(
 
     override fun empty() = ContainerDefinition.EMPTY
 
+    @Suppress("UNCHECKED_CAST")
     fun load(parser: YamlParser = get(), path: String = getProperty("containerDefinitionsPath"), itemDefs: ItemDefinitions = get()): ContainerDefinitions {
         timedLoad("container extra") {
-            decode(parser, path)
-            for (def in definitions) {
-                if (def.has("defaults") && def.length > 0) {
-                    val list = def.get<List<Map<String, Int>>>("defaults")
-                    def.ids = IntArray(def.length) { itemDefs.get(list[it].keys.first()).id }
-                    def.amounts = IntArray(def.length) { list[it].values.first() }
+            val ids = Object2IntOpenHashMap<String>()
+            val config = object : DefinitionConfig<ContainerDefinition>(ids, definitions) {
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int) {
+                    if (key == "defaults" && value is List<*>) {
+                        val id = map["id"] as Int
+                        value as List<Map<String, Int>>
+                        val def = definitions[id]
+                        def.ids = IntArray(def.length) { itemDefs.get(value[it].keys.first()).id }
+                        def.amounts = IntArray(def.length) { value[it].values.first() }
+                    }
+                    super.set(map, key, value, indent)
                 }
             }
-            definitions.size
+            parser.load<Any>(path, config)
+            this.ids = ids
+            ids.size
         }
         return this
     }

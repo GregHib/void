@@ -4,7 +4,6 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.data.definition.config.SpellDefinition
 import world.gregs.voidps.engine.data.yaml.YamlParser
 import world.gregs.voidps.engine.data.yaml.config.FastUtilConfiguration
-import world.gregs.voidps.engine.data.yaml.parse.Parser
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
@@ -20,8 +19,7 @@ class SpellDefinitions {
         timedLoad("spell definition") {
             val definitions = Object2ObjectOpenHashMap<String, SpellDefinition>()
             val config = object : FastUtilConfiguration() {
-                override fun setMapValue(parser: Parser, map: MutableMap<String, Any>, key: String, indent: Int, indentOffset: Int, withinMap: Boolean) {
-                    val value = parser.value(indentOffset, withinMap)
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int) {
                     if (indent == 0) {
                         definitions[key] = if (value is Map<*, *>) {
                             SpellDefinition(key, value as MutableMap<String, Any>)
@@ -29,8 +27,7 @@ class SpellDefinitions {
                             SpellDefinition(stringId = key)
                         }
                     } else {
-                        map[key] = value
-                        return
+                        super.set(map, key, value, indent)
                     }
                 }
             }

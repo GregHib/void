@@ -1,12 +1,12 @@
 package world.gregs.voidps.engine.data.definition.extra
 
-import world.gregs.voidps.cache.definition.Transforms
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
-import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.voidps.engine.data.definition.DefinitionModifications
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.data.definition.data.Spot
+import world.gregs.voidps.engine.data.yaml.YamlParser
+import world.gregs.voidps.engine.data.yaml.config.DefinitionConfig
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
@@ -26,12 +26,26 @@ class NPCDefinitions(
 
     override fun empty() = NPCDefinition.EMPTY
 
-    fun load(storage: FileStorage = get(), path: String = getProperty("npcDefinitionsPath"), itemDefinitions: ItemDefinitions = get()): NPCDefinitions {
+    @Suppress("UNCHECKED_CAST")
+    fun load(parser: YamlParser = get(), path: String = getProperty("npcDefinitionsPath"), itemDefinitions: ItemDefinitions = get()): NPCDefinitions {
         timedLoad("npc extra") {
-            val modifications = DefinitionModifications()
-            modifications["fishing"] = { map: Map<String, Map<String, Any>> -> map.mapValues { value -> Spot(value.value, itemDefinitions) } }
-            modifications.transform(Transforms.transformer)
-            decode(storage, path, modifications)
+            val ids = Object2IntOpenHashMap<String>()
+            this.ids = ids
+            val config = object : DefinitionConfig<NPCDefinition>(ids, definitions) {
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int) {
+                    super.set(map, key,
+                        if (indent == 0 && key == "fishing") {
+                            (value as Map<String, Map<String, Any>>).mapValues { Spot(it.value, itemDefinitions) }
+                        } else {
+                            value
+                        }, indent)
+                }
+            }
+            parser.load<Any>(path, config)
+            for (def in definitions) {
+                def.transforms = def.transformIds?.map { if (it == -1) null else get(it).stringId }?.toTypedArray()
+            }
+            ids.size
         }
         return this
     }

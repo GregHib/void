@@ -15,7 +15,6 @@ class GearDefinitions {
 
     fun load(parser: YamlParser = get(), path: String = getProperty("gearDefinitionsPath")): GearDefinitions {
         timedLoad("gear definition") {
-
             val data: List<Map<String, Any>> = parser.load(path)
             load(data)
         }

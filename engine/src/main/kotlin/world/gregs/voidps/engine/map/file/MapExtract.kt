@@ -10,9 +10,9 @@ import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
+import world.gregs.voidps.engine.data.yaml.YamlParser
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
@@ -243,9 +243,9 @@ class MapExtract(
         fun main(args: Array<String>) {
             val cache = CacheDelegate("./data/cache")
             val itemDefinitions = ItemDefinitions(ItemDecoder(cache))
-                .load(FileStorage(), "./data/definitions/items.yml")
+                .load(YamlParser(), "./data/definitions/items.yml")
             val definitions = ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false))
-                .load(FileStorage(), "./data/definitions/objects.yml", itemDefinitions)
+                .load(YamlParser(), "./data/definitions/objects.yml", itemDefinitions)
             val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
             val collisions = Collisions()
             val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = true)

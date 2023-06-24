@@ -1,13 +1,13 @@
 package world.gregs.voidps.engine.data.definition.extra
 
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
-import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.voidps.engine.data.definition.DefinitionModifications
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
-import world.gregs.voidps.engine.data.definition.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.data.definition.data.*
+import world.gregs.voidps.engine.data.yaml.YamlParser
+import world.gregs.voidps.engine.data.yaml.config.DefinitionConfig
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.engine.get
@@ -32,35 +32,53 @@ class ItemDefinitions(
 
     override fun empty() = ItemDefinition.EMPTY
 
-    fun load(storage: FileStorage = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {
+    @Suppress("UNCHECKED_CAST")
+    fun load(parser: YamlParser = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {
         timedLoad("item extra") {
             val equipment = mutableMapOf<Int, Int>()
-            var count = 0
+            var index = 0
             for (def in definitions) {
                 if (def.primaryMaleModel >= 0 || def.primaryFemaleModel >= 0) {
-                    equipment[def.id] = count++
+                    equipment[def.id] = index++
                 }
             }
-            val modifications = DefinitionModifications()
-            modifications["slot"] = { EquipSlot.valueOf(it as String) }
-            modifications["type"] = { EquipType.valueOf(it as String) }
-            modifications["kept"] = { ItemKept.valueOf(it as String) }
-            modifications.add { map ->
-                map["equip"] = equipment.getOrDefault(map["id"] as Int, -1)
+            val ids = Object2IntOpenHashMap<String>()
+            this.ids = ids
+            val config = object : DefinitionConfig<ItemDefinition>(ids, definitions) {
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int) {
+                    super.set(map, key, when(indent) {
+                        0 -> when(key) {
+                            "id" -> {
+                                super.set(map, "equip", equipment.getOrDefault(value as Int, -1), indent)
+                                value
+                            }
+                            "slot" -> EquipSlot.valueOf(value as String)
+                            "type" -> EquipType.valueOf(value as String)
+                            "kept" -> ItemKept.valueOf(value as String)
+                            else -> value
+                        }
+                        1 -> when (key) {
+                            "fishing" -> Catch(value as Map<String, Any>)
+                            "firemaking" -> Fire(value as Map<String, Any>)
+                            "mining" -> Ore(value as Map<String, Any>)
+                            "cooking" -> Uncooked(value as Map<String, Any>)
+                            "tanning" -> Tanning(value as Map<String, Any>)
+                            "spinning" -> Spinning(value as Map<String, Any>)
+                            "pottery" -> Pottery(value as Map<String, Any>)
+                            "weaving" -> Weaving(value as Map<String, Any>)
+                            "jewellery" -> Jewellery(value as Map<String, Any>)
+                            "silver_jewellery" -> Silver(value as Map<String, Any>, this@ItemDefinitions)
+                            "heals" -> {
+                                if (value is Int) value..value else if (value is String) value.toIntRange() else 0..0
+                            }
+                            else -> value
+                        }
+                        else -> value
+                    }, indent)
+                }
             }
-            modifications.map("fishing") { Catch(it) }
-            modifications.map("firemaking") { Fire(it) }
-            modifications.map("mining") { Ore(it) }
-            modifications.map("cooking") { Uncooked(it) }
-            modifications.map("tanning") { Tanning(it) }
-            modifications.map("spinning") { Spinning(it) }
-            modifications.map("pottery") { Pottery(it) }
-            modifications.map("weaving") { Weaving(it) }
-            modifications.map("jewellery") { Jewellery(it) }
-            modifications.map("silver_jewellery") { Silver(it, this) }
-            modifications["make"] = { list: List<Map<String, Any>> -> list.map { map -> ItemOnItemDefinition(map) } }
-            modifications["heals"] = { if (it is Int) it..it else if (it is String) it.toIntRange() else 0..0 }
-            decode(storage, path, modifications)
+            parser.load<Any>(path, config)
+            ids.size
         }
         return this
     }
