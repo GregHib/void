@@ -21,10 +21,6 @@ class QuickChatPhraseDefinitions(
     override fun empty() = QuickChatPhraseDefinition.EMPTY
 
     fun load(): QuickChatPhraseDefinitions {
-        timedLoad("quick chat phrase extra") {
-            ids = emptyMap()
-            0
-        }
         return this
     }
 

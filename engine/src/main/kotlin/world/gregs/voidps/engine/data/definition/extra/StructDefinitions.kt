@@ -21,10 +21,6 @@ class StructDefinitions(
     override fun empty() = StructDefinition.EMPTY
 
     fun load(): StructDefinitions {
-        timedLoad("struct extra") {
-            ids = emptyMap()
-            0
-        }
         return this
     }
 
