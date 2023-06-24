@@ -123,7 +123,6 @@ activate_protect_item: 2213
 activate_berserker: 2266
 activate_turmoil: 2226
 assist: 1247
-cow_eat_grass: 5854
 emote_enhanced_yawn:
   id: 277
   delay: 180
