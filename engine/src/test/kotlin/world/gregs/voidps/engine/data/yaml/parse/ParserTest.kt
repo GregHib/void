@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.data.yaml.YamlParser
+import world.gregs.voidps.engine.data.yaml.config.FastUtilConfiguration
 
 class ParserTest {
 
@@ -56,6 +57,29 @@ class ParserTest {
             - *anchor-name
         """.trimIndent())
         val expected = listOf("one", "two", "one")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse merge key anchor`() {
+        parser.config = object : FastUtilConfiguration() {
+            override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+                when (key) {
+                    "<<" -> map.putAll(value as Map<String, Any>)
+                    else -> super.set(map, key, value, indent, parentMap)
+                }
+            }
+        }
+        val output = parser.parse("""
+            - &anchor-name
+              one: value
+              two: value
+            - three  
+            - <<: *anchor-name
+              two: 2
+              three: 3
+        """.trimIndent())
+        val expected = listOf(mapOf("one" to "value", "two" to "value"), "three", mapOf("one" to "value", "two" to 2, "three" to 3))
         assertEquals(expected, output)
     }
 

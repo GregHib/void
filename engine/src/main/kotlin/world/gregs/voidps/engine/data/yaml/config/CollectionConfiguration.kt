@@ -19,15 +19,15 @@ open class CollectionConfiguration {
         add(list, parser.value(indentOffset, null), parentMap)
     }
 
-    open fun setMapValue(parser: Parser, map: MutableMap<String, Any>, key: String, indent: Int, indentOffset: Int, withinMap: String?) {
-        set(map, key, parser.value(indentOffset, withinMap), indent)
+    open fun setMapValue(parser: Parser, map: MutableMap<String, Any>, key: String, indent: Int, indentOffset: Int, withinMap: String?, parentMap: String?) {
+        set(map, key, parser.value(indentOffset, withinMap), indent, parentMap)
     }
 
     open fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
         list.add(value)
     }
 
-    open fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int) {
+    open fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
         map[key] = value
     }
 }

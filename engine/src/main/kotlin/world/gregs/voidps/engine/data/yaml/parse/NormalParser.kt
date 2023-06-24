@@ -22,7 +22,7 @@ class NormalParser(
         } else {
             val value = type()
             if (reader.inBounds && reader.char == ':') {
-                map(value.toString(), indentOffset)
+                map(value.toString(), indentOffset, withinMap)
             } else {
                 return value
             }
@@ -56,7 +56,7 @@ class NormalParser(
         return list
     }
 
-    private fun map(firstKey: String, indentOffset: Int): Any {
+    private fun map(firstKey: String, indentOffset: Int, withinMap: String?): Any {
         val map = config.createMap()
         var openEnded = false
         val currentIndent = reader.indentation + indentOffset
@@ -73,11 +73,11 @@ class NormalParser(
                     config.setEmpty(map, key)
                 } else {
                     openEnded = true
-                    config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = key)
+                    config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = key, parentMap = withinMap)
                 }
             } else {
                 openEnded = false
-                config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = key)
+                config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = key, parentMap = withinMap)
             }
             return false
         }
@@ -95,7 +95,7 @@ class NormalParser(
             }
             if (isListItem()) {
                 if (openEnded) {
-                    config.setMapValue(this, map, firstKey, currentIndent, indentOffset = 0, withinMap = firstKey)
+                    config.setMapValue(this, map, firstKey, currentIndent, indentOffset = 0, withinMap = firstKey, parentMap = withinMap)
                     continue
                 } else {
                     throw IllegalArgumentException("Not allowed list items in a map. Line ${reader.exception}")

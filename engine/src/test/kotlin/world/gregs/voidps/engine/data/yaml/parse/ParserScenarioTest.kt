@@ -37,11 +37,11 @@ class ParserScenarioTest {
     @Test
     fun `Parse map with mixed id format`() {
         parser = YamlParser(object : CollectionConfiguration() {
-            override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int) {
+            override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
                 if (value is Int && indent == 0) {
                     map[key] = mapOf("id" to value)
                 } else {
-                    super.set(map, key, value, indent)
+                    super.set(map, key, value, indent, parentMap)
                 }
             }
         })
@@ -69,9 +69,9 @@ class ParserScenarioTest {
     @Test
     fun `Parse indentation`() {
         parser = YamlParser(object : CollectionConfiguration() {
-            override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int) {
+            override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
                 assertEquals(if (key == "id") 1 else 0, indent)
-                super.set(map, key, value, indent)
+                super.set(map, key, value, indent, parentMap)
             }
         })
         val output = parser.parse("""

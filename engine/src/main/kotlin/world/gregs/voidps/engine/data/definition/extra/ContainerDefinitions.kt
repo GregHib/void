@@ -30,7 +30,7 @@ class ContainerDefinitions(
         timedLoad("container extra") {
             val ids = Object2IntOpenHashMap<String>()
             val config = object : DefinitionConfig<ContainerDefinition>(ids, definitions) {
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int) {
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
                     if (key == "defaults" && value is List<*>) {
                         val id = map["id"] as Int
                         value as List<Map<String, Int>>
@@ -38,7 +38,7 @@ class ContainerDefinitions(
                         def.ids = IntArray(def.length) { itemDefs.get(value[it].keys.first()).id }
                         def.amounts = IntArray(def.length) { value[it].values.first() }
                     }
-                    super.set(map, key, value, indent)
+                    super.set(map, key, value, indent, parentMap)
                 }
             }
             parser.load<Any>(path, config)

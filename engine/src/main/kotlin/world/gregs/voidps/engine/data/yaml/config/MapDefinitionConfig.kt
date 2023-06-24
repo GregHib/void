@@ -13,7 +13,8 @@ class MapDefinitionConfig<T : Extra>(
     val ids = Object2IntOpenHashMap<String>()
     val definitions = Int2ObjectOpenHashMap<T>()
 
-    override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int) {
+    @Suppress("UNCHECKED_CAST")
+    override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
         if (value is Int && indent == 0) {
             ids[key] = value
             definitions[value] = producer(value, key, null)
@@ -23,7 +24,7 @@ class MapDefinitionConfig<T : Extra>(
             ids[key] = id
             definitions[id] = producer(id, key, value)
         } else {
-            super.set(map, key, value, indent)
+            super.set(map, key, value, indent, parentMap)
         }
     }
 }

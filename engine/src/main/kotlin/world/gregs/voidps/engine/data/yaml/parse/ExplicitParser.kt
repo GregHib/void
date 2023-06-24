@@ -18,13 +18,13 @@ class ExplicitParser(
     override fun collection(indentOffset: Int, withinMap: String?): Any {
         val type = type()
         return if (reader.inBounds && reader.char == ':') {
-            keyValuePair(type.toString())
+            keyValuePair(type.toString(), withinMap)
         } else {
             type
         }
     }
 
-    private fun keyValuePair(key: String): Map<String, Any> {
+    private fun keyValuePair(key: String, withinMap: String?): Map<String, Any> {
         val map = config.createMap()
         reader.skip() // skip colon
         reader.skipSpaces()
@@ -41,10 +41,10 @@ class ExplicitParser(
             } else if (reader.indentation == currentIndent && reader.char != '-') {
                 config.setEmpty(map, key)
             } else {
-                config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = key)
+                config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = key, parentMap = withinMap)
             }
         } else {
-            config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = key)
+            config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = key, parentMap = withinMap)
         }
         return map
     }
@@ -60,7 +60,7 @@ class ExplicitParser(
             }
             reader.skip() // skip colon
             reader.nextLine()
-            config.setMapValue(this, map, key, reader.indentation, indentOffset = 0, withinMap = null)
+            config.setMapValue(this, map, key, reader.indentation, indentOffset = 0, withinMap = null, parentMap = null)
             reader.nextLine()
             val char = reader.char
             reader.skip()// skip comma/closing char
