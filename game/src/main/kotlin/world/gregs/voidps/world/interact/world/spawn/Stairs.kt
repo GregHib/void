@@ -1,7 +1,9 @@
 package world.gregs.voidps.world.interact.world.spawn
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import org.koin.dsl.module
-import world.gregs.voidps.engine.data.FileStorage
+import world.gregs.voidps.engine.data.yaml.YamlParser
+import world.gregs.voidps.engine.data.yaml.config.FastUtilConfiguration
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
@@ -12,34 +14,51 @@ val stairsModule = module {
 }
 
 class Stairs(
-    private val storage: FileStorage
+    private val parser: YamlParser
 ) {
 
-    private lateinit var teleports: Map<Tile, Map<String, Teleport>>
+    private lateinit var teleports: Map<Int, Map<String, Teleport>>
 
     fun get(id: Int, tile: Tile, option: String): Teleport? {
-        val teleport = teleports[tile]?.get(option) ?: return null
+        val teleport = teleports[tile.id]?.get(option) ?: return null
         if (teleport.id != id) {
             return null
         }
         return teleport
     }
 
+    @Suppress("UNCHECKED_CAST")
     fun load(path: String = getProperty("stairsPath")): Stairs {
         timedLoad("stair") {
-            val data = storage.load<Array<Map<String, Any>>>(path)
-            load(data.map(Teleport.Companion::fromMap))
+            val config = object : FastUtilConfiguration() {
+                override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
+                    val map = value as Map<String, Any>
+                    val tile = map["tile"] as Tile
+                    val optionMap = createMap()
+                    val option = map["option"] as String
+                    optionMap[option] = Teleport(
+                        id = map["id"] as Int,
+                        option = option,
+                        tile = tile,
+                        delta = map["delta"] as? Delta ?: Delta.EMPTY,
+                        to = map["to"] as? Tile ?: Tile.EMPTY,
+                    )
+                    super.add(list, tile.id to optionMap, parentMap)
+                }
+
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+                    super.set(map, key, when (key) {
+                        "delta" -> Delta.fromMap(value as Map<String, Any>)
+                        "tile", "to" -> Tile.fromMap(value as Map<String, Any>)
+                        else -> value
+                    }, indent, parentMap)
+                }
+            }
+            val teleports: List<Pair<Int, Map<String, Teleport>>> = parser.load(path, config)
+            this.teleports = Int2ObjectOpenHashMap(teleports.toMap())
+            teleports.size
         }
         return this
-    }
-
-    private fun load(array: List<Teleport>): Int {
-        val map = mutableMapOf<Tile, MutableMap<String, Teleport>>()
-        for (tele in array) {
-            map.getOrPut(tele.tile) { mutableMapOf() }[tele.option] = tele
-        }
-        teleports = map
-        return teleports.size
     }
 
     data class Teleport(val id: Int, val option: String, val tile: Tile, val delta: Delta = Delta.EMPTY, val to: Tile = Tile.EMPTY) {
@@ -50,19 +69,6 @@ class Stairs(
                 to
             } else {
                 tile
-            }
-        }
-
-        companion object {
-            @Suppress("UNCHECKED_CAST")
-            fun fromMap(map: Map<String, Any>): Teleport {
-                return Teleport(
-                    id = map["id"] as Int,
-                    option = map["option"] as String,
-                    tile = Tile.fromMap(map["tile"] as Map<String, Any>),
-                    delta = if (map.containsKey("delta")) Delta.fromMap(map["delta"] as Map<String, Any>) else Delta.EMPTY,
-                    to = if (map.containsKey("to")) Tile.fromMap(map["to"] as Map<String, Any>) else Tile.EMPTY
-                )
             }
         }
     }

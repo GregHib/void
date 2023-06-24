@@ -3,9 +3,10 @@ package world.gregs.voidps.engine.map.region
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import kotlinx.io.streams.readPacketAtLeast
 import world.gregs.voidps.engine.timedLoad
 import java.io.File
-import java.io.RandomAccessFile
 
 private typealias Xtea = IntArray
 
@@ -22,7 +23,7 @@ class XteaLoader {
                     key ?: DEFAULT_KEY,
                     value ?: DEFAULT_VALUE
                 )
-                else -> loadBinary(RandomAccessFile(file, "r"))
+                else -> loadBinary(file)
             }
             xteas.delegate.clear()
             xteas.delegate.putAll(all)
@@ -58,12 +59,12 @@ class XteaLoader {
         return file.nameWithoutExtension.toInt() to loadText(file.readText())
     }
 
-    private fun loadBinary(file: RandomAccessFile): Map<Int, Xtea> {
-        val xteas = mutableMapOf<Int, IntArray>()
-        file.use { raf ->
-            while (raf.filePointer < raf.length()) {
-                val region = raf.readShort().toInt()
-                xteas[region] = IntArray(4) { raf.readInt() }
+    private fun loadBinary(file: File): Map<Int, Xtea> {
+        val xteas = Int2ObjectOpenHashMap<IntArray>()
+        file.inputStream().readPacketAtLeast(0).use { packet ->
+            while (packet.remaining >= 18) {
+                val region = packet.readShort().toInt()
+                xteas[region] = IntArray(4) { packet.readInt() }
             }
         }
         return xteas
