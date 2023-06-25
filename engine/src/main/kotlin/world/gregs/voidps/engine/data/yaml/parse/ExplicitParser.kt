@@ -55,7 +55,7 @@ class ExplicitParser(
         reader.nextLine()
         while (reader.inBounds) {
             if (reader.char == '}') {
-                reader.skip()// skip comma/closing char
+                reader.skip()// closing char
                 reader.nextLine()
                 return map
             }
@@ -85,7 +85,7 @@ class ExplicitParser(
         reader.nextLine()
         while (reader.inBounds) {
             if (reader.char == ']') {
-                reader.skip()// skip comma / closing char
+                reader.skip()// skip closing char
                 reader.nextLine()
                 return list
             }
