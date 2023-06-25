@@ -1,14 +1,17 @@
 package world.gregs.voidps.engine.data.definition.extra
 
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.data.definition.data.Pickable
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.data.definition.data.Tree
 import world.gregs.voidps.engine.data.yaml.YamlParser
 import world.gregs.voidps.engine.data.yaml.config.DefinitionConfig
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
@@ -34,17 +37,30 @@ class ObjectDefinitions(
             val ids = Object2IntOpenHashMap<String>()
             this.ids = ids
             val config = object : DefinitionConfig<ObjectDefinition>(ids, definitions) {
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
-                    if(indent == 1) {
+
+                override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
+                    if (parentMap == "ores") {
+                        super.add(list, Item(value as String, def = ItemDefinition.EMPTY), parentMap)
+                    } else {
+                        super.add(list, value, parentMap)
+                    }
+                }
+
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+                    if (indent == 1) {
                         super.set(map, key,
                             when (key) {
-                                "pickable" -> Pickable(value as Map<String, Any>, itemDefinitions!!)
-                                "woodcutting" -> Tree(value as Map<String, Any>, itemDefinitions!!)
-                                "mining" -> Rock(value as Map<String, Any>, itemDefinitions!!)
+                                "pickable" -> Pickable(value as Map<String, Any>)
+                                "woodcutting" -> Tree(value as Map<String, Any>)
+                                "mining" -> Rock(value as Map<String, Any>)
                                 else -> value
                             }, indent, parentMap)
                     } else {
-                        super.set(map, key, value, indent, parentMap)
+                        super.set(map, key, when (key) {
+                            "chance", "hatchet_low_dif", "hatchet_high_dif", "respawn" -> (value as String).toIntRange()
+                            "item", "log" -> Item(value as String, def = ItemDefinition.EMPTY)
+                            else -> value
+                        }, indent, parentMap)
                     }
                 }
             }
