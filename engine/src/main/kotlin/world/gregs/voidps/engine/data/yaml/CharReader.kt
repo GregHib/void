@@ -67,8 +67,10 @@ class CharReader(
             when (input[index]) {
                 ' ' -> {}
                 '\n', '\r' -> {
+                    if (lastLine < index - 1) {
+                        lineCount++
+                    }
                     lastLine = index + 1
-                    lineCount++
                 }
                 '#' -> while (index < size) {
                     if (linebreak(input[index])) {
@@ -107,7 +109,7 @@ class CharReader(
         }
     }
 
-    fun debug(length: Int) = substring(index, (index + length).coerceAtMost(size)).replace("\n", "\\n")
+    fun debug(length: Int) = substring(index, (index + length).coerceAtMost(size)).replace("\n", "\\n").replace("\r", "\\r")
 
     val debug: String
         get() = debug(20)
@@ -122,7 +124,7 @@ class CharReader(
                 }
                 end++
             }
-            return substring(lastLine, end).replace("\n", "\\n").trim()
+            return substring(lastLine, end).replace("\n", "\\n").replace("\r", "\\r").trim()
         }
 
     val exception: String
