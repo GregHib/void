@@ -54,6 +54,11 @@ class ExplicitParser(
         reader.skip() // skip opening char
         reader.nextLine()
         while (reader.inBounds) {
+            if (reader.char == '}') {
+                reader.skip()// skip comma/closing char
+                reader.nextLine()
+                return map
+            }
             val key = type().toString()
             if (reader.inBounds && reader.char != ':') {
                 throw IllegalArgumentException("Expected key-pair value ${reader.exception}")
@@ -79,6 +84,11 @@ class ExplicitParser(
         reader.skip() // skip opening char
         reader.nextLine()
         while (reader.inBounds) {
+            if (reader.char == ']') {
+                reader.skip()// skip comma / closing char
+                reader.nextLine()
+                return list
+            }
             config.addListItem(this, list, indentOffset = 0, parentMap = withinMap)
             reader.nextLine()
             val char = reader.char

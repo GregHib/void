@@ -24,6 +24,23 @@ class ExplicitParserTest {
         val expected = mapOf("name" to "John Doe", "age" to 30)
         assertEquals(expected, output)
     }
+    @Test
+    fun `Parse empty explicit list`() {
+        val output = parser.parse("""
+            [  ]
+        """.trimIndent())
+        val expected = listOf<Any>()
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse empty explicit map`() {
+        val output = parser.parse("""
+            {  }
+        """.trimIndent())
+        val expected = mapOf<String, Any>()
+        assertEquals(expected, output)
+    }
 
     @Test
     fun `Parse explicit multi-line lists`() {
