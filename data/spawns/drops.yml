@@ -22,22 +22,8 @@ allotment_seed_drop_table:
       chance: 1
     - id: snape_grass_seed
       chance: 1
-general_seeds:
-  roll: 0
-  drops:
-    - id: allotment_seed_subtable
-      chance: 485
-    - id: hops_seed_subtable
-      chance: 728
-    - id: flower_seed_subtable
-      chance: 850
-    - id: bush_seed_subtable
-      chance: 947
-    - id: herb_seed_subtable
-      chance: 995
-    - id: special_seed_subtable
-      chance: 1000
-allotment_seed_subtable:
+allotment_seed_sub_table:
+  &allotment_seed_table
   roll: 1008
   drops:
     - id: potato_seed
@@ -64,7 +50,8 @@ allotment_seed_subtable:
     - id: snape_grass_seed
       amount: 2
       chance: 8
-hops_seed_subtable:
+hops_seed_sub_table:
+  &hops_seed_table
   roll: 1000
   drops:
     - id: barley_seed
@@ -87,7 +74,8 @@ hops_seed_subtable:
       chance: 57
     - id: wildblood_seed
       chance: 29
-flower_seed_subtable:
+flower_seed_sub_table:
+  &flower_seed_table
   roll: 1000
   drops:
     - id: marigold_seed
@@ -100,7 +88,8 @@ flower_seed_subtable:
       chance: 119
     - id: limpwurt_seed
       chance: 95
-bush_seed_subtable:
+bush_seed_sub_table:
+  &bush_seed_table
   roll: 1000
   drops:
     - id: redberry_seed
@@ -115,7 +104,8 @@ bush_seed_subtable:
       chance: 29
     - id: poison_ivy_seed
       chance: 11
-herb_seed_subtable:
+herb_seed_sub_table:
+  &herb_seed_table
   roll: 1000
   drops:
     - id: guam_seed
@@ -146,7 +136,8 @@ herb_seed_subtable:
       chance: 3
     - id: torstol_seed
       chance: 2
-special_seed_subtable:
+special_seed_sub_table:
+  &special_seed_table
   roll: 1100
   drops:
     - id: mushroom_spore
@@ -157,6 +148,21 @@ special_seed_subtable:
       chance: 200
     - id: potato_cactus_seed
       chance: 100
+general_seeds:
+  roll: 0
+  drops:
+    - <<: *allotment_seed_table
+      chance: 485
+    - <<: *hops_seed_table
+      chance: 728
+    - <<: *flower_seed_table
+      chance: 850
+    - <<: *bush_seed_table
+      chance: 947
+    - <<: *herb_seed_table
+      chance: 995
+    - <<: *special_seed_table
+      chance: 1000
 rare_seed_drop_table:
   roll: 238
   drops:
@@ -365,14 +371,8 @@ other:
     - id: silver_ore_noted
       amount: 100
       chance: 2
-subtables:
-  roll: 128
-  drops:
-    - id: gem_drop_table
-      chance: 20
-    - id: mega_rare_drop_table
-      chance: 15
 gem_drop_table:
+  &gem_table
   roll: 128
   drops:
     - id: nothing
@@ -397,6 +397,26 @@ gem_drop_table:
       chance: 1
     - id: mega_rare_drop_table
       chance: 1
+mega_rare_drop_table:
+  &mega_rare_table
+  roll: 128
+  drops:
+    - id: nothing
+      amount: 0
+      chance: 113
+    - id: rune_spear
+      chance: 8
+    - id: shield_left_half
+      chance: 4
+    - id: dragon_spear
+      chance: 3
+sub_tables:
+  roll: 128
+  drops:
+    - <<: *gem_table
+      chance: 20
+    - <<: *mega_rare_table
+      chance: 15
 talisman_drop_table:
   roll: 70
   drops:
@@ -424,18 +444,6 @@ superior_drop_table:
     - id: dust_battlestaff
       chance: 3
     - id: mist_battlestaff
-      chance: 3
-mega_rare_drop_table:
-  roll: 128
-  drops:
-    - id: nothing
-      amount: 0
-      chance: 113
-    - id: rune_spear
-      chance: 8
-    - id: shield_left_half
-      chance: 4
-    - id: dragon_spear
       chance: 3
 cow_drop_table:
   type: all

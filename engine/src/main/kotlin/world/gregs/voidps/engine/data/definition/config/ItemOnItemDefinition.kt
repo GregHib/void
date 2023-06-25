@@ -1,7 +1,5 @@
 package world.gregs.voidps.engine.data.definition.config
 
-import net.pearx.kasechange.toSentenceCase
-import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.item.Item
@@ -49,15 +47,15 @@ data class ItemOnItemDefinition(
 
         @Suppress("UNCHECKED_CAST")
         operator fun invoke(map: Map<String, Any>) = ItemOnItemDefinition(
-            skill = if (map.containsKey("skill")) Skill.valueOf((map["skill"] as String).toSentenceCase()) else null,
+            skill = map["skill"] as? Skill,
             xp = map["xp"] as? Double ?: EMPTY.xp,
             level = map["level"] as? Int ?: EMPTY.level,
-            requires = listOfItems(map["requires"] as? List<Any>) ?: EMPTY.requires,
-            one = listOfItems(map["one"] as? List<Any>) ?: EMPTY.one,
-            remove = listOfItems(map["remove"] as? List<Any>) ?: EMPTY.remove,
-            add = listOfItems(map["add"] as? List<Any>) ?: EMPTY.add,
-            fail = listOfItems(map["fail"] as? List<Any>) ?: EMPTY.fail,
-            chance = (map["chance"] as? String)?.toIntRange() ?: EMPTY.chance,
+            requires = map["requires"] as? List<Item> ?: EMPTY.requires,
+            one = map["one"] as? List<Item> ?: EMPTY.one,
+            remove = map["remove"] as? List<Item> ?: EMPTY.remove,
+            add = map["add"] as? List<Item> ?: EMPTY.add,
+            fail = map["fail"] as? List<Item> ?: EMPTY.fail,
+            chance = map["chance"] as? IntRange ?: EMPTY.chance,
             delay = map["delay"] as? Int ?: EMPTY.delay,
             ticks = map["ticks"] as? Int ?: EMPTY.ticks,
             type = map["type"] as? String ?: EMPTY.type,
@@ -67,19 +65,6 @@ data class ItemOnItemDefinition(
             message = map["message"] as? String ?: EMPTY.message,
             failure = map["failure"] as? String ?: EMPTY.failure
         )
-
-        private fun listOfItems(list: List<Any>?): List<Item>? {
-            if (list == null) {
-                return null
-            }
-            return list.mapNotNull {
-                when (it) {
-                    is String -> Item(it, 1)
-                    is Map<*, *> -> Item(it["item"] as String, it["amount"] as? Int ?: 1)
-                    else -> null
-                }
-            }
-        }
 
         val EMPTY = ItemOnItemDefinition(Skill.Attack)
     }

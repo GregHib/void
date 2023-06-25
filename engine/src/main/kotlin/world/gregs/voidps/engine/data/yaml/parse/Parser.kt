@@ -129,7 +129,7 @@ abstract class Parser(val reader: CharReader) {
 
     open fun isOpeningTerminator(char: Char) = char == '\r' || char == '\n' || char == '#'
 
-    private fun number(start: Int): Any? {
+    fun number(start: Int): Any? {
         var decimal = reader.char == '.'
         reader.skip() // skip first
         while (reader.inBounds) {

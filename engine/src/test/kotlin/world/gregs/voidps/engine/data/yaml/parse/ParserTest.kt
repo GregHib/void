@@ -84,6 +84,30 @@ class ParserTest {
     }
 
     @Test
+    fun `Parse merge key list anchor`() {
+        parser.config = object : FastUtilConfiguration() {
+            override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+                when (key) {
+                    "<<" -> map.putAll(value as Map<String, Any>)
+                    else -> super.set(map, key, value, indent, parentMap)
+                }
+            }
+        }
+        val output = parser.parse("""
+            one:
+              &anchor-name
+              two: value
+              three: value
+            four:
+              - <<: *anchor-name
+                three: 3
+                four: 4
+        """.trimIndent())
+        val expected = mapOf("one" to mapOf("two" to "value", "three" to "value"), "four" to listOf(mapOf("two" to "value", "three" to 3, "four" to 4)))
+        assertEquals(expected, output)
+    }
+
+    @Test
     fun `Parsing alias before anchor throws exception`() {
         assertThrows<IllegalArgumentException> {
             parser.parse("""

@@ -13,6 +13,7 @@ import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.data.yaml.YamlParser
 import world.gregs.voidps.engine.get
 
 /**
@@ -46,7 +47,7 @@ object ContainerConverter {
         val data: MutableMap<String, Any> = storage.load<Map<String, Any>>(path).toMutableMap()
 
 
-        val itemDecoder = ItemDefinitions(ItemDecoder(cache)).load(FileStorage(), "./data/definitions/items.yml")
+        val itemDecoder = ItemDefinitions(ItemDecoder(cache)).load(YamlParser(), "./data/definitions/items.yml")
         decoder = ContainerDecoder(cache)
         var counter = 0
         for (i in 0 until decoder.last) {

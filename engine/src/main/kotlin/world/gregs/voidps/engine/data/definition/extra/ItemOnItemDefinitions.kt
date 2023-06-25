@@ -1,9 +1,13 @@
 package world.gregs.voidps.engine.data.definition.extra
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import net.pearx.kasechange.toSentenceCase
+import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.data.yaml.YamlParser
 import world.gregs.voidps.engine.data.yaml.config.DefinitionIdsConfig
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
@@ -23,7 +27,15 @@ class ItemOnItemDefinitions {
             val definitions = Object2ObjectOpenHashMap<String, MutableList<ItemOnItemDefinition>>()
             var count = 0
             val config = object : DefinitionIdsConfig() {
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
+                override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
+                    super.add(list, if (value is Map<*, *>) {
+                        Item(value["item"] as String, value["amount"] as? Int ?: 1, ItemDefinition.EMPTY)
+                    } else {
+                        Item(value as String, def = ItemDefinition.EMPTY)
+                    }, parentMap)
+                }
+
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                     if (indent == 0) {
                         val definition = ItemOnItemDefinition(value as Map<String, Any>)
                         val usable = definition.requires.toMutableList()
@@ -43,11 +55,15 @@ class ItemOnItemDefinitions {
                         }
                         count++
                     } else {
-                        super.set(map, key, value, indent, parentMap)
+                        super.set(map, key, when (key) {
+                            "skill" -> Skill.valueOf((value as String).toSentenceCase())
+                            "chance" -> (value as String).toIntRange()
+                            else -> value
+                        }, indent, parentMap)
                     }
                 }
             }
-            parser.load<Map<String, Any>>(path, config)
+            parser.load<Any>(path, config)
             this.definitions = definitions
             count
         }

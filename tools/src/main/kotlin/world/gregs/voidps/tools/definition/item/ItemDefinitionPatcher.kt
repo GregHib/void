@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.data.yaml.YamlParser
 import java.io.File
 
 object ItemDefinitionPatcher {
@@ -17,9 +18,10 @@ object ItemDefinitionPatcher {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = ItemDecoder(koin.get())
+        val parser = YamlParser()
         val storage = FileStorage(true)
-        val current = ItemDefinitions(ItemDecoder(koin.get())).load(storage, "./data/definitions/items.yml")
-        val newer = ItemDefinitions(ItemDecoder(koin.get())).load(storage, "./items.yml")
+        val current = ItemDefinitions(ItemDecoder(koin.get())).load(parser, "./data/definitions/items.yml")
+        val newer = ItemDefinitions(ItemDecoder(koin.get())).load(parser, "./items.yml")
         val map = mutableMapOf<Int, Double>()
         for (id in decoder.indices) {
             val def = current.getOrNull(id) ?: continue

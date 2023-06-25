@@ -1,7 +1,8 @@
 package world.gregs.voidps.world.interact.world.spawn
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-import world.gregs.voidps.engine.data.FileStorage
+import world.gregs.voidps.engine.data.yaml.YamlParser
+import world.gregs.voidps.engine.data.yaml.config.FastUtilConfiguration
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.get
@@ -12,6 +13,9 @@ import world.gregs.voidps.engine.timedLoad
 class ItemSpawns(
     private val chunks: MutableMap<Int, ItemSpawn> = Int2ObjectOpenHashMap()
 ) {
+    val size: Int
+        get() = chunks.size
+
     fun set(tile: Tile, spawn: ItemSpawn) {
         chunks[tile.id] = spawn
     }
@@ -23,34 +27,32 @@ class ItemSpawns(
     }
 }
 
-private data class ItemSpawnData(
-    val id: String,
-    val x: Int,
-    val y: Int,
-    val plane: Int = 0,
-    val amount: Int = 1,
-    val delay: Int = 60,
-    val members: Boolean = false
-)
-
+@Suppress("UNCHECKED_CAST")
 fun loadItemSpawns(
     items: FloorItems,
     spawns: ItemSpawns,
-    storage: FileStorage = get(),
+    parser: YamlParser = get(),
     path: String = getProperty("itemSpawnsPath")
 ) {
     timedLoad("item spawn") {
         spawns.clear()
-        val data: List<ItemSpawnData> = storage.loadType(path)
         val membersWorld = World.members
-        for (item in data) {
-            if (!membersWorld && item.members) {
-                continue
+        val config = object : FastUtilConfiguration() {
+            override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
+                value as Map<String, Any>
+                val members = value["members"] as? Boolean ?: false
+                if (!membersWorld && members) {
+                    return
+                }
+                val id = value["id"] as String
+                val tile = Tile.fromMap(value)
+                val amount = value["amount"] as? Int ?: 1
+                val delay = value["delay"] as? Int ?: 60
+                spawns.set(tile, ItemSpawn(id, amount, delay))
+                items.add(tile, id, amount)
             }
-            val tile = Tile(item.x, item.y, item.plane)
-            spawns.set(tile, ItemSpawn(item.id, item.amount, item.delay))
-            items.add(tile, item.id, item.amount)
         }
-        data.size
+        parser.load<Any>(path, config)
+        spawns.size
     }
 }

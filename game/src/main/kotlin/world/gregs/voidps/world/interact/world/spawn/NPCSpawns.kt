@@ -1,6 +1,8 @@
 package world.gregs.voidps.world.interact.world.spawn
 
-import world.gregs.voidps.engine.data.FileStorage
+import world.gregs.voidps.engine.data.yaml.YamlParser
+import world.gregs.voidps.engine.data.yaml.config.FastUtilConfiguration
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.get
@@ -8,22 +10,40 @@ import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timedLoad
 
+@Suppress("UNCHECKED_CAST")
 fun loadNpcSpawns(
     npcs: NPCs,
-    storage: FileStorage = get(),
+    parser: YamlParser = get(),
     path: String = getProperty("npcSpawnsPath")
 ) {
     timedLoad("npc spawn") {
         npcs.clear()
-        val data: List<NPCSpawn> = storage.loadType(path)
         val membersWorld = World.members
-        for (spawn in data) {
-            if (!membersWorld && spawn.members) {
-                continue
+        var count = 0
+        val config = object : FastUtilConfiguration() {
+            override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
+                value as Map<String, Any>
+                val members = value["members"] as? Boolean ?: false
+                if (!membersWorld && members) {
+                    return
+                }
+                val id = value["id"] as String
+                val tile = Tile.fromMap(value)
+                val direction = value["direction"] as? Direction ?: Direction.NONE
+                val delay = value["delay"] as? Int
+                npcs.add(id, tile, direction, delay)
+                count++
             }
-            val tile = Tile(spawn.x, spawn.y, spawn.plane)
-            npcs.add(spawn.id, tile, spawn.direction, spawn.delay)
+
+            override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+                if (key == "direction") {
+                    super.set(map, key, Direction.valueOf(value as String), indent, parentMap)
+                } else {
+                    super.set(map, key, value, indent, parentMap)
+                }
+            }
         }
-        data.size
+        parser.load<Any>(path, config)
+        count
     }
 }
