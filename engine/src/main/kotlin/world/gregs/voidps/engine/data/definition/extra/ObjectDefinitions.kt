@@ -29,6 +29,10 @@ class ObjectDefinitions(
         timedLoad("object definition", definitions.size, start)
     }
 
+    override fun get(id: Int): ObjectDefinition {
+        return definitions[id]
+    }
+
     override fun empty() = ObjectDefinition.EMPTY
 
     @Suppress("UNCHECKED_CAST")
