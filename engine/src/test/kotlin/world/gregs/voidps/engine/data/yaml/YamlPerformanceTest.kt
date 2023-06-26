@@ -10,22 +10,18 @@ object YamlPerformanceTest {
         val files = File("./data/definitions/").listFiles()
             .union(File("./data/map/").listFiles().toList())
             .union(File("./data/spawns/").listFiles().toList())
-        val chars = CharArray(3_000_000)
+            .map { it.readText().toCharArray() }
         var output: Any = ""
-//        repeat(10) {
-//            files.forEach {
-//                val fr = it.reader()
-//                val length = fr.read(chars)
-//                output = parser.parse(chars, length)
-//            }
-//        }
-        val iterations = 1
+        repeat(10) {
+            files.forEach {
+                output = parser.parse(it, it.size)
+            }
+        }
+        val iterations = 1000
         val start = System.currentTimeMillis()
         repeat(iterations) {
             files.forEach {
-                val fr = it.reader()
-                val length = fr.read(chars)
-                output = parser.parse(chars, length)
+                output = parser.parse(it, it.size)
             }
         }
         println("Parsing took ${(System.currentTimeMillis() - start) / iterations}ms")
