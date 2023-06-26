@@ -9,12 +9,14 @@ import java.math.BigInteger
 
 class CacheDelegate(directory: String) : Cache {
 
-    private val delegate: Reference<CacheLibrary> = SoftReference(CacheLibrary(directory))
+    private val delegate: Reference<CacheLibrary>
 
     private val logger = InlineLogger()
 
     init {
-        logger.info { "Cache read from $directory" }
+        val start = System.currentTimeMillis()
+        delegate = SoftReference(CacheLibrary(directory))
+        logger.info { "Cache read from $directory in ${System.currentTimeMillis() - start}ms" }
     }
 
     override var index255: Index255?
