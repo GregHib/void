@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-import kotlinx.io.streams.readPacketAtLeast
+import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.engine.timedLoad
 import java.io.File
 
@@ -61,11 +61,10 @@ class XteaLoader {
 
     private fun loadBinary(file: File): Map<Int, Xtea> {
         val xteas = Int2ObjectOpenHashMap<IntArray>()
-        file.inputStream().readPacketAtLeast(0).use { packet ->
-            while (packet.remaining >= 18) {
-                val region = packet.readShort().toInt()
-                xteas[region] = IntArray(4) { packet.readInt() }
-            }
+        val reader = BufferReader(file.readBytes())
+        while (reader.position() < reader.length) {
+            val region = reader.readShort()
+            xteas[region] = IntArray(4) { reader.readInt() }
         }
         return xteas
     }
