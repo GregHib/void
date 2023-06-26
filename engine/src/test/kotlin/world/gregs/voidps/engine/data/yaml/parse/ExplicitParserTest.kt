@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.data.yaml.parse
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.yaml.YamlParser
+import world.gregs.voidps.engine.data.yaml.config.CollectionConfiguration
 
 class ExplicitParserTest {
     private var parser: YamlParser = YamlParser()
@@ -24,6 +25,7 @@ class ExplicitParserTest {
         val expected = mapOf("name" to "John Doe", "age" to 30)
         assertEquals(expected, output)
     }
+
     @Test
     fun `Parse empty explicit list`() {
         val output = parser.parse("""
@@ -71,6 +73,21 @@ class ExplicitParserTest {
                   }
         """.trimIndent())
         val expected = mapOf("name" to "John Doe", "age" to 30, "address" to mapOf("city" to "New York", "country" to "USA", "street" to mapOf("name" to "Main Str")))
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse explicit map indent values`() {
+        parser.config = object : CollectionConfiguration() {
+            override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+                assertEquals(if(key == "three" || key == "four") 1 else 0, indent)
+                super.set(map, key, value, indent, parentMap)
+            }
+        }
+        val output = parser.parse("""
+            {one: 1,two: {three: 3, four: [five]}}
+        """.trimIndent())
+        val expected = mapOf("one" to 1, "two" to mapOf("three" to 3, "four" to listOf("five")))
         assertEquals(expected, output)
     }
 

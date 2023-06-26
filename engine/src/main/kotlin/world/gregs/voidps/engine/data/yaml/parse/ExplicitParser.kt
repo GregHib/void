@@ -50,6 +50,7 @@ class ExplicitParser(
     }
 
     override fun explicitMap(): Map<String, Any> {
+        val indent = reader.indentation
         val map = config.createMap()
         reader.skip() // skip opening char
         reader.nextLine()
@@ -65,7 +66,8 @@ class ExplicitParser(
             }
             reader.skip() // skip colon
             reader.nextLine()
-            config.setMapValue(this, map, key, reader.indentation, indentOffset = 0, withinMap = null, parentMap = null)
+            reader.indentation = indent + 1
+            config.setMapValue(this, map, key, indent, indentOffset = 0, withinMap = null, parentMap = key)
             reader.nextLine()
             val char = reader.char
             reader.skip()// skip comma/closing char
