@@ -43,6 +43,10 @@ class MapLoader(
         val x = region.tile.x
         val y = region.tile.y
         for (location in def.objects) {
+            if (location.id >= definitions.definitions.size) {
+                logger.info { "Object skipped $location $x $y" }
+                continue
+            }
             val definition = definitions.get(location.id)
             objects.set(location.id, x + location.x, y + location.y, location.plane, location.type, location.rotation, definition)
         }

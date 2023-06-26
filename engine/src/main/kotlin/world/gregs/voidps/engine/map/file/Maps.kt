@@ -65,7 +65,7 @@ class Maps(
     }
 
     private fun compress(map: File) {
-        MapCompress(map, collisions, decoder).run()
+        MapCompress(map, collisions, decoder, definitions).run()
     }
 
     private fun md5(file: File): String {

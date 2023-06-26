@@ -36,4 +36,8 @@ value class MapObject(val packed: Long) {
         fun rotation(packed: Long): Int = (packed and 0x3).toInt()
 
     }
+
+    override fun toString(): String {
+        return "MapObject(id=$id, x=$x, y=$y, plane=$plane, type=$type, rotation=$rotation)"
+    }
 }
