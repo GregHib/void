@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.client.ui.GameFrame.Companion.GAME_FRAME_RESIZE
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.data.yaml.YamlParser
-import world.gregs.voidps.engine.data.yaml.config.DefinitionIdsConfig
+import world.gregs.voidps.engine.data.yaml.config.FastUtilConfiguration
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
@@ -32,7 +32,7 @@ class InterfaceDefinitions(
     init {
         val start = System.currentTimeMillis()
         definitions = decoder.indices.map {
-            decoder.get(it).apply { actualId = id }
+            decoder.get(it).apply { actualId = id;stringId = id.toString() }
         }.toTypedArray()
         timedLoad("interface definition", definitions.size, start)
     }
@@ -45,20 +45,34 @@ class InterfaceDefinitions(
         typePath: String = getProperty("interfaceTypesPath")
     ): InterfaceDefinitions {
         timedLoad("interface extra") {
-            val count = decode(parser, path)
-            val ids = Object2IntOpenHashMap<String>()
-            val config = object: DefinitionIdsConfig() {
-                override fun set(map: MutableMap<String, Any>, key: String, id: Int, extras: Map<String, Any>?) {
-                    ids[key] = id
+            val ids = mutableMapOf<String, Int>()
+            this.ids = ids
+            val config = object : FastUtilConfiguration() {
+                @Suppress("UNCHECKED_CAST")
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+                    if (indent == 0 && value is Int) {
+                        val extras = createMap()
+                        set(extras, "id", value, 1, parentMap)
+                        ids[key] = value
+                        definitions[value].stringId = key
+                        super.set(map, key, mapOf("id" to value), indent, parentMap)
+                    } else if (indent == 0) {
+                        value as MutableMap<String, Any>
+                        val id = value["id"] as Int
+                        if (id < 0) {
+                            return
+                        }
+                        ids[key] = id
+                        definitions[id].stringId = key
+                        super.set(map, key, value, indent, parentMap)
+                    } else {
+                        super.set(map, key, value, indent, parentMap)
+                    }
                 }
             }
-            val data: Map<String, Map<String, Any>> = parser.load(path, config)
+            val data = parser.load<Map<String, Map<String, Any>>>(path, config)
             val typeData: Map<String, Map<String, Any>> = parser.load(typePath)
-            val names = data.map { (name, values) ->
-                val id = values["id"] as? Int
-                checkNotNull(id) { "Missing interface id $id" }
-                id to name
-            }.toMap()
+            val names = definitions.associate { it.id to it.stringId }
             val types = loadTypes(typeData)
             val components = getComponentsMap(data)
             val idToNames = components.mapValues { it.value.toMap() }
@@ -74,15 +88,18 @@ class InterfaceDefinitions(
                     }
                 }
             }
-            count
+            names.size
         }
         return this
     }
 
-    private fun getComponentsMap(data: Map<String, Map<String, Any>>) = data.mapNotNull { (name, values) ->
-        val map = values["components"] as? Map<*, *> ?: return@mapNotNull null
-        name to listComponents(map)
-    }.toMap()
+    private fun getComponentsMap(data: Map<String, Map<String, Any>>): Map<String, List<Pair<String, Int>>> {
+        return data.mapNotNull { (name, values) ->
+            println("$name $values")
+            val map = values["components"] as? Map<*, *> ?: return@mapNotNull null
+            name to listComponents(map)
+        }.toMap()
+    }
 
     private fun listComponents(map: Map<*, *>): List<Pair<String, Int>> {
         val all = mutableListOf<Pair<String, Int>>()

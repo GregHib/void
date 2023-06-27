@@ -13,5 +13,6 @@ open class DefinitionConfig<T : Extra>(
         ids[key] = id
         definitions[id].stringId = key
         definitions[id].extras = extras
+        super.set(map, key, id, extras)
     }
 }
