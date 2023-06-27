@@ -45,7 +45,7 @@ class InterfaceDefinitions(
         typePath: String = getProperty("interfaceTypesPath")
     ): InterfaceDefinitions {
         timedLoad("interface extra") {
-            val ids = mutableMapOf<String, Int>()
+            val ids = Object2IntOpenHashMap<String>()
             this.ids = ids
             val config = object : FastUtilConfiguration() {
                 @Suppress("UNCHECKED_CAST")
@@ -55,7 +55,9 @@ class InterfaceDefinitions(
                         set(extras, "id", value, 1, parentMap)
                         ids[key] = value
                         definitions[value].stringId = key
-                        super.set(map, key, mapOf("id" to value), indent, parentMap)
+                        super.set(map, key, createMap().apply {
+                            put("id", value)
+                        }, indent, parentMap)
                     } else if (indent == 0) {
                         value as MutableMap<String, Any>
                         val id = value["id"] as Int
@@ -133,13 +135,13 @@ class InterfaceDefinitions(
         return data.mapValues { (_, values) ->
             val index = values["index"] as? Int
             val parent = values["parent"] as? String
-            mapOf(
-                "parent_fixed" to (parent ?: values["fixedParent"] as? String ?: DEFAULT_FIXED_PARENT),
-                "parent_resize" to (parent ?: values["resizeParent"] as? String ?: DEFAULT_RESIZE_PARENT),
-                "index_fixed" to (index ?: values["fixedIndex"] as Int),
-                "index_resize" to (index ?: values["resizeIndex"] as Int),
-                "permanent" to (values["permanent"] as? Boolean ?: DEFAULT_PERMANENT)
-            )
+            val map = Object2ObjectOpenHashMap<String, Any>()
+            map["parent_fixed"] = (parent ?: values["fixedParent"] as? String ?: DEFAULT_FIXED_PARENT)
+            map["parent_resize"] = (parent ?: values["resizeParent"] as? String ?: DEFAULT_RESIZE_PARENT)
+            map["index_fixed"] = (index ?: values["fixedIndex"] as Int)
+            map["index_resize"] = (index ?: values["resizeIndex"] as Int)
+            map["permanent"] = (values["permanent"] as? Boolean ?: DEFAULT_PERMANENT)
+            map
         }
     }
 
@@ -173,23 +175,23 @@ class InterfaceDefinitions(
     }.toMap()
 
     private fun extrasMap(map: Map<String, Any>, parent: Int): Map<Int, MutableMap<String, Any>> {
-        val all = mutableMapOf<Int, MutableMap<String, Any>>()
+        val all = Int2ObjectOpenHashMap<MutableMap<String, Any>>()
         for ((name, value) in map) {
             if (value is String) {
                 val startDigit = name.dropWhile { !it.isDigit() }.toInt()
                 val prefix = name.removeSuffix(startDigit.toString())
                 for ((index, i) in value.toIntRange(inclusive = true).withIndex()) {
-                    all[i] = mutableMapOf(
-                        "name" to "$prefix${startDigit + index}",
-                        "parent" to parent,
-                    )
+                    all[i] = Object2ObjectOpenHashMap<String, Any>().apply {
+                        put("name", "$prefix${startDigit + index}")
+                        put("parent", parent)
+                    }
                 }
             } else {
                 var id = value as? Int
-                val out = mutableMapOf<String, Any>(
-                    "name" to name,
-                    "parent" to parent,
-                )
+                val out = Object2ObjectOpenHashMap<String, Any>().apply {
+                    put("name", name)
+                    put("parent", parent)
+                }
                 (value as? Map<*, *>)?.forEach { (key, value) ->
                     if (key is String) {
                         if (key == "id") {
