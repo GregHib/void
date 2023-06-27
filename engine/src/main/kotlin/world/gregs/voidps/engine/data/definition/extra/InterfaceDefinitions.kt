@@ -95,7 +95,6 @@ class InterfaceDefinitions(
 
     private fun getComponentsMap(data: Map<String, Map<String, Any>>): Map<String, List<Pair<String, Int>>> {
         return data.mapNotNull { (name, values) ->
-            println("$name $values")
             val map = values["components"] as? Map<*, *> ?: return@mapNotNull null
             name to listComponents(map)
         }.toMap()
