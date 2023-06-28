@@ -13,9 +13,9 @@ class SoundDefinitions : DefinitionsDecoder<SoundDefinition> {
     override lateinit var definitions: Array<SoundDefinition>
     override lateinit var ids: Map<String, Int>
 
-    fun load(parser: Yaml = get(), path: String = getProperty("soundDefinitionsPath")): SoundDefinitions {
+    fun load(yaml: Yaml = get(), path: String = getProperty("soundDefinitionsPath")): SoundDefinitions {
         timedLoad("sound definition") {
-            decode(parser, path) { id, key, _ ->
+            decode(yaml, path) { id, key, _ ->
                 SoundDefinition(id = id, stringId = key)
             }
         }

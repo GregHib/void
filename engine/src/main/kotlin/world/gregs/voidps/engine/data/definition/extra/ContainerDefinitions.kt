@@ -26,7 +26,7 @@ class ContainerDefinitions(
     override fun empty() = ContainerDefinition.EMPTY
 
     @Suppress("UNCHECKED_CAST")
-    fun load(parser: Yaml = get(), path: String = getProperty("containerDefinitionsPath"), itemDefs: ItemDefinitions = get()): ContainerDefinitions {
+    fun load(yaml: Yaml = get(), path: String = getProperty("containerDefinitionsPath"), itemDefs: ItemDefinitions = get()): ContainerDefinitions {
         timedLoad("container extra") {
             val ids = Object2IntOpenHashMap<String>()
             val config = object : DefinitionConfig<ContainerDefinition>(ids, definitions) {
@@ -41,7 +41,7 @@ class ContainerDefinitions(
                     super.set(map, key, value, indent, parentMap)
                 }
             }
-            parser.load<Any>(path, config)
+            yaml.load<Any>(path, config)
             this.ids = ids
             ids.size
         }

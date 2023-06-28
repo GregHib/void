@@ -40,7 +40,7 @@ class InterfaceDefinitions(
     override fun empty() = InterfaceDefinition.EMPTY
 
     fun load(
-        parser: Yaml = get(),
+        yaml: Yaml = get(),
         path: String = getProperty("interfacesPath"),
         typePath: String = getProperty("interfaceTypesPath")
     ): InterfaceDefinitions {
@@ -72,8 +72,8 @@ class InterfaceDefinitions(
                     }
                 }
             }
-            val data = parser.load<Map<String, Map<String, Any>>>(path, config)
-            val typeData: Map<String, Map<String, Any>> = parser.load(typePath)
+            val data = yaml.load<Map<String, Map<String, Any>>>(path, config)
+            val typeData: Map<String, Map<String, Any>> = yaml.load(typePath)
             val names = definitions.associate { it.id to it.stringId }
             val types = loadTypes(typeData)
             val components = getComponentsMap(data)

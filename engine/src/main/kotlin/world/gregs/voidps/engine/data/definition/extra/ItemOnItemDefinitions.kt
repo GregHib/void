@@ -22,7 +22,7 @@ class ItemOnItemDefinitions {
     fun contains(one: Item, two: Item) = definitions.containsKey(id(one, two)) || definitions.containsKey(id(two, one))
 
     @Suppress("UNCHECKED_CAST")
-    fun load(parser: Yaml = get(), path: String = getProperty("itemOnItemDefinitionsPath")): ItemOnItemDefinitions {
+    fun load(yaml: Yaml = get(), path: String = getProperty("itemOnItemDefinitionsPath")): ItemOnItemDefinitions {
         timedLoad("item on item definition") {
             val definitions = Object2ObjectOpenHashMap<String, MutableList<ItemOnItemDefinition>>()
             var count = 0
@@ -63,7 +63,7 @@ class ItemOnItemDefinitions {
                     }
                 }
             }
-            parser.load<Any>(path, config)
+            yaml.load<Any>(path, config)
             this.definitions = definitions
             count
         }

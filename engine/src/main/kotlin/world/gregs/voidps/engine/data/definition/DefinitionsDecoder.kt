@@ -47,10 +47,10 @@ interface DefinitionsDecoder<D> where D : Definition, D : Extra {
         return getOrNull(id) != null
     }
 
-    fun decode(parser: Yaml, path: String, modifications: DefinitionModifications = DefinitionModifications()): Int {
+    fun decode(yaml: Yaml, path: String, modifications: DefinitionModifications = DefinitionModifications()): Int {
         val ids = Object2IntOpenHashMap<String>()
         val config = DefinitionConfig(ids, definitions)
-        parser.load<Any>(path, config)
+        yaml.load<Any>(path, config)
         this.ids = ids
         return ids.size
     }

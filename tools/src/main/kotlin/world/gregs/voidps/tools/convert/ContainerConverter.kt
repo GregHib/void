@@ -42,9 +42,9 @@ object ContainerConverter {
         val encoder = ContainerEncoder()
         val cache: Cache = get()
 
-        val parser = Yaml()
+        val yaml = Yaml()
         val path = "./data/definitions/containers.yml"
-        val data: MutableMap<String, Any> = parser.load<Map<String, Any>>(path).toMutableMap()
+        val data: MutableMap<String, Any> = yaml.load<Map<String, Any>>(path).toMutableMap()
 
 
         val itemDecoder = ItemDefinitions(ItemDecoder(cache)).load(Yaml(), "./data/definitions/items.yml")

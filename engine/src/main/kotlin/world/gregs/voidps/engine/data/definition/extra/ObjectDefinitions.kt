@@ -36,7 +36,7 @@ class ObjectDefinitions(
     override fun empty() = ObjectDefinition.EMPTY
 
     @Suppress("UNCHECKED_CAST")
-    fun load(parser: Yaml = get(), path: String = getProperty("objectDefinitionsPath"), itemDefinitions: ItemDefinitions? = get()): ObjectDefinitions {
+    fun load(yaml: Yaml = get(), path: String = getProperty("objectDefinitionsPath"), itemDefinitions: ItemDefinitions? = get()): ObjectDefinitions {
         timedLoad("object extra") {
             val ids = Object2IntOpenHashMap<String>()
             this.ids = ids
@@ -68,7 +68,7 @@ class ObjectDefinitions(
                     }
                 }
             }
-            parser.load<Any>(path, config)
+            yaml.load<Any>(path, config)
             for (def in definitions) {
                 def.transforms = def.transformIds?.map { if (it == -1) null else get(it).stringId }?.toTypedArray()
             }

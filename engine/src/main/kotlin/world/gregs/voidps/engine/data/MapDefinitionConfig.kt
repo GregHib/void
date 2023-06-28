@@ -30,9 +30,9 @@ class MapDefinitionConfig<T : Extra>(
     }
 }
 
-inline fun <reified T> DefinitionsDecoder<T>.decode(parser: Yaml, path: String, noinline producer: (id: Int, key: String, extras: Map<String, Any>?) -> T): Int where T : Definition, T : Extra {
+inline fun <reified T> DefinitionsDecoder<T>.decode(yaml: Yaml, path: String, noinline producer: (id: Int, key: String, extras: Map<String, Any>?) -> T): Int where T : Definition, T : Extra {
     val config = MapDefinitionConfig(producer)
-    parser.load<Any>(path, config)
+    yaml.load<Any>(path, config)
     ids = config.ids
     this.definitions = Array(config.definitions.keys.max()) { config.definitions.get(it) ?: producer(it, it.toString(), null) }
     return ids.size

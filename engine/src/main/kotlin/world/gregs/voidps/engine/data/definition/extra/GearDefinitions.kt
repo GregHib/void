@@ -19,7 +19,7 @@ class GearDefinitions {
     fun get(style: String): List<GearDefinition> = definitions[style] ?: emptyList()
 
     @Suppress("UNCHECKED_CAST")
-    fun load(parser: Yaml = get(), path: String = getProperty("gearDefinitionsPath")): GearDefinitions {
+    fun load(yaml: Yaml = get(), path: String = getProperty("gearDefinitionsPath")): GearDefinitions {
         timedLoad("gear definition") {
             var count = 0
             val config = object : YamlReaderConfiguration() {
@@ -60,7 +60,7 @@ class GearDefinitions {
                     }, indent, parentMap)
                 }
             }
-            this.definitions = parser.load(path, config)
+            this.definitions = yaml.load(path, config)
             count
         }
         return this

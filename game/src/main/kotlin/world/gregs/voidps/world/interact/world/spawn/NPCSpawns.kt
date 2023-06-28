@@ -13,7 +13,7 @@ import world.gregs.yaml.read.YamlReaderConfiguration
 @Suppress("UNCHECKED_CAST")
 fun loadNpcSpawns(
     npcs: NPCs,
-    parser: Yaml = get(),
+    yaml: Yaml = get(),
     path: String = getProperty("npcSpawnsPath")
 ) {
     timedLoad("npc spawn") {
@@ -43,7 +43,7 @@ fun loadNpcSpawns(
                 }
             }
         }
-        parser.load<Any>(path, config)
+        yaml.load<Any>(path, config)
         count
     }
 }

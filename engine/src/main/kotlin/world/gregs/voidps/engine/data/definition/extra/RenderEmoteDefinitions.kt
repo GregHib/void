@@ -13,9 +13,9 @@ class RenderEmoteDefinitions : DefinitionsDecoder<RenderEmoteDefinition> {
     override lateinit var definitions: Array<RenderEmoteDefinition>
     override lateinit var ids: Map<String, Int>
 
-    fun load(parser: Yaml = get(), path: String = getProperty("renderEmoteDefinitionsPath")): RenderEmoteDefinitions {
+    fun load(yaml: Yaml = get(), path: String = getProperty("renderEmoteDefinitionsPath")): RenderEmoteDefinitions {
         timedLoad("render emote definition") {
-            decode<RenderEmoteDefinition>(parser, path) { id, key, _ ->
+            decode<RenderEmoteDefinition>(yaml, path) { id, key, _ ->
                 RenderEmoteDefinition(id = id, stringId = key)
             }
         }

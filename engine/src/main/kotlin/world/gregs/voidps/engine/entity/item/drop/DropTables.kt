@@ -18,7 +18,7 @@ class DropTables {
 
     private val defaultAmount = 1..1
 
-    fun load(parser: Yaml = get(), path: String = getProperty("dropsPath")): DropTables {
+    fun load(yaml: Yaml = get(), path: String = getProperty("dropsPath")): DropTables {
         timedLoad("drop table") {
             val config = object : YamlReaderConfiguration() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
@@ -58,7 +58,7 @@ class DropTables {
                     }
                 }
             }
-            tables = parser.load(path, config)
+            tables = yaml.load(path, config)
             tables.size
         }
         return this

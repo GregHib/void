@@ -41,15 +41,15 @@ class EnumDefinitions(
     override fun empty() = EnumDefinition.EMPTY
 
     fun load(
-        parser: Yaml = get(),
+        yaml: Yaml = get(),
         path: String = getProperty("enumDefinitionsPath"),
         structPath: String = getProperty("structParamDefinitionsPath")
     ): EnumDefinitions {
         timedLoad("enum extra") {
-            decode(parser, path)
+            decode(yaml, path)
         }
         timedLoad("struct param") {
-            parameters = parser.load(structPath)
+            parameters = yaml.load(structPath)
             parameters.size
         }
         return this

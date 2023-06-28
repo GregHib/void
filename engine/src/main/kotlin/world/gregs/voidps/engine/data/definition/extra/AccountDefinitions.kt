@@ -93,7 +93,7 @@ class AccountDefinitions {
     fun getValue(key: String) = definitions.getValue(key)
 
     @Suppress("UNCHECKED_CAST")
-    fun load(parser: Yaml = get(), path: String = getProperty("savePath")): AccountDefinitions {
+    fun load(yaml: Yaml = get(), path: String = getProperty("savePath")): AccountDefinitions {
         timedLoad("account") {
             val config = object : YamlReaderConfiguration() {
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
@@ -106,7 +106,7 @@ class AccountDefinitions {
                 }
             }
             for (save in File(path).listFiles() ?: return@timedLoad 0) {
-                val data = parser.load<Map<String, Any>>(save.path, config)
+                val data = yaml.load<Map<String, Any>>(save.path, config)
                 val variables = data["variables"] as MutableMap<String, Any>
                 val accountName = data["accountName"] as String
                 add(

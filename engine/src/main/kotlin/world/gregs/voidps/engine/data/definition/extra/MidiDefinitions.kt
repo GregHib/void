@@ -13,9 +13,9 @@ class MidiDefinitions : DefinitionsDecoder<MidiDefinition> {
     override lateinit var definitions: Array<MidiDefinition>
     override lateinit var ids: Map<String, Int>
 
-    fun load(parser: Yaml = get(), path: String = getProperty("midiDefinitionsPath")): MidiDefinitions {
+    fun load(yaml: Yaml = get(), path: String = getProperty("midiDefinitionsPath")): MidiDefinitions {
         timedLoad("midi definition") {
-            decode(parser, path) { id, key, _ ->
+            decode(yaml, path) { id, key, _ ->
                 MidiDefinition(id = id, stringId = key)
             }
         }

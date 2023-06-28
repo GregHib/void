@@ -15,7 +15,7 @@ class SpellDefinitions {
     fun get(key: String) = definitions[key] ?: SpellDefinition()
 
     @Suppress("UNCHECKED_CAST")
-    fun load(parser: Yaml = get(), path: String = getProperty("spellDefinitionsPath")): SpellDefinitions {
+    fun load(yaml: Yaml = get(), path: String = getProperty("spellDefinitionsPath")): SpellDefinitions {
         timedLoad("spell definition") {
             val definitions = Object2ObjectOpenHashMap<String, SpellDefinition>()
             val config = object : YamlReaderConfiguration() {
@@ -31,7 +31,7 @@ class SpellDefinitions {
                     }
                 }
             }
-            parser.load<Any>(path, config)
+            yaml.load<Any>(path, config)
             this.definitions = definitions
             this.definitions.size
         }

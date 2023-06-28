@@ -47,7 +47,7 @@ class NavigationGraph(
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load(parser: Yaml = get(), path: String = getProperty("navGraphPath")): NavigationGraph {
+    fun load(yaml: Yaml = get(), path: String = getProperty("navGraphPath")): NavigationGraph {
         timedLoad("ai nav graph edge") {
             val config = object : YamlReaderConfiguration() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
@@ -72,7 +72,7 @@ class NavigationGraph(
                     }
                 }
             }
-            val data: Map<String, Any> = parser.load(path, config)
+            val data: Map<String, Any> = yaml.load(path, config)
             val edges = data["edges"] as Map<String, Any>
             val map = Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>>()
             var count = 0

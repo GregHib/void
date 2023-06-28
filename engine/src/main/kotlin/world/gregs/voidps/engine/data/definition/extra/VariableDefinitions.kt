@@ -24,7 +24,7 @@ class VariableDefinitions {
     fun getVarp(id: Int) = varpIds[id]
 
     @Suppress("UNCHECKED_CAST")
-    fun load(parser: Yaml = get(), path: String = getProperty("definitionsPath")): VariableDefinitions {
+    fun load(yaml: Yaml = get(), path: String = getProperty("definitionsPath")): VariableDefinitions {
         timedLoad("variable definition") {
             val definitions = Object2ObjectOpenHashMap<String, VariableDefinition>()
             val files = File(path).listFiles()?.filter { it.name.startsWith("variables-") } ?: emptyList()
@@ -58,7 +58,7 @@ class VariableDefinitions {
                         }
                     }
                 }
-                parser.load<Any>(file.path, config)
+                yaml.load<Any>(file.path, config)
             }
             this.varbitIds = varbitIds
             this.varpIds = varpIds

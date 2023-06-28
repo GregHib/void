@@ -11,8 +11,8 @@ object YamlPairObjectNames {
     @JvmStatic
     fun main(args: Array<String>) {
         val storage = FileStorage(quotes = true)
-        val parser = Yaml()
-        val update: Map<String, Map<String, Any>> = parser.load("./data/definitions/objects.yml")
+        val yaml = Yaml()
+        val update: Map<String, Map<String, Any>> = yaml.load("./data/definitions/objects.yml")
         val list = mutableListOf<Pair<String, Map<String, Any>>>()
         val keys = update.keys.toMutableSet()
         for ((key, value) in update) {

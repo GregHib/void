@@ -14,7 +14,7 @@ val stairsModule = module {
 }
 
 class Stairs(
-    private val parser: Yaml
+    private val yaml: Yaml
 ) {
 
     private lateinit var teleports: Map<Int, Map<String, Teleport>>
@@ -54,7 +54,7 @@ class Stairs(
                     }, indent, parentMap)
                 }
             }
-            val teleports: List<Pair<Int, Map<String, Teleport>>> = parser.load(path, config)
+            val teleports: List<Pair<Int, Map<String, Teleport>>> = yaml.load(path, config)
             this.teleports = Int2ObjectOpenHashMap(teleports.toMap())
             teleports.size
         }

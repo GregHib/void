@@ -13,9 +13,9 @@ class JingleDefinitions : DefinitionsDecoder<JingleDefinition> {
     override lateinit var definitions: Array<JingleDefinition>
     override lateinit var ids: Map<String, Int>
 
-    fun load(parser: Yaml = get(), path: String = getProperty("jingleDefinitionsPath")): JingleDefinitions {
+    fun load(yaml: Yaml = get(), path: String = getProperty("jingleDefinitionsPath")): JingleDefinitions {
         timedLoad("jingle definition") {
-            decode(parser, path) { id, key, _ ->
+            decode(yaml, path) { id, key, _ ->
                 JingleDefinition(id = id, stringId = key)
             }
         }

@@ -29,7 +29,7 @@ class NPCDefinitions(
     override fun empty() = NPCDefinition.EMPTY
 
     @Suppress("UNCHECKED_CAST")
-    fun load(parser: Yaml = get(), path: String = getProperty("npcDefinitionsPath"), itemDefinitions: ItemDefinitions = get()): NPCDefinitions {
+    fun load(yaml: Yaml = get(), path: String = getProperty("npcDefinitionsPath"), itemDefinitions: ItemDefinitions = get()): NPCDefinitions {
         timedLoad("npc extra") {
             val ids = Object2IntOpenHashMap<String>()
             this.ids = ids
@@ -51,7 +51,7 @@ class NPCDefinitions(
                         }, indent, parentMap)
                 }
             }
-            parser.load<Any>(path, config)
+            yaml.load<Any>(path, config)
             for (def in definitions) {
                 def.transforms = def.transformIds?.map { if (it == -1) null else get(it).stringId }?.toTypedArray()
             }

@@ -31,7 +31,7 @@ class ItemSpawns(
 fun loadItemSpawns(
     items: FloorItems,
     spawns: ItemSpawns,
-    parser: Yaml = get(),
+    yaml: Yaml = get(),
     path: String = getProperty("itemSpawnsPath")
 ) {
     timedLoad("item spawn") {
@@ -52,7 +52,7 @@ fun loadItemSpawns(
                 items.add(tile, id, amount)
             }
         }
-        parser.load<Any>(path, config)
+        yaml.load<Any>(path, config)
         spawns.size
     }
 }

@@ -25,7 +25,7 @@ class Areas {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load(parser: Yaml = get(), path: String = getProperty("areaPath")): Areas {
+    fun load(yaml: Yaml = get(), path: String = getProperty("areaPath")): Areas {
         timedLoad("map area") {
             val config = object : YamlReaderConfiguration() {
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
@@ -43,7 +43,7 @@ class Areas {
                     }
                 }
             }
-            named = parser.load(path, config)
+            named = yaml.load(path, config)
             val tagged = Object2ObjectOpenHashMap<String, MutableSet<MapArea>>()
             for (key in named.keys) {
                 val area = named.getValue(key)

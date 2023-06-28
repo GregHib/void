@@ -14,7 +14,7 @@ import world.gregs.yaml.read.YamlReaderConfiguration
 @Suppress("UNCHECKED_CAST")
 fun loadObjectSpawns(
     objects: GameObjects,
-    parser: Yaml = get(),
+    yaml: Yaml = get(),
     path: String = getProperty("objectsPath"),
     definitions: ObjectDefinitions = get(),
 ) = timedLoad("object spawn") {
@@ -36,6 +36,6 @@ fun loadObjectSpawns(
             objects.add(GameObject(definitions.get(id).id, tile.x, tile.y, tile.plane, type, rotation))
         }
     }
-    parser.load<Any>(path, config)
+    yaml.load<Any>(path, config)
     count
 }

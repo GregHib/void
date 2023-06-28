@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import org.koin.dsl.module
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.region.Region
@@ -13,10 +14,10 @@ import world.gregs.yaml.read.YamlReaderConfiguration
 import kotlin.collections.set
 
 val musicModule = module {
-    single(createdAtStart = true) { MusicTracks(get()) }
+    single(createdAtStart = true) { MusicTracks() }
 }
 
-class MusicTracks(private val parser: Yaml) {
+class MusicTracks {
 
     private lateinit var tracks: Map<Int, List<Track>>
     private lateinit var trackNames: Map<String, Int>
@@ -32,7 +33,7 @@ class MusicTracks(private val parser: Yaml) {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load() = timedLoad("music track") {
+    fun load(yaml: Yaml = get()) = timedLoad("music track") {
         var count = 0
         val tracks = Int2ObjectOpenHashMap<MutableList<Track>>()
         val names = Object2IntOpenHashMap<String>()
@@ -65,7 +66,7 @@ class MusicTracks(private val parser: Yaml) {
                 }
             }
         }
-        parser.load<Any>(getProperty("musicPath"), config)
+        yaml.load<Any>(getProperty("musicPath"), config)
         // Prioritise smaller shape checks over larger region checks
         for (entry in tracks) {
             entry.value.sortBy { it.area.area }

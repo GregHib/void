@@ -34,7 +34,7 @@ class ItemDefinitions(
 
     override fun empty() = ItemDefinition.EMPTY
 
-    fun load(parser: Yaml = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {
+    fun load(yaml: Yaml = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {
         timedLoad("item extra") {
             val equipment = Int2IntOpenHashMap()
             var index = 0
@@ -46,7 +46,7 @@ class ItemDefinitions(
             val ids = Object2IntOpenHashMap<String>()
             this.ids = ids
             val config = CustomConfig(equipment, ids, definitions)
-            parser.load<Any>(path, config)
+            yaml.load<Any>(path, config)
             ids.size
         }
         return this
