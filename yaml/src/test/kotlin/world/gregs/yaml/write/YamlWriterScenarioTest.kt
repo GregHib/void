@@ -10,11 +10,7 @@ class YamlWriterScenarioTest {
 
     @Test
     fun `Write json`() {
-        val config = YamlWriterConfiguration(
-            quoteKeys = true,
-            forceExplicit = true,
-            quoteStrings = true
-        )
+        val config = YamlWriterConfiguration.json
         val input = listOf(
             mapOf("name" to "John Doe",
                 "age" to 30,
@@ -43,7 +39,34 @@ class YamlWriterScenarioTest {
         )
         val actual = yaml.writeToString(input, config)
         val expected = """
-            [ { "name": "John Doe", "age": 30, "address": "123 Street", "info": { "height": 180, "employed": true }, "favourite_fruits": [ "apple", "banana" ] }, { "name": "Jane Doe", "age": 28, "address": "123 Street", "info": { "height": 164, "employed": true }, "favourite_fruits": [ "grapes", "pear" ] } ]
+            [
+              {
+                "name": "John Doe",
+                "age": 30,
+                "address": "123 Street",
+                "info": {
+                  "height": 180,
+                  "employed": true
+                },
+                "favourite_fruits": [
+                  "apple",
+                  "banana"
+                ]
+              },
+              {
+                "name": "Jane Doe",
+                "age": 28,
+                "address": "123 Street",
+                "info": {
+                  "height": 164,
+                  "employed": true
+                },
+                "favourite_fruits": [
+                  "grapes",
+                  "pear"
+                ]
+              }
+            ]
         """.trimIndent()
         assertEquals(expected, actual)
     }

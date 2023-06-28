@@ -10,7 +10,7 @@ class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration
             writer.append('-')
             writer.append(' ')
             if (element is List<*>) {
-                explicit.list(element, -1)
+                explicit.list(element, indent + 1)
             } else {
                 value(element, indent)
             }
