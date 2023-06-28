@@ -4,14 +4,14 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
+import world.gregs.voidps.engine.data.DefinitionConfig
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.data.definition.data.Spot
-import world.gregs.voidps.engine.data.yaml.YamlParser
-import world.gregs.voidps.engine.data.yaml.config.DefinitionConfig
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.yaml.YamlParser
 
 class NPCDefinitions(
     decoder: NPCDecoder

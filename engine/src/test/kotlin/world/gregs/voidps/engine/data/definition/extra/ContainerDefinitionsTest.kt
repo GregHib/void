@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoderTest
-import world.gregs.voidps.engine.data.yaml.YamlParser
+import world.gregs.yaml.YamlParser
 
 internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ContainerDefinition, ContainerDecoder, ContainerDefinitions>() {
 

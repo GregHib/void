@@ -3,10 +3,10 @@ package world.gregs.voidps.engine.data.definition.extra
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
 import world.gregs.voidps.cache.definition.decoder.GraphicDecoder
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
-import world.gregs.voidps.engine.data.yaml.YamlParser
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.yaml.YamlParser
 
 class GraphicDefinitions(
     decoder: GraphicDecoder

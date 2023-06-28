@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoderTest
-import world.gregs.voidps.engine.data.yaml.YamlParser
+import world.gregs.yaml.YamlParser
 
 internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefinition, AnimationDecoder, AnimationDefinitions>() {
 

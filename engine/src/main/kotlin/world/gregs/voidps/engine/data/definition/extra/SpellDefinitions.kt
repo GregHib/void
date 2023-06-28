@@ -2,11 +2,11 @@ package world.gregs.voidps.engine.data.definition.extra
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.data.definition.config.SpellDefinition
-import world.gregs.voidps.engine.data.yaml.YamlParser
-import world.gregs.voidps.engine.data.yaml.config.FastUtilConfiguration
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.yaml.YamlParser
+import world.gregs.yaml.config.FastUtilConfiguration
 
 class SpellDefinitions {
 

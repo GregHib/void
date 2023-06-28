@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
 import world.gregs.voidps.cache.definition.decoder.GraphicDecoder
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoderTest
-import world.gregs.voidps.engine.data.yaml.YamlParser
+import world.gregs.yaml.YamlParser
 
 internal class GraphicDefinitionsTest : DefinitionsDecoderTest<GraphicDefinition, GraphicDecoder, GraphicDefinitions>() {
 

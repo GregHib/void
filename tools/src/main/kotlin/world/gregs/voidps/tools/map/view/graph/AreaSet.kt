@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import world.gregs.voidps.engine.data.yaml.YamlParser
+import world.gregs.yaml.YamlParser
 
 class AreaSet {
     val areas = mutableSetOf<Area>()

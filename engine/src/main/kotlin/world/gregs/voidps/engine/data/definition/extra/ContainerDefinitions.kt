@@ -3,12 +3,12 @@ package world.gregs.voidps.engine.data.definition.extra
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
+import world.gregs.voidps.engine.data.DefinitionConfig
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
-import world.gregs.voidps.engine.data.yaml.YamlParser
-import world.gregs.voidps.engine.data.yaml.config.DefinitionConfig
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.yaml.YamlParser
 
 class ContainerDefinitions(
     decoder: ContainerDecoder

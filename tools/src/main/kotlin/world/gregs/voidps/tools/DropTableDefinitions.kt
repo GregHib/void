@@ -9,9 +9,9 @@ import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
-import world.gregs.voidps.engine.data.yaml.YamlParser
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
+import world.gregs.yaml.YamlParser
 
 object DropTableDefinitions {
     @JvmStatic

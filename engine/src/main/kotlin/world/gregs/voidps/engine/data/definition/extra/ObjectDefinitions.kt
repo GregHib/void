@@ -5,16 +5,16 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
+import world.gregs.voidps.engine.data.DefinitionConfig
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.data.definition.data.Pickable
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.data.definition.data.Tree
-import world.gregs.voidps.engine.data.yaml.YamlParser
-import world.gregs.voidps.engine.data.yaml.config.DefinitionConfig
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.yaml.YamlParser
 
 class ObjectDefinitions(
     decoder: ObjectDecoder

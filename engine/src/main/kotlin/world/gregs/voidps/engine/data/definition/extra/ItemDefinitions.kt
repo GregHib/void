@@ -4,11 +4,9 @@ import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
+import world.gregs.voidps.engine.data.DefinitionConfig
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.data.definition.data.*
-import world.gregs.voidps.engine.data.yaml.YamlParser
-import world.gregs.voidps.engine.data.yaml.config.DefinitionConfig
-import world.gregs.voidps.engine.data.yaml.parse.Parser
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.ItemKept
@@ -16,6 +14,8 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.yaml.YamlParser
+import world.gregs.yaml.parse.Parser
 
 class ItemDefinitions(
     decoder: ItemDecoder

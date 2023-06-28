@@ -13,8 +13,8 @@ import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
-import world.gregs.voidps.engine.data.yaml.YamlParser
 import world.gregs.voidps.engine.get
+import world.gregs.yaml.YamlParser
 
 /**
  * Converts containers from one cache into another, dumping the default values into containers.yml
