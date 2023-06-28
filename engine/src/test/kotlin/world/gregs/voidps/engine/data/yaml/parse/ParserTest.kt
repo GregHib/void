@@ -62,7 +62,7 @@ class ParserTest {
 
     @Test
     fun `Parse merge key anchor`() {
-        parser.config = object : FastUtilConfiguration() {
+        val config = object : FastUtilConfiguration() {
             override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                 when (key) {
                     "<<" -> map.putAll(value as Map<String, Any>)
@@ -78,14 +78,14 @@ class ParserTest {
             - <<: *anchor-name
               two: 2
               three: 3
-        """.trimIndent())
+        """.trimIndent(), config)
         val expected = listOf(mapOf("one" to "value", "two" to "value"), "three", mapOf("one" to "value", "two" to 2, "three" to 3))
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse merge key list anchor`() {
-        parser.config = object : FastUtilConfiguration() {
+        val config = object : FastUtilConfiguration() {
             override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                 when (key) {
                     "<<" -> map.putAll(value as Map<String, Any>)
@@ -102,7 +102,7 @@ class ParserTest {
               - <<: *anchor-name
                 three: 3
                 four: 4
-        """.trimIndent())
+        """.trimIndent(), config)
         val expected = mapOf("one" to mapOf("two" to "value", "three" to "value"), "four" to listOf(mapOf("two" to "value", "three" to 3, "four" to 4)))
         assertEquals(expected, output)
     }

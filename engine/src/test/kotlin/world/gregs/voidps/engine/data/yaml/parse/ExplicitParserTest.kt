@@ -78,7 +78,7 @@ class ExplicitParserTest {
 
     @Test
     fun `Parse explicit map indent values`() {
-        parser.config = object : CollectionConfiguration() {
+        val config = object : CollectionConfiguration() {
             override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                 assertEquals(if(key == "three" || key == "four") 1 else 0, indent)
                 super.set(map, key, value, indent, parentMap)
@@ -86,7 +86,7 @@ class ExplicitParserTest {
         }
         val output = parser.parse("""
             {one: 1,two: {three: 3, four: [five]}}
-        """.trimIndent())
+        """.trimIndent(), config)
         val expected = mapOf("one" to 1, "two" to mapOf("three" to 3, "four" to listOf("five")))
         assertEquals(expected, output)
     }
