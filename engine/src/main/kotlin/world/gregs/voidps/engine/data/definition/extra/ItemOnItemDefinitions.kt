@@ -31,7 +31,7 @@ class ItemOnItemDefinitions {
                     super.add(list, if (value is Map<*, *>) {
                         Item(value["item"] as String, value["amount"] as? Int ?: 1, ItemDefinition.EMPTY)
                     } else {
-                        Item(value as String, def = ItemDefinition.EMPTY)
+                        Item(value as String, amount = 1, def = ItemDefinition.EMPTY)
                     }, parentMap)
                 }
 
