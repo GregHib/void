@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import world.gregs.voidps.engine.data.FileStorage
+import world.gregs.voidps.engine.data.yaml.YamlParser
 
 class AreaSet {
     val areas = mutableSetOf<Area>()
@@ -65,9 +65,9 @@ class AreaSet {
 //            writer.writeValue(File(path), set.areas)
         }
 
-        fun load(storage: FileStorage, path: String = "./areas.yml"): AreaSet {
+        fun load(parser: YamlParser, path: String = "./areas.yml"): AreaSet {
             val set = AreaSet()
-            val map = storage.load<Map<String, Map<String, Any>>>(path)
+            val map = parser.load<Map<String, Map<String, Any>>>(path)
             val areas = map.map { (key, value) ->
                 val a = value["area"] as Map<String, Any>
                 val x = a["x"] as List<Int>

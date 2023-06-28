@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.map.view.draw
 
 import kotlinx.coroutines.*
 import world.gregs.voidps.bot.navigation.graph.NavigationGraph
-import world.gregs.voidps.engine.data.FileStorage
+import world.gregs.voidps.engine.data.yaml.YamlParser
 import world.gregs.voidps.tools.map.view.draw.WorldMap.Companion.flipRegionY
 import world.gregs.voidps.tools.map.view.graph.AreaSet
 import world.gregs.voidps.tools.map.view.interact.MouseDrag
@@ -20,7 +20,7 @@ import javax.swing.SwingUtilities
 class MapView(nav: NavigationGraph?, private val areaFile: String) : JPanel() {
 
     private val options = OptionsPane(this)
-    private val areaSet = AreaSet.load(FileStorage(), areaFile)
+    private val areaSet = AreaSet.load(YamlParser(), areaFile)
     private val highlight = HighlightedTile(this, options)
     private val area = HighlightedArea(this, areaSet)
 

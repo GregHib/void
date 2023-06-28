@@ -42,9 +42,9 @@ object ContainerConverter {
         val encoder = ContainerEncoder()
         val cache: Cache = get()
 
-        val storage = FileStorage()
+        val parser = YamlParser()
         val path = "./data/definitions/containers.yml"
-        val data: MutableMap<String, Any> = storage.load<Map<String, Any>>(path).toMutableMap()
+        val data: MutableMap<String, Any> = parser.load<Map<String, Any>>(path).toMutableMap()
 
 
         val itemDecoder = ItemDefinitions(ItemDecoder(cache)).load(YamlParser(), "./data/definitions/items.yml")
@@ -101,6 +101,6 @@ object ContainerConverter {
         }
         cache.update()
         println("Shops: $counter")
-        storage.save("containers.yml", data)
+        FileStorage().save("containers.yml", data)
     }
 }

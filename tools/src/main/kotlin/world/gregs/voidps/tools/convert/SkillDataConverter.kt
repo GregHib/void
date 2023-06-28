@@ -10,7 +10,6 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.data.definition.extra.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
@@ -28,7 +27,6 @@ object SkillDataConverter {
 
         val koin = startKoin {
             modules(module {
-                single { FileStorage() }
                 single { ItemDefinitions(ItemDecoder(get())).load(get(), "./data/definitions/items.yml") }
                 single { CacheDelegate("./data/cache/") as Cache }
             })
