@@ -26,7 +26,7 @@ class ExplicitCollectionWriter(writer: CharWriter, config: YamlWriterConfigurati
             if (config.quoteKeys) {
                 writer.append('"')
             }
-            string(key.toString())
+            write(key.toString())
             if (config.quoteKeys) {
                 writer.append('"')
             }

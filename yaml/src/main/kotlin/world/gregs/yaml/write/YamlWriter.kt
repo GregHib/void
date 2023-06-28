@@ -17,22 +17,23 @@ abstract class YamlWriter(val writer: CharWriter, var config: YamlWriterConfigur
 
     abstract fun map(map: Map<*, *>, indent: Int)
 
-    fun append(value: Any?) {
-        val string = value.toString()
-        for (char in string) {
-            writer.append(char)
-        }
-    }
-
     fun string(value: String) {
         if (config.quoteStrings) {
             writer.append('"')
         }
-        for (char in value) {
-            writer.append(char)
-        }
+        write(value)
         if (config.quoteStrings) {
             writer.append('"')
+        }
+    }
+
+    fun append(value: Any?) {
+        write(value.toString())
+    }
+
+    fun write(value: String) {
+        for (char in value) {
+            writer.append(char)
         }
     }
 }
