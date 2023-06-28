@@ -13,10 +13,12 @@ import world.gregs.voidps.engine.contain.stack.DependentOnItem
 import world.gregs.voidps.engine.data.definition.extra.*
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.previousTile
-import world.gregs.voidps.engine.entity.character.player.*
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerOptions
+import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
@@ -26,11 +28,8 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.yaml.Yaml
-import world.gregs.yaml.read.YamlReaderConfiguration
-import world.gregs.yaml.write.YamlWriterConfiguration
 import java.io.File
 
-@Suppress("UNCHECKED_CAST")
 class PlayerFactory(
     private val store: EventHandlerStore,
     private val interfaceDefinitions: InterfaceDefinitions,
@@ -64,91 +63,17 @@ class PlayerFactory(
     fun saving(name: String) = saveQueue.any { it.accountName == name }
 
     fun save(name: String, player: Player) {
-        yaml.save(path(name), player, playerWriter)
+        yaml.save(path(name), player, writeConfig)
     }
 
-    private val playerWriter = object : YamlWriterConfiguration(quoteStrings = true, forceExplicit = true, quoteKeys = true, formatExplicitMap = true) {
-        override fun write(value: Any?, indent: Int, parentMap: String?): Any? {
-            return if (value is Item) {
-                if (value.isEmpty()) {
-                    emptyMap()
-                } else {
-                    val map = mutableMapOf<String, Any>("id" to value.id)
-                    if (value.amount != 0) {
-                        map["amount"] = value.amount
-                    }
-                    map
-                }
-            } else if (value is Player) {
-                mapOf(
-                    "accountName" to value.accountName,
-                    "passwordHash" to value.passwordHash,
-                    "tile" to mapOf(
-                        "x" to value.tile.x,
-                        "y" to value.tile.y,
-                        "plane" to value.tile.plane,
-                    ),
-                    "experience" to mapOf(
-                        "experience" to value.experience.experience,
-                        "blocked" to value.experience.blocked
-                    ),
-                    "levels" to value.levels.levels,
-                    "male" to value.male,
-                    "looks" to value.body.looks,
-                    "colours" to value.body.colours,
-                    "variables" to value.variables.data,
-                    "containers" to value.containers.containers,
-                    "friends" to value.friends,
-                    "ignores" to value.ignores
-                )
-            } else {
-                super.write(value, indent, parentMap)
-            }
-        }
-    }
-    private val playerReader = object : YamlReaderConfiguration() {
-        override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
-            if (value is Map<*, *> && value.containsKey("id")) {
-                val id = value["id"] as String
-                val item = Item(id, value["amount"] as? Int ?: 0, itemDefinitions.get(id))
-                super.add(list, item, parentMap)
-            } else if (value is Map<*, *> && value.isEmpty()) {
-                super.add(list, Item.EMPTY, parentMap)
-            } else {
-                super.add(list, when (parentMap) {
-                    "blocked" -> Skill.valueOf(value as String)
-                    "friends" -> ClanRank.valueOf(value as String)
-                    else -> value
-                }, parentMap)
-            }
-        }
+    private val writeConfig = PlayerYamlWriterConfig()
+    private val readerConfig = PlayerYamlReaderConfig(itemDefinitions)
 
-        override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-            if (parentMap == "tile") {
-                super.set(map, key, Tile.fromMap(value as Map<String, Any>), indent, parentMap)
-            } else if (key == "experience" && value is Map<*, *>) {
-                value as Map<String, Any>
-                val exp = Experience(
-                    experience = (value["experience"] as List<Double>).toDoubleArray(),
-                    blocked = (value["blocked"] as List<Skill>).toMutableSet()
-                )
-                super.set(map, key, exp, indent, parentMap)
-            } else if (key == "levels") {
-                value as List<Int>
-                super.set(map, key, Levels(value.toIntArray()), indent, parentMap)
-            } else if (key == "looks" || key == "colours") {
-                value as List<Int>
-                super.set(map, key, value.toIntArray(), indent, parentMap)
-            } else {
-                super.set(map, key, value, indent, parentMap)
-            }
-        }
-    }
-
+    @Suppress("UNCHECKED_CAST")
     fun getOrElse(name: String, index: Int, block: () -> Player): Player {
         val file = File(path(name))
         val player = if (file.exists()) {
-            val map: Map<String, Any> = yaml.load(file.path, playerReader)
+            val map: Map<String, Any> = yaml.load(file.path, readerConfig)
             Player(
                 accountName = map["accountName"] as String,
                 passwordHash = map["passwordHash"] as String,
