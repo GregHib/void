@@ -2,7 +2,6 @@ package world.gregs.voidps.cache
 
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
-import java.io.File
 
 abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, internal val index: Int) {
 
@@ -14,13 +13,17 @@ abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, inte
 
 
     fun loadAll(definitions: Array<T>, getId: (archive: Int, file: Int) -> Int) {
-        val temp = File("temp.dat")
-        val writer = BufferReader(temp.readBytes())
-        while (writer.position() < writer.length) {
-            val id = writer.readInt()
-            val definition = definitions[id]
-            readLoop(definition, writer)
-//            definition.changeValues()
+        for (archiveId in cache.getArchives(index)) {
+            val files = cache.getArchiveData(index, archiveId) ?: continue
+            for ((fileId, file) in files) {
+                if (file == null) {
+                    continue
+                }
+                val id = getId(archiveId, fileId)
+                val definition = definitions[id]
+                readLoop(definition, BufferReader(file))
+                definition.changeValues()
+            }
         }
     }
 

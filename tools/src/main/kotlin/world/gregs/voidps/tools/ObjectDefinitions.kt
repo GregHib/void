@@ -2,6 +2,10 @@ package world.gregs.voidps.tools
 
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import java.io.File
@@ -10,11 +14,65 @@ object ObjectDefinitions {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val start = System.currentTimeMillis()
-        val defs = Array<ObjectDefinition>(70000) { ObjectDefinition(it) }
-        loadAll(defs)
+        val cache = CacheDelegate("./data/cache")
+
+        val decoder = ObjectDecoder(cache, false, true)
+        val count = decoder.last
+        println(count)
+        var start = System.currentTimeMillis()
+
+
+        dump(cache, Indices.OBJECTS) { archive, file -> (archive shl 8) + file }
+        dump(cache, Indices.INTERFACES)
+        dump(cache, Indices.ANIMATIONS) { archive, file -> (archive shl 7) + file }
+        dump(cache, Indices.ENUMS) { archive, file -> (archive shl 8) + file }
+        dump(cache, Indices.GRAPHICS) { archive, file -> (archive shl 8) + file }
+        dump(cache, Indices.ITEMS) { archive, file -> (archive shl 8) + file }
+        dump(cache, Indices.NPCS) { archive, file -> (archive shl 7) + file}
+        dump(cache, Indices.QUICK_CHAT_MESSAGES)
+        dump(cache, Indices.QUICK_CHAT_MENUS)
+
+//        loadAll2(cache, defs) { archive, file -> (archive shl 8) + file }
+//        loadAll(defs)
         println("Loaded in ${System.currentTimeMillis() - start}ms")
 
+    }
+
+    fun dump(cache: Cache, index: Int, getId: (archive: Int, file: Int) -> Int = { a, _ -> a }) {
+        val writer = BufferWriter(10_000_000)
+        for (archiveId in cache.getArchives(index)) {
+            val files = cache.getArchiveData(index, archiveId) ?: continue
+            for ((fileId, file) in files) {
+                if (file == null) {
+                    continue
+                }
+                val id = getId(archiveId, fileId)
+                writer.writeInt(id)
+                writer.writeBytes(file)
+            }
+        }
+        File("index${index}.dat").writeBytes(writer.toArray())
+    }
+
+    fun loadAll2(cache: Cache, definitions: Array<ObjectDefinition>, getId: (archive: Int, file: Int) -> Int) {
+        for (archiveId in cache.getArchives(Indices.OBJECTS)) {
+            val files = cache.getArchiveData(Indices.OBJECTS, archiveId) ?: continue
+            for ((fileId, file) in files) {
+                if (file == null) {
+                    continue
+                }
+                val id = getId(archiveId, fileId)
+                val definition = definitions[id]
+                val buffer = BufferReader(file)
+                while (true) {
+                    val opcode = buffer.readUnsignedByte()
+                    if (opcode == 0) {
+                        break
+                    }
+                    definition.read(opcode, buffer)
+                }
+            }
+        }
     }
 
     fun loadAll(definitions: Array<ObjectDefinition>) {
