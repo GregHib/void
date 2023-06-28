@@ -5,7 +5,6 @@ import org.koin.fileProperties
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
@@ -13,6 +12,7 @@ import world.gregs.voidps.tools.definition.item.ItemDefinitionPipeline
 import world.gregs.voidps.tools.definition.item.pipe.page.PageCollector
 import world.gregs.voidps.tools.definition.item.pipe.page.UniqueIdentifiers
 import world.gregs.voidps.tools.definition.obj.pipe.*
+import world.gregs.yaml.Yaml
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -65,9 +65,9 @@ private object ObjectDefinitionPipeline {
         }.toMap()
         val output = buildObjectExtras(decoder, pages)
         val map = ItemDefinitionPipeline.convertToYaml(output)
-        val storage = FileStorage(true)
+        val yaml = Yaml()
         val file = File("objects.yml")
-        storage.save(file, map)
+        yaml.save(file.path, map)
         val contents = "# Don't edit; apply changes to the ObjectDefinitionPipeline tool's ObjectManualChanges class instead.\n${file.readText()}"
         file.writeText(contents)
         println("${output.size} object definitions written to ${file.path} in ${TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - start)}s")

@@ -1,7 +1,6 @@
 package world.gregs.voidps.tools.detail
 
 import org.koin.core.context.startKoin
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
@@ -11,8 +10,8 @@ import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
+import world.gregs.yaml.Yaml
 
 /**
  * Dumps unique string identifiers for graphic ids
@@ -27,8 +26,7 @@ object GraphicNames {
         val koin = startKoin {
             fileProperties("/tool.properties")
             modules(cacheModule, cacheDefinitionModule, module {
-                single { FileStorage() }
-                single(named("jsonStorage")) { FileStorage(json = true) }
+                single { Yaml() }
             })
         }.koin
         val cache: Cache = koin.get()
@@ -36,7 +34,7 @@ object GraphicNames {
         addItemModels(cache, models)
         addNPCModels(cache, models)
         addObjectModels(cache, models)
-        val storage: FileStorage = koin.get()
+        val yaml: Yaml = koin.get()
         val decoder = GraphicDecoder(cache)
         val map = mutableMapOf<Int, MutableList<String>>()
         repeat(decoder.last) { id ->
@@ -49,7 +47,7 @@ object GraphicNames {
 
         val path = "./graphic-details.yml"
         val sorted = map.map { it.value.first() to Ids(it.key) }.sortedBy { it.second.id }.toMap()
-        storage.save(path, sorted)
+        yaml.save(path, sorted)
         println("${sorted.size} graphic identifiers dumped to $path.")
     }
 

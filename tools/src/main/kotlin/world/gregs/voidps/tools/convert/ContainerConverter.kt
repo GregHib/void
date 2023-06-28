@@ -11,7 +11,6 @@ import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.cache.config.encoder.ContainerEncoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.get
 import world.gregs.yaml.Yaml
@@ -101,6 +100,6 @@ object ContainerConverter {
         }
         cache.update()
         println("Shops: $counter")
-        FileStorage().save("containers.yml", data)
+        yaml.save("containers.yml", data)
     }
 }

@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine
 
 import it.unimi.dsi.fastutil.Hash.VERY_FAST_LOAD_FACTOR
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
@@ -9,7 +8,6 @@ import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.data.definition.extra.*
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -45,8 +43,6 @@ val engineModule = module {
     }
     // IO
     single { Yaml(YamlReaderConfiguration(2, 8, VERY_FAST_LOAD_FACTOR)) }
-    single { FileStorage() }
-    single(named("jsonStorage")) { FileStorage(json = true) }
     // Map
     single { ChunkBatchUpdates() }
     single { DynamicChunks(get(), get(), get()) }
