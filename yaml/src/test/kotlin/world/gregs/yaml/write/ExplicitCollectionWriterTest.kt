@@ -33,6 +33,32 @@ class ExplicitCollectionWriterTest {
     }
 
     @Test
+    fun `Write explicit arrays`() {
+        val input = arrayOf(arrayOf("one"), "two", arrayOf("three", arrayOf("four")), "five")
+        val actual = yaml.writeToString(input)
+        val expected = """
+            - [ one ]
+            - two
+            - [ three, [ four ] ]
+            - five
+        """.trimIndent()
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `Write type arrays`() {
+        val input = arrayOf(doubleArrayOf(1.1, 2.2, 3.3), intArrayOf(1, 2, 3), charArrayOf('a', 'b', 'c'), longArrayOf(1, 2, 3))
+        val actual = yaml.writeToString(input)
+        val expected = """
+            - [ 1.1, 2.2, 3.3 ]
+            - [ 1, 2, 3 ]
+            - [ a, b, c ]
+            - [ 1, 2, 3 ]
+        """.trimIndent()
+        assertEquals(expected, actual)
+    }
+
+    @Test
     fun `Write nested explicit lists`() {
         val config = YamlWriterConfiguration(forceExplicit = true)
         val input = listOf(listOf("one"), "two", listOf("three", listOf("four")), "five")

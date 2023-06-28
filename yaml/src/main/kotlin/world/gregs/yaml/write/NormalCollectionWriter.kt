@@ -13,6 +13,15 @@ class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration
             writer.append(' ')
             when (val element = list[i]) {
                 is List<*> -> explicit.list(element, indent + 1, parentMap = null)
+                is Array<*> -> explicit.list(element.toList(), indent + 1, parentMap = null)
+                is BooleanArray -> explicit.list(element.toList(), indent + 1, parentMap = null)
+                is ByteArray -> explicit.list(element.toList(), indent + 1, parentMap = null)
+                is CharArray -> explicit.list(element.toList(), indent + 1, parentMap = null)
+                is ShortArray -> explicit.list(element.toList(), indent + 1, parentMap = null)
+                is FloatArray -> explicit.list(element.toList(), indent + 1, parentMap = null)
+                is IntArray -> explicit.list(element.toList(), indent + 1, parentMap = null)
+                is DoubleArray -> explicit.list(element.toList(), indent + 1, parentMap = null)
+                is LongArray -> explicit.list(element.toList(), indent + 1, parentMap = null)
                 is Map<*, *> -> map(element, indent + 1, parentMap = null)
                 else -> value(element, indent + 1, parentMap = null)
             }
@@ -41,11 +50,16 @@ class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration
                     writer.indent(indent + 1)
                     map(value, indent + 1, key)
                 }
-                is List<*> -> {
-                    writer.appendLine()
-                    writer.indent(indent + 1)
-                    list(value, indent + 1, key)
-                }
+                is List<*> -> setList(indent, value, key)
+                is Array<*> -> setList(indent, value.toList(), key)
+                is BooleanArray -> setList(indent, value.toList(), key)
+                is ByteArray -> setList(indent, value.toList(), key)
+                is CharArray -> setList(indent, value.toList(), key)
+                is ShortArray -> setList(indent, value.toList(), key)
+                is FloatArray -> setList(indent, value.toList(), key)
+                is IntArray -> setList(indent, value.toList(), key)
+                is DoubleArray -> setList(indent, value.toList(), key)
+                is LongArray -> setList(indent, value.toList(), key)
                 else -> {
                     writer.append(' ')
                     value(value, indent, key)
@@ -56,5 +70,11 @@ class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration
                 writer.indent(indent)
             }
         }
+    }
+
+    private fun setList(indent: Int, value: List<Any?>, key: String) {
+        writer.appendLine()
+        writer.indent(indent + 1)
+        list(value, indent + 1, key)
     }
 }
