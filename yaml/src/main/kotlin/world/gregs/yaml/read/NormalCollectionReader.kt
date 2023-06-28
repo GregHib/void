@@ -3,7 +3,7 @@ package world.gregs.yaml.read
 import world.gregs.yaml.CharReader
 
 /**
- * Parses regular lists and maps
+ * Reads regular lists and maps
  */
 class NormalCollectionReader(
     reader: CharReader,

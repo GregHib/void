@@ -3,7 +3,7 @@ package world.gregs.yaml.read
 import world.gregs.yaml.CharReader
 
 /**
- * Parses maps and lists wrapped in square or curley brackets
+ * Reads maps and lists wrapped in square or curley brackets
  */
 class ExplicitCollectionReader(
     reader: CharReader,

@@ -6,7 +6,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 
 /**
- * Handles creation and modification of collections to allow custom changes during parsing
+ * Handles creation and modification of collections to allow custom changes during reading
  */
 open class YamlReaderConfiguration(
     private val expectedListSize: Int = 10,

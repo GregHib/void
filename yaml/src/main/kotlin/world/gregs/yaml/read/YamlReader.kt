@@ -3,7 +3,7 @@ package world.gregs.yaml.read
 import world.gregs.yaml.CharReader
 
 /**
- * Parsing keys and values as their original types.
+ * Reads keys and values as their original types.
  * Supported types:
  * - String (with or without double quotes)
  * - Boolean (lower case only)
