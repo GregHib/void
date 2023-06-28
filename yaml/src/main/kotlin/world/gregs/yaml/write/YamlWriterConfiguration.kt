@@ -7,7 +7,8 @@ open class YamlWriterConfiguration(
     val quoteStrings: Boolean = false,
     val forceExplicit: Boolean = false,
     val quoteKeys: Boolean = false,
-    val formatExplicit: Boolean = false
+    val formatExplicitMap: Boolean = false,
+    val formatExplicitListSizeLimit: Int = 25
 ) {
 
     open fun write(value: Any?, indent: Int, parentMap: String?): Any? {
@@ -15,6 +16,13 @@ open class YamlWriterConfiguration(
     }
 
     open fun toString(value: Any?, indent: Int, parentMap: String?): String {
+        if (value is Double) {
+            var bigDecimal = value.toBigDecimal()
+            if (!bigDecimal.toPlainString().contains(".")) {
+                bigDecimal = bigDecimal.setScale(1)
+            }
+            return bigDecimal.toPlainString()
+        }
         return value.toString()
     }
 
@@ -23,7 +31,7 @@ open class YamlWriterConfiguration(
             quoteStrings = true,
             forceExplicit = true,
             quoteKeys = true,
-            formatExplicit = true
+            formatExplicitMap = true
         )
     }
 }
