@@ -1,11 +1,9 @@
-package world.gregs.yaml.config
-
-import world.gregs.yaml.read.YamlReader
+package world.gregs.yaml.read
 
 /**
  * Handles creation and modification of collections to allow custom changes during parsing
  */
-open class CollectionConfiguration {
+open class YamlReaderConfiguration {
 
     open fun createList(): MutableList<Any> = mutableListOf()
 

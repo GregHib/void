@@ -2,7 +2,7 @@ package world.gregs.yaml.write
 
 import world.gregs.yaml.CharWriter
 
-abstract class Generator(var config: GeneratorConfiguration, val writer: CharWriter) {
+abstract class YamlWriter(var config: YamlWriterConfiguration, val writer: CharWriter) {
 
     fun value(value: Any?, indent: Int) {
         when (value) {

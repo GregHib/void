@@ -3,7 +3,6 @@ package world.gregs.yaml.read
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.yaml.Yaml
-import world.gregs.yaml.config.CollectionConfiguration
 
 class ExplicitCollectionReaderTest {
     private var parser: Yaml = Yaml()
@@ -78,7 +77,7 @@ class ExplicitCollectionReaderTest {
 
     @Test
     fun `Parse explicit map indent values`() {
-        val config = object : CollectionConfiguration() {
+        val config = object : YamlReaderConfiguration() {
             override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                 assertEquals(if(key == "three" || key == "four") 1 else 0, indent)
                 super.set(map, key, value, indent, parentMap)

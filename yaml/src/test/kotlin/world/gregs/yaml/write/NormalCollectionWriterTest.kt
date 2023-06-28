@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.yaml.Yaml
 
-class NormalGeneratorTest {
+class NormalCollectionWriterTest {
 
     private var parser: Yaml = Yaml()
 
@@ -22,7 +22,7 @@ class NormalGeneratorTest {
 
     @Test
     fun `Write map with quoted keys`() {
-        val config = GeneratorConfiguration(
+        val config = YamlWriterConfiguration(
             quoteKeys = true
         )
         val input = mapOf("one" to "value", "two" to "value")

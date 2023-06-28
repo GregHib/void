@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data
 
 import world.gregs.voidps.cache.definition.Extra
-import world.gregs.yaml.config.DefinitionIdsConfig
 
 open class DefinitionConfig<T : Extra>(
     val ids: MutableMap<String, Int>,

@@ -2,12 +2,12 @@ package world.gregs.voidps.engine.data.definition.extra
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.engine.data.DefinitionIdsConfig
 import world.gregs.voidps.engine.data.definition.config.VariableDefinition
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
-import world.gregs.yaml.config.DefinitionIdsConfig
 import java.io.File
 import kotlin.collections.set
 

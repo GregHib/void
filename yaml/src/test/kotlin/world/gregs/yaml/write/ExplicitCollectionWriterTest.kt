@@ -4,13 +4,13 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.yaml.Yaml
 
-class ExplicitGeneratorTest {
+class ExplicitCollectionWriterTest {
 
     private var parser: Yaml = Yaml()
 
     @Test
     fun `Write explicit maps`() {
-        val config = GeneratorConfiguration(forceExplicit = true)
+        val config = YamlWriterConfiguration(forceExplicit = true)
         val input = mapOf("one" to mapOf("two" to "value", "three" to mapOf("four" to 4)), "five" to 5)
         val actual = parser.string(input, config)
         val expected = """
@@ -35,7 +35,7 @@ class ExplicitGeneratorTest {
 
     @Test
     fun `Write nested explicit lists`() {
-        val config = GeneratorConfiguration(forceExplicit = true)
+        val config = YamlWriterConfiguration(forceExplicit = true)
         val input = listOf(listOf("one"), "two", listOf("three", listOf("four")), "five")
         val actual = parser.string(input, config)
         val expected = """

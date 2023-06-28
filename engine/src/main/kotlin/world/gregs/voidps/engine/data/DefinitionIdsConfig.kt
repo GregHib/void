@@ -1,4 +1,4 @@
-package world.gregs.yaml.config
+package world.gregs.voidps.engine.data
 
 open class DefinitionIdsConfig : FastUtilConfiguration() {
 

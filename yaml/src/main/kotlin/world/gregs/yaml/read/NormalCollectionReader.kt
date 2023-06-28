@@ -1,14 +1,13 @@
 package world.gregs.yaml.read
 
 import world.gregs.yaml.CharReader
-import world.gregs.yaml.config.CollectionConfiguration
 
 /**
  * Parses regular lists and maps
  */
 class NormalCollectionReader(
     reader: CharReader,
-    var config: CollectionConfiguration,
+    var config: YamlReaderConfiguration,
     private val explicit: ExplicitCollectionReader
 ) : YamlReader(reader) {
 

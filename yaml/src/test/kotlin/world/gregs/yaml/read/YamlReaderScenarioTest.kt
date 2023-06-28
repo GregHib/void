@@ -3,7 +3,6 @@ package world.gregs.yaml.read
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.yaml.Yaml
-import world.gregs.yaml.config.CollectionConfiguration
 
 class YamlReaderScenarioTest {
 
@@ -16,7 +15,7 @@ class YamlReaderScenarioTest {
     @Test
     fun `Parse list with modifier`() {
         parser = Yaml(
-            object : CollectionConfiguration() {
+            object : YamlReaderConfiguration() {
                 override fun addListItem(reader: YamlReader, list: MutableList<Any>, indentOffset: Int, parentMap: String?) {
                     val element = reader.value(indentOffset, parentMap)
                     list.add(SpawnData(element as Map<String, Any>))
@@ -36,7 +35,7 @@ class YamlReaderScenarioTest {
 
     @Test
     fun `Parse map with mixed id format`() {
-        parser = Yaml(object : CollectionConfiguration() {
+        parser = Yaml(object : YamlReaderConfiguration() {
             override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
                 if (value is Int && indent == 0) {
                     map[key] = mapOf("id" to value)
@@ -68,7 +67,7 @@ class YamlReaderScenarioTest {
 
     @Test
     fun `Parse indentation`() {
-        parser = Yaml(object : CollectionConfiguration() {
+        parser = Yaml(object : YamlReaderConfiguration() {
             override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
                 assertEquals(if (key == "id") 1 else 0, indent)
                 super.set(map, key, value, indent, parentMap)

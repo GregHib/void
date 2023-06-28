@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.yaml.Yaml
 
-class GeneratorTest {
+class YamlWriterTest {
 
     private var parser: Yaml = Yaml()
 
@@ -41,7 +41,7 @@ class GeneratorTest {
 
     @Test
     fun `Write quoted string`() {
-        val config = GeneratorConfiguration(
+        val config = YamlWriterConfiguration(
             quoteStrings = true
         )
         val input = "input string value"
