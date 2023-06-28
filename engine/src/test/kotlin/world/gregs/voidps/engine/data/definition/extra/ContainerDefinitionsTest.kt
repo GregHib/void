@@ -22,6 +22,8 @@ internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ContainerDefini
     override fun expected(): ContainerDefinition {
         return ContainerDefinition(intId,
             stringId = id,
+            ids = IntArray(0),
+            amounts = IntArray(0),
             extras = mapOf("id" to intId,
                 "shop" to true,
                 "defaults" to listOf(mapOf("bronze_pickaxe" to 10),

@@ -12,7 +12,7 @@ open class DefinitionIdsConfig : YamlReaderConfiguration() {
             set(map, key, value, extras)
         } else if (indent == 0) {
             value as MutableMap<String, Any>
-            val id = value.remove("id") as Int
+            val id = value["id"] as Int
             set(map, key, id, value)
         } else {
             super.set(map, key, value, indent, parentMap)

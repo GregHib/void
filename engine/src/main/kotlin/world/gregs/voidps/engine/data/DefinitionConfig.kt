@@ -7,7 +7,7 @@ open class DefinitionConfig<T : Extra>(
     val definitions: Array<T>
 ) : DefinitionIdsConfig() {
     override fun set(map: MutableMap<String, Any>, key: String, id: Int, extras: Map<String, Any>?) {
-        if (id < 0) {
+        if (id !in definitions.indices) {
             return
         }
         ids[key] = id
