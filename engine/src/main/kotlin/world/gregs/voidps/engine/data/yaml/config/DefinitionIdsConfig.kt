@@ -1,9 +1,9 @@
 package world.gregs.voidps.engine.data.yaml.config
 
-open class DefinitionIdsConfig: FastUtilConfiguration() {
+open class DefinitionIdsConfig : FastUtilConfiguration() {
 
     @Suppress("UNCHECKED_CAST")
-    override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
+    override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
         if (indent == 0 && value is Int) {
             val extras = createMap()
             set(extras, "id", value, 1, parentMap)

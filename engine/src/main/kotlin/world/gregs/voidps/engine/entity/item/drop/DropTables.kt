@@ -22,18 +22,15 @@ class DropTables {
         timedLoad("drop table") {
             val config = object : FastUtilConfiguration() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
-                    if (parentMap == "drops") {
-                        value as Map<String, Any>
-                        super.add(list, if (value.containsKey("drops")) {
-                            val type = value["type"] as? TableType ?: TableType.First
-                            val roll = value["roll"] as? Int ?: 1
-                            val drops = value["drops"] as List<Drop>
-                            DropTable(type, roll, drops)
-                        } else {
-                            ItemDrop(value["id"] as String, value["amount"] as? IntRange ?: defaultAmount, value["chance"] as? Int ?: 1)
-                        }, parentMap)
-                    }
-                    super.add(list, value, parentMap)
+                    value as Map<String, Any>
+                    super.add(list, if (value.containsKey("drops")) {
+                        val type = value["type"] as? TableType ?: TableType.First
+                        val roll = value["roll"] as? Int ?: 1
+                        val drops = value["drops"] as List<Drop>
+                        DropTable(type, roll, drops)
+                    } else {
+                        ItemDrop(value["id"] as String, value["amount"] as? IntRange ?: defaultAmount, value["chance"] as? Int ?: 1)
+                    }, parentMap)
                 }
 
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
@@ -41,15 +38,24 @@ class DropTables {
                         map.putAll(value as Map<String, Any>)
                         return
                     }
-                    super.set(map, key, when (key) {
-                        "type" -> TableType.byName(value as String)
-                        "amount" -> if (value is String && value.contains("-")) {
-                            value.toIntRange(inclusive = true)
-                        } else {
-                            value as Int..value
-                        }
-                        else -> value
-                    }, indent, parentMap)
+                    if (indent == 0) {
+                        value as Map<String, Any>
+                        super.set(map, key, DropTable(
+                            value["type"] as? TableType ?: TableType.First,
+                            value["roll"] as? Int ?: 1,
+                            value["drops"] as List<Drop>
+                        ), indent, parentMap)
+                    } else {
+                        super.set(map, key, when (key) {
+                            "type" -> TableType.byName(value as String)
+                            "amount" -> if (value is String && value.contains("-")) {
+                                value.toIntRange(inclusive = true)
+                            } else {
+                                value as Int..value
+                            }
+                            else -> value
+                        }, indent, parentMap)
+                    }
                 }
             }
             tables = parser.load(path, config)

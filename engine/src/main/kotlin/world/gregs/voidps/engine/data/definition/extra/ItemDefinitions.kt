@@ -67,7 +67,8 @@ class ItemDefinitions(
 
         override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
             super.set(map, key, when (indent) {
-                0 -> when (key) {
+                0 -> value
+                1 -> when (key) {
                     "id" -> {
                         super.set(map, "equip", equipment.getOrDefault(value as Int, -1), indent, parentMap)
                         value
@@ -75,9 +76,6 @@ class ItemDefinitions(
                     "slot" -> EquipSlot.valueOf(value as String)
                     "type" -> EquipType.valueOf(value as String)
                     "kept" -> ItemKept.valueOf(value as String)
-                    else -> value
-                }
-                1 -> when (key) {
                     "fishing" -> Catch(value as Map<String, Any>)
                     "firemaking" -> Fire(value as Map<String, Any>)
                     "mining" -> Ore(value as Map<String, Any>)
