@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
-import world.gregs.yaml.config.FastUtilConfiguration
+import world.gregs.yaml.read.YamlReaderConfiguration
 import kotlin.collections.set
 
 val musicModule = module {
@@ -36,7 +36,7 @@ class MusicTracks(private val parser: Yaml) {
         var count = 0
         val tracks = Int2ObjectOpenHashMap<MutableList<Track>>()
         val names = Object2IntOpenHashMap<String>()
-        val config = object : FastUtilConfiguration() {
+        val config = object : YamlReaderConfiguration() {
             override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                 if (indent == 0) {
                     count++

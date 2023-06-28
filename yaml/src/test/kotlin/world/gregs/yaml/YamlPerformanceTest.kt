@@ -1,11 +1,13 @@
 package world.gregs.yaml
 
+import it.unimi.dsi.fastutil.Hash
+import world.gregs.yaml.read.YamlReaderConfiguration
 import java.io.File
 
 object YamlPerformanceTest {
     @JvmStatic
     fun main(args: Array<String>) {
-        val yaml = Yaml()
+        val yaml = Yaml(YamlReaderConfiguration(2, 8, Hash.VERY_FAST_LOAD_FACTOR))
         val files = File("./data/definitions/").listFiles()
             .union(File("./data/map/").listFiles().toList())
             .union(File("./data/spawns/").listFiles().toList())

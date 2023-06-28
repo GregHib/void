@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine
 
+import it.unimi.dsi.fastutil.Hash.VERY_FAST_LOAD_FACTOR
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import org.rsmod.game.pathfinder.LineValidator
@@ -28,7 +29,7 @@ import world.gregs.voidps.engine.map.file.MapExtract
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.yaml.Yaml
-import world.gregs.yaml.config.FastUtilConfiguration
+import world.gregs.yaml.read.YamlReaderConfiguration
 
 val engineModule = module {
     // Entities
@@ -43,7 +44,7 @@ val engineModule = module {
         ))
     }
     // IO
-    single { Yaml(FastUtilConfiguration()) }
+    single { Yaml(YamlReaderConfiguration(2, 8, VERY_FAST_LOAD_FACTOR)) }
     single { FileStorage() }
     single(named("jsonStorage")) { FileStorage(json = true) }
     // Map

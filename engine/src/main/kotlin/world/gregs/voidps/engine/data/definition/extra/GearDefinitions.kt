@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.yaml.Yaml
-import world.gregs.yaml.config.FastUtilConfiguration
+import world.gregs.yaml.read.YamlReaderConfiguration
 
 class GearDefinitions {
 
@@ -22,7 +22,7 @@ class GearDefinitions {
     fun load(parser: Yaml = get(), path: String = getProperty("gearDefinitionsPath")): GearDefinitions {
         timedLoad("gear definition") {
             var count = 0
-            val config = object : FastUtilConfiguration() {
+            val config = object : YamlReaderConfiguration() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
                     if (parentMap == "inventory") {
                         value as Map<String, Any>

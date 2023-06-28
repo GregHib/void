@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
-import world.gregs.yaml.config.FastUtilConfiguration
+import world.gregs.yaml.read.YamlReaderConfiguration
 
 class Areas {
 
@@ -27,7 +27,7 @@ class Areas {
     @Suppress("UNCHECKED_CAST")
     fun load(parser: Yaml = get(), path: String = getProperty("areaPath")): Areas {
         timedLoad("map area") {
-            val config = object : FastUtilConfiguration() {
+            val config = object : YamlReaderConfiguration() {
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                     if (key == "tags") {
                         super.set(map, key, (value as List<Any>).toSet(), indent, parentMap)

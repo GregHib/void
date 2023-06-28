@@ -6,11 +6,11 @@ import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.yaml.Yaml
-import world.gregs.yaml.config.FastUtilConfiguration
+import world.gregs.yaml.read.YamlReaderConfiguration
 
 class MapDefinitionConfig<T : Extra>(
     val producer: (id: Int, key: String, extras: Map<String, Any>?) -> T
-) : FastUtilConfiguration() {
+) : YamlReaderConfiguration() {
     val ids = Object2IntOpenHashMap<String>()
     val definitions = Int2ObjectOpenHashMap<T>()
 

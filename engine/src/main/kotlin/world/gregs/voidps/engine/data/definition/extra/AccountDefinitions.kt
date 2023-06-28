@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
-import world.gregs.yaml.config.FastUtilConfiguration
+import world.gregs.yaml.read.YamlReaderConfiguration
 import java.io.File
 
 /**
@@ -95,7 +95,7 @@ class AccountDefinitions {
     @Suppress("UNCHECKED_CAST")
     fun load(parser: Yaml = get(), path: String = getProperty("savePath")): AccountDefinitions {
         timedLoad("account") {
-            val config = object : FastUtilConfiguration() {
+            val config = object : YamlReaderConfiguration() {
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                     if (parentMap == "friends") {
                         value as Map<String, Any>

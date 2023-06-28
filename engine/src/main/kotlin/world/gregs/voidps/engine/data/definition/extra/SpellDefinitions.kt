@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
-import world.gregs.yaml.config.FastUtilConfiguration
+import world.gregs.yaml.read.YamlReaderConfiguration
 
 class SpellDefinitions {
 
@@ -18,7 +18,7 @@ class SpellDefinitions {
     fun load(parser: Yaml = get(), path: String = getProperty("spellDefinitionsPath")): SpellDefinitions {
         timedLoad("spell definition") {
             val definitions = Object2ObjectOpenHashMap<String, SpellDefinition>()
-            val config = object : FastUtilConfiguration() {
+            val config = object : YamlReaderConfiguration() {
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
                     if (indent == 0) {
                         definitions[key] = if (value is Map<*, *>) {

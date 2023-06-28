@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
-import world.gregs.yaml.config.FastUtilConfiguration
+import world.gregs.yaml.read.YamlReaderConfiguration
 
 private const val DEFAULT_TYPE = "main_screen"
 private const val DEFAULT_FIXED_PARENT = GAME_FRAME_NAME
@@ -47,7 +47,7 @@ class InterfaceDefinitions(
         timedLoad("interface extra") {
             val ids = Object2IntOpenHashMap<String>()
             this.ids = ids
-            val config = object : FastUtilConfiguration() {
+            val config = object : YamlReaderConfiguration() {
                 @Suppress("UNCHECKED_CAST")
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                     if (indent == 0 && value is Int) {

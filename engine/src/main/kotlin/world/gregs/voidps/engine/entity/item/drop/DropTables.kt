@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
-import world.gregs.yaml.config.FastUtilConfiguration
+import world.gregs.yaml.read.YamlReaderConfiguration
 
 @Suppress("UNCHECKED_CAST")
 class DropTables {
@@ -20,7 +20,7 @@ class DropTables {
 
     fun load(parser: Yaml = get(), path: String = getProperty("dropsPath")): DropTables {
         timedLoad("drop table") {
-            val config = object : FastUtilConfiguration() {
+            val config = object : YamlReaderConfiguration() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
                     value as Map<String, Any>
                     super.add(list, if (value.containsKey("drops")) {

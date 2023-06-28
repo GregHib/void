@@ -15,7 +15,7 @@ import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.network.instruct.Walk
 import world.gregs.yaml.Yaml
-import world.gregs.yaml.config.FastUtilConfiguration
+import world.gregs.yaml.read.YamlReaderConfiguration
 
 class NavigationGraph(
     private val definitions: ObjectDefinitions,
@@ -49,7 +49,7 @@ class NavigationGraph(
     @Suppress("UNCHECKED_CAST")
     fun load(parser: Yaml = get(), path: String = getProperty("navGraphPath")): NavigationGraph {
         timedLoad("ai nav graph edge") {
-            val config = object : FastUtilConfiguration() {
+            val config = object : YamlReaderConfiguration() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
                     if (parentMap == "steps") {
                         super.add(list, toInstruction(value as Map<String, Any>) ?: return, parentMap)

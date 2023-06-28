@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
-import world.gregs.yaml.config.FastUtilConfiguration
+import world.gregs.yaml.read.YamlReaderConfiguration
 
 val stairsModule = module {
     single(createdAtStart = true) { Stairs(get()).load() }
@@ -30,7 +30,7 @@ class Stairs(
     @Suppress("UNCHECKED_CAST")
     fun load(path: String = getProperty("stairsPath")): Stairs {
         timedLoad("stair") {
-            val config = object : FastUtilConfiguration() {
+            val config = object : YamlReaderConfiguration() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
                     val map = value as Map<String, Any>
                     val tile = map["tile"] as Tile

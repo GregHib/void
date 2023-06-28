@@ -1,6 +1,8 @@
 package world.gregs.voidps.engine.data
 
-open class DefinitionIdsConfig : FastUtilConfiguration() {
+import world.gregs.yaml.read.YamlReaderConfiguration
+
+open class DefinitionIdsConfig : YamlReaderConfiguration() {
 
     @Suppress("UNCHECKED_CAST")
     override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {

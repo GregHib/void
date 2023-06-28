@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
-import world.gregs.yaml.config.FastUtilConfiguration
+import world.gregs.yaml.read.YamlReaderConfiguration
 
 @Suppress("UNCHECKED_CAST")
 fun loadObjectSpawns(
@@ -21,7 +21,7 @@ fun loadObjectSpawns(
     objects.reset()
     val membersWorld = World.members
     var count = 0
-    val config = object : FastUtilConfiguration() {
+    val config = object : YamlReaderConfiguration() {
         override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
             value as Map<String, Any>
             val members = value["members"] as? Boolean ?: false
