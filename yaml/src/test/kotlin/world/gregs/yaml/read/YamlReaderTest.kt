@@ -4,15 +4,14 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import world.gregs.yaml.Yaml
-import world.gregs.yaml.config.FastUtilConfiguration
 
 class YamlReaderTest {
 
-    private var parser: Yaml = Yaml()
+    private val yaml = Yaml()
 
     @Test
     fun `Parse explicit list`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             [ one, two, three ]
         """.trimIndent())
         val expected = listOf("one", "two", "three")
@@ -21,7 +20,7 @@ class YamlReaderTest {
 
     @Test
     fun `Parse explicit map`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             { one: value, two: value }
         """.trimIndent())
         val expected = mapOf("one" to "value", "two" to "value")
@@ -30,7 +29,7 @@ class YamlReaderTest {
 
     @Test
     fun `Parse list`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             - one
             - two  
             - three
@@ -41,7 +40,7 @@ class YamlReaderTest {
 
     @Test
     fun `Parse map`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             one: value
             two: value
         """.trimIndent())
@@ -51,7 +50,7 @@ class YamlReaderTest {
 
     @Test
     fun `Parse anchor`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             - &anchor-name one
             - two  
             - *anchor-name
@@ -62,7 +61,7 @@ class YamlReaderTest {
 
     @Test
     fun `Parse merge key anchor`() {
-        val config = object : FastUtilConfiguration() {
+        val config = object : YamlReaderConfiguration() {
             override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                 when (key) {
                     "<<" -> map.putAll(value as Map<String, Any>)
@@ -70,7 +69,7 @@ class YamlReaderTest {
                 }
             }
         }
-        val output = parser.parse("""
+        val output = yaml.read("""
             - &anchor-name
               one: value
               two: value
@@ -85,7 +84,7 @@ class YamlReaderTest {
 
     @Test
     fun `Parse merge key list anchor`() {
-        val config = object : FastUtilConfiguration() {
+        val config = object : YamlReaderConfiguration() {
             override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                 when (key) {
                     "<<" -> map.putAll(value as Map<String, Any>)
@@ -93,7 +92,7 @@ class YamlReaderTest {
                 }
             }
         }
-        val output = parser.parse("""
+        val output = yaml.read("""
             one:
               &anchor-name
               two: value
@@ -110,7 +109,7 @@ class YamlReaderTest {
     @Test
     fun `Parsing alias before anchor throws exception`() {
         assertThrows<IllegalArgumentException> {
-            parser.parse("""
+            yaml.read("""
                 - *anchor-name
                 - value
                 - &anchor-name one
@@ -120,49 +119,49 @@ class YamlReaderTest {
 
     @Test
     fun `Parse true`() {
-        val output = parser.parse("true")
+        val output = yaml.read("true")
         val expected = true
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse false`() {
-        val output = parser.parse("false")
+        val output = yaml.read("false")
         val expected = false
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse double`() {
-        val output = parser.parse(".1234")
+        val output = yaml.read(".1234")
         val expected = 0.1234
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse int`() {
-        val output = parser.parse("12345")
+        val output = yaml.read("12345")
         val expected = 12345
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse long`() {
-        val output = parser.parse("12345678910")
+        val output = yaml.read("12345678910")
         val expected = 12345678910L
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse string`() {
-        val output = parser.parse("12E4")
+        val output = yaml.read("12E4")
         val expected = "12E4"
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse quoted string`() {
-        val output = parser.parse("\"- key: &anchor *alias #comment\"")
+        val output = yaml.read("\"- key: &anchor *alias #comment\"")
         val expected = "- key: &anchor *alias #comment"
         assertEquals(expected, output)
     }

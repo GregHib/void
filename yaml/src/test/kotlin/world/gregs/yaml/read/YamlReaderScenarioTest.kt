@@ -6,7 +6,7 @@ import world.gregs.yaml.Yaml
 
 class YamlReaderScenarioTest {
 
-    private var parser: Yaml = Yaml()
+    private val yaml = Yaml()
 
     private data class SpawnData(val id: String, val x: Int, val y: Int, val direction: String = "NONE") {
         constructor(map: Map<String, Any>) : this(map["id"] as String, map["x"] as Int, map["y"] as Int, map["direction"] as? String ?: "NONE")
@@ -14,18 +14,16 @@ class YamlReaderScenarioTest {
 
     @Test
     fun `Parse list with modifier`() {
-        parser = Yaml(
-            object : YamlReaderConfiguration() {
-                override fun addListItem(reader: YamlReader, list: MutableList<Any>, indentOffset: Int, parentMap: String?) {
-                    val element = reader.value(indentOffset, parentMap)
-                    list.add(SpawnData(element as Map<String, Any>))
-                }
+        val config = object : YamlReaderConfiguration() {
+            override fun addListItem(reader: YamlReader, list: MutableList<Any>, indentOffset: Int, parentMap: String?) {
+                val element = reader.value(indentOffset, parentMap)
+                list.add(SpawnData(element as Map<String, Any>))
             }
-        )
-        val output = parser.parse("""
+        }
+        val output = yaml.read("""
             - { id: prison_pete, x: 2084, y: 4460, direction: NORTH }
             - { id: balloon_animal, x: 2078, y: 4462 }
-        """.trimIndent())
+        """.trimIndent(), config)
         val expected = listOf(
             SpawnData("prison_pete", 2084, 4460, "NORTH"),
             SpawnData("balloon_animal", 2078, 4462)
@@ -35,7 +33,7 @@ class YamlReaderScenarioTest {
 
     @Test
     fun `Parse map with mixed id format`() {
-        parser = Yaml(object : YamlReaderConfiguration() {
+        val config = object : YamlReaderConfiguration() {
             override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
                 if (value is Int && indent == 0) {
                     map[key] = mapOf("id" to value)
@@ -43,8 +41,8 @@ class YamlReaderScenarioTest {
                     super.set(map, key, value, indent, parentMap)
                 }
             }
-        })
-        val output = parser.parse("""
+        }
+        val output = yaml.read("""
             one:
               id: 1
               key: value
@@ -54,7 +52,7 @@ class YamlReaderScenarioTest {
               id: 4
               number: 6
             five: 5
-        """.trimIndent())
+        """.trimIndent(), config)
         val expected = mapOf<String, Any>(
             "one" to mapOf("id" to 1, "key" to "value"),
             "two" to mapOf("id" to 2),
@@ -67,20 +65,20 @@ class YamlReaderScenarioTest {
 
     @Test
     fun `Parse indentation`() {
-        parser = Yaml(object : YamlReaderConfiguration() {
+        val config = object : YamlReaderConfiguration() {
             override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
                 assertEquals(if (key == "id") 1 else 0, indent)
                 super.set(map, key, value, indent, parentMap)
             }
-        })
-        val output = parser.parse("""
+        }
+        val output = yaml.read("""
             one: 1
             two: 2
             three:
               id: 3
             four:
               id: 4
-        """.trimIndent())
+        """.trimIndent(), config)
         val expected = mapOf(
             "one" to 1,
             "two" to 2,
@@ -92,14 +90,14 @@ class YamlReaderScenarioTest {
 
     @Test
     fun `Parse map with windows line breaks`() {
-        val output = parser.parse("one:\r\ntwo:")
+        val output = yaml.read("one:\r\ntwo:")
         val expected = mapOf("one" to "", "two" to "")
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse nested normal explicit lists`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             - type: cooking
               levels: 1-15
               inventory:
@@ -135,7 +133,7 @@ class YamlReaderScenarioTest {
 
     @Test
     fun `Parse nested map lists`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             - type: melee
               levels: 1-5
               equipment:
@@ -176,7 +174,7 @@ class YamlReaderScenarioTest {
 
     @Test
     fun `Parse nested flat list`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             fishing_spot_lure_bait:
               id: 329
               fishing:
@@ -214,7 +212,7 @@ class YamlReaderScenarioTest {
 
     @Test
     fun `Parse nested flat maps`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             - type: range
               levels: 1-5
               equipment:
@@ -249,7 +247,7 @@ class YamlReaderScenarioTest {
 
     @Test
     fun `Parse nested indented key`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             - type: range
               equipment:
                 weapon:

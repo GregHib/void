@@ -6,11 +6,11 @@ import world.gregs.yaml.Yaml
 
 class NormalCollectionReaderTypeIT {
 
-    private var parser: Yaml = Yaml()
+    private val yaml = Yaml()
 
     @Test
     fun `Parse explicit list of types`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             [ true, one, 123, 0.4, "value" ]
         """.trimIndent())
         val expected = listOf<Any>(true, "one", 123, 0.4, "value")
@@ -19,7 +19,7 @@ class NormalCollectionReaderTypeIT {
 
     @Test
     fun `Parse explicit map of types`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             { 1: true, "two": "value", 1.3: 123, "four": 0.4 }
         """.trimIndent())
         val expected = mapOf<String, Any>("1" to true, "two" to "value", "1.3" to 123, "four" to 0.4)
@@ -28,7 +28,7 @@ class NormalCollectionReaderTypeIT {
 
     @Test
     fun `Parse list of types`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             - true
             - "value"  
             - .5
@@ -41,7 +41,7 @@ class NormalCollectionReaderTypeIT {
 
     @Test
     fun `Parse map of types`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             one: 1234
             2: "value"
             "three ": 1.3

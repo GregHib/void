@@ -2,7 +2,7 @@ package world.gregs.yaml.write
 
 import world.gregs.yaml.CharWriter
 
-class NormalCollectionWriter(val explicit: ExplicitCollectionWriter, config: YamlWriterConfiguration, writer: CharWriter) : YamlWriter(config, writer) {
+class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration, val explicit: ExplicitCollectionWriter) : YamlWriter(writer, config) {
 
     override fun list(list: List<*>, indent: Int) {
         for (element in list) {

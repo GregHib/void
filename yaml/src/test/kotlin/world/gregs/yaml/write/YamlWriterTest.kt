@@ -6,13 +6,12 @@ import world.gregs.yaml.Yaml
 
 class YamlWriterTest {
 
-    private var parser: Yaml = Yaml()
-
+    private val yaml = Yaml()
 
     @Test
     fun `Write int`() {
         val input = -123
-        val actual = parser.string(input)
+        val actual = yaml.writeToString(input)
         val expected = """
             -123
         """.trimIndent()
@@ -22,7 +21,7 @@ class YamlWriterTest {
     @Test
     fun `Write double`() {
         val input = 123.456
-        val actual = parser.string(input)
+        val actual = yaml.writeToString(input)
         val expected = """
             123.456
         """.trimIndent()
@@ -32,7 +31,7 @@ class YamlWriterTest {
     @Test
     fun `Write string`() {
         val input = "input string value"
-        val actual = parser.string(input)
+        val actual = yaml.writeToString(input)
         val expected = """
             input string value
         """.trimIndent()
@@ -45,7 +44,7 @@ class YamlWriterTest {
             quoteStrings = true
         )
         val input = "input string value"
-        val actual = parser.string(input, config)
+        val actual = yaml.writeToString(input, config)
         val expected = """
             "input string value"
         """.trimIndent()

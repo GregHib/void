@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test
 import world.gregs.yaml.Yaml
 
 class ExplicitCollectionReaderTest {
-    private var parser: Yaml = Yaml()
+    private val yaml = Yaml()
 
     @Test
     fun `Parse explicit list`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             [ conspiracy:_part_1, conspiracy:_part_2 ]
         """.trimIndent())
         val expected = listOf("conspiracy:_part_1", "conspiracy:_part_2")
@@ -18,7 +18,7 @@ class ExplicitCollectionReaderTest {
 
     @Test
     fun `Parse explicit map`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             { name: John Doe , age : 30 }
         """.trimIndent())
         val expected = mapOf("name" to "John Doe", "age" to 30)
@@ -27,7 +27,7 @@ class ExplicitCollectionReaderTest {
 
     @Test
     fun `Parse empty explicit list`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             [  ]
         """.trimIndent())
         val expected = listOf<Any>()
@@ -36,7 +36,7 @@ class ExplicitCollectionReaderTest {
 
     @Test
     fun `Parse empty explicit map`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             {  }
         """.trimIndent())
         val expected = mapOf<String, Any>()
@@ -45,7 +45,7 @@ class ExplicitCollectionReaderTest {
 
     @Test
     fun `Parse explicit multi-line lists`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             [one,
                [
                two
@@ -60,7 +60,7 @@ class ExplicitCollectionReaderTest {
 
     @Test
     fun `Parse explicit multi-line maps`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             { 
                 name  :  John Doe, 
                    age: 30   ,
@@ -83,7 +83,7 @@ class ExplicitCollectionReaderTest {
                 super.set(map, key, value, indent, parentMap)
             }
         }
-        val output = parser.parse("""
+        val output = yaml.read("""
             {one: 1,two: {three: 3, four: [five]}}
         """.trimIndent(), config)
         val expected = mapOf("one" to 1, "two" to mapOf("three" to 3, "four" to listOf("five")))

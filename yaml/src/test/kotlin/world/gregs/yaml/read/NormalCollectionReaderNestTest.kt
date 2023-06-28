@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test
 import world.gregs.yaml.Yaml
 
 class NormalCollectionReaderNestTest {
-    private var parser: Yaml = Yaml()
+    private val yaml = Yaml()
 
     @Test
     fun `Parse list key list items`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             - key:
                 - value
                 - value
@@ -20,7 +20,7 @@ class NormalCollectionReaderNestTest {
 
     @Test
     fun `Parse nested map indented`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             person:
               name: John Doe
               age: 30
@@ -32,7 +32,7 @@ class NormalCollectionReaderNestTest {
 
     @Test
     fun `Parse mixed map and lists`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             person:
               name: John Doe
               age: 30
@@ -56,7 +56,7 @@ class NormalCollectionReaderNestTest {
 
     @Test
     fun `Parse list of maps`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             - type: cooking
               levels: 5-15
               inventory:
@@ -69,7 +69,7 @@ class NormalCollectionReaderNestTest {
 
     @Test
     fun `Parse key list aligned`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             key:
               one:
               - value
@@ -82,7 +82,7 @@ class NormalCollectionReaderNestTest {
     }
     @Test
     fun `Parse nested keys aligned`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             - one: value
               two:
                 three:

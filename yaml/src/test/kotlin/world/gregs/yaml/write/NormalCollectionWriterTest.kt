@@ -6,12 +6,12 @@ import world.gregs.yaml.Yaml
 
 class NormalCollectionWriterTest {
 
-    private var parser: Yaml = Yaml()
+    private val yaml = Yaml()
 
     @Test
     fun `Write map`() {
         val input = mapOf("one" to "value", "two" to "value")
-        val actual = parser.string(input)
+        val actual = yaml.writeToString(input)
         val expected = """
             one: value
             two: value
@@ -26,7 +26,7 @@ class NormalCollectionWriterTest {
             quoteKeys = true
         )
         val input = mapOf("one" to "value", "two" to "value")
-        val actual = parser.string(input, config)
+        val actual = yaml.writeToString(input, config)
         val expected = """
             "one": value
             "two": value
@@ -38,7 +38,7 @@ class NormalCollectionWriterTest {
     @Test
     fun `Write list`() {
         val input = listOf("one", "two", "three")
-        val actual = parser.string(input)
+        val actual = yaml.writeToString(input)
         val expected = """
             - one
             - two
@@ -52,7 +52,7 @@ class NormalCollectionWriterTest {
     @Test
     fun `Write nested maps`() {
         val input = mapOf("one" to mapOf("two" to "value", "three" to mapOf("four" to 4)), "five" to 5)
-        val actual = parser.string(input)
+        val actual = yaml.writeToString(input)
         val expected = """
             one:
               two: value
@@ -67,7 +67,7 @@ class NormalCollectionWriterTest {
     @Test
     fun `Write nested lists`() {
         val input = listOf(listOf("one"), "two", listOf("three", listOf("four")), "five")
-        val actual = parser.string(input)
+        val actual = yaml.writeToString(input)
         val expected = """
             - [ one ]
             - two

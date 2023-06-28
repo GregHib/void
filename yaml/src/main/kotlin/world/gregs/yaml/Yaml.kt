@@ -9,62 +9,62 @@ import world.gregs.yaml.write.YamlWriterConfiguration
 import java.io.File
 
 /**
- * High performance parser for simplified YAML
+ * High performance parser for reading and writing simplified YAML (and json)
  */
 class Yaml(
-    private val defaultConfig: YamlReaderConfiguration = YamlReaderConfiguration(),
-    val reader: CharReader = CharReader(defaultConfig.createMap()),
-    private val explicit: ExplicitCollectionReader = ExplicitCollectionReader(reader, defaultConfig),
-    private val normal: NormalCollectionReader = NormalCollectionReader(reader, defaultConfig, explicit)
+    private val defaultReader: YamlReaderConfiguration = YamlReaderConfiguration(),
+    private val defaultWriter: YamlWriterConfiguration = YamlWriterConfiguration()
 ) {
 
-    val writer = CharWriter()
-    val defaultGenConfig = YamlWriterConfiguration()
-    private val explicitGen = ExplicitCollectionWriter(defaultGenConfig, writer)
-    private val normalGen = NormalCollectionWriter(explicitGen, defaultGenConfig, writer)
+    private val writer = CharWriter()
+    private val reader: CharReader = CharReader(defaultReader.createMap())
+
+    private val explicitReader: ExplicitCollectionReader = ExplicitCollectionReader(reader, defaultReader)
+    private val normalReader: NormalCollectionReader = NormalCollectionReader(reader, defaultReader, explicitReader)
+    private val explicitWriter = ExplicitCollectionWriter(writer, defaultWriter)
+    private val normalWriter = NormalCollectionWriter(writer, defaultWriter, explicitWriter)
 
     @Suppress("UNCHECKED_CAST")
-    fun <T : Any> load(path: String, config: YamlReaderConfiguration = defaultConfig): T {
+    fun <T : Any> load(path: String, config: YamlReaderConfiguration = defaultReader): T {
         val file = File(path)
         val charArray = CharArray(file.length().toInt())
         val length = file.reader().use {
             it.read(charArray)
         }
-        return parse(charArray, length, config) as T
+        return read(charArray, length, config) as T
     }
 
-    fun parse(string: String, config: YamlReaderConfiguration = defaultConfig) = parse(string.toCharArray(), config = config)
-
-    fun parse(charArray: CharArray, length: Int = charArray.size, config: YamlReaderConfiguration = defaultConfig): Any {
-        explicit.config = config
-        normal.config = config
-        reader.anchors.clear()
-        reader.set(charArray, length)
-        reader.nextLine()
-        return normal.value(indentOffset = 0, withinMap = null)
-    }
-
-    fun save(path: String, value: Any, config: YamlWriterConfiguration = defaultGenConfig) {
+    fun save(path: String, value: Any, config: YamlWriterConfiguration = defaultWriter) {
         val array = write(value, config)
         File(path).writer().use {
             it.write(array)
         }
     }
 
-    private fun write(value: Any, config: YamlWriterConfiguration = defaultGenConfig): CharArray {
-        explicitGen.config = config
-        normalGen.config = config
-        writer.clear()
-        if (config.forceExplicit) {
-            explicitGen.value(value, 0)
-        } else {
-            normalGen.value(value, 0)
-        }
-        return writer.toCharArray()
+    fun read(string: String, config: YamlReaderConfiguration = defaultReader) = read(string.toCharArray(), config = config)
+
+    fun read(charArray: CharArray, length: Int = charArray.size, config: YamlReaderConfiguration = defaultReader): Any {
+        explicitReader.config = config
+        normalReader.config = config
+        reader.anchors.clear()
+        reader.set(charArray, length)
+        reader.nextLine()
+        return normalReader.value(indentOffset = 0, withinMap = null)
     }
 
-    fun string(value: Any, config: YamlWriterConfiguration = defaultGenConfig): String {
-        val array = write(value, config)
-        return array.concatToString()
+    fun writeToString(value: Any, config: YamlWriterConfiguration = defaultWriter): String {
+        return write(value, config).concatToString()
+    }
+
+    private fun write(value: Any, config: YamlWriterConfiguration = defaultWriter): CharArray {
+        explicitWriter.config = config
+        normalWriter.config = config
+        writer.clear()
+        if (config.forceExplicit) {
+            explicitWriter.value(value, 0)
+        } else {
+            normalWriter.value(value, 0)
+        }
+        return writer.toCharArray()
     }
 }

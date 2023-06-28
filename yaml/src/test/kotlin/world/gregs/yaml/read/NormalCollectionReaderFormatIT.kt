@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test
 import world.gregs.yaml.Yaml
 
 class NormalCollectionReaderFormatIT {
-    private var parser: Yaml = Yaml()
+    private val yaml = Yaml()
 
     @Test
     fun `Parse list with spaces around values`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             - value 
             - value
             -   value
@@ -22,7 +22,7 @@ class NormalCollectionReaderFormatIT {
 
     @Test
     fun `Parse list with comments`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             ## comment ##
             - value # comment
             - value# comment 
@@ -41,7 +41,7 @@ class NormalCollectionReaderFormatIT {
 
     @Test
     fun `Parse map with spaces around keys and values`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             key   :  value  
             empty :    
             name  :  bob 
@@ -52,7 +52,7 @@ class NormalCollectionReaderFormatIT {
 
     @Test
     fun `Parse map with comments`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             ## comment ##
             one: value# comment
             two: value # comment
@@ -69,7 +69,7 @@ class NormalCollectionReaderFormatIT {
 
     @Test
     fun `Parse map with quotes`() {
-        val output = parser.parse("""
+        val output = yaml.read("""
             "person: ": " value: #"
             "name" : John "Doe" 
             " age " : "30"
