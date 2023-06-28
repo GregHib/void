@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import world.gregs.yaml.config.FastUtilConfiguration
 import kotlin.collections.set
 
@@ -16,7 +16,7 @@ val musicModule = module {
     single(createdAtStart = true) { MusicTracks(get()) }
 }
 
-class MusicTracks(private val parser: YamlParser) {
+class MusicTracks(private val parser: Yaml) {
 
     private lateinit var tracks: Map<Int, List<Track>>
     private lateinit var trackNames: Map<String, Int>

@@ -6,14 +6,14 @@ import world.gregs.voidps.engine.data.definition.config.SoundDefinition
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 
 class SoundDefinitions : DefinitionsDecoder<SoundDefinition> {
 
     override lateinit var definitions: Array<SoundDefinition>
     override lateinit var ids: Map<String, Int>
 
-    fun load(parser: YamlParser = get(), path: String = getProperty("soundDefinitionsPath")): SoundDefinitions {
+    fun load(parser: Yaml = get(), path: String = getProperty("soundDefinitionsPath")): SoundDefinitions {
         timedLoad("sound definition") {
             decode(parser, path) { id, key, _ ->
                 SoundDefinition(id = id, stringId = key)

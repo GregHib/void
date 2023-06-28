@@ -1,14 +1,14 @@
-package world.gregs.yaml.parse
+package world.gregs.yaml.read
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import world.gregs.yaml.config.FastUtilConfiguration
 
-class ParserTest {
+class YamlReaderTest {
 
-    private var parser: YamlParser = YamlParser()
+    private var parser: Yaml = Yaml()
 
     @Test
     fun `Parse explicit list`() {

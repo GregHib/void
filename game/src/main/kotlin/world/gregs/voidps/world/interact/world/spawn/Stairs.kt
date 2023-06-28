@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import world.gregs.yaml.config.FastUtilConfiguration
 
 val stairsModule = module {
@@ -14,7 +14,7 @@ val stairsModule = module {
 }
 
 class Stairs(
-    private val parser: YamlParser
+    private val parser: Yaml
 ) {
 
     private lateinit var teleports: Map<Int, Map<String, Teleport>>

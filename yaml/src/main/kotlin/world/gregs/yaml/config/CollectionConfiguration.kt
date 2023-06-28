@@ -1,6 +1,6 @@
 package world.gregs.yaml.config
 
-import world.gregs.yaml.parse.Parser
+import world.gregs.yaml.read.YamlReader
 
 /**
  * Handles creation and modification of collections to allow custom changes during parsing
@@ -15,12 +15,12 @@ open class CollectionConfiguration {
         map[key] = ""
     }
 
-    open fun addListItem(parser: Parser, list: MutableList<Any>, indentOffset: Int, parentMap: String?) {
-        add(list, parser.value(indentOffset, null), parentMap)
+    open fun addListItem(reader: YamlReader, list: MutableList<Any>, indentOffset: Int, parentMap: String?) {
+        add(list, reader.value(indentOffset, null), parentMap)
     }
 
-    open fun setMapValue(parser: Parser, map: MutableMap<String, Any>, key: String, indent: Int, indentOffset: Int, withinMap: String?, parentMap: String?) {
-        set(map, key, parser.value(indentOffset, withinMap), indent, parentMap)
+    open fun setMapValue(reader: YamlReader, map: MutableMap<String, Any>, key: String, indent: Int, indentOffset: Int, withinMap: String?, parentMap: String?) {
+        set(map, key, reader.value(indentOffset, withinMap), indent, parentMap)
     }
 
     open fun add(list: MutableList<Any>, value: Any, parentMap: String?) {

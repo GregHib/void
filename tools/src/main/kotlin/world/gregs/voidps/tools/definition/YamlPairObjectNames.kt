@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.definition
 
 import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 
 /**
  * Sorts yml file pairs of object names
@@ -11,7 +11,7 @@ object YamlPairObjectNames {
     @JvmStatic
     fun main(args: Array<String>) {
         val storage = FileStorage(quotes = true)
-        val parser = YamlParser()
+        val parser = Yaml()
         val update: Map<String, Map<String, Any>> = parser.load("./data/definitions/objects.yml")
         val list = mutableListOf<Pair<String, Map<String, Any>>>()
         val keys = update.keys.toMutableSet()

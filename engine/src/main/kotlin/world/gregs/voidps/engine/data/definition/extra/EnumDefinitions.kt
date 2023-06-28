@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 
 class EnumDefinitions(
     decoder: EnumDecoder,
@@ -41,7 +41,7 @@ class EnumDefinitions(
     override fun empty() = EnumDefinition.EMPTY
 
     fun load(
-        parser: YamlParser = get(),
+        parser: Yaml = get(),
         path: String = getProperty("enumDefinitionsPath"),
         structPath: String = getProperty("structParamDefinitionsPath")
     ): EnumDefinitions {

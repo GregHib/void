@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 
 class ContainerDefinitions(
     decoder: ContainerDecoder
@@ -26,7 +26,7 @@ class ContainerDefinitions(
     override fun empty() = ContainerDefinition.EMPTY
 
     @Suppress("UNCHECKED_CAST")
-    fun load(parser: YamlParser = get(), path: String = getProperty("containerDefinitionsPath"), itemDefs: ItemDefinitions = get()): ContainerDefinitions {
+    fun load(parser: Yaml = get(), path: String = getProperty("containerDefinitionsPath"), itemDefs: ItemDefinitions = get()): ContainerDefinitions {
         timedLoad("container extra") {
             val ids = Object2IntOpenHashMap<String>()
             val config = object : DefinitionConfig<ContainerDefinition>(ids, definitions) {

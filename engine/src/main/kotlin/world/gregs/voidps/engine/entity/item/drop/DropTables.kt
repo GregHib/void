@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import world.gregs.yaml.config.FastUtilConfiguration
 
 @Suppress("UNCHECKED_CAST")
@@ -18,7 +18,7 @@ class DropTables {
 
     private val defaultAmount = 1..1
 
-    fun load(parser: YamlParser = get(), path: String = getProperty("dropsPath")): DropTables {
+    fun load(parser: Yaml = get(), path: String = getProperty("dropsPath")): DropTables {
         timedLoad("drop table") {
             val config = object : FastUtilConfiguration() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {

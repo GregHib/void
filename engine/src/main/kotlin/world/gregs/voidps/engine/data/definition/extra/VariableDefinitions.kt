@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.data.definition.config.VariableDefinition
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import world.gregs.yaml.config.DefinitionIdsConfig
 import java.io.File
 import kotlin.collections.set
@@ -24,7 +24,7 @@ class VariableDefinitions {
     fun getVarp(id: Int) = varpIds[id]
 
     @Suppress("UNCHECKED_CAST")
-    fun load(parser: YamlParser = get(), path: String = getProperty("definitionsPath")): VariableDefinitions {
+    fun load(parser: Yaml = get(), path: String = getProperty("definitionsPath")): VariableDefinitions {
         timedLoad("variable definition") {
             val definitions = Object2ObjectOpenHashMap<String, VariableDefinition>()
             val files = File(path).listFiles()?.filter { it.name.startsWith("variables-") } ?: emptyList()

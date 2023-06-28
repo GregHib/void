@@ -2,11 +2,11 @@ package world.gregs.yaml.write
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 
 class NormalGeneratorTest {
 
-    private var parser: YamlParser = YamlParser()
+    private var parser: Yaml = Yaml()
 
     @Test
     fun `Write map`() {

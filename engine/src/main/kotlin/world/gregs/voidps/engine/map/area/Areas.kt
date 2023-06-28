@@ -4,7 +4,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import world.gregs.yaml.config.FastUtilConfiguration
 
 class Areas {
@@ -25,7 +25,7 @@ class Areas {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load(parser: YamlParser = get(), path: String = getProperty("areaPath")): Areas {
+    fun load(parser: Yaml = get(), path: String = getProperty("areaPath")): Areas {
         timedLoad("map area") {
             val config = object : FastUtilConfiguration() {
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {

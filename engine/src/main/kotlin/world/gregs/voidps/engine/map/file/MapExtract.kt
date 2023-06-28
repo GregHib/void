@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import java.io.File
 import java.io.RandomAccessFile
 import kotlin.collections.set
@@ -243,9 +243,9 @@ class MapExtract(
         fun main(args: Array<String>) {
             val cache = CacheDelegate("./data/cache")
             val itemDefinitions = ItemDefinitions(ItemDecoder(cache))
-                .load(YamlParser(), "./data/definitions/items.yml")
+                .load(Yaml(), "./data/definitions/items.yml")
             val definitions = ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false))
-                .load(YamlParser(), "./data/definitions/objects.yml", itemDefinitions)
+                .load(Yaml(), "./data/definitions/objects.yml", itemDefinitions)
             val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
             val collisions = Collisions()
             val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = true)

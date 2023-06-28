@@ -5,7 +5,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.engine.data.DefinitionConfig
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 
 /**
  * Looks up [Definition]'s using Definitions unique string identifier
@@ -47,7 +47,7 @@ interface DefinitionsDecoder<D> where D : Definition, D : Extra {
         return getOrNull(id) != null
     }
 
-    fun decode(parser: YamlParser, path: String, modifications: DefinitionModifications = DefinitionModifications()): Int {
+    fun decode(parser: Yaml, path: String, modifications: DefinitionModifications = DefinitionModifications()): Int {
         val ids = Object2IntOpenHashMap<String>()
         val config = DefinitionConfig(ids, definitions)
         parser.load<Any>(path, config)

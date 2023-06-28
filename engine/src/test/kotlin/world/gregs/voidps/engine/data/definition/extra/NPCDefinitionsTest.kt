@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoderTest
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 
 internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDecoder, NPCDefinitions>() {
 
@@ -36,6 +36,6 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
     }
 
     override fun load(definitions: NPCDefinitions) {
-        definitions.load(YamlParser(), "../data/definitions/npcs.yml", mockk(relaxed = true))
+        definitions.load(Yaml(), "../data/definitions/npcs.yml", mockk(relaxed = true))
     }
 }

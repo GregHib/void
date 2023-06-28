@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.data.definition.config.SpellDefinition
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import world.gregs.yaml.config.FastUtilConfiguration
 
 class SpellDefinitions {
@@ -15,7 +15,7 @@ class SpellDefinitions {
     fun get(key: String) = definitions[key] ?: SpellDefinition()
 
     @Suppress("UNCHECKED_CAST")
-    fun load(parser: YamlParser = get(), path: String = getProperty("spellDefinitionsPath")): SpellDefinitions {
+    fun load(parser: Yaml = get(), path: String = getProperty("spellDefinitionsPath")): SpellDefinitions {
         timedLoad("spell definition") {
             val definitions = Object2ObjectOpenHashMap<String, SpellDefinition>()
             val config = object : FastUtilConfiguration() {

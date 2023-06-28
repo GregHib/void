@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.get
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 
 /**
  * Converts containers from one cache into another, dumping the default values into containers.yml
@@ -42,12 +42,12 @@ object ContainerConverter {
         val encoder = ContainerEncoder()
         val cache: Cache = get()
 
-        val parser = YamlParser()
+        val parser = Yaml()
         val path = "./data/definitions/containers.yml"
         val data: MutableMap<String, Any> = parser.load<Map<String, Any>>(path).toMutableMap()
 
 
-        val itemDecoder = ItemDefinitions(ItemDecoder(cache)).load(YamlParser(), "./data/definitions/items.yml")
+        val itemDecoder = ItemDefinitions(ItemDecoder(cache)).load(Yaml(), "./data/definitions/items.yml")
         decoder = ContainerDecoder(cache)
         var counter = 0
         for (i in 0 until decoder.last) {

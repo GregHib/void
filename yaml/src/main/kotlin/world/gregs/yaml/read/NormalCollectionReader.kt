@@ -1,4 +1,4 @@
-package world.gregs.yaml.parse
+package world.gregs.yaml.read
 
 import world.gregs.yaml.CharReader
 import world.gregs.yaml.config.CollectionConfiguration
@@ -6,11 +6,11 @@ import world.gregs.yaml.config.CollectionConfiguration
 /**
  * Parses regular lists and maps
  */
-class NormalParser(
+class NormalCollectionReader(
     reader: CharReader,
     var config: CollectionConfiguration,
-    private val explicit: ExplicitParser
-) : Parser(reader) {
+    private val explicit: ExplicitCollectionReader
+) : YamlReader(reader) {
 
     override fun explicitList(withinMap: String?) = explicit.explicitList(withinMap)
 

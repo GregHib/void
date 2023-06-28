@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 
 object DropTableDefinitions {
     @JvmStatic
@@ -19,10 +19,10 @@ object DropTableDefinitions {
         val koin = startKoin {
             fileProperties("/tool.properties")
             modules(cacheModule, cacheDefinitionModule, module {
-                single { ItemDefinitions(ItemDecoder(get())).load(YamlParser()) }
+                single { ItemDefinitions(ItemDecoder(get())).load(Yaml()) }
             })
         }.koin
-        val decoder = DropTables().load(YamlParser())
+        val decoder = DropTables().load(Yaml())
         val table = decoder.getValue("goblin_drop_table")
 
         val list = mutableListOf<ItemDrop>()

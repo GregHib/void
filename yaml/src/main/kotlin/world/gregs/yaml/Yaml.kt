@@ -1,8 +1,8 @@
 package world.gregs.yaml
 
 import world.gregs.yaml.config.CollectionConfiguration
-import world.gregs.yaml.parse.ExplicitParser
-import world.gregs.yaml.parse.NormalParser
+import world.gregs.yaml.read.ExplicitCollectionReader
+import world.gregs.yaml.read.NormalCollectionReader
 import world.gregs.yaml.write.ExplicitGenerator
 import world.gregs.yaml.write.GeneratorConfiguration
 import world.gregs.yaml.write.NormalGenerator
@@ -11,11 +11,11 @@ import java.io.File
 /**
  * High performance parser for simplified YAML
  */
-class YamlParser(
+class Yaml(
     private val defaultConfig: CollectionConfiguration = CollectionConfiguration(),
     val reader: CharReader = CharReader(defaultConfig.createMap()),
-    private val explicit: ExplicitParser = ExplicitParser(reader, defaultConfig),
-    private val normal: NormalParser = NormalParser(reader, defaultConfig, explicit)
+    private val explicit: ExplicitCollectionReader = ExplicitCollectionReader(reader, defaultConfig),
+    private val normal: NormalCollectionReader = NormalCollectionReader(reader, defaultConfig, explicit)
 ) {
 
     val writer = CharWriter()

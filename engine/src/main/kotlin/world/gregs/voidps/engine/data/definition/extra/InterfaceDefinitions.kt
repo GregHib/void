@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import world.gregs.yaml.config.FastUtilConfiguration
 
 private const val DEFAULT_TYPE = "main_screen"
@@ -40,7 +40,7 @@ class InterfaceDefinitions(
     override fun empty() = InterfaceDefinition.EMPTY
 
     fun load(
-        parser: YamlParser = get(),
+        parser: Yaml = get(),
         path: String = getProperty("interfacesPath"),
         typePath: String = getProperty("interfaceTypesPath")
     ): InterfaceDefinitions {

@@ -5,7 +5,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import world.gregs.yaml.config.FastUtilConfiguration
 
 class MapDefinitionConfig<T : Extra>(
@@ -30,7 +30,7 @@ class MapDefinitionConfig<T : Extra>(
     }
 }
 
-inline fun <reified T> DefinitionsDecoder<T>.decode(parser: YamlParser, path: String, noinline producer: (id: Int, key: String, extras: Map<String, Any>?) -> T): Int where T : Definition, T : Extra {
+inline fun <reified T> DefinitionsDecoder<T>.decode(parser: Yaml, path: String, noinline producer: (id: Int, key: String, extras: Map<String, Any>?) -> T): Int where T : Definition, T : Extra {
     val config = MapDefinitionConfig(producer)
     parser.load<Any>(path, config)
     ids = config.ids

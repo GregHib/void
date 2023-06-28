@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import world.gregs.yaml.config.FastUtilConfiguration
 
 class GearDefinitions {
@@ -19,7 +19,7 @@ class GearDefinitions {
     fun get(style: String): List<GearDefinition> = definitions[style] ?: emptyList()
 
     @Suppress("UNCHECKED_CAST")
-    fun load(parser: YamlParser = get(), path: String = getProperty("gearDefinitionsPath")): GearDefinitions {
+    fun load(parser: Yaml = get(), path: String = getProperty("gearDefinitionsPath")): GearDefinitions {
         timedLoad("gear definition") {
             var count = 0
             val config = object : FastUtilConfiguration() {

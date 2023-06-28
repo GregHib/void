@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.network.instruct.Walk
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import world.gregs.yaml.config.FastUtilConfiguration
 
 class NavigationGraph(
@@ -47,7 +47,7 @@ class NavigationGraph(
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load(parser: YamlParser = get(), path: String = getProperty("navGraphPath")): NavigationGraph {
+    fun load(parser: Yaml = get(), path: String = getProperty("navGraphPath")): NavigationGraph {
         timedLoad("ai nav graph edge") {
             val config = object : FastUtilConfiguration() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {

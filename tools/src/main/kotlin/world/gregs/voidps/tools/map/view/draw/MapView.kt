@@ -9,7 +9,7 @@ import world.gregs.voidps.tools.map.view.interact.MouseHover
 import world.gregs.voidps.tools.map.view.interact.MouseZoom
 import world.gregs.voidps.tools.map.view.interact.ResizeListener
 import world.gregs.voidps.tools.map.view.ui.OptionsPane
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.FlowLayout
@@ -20,7 +20,7 @@ import javax.swing.SwingUtilities
 class MapView(nav: NavigationGraph?, private val areaFile: String) : JPanel() {
 
     private val options = OptionsPane(this)
-    private val areaSet = AreaSet.load(YamlParser(), areaFile)
+    private val areaSet = AreaSet.load(Yaml(), areaFile)
     private val highlight = HighlightedTile(this, options)
     private val area = HighlightedArea(this, areaSet)
 

@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import world.gregs.yaml.config.DefinitionIdsConfig
 
 class ItemOnItemDefinitions {
@@ -22,7 +22,7 @@ class ItemOnItemDefinitions {
     fun contains(one: Item, two: Item) = definitions.containsKey(id(one, two)) || definitions.containsKey(id(two, one))
 
     @Suppress("UNCHECKED_CAST")
-    fun load(parser: YamlParser = get(), path: String = getProperty("itemOnItemDefinitionsPath")): ItemOnItemDefinitions {
+    fun load(parser: Yaml = get(), path: String = getProperty("itemOnItemDefinitionsPath")): ItemOnItemDefinitions {
         timedLoad("item on item definition") {
             val definitions = Object2ObjectOpenHashMap<String, MutableList<ItemOnItemDefinition>>()
             var count = 0

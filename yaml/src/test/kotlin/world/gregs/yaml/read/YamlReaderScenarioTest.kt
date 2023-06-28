@@ -1,13 +1,13 @@
-package world.gregs.yaml.parse
+package world.gregs.yaml.read
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import world.gregs.yaml.config.CollectionConfiguration
 
-class ParserScenarioTest {
+class YamlReaderScenarioTest {
 
-    private var parser: YamlParser = YamlParser()
+    private var parser: Yaml = Yaml()
 
     private data class SpawnData(val id: String, val x: Int, val y: Int, val direction: String = "NONE") {
         constructor(map: Map<String, Any>) : this(map["id"] as String, map["x"] as Int, map["y"] as Int, map["direction"] as? String ?: "NONE")
@@ -15,10 +15,10 @@ class ParserScenarioTest {
 
     @Test
     fun `Parse list with modifier`() {
-        parser = YamlParser(
+        parser = Yaml(
             object : CollectionConfiguration() {
-                override fun addListItem(parser: Parser, list: MutableList<Any>, indentOffset: Int, parentMap: String?) {
-                    val element = parser.value(indentOffset, parentMap)
+                override fun addListItem(reader: YamlReader, list: MutableList<Any>, indentOffset: Int, parentMap: String?) {
+                    val element = reader.value(indentOffset, parentMap)
                     list.add(SpawnData(element as Map<String, Any>))
                 }
             }
@@ -36,7 +36,7 @@ class ParserScenarioTest {
 
     @Test
     fun `Parse map with mixed id format`() {
-        parser = YamlParser(object : CollectionConfiguration() {
+        parser = Yaml(object : CollectionConfiguration() {
             override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
                 if (value is Int && indent == 0) {
                     map[key] = mapOf("id" to value)
@@ -68,7 +68,7 @@ class ParserScenarioTest {
 
     @Test
     fun `Parse indentation`() {
-        parser = YamlParser(object : CollectionConfiguration() {
+        parser = Yaml(object : CollectionConfiguration() {
             override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
                 assertEquals(if (key == "id") 1 else 0, indent)
                 super.set(map, key, value, indent, parentMap)

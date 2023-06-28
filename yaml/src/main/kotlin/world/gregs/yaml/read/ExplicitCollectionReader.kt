@@ -1,4 +1,4 @@
-package world.gregs.yaml.parse
+package world.gregs.yaml.read
 
 import world.gregs.yaml.CharReader
 import world.gregs.yaml.config.CollectionConfiguration
@@ -6,10 +6,10 @@ import world.gregs.yaml.config.CollectionConfiguration
 /**
  * Parses maps and lists wrapped in square or curley brackets
  */
-class ExplicitParser(
+class ExplicitCollectionReader(
     reader: CharReader,
     var config: CollectionConfiguration
-) : Parser(reader) {
+) : YamlReader(reader) {
 
     override fun isClosingTerminator(char: Char) = super.isClosingTerminator(char) || char == '}' || char == ']' || char == ','
 

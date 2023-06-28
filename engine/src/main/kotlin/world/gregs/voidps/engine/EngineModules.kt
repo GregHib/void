@@ -27,7 +27,7 @@ import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.file.MapExtract
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import world.gregs.yaml.config.FastUtilConfiguration
 
 val engineModule = module {
@@ -43,7 +43,7 @@ val engineModule = module {
         ))
     }
     // IO
-    single { YamlParser(FastUtilConfiguration()) }
+    single { Yaml(FastUtilConfiguration()) }
     single { FileStorage() }
     single(named("jsonStorage")) { FileStorage(json = true) }
     // Map

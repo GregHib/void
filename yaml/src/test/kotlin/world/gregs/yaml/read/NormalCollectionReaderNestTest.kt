@@ -1,11 +1,11 @@
-package world.gregs.yaml.parse
+package world.gregs.yaml.read
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 
-class NormalParserNestTest {
-    private var parser: YamlParser = YamlParser()
+class NormalCollectionReaderNestTest {
+    private var parser: Yaml = Yaml()
 
     @Test
     fun `Parse list key list items`() {

@@ -1,4 +1,4 @@
-package world.gregs.yaml.parse
+package world.gregs.yaml.read
 
 import world.gregs.yaml.CharReader
 
@@ -13,7 +13,7 @@ import world.gregs.yaml.CharReader
  * - Map (explicit or normal)
  * - List (explicit or normal)
  */
-abstract class Parser(val reader: CharReader) {
+abstract class YamlReader(val reader: CharReader) {
 
     abstract fun explicitList(withinMap: String?): Any
 

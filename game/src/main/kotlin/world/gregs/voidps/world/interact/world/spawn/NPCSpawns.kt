@@ -7,13 +7,13 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import world.gregs.yaml.config.FastUtilConfiguration
 
 @Suppress("UNCHECKED_CAST")
 fun loadNpcSpawns(
     npcs: NPCs,
-    parser: YamlParser = get(),
+    parser: Yaml = get(),
     path: String = getProperty("npcSpawnsPath")
 ) {
     timedLoad("npc spawn") {

@@ -8,7 +8,7 @@ import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.tools.map.view.draw.MapView
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import java.awt.EventQueue
 import javax.swing.JFrame
 
@@ -20,7 +20,7 @@ class MapViewer {
             val frame = JFrame("Map viewer")
             frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
             val cache = CacheDelegate("./data/cache/")
-            val parser = YamlParser()
+            val parser = Yaml()
             val decoder = ObjectDecoder(cache, member = false, lowDetail = false)
             val defs = ObjectDefinitions(decoder).load(parser, "./data/definitions/objects.yml", null)
             val areas = Areas().load(parser, "./data/map/areas.yml")

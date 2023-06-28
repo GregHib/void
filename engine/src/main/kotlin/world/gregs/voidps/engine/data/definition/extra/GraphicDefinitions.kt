@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 
 class GraphicDefinitions(
     decoder: GraphicDecoder
@@ -23,7 +23,7 @@ class GraphicDefinitions(
 
     override fun empty() = GraphicDefinition.EMPTY
 
-    fun load(parser: YamlParser = get(), path: String = getProperty("graphicDefinitionsPath")): GraphicDefinitions {
+    fun load(parser: Yaml = get(), path: String = getProperty("graphicDefinitionsPath")): GraphicDefinitions {
         timedLoad("graphic extra") {
             decode(parser, path)
         }

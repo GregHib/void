@@ -14,8 +14,8 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.yaml.YamlParser
-import world.gregs.yaml.parse.Parser
+import world.gregs.yaml.Yaml
+import world.gregs.yaml.read.YamlReader
 
 class ItemDefinitions(
     decoder: ItemDecoder
@@ -34,7 +34,7 @@ class ItemDefinitions(
 
     override fun empty() = ItemDefinition.EMPTY
 
-    fun load(parser: YamlParser = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {
+    fun load(parser: Yaml = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {
         timedLoad("item extra") {
             val equipment = Int2IntOpenHashMap()
             var index = 0
@@ -54,14 +54,14 @@ class ItemDefinitions(
 
     @Suppress("UNCHECKED_CAST")
     private class CustomConfig(private val equipment: Map<Int, Int>, ids: MutableMap<String, Int>, definitions: Array<ItemDefinition>) : DefinitionConfig<ItemDefinition>(ids, definitions) {
-        override fun setMapValue(parser: Parser, map: MutableMap<String, Any>, key: String, indent: Int, indentOffset: Int, withinMap: String?, parentMap: String?) {
+        override fun setMapValue(reader: YamlReader, map: MutableMap<String, Any>, key: String, indent: Int, indentOffset: Int, withinMap: String?, parentMap: String?) {
             if (indent > 1 && parentMap == "pottery") {
-                val value = parser.value(indentOffset, withinMap)
+                val value = reader.value(indentOffset, withinMap)
                 super.set(map, key, Pottery.Ceramic(value as Map<String, Any>), indent, parentMap)
             } else if (indent == 1 && key == "heals" || key == "chance" || parentMap == "chances") {
-                set(map, key, parser.readIntRange(), indent, parentMap)
+                set(map, key, reader.readIntRange(), indent, parentMap)
             } else {
-                super.setMapValue(parser, map, key, indent, indentOffset, withinMap, parentMap)
+                super.setMapValue(reader, map, key, indent, indentOffset, withinMap, parentMap)
             }
         }
 
@@ -99,7 +99,7 @@ class ItemDefinitions(
             }, indent, parentMap)
         }
 
-        private fun Parser.readIntRange(): IntRange {
+        private fun YamlReader.readIntRange(): IntRange {
             val start = reader.index
             val number = number(start)
             return if (reader.char == '-') {

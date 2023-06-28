@@ -1,12 +1,12 @@
-package world.gregs.yaml.parse
+package world.gregs.yaml.read
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 
-class NormalParserTest {
-    private var parser: YamlParser = YamlParser()
+class NormalCollectionReaderTest {
+    private var parser: Yaml = Yaml()
 
     @Test
     fun `Parse list items aligned`() {

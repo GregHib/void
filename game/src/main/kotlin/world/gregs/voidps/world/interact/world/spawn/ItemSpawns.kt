@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.yaml.YamlParser
+import world.gregs.yaml.Yaml
 import world.gregs.yaml.config.FastUtilConfiguration
 
 class ItemSpawns(
@@ -31,7 +31,7 @@ class ItemSpawns(
 fun loadItemSpawns(
     items: FloorItems,
     spawns: ItemSpawns,
-    parser: YamlParser = get(),
+    parser: Yaml = get(),
     path: String = getProperty("itemSpawnsPath")
 ) {
     timedLoad("item spawn") {
