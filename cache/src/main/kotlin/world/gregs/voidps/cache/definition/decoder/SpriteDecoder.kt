@@ -32,19 +32,19 @@ class SpriteDecoder(cache: Cache) : DefinitionDecoder<SpriteDefinition>(cache, S
 
         val sprites = Array(size) { IndexedSprite() }
         this.sprites = sprites
-        repeat(size) { index ->
+        for (index in 0 until size) {
             sprites[index].offsetX = buffer.readShort()
         }
-        repeat(size) { index ->
+        for (index in 0 until size) {
             sprites[index].offsetY = buffer.readShort()
         }
-        repeat(size) { index ->
+        for (index in 0 until size) {
             sprites[index].width = buffer.readShort()
         }
-        repeat(size) { index ->
+        for (index in 0 until size) {
             sprites[index].height = buffer.readShort()
         }
-        repeat(size) { index ->
+        for (index in 0 until size) {
             val sprite = sprites[index]
             sprite.deltaWidth = offsetX - sprite.width - sprite.offsetX
             sprite.deltaHeight = offsetY - sprite.height - sprite.offsetY
@@ -58,12 +58,12 @@ class SpriteDecoder(cache: Cache) : DefinitionDecoder<SpriteDefinition>(cache, S
                 palette[index] = 1
             }
         }
-        repeat(size) { index ->
+        for (index in 0 until size) {
             sprites[index].palette = palette
         }
 
         buffer.position(0)
-        repeat(size) { index ->
+        for (index in 0 until size) {
             val sprite = sprites[index]
             val area = sprite.width * sprite.height
 
@@ -72,12 +72,12 @@ class SpriteDecoder(cache: Cache) : DefinitionDecoder<SpriteDefinition>(cache, S
             val setting: Int = buffer.readUnsignedByte()
             if (setting and 0x2 == 0) {
                 if (setting and 0x1 == 0) {
-                    repeat(area) { pixel ->
+                    for (pixel in 0 until area) {
                         sprite.raster[pixel] = buffer.readByte().toByte()
                     }
                 } else {
-                    repeat(sprite.width) { x ->
-                        repeat(sprite.height) { y ->
+                    for (x in 0 until sprite.width) {
+                        for (y in 0 until sprite.height) {
                             sprite.raster[x + y * sprite.width] = buffer.readByte().toByte()
                         }
                     }
@@ -86,22 +86,22 @@ class SpriteDecoder(cache: Cache) : DefinitionDecoder<SpriteDefinition>(cache, S
                 var transparent = false
                 val alpha = ByteArray(area)
                 if (setting and 0x1 == 0) {
-                    repeat(area) { pixel ->
+                    for (pixel in 0 until area) {
                         sprite.raster[pixel] = buffer.readByte().toByte()
                     }
-                    repeat(area) { pixel ->
+                    for (pixel in 0 until area) {
                         alpha[pixel] = buffer.readByte().toByte()
                         val p = alpha[pixel].toInt()
                         transparent = transparent or (p != -1)
                     }
                 } else {
-                    repeat(sprite.width) { x ->
-                        repeat(sprite.height) { y ->
+                    for (x in 0 until sprite.width) {
+                        for (y in 0 until sprite.height) {
                             sprite.raster[x + y * sprite.width] = buffer.readByte().toByte()
                         }
                     }
-                    repeat(sprite.width) { x ->
-                        repeat(sprite.height) { y ->
+                    for (x in 0 until sprite.width) {
+                        for (y in 0 until sprite.height) {
                             alpha[x + y * sprite.width] = buffer.readByte().toByte()
                             val pixel = alpha[x + y * sprite.width].toInt()
                             transparent = transparent or (pixel != -1)

@@ -1,7 +1,6 @@
 package world.gregs.voidps.cache.definition
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Definition
 
 interface Transforms {
     var varbit: Int
@@ -34,15 +33,5 @@ interface Transforms {
             }
         }
         transformIds!![length + 1] = last
-    }
-
-    companion object {
-        val transformer = { array: Array<out Definition>, names: Map<Int, String> ->
-            for (def in array) {
-                if (def is Transforms) {
-                    def.transforms = def.transformIds?.map { if (it == -1) null else names.getOrDefault(it, it.toString()) }?.toTypedArray()
-                }
-            }
-        }
     }
 }

@@ -34,21 +34,19 @@ class QuickChatOptionDecoder(cache: Cache) : DefinitionDecoder<QuickChatOptionDe
             2 -> {
                 val length = buffer.readUnsignedByte()
                 quickReplyOptions = IntArray(length)
-                navigateChars = CharArray(length)
-                repeat(length) { count ->
+                navigateChars = CharArray(length) { count ->
                     quickReplyOptions!![count] = buffer.readShort()
                     val b = buffer.readByte().toByte()
-                    navigateChars!![count] = if (b.toInt() != 0) byteToChar(b) else '\u0000'
+                    if (b.toInt() != 0) byteToChar(b) else '\u0000'
                 }
             }
             3 -> {
                 val length = buffer.readUnsignedByte()
                 dynamicData = IntArray(length)
-                staticData = CharArray(length)
-                repeat(length) { count ->
+                staticData = CharArray(length) { count ->
                     dynamicData!![count] = buffer.readShort()
                     val b = buffer.readByte().toByte()
-                    staticData!![count] = if (b.toInt() != 0) byteToChar(b) else '\u0000'
+                    if (b.toInt() != 0) byteToChar(b) else '\u0000'
                 }
             }
         }
@@ -62,7 +60,7 @@ class QuickChatOptionDecoder(cache: Cache) : DefinitionDecoder<QuickChatOptionDe
                 }
             }
             if (quickReplyOptions != null) {
-                repeat(quickReplyOptions!!.size) { count ->
+                for (count in 0 until quickReplyOptions!!.size) {
                     quickReplyOptions!![count] = quickReplyOptions!![count] or 32768
                 }
             }

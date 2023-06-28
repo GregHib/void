@@ -30,7 +30,7 @@ class MapObjectEncoder : DefinitionEncoder<MapDefinition> {
 
     private fun Writer.writeLargeSmart(value: Int) {
         if (value >= 32767) {
-            repeat(value / 32767) {
+            for (i in 0 until value / 32767) {
                 writeSmart(32767)
             }
             writeSmart(value.rem(32767))

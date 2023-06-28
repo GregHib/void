@@ -24,7 +24,7 @@ class EnumDecoder(cache: Cache) : DefinitionDecoder<EnumDefinition>(cache, ENUMS
             5, 6 -> {
                 length = buffer.readShort()
                 val hashtable = Int2ObjectArrayMap<Any>()
-                repeat(length) {
+                for (count in 0 until length) {
                     val id = buffer.readInt()
                     hashtable[id] = if (opcode == 5) {
                         buffer.readString()
@@ -38,7 +38,7 @@ class EnumDecoder(cache: Cache) : DefinitionDecoder<EnumDefinition>(cache, ENUMS
                 val size = buffer.readShort()
                 length = buffer.readShort()
                 val strings = Int2ObjectArrayMap<Any>(size)
-                repeat(length) {
+                for (count in 0 until length) {
                     val index = buffer.readShort()
                     strings[index] = buffer.readString()
                 }
@@ -48,7 +48,7 @@ class EnumDecoder(cache: Cache) : DefinitionDecoder<EnumDefinition>(cache, ENUMS
                 val size = buffer.readShort()
                 length = buffer.readShort()
                 val integers = Int2ObjectArrayMap<Any>(size)
-                repeat(length) {
+                for (i in 0 until length) {
                     val index = buffer.readShort()
                     integers[index] = buffer.readInt()
                 }

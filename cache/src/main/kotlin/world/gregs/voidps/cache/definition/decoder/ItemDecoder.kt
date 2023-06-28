@@ -101,10 +101,7 @@ class ItemDecoder(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, ITEMS
             }
             132 -> {
                 val length = buffer.readUnsignedByte()
-                campaigns = IntArray(length)
-                repeat(length) { count ->
-                    campaigns!![count] = buffer.readShort()
-                }
+                campaigns = IntArray(length) { buffer.readShort() }
             }
             134 -> pickSizeShift = buffer.readUnsignedByte()
             139 -> singleNoteId = buffer.readShort()

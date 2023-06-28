@@ -40,11 +40,11 @@ class ClientScriptDecoder(cache: Cache, private val revision634: Boolean) : Defi
         val count = buffer.readUnsignedByte()
         if (count > 0) {
             val list = mutableListOf<List<Pair<Int, Int>>>()
-            repeat(count) {
+            for (i in 0 until count) {
                 val size = buffer.readShort()
                 val hashtable = mutableListOf<Pair<Int, Int>>()
                 list.add(hashtable)
-                repeat(size) {
+                for (j in 0 until size) {
                     hashtable.add(buffer.readInt() to buffer.readInt())
                 }
             }

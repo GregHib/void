@@ -49,7 +49,7 @@ class QuickChatPhraseDecoder(cache: Cache) : DefinitionDecoder<QuickChatPhraseDe
     override fun QuickChatPhraseDefinition.changeValues() {
         val options = responses
         if (id >= 32768 && options != null) {
-            repeat(options.size) { index ->
+            for (index in options.indices) {
                 options[index] = options[index] or 32768
             }
         }

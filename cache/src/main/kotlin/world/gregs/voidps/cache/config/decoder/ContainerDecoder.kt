@@ -17,7 +17,7 @@ class ContainerDecoder(cache: Cache) : ConfigDecoder<ContainerDefinition>(cache,
                 val size = buffer.readUnsignedByte()
                 ids = IntArray(size)
                 amounts = IntArray(size)
-                repeat(size) { i ->
+                for (i in 0 until size) {
                     ids!![i] = buffer.readUnsignedShort()
                     amounts!![i] = buffer.readUnsignedShort()
                 }

@@ -21,7 +21,7 @@ interface Parameterized {
             return
         }
         val params = Long2ObjectArrayMap<Any>()
-        repeat(length) {
+        for (i in 0 until length) {
             val string = buffer.readUnsignedBoolean()
             val id = buffer.readUnsignedMedium().toLong()
             params[id] = if (string) buffer.readString() else buffer.readInt()

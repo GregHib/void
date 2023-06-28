@@ -2,14 +2,27 @@ package world.gregs.voidps.cache
 
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
+import java.io.File
 
-abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, internal val index: Int) {
+abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, internal val index: Int) {
 
     open val last: Int
         get() = cache.lastArchiveId(index) * 256 + (cache.archiveCount(index, cache.lastArchiveId(index)))
 
     val indices: IntRange
         get() = 0..last
+
+
+    fun loadAll(definitions: Array<T>, getId: (archive: Int, file: Int) -> Int) {
+        val temp = File("temp.dat")
+        val writer = BufferReader(temp.readBytes())
+        while (writer.position() < writer.length) {
+            val id = writer.readInt()
+            val definition = definitions[id]
+            readLoop(definition, writer)
+//            definition.changeValues()
+        }
+    }
 
     fun getOrNull(id: Int): T? {
         return readData(id)
@@ -20,7 +33,7 @@ abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, int
     protected abstract fun create(): T
 
     protected open fun getData(archive: Int, file: Int): ByteArray? {
-        return cache.getFile(index, archive, file)
+        return null//cache.getFile(index, archive, file)
     }
 
     protected open fun readData(id: Int): T? {
@@ -37,7 +50,7 @@ abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, int
         return null
     }
 
-    protected open fun readLoop(definition: T, buffer: Reader) {
+    open fun readLoop(definition: T, buffer: Reader) {
         while (true) {
             val opcode = buffer.readUnsignedByte()
             if (opcode == 0) {
@@ -53,7 +66,7 @@ abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, int
 
     protected abstract fun T.read(opcode: Int, buffer: Reader)
 
-    protected open fun T.changeValues() {
+    open fun T.changeValues() {
     }
 
     open fun clear() {

@@ -15,10 +15,7 @@ class IdentityKitDecoder(cache: Cache) : ConfigDecoder<IdentityKitDefinition>(ca
             1 -> bodyPartId = buffer.readUnsignedByte()
             2 -> {
                 val length = buffer.readUnsignedByte()
-                modelIds = IntArray(length)
-                repeat(length) { count ->
-                    modelIds!![count] = buffer.readUnsignedShort()
-                }
+                modelIds = IntArray(length) { buffer.readUnsignedShort() }
             }
             40 -> readColours(buffer)
             41 -> readTextures(buffer)

@@ -8,10 +8,7 @@ interface ColourPalette {
 
     fun readColourPalette(buffer: Reader) {
         val length = buffer.readUnsignedByte()
-        recolourPalette = ByteArray(length)
-        repeat(length) { count ->
-            recolourPalette!![count] = buffer.readByte().toByte()
-        }
+        recolourPalette = ByteArray(length) { buffer.readByte().toByte() }
     }
 
     fun writeRecolourPalette(writer: Writer) {

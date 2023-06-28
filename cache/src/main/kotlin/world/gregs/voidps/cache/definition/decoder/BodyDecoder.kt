@@ -29,27 +29,11 @@ class BodyDecoder(cache: Cache) : DefinitionDecoder<BodyDefinition>(cache, DEFAU
 
     override fun BodyDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
-            1 -> {
-                val length = buffer.readUnsignedByte()
-                disabledSlots = IntArray(length)
-                repeat(disabledSlots.size) { count ->
-                    disabledSlots[count] = buffer.readUnsignedByte()
-                }
-            }
+            1 -> disabledSlots = IntArray(buffer.readUnsignedByte()) { buffer.readUnsignedByte() }
             3 -> anInt4506 = buffer.readUnsignedByte()
             4 -> anInt4504 = buffer.readUnsignedByte()
-            5 -> {
-                anIntArray4501 = IntArray(buffer.readUnsignedByte())
-                repeat(anIntArray4501!!.size) { count ->
-                    anIntArray4501!![count] = buffer.readUnsignedByte()
-                }
-            }
-            6 -> {
-                anIntArray4507 = IntArray(buffer.readUnsignedByte())
-                repeat(anIntArray4507!!.size) { count ->
-                    anIntArray4507!![count] = buffer.readUnsignedByte()
-                }
-            }
+            5 -> anIntArray4501 = IntArray(buffer.readUnsignedByte()) { buffer.readUnsignedByte() }
+            6 -> anIntArray4507 = IntArray(buffer.readUnsignedByte()) { buffer.readUnsignedByte() }
         }
     }
 }

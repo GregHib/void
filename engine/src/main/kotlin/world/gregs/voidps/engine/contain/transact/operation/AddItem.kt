@@ -81,7 +81,7 @@ interface AddItem : TransactionOperation {
      * @param amount the number of items to be added.
      */
     private fun addItemsToSlots(id: String, amount: Int) {
-        repeat(amount) { count ->
+        for (count in 0 until amount) {
             // Find an empty slot in the container
             val emptySlot = container.freeIndex()
             if (emptySlot == -1) {

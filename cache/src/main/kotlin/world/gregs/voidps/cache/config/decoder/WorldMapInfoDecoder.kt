@@ -43,20 +43,11 @@ class WorldMapInfoDecoder(cache: Cache) : ConfigDecoder<WorldMapInfoDefinition>(
             in 10..14 -> aStringArray1065[opcode - 10] = buffer.readString()
             15 -> {
                 val length = buffer.readUnsignedByte()
-                anIntArray1049 = IntArray(length * 2)
-                repeat(length * 2) { count ->
-                    anIntArray1049!![count] = buffer.readUnsignedShort()
-                }
+                anIntArray1049 = IntArray(length * 2) { buffer.readUnsignedShort() }
                 anInt1084 = buffer.readInt()
                 val size = buffer.readUnsignedByte()
-                anIntArray1066 = IntArray(size)
-                repeat(size) { count ->
-                    anIntArray1066!![count] = buffer.readInt()
-                }
-                aByteArray1057 = ByteArray(length)
-                repeat(length) { count ->
-                    aByteArray1057!![count] = buffer.readByte().toByte()
-                }
+                anIntArray1066 = IntArray(size) { buffer.readInt() }
+                aByteArray1057 = ByteArray(length) { buffer.readByte().toByte() }
             }
             16 -> aBoolean1064 = false
             17 -> aString1045 = buffer.readString()

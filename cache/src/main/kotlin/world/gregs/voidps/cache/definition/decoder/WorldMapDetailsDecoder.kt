@@ -37,7 +37,7 @@ class WorldMapDetailsDecoder(cache: Cache) : DefinitionDecoder<WorldMapDefinitio
         }
         sections = LinkedList()
         val length = buffer.readUnsignedByte()
-        repeat(length) {
+        for (i in 0 until length) {
             sections!!.addLast(
                 WorldMapSection(
                     buffer.readUnsignedByte(),

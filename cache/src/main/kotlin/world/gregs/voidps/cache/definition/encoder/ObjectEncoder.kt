@@ -282,9 +282,9 @@ class ObjectEncoder : DefinitionEncoder<ObjectDefinition> {
         if (percents != null && animations != null) {
             writeByte(106)
             writeByte(animations.size)
-            repeat(animations.size) {
-                writeShort(animations[it])
-                writeByte(((percents[it] / 65535.0) * 100).roundToInt())
+            for (i in animations.indices) {
+                writeShort(animations[i])
+                writeByte(((percents[i] / 65535.0) * 100).roundToInt())
             }
         }
 
