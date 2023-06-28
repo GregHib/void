@@ -28,7 +28,6 @@ class ExplicitCollectionWriterTest {
             - two
             - [ three, [ four ] ]
             - five
-            
         """.trimIndent()
         assertEquals(expected, actual)
     }

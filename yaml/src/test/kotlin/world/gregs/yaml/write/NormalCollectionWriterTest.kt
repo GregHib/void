@@ -15,7 +15,6 @@ class NormalCollectionWriterTest {
         val expected = """
             one: value
             two: value
-            
         """.trimIndent()
         assertEquals(expected, actual)
     }
@@ -30,7 +29,6 @@ class NormalCollectionWriterTest {
         val expected = """
             "one": value
             "two": value
-            
         """.trimIndent()
         assertEquals(expected, actual)
     }
@@ -43,7 +41,6 @@ class NormalCollectionWriterTest {
             - one
             - two
             - three
-            
         """.trimIndent()
         assertEquals(expected, actual)
     }
@@ -59,7 +56,6 @@ class NormalCollectionWriterTest {
               three:
                 four: 4
             five: 5
-            
         """.trimIndent()
         assertEquals(expected, actual)
     }
@@ -73,7 +69,19 @@ class NormalCollectionWriterTest {
             - two
             - [ three, [ four ] ]
             - five
-            
+        """.trimIndent()
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `Write mixed nested maps and lists`() {
+        val input = listOf(mapOf("one" to "value", "two" to "value", "three" to mapOf("four" to 4)))
+        val actual = yaml.writeToString(input)
+        val expected = """
+            - one: value
+              two: value
+              three:
+                four: 4
         """.trimIndent()
         assertEquals(expected, actual)
     }
