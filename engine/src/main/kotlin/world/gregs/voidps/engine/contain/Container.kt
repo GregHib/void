@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.contain.transact.Transaction
 import world.gregs.voidps.engine.entity.item.Item
 
 class Container(
-    internal val data: ContainerData,
+    internal var data: Array<Item>,
     val id: String = "",
     var itemRule: ItemRestrictionRule = NoRestrictions,
     private val stackRule: ItemStackingRule = AlwaysStack,
@@ -19,7 +19,7 @@ class Container(
 ) {
 
     val items: Array<Item>
-        get() = data.items
+        get() = data
     val indices: IntRange = items.indices
     val size: Int = items.size
 
@@ -109,7 +109,7 @@ class Container(
             id: String = "",
             removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
         ) = Container(
-            ContainerData(Array(capacity) { Item("", removalCheck.getMinimum(it), def = ItemDefinition.EMPTY) }),
+            Array(capacity) { Item("", removalCheck.getMinimum(it), def = ItemDefinition.EMPTY) },
             id,
             itemRule,
             stackRule,

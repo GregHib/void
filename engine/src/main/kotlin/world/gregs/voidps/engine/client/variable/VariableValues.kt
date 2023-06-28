@@ -85,10 +85,10 @@ class BitwiseValues(
     val values: List<Any>
 ) : VariableValues() {
 
-    override fun default() = arrayListOf<Any>()
+    override fun default() = listOf<Any>()
 
     @Suppress("UNCHECKED_CAST")
-    override fun toInt(value: Any) = (value as ArrayList<Any>).sumOf {
+    override fun toInt(value: Any) = (value as List<Any>).sumOf {
         val index = values.indexOf(it)
         if (index != -1) 1 shl index else 0
     }

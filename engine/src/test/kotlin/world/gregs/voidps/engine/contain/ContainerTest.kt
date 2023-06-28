@@ -39,7 +39,7 @@ internal class ContainerTest {
         removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker
     ): Container = spyk(
         Container(
-            data = ContainerData(items),
+            data = items,
             id = id,
             stackRule = stackRule,
             removalCheck = removalCheck

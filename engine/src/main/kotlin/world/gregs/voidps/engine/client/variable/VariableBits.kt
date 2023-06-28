@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.variable
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.event.Events
 
 class VariableBits(
@@ -8,12 +9,12 @@ class VariableBits(
 ) {
 
     fun contains(key: String, id: Any): Boolean {
-        val value: ArrayList<Any> = variables.getOrNull(key) ?: return false
+        val value: List<Any> = variables.getOrNull(key) ?: return false
         return value.contains(id)
     }
 
     fun set(key: String, value: Any, refresh: Boolean): Boolean {
-        val values: ArrayList<Any> = variables.getOrPut(key) { arrayListOf(value) }
+        val values: MutableList<Any> = variables.getOrPut(key) { ObjectArrayList<Any>().apply { add(value) } }
         if (!values.contains(value) && values.add(value)) {
             if (refresh) {
                 variables.send(key)
@@ -25,7 +26,7 @@ class VariableBits(
     }
 
     fun remove(key: String, value: Any, refresh: Boolean): Boolean {
-        val values: ArrayList<Any> = variables.getOrNull(key) ?: return false
+        val values: MutableList<Any> = variables.getOrNull(key) ?: return false
         if (values.remove(value)) {
             if (refresh) {
                 variables.send(key)
@@ -38,7 +39,7 @@ class VariableBits(
 
     @Suppress("UNCHECKED_CAST")
     fun clear(key: String, refresh: Boolean) {
-        val values = variables.clear(key, refresh) as? ArrayList<Any> ?: return
+        val values = variables.clear(key, refresh) as? List<Any> ?: return
         if (refresh) {
             variables.send(key)
         }

@@ -25,7 +25,7 @@ class Transaction(
 ) : TransactionController(), AddItem, AddItemLimit, ClearItem, MoveItem, MoveItemLimit, RemoveItem, RemoveItemLimit, ReplaceItem, ShiftItem, SwapItem {
 
     override var error: TransactionError = TransactionError.None
-    override val state = StateManager(container.data)
+    override val state = StateManager(container)
     override val changes = ChangeManager(container)
 
     override fun set(index: Int, item: Item?, from: String?, to: String?) {
@@ -36,7 +36,7 @@ class Transaction(
         val fromId = from ?: container.id
         val toId = to ?: container.id
         changes.track(fromId, index, previous, toId, item ?: Item.EMPTY)
-        container.data.items[index] = item ?: Item.EMPTY
+        container.items[index] = item ?: Item.EMPTY
     }
 
     override fun link(container: Container): Transaction {

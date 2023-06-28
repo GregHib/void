@@ -1,18 +1,18 @@
 package world.gregs.voidps.engine.data
 
 import com.fasterxml.jackson.databind.JsonNode
-import world.gregs.voidps.engine.contain.ContainerData
 import world.gregs.voidps.engine.contain.Containers
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.map.Tile
 
 internal class PlayerBuilder(
     var tile: JsonNode,
-    val containers: MutableMap<String, ContainerData>,
+    val containers: MutableMap<String, Array<Item>>,
     val experience: Experience,
     val variables: MutableMap<String, Any>,
     val levels: IntArray,
