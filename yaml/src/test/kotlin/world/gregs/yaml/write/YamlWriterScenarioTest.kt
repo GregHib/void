@@ -49,7 +49,13 @@ class YamlWriterScenarioTest {
 
     @Test
     fun `Write json`() {
-        val config = YamlWriterConfiguration.json
+        val config = YamlWriterConfiguration(
+            quoteStrings = true,
+            forceExplicit = true,
+            quoteKeys = true,
+            formatExplicitMap = true,
+            formatExplicitListSizeLimit = 0
+        )
         val input = listOf(
             mapOf("name" to "John Doe",
                 "age" to 30,

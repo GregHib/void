@@ -121,6 +121,17 @@ class CharReaderTest {
         assertEquals(13, reader.index)
     }
 
+    @Test
+    fun `Read line with tabs`() {
+        reader.set("a line\t\n\titem")
+
+        var index = skip("a line")
+        index += " \n ".length
+        reader.nextLine()
+        assertEquals(1, reader.indentation)
+        assertEquals(index, reader.index)
+    }
+
     private fun skip(string: String): Int {
         reader.skip(string.length)
         return string.length

@@ -63,14 +63,19 @@ class CharReader(
      * Records the start of the [lastLine] and the [indentation] of current line
      */
     fun nextLine() {
+        var tabs = 0
         while (index < size) {
             when (input[index]) {
                 ' ' -> {}
+                '\t' -> {
+                    tabs++
+                }
                 '\n', '\r' -> {
                     if (lastLine < index - 1) {
                         lineCount++
                     }
                     lastLine = index + 1
+                    tabs = 0
                 }
                 '#' -> while (index < size) {
                     if (linebreak(input[index])) {
@@ -80,7 +85,7 @@ class CharReader(
                     index++
                 }
                 else -> {
-                    indentation = (index - lastLine) / 2
+                    indentation = ((index - lastLine) / 2) + tabs
                     break
                 }
             }

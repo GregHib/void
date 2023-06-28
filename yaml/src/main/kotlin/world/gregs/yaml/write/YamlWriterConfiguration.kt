@@ -31,7 +31,8 @@ open class YamlWriterConfiguration(
             quoteStrings = true,
             forceExplicit = true,
             quoteKeys = true,
-            formatExplicitMap = true
+            formatExplicitMap = true,
+            formatExplicitListSizeLimit = 25
         )
     }
 }
