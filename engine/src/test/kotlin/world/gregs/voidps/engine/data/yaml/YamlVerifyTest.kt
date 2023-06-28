@@ -1,13 +1,22 @@
 package world.gregs.voidps.engine.data.yaml
 
-import world.gregs.voidps.engine.data.FileStorage
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
+import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator
 import java.io.File
 
 object YamlVerifyTest {
+
+    internal val mapper = ObjectMapper(YAMLFactory().apply {
+        disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER)
+        disable(YAMLGenerator.Feature.SPLIT_LINES)
+    })
+
+    internal inline fun <reified T : Any> load(path: String): T = mapper.readValue(File(path), T::class.java)
+
     @JvmStatic
     fun main(args: Array<String>) {
         val parser = YamlParser()
-        val loader = FileStorage()
         val files = File("./data/definitions/").listFiles()
             .union(File("./data/map/").listFiles().toList())
             .union(File("./data/spawns/").listFiles().toList())
@@ -15,7 +24,7 @@ object YamlVerifyTest {
         files.forEach {
             println(it.name)
             if (it.name == "gear-sets.yml" || it.name == "stairs.yml" || it.name.endsWith("spawns.yml")) {
-                val one = loader.load<List<Any>>(it.path)
+                val one = load<List<Any>>(it.path)
                 val fr = it.reader()
                 val length = fr.read(chars)
                 val two = parser.parse(chars, length) as List<Any>
@@ -29,7 +38,7 @@ object YamlVerifyTest {
                     }
                 }
             } else {
-                val one = loader.load<Map<String, Any>>(it.path)
+                val one = load<Map<String, Any>>(it.path)
                 val fr = it.reader()
                 val length = fr.read(chars)
                 val two = parser.parse(chars, length) as Map<String, Any>
