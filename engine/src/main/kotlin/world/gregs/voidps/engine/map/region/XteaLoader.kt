@@ -1,11 +1,9 @@
 package world.gregs.voidps.engine.map.region
 
-import com.fasterxml.jackson.core.JsonFactory
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.yaml.Yaml
 import java.io.File
 
 private typealias Xtea = IntArray
@@ -38,8 +36,8 @@ class XteaLoader {
 
     @Suppress("UNCHECKED_CAST")
     fun loadJson(text: String, key: String = DEFAULT_KEY, value: String = DEFAULT_VALUE): Map<Int, Xtea> {
-        val mapper = ObjectMapper(JsonFactory())
-        val map: Array<Map<String, Any>> = mapper.readValue(text)
+        val mapper = Yaml()
+        val map = mapper.read(text) as List<Map<String, Any>>
         return map.associate {
             val id = it[key] as Int
             val keys = it[value] as? List<Int> ?: emptyList()

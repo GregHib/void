@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.character.player.skill.level
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import world.gregs.voidps.engine.entity.character.player.skill.*
 import world.gregs.voidps.engine.event.Events
 import kotlin.math.max
@@ -14,10 +13,7 @@ class Levels(
         fun getMaxLevel(skill: Skill): Int
     }
 
-    @JsonIgnore
     private lateinit var level: Level
-
-    @JsonIgnore
     private lateinit var events: Events
 
     fun link(events: Events, level: Level) {

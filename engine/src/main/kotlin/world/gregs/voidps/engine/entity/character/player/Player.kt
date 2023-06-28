@@ -1,10 +1,5 @@
 package world.gregs.voidps.engine.entity.character.player
 
-import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonPropertyOrder
-import com.fasterxml.jackson.annotation.JsonUnwrapped
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize
-import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import kotlinx.coroutines.flow.MutableSharedFlow
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.engine.Contexts
@@ -19,8 +14,6 @@ import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.Containers
-import world.gregs.voidps.engine.data.PlayerBuilder
-import world.gregs.voidps.engine.data.serial.MapSerializer
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Unregistered
@@ -53,34 +46,23 @@ import kotlin.coroutines.Continuation
 /**
  * A player controlled by client or bot
  */
-@JsonDeserialize(builder = PlayerBuilder::class)
-@JsonPropertyOrder(value = ["accountName", "passwordHash", "tile", "experience", "levels", "body", "variables", "containers", "friends", "ignores"])
 class Player(
-    @JsonIgnore
     override var index: Int = -1,
     override var tile: Tile = Tile.EMPTY,
-    @JsonIgnore
     override var size: Size = Size.ONE,
-    @get:JsonUnwrapped
     val containers: Containers = Containers(),
-    @JsonSerialize(using = MapSerializer::class)
     variables: MutableMap<String, Any> = mutableMapOf(),
     val experience: Experience = Experience(),
-    @get:JsonUnwrapped
     override val levels: Levels = Levels(),
     val friends: MutableMap<String, ClanRank> = mutableMapOf(),
     val ignores: MutableList<String> = mutableListOf(),
-    @JsonIgnore
     var client: Client? = null,
-    @JsonIgnore
     var viewport: Viewport? = null,
     var accountName: String = "",
     var passwordHash: String = "",
-    @get:JsonUnwrapped
     val body: BodyParts = BodyParts()
 ) : Character {
 
-    @JsonIgnore
     override var mode: Mode = EmptyMode
         set(value) {
             field.stop()
@@ -88,73 +70,48 @@ class Player(
             value.start()
         }
 
-    @JsonIgnore
     override lateinit var visuals: PlayerVisuals
-
-    @JsonIgnore
     val instructions = MutableSharedFlow<Instruction>(replay = 20)
-
-    @JsonIgnore
     override val events: Events = Events(this)
-
-    @JsonIgnore
     lateinit var options: PlayerOptions
-
-    @JsonIgnore
     val gameFrame = GameFrame()
-
-    @JsonIgnore
     lateinit var interfaces: Interfaces
-
-    @JsonIgnore
     lateinit var interfaceOptions: InterfaceOptions
-
-    @JsonIgnore
     override lateinit var collision: CollisionStrategy
 
-    @JsonIgnore
     var changeValue: Int = -1
 
-    @get:JsonIgnore
     val networked: Boolean
         get() = client != null && viewport != null
 
-    @get:JsonIgnore
     override var suspension: Suspension? = null
         set(value) {
             field?.cancel()
             field = value
         }
 
-    @get:JsonIgnore
     override var delay: Continuation<Unit>? = null
 
-    @get:JsonIgnore
     var dialogueSuspension: Suspension? = null
         set(value) {
             field?.cancel()
             field = value
         }
 
-    @get:JsonIgnore
     override var queue = ActionQueue(this)
 
     /**
      * Always ticks
      */
-    @get:JsonIgnore
     override var softTimers: Timers = TimerQueue(events)
 
     /**
      * Ticks while not delayed or has interface open
      */
-    @get:JsonIgnore
     var timers = TimerQueue(events)
 
-    @get:JsonUnwrapped
     override var variables: Variables = PlayerVariables(events, variables)
 
-    @get:JsonIgnore
     override val steps = Steps(this)
 
     fun login(client: Client? = null, displayMode: Int = 0) {

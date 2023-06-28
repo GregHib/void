@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.contain
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.client.sendContainerItems
 import world.gregs.voidps.engine.contain.remove.DefaultItemRemovalChecker
@@ -21,22 +20,12 @@ class Containers(
     val containers: MutableMap<String, Array<Item>> = mutableMapOf()
 ) : MutableMap<String, Array<Item>> by containers {
 
-    @JsonIgnore
     val instances: MutableMap<String, Container> = mutableMapOf()
 
-    @JsonIgnore
     lateinit var definitions: ContainerDefinitions
-
-    @JsonIgnore
     lateinit var itemDefinitions: ItemDefinitions
-
-    @JsonIgnore
     lateinit var validItemRule: ItemRestrictionRule
-
-    @JsonIgnore
     lateinit var events: Events
-
-    @JsonIgnore
     lateinit var normalStack: DependentOnItem
 
     fun container(definition: ContainerDefinition, secondary: Boolean = false): Container {

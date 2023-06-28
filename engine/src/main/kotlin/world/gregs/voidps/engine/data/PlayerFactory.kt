@@ -71,9 +71,13 @@ class PlayerFactory(
         override fun write(value: Any?, indent: Int, parentMap: String?): Any? {
             return if (value is Item) {
                 if (value.isEmpty()) {
-                    emptyMap<String, Any>()
+                    emptyMap()
                 } else {
-                    mapOf("id" to value.id, "amount" to value.amount)
+                    val map = mutableMapOf<String, Any>("id" to value.id)
+                    if (value.amount != 0) {
+                        map["amount"] = value.amount
+                    }
+                    map
                 }
             } else if (value is Player) {
                 mapOf(
@@ -106,7 +110,7 @@ class PlayerFactory(
         override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
             if (value is Map<*, *> && value.containsKey("id")) {
                 val id = value["id"] as String
-                val item = Item(id, value["amount"] as Int, itemDefinitions.get(id))
+                val item = Item(id, value["amount"] as? Int ?: 0, itemDefinitions.get(id))
                 super.add(list, item, parentMap)
             } else if (value is Map<*, *> && value.isEmpty()) {
                 super.add(list, Item.EMPTY, parentMap)
