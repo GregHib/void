@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.obj
 
 /**
- * Stores [GameObject]s by zone + group
+ * Stores [GameObject]s by zone + [ObjectLayer]
  */
 interface GameObjectMap {
 

@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 
 /**
- * Stores [GameObject]s by zone + group
+ * Stores [GameObject]s by zone + [ObjectLayer]
  * Fast and low memory usage for a small (<100k) number of objects.
  */
 class GameObjectHashMap : GameObjectMap {
@@ -58,7 +58,7 @@ class GameObjectHashMap : GameObjectMap {
     companion object {
         private const val EXPECTED_OBJECT_COUNT = 74_000
         private fun index(obj: GameObject): Int = index(obj.x, obj.y, obj.plane, ObjectLayer.layer(obj.shape))
-        private fun index(x: Int, y: Int, level: Int, group: Int): Int = index(Chunk.tileIndex(x, y, level), Tile.index(x, y, group))
+        private fun index(x: Int, y: Int, level: Int, layer: Int): Int = index(Chunk.tileIndex(x, y, level), Tile.index(x, y, layer))
         private fun index(zone: Int, tile: Int): Int = zone or (tile shl 24)
     }
 }
