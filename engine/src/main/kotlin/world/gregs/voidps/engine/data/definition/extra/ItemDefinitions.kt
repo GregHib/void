@@ -45,7 +45,7 @@ class ItemDefinitions(
             }
             val ids = Object2IntOpenHashMap<String>()
             this.ids = ids
-            val config = CustomConfig(equipment, ids, definitions)
+            val config = CustomConfig(equipment, ids, definitions, this)
             yaml.load<Any>(path, config)
             ids.size
         }
@@ -53,7 +53,7 @@ class ItemDefinitions(
     }
 
     @Suppress("UNCHECKED_CAST")
-    private class CustomConfig(private val equipment: Map<Int, Int>, ids: MutableMap<String, Int>, definitions: Array<ItemDefinition>) : DefinitionConfig<ItemDefinition>(ids, definitions) {
+    private class CustomConfig(private val equipment: Map<Int, Int>, ids: MutableMap<String, Int>, definitions: Array<ItemDefinition>, private val defs: ItemDefinitions) : DefinitionConfig<ItemDefinition>(ids, definitions) {
         override fun setMapValue(reader: YamlReader, map: MutableMap<String, Any>, key: String, indent: Int, indentOffset: Int, withinMap: String?, parentMap: String?) {
             if (indent > 1 && parentMap == "pottery") {
                 val value = reader.value(indentOffset, withinMap)
@@ -95,7 +95,7 @@ class ItemDefinitions(
                 else -> when (key) {
                     "item" -> {
                         val id = value as String
-                        Item(id, def = ItemDefinition.EMPTY)
+                        Item(id, def = defs.get(id))
                     }
                     else -> value
                 }

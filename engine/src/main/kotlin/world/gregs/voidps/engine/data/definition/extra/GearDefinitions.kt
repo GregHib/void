@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data.definition.extra
 
 import net.pearx.kasechange.toSentenceCase
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.config.GearDefinition
 import world.gregs.voidps.engine.entity.item.Item
@@ -19,7 +18,7 @@ class GearDefinitions {
     fun get(style: String): List<GearDefinition> = definitions[style] ?: emptyList()
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = getProperty("gearDefinitionsPath")): GearDefinitions {
+    fun load(yaml: Yaml = get(), path: String = getProperty("gearDefinitionsPath"), itemDefinitions: ItemDefinitions = get()): GearDefinitions {
         timedLoad("gear definition") {
             var count = 0
             val config = object : YamlReaderConfiguration() {
@@ -31,19 +30,20 @@ class GearDefinitions {
                             val amount = value["amount"] as? Int ?: 1
                             val subList = createList()
                             for (i in id as List<String>) {
-                                subList.add(Item(i, amount, ItemDefinition.EMPTY))
+                                subList.add(Item(i, amount, itemDefinitions.get(i)))
                             }
                             super.add(list, subList, parentMap)
                         } else {
                             val subList = createList()
-                            subList.add(Item(value["id"] as String, value["amount"] as? Int ?: 1, ItemDefinition.EMPTY))
+                            subList.add(Item(id as String, value["amount"] as? Int ?: 1, itemDefinitions.get(id)))
                             super.add(list, subList, parentMap)
                         }
                     } else if (parentMap == "equipment") {
                         value as Map<String, List<Item>>
                         super.add(list, value.mapKeys { EquipSlot.valueOf(it.key.toSentenceCase()) }, parentMap)
                     } else if (value is Map<*, *> && value.containsKey("id")) {
-                        val item = Item(value["id"] as String, value["amount"] as? Int ?: 1, ItemDefinition.EMPTY)
+                        val id = value["id"] as String
+                        val item = Item(id, value["amount"] as? Int ?: 1, itemDefinitions.get(id))
                         super.add(list, item, parentMap)
                     } else if(parentMap != "id") {
                         count++

@@ -22,7 +22,7 @@ class MapViewer {
             val cache = CacheDelegate("./data/cache/")
             val yaml = Yaml()
             val decoder = ObjectDecoder(cache, member = false, lowDetail = false)
-            val defs = ObjectDefinitions(decoder).load(yaml, "./data/definitions/objects.yml")
+            val defs = ObjectDefinitions(decoder).load(yaml, "./data/definitions/objects.yml", null)
             val areas = Areas().load(yaml, "./data/map/areas.yml")
             val nav = NavigationGraph(defs, areas).load(yaml, "./data/map/nav-graph.yml")
             frame.add(MapView(nav, "./data/map/areas.yml"))

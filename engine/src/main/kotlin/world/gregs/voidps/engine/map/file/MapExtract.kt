@@ -241,7 +241,7 @@ class MapExtract(
         fun main(args: Array<String>) {
             val cache = CacheDelegate("./data/cache")
             val definitions = ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false))
-                .load(Yaml(), "./data/definitions/objects.yml")
+                .load(Yaml(), "./data/definitions/objects.yml", null)
             val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
             val collisions = Collisions()
             val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = true)

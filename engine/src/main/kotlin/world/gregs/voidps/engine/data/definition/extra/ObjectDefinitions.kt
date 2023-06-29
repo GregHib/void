@@ -36,7 +36,7 @@ class ObjectDefinitions(
     override fun empty() = ObjectDefinition.EMPTY
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = getProperty("objectDefinitionsPath")): ObjectDefinitions {
+    fun load(yaml: Yaml = get(), path: String = getProperty("objectDefinitionsPath"), itemDefinitions: ItemDefinitions? = get()): ObjectDefinitions {
         timedLoad("object extra") {
             val ids = Object2IntOpenHashMap<String>()
             this.ids = ids
@@ -44,7 +44,8 @@ class ObjectDefinitions(
 
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
                     if (parentMap == "ores") {
-                        super.add(list, Item(value as String, def = ItemDefinition.EMPTY), parentMap)
+                        val id = value as String
+                        super.add(list, Item(id, def = itemDefinitions?.get(id) ?: ItemDefinition.EMPTY), parentMap)
                     } else {
                         super.add(list, value, parentMap)
                     }
@@ -64,7 +65,10 @@ class ObjectDefinitions(
                     } else {
                         super.set(map, key, when (key) {
                             "chance", "hatchet_low_dif", "hatchet_high_dif", "respawn" -> (value as String).toIntRange()
-                            "item", "log" -> Item(value as String, def = ItemDefinition.EMPTY)
+                            "item", "log" -> {
+                                val id = value as String
+                                Item(id, def = itemDefinitions?.get(id) ?: ItemDefinition.EMPTY)
+                            }
                             else -> value
                         }, indent, parentMap)
                     }
