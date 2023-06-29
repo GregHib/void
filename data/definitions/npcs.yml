@@ -68,8 +68,8 @@ duck_grey:
   examine: "Waddle waddle waddle quack."
   height: 10
 duck_swim:
+  <<: *duck_grey
   id: 46
-  copy: duck_grey
   swim: true
   examine: "Quackers."
 rat:
@@ -225,8 +225,8 @@ fishing_spot_small_net_bait:
           - raw_herring
   examine: "It looks like there might be fish swimming in the water."
 fishing_spot_small_net_bait_draynor:
+  <<: *fishing_spot_small_net_bait
   id: 327
-  copy: fishing_spot_small_net_bait
 fishing_spot_lure_bait:
   id: 329
   fishing:
@@ -538,8 +538,8 @@ yrsa:
   shop: yrsas_shoe_store
   examine: "Pretty shabbily dressed for a clothes shop owner."
 sheep_bald:
+  <<: *sheep
   id: 1765
-  copy: sheep
 nemarti:
   id: 1861
   race: human
@@ -570,13 +570,13 @@ makeover_mage_female:
   wander_radius: 3
   examine: "Master of the mystical make-over."
 duck_grey_swim:
+  <<: *duck_grey
   id: 2693
-  copy: duck_grey
   swim: true
   examine: "She quackers."
 duckling:
+  <<: *duck_grey
   id: 2694
-  copy: duck_grey
   slayer_xp: 6.0
   swim: true
   wander_radius: 6
@@ -615,8 +615,8 @@ general_bentnoze:
   race: goblin
   examine: "An ugly green creature."
 sheep_penguin:
+  <<: *sheep
   id: 3579
-  copy: sheep
 millie_miller:
   id: 3806
   race: human
@@ -655,32 +655,32 @@ goblin_mohawk_blue:
   race: goblin
   height: 30
 goblin_mohawk_grey:
+  <<: *goblin_mohawk_blue
   id: 4263
-  copy: goblin_mohawk_blue
 goblin_bald_green:
+  <<: *goblin_mohawk_blue
   id: 4264
-  copy: goblin_mohawk_blue
 goblin_ponytail_brown:
+  <<: *goblin_mohawk_blue
   id: 4265
-  copy: goblin_mohawk_blue
 goblin_bald_grey:
+  <<: *goblin_mohawk_blue
   id: 4266
-  copy: goblin_mohawk_blue
 goblin_hat_grey:
+  <<: *goblin_mohawk_blue
   id: 4267
-  copy: goblin_mohawk_blue
 goblin_spiked_green:
+  <<: *goblin_mohawk_blue
   id: 4268
-  copy: goblin_mohawk_blue
 goblin_spiked_grey:
+  <<: *goblin_mohawk_blue
   id: 4269
-  copy: goblin_mohawk_blue
 goblin_metal_hat_brown:
+  <<: *goblin_mohawk_blue
   id: 4270
-  copy: goblin_mohawk_blue
 goblin_mohawk_dark:
+  <<: *goblin_mohawk_blue
   id: 4271
-  copy: goblin_mohawk_blue
 magic_dummy:
   id: 4474
   hitpoints: 150
@@ -691,8 +691,8 @@ magic_dummy:
   retaliates: false
   examine: "This is ready for you to cast magic at it."
 crow_2:
+  <<: *crow
   id: 4570
-  copy: crow
 captain_daerkin:
   id: 4595
   race: human
@@ -703,14 +703,14 @@ mikasi:
   race: human
   examine: "Mikasi looks ready to teach you about magic."
 sheep_light:
+  <<: *sheep
   id: 5157
-  copy: sheep
 sheep_grey_bald:
+  <<: *sheep
   id: 5160
-  copy: sheep
 sheep_light_bald:
+  <<: *sheep
   id: 5161
-  copy: sheep
 musician_port_sarim:
   id: 5439
   song: 702
@@ -740,8 +740,8 @@ ducklings:
   wander_radius: 6
   examine: "Aww, cute."
 drake:
+  <<: *duck_grey
   id: 6114
-  copy: duck_grey
   examine: "It quacks like a duck."
 mr_mordau:
   id: 6117
@@ -907,23 +907,23 @@ musician_isafdar:
   race: elf
   examine: "She's beautiful."
 giant_rat_dark:
+  <<: *giant_rat
   id: 8828
-  copy: giant_rat
   att: 6
   str: 5
   hitpoints: 100
   slayer_xp: 10.0
 giant_rat_dark_injured:
+  <<: *giant_rat_dark
   id: 8829
-  copy: giant_rat_dark
 hank:
   id: 8864
   race: human
   shop: lumbridge_fishing_supplies
   examine: "A product of a consumerist society."
 sheep_black:
+  <<: *sheep
   id: 8876
-  copy: sheep
 iconis:
   id: 8879
   race: human
@@ -954,35 +954,35 @@ balloon_animal_4:
   wander_radius: 3
   examine: "It looks like an animal."
 giant_spider_2:
+  <<: *giant_spider
   id: 12352
-  copy: giant_spider
 goblin_light_grey_bald:
+  <<: *goblin_mohawk_blue
   id: 12353
-  copy: goblin_mohawk_blue
 goblin_turquoise_topless_mohawk:
+  <<: *goblin_mohawk_blue
   id: 12354
-  copy: goblin_mohawk_blue
 goblin_light_brown_bald:
+  <<: *goblin_mohawk_blue
   id: 12355
-  copy: goblin_mohawk_blue
 goblin_turquoise_grey_ponytail:
+  <<: *goblin_mohawk_blue
   id: 12356
-  copy: goblin_mohawk_blue
 goblin_light_grey_helmet:
+  <<: *goblin_mohawk_blue
   id: 12357
-  copy: goblin_mohawk_blue
 goblin_light_grey_hat:
+  <<: *goblin_mohawk_blue
   id: 12358
-  copy: goblin_mohawk_blue
 goblin_light_brown_mohawk:
+  <<: *goblin_mohawk_blue
   id: 12359
-  copy: goblin_mohawk_blue
 goblin_light_topless_spiked:
+  <<: *goblin_mohawk_blue
   id: 12360
-  copy: goblin_mohawk_blue
 goblin_light_grey_bald_spear:
+  <<: *goblin_mohawk_blue
   id: 12361
-  copy: goblin_mohawk_blue
 cow:
   id: 12362
   def: 1
@@ -1010,8 +1010,8 @@ cow:
   race: cow
   height: 30
 cow_brown:
+  <<: *cow
   id: 12363
-  copy: cow
 cow_calf:
   id: 12364
   att: 1
@@ -1038,11 +1038,11 @@ cow_calf:
   race: cow
   height: 15
 cow_light:
+  <<: *cow
   id: 12365
-  copy: cow
 cow_calf_light:
+  <<: *cow_calf
   id: 12366
-  copy: cow_calf
 seal:
   id: 13255
   examine: "Arf arf."
