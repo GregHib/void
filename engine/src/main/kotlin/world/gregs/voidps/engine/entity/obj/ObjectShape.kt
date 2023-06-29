@@ -58,9 +58,9 @@ object ObjectShape {
 
     const val ROOF_DIAGONAL = 14
 
-    const val ROOF_L_CONCAVE = 15
+    const val ROOF_CORNER_CONCAVE = 15
 
-    const val ROOF_L_CONVEX = 16
+    const val ROOF_CORNER_CONVEX = 16
 
     const val ROOF_FLAT = 17
 
@@ -68,7 +68,7 @@ object ObjectShape {
 
     const val ROOF_EDGE_DIAGONAL_CORNER = 19
 
-    const val ROOF_EDGE_L = 20
+    const val ROOF_EDGE_CORNER = 20
 
     const val ROOF_EDGE_SQUARE_CORNER = 21
 
@@ -77,7 +77,7 @@ object ObjectShape {
      */
     const val GROUND_DECOR = 22
 
-    const val WALL_L_ALT = 23
+    const val WALL_CORNER_ALT = 23
 
     const val WALL_DECOR_DIAGONAL_BOTH_ALT = 24
 
