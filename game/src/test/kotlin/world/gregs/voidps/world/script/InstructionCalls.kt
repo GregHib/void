@@ -146,8 +146,8 @@ fun Player.npcOption(npc: NPC, option: String) = runTest {
 }
 
 fun Player.objectOption(gameObject: GameObject, option: String) = runTest {
-    val def = get<ObjectDefinitions>().get(gameObject.id)
-    instructions.emit(InteractObject(def.id, gameObject.tile.x, gameObject.tile.y, def.optionsIndex(option) + 1))
+    val def = get<ObjectDefinitions>().get(gameObject.intId)
+    instructions.emit(InteractObject(gameObject.intId, gameObject.tile.x, gameObject.tile.y, def.optionsIndex(option) + 1))
 }
 
 fun Player.floorItemOption(floorItem: FloorItem, option: String) = runTest {
