@@ -71,7 +71,6 @@ class ObjectDefinitions(
                 }
             }
             yaml.load<Any>(path, config)
-            println(definitions[11938])
             for (def in definitions) {
                 def.transforms = def.transformIds?.map { if (it == -1) null else get(it).stringId }?.toTypedArray()
             }
