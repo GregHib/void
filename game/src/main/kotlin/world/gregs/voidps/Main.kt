@@ -31,6 +31,7 @@ import world.gregs.voidps.engine.map.file.Maps
 import world.gregs.voidps.network.Network
 import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.loadScripts
+import world.gregs.voidps.world.activity.quest.bookModule
 import world.gregs.voidps.world.interact.entity.player.music.musicModule
 import world.gregs.voidps.world.interact.world.spawn.stairsModule
 import java.io.File
@@ -88,7 +89,7 @@ object Main {
             slf4jLogger(level = Level.ERROR)
             fileProperties("/game.properties")
             fileProperties("/private.properties")
-            modules(engineModule, stairsModule, musicModule, gameModule, postCacheModule, postCacheGameModule,
+            modules(engineModule, stairsModule, musicModule, bookModule, gameModule, postCacheModule, postCacheGameModule,
                 module {
                     single(createdAtStart = true) { SoftReference(CacheDelegate(getProperty("cachePath")) as Cache) }
                     single(createdAtStart = true) {

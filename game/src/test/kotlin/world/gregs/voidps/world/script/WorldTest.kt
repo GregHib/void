@@ -52,6 +52,7 @@ import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.NetworkGatekeeper
 import world.gregs.voidps.postCacheGameModule
 import world.gregs.voidps.script.loadScripts
+import world.gregs.voidps.world.activity.quest.bookModule
 import world.gregs.voidps.world.interact.entity.player.music.musicModule
 import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
 import world.gregs.voidps.world.interact.world.spawn.stairsModule
@@ -138,7 +139,7 @@ abstract class WorldTest : KoinTest {
             fileProperties("/test.properties")
             properties(extraProperties)
             allowOverride(true)
-            modules(engineModule, stairsModule, musicModule, gameModule)
+            modules(engineModule, stairsModule, musicModule, bookModule, gameModule)
             modules(module {
                 single(createdAtStart = true) { cache }
                 single(createdAtStart = true) { huffman }
