@@ -1,7 +1,5 @@
 package world.gregs.voidps.engine.data.definition.data
 
-import world.gregs.voidps.engine.client.ui.chat.toIntRange
-
 /**
  * @param xp experience for successful mining
  * @param chance of mining per cycle
@@ -14,7 +12,7 @@ data class Ore(
 
         operator fun invoke(map: Map<String, Any>) = Ore(
             xp = map["xp"] as? Double ?: EMPTY.xp,
-            chance = (map["chance"] as? String)?.toIntRange() ?: EMPTY.chance
+            chance = map["chance"] as? IntRange ?: EMPTY.chance
         )
 
         val EMPTY = Ore()

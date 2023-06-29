@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.map.region
 
-import com.fasterxml.jackson.databind.JsonMappingException
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -51,13 +50,6 @@ internal class XteaLoaderTest {
         val values = xteas[321]
         assertNotNull(values)
         assertArrayEquals(intArrayOf(100, 99, 2, 1), values!!)
-    }
-
-    @Test
-    fun `Load invalid json throws exception`() {
-        assertThrows<JsonMappingException> {
-            loader.loadJson("[\n\n}]", "region", "keys")
-        }
     }
 
     @Test

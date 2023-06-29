@@ -4,27 +4,27 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.contain.ContainerData
+import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.entity.item.Item
 
 internal class StateManagerTest {
 
     private lateinit var state: StateManager
-    private lateinit var container: ContainerData
+    private lateinit var container: Container
 
     @BeforeEach
     fun setup() {
-        container = ContainerData(emptyArray())
+        container = Container(arrayOf())
         state = StateManager(container)
     }
 
     @Test
     fun `Revert saved state`() {
-        container.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
+        container.data = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
         assertFalse(state.hasSaved())
         state.save()
         assertTrue(state.hasSaved())
-        container.items = arrayOf(Item("item2", 4, def = ItemDefinition.EMPTY))
+        container.data = arrayOf(Item("item2", 4, def = ItemDefinition.EMPTY))
         assertTrue(state.revert())
         assertFalse(state.hasSaved())
 
@@ -34,7 +34,7 @@ internal class StateManagerTest {
 
     @Test
     fun `Revert with no saved state`() {
-        container.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
+        container.data = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
         assertFalse(state.hasSaved())
         assertFalse(state.revert())
 

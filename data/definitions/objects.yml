@@ -215,6 +215,7 @@ potato:
     message: "You pick a potato."
   examine: "Potato-licious!"  
 wheat:
+  &wheat
   id: 313
   pickable:
     item: grain
@@ -373,6 +374,7 @@ potted_fern_4:
   id: 1155
   examine: "Better than weeding."
 cabbage:
+  &cabbage
   id: 1161
   pickable:
     item: cabbage
@@ -398,6 +400,7 @@ door_27_closed:
   id: 1804
   examine: "This door requires a key."
 tree:
+  &tree
   id: 1276
   woodcutting:
     log: logs
@@ -413,27 +416,28 @@ tree_stump:
   id: 1342
   examine: "This tree has been cut down."
 tree_3:
+  <<: *tree
   id: 1277
-  copy: "tree"
   examine: "A healthy young tree."
 tree_3_stump:
   id: 1343
   examine: "This tree has been cut down."
 tree_4:
+  <<: *tree
   id: 1278
-  copy: "tree"
   examine: "A commonly found tree."
 tree_4_stump:
   id: 7400
   examine: "This is what is left of a maple tree."
 tree_5:
+  <<: *tree
   id: 1280
-  copy: "tree"
   examine: "A healthy young tree."
 tree_5_stump:
   id: 7400
   examine: "This is what is left of a maple tree."
 oak:
+  &oak
   id: 1281
   woodcutting:
     log: oak_logs
@@ -449,36 +453,36 @@ oak_stump:
   id: 1356
   examine: "This tree has been cut down."
 dead_tree:
+  <<: *tree
   id: 1282
-  copy: "tree"
   examine: "This tree has long been dead."
 dead_tree_stump:
   id: 1347
   examine: "This tree has been cut down."
 dead_tree_2:
+  <<: *tree
   id: 1283
-  copy: "tree"
   examine: "This tree has long been dead."
 dead_tree_2_stump:
   id: 1347
   examine: "This tree has been cut down."
 dead_tree_3:
+  <<: *tree
   id: 1284
-  copy: "tree"
   examine: "This tree has long been dead."
 dead_tree_3_stump:
   id: 6212
   examine: "This tree has been cut down."
 dead_tree_4:
+  <<: *tree
   id: 1285
-  copy: "tree"
   examine: "An old weather beaten tree."
 dead_tree_4_stump:
   id: 1347
   examine: "This tree has been cut down."
 dead_tree_5:
+  <<: *tree
   id: 1286
-  copy: "tree"
   examine: "It's only useful for firewood now."
 dead_tree_5_stump:
   id: 1351
@@ -490,15 +494,15 @@ dead_tree_7:
   id: 1288
   examine: "It's only useful for firewood now."
 dead_tree_8:
+  <<: *tree
   id: 1289
-  copy: "tree"
   examine: "It's only useful for firewood now."
 dead_tree_8_stump:
   id: 1353
   examine: "This tree has been cut down."
 dead_tree_9:
+  <<: *tree
   id: 1291
-  copy: "tree"
   examine: "It's only useful for firewood now."
 dead_tree_9_stump:
   id: 23054
@@ -513,6 +517,7 @@ fern_3:
   id: 1300
   examine: "A fern is growing here."
 magic_tree:
+  &magic_tree
   id: 1306
   woodcutting:
     log: magic_logs
@@ -528,6 +533,7 @@ magic_tree_stump:
   id: 7401
   examine: "This is what is left of a magic tree."
 maple_tree:
+  &maple_tree
   id: 1307
   woodcutting:
     log: maple_logs
@@ -543,6 +549,7 @@ maple_tree_stump:
   id: 7400
   examine: "This is what is left of a maple tree."
 yew:
+  &yew
   id: 1309
   woodcutting:
     log: yew_logs
@@ -558,57 +565,57 @@ yew_stump:
   id: 7402
   examine: "This is what is left of a yew tree."
 evergreen:
+  <<: *tree
   id: 1315
-  copy: "tree"
   examine: "A hardy evergreen tree."
 evergreen_stump:
   id: 1342
   examine: "This tree has been cut down."
 evergreen_2:
+  <<: *tree
   id: 1316
-  copy: "tree"
   examine: "A hardy evergreen tree."
 evergreen_2_stump:
   id: 1355
   examine: "This tree has been cut down."
 evergreen_3:
+  <<: *tree
   id: 1318
-  copy: "tree"
   examine: "This would make good firewood."
 evergreen_3_stump:
   id: 1355
   examine: "This tree has been cut down."
 evergreen_4:
+  <<: *tree
   id: 1319
-  copy: "tree"
   examine: "This would make good firewood."
 evergreen_4_stump:
   id: 1355
   examine: "This tree has been cut down."
 tree_10:
+  <<: *tree
   id: 1330
-  copy: "tree"
   examine: "It's thick with snow."
 tree_10_stump:
   id: 1355
   examine: "This tree has been cut down."
 tree_11:
+  <<: *tree
   id: 1331
-  copy: "tree"
   examine: "It's thick with snow."
 tree_11_stump:
   id: 1355
   examine: "This tree has been cut down."
 tree_12:
+  <<: *tree
   id: 1332
-  copy: "tree"
   examine: "It's thick with snow."
 tree_12_stump:
   id: 1355
   examine: "This tree has been cut down."
 tree_18:
+  <<: *tree
   id: 3033
-  copy: "tree"
   examine: "One of the most common trees in Gielinor."
 tree_18_stump:
   id: 1342
@@ -620,29 +627,42 @@ tree_58_stump:
   id: 1342
   examine: "This tree has been cut down."
 tree_96:
+  <<: *tree
   id: 37477
-  copy: "tree"
   examine: "One of the most common trees in Gielinor."
 tree_96_stump:
   id: 1342
   examine: "This tree has been cut down."
 tree_97:
+  <<: *tree
   id: 37478
-  copy: "tree"
   examine: "A commonly-found tree."
 tree_97_stump:
   id: 1342
   examine: "This tree has been cut down."
 dead_tree_25:
+  <<: *tree
   id: 37481
-  copy: "tree"
   examine: "This tree has long been dead."
 dead_tree_25_stump:
   id: 1347
   examine: "This tree has been cut down."
+willow:
+  &willow
+  id: 5551
+  woodcutting:
+    log: willow_logs
+    level: 30
+    xp: 67.5
+    deplete_rate: 0.125
+    chance: 16-50
+    hatchet_low_dif: 4-8
+    hatchet_high_dif: 13-25
+    respawn: 23-45
+  examine: "A droopy tree."
 willow_5:
+  <<: *willow
   id: 37480
-  copy: "willow"
   examine: "These trees are found near water."
 willow_5_stump:
   id: 1350
@@ -654,36 +674,36 @@ dead_tree_21_stump:
   id: 1351
   examine: "This tree has been cut down."
 dead_tree_26:
+  <<: *tree
   id: 37482
-  copy: "tree"
   examine: "It's only useful for firewood now."
 dead_tree_26_stump:
   id: 1351
   examine: "This tree has been cut down."
 dead_tree_10:
+  <<: *tree
   id: 1365
-  copy: "tree"
   examine: "It's only useful for firewood now."
 dead_tree_10_stump:
   id: 1352
   examine: "This tree has been cut down."
 oak_tree_dark:
+  <<: *oak
   id: 3037
-  copy: "oak_tree"
   examine: "A beautiful old oak."
 oak_tree_dark_stump:
   id: 1355
   examine: "This tree has been cut down."
 oak_tree_3:
+  <<: *oak
   id: 37479
-  copy: "oak_tree"
   examine: "A beautiful old oak."
 oak_tree_3_stump:
   id: 1356
   examine: "This tree has been cut down."
 dead_tree_11:
+  <<: *tree
   id: 1383
-  copy: "tree"
   examine: "This tree has long been dead."
 dead_tree_11_stump:
   id: 1358
@@ -695,15 +715,15 @@ dead_tree_22_stump:
   id: 1358
   examine: "This tree has been cut down."
 dead_tree_27:
+  <<: *tree
   id: 37483
-  copy: "tree"
   examine: "This tree has long been dead."
 dead_tree_27_stump:
   id: 1358
   examine: "This tree has been cut down."
 dead_tree_12:
+  <<: *tree
   id: 1384
-  copy: "tree"
   examine: "It's only useful for firewood now."
 dead_tree_12_stump:
   id: 1359
@@ -1011,6 +1031,7 @@ dead_tree_13:
   id: 2020
   examine: "It's too wet for firewood."
 achey_tree:
+  &achey_tree
   id: 2023
   woodcutting:
     log: achey_tree_logs
@@ -1196,6 +1217,7 @@ crate_14:
   id: 2072
   examine: "Used for storage."
 copper_rocks_old_1:
+  &copper_rocks_old_1
   id: 2090
   mining:
     level: 1
@@ -1204,10 +1226,11 @@ copper_rocks_old_1:
     gems: true
   examine: "A rocky outcrop."
 copper_rocks_old_2:
+  <<: *copper_rocks_old_1
   id: 2091
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_old_1:
+  &iron_rocks_old_1
   id: 2092
   mining:
     level: 15
@@ -1216,10 +1239,11 @@ iron_rocks_old_1:
     gems: true
   examine: "A rocky outcrop."
 iron_rocks_old_2:
+  <<: *iron_rocks_old_1
   id: 2093
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_old_1:
+  &tin_rocks_old_1
   id: 2094
   mining:
     level: 1
@@ -1228,10 +1252,11 @@ tin_rocks_old_1:
     gems: true
   examine: "A rocky outcrop."
 tin_rocks_old_2:
+  <<: *tin_rocks_old_1
   id: 2095
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_old_1:
+  &coal_rocks_old_1
   id: 2096
   mining:
     level: 30
@@ -1240,10 +1265,11 @@ coal_rocks_old_1:
     gems: true
   examine: "A rocky outcrop."
 coal_rocks_old_2:
+  <<: *coal_rocks_old_1
   id: 2097
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_old_1:
+  &gold_rocks_old_1
   id: 2098
   mining:
     level: 40
@@ -1252,10 +1278,11 @@ gold_rocks_old_1:
     gems: true
   examine: "A rocky outcrop."
 gold_rocks_old_2:
+  <<: *gold_rocks_old_1
   id: 2099
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_old_1:
+  &silver_rocks_old_1
   id: 2100
   mining:
     level: 20
@@ -1264,10 +1291,11 @@ silver_rocks_old_1:
     gems: true
   examine: "A rocky outcrop."
 silver_rocks_old_2:
+  <<: *silver_rocks_old_1
   id: 2101
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_old_1:
+  &mithril_rocks_old_1
   id: 2102
   mining:
     level: 55
@@ -1276,10 +1304,11 @@ mithril_rocks_old_1:
     gems: true
   examine: "A rocky outcrop."
 mithril_rocks_old_2:
+  <<: *mithril_rocks_old_1
   id: 2103
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_old_1:
+  &adamantite_rocks_old_1
   id: 2104
   mining:
     level: 70
@@ -1288,10 +1317,11 @@ adamantite_rocks_old_1:
     gems: true
   examine: "A rocky outcrop."
 adamantite_rocks_old_2:
+  <<: *adamantite_rocks_old_1
   id: 2105
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 runite_rocks_old_1:
+  &runite_rocks_old_1
   id: 2106
   mining:
     level: 85
@@ -1300,10 +1330,11 @@ runite_rocks_old_1:
     gems: true
   examine: "A rocky outcrop."
 runite_rocks_old_2:
+  <<: *runite_rocks_old_1
   id: 2107
-  copy: "runite_rocks_old_1"
   examine: "A rocky outcrop."
 clay_rocks_old_1:
+  &clay_rocks_old_1
   id: 2108
   mining:
     level: 1
@@ -1312,13 +1343,14 @@ clay_rocks_old_1:
     gems: true
   examine: "A rocky outcrop."
 clay_rocks_old_2:
+  <<: *clay_rocks_old_1
   id: 2109
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 depleted_rocks_old_3:
   id: 2110
   examine: "A rocky outcrop."
 gem_rocks_old_2:
+  &gem_rocks_old_2
   id: 2111
   mining:
     level: 40
@@ -1393,6 +1425,7 @@ obstacle_net:
   id: 2285
   examine: "This must be climbed over."
 hollow_tree:
+  &hollow_tree
   id: 2289
   woodcutting:
     log: bark
@@ -1487,22 +1520,22 @@ magic_door_closed:
   id: 2407
   examine: "The door is closed."
 tree_13:
+  <<: *tree
   id: 2409
-  copy: "tree"
   examine: "A gnarly swamp tree."
 tree_13_stump:
   id: 40355
   examine: "This tree has been cut down."
 tree_14:
+  <<: *tree
   id: 2410
-  copy: "tree"
   examine: "One of the most common trees in Gielinor."
 tree_14_stump:
   id: 12004
   examine: "This tree has been cut down."
 tree_15:
+  <<: *tree
   id: 2411
-  copy: "tree"
   examine: "A commonly found tree."
 tree_15_stump:
   id: 7400
@@ -1729,16 +1762,16 @@ exit_door_closed:
   id: 2602
   examine: "Probably the nicest door in this ghastly place."
 gold_rocks_crandor_1:
+  <<: *gold_rocks_old_1
   id: 2609
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_crandor_2:
+  <<: *gold_rocks_old_1
   id: 2610
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_crandor_3:
+  <<: *gold_rocks_old_1
   id: 2611
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 coffin_10:
   id: 2614
@@ -1839,22 +1872,22 @@ gate_70_closed:
   id: 2865
   examine: "This space reserved for a shockingly bad pun."
 jungle_tree:
+  <<: *tree
   id: 2887
-  copy: "tree"
   examine: "Looks good for logging."
 jungle_tree_stump:
   id: 17493
   examine: "It looked good for logging."
 jungle_tree_2:
+  <<: *tree
   id: 2889
-  copy: "tree"
   examine: "Home to many unusual creatures."
 jungle_tree_2_stump:
   id: 4819
   examine: "This was a fairly tall tree with sparse foliage."
 jungle_tree_3:
+  <<: *tree
   id: 2890
-  copy: "tree"
   examine: "A leafy tree."
 jungle_tree_3_stump:
   id: 4821
@@ -1993,19 +2026,19 @@ door_93_closed:
   id: 3026
   examine: "A closed door."
 tree_19:
+  <<: *tree
   id: 3034
-  copy: "tree"
   examine: "One of the most common trees in Gielinor."
 tree_19_stump:
   id: 7400
   examine: "This is what is left of a maple tree."
 copper_rocks_tutorial_island_1:
+  <<: *copper_rocks_old_1
   id: 3042
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_tutorial_island_1:
+  <<: *tin_rocks_old_1
   id: 3043
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 chair_13:
   id: 3182
@@ -2050,15 +2083,15 @@ prison_door_4_closed:
   id: 3367
   examine: "Steel bars that are locked securely."
 achey_tree_2:
+  <<: *achey_tree
   id: 29088
-  copy: "achey_tree"
   examine: "A big tree for a big spit."
 achey_tree_2_stump:
   id: 3371
   examine: "An Achey tree stump."
 achey_tree_3:
+  <<: *achey_tree
   id: 29089
-  copy: "achey_tree"
   examine: "A big tree for a big spit."
 achey_tree_3_stump:
   id: 3371
@@ -2200,29 +2233,29 @@ crate_33:
   id: 3861
   examine: "It's full of brightly coloured fish."
 tree_21:
+  <<: *tree
   id: 3879
-  copy: "tree"
   examine: "A tree."
 tree_21_stump:
   id: 3880
   examine: "It's a tree stump."
 tree_22:
+  <<: *tree
   id: 3881
-  copy: "tree"
   examine: "A tree."
 tree_22_stump:
   id: 3880
   examine: "It's a tree stump."
 tree_23:
+  <<: *tree
   id: 3882
-  copy: "tree"
   examine: "A tree."
 tree_23_stump:
   id: 3880
   examine: "It's a tree stump."
 tree_24:
+  <<: *tree
   id: 3883
-  copy: "tree"
   examine: "A tree."
 tree_24_stump:
   id: 3880
@@ -2251,8 +2284,8 @@ balancing_rope_4:
   id: 4059
   examine: "I can balance on this rope."
 hollow_tree_2:
+  <<: *hollow_tree
   id: 4060
-  copy: "hollow_tree"
   examine: "It's hollow..."
 hollow_tree_2_stump:
   id: 4061
@@ -2374,8 +2407,8 @@ throne_room_door_closed:
   id: 4672
   examine: "The door into the throne room."
 maple_tree_2:
+  <<: *maple_tree
   id: 4674
-  copy: "maple_tree"
   examine: "I bet this makes good syrup!"
 maple_tree_2_stump:
   id: 7400
@@ -2444,15 +2477,15 @@ crate_52:
   id: 4746
   examine: "This crate is marked 'Deliver to Glough'..."
 jungle_tree_5:
+  <<: *tree
   id: 4818
-  copy: "tree"
   examine: "This is a fairly tall tree with sparse foliage."
 jungle_tree_5_stump:
   id: 4819
   examine: "This was a fairly tall tree with sparse foliage."
 jungle_tree_6:
+  <<: *tree
   id: 4820
-  copy: "tree"
   examine: "A leafy tree."
 jungle_tree_6_stump:
   id: 4821
@@ -2584,31 +2617,19 @@ heather_9:
 heather_10:
   id: 5549
   examine: "I wonder why it's purple?"
-willow:
-  id: 5551
-  woodcutting:
-    log: willow_logs
-    level: 30
-    xp: 67.5
-    deplete_rate: 0.125
-    chance: 16-50
-    hatchet_low_dif: 4-8
-    hatchet_high_dif: 13-25
-    respawn: 23-45
-  examine: "A droopy tree."
 willow_stump:
   id: 5554
   examine: "This is what is left of a willow tree."
 willow_2:
+  <<: *willow
   id: 5552
-  copy: "willow"
   examine: "These trees are found near water."
 willow_2_stump:
   id: 5554
   examine: "This is what is left of a willow tree."
 willow_3:
+  <<: *willow
   id: 5553
-  copy: "willow"
   examine: "These trees are found near water."
 willow_3_stump:
   id: 5554
@@ -2672,88 +2693,88 @@ depleted_rocks_falador_mine_3:
   id: 5765
   examine: "Stoney!"
 clay_rocks_falador_mine_1:
+  <<: *clay_rocks_old_1
   id: 5766
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 clay_rocks_falador_mine_2:
+  <<: *clay_rocks_old_1
   id: 5767
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_falador_mine_1:
+  <<: *gold_rocks_old_1
   id: 5768
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_falador_mine_2:
+  <<: *gold_rocks_old_1
   id: 5769
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_falador_mine_1:
+  <<: *coal_rocks_old_1
   id: 5770
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_falador_mine_2:
+  <<: *coal_rocks_old_1
   id: 5771
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_falador_mine_3:
+  <<: *coal_rocks_old_1
   id: 5772
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_falador_mine_1:
+  <<: *iron_rocks_old_1
   id: 5773
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_falador_mine_2:
+  <<: *iron_rocks_old_1
   id: 5774
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_falador_mine_3:
+  <<: *iron_rocks_old_1
   id: 5775
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_falador_mine_1:
+  <<: *tin_rocks_old_1
   id: 5776
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_falador_mine_2:
+  <<: *tin_rocks_old_1
   id: 5777
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_falador_mine_3:
+  <<: *tin_rocks_old_1
   id: 5778
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_falador_mine_1:
+  <<: *copper_rocks_old_1
   id: 5779
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_falador_mine_2:
+  <<: *copper_rocks_old_1
   id: 5780
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_falador_mine_3:
+  <<: *copper_rocks_old_1
   id: 5781
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_falador_mine_1:
+  <<: *adamantite_rocks_old_1
   id: 5782
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_falador_mine_3:
+  <<: *adamantite_rocks_old_1
   id: 5783
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_falador_mine_1:
+  <<: *mithril_rocks_old_1
   id: 5784
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_falador_mine_2:
+  <<: *mithril_rocks_old_1
   id: 5785
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_falador_mine_3:
+  <<: *mithril_rocks_old_1
   id: 5786
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 crack:
   id: 5793
@@ -2875,6 +2896,7 @@ door_173_closed:
   id: 6625
   examine: "Hmm. A door."
 blurite_rocks_lumbridge_cellar_1:
+  &blurite_rocks_lumbridge_cellar_1
   id: 6669
   mining:
     level: 10
@@ -2883,12 +2905,12 @@ blurite_rocks_lumbridge_cellar_1:
     gems: true
   examine: "Stone with blue veins."
 blurite_rocks_lumbridge_cellar_2:
+  <<: *blurite_rocks_lumbridge_cellar_1
   id: 6670
-  copy: "blurite_rocks_lumbridge_cellar_1"
   examine: "Stone with blue veins."
 blurite_rocks_lumbridge_cellar_3:
+  <<: *blurite_rocks_lumbridge_cellar_1
   id: 6671
-  copy: "blurite_rocks_lumbridge_cellar_1"
   examine: "Stone with blue veins."
 door_175_opened:
   id: 6713
@@ -2929,20 +2951,20 @@ crate_61:
   id: 6911
   examine: "Used for storage."
 iron_rocks_lumbridge_cellar_1:
+  <<: *iron_rocks_old_1
   id: 6943
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_lumbridge_cellar_2:
+  <<: *iron_rocks_old_1
   id: 6944
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_lumbridge_cellar_1:
+  <<: *silver_rocks_old_1
   id: 6945
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_lumbridge_cellar_2:
+  <<: *silver_rocks_old_1
   id: 6946
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 depleted_rocks_lumbridge_cellar_1:
   id: 6947
@@ -3060,15 +3082,15 @@ tree_59_stump:
   id: 7400
   examine: "This is what is left of a maple tree."
 tree_98:
+  <<: *tree
   id: 37652
-  copy: "tree"
   examine: "A commonly-found tree."
 tree_98_stump:
   id: 7400
   examine: "This is what is left of a maple tree."
 maple_tree_3:
+  <<: *maple_tree
   id: 46277
-  copy: "maple_tree"
   examine: "I bet this makes good syrup!"
 maple_tree_3_stump:
   id: 7400
@@ -3140,36 +3162,36 @@ papaya_tree_stump:
   id: 8131
   examine: "This papaya tree has been cut down."
 magic_tree_farming:
+  <<: *magic_tree
   id: 8409
-  copy: "magic_tree"
   examine: "A fully grown Magic Tree."
 magic_tree_farming_stump:
   id: 8410
   examine: "You can uproot this stump with a spade."
 maple_tree_farming:
+  <<: *maple_tree
   id: 8444
-  copy: "maple_tree"
   examine: "A fully grown Maple tree."
 maple_tree_farming_stump:
   id: 8445
   examine: "You can uproot this stump with a spade."
 oak_tree_farming:
+  <<: *oak
   id: 8467
-  copy: "oak_tree"
   examine: "A fully grown Oak tree."
 oak_tree_farming_stump:
   id: 8468
   examine: "You can uproot this stump with a spade."
 willow_tree_farming:
+  <<: *willow
   id: 8488
-  copy: "willow"
   examine: "A fully grown Willow tree."
 willow_tree_farming_stump:
   id: 8489
   examine: "You can uproot this stump with a spade."
 yew_tree_farming:
+  <<: *yew
   id: 8513
-  copy: "yew"
   examine: "A fully grown Yew tree."
 yew_tree_farming_stump:
   id: 8514
@@ -3265,6 +3287,7 @@ door_209_closed:
   id: 8960
   examine: "There must be some trick to opening this..."
 mahogany_tree:
+  &mahogany_tree
   id: 9034
   woodcutting:
     log: mahogany_logs
@@ -3280,20 +3303,21 @@ mahogany_tree_stump:
   id: 9035
   examine: "This once was a beautiful tree."
 tree_66:
+  <<: *tree
   id: 16265
-  copy: "tree"
   examine: "An ancient pine tree."
 tree_66_stump:
   id: 9035
   examine: "This once was a beautiful tree."
 mahogany_tree_2:
+  <<: *mahogany_tree
   id: 46274
-  copy: "mahogany_tree"
   examine: "A beautiful, old mahogany tree."
 mahogany_tree_2_stump:
   id: 9035
   examine: "This once was a beautiful tree."
 teak:
+  &teak
   id: 9036
   woodcutting:
     log: teak_logs
@@ -3309,15 +3333,15 @@ teak_stump:
   id: 9037
   examine: "This tree has been cut down."
 teak_2:
+  <<: *teak
   id: 15062
-  copy: "teak"
   examine: "A beautiful old teak tree."
 teak_2_stump:
   id: 9037
   examine: "This tree has been cut down."
 teak_3:
+  <<: *teak
   id: 46275
-  copy: "teak"
   examine: "A beautiful, old teak tree."
 teak_3_stump:
   id: 9037
@@ -3404,68 +3428,68 @@ chair_33:
   id: 9705
   examine: "This needs dusting before I'll sit on it."
 copper_rocks_rimmington_1:
+  <<: *copper_rocks_old_1
   id: 9708
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop"
 copper_rocks_rimmington_2:
+  <<: *copper_rocks_old_1
   id: 9709
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop"
 copper_rocks_rimmington_3:
+  <<: *copper_rocks_old_1
   id: 9710
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop"
 clay_rocks_rimmington_1:
+  <<: *clay_rocks_old_1
   id: 9711
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop"
 clay_rocks_rimmington_2:
+  <<: *clay_rocks_old_1
   id: 9712
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop"
 clay_rocks_rimmington_3:
+  <<: *clay_rocks_old_1
   id: 9713
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop"
 silver_rocks_rimmington_1:
+  <<: *silver_rocks_old_1
   id: 9714
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop"
 silver_rocks_rimmington_2:
+  <<: *silver_rocks_old_1
   id: 9715
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop"
 silver_rocks_rimmington_3:
+  <<: *silver_rocks_old_1
   id: 9716
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop"
 iron_rocks_rimmington_1:
+  <<: *iron_rocks_old_1
   id: 9717
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop"
 iron_rocks_rimmington_2:
+  <<: *iron_rocks_old_1
   id: 9718
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop"
 iron_rocks_rimmington_3:
+  <<: *iron_rocks_old_1
   id: 9719
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop"
 gold_rocks_rimmington_1:
+  <<: *gold_rocks_old_1
   id: 9720
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop"
 gold_rocks_rimmington_2:
+  <<: *gold_rocks_old_1
   id: 9721
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop"
 gold_rocks_rimmington_3:
+  <<: *gold_rocks_old_1
   id: 9722
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop"
 tin_rocks_lava_maze_dungeon_1:
+  <<: *tin_rocks_old_1
   id: 9737
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop"
 ardougne_wall_door_2_opened:
   id: 9740
@@ -3643,28 +3667,28 @@ gate_108_closed:
   id: 10568
   examine: "Marks the border between Al Kharid and the Kingdom of Misthalin."
 gold_rocks_sand_1:
+  <<: *gold_rocks_old_1
   id: 10574
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_sand_2:
+  <<: *gold_rocks_old_1
   id: 10575
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_sand_3:
+  <<: *gold_rocks_old_1
   id: 10576
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 clay_rocks_rock_1:
+  <<: *clay_rocks_old_1
   id: 10577
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 clay_rocks_rock_2:
+  <<: *clay_rocks_old_1
   id: 10578
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 clay_rocks_rock_3:
+  <<: *clay_rocks_old_1
   id: 10579
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 depleted_rocks_rock_1:
   id: 10580
@@ -3676,12 +3700,12 @@ depleted_rocks_rock_3:
   id: 10582
   examine: "A rocky outcrop."
 blurite_rocks_ice_1:
+  <<: *blurite_rocks_lumbridge_cellar_1
   id: 10583
-  copy: "blurite_rocks_lumbridge_cellar_1"
   examine: "A rocky outcrop."
 blurite_rocks_ice_2:
+  <<: *blurite_rocks_lumbridge_cellar_1
   id: 10584
-  copy: "blurite_rocks_lumbridge_cellar_1"
   examine: "A rocky outcrop."
 depleted_rocks_ice_1:
   id: 10585
@@ -3734,12 +3758,12 @@ granite_rocks_quarry:
     ores: [ granite_5kg, granite_2kg, granite_500g ]
   examine: "A rocky outcrop."
 coal_rocks_quarry_1:
+  <<: *coal_rocks_old_1
   id: 10948
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 clay_rocks_quarry_2:
+  <<: *clay_rocks_old_1
   id: 10949
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 fountain_8:
   id: 11007
@@ -3808,59 +3832,59 @@ dead_tree_17:
   id: 11112
   examine: "This tree has long been dead."
 tin_rocks_lava_maze_dungeon_2:
+  <<: *tin_rocks_old_1
   id: 11165
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 gem_rocks_lumbridge_cellar_1:
+  <<: *gem_rocks_old_2
   id: 11179
-  copy: "gem_rocks_old_2"
   examine: "A rocky outcrop."
 gem_rocks_lumbridge_cellar_2:
+  <<: *gem_rocks_old_2
   id: 11180
-  copy: "gem_rocks_old_2"
   examine: "A rocky outcrop."
 gem_rocks_lumbridge_cellar_3:
+  <<: *gem_rocks_old_2
   id: 11181
-  copy: "gem_rocks_old_2"
   examine: "A rocky outcrop."
 depleted_rocks_lumbridge_cellar_2_1:
   id: 11182
   examine: "A rocky outcrop."
 gold_rocks_lava_maze_dungeon_1:
+  <<: *gold_rocks_old_1
   id: 11183
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_lava_maze_dungeon_2:
+  <<: *gold_rocks_old_1
   id: 11184
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_lava_maze_dungeon_3:
+  <<: *gold_rocks_old_1
   id: 11185
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_lava_maze_dungeon_1:
+  <<: *silver_rocks_old_1
   id: 11186
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_lava_maze_dungeon_2:
+  <<: *silver_rocks_old_1
   id: 11187
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_lava_maze_dungeon_3:
+  <<: *silver_rocks_old_1
   id: 11188
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 clay_rocks_lava_maze_dungeon_1:
+  <<: *clay_rocks_old_1
   id: 11189
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 clay_rocks_lava_maze_dungeon_2:
+  <<: *clay_rocks_old_1
   id: 11190
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 clay_rocks_lava_maze_dungeon_3:
+  <<: *clay_rocks_old_1
   id: 11191
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 depleted_rocks_lumbridge_cellar_2_2:
   id: 11192
@@ -3869,12 +3893,12 @@ depleted_rocks_lumbridge_cellar_3:
   id: 11193
   examine: "A rocky outcrop."
 gem_rocks_ingneous_2_1:
+  <<: *gem_rocks_old_2
   id: 11194
-  copy: "gem_rocks_old_2"
   examine: "A rocky outcrop."
 gem_rocks_ingneous_2_2:
+  <<: *gem_rocks_old_2
   id: 11195
-  copy: "gem_rocks_old_2"
   examine: "A rocky outcrop."
 crate_88:
   id: 11228
@@ -3889,8 +3913,8 @@ crate_91:
   id: 11331
   examine: "A wooden crate."
 gem_rocks_ingneous_2_3:
+  <<: *gem_rocks_old_2
   id: 11364
-  copy: "gem_rocks_old_2"
   examine: "A rocky outcrop."
 depleted_rocks_ingneous_2_1:
   id: 11365
@@ -4168,148 +4192,148 @@ elder_evil_tree_3:
 elder_evil_tree_3_stump:
   id: 12712
 coal_rocks_rock_1:
+  <<: *coal_rocks_old_1
   id: 11930
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_rock_2:
+  <<: *coal_rocks_old_1
   id: 11931
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_rock_3:
+  <<: *coal_rocks_old_1
   id: 11932
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_rock_1:
+  <<: *tin_rocks_old_1
   id: 11933
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_rock_2:
+  <<: *tin_rocks_old_1
   id: 11934
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_rock_3:
+  <<: *tin_rocks_old_1
   id: 11935
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_rock_1:
+  <<: *copper_rocks_old_1
   id: 11936
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_rock_2:
+  <<: *copper_rocks_old_1
   id: 11937
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_rock_3:
+  <<: *copper_rocks_old_1
   id: 11938
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_rock_1:
+  <<: *adamantite_rocks_old_1
   id: 11939
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_rock_2:
+  <<: *adamantite_rocks_old_1
   id: 11940
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_rock_3:
+  <<: *adamantite_rocks_old_1
   id: 11941
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_rock_1:
+  <<: *mithril_rocks_old_1
   id: 11942
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_rock_2:
+  <<: *mithril_rocks_old_1
   id: 11943
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_rock_3:
+  <<: *mithril_rocks_old_1
   id: 11944
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_mud_1:
+  <<: *mithril_rocks_old_1
   id: 11945
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_mud_2:
+  <<: *mithril_rocks_old_1
   id: 11946
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_mud_3:
+  <<: *mithril_rocks_old_1
   id: 11947
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_mud_1:
+  <<: *silver_rocks_old_1
   id: 11948
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_mud_2:
+  <<: *silver_rocks_old_1
   id: 11949
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_mud_3:
+  <<: *silver_rocks_old_1
   id: 11950
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_mud_1:
+  <<: *gold_rocks_old_1
   id: 11951
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_mud_2:
+  <<: *gold_rocks_old_1
   id: 11952
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_mud_3:
+  <<: *gold_rocks_old_1
   id: 11953
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_mud_1:
+  <<: *iron_rocks_old_1
   id: 11954
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_mud_2:
+  <<: *iron_rocks_old_1
   id: 11955
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_mud_3:
+  <<: *iron_rocks_old_1
   id: 11956
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_mud_1:
+  <<: *tin_rocks_old_1
   id: 11957
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_mud_2:
+  <<: *tin_rocks_old_1
   id: 11958
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_mud_3:
+  <<: *tin_rocks_old_1
   id: 11959
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_mud_1:
+  <<: *copper_rocks_old_1
   id: 11960
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_mud_2:
+  <<: *copper_rocks_old_1
   id: 11961
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_mud_3:
+  <<: *copper_rocks_old_1
   id: 11962
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_mud_1:
+  <<: *coal_rocks_old_1
   id: 11963
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_mud_2:
+  <<: *coal_rocks_old_1
   id: 11964
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_mud_3:
+  <<: *coal_rocks_old_1
   id: 11965
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 door_271_opened:
   id: 11994
@@ -4318,15 +4342,15 @@ door_271_closed:
   id: 11993
   examine: "The door is closed."
 oak_tree_pale:
+  <<: *oak
   id: 11999
-  copy: "oak_tree"
   examine: "A beautiful, old oak."
 oak_tree_pale_stump:
   id: 12007
   examine: "This tree has been cut down."
 yew_2:
+  <<: *yew
   id: 12000
-  copy: "yew"
   examine: "A splendid tree."
 yew_2_stump:
   id: 12001
@@ -4725,7 +4749,7 @@ dead_tree_20:
 fern_4:
   id: 13425
   examine: "A plant."
-small_fern_:2:
+small_fern_2:
   id: 13432
   examine: "A plant."
 fern_5:
@@ -4906,64 +4930,64 @@ depleted_rocks_black_3:
   id: 14834
   examine: "A rocky outcrop."
 coal_rocks_black_1:
+  <<: *coal_rocks_old_1
   id: 14850
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_black_2:
+  <<: *coal_rocks_old_1
   id: 14851
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_black_3:
+  <<: *coal_rocks_old_1
   id: 14852
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_black_1:
+  <<: *mithril_rocks_old_1
   id: 14853
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_black_2:
+  <<: *mithril_rocks_old_1
   id: 14854
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_black_3:
+  <<: *mithril_rocks_old_1
   id: 14855
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_black_1:
+  <<: *iron_rocks_old_1
   id: 14856
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_black_2:
+  <<: *iron_rocks_old_1
   id: 14857
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_black_3:
+  <<: *iron_rocks_old_1
   id: 14858
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 runite_rocks_black_1:
+  <<: *runite_rocks_old_1
   id: 14859
-  copy: "runite_rocks_old_1"
   examine: "A rocky outcrop."
 runite_rocks_black_2:
+  <<: *runite_rocks_old_1
   id: 14860
-  copy: "runite_rocks_old_1"
   examine: "A rocky outcrop."
 runite_rocks_black_3:
+  <<: *runite_rocks_old_1
   id: 14861
-  copy: "runite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_black_1:
+  <<: *adamantite_rocks_old_1
   id: 14862
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_black_2:
+  <<: *adamantite_rocks_old_1
   id: 14863
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_black_3:
+  <<: *adamantite_rocks_old_1
   id: 14864
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 depleted_rocks_piscatoris_1:
   id: 14892
@@ -4990,44 +5014,44 @@ depleted_rocks_piscatoris_4_2:
   id: 14899
   examine: "A rocky outcrop."
 iron_rocks_piscatoris_2_1:
+  <<: *iron_rocks_old_1
   id: 14900
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_piscatoris_2_2:
+  <<: *iron_rocks_old_1
   id: 14901
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_piscatoris_1:
+  <<: *tin_rocks_old_1
   id: 14902
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_piscatoris_2:
+  <<: *tin_rocks_old_1
   id: 14903
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 clay_rocks_piscatoris_1:
+  <<: *clay_rocks_old_1
   id: 14904
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 clay_rocks_piscatoris_2:
+  <<: *clay_rocks_old_1
   id: 14905
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_piscatoris_1:
+  <<: *copper_rocks_old_1
   id: 14906
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_piscatoris_2:
+  <<: *copper_rocks_old_1
   id: 14907
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_piscatoris_1:
+  <<: *iron_rocks_old_1
   id: 14913
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_piscatoris_2:
+  <<: *iron_rocks_old_1
   id: 14914
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 depleted_rocks_piscatoris_5_1:
   id: 14915
@@ -5110,16 +5134,16 @@ crate_123:
   id: 15245
   examine: "A crate of AMCE Ropes-In-A-Box."
 coal_rocks_misc_expansion_1:
+  <<: *coal_rocks_old_1
   id: 15246
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_misc_expansion_2:
+  <<: *coal_rocks_old_1
   id: 15247
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_misc_expansion_3:
+  <<: *coal_rocks_old_1
   id: 15248
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 depleted_rocks_misc_expansion_1:
   id: 15249
@@ -5134,26 +5158,26 @@ chair_62:
   id: 15462
   examine: "A comfortable seat."
 clay_rocks_mud_1:
+  <<: *clay_rocks_old_1
   id: 15503
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 clay_rocks_mud_2:
+  <<: *clay_rocks_old_1
   id: 15504
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 clay_rocks_mud_3:
+  <<: *clay_rocks_old_1
   id: 15505
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 wheat_2:
+  <<: *wheat
   id: 15506
-  copy: "wheat"
 wheat_3:
+  <<: *wheat
   id: 15507
-  copy: "wheat"
 wheat_4:
+  <<: *wheat
   id: 15508
-  copy: "wheat"
 gate_133_opened:
   id: 15511
   examine: "A wooden gate."
@@ -5209,28 +5233,28 @@ door_333_closed:
   id: 15536
   examine: "The door is closed."
 gold_rocks_tzhaar_1:
+  <<: *gold_rocks_old_1
   id: 15576
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_tzhaar_2:
+  <<: *gold_rocks_old_1
   id: 15577
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_tzhaar_3:
+  <<: *gold_rocks_old_1
   id: 15578
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_tzhaar_1:
+  <<: *silver_rocks_old_1
   id: 15579
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_tzhaar_2:
+  <<: *silver_rocks_old_1
   id: 15580
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_tzhaar_3:
+  <<: *silver_rocks_old_1
   id: 15581
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 crate_124:
   id: 15599
@@ -5335,22 +5359,22 @@ hidden_trapdoor_closed:
   id: 15755
   examine: "You would never have seen this trapdoor if it wasn't for Zanik."
 jungle_tree_7:
+  <<: *tree
   id: 15948
-  copy: "tree"
   examine: "A native jungle tree."
 jungle_tree_7_stump:
   id: 15950
   examine: "Precisely one tenth of a tree."
 jungle_tree_8:
+  <<: *tree
   id: 15951
-  copy: "tree"
   examine: "A native jungle tree."
 jungle_tree_8_stump:
   id: 15953
   examine: "'Paul Bunion was here.'"
 jungle_tree_9:
+  <<: *tree
   id: 15954
-  copy: "tree"
   examine: "A native jungle tree."
 jungle_tree_9_stump:
   id: 15956
@@ -5473,40 +5497,40 @@ corpse_33:
   id: 16996
   examine: "I wouldn't like to be them."
 silver_rocks_ingneous_1:
+  <<: *silver_rocks_old_1
   id: 16998
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_ingneous_2:
+  <<: *silver_rocks_old_1
   id: 16999
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_ingneous_3:
+  <<: *silver_rocks_old_1
   id: 17000
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_ingneous_1:
+  <<: *gold_rocks_old_1
   id: 17001
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_ingneous_2:
+  <<: *gold_rocks_old_1
   id: 17002
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_ingneous_3:
+  <<: *gold_rocks_old_1
   id: 17003
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gem_rocks_ingneous_1:
+  <<: *gem_rocks_old_2
   id: 17004
-  copy: "gem_rocks_old_2"
   examine: "A rocky outcrop."
 gem_rocks_ingneous_2:
+  <<: *gem_rocks_old_2
   id: 17005
-  copy: "gem_rocks_old_2"
   examine: "A rocky outcrop."
 gem_rocks_ingneous_3:
+  <<: *gem_rocks_old_2
   id: 17006
-  copy: "gem_rocks_old_2"
   examine: "A rocky outcrop."
 depleted_rocks_ingneous_1:
   id: 17007
@@ -5590,16 +5614,16 @@ candles_14:
   id: 17323
   examine: "It's amazing what bees produce!"
 silver_rocks_rimmington_2_1:
+  <<: *silver_rocks_old_1
   id: 17385
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_rimmington_2_2:
+  <<: *silver_rocks_old_1
   id: 17386
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_rimmington_2_3:
+  <<: *silver_rocks_old_1
   id: 17387
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 chair_70:
   id: 17462
@@ -5815,52 +5839,52 @@ crate_178:
   id: 18985
   examine: "A wooden crate for storage."
 copper_rocks_sand_1:
+  <<: *copper_rocks_old_1
   id: 18991
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_sand_2:
+  <<: *copper_rocks_old_1
   id: 18992
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_sand_3:
+  <<: *copper_rocks_old_1
   id: 18993
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_sand_1:
+  <<: *tin_rocks_old_1
   id: 18994
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_sand_2:
+  <<: *tin_rocks_old_1
   id: 18995
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_sand_3:
+  <<: *tin_rocks_old_1
   id: 18996
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_sand_1:
+  <<: *coal_rocks_old_1
   id: 18997
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_sand_2:
+  <<: *coal_rocks_old_1
   id: 18998
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_sand_3:
+  <<: *coal_rocks_old_1
   id: 18999
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_sand_1:
+  <<: *iron_rocks_old_1
   id: 19000
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_sand_2:
+  <<: *iron_rocks_old_1
   id: 19001
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_sand_3:
+  <<: *iron_rocks_old_1
   id: 19002
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 depleted_rocks_sand_1:
   id: 19003
@@ -5872,16 +5896,16 @@ depleted_rocks_sand_3:
   id: 19005
   examine: "A rocky outcrop."
 copper_rocks_tourist_trap_1:
+  <<: *copper_rocks_old_1
   id: 19006
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_tourist_trap_2:
+  <<: *copper_rocks_old_1
   id: 19007
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_tourist_trap_3:
+  <<: *copper_rocks_old_1
   id: 19008
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 depleted_rocks_tourist_trap_2_1:
   id: 19009
@@ -5893,16 +5917,16 @@ depleted_rocks_tourist_trap_2_3:
   id: 19011
   examine: "A rocky outcrop."
 mithril_rocks_tourist_trap_1:
+  <<: *mithril_rocks_old_1
   id: 19012
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_tourist_trap_2:
+  <<: *mithril_rocks_old_1
   id: 19013
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_tourist_trap_3:
+  <<: *mithril_rocks_old_1
   id: 19014
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 depleted_rocks_tourist_trap_3_1:
   id: 19015
@@ -5914,16 +5938,16 @@ depleted_rocks_tourist_trap_3_3:
   id: 19017
   examine: "A rocky outcrop."
 adamantite_rocks_tourist_trap_1:
+  <<: *adamantite_rocks_old_1
   id: 19018
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_tourist_trap_2:
+  <<: *adamantite_rocks_old_1
   id: 19019
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_tourist_trap_3:
+  <<: *adamantite_rocks_old_1
   id: 19020
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 depleted_rocks_tourist_trap_4_1:
   id: 19021
@@ -5935,16 +5959,16 @@ depleted_rocks_tourist_trap_4_3:
   id: 19023
   examine: "A rocky outcrop."
 tin_rocks_tourist_trap_1:
+  <<: *tin_rocks_old_1
   id: 19024
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_tourist_trap_2:
+  <<: *tin_rocks_old_1
   id: 19025
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_tourist_trap_3:
+  <<: *tin_rocks_old_1
   id: 19026
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 depleted_rocks_tourist_trap_5_1:
   id: 19027
@@ -6205,16 +6229,16 @@ arctic_pine_stump:
   id: 21274
   examine: "The stump of a pine tree."
 adamantite_rocks_crandor_1:
+  <<: *adamantite_rocks_old_1
   id: 21275
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_crandor_2:
+  <<: *adamantite_rocks_old_1
   id: 21276
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_crandor_3:
+  <<: *adamantite_rocks_old_1
   id: 21277
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_crandor_1:
   id: 21278
@@ -6226,52 +6250,52 @@ mithril_rocks_crandor_3:
   id: 21280
   examine: "A rocky outcrop."
 iron_rocks_crandor_1:
+  <<: *iron_rocks_old_1
   id: 21281
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_crandor_2:
+  <<: *iron_rocks_old_1
   id: 21282
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_crandor_3:
+  <<: *iron_rocks_old_1
   id: 21283
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_crandor_1:
+  <<: *copper_rocks_old_1
   id: 21284
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_crandor_2:
+  <<: *copper_rocks_old_1
   id: 21285
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_crandor_3:
+  <<: *copper_rocks_old_1
   id: 21286
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_crandor_1:
+  <<: *coal_rocks_old_1
   id: 21287
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_crandor_2:
+  <<: *coal_rocks_old_1
   id: 21288
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_crandor_3:
+  <<: *coal_rocks_old_1
   id: 21289
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_crandor_1:
+  <<: *tin_rocks_old_1
   id: 21293
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_crandor_2:
+  <<: *tin_rocks_old_1
   id: 21294
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_crandor_3:
+  <<: *tin_rocks_old_1
   id: 21295
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 depleted_rocks_crandor_1:
   id: 21296
@@ -6456,8 +6480,8 @@ wheat_5:
   id: 22300
   examine: "Baby bread."  
 cabbage_2:
+  <<: *cabbage
   id: 22301
-  copy: "cabbage"
 crate_209:
   id: 22426
   examine: "A wooden crate."
@@ -6618,8 +6642,8 @@ fountain_12:
   id: 24161
   examine: "A pretty water feature."
 dying_tree:
+  <<: *tree
   id: 24168
-  copy: "tree"
   examine: "Living in the big city isn't easy."
 dying_tree_stump:
   id: 24169
@@ -7339,6 +7363,7 @@ crate_254:
   id: 28824
   examine: "Used for storage."
 eucalyptus_tree:
+  &eucalyptus_tree
   id: 28951
   woodcutting:
     log: eucalyptus_logs
@@ -7354,15 +7379,15 @@ eucalyptus_tree_stump:
   id: 28954
   examine: "Once a majestic eucalyptus, now a sad little stump."
 eucalyptus_tree_2:
+  <<: *eucalyptus_tree
   id: 28952
-  copy: "eucalyptus_tree"
   examine: "An invasive, stringy-barked tree."
 eucalyptus_tree_2_stump:
   id: 28955
   examine: "Once a majestic eucalyptus, now a sad little stump."
 eucalyptus_tree_3:
+  <<: *eucalyptus_tree
   id: 28953
-  copy: "eucalyptus_tree"
   examine: "An invasive, stringy-barked tree."
 eucalyptus_tree_3_stump:
   id: 28956
@@ -7380,16 +7405,16 @@ crate_256:
   id: 29149
   examine: "For storage."
 coal_rocks_dungeon_1:
+  <<: *coal_rocks_old_1
   id: 29215
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_dungeon_2:
+  <<: *coal_rocks_old_1
   id: 29216
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_dungeon_3:
+  <<: *coal_rocks_old_1
   id: 29217
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 depleted_rocks_dungeon_1:
   id: 29218
@@ -7401,76 +7426,76 @@ depleted_rocks_dungeon_3:
   id: 29220
   examine: "A rocky outcrop."
 iron_rocks_dungeon_1:
+  <<: *iron_rocks_old_1
   id: 29221
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_dungeon_2:
+  <<: *iron_rocks_old_1
   id: 29222
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_dungeon_3:
+  <<: *iron_rocks_old_1
   id: 29223
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_dungeon_1:
+  <<: *silver_rocks_old_1
   id: 29224
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_dungeon_2:
+  <<: *silver_rocks_old_1
   id: 29225
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_dungeon_3:
+  <<: *silver_rocks_old_1
   id: 29226
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_dungeon_1:
+  <<: *tin_rocks_old_1
   id: 29227
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_dungeon_2:
+  <<: *tin_rocks_old_1
   id: 29228
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_dungeon_3:
+  <<: *tin_rocks_old_1
   id: 29229
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_dungeon_1:
+  <<: *copper_rocks_old_1
   id: 29230
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_dungeon_2:
+  <<: *copper_rocks_old_1
   id: 29231
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_dungeon_3:
+  <<: *copper_rocks_old_1
   id: 29232
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_dungeon_1:
+  <<: *adamantite_rocks_old_1
   id: 29233
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_dungeon_2:
+  <<: *adamantite_rocks_old_1
   id: 29234
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_dungeon_3:
+  <<: *adamantite_rocks_old_1
   id: 29235
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_dungeon_1:
+  <<: *mithril_rocks_old_1
   id: 29236
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_dungeon_2:
+  <<: *mithril_rocks_old_1
   id: 29237
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_dungeon_3:
+  <<: *mithril_rocks_old_1
   id: 29238
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 metal_door_7_opened:
   id: 29262
@@ -7649,112 +7674,112 @@ depleted_rocks_light_3:
   id: 31061
   examine: "A rocky outcrop."
 clay_rocks_light_1:
+  <<: *clay_rocks_old_1
   id: 31062
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 clay_rocks_light_2:
+  <<: *clay_rocks_old_1
   id: 31063
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 clay_rocks_light_3:
+  <<: *clay_rocks_old_1
   id: 31064
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_light_1:
+  <<: *gold_rocks_old_1
   id: 31065
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_light_2:
+  <<: *gold_rocks_old_1
   id: 31066
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_light_3:
+  <<: *gold_rocks_old_1
   id: 31067
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_light_1:
+  <<: *coal_rocks_old_1
   id: 31068
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_light_2:
+  <<: *coal_rocks_old_1
   id: 31069
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_light_3:
+  <<: *coal_rocks_old_1
   id: 31070
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_light_1:
+  <<: *iron_rocks_old_1
   id: 31071
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_light_2:
+  <<: *iron_rocks_old_1
   id: 31072
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_light_3:
+  <<: *iron_rocks_old_1
   id: 31073
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_light_1:
+  <<: *silver_rocks_old_1
   id: 31074
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_light_2:
+  <<: *silver_rocks_old_1
   id: 31075
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_light_3:
+  <<: *silver_rocks_old_1
   id: 31076
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_light_2_1:
+  <<: *tin_rocks_old_1
   id: 31077
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_light_2_2:
+  <<: *tin_rocks_old_1
   id: 31078
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_light_2_3:
+  <<: *tin_rocks_old_1
   id: 31079
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_light_2_1:
+  <<: *copper_rocks_old_1
   id: 31080
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_light_2_2:
+  <<: *copper_rocks_old_1
   id: 31081
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_light_2_3:
+  <<: *copper_rocks_old_1
   id: 31082
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_light_1:
+  <<: *adamantite_rocks_old_1
   id: 31083
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_light_2:
+  <<: *adamantite_rocks_old_1
   id: 31084
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_light_3:
+  <<: *adamantite_rocks_old_1
   id: 31085
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_light_1:
+  <<: *mithril_rocks_old_1
   id: 31086
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_light_2:
+  <<: *mithril_rocks_old_1
   id: 31087
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_light_3:
+  <<: *mithril_rocks_old_1
   id: 31088
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 crate_269:
   id: 31137
@@ -7763,40 +7788,40 @@ crate_270:
   id: 31140
   examine: "A dusty old storage crate."
 coal_rocks_tzhaar_1:
+  <<: *coal_rocks_old_1
   id: 31167
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_tzhaar_2:
+  <<: *coal_rocks_old_1
   id: 31168
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_tzhaar_3:
+  <<: *coal_rocks_old_1
   id: 31169
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_tzhaar_1:
+  <<: *mithril_rocks_old_1
   id: 31170
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_tzhaar_2:
+  <<: *mithril_rocks_old_1
   id: 31171
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_tzhaar_3:
+  <<: *mithril_rocks_old_1
   id: 31172
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_tzhaar_1:
+  <<: *adamantite_rocks_old_1
   id: 31173
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_tzhaar_2:
+  <<: *adamantite_rocks_old_1
   id: 31174
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_tzhaar_3:
+  <<: *adamantite_rocks_old_1
   id: 31175
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 pillar_60:
   id: 31250
@@ -7973,88 +7998,88 @@ dead_tree_23:
   id: 32294
   examine: "This tree has long been dead."
 coal_rocks_dirt_1:
+  <<: *coal_rocks_old_1
   id: 32426
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_dirt_2:
+  <<: *coal_rocks_old_1
   id: 32427
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_dirt_3:
+  <<: *coal_rocks_old_1
   id: 32428
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 clay_rocks_dirt_1:
+  <<: *clay_rocks_old_1
   id: 32429
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 clay_rocks_dirt_2:
+  <<: *clay_rocks_old_1
   id: 32430
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 clay_rocks_dirt_3:
+  <<: *clay_rocks_old_1
   id: 32431
-  copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_dirt_1:
+  <<: *gold_rocks_old_1
   id: 32432
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_dirt_2:
+  <<: *gold_rocks_old_1
   id: 32433
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_dirt_3:
+  <<: *gold_rocks_old_1
   id: 32434
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_dirt_1:
+  <<: *adamantite_rocks_old_1
   id: 32435
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_dirt_2:
+  <<: *adamantite_rocks_old_1
   id: 32436
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_dirt_3:
+  <<: *adamantite_rocks_old_1
   id: 32437
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_dirt_1:
+  <<: *mithril_rocks_old_1
   id: 32438
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_dirt_2:
+  <<: *mithril_rocks_old_1
   id: 32439
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_dirt_3:
+  <<: *mithril_rocks_old_1
   id: 32440
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_dirt_1:
+  <<: *iron_rocks_old_1
   id: 32441
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_dirt_2:
+  <<: *iron_rocks_old_1
   id: 32442
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_dirt_3:
+  <<: *iron_rocks_old_1
   id: 32443
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_dirt_1:
+  <<: *silver_rocks_old_1
   id: 32444
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_dirt_2:
+  <<: *silver_rocks_old_1
   id: 32445
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_dirt_3:
+  <<: *silver_rocks_old_1
   id: 32446
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 depleted_rocks_rat_pit_1:
   id: 32447
@@ -8063,20 +8088,20 @@ depleted_rocks_rat_pit_2:
   id: 32448
   examine: "A rocky outcrop."
 coal_rocks_rat_pit_1:
+  <<: *coal_rocks_old_1
   id: 32449
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_rat_pit_2:
+  <<: *coal_rocks_old_1
   id: 32450
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_rat_pit_1:
+  <<: *iron_rocks_old_1
   id: 32451
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_rat_pit_2:
+  <<: *iron_rocks_old_1
   id: 32452
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 exit_door_2_opened:
   id: 32969
@@ -8087,12 +8112,12 @@ chair_127:
   id: 33058
   examine: "The ideal thing to sit on."
 runite_rocks_dirt_1:
+  <<: *runite_rocks_old_1
   id: 33078
-  copy: "runite_rocks_old_1"
   examine: "A rocky outcrop."
 runite_rocks_dirt_2:
+  <<: *runite_rocks_old_1
   id: 33079
-  copy: "runite_rocks_old_1"
   examine: "A rocky outcrop."
 chair_128:
   id: 33194
@@ -8113,12 +8138,12 @@ corpse_55:
   id: 33219
   examine: "He hasn't eaten in a long time."
 blurite_rocks_asgarnian_ice_1:
+  <<: *blurite_rocks_lumbridge_cellar_1
   id: 33220
-  copy: "blurite_rocks_lumbridge_cellar_1"
   examine: "A rocky outcrop."
 blurite_rocks_asgarnian_ice_2:
+  <<: *blurite_rocks_lumbridge_cellar_1
   id: 33221
-  copy: "blurite_rocks_lumbridge_cellar_1"
   examine: "A rocky outcrop."
 depleted_rocks_asgarnian_ice_1:
   id: 33222
@@ -8570,8 +8595,8 @@ pillar_74:
   id: 37207
   examine: "A stone pillar."
 runite_rocks_lava_maze_dungeon_1:
+  <<: *runite_rocks_old_1
   id: 37208
-  copy: "runite_rocks_old_1"
   examine: "A rocky outcrop."
 pillar_75:
   id: 37219
@@ -8580,36 +8605,36 @@ corpse_56:
   id: 37296
   examine: "He looks very relaxed."
 silver_rocks_rock_1:
+  <<: *silver_rocks_old_1
   id: 37304
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_rock_2:
+  <<: *silver_rocks_old_1
   id: 37305
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 silver_rocks_rock_3:
+  <<: *silver_rocks_old_1
   id: 37306
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_rock_1:
+  <<: *iron_rocks_old_1
   id: 37307
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_rock_2:
+  <<: *iron_rocks_old_1
   id: 37308
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 iron_rocks_rock_3:
+  <<: *iron_rocks_old_1
   id: 37309
-  copy: "iron_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_rock_1:
+  <<: *gold_rocks_old_1
   id: 37310
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_rock_3:
+  <<: *gold_rocks_old_1
   id: 37312
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 pillar_76:
   id: 37315
@@ -8666,40 +8691,40 @@ pillar_82:
   id: 37451
   examine: "Stops bits of building falling on me."
 runite_rocks_grey_1:
+  <<: *runite_rocks_old_1
   id: 37465
-  copy: "runite_rocks_old_1"
   examine: "A rocky outcrop."
 runite_rocks_grey_2:
+  <<: *runite_rocks_old_1
   id: 37466
-  copy: "runite_rocks_old_13"
   examine: "A rocky outcrop."
 runite_rocks_grey_3:
+  <<: *runite_rocks_old_1
   id: 37467
-  copy: "runite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_grey_1:
+  <<: *adamantite_rocks_old_1
   id: 37468
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_grey_2:
+  <<: *adamantite_rocks_old_1
   id: 37469
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_grey_3:
+  <<: *adamantite_rocks_old_1
   id: 37470
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_grey_1:
+  <<: *gold_rocks_old_1
   id: 37471
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_grey_2:
+  <<: *gold_rocks_old_1
   id: 37472
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_grey_3:
+  <<: *gold_rocks_old_1
   id: 37473
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 crate_290:
   id: 37587
@@ -8710,39 +8735,39 @@ crate_292:
   id: 37623
   examine: "It reminds me of a lucky dip."
 copper_rocks_light_3_1:
+  <<: *copper_rocks_old_1
   id: 37637
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_light_3_1:
+  <<: *tin_rocks_old_1
   id: 37638
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 depleted_rocks_light_2_1:
   id: 37639
   examine: "A rocky outcrop."
 tin_rocks_light_1:
+  <<: *tin_rocks_old_1
   id: 37642
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_light_2:
+  <<: *tin_rocks_old_1
   id: 37643
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_light_3:
+  <<: *tin_rocks_old_1
   id: 37644
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_light_1:
+  <<: *copper_rocks_old_1
   id: 37645
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_light_2:
+  <<: *copper_rocks_old_1
   id: 37646
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_light_3:
+  <<: *copper_rocks_old_1
   id: 37647
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 depleted_rocks_light_3_1:
   id: 37648
@@ -8757,68 +8782,68 @@ railing_10:
   id: 37668
   examine: "A sturdy metal railing."
 silver_rocks_rock_2_1:
+  <<: *silver_rocks_old_1
   id: 37670
-  copy: "silver_rocks_old_1"
   examine: "A rocky outcrop."
 tin_rocks_lava_maze_dungeon_3:
+  <<: *tin_rocks_old_1
   id: 37685
-  copy: "tin_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_lava_maze_dungeon_1:
+  <<: *copper_rocks_old_1
   id: 37686
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_lava_maze_dungeon_2:
+  <<: *copper_rocks_old_1
   id: 37687
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 copper_rocks_lava_maze_dungeon_3:
+  <<: *copper_rocks_old_1
   id: 37688
-  copy: "copper_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_lava_maze_dungeon_1:
+  <<: *adamantite_rocks_old_1
   id: 37689
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_lava_maze_dungeon_2:
+  <<: *adamantite_rocks_old_1
   id: 37690
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 adamantite_rocks_lava_maze_dungeon_3:
+  <<: *adamantite_rocks_old_1
   id: 37691
-  copy: "adamantite_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_lava_maze_dungeon_1:
+  <<: *mithril_rocks_old_1
   id: 37692
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_lava_maze_dungeon_2:
+  <<: *mithril_rocks_old_1
   id: 37693
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 mithril_rocks_lava_maze_dungeon_3:
+  <<: *mithril_rocks_old_1
   id: 37694
-  copy: "mithril_rocks_old_1"
   examine: "A rocky outcrop."
 runite_rocks_lava_maze_dungeon_2:
+  <<: *runite_rocks_old_1
   id: 37695
-  copy: "runite_rocks_old_1"
   examine: "A rocky outcrop."
 runite_rocks_lava_maze_dungeon_3:
+  <<: *runite_rocks_old_1
   id: 37696
-  copy: "runite_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_lava_maze_dungeon_1:
+  <<: *coal_rocks_old_1
   id: 37697
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_lava_maze_dungeon_2:
+  <<: *coal_rocks_old_1
   id: 37698
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 coal_rocks_lava_maze_dungeon_3:
+  <<: *coal_rocks_old_1
   id: 37699
-  copy: "coal_rocks_old_1"
   examine: "A rocky outcrop."
 crate_293:
   id: 37809
@@ -8842,8 +8867,8 @@ cursed_magic_tree_stump:
   id: 37822
   examine: "This is what is left of a cursed magic tree."
 magic_tree_2:
+  <<: *magic_tree
   id: 37823
-  copy: "magic_tree"
   examine: "The tree shimmers with a magical force."
 magic_tree_2_stump:
   id: 37824
@@ -9266,8 +9291,8 @@ pit_door_2_closed:
   id: 41610
   examine: "The door of a dungeon pit."
 dead_tree_28:
+  <<: *tree
   id: 41713
-  copy: "tree"
   examine: "It's only useful for firewood now."
 gate_232:
   id: 42002
@@ -9285,8 +9310,8 @@ chair_144:
   id: 42489
   examine: "An elegant chair."
 dead_tree_covered_in_snow:
+  <<: *tree
   id: 42893
-  copy: "tree"
   examine: "This tree has long been dead."
 dead_tree_covered_in_snow_stump:
   id: 42860
@@ -9470,20 +9495,20 @@ prison_door_10_closed:
   id: 45024
   examine: "It looks like it can be opened pretty easily from the outside."
 gold_rocks_dungeon_1:
+  <<: *gold_rocks_old_1
   id: 45067
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 gold_rocks_dungeon_3:
+  <<: *gold_rocks_old_1
   id: 45068
-  copy: "gold_rocks_old_1"
   examine: "A rocky outcrop."
 runite_rocks_dungeon_1:
+  <<: *runite_rocks_old_1
   id: 45069
-  copy: "runite_rocks_old_1"
   examine: "A rocky outcrop."
 runite_rocks_dungeon_3:
+  <<: *runite_rocks_old_1
   id: 45070
-  copy: "runite_rocks_old_1"
   examine: "A rocky outcrop."
 crate_338:
   id: 45087
@@ -9690,6 +9715,7 @@ door_737_closed:
   id: 46307
   examine: "The entrance to the sawmill training area."
 ivy:
+  &ivy
   id: 46318
   woodcutting:
     level: 68
@@ -9704,22 +9730,22 @@ ivy_stump:
   id: 46319
   examine: "The remains of some choking ivy."
 ivy_2:
+  <<: *ivy
   id: 46320
-  copy: "ivy"
   examine: "Choking ivy, ready to be cut down."
 ivy_2_stump:
   id: 46321
   examine: "The remains of some choking ivy."
 ivy_3:
+  <<: *ivy
   id: 46322
-  copy: "ivy"
   examine: "Choking ivy, ready to be cut down."
 ivy_3_stump:
   id: 46323
   examine: "The remains of some choking ivy."
 ivy_4:
+  <<: *ivy
   id: 46324
-  copy: "ivy"
   examine: "Choking ivy, ready to be cut down."
 ivy_4_stump:
   id: 46325
@@ -9863,29 +9889,29 @@ crate_356:
   id: 47561
   examine: "A wooden crate."
 dead_tree_37:
+  <<: *tree
   id: 47594
-  copy: "tree"
   examine: "It's only useful for firewood now."
 dead_tree_37_stump:
   id: 47595
   examine: "This tree has been cut down."
 dead_tree_38:
+  <<: *tree
   id: 47596
-  copy: "tree"
   examine: "It's only useful for firewood now."
 dead_tree_38_stump:
   id: 47597
   examine: "This tree has been cut down."
 dead_tree_39:
+  <<: *tree
   id: 47598
-  copy: "tree"
   examine: "It's only useful for firewood now."
 dead_tree_39_stump:
   id: 47599
   examine: "This tree has been cut down."
 dead_tree_40:
+  <<: *tree
   id: 47600
-  copy: "tree"
   examine: "It's only useful for firewood now."
 dead_tree_40_stump:
   id: 47601
@@ -10087,6 +10113,7 @@ door_871_closed:
   id: 51805
   examine: "The door is closed."
 tangle_gum_tree:
+  &tangle_gum_tree
   id: 49705
   woodcutting:
     log: "tangle_gum_branches"
@@ -10097,6 +10124,7 @@ tangle_gum_tree:
 tangle_gum_tree_stump:
   id: 49706
 seeping_elm_tree:
+  &seeping_elm_tree
   id: 49707
   woodcutting:
     log: "seeping_elm_branches"
@@ -10107,6 +10135,7 @@ seeping_elm_tree:
 seeping_elm_tree_stump:
   id: 49708
 blood_spindle_tree:
+  &blood_spindle_tree
   id: 49709
   woodcutting:
     log: "blood_spindle_branches"
@@ -10117,6 +10146,7 @@ blood_spindle_tree:
 blood_spindle_tree_stump:
   id: 49710
 utuku_tree:
+  &utuku_tree
   id: 49711
   woodcutting:
     log: "utuku_branches"
@@ -10127,6 +10157,7 @@ utuku_tree:
 utuku_tree_stump:
   id: 49712
 spinebeam_tree:
+  &spinebeam_tree
   id: 49713
   woodcutting:
     log: "spinebeam_branches"
@@ -10137,6 +10168,7 @@ spinebeam_tree:
 spinebeam_tree_stump:
   id: 49714
 bovistrangler_tree:
+  &bovistrangler_tree
   id: 49715
   woodcutting:
     log: "bovistrangler_branches"
@@ -10147,6 +10179,7 @@ bovistrangler_tree:
 bovistrangler_tree_stump:
   id: 49716
 thigat_tree:
+  &thigat_tree
   id: 49717
   woodcutting:
     log: "thigat_branches"
@@ -10157,6 +10190,7 @@ thigat_tree:
 thigat_tree_stump:
   id: 49718
 corpsethorn_tree:
+  &corpsethorn_tree
   id: 49719
   woodcutting:
     log: "corpsethorn_branches"
@@ -10167,6 +10201,7 @@ corpsethorn_tree:
 corpsethorn_tree_stump:
   id: 49720
 entgallow_tree:
+  &entgallow_tree
   id: 49721
   woodcutting:
     log: "entgallow_branches"
@@ -10177,6 +10212,7 @@ entgallow_tree:
 entgallow_tree_stump:
   id: 49722
 grave_creeper_tree:
+  &grave_creeper_tree
   id: 49723
   woodcutting:
     log: "grave_creeper_branches"
@@ -10187,122 +10223,122 @@ grave_creeper_tree:
 grave_creeper_tree_stump:
   id: 49724
 tangle_gum_tree_2:
+  <<: *tangle_gum_tree
   id: 49725
-  copy: "tangle_gum_tree"
   examine: "It's some kind of subterranean tree. (Tier 1)"
 tangle_gum_tree_2_stump:
   id: 49726
 seeping_elm_tree_2:
+  <<: *seeping_elm_tree
   id: 49727
-  copy: "seeping_elm_tree"
   examine: "It's some kind of subterranean tree. (Tier 2)"
 seeping_elm_tree_2_stump:
   id: 49728
 blood_spindle_tree_2:
+  <<: *blood_spindle_tree
   id: 49729
-  copy: "blood_spindle_tree"
   examine: "It's some kind of subterranean tree. (Tier 3)"
 blood_spindle_tree_2_stump:
   id: 49730
 utuku_tree_2:
+  <<: *utuku_tree
   id: 49731
-  copy: "utuku_tree"
   examine: "It's some kind of subterranean tree. (Tier 4)"
 utuku_tree_2_stump:
   id: 49732
 spinebeam_tree_2:
+  <<: *spinebeam_tree
   id: 49733
-  copy: "spinebeam_tree"
   examine: "It's some kind of subterranean tree. (Tier 5)"
 spinebeam_tree_2_stump:
   id: 49734
 bovistrangler_tree_2:
+  <<: *bovistrangler_tree
   id: 49735
-  copy: "bovistrangler_tree"
   examine: "It's some kind of subterranean tree. (Tier 6)"
 bovistrangler_tree_2_stump:
   id: 49736
 thigat_tree_2:
+  <<: *thigat_tree
   id: 49737
-  copy: "thigat_tree"
   examine: "It's some kind of subterranean tree. (Tier 7)"
 thigat_tree_2_stump:
   id: 49738
 corpsethorn_tree_2:
+  <<: *corpsethorn_tree
   id: 49739
-  copy: "corpsethorn_tree"
   examine: "It's some kind of subterranean tree. (Tier 8)"
 corpsethorn_tree_2_stump:
   id: 49740
 entgallow_tree_2:
+  <<: *entgallow_tree
   id: 49741
-  copy: "entgallow_tree"
   examine: "It's some kind of subterranean tree. (Tier 9)"
 entgallow_tree_2_stump:
   id: 49742
 grave_creeper_tree_2:
+  <<: *grave_creeper_tree
   id: 49743
-  copy: "grave_creeper_tree"
   examine: "It's some kind of subterranean tree. (Tier 10)"
 grave_creeper_tree_2_stump:
   id: 49744
 tangle_gum_tree_3:
+  <<: *tangle_gum_tree
   id: 49745
-  copy: "tangle_gum_tree"
   examine: "It's some kind of subterranean tree. (Tier 1)"
 tangle_gum_tree_3_stump:
   id: 49746
 seeping_elm_tree_3:
+  <<: *seeping_elm_tree
   id: 49747
-  copy: "seeping_elm_tree"
   examine: "It's some kind of subterranean tree. (Tier 2)"
 seeping_elm_tree_3_stump:
   id: 49748
 blood_spindle_tree_3:
+  <<: *blood_spindle_tree
   id: 49749
-  copy: "blood_spindle_tree"
   examine: "It's some kind of subterranean tree. (Tier 3)"
 blood_spindle_tree_3_stump:
   id: 49750
 utuku_tree_3:
+  <<: *utuku_tree
   id: 49751
-  copy: "utuku_tree"
   examine: "It's some kind of subterranean tree. (Tier 4)"
 utuku_tree_3_stump:
   id: 49752
 spinebeam_tree_3:
+  <<: *spinebeam_tree
   id: 49753
-  copy: "spinebeam_tree"
   examine: "It's some kind of subterranean tree. (Tier 5)"
 spinebeam_tree_3_stump:
   id: 49754
 bovistrangler_tree_3:
+  <<: *bovistrangler_tree
   id: 49755
-  copy: "bovistrangler_tree"
   examine: "It's some kind of subterranean tree. (Tier 6)"
 bovistrangler_tree_3_stump:
   id: 49756
 thigat_tree_3:
+  <<: *thigat_tree
   id: 49757
-  copy: "thigat_tree"
   examine: "It's some kind of subterranean tree. (Tier 7)"
 thigat_tree_3_stump:
   id: 49758
 corpsethorn_tree_3:
+  <<: *corpsethorn_tree
   id: 49759
-  copy: "corpsethorn_tree"
   examine: "It's some kind of subterranean tree. (Tier 8)"
 corpsethorn_tree_3_stump:
   id: 49760
 entgallow_tree_3:
+  <<: *entgallow_tree
   id: 49761
-  copy: "entgallow_tree"
   examine: "It's some kind of subterranean tree. (Tier 9)"
 entgallow_tree_3_stump:
   id: 49762
 grave_creeper_tree_3:
+  <<: *grave_creeper_tree
   id: 49763
-  copy: "grave_creeper_tree"
   examine: "It's some kind of subterranean tree. (Tier 10)"
 grave_creeper_tree_3_stump:
   id: 49764
@@ -10396,7 +10432,7 @@ door_887_closed:
 dead_tree_41:
   id: 52786
   examine: "It makes this place look very sad."
-small_fern_:3:
+small_fern_3:
   id: 52794
   examine: "A plant."
 fern_17:

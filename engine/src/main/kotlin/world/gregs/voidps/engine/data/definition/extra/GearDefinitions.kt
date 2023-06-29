@@ -1,11 +1,15 @@
 package world.gregs.voidps.engine.data.definition.extra
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import world.gregs.voidps.engine.data.FileStorage
+import net.pearx.kasechange.toSentenceCase
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.config.GearDefinition
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.yaml.Yaml
+import world.gregs.yaml.read.YamlReaderConfiguration
 
 class GearDefinitions {
 
@@ -13,23 +17,52 @@ class GearDefinitions {
 
     fun get(style: String): List<GearDefinition> = definitions[style] ?: emptyList()
 
-    fun load(storage: FileStorage = get(), path: String = getProperty("gearDefinitionsPath")): GearDefinitions {
+    @Suppress("UNCHECKED_CAST")
+    fun load(yaml: Yaml = get(), path: String = getProperty("gearDefinitionsPath"), itemDefinitions: ItemDefinitions = get()): GearDefinitions {
         timedLoad("gear definition") {
-            val data: ArrayList<Map<String, Any>> = storage.load(path)
-            load(data)
+            var count = 0
+            val config = object : YamlReaderConfiguration() {
+                override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
+                    if (parentMap == "inventory") {
+                        value as Map<String, Any>
+                        val id = value["id"]
+                        if (id is List<*>) {
+                            val amount = value["amount"] as? Int ?: 1
+                            val subList = createList()
+                            for (i in id as List<String>) {
+                                subList.add(Item(i, amount, itemDefinitions.get(i)))
+                            }
+                            super.add(list, subList, parentMap)
+                        } else {
+                            val subList = createList()
+                            subList.add(Item(id as String, value["amount"] as? Int ?: 1, itemDefinitions.get(id)))
+                            super.add(list, subList, parentMap)
+                        }
+                    } else if (parentMap == "equipment") {
+                        value as Map<String, List<Item>>
+                        super.add(list, value.mapKeys { EquipSlot.valueOf(it.key.toSentenceCase()) }, parentMap)
+                    } else if (value is Map<*, *> && value.containsKey("id")) {
+                        val id = value["id"] as String
+                        val item = Item(id, value["amount"] as? Int ?: 1, itemDefinitions.get(id))
+                        super.add(list, item, parentMap)
+                    } else if(parentMap != "id") {
+                        count++
+                        super.add(list, GearDefinition(parentMap!!, value as Map<String, Any>), parentMap)
+                    } else {
+                        super.add(list, value, parentMap)
+                    }
+                }
+
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
+                    super.set(map, key, when (key) {
+                        "levels" -> (value as String).toIntRange()
+                        else -> value
+                    }, indent, parentMap)
+                }
+            }
+            this.definitions = yaml.load(path, config)
+            count
         }
         return this
     }
-
-    fun load(data: ArrayList<Map<String, Any>>): Int {
-        val map = mutableMapOf<String, MutableList<GearDefinition>>()
-        for (item in data) {
-            val type = item["type"] as String
-            val list = map.getOrPut(type) { mutableListOf() }
-            list.add(GearDefinition(type, item))
-        }
-        definitions = Object2ObjectOpenHashMap(map)
-        return definitions.size
-    }
-
 }

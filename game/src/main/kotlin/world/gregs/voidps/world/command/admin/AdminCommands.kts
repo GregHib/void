@@ -47,6 +47,7 @@ import world.gregs.voidps.network.encode.playSoundEffect
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.isCurses
+import world.gregs.voidps.world.activity.quest.Books
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
@@ -319,6 +320,7 @@ on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->
 
 on<Command>({ prefix == "reload" }) { player: Player ->
     when (content) {
+        "book", "books" -> get<Books>().load()
         "stairs" -> get<Stairs>().load()
         "tracks", "songs" -> get<MusicTracks>().load()
         "objects" -> {

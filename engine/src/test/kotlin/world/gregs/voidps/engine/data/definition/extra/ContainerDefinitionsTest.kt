@@ -4,8 +4,8 @@ import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoderTest
+import world.gregs.yaml.Yaml
 
 internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ContainerDefinition, ContainerDecoder, ContainerDefinitions>() {
 
@@ -22,6 +22,8 @@ internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ContainerDefini
     override fun expected(): ContainerDefinition {
         return ContainerDefinition(intId,
             stringId = id,
+            ids = IntArray(0),
+            amounts = IntArray(0),
             extras = mapOf("id" to intId,
                 "shop" to true,
                 "defaults" to listOf(mapOf("bronze_pickaxe" to 10),
@@ -42,6 +44,6 @@ internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ContainerDefini
     }
 
     override fun load(definitions: ContainerDefinitions) {
-        definitions.load(FileStorage(), "../data/definitions/containers.yml", mockk(relaxed = true))
+        definitions.load(Yaml(), "../data/definitions/containers.yml", mockk(relaxed = true))
     }
 }

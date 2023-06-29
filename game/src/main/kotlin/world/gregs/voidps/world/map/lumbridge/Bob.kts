@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.map.lumbridge
 
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
+import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -44,7 +44,7 @@ on<NPCOption>({ operate && npc.id == "bob" && option == "Talk-to" }) { player: P
     }
 }
 
-on<InterfaceOnNPC>({ operate && npc.id == "bob" }) { player: Player ->
+on<ItemOnNPC>({ operate && npc.id == "bob" }) { player: Player ->
     if (!repairable(item.id)) {
         npc<Unsure>("Sorry friend, but I can't do anything with that.")
         return@on

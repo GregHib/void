@@ -2,7 +2,7 @@ import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
+import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.replace
@@ -54,11 +54,11 @@ on<InterfaceOpened>({ id == "silver_mould" }) { player: Player ->
     }
 }
 
-on<InterfaceOnObject>({ operate && obj.id.startsWith("furnace") && item.id == "silver_bar" }) { player: Player ->
+on<ItemOnObject>({ operate && obj.id.startsWith("furnace") && item.id == "silver_bar" }) { player: Player ->
     player.open("silver_mould")
 }
 
-on<InterfaceOnObject>({ operate && obj.id.startsWith("furnace") && item.silver != null }) { player: Player ->
+on<ItemOnObject>({ operate && obj.id.startsWith("furnace") && item.silver != null }) { player: Player ->
     arriveDelay()
     player.make(item, 1)
 }

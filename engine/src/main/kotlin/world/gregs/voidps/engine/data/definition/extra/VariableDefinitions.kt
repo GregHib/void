@@ -2,14 +2,13 @@ package world.gregs.voidps.engine.data.definition.extra
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.mapIds
+import world.gregs.voidps.engine.data.DefinitionIdsConfig
 import world.gregs.voidps.engine.data.definition.config.VariableDefinition
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.yaml.Yaml
 import java.io.File
-import kotlin.collections.component1
-import kotlin.collections.component2
 import kotlin.collections.set
 
 class VariableDefinitions {
@@ -24,12 +23,13 @@ class VariableDefinitions {
 
     fun getVarp(id: Int) = varpIds[id]
 
-    fun load(storage: FileStorage = world.gregs.voidps.engine.get(), path: String = getProperty("definitionsPath")): VariableDefinitions {
+    @Suppress("UNCHECKED_CAST")
+    fun load(yaml: Yaml = get(), path: String = getProperty("definitionsPath")): VariableDefinitions {
         timedLoad("variable definition") {
-            val map = mutableMapOf<String, VariableDefinition>()
+            val definitions = Object2ObjectOpenHashMap<String, VariableDefinition>()
             val files = File(path).listFiles()?.filter { it.name.startsWith("variables-") } ?: emptyList()
-            val varbitIds = mutableMapOf<Int, String>()
-            val varpIds = mutableMapOf<Int, String>()
+            val varbitIds = Int2ObjectOpenHashMap<String>()
+            val varpIds = Int2ObjectOpenHashMap<String>()
             for (file in files) {
                 val type = file.nameWithoutExtension.removePrefix("variables-")
                 val factory = when (type) {
@@ -39,22 +39,31 @@ class VariableDefinitions {
                     "client-string" -> VariableDefinition.varcStr()
                     else -> VariableDefinition.custom()
                 }
-                val data = storage.load<Map<String, Any>>(file.path).mapIds()
-                for ((key, value) in data) {
-                    check(!map.containsKey(key)) { "All variable names must be unique. Duplicate: $key" }
-                    val definition = factory.invoke(value)
-                    map[key] = definition
-                    if (type == "player") {
-                        varpIds[definition.id] = key
-                    } else if (type == "player-bit") {
-                        varbitIds[definition.id] = key
+                val config = object : DefinitionIdsConfig() {
+                    override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
+                        if (indent == 0) {
+                            val definition = factory.invoke(if (value is Int) {
+                                mapOf("id" to value)
+                            } else {
+                                value as Map<String, Any>
+                            })
+                            definitions[key] = definition
+                            if (type == "player") {
+                                varpIds[definition.id] = key
+                            } else if (type == "player-bit") {
+                                varbitIds[definition.id] = key
+                            }
+                        } else {
+                            super.set(map, key, value, indent, parentMap)
+                        }
                     }
                 }
+                yaml.load<Any>(file.path, config)
             }
-            this.varbitIds = Int2ObjectOpenHashMap(varbitIds)
-            this.varpIds = Int2ObjectOpenHashMap(varpIds)
-            definitions = Object2ObjectOpenHashMap(map)
-            definitions.size
+            this.varbitIds = varbitIds
+            this.varpIds = varpIds
+            this.definitions = definitions
+            this.definitions.size
         }
         return this
     }

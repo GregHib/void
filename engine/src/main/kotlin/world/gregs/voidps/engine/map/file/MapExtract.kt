@@ -6,12 +6,9 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
-import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.Tile
@@ -21,6 +18,7 @@ import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.yaml.Yaml
 import java.io.File
 import java.io.RandomAccessFile
 import kotlin.collections.set
@@ -148,7 +146,7 @@ class MapExtract(
             val rotation = (obj.rotation + chunkRotation) and 0x3
             val rotX = chunkX + rotateX(obj.x, obj.y, def.sizeX, def.sizeY, rotation, chunkRotation)
             val rotY = chunkY + rotateY(obj.x, obj.y, def.sizeX, def.sizeY, rotation, chunkRotation)
-            objects.set(obj.id, rotX, rotY, obj.plane, obj.type, rotation, def)
+            objects.set(obj.id, rotX, rotY, obj.plane, obj.shape, rotation, def)
         }
     }
 
@@ -242,10 +240,8 @@ class MapExtract(
         @JvmStatic
         fun main(args: Array<String>) {
             val cache = CacheDelegate("./data/cache")
-            val itemDefinitions = ItemDefinitions(ItemDecoder(cache))
-                .load(FileStorage(), "./data/definitions/items.yml")
             val definitions = ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false))
-                .load(FileStorage(), "./data/definitions/objects.yml", itemDefinitions)
+                .load(Yaml(), "./data/definitions/objects.yml", null)
             val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
             val collisions = Collisions()
             val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = true)

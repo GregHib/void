@@ -50,8 +50,8 @@ object Door {
             return
         }
         val objects = get<GameObjects>()
-        val first = GameObject(firstId, firstTile, firstOriginal.type, firstRotation)
-        val second = GameObject(secondId, secondTile, secondOriginal.type, secondRotation)
+        val first = GameObject(firstId, firstTile, firstOriginal.shape, firstRotation)
+        val second = GameObject(secondId, secondTile, secondOriginal.shape, secondRotation)
         objects.remove(firstOriginal, collision)
         objects.remove(secondOriginal, collision)
         objects.add(first, collision)
@@ -122,7 +122,7 @@ object Door {
                 obj,
                 obj.id.replace(current, next),
                 getTile(obj, tileRotation),
-                obj.type,
+                obj.shape,
                 obj.rotation(objRotation),
                 ticks
             )
@@ -144,23 +144,23 @@ object Door {
 
     fun getDoubleDoor(objects: GameObjects, gameObject: GameObject, def: ObjectDefinition, clockwise: Int): GameObject? {
         var orientation = Direction.cardinal[gameObject.rotation(clockwise)]
-        var door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
+        var door = objects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
         if (door != null && door.def.isDoor()) {
             return door
         }
         orientation = orientation.inverse()
-        door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
+        door = objects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
         if (door != null && door.def.isDoor()) {
             return door
         }
         if (def.isGate()) {
             orientation = orientation.rotate(2)
-            door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
+            door = objects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
             if (door != null && door.def.isGate()) {
                 return door
             }
             orientation = orientation.inverse()
-            door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
+            door = objects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
             if (door != null && door.def.isGate()) {
                 return door
             }

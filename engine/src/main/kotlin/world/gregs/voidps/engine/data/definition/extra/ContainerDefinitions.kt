@@ -1,18 +1,20 @@
 package world.gregs.voidps.engine.data.definition.extra
 
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
-import world.gregs.voidps.engine.data.FileStorage
+import world.gregs.voidps.engine.data.DefinitionConfig
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.yaml.Yaml
 
 class ContainerDefinitions(
     decoder: ContainerDecoder
 ) : DefinitionsDecoder<ContainerDefinition> {
 
-    override val definitions: Array<ContainerDefinition>
+    override lateinit var definitions: Array<ContainerDefinition>
     override lateinit var ids: Map<String, Int>
 
     init {
@@ -23,17 +25,28 @@ class ContainerDefinitions(
 
     override fun empty() = ContainerDefinition.EMPTY
 
-    fun load(storage: FileStorage = get(), path: String = getProperty("containerDefinitionsPath"), itemDefs: ItemDefinitions = get()): ContainerDefinitions {
+    @Suppress("UNCHECKED_CAST")
+    fun load(yaml: Yaml = get(), path: String = getProperty("containerDefinitionsPath"), itemDefs: ItemDefinitions = get()): ContainerDefinitions {
         timedLoad("container extra") {
-            decode(storage, path)
-            for (def in definitions) {
-                if (def.has("defaults") && def.length > 0) {
-                    val list = def.get<List<Map<String, Int>>>("defaults")
-                    def.ids = IntArray(def.length) { itemDefs.get(list[it].keys.first()).id }
-                    def.amounts = IntArray(def.length) { list[it].values.first() }
+            val ids = Object2IntOpenHashMap<String>()
+            val config = object : DefinitionConfig<ContainerDefinition>(ids, definitions) {
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+                    if (key == "defaults" && value is List<*>) {
+                        val id = map["id"] as Int
+                        value as List<Map<String, Int>>
+                        if (id !in definitions.indices) {
+                            return
+                        }
+                        val def = definitions[id]
+                        def.ids = IntArray(def.length) { itemDefs.get(value[it].keys.first()).id }
+                        def.amounts = IntArray(def.length) { value[it].values.first() }
+                    }
+                    super.set(map, key, value, indent, parentMap)
                 }
             }
-            definitions.size
+            yaml.load<Any>(path, config)
+            this.ids = ids
+            ids.size
         }
         return this
     }

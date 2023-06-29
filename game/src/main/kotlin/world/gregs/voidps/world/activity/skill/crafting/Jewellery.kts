@@ -4,7 +4,7 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
+import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.contain.replace
@@ -29,7 +29,7 @@ val gems = listOf("gold", "sapphire", "emerald", "ruby", "diamond", "dragonstone
 val Item.jewellery: Jewellery?
     get() = def.getOrNull("jewellery")
 
-on<InterfaceOnObject>({ operate && obj.id.startsWith("furnace") && item.id.endsWith("_mould") }) { player: Player ->
+on<ItemOnObject>({ operate && obj.id.startsWith("furnace") && item.id.endsWith("_mould") }) { player: Player ->
     player.open("make_mould${if (World.members) "_slayer" else ""}")
 }
 

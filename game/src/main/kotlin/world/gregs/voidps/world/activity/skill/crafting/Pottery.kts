@@ -1,6 +1,6 @@
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
+import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.replace
 import world.gregs.voidps.engine.data.definition.data.Pottery
@@ -19,15 +19,15 @@ import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 val Item.pottery: Pottery
     get() = def["pottery"]
 
-on<InterfaceOnObject>({ operate && obj.id.startsWith("potters_wheel") && item.id == "soft_clay" }) { player: Player ->
+on<ItemOnObject>({ operate && obj.id.startsWith("potters_wheel") && item.id == "soft_clay" }) { player: Player ->
     make("spinning")
 }
 
-on<InterfaceOnObject>({ operate && obj.id.startsWith("potters_oven") && item.id != "soft_clay" && item.def.has("pottery") }) { player: Player ->
+on<ItemOnObject>({ operate && obj.id.startsWith("potters_oven") && item.id != "soft_clay" && item.def.has("pottery") }) { player: Player ->
     make("cook_range")
 }
 
-suspend fun InterfaceOnObject.make(animation: String) {
+suspend fun ItemOnObject.make(animation: String) {
     val pottery = item.pottery.list
     val (id, amount) = makeAmount(
         items = pottery.keys.toList(),

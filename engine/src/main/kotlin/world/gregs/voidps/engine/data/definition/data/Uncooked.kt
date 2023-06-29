@@ -1,7 +1,5 @@
 package world.gregs.voidps.engine.data.definition.data
 
-import world.gregs.voidps.engine.client.ui.chat.toIntRange
-
 /**
  * @param level required to attempt cooking
  * @param xp experience for successfully cooking
@@ -38,11 +36,11 @@ data class Uncooked(
 
         @Suppress("UNCHECKED_CAST")
         operator fun invoke(map: Map<String, Any>): Uncooked {
-            val chances = map["chances"] as? Map<String, String> ?: emptyMap()
-            val fireChance = chances["fire"]?.toIntRange() ?: EMPTY.chance
-            val rangeChance = chances["range"]?.toIntRange() ?: fireChance
-            val cooksRangeChance = chances["cooks_range"]?.toIntRange() ?: rangeChance
-            val gauntletChance = chances["gauntlet"]?.toIntRange() ?: rangeChance
+            val chances = map["chances"] as? Map<String, IntRange> ?: emptyMap()
+            val fireChance = chances["fire"] ?: EMPTY.chance
+            val rangeChance = chances["range"] ?: fireChance
+            val cooksRangeChance = chances["cooks_range"] ?: rangeChance
+            val gauntletChance = chances["gauntlet"] ?: rangeChance
             return Uncooked(
                 level = map["level"] as? Int ?: EMPTY.level,
                 xp = map["xp"] as? Double ?: EMPTY.xp,

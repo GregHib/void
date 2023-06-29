@@ -92,7 +92,7 @@ internal class MapDecoderTest {
         assertEquals(x, obj.x)
         assertEquals(y, obj.y)
         assertEquals(plane, obj.plane)
-        assertEquals(type, obj.type)
+        assertEquals(type, obj.shape)
         assertEquals(rotation, obj.rotation)
     }
 }

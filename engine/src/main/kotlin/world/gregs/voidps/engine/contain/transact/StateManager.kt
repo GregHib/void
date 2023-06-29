@@ -1,13 +1,13 @@
 package world.gregs.voidps.engine.contain.transact
 
-import world.gregs.voidps.engine.contain.ContainerData
+import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.entity.item.Item
 
 /**
  * Allows for saving and reverting the state of a container
  */
 class StateManager(
-    private val container: ContainerData
+    private val container: Container
 ) {
 
     private var history: Array<Item>? = null
@@ -39,7 +39,7 @@ class StateManager(
      * @return a boolean indicating whether the revert was successful
      */
     fun revert(): Boolean {
-        container.items = history ?: return false
+        container.data = history ?: return false
         clear()
         return true
     }

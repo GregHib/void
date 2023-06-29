@@ -1,11 +1,10 @@
 package world.gregs.voidps.engine.map.region
 
-import com.fasterxml.jackson.core.JsonFactory
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.yaml.Yaml
 import java.io.File
-import java.io.RandomAccessFile
 
 private typealias Xtea = IntArray
 
@@ -22,7 +21,7 @@ class XteaLoader {
                     key ?: DEFAULT_KEY,
                     value ?: DEFAULT_VALUE
                 )
-                else -> loadBinary(RandomAccessFile(file, "r"))
+                else -> loadBinary(file)
             }
             xteas.delegate.clear()
             xteas.delegate.putAll(all)
@@ -37,11 +36,11 @@ class XteaLoader {
 
     @Suppress("UNCHECKED_CAST")
     fun loadJson(text: String, key: String = DEFAULT_KEY, value: String = DEFAULT_VALUE): Map<Int, Xtea> {
-        val mapper = ObjectMapper(JsonFactory())
-        val map: Array<Map<String, Any>> = mapper.readValue(text)
+        val mapper = Yaml()
+        val map = mapper.read(text) as List<Map<String, Any>>
         return map.associate {
             val id = it[key] as Int
-            val keys = it[value] as? ArrayList<Int> ?: emptyList()
+            val keys = it[value] as? List<Int> ?: emptyList()
             id to keys.toIntArray()
         }
     }
@@ -58,13 +57,12 @@ class XteaLoader {
         return file.nameWithoutExtension.toInt() to loadText(file.readText())
     }
 
-    private fun loadBinary(file: RandomAccessFile): Map<Int, Xtea> {
-        val xteas = mutableMapOf<Int, IntArray>()
-        file.use { raf ->
-            while (raf.filePointer < raf.length()) {
-                val region = raf.readShort().toInt()
-                xteas[region] = IntArray(4) { raf.readInt() }
-            }
+    private fun loadBinary(file: File): Map<Int, Xtea> {
+        val xteas = Int2ObjectOpenHashMap<IntArray>()
+        val reader = BufferReader(file.readBytes())
+        while (reader.position() < reader.length) {
+            val region = reader.readShort()
+            xteas[region] = IntArray(4) { reader.readInt() }
         }
         return xteas
     }

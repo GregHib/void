@@ -2,8 +2,8 @@ package world.gregs.voidps.world.activity.skill.firemaking
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnFloorItem
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
+import world.gregs.voidps.engine.client.ui.interact.ItemOnFloorItem
+import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
 import world.gregs.voidps.engine.client.ui.interact.either
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.set
@@ -27,8 +27,8 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.ObjectGroup
-import world.gregs.voidps.engine.entity.obj.ObjectType
+import world.gregs.voidps.engine.entity.obj.ObjectLayer
+import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
@@ -39,10 +39,10 @@ import world.gregs.voidps.engine.suspend.pause
 val floorItems: FloorItems by inject()
 val objects: GameObjects by inject()
 
-on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } }) { player: Player ->
+on<ItemOnItem>({ either { from, to -> from.lighter && to.burnable } }) { player: Player ->
     val log = if (toItem.burnable) toItem else fromItem
     val logSlot = if (toItem.burnable) toSlot else fromSlot
-    if (objects.getGroup(player.tile, ObjectGroup.INTERACTIVE) != null) {
+    if (objects.getLayer(player.tile, ObjectLayer.GROUND) != null) {
         player.message("You can't light a fire here.")
         player.clearAnimation()
         return@on
@@ -58,7 +58,7 @@ on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } })
     }
 }
 
-on<InterfaceOnFloorItem>({ operate && item.lighter && floorItem.def.has("firemaking") }) { player: Player ->
+on<ItemOnFloorItem>({ operate && item.lighter && floorItem.def.has("firemaking") }) { player: Player ->
     arriveDelay()
     lightFire(player, floorItem)
 }
@@ -120,7 +120,7 @@ fun Player.canLight(log: String, fire: Fire, item: FloorItem): Boolean {
     if (!has(Skill.Firemaking, fire.level, true)) {
         return false
     }
-    if (objects.getGroup(item.tile, ObjectGroup.INTERACTIVE) != null) {
+    if (objects.getLayer(item.tile, ObjectLayer.GROUND) != null) {
         message("You can't light a fire here.")
         return false
     }
@@ -130,7 +130,7 @@ fun Player.canLight(log: String, fire: Fire, item: FloorItem): Boolean {
 val directions = listOf(Direction.WEST, Direction.EAST, Direction.SOUTH, Direction.NORTH)
 
 fun spawnFire(player: Player, tile: Tile, fire: Fire) {
-    val obj = objects.add("fire_${fire.colour}", tile, type = ObjectType.INTERACTIVE, rotation = 0, ticks = fire.life)
+    val obj = objects.add("fire_${fire.colour}", tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = fire.life)
     floorItems.add(tile, "ashes", revealTicks = fire.life, disappearTicks = 60, owner = "")
     val interact = player.mode as Interact
     for (dir in directions) {

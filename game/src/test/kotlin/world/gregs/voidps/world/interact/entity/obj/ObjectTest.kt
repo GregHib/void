@@ -5,7 +5,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.instruction.handle.WalkHandler
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectGroup
+import world.gregs.voidps.engine.entity.obj.ObjectLayer
+import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -39,7 +40,7 @@ internal class ObjectTest : WorldTest() {
     fun `Can open and walk through a door`() {
         val player = createPlayer("player", Tile(3227, 3214))
         tick()
-        val door = objects.getGroup(Tile(3226, 3214), ObjectGroup.WALL)!!
+        val door = objects.getLayer(Tile(3226, 3214), ObjectLayer.WALL)!!
 
         player.objectOption(door, "Open")
         tick()
@@ -53,7 +54,7 @@ internal class ObjectTest : WorldTest() {
     fun `Ladder ascending`() {
         val player = createPlayer("player", Tile(3229, 3214))
         tick()
-        val ladder = objects.getGroup(Tile(3229, 3213), ObjectGroup.INTERACTIVE)!!
+        val ladder = objects.getLayer(Tile(3229, 3213), ObjectLayer.GROUND)!!
 
         player.objectOption(ladder, "Climb-up")
         tick(3)
@@ -65,8 +66,9 @@ internal class ObjectTest : WorldTest() {
     fun `Ladder descending`() {
         val player = createPlayer("player", Tile(3229, 3214, 1))
         tick()
+
         // The one in Objects has wrong id as config replace id disabled.
-        val ladder = GameObject(id = 36769, tile = Tile(3229, 3213, 1), type = ObjectGroup.INTERACTIVE, rotation = 3)
+        val ladder = GameObject(id = 36769, tile = Tile(3229, 3213, 1), shape = ObjectShape.GROUND_DECOR, rotation = 3)
         player.objectOption(ladder, "Climb-down")
         tick(3)
 

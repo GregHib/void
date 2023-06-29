@@ -1,6 +1,6 @@
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
+import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.client.variable.set
@@ -49,7 +49,7 @@ on<Registered>({ it["demon_slayer_drain_dislodged", false] }) { player: Player -
     player.sendVariable("demon_slayer_drain_dislodged")
 }
 
-on<InterfaceOnObject>({ operate && obj.id == "varrock_palace_drain" && item.id.endsWith("of_water") }) { player: Player ->
+on<ItemOnObject>({ operate && obj.id == "varrock_palace_drain" && item.id.endsWith("of_water") }) { player: Player ->
     arriveDelay()
     val replacement = when {
         item.id.startsWith("bucket_of") -> "bucket"

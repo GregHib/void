@@ -9,7 +9,7 @@ class StructDefinitions(
     decoder: StructDecoder
 ) : DefinitionsDecoder<StructDefinition> {
 
-    override val definitions: Array<StructDefinition>
+    override lateinit var definitions: Array<StructDefinition>
     override lateinit var ids: Map<String, Int>
 
     init {
@@ -21,10 +21,6 @@ class StructDefinitions(
     override fun empty() = StructDefinition.EMPTY
 
     fun load(): StructDefinitions {
-        timedLoad("struct extra") {
-            ids = emptyMap()
-            0
-        }
         return this
     }
 

@@ -1,9 +1,10 @@
 package world.gregs.voidps.engine.entity.character.player
 
-import world.gregs.voidps.engine.data.definition.extra.AccountDefinitions
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.getOrPut
 import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.data.definition.extra.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.extra.RenderEmoteDefinitions
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.visual.VisualMask
 import world.gregs.voidps.network.visual.update.player.Appearance
@@ -60,10 +61,10 @@ var Player.headIcon: Int
         headIcon = value
     }
 
-var Player.emote: Int
-    get() = appearance.emote
+var Player.emote: String
+    get() = get<RenderEmoteDefinitions>().get(appearance.emote).stringId
     set(value) = flag {
-        appearance.emote = value
+        appearance.emote = get<RenderEmoteDefinitions>().get(value).id
     }
 
 var Player.name: String

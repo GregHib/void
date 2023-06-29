@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
+import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
+import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
@@ -49,7 +49,7 @@ fun Player.interfaceUse(
     toSlot: Int = -1
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    events.emit(InterfaceOnInterface(
+    events.emit(ItemOnItem(
         fromItem = fromItem,
         toItem = toItem,
         fromSlot = fromSlot,
@@ -121,13 +121,13 @@ fun Player.walk(toTile: Tile) = runTest {
 
 fun Player.itemOnObject(obj: GameObject, itemSlot: Int, id: String, component: String = "container", container: String = "inventory") {
     val item = containers.container(container)[itemSlot]
-    events.emit(InterfaceOnObject(this, obj, id, component, item, itemSlot, container))
+    events.emit(ItemOnObject(this, obj, id, component, item, itemSlot, container))
 }
 
 fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstContainer: String = "inventory", firstComponent: String = "container", secondContainer: String = firstContainer, secondComponent: String = firstComponent) {
     val one = containers.container(firstContainer)
     val two = containers.container(secondContainer)
-    events.emit(InterfaceOnInterface(
+    events.emit(ItemOnItem(
         one[firstSlot],
         two[secondSlot],
         firstSlot,
@@ -146,8 +146,8 @@ fun Player.npcOption(npc: NPC, option: String) = runTest {
 }
 
 fun Player.objectOption(gameObject: GameObject, option: String) = runTest {
-    val def = get<ObjectDefinitions>().get(gameObject.id)
-    instructions.emit(InteractObject(def.id, gameObject.tile.x, gameObject.tile.y, def.optionsIndex(option) + 1))
+    val def = get<ObjectDefinitions>().get(gameObject.intId)
+    instructions.emit(InteractObject(gameObject.intId, gameObject.tile.x, gameObject.tile.y, def.optionsIndex(option) + 1))
 }
 
 fun Player.floorItemOption(floorItem: FloorItem, option: String) = runTest {

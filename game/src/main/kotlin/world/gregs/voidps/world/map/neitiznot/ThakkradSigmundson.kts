@@ -1,4 +1,4 @@
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
+import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
@@ -44,7 +44,7 @@ on<NPCOption>({ operate && npc.id == "thakkrad_sigmundson" && option == "Craft-g
     }
 }
 
-on<InterfaceOnNPC>({ operate && npc.id == "thakkrad_sigmundson" && item.id == "yak_hide" }) { player: Player ->
+on<ItemOnNPC>({ operate && npc.id == "thakkrad_sigmundson" && item.id == "yak_hide" }) { player: Player ->
     cureHide()
 }
 

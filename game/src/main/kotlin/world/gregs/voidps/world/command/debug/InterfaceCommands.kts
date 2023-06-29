@@ -10,9 +10,11 @@ import world.gregs.voidps.engine.client.ui.sendItem
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.encode.*
 
@@ -90,20 +92,53 @@ on<Command>({ prefix == "var" }) { player: Player ->
 
 on<Command>({ prefix == "varp" }) { player: Player ->
     val parts = content.split(" ")
-    player.client?.sendVarp(parts.first().toInt(), parts.last().toInt())
+    val intId = parts.first().toIntOrNull()
+    if (intId == null) {
+        player.variables.set(parts.first(), parts.last().toInt())
+    } else {
+        val def: VariableDefinitions = get()
+        val name = def.getVarp(intId)
+        if (name == null) {
+            player.client?.sendVarp(intId, parts.last().toInt())
+        } else {
+            player.variables.set(name, parts.last().toInt())
+        }
+    }
 }
 
 on<Command>({ prefix == "varbit" }) { player: Player ->
     val parts = content.split(" ")
-    player.client?.sendVarbit(parts.first().toInt(), parts.last().toInt())
+    val intId = parts.first().toIntOrNull()
+    if (intId == null) {
+        player.variables.set(parts.first(), parts.last().toInt())
+    } else {
+        val def: VariableDefinitions = get()
+        val name = def.getVarbit(intId)
+        if (name == null) {
+            player.client?.sendVarbit(intId, parts.last().toInt())
+        } else {
+            player.variables.set(name, parts.last().toInt())
+        }
+    }
 }
 
 on<Command>({ prefix == "varc" }) { player: Player ->
     val parts = content.split(" ")
-    player.client?.sendVarc(parts.first().toInt(), parts.last().toInt())
+    val intId = parts.first().toIntOrNull()
+    if (intId == null) {
+        player.variables.set(parts.first(), parts.last().toInt())
+    } else {
+        player.client?.sendVarc(intId, parts.last().toInt())
+    }
 }
 
 on<Command>({ prefix == "varcstr" }) { player: Player ->
     val parts = content.split(" ")
-    player.client?.sendVarcStr(parts.first().toInt(), content.removePrefix("${parts.first()} "))
+    val intId = parts.first().toIntOrNull()
+    val string = content.removePrefix("${parts.first()} ")
+    if (intId == null) {
+        player.variables.set(parts.first(), string)
+    } else {
+        player.client?.sendVarcStr(intId, string)
+    }
 }

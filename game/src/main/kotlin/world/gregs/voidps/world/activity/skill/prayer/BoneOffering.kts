@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.activity.skill.prayer
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
+import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 
-on<InterfaceOnObject>({ operate && container == "inventory" && item.def.has("prayer_xp") && obj.id.startsWith("altar") }) { player: Player ->
+on<ItemOnObject>({ operate && container == "inventory" && item.def.has("prayer_xp") && obj.id.startsWith("altar") }) { player: Player ->
     arriveDelay()
     val tile = obj.nearestTo(player.tile)
     val count = player.inventory.count(item.id)
@@ -29,7 +29,7 @@ on<InterfaceOnObject>({ operate && container == "inventory" && item.def.has("pra
     }
 }
 
-suspend fun InterfaceOnObject.offer(amount: Int, tile: Tile) {
+suspend fun ItemOnObject.offer(amount: Int, tile: Tile) {
     val xp = item.def["prayer_xp", 0.0]
     repeat(amount) {
         if (player.inventory.remove(item.id)) {

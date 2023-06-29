@@ -29,7 +29,7 @@ import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.network.encode.clearCamera
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
-import world.gregs.voidps.world.activity.quest.refreshQuestJournal
+import world.gregs.voidps.world.activity.quest.openBook
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
@@ -40,7 +40,7 @@ val collisions: Collisions by inject()
 val objects: GameObjects by inject()
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    player.refreshQuestJournal()
+    player.openBook("shield_of_arrav")
 }
 
 on<Command>({ prefix == "reset_cam" }) { player: Player ->

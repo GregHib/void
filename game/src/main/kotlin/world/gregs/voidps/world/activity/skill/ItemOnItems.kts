@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
+import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
 import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -33,7 +33,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val itemOnItemDefs: ItemOnItemDefinitions by inject()
 
-on<InterfaceOnInterface>({ itemOnItemDefs.contains(fromItem, toItem) }) { player: Player ->
+on<ItemOnItem>({ itemOnItemDefs.contains(fromItem, toItem) }) { player: Player ->
     val overlaps = itemOnItemDefs.get(fromItem, toItem)
     if (overlaps.isEmpty()) {
         return@on

@@ -1,7 +1,5 @@
 package world.gregs.voidps.engine.data.definition.data
 
-import world.gregs.voidps.engine.client.ui.chat.toIntRange
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 
 /**
@@ -26,17 +24,16 @@ data class Tree(
     val respawnDelay: IntRange = 0..0
 ) {
     companion object {
-        operator fun invoke(map: Map<String, Any>, itemDefinitions: ItemDefinitions) = Tree(
-            log = (map["log"] as? String)?.let { Item(it, def = itemDefinitions.get(it)) } ?: EMPTY.log,
+        operator fun invoke(map: Map<String, Any>) = Tree(
+            log = map["log"] as? Item ?: EMPTY.log,
             level = map["level"] as? Int ?: EMPTY.level,
             xp = map["xp"] as? Double ?: EMPTY.xp,
             depleteRate = map["deplete_rate"] as? Double ?: EMPTY.depleteRate,
-            chance = (map["chance"] as? String)?.toIntRange() ?: EMPTY.chance,
-            hatchetLowDifference = (map["hatchet_low_dif"] as? String)?.toIntRange() ?: EMPTY.hatchetLowDifference,
-            hatchetHighDifference = (map["hatchet_high_dif"] as? String)?.toIntRange() ?: EMPTY.hatchetHighDifference,
-            respawnDelay = (map["respawn"] as? String)?.toIntRange() ?: EMPTY.respawnDelay
+            chance = map["chance"] as? IntRange ?: EMPTY.chance,
+            hatchetLowDifference = map["hatchet_low_dif"] as? IntRange ?: EMPTY.hatchetLowDifference,
+            hatchetHighDifference = map["hatchet_high_dif"] as? IntRange ?: EMPTY.hatchetHighDifference,
+            respawnDelay = map["respawn"] as? IntRange ?: EMPTY.respawnDelay
         )
-
         val EMPTY = Tree()
     }
 }

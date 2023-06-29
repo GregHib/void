@@ -31,7 +31,7 @@ internal class TransactionControllerTest {
     @Test
     fun `Revert transaction`() {
         controller.start()
-        container.data.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
+        container.data = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
         assertTrue(controller.revert())
         assertTrue(container[0].isEmpty())
     }
@@ -43,7 +43,7 @@ internal class TransactionControllerTest {
         otherContainer.transaction.start()
 
         controller.link(otherContainer.transaction)
-        otherContainer.data.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
+        otherContainer.data = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
 
         assertTrue(controller.revert())
         assertTrue(otherContainer[0].isEmpty())
@@ -51,7 +51,7 @@ internal class TransactionControllerTest {
 
     @Test
     fun `Revert failed if no saved container state`() {
-        container.data.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
+        container.data = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
 
         assertFalse(controller.revert())
         assertEquals("item", container[0].id)
@@ -59,12 +59,12 @@ internal class TransactionControllerTest {
 
     @Test
     fun `Revert continues for linked transactions even if failed`() {
-        container.data.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
+        container.data = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
 
         val otherContainer = Container.debug(1)
         otherContainer.transaction.start()
         controller.link(otherContainer.transaction)
-        otherContainer.data.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
+        otherContainer.data = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
 
         assertFalse(controller.revert())
         assertEquals("item", container[0].id)
@@ -74,7 +74,7 @@ internal class TransactionControllerTest {
     @Test
     fun `Commit transaction`() {
         controller.start()
-        container.data.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
+        container.data = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
         assertTrue(controller.commit())
         assertEquals("item", container[0].id)
     }
@@ -87,8 +87,8 @@ internal class TransactionControllerTest {
 
         controller.link(otherContainer.transaction)
 
-        container.data.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
-        otherContainer.data.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
+        container.data = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
+        otherContainer.data = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
         assertTrue(controller.commit())
 
         assertEquals("item", container[0].id)
@@ -98,7 +98,7 @@ internal class TransactionControllerTest {
     @Test
     fun `Commit failed transaction`() {
         controller.start()
-        container.data.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
+        container.data = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
         controller.error = TransactionError.Invalid
         assertFalse(controller.commit())
 
@@ -114,8 +114,8 @@ internal class TransactionControllerTest {
 
         controller.link(otherContainer.transaction)
 
-        container.data.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
-        otherContainer.data.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
+        container.data = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
+        otherContainer.data = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
         otherContainer.transaction.error = TransactionError.Invalid
         assertFalse(controller.commit())
 

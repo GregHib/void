@@ -2,7 +2,7 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
+import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -25,7 +25,7 @@ for (type in listOf("magic", "melee")) {
         cancel()
     }
 
-    on<InterfaceOnNPC>({ approach && npc.id == "${type}_dummy" && it.fightStyle != type }) { player: Player ->
+    on<ItemOnNPC>({ approach && npc.id == "${type}_dummy" && it.fightStyle != type }) { player: Player ->
         player.message("You can only use ${type.toTitleCase()} against this dummy.")
         player.approachRange(10, false)
         player.mode = EmptyMode

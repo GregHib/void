@@ -6,7 +6,7 @@ import world.gregs.voidps.cache.definition.data.MapObject.Companion.id
 import world.gregs.voidps.cache.definition.data.MapObject.Companion.pack
 import world.gregs.voidps.cache.definition.data.MapObject.Companion.plane
 import world.gregs.voidps.cache.definition.data.MapObject.Companion.rotation
-import world.gregs.voidps.cache.definition.data.MapObject.Companion.type
+import world.gregs.voidps.cache.definition.data.MapObject.Companion.shape
 import world.gregs.voidps.cache.definition.data.MapObject.Companion.x
 import world.gregs.voidps.cache.definition.data.MapObject.Companion.y
 
@@ -18,7 +18,7 @@ internal class MapObjectTest {
         assertEquals(12000, x(packed))
         assertEquals(9600, y(packed))
         assertEquals(3, plane(packed))
-        assertEquals(22, type(packed))
+        assertEquals(22, shape(packed))
         assertEquals(3, rotation(packed))
     }
 }

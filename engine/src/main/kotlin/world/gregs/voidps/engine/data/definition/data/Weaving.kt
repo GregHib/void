@@ -9,7 +9,6 @@ data class Weaving(
 
     companion object {
 
-        @Suppress("UNCHECKED_CAST")
         operator fun invoke(map: Map<String, Any>) = Weaving(
             amount = map["amount"] as? Int ?: EMPTY.amount,
             to = map["to"] as? String ?: "",

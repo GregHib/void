@@ -11,7 +11,6 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.pipe.extra.ItemDefaults
 import world.gregs.voidps.tools.definition.item.pipe.extra.ItemEquipmentInfo
@@ -25,6 +24,8 @@ import world.gregs.voidps.tools.definition.item.pipe.page.UniqueIdentifiers
 import world.gregs.voidps.tools.wiki.model.Wiki
 import world.gregs.voidps.tools.wiki.model.WikiPage
 import world.gregs.voidps.tools.wiki.scrape.RunescapeWiki.export
+import world.gregs.yaml.Yaml
+import world.gregs.yaml.write.YamlWriterConfiguration
 import java.io.File
 import java.time.LocalDate
 import java.time.Month
@@ -63,9 +64,10 @@ object ItemDefinitionPipeline {
         val pages = getPages(decoder, rs2Wiki)
         val output = buildItemExtras(revisionDate, decoder, cache718, rs2Wiki, pages)
         val map = convertToYaml(output)
-        val storage = FileStorage(true)
+        val yaml = Yaml()
+        val config = YamlWriterConfiguration(quoteStrings = true)
         val file = File("items.yml")
-        storage.save(file, map)
+        yaml.save(file.path, map, config)
         val contents = "# Don't edit; apply changes to the ItemDefinitionPipeline tool's ItemManualChanges class instead.\n${file.readText()}"
         file.writeText(contents)
         println("${output.size} item definitions written to ${file.path} in ${TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - start)}s")

@@ -1,10 +1,11 @@
 package world.gregs.voidps.engine.entity.item.drop
 
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.yaml.Yaml
+import world.gregs.yaml.read.YamlReaderConfiguration
 
 @Suppress("UNCHECKED_CAST")
 class DropTables {
@@ -15,62 +16,51 @@ class DropTables {
 
     fun getValue(key: String) = tables.getValue(key)
 
-    fun load(storage: FileStorage = get(), path: String = getProperty("dropsPath")): DropTables {
+    private val defaultAmount = 1..1
+
+    fun load(yaml: Yaml = get(), path: String = getProperty("dropsPath")): DropTables {
         timedLoad("drop table") {
-            load(storage.load<Map<String, Map<String, Any>>>(path))
+            val config = object : YamlReaderConfiguration() {
+                override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
+                    value as Map<String, Any>
+                    super.add(list, if (value.containsKey("drops")) {
+                        val type = value["type"] as? TableType ?: TableType.First
+                        val roll = value["roll"] as? Int ?: 1
+                        val drops = value["drops"] as List<Drop>
+                        DropTable(type, roll, drops)
+                    } else {
+                        ItemDrop(value["id"] as String, value["amount"] as? IntRange ?: defaultAmount, value["chance"] as? Int ?: 1)
+                    }, parentMap)
+                }
+
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+                    if (key == "<<") {
+                        map.putAll(value as Map<String, Any>)
+                        return
+                    }
+                    if (indent == 0) {
+                        value as Map<String, Any>
+                        super.set(map, key, DropTable(
+                            value["type"] as? TableType ?: TableType.First,
+                            value["roll"] as? Int ?: 1,
+                            value["drops"] as List<Drop>
+                        ), indent, parentMap)
+                    } else {
+                        super.set(map, key, when (key) {
+                            "type" -> TableType.byName(value as String)
+                            "amount" -> if (value is String && value.contains("-")) {
+                                value.toIntRange(inclusive = true)
+                            } else {
+                                value as Int..value
+                            }
+                            else -> value
+                        }, indent, parentMap)
+                    }
+                }
+            }
+            tables = yaml.load(path, config)
+            tables.size
         }
         return this
     }
-
-    fun load(data: Map<String, Map<String, Any>>): Int {
-        tables = data.map { (key, value) -> key to loadTable(data, value).build() }.toMap()
-        return tables.size
-    }
-
-    private fun loadTable(names: Map<String, Any>, map: Map<String, Any>): DropTable.Builder {
-        val table = DropTable.Builder()
-        if (map.containsKey("chance")) {
-            table.withChance(map.chance())
-        }
-        if (map.containsKey("roll")) {
-            table.withRoll(map.roll())
-        }
-        if (map.containsKey("type")) {
-            table.withType(TableType.byName(map["type"] as String))
-        }
-        if (map.containsKey("drops")) {
-            val drops = map["drops"] as List<Map<String, Any>>
-            for (drop in drops) {
-                if (drop.containsKey("drops") || drop.containsKey("id") && names.containsKey(drop.id())) {
-                    table.addDrop(loadTable(names, drop).build())
-                } else if(drop.containsKey("id")) {
-                    table.addDrop(ItemDrop(drop.id(), drop.amount(), drop.chance()))
-                }
-            }
-        } else if (map.containsKey("id")) {
-            val name = map.id()
-            check(names.contains(name)) { "Unable to find drop table link with name '$name'" }
-            table.addDrop(
-                loadTable(names, names[name] as Map<String, Any>)
-                    .withChance(map.chance())
-                    .build()
-            )
-        }
-        return table
-    }
-
-    private fun Map<String, Any>.id() = this["id"] as String
-    private fun Map<String, Any>.amount(): IntRange = if (containsKey("amount")) {
-        val amount = this["amount"]
-        if (amount is String && amount.contains("-")) {
-            amount.toIntRange(inclusive = true)
-        } else {
-            amount as Int..amount
-        }
-    } else {
-        1..1
-    }
-
-    private fun Map<String, Any>.roll() = (this["roll"] as? Int) ?: 1
-    private fun Map<String, Any>.chance() = (this["chance"] as? Int) ?: 1
 }

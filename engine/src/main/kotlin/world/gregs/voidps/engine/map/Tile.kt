@@ -88,17 +88,17 @@ value class Tile(override val id: Int) : Id {
 
         val EMPTY = Tile(0)
 
-        fun fromMap(map: Map<String, Any>) = Tile(map["x"] as Int, map["y"] as Int, map["plane"] as? Int ?: map["z"] as? Int ?: 0)
+        fun fromMap(map: Map<String, Any>) = Tile(map["x"] as Int, map["y"] as Int, map["plane"] as? Int ?: 0)
 
         /**
          * Index for a tile within a [Chunk]
          * Used for indexing tiles in arrays
          */
         fun index(x: Int, y: Int): Int = (x and 0x7) or ((y and 0x7) shl 3)
-        fun index(x: Int, y: Int, group: Int): Int = index(x, y) or ((group and 0x7) shl 6)
+        fun index(x: Int, y: Int, layer: Int): Int = index(x, y) or ((layer and 0x7) shl 6)
         fun indexX(index: Int) = index and 0x7
         fun indexY(index: Int) = index shr 3 and 0x7
-        fun indexGroup(index: Int) = index shr 6 and 0x7
+        fun indexLayer(index: Int) = index shr 6 and 0x7
     }
 }
 

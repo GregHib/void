@@ -11,9 +11,9 @@ import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.cache.config.encoder.ContainerEncoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.get
+import world.gregs.yaml.Yaml
 
 /**
  * Converts containers from one cache into another, dumping the default values into containers.yml
@@ -41,12 +41,12 @@ object ContainerConverter {
         val encoder = ContainerEncoder()
         val cache: Cache = get()
 
-        val storage = FileStorage()
+        val yaml = Yaml()
         val path = "./data/definitions/containers.yml"
-        val data: MutableMap<String, Any> = storage.load<Map<String, Any>>(path).toMutableMap()
+        val data: MutableMap<String, Any> = yaml.load<Map<String, Any>>(path).toMutableMap()
 
 
-        val itemDecoder = ItemDefinitions(ItemDecoder(cache)).load(FileStorage(), "./data/definitions/items.yml")
+        val itemDecoder = ItemDefinitions(ItemDecoder(cache)).load(Yaml(), "./data/definitions/items.yml")
         decoder = ContainerDecoder(cache)
         var counter = 0
         for (i in 0 until decoder.last) {
@@ -100,6 +100,6 @@ object ContainerConverter {
         }
         cache.update()
         println("Shops: $counter")
-        storage.save("containers.yml", data)
+        yaml.save("containers.yml", data)
     }
 }

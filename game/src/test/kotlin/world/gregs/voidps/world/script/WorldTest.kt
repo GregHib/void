@@ -37,7 +37,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.ObjectType
+import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -52,6 +52,7 @@ import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.NetworkGatekeeper
 import world.gregs.voidps.postCacheGameModule
 import world.gregs.voidps.script.loadScripts
+import world.gregs.voidps.world.activity.quest.bookModule
 import world.gregs.voidps.world.interact.entity.player.music.musicModule
 import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
 import world.gregs.voidps.world.interact.world.spawn.stairsModule
@@ -125,8 +126,8 @@ abstract class WorldTest : KoinTest {
         return npc
     }
 
-    fun createObject(id: String, tile: Tile = Tile.EMPTY, type: Int = ObjectType.INTERACTIVE, rotation: Int = 0): GameObject {
-        return objects.add(id, tile, type, rotation)
+    fun createObject(id: String, tile: Tile = Tile.EMPTY, shape: Int = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation: Int = 0): GameObject {
+        return objects.add(id, tile, shape, rotation)
     }
 
     fun Container.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }
@@ -138,7 +139,7 @@ abstract class WorldTest : KoinTest {
             fileProperties("/test.properties")
             properties(extraProperties)
             allowOverride(true)
-            modules(engineModule, stairsModule, musicModule, gameModule)
+            modules(engineModule, stairsModule, musicModule, bookModule, gameModule)
             modules(module {
                 single(createdAtStart = true) { cache }
                 single(createdAtStart = true) { huffman }

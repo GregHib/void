@@ -29,7 +29,8 @@ import java.lang.ref.WeakReference
 class MapCompress(
     private val file: File,
     private val collisions: Collisions,
-    private val decoder: MapDecoder
+    private val decoder: MapDecoder,
+    private val definitions: ObjectDefinitions
 ) : Runnable {
 
     private val logger = InlineLogger()
@@ -59,15 +60,19 @@ class MapCompress(
                         empty = false
                     }
                 }
-                total += def.objects.size
                 for (obj in def.objects) {
+                    if (obj.id >= definitions.definitions.size) {
+                        logger.info { "Skipped out of bounds object $obj $region" }
+                        continue
+                    }
                     val x = region.tile.x + obj.x
                     val y = region.tile.y + obj.y
                     val tile = Tile(x, y)
                     empty = false
                     val chunkX = tile.chunk.tile.x
                     val chunkY = tile.chunk.tile.y
-                    objects.getOrPut(tile.chunk) { mutableListOf() }.add(ZoneObject(obj.id, tile.x - chunkX, tile.y - chunkY, obj.plane, obj.type, obj.rotation))
+                    total++
+                    objects.getOrPut(tile.chunk) { mutableListOf() }.add(ZoneObject(obj.id, tile.x - chunkX, tile.y - chunkY, obj.plane, obj.shape, obj.rotation))
                 }
                 if (!empty) {
                     regions.add(region)
@@ -129,7 +134,7 @@ class MapCompress(
             val collisions = Collisions()
             val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions)
             MapLoader(decoder, CollisionReader(collisions), definitions, objects).run()
-            MapCompress(File("./data/map.dat"), collisions, decoder).run()
+            MapCompress(File("./data/map.dat"), collisions, decoder, definitions).run()
         }
     }
 }

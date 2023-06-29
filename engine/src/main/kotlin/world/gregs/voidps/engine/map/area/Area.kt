@@ -43,4 +43,18 @@ interface Area {
     fun toRegions(): List<Region>
 
     fun toChunks(plane: Int = 0): List<Chunk>
+
+    companion object {
+        @Suppress("UNCHECKED_CAST")
+        fun fromMap(map: Map<String, Any>, maxPlane: Int): Area {
+            val x = map["x"] as List<Int>
+            val y = map["y"] as List<Int>
+            val plane = map["plane"] as? Int
+            return if (x.size <= 2) {
+                Cuboid(x.first(), y.first(), x.last(), y.last(), plane ?: 0, plane ?: maxPlane)
+            } else {
+                Polygon(x.toIntArray(), y.toIntArray(), plane ?: 0, plane ?: maxPlane)
+            }
+        }
+    }
 }

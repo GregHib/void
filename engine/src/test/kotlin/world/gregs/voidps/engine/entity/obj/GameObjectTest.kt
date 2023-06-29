@@ -12,7 +12,7 @@ class GameObjectTest {
         assertEquals(12000, GameObject.x(hash))
         assertEquals(9600, GameObject.y(hash))
         assertEquals(3, GameObject.plane(hash))
-        assertEquals(22, GameObject.type(hash))
+        assertEquals(22, GameObject.shape(hash))
         assertEquals(3, GameObject.rotation(hash))
     }
 }

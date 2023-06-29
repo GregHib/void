@@ -2,10 +2,9 @@ package world.gregs.voidps.bot.navigation.graph
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
-import org.yaml.snakeyaml.LoaderOptions
-import org.yaml.snakeyaml.Yaml
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
@@ -15,7 +14,8 @@ import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.network.instruct.Walk
-import java.io.File
+import world.gregs.yaml.Yaml
+import world.gregs.yaml.read.YamlReaderConfiguration
 
 class NavigationGraph(
     private val definitions: ObjectDefinitions,
@@ -46,30 +46,50 @@ class NavigationGraph(
         adjacencyList.remove(node)
     }
 
-    fun load(path: String = getProperty("navGraphPath")): NavigationGraph {
+    @Suppress("UNCHECKED_CAST")
+    fun load(yaml: Yaml = get(), path: String = getProperty("navGraphPath")): NavigationGraph {
         timedLoad("ai nav graph edge") {
-            val options = LoaderOptions()
-            options.maxAliasesForCollections = Int.MAX_VALUE
-            val yaml = Yaml(options)
-            // Jackson yaml doesn't support anchors - https://github.com/FasterXML/jackson-dataformats-text/issues/98
-            val data: Map<String, Any> = yaml.load(File(path).readText(Charsets.UTF_8))
+            val config = object : YamlReaderConfiguration() {
+                override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
+                    if (parentMap == "steps") {
+                        super.add(list, toInstruction(value as Map<String, Any>) ?: return, parentMap)
+                    } else {
+                        super.add(list, value, parentMap)
+                    }
+                }
+
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+                    if (key == "<<") {
+                        map.putAll(value as Map<String, Any>)
+                    } else {
+                        super.set(map, key, when (key) {
+                            "tile", "from", "to" -> {
+                                val list = value as List<Int>
+                                Tile(list[0], list[1], list.getOrNull(2) ?: 0)
+                            }
+                            else -> value
+                        }, indent, parentMap)
+                    }
+                }
+            }
+            val data: Map<String, Any> = yaml.load(path, config)
             val edges = data["edges"] as Map<String, Any>
             val map = Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>>()
             var count = 0
             flatten("", edges) { path, edges ->
                 for (edge in edges) {
                     count++
-                    val start = toTile(edge["from"] as List<Int>)
-                    val end = toTile(edge["to"] as List<Int>)
+                    val start = edge["from"] as Tile
+                    val end = edge["to"] as Tile
                     var cost = edge["cost"] as? Int ?: 0
-                    val steps = edge["steps"] as? List<Map<String, Any>>
+                    val steps = edge["steps"] as? List<Instruction>
                     val conditions = edge["conditions"] as? List<Map<String, Any>>
                     val walk = steps == null
                     val instructions = if (steps == null) {
                         cost = Distance.manhattan(start.x, start.y, end.x, end.y)
                         listOf(Walk(end.x, end.y))
                     } else {
-                        steps.mapNotNull { toInstruction(it) }
+                        steps
                     }
                     map.getOrPut(start) { ObjectOpenHashSet() }.add(Edge(path, start, end, cost, instructions, conditions?.mapNotNull { toCondition(it) } ?: emptyList()))
                     if (walk) {
@@ -107,25 +127,19 @@ class NavigationGraph(
         return list
     }
 
-    private fun toTile(list: List<Int>): Tile {
-        return Tile(list[0], list[1], list.getOrNull(2) ?: 0)
-    }
-
     private fun toInstruction(map: Map<String, Any>): Instruction? {
-        when (map["type"] as String) {
+        when (map["type"] as? String) {
             "walk" -> {
-                val tile = map["tile"] as List<Int>
-                return Walk(tile[0], tile[1])
+                val tile = map["tile"] as Tile
+                return Walk(tile.x, tile.y)
             }
             "object" -> {
                 val objectId = map["object"] as Int
-                val tile = map["tile"] as List<Int>
-                val x = tile[0]
-                val y = tile[1]
+                val tile = map["tile"] as Tile
                 val option = map["option"] as String
-                val def = definitions.getOrNull(definitions.get(objectId).stringId) ?: return null
+                val def = definitions.getOrNull(objectId) ?: return null
                 val optionIndex = def.optionsIndex(option) + 1
-                return InteractObject(objectId, x, y, optionIndex)
+                return InteractObject(objectId, tile.x, tile.y, optionIndex)
             }
         }
         return null

@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.character.player.skill.exp
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Events
@@ -8,11 +7,9 @@ import world.gregs.voidps.engine.event.Events
 class Experience(
     val experience: DoubleArray = defaultExperience.clone(),
     val blocked: MutableSet<Skill> = mutableSetOf(),
-    @JsonIgnore
     private val maximum: Double = MAXIMUM_EXPERIENCE
 ) {
 
-    @JsonIgnore
     lateinit var events: Events
 
     fun get(skill: Skill): Double {

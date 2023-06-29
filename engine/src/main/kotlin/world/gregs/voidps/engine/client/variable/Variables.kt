@@ -1,22 +1,14 @@
 package world.gregs.voidps.engine.client.variable
 
-import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.databind.annotation.JsonSerialize
-import world.gregs.voidps.engine.data.serial.MapSerializer
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Events
 
 open class Variables(
-    @JsonIgnore
     private var events: Events,
-    @get:JsonProperty("variables")
-    @JsonSerialize(using = MapSerializer::class)
     val data: MutableMap<String, Any> = mutableMapOf()
 ) {
 
-    @JsonIgnore
     var bits = VariableBits(this, events)
 
     @Suppress("UNCHECKED_CAST")

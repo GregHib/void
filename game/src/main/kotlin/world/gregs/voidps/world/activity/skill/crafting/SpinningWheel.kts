@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.skill.crafting
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
+import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.replace
 import world.gregs.voidps.engine.data.definition.data.Spinning
@@ -67,7 +67,7 @@ on<ObjectOption>({ operate && obj.id.startsWith("spinning_wheel") && option == "
     start(player, obj, fibre, amount)
 }
 
-on<InterfaceOnObject>({ operate && obj.id.startsWith("spinning_wheel") && item.def.has("spinning") }) { player: Player ->
+on<ItemOnObject>({ operate && obj.id.startsWith("spinning_wheel") && item.def.has("spinning") }) { player: Player ->
     val (_, amount) = makeAmount(
         items = listOf(item.spinning.to),
         type = "Make",

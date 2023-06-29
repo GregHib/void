@@ -1,7 +1,6 @@
 package world.gregs.voidps.tools.map.obj
 
 import org.koin.core.context.startKoin
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
@@ -11,7 +10,6 @@ import world.gregs.voidps.engine.client.cacheConfigModule
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -37,8 +35,6 @@ object WorldMapLinkIdentifier {
             modules(cacheModule, cacheDefinitionModule, cacheConfigModule,
                 module {
                     allowOverride(true)
-                    single { FileStorage() }
-                    single(named("jsonStorage")) { FileStorage(json = true) }
                     single { ObjectDecoder(get(), member = true, lowDetail = false) }
                     single(createdAtStart = true) { ObjectDefinitions(get()).load(path = getProperty("objectDefinitionsPath")) }
                     single { GameObjects(get(), ChunkBatchUpdates(), get()) }
@@ -75,7 +71,7 @@ object WorldMapLinkIdentifier {
             val def = mapDecoder.getOrNull(region.id) ?: continue
             def.objects.forEach { loc ->
                 val tile = Tile(region.tile.x + loc.x, region.tile.y + loc.y, loc.plane)
-                val obj = GameObject(loc.id, tile, loc.type, loc.rotation)
+                val obj = GameObject(loc.id, tile, loc.shape, loc.rotation)
                 list.add(obj)
                 objects.add(obj)
                 objCollision.modify(obj, add = true)

@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine
 
-import org.koin.core.qualifier.named
+import it.unimi.dsi.fastutil.Hash.VERY_FAST_LOAD_FACTOR
 import org.koin.dsl.module
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
@@ -8,7 +8,6 @@ import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.data.definition.extra.*
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -27,6 +26,8 @@ import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.file.MapExtract
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.yaml.Yaml
+import world.gregs.yaml.read.YamlReaderConfiguration
 
 val engineModule = module {
     // Entities
@@ -36,13 +37,12 @@ val engineModule = module {
     single { FloorItems(get(), get(), get()).apply { get<ChunkBatchUpdates>().register(this) } }
     single { FloorItemTracking(get(), get(), get()) }
     single {
-        PlayerFactory(get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath"), get(), get(), Tile(
+        PlayerFactory(get(), get(), get(), get(), get(), get(), getProperty("savePath"), get(), get(), Tile(
             getIntProperty("homeX", 0), getIntProperty("homeY", 0), getIntProperty("homePlane", 0)
         ))
     }
     // IO
-    single { FileStorage() }
-    single(named("jsonStorage")) { FileStorage(json = true) }
+    single { Yaml(YamlReaderConfiguration(2, 8, VERY_FAST_LOAD_FACTOR)) }
     // Map
     single { ChunkBatchUpdates() }
     single { DynamicChunks(get(), get(), get()) }
@@ -77,11 +77,12 @@ val postCacheModule = module {
     single { MapExtract(get(), get(), get(), get()) }
     // Definitions
     single(createdAtStart = true) { SoundDefinitions().load() }
+    single(createdAtStart = true) { RenderEmoteDefinitions().load() }
     single(createdAtStart = true) { MidiDefinitions().load() }
     single(createdAtStart = true) { VariableDefinitions().load() }
     single(createdAtStart = true) { JingleDefinitions().load() }
     single(createdAtStart = true) { SpellDefinitions().load() }
     single(createdAtStart = true) { GearDefinitions().load() }
     single(createdAtStart = true) { ItemOnItemDefinitions().load() }
-    single(createdAtStart = true) { AccountDefinitions(get()).load() }
+    single(createdAtStart = true) { AccountDefinitions().load() }
 }

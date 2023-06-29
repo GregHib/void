@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.contain
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.client.sendContainerItems
 import world.gregs.voidps.engine.contain.remove.DefaultItemRemovalChecker
@@ -18,25 +17,15 @@ import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.get
 
 class Containers(
-    val containers: MutableMap<String, ContainerData> = mutableMapOf()
-) : MutableMap<String, ContainerData> by containers {
+    val containers: MutableMap<String, Array<Item>> = mutableMapOf()
+) : MutableMap<String, Array<Item>> by containers {
 
-    @JsonIgnore
     val instances: MutableMap<String, Container> = mutableMapOf()
 
-    @JsonIgnore
     lateinit var definitions: ContainerDefinitions
-
-    @JsonIgnore
     lateinit var itemDefinitions: ItemDefinitions
-
-    @JsonIgnore
     lateinit var validItemRule: ItemRestrictionRule
-
-    @JsonIgnore
     lateinit var events: Events
-
-    @JsonIgnore
     lateinit var normalStack: DependentOnItem
 
     fun container(definition: ContainerDefinition, secondary: Boolean = false): Container {
@@ -56,13 +45,11 @@ class Containers(
             val data = containers.getOrPut(containerId) {
                 val ids = def.ids
                 val amounts = def.amounts
-                ContainerData(
-                    if (ids != null && amounts != null) {
-                        Array(def.length) { Item(itemDefinitions.get(ids[it]).stringId, amounts[it]) }
-                    } else {
-                        Array(def.length) { Item("", removalCheck.getMinimum(it)) }
-                    }
-                )
+                if (ids != null && amounts != null) {
+                    Array(def.length) { Item(itemDefinitions.get(ids[it]).stringId, amounts[it]) }
+                } else {
+                    Array(def.length) { Item("", removalCheck.getMinimum(it)) }
+                }
             }
             val stackRule = if (shop) AlwaysStack else when (def["stack", "normal"].lowercase()) {
                 "always" -> AlwaysStack

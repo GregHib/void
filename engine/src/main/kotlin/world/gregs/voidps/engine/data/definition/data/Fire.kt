@@ -1,7 +1,5 @@
 package world.gregs.voidps.engine.data.definition.data
 
-import world.gregs.voidps.engine.client.ui.chat.toIntRange
-
 /**
  * @param level required to attempt to light
  * @param xp experience from successfully lighting a fire
@@ -20,7 +18,7 @@ data class Fire(
         operator fun invoke(map: Map<String, Any>) = Fire(
             level = map["level"] as? Int ?: EMPTY.level,
             xp = map["xp"] as? Double ?: EMPTY.xp,
-            chance = (map["chance"] as? String)?.toIntRange() ?: EMPTY.chance,
+            chance = map["chance"] as? IntRange ?: EMPTY.chance,
             life = map["life"] as? Int ?: EMPTY.life,
             colour = map["colour"] as? String ?: EMPTY.colour
         )

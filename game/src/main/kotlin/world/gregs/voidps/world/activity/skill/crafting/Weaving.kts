@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.skill.crafting
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
+import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.data.definition.data.Weaving
@@ -44,7 +44,7 @@ on<ObjectOption>({ operate && obj.id.startsWith("loom_") && option == "Weave" })
     weave(obj, item, amount)
 }
 
-on<InterfaceOnObject>({ operate && obj.id.startsWith("loom_") && item.def.has("weaving") }) { player: Player ->
+on<ItemOnObject>({ operate && obj.id.startsWith("loom_") && item.def.has("weaving") }) { player: Player ->
     val (_, amount) = makeAmount(
         items = listOf(item.weaving.to),
         type = "Make",

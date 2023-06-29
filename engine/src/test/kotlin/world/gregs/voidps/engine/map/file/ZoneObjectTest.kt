@@ -13,7 +13,7 @@ class ZoneObjectTest {
         assertEquals(7, ZoneObject.x(value))
         assertEquals(6, ZoneObject.y(value))
         assertEquals(3, ZoneObject.plane(value))
-        assertEquals(22, ZoneObject.type(value))
+        assertEquals(22, ZoneObject.shape(value))
         assertEquals(3, ZoneObject.rotation(value))
     }
 
@@ -30,7 +30,7 @@ class ZoneObjectTest {
         val value = ZoneObject.pack(51213, 0, 0, 0, 1, 1)
         val info = ZoneObject.info(value)
         assertEquals(51213, ZoneObject.infoId(info))
-        assertEquals(1, ZoneObject.infoType(info))
+        assertEquals(1, ZoneObject.infoShape(info))
         assertEquals(1, ZoneObject.infoRotation(info))
     }
 }

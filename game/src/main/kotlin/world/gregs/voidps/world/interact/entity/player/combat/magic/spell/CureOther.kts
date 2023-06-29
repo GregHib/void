@@ -1,5 +1,5 @@
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnPlayer
+import world.gregs.voidps.engine.client.ui.interact.ItemOnPlayer
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.extra.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
 
 val definitions: SpellDefinitions by inject()
 
-on<InterfaceOnPlayer>({ approach && id == "lunar_spellbook" && component == "cure_other" }) { player: Player ->
+on<ItemOnPlayer>({ approach && id == "lunar_spellbook" && component == "cure_other" }) { player: Player ->
     player.approachRange(2)
     pause()
     val spell = component

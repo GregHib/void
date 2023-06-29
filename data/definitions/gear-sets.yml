@@ -1,443 +1,390 @@
-- type: cooking
-  levels: 1-15
-  inventory:
-    - id: [ raw_anchovies, raw_shrimps, raw_beef, raw_rat_meat, raw_chicken, raw_crayfish ]
-      amount: 28
-- type: cooking
-  levels: 5-15
-  inventory:
-    - id: raw_herring
-      amount: 28
-- type: cooking
-  levels: 10-15
-  inventory:
-    - id: raw_mackerel
-      amount: 28
-- type: cooking
-  levels: 15-30
-  inventory:
-    - id: raw_trout
-      amount: 28
-- type: cooking
-  levels: 20-30
-  inventory:
-    - id: raw_pike
-      amount: 28
-- type: cooking
-  levels: 25-40
-  inventory:
-    - id: raw_salmon
-      amount: 28
-- type: cooking
-  levels: 30-40
-  inventory:
-    - id: raw_tuna
-      amount: 28
-- type: cooking
-  levels: 40-99
-  inventory:
-    - id: raw_lobster
-      amount: 28
-- type: cooking
-  levels: 45-99
-  inventory:
-    - id: raw_swordfish
-      amount: 28
-- type: cooking
-  levels: 62-99
-  inventory:
-    - id: raw_monkfish
-      amount: 28
-- type: cooking
-  levels: 80-99
-  inventory:
-    - id: raw_shark
-      amount: 28
-- type: cooking
-  levels: 82-99
-  inventory:
-    - id: raw_sea_turtle
-      amount: 28
-- type: cooking
-  levels: 88-99
-  inventory:
-    - id: raw_cavefish
-      amount: 28
-- type: cooking
-  levels: 91-99
-  inventory:
-    - id: raw_manta_ray
-      amount: 28
-- type: cooking
-  levels: 93-99
-  inventory:
-    - id: raw_rocktail
-      amount: 28
-- type: firemaking
-  levels: 1-15
-  inventory:
-    - id: tinderbox
-    - id: logs
-      amount: 27
-- type: firemaking
-  levels: 15-30
-  inventory:
-    - id: tinderbox
-    - id: oak_logs
-      amount: 27
-- type: firemaking
-  levels: 30-45
-  inventory:
-    - id: tinderbox
-    - id: willow_logs
-      amount: 27
-- type: firemaking
-  levels: 45-60
-  inventory:
-    - id: tinderbox
-    - id: maple_logs
-      amount: 27
-- type: firemaking
-  levels: 60-99
-  inventory:
-    - id: tinderbox
-    - id: yew_logs
-      amount: 27
-- type: firemaking
-  levels: 75-99
-  inventory:
-    - id: tinderbox
-    - id: magic_logs
-      amount: 27
-- type: fishing
-  levels: 1-20
-  spot: small_net_bait
-  action: Net
-  inventory:
-    - id: small_fishing_net
-- type: fishing
-  levels: 0-15
-  spot: crayfish
-  action: Cage
-  inventory:
-    - id: crayfish_cage
-- type: fishing
-  levels: 5-20
-  spot: small_net_bait
-  action: Bait
-  inventory:
-    - id: fishing_rod
-    - id: fishing_bait
-      amount: 27
-- type: fishing
-  levels: 20-40
-  spot: lure_bait
-  action: Lure
-  inventory:
-    - id: fishing_rod
-    - id: fishing_bait
-      amount: 27
-- type: fishing
-  levels: 38-40
-  spot: lure_bait
-  action: Lure
-  inventory:
-    - id: fly_fishing_rod
-    - id: feather
-      amount: 27
-- type: fishing
-  levels: 25-35
-  spot: lure_bait
-  action: Bait
-  inventory:
-    - id: fly_fishing_rod
-    - id: feather
-      amount: 27
-- type: fishing
-  levels: 62-99
-  spot: small_net_harpoon
-  action: Net
-  inventory:
-    - id: small_fishing_net
-- type: fishing
-  levels: 76-99
-  spot: big_net_harpoon
-  action: Harpoon
-  equipment:
-    weapon:
-      - id: barb_tail_harpoon
-      - id: harpoon
-- type: fishing
-  levels: 35-99
-  spot: cage_harpoon
-  action: Harpoon
-  equipment:
-    weapon:
-      - id: barb_tail_harpoon
-      - id: harpoon
-- type: fishing
-  levels: 40-50
-  spot: cage_harpoon
-  action: Cage
-  inventory:
-    - id: lobster_pot
-- type: woodcutting
-  levels: 1-6
-  equipment:
-    weapon:
-      - id: iron_hatchet
-      - id: bronze_hatchet
-- type: woodcutting
-  levels: 6-21
-  equipment:
-    weapon:
-      - id: steel_hatchet
-      - id: iron_hatchet
-      - id: bronze_hatchet
-- type: woodcutting
-  levels: 21-31
-  equipment:
-    weapon:
-      - id: mithril_hatchet
-      - id: steel_hatchet
-      - id: iron_hatchet
-      - id: bronze_hatchet
-- type: woodcutting
-  levels: 31-41
-  equipment:
-    weapon:
-      - id: adamant_hatchet
-      - id: mithril_hatchet
-      - id: steel_hatchet
-      - id: iron_hatchet
-      - id: bronze_hatchet
-- type: woodcutting
-  levels: 41-61
-  equipment:
-    weapon:
-      - id: rune_hatchet
-      - id: adamant_hatchet
-      - id: mithril_hatchet
-      - id: steel_hatchet
-      - id: iron_hatchet
-      - id: bronze_hatchet
-- type: woodcutting
-  levels: 61-99
-  equipment:
-    weapon:
-      - id: inferno_adze
-      - id: dragon_hatchet
-      - id: rune_hatchet
-      - id: adamant_hatchet
-      - id: mithril_hatchet
-      - id: steel_hatchet
-      - id: iron_hatchet
-      - id: bronze_hatchet
-- type: mining
-  levels: 1-6
-  equipment:
-    weapon:
-      - id: iron_pickaxe
-      - id: bronze_pickaxe
-- type: mining
-  levels: 6-21
-  equipment:
-    weapon:
-      - id: steel_pickaxe
-      - id: iron_pickaxe
-      - id: bronze_pickaxe
-- type: mining
-  levels: 21-31
-  equipment:
-    weapon:
-      - id: mithril_pickaxe
-      - id: steel_pickaxe
-      - id: iron_pickaxe
-      - id: bronze_pickaxe
-- type: mining
-  levels: 31-41
-  equipment:
-    weapon:
-      - id: adamant_pickaxe
-      - id: mithril_pickaxe
-      - id: steel_pickaxe
-      - id: iron_pickaxe
-      - id: bronze_pickaxe
-- type: mining
-  levels: 41-61
-  equipment:
-    weapon:
-      - id: inferno_adze
-      - id: rune_pickaxe
-      - id: adamant_pickaxe
-      - id: mithril_pickaxe
-      - id: steel_pickaxe
-      - id: iron_pickaxe
-      - id: bronze_pickaxe
-- type: mining
-  levels: 61-99
-  equipment:
-    weapon:
-      - id: dragon_pickaxe
-      - id: inferno_adze
-      - id: rune_pickaxe
-      - id: adamant_pickaxe
-      - id: mithril_pickaxe
-      - id: steel_pickaxe
-      - id: iron_pickaxe
-      - id: bronze_pickaxe
-- type: mining
-  levels: 1-6
-  inventory:
-    - id: [ iron_pickaxe, bronze_pickaxe ]
-- type: mining
-  levels: 6-21
-  inventory:
-    - id: [ steel_pickaxe, iron_pickaxe, bronze_pickaxe ]
-- type: mining
-  levels: 21-31
-  inventory:
-    - id: [ mithril_pickaxe, steel_pickaxe, iron_pickaxe ]
-- type: mining
-  levels: 31-41
-  inventory:
-    - id: [ adamant_pickaxe, mithril_pickaxe, steel_pickaxe, iron_pickaxe ]
-- type: mining
-  levels: 41-61
-  inventory:
-    - id: [ inferno_adze, rune_pickaxe, adamant_pickaxe, mithril_pickaxe ]
-- type: mining
-  levels: 61-99
-  inventory:
-    - id: [ dragon_pickaxe, inferno_adze, rune_pickaxe, adamant_pickaxe ]
-- type: magic
-  levels: 1-5
-  spell: wind_rush
-  equipment:
-    weapon:
-      - id: staff_of_air
-- type: magic
-  levels: 1-5
-  spell: wind_rush
-  inventory:
-    - id: air_rune
-      amount: 25
-- type: magic
-  levels: 5-20
-  spell: water_strike
-  equipment:
-    weapon:
-      - id: staff_of_water
-  inventory:
-    - id: air_rune
-      amount: 25
-    - id: mind_rune
-      amount: 25
-- type: magic
-  levels: 5-20
-  spell: water_strike
-  inventory:
-    - id: water_rune
-      amount: 25
-    - id: air_rune
-      amount: 25
-    - id: mind_rune
-      amount: 25
-- type: magic
-  levels: 9-20
-  spell: earth_strike
-  equipment:
-    weapon:
-      - id: staff_of_earth
-  inventory:
-    - id: air_rune
-      amount: 25
-    - id: mind_rune
-      amount: 25
-- type: magic
-  levels: 9-20
-  spell: earth_strike
-  inventory:
-    - id: earth_rune
-      amount: 50
-    - id: air_rune
-      amount: 25
-    - id: mind_rune
-      amount: 25
-- type: range
-  levels: 1-5
-  equipment:
-    weapon:
-      - id: shortbow
-    ammo:
-      - id: bronze_arrow
+cooking:
+  - levels: 1-15
+    inventory:
+      - id: [ raw_anchovies, raw_shrimps, raw_beef, raw_rat_meat, raw_chicken, raw_crayfish ]
+        amount: 28
+  - levels: 5-15
+    inventory:
+      - id: raw_herring
+        amount: 28
+  - levels: 10-15
+    inventory:
+      - id: raw_mackerel
+        amount: 28
+  - levels: 15-30
+    inventory:
+      - id: raw_trout
+        amount: 28
+  - levels: 20-30
+    inventory:
+      - id: raw_pike
+        amount: 28
+  - levels: 25-40
+    inventory:
+      - id: raw_salmon
+        amount: 28
+  - levels: 30-40
+    inventory:
+      - id: raw_tuna
+        amount: 28
+  - levels: 40-99
+    inventory:
+      - id: raw_lobster
+        amount: 28
+  - levels: 45-99
+    inventory:
+      - id: raw_swordfish
+        amount: 28
+  - levels: 62-99
+    inventory:
+      - id: raw_monkfish
+        amount: 28
+  - levels: 80-99
+    inventory:
+      - id: raw_shark
+        amount: 28
+  - levels: 82-99
+    inventory:
+      - id: raw_sea_turtle
+        amount: 28
+  - levels: 88-99
+    inventory:
+      - id: raw_cavefish
+        amount: 28
+  - levels: 91-99
+    inventory:
+      - id: raw_manta_ray
+        amount: 28
+  - levels: 93-99
+    inventory:
+      - id: raw_rocktail
+        amount: 28
+firemaking:
+  - levels: 1-15
+    inventory:
+      - id: tinderbox
+      - id: logs
+        amount: 27
+  - levels: 15-30
+    inventory:
+      - id: tinderbox
+      - id: oak_logs
+        amount: 27
+  - levels: 30-45
+    inventory:
+      - id: tinderbox
+      - id: willow_logs
+        amount: 27
+  - levels: 45-60
+    inventory:
+      - id: tinderbox
+      - id: maple_logs
+        amount: 27
+  - levels: 60-99
+    inventory:
+      - id: tinderbox
+      - id: yew_logs
+        amount: 27
+  - levels: 75-99
+    inventory:
+      - id: tinderbox
+      - id: magic_logs
+        amount: 27
+fishing:
+  - levels: 1-20
+    spot: small_net_bait
+    action: Net
+    inventory:
+      - id: small_fishing_net
+  - levels: 0-15
+    spot: crayfish
+    action: Cage
+    inventory:
+      - id: crayfish_cage
+  - levels: 5-20
+    spot: small_net_bait
+    action: Bait
+    inventory:
+      - id: fishing_rod
+      - id: fishing_bait
+        amount: 27
+  - levels: 20-40
+    spot: lure_bait
+    action: Lure
+    inventory:
+      - id: fishing_rod
+      - id: fishing_bait
+        amount: 27
+  - levels: 38-40
+    spot: lure_bait
+    action: Lure
+    inventory:
+      - id: fly_fishing_rod
+      - id: feather
+        amount: 27
+  - levels: 25-35
+    spot: lure_bait
+    action: Bait
+    inventory:
+      - id: fly_fishing_rod
+      - id: feather
+        amount: 27
+  - levels: 62-99
+    spot: small_net_harpoon
+    action: Net
+    inventory:
+      - id: small_fishing_net
+  - levels: 76-99
+    spot: big_net_harpoon
+    action: Harpoon
+    equipment:
+      weapon:
+        - id: barb_tail_harpoon
+        - id: harpoon
+  - levels: 35-99
+    spot: cage_harpoon
+    action: Harpoon
+    equipment:
+      weapon:
+        - id: barb_tail_harpoon
+        - id: harpoon
+  - levels: 40-50
+    spot: cage_harpoon
+    action: Cage
+    inventory:
+      - id: lobster_pot
+woodcutting:
+  - levels: 1-6
+    equipment:
+      weapon:
+        - id: iron_hatchet
+        - id: bronze_hatchet
+  - levels: 6-21
+    equipment:
+      weapon:
+        - id: steel_hatchet
+        - id: iron_hatchet
+        - id: bronze_hatchet
+  - levels: 21-31
+    equipment:
+      weapon:
+        - id: mithril_hatchet
+        - id: steel_hatchet
+        - id: iron_hatchet
+        - id: bronze_hatchet
+  - levels: 31-41
+    equipment:
+      weapon:
+        - id: adamant_hatchet
+        - id: mithril_hatchet
+        - id: steel_hatchet
+        - id: iron_hatchet
+        - id: bronze_hatchet
+  - levels: 41-61
+    equipment:
+      weapon:
+        - id: rune_hatchet
+        - id: adamant_hatchet
+        - id: mithril_hatchet
+        - id: steel_hatchet
+        - id: iron_hatchet
+        - id: bronze_hatchet
+  - levels: 61-99
+    equipment:
+      weapon:
+        - id: inferno_adze
+        - id: dragon_hatchet
+        - id: rune_hatchet
+        - id: adamant_hatchet
+        - id: mithril_hatchet
+        - id: steel_hatchet
+        - id: iron_hatchet
+        - id: bronze_hatchet
+mining:
+  - levels: 1-6
+    equipment:
+      weapon:
+        - id: iron_pickaxe
+        - id: bronze_pickaxe
+  - levels: 6-21
+    equipment:
+      weapon:
+        - id: steel_pickaxe
+        - id: iron_pickaxe
+        - id: bronze_pickaxe
+  - levels: 21-31
+    equipment:
+      weapon:
+        - id: mithril_pickaxe
+        - id: steel_pickaxe
+        - id: iron_pickaxe
+        - id: bronze_pickaxe
+  - levels: 31-41
+    equipment:
+      weapon:
+        - id: adamant_pickaxe
+        - id: mithril_pickaxe
+        - id: steel_pickaxe
+        - id: iron_pickaxe
+        - id: bronze_pickaxe
+  - levels: 41-61
+    equipment:
+      weapon:
+        - id: inferno_adze
+        - id: rune_pickaxe
+        - id: adamant_pickaxe
+        - id: mithril_pickaxe
+        - id: steel_pickaxe
+        - id: iron_pickaxe
+        - id: bronze_pickaxe
+  - levels: 61-99
+    equipment:
+      weapon:
+        - id: dragon_pickaxe
+        - id: inferno_adze
+        - id: rune_pickaxe
+        - id: adamant_pickaxe
+        - id: mithril_pickaxe
+        - id: steel_pickaxe
+        - id: iron_pickaxe
+        - id: bronze_pickaxe
+  - levels: 1-6
+    inventory:
+      - id: [ iron_pickaxe, bronze_pickaxe ]
+  - levels: 6-21
+    inventory:
+      - id: [ steel_pickaxe, iron_pickaxe, bronze_pickaxe ]
+  - levels: 21-31
+    inventory:
+      - id: [ mithril_pickaxe, steel_pickaxe, iron_pickaxe ]
+  - levels: 31-41
+    inventory:
+      - id: [ adamant_pickaxe, mithril_pickaxe, steel_pickaxe, iron_pickaxe ]
+  - levels: 41-61
+    inventory:
+      - id: [ inferno_adze, rune_pickaxe, adamant_pickaxe, mithril_pickaxe ]
+  - levels: 61-99
+    inventory:
+      - id: [ dragon_pickaxe, inferno_adze, rune_pickaxe, adamant_pickaxe ]
+magic:
+  - levels: 1-5
+    spell: wind_rush
+    equipment:
+      weapon:
+        - id: staff_of_air
+  - levels: 1-5
+    spell: wind_rush
+    inventory:
+      - id: air_rune
+        amount: 25
+  - levels: 5-20
+    spell: water_strike
+    equipment:
+      weapon:
+        - id: staff_of_water
+    inventory:
+      - id: air_rune
+        amount: 25
+      - id: mind_rune
+        amount: 25
+  - levels: 5-20
+    spell: water_strike
+    inventory:
+      - id: water_rune
+        amount: 25
+      - id: air_rune
+        amount: 25
+      - id: mind_rune
+        amount: 25
+  - levels: 9-20
+    spell: earth_strike
+    equipment:
+      weapon:
+        - id: staff_of_earth
+    inventory:
+      - id: air_rune
+        amount: 25
+      - id: mind_rune
+        amount: 25
+  - levels: 9-20
+    spell: earth_strike
+    inventory:
+      - id: earth_rune
         amount: 50
-      - id: iron_arrow
-        amount: 50
-  inventory:
-    - id: [ cooked_chicken, cooked_meat, shrimps, anchovies, sardine, herring ]
-      amount: 5
-- type: range
-  levels: 1-5
-  equipment:
-    weapon:
-      - id: shortbow
-    ammo:
-      - id: bronze_arrow
-        amount: 50
-      - id: iron_arrow
-        amount: 50
-- type: melee
-  levels: 1-5
-  equipment:
-    weapon:
-      - id: iron_scimitar
-      - id: bronze_scimitar
-      - id: iron_battleaxe
-      - id: iron_longsword
-      - id: iron_sword
-      - id: bronze_sword
-      - id: bronze_longsword
-      - id: bronze_dagger
-  inventory:
-    - id: [ cooked_chicken, cooked_meat, shrimps, anchovies, sardine, herring ]
-      amount: 5
-- type: melee
-  levels: 1-5
-  equipment:
-    weapon:
-      - id: iron_scimitar
-      - id: bronze_scimitar
-      - id: iron_battleaxe
-      - id: iron_longsword
-      - id: iron_sword
-      - id: bronze_sword
-      - id: bronze_longsword
-      - id: bronze_dagger
-- type: melee
-  levels: 5-10
-  equipment:
-    weapon:
-      - id: steel_scimitar
-      - id: iron_scimitar
-      - id: steel_battleaxe
-      - id: steel_longsword
-      - id: steel_sword
-      - id: iron_sword
-      - id: iron_longsword
-      - id: iron_dagger
-  inventory:
-    - id: [ cooked_chicken, cooked_meat, shrimps, anchovies, sardine, herring, mackerel, trout ]
-      amount: 5
-- type: melee
-  levels: 5-10
-  equipment:
-    weapon:
-      - id: steel_scimitar
-      - id: iron_scimitar
-      - id: steel_battleaxe
-      - id: steel_longsword
-      - id: steel_sword
-      - id: iron_sword
-      - id: iron_longsword
-      - id: iron_dagger
+      - id: air_rune
+        amount: 25
+      - id: mind_rune
+        amount: 25
+range:
+  - levels: 1-5
+    equipment:
+      weapon:
+        - id: shortbow
+      ammo:
+        - id: bronze_arrow
+          amount: 50
+        - id: iron_arrow
+          amount: 50
+    inventory:
+      - id: [ cooked_chicken, cooked_meat, shrimps, anchovies, sardine, herring ]
+        amount: 5
+  - levels: 1-5
+    equipment:
+      weapon:
+        - id: shortbow
+      ammo:
+        - id: bronze_arrow
+          amount: 50
+        - id: iron_arrow
+          amount: 50
+melee:
+  - levels: 1-5
+    equipment:
+      weapon:
+        - id: iron_scimitar
+        - id: bronze_scimitar
+        - id: iron_battleaxe
+        - id: iron_longsword
+        - id: iron_sword
+        - id: bronze_sword
+        - id: bronze_longsword
+        - id: bronze_dagger
+    inventory:
+      - id: [ cooked_chicken, cooked_meat, shrimps, anchovies, sardine, herring ]
+        amount: 5
+  - levels: 1-5
+    equipment:
+      weapon:
+        - id: iron_scimitar
+        - id: bronze_scimitar
+        - id: iron_battleaxe
+        - id: iron_longsword
+        - id: iron_sword
+        - id: bronze_sword
+        - id: bronze_longsword
+        - id: bronze_dagger
+  - levels: 5-10
+    equipment:
+      weapon:
+        - id: steel_scimitar
+        - id: iron_scimitar
+        - id: steel_battleaxe
+        - id: steel_longsword
+        - id: steel_sword
+        - id: iron_sword
+        - id: iron_longsword
+        - id: iron_dagger
+    inventory:
+      - id: [ cooked_chicken, cooked_meat, shrimps, anchovies, sardine, herring, mackerel, trout ]
+        amount: 5
+  - levels: 5-10
+    equipment:
+      weapon:
+        - id: steel_scimitar
+        - id: iron_scimitar
+        - id: steel_battleaxe
+        - id: steel_longsword
+        - id: steel_sword
+        - id: iron_sword
+        - id: iron_longsword
+        - id: iron_dagger

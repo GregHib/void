@@ -70,9 +70,22 @@ data class BodyParts(
         parts[part.ordinal] = when {
             showItem(part, item) -> if (item.def.has("equip")) item.def["equip", -1] or 0x8000 else 0
             showBodyPart(part, item) -> looks[part.index] + 0x100
+            !skip && showDefault(part) ->
+                (if (male) DEFAULT_LOOK_MALE else DEFAULT_LOOK_FEMALE)[part.index] + 0x100
             else -> 0
         }
         return before != parts[part.ordinal]
+    }
+
+    private fun showDefault(part: BodyPart): Boolean {
+        if (part != BodyPart.Arms) {
+            return false
+        }
+        val chest = equipment[BodyPart.Chest.slot.index]
+        if (chest.isEmpty() || chest.type != EquipType.Sleeveless) {
+            return false
+        }
+        return part.index != -1 && looks[part.index] < 0
     }
 
     private fun showItem(part: BodyPart, item: Item): Boolean {

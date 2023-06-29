@@ -10,7 +10,6 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.data.definition.extra.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
@@ -18,6 +17,7 @@ import world.gregs.voidps.engine.data.definition.extra.SoundDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
+import world.gregs.yaml.Yaml
 import java.io.File
 
 object SkillDataConverter {
@@ -27,14 +27,13 @@ object SkillDataConverter {
 
         val koin = startKoin {
             modules(module {
-                single { FileStorage() }
                 single { ItemDefinitions(ItemDecoder(get())).load(get(), "./data/definitions/items.yml") }
                 single { CacheDelegate("./data/cache/") as Cache }
             })
         }.koin
 
         val cache: Cache = koin.get()
-        val storage: FileStorage = get()
+        val storage: Yaml = get()
         val items: ItemDefinitions = get()
         val sounds = SoundDefinitions().load(storage, "./data/definitions/sounds.yml")
         val animations = AnimationDefinitions(AnimationDecoder(cache)).load(storage, "./data/definitions/animations.yml")

@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.client.variable
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import world.gregs.voidps.engine.data.definition.config.VariableDefinition.Companion.persist
 import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.event.Events
@@ -9,13 +8,10 @@ import world.gregs.voidps.network.Client
 class PlayerVariables(
     events: Events,
     data: MutableMap<String, Any>,
-    @JsonIgnore
     var definitions: VariableDefinitions = VariableDefinitions(),
-    @JsonIgnore
     val temp: MutableMap<String, Any> = mutableMapOf()
 ) : Variables(events, data) {
 
-    @JsonIgnore
     var client: Client? = null
 
     @Suppress("UNCHECKED_CAST")

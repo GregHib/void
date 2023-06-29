@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.ObjectGroup
+import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Areas
@@ -59,10 +59,10 @@ suspend fun Bot.light(map: MapArea, lighter: Item, logs: Item) {
     goToArea(map)
     val lighterIndex = player.inventory.indexOf(lighter.id)
     while (player.inventory.contains(logs.id)) {
-        if (objects.getGroup(player.tile, ObjectGroup.INTERACTIVE) != null) {
+        if (objects.getLayer(player.tile, ObjectLayer.GROUND) != null) {
             val spot = player.tile
                 .toCuboid(1)
-                .firstOrNull { objects.getGroup(it, ObjectGroup.INTERACTIVE) == null }
+                .firstOrNull { objects.getLayer(it, ObjectLayer.GROUND) == null }
             if (spot == null) {
                 await("tick")
                 if (player.inventory.spaces < 4) {

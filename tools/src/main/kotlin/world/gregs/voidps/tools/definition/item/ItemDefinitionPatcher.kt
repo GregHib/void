@@ -5,9 +5,8 @@ import org.koin.fileProperties
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
-import java.io.File
+import world.gregs.yaml.Yaml
 
 object ItemDefinitionPatcher {
     @JvmStatic
@@ -17,9 +16,9 @@ object ItemDefinitionPatcher {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = ItemDecoder(koin.get())
-        val storage = FileStorage(true)
-        val current = ItemDefinitions(ItemDecoder(koin.get())).load(storage, "./data/definitions/items.yml")
-        val newer = ItemDefinitions(ItemDecoder(koin.get())).load(storage, "./items.yml")
+        val yaml = Yaml()
+        val current = ItemDefinitions(ItemDecoder(koin.get())).load(yaml, "./data/definitions/items.yml")
+        val newer = ItemDefinitions(ItemDecoder(koin.get())).load(yaml, "./items.yml")
         val map = mutableMapOf<Int, Double>()
         for (id in decoder.indices) {
             val def = current.getOrNull(id) ?: continue
@@ -45,7 +44,6 @@ object ItemDefinitionPatcher {
                 println("No name for $id $changes")
             }
         }
-        val file = File("./item-definition-extras-patched.yml")
-        storage.save(file, linkedMap)
+        yaml.save("./item-definition-extras-patched.yml", linkedMap)
     }
 }

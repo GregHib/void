@@ -1,7 +1,6 @@
 package world.gregs.voidps.tools.detail
 
 import org.koin.core.context.startKoin
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
@@ -11,8 +10,8 @@ import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
+import world.gregs.yaml.Yaml
 
 /**
  * Dumps unique string identifiers for animation ids
@@ -27,12 +26,11 @@ object AnimationNames {
         val koin = startKoin {
             fileProperties("/tool.properties")
             modules(cacheModule, cacheDefinitionModule, module {
-                single { FileStorage() }
-                single(named("jsonStorage")) { FileStorage(json = true) }
+                single { Yaml() }
             })
         }.koin
         val cache: Cache = koin.get()
-        val storage: FileStorage = koin.get()
+        val yaml: Yaml = koin.get()
         val decoder = AnimationDecoder(cache)
         val itemDecoder = ItemDecoder(cache)
         val renders = getRenderAnimations(cache)
@@ -55,7 +53,7 @@ object AnimationNames {
         val sorted = map.flatMap {
             it.value.sortedBy { value -> value }.mapIndexed { index, i -> (if(index > 0) "${it.key}_${index + 1}" else it.key) to Ids(i) }
         }.sortedBy { it.second.id }.toMap()
-        storage.save(path, sorted)
+        yaml.save(path, sorted)
         println("${sorted.size} animation identifiers dumped to $path.")
     }
 
