@@ -40450,7 +40450,8 @@ polished_bat_wing:
   <<: *polished_ram_skull
   id: 7835
 rat_bone:
-  id: ([0-9]+)
+  <<: *goblin_skull
+  id: 7836
 bone_in_vinegar_rat_bone:
   id: 7837
   tradeable: false
