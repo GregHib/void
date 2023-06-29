@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data.definition.extra
 
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.data.DefinitionConfig
@@ -35,16 +34,12 @@ class NPCDefinitions(
             this.ids = ids
             val config = object : DefinitionConfig<NPCDefinition>(ids, definitions) {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
-                    if (parentMap == "items" || parentMap == "bait") {
-                        super.add(list, Item(value as String, def = ItemDefinition.EMPTY), parentMap)
-                    } else {
-                        super.add(list, value, parentMap)
-                    }
+                    super.add(list, Item(value as String, amount = 1, def = itemDefinitions.get(value)), parentMap)
                 }
 
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                     super.set(map, key,
-                        if (indent == 0 && key == "fishing") {
+                        if (indent == 1 && key == "fishing") {
                             (value as Map<String, Map<String, Any>>).mapValues { Spot(it.value) }
                         } else {
                             value
