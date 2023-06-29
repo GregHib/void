@@ -49,7 +49,7 @@ object ObjectGroup {
     )
 
     /**
-     * Get the [ObjectGroup] for an [ObjectType]
+     * Get the [ObjectGroup] for an [ObjectShape]
      */
     fun group(type: Int) = groups[type]
 }

@@ -192,7 +192,7 @@ class ObjectPainter(
         val localX = obj.x
         val localY = obj.y
         val rotation = obj.rotation
-        val type = obj.type
+        val type = obj.shape
         val bool_65_ = definition.animations == null && definition.transforms == null && !definition.aBoolean2998 && !definition.aBoolean2992
         val baseX = (offsetX * 64) + localX
         val baseY = (offsetY * 64) + localY

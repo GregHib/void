@@ -13,5 +13,5 @@ data class ObjectTargetStrategy(
     override val sizeX = obj.def.sizeX
     override val sizeY = obj.def.sizeY
     override val rotation: Int = obj.rotation
-    override val exitStrategy: Int = obj.type
+    override val exitStrategy: Int = obj.shape
 }

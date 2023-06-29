@@ -67,7 +67,7 @@ internal class ObjectTest : WorldTest() {
         tick()
 
         // The one in Objects has wrong id as config replace id disabled.
-        val ladder = GameObject(id = 36769, tile = Tile(3229, 3213, 1), type = ObjectGroup.INTERACTIVE, rotation = 3)
+        val ladder = GameObject(id = 36769, tile = Tile(3229, 3213, 1), shape = ObjectGroup.INTERACTIVE, rotation = 3)
         player.objectOption(ladder, "Climb-down")
         tick(3)
 

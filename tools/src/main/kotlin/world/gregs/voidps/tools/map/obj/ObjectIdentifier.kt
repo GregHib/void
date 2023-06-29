@@ -233,7 +233,7 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
         val tiles = linker.getAvailableTiles(this).toSet()
         val openId: Int? = def.getOrNull("open")
         if (openId != null) {
-            val openObj = GameObject(openId, tile, type, rotation)
+            val openObj = GameObject(openId, tile, shape, rotation)
             return openObj.options(tiles) + options(tiles)
         }
         return options(tiles)

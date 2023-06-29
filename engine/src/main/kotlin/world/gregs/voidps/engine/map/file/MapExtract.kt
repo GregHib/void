@@ -146,7 +146,7 @@ class MapExtract(
             val rotation = (obj.rotation + chunkRotation) and 0x3
             val rotX = chunkX + rotateX(obj.x, obj.y, def.sizeX, def.sizeY, rotation, chunkRotation)
             val rotY = chunkY + rotateY(obj.x, obj.y, def.sizeX, def.sizeY, rotation, chunkRotation)
-            objects.set(obj.id, rotX, rotY, obj.plane, obj.type, rotation, def)
+            objects.set(obj.id, rotX, rotY, obj.plane, obj.shape, rotation, def)
         }
     }
 

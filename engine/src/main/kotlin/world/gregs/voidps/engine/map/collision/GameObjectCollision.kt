@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.map.collision
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectType
+import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.file.ZoneObject
@@ -12,7 +12,7 @@ class GameObjectCollision(
     private val collisions: Collisions
 ) {
     fun modify(obj: GameObject, add: Boolean) {
-        modify(obj.def, obj.x, obj.y, obj.plane, obj.type, obj.rotation, add)
+        modify(obj.def, obj.x, obj.y, obj.plane, obj.shape, obj.rotation, add)
     }
 
     fun modify(def: ObjectDefinition, x: Int, y: Int, plane: Int, type: Int, rotation: Int, add: Boolean) {
@@ -20,11 +20,11 @@ class GameObjectCollision(
             return
         }
         when (type) {
-            ObjectType.LENGTHWISE_WALL -> modifyWall(x, y, plane, def.block, cardinal[(rotation + 3) and 0x3], add)
-            ObjectType.TRIANGULAR_CORNER, ObjectType.RECTANGULAR_CORNER -> modifyWall(x, y, plane, def.block, ordinal[rotation], add)
-            ObjectType.WALL_CORNER -> modifyWallCorner(x, y, plane, def.block, ordinal[rotation], add)
-            in ObjectType.DIAGONAL_WALL until ObjectType.FLOOR_DECORATION -> modifyObject(def, x, y, plane, rotation, def.block, add)
-            ObjectType.FLOOR_DECORATION -> if (def.interactive == 1 && def.solid == 1) modifyCardinal(x, y, plane, def.block, add)
+            ObjectShape.WALL_STRAIGHT -> modifyWall(x, y, plane, def.block, cardinal[(rotation + 3) and 0x3], add)
+            ObjectShape.WALL_DIAGONAL_CORNER, ObjectShape.WALL_SQUARE_CORNER -> modifyWall(x, y, plane, def.block, ordinal[rotation], add)
+            ObjectShape.WALL_CORNER -> modifyWallCorner(x, y, plane, def.block, ordinal[rotation], add)
+            in ObjectShape.WALL_DIAGONAL until ObjectShape.GROUND_DECOR -> modifyObject(def, x, y, plane, rotation, def.block, add)
+            ObjectShape.GROUND_DECOR -> if (def.interactive == 1 && def.solid == 1) modifyCardinal(x, y, plane, def.block, add)
         }
     }
 
@@ -36,12 +36,12 @@ class GameObjectCollision(
         val y = obj.y + (Chunk.y(chunk) shl 3)
         val plane = obj.plane
         val rotation = obj.rotation
-        when (obj.type) {
-            ObjectType.LENGTHWISE_WALL -> modifyWall(x, y, plane, def.block, cardinal[(rotation + 3) and 0x3], true)
-            ObjectType.TRIANGULAR_CORNER, ObjectType.RECTANGULAR_CORNER -> modifyWall(x, y, plane, def.block, ordinal[rotation], true)
-            ObjectType.WALL_CORNER -> modifyWallCorner(x, y, plane, def.block, ordinal[rotation], true)
-            in ObjectType.DIAGONAL_WALL until ObjectType.FLOOR_DECORATION -> modifyObject(def, x, y, plane, rotation, def.block, true)
-            ObjectType.FLOOR_DECORATION -> if (def.interactive == 1 && def.solid == 1) modifyCardinal(x, y, plane, def.block, true)
+        when (obj.shape) {
+            ObjectShape.WALL_STRAIGHT -> modifyWall(x, y, plane, def.block, cardinal[(rotation + 3) and 0x3], true)
+            ObjectShape.WALL_DIAGONAL_CORNER, ObjectShape.WALL_SQUARE_CORNER -> modifyWall(x, y, plane, def.block, ordinal[rotation], true)
+            ObjectShape.WALL_CORNER -> modifyWallCorner(x, y, plane, def.block, ordinal[rotation], true)
+            in ObjectShape.WALL_DIAGONAL until ObjectShape.GROUND_DECOR -> modifyObject(def, x, y, plane, rotation, def.block, true)
+            ObjectShape.GROUND_DECOR -> if (def.interactive == 1 && def.solid == 1) modifyCardinal(x, y, plane, def.block, true)
         }
     }
 

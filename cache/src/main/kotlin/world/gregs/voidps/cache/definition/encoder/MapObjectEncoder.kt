@@ -21,7 +21,7 @@ class MapObjectEncoder : DefinitionEncoder<MapDefinition> {
                 val dif = local - location
                 location += dif
                 writeSmart(dif + 1)
-                writeSmart(loc.rotation or (loc.type shl 2))
+                writeSmart(loc.rotation or (loc.shape shl 2))
             }
             writeSmart(0)
         }

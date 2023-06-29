@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.ObjectType
+import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -63,11 +63,11 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
         batches.add(chunk, update)
         player.tile = Tile(20, 20)
         val objects = GameObjects(GameObjectCollision(Collisions()), ChunkBatchUpdates(), mockk(relaxed = true), storeUnused = true)
-        objects.set(id = 1234, x = 21, y = 20, plane = 0, type = ObjectType.INTERACTIVE_WALL_DECORATION, rotation = 0, definition = ObjectDefinition.EMPTY)
+        objects.set(id = 1234, x = 21, y = 20, plane = 0, shape = ObjectShape.WALL_DECOR_STRAIGHT_NO_OFFSET, rotation = 0, definition = ObjectDefinition.EMPTY)
         batches.register(objects)
-        val added = GameObject(4321, Tile(20, 21), ObjectType.INTERACTIVE, 0)
+        val added = GameObject(4321, Tile(20, 21), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
         objects.add(added, collision = false) // Avoid koin
-        val removed = GameObject(1234, Tile(21, 20), ObjectType.INTERACTIVE_WALL_DECORATION, 0)
+        val removed = GameObject(1234, Tile(21, 20), ObjectShape.WALL_DECOR_STRAIGHT_NO_OFFSET, 0)
         objects.remove(removed, collision = false)
         player["logged_in"] = true
         // When
@@ -75,8 +75,8 @@ internal class ChunkBatchUpdatesTest : KoinMock() {
         // Then
         verify(exactly = 1) {
             client.clearChunk(2, 2, 0)
-            client.send(ObjectRemoval(tile = 344084, type = ObjectType.INTERACTIVE_WALL_DECORATION, rotation = 0))
-            client.send(ObjectAddition(tile = 327701, id = 4321, type = ObjectType.INTERACTIVE, rotation = 0))
+            client.send(ObjectRemoval(tile = 344084, type = ObjectShape.WALL_DECOR_STRAIGHT_NO_OFFSET, rotation = 0))
+            client.send(ObjectAddition(tile = 327701, id = 4321, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
         }
     }
 

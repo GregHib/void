@@ -48,7 +48,7 @@ class MapLoader(
                 continue
             }
             val definition = definitions.get(location.id)
-            objects.set(location.id, x + location.x, y + location.y, location.plane, location.type, location.rotation, definition)
+            objects.set(location.id, x + location.x, y + location.y, location.plane, location.shape, location.rotation, definition)
         }
         return true
     }

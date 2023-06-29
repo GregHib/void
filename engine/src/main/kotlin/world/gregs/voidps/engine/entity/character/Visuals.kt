@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectType
+import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Distance
@@ -253,8 +253,8 @@ fun Character.face(entity: Entity, update: Boolean = true) {
     val tile = nearestTile(entity)
     if (!face(tile, update) && entity is GameObject) {
         when {
-            ObjectType.isWall(entity.type) -> face(Direction.cardinal[(entity.rotation + 3) and 0x3], update)
-            ObjectType.isCorner(entity.type) -> face(Direction.ordinal[entity.rotation], update)
+            ObjectShape.isWall(entity.shape) -> face(Direction.cardinal[(entity.rotation + 3) and 0x3], update)
+            ObjectShape.isCorner(entity.shape) -> face(Direction.ordinal[entity.rotation], update)
             else -> {
                 val delta = tile.add(entity.width, entity.height).delta(entity.tile.add(entity.width, entity.height))
                 turn(delta, update)

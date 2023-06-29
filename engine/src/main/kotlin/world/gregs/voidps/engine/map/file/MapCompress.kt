@@ -72,7 +72,7 @@ class MapCompress(
                     val chunkX = tile.chunk.tile.x
                     val chunkY = tile.chunk.tile.y
                     total++
-                    objects.getOrPut(tile.chunk) { mutableListOf() }.add(ZoneObject(obj.id, tile.x - chunkX, tile.y - chunkY, obj.plane, obj.type, obj.rotation))
+                    objects.getOrPut(tile.chunk) { mutableListOf() }.add(ZoneObject(obj.id, tile.x - chunkX, tile.y - chunkY, obj.plane, obj.shape, obj.rotation))
                 }
                 if (!empty) {
                     regions.add(region)

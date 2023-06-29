@@ -43,8 +43,8 @@ object ObjectUsageFinder {
         for ((region, list) in objects) {
             for (obj in list) {
                 val def = decoder.getOrNull(obj.id) ?: continue
-                if (obj.type == 0 && def.solid != 1 && !def.blocksSky && !def.ignoreOnRoute && def.options?.any { it != null && it != "Examine" } == true) {
-                    println("Found ${obj.id} ${obj.type} - ${region.tile.x + obj.x}, ${region.tile.y + obj.y}, ${obj.plane}")
+                if (obj.shape == 0 && def.solid != 1 && !def.blocksSky && !def.ignoreOnRoute && def.options?.any { it != null && it != "Examine" } == true) {
+                    println("Found ${obj.id} ${obj.shape} - ${region.tile.x + obj.x}, ${region.tile.y + obj.y}, ${obj.plane}")
                 }
             }
 //            val obj = list.firstOrNull { it.id == objectId } ?: continue
