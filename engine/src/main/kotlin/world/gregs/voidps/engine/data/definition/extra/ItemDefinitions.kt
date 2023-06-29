@@ -66,6 +66,10 @@ class ItemDefinitions(
         }
 
         override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+            if (key == "<<") {
+                map.putAll(value as Map<String, Any>)
+                return
+            }
             super.set(map, key, when (indent) {
                 0 -> value
                 1 -> when (key) {

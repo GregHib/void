@@ -51,7 +51,9 @@ class ObjectDefinitions(
                 }
 
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-                    if (indent == 1) {
+                    if (key == "<<") {
+                        map.putAll(value as Map<String, Any>)
+                    } else if (indent == 1) {
                         super.set(map, key,
                             when (key) {
                                 "pickable" -> Pickable(value as Map<String, Any>)
@@ -69,6 +71,7 @@ class ObjectDefinitions(
                 }
             }
             yaml.load<Any>(path, config)
+            println(definitions[11938])
             for (def in definitions) {
                 def.transforms = def.transformIds?.map { if (it == -1) null else get(it).stringId }?.toTypedArray()
             }

@@ -38,6 +38,10 @@ class NPCDefinitions(
                 }
 
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+                    if (key == "<<") {
+                        map.putAll(value as Map<String, Any>)
+                        return
+                    }
                     super.set(map, key,
                         if (indent == 1 && key == "fishing") {
                             (value as Map<String, Map<String, Any>>).mapValues { Spot(it.value) }
