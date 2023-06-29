@@ -113,6 +113,7 @@ holy_grail:
   use: "Quest"
   kept: "Wilderness"
 white_cog:
+  &white_cog
   id: 20
   tradeable: false
   weight: 1.0
@@ -162,6 +163,7 @@ insect_repellent:
   examine: "Drives away all known 6 legged creatures."
   kept: "Wilderness"
 tinderbox_2:
+  &tinderbox_2
   id: 29
   limit: 5000
   weight: 0.035
@@ -816,6 +818,7 @@ super_antipoison_1:
   examine: "1 dose of super antipoison potion."
 super_antipoison_1_noted: 186
 weapon_poison:
+  &weapon_poison
   id: 187
   weight: 0.025
   examine: "A vial of weapon poison."
@@ -1201,6 +1204,7 @@ sheep_feed:
   use: "Quest"
   kept: "Wilderness"
 sheep_bones_1:
+  &sheep_bones_1
   id: 280
   tradeable: false
   weight: 1.36
@@ -1278,6 +1282,7 @@ book_on_baxtorian:
   examine: "A book on elven history in northern Gielinor."
   kept: "Wilderness"
 a_key:
+  &a_key
   id: 293
   tradeable: false
   weight: 0.01
@@ -2030,6 +2035,7 @@ bird_feed:
   use: "Quest"
   kept: "Wilderness"
 key_biohazard:
+  &key_biohazard
   id: 423
   tradeable: false
   weight: 0.01
@@ -2225,6 +2231,7 @@ scorpion_cage:
   use: "Quest"
   kept: "Wilderness"
 scorpion_cage_taverley:
+  &scorpion_cage_taverley
   id: 457
   tradeable: false
   weight: 0.175
@@ -2233,6 +2240,7 @@ scorpion_cage_taverley:
   use: "Quest"
   kept: "Wilderness"
 scorpion_cage_taverley_outpost:
+  &scorpion_cage_taverley_outpost
   id: 458
   tradeable: false
   weight: 0.2
@@ -2325,6 +2333,7 @@ broken_pickaxe_rune:
   use: "Removed"
 broken_pickaxe_noted_6: 479
 pickaxe_head_bronze:
+  &pickaxe_head_bronze
   id: 480
   bankable: false
   weight: 1.814
@@ -2416,6 +2425,7 @@ broken_hatchet_rune:
   use: "Removed"
 broken_hatchet_noted_7: 507
 hatchet_head_bronze:
+  &hatchet_head_bronze
   id: 508
   bankable: false
   weight: 0.1
@@ -2447,6 +2457,7 @@ hatchet_head_rune:
   id: 520
 hatchet_head_noted_7: 521
 enchanted_beef:
+  &enchanted_beef
   id: 522
   tradeable: false
   weight: 0.5
@@ -2565,6 +2576,7 @@ shade_robe_top:
   examine: "I feel closer to the gods when I am wearing this."
   kept: "Wilderness"
 picture_6:
+  &picture_6
   id: 547
   tradeable: false
   weight: 0.453
@@ -2928,6 +2940,7 @@ zadimus_corpse:
   use: "Quest"
   kept: "Wilderness"
 locating_crystal:
+  &locating_crystal
   id: 611
   tradeable: false
   weight: 0.907
@@ -2981,6 +2994,7 @@ bone_beads:
   use: "Quest"
   kept: "Reclaim"
 paramaya_ticket:
+  &paramaya_ticket
   id: 619
   tradeable: false
   weight: 0.004
@@ -3732,6 +3746,7 @@ blue_hat_legends_quest:
   use: "Quest"
   kept: "Wilderness"
 chunk_of_crystal:
+  &chunk_of_crystal
   id: 741
   tradeable: false
   weight: 0.05
@@ -3745,6 +3760,7 @@ lump_of_crystal:
   <<: *chunk_of_crystal
   id: 743
 heart_crystal:
+  &heart_crystal
   id: 744
   tradeable: false
   weight: 0.15
@@ -4020,6 +4036,7 @@ crest_part_avan:
   use: "Quest"
   kept: "Wilderness"
 crest_part_caleb:
+  &crest_part_caleb
   id: 780
   tradeable: false
   weight: 1.36
@@ -4952,6 +4969,7 @@ bronze_bolts:
   slot: "Ammo"
   examine: "Bronze ammunition for crossbows."
 bronze_bolts_p:
+  &bronze_bolts_p
   id: 878
   limit: 10000
   range_str: 10.0
@@ -4988,6 +5006,7 @@ bronze_arrow:
   examine: "Ammunition for shieldbows and shortbows."
   kept: "Wilderness"
 bronze_arrow_p:
+  &bronze_arrow_p
   id: 883
   limit: 10000
   range_str: 7.0
@@ -5003,6 +5022,7 @@ iron_arrow:
   slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 iron_arrow_p:
+  &iron_arrow_p
   id: 885
   limit: 10000
   range_str: 10.0
@@ -5017,6 +5037,7 @@ steel_arrow:
   slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 steel_arrow_p:
+  &steel_arrow_p
   id: 887
   limit: 10000
   range_str: 16.0
@@ -5031,6 +5052,7 @@ mithril_arrow:
   slot: "Ammo"
   examine: "Arrows with mithril heads."
 mithril_arrow_p:
+  &mithril_arrow_p
   id: 889
   limit: 10000
   range_str: 22.0
@@ -5045,6 +5067,7 @@ adamant_arrow:
   slot: "Ammo"
   examine: "Arrows with adamant heads."
 adamant_arrow_p:
+  &adamant_arrow_p
   id: 891
   limit: 10000
   range_str: 31.0
@@ -5059,6 +5082,7 @@ rune_arrow:
   slot: "Ammo"
   examine: "Arrows with rune heads."
 rune_arrow_p:
+  &rune_arrow_p
   id: 893
   limit: 10000
   range_str: 49.0
@@ -5149,6 +5173,7 @@ christmas_cracker:
   use: "Limited"
 christmas_cracker_noted: 963
 skull:
+  &skull
   id: 964
   tradeable: false
   weight: 0.08
@@ -5258,6 +5283,7 @@ sinister_key:
   examine: "You get a sense of dread from this key."
 sinister_key_noted: 994
 coins:
+  &coins
   id: 995
   aka: [ gold_pieces, gp ]
   examine: "Lovely money!"
@@ -8844,6 +8870,7 @@ rock_ore:
   examine: "A chunk of rock."
   kept: "Wilderness"
 orb_of_light:
+  &orb_of_light
   id: 1481
   examine: "A magical sphere that glimmers within."
   weight: 5.0
@@ -8877,6 +8904,7 @@ unicorn_horn_underground_pass:
   use: "Quest"
   kept: "Wilderness"
 paladins_badge_sir_jerro:
+  &paladins_badge_sir_jerro
   id: 1488
   tradeable: false
   weight: 0.012
@@ -8940,6 +8968,7 @@ ibans_dove:
   use: "Quest"
   kept: "Wilderness"
 amulet_of_othanian:
+  &amulet_of_othanian
   id: 1497
   tradeable: false
   weight: 0.01
@@ -9003,6 +9032,7 @@ gas_mask:
   examine: "Stops me from breathing nasty stuff!"
   kept: "Reclaim"
 a_small_key:
+  &a_small_key
   id: 1507
   tradeable: false
   weight: 0.01
@@ -9102,12 +9132,14 @@ lockpick:
   kept: "Wilderness"
 lockpick_noted: 1524
 grimy_snake_weed:
+  &grimy_snake_weed
   id: 1525
   tradeable: false
   weight: 0.007
   examine: "I need to clean this herb before I can use it."
   kept: "Reclaim"
 clean_snake_weed:
+  &clean_snake_weed
   id: 1526
   tradeable: false
   weight: 0.007
@@ -9138,6 +9170,7 @@ clean_rogues_purse:
   <<: *clean_snake_weed
   id: 1534
 map_part_1:
+  &map_part_1
   id: 1535
   tradeable: false
   weight: 0.005
@@ -9251,6 +9284,7 @@ tinderbox_9:
   <<: *tinderbox_2
   id: 1553
 pet_kitten:
+  &pet_kitten
   id: 1555
   food: "Fish or milk as a kitten,"
   food2: "none as an adult"
@@ -9307,6 +9341,7 @@ pet_cat_6:
   food2: "none as an adult"
   examine: "A friendly little pet."
 overgrown_cat:
+  &overgrown_cat
   id: 1567
   food: "Fish or milk as a kitten,"
   food2: "none as an adult"
@@ -9707,6 +9742,7 @@ emerald_ring_2:
   weight: 0.006
   examine: "A valuable ring."
 ruby_ring_2:
+  &ruby_ring_2
   id: 1651
   limit: 5000
   weight: 0.006
@@ -9788,6 +9824,7 @@ dragonstone_necklace:
 dragon_necklace_noted: 1665
 blank_necklace: 1666
 sapphire_necklace_2:
+  &sapphire_necklace_2
   id: 1668
   limit: 5000
   weight: 0.01
@@ -9873,6 +9910,7 @@ dragonstone_amulet_unstrung:
 dragonstone_amulet_unstrung_noted: 1684
 blank_amulet_unstrung: 1685
 sapphire_amulet_2:
+  &sapphire_amulet_2
   id: 1687
   limit: 5000
   weight: 0.007
@@ -11433,6 +11471,7 @@ half_full_wine_jug:
   use: "Limited"
 half_full_wine_jug_noted: 1990
 jug_of_bad_wine:
+  &jug_of_bad_wine
   id: 1991
   heals: 0
   excess: jug
@@ -11453,6 +11492,7 @@ jug_of_wine:
   examine: "It's full of wine."
 jug_of_wine_noted: 1994
 unfermented_wine:
+  &unfermented_wine
   id: 1995
   tradeable: false
   weight: 1.5
@@ -11501,6 +11541,7 @@ stew:
   examine: "It's a meat and potato stew."
 stew_noted: 2004
 burnt_stew:
+  &burnt_stew
   id: 2005
   examine: "Eew, it's horribly burnt."
 burnt_stew_noted: 2006
@@ -11652,6 +11693,7 @@ premade_wizard_blizzard:
   examine: "A Premade Wizard Blizzard."
 premade_wiz_blzd_noted: 2041
 unfinished_cocktail_pineapple_punch_mixed:
+  &unfinished_cocktail_pineapple_punch_mixed
   id: 2042
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
@@ -11799,6 +11841,7 @@ drunk_dragon:
   examine: "A warm creamy alcoholic beverage."
 drunk_dragon_noted: 2093
 picture_2:
+  &picture_2
   id: 2094
   examine: "I'm not completely sure what this contains."
 picture_noted_20: 2095
@@ -12018,6 +12061,7 @@ cooked_meat:
   kept: "Wilderness"
 cooked_meat_noted: 2143
 burnt_chicken:
+  &burnt_chicken
   id: 2144
   examine: "Oh dear, it's totally burnt!"
 burnt_chicken_noted: 2145
@@ -12064,6 +12108,7 @@ toads_legs:
   examine: "They're a gnome delicacy apparently."
 toads_legs_noted: 2153
 equa_toads_legs:
+  &equa_toads_legs
   id: 2154
   weight: 0.15
   examine: "They're a gnome delicacy apparently."
@@ -12092,6 +12137,7 @@ king_worm:
   examine: "They're a gnome delicacy apparently."
 king_worm_noted: 2163
 batta_tin:
+  &batta_tin
   id: 2164
   weight: 0.1
   examine: "A deep tin used for baking gnome battas in."
@@ -12145,6 +12191,7 @@ raw_gnomebowl:
   examine: "This gnome bowl needs cooking."
   kept: "Reclaim"
 unfinished_bowl_chocolate_bomb_baked:
+  &unfinished_bowl_chocolate_bomb_baked
   id: 2179
   weight: 0.3
   examine: "This dish is just missing those little finishing touches."
@@ -12159,6 +12206,7 @@ unfinished_bowl_chocolate_bomb_2_cream:
   id: 2183
 picture_noted_28: 2184
 chocolate_bomb:
+  &chocolate_bomb
   id: 2185
   price: 2539
   limit: 1000
@@ -12167,6 +12215,7 @@ chocolate_bomb:
   examine: "Full of creamy, chocolately goodness."
 chocolate_bomb_noted: 2186
 tangled_toads_legs:
+  &tangled_toads_legs
   id: 2187
   price: 959
   limit: 1000
@@ -12179,6 +12228,7 @@ unfinished_bowl_worm_hole:
   id: 2189
 picture_noted_29: 2190
 worm_hole:
+  &worm_hole
   id: 2191
   price: 390
   limit: 1000
@@ -12191,6 +12241,7 @@ unfinished_bowl_veg_ball:
   id: 2193
 picture_noted_30: 2194
 veg_ball:
+  &veg_ball
   id: 2195
   price: 420
   limit: 1000
@@ -12221,12 +12272,14 @@ raw_crunchies:
   weight: 0.4
   examine: "These crunchies need cooking."
 unfinished_crunchy_worm:
+  &unfinished_crunchy_worm
   id: 2203
   weight: 0.3
   examine: "These crunchies are just missing those little finishing touches."
   use: "Removed"
 picture_noted_31: 2204
 worm_crunchies:
+  &worm_crunchies
   id: 2205
   price: 235
   limit: 1000
@@ -12239,6 +12292,7 @@ unfinished_crunchy_chocolate_chip:
   id: 2207
 picture_noted_32: 2208
 chocchip_crunchies:
+  &chocchip_crunchies
   id: 2209
   price: 688
   limit: 1000
@@ -12251,6 +12305,7 @@ unfinished_crunchy_spicy:
   id: 2211
 picture_noted_33: 2212
 spicy_crunchies:
+  &spicy_crunchies
   id: 2213
   price: 100
   limit: 1000
@@ -12263,6 +12318,7 @@ unfinished_crunchy_toad:
   id: 2215
 picture_noted_34: 2216
 toad_crunchies:
+  &toad_crunchies
   id: 2217
   price: 262
   limit: 1000
@@ -12397,12 +12453,14 @@ raw_batta:
   examine: "This gnome batta needs cooking."
   kept: "Reclaim"
 unfinished_batta_worm:
+  &unfinished_batta_worm
   id: 2251
   weight: 0.25
   examine: "This batta is just missing those little finishing touches."
   use: "Removed"
 picture_noted_36: 2252
 worm_batta:
+  &worm_batta
   id: 2253
   price: 155
   limit: 1000
@@ -12411,6 +12469,7 @@ worm_batta:
   examine: "It actually smells quite good."
 worm_batta_noted: 2254
 toad_batta:
+  &toad_batta
   id: 2255
   price: 254
   limit: 1000
@@ -12423,6 +12482,7 @@ unfinished_batta_cheese_and_tomato:
   id: 2257
 picture_noted_37: 2258
 cheese_and_tomato_batta:
+  &cheese_and_tomato_batta
   id: 2259
   price: 242
   limit: 1000
@@ -12463,6 +12523,7 @@ unfinished_batta_fruit_lime_orange_pineapple:
   id: 2275
 picture_noted_38: 2276
 fruit_batta:
+  &fruit_batta
   id: 2277
   price: 295
   limit: 1000
@@ -12475,6 +12536,7 @@ unfinished_batta_vegetable:
   id: 2279
 picture_noted_39: 2280
 vegetable_batta:
+  &vegetable_batta
   id: 2281
   price: 223
   limit: 1000
@@ -12759,6 +12821,7 @@ raw_oomlie:
   examine: "Raw meat from the oomlie bird."
 raw_oomlie_noted: 2338
 palm_leaf:
+  &palm_leaf
   id: 2339
   tradeable: false
   weight: 0.1
@@ -12890,6 +12953,7 @@ ogre_relic:
   use: "Quest"
   kept: "Wilderness"
 relic_part_1:
+  &relic_part_1
   id: 2373
   tradeable: false
   weight: 1.0
@@ -12935,6 +12999,7 @@ rock_cake:
   examine: "Handy if you want to break all your teeth."
   kept: "Wilderness"
 crystal_yellow:
+  &crystal_yellow
   id: 2380
   tradeable: false
   weight: 0.907
@@ -13747,6 +13812,7 @@ black_dragon_leather:
   examine: "It's a piece of prepared black dragonhide."
 black_dragon_leather_noted: 2510
 logs_2:
+  &logs_2
   id: 2511
   limit: 25000
   weight: 2.0
@@ -13825,6 +13891,7 @@ orb_of_light_5:
   examine: "A magical sphere that glimmers within."
   use: "Quest"
 bones_2:
+  &bones_2
   id: 2530
   limit: 10000
   weight: 0.5
@@ -13919,6 +13986,7 @@ ring_of_duelling_8:
   weight: 0.006
 ring_of_duelling_8_noted: 2553
 ring_of_duelling_7:
+  &ring_of_duelling_7
   id: 2554
   slot: "Ring"
   examine: "An enchanted ring."
@@ -14831,12 +14899,14 @@ rune_kiteshield_guthix:
   examine: "A rune kiteshield in the colours of Guthix."
 guthix_kiteshield_noted: 2676
 clue_scroll_easy:
+  &clue_scroll_easy
   id: 2677
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
   examine: "A set of instructions to be followed"
   kept: "Wilderness"
 clue_scroll_easy_2:
+  &clue_scroll_easy_2
   id: 2678
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
@@ -14948,6 +15018,7 @@ clue_scroll_easy_37:
   <<: *clue_scroll_easy
   id: 2713
 casket_easy:
+  &casket_easy
   id: 2714
   tradeable: false
   weight: 5.0
@@ -14975,6 +15046,7 @@ casket_easy_6:
   <<: *casket_easy
   id: 2721
 clue_scroll_hard:
+  &clue_scroll_hard
   id: 2722
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
@@ -14987,6 +15059,7 @@ casket_hard:
   <<: *casket_easy
   id: 2724
 clue_scroll_hard_3:
+  &clue_scroll_hard_3
   id: 2725
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
@@ -14996,6 +15069,7 @@ casket_hard_2:
   <<: *casket_easy
   id: 2726
 clue_scroll_hard_4:
+  &clue_scroll_hard_4
   id: 2727
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
@@ -15131,6 +15205,7 @@ clue_scroll_hard_28:
   <<: *clue_scroll_hard_3
   id: 2794
 puzzle_box:
+  &puzzle_box
   id: 2795
   tradeable: false
   examine: "I need to solve this!"
@@ -15274,6 +15349,7 @@ clue_scroll_medium_21:
   <<: *clue_scroll_easy
   id: 2841
 challenge_scroll:
+  &challenge_scroll
   id: 2842
   examine: "I need to answer this correctly."
 clue_scroll_medium_22:
@@ -15298,6 +15374,7 @@ clue_scroll_medium_26:
   <<: *clue_scroll_easy
   id: 2849
 challenge_scroll_14:
+  &challenge_scroll_14
   id: 2850
   tradeable: false
   examine: "I need to answer this correctly."
@@ -15828,6 +15905,7 @@ moonlight_mead:
   examine: "A foul smelling brew."
 moonlight_mead_noted: 2956
 druid_pouch:
+  &druid_pouch
   id: 2957
   tradeable: false
   weight: 0.01
@@ -16506,6 +16584,7 @@ picture_21:
   <<: *picture_6
   id: 3108
 stone_ball_red:
+  &stone_ball_red
   id: 3109
   tradeable: false
   weight: 3.628
@@ -16728,6 +16807,7 @@ karambwanji:
   examine: "Small brightly coloured tropical fish. Looks tasty."
   kept: "Reclaim"
 karambwan_paste_raw:
+  &karambwan_paste_raw
   id: 3152
   tradeable: false
   weight: 0.01
@@ -17353,6 +17433,7 @@ hero:
   id: 3259
   examine: "Heroic!"
 goutweed:
+  &goutweed
   id: 3261
   tradeable: false
   weight: 0.007
@@ -18913,6 +18994,7 @@ pet_rock:
   examine: "The lowest maintenance pet you will ever have."
   kept: "Reclaim"
 hunters_talisman_draugen:
+  &hunters_talisman_draugen
   id: 3696
   tradeable: false
   weight: 0.015
@@ -19812,6 +19894,7 @@ guthixs_book_of_balance:
   examine: "The holy book of Guthix."
   kept: "Reclaim"
 journal_horror_from_the_deep:
+  &journal_horror_from_the_deep
   id: 3845
   tradeable: false
   weight: 0.51
@@ -19974,11 +20057,13 @@ j_mod_collection_list:
   examine: "A list of J-Mods to collect. Find them all to unlock the title 'the Fool'."
   kept: "Wilderness"
 human_player_owned_farm_unchecked_female:
+  &human_player_owned_farm_unchecked_female
   id: 3945
   bank_stacks: false
   examine: "A human for your player owned farm. Check it to see what traits it has."
   weight: 0.001
 human_player_owned_farm_checked_female:
+  &human_player_owned_farm_checked_female
   id: 3947
   weight: 0.001
 human_player_owned_farm_unchecked_male:
@@ -20037,6 +20122,7 @@ enchanted_bar:
   use: "Quest"
   kept: "Wilderness"
 eye_of_gnome:
+  &eye_of_gnome
   id: 4008
   tradeable: false
   weight: 0.007
@@ -20176,6 +20262,7 @@ monkey_greegree:
   examine: "A magical talisman in the shape of a Karamjan monkey head."
   kept: "Reclaim"
 dummy:
+  &dummy
   id: 4032
   tradeable: false
   weight: 2.0
@@ -20184,6 +20271,7 @@ dummy:
   use: "Quest"
   kept: "Wilderness"
 monkey:
+  &monkey
   id: 4033
   bankable: false
   tradeable: false
@@ -20237,6 +20325,7 @@ zamorak_cloak_castle_wars:
   examine: "The colours of Zamorak."
   kept: "Reclaim"
 rock_castle_wars:
+  &rock_castle_wars
   id: 4043
   bankable: false
   weight: 5.0
@@ -20268,6 +20357,7 @@ toolkit_castle_wars:
   examine: "I can use this to repair catapults and doors."
 toolkit_noted: 4052
 barricade_castle_wars:
+  &barricade_castle_wars
   id: 4053
   bankable: false
   weight: 5.0
@@ -20389,6 +20479,7 @@ zealots_key:
   examine: "I stole this from a Saradominist I met South of Mort'ton."
   kept: "Wilderness"
 yo_yo:
+  &yo_yo
   id: 4079
   tradeable: false
   weight: 0.01
@@ -20750,6 +20841,7 @@ rune_boots:
   examine: "These will protect my feet."
 rune_boots_noted: 4132
 crawling_hand:
+  &crawling_hand
   id: 4133
   tradeable: false
   weight: 10.0
@@ -20944,6 +21036,7 @@ slayers_staff:
   examine: "An old and magical staff."
 slayers_staff_noted: 4171
 broad_arrows_2:
+  &broad_arrows_2
   id: 4172
   range_str: 28.0
   slot: "Ammo"
@@ -21012,6 +21105,7 @@ cavern_key:
   examine: "Upon close examination, this seems to be a key."
   kept: "Wilderness"
 tower_key:
+  &tower_key
   id: 4185
   tradeable: false
   weight: 0.005
@@ -21670,6 +21764,7 @@ chest_key_ghosts_ahoy:
   use: "Quest"
   kept: "Wilderness"
 map_scrap_1:
+  &map_scrap_1
   id: 4274
   tradeable: false
   weight: 0.01
@@ -22769,6 +22864,7 @@ tinderbox_25:
   <<: *tinderbox_2
   id: 4493
 pole:
+  &pole
   id: 4494
   tradeable: false
   weight: 0.01
@@ -23088,6 +23184,7 @@ candle_lantern_white:
   kept: "Wilderness"
 candle_lantern_noted_2: 4530
 candle_lantern_lit_white:
+  &candle_lantern_lit_white
   id: 4531
   tradeable: false
   weight: 0.907
@@ -23187,6 +23284,7 @@ spiny_helmet:
   kept: "Wilderness"
 spiny_helmet_noted: 4552
 blue_sweets:
+  &blue_sweets
   id: 4558
   tradeable: false
   weight: 0.01
@@ -23194,6 +23292,7 @@ blue_sweets:
   kept: "Reclaim"
   use: "Removed"
 chocolate_egg_2005_easter_event_black:
+  &chocolate_egg_2005_easter_event_black
   id: 4559
   tradeable: false
   examine: "Best before April 4th 2005."
@@ -23279,6 +23378,7 @@ book_page_3:
   use: "Quest"
   kept: "Wilderness"
 pages_2:
+  &pages_2
   id: 4572
   tradeable: false
   weight: 0.002
@@ -23303,6 +23403,7 @@ schematic_dondakan:
   use: "Quest"
   kept: "Wilderness"
 schematics_dwarven_engineer:
+  &schematics_dwarven_engineer
   id: 4576
   tradeable: false
   weight: 0.004
@@ -23463,6 +23564,7 @@ willow_blackjack:
   slot: "Weapon"
   examine: "A handy little club made out of willow."
 ugthanki_dung:
+  &ugthanki_dung
   id: 4601
   tradeable: false
   weight: 0.4
@@ -23613,6 +23715,7 @@ golem_program:
   use: "Quest"
   kept: "Wilderness"
 bandit:
+  &bandit
   id: 4625
   examine: "A tough-looking criminal."
 bandits_brew:
@@ -26997,6 +27100,7 @@ skirt_blue:
   examine: "A blue skirt."
 skirt_noted_3: 5053
 dwarf_the_giant_dwarf:
+  &dwarf_the_giant_dwarf
   id: 5054
   weight: 10.0
   examine: "Petit."
@@ -27092,6 +27196,7 @@ exquisite_clothes:
   kept: "Wilderness"
 master_farmer: 5068
 birds_nest_red_egg:
+  &birds_nest_red_egg
   id: 5070
   tradeable: false
   weight: 0.002
@@ -27104,6 +27209,7 @@ birds_nest_blue_egg:
   <<: *birds_nest_red_egg
   id: 5072
 birds_nest_seeds_1:
+  &birds_nest_seeds_1
   id: 5073
   tradeable: false
   weight: 0.002
@@ -27216,6 +27322,7 @@ bittercap_mushroom_spore:
   limit: 100
   examine: "A bittercap mushroom spore - plant in a mushroom patch."
 apple_tree_seed:
+  &apple_tree_seed
   id: 5283
   price: 5
   limit: 100
@@ -27670,6 +27777,7 @@ spirit_seedling_w:
   examine: "A spirit tree seed has been sown and watered in this plant pot."
   kept: "Reclaim"
 oak_sapling:
+  &oak_sapling
   id: 5370
   tradeable: false
   weight: 0.907
@@ -28062,6 +28170,7 @@ calquat_seedling_w:
   examine: "A calquat tree seed has been sown and watered in this plant pot."
   kept: "Reclaim"
 apple_sapling:
+  &apple_sapling
   id: 5496
   tradeable: false
   weight: 0.907
@@ -28422,6 +28531,7 @@ picture_57:
   <<: *picture_6
   id: 5567
 picture_correct:
+  &picture_correct
   id: 5568
   tradeable: false
   weight: 0.453
@@ -31082,6 +31192,7 @@ toxic_powder:
   use: "Quest"
   kept: "Wilderness"
 crystal_teleport_seed_4_charges:
+  &crystal_teleport_seed_4_charges
   id: 6099
   examine: "A tiny crystal enchanted to return the user to Lletya."
   weight: 0.001
@@ -31548,6 +31659,7 @@ rock_shell_helm_noted: 6175
 rock_shell_plate_noted: 6176
 rock_shell_legs_noted: 6177
 raw_pheasant:
+  &raw_pheasant
   id: 6178
   bankable: false
   tradeable: false
@@ -31581,6 +31693,7 @@ lederhosen_hat:
   examine: "A hat with a goat's hair attached."
   kept: "Wilderness"
 random_event_gift:
+  &random_event_gift
   id: 6183
   tradeable: false
   weight: 2.0
@@ -32892,6 +33005,7 @@ maple_blackjack_d:
   examine: "A defensive blackjack."
 maple_blackjack_d_noted: 6421
 air_rune_2:
+  &air_rune_2
   id: 6422
   limit: 25000
   examine: "One of the four basic elemental runes."
@@ -32910,27 +33024,32 @@ fire_rune_2:
   id: 6428
 fire_rune_noted: 6429
 chaos_rune_2:
+  &chaos_rune_2
   id: 6430
   limit: 25000
   examine: "Used for low level missile spells."
 chaos_rune_noted: 6431
 death_rune_2:
+  &death_rune_2
   id: 6432
   limit: 25000
   examine: "Used for medium level missile spells."
 death_rune_noted: 6433
 law_rune_2:
+  &law_rune_2
   id: 6434
   limit: 25000
   examine: "Used for teleport spells."
 law_rune_noted: 6435
 mind_rune_2:
+  &mind_rune_2
   id: 6436
   limit: 25000
   examine: "Used for basic level missile spells."
   kept: "Wilderness"
 mind_rune_noted: 6437
 body_rune_2:
+  &body_rune_2
   id: 6438
   limit: 25000
   examine: "Used for Curse spells"
@@ -33233,6 +33352,7 @@ mouse_toy:
   examine: "An Advanced Combat Training Device."
   kept: "Wilderness"
 present:
+  &present
   id: 6542
   tradeable: false
   weight: 2.0
@@ -33290,6 +33410,7 @@ nurse_hat:
   examine: "A nurse's hat, but does it have healing powers?"
   kept: "Vanish"
 lazy_cat:
+  &lazy_cat
   id: 6549
   food: "None"
   examine: "A friendly not so little pet."
@@ -33309,6 +33430,7 @@ lazy_cat_6:
   <<: *lazy_cat
   id: 6554
 wily_cat:
+  &wily_cat
   id: 6555
   food: "None"
   examine: "Wild."
@@ -33937,6 +34059,7 @@ hand_mirror:
   use: "Quest"
   kept: "Wilderness"
 red_crystal:
+  &red_crystal
   id: 6640
   bankable: false
   tradeable: false
@@ -33975,6 +34098,7 @@ blue_crystal:
   use: "Quest"
   kept: "Wilderness"
 fractured_crystal_horizontal:
+  &fractured_crystal_horizontal
   id: 6646
   bankable: false
   tradeable: false
@@ -34295,6 +34419,7 @@ slayer_gloves_2:
   examine: "Especially good against diseased arachnids."
   kept: "Reclaim"
 fever_spider:
+  &fever_spider
   id: 6709
   bank_stacks: false
   weight: 0.001
@@ -34342,6 +34467,7 @@ sluglings:
   use: "Quest"
   kept: "Wilderness"
 karamthulhu:
+  &karamthulhu
   id: 6716
   tradeable: false
   weight: 0.001
@@ -35403,6 +35529,7 @@ marionette_handle:
   kept: "Reclaim"
   use: "Removed"
 blue_marionette:
+  &blue_marionette
   id: 6865
   tradeable: false
   weight: 0.907
@@ -35417,6 +35544,7 @@ red_marionette:
   <<: *blue_marionette
   id: 6867
 blue_marionette_strung:
+  &blue_marionette_strung
   id: 6868
   tradeable: false
   weight: 0.907
@@ -35454,6 +35582,7 @@ red_marionette_arms:
   kept: "Reclaim"
   use: "Removed"
 red_marionette_legs:
+  &red_marionette_legs
   id: 6874
   tradeable: false
   weight: 0.8
@@ -35462,6 +35591,7 @@ red_marionette_legs:
   kept: "Reclaim"
   use: "Removed"
 blue_marionette_torso:
+  &blue_marionette_torso
   id: 6875
   tradeable: false
   weight: 0.2
@@ -35470,6 +35600,7 @@ blue_marionette_torso:
   kept: "Reclaim"
   use: "Removed"
 blue_marionette_head:
+  &blue_marionette_head
   id: 6876
   tradeable: false
   weight: 0.4
@@ -35478,6 +35609,7 @@ blue_marionette_head:
   kept: "Reclaim"
   use: "Removed"
 blue_marionette_arms:
+  &blue_marionette_arms
   id: 6877
   tradeable: false
   weight: 0.6
@@ -35595,6 +35727,7 @@ adamant_helm_mage_training_arena:
   examine: "A medium sized helmet."
   kept: "Always"
 emerald_mage_training_arena:
+  &emerald_mage_training_arena
   id: 6896
   limit: 5000
   tradeable: false
@@ -35649,6 +35782,7 @@ dragonstone_mage_training_arena:
   <<: *emerald_mage_training_arena
   id: 6903
 animals_bones_1:
+  &animals_bones_1
   id: 6904
   tradeable: false
   weight: 0.001
@@ -38466,6 +38600,7 @@ culinaromancers_gloves_10:
   examine: "A pair of Barrows-themed gloves."
   kept: "Reclaim"
 cornflour:
+  &cornflour
   id: 7463
   examine: "It's cornflour in a pot."
 book_on_chickens:
@@ -38581,6 +38716,7 @@ spicy_stew:
   examine: "It's a meat and potato stew with fancy seasoning. Give it a whiff to see how hot it is."
   kept: "Wilderness"
 red_spice_4:
+  &red_spice_4
   id: 7480
   examine: "Allows for equal distribution of spice."
   weight: 0.001
@@ -38731,6 +38867,7 @@ ground_kelp:
   examine: "Kelp flakes. Smells of the sea."
   kept: "Wilderness"
 crab_meat:
+  &crab_meat
   id: 7518
   tradeable: false
   weight: 0.907
@@ -38793,6 +38930,7 @@ cooked_crab_meat_1:
   weight: 0.907
   examine: "Nice and Tasty!"
 ground_crab_meat:
+  &ground_crab_meat
   id: 7527
   tradeable: false
   weight: 0.907
@@ -38858,6 +38996,7 @@ diving_apparatus:
   examine: "I'll need a helmet to make this work."
   kept: "Wilderness"
 fresh_crab_claw:
+  &fresh_crab_claw
   id: 7536
   tradeable: false
   weight: 0.907
@@ -38894,6 +39033,7 @@ crab_helmet:
   examine: "If it's good enough for crabs, it's good enough for me!"
   kept: "Reclaim"
 broken_crab_claw:
+  &broken_crab_claw
   id: 7540
   tradeable: false
   weight: 0.005
@@ -38995,6 +39135,7 @@ tomato_seed_2:
   kept: "Wilderness"
 tomato_seed_noted: 7563
 balloon_toad:
+  &balloon_toad
   id: 7564
   bankable: false
   tradeable: false
@@ -39101,6 +39242,7 @@ snake_over_cooked:
   use: "Quest"
   kept: "Wilderness"
 overgrown_hellcat:
+  &overgrown_hellcat
   id: 7581
   food: "Fish as a kitten, none for any other stages"
   examine: "A hellish not-so-little pet."
@@ -39125,6 +39267,7 @@ dummy_2:
   <<: *dummy
   id: 7586
 coffin:
+  &coffin
   id: 7587
   tradeable: false
   weight: 0.003
@@ -39666,6 +39809,7 @@ hot_kettle:
   examine: "It's full of boiling water."
   kept: "Reclaim"
 pot_of_tea_clay_4:
+  &pot_of_tea_clay_4
   id: 7692
   examine: "I'd really like a nice cup of tea."
   weight: 1.5
@@ -39683,12 +39827,14 @@ pot_of_tea_clay_1:
   id: 7698
 pot_of_tea_1_noted: 7699
 teapot_with_leaves_clay:
+  &teapot_with_leaves_clay
   id: 7700
   bankable: false
   weight: 1.5
   examine: "Add boiling water to make a tea."
 teapot_with_leaves_noted: 7701
 teapot_clay:
+  &teapot_clay
   id: 7702
   bankable: false
   weight: 0.453
@@ -39907,6 +40053,7 @@ toy_soldier:
   examine: "Nice bit of crafting!"
 toy_soldier_noted: 7760
 toy_soldier_wound:
+  &toy_soldier_wound
   id: 7761
   limit: 100
   weight: 1.0
@@ -39958,6 +40105,7 @@ branch_temple_trekking:
   examine: "Leafless bush branch."
   kept: "Reclaim"
 reward_token:
+  &reward_token
   id: 7774
   destroy: "Warning! If you destroy this item, you will lose ALL rewards that it relates to and you will have to make another trek in order to get another one."
   examine: "Blue/Red/Yellow reward token exchanged at Burgh de Rott/Paterdomus."
@@ -39980,6 +40128,7 @@ short_vine:
   examine: "A short section of vines."
   kept: "Reclaim"
 fishing_tome_blue:
+  &fishing_tome_blue
   id: 7779
   tradeable: false
   weight: 1.0
@@ -39992,6 +40141,7 @@ fishing_tome_red:
   <<: *fishing_tome_blue
   id: 7781
 agility_tome_blue:
+  &agility_tome_blue
   id: 7782
   tradeable: false
   weight: 1.0
@@ -40004,6 +40154,7 @@ agility_tome_red:
   <<: *agility_tome_blue
   id: 7784
 thieving_tome_blue:
+  &thieving_tome_blue
   id: 7785
   tradeable: false
   weight: 1.0
@@ -40016,6 +40167,7 @@ thieving_tome_red:
   <<: *thieving_tome_blue
   id: 7787
 slayer_tome_blue:
+  &slayer_tome_blue
   id: 7788
   tradeable: false
   weight: 1.0
@@ -40028,6 +40180,7 @@ slayer_tome_red:
   <<: *slayer_tome_blue
   id: 7790
 mining_tome_blue:
+  &mining_tome_blue
   id: 7791
   tradeable: false
   weight: 1.0
@@ -40040,6 +40193,7 @@ mining_tome_red:
   <<: *mining_tome_blue
   id: 7793
 firemaking_tome_blue:
+  &firemaking_tome_blue
   id: 7794
   tradeable: false
   weight: 1.0
@@ -40052,6 +40206,7 @@ firemaking_tome_red:
   <<: *firemaking_tome_blue
   id: 7796
 woodcutting_tome_blue:
+  &woodcutting_tome_blue
   id: 7797
   tradeable: false
   weight: 1.0
@@ -40167,6 +40322,7 @@ pot_of_vinegar:
   examine: "Well, this pot is certainly full of vinegar, and no mistake."
   kept: "Wilderness"
 goblin_skull:
+  &goblin_skull
   id: 7812
   tradeable: false
   weight: 0.003
@@ -40181,6 +40337,7 @@ bone_in_vinegar_goblin_skull:
   use: "Quest"
   kept: "Wilderness"
 polished_goblin_skull:
+  &polished_goblin_skull
   id: 7814
   tradeable: false
   weight: 0.003
@@ -40215,6 +40372,7 @@ bone_in_vinegar_ram_skull:
   use: "Quest"
   kept: "Wilderness"
 polished_ram_skull:
+  &polished_ram_skull
   id: 7820
   tradeable: false
   weight: 0.907
@@ -40248,6 +40406,7 @@ polished_giant_rat_bone:
   <<: *polished_goblin_skull
   id: 7826
 giant_bat_wing:
+  &giant_bat_wing
   id: 7827
   tradeable: false
   weight: 0.907
@@ -40689,6 +40848,7 @@ al_kharid_flyer:
   examine: "The money off voucher has expired."
   kept: "Reclaim"
 easter_ring:
+  &easter_ring
   id: 7927
   tradeable: false
   weight: 0.001
@@ -40696,6 +40856,7 @@ easter_ring:
   kept: "Wilderness"
   use: "Limited"
 easter_egg_2006_easter_event_blue:
+  &easter_egg_2006_easter_event_blue
   id: 7928
   limit: 2
   tradeable: false
@@ -40964,6 +41125,7 @@ kalphite_queen_head:
   <<: *crawling_hand
   id: 7981
 crawling_hand_stuffed:
+  &crawling_hand_stuffed
   id: 7982
   tradeable: false
   weight: 10.0
@@ -41085,18 +41247,21 @@ morytania_painting:
   examine: "A painting of the spooky forests of Morytania."
   kept: "Reclaim"
 small_map:
+  &small_map
   id: 8004
   tradeable: false
   weight: 1.0
   examine: "A small map of Gielinor."
   kept: "Reclaim"
 medium_map:
+  &medium_map
   id: 8005
   tradeable: false
   weight: 1.0
   examine: "A medium map of Gielinor."
   kept: "Reclaim"
 large_map:
+  &large_map
   id: 8006
   tradeable: false
   weight: 1.0
@@ -41348,6 +41513,7 @@ gilded_altar:
   id: 8068
   examine: "A Gilded marble altar with a symbol of Saradomin/Zamorak/Guthix."
 wooden_torches:
+  &wooden_torches
   id: 8069
   examine: "The smoke goes up to the gods."
 steel_torches:
@@ -41387,6 +41553,7 @@ organ:
   id: 8081
   examine: "A delightful sound."
 small_statues:
+  &small_statues
   id: 8082
   examine: "depends on Icon"
 medium_statues:
@@ -41403,6 +41570,7 @@ medium_head: 8088
 major_head: 8089
 rune_display_case: 8095
 rope_bell_pull:
+  &rope_bell_pull
   id: 8099
   examine: "Can summon your servant."
 bell_pull:
@@ -41534,6 +41702,7 @@ spike_trap:
   id: 8143
   examine: "Spiky!"
 man_trap:
+  &man_trap
   id: 8144
   examine: "Watch out!"
 tangle_vine: 8145
@@ -41547,6 +41716,7 @@ wooden_crate:
   id: 8148
   examine: "Is there treasure inside?"
 oak_chest:
+  &oak_chest
   id: 8149
   examine: "Is there a prize inside?"
 teak_chest:
@@ -41612,6 +41782,7 @@ dungeon_entrance:
   examine: "What horrors lurk below?"
 tree: 8173
 nice_tree:
+  &nice_tree
   id: 8174
   examine: "A lovely addition to the garden."
 oak_tree:
@@ -41633,6 +41804,7 @@ plant:
   id: 8180
   examine: "A plant, A leafy shrub"
 small_fern:
+  &small_fern
   id: 8181
   examine: "A plant."
 fern:
@@ -41699,6 +41871,7 @@ marble_wall:
   id: 8202
   examine: "Very posh!"
 thorny_hedge:
+  &thorny_hedge
   id: 8203
   weight: 10.0
   examine: "You can plant this in your garden."
@@ -41757,12 +41930,14 @@ large_oven:
   id: 8220
   examine: "You can cook pizza here"
 steel_range:
+  &steel_range
   id: 8221
   examine: "You can cook here."
 fancy_range:
   <<: *steel_range
   id: 8222
 wooden_shelves_1:
+  &wooden_shelves_1
   id: 8223
   examine: "Shelves full of kitchen utensils."
 wooden_shelves_2:
@@ -41784,6 +41959,7 @@ teak_shelves_2:
   <<: *wooden_shelves_1
   id: 8229
 pump_and_drain:
+  &pump_and_drain
   id: 8230
   examine: "Running water in your own home! Luxury!"
 pump_and_tub:
@@ -41843,6 +42019,7 @@ teak_kitchen_table:
   weight: 1.0
   examine: "A ready-to-assemble teak kitchen table."
 oak_staircase:
+  &oak_staircase
   id: 8249
   examine: "I can climb these stairs."
 oak_staircase_2:
@@ -41890,6 +42067,7 @@ kq_head:
   id: 8266
   examine: "I should get it stuffed!"
 mounted_bass:
+  &mounted_bass
   id: 8267
   examine: "A trophy of a master fisher."
 mounted_swordfish:
@@ -41899,6 +42077,7 @@ mounted_shark:
   <<: *mounted_bass
   id: 8269
 mithril_armour:
+  &mithril_armour
   id: 8270
   examine: "Armour crafted by a master smith."
 adamant_armour:
@@ -42073,6 +42252,7 @@ oak_and_steel_cage:
   id: 8298
   examine: "Oak and steel bars to keep prisoners in."
 steel_cage:
+  &steel_cage
   id: 8299
   examine: "Keeps your victims in place."
 spiked_cage:
@@ -42082,6 +42262,7 @@ bone_cage:
   id: 8301
   examine: "A cage of bones. How delightfully macabre."
 spikes:
+  &spikes
   id: 8302
   bankable: false
   tradeable: false
@@ -42151,6 +42332,7 @@ mahogany_bkcase:
   id: 8321
   examine: "A good source of books!"
 torn_curtains:
+  &torn_curtains
   id: 8322
   examine: "The curtain is open."
 curtains:
@@ -42163,6 +42345,7 @@ clay_fireplace:
   id: 8325
   examine: "You can build a fire here."
 stone_fireplace:
+  &stone_fireplace
   id: 8326
   examine: "You can light a fire here."
 marble_fireplace:
@@ -42178,6 +42361,7 @@ marble_portal:
   id: 8330
   examine: "A gateway to . or An un-directed marble portal frame."
 teleport_focus:
+  &teleport_focus
   id: 8331
   examine: "It controls the portals."
 greater_focus:
@@ -42187,9 +42371,11 @@ scrying_pool:
   id: 8333
   examine: "It harnesses the power of something or other!"
 oak_lectern:
+  &oak_lectern
   id: 8334
   examine: "A book of arcane knowledge."
 eagle_lectern:
+  &eagle_lectern
   id: 8335
   examine: "A book full of arcane knowledge."
 demon_lectern:
@@ -42199,15 +42385,18 @@ teak_eagle_lectern:
   <<: *eagle_lectern
   id: 8337
 teak_demon_lectern:
+  &teak_demon_lectern
   id: 8338
   examine: "A book full of arcane knowledge"
 mahogany_eagle:
   <<: *eagle_lectern
   id: 8339
 mahogany_demon:
+  &mahogany_demon
   id: 8340
   examine: "A book full of arcane knowledge..."
 ornamental_globe:
+  &ornamental_globe
   id: 8342
   examine: "A wooden planet of your very own."
 lunar_globe:
@@ -42220,21 +42409,26 @@ armillary_sphere:
   <<: *ornamental_globe
   id: 8345
 small_orrery:
+  &small_orrery
   id: 8346
   examine: "A wooden solar system of your very own."
 large_orrery:
   <<: *small_orrery
   id: 8347
 wooden_telescope:
+  &wooden_telescope
   id: 8348
   examine: "Used for examining heavenly bodies."
 teak_telescope:
+  &teak_telescope
   id: 8349
   examine: "Useful for observing heavenly bodies."
 mahogany_scope:
+  &mahogany_scope
   id: 8350
   examine: "Used for observing heavenly bodies."
 crystal_ball:
+  &crystal_ball
   id: 8351
   examine: "Use an elemental staff on it."
 elemental_sphere:
@@ -42253,6 +42447,7 @@ infernal_chart:
   id: 8356
   examine: "A spotter's guide to demons."
 oak_throne:
+  &oak_throne
   id: 8357
   examine: "Sit here and rule all you survey."
 teak_throne:
@@ -42274,6 +42469,7 @@ demonic_throne:
   <<: *oak_throne
   id: 8363
 oak_lever:
+  &oak_lever
   id: 8364
   examine: "Pull this to activate your machinery of doom!"
 teak_lever:
@@ -42283,6 +42479,7 @@ mahogany_lever:
   <<: *oak_lever
   id: 8366
 trapdoor:
+  &trapdoor
   id: 8367
   examine: "What could happen on this spot?"
 trapdoor_2:
@@ -42301,6 +42498,7 @@ trapdoor_4:
   <<: *trapdoor
   id: 8372
 lesser_magic_cage:
+  &lesser_magic_cage
   id: 8373
   examine: "Keeps your victims trapped."
 greater_magic_cage:
@@ -42310,6 +42508,7 @@ wooden_workbench:
   id: 8375
   examine: "A workbench for making and repairing bows."
 oak_workbench:
+  &oak_workbench
   id: 8376
   examine: "You can make furniture here."
 steel_framed_bench:
@@ -42322,6 +42521,7 @@ bench_with_lathe:
   <<: *oak_workbench
   id: 8379
 crafting_table_1:
+  &crafting_table_1
   id: 8380
   examine: "You can do delicate crafting here."
 crafting_table_2:
@@ -44292,6 +44492,7 @@ ground_ashes:
   examine: "A heap of finely ground ashes."
   kept: "Reclaim"
 steel_key_ham:
+  &steel_key_ham
   id: 8866
   tradeable: false
   weight: 0.01
@@ -44307,6 +44508,7 @@ iron_key_ham:
   <<: *steel_key_ham
   id: 8869
 zanik:
+  &zanik
   id: 8870
   tradeable: false
   weight: 30.0
@@ -44691,6 +44893,7 @@ monkey_trouble_brewing:
   examine: "A confused looking monkey."
   kept: "Vanish"
 blue_monkey:
+  &blue_monkey
   id: 8943
   tradeable: false
   weight: 0.003
@@ -44702,6 +44905,7 @@ blue_monkey_3:
   <<: *blue_monkey
   id: 8945
 red_monkey:
+  &red_monkey
   id: 8946
   tradeable: false
   weight: 0.003
@@ -44948,6 +45152,7 @@ the_stuff:
   examine: "Apparently good for brewing."
   kept: "Reclaim"
 brewin_guide:
+  &brewin_guide
   id: 8989
   bankable: false
   tradeable: false
@@ -45310,6 +45515,7 @@ locust_meat:
   examine: "Delicious and nutritious. Well, nutritious anyway."
 locust_meat_noted: 9053
 red_goblin_mail:
+  &red_goblin_mail
   id: 9054
   tradeable: false
   weight: 3.628
@@ -45784,6 +45990,7 @@ astral_tiara:
   id: 9106
   slot: "Hat"
 blurite_bolts:
+  &blurite_bolts
   id: 9139
   tradeable: false
   range_str: 28.0
@@ -46203,6 +46410,7 @@ blurite_bolts_p:
   <<: *blurite_bolts
   id: 9286
 iron_bolts_p:
+  &iron_bolts_p
   id: 9287
   limit: 25000
   range_str: 46.0
@@ -46210,6 +46418,7 @@ iron_bolts_p:
   material: "metal"
   examine: "Iron ammunition for crossbows."
 steel_bolts_p:
+  &steel_bolts_p
   id: 9288
   limit: 10000
   range_str: 64.0
@@ -46217,6 +46426,7 @@ steel_bolts_p:
   material: "metal"
   examine: "Steel ammunition for crossbows."
 mithril_bolts_p:
+  &mithril_bolts_p
   id: 9289
   limit: 10000
   range_str: 82.0
@@ -46224,6 +46434,7 @@ mithril_bolts_p:
   material: "metal"
   examine: "Mithril crossbow bolts."
 adamant_bolts_p:
+  &adamant_bolts_p
   id: 9290
   limit: 10000
   range_str: 100.0
@@ -46231,6 +46442,7 @@ adamant_bolts_p:
   material: "metal"
   examine: "Adamantite crossbow bolts."
 runite_bolts_p:
+  &runite_bolts_p
   id: 9291
   limit: 10000
   range_str: 115.0
@@ -46238,6 +46450,7 @@ runite_bolts_p:
   material: "metal"
   examine: "Runite crossbow bolts."
 silver_bolts_p:
+  &silver_bolts_p
   id: 9292
   limit: 10000
   range_str: 36.0
@@ -46734,6 +46947,7 @@ unfinished_veg_batta:
   examine: "This vegetable batta needs garnishing with equa leaves."
   kept: "Reclaim"
 wizard_blizzard_2:
+  &wizard_blizzard_2
   id: 9487
   weight: 0.5
   examine: "This looks like a strange mix."
@@ -47438,6 +47652,7 @@ ladder_top:
   use: "Quest"
   kept: "Wilderness"
 tome_of_xp_3:
+  &tome_of_xp_3
   id: 9656
   destroy: "You can get another Tome of Experience from Veliaf in Burgh de Rott."
   examine: "A tome of experience that awards 2000 XP per chapter."
@@ -47638,6 +47853,7 @@ fragment_1:
   examine: "A piece of a torn page."
   kept: "Wilderness"
 fragment_2:
+  &fragment_2
   id: 9688
   tradeable: false
   weight: 0.01
@@ -48757,6 +48973,7 @@ magical_cape_rack:
   weight: 1.0
   examine: "A ready-to-assemble magic cape rack."
 oak_costume_box:
+  &oak_costume_box
   id: 9823
   examine: "A box for you to keep clothing."
 teak_costume_box:
@@ -48819,6 +49036,7 @@ oak_treasure_chest:
   weight: 1.0
   examine: "A ready-to-assemble oak treasure chest."
 teak_treas_chest:
+  &teak_treas_chest
   id: 9840
   examine: "Stores your precious belongings."
 mgany_treas_chest:
@@ -49235,6 +49453,7 @@ balloon_structure:
   use: "Quest"
   kept: "Wilderness"
 origami_balloon:
+  &origami_balloon
   id: 9934
   tradeable: false
   weight: 0.001
@@ -49347,6 +49566,7 @@ imp:
   id: 9952
   examine: "A cheeky little imp."
 kebbit:
+  &kebbit
   id: 9953
   examine: "A little bigger than usual..."
 kebbit_2:
@@ -52385,6 +52605,7 @@ snowball:
 snowball_noted: 10510
 zanaris_choir: 10511
 scroll_barbarian_assault:
+  &scroll_barbarian_assault
   id: 10512
   bankable: false
   tradeable: false
@@ -52411,6 +52632,7 @@ worms:
   examine: "Some meaty worms."
   kept: "Reclaim"
 attacker_horn:
+  &attacker_horn
   id: 10516
   tradeable: false
   weight: 0.001
@@ -52450,6 +52672,7 @@ collection_bag_5:
   examine: "A very large collection bag."
   weight: 0.001
 healer_horn:
+  &healer_horn
   id: 10526
   tradeable: false
   weight: 0.001
@@ -53002,6 +53225,7 @@ clockwork_book:
   examine: "A book about clockwork mechanisms."
   kept: "Wilderness"
 clockwork_suit:
+  &clockwork_suit
   id: 10595
   destroy: "Before Hunt for Red Raktuber - You'll have to make another one at your house. Speak to Larry to learn how to make one. After Hunt for Red Raktuber - You'll have to make another one at your house. Speak to Chuck to learn how to make one."
   examine: "A clockwork penguin suit."
@@ -55367,6 +55591,7 @@ decapitated_head_the_fremennik_isles:
   kept: "Wilderness"
 helm_of_neitiznot_noted: 10843
 spring_sqirk:
+  &spring_sqirk
   id: 10844
   tradeable: false
   weight: 0.01
@@ -55623,6 +55848,7 @@ fuse_the_great_brain_robbery:
   use: "Quest"
   kept: "Wilderness"
 keg:
+  &keg
   id: 10885
   tradeable: false
   weight: 12.0
@@ -55814,6 +56040,7 @@ lumberjack_boots:
   examine: "You'll certainly be alright wearing these."
   kept: "Reclaim"
 reward_token_4:
+  &reward_token_4
   id: 10934
   tradeable: false
   destroy: "Warning! If you destroy this item, you will lose ALL rewards that it relates to and you will have to make another trek in order to get another one."
@@ -55878,6 +56105,7 @@ run: 10947
 sit_up: 10948
 star_jump: 10949
 skull_staples:
+  &skull_staples
   id: 10950
   examine: "One skull staple."
 skull_staples_2:
@@ -56030,6 +56258,7 @@ eel_sushi:
   examine: "Cave-eel sushi."
   kept: "Reclaim"
 dorgesh_kaan_sphere:
+  &dorgesh_kaan_sphere
   id: 10972
   tradeable: false
   examine: "Oldak's Marvellous Moving-Over-Distance Sphere."
@@ -56520,6 +56749,7 @@ brine_sabre:
   examine: "A salty sword."
 brine_sabre_noted: 11038
 key_olafs_quest_cross:
+  &key_olafs_quest_cross
   id: 11039
   tradeable: false
   weight: 0.001
@@ -56540,6 +56770,7 @@ key_olafs_quest_star:
   <<: *key_olafs_quest_cross
   id: 11043
 rotten_barrel_2:
+  &rotten_barrel_2
   id: 11044
   tradeable: false
   weight: 0.001
@@ -56567,6 +56798,7 @@ armour_shard:
   use: "Quest"
   kept: "Wilderness"
 artefact_armour:
+  &artefact_armour
   id: 11049
   tradeable: false
   weight: 0.001
@@ -57006,6 +57238,7 @@ karamja_gloves_1:
   examine: "A pair of pale green Karamja gloves."
   kept: "Wilderness"
 antique_lamp_easy_karamja_tasks:
+  &antique_lamp_easy_karamja_tasks
   id: 11137
   bankable: false
   tradeable: false
@@ -57162,6 +57395,7 @@ phoenix_crossbow_3:
   kept: "Wilderness"
 phoenix_crossbow_noted_3: 11168
 newspaper:
+  &newspaper
   id: 11169
   aka: [ varrock_herald ]
   examine: "A collection of written news on paper!"
@@ -57171,6 +57405,7 @@ newspaper_2:
   id: 11171
 newspaper_noted_2: 11172
 half_certificate_right:
+  &half_certificate_right
   id: 11173
   destroy: "Instead of destroying this I should get a friend to help me retrieve the other half."
   examine: "I can use this to claim a reward from the King, if I get the other half."
@@ -57240,6 +57475,7 @@ museum_map:
   examine: "A map of Varrock Museum."
   kept: "Reclaim"
 antique_lamp_varrock_museum:
+  &antique_lamp_varrock_museum
   id: 11185
   bankable: false
   tradeable: false
@@ -57248,6 +57484,7 @@ antique_lamp_varrock_museum:
   destroy: "Are you sure you want to destroy the lamp? You won't be able to get another one."
   kept: "Vanish"
 antique_lamp_kudos:
+  &antique_lamp_kudos
   id: 11186
   tradeable: false
   weight: 0.1
@@ -57415,6 +57652,7 @@ dragon_fire_arrows_lit:
   slot: "Ammo"
   examine: "Dragon-headed fire arrow."
 dragon_arrow_p:
+  &dragon_arrow_p
   id: 11227
   limit: 10000
   range_str: 60.0
@@ -59675,6 +59913,7 @@ torso_back_to_my_roots:
   use: "Quest"
   kept: "Wilderness"
 left_arm:
+  &left_arm
   id: 11766
   tradeable: false
   weight: 0.001
@@ -59686,6 +59925,7 @@ right_arm:
   <<: *left_arm
   id: 11767
 left_leg:
+  &left_leg
   id: 11768
   tradeable: false
   weight: 0.001
@@ -59697,6 +59937,7 @@ right_leg:
   <<: *left_leg
   id: 11769
 root_cutting:
+  &root_cutting
   id: 11770
   examine: "A root cutting."
   weight: 0.01
@@ -60363,6 +60604,7 @@ splitbark_armour_set:
   examine: "Grand Exchange set containing a helm, body, boots, gauntlets and legs."
 splitbark_armour_set_noted: 11877
 black_trimmed_armour_set_lg:
+  &black_trimmed_armour_set_lg
   id: 11878
   absorb_melee: 2
   absorb_range: 4
@@ -60378,6 +60620,7 @@ black_trimmed_armour_set_lg:
   examine: "Grand Exchange set containing a full helm, platebody, legs and kiteshield."
 black_trimmed_armour_set_lg_noted: 11879
 black_trimmed_armour_set_sk:
+  &black_trimmed_armour_set_sk
   id: 11880
   absorb_melee: 2
   absorb_range: 4
@@ -60393,11 +60636,13 @@ black_trimmed_armour_set_sk:
   examine: "Grand Exchange set containing a full helm, platebody, skirt and kiteshield."
 black_trimmed_armour_set_sk_noted: 11881
 black_gold_trimmed_armour_set_lg:
+  &black_gold_trimmed_armour_set_lg
   id: 11882
   weight: 2.267
   examine: "Grand Exchange set containing a full helm, platebody, legs and kiteshield."
 black_gold_trimmed_armour_set_lg_noted: 11883
 black_gold_trimmed_armour_set_sk:
+  &black_gold_trimmed_armour_set_sk
   id: 11884
   weight: 2.267
   examine: "Grand Exchange set containing a full helm, platebody, skirt and kiteshield."
@@ -60419,6 +60664,7 @@ adamant_gold_trimmed_armour_set_sk:
   id: 11892
 adamant_gold_trimmed_armour_set_sk_noted: 11893
 rune_trimmed_armour_set_lg:
+  &rune_trimmed_armour_set_lg
   id: 11894
   absorb_melee: 9
   absorb_range: 20
@@ -60434,6 +60680,7 @@ rune_trimmed_armour_set_lg:
   examine: "Grand Exchange set containing a full helm, platebody, legs and kiteshield."
 rune_trimmed_armour_set_lg_noted: 11895
 rune_trimmed_armour_set_sk:
+  &rune_trimmed_armour_set_sk
   id: 11896
   absorb_melee: 9
   absorb_range: 20
@@ -60457,6 +60704,7 @@ rune_gold_trimmed_armour_set_sk:
   id: 11900
 rune_gold_trimmed_armour_set_sk_noted: 11901
 enchanted_set:
+  &enchanted_set
   id: 11902
   weight: 2.267
   examine: "Grand Exchange set containing a hat, robe top and bottoms."
@@ -60470,6 +60718,7 @@ gold_trimmed_blue_wizard_set:
   id: 11906
 gold_trimmed_blue_wizard_set_noted: 11907
 trimmed_leather_armour_set:
+  &trimmed_leather_armour_set
   id: 11908
   weight: 2.267
   examine: "Grand Exchange set containing a body and chaps."
@@ -60479,6 +60728,7 @@ gold_trimmed_leather_armour_set:
   id: 11910
 gold_trimmed_leather_armour_set_noted: 11911
 green_dragonhide_trimmed_set:
+  &green_dragonhide_trimmed_set
   id: 11912
   absorb_magic: 10
   absorb_range: 5
@@ -60506,6 +60756,7 @@ blue_dragonhide_gold_trimmed_set:
   id: 11918
 blue_dhide_gold_trimmed_set_noted: 11919
 guthix_dragonhide_blessed_set:
+  &guthix_dragonhide_blessed_set
   id: 11920
   weight: 2.267
   examine: "Grand Exchange set containing a body, chaps, bracers and coif."
@@ -60705,6 +60956,7 @@ dark_mystic_robes_set:
   examine: "Grand Exchange set containing a hat, top, bottoms, gloves and boots."
 dark_mystic_robes_set_noted: 11963
 raven_egg:
+  &raven_egg
   id: 11964
   tradeable: false
   weight: 0.015
@@ -61542,6 +61794,7 @@ gold_charm:
   examine: "A charm used to summon familiars."
   kept: "Wilderness"
 green_charm:
+  &green_charm
   id: 12159
   tradeable: false
   examine: "A charm used to summon familiars."
@@ -61550,6 +61803,7 @@ crimson_charm:
   <<: *green_charm
   id: 12160
 abyssal_charm:
+  &abyssal_charm
   id: 12161
   tradeable: false
   weight: 0.005
@@ -61681,6 +61935,7 @@ zamorak_hawk:
   food: "Fishing bait"
   examine: "A stately zamorak hawk."
 guthix_raptor_2:
+  &guthix_raptor_2
   id: 12187
   npc: 6957
   npc2: 9187
@@ -61690,6 +61945,7 @@ guthix_raptor_2:
   skill_req:
     summoning: 70
 penguin_grey_2:
+  &penguin_grey_2
   id: 12188
   tradeable: false
   weight: 1.5
@@ -61707,6 +61963,7 @@ vulture_grey_2:
   skill_req:
     summoning: 85
 terrier_puppy:
+  &terrier_puppy
   id: 12191
   npc: 6894
   npc2: 6858
@@ -61778,6 +62035,7 @@ monkey_grey_and_beige_2:
   <<: *monkey
   id: 12201
 chameleon_2:
+  &chameleon_2
   id: 12203
   npc: 6923
   npc2: 9262
@@ -62010,6 +62268,7 @@ feather_headdress_charged_orange:
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
   kept: "Reclaim"
 dreadfowl_pouchu:
+  &dreadfowl_pouchu
   id: 12225
   limit: 10000
   tradeable: false
@@ -62085,6 +62344,7 @@ praying_mantis_pouchu:
   <<: *dreadfowl_pouchu
   id: 12247
 pouch_2:
+  &pouch_2
   id: 12248
   limit: 10000
   examine: "Can be used to create Summoning pouches."
@@ -62780,6 +63040,7 @@ baby_dragon_black:
   skill_req:
     summoning: 99
 red_dragon_egg:
+  &red_dragon_egg
   id: 12477
   tradeable: false
   weight: 0.025
@@ -62857,6 +63118,7 @@ gecko_orange_2:
     summoning: 10
     hunter: 27
 baby_squirrel:
+  &baby_squirrel
   id: 12490
   food: "Nuts"
   examine: "A tiny nut-thief."
@@ -62883,6 +63145,7 @@ chameleon:
   <<: *chameleon_2
   id: 12493
 chameleon_egg:
+  &chameleon_egg
   id: 12494
   tradeable: false
   examine: "A lizard's egg."
@@ -63417,6 +63680,7 @@ metal_catapult_parts:
   use: "Quest"
   kept: "Wilderness"
 mahogany_catapult_part_1:
+  &mahogany_catapult_part_1
   id: 12597
   tradeable: false
   weight: 2.0
@@ -63530,6 +63794,7 @@ test_paper:
   kept: "Vanish"
   use: "Removed"
 antique_lamp_misthalin_training_centre_of_excellence:
+  &antique_lamp_misthalin_training_centre_of_excellence
   id: 12627
   tradeable: false
   weight: 0.1
@@ -63591,6 +63856,7 @@ chocatrice_cape_2:
   kept: "Wilderness"
   use: "Limited"
 easter_egg_2008_easter_event_pink_1:
+  &easter_egg_2008_easter_event_pink_1
   id: 12635
   limit: 2
   tradeable: false
@@ -63645,6 +63911,7 @@ chocatrice_cape:
   kept: "Wilderness"
   use: "Limited"
 chocolate_egg_yellow:
+  &chocolate_egg_yellow
   id: 12646
   tradeable: false
   weight: 0.085
@@ -63664,6 +63931,7 @@ bucket_2008_easter_event:
   examine: "It's a bucket from the Easter Bunny's warren."
   kept: "Reclaim"
 bucket_of_water_2008_easter_event:
+  &bucket_of_water_2008_easter_event
   id: 12650
   limit: 100
   tradeable: false
@@ -63673,6 +63941,7 @@ bucket_of_water_2008_easter_event_2:
   <<: *bucket_of_water_2008_easter_event
   id: 12651
 bucket_of_coal:
+  &bucket_of_coal
   id: 12652
   tradeable: false
   weight: 3.0
@@ -67318,6 +67587,7 @@ black_bolts:
   material: "metal"
   examine: "Black crossbow bolts."
 black_bolts_p:
+  &black_bolts_p
   id: 13084
   limit: 100
   range_str: 75.0
@@ -68041,6 +68311,7 @@ ornate_tomb_key:
   use: "Quest"
   kept: "Wilderness"
 tome_of_xp_2nd_ed_3:
+  &tome_of_xp_2nd_ed_3
   id: 13160
   destroy: "You can get another Tome of Experience from Veliaf in Burgh de Rott."
   examine: "A Tome of Experience that awards 2500 XP per chapter."
@@ -68419,6 +68690,7 @@ splat_2: 13248
 splat_3: 13249
 splat_4: 13250
 ranged_path_key:
+  &ranged_path_key
   id: 13259
   tradeable: false
   weight: 0.002
@@ -68585,6 +68857,7 @@ customs_hat:
   use: "Quest"
   kept: "Vanish"
 file_wanda_the_fish:
+  &file_wanda_the_fish
   id: 13300
   tradeable: false
   weight: 0.05
@@ -68859,6 +69132,7 @@ ex_ex_parrot_in_a_magic_cage:
   examine: "A very alive rotten parrot in a magic cage."
   kept: "Wilderness"
 ex_ex_parrot:
+  &ex_ex_parrot
   id: 13335
   npc: 7844
   npc2: 9212
@@ -69095,6 +69369,7 @@ introduction_letter:
   use: "Quest"
   kept: "Wilderness"
 broken_hand_fingers:
+  &broken_hand_fingers
   id: 13381
   tradeable: false
   weight: 5.0
@@ -69332,6 +69607,7 @@ burnt_crayfish:
   examine: "A burnt crayfish."
 burnt_crayfish_noted: 13438
 antique_lamp_learning_the_ropes:
+  &antique_lamp_learning_the_ropes
   id: 13439
   bankable: false
   tradeable: false
@@ -69646,6 +69922,7 @@ plant_pot_meeting_history:
   use: "Quest"
   kept: "Vanish"
 pear_tree_seedling:
+  &pear_tree_seedling
   id: 13581
   tradeable: false
   weight: 1.36
@@ -69718,6 +69995,7 @@ old_tome:
   use: "Quest"
   kept: "Vanish"
 runecrafting_guild_teleport:
+  &runecrafting_guild_teleport
   id: 13598
   tradeable: false
   examine: "A tablet containing a magic spell."
@@ -70279,6 +70557,7 @@ omni_talisman:
   examine: "Many mysterious powers emanate from the talisman."
   kept: "Vanish"
 runecrafting_guild_token:
+  &runecrafting_guild_token
   id: 13650
   tradeable: false
   examine: "Wizard Elriss will exchange these for rewards."
@@ -70846,6 +71125,7 @@ performance_arrow:
   kept: "Vanish"
   use: "Removed"
 teleport_spell:
+  &teleport_spell
   id: 13723
   bankable: false
   tradeable: false
@@ -72843,6 +73123,7 @@ corrupt_dragon_spear_degraded:
   examine: "This item degrades while worn, and will turn to dust."
   weight: 2.267
 wilderness_manual_pvp_worlds:
+  &wilderness_manual_pvp_worlds
   id: 14056
   tradeable: false
   weight: 0.51
@@ -73181,6 +73462,7 @@ sacred_clay_scimitar:
   examine: "The sacred clay weapon has transformed into a sharp scimitar."
   weight: 2.0
 volatile_clay_tool:
+  &volatile_clay_tool
   id: 14098
   bank_stacks: false
   examine: "This can turn into a variety of tools."
@@ -75135,6 +75417,7 @@ enriched_snapdragon_seed:
   use: "Quest"
   kept: "Wilderness"
 dolmen:
+  &dolmen
   id: 14507
   tradeable: false
   weight: 1.0
@@ -75163,6 +75446,7 @@ dolmen_8:
   <<: *dolmen
   id: 14514
 air_key:
+  &air_key
   id: 14515
   tradeable: false
   weight: 1.0
@@ -75171,6 +75455,7 @@ air_key:
   use: "Quest"
   kept: "Wilderness"
 earth_key:
+  &earth_key
   id: 14516
   tradeable: false
   weight: 1.0
@@ -75179,6 +75464,7 @@ earth_key:
   use: "Quest"
   kept: "Wilderness"
 fire_key:
+  &fire_key
   id: 14517
   tradeable: false
   weight: 1.0
@@ -75187,6 +75473,7 @@ fire_key:
   use: "Quest"
   kept: "Wilderness"
 water_key:
+  &water_key
   id: 14518
   tradeable: false
   weight: 1.0
@@ -75292,6 +75579,7 @@ turkey_book:
   kept: "Vanish"
   use: "Limited"
 cornucopia:
+  &cornucopia
   id: 14537
   tradeable: false
   bank_stacks: false
@@ -75688,6 +75976,7 @@ phoenix_pouchu:
   <<: *dreadfowl_pouchu
   id: 14625
 phoenix_eggling:
+  &phoenix_eggling
   id: 14626
   food: "Ashes"
   examine: "A baby phoenix and it's as cute as buttons!"
@@ -75884,6 +76173,7 @@ explosive_potion_tutorial:
   examine: "Handy for destroying barricades."
   kept: "Always"
 abyssal_minion_2:
+  &abyssal_minion_2
   id: 14651
   npc: 8624
   npc2: 9245
@@ -75892,6 +76182,7 @@ abyssal_minion_2:
   skill_req:
     slayer: 85
 creeping_hand_2:
+  &creeping_hand_2
   id: 14652
   npc: 8619
   npc2: 9246
@@ -75900,6 +76191,7 @@ creeping_hand_2:
   skill_req:
     slayer: 5
 minitrice_2:
+  &minitrice_2
   id: 14653
   npc: 8620
   npc2: 9247
@@ -75908,6 +76200,7 @@ minitrice_2:
   skill_req:
     slayer: 25
 baby_basilisk_2:
+  &baby_basilisk_2
   id: 14654
   npc: 8621
   npc2: 9248
@@ -75916,6 +76209,7 @@ baby_basilisk_2:
   skill_req:
     slayer: 40
 baby_kurask_2:
+  &baby_kurask_2
   id: 14655
   npc: 8622
   npc2: 9249
@@ -76270,6 +76564,7 @@ zaniks_crossbow_upgraded:
     - "onyx_bolts_e"
     - "bone_bolts"
 energy_projectors:
+  &energy_projectors
   id: 14687
   tradeable: false
   weight: 0.001
@@ -76315,6 +76610,7 @@ bones_3:
   <<: *bones_2
   id: 14693
 prophecy_tablet_glorious_memories:
+  &prophecy_tablet_glorious_memories
   id: 14696
   tradeable: false
   weight: 3.0
@@ -76524,6 +76820,7 @@ pistons:
   kept: "Vanish"
   use: "Removed"
 wet_pipe:
+  &wet_pipe
   id: 14721
   bankable: false
   tradeable: false
@@ -77363,6 +77660,7 @@ seaweed_net:
   examine: "A sturdy net with closing wire."
   weight: 0.68
 seaweed_net_1:
+  &seaweed_net_1
   id: 14860
   examine: "A sturdy net containing seaweed"
   weight: 0.68
@@ -77543,6 +77841,7 @@ special_unit_contract:
   kept: "Vanish"
   use: "Removed"
 dwarf_squad_light:
+  &dwarf_squad_light
   id: 14941
   tradeable: false
   weight: 0.005
@@ -77550,6 +77849,7 @@ dwarf_squad_light:
   examine: "A contract for a dwarf squad."
   kept: "Vanish"
 dwarf_squad_level_2_light:
+  &dwarf_squad_level_2_light
   id: 14942
   destroy: "You'll have to get another contract from the dwarf table."
   examine: "A contract for a dwarf squad."
@@ -77578,6 +77878,7 @@ dwarf_squad_level_5_heavy:
   <<: *dwarf_squad_level_2_light
   id: 14950
 goblin_squad_light:
+  &goblin_squad_light
   id: 14951
   tradeable: false
   weight: 0.005
@@ -77585,6 +77886,7 @@ goblin_squad_light:
   examine: "A contract for a goblin squad."
   kept: "Vanish"
 goblin_squad_level_2_light:
+  &goblin_squad_level_2_light
   id: 14952
   destroy: "You'll have to get another contract from the goblin table."
   examine: "A contract for a goblin squad."
@@ -77613,6 +77915,7 @@ goblin_squad_level_5_heavy:
   <<: *goblin_squad_level_2_light
   id: 14960
 elf_squad_light:
+  &elf_squad_light
   id: 14961
   tradeable: false
   weight: 0.005
@@ -77620,6 +77923,7 @@ elf_squad_light:
   examine: "A contract for an elf squad."
   kept: "Vanish"
 elf_squad_level_2_light:
+  &elf_squad_level_2_light
   id: 14962
   destroy: "You'll have to get another contract from the elf table."
   examine: "A contract for an elf squad."
@@ -77648,6 +77952,7 @@ elf_squad_level_5_heavy:
   <<: *elf_squad_level_2_light
   id: 14970
 dwarf_squad_light_defeated:
+  &dwarf_squad_light_defeated
   id: 14971
   tradeable: false
   weight: 0.005
@@ -77655,6 +77960,7 @@ dwarf_squad_light_defeated:
   examine: "The squad recruiters will resupply this defeated squad contract."
   kept: "Vanish"
 dwarf_squad_level_2_light_defeated:
+  &dwarf_squad_level_2_light_defeated
   id: 14972
   examine: "The squad recruiters will resupply this defeated contract for me."
 dwarf_squad_level_3_light_defeated:
@@ -78507,6 +78813,7 @@ amulet_of_ranging:
   examine: "A sharp fang amulet, which looks good on rangers and surfers alike."
 amulet_of_ranging_noted: 15127
 foot_bone:
+  &foot_bone
   id: 15128
   tradeable: false
   weight: 0.453
@@ -78521,6 +78828,7 @@ bone_in_vinegar_foot_bone:
   use: "Quest"
   kept: "Wilderness"
 polished_foot_bone:
+  &polished_foot_bone
   id: 15130
   tradeable: false
   weight: 0.453
@@ -78528,6 +78836,7 @@ polished_foot_bone:
   use: "Quest"
   kept: "Wilderness"
 sabre_like_teeth:
+  &sabre_like_teeth
   id: 15131
   tradeable: false
   weight: 0.453
@@ -78542,6 +78851,7 @@ bone_in_vinegar_sabre_like_teeth:
   use: "Quest"
   kept: "Wilderness"
 polished_sabre_like_teeth:
+  &polished_sabre_like_teeth
   id: 15133
   tradeable: false
   weight: 0.453
@@ -78802,6 +79112,7 @@ scrubbed_rock_crab_carcass:
   use: "Quest"
   kept: "Wilderness"
 fox_pelt:
+  &fox_pelt
   id: 15190
   tradeable: false
   weight: 0.6
@@ -78809,6 +79120,7 @@ fox_pelt:
   use: "Quest"
   kept: "Wilderness"
 scrubbed_fox_pelt:
+  &scrubbed_fox_pelt
   id: 15191
   tradeable: false
   weight: 0.6
@@ -78816,6 +79128,7 @@ scrubbed_fox_pelt:
   use: "Quest"
   kept: "Wilderness"
 tanned_fox_pelt:
+  &tanned_fox_pelt
   id: 15192
   tradeable: false
   weight: 0.6
@@ -78829,6 +79142,7 @@ scrubbed_unicorn_hide:
   <<: *scrubbed_fox_pelt
   id: 15194
 tanned_unicorn_hide:
+  &tanned_unicorn_hide
   id: 15195
   tradeable: false
   weight: 0.6
@@ -78869,6 +79183,7 @@ scrubbed_cave_crawler_skin:
   <<: *scrubbed_fox_pelt
   id: 15206
 tanned_cave_crawler_skin:
+  &tanned_cave_crawler_skin
   id: 15207
   tradeable: false
   weight: 0.6
@@ -79253,6 +79568,7 @@ oily_rag:
   kept: "Reclaim"
   use: "Limited"
 fuse:
+  &fuse
   id: 15282
   examine: "A piece of inflammable string."
 fuse_2:
@@ -79287,6 +79603,7 @@ leaflet:
   kept: "Reclaim"
   use: "Limited"
 special_teak_log:
+  &special_teak_log
   id: 15289
   tradeable: false
   weight: 1.4
@@ -79616,6 +79933,7 @@ ardougne_cloak_1:
   examine: "A shadowy Ardougne cloak."
   kept: "Wilderness"
 antique_lamp_easy_ardougne_tasks:
+  &antique_lamp_easy_ardougne_tasks
   id: 15346
   bankable: false
   tradeable: false
@@ -79726,6 +80044,7 @@ talisman_rune_mysteries:
   kept: "Reclaim"
   use: "Removed"
 vial_pack:
+  &vial_pack
   id: 15362
   tradeable: false
   examine: "A pack of 50 noted vials."
@@ -79795,6 +80114,7 @@ barrows_icon:
   use: "Quest"
   kept: "Wilderness"
 heat_globe:
+  &heat_globe
   id: 15379
   tradeable: false
   destroy: "You can get another from Azzanadra at the temple under the Digsite."
@@ -79913,6 +80233,7 @@ alis_pendant_5:
   examine: "An enchanted necklace."
   weight: 0.01
 ferocious_ring_5:
+  &ferocious_ring_5
   id: 15398
   slot: "Ring"
   examine: "It looks in pretty good condition."
@@ -80559,6 +80880,7 @@ rune_essence_rune_mechanics:
   use: "Quest"
   kept: "Wilderness"
 rune_guardian:
+  &rune_guardian
   id: 15483
   food: "Energy from Runecrafting Altars"
   examine: "A rune guardian from the Mage Training Arena."
@@ -80797,6 +81119,7 @@ statue_plinth:
   examine: "Statue plinth from Varrock Museum."
   kept: "Wilderness"
 strange_rock_agility:
+  &strange_rock_agility
   id: 15522
   tradeable: false
   weight: 1.0
@@ -80947,6 +81270,7 @@ strange_rock_15:
   <<: *strange_rock_agility
   id: 15551
 replica_statue_piece_agility:
+  &replica_statue_piece_agility
   id: 15552
   tradeable: false
   weight: 1.0
@@ -81108,6 +81432,7 @@ mask_of_dragith_nurn:
   examine: "The magic mask of the undead necromancer Dragith Nurn."
   kept: "Wilderness"
 mask_part_1:
+  &mask_part_1
   id: 15591
   tradeable: false
   weight: 0.1
@@ -81453,6 +81778,7 @@ fish_flingers_scorecard:
   examine: "Contains details about your Fish Flingers results."
   kept: "Wilderness"
 beginners_tackle_box:
+  &beginners_tackle_box
   id: 15666
   tradeable: false
   weight: 0.001
@@ -81466,6 +81792,7 @@ standard_tackle_box:
   <<: *beginners_tackle_box
   id: 15668
 professional_tackle_box:
+  &professional_tackle_box
   id: 15669
   tradeable: false
   weight: 0.001
@@ -81517,6 +81844,7 @@ delivery_map:
   kept: "Vanish"
   use: "Removed"
 clean_cog:
+  &clean_cog
   id: 15676
   bankable: false
   tradeable: false
@@ -81538,6 +81866,7 @@ clean_pistons:
   kept: "Vanish"
   use: "Removed"
 dirty_cog:
+  &dirty_cog
   id: 15679
   bankable: false
   tradeable: false
@@ -81786,6 +82115,7 @@ ring_of_kinship:
   examine: "This ties you to your allies and enables party configuration in Daemonheim."
   kept: "Vanish"
 mysterious_chronicle_part_1:
+  &mysterious_chronicle_part_1
   id: 15708
   tradeable: false
   weight: 1.0
@@ -81797,6 +82127,7 @@ mysterious_chronicle_part_2:
   <<: *mysterious_chronicle_part_1
   id: 15709
 mysterious_chronicle_part_3:
+  &mysterious_chronicle_part_3
   id: 15710
   tradeable: false
   weight: 1.0
@@ -81851,6 +82182,7 @@ mysterious_chronicle_part_18:
   <<: *mysterious_chronicle_part_3
   id: 15725
 astea_frostwebs_journal:
+  &astea_frostwebs_journal
   id: 15726
   tradeable: false
   weight: 1.0
@@ -81867,6 +82199,7 @@ troll_scrawlings:
   use: "Dungeoneering"
   kept: "Always"
 behemoth_notes_part_1:
+  &behemoth_notes_part_1
   id: 15728
   tradeable: false
   weight: 1.0
@@ -81883,6 +82216,7 @@ environmental_effects_part_1:
   use: "Dungeoneering"
   kept: "Always"
 stalker_notes_part_1:
+  &stalker_notes_part_1
   id: 15730
   tradeable: false
   weight: 1.0
@@ -81891,6 +82225,7 @@ stalker_notes_part_1:
   use: "Dungeoneering"
   kept: "Always"
 kalgerion_notes_part_1:
+  &kalgerion_notes_part_1
   id: 15731
   tradeable: false
   weight: 1.0
@@ -81960,6 +82295,7 @@ kalgerion_notes_part_3:
   <<: *kalgerion_notes_part_1
   id: 15743
 m_and_thok_letter_part_1:
+  &m_and_thok_letter_part_1
   id: 15744
   tradeable: false
   weight: 1.0
@@ -81983,6 +82319,7 @@ m_and_thok_letter_part_6:
   <<: *m_and_thok_letter_part_1
   id: 15749
 blue_power_crystal:
+  &blue_power_crystal
   id: 15750
   weight: 2.0
   examine: "Used to power some ancient device."
@@ -84700,6 +85037,7 @@ sagittarian_arrows_bound:
   slot: "Ammo"
   examine: "Bow ammunition."
 novite_arrows_p_b:
+  &novite_arrows_p_b
   id: 15958
   range_str: 4.0
   slot: "Ammo"
@@ -84707,6 +85045,7 @@ novite_arrows_p_b:
   use: "Dungeoneering"
   kept: "Always"
 bathus_arrows_p_b:
+  &bathus_arrows_p_b
   id: 15959
   range_str: 8.0
   slot: "Ammo"
@@ -84714,6 +85053,7 @@ bathus_arrows_p_b:
   use: "Dungeoneering"
   kept: "Always"
 marmaros_arrows_p_b:
+  &marmaros_arrows_p_b
   id: 15960
   range_str: 13.0
   slot: "Ammo"
@@ -84721,6 +85061,7 @@ marmaros_arrows_p_b:
   use: "Dungeoneering"
   kept: "Always"
 kratonite_arrows_p_b:
+  &kratonite_arrows_p_b
   id: 15961
   range_str: 17.0
   slot: "Ammo"
@@ -84728,6 +85069,7 @@ kratonite_arrows_p_b:
   use: "Dungeoneering"
   kept: "Always"
 fractite_arrows_p_b:
+  &fractite_arrows_p_b
   id: 15962
   range_str: 19.0
   slot: "Ammo"
@@ -84735,6 +85077,7 @@ fractite_arrows_p_b:
   use: "Dungeoneering"
   kept: "Always"
 zephyrium_arrows_p_b:
+  &zephyrium_arrows_p_b
   id: 15963
   range_str: 21.0
   slot: "Ammo"
@@ -84742,6 +85085,7 @@ zephyrium_arrows_p_b:
   use: "Dungeoneering"
   kept: "Always"
 argonite_arrows_p_b:
+  &argonite_arrows_p_b
   id: 15964
   range_str: 24.0
   slot: "Ammo"
@@ -84749,6 +85093,7 @@ argonite_arrows_p_b:
   use: "Dungeoneering"
   kept: "Always"
 katagon_arrows_p_b:
+  &katagon_arrows_p_b
   id: 15965
   range_str: 28.0
   slot: "Ammo"
@@ -84756,6 +85101,7 @@ katagon_arrows_p_b:
   use: "Dungeoneering"
   kept: "Always"
 gorgonite_arrows_p_b:
+  &gorgonite_arrows_p_b
   id: 15966
   range_str: 32.0
   slot: "Ammo"
@@ -84763,6 +85109,7 @@ gorgonite_arrows_p_b:
   use: "Dungeoneering"
   kept: "Always"
 promethium_arrows_p_b:
+  &promethium_arrows_p_b
   id: 15967
   range_str: 37.0
   slot: "Ammo"
@@ -84770,6 +85117,7 @@ promethium_arrows_p_b:
   use: "Dungeoneering"
   kept: "Always"
 sagittarian_arrows_p_b:
+  &sagittarian_arrows_p_b
   id: 15968
   range_str: 46.0
   slot: "Ammo"
@@ -95221,6 +95569,7 @@ lump_of_stone_magical_construct:
   use: "Dungeoneering"
   kept: "Always"
 spare_construct_arm_u:
+  &spare_construct_arm_u
   id: 17365
   bank_stacks: false
   weight: 1.0
@@ -95234,6 +95583,7 @@ spare_construct_head_u:
   <<: *spare_construct_arm_u
   id: 17367
 spare_construct_arm:
+  &spare_construct_arm
   id: 17368
   weight: 1.0
   examine: "A complete replacement part for the construct."
@@ -95703,6 +96053,7 @@ vial_of_water_dungeoneering:
   kept: "Always"
 vial_of_water_noted_2: 17493
 grimy_sagewort:
+  &grimy_sagewort
   id: 17494
   examine: "A fresh herb."
   use: "Dungeoneering"
@@ -95741,6 +96092,7 @@ grimy_buckthorn:
   id: 17510
 grimy_buckthorn_noted: 17511
 clean_sagewort:
+  &clean_sagewort
   id: 17512
   weight: 0.007
   examine: "A fresh herb."
@@ -95808,6 +96160,7 @@ firebreath_whiskey:
   kept: "Always"
 firebreath_whiskey_noted: 17537
 sagewort_potion_unf:
+  &sagewort_potion_unf
   id: 17538
   weight: 0.467
   examine: "I need another ingredient to finish this potion."
@@ -95847,6 +96200,7 @@ buckthorn_potion_unf:
   id: 17554
 buckthorn_potion_unf_noted: 17555
 weak_magic_potion:
+  &weak_magic_potion
   id: 17556
   heals: 0
   excess: vial_dungeoneering
@@ -95856,6 +96210,7 @@ weak_magic_potion:
   kept: "Always"
 weak_magic_potion_noted: 17557
 weak_ranged_potion:
+  &weak_ranged_potion
   id: 17558
   heals: 0
   excess: vial_dungeoneering
@@ -95865,6 +96220,7 @@ weak_ranged_potion:
   kept: "Always"
 weak_ranged_potion_noted: 17559
 weak_melee_potion:
+  &weak_melee_potion
   id: 17560
   heals: 0
   excess: vial_dungeoneering
@@ -95874,6 +96230,7 @@ weak_melee_potion:
   kept: "Always"
 weak_melee_potion_noted: 17561
 weak_defence_potion:
+  &weak_defence_potion
   id: 17562
   heals: 0
   excess: vial_dungeoneering
@@ -95883,6 +96240,7 @@ weak_defence_potion:
   kept: "Always"
 weak_defence_potion_noted: 17563
 weak_stat_restore_potion:
+  &weak_stat_restore_potion
   id: 17564
   heals: 0
   excess: vial_dungeoneering
@@ -95901,6 +96259,7 @@ antipoison_dungeoneering:
   kept: "Always"
 antipoison_noted: 17567
 weak_cure_potion:
+  &weak_cure_potion
   id: 17568
   heals: 0
   excess: vial_dungeoneering
@@ -95910,6 +96269,7 @@ weak_cure_potion:
   kept: "Always"
 weak_cure_potion_noted: 17569
 weak_rejuvenation_potion:
+  &weak_rejuvenation_potion
   id: 17570
   heals: 0
   excess: vial_dungeoneering
@@ -95919,6 +96279,7 @@ weak_rejuvenation_potion:
   kept: "Always"
 weak_rejuvenation_potion_noted: 17571
 weak_weapon_poison:
+  &weak_weapon_poison
   id: 17572
   weight: 0.467
   examine: "A vial of weapon poison."
@@ -95926,6 +96287,7 @@ weak_weapon_poison:
   kept: "Always"
 weak_weapon_poison_noted: 17573
 weak_gatherers_potion:
+  &weak_gatherers_potion
   id: 17574
   heals: 0
   excess: vial_dungeoneering
@@ -95935,6 +96297,7 @@ weak_gatherers_potion:
   kept: "Always"
 weak_gatherers_potion_noted: 17575
 weak_artisans_potion:
+  &weak_artisans_potion
   id: 17576
   heals: 0
   excess: vial_dungeoneering
@@ -95944,6 +96307,7 @@ weak_artisans_potion:
   kept: "Always"
 weak_artisans_potion_noted: 17577
 weak_naturalists_potion:
+  &weak_naturalists_potion
   id: 17578
   heals: 0
   excess: vial_dungeoneering
@@ -95953,6 +96317,7 @@ weak_naturalists_potion:
   kept: "Always"
 weak_naturalists_potion_noted: 17579
 weak_survivalists_potion:
+  &weak_survivalists_potion
   id: 17580
   heals: 0
   excess: vial_dungeoneering
@@ -96073,6 +96438,7 @@ strong_survivalists_potion:
   id: 17628
 strong_survivalists_potion_noted: 17629
 novite_ore:
+  &novite_ore
   id: 17630
   examine: "It's a rock now, but there's potential for so much more!"
   use: "Dungeoneering"
@@ -96115,6 +96481,7 @@ promethium_ore:
   id: 17648
 promethium_ore_noted: 17649
 novite_bar:
+  &novite_bar
   id: 17650
   weight: 1.814
   examine: "A solid bar of metal, used for smithing."
@@ -96470,6 +96837,7 @@ knife_dungeoneering:
   kept: "Always"
 knife_noted_2: 17755
 tangle_gum_trap:
+  &tangle_gum_trap
   id: 17756
   weight: 0.226
   examine: "Used to trap bovimastyx."
@@ -96734,12 +97102,14 @@ cave_potato_seed:
   use: "Dungeoneering"
   kept: "Always"
 gissel_mushroom_spore:
+  &gissel_mushroom_spore
   id: 17824
   examine: "A tiny spore for making mushrooms."
 edicap_mushroom_spore:
   <<: *gissel_mushroom_spore
   id: 17825
 sagewort_seed:
+  &sagewort_seed
   id: 17826
   examine: "A seed for making herbs."
   use: "Dungeoneering"
@@ -96776,6 +97146,7 @@ hammer_dungeoneering:
   kept: "Always"
 hammer_noted_2: 17884
 novite_arrowtips:
+  &novite_arrowtips
   id: 17885
   examine: "I can make some arrows with these."
   use: "Dungeoneering"
@@ -97168,6 +97539,7 @@ sachem_deathslinger_pouch:
   use: "Dungeoneering"
   kept: "Always"
 protoleather_torn_bag:
+  &protoleather_torn_bag
   id: 17995
   weight: 3.175
   examine: "Useful to Summoners, and valuable to smugglers."
@@ -97223,6 +97595,7 @@ spirit_shards_dungeoneering:
   use: "Removed"
   kept: "Always"
 gold_charm_dungeoneering:
+  &gold_charm_dungeoneering
   id: 18017
   examine: "A charm used to summon familiars."
   kept: "Always"
@@ -99284,6 +99657,7 @@ pouch_noted_69: 18574
 pouch_noted_70: 18575
 pouch_noted_71: 18576
 kinship_ring:
+  &kinship_ring
   id: 18577
   slot: "Ring"
   destroy: "You can get a new one from the Dungeoneering tutor outside the castle at Daemonheim."
@@ -99555,6 +99929,7 @@ flagstaff_of_festivities:
   kept: "Wilderness"
   use: "Limited"
 tooth_creature:
+  &tooth_creature
   id: 18668
   food: "Milk, Chocolatey milk"
   examine: "A baby tooth creature from Zanaris."
@@ -100540,6 +100915,7 @@ scroll_of_rigour:
   examine: "It imbues you with a sense of purpose."
   kept: "Reclaim"
 scroll_box_hard:
+  &scroll_box_hard
   id: 18937
   tradeable: false
   examine: "There's another clue in it."
@@ -100863,6 +101239,7 @@ puzzle_casket_elite:
   examine: "There's treasure in it!"
   kept: "Wilderness"
 scroll_box_elite:
+  &scroll_box_elite
   id: 19041
   tradeable: false
   bank_stacks: false
@@ -103469,6 +103846,7 @@ lumber_yard_teleport:
   limit: 300
   examine: "A one-use scroll containing a teleport spell."
 black_platebody_h1_2:
+  &black_platebody_h1_2
   id: 19481
   limit: 2
   absorb_melee: 1
@@ -103484,6 +103862,7 @@ black_platebody_h1_2:
   summoning_def: 10.0
   examine: "A platebody with a heraldic design."
 adamant_platebody_h1_2:
+  &adamant_platebody_h1_2
   id: 19482
   limit: 2
   absorb_melee: 2
@@ -103499,6 +103878,7 @@ adamant_platebody_h1_2:
   summoning_def: 30.0
   examine: "A platebody with a heraldic design."
 rune_platebody_h1_2:
+  &rune_platebody_h1_2
   id: 19483
   limit: 2
   absorb_melee: 3
@@ -103555,6 +103935,7 @@ fox_mask_2:
   weight: 1.0
   examine: "A cunning disguise."
 white_unicorn_mask_2:
+  &white_unicorn_mask_2
   id: 19497
   limit: 2
   weight: 1.0
@@ -103563,6 +103944,7 @@ black_unicorn_mask_2:
   <<: *white_unicorn_mask_2
   id: 19498
 green_dragon_mask_2:
+  &green_dragon_mask_2
   id: 19499
   limit: 2
   weight: 1.0
@@ -103627,6 +104009,7 @@ bandos_robe_top_2:
   summoning_def: 4.0
   examine: "A vestment of Bandos."
 dragon_platebody_s:
+  &dragon_platebody_s
   id: 19511
   limit: 10
   absorb_melee: 4
@@ -103704,6 +104087,7 @@ bandos_platebody:
   summoning_def: 40.0
   examine: "A rune platebody in the colours of Bandos."
 ancient_dragonhide:
+  &ancient_dragonhide
   id: 19517
   limit: 2
   absorb_magic: 6
@@ -103764,6 +104148,7 @@ black_heraldic_armour_set_5_sk:
   id: 19538
 black_heraldic_armour_set_5_sk_noted: 19539
 adamant_heraldic_armour_set_1_lg:
+  &adamant_heraldic_armour_set_1_lg
   id: 19540
   absorb_melee: 7
   absorb_range: 15
@@ -103795,6 +104180,7 @@ adamant_heraldic_armour_set_5_lg:
   id: 19548
 adamant_heraldic_armour_set_5_lg_noted: 19549
 adamant_heraldic_armour_set_1_sk:
+  &adamant_heraldic_armour_set_1_sk
   id: 19550
   absorb_melee: 7
   absorb_range: 15
@@ -104111,6 +104497,7 @@ mysterious_clue_scroll:
   use: "Quest"
   kept: "Wilderness"
 blocks_iron_oxide:
+  &blocks_iron_oxide
   id: 19627
   bankable: false
   tradeable: false
@@ -105115,6 +105502,7 @@ elite_void_knight_legs:
   aka: [ elite_legs, elite_robes, elite_void_legs, elite_void_robes ]
   examine: "Armour worn by Void Knight [Guardians/Justiciars/Executioners]."
 sprite_lure:
+  &sprite_lure
   id: 19805
   tradeable: false
   weight: 1.0
@@ -105499,6 +105887,7 @@ scroll_of_cleansing:
   examine: "An artefact containing untold secrets of Herblore."
   kept: "Reclaim"
 sneakerpeeper_2:
+  &sneakerpeeper_2
   id: 19891
   food: "Eye of newt"
   examine: "Isn't it abhor-able?"
@@ -105545,6 +105934,7 @@ kinship_ring_5:
   <<: *kinship_ring
   id: 19896
 erzille_seed:
+  &erzille_seed
   id: 19897
   tradeable: false
   examine: "Plant in a vine herb patch."
@@ -105577,6 +105967,7 @@ green_blossom_seed:
   limit: 1000
   examine: "Plant in a vine flower patch."
 lergberry_seed:
+  &lergberry_seed
   id: 19937
   tradeable: false
   examine: "Plant in a vine bush patch."
@@ -105611,6 +106002,7 @@ strange_potato:
   examine: "Oddly seasoned and wriggling."
   kept: "Reclaim"
 red_vine_blossom:
+  &red_vine_blossom
   id: 19962
   tradeable: false
   examine: "A beautiful vine blossom."
@@ -105636,6 +106028,7 @@ juju_teleport_spiritbag:
   examine: "A small bag that carries a teleport spell within it."
 juju_teleport_spiritbag_noted: 19968
 lergberries:
+  &lergberries
   id: 19969
   tradeable: false
   examine: "Berries grown from vine plants."
@@ -105709,6 +106102,7 @@ zamorak_vine:
   examine: "A sinister vine from a jadinko."
   kept: "Reclaim"
 grimy_erzille:
+  &grimy_erzille
   id: 19984
   tradeable: false
   weight: 0.007
@@ -105727,6 +106121,7 @@ grimy_samaden:
   <<: *grimy_erzille
   id: 19988
 clean_erzille:
+  &clean_erzille
   id: 19989
   tradeable: false
   weight: 0.007
@@ -106244,6 +106639,7 @@ thorvars_bucket_crab:
   kept: "Vanish"
   use: "Removed"
 thorvars_bag:
+  &thorvars_bag
   id: 20075
   tradeable: false
   weight: 0.001
@@ -106290,6 +106686,7 @@ golden_hammer:
   kept: "Wilderness"
   use: "Limited"
 miner_1:
+  &miner_1
   id: 20085
   bankable: false
   tradeable: false
@@ -106338,6 +106735,7 @@ keldagrim_library_key:
   use: "Quest"
   kept: "Wilderness"
 keldagrim_key_mould_1:
+  &keldagrim_key_mould_1
   id: 20098
   tradeable: false
   weight: 0.01
@@ -106361,6 +106759,7 @@ keldagrim_key_mould_6:
   <<: *keldagrim_key_mould_1
   id: 20103
 keldagrim_key_1:
+  &keldagrim_key_1
   id: 20104
   tradeable: false
   weight: 0.05
@@ -106451,6 +106850,7 @@ frozen_key:
   examine: "A small, cold key."
   kept: "Wilderness"
 frozen_key_piece_armadyl:
+  &frozen_key_piece_armadyl
   id: 20121
   tradeable: false
   weight: 0.01

@@ -38,11 +38,13 @@ chicken:
   examine: "Yep. Definitely a chicken."
   race: bird
 sheep:
+  &sheep
   id: 43
   wander_radius: 10
   examine: "White and fluffy."
   race: sheep
 duck_grey:
+  &duck_grey
   id: 6113
   att: 1
   str: 1
@@ -98,6 +100,7 @@ rat:
   race: rat
   height: 5
 giant_spider:
+  &giant_spider
   id: 59
   att: 1
   str: 1
@@ -207,6 +210,7 @@ fishing_spot_big_net_harpoon:
         - raw_shark
   examine: "I can see fish swimming in the water."
 fishing_spot_small_net_bait:
+  &fishing_spot_small_net_bait
   id: 4908
   fishing:
     Net:
@@ -408,6 +412,7 @@ quest_guide:
   race: human
   examine: "Your introduction to the world of Gielinor."
 giant_rat:
+  &giant_rat
   id: 12348
   att: 2
   str: 3
@@ -549,6 +554,7 @@ lumbridge_sage:
   race: human
   examine: "He provides new players with useful information."
 crow:
+  &crow
   id: 2252
   race: bird
   examine: "A farmer's enemy."
@@ -628,6 +634,7 @@ gillie_groats:
   wander_radius: 4
   examine: "Gillie milks cows and she's udderly fantastic at it."  
 goblin_mohawk_blue:
+  &goblin_mohawk_blue
   id: 4262
   att: 1
   str: 1
@@ -907,6 +914,7 @@ musician_isafdar:
   race: elf
   examine: "She's beautiful."
 giant_rat_dark:
+  &giant_rat_dark
   <<: *giant_rat
   id: 8828
   att: 6
@@ -984,6 +992,7 @@ goblin_light_grey_bald_spear:
   <<: *goblin_mohawk_blue
   id: 12361
 cow:
+  &cow
   id: 12362
   def: 1
   att: 1
@@ -1013,6 +1022,7 @@ cow_brown:
   <<: *cow
   id: 12363
 cow_calf:
+  &cow_calf
   id: 12364
   att: 1
   str: 1
