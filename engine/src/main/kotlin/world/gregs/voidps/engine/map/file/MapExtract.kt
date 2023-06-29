@@ -6,11 +6,9 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.Tile
@@ -242,10 +240,8 @@ class MapExtract(
         @JvmStatic
         fun main(args: Array<String>) {
             val cache = CacheDelegate("./data/cache")
-            val itemDefinitions = ItemDefinitions(ItemDecoder(cache))
-                .load(Yaml(), "./data/definitions/items.yml")
             val definitions = ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false))
-                .load(Yaml(), "./data/definitions/objects.yml", itemDefinitions)
+                .load(Yaml(), "./data/definitions/objects.yml")
             val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
             val collisions = Collisions()
             val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = true)
