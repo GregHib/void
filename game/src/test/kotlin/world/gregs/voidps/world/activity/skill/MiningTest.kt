@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.obj.ObjectGroup
+import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.objectOption
 
@@ -25,7 +25,7 @@ internal class MiningTest : WorldTest() {
 
         assertTrue(player.inventory.contains("tin_ore"))
         assertTrue(player.experience.get(Skill.Mining) > 0)
-        assertNotEquals(rocks.id, objects.getGroup(tile, ObjectGroup.INTERACTIVE)?.id)
+        assertNotEquals(rocks.id, objects.getLayer(tile, ObjectLayer.GROUND)?.id)
     }
 
 

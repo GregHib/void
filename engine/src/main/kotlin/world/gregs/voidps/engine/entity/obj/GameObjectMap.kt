@@ -7,11 +7,11 @@ interface GameObjectMap {
 
     operator fun get(obj: GameObject): Int
 
-    operator fun get(x: Int, y: Int, level: Int, group: Int): Int
+    operator fun get(x: Int, y: Int, level: Int, layer: Int): Int
 
     operator fun set(zone: Int, tile: Int, mask: Int)
 
-    operator fun set(x: Int, y: Int, level: Int, group: Int, mask: Int)
+    operator fun set(x: Int, y: Int, level: Int, layer: Int, mask: Int)
 
     fun add(obj: GameObject, mask: Int)
 

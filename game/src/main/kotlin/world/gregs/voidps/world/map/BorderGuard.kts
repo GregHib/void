@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.ObjectGroup
+import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Distance.nearestTo
@@ -34,7 +34,7 @@ on<World, Registered> {
             val rectangle = passage.toRectangles().first()
             borders[chunk] = rectangle
             guards[rectangle] = chunk.toRectangle().mapNotNull {
-                val obj = objects.getGroup(it, ObjectGroup.INTERACTIVE)
+                val obj = objects.getLayer(it, ObjectLayer.GROUND)
                 if (obj != null && obj.id.startsWith("border_guard")) obj else null
             }
         }

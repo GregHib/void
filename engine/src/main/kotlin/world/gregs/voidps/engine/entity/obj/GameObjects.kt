@@ -91,7 +91,7 @@ class GameObjects(
     fun set(id: Int, x: Int, y: Int, plane: Int, shape: Int, rotation: Int, definition: ObjectDefinition) {
         collisions.modify(definition, x, y, plane, shape, rotation, add = true)
         if (interactive(definition)) {
-            map[x, y, plane, ObjectGroup.group(shape)] = value(false, id, shape, rotation)
+            map[x, y, plane, ObjectLayer.layer(shape)] = value(false, id, shape, rotation)
             size++
         }
     }
@@ -103,7 +103,7 @@ class GameObjects(
         collisions.modify(obj, chunk, definition)
         if (interactive(definition)) {
             val zone = chunk or (obj.plane shl 22)
-            val tile = ZoneObject.tile(obj.packed) or (ObjectGroup.group(obj.shape) shl 6)
+            val tile = ZoneObject.tile(obj.packed) or (ObjectLayer.layer(obj.shape) shl 6)
             map[zone, tile] = ZoneObject.info(obj.packed) shl 1
             size++
         }
@@ -189,13 +189,13 @@ class GameObjects(
     /**
      * Get object by string [id]
      */
-    operator fun get(tile: Tile, id: String) = get(tile, ObjectGroup.WALL, id)
-        ?: get(tile, ObjectGroup.WALL_DECORATION, id)
-        ?: get(tile, ObjectGroup.INTERACTIVE, id)
-        ?: get(tile, ObjectGroup.GROUND_DECORATION, id)
+    operator fun get(tile: Tile, id: String) = get(tile, ObjectLayer.WALL, id)
+        ?: get(tile, ObjectLayer.WALL_DECORATION, id)
+        ?: get(tile, ObjectLayer.GROUND, id)
+        ?: get(tile, ObjectLayer.GROUND_DECORATION, id)
 
-    private fun get(tile: Tile, group: Int, id: String): GameObject? {
-        val obj = getGroup(tile, group) ?: return null
+    private fun get(tile: Tile, layer: Int, id: String): GameObject? {
+        val obj = getLayer(tile, layer) ?: return null
         if (obj.id == id) {
             return obj
         }
@@ -206,22 +206,22 @@ class GameObjects(
      * Get all objects on [tile]
      */
     operator fun get(tile: Tile) = listOfNotNull(
-        getGroup(tile, ObjectGroup.WALL),
-        getGroup(tile, ObjectGroup.WALL_DECORATION),
-        getGroup(tile, ObjectGroup.INTERACTIVE),
-        getGroup(tile, ObjectGroup.GROUND_DECORATION)
+        getLayer(tile, ObjectLayer.WALL),
+        getLayer(tile, ObjectLayer.WALL_DECORATION),
+        getLayer(tile, ObjectLayer.GROUND),
+        getLayer(tile, ObjectLayer.GROUND_DECORATION)
     )
 
     /**
      * Get object by integer [id]
      */
-    operator fun get(tile: Tile, id: Int) = get(tile, ObjectGroup.WALL, id)
-        ?: get(tile, ObjectGroup.WALL_DECORATION, id)
-        ?: get(tile, ObjectGroup.INTERACTIVE, id)
-        ?: get(tile, ObjectGroup.GROUND_DECORATION, id)
+    operator fun get(tile: Tile, id: Int) = get(tile, ObjectLayer.WALL, id)
+        ?: get(tile, ObjectLayer.WALL_DECORATION, id)
+        ?: get(tile, ObjectLayer.GROUND, id)
+        ?: get(tile, ObjectLayer.GROUND_DECORATION, id)
 
-    private fun get(tile: Tile, group: Int, id: Int): GameObject? {
-        val obj = getGroup(tile, group) ?: return null
+    private fun get(tile: Tile, layer: Int, id: Int): GameObject? {
+        val obj = getLayer(tile, layer) ?: return null
         if (obj.intId == id) {
             return obj
         }
@@ -232,7 +232,7 @@ class GameObjects(
      * Get object by [shape]
      */
     fun getShape(tile: Tile, shape: Int): GameObject? {
-        val obj = getGroup(tile, ObjectGroup.group(shape)) ?: return null
+        val obj = getLayer(tile, ObjectLayer.layer(shape)) ?: return null
         if (obj.shape == shape) {
             return obj
         }
@@ -240,15 +240,15 @@ class GameObjects(
     }
 
     /**
-     * Get object by group [group]
+     * Get object by [layer]
      */
-    fun getGroup(tile: Tile, group: Int): GameObject? {
-        val value = map[tile.x, tile.y, tile.plane, group]
+    fun getLayer(tile: Tile, layer: Int): GameObject? {
+        val value = map[tile.x, tile.y, tile.plane, layer]
         if (empty(value)) {
             return null
         }
         if (replaced(value)) {
-            val replacement = replacements[index(tile, group)] ?: return null
+            val replacement = replacements[index(tile, layer)] ?: return null
             return GameObject(id(replacement), tile.x, tile.y, tile.plane, shape(replacement), rotation(replacement))
         }
         return GameObject(id(value), tile.x, tile.y, tile.plane, shape(value), rotation(value))
@@ -271,11 +271,11 @@ class GameObjects(
      * Resets all original objects in [chunk]
      */
     fun reset(chunk: Chunk, collision: Boolean = true) {
-        forEachReplaced(chunk) { tile, group, value ->
+        forEachReplaced(chunk) { tile, layer, value ->
             if (value != 1) {
                 add(GameObject(id(value), tile, shape(value), rotation(value)), collision)
             }
-            val replaced = replacements[index(tile, group)]
+            val replaced = replacements[index(tile, layer)]
             if (replaced != null) {
                 remove(GameObject(id(replaced), tile, shape(replaced), rotation(replaced)), collision)
             }
@@ -314,11 +314,11 @@ class GameObjects(
     }
 
     override fun send(player: Player, chunk: Chunk) {
-        forEachReplaced(chunk) { tile, group, value ->
+        forEachReplaced(chunk) { tile, layer, value ->
             if (value != 1) {
                 player.client?.send(ObjectRemoval(tile.id, shape(value), rotation(value)))
             }
-            val replaced = replacements[index(tile, group)]
+            val replaced = replacements[index(tile, layer)]
             if (replaced != null) {
                 player.client?.send(ObjectAddition(tile.id, id(replaced), shape(replaced), rotation(replaced)))
             }
@@ -331,13 +331,13 @@ class GameObjects(
         val plane = chunk.plane
         for (x in 0 until 8) {
             for (y in 0 until 8) {
-                for (group in 0 until 4) {
-                    val value = map[chunkX + x, chunkY + y, plane, group]
+                for (layer in 0 until 4) {
+                    val value = map[chunkX + x, chunkY + y, plane, layer]
                     if (empty(value) || !replaced(value)) {
                         continue
                     }
                     val tile = chunk.tile.add(x, y)
-                    block.invoke(tile, group, value)
+                    block.invoke(tile, layer, value)
                 }
             }
         }
@@ -363,15 +363,15 @@ class GameObjects(
         }
 
         /**
-         * Index represents a [Tile] and [ObjectGroup]
+         * Index represents a [Tile] and [ObjectLayer]
          */
-        private fun index(tile: Tile, group: Int) = tile.id or (group shl 30)
+        private fun index(tile: Tile, layer: Int) = tile.id or (layer shl 30)
         private fun level(index: Int) = index shr 28 and 0x2
-        private fun group(index: Int) = index shr 30 and 0x2
+        private fun layer(index: Int) = index shr 30 and 0x2
         private fun x(index: Int) = index shr 14 and 0x3fff
         private fun y(index: Int) = index and 0x3fff
         private val GameObject.index: Int
-            get() = (packed and 0x3fffffff).toInt() or (ObjectGroup.group(shape) shl 30)
+            get() = (packed and 0x3fffffff).toInt() or (ObjectLayer.layer(shape) shl 30)
     }
 }
 

@@ -37,11 +37,11 @@ class GameObjectsTest {
 
         objects.set(obj.intId, obj.x, obj.y, obj.plane, obj.shape, obj.rotation, ObjectDefinition.EMPTY)
 
-        assertEquals(obj, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
-        assertNull(objects.getGroup(obj.tile, ObjectGroup.WALL))
-        assertNull(objects.getGroup(Tile(10, 10, 1), ObjectGroup.INTERACTIVE))
+        assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
+        assertNull(objects.getLayer(obj.tile, ObjectLayer.WALL))
+        assertNull(objects.getLayer(Tile(10, 10, 1), ObjectLayer.GROUND))
         objects.clear()
-        assertNull(objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+        assertNull(objects.getLayer(obj.tile, ObjectLayer.GROUND))
     }
 
     @Test
@@ -50,10 +50,10 @@ class GameObjectsTest {
         objects.set(obj.intId, obj.x, obj.y, obj.plane, obj.shape, obj.rotation, ObjectDefinition.EMPTY)
 
         objects.remove(obj)
-        assertNull(objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+        assertNull(objects.getLayer(obj.tile, ObjectLayer.GROUND))
 
         objects.add(obj)
-        assertEquals(obj, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+        assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
         verify {
             updates.add(obj.tile.chunk, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
         }
@@ -64,11 +64,11 @@ class GameObjectsTest {
         val obj = GameObject(id = 1234, x = 10, y = 10, plane = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
 
         objects.add(obj)
-        assertEquals(obj, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+        assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
         assertTrue(objects.contains(obj))
 
         objects.reset(obj.tile.chunk)
-        assertNull(objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+        assertNull(objects.getLayer(obj.tile, ObjectLayer.GROUND))
         assertFalse(objects.contains(obj))
         verify {
             updates.add(obj.tile.chunk, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
@@ -81,16 +81,16 @@ class GameObjectsTest {
         val override = GameObject(id = 4321, x = 10, y = 10, plane = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0)
 
         objects.add(obj)
-        assertEquals(obj, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+        assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
         assertTrue(objects.contains(obj))
         assertFalse(objects.contains(override))
         objects.add(override)
-        assertEquals(override, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+        assertEquals(override, objects.getLayer(obj.tile, ObjectLayer.GROUND))
         assertTrue(objects.contains(override))
         assertFalse(objects.contains(obj))
 
         objects.remove(override)
-        assertNull(objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+        assertNull(objects.getLayer(obj.tile, ObjectLayer.GROUND))
         assertFalse(objects.contains(obj))
         assertFalse(objects.contains(override))
         verify {
@@ -107,10 +107,10 @@ class GameObjectsTest {
 
         val obj = GameObject(id = 1234, x = 10, y = 10, plane = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0)
         objects.add(obj)
-        assertEquals(obj, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+        assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
 
         objects.remove(obj)
-        assertEquals(original, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+        assertEquals(original, objects.getLayer(obj.tile, ObjectLayer.GROUND))
 
         verify {
             updates.add(obj.tile.chunk, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
@@ -127,14 +127,14 @@ class GameObjectsTest {
 
         val obj = GameObject(id = 1234, x = 10, y = 10, plane = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0)
         objects.add(obj)
-        assertEquals(obj, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+        assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
 
         val override = GameObject(id = 4321, x = 10, y = 10, plane = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0)
         objects.add(override)
-        assertEquals(override, objects.getGroup(override.tile, ObjectGroup.INTERACTIVE))
+        assertEquals(override, objects.getLayer(override.tile, ObjectLayer.GROUND))
 
         objects.remove(override)
-        assertEquals(original, objects.getGroup(obj.tile, ObjectGroup.INTERACTIVE))
+        assertEquals(original, objects.getLayer(obj.tile, ObjectLayer.GROUND))
 
         verify {
             updates.add(obj.tile.chunk, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))

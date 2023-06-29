@@ -5,17 +5,17 @@ import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.collision.Collisions
 
 /**
- * Much like [Collisions] this stores [GameObject]s by zone + group
+ * Much like [Collisions] this stores [GameObject]s by zone + [ObjectLayer]
  * Large memory footprint but faster then [GameObjectHashMap] when storing millions of objects.
  */
 class GameObjectArrayMap : GameObjectMap {
     private val data: Array<IntArray?> = arrayOfNulls(TOTAL_ZONE_COUNT)
 
-    override fun get(obj: GameObject) = get(obj.x, obj.y, obj.plane, ObjectGroup.group(obj.shape))
+    override fun get(obj: GameObject) = get(obj.x, obj.y, obj.plane, ObjectLayer.layer(obj.shape))
 
-    override operator fun get(x: Int, y: Int, level: Int, group: Int): Int {
+    override operator fun get(x: Int, y: Int, level: Int, layer: Int): Int {
         val zoneIndex = Chunk.tileIndex(x, y, level)
-        val tileIndex = Tile.index(x, y, group)
+        val tileIndex = Tile.index(x, y, layer)
         return data[zoneIndex]?.get(tileIndex) ?: -1
     }
 
@@ -24,29 +24,29 @@ class GameObjectArrayMap : GameObjectMap {
         tiles[tile] = mask
     }
 
-    override operator fun set(x: Int, y: Int, level: Int, group: Int, mask: Int) {
+    override operator fun set(x: Int, y: Int, level: Int, layer: Int, mask: Int) {
         val tiles = data[Chunk.tileIndex(x, y, level)] ?: allocateIfAbsent(x, y, level)
-        tiles[Tile.index(x, y, group)] = mask
+        tiles[Tile.index(x, y, layer)] = mask
     }
 
     override fun add(obj: GameObject, mask: Int) {
         val x = obj.x
         val y = obj.y
         val level = obj.plane
-        val group = ObjectGroup.group(obj.shape)
+        val layer = ObjectLayer.layer(obj.shape)
         val zoneIndex = Chunk.tileIndex(x, y, level)
-        val tileIndex = Tile.index(x, y, group)
+        val tileIndex = Tile.index(x, y, layer)
         val currentFlags = data[zoneIndex]?.get(tileIndex) ?: 0
-        this[x, y, level, group] = currentFlags or mask
+        this[x, y, level, layer] = currentFlags or mask
     }
 
     override fun remove(obj: GameObject, mask: Int) {
         val x = obj.x
         val y = obj.y
         val level = obj.plane
-        val group = ObjectGroup.group(obj.shape)
-        val currentFlags = this[x, y, level, group]
-        this[x, y, level, group] = currentFlags and mask.inv()
+        val layer = ObjectLayer.layer(obj.shape)
+        val currentFlags = this[x, y, level, layer]
+        this[x, y, level, layer] = currentFlags and mask.inv()
     }
 
     private fun allocateIfAbsent(absoluteX: Int, absoluteY: Int, level: Int): IntArray {
