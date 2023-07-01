@@ -10,6 +10,7 @@ import world.gregs.yaml.Yaml
 internal class GraphicDefinitionsTest : DefinitionsDecoderTest<GraphicDefinition, GraphicDecoder, GraphicDefinitions>() {
 
     override lateinit var decoder: GraphicDecoder
+    override lateinit var definitions: Array<GraphicDefinition>
     override val id: String = "teleport_modern"
     override val intId: Int = 1576
 
@@ -28,7 +29,7 @@ internal class GraphicDefinitionsTest : DefinitionsDecoderTest<GraphicDefinition
     }
 
     override fun definitions(): GraphicDefinitions {
-        return GraphicDefinitions(decoder)
+        return GraphicDefinitions(definitions)
     }
 
     override fun load(definitions: GraphicDefinitions) {

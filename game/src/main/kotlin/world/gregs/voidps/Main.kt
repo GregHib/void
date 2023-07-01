@@ -100,7 +100,7 @@ object Main {
                     single(createdAtStart = true) { NPCDefinitions(NPCDecoder(cache(), member = true)).load() }
                     single(createdAtStart = true) { ItemDefinitions(ItemDecoder(cache()).loadCache(cache())).load() }
                     single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder(cache()).loadCache(cache())).load() }
-                    single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder(cache())).load() }
+                    single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder(cache()).loadCache(cache())).load() }
                     single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder(cache())).load() }
                     single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder(cache())).load() }
                     single(createdAtStart = true) { StructDefinitions(StructDecoder(cache())).load() }

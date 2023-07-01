@@ -230,11 +230,11 @@ abstract class WorldTest : KoinTest {
         private val npcDefinitions: NPCDefinitions by lazy { NPCDefinitions(NPCDecoder(cache, member = true)).load() }
         private val itemDefinitions: ItemDefinitions by lazy { ItemDefinitions(ItemDecoder(cache).loadCache(cache)).load() }
         private val animationDefinitions: AnimationDefinitions by lazy { AnimationDefinitions(AnimationDecoder(cache).loadCache(cache)).load() }
-        private val graphicDefinitions: GraphicDefinitions by lazy { GraphicDefinitions(GraphicDecoder(cache)).load() }
+        private val graphicDefinitions: GraphicDefinitions by lazy { GraphicDefinitions(GraphicDecoder(cache).loadCache(cache)).load() }
         private val interfaceDefinitions: InterfaceDefinitions by lazy { InterfaceDefinitions(InterfaceDecoder(cache)).load() }
         private val containerDefinitions: ContainerDefinitions by lazy { ContainerDefinitions(ContainerDecoder(cache)).load() }
         private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(cache)).load() }
-        private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder(cache), structDefinitions).load() }
+        private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder(cache).loadCache(cache), structDefinitions).load() }
         private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cache)).load() }
         private val styleDefinitions: StyleDefinitions by lazy { StyleDefinitions(ClientScriptDecoder(cache, revision634 = true).loadCache(cache)) }
         private val collisions: Collisions by lazy { Collisions() }
