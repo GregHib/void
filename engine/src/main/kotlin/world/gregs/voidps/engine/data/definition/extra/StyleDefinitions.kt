@@ -4,23 +4,18 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.data.Instructions
-import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
-import world.gregs.voidps.engine.timedLoad
 
-class StyleDefinitions {
+class StyleDefinitions(definitions: Array<ClientScriptDefinition>) {
+
+    init {
+        load(definitions[1142])
+    }
 
     private lateinit var definitions: Map<Int, Array<Triple<String, String, String>>>
 
     fun get(type: Int): Array<Triple<String, String, String>>? = definitions[type]
 
     fun contains(key: Int) = definitions.containsKey(key)
-
-    fun load(decoder: ClientScriptDecoder): StyleDefinitions {
-        timedLoad("style definition") {
-            load(decoder.get(1142))
-        }
-        return this
-    }
 
     fun load(script: ClientScriptDefinition): Int {
         val switchIndex = script.instructions.indexOf(Instructions.SWITCH)

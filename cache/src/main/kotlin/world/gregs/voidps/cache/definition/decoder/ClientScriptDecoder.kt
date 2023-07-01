@@ -8,6 +8,18 @@ import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 
 class ClientScriptDecoder(cache: Cache, private val revision634: Boolean) : DefinitionDecoder<ClientScriptDefinition>(cache, Indices.CLIENT_SCRIPTS) {
 
+    override fun id(archive: Int, file: Int): Int {
+        return archive
+    }
+
+    override fun size(cache: Cache): Int {
+        return cache.lastArchiveId(index)
+    }
+
+    override fun create(size: Int): Array<ClientScriptDefinition> {
+        return Array(size) { create() }
+    }
+
     override val last: Int
         get() = cache.lastArchiveId(index)
 

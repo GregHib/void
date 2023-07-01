@@ -13,7 +13,7 @@ class ItemDecoder(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, ITEMS
     }
 
     override fun size(cache: Cache): Int {
-        return super.size(cache) + 1
+        return super.size(cache)
     }
 
     override fun create(size: Int): Array<ItemDefinition> {

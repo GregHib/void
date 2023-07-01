@@ -34,7 +34,7 @@ abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, val 
 
     fun loadCache(cache: Cache): Array<T> {
         val start = System.currentTimeMillis()
-        val size = size(cache)
+        val size = size(cache) + 1
         val array = create(size)
         for (archiveId in cache.getArchives(index)) {
             val files = cache.getArchiveData(index, archiveId) ?: continue
