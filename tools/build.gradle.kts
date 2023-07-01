@@ -5,6 +5,7 @@ dependencies {
     implementation(project(":game"))
     implementation(project(":network"))
     implementation(project(":yaml"))
+    implementation(project(":types"))
 
     implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:${findProperty("kotlinIoVersion")}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${findProperty("kotlinCoroutinesVersion")}")

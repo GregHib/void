@@ -1,5 +1,6 @@
 dependencies {
     implementation(project(":buffer"))
+    implementation(project(":types"))
     implementation("com.displee:rs-cache-library:${findProperty("displeeCacheVersion")}")
     implementation("io.insert-koin:koin-core:${findProperty("koinVersion")}")
 
