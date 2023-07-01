@@ -28,15 +28,7 @@ class Maps(
     private val decoder = MapDecoder(cache, xteas)
 
     fun load(mapPath: String = getProperty("mapPath"), checksumPath: String = getProperty("mapChecksum")) {
-        val checkSumFile = File(checksumPath)
-        val mapFile = File(mapPath)
-        if (compress(checkSumFile, mapFile)) {
-            cacheLoad()
-            compress(mapFile)
-            writeChecksumFile(checkSumFile, crc, md5(mapFile))
-        } else {
-            mapExtract.loadMap(mapFile)
-        }
+        mapExtract.loadMap(File("./data/cache/live/index5.dat"))
     }
 
     private fun compress(checksumFile: File, mapFile: File): Boolean {
