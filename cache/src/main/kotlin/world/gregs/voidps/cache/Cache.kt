@@ -28,4 +28,6 @@ interface Cache {
 
     fun update(): Boolean
 
+    fun getArchiveData(index: Int, archive: Int): Map<Int, ByteArray?>?
+
 }

@@ -56,6 +56,10 @@ class CacheDelegate(directory: String) : Cache {
         return -1
     }
 
+    override fun getArchiveData(index: Int, archive: Int): Map<Int, ByteArray?>? {
+        return delegate.get()?.index(index)?.archive(archive)?.files?.mapValues { it.value?.data }
+    }
+
     override fun getArchives(index: Int): IntArray {
         return delegate.get()?.index(index)?.archiveIds() ?: intArrayOf()
     }
