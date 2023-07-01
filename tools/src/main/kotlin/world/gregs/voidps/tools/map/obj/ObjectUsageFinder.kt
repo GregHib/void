@@ -7,7 +7,6 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.XteaLoader
@@ -25,7 +24,7 @@ object ObjectUsageFinder {
                         XteaLoader().load(this, getProperty("xteaPath"), getPropertyOrNull("xteaJsonKey"), getPropertyOrNull("xteaJsonValue"))
                     }
                 }
-            }, cacheModule, cacheDefinitionModule)
+            }, cacheModule)
         }.koin
         val decoder = ObjectDecoder(koin.get(), member = false, lowDetail = false)
         val cache: Cache = koin.get()

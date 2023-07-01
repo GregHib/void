@@ -6,7 +6,6 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import org.koin.core.context.startKoin
 import org.koin.fileProperties
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import java.io.File
 import java.time.LocalDate
@@ -23,7 +22,7 @@ internal object RunescapeWikiModifier {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule)
+            modules(cacheModule)
         }.koin
         val decoder = ItemDecoder(koin.get())
 

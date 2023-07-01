@@ -9,7 +9,6 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Indices.ITEMS
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.cache.definition.encoder.ItemEncoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 
 object ItemDefinitionsParamConverter {
     @JvmStatic
@@ -24,7 +23,7 @@ object ItemDefinitionsParamConverter {
 
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cache718, cacheDefinitionModule)
+            modules(cache718)
         }.koin
 
         val decoder718 = ItemDecoder718(koin.get())

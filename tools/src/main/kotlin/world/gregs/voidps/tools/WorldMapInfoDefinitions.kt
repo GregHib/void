@@ -1,9 +1,9 @@
 package world.gregs.voidps.tools
 
 import org.koin.core.context.startKoin
+import org.koin.dsl.module
 import org.koin.fileProperties
 import world.gregs.voidps.cache.config.decoder.WorldMapInfoDecoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 
 object WorldMapInfoDefinitions {
@@ -11,7 +11,9 @@ object WorldMapInfoDefinitions {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule)
+            modules(cacheModule, module {
+                single { WorldMapInfoDecoder(get()) }
+            })
         }.koin
         val decoder = WorldMapInfoDecoder(koin.get())
         for (i in decoder.indices) {

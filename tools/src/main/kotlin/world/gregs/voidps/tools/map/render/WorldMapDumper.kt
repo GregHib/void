@@ -9,8 +9,6 @@ import world.gregs.voidps.cache.config.decoder.OverlayDecoder
 import world.gregs.voidps.cache.config.decoder.UnderlayDecoder
 import world.gregs.voidps.cache.config.decoder.WorldMapInfoDecoder
 import world.gregs.voidps.cache.definition.decoder.*
-import world.gregs.voidps.engine.client.cacheConfigModule
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.XteaLoader
@@ -33,9 +31,15 @@ object WorldMapDumper {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule, cacheConfigModule,
+            modules(cacheModule,
             module {
                 single { MapDecoder(get(), get<Xteas>()) }
+                single { TextureDecoder(get()) }
+                single { SpriteDecoder(get()) }
+                single { MapSceneDecoder(get()) }
+                single { OverlayDecoder(get()) }
+                single { UnderlayDecoder(get()) }
+                single { WorldMapInfoDecoder(get()) }
                 single(createdAtStart = true) {
                     Xteas(mutableMapOf()).apply {
                         XteaLoader().load(this, getProperty("xteaPath"), getPropertyOrNull("xteaJsonKey"), getPropertyOrNull("xteaJsonValue"))

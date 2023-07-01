@@ -3,7 +3,6 @@ package world.gregs.voidps.tools
 import org.koin.core.context.startKoin
 import org.koin.fileProperties
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 
 object InterfaceDefinitions {
@@ -11,7 +10,7 @@ object InterfaceDefinitions {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule)
+            modules(cacheModule)
         }.koin
         val decoder = InterfaceDecoder(koin.get())
         for (i in listOf(729)) {//decoder.indices) {

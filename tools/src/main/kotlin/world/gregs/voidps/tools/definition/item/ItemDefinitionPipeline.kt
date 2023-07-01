@@ -9,7 +9,6 @@ import org.sweble.wikitext.parser.nodes.WtPageName
 import org.sweble.wikitext.parser.nodes.WtText
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.pipe.extra.ItemDefaults
@@ -57,7 +56,7 @@ object ItemDefinitionPipeline {
         val start = System.currentTimeMillis()
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule)
+            modules(cacheModule)
         }.koin
         val decoder = ItemDecoder(koin.get())
 

@@ -3,7 +3,6 @@ package world.gregs.voidps.tools
 import org.koin.core.context.startKoin
 import org.koin.fileProperties
 import world.gregs.voidps.cache.definition.decoder.GraphicDecoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 
 object GraphicDefinitions {
@@ -11,7 +10,7 @@ object GraphicDefinitions {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule)
+            modules(cacheModule)
         }.koin
         val decoder = GraphicDecoder(koin.get())
         println(decoder.get(212))

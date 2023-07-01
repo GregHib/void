@@ -4,7 +4,6 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import org.koin.fileProperties
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.contain.add
@@ -18,7 +17,7 @@ object DropTableDefinitions {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule, module {
+            modules(cacheModule, module {
                 single { ItemDefinitions(ItemDecoder(get())).load(Yaml()) }
             })
         }.koin

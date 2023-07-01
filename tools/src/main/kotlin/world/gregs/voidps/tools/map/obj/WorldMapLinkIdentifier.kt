@@ -6,8 +6,8 @@ import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.engine.client.cacheConfigModule
-import world.gregs.voidps.engine.client.cacheDefinitionModule
+import world.gregs.voidps.cache.definition.decoder.WorldMapDetailsDecoder
+import world.gregs.voidps.cache.definition.decoder.WorldMapIconDecoder
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
@@ -32,7 +32,7 @@ object WorldMapLinkIdentifier {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule, cacheConfigModule,
+            modules(cacheModule,
                 module {
                     allowOverride(true)
                     single { ObjectDecoder(get(), member = true, lowDetail = false) }
@@ -40,6 +40,8 @@ object WorldMapLinkIdentifier {
                     single { GameObjects(get(), ChunkBatchUpdates(), get()) }
                     single { Collisions() }
                     single { MapDecoder(get(), get<Xteas>()) }
+                    single { WorldMapIconDecoder(get()) }
+                    single { WorldMapDetailsDecoder(get()) }
                     single(createdAtStart = true) {
                         Xteas(mutableMapOf()).apply {
                             XteaLoader().load(this, getProperty("xteaPath"), getPropertyOrNull("xteaJsonKey"), getPropertyOrNull("xteaJsonValue"))

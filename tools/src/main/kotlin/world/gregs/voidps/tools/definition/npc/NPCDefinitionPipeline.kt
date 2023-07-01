@@ -3,7 +3,6 @@ package world.gregs.voidps.tools.definition.npc
 import org.koin.core.context.startKoin
 import org.koin.fileProperties
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
@@ -33,7 +32,7 @@ object NPCDefinitionPipeline {
         val start = System.currentTimeMillis()
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule)
+            modules(cacheModule)
         }.koin
         val decoder = NPCDecoder(koin.get(), true)
         val pages = getPages(decoder, rs2Wiki)

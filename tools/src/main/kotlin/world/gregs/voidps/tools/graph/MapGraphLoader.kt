@@ -3,7 +3,6 @@ package world.gregs.voidps.tools.graph
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -32,7 +31,7 @@ object MapGraphLoader {
                 }
                 single(createdAtStart = true) { GameObjectCollision(get()) }
                 single { Collisions() }
-            }, cacheModule, cacheDefinitionModule)
+            }, cacheModule)
         }.koin
         val collisions: Collisions = koin.get()
         val objects: GameObjects = koin.get()

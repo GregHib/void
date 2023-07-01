@@ -3,7 +3,6 @@ package world.gregs.voidps.tools.definition.item
 import org.koin.core.context.startKoin
 import org.koin.fileProperties
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.yaml.Yaml
@@ -13,7 +12,7 @@ object ItemDefinitionPatcher {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule)
+            modules(cacheModule)
         }.koin
         val decoder = ItemDecoder(koin.get())
         val yaml = Yaml()

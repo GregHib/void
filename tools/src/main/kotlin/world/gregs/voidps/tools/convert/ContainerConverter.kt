@@ -10,7 +10,6 @@ import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.cache.config.encoder.ContainerEncoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.get
 import world.gregs.yaml.Yaml
@@ -29,7 +28,6 @@ object ContainerConverter {
             single { CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\") as Cache }
         }
         val koin = startKoin {
-            modules(cacheDefinitionModule)
         }.koin
         koin.loadModules(listOf(cache718Module))
         var decoder = ContainerDecoder(koin.get())

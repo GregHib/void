@@ -1,11 +1,11 @@
 package world.gregs.voidps.tools
 
 import org.koin.core.context.startKoin
+import org.koin.dsl.module
 import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 
 object ClientScriptDefinitions {
@@ -13,7 +13,9 @@ object ClientScriptDefinitions {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule)
+            modules(cacheModule, module {
+                single { ClientScriptDecoder(get(), revision634 = true) }
+            })
         }.koin
 
         val decoder: ClientScriptDecoder = koin.get()

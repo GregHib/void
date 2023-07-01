@@ -3,7 +3,6 @@ package world.gregs.voidps.tools.definition.obj
 import org.koin.core.context.startKoin
 import org.koin.fileProperties
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.tools.Pipeline
@@ -52,7 +51,7 @@ private object ObjectDefinitionPipeline {
         val start = System.currentTimeMillis()
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule)
+            modules(cacheModule)
         }.koin
         val decoder = ObjectDecoder(koin.get(), member = true, lowDetail = false)
         val pages = decoder.indices.mapNotNull {

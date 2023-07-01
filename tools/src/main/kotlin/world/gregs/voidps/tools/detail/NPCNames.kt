@@ -4,7 +4,6 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import org.koin.fileProperties
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.yaml.Yaml
 
@@ -18,7 +17,7 @@ private class NPCNames(val decoder: NPCDecoder) : NameDumper() {
         fun main(args: Array<String>) {
             val koin = startKoin {
                 fileProperties("/tool.properties")
-                modules(cacheModule, cacheDefinitionModule, module {
+                modules(cacheModule, module {
                     single { Yaml() }
                 })
             }.koin

@@ -3,7 +3,6 @@ package world.gregs.voidps.tools.cache
 import org.koin.core.context.startKoin
 import org.koin.fileProperties
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import java.io.File
 
@@ -12,7 +11,7 @@ object DumpEnums {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule)
+            modules(cacheModule)
         }.koin
         val decoder = EnumDecoder(koin.get())
         val builder = StringBuilder()

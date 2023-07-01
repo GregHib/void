@@ -1,13 +1,13 @@
 package world.gregs.voidps.tools
 
 import org.koin.core.context.startKoin
+import org.koin.dsl.module
 import org.koin.fileProperties
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.cache.definition.decoder.QuickChatOptionDecoder
 import world.gregs.voidps.cache.definition.decoder.QuickChatPhraseDecoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 
 object QuickChatDefinitions {
@@ -15,7 +15,9 @@ object QuickChatDefinitions {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule)
+            modules(cacheModule, module {
+                single { QuickChatOptionDecoder(get()) }
+            })
         }.koin
         val options = QuickChatOptionDecoder(koin.get())
         val phrases = QuickChatPhraseDecoder(koin.get())
