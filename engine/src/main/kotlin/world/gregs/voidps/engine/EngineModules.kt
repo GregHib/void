@@ -74,7 +74,7 @@ val engineModule = module {
  * Modules which depend on cache definitions
  */
 val postCacheModule = module {
-    single { MapExtract(get(), get(), get(), get()) }
+    single { MapExtract(get(), get(), get()) }
     // Definitions
     single(createdAtStart = true) { SoundDefinitions().load() }
     single(createdAtStart = true) { RenderEmoteDefinitions().load() }

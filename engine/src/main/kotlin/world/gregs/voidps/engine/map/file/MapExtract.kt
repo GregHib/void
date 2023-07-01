@@ -15,9 +15,7 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.map.region.XteaLoader
-import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.yaml.Yaml
 import java.io.File
 import java.io.RandomAccessFile
@@ -29,47 +27,53 @@ import kotlin.collections.set
 class MapExtract(
     private val collisions: Collisions,
     private val definitions: ObjectDefinitions,
-    private val objects: GameObjects,
-    private val xteas: Xteas
+    private val objects: GameObjects
 ) {
     private val logger = InlineLogger()
-    private val objectIndices: MutableMap<Int, Int> = Int2IntOpenHashMap(140_000)
-    private val tileIndices: MutableMap<Int, Int> = Int2IntOpenHashMap(140_000)
-    private var fillMarker = 0
+    private val objectIndices: MutableMap<Int, Int> = Int2IntOpenHashMap(70_000)
+    private val tileIndices: MutableMap<Int, Int> = Int2IntOpenHashMap(90_000)
     private lateinit var raf: RandomAccessFile
     private val objectArray = ByteArray(2048)
     private val tileArray = ByteArray(12)
 
     fun loadMap(file: File) {
-        var start = System.currentTimeMillis()
-        val zones = fillEmptyZones()
-        logger.info { "Loaded $zones ${"empty zones".plural(zones)} in ${System.currentTimeMillis() - start}ms" }
-        start = System.currentTimeMillis()
+        val start = System.currentTimeMillis()
         val reader = BufferReader(file.readBytes())
-        readObjects(reader)
+        readEmptyTiles(reader)
         readTiles(reader)
-        fillMarker = reader.position()
         readFullTiles(reader)
+        readObjects(reader)
         logger.info { "Loaded ${objects.size} ${"object".plural(objects.size)} from file in ${System.currentTimeMillis() - start}ms" }
         raf = RandomAccessFile(file, "r")
+    }
+
+    private fun readEmptyTiles(reader: BufferReader) {
+        for (i in 0 until reader.readInt()) {
+            val regionPlane = RegionPlane(reader.readInt())
+            val regionX = regionPlane.x
+            val regionY = regionPlane.y
+            val plane = regionPlane.plane
+            for (zoneX in 0 until 64 step 8) {
+                for (zoneY in 0 until 64 step 8) {
+                    val x = regionX + zoneX
+                    val y = regionY + zoneY
+                    collisions.allocateIfAbsent(x, y, plane)
+                }
+            }
+        }
+        for (i in 0 until reader.readInt()) {
+            val chunk = Chunk(reader.readInt()).tile
+            collisions.allocateIfAbsent(chunk.x, chunk.y, chunk.plane)
+        }
     }
 
     private fun readTiles(reader: BufferReader) {
         for (i in 0 until reader.readInt()) {
             val chunkIndex = reader.readInt()
             tileIndices[chunkIndex] = reader.position()
-            val intArray = collisions.flags[chunkIndex]
             val value = reader.readLong()
-            if (intArray == null) {
-                collisions.flags[chunkIndex] = IntArray(CHUNK_SIZE) {
-                    if (value ushr it and 0x1 == 1L) CollisionFlag.FLOOR else 0
-                }
-                continue
-            }
-            for (index in 0 until CHUNK_SIZE) {
-                if (value ushr index and 0x1 == 1L) {
-                    intArray[index] = intArray[index] or CollisionFlag.FLOOR
-                }
+            collisions.flags[chunkIndex] = IntArray(CHUNK_SIZE) {
+                if (value ushr it and 0x1 == 1L) CollisionFlag.FLOOR else 0
             }
         }
     }
@@ -89,50 +93,27 @@ class MapExtract(
     private fun readFullTiles(reader: BufferReader) {
         for (i in 0 until reader.readInt()) {
             val chunkIndex = reader.readInt()
-            tileIndices[chunkIndex] = reader.position()
             fillTiles(chunkIndex)
         }
     }
 
-    private fun fillEmptyZones(): Int {
-        var zones = 0
-        for (id in xteas.keys) {
-            val region = Region(id)
-            val regionX = region.tile.x
-            val regionY = region.tile.y
-            zones += 64
-            for (plane in 0 until 4) {
-                for (zoneX in 0 until 64 step 8) {
-                    for (zoneY in 0 until 64 step 8) {
-                        val x = regionX + zoneX
-                        val y = regionY + zoneY
-                        collisions.allocateIfAbsent(x, y, plane)
-                    }
-                }
-            }
-        }
-        return zones
-    }
-
     fun loadChunk(from: Chunk, to: Chunk, rotation: Int) {
-        val objectPosition = objectIndices[from.id]?.toLong()
-        val tilePosition = tileIndices[from.id]?.toLong()
         val start = System.currentTimeMillis()
+        val tilePosition = tileIndices[from.id]?.toLong()
+        if (tilePosition == null) {
+            fillTiles(to.id)
+        } else {
+            raf.seek(tilePosition)
+            raf.read(tileArray)
+            val reader = BufferReader(tileArray)
+            readTiles(to, reader, rotation)
+        }
+        val objectPosition = objectIndices[from.id]?.toLong()
         if (objectPosition != null) {
             raf.seek(objectPosition)
             raf.read(objectArray)
             val reader = BufferReader(objectArray)
             readObjects(to, reader, rotation)
-        }
-        if (tilePosition != null) {
-            if (tilePosition > fillMarker) {
-                fillTiles(to.id)
-            } else {
-                raf.seek(tilePosition)
-                raf.read(tileArray)
-                val reader = BufferReader(tileArray)
-                readTiles(to, reader, rotation)
-            }
         }
         logger.info { "Loaded $from -> $to $rotation in ${System.currentTimeMillis() - start}ms" }
     }
@@ -242,7 +223,6 @@ class MapExtract(
             val cache = CacheDelegate("./data/cache")
             val definitions = ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false))
                 .load(Yaml(), "./data/definitions/objects.yml", null)
-            val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
             val collisions = Collisions()
             val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = true)
             val extract = MapExtract(collisions, definitions, objects, xteas)

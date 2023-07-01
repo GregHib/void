@@ -79,9 +79,9 @@ class MapCompress(
                 }
             }
         }
-        writeObjects(writer, objects)
         writeTiles(writer, chunks)
         writeFilledChunks(writer, full)
+        writeObjects(writer, objects)
         val data = writer.toArray()
         file.writeBytes(data)
         logger.info { "Compressed ${regions.size} ${"map".plural(regions.size)} ($total objects, $count tiles) to ${data.size / 1000000}mb in ${System.currentTimeMillis() - start}ms" }
