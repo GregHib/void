@@ -9,6 +9,14 @@ import world.gregs.voidps.cache.definition.data.EnumDefinition
 
 class EnumDecoder(cache: Cache) : DefinitionDecoder<EnumDefinition>(cache, ENUMS) {
 
+    override fun create(size: Int): Array<EnumDefinition> {
+        return Array(size) { create() }
+    }
+
+    override fun id(archive: Int, file: Int): Int {
+        return file or (archive shl 8)
+    }
+
     override fun create() = EnumDefinition()
 
     override fun getFile(id: Int) = id and 0xff

@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data.definition.extra
 
 import world.gregs.voidps.cache.definition.data.EnumDefinition
-import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
@@ -9,19 +8,12 @@ import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 
 class EnumDefinitions(
-    decoder: EnumDecoder,
+    override var definitions: Array<EnumDefinition>,
     private val structs: StructDefinitions
 ) : DefinitionsDecoder<EnumDefinition> {
 
-    override lateinit var definitions: Array<EnumDefinition>
     override lateinit var ids: Map<String, Int>
     private lateinit var parameters: Map<String, Map<String, Int>>
-
-    init {
-        val start = System.currentTimeMillis()
-        definitions = decoder.indices.map { decoder.get(it) }.toTypedArray()
-        timedLoad("enum definition", definitions.size, start)
-    }
 
     fun <T : Any> getStruct(id: String, index: Int, param: String): T {
         val enum = get(id)

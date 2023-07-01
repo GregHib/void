@@ -104,7 +104,7 @@ object Main {
                     single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder(cache())).load() }
                     single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder(cache())).load() }
                     single(createdAtStart = true) { StructDefinitions(StructDecoder(cache())).load() }
-                    single(createdAtStart = true) { EnumDefinitions(EnumDecoder(cache()), get()).load() }
+                    single(createdAtStart = true) { EnumDefinitions(EnumDecoder(cache()).loadCache(cache()), get()).load() }
                     single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cache())).load() }
                     single(createdAtStart = true) { StyleDefinitions(ClientScriptDecoder(cache(), revision634 = true).loadCache(cache())) }
                     single(named("mapLoader"), createdAtStart = true) { Maps(cache(), get(), get(), get(), get(), get()).load() }
