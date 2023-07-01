@@ -1,11 +1,9 @@
 package world.gregs.voidps.cache
 
 import com.displee.cache.CacheLibrary
-import com.displee.cache.index.Index255
 import com.github.michaelbull.logging.InlineLogger
 import java.lang.ref.Reference
 import java.lang.ref.SoftReference
-import java.math.BigInteger
 
 class CacheDelegate(directory: String) : Cache {
 
@@ -19,32 +17,10 @@ class CacheDelegate(directory: String) : Cache {
         logger.info { "Cache read from $directory in ${System.currentTimeMillis() - start}ms" }
     }
 
-    override var index255: Index255?
-        get() = delegate.get()?.index255
-        set(value) {
-            delegate.get()?.index255 = value
-        }
-
     override fun getFile(index: Int, archive: Int, file: Int, xtea: IntArray?) =
         delegate.get()?.data(index, archive, file, xtea)
 
     override fun getFile(index: Int, name: String, xtea: IntArray?) = delegate.get()?.data(index, name, xtea)
-
-    override fun getArchive(indexId: Int, archiveId: Int): ByteArray? {
-        val index = if (indexId == 255) index255 else delegate.get()?.index(indexId)
-        if (index == null) {
-            logger.debug { "Unable to find valid index for file request [indexId=$indexId, archiveId=$archiveId]}" }
-            return null
-        }
-        val archiveSector = index.readArchiveSector(archiveId)
-        if (archiveSector == null) {
-            logger.debug { "Unable to read archive sector $archiveId in index $indexId" }
-            return null
-        }
-        return archiveSector.data
-    }
-
-    override fun generateVersionTable(exponent: BigInteger, modulus: BigInteger) = delegate.get()!!.generateNewUkeys(exponent, modulus)
 
     override fun close() {
         delegate.get()?.close()
@@ -90,14 +66,6 @@ class CacheDelegate(directory: String) : Cache {
 
     override fun write(index: Int, archive: String, data: ByteArray, xteas: IntArray?) {
         delegate.get()?.put(index, archive, data, xteas)
-    }
-
-    override fun writeArchiveSector(index: Int, archive: Int, data: ByteArray) {
-        delegate.get()?.index(index)?.writeArchiveSector(archive, data)
-    }
-
-    override fun readArchiveSector(index: Int, archive: Int): ByteArray {
-        return delegate.get()?.index(index)?.readArchiveSector(archive)?.data ?: byteArrayOf()
     }
 
     override fun update(): Boolean {
