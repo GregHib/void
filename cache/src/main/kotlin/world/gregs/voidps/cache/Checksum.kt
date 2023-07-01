@@ -106,21 +106,17 @@ class Checksum {
     }
 
     val encoders = mapOf<Int, IndexEncoder>(
-        Indices.MAPS to MapEncoder(loadXteas(File("./data/xteas.dat")))
+        Indices.MAPS to MapEncoder(57265, loadXteas(File("./data/xteas.dat")))
     )
 
     fun live(cachePath: String, liveCachePath: String, indices: Set<Int>, configs: Set<Int>) {
         val cache = CacheDelegate(cachePath)
-        println(cache.getArchiveId(Indices.MAPS, "m50_50"))
-        println(cache.getArchiveId(Indices.MAPS, "l50_50"))
-        println("m50_50".hashCode())
-        println("l50_50".hashCode())
         val live = File(liveCachePath)
         val mainFile = RandomAccessFile("$cachePath/main_file_cache.dat2", "r")
         val raf = RandomAccessFile("$cachePath/main_file_cache.idx255", "r")
         val writer = BufferWriter(20_000_000)
         for (index in indices) {
-            val indexFile = live.resolve("live_file_cache.idx${index}")
+            val indexFile = live.resolve("index${index}.dat")
             val crc = 0
 //            if (CacheReader.crc(mainFile, raf, index) != crc) {
                 writer.clear()
