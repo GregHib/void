@@ -17,7 +17,7 @@ object MapPacker {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val target = CacheDelegate("./data/cache/")
+        val target = CacheDelegate("${System.getProperty("user.home")}/rs634_cache/")
         val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
         packMissingMaps(target, xteas, CacheDelegate("${System.getProperty("user.home")}/Downloads/727 cache with most xteas/"), Xteas(), all())
         packMissingMaps(target, xteas, CacheDelegate("${System.getProperty("user.home")}/Downloads/cache-280/"), getKeys(280), all()) // revision 681
@@ -87,7 +87,7 @@ object MapPacker {
                 .get()
                 .body()
                 .ownText()
-            file.mkdirs()
+            file.parentFile.mkdirs()
             file.writeText(text)
             text
         }
