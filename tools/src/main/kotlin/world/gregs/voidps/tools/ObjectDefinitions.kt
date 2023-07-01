@@ -22,15 +22,15 @@ object ObjectDefinitions {
         var start = System.currentTimeMillis()
 
 
-        dump(cache, Indices.OBJECTS) { archive, file -> (archive shl 8) + file }
-        dump(cache, Indices.INTERFACES)
-        dump(cache, Indices.ANIMATIONS) { archive, file -> (archive shl 7) + file }
-        dump(cache, Indices.ENUMS) { archive, file -> (archive shl 8) + file }
-        dump(cache, Indices.GRAPHICS) { archive, file -> (archive shl 8) + file }
-        dump(cache, Indices.ITEMS) { archive, file -> (archive shl 8) + file }
-        dump(cache, Indices.NPCS) { archive, file -> (archive shl 7) + file}
-        dump(cache, Indices.QUICK_CHAT_MESSAGES)
-        dump(cache, Indices.QUICK_CHAT_MENUS)
+//        dump(cache, Indices.OBJECTS) { archive, file -> (archive shl 8) + file }
+//        dump(cache, Indices.INTERFACES)
+//        dump(cache, Indices.ANIMATIONS) { archive, file -> (archive shl 7) + file }
+//        dump(cache, Indices.ENUMS) { archive, file -> (archive shl 8) + file }
+//        dump(cache, Indices.GRAPHICS) { archive, file -> (archive shl 8) + file }
+//        dump(cache, Indices.ITEMS) { archive, file -> (archive shl 8) + file }
+//        dump(cache, Indices.NPCS) { archive, file -> (archive shl 7) + file}
+//        dump(cache, Indices.QUICK_CHAT_MESSAGES)
+//        dump(cache, Indices.QUICK_CHAT_MENUS)
 
 //        loadAll2(cache, defs) { archive, file -> (archive shl 8) + file }
 //        loadAll(defs)

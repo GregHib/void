@@ -12,22 +12,24 @@ object CacheReader {
 //        println(expected?.data?.size)
 
         val start = System.currentTimeMillis()
-        crc(Indices.OBJECTS)
-        crc(Indices.INTERFACES)
-        crc(Indices.ANIMATIONS)
-        crc(Indices.ENUMS)
-        crc(Indices.GRAPHICS)
-        crc(Indices.ITEMS)
-        crc(Indices.NPCS)
-        crc(Indices.QUICK_CHAT_MESSAGES)
-        crc(Indices.QUICK_CHAT_MENUS)
-        crc(Indices.HUFFMAN)
-        crc(Indices.CLIENT_SCRIPTS)
+        val mainFile = RandomAccessFile("./data/cache/main_file_cache.dat2", "r")
+        val raf = RandomAccessFile("./data/cache/main_file_cache.idx255", "r")
+        crc(mainFile, raf, Indices.OBJECTS)
+        crc(mainFile, raf, Indices.INTERFACES)
+        crc(mainFile, raf, Indices.ANIMATIONS)
+        crc(mainFile, raf, Indices.ENUMS)
+        crc(mainFile, raf, Indices.GRAPHICS)
+        crc(mainFile, raf, Indices.ITEMS)
+        crc(mainFile, raf, Indices.NPCS)
+        crc(mainFile, raf, Indices.QUICK_CHAT_MESSAGES)
+        crc(mainFile, raf, Indices.QUICK_CHAT_MENUS)
+        crc(mainFile, raf, Indices.HUFFMAN)
+        crc(mainFile, raf, Indices.CLIENT_SCRIPTS)
         println("Took ${System.currentTimeMillis() - start}ms")
     }
 
-    fun crc(index: Int): Int {
-        return generateCrc(readSector(index)!!)
+    fun crc(main: RandomAccessFile, index255: RandomAccessFile, index: Int): Int {
+        return generateCrc(readSector(main, index255, index)!!)
     }
 
     private val CRC_TABLE = IntArray(256) {
@@ -51,9 +53,7 @@ object CacheReader {
         return crc
     }
 
-    private fun readSector(id: Int): ByteArray? {
-        val mainFile = RandomAccessFile("./data/cache/main_file_cache.dat2", "r")
-        val raf = RandomAccessFile("./data/cache/main_file_cache.idx255", "r")
+    private fun readSector(mainFile: RandomAccessFile, raf: RandomAccessFile, id: Int): ByteArray? {
         if (mainFile.length() < Index.INDEX_SIZE * id + Index.INDEX_SIZE) {
             return null
         }
