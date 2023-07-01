@@ -12,7 +12,7 @@ class QuickChatPhraseDecoder(cache: Cache) : DefinitionDecoder<QuickChatPhraseDe
 
     override fun create() = QuickChatPhraseDefinition()
 
-    override fun getArchive(id: Int) = 0
+    override fun getArchive(id: Int) = 1
 
     override val last: Int
         get() {

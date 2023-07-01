@@ -10,7 +10,6 @@ import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.cache.config.encoder.ContainerEncoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.cache.loadCache
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.tools.property
@@ -45,7 +44,7 @@ object ContainerConverter {
         val data: MutableMap<String, Any> = yaml.load<Map<String, Any>>(property("containerDefinitionsPath")).toMutableMap()
 
 
-        val itemDecoder = ItemDefinitions(loadCache(cache, ItemDecoder(cache))).load(Yaml(), property("itemDefinitionsPath"))
+        val itemDecoder = ItemDefinitions(ItemDecoder(cache).loadCache(cache)).load(Yaml(), property("itemDefinitionsPath"))
         decoder = ContainerDecoder(cache)
         var counter = 0
         for (i in 0 until decoder.last) {

@@ -14,7 +14,6 @@ import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
-import world.gregs.voidps.cache.loadCache
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
@@ -99,7 +98,7 @@ object Main {
                     }
                     single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(cache(), member = true, lowDetail = false)).load() }
                     single(createdAtStart = true) { NPCDefinitions(NPCDecoder(cache(), member = true)).load() }
-                    single(createdAtStart = true) { ItemDefinitions(loadCache(cache(), ItemDecoder(cache()))).load() }
+                    single(createdAtStart = true) { ItemDefinitions(ItemDecoder(cache()).loadCache(cache())).load() }
                     single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder(cache())).load() }
                     single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder(cache())).load() }
                     single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder(cache())).load() }
