@@ -7,15 +7,38 @@ import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.Checksum
 import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
+import java.io.File
 
+/*
+    TODO maybe encoding with a zone loop is better?
+    for regionPlane
+        if skip
+            fill all
+        for chunk in regionPlane
+            if has tiles
+               decode tiles
+            if has objects
+               decode objects
+ */
 class MapEncoder(
     private val objectDefinitionsSize: Int,
-    private val xteas: Map<Int, IntArray>
-) : Checksum.IndexEncoder {
+    xteaPath: String
+) : IndexEncoder() {
+
+    private fun loadXteas(path: String): Map<Int, IntArray> {
+        val xteas = Int2ObjectOpenHashMap<IntArray>()
+        val reader = BufferReader(File(path).readBytes())
+        while (reader.position() < reader.length) {
+            val region = reader.readShort()
+            xteas[region] = IntArray(4) { reader.readInt() }
+        }
+        return xteas
+    }
+
+    private val xteas: Map<Int, IntArray> = loadXteas(xteaPath)
     private val logger = InlineLogger()
     private var empty = true
     private var objectCount = 0

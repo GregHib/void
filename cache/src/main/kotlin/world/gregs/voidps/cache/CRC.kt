@@ -4,35 +4,12 @@ import com.displee.cache.index.Index
 import world.gregs.voidps.buffer.read.BufferReader
 import java.io.RandomAccessFile
 
-object CacheReader {
-//    val cache = CacheLibrary("./data/cache/")
-
-    @JvmStatic
-    fun main(args: Array<String>) {
-//        println(expected?.data?.size)
-
-        val start = System.currentTimeMillis()
-        val mainFile = RandomAccessFile("./data/cache/main_file_cache.dat2", "r")
-        val raf = RandomAccessFile("./data/cache/main_file_cache.idx255", "r")
-        crc(mainFile, raf, Indices.OBJECTS)
-        crc(mainFile, raf, Indices.INTERFACES)
-        crc(mainFile, raf, Indices.ANIMATIONS)
-        crc(mainFile, raf, Indices.ENUMS)
-        crc(mainFile, raf, Indices.GRAPHICS)
-        crc(mainFile, raf, Indices.ITEMS)
-        crc(mainFile, raf, Indices.NPCS)
-        crc(mainFile, raf, Indices.QUICK_CHAT_MESSAGES)
-        crc(mainFile, raf, Indices.QUICK_CHAT_MENUS)
-        crc(mainFile, raf, Indices.HUFFMAN)
-        crc(mainFile, raf, Indices.CLIENT_SCRIPTS)
-        println("Took ${System.currentTimeMillis() - start}ms")
-    }
-
-    fun crc(main: RandomAccessFile, index255: RandomAccessFile, index: Int): Int {
+class CRC {
+    fun read(main: RandomAccessFile, index255: RandomAccessFile, index: Int): Int {
         return generateCrc(readSector(main, index255, index)!!)
     }
 
-    private val CRC_TABLE = IntArray(256) {
+    private val table = IntArray(256) {
         var crc = it
         for (i in 0..7) {
             crc = if (crc and 0x1 == 1) {
@@ -44,10 +21,10 @@ object CacheReader {
         crc
     }
 
-    fun generateCrc(data: ByteArray, offset: Int = 0, length: Int = data.size): Int {
+    private fun generateCrc(data: ByteArray, offset: Int = 0, length: Int = data.size): Int {
         var crc = -1
         for (i in offset until length) {
-            crc = crc ushr 8 xor CRC_TABLE[crc xor data[i].toInt() and 0xff]
+            crc = crc ushr 8 xor table[crc xor data[i].toInt() and 0xff]
         }
         crc = crc xor -0x1
         return crc

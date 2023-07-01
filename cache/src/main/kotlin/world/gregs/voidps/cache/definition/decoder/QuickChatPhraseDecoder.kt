@@ -12,7 +12,7 @@ class QuickChatPhraseDecoder(cache: Cache) : DefinitionDecoder<QuickChatPhraseDe
 
     override fun create() = QuickChatPhraseDefinition()
 
-    override fun getArchive(id: Int) = 1
+    override fun getArchive(id: Int) = 0
 
     override val last: Int
         get() {
@@ -22,6 +22,7 @@ class QuickChatPhraseDecoder(cache: Cache) : DefinitionDecoder<QuickChatPhraseDe
         }
 
     override fun getData(archive: Int, file: Int): ByteArray? {
+//        println("$archive $file")
         return if (file < 32768) {
             super.getData(archive, file)
         } else {

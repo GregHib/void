@@ -21,7 +21,6 @@ object QuickChatDefinitions {
             val def = options.getOrNull(i) ?: continue
             println(def)
         }*/
-
         for (i in phrases.indices) {
             // 612, 613, 614, 62
             val def = phrases.getOrNull(i) ?: continue

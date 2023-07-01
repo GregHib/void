@@ -1,146 +1,180 @@
 package world.gregs.voidps.cache
 
 import com.github.michaelbull.logging.InlineLogger
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
-import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.cache.encode.MapEncoder
+import world.gregs.voidps.cache.encode.*
 import java.io.File
-import java.io.FileOutputStream
 import java.io.RandomAccessFile
+import java.math.BigInteger
+import java.security.MessageDigest
 
-class Checksum {
+class Checksum(
+    private val encoders: () -> Map<Int, IndexEncoder>
+) {
 
-    val logger = InlineLogger()
+    private val logger = InlineLogger()
 
-    fun check(cachePath: String) {
-        val cache = File(cachePath)
-        if (!cache.exists()) {
+    /**
+     * Keeps the live cache up to date by checking for any cache modifications
+     */
+    fun checkChanges(cachePath: String) {
+        val cacheDir = File(cachePath)
+        if (!cacheDir.exists()) {
             throw IllegalStateException("Unable to find cache.")
         }
 
-        val live = cache.resolve("live/")
-        val checksum = live.resolve("cache.checksum")
-        val mainFile = cache.resolve("main_file_cache.dat2")
-        val index255 = cache.resolve("main_file_cache.idx255")
+        val live = cacheDir.resolve("live/")
+        val checksum = live.resolve(CHECKSUM_FILE)
+        val mainFile = cacheDir.resolve("main_file_cache.dat2")
+        val index255 = cacheDir.resolve("main_file_cache.idx255")
 
         if (mainFile.exists() && index255.exists()) {
+            val encoders = encoders()
             if (checksum.exists()) {
-                // check crcs for differences
+                val outdated = RandomAccessFile(mainFile.path, "r").use { main ->
+                    RandomAccessFile(index255.path, "r").use { index ->
+                        readChecksum(main, index, checksum, live, encoders)
+                    }
+                }
+                if (outdated > 0) {
+                    update(cachePath, live, encoders)
+                }
             } else {
                 live.mkdir()
                 logger.info { "Creating live cache." }
-                live(cachePath, live.path, indices, configs)
+                update(cachePath, live, encoders)
             }
-        } else {
-            if (checksum.exists()) {
-                logger.info { "Loading live cache." }
-            } else {
-                throw IllegalStateException("Unable to find cache.")
-            }
+        } else if (!checksum.exists()) {
+            throw IllegalStateException("Unable to find cache at '${cachePath}'.")
         }
-        /*
-            Check data\cache\micro\
-                if exists
-                    Check data\cache
-                        if cache exists
-                            read crcs
-                            compare crcs
-                                update different
-
-         */
     }
 
-    val indices = setOf(
-        Indices.CONFIGS,
-        Indices.INTERFACES,
-        Indices.MAPS,
-        Indices.HUFFMAN,
-        Indices.CLIENT_SCRIPTS,
-        Indices.OBJECTS,
-        Indices.ENUMS,
-        Indices.NPCS,
-        Indices.ITEMS,
-        Indices.ANIMATIONS,
-        Indices.GRAPHICS,
-        Indices.VAR_BIT,
-        Indices.QUICK_CHAT_MESSAGES,
-        Indices.QUICK_CHAT_MENUS
-    )
-    val configs = setOf(
-        Configs.IDENTITY_KIT,
-        Configs.CONTAINERS,
-        Configs.VARP,
-        Configs.VARC,
-        Configs.STRUCTS,
-        Configs.RENDER_ANIMATIONS
-    )
-
-    interface IndexEncoder {
-        fun encode(writer: Writer, cache: Cache, index: Int) {
-            for (archiveId in cache.getArchives(index)) {
-                val files = cache.getArchiveData(index, archiveId) ?: continue
-                for ((fileId, data) in files) {
-                    if (data == null) {
-                        continue
-                    }
-                    encode(writer, index, archiveId, fileId, data)
-                }
+    /**
+     * Compares all values in [checksumFile] with current [liveDirectory] and cache [main], [index255]
+     *
+     */
+    private fun readChecksum(
+        main: RandomAccessFile,
+        index255: RandomAccessFile,
+        checksumFile: File,
+        liveDirectory: File,
+        indices: Map<Int, IndexEncoder>
+    ): Int {
+        val start = System.currentTimeMillis()
+        val reader = BufferReader(checksumFile.readBytes())
+        if (reader.readByte() != VERSION) {
+            logger.info { "Checksum file out of date. Refreshing all." }
+            return indices.size
+        }
+        val crc32 = CRC()
+        val size = reader.readByte()
+        var outdated = 0
+        for (i in 0 until size) {
+            val index = reader.readByte()
+            val crc = reader.readInt()
+            val md5 = reader.readString()
+            val encoder = indices[index]
+            if (encoder == null) {
+                logger.warn { "No encoder found for index $index" }
+                continue
             }
+            val actualCrc = crc32.read(main, index255, index)
+            if (crc != actualCrc) {
+                outdated++
+                continue
+            }
+            val actualMd5 = md5(liveDirectory.resolve(indexFile(index)).readBytes())
+            if (md5 != actualMd5) {
+                outdated++
+                continue
+            }
+            encoder.outdated = false
         }
-
-        fun encode(writer: Writer, index: Int, archive: Int, file: Int, data: ByteArray) {
-            writer.writeBytes(data)
-        }
-
+        logger.info { "Found $outdated outdated cache indices in ${System.currentTimeMillis() - start}ms" }
+        return outdated
     }
-    private fun loadXteas(file: File): Map<Int, IntArray> {
-        val xteas = Int2ObjectOpenHashMap<IntArray>()
-        val reader = BufferReader(file.readBytes())
-        while (reader.position() < reader.length) {
-            val region = reader.readShort()
-            xteas[region] = IntArray(4) { reader.readInt() }
-        }
-        return xteas
-    }
 
-    val encoders = mapOf<Int, IndexEncoder>(
-        Indices.MAPS to MapEncoder(57265, loadXteas(File("./data/xteas.dat")))
-    )
-
-    fun live(cachePath: String, liveCachePath: String, indices: Set<Int>, configs: Set<Int>) {
+    /**
+     * (Re)encodes any [Indices] which are [IndexEncoder.outdated]
+     */
+    private fun update(cachePath: String, live: File, encoders: Map<Int, IndexEncoder>) {
         val cache = CacheDelegate(cachePath)
-        val live = File(liveCachePath)
-        val mainFile = RandomAccessFile("$cachePath/main_file_cache.dat2", "r")
-        val raf = RandomAccessFile("$cachePath/main_file_cache.idx255", "r")
         val writer = BufferWriter(20_000_000)
-        for (index in indices) {
-            val indexFile = live.resolve("index${index}.dat")
-            val crc = 0
-//            if (CacheReader.crc(mainFile, raf, index) != crc) {
-                writer.clear()
-                val indexEncoder = encoders[index]
-                indexEncoder?.encode(writer, cache, index)
-                if (writer.position() > 0) {
-                    FileOutputStream(indexFile).use { it.write(writer.array(), 0, writer.position()) }
-                }
-//            }
+        for ((index, encoder) in encoders) {
+            if (!encoder.outdated) {
+                continue
+            }
+            val start = System.currentTimeMillis()
+            writer.clear()
+            encoder.encode(writer, cache, index)
+            if (writer.position() <= 0) {
+                continue
+            }
+            val indexFile = live.resolve(indexFile(index))
+            val bytes = writer.toArray()
+            indexFile.writeBytes(bytes)
+            encoder.md5 = md5(bytes)
+            encoder.crc = cache.getIndexCrc(index)
+            logger.info { "Encoded index $index in ${System.currentTimeMillis() - start}ms" }
         }
+        writeChecksum(live.resolve(CHECKSUM_FILE), encoders)
     }
 
-    fun loadMicroCache() {
-
-    }
-
-    fun readChecksumFile() {
-
+    /**
+     * Write all the latest checksum values to file
+     */
+    private fun writeChecksum(file: File, encoders: Map<Int, IndexEncoder>) {
+        val writer = BufferWriter(encoders.values.sumOf { it.md5.length + 6 } + 2)
+        writer.writeByte(VERSION)
+        writer.writeByte(encoders.size)
+        for ((index, encoder) in encoders) {
+            writer.writeByte(index)
+            writer.writeInt(encoder.crc)
+            writer.writeString(encoder.md5)
+        }
+        file.writeBytes(writer.array())
     }
 
     companion object {
+        private fun indexFile(index: Int) = "index$index.dat"
+
+        private const val CHECKSUM_FILE = "checksum.dat"
+        private const val VERSION = 1
+        private const val OBJECT_DEF_SIZE = 57265
+
+        private fun md5(bytes: ByteArray?): String {
+            val hash = MessageDigest.getInstance("MD5").digest(bytes)
+            return BigInteger(1, hash).toString(16)
+        }
+
+        private fun load(): Map<Int, IndexEncoder> {
+            return mapOf(
+                Indices.CONFIGS to ConfigEncoder(setOf(
+                    Configs.IDENTITY_KIT,
+                    Configs.CONTAINERS,
+                    Configs.VARP,
+                    Configs.VARC,
+                    Configs.STRUCTS,
+                    Configs.RENDER_ANIMATIONS
+                )),
+                Indices.INTERFACES to InterfaceEncoder(),
+                Indices.MAPS to MapEncoder(OBJECT_DEF_SIZE, "./data/xteas.dat"),
+                Indices.HUFFMAN to IndexEncoder(),
+                Indices.CLIENT_SCRIPTS to ClientScriptEncoder(),
+                Indices.OBJECTS to ShiftEncoder(8),
+                Indices.ENUMS to ShiftEncoder(8),
+                Indices.NPCS to ShiftEncoder(7),
+                Indices.ITEMS to ShiftEncoder(8),
+                Indices.ANIMATIONS to ShiftEncoder(7),
+                Indices.GRAPHICS to ShiftEncoder(8),
+                Indices.QUICK_CHAT_MESSAGES to QuickChatEncoder(),
+            )
+        }
+
         @JvmStatic
         fun main(args: Array<String>) {
-            Checksum().check("./data/cache/")
+            Checksum(::load).checkChanges("./data/cache/")
         }
     }
 
