@@ -94,9 +94,6 @@ class Checksum {
             writer.writeBytes(data)
         }
 
-        fun close(writer: Writer) {
-
-        }
     }
     private fun loadXteas(file: File): Map<Int, IntArray> {
         val xteas = Int2ObjectOpenHashMap<IntArray>()
@@ -129,7 +126,6 @@ class Checksum {
                 writer.clear()
                 val indexEncoder = encoders[index]
                 indexEncoder?.encode(writer, cache, index)
-                indexEncoder?.close(writer)
                 if (writer.position() > 0) {
                     FileOutputStream(indexFile).use { it.write(writer.array(), 0, writer.position()) }
                 }
