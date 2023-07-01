@@ -12,6 +12,7 @@ import world.gregs.voidps.cache.config.encoder.ContainerEncoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.tools.property
 import world.gregs.yaml.Yaml
 
 /**
@@ -22,10 +23,10 @@ object ContainerConverter {
     @JvmStatic
     fun main(args: Array<String>) {
         val cacheModule = module {
-            single { CacheDelegate("./data/cache/") as Cache }
+            single { CacheDelegate("${System.getProperty("user.home")}/Downloads/rs634_cache/") as Cache }
         }
         val cache718Module = module {
-            single { CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\") as Cache }
+            single { CacheDelegate("${System.getProperty("user.home")}/Downloads/rs718_cache/") as Cache }
         }
         val koin = startKoin {
         }.koin
@@ -40,11 +41,10 @@ object ContainerConverter {
         val cache: Cache = get()
 
         val yaml = Yaml()
-        val path = "./data/definitions/containers.yml"
-        val data: MutableMap<String, Any> = yaml.load<Map<String, Any>>(path).toMutableMap()
+        val data: MutableMap<String, Any> = yaml.load<Map<String, Any>>(property("containerDefinitionsPath")).toMutableMap()
 
 
-        val itemDecoder = ItemDefinitions(ItemDecoder(cache)).load(Yaml(), "./data/definitions/items.yml")
+        val itemDecoder = ItemDefinitions(ItemDecoder(cache)).load(Yaml(), property("itemDefinitionsPath"))
         decoder = ContainerDecoder(cache)
         var counter = 0
         for (i in 0 until decoder.last) {
@@ -98,6 +98,6 @@ object ContainerConverter {
         }
         cache.update()
         println("Shops: $counter")
-        yaml.save("containers.yml", data)
+//        yaml.save("containers.yml", data)
     }
 }
