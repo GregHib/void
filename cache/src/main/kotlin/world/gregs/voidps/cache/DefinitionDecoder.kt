@@ -3,29 +3,13 @@ package world.gregs.voidps.cache
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 
-abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, internal val index: Int) {
+abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, val index: Int) {
 
     open val last: Int
         get() = cache.lastArchiveId(index) * 256 + (cache.archiveCount(index, cache.lastArchiveId(index)))
 
     val indices: IntRange
         get() = 0..last
-
-
-    fun loadAll(definitions: Array<T>, getId: (archive: Int, file: Int) -> Int) {
-        for (archiveId in cache.getArchives(index)) {
-            val files = cache.getArchiveData(index, archiveId) ?: continue
-            for ((fileId, file) in files) {
-                if (file == null) {
-                    continue
-                }
-                val id = getId(archiveId, fileId)
-                val definition = definitions[id]
-                readLoop(definition, BufferReader(file))
-                definition.changeValues()
-            }
-        }
-    }
 
     fun getOrNull(id: Int): T? {
         return readData(id)
@@ -34,6 +18,23 @@ abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, inte
     open fun get(id: Int) = getOrNull(id) ?: create()
 
     protected abstract fun create(): T
+
+    open fun create(id: Int): T = create()
+
+    open fun size(cache: Cache): Int {
+        return 0
+    }
+
+    open fun readId(reader: Reader): Int {
+        return 0
+    }
+
+    open fun id(archive: Int, file: Int): Int {
+        return 0
+    }
+
+    open fun changeValues(definition: T) {
+    }
 
     protected open fun getData(archive: Int, file: Int): ByteArray? {
         return cache.getFile(index, archive, file)

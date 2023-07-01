@@ -8,7 +8,12 @@ open class IndexEncoder {
     var md5: String = ""
     var outdated: Boolean = true
 
+    open fun size(cache: Cache, index: Int): Int {
+        return cache.lastArchiveId(index) * 256 + (cache.archiveCount(index, cache.lastArchiveId(index)))
+    }
+
     open fun encode(writer: Writer, cache: Cache, index: Int) {
+        writer.writeInt(size(cache, index))
         for (archiveId in cache.getArchives(index)) {
             val files = cache.getArchiveData(index, archiveId) ?: continue
             for ((fileId, data) in files) {

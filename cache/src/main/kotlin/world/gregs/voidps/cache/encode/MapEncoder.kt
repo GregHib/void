@@ -72,6 +72,7 @@ class MapEncoder(
                 }
             }
         }
+        writer.writeInt(regions)
         writeEmptyTiles(writer, all, planes)
         writeTiles(writer, chunks, tiles)
         writeFilledChunks(writer, full)
