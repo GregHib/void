@@ -1,24 +1,15 @@
 package world.gregs.voidps.tools
 
-import org.koin.core.context.startKoin
-import org.koin.dsl.module
-import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
-import world.gregs.voidps.engine.client.cacheModule
 
 object ClientScriptDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
-        val koin = startKoin {
-            fileProperties("/tool.properties")
-            modules(cacheModule, module {
-                single { ClientScriptDecoder(get(), revision634 = true) }
-            })
-        }.koin
-
-        val decoder: ClientScriptDecoder = koin.get()
+        val cache: Cache = CacheDelegate(property("cachePath"))
+        val decoder = ClientScriptDecoder(cache, revision634 = true)
         for (i in decoder.indices) {
 //            if (i != 1142) {
 //                continue

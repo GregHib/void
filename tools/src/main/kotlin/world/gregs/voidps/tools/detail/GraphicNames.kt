@@ -1,15 +1,13 @@
 package world.gregs.voidps.tools.detail
 
-import org.koin.core.context.startKoin
-import org.koin.dsl.module
-import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.GraphicDecoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
+import world.gregs.voidps.tools.property
 import world.gregs.yaml.Yaml
 
 /**
@@ -22,18 +20,12 @@ object GraphicNames {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val koin = startKoin {
-            fileProperties("/tool.properties")
-            modules(cacheModule, module {
-                single { Yaml() }
-            })
-        }.koin
-        val cache: Cache = koin.get()
+        val cache: Cache = CacheDelegate(property("cachePath"))
         val models = mutableMapOf<Int, MutableList<String>>()
         addItemModels(cache, models)
         addNPCModels(cache, models)
         addObjectModels(cache, models)
-        val yaml: Yaml = koin.get()
+        val yaml = Yaml()
         val decoder = GraphicDecoder(cache)
         val map = mutableMapOf<Int, MutableList<String>>()
         repeat(decoder.last) { id ->

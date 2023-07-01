@@ -1,6 +1,8 @@
 package world.gregs.voidps.engine.entity.item.drop
 
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.get
 
 data class ItemDrop(
     val id: String,
@@ -12,10 +14,10 @@ data class ItemDrop(
         assert(chance > 0) { "Item must have a positive chance." }
     }
 
-    fun toItem(): Item {
+    fun toItem(definitions: ItemDefinitions = get()): Item {
         if (id == "nothing" || id.isBlank()) {
             return Item.EMPTY
         }
-        return Item(id, amount.random())
+        return Item(id, amount.random(), definitions.get(id))
     }
 }

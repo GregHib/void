@@ -1,34 +1,26 @@
 package world.gregs.voidps.tools.map.obj
 
-import org.koin.core.context.startKoin
-import org.koin.dsl.module
-import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.tools.property
+import world.gregs.voidps.tools.propertyOrNull
 
 object ObjectUsageFinder {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val koin = startKoin {
-            fileProperties("/tool.properties")
-            modules(module {
-                single(createdAtStart = true) {
-                    Xteas(mutableMapOf()).apply {
-                        XteaLoader().load(this, getProperty("xteaPath"), getPropertyOrNull("xteaJsonKey"), getPropertyOrNull("xteaJsonValue"))
-                    }
-                }
-            }, cacheModule)
-        }.koin
-        val decoder = ObjectDecoder(koin.get(), member = false, lowDetail = false)
-        val cache: Cache = koin.get()
-        val mapDecoder = MapDecoder(cache, koin.get<Xteas>())
+        val cache: Cache = CacheDelegate(property("cachePath"))
+        val xteas: Xteas = Xteas(mutableMapOf()).apply {
+            XteaLoader().load(this, property("xteaPath"), propertyOrNull("xteaJsonKey"), propertyOrNull("xteaJsonValue"))
+        }
+        val decoder = ObjectDecoder(cache, member = false, lowDetail = false)
+        val mapDecoder = MapDecoder(cache, xteas)
         val objects = mutableMapOf<Region, List<MapObject>>()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {

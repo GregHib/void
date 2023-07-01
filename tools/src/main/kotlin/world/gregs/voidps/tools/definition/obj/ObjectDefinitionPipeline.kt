@@ -1,9 +1,8 @@
 package world.gregs.voidps.tools.definition.obj
 
-import org.koin.core.context.startKoin
-import org.koin.fileProperties
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
@@ -11,6 +10,7 @@ import world.gregs.voidps.tools.definition.item.ItemDefinitionPipeline
 import world.gregs.voidps.tools.definition.item.pipe.page.PageCollector
 import world.gregs.voidps.tools.definition.item.pipe.page.UniqueIdentifiers
 import world.gregs.voidps.tools.definition.obj.pipe.*
+import world.gregs.voidps.tools.property
 import world.gregs.yaml.Yaml
 import java.io.File
 import java.util.concurrent.TimeUnit
@@ -49,11 +49,8 @@ private object ObjectDefinitionPipeline {
     @JvmStatic
     fun main(args: Array<String>) {
         val start = System.currentTimeMillis()
-        val koin = startKoin {
-            fileProperties("/tool.properties")
-            modules(cacheModule)
-        }.koin
-        val decoder = ObjectDecoder(koin.get(), member = true, lowDetail = false)
+        val cache: Cache = CacheDelegate(property("cachePath"))
+        val decoder = ObjectDecoder(cache, member = true, lowDetail = false)
         val pages = decoder.indices.mapNotNull {
             val def = decoder.getOrNull(it)
             if (def != null) {

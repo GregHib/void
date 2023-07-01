@@ -1,15 +1,13 @@
 package world.gregs.voidps.tools.definition.item
 
 import org.apache.commons.io.IOUtils
-import org.koin.core.context.startKoin
-import org.koin.fileProperties
 import org.sweble.wikitext.parser.nodes.WtInternalLink
 import org.sweble.wikitext.parser.nodes.WtListItem
 import org.sweble.wikitext.parser.nodes.WtPageName
 import org.sweble.wikitext.parser.nodes.WtText
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.pipe.extra.ItemDefaults
 import world.gregs.voidps.tools.definition.item.pipe.extra.ItemEquipmentInfo
@@ -20,6 +18,7 @@ import world.gregs.voidps.tools.definition.item.pipe.page.LivePageCollector
 import world.gregs.voidps.tools.definition.item.pipe.page.OfflinePageCollector
 import world.gregs.voidps.tools.definition.item.pipe.page.PageCollector
 import world.gregs.voidps.tools.definition.item.pipe.page.UniqueIdentifiers
+import world.gregs.voidps.tools.property
 import world.gregs.voidps.tools.wiki.model.Wiki
 import world.gregs.voidps.tools.wiki.model.WikiPage
 import world.gregs.voidps.tools.wiki.scrape.RunescapeWiki.export
@@ -54,11 +53,8 @@ object ItemDefinitionPipeline {
         val revisionDate = LocalDate.of(2011, Month.JANUARY, 31)// 634
 
         val start = System.currentTimeMillis()
-        val koin = startKoin {
-            fileProperties("/tool.properties")
-            modules(cacheModule)
-        }.koin
-        val decoder = ItemDecoder(koin.get())
+        val cache: Cache = CacheDelegate(property("cachePath"))
+        val decoder = ItemDecoder(cache)
 
         val pages = getPages(decoder, rs2Wiki)
         val output = buildItemExtras(revisionDate, decoder, cache718, rs2Wiki, pages)

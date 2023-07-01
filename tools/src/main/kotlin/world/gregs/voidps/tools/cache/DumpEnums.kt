@@ -1,19 +1,16 @@
 package world.gregs.voidps.tools.cache
 
-import org.koin.core.context.startKoin
-import org.koin.fileProperties
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
-import world.gregs.voidps.engine.client.cacheModule
+import world.gregs.voidps.tools.property
 import java.io.File
 
 object DumpEnums {
     @JvmStatic
     fun main(args: Array<String>) {
-        val koin = startKoin {
-            fileProperties("/tool.properties")
-            modules(cacheModule)
-        }.koin
-        val decoder = EnumDecoder(koin.get())
+        val cache: Cache = CacheDelegate(property("cachePath"))
+        val decoder = EnumDecoder(cache)
         val builder = StringBuilder()
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue

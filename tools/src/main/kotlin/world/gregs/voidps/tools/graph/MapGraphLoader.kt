@@ -1,42 +1,31 @@
 package world.gregs.voidps.tools.graph
 
-import org.koin.core.context.startKoin
-import org.koin.dsl.module
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.engine.client.cacheModule
+import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.tools.property
+import world.gregs.voidps.tools.propertyOrNull
+import world.gregs.yaml.Yaml
 
 object MapGraphLoader {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val koin = startKoin {
-            properties(mapOf(
-                "cachePath" to "./data/cache/",
-                "xteaPath" to "./data/xteas.dat"
-            ))
-            modules(module {
-                single { EventHandlerStore() }
-                single { GameObjects(get(), ChunkBatchUpdates(), get()) }
-                single(createdAtStart = true) {
-                    Xteas(mutableMapOf()).apply {
-                        XteaLoader().load(this, getProperty("xteaPath"), getPropertyOrNull("xteaJsonKey"), getPropertyOrNull("xteaJsonValue"))
-                    }
-                }
-                single(createdAtStart = true) { GameObjectCollision(get()) }
-                single { Collisions() }
-            }, cacheModule)
-        }.koin
-        val collisions: Collisions = koin.get()
-        val objects: GameObjects = koin.get()
-        val xteas: Xteas = koin.get()
-        val cache: Cache = koin.get()
+        val cache: Cache = CacheDelegate(property("cachePath"))
+        val collisions: Collisions = Collisions()
+        val objectDefinitions = ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false))
+            .load(Yaml(), property("objectDefinitionsPath"), null)
+        val objects = GameObjects(GameObjectCollision(Collisions()), ChunkBatchUpdates(), objectDefinitions)
+        val xteas: Xteas = Xteas(mutableMapOf()).apply {
+            XteaLoader().load(this, property("xteaPath"), propertyOrNull("xteaJsonKey"), propertyOrNull("xteaJsonValue"))
+        }
         val graph = MapGraph(objects, xteas, cache, collisions)
         graph.load(12342)
     }

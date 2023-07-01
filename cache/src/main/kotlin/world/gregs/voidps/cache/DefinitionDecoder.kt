@@ -36,7 +36,7 @@ abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, inte
     protected abstract fun create(): T
 
     protected open fun getData(archive: Int, file: Int): ByteArray? {
-        return null//cache.getFile(index, archive, file)
+        return cache.getFile(index, archive, file)
     }
 
     protected open fun readData(id: Int): T? {

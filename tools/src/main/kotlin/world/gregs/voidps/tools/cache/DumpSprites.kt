@@ -1,10 +1,9 @@
 package world.gregs.voidps.tools.cache
 
-import org.koin.core.context.startKoin
-import org.koin.dsl.module
-import org.koin.fileProperties
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.SpriteDecoder
-import world.gregs.voidps.engine.client.cacheModule
+import world.gregs.voidps.tools.property
 import java.io.File
 import javax.imageio.ImageIO
 
@@ -12,14 +11,8 @@ object DumpSprites {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val koin = startKoin {
-            fileProperties("/tool.properties")
-            modules(cacheModule,
-                module {
-                    single { SpriteDecoder(get()) }
-                })
-        }.koin
-        val decoder = SpriteDecoder(koin.get())
+        val cache: Cache = CacheDelegate(property("cachePath"))
+        val decoder = SpriteDecoder(cache)
         println(decoder.last)
         File("./sprites/").mkdir()
         repeat(decoder.last) { i ->

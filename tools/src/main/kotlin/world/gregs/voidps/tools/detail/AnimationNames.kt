@@ -1,15 +1,13 @@
 package world.gregs.voidps.tools.detail
 
-import org.koin.core.context.startKoin
-import org.koin.dsl.module
-import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.config.decoder.RenderAnimationDecoder
 import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
-import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
+import world.gregs.voidps.tools.property
 import world.gregs.yaml.Yaml
 
 /**
@@ -22,15 +20,8 @@ object AnimationNames {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val koin = startKoin {
-            fileProperties("/tool.properties")
-            modules(cacheModule, module {
-                single { Yaml() }
-                single { RenderAnimationDecoder(get()) }
-            })
-        }.koin
-        val cache: Cache = koin.get()
-        val yaml: Yaml = koin.get()
+        val cache: Cache = CacheDelegate(property("cachePath"))
+        val yaml = Yaml()
         val decoder = AnimationDecoder(cache)
         val itemDecoder = ItemDecoder(cache)
         val renders = getRenderAnimations(cache)

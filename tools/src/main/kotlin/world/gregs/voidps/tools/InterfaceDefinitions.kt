@@ -1,18 +1,14 @@
 package world.gregs.voidps.tools
 
-import org.koin.core.context.startKoin
-import org.koin.fileProperties
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
-import world.gregs.voidps.engine.client.cacheModule
 
 object InterfaceDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
-        val koin = startKoin {
-            fileProperties("/tool.properties")
-            modules(cacheModule)
-        }.koin
-        val decoder = InterfaceDecoder(koin.get())
+        val cache: Cache = CacheDelegate(property("cachePath"))
+        val decoder = InterfaceDecoder(cache)
         for (i in listOf(729)) {//decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
             println(def.components?.keys)

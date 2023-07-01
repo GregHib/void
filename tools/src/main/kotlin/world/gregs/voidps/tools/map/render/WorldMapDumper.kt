@@ -4,12 +4,12 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.config.decoder.MapSceneDecoder
 import world.gregs.voidps.cache.config.decoder.OverlayDecoder
 import world.gregs.voidps.cache.config.decoder.UnderlayDecoder
 import world.gregs.voidps.cache.config.decoder.WorldMapInfoDecoder
 import world.gregs.voidps.cache.definition.decoder.*
-import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
@@ -31,15 +31,10 @@ object WorldMapDumper {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule,
+            modules(
             module {
+                single { CacheDelegate(getProperty("cachePath")) as Cache }
                 single { MapDecoder(get(), get<Xteas>()) }
-                single { TextureDecoder(get()) }
-                single { SpriteDecoder(get()) }
-                single { MapSceneDecoder(get()) }
-                single { OverlayDecoder(get()) }
-                single { UnderlayDecoder(get()) }
-                single { WorldMapInfoDecoder(get()) }
                 single(createdAtStart = true) {
                     Xteas(mutableMapOf()).apply {
                         XteaLoader().load(this, getProperty("xteaPath"), getPropertyOrNull("xteaJsonKey"), getPropertyOrNull("xteaJsonValue"))
@@ -50,14 +45,14 @@ object WorldMapDumper {
 
         val cache: Cache = koin.get()
         val mapDecoder = MapDecoder(cache, koin.get<Xteas>())
-        val objectDecoder: ObjectDecoder = koin.get()
-        val overlayDefinitions: OverlayDecoder = koin.get()
-        val underlayDefinitions: UnderlayDecoder = koin.get()
-        val textureDefinitions: TextureDecoder = koin.get()
-        val worldMapDecoder: WorldMapDetailsDecoder = koin.get()
-        val worldMapInfoDecoder: WorldMapInfoDecoder = koin.get()
-        val spriteDecoder: SpriteDecoder = koin.get()
-        val mapSceneDecoder: MapSceneDecoder = koin.get()
+        val objectDecoder = ObjectDecoder(cache, member = true, lowDetail = false)
+        val overlayDefinitions = OverlayDecoder(cache)
+        val underlayDefinitions = UnderlayDecoder(cache)
+        val textureDefinitions = TextureDecoder(cache)
+        val worldMapDecoder = WorldMapDetailsDecoder(cache)
+        val worldMapInfoDecoder = WorldMapInfoDecoder(cache)
+        val spriteDecoder = SpriteDecoder(cache)
+        val mapSceneDecoder = MapSceneDecoder(cache)
 
         File("./images/").mkdir()
         for (i in 0 until 4) {

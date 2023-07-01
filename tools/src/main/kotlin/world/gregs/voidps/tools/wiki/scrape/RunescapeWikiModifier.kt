@@ -3,10 +3,10 @@ package world.gregs.voidps.tools.wiki.scrape
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import org.koin.core.context.startKoin
-import org.koin.fileProperties
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.client.cacheModule
+import world.gregs.voidps.tools.property
 import java.io.File
 import java.time.LocalDate
 import java.time.Month
@@ -20,11 +20,8 @@ internal object RunescapeWikiModifier {
     @Suppress("UNCHECKED_CAST")
     @JvmStatic
     fun main(args: Array<String>) {
-        val koin = startKoin {
-            fileProperties("/tool.properties")
-            modules(cacheModule)
-        }.koin
-        val decoder = ItemDecoder(koin.get())
+        val cache: Cache = CacheDelegate(property("cachePath"))
+        val decoder = ItemDecoder(cache)
 
         val file = File("./data/dump/ItemsPretty.json")
         val text = file.readText()

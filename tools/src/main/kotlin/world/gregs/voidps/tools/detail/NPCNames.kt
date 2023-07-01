@@ -1,10 +1,9 @@
 package world.gregs.voidps.tools.detail
 
-import org.koin.core.context.startKoin
-import org.koin.dsl.module
-import org.koin.fileProperties
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
-import world.gregs.voidps.engine.client.cacheModule
+import world.gregs.voidps.tools.property
 import world.gregs.yaml.Yaml
 
 /**
@@ -15,14 +14,9 @@ private class NPCNames(val decoder: NPCDecoder) : NameDumper() {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val koin = startKoin {
-                fileProperties("/tool.properties")
-                modules(cacheModule, module {
-                    single { Yaml() }
-                })
-            }.koin
-            val decoder = NPCDecoder(koin.get(), member = true)
-            val yaml: Yaml = koin.get()
+            val cache: Cache = CacheDelegate(property("cachePath"))
+            val decoder = NPCDecoder(cache, member = true)
+            val yaml= Yaml()
             val names = NPCNames(decoder)
             names.dump(yaml, "./npc-details.yml", "npc", decoder.last)
         }
