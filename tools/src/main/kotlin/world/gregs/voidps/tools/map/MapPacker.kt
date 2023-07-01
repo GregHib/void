@@ -19,9 +19,9 @@ object MapPacker {
     fun main(args: Array<String>) {
         val target = CacheDelegate("./data/cache/")
         val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
-        packMissingMaps(target, xteas, CacheDelegate("./727 cache with most xteas/"), Xteas(), all())
-        packMissingMaps(target, xteas, CacheDelegate("./cache-280/"), getKeys(280), all()) // revision 681
-        packEaster08Map(target, CacheDelegate("./cache-257/")) // revision 537
+        packMissingMaps(target, xteas, CacheDelegate("${System.getProperty("user.home")}/Downloads/727 cache with most xteas/"), Xteas(), all())
+        packMissingMaps(target, xteas, CacheDelegate("${System.getProperty("user.home")}/Downloads/cache-280/"), getKeys(280), all()) // revision 681
+        packEaster08Map(target, CacheDelegate("${System.getProperty("user.home")}/Downloads/cache-257/")) // revision 537
     }
 
     private fun packMissingMaps(target: CacheDelegate, sourceXteas: Xteas, source: CacheDelegate, targetXteas: Xteas, regions: List<Region>) {
@@ -41,8 +41,8 @@ object MapPacker {
                         println("Can't find map $region")
                     } else {
                         println("Written missing map $region")
-                        target.write(Indices.MAPS, "l${region.x}_${region.y}", objData)
                         target.write(Indices.MAPS, "m${region.x}_${region.y}", tileData)
+                        target.write(Indices.MAPS, "l${region.x}_${region.y}", objData)
                     }
                     invalid.add(region)
                 }
@@ -61,8 +61,8 @@ object MapPacker {
         } else {
             val newRegion = Region(9555)
             println("Written missing map $newRegion")
-            target.write(Indices.MAPS, "l${newRegion.x}_${newRegion.y}", objData)
             target.write(Indices.MAPS, "m${newRegion.x}_${newRegion.y}", tileData)
+            target.write(Indices.MAPS, "l${newRegion.x}_${newRegion.y}", objData)
         }
         target.update()
     }
