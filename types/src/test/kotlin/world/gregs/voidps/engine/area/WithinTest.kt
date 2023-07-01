@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.map.area
+package world.gregs.voidps.engine.area
 
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue

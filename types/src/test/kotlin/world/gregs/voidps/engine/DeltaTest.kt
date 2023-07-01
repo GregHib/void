@@ -1,7 +1,8 @@
-package world.gregs.voidps.engine.map
+package world.gregs.voidps.engine
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.map.Delta
 
 internal class DeltaTest {
 

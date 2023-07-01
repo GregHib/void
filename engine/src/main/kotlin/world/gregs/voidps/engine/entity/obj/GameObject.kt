@@ -4,6 +4,7 @@ import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
 
 /**
@@ -38,6 +39,13 @@ value class GameObject(internal val packed: Long) : Entity {
         get() = shape(packed)
     val rotation: Int
         get() = rotation(packed)
+
+
+    fun nearestTo(tile: Tile) = Tile(
+        x = Distance.getNearest(x, width, tile.x),
+        y = Distance.getNearest(y, height, tile.y),
+        plane = plane
+    )
 
     override fun toString(): String {
         return "GameObject(id=$intId, tile=$tile, shape=$shape, rotation=$rotation)"

@@ -15,9 +15,9 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes.hasSpellRequirements
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption

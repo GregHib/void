@@ -1,8 +1,9 @@
-package world.gregs.voidps.engine.map.area
+package world.gregs.voidps.engine.area
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
 

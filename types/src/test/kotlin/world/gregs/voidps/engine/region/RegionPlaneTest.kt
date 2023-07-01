@@ -1,8 +1,9 @@
-package world.gregs.voidps.engine.map.region
+package world.gregs.voidps.engine.region
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.region.RegionPlane
 
 internal class RegionPlaneTest {
 

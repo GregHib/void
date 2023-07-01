@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.npc.combat
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.setAnimation
+import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing

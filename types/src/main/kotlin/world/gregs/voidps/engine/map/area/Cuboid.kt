@@ -75,7 +75,7 @@ data class Cuboid(
         return plane in minPlane..maxPlane && x in minX..maxX && y in minY..maxY
     }
 
-    override fun random() = Tile(random(minX, maxX), random(minY, maxY), random(minPlane, maxPlane))
+    override fun random() = Tile(Companion.random(minX, maxX), Companion.random(minY, maxY), Companion.random(minPlane, maxPlane))
 
     companion object {
         fun random(first: Int, second: Int) = if (first == second) first else Random.nextInt(first, second + 1)

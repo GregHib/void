@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setGraphic
+import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.engine.timer.TimerStart
