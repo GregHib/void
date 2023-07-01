@@ -3,6 +3,7 @@ package world.gregs.voidps.tools.definition.item
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
+import world.gregs.voidps.cache.loadCache
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.tools.property
 import world.gregs.yaml.Yaml
@@ -13,8 +14,8 @@ object ItemDefinitionPatcher {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val decoder = ItemDecoder(cache)
         val yaml = Yaml()
-        val current = ItemDefinitions(ItemDecoder(cache)).load(yaml, property("itemDefinitionsPath"))
-        val newer = ItemDefinitions(ItemDecoder(cache)).load(yaml, "./items.yml")
+        val current = ItemDefinitions(loadCache(cache, ItemDecoder(cache))).load(yaml, property("itemDefinitionsPath"))
+        val newer = ItemDefinitions(loadCache(cache, ItemDecoder(cache))).load(yaml, "./items.yml")
         val map = mutableMapOf<Int, Double>()
         for (id in decoder.indices) {
             val def = current.getOrNull(id) ?: continue

@@ -8,6 +8,14 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 
 class ItemDecoder(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, ITEMS) {
 
+    override fun id(archive: Int, file: Int): Int {
+        return file or (archive shl 8)
+    }
+
+    override fun size(cache: Cache): Int {
+        return super.size(cache)
+    }
+
     override fun create() = ItemDefinition()
 
     override fun getFile(id: Int) = id and 0xff

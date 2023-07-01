@@ -225,7 +225,7 @@ class MapExtract(
                 .load(Yaml(), "./data/definitions/objects.yml", null)
             val collisions = Collisions()
             val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = true)
-            val extract = MapExtract(collisions, definitions, objects, xteas)
+            val extract = MapExtract(collisions, definitions, objects)
             extract.loadMap(File("./data/map-test.dat"))
             println(objects.size)
         }

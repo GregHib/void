@@ -22,7 +22,7 @@ abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, val 
     open fun create(id: Int): T = create()
 
     open fun size(cache: Cache): Int {
-        return 0
+        return cache.lastArchiveId(index) * 256 + (cache.archiveCount(index, cache.lastArchiveId(index)))
     }
 
     open fun readId(reader: Reader): Int {
@@ -33,7 +33,7 @@ abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, val 
         return 0
     }
 
-    open fun changeValues(definition: T) {
+    open fun changeDefValues(definition: T) {
     }
 
     protected open fun getData(archive: Int, file: Int): ByteArray? {

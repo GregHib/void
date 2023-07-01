@@ -6,6 +6,7 @@ import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
+import world.gregs.voidps.cache.loadCache
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
@@ -20,7 +21,7 @@ object DropTableDefinitions {
             fileProperties("/tool.properties")
             modules(module {
                 single { CacheDelegate(getProperty("cachePath")) as Cache }
-                single { ItemDefinitions(ItemDecoder(get())).load(Yaml()) }
+                single { ItemDefinitions(loadCache(get(), ItemDecoder(get()))).load(Yaml()) }
             })
         }.koin
         val decoder = DropTables().load(Yaml())

@@ -24,6 +24,8 @@ abstract class DefinitionsDecoderTest<T, S : DefinitionDecoder<T>, D : Definitio
 
     abstract var decoder: S
 
+    abstract var definitions: Array<T>
+
     @BeforeEach
     open fun setup() {
         every { decoder.indices } returns (0..intId)
