@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.activity.skill.fishing
+
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.move.tele

@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.player.equip
+
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
@@ -10,8 +12,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.world.interact.entity.player.effect.skulled
-import world.gregs.voidps.world.interact.entity.player.equip.AreaType
-import world.gregs.voidps.world.interact.entity.player.equip.ItemsKeptOnDeath
 
 val enums: EnumDefinitions by inject()
 

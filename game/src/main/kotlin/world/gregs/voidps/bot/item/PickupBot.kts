@@ -1,3 +1,5 @@
+package world.gregs.voidps.bot.item
+
 import kotlinx.coroutines.CancellableContinuation
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.client.variable.clear

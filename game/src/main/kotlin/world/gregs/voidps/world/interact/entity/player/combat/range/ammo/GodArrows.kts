@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.player.combat.range.ammo
+
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on

@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.player.equip
+
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance

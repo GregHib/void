@@ -36,7 +36,7 @@ class MapExtract(
     private val objectArray = ByteArray(2048)
     private val tileArray = ByteArray(12)
 
-    fun loadMap(file: File) {
+    fun loadMap(file: File): MapExtract {
         val start = System.currentTimeMillis()
         val reader = BufferReader(file.readBytes())
         val regions = reader.readInt()
@@ -46,6 +46,7 @@ class MapExtract(
         readObjects(reader)
         logger.info { "Loaded $regions maps ${objects.size} ${"object".plural(objects.size)} from file in ${System.currentTimeMillis() - start}ms" }
         raf = RandomAccessFile(file, "r")
+        return this
     }
 
     private fun readEmptyTiles(reader: BufferReader) {

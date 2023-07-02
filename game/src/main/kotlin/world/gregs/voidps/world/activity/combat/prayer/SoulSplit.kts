@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.activity.combat.prayer
+
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remove
 import world.gregs.voidps.engine.client.variable.set
@@ -10,7 +12,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
-import world.gregs.voidps.world.activity.combat.prayer.praying
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
 import world.gregs.voidps.world.interact.entity.combat.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.dead

@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.community.ignore
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.config.AccountDefinition
 import world.gregs.voidps.engine.data.definition.extra.AccountDefinitions

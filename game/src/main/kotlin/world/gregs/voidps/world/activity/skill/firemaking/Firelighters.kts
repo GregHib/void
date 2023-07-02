@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.activity.skill.firemaking
+
 import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player

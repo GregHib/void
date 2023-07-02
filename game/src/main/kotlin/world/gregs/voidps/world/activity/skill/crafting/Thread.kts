@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.activity.skill.crafting
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.inc

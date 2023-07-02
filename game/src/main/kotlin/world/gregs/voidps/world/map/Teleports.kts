@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.map
+
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.variable.start

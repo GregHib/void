@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.ItemOnPlayer
 import world.gregs.voidps.engine.client.variable.contains

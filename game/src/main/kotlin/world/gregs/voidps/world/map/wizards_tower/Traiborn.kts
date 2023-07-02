@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.map.wizards_tower
+
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC

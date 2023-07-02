@@ -23,12 +23,10 @@ import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.map.file.MapExtract
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
-import java.io.File
 
 val engineModule = module {
     // Entities
@@ -75,7 +73,6 @@ val engineModule = module {
  * Modules which depend on cache definitions
  */
 val postCacheModule = module {
-    single { MapExtract(get(), get(), get()).loadMap(File("./data/cache/live/index5.dat")) }
     // Definitions
     single(createdAtStart = true) { SoundDefinitions().load() }
     single(createdAtStart = true) { RenderEmoteDefinitions().load() }

@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.item
+
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.contain.clear
 import world.gregs.voidps.engine.contain.inventory

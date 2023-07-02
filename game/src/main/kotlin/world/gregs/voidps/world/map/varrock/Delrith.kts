@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.map.varrock
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

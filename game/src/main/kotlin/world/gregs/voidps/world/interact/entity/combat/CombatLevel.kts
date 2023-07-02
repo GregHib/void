@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.combat
+
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel

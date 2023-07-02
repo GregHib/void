@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.map.edgeville
+
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open

@@ -25,6 +25,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.map.file.MapExtract
 import world.gregs.voidps.network.Network
 import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.loadScripts
@@ -87,6 +88,7 @@ object Main {
             fileProperties("/private.properties")
             modules(engineModule, stairsModule, musicModule, bookModule, gameModule, postCacheModule, postCacheGameModule,
                 module {
+                    single { MapExtract(get(), get(), get()).loadMap(File("./data/cache/live/index5.dat")) }
                     single(createdAtStart = true) {
                         val bytes = File("./data/cache/live/index${Indices.HUFFMAN}.dat").readBytes()
                         Huffman().load(bytes)
@@ -95,6 +97,7 @@ object Main {
                     single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = true).load(loader())).load() }
                     single(createdAtStart = true) { ItemDefinitions(ItemDecoder().load(loader())).load() }
                     single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(loader())).load() }
+                    single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(loader()), get()).load() }
                     single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(loader())).load() }
                     single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(loader())).load() }
                     single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder().load(loader())).load() }

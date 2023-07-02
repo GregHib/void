@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.npc.shop
+
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
@@ -19,10 +21,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.npc.shop.GeneralStores
-import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
-import world.gregs.voidps.world.interact.entity.npc.shop.openShop
-import world.gregs.voidps.world.interact.entity.npc.shop.shop
 
 val itemDefs: ItemDefinitions by inject()
 val containerDefs: ContainerDefinitions by inject()

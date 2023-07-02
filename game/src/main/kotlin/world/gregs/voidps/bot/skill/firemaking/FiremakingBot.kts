@@ -1,3 +1,5 @@
+package world.gregs.voidps.bot.skill.firemaking
+
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.bot.Bot
 import world.gregs.voidps.bot.Task

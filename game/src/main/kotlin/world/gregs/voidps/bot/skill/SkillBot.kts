@@ -1,3 +1,5 @@
+package world.gregs.voidps.bot.skill
+
 import world.gregs.voidps.bot.Bot
 import world.gregs.voidps.bot.onBot
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened

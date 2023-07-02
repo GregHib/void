@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.activity.quest
+
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
@@ -10,7 +12,6 @@ import world.gregs.voidps.engine.client.variable.inc
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.activity.quest.Books
 
 val books: Books by inject()
 
