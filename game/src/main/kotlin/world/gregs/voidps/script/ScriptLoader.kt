@@ -31,7 +31,7 @@ fun loadScripts(scriptPath: String) {
             } catch (e: ClassNotFoundException) {
                 logger.warn(e) { "Error loading script ${file.name}. Make sure it has a package." }
             }
-            if (System.currentTimeMillis() - start > 5) {
+            if (System.currentTimeMillis() - start >= 10) {
                 logger.info { "Loaded script ${file.name} in ${System.currentTimeMillis() - start}ms" }
             }
         }
