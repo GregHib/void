@@ -3,7 +3,6 @@ package world.gregs.voidps.cache
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
-import java.io.File
 
 abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, val index: Int) {
 
@@ -17,34 +16,12 @@ abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, val 
         return readData(id)
     }
 
-    fun loadLive(directory: File): Array<T> {
-        val start = System.currentTimeMillis()
-        val reader = BufferReader(directory.resolve("index${index}.dat").readBytes())
-        val size = reader.readInt()
-        val array = create(size)
-        while (reader.position() < reader.length) {
-            val id = readId(reader)
-            val definition = array[id]
-            readLoop(definition, reader)
-            changeDefValues(definition)
-        }
-        logger.info { "${this::class.simpleName} loaded $size in ${System.currentTimeMillis() - start}ms" }
-        return array
+    fun load(loader: DefinitionLoader): Array<T> {
+        return loader.load(this)
     }
 
     fun loadCache(cache: Cache): Array<T> {
-        val start = System.currentTimeMillis()
-        val size = size(cache) + 1
-        val array = create(size)
-        for (id in indices) {
-            val archive = getArchive(id)
-            val file = getFile(id)
-            val data = cache.getFile(index, archive, file) ?: continue
-            array[id].id = id
-            load(archive, file, array, BufferReader(data))
-        }
-        logger.info { "${this::class.simpleName} loaded $size in ${System.currentTimeMillis() - start}ms" }
-        return array
+        return CacheDefinitionLoader(cache).load(this)
     }
 
     open fun load(archiveId: Int, fileId: Int, array: Array<T>, reader: Reader) {

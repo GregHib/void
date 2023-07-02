@@ -9,6 +9,7 @@ import org.koin.dsl.module
 import org.koin.fileProperties
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDefinitionLoader
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
@@ -89,6 +90,7 @@ object Main {
             slf4jLogger(level = Level.ERROR)
             fileProperties("/game.properties")
             fileProperties("/private.properties")
+            val loader = CacheDefinitionLoader(cache())
             modules(engineModule, stairsModule, musicModule, bookModule, gameModule, postCacheModule, postCacheGameModule,
                 module {
                     single(createdAtStart = true) { SoftReference(CacheDelegate(getProperty("cachePath")) as Cache) }
@@ -96,17 +98,17 @@ object Main {
                         val huffman = cache().getFile(Indices.HUFFMAN, 1)!!
                         Huffman(huffman)
                     }
-                    single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(cache(), member = true, lowDetail = false).loadCache(cache())).load() }
-                    single(createdAtStart = true) { NPCDefinitions(NPCDecoder(cache(), member = true).loadCache(cache())).load() }
-                    single(createdAtStart = true) { ItemDefinitions(ItemDecoder(cache()).loadCache(cache())).load() }
-                    single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder(cache()).loadCache(cache())).load() }
-                    single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder(cache()).loadCache(cache())).load() }
-                    single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder(cache()).loadCache(cache())).load() }
-                    single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder(cache()).loadCache(cache())).load() }
-                    single(createdAtStart = true) { StructDefinitions(StructDecoder(cache()).loadCache(cache())).load() }
-                    single(createdAtStart = true) { EnumDefinitions(EnumDecoder(cache()).loadCache(cache()), get()).load() }
-                    single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cache()).loadCache(cache())).load() }
-                    single(createdAtStart = true) { StyleDefinitions(ClientScriptDecoder(cache(), revision634 = true).loadCache(cache())) }
+                    single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(cache(), member = true, lowDetail = false).load(loader)).load() }
+                    single(createdAtStart = true) { NPCDefinitions(NPCDecoder(cache(), member = true).load(loader)).load() }
+                    single(createdAtStart = true) { ItemDefinitions(ItemDecoder(cache()).load(loader)).load() }
+                    single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder(cache()).load(loader)).load() }
+                    single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder(cache()).load(loader)).load() }
+                    single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder(cache()).load(loader)).load() }
+                    single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder(cache()).load(loader)).load() }
+                    single(createdAtStart = true) { StructDefinitions(StructDecoder(cache()).load(loader)).load() }
+                    single(createdAtStart = true) { EnumDefinitions(EnumDecoder(cache()).load(loader), get()).load() }
+                    single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cache()).load(loader)).load() }
+                    single(createdAtStart = true) { StyleDefinitions(ClientScriptDecoder(cache(), revision634 = true).load(loader)) }
                     single(named("mapLoader"), createdAtStart = true) { Maps(cache(), get(), get(), get(), get(), get()).load() }
                 })
         }
