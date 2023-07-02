@@ -19,7 +19,7 @@ class CacheDefinitionLoader(
             array[id].id = id
             decoder.load(archive, file, array, BufferReader(data))
         }
-        logger.info { "${this::class.simpleName} loaded $size in ${System.currentTimeMillis() - start}ms" }
+        logger.info { "${decoder::class.simpleName} loaded $size in ${System.currentTimeMillis() - start}ms" }
         return array
     }
 }

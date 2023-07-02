@@ -39,11 +39,12 @@ class MapExtract(
     fun loadMap(file: File) {
         val start = System.currentTimeMillis()
         val reader = BufferReader(file.readBytes())
+        val regions = reader.readInt()
         readEmptyTiles(reader)
         readTiles(reader)
         readFullTiles(reader)
         readObjects(reader)
-        logger.info { "Loaded ${objects.size} ${"object".plural(objects.size)} from file in ${System.currentTimeMillis() - start}ms" }
+        logger.info { "Loaded $regions maps ${objects.size} ${"object".plural(objects.size)} from file in ${System.currentTimeMillis() - start}ms" }
         raf = RandomAccessFile(file, "r")
     }
 
@@ -226,7 +227,7 @@ class MapExtract(
             val collisions = Collisions()
             val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = true)
             val extract = MapExtract(collisions, definitions, objects)
-            extract.loadMap(File("./data/map-test.dat"))
+            extract.loadMap(File("./data/cache/live/index5.dat"))
             println(objects.size)
         }
     }

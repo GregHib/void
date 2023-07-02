@@ -11,18 +11,17 @@ class LiveDefinitionLoader(
 
     override fun <T : Definition> load(decoder: DefinitionDecoder<T>): Array<T> {
         val start = System.currentTimeMillis()
-        val reader = BufferReader(directory.resolve(fileName(decoder.index)).readBytes())
-        val size = reader.readInt()
+        val file = directory.resolve(decoder.fileName())
+        if (!file.exists()) {
+            return decoder.create(0)
+        }
+        val reader = BufferReader(file.readBytes())
+        val size = reader.readInt() + 1
         val array = decoder.create(size)
         while (reader.position() < reader.length) {
-            val id = decoder.readId(reader)
-            val definition = array[id]
-            decoder.readLoop(definition, reader)
-            decoder.changeDefValues(definition)
+            decoder.load(array, reader)
         }
-        logger.info { "${this::class.simpleName} loaded $size in ${System.currentTimeMillis() - start}ms" }
+        logger.info { "${decoder::class.simpleName} loaded $size in ${System.currentTimeMillis() - start}ms" }
         return array
     }
-
-    private fun fileName(index: Int) = "index$index.dat"
 }

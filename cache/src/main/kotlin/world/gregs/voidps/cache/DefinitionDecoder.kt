@@ -6,6 +6,8 @@ import world.gregs.voidps.buffer.read.Reader
 
 abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, val index: Int) {
 
+    open fun fileName() = "index${index}.dat"
+
     open val last: Int
         get() = cache.lastArchiveId(index) * 256 + (cache.archiveCount(index, cache.lastArchiveId(index)))
 
@@ -24,9 +26,16 @@ abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, val 
         return CacheDefinitionLoader(cache).load(this)
     }
 
-    open fun load(archiveId: Int, fileId: Int, array: Array<T>, reader: Reader) {
+    open fun load(archiveId: Int, fileId: Int, definitions: Array<T>, reader: Reader) {
         val id = id(archiveId, fileId)
-        val definition = array[id]
+        val definition = definitions[id]
+        readLoop(definition, reader)
+        changeDefValues(definition)
+    }
+
+    open fun load(definitions: Array<T>, reader: Reader) {
+        val id = readId(reader)
+        val definition = definitions[id]
         readLoop(definition, reader)
         changeDefValues(definition)
     }
@@ -44,7 +53,7 @@ abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, val 
     }
 
     open fun readId(reader: Reader): Int {
-        return 0
+        return reader.readInt()
     }
 
     open fun id(archive: Int, file: Int): Int {

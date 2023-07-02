@@ -4,9 +4,18 @@ import com.displee.cache.index.Index
 import world.gregs.voidps.buffer.read.BufferReader
 import java.io.RandomAccessFile
 
-class CRC {
-    fun read(main: RandomAccessFile, index255: RandomAccessFile, index: Int): Int {
-        return generateCrc(readSector(main, index255, index)!!)
+class CRC(
+    private val mainFile: RandomAccessFile,
+    private val raf: RandomAccessFile
+) {
+
+    fun close() {
+        mainFile.close()
+        raf.close()
+    }
+
+    fun read(index: Int): Int {
+        return generateCrc(readSector(index)!!)
     }
 
     private val table = IntArray(256) {
@@ -30,7 +39,7 @@ class CRC {
         return crc
     }
 
-    private fun readSector(mainFile: RandomAccessFile, raf: RandomAccessFile, id: Int): ByteArray? {
+    private fun readSector(id: Int): ByteArray? {
         if (mainFile.length() < Index.INDEX_SIZE * id + Index.INDEX_SIZE) {
             return null
         }

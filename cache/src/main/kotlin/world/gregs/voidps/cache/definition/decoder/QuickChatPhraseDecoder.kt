@@ -18,6 +18,10 @@ class QuickChatPhraseDecoder(cache: Cache) : DefinitionDecoder<QuickChatPhraseDe
         return Array(size) { create() }
     }
 
+    override fun readId(reader: Reader): Int {
+        return reader.readShort()
+    }
+
     override fun id(archive: Int, file: Int): Int {
         return file
     }

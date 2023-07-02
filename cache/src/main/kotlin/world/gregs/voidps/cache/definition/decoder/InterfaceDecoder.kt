@@ -30,15 +30,27 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
         get() = cache.lastArchiveId(index)
 
 
-    override fun load(archiveId: Int, fileId: Int, array: Array<InterfaceDefinition>, reader: Reader) {
+    override fun load(definitions: Array<InterfaceDefinition>, reader: Reader) {
+        val id = readId(reader)
+        val definition = definitions[id shr 16]
+        if (definition.components == null) {
+            definition.components = Int2ObjectOpenHashMap()
+        }
+        val file = id and 0xffff
+        val component = InterfaceComponentDefinition(id = id)
+        component.read(reader)
+        definition.components!![file] = component
+    }
+
+    override fun load(archiveId: Int, fileId: Int, definitions: Array<InterfaceDefinition>, reader: Reader) {
         val lastArchive = cache.lastFileId(index, archiveId)
         if (lastArchive == -1) {
             return
         }
         val id = id(archiveId, fileId)
-        val definition = array[id]
+        val definition = definitions[id]
         val components = Int2ObjectOpenHashMap<InterfaceComponentDefinition>(lastArchive)
-        for(file in 0..lastArchive) {
+        for (file in 0..lastArchive) {
             val component = InterfaceComponentDefinition(id = file + (id shl 16))
             val data = cache.getFile(index, archiveId, file)
             if (data != null) {
@@ -58,7 +70,7 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
         val definition = create()
         definition.id = id
         val components = Int2ObjectOpenHashMap<InterfaceComponentDefinition>(lastArchive)
-        for(file in 0..lastArchive) {
+        for (file in 0..lastArchive) {
             val component = InterfaceComponentDefinition(id = file + (id shl 16))
             val data = cache.getFile(index, archive, file)
             if (data != null) {

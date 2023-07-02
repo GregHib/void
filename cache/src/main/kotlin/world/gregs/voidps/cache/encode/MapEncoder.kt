@@ -26,7 +26,7 @@ import java.io.File
 class MapEncoder(
     private val objectDefinitionsSize: Int,
     xteaPath: String
-) : IndexEncoder() {
+) : IndexEncoder(Indices.MAPS) {
 
     private fun loadXteas(path: String): Map<Int, IntArray> {
         val xteas = Int2ObjectOpenHashMap<IntArray>()
@@ -44,7 +44,7 @@ class MapEncoder(
     private var objectCount = 0
     private var tileCount = 0
 
-    override fun encode(writer: Writer, cache: Cache, index: Int) {
+    override fun encode(writer: Writer, cache: Cache) {
         objectCount = 0
         tileCount = 0
         val start = System.currentTimeMillis()
@@ -207,7 +207,7 @@ class MapEncoder(
                 // Valid object
                 if (objectId >= objectDefinitionsSize) {
                     reader.skip(1)
-                    logger.info { "Skipped out of bounds object $region $objectId" }
+                    logger.debug { "Skipped out of bounds object $region $objectId" }
                     continue
                 }
 
