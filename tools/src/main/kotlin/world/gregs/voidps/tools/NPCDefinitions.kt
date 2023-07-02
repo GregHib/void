@@ -8,7 +8,7 @@ object NPCDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = NPCDecoder(cache, true)
+        val decoder = NPCDecoder(true)
         println(decoder.last)
         for (i in 0 until decoder.last) {
             val def = decoder.getOrNull(i) ?: continue

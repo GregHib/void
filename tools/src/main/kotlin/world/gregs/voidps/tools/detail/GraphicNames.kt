@@ -26,7 +26,7 @@ object GraphicNames {
         addNPCModels(cache, models)
         addObjectModels(cache, models)
         val yaml = Yaml()
-        val decoder = GraphicDecoder(cache)
+        val decoder = GraphicDecoder()
         val map = mutableMapOf<Int, MutableList<String>>()
         repeat(decoder.last) { id ->
             val def = decoder.getOrNull(id) ?: return@repeat
@@ -43,7 +43,7 @@ object GraphicNames {
     }
 
     private fun addItemModels(cache: Cache, models: MutableMap<Int, MutableList<String>>) {
-        val decoder = ItemDecoder(cache)
+        val decoder = ItemDecoder()
         repeat(decoder.last) { id ->
             val def = decoder.getOrNull(id) ?: return@repeat
             models.add(def.primaryMaleModel, def.name)
@@ -57,7 +57,7 @@ object GraphicNames {
     }
 
     private fun addNPCModels(cache: Cache, models: MutableMap<Int, MutableList<String>>) {
-        val decoder = NPCDecoder(cache, member = true)
+        val decoder = NPCDecoder(member = true)
         repeat(decoder.last) { id ->
             val def = decoder.getOrNull(id) ?: return@repeat
             def.modelIds?.forEach { model ->
@@ -67,7 +67,7 @@ object GraphicNames {
     }
 
     private fun addObjectModels(cache: Cache, models: MutableMap<Int, MutableList<String>>) {
-        val decoder = ObjectDecoder(cache, member = true, lowDetail = false)
+        val decoder = ObjectDecoder(member = true, lowDetail = false)
         repeat(decoder.last) { id ->
             val def = decoder.getOrNull(id) ?: return@repeat
             def.modelIds?.forEach { array ->

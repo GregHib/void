@@ -9,8 +9,8 @@ object VarBitDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = VarBitDecoder(cache)
-        val varpDecoder = PlayerVariableParameterDecoder(cache)
+        val decoder = VarBitDecoder()
+        val varpDecoder = PlayerVariableParameterDecoder()
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
             println(def)

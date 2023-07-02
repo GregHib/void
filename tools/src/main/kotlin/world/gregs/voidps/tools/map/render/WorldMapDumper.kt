@@ -34,7 +34,7 @@ object WorldMapDumper {
             modules(
             module {
                 single { CacheDelegate(getProperty("cachePath")) as Cache }
-                single { MapDecoder(get(), get<Xteas>()) }
+                single { MapDecoder(get<Xteas>()) }
                 single(createdAtStart = true) {
                     Xteas(mutableMapOf()).apply {
                         XteaLoader().load(this, getProperty("xteaPath"), getPropertyOrNull("xteaJsonKey"), getPropertyOrNull("xteaJsonValue"))
@@ -44,15 +44,15 @@ object WorldMapDumper {
         }.koin
 
         val cache: Cache = koin.get()
-        val mapDecoder = MapDecoder(cache, koin.get<Xteas>())
-        val objectDecoder = ObjectDecoder(cache, member = true, lowDetail = false)
-        val overlayDefinitions = OverlayDecoder(cache)
-        val underlayDefinitions = UnderlayDecoder(cache)
-        val textureDefinitions = TextureDecoder(cache)
-        val worldMapDecoder = WorldMapDetailsDecoder(cache)
-        val worldMapInfoDecoder = WorldMapInfoDecoder(cache)
-        val spriteDecoder = SpriteDecoder(cache)
-        val mapSceneDecoder = MapSceneDecoder(cache)
+        val mapDecoder = MapDecoder(koin.get<Xteas>())
+        val objectDecoder = ObjectDecoder(member = true, lowDetail = false)
+        val overlayDefinitions = OverlayDecoder()
+        val underlayDefinitions = UnderlayDecoder()
+        val textureDefinitions = TextureDecoder()
+        val worldMapDecoder = WorldMapDetailsDecoder()
+        val worldMapInfoDecoder = WorldMapInfoDecoder()
+        val spriteDecoder = SpriteDecoder()
+        val mapSceneDecoder = MapSceneDecoder()
 
         File("./images/").mkdir()
         for (i in 0 until 4) {

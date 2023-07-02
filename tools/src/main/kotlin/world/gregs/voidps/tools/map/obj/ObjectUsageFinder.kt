@@ -19,8 +19,8 @@ object ObjectUsageFinder {
         val xteas: Xteas = Xteas(mutableMapOf()).apply {
             XteaLoader().load(this, property("xteaPath"), propertyOrNull("xteaJsonKey"), propertyOrNull("xteaJsonValue"))
         }
-        val decoder = ObjectDecoder(cache, member = false, lowDetail = false)
-        val mapDecoder = MapDecoder(cache, xteas)
+        val decoder = ObjectDecoder(member = false, lowDetail = false)
+        val mapDecoder = MapDecoder(xteas)
         val objects = mutableMapOf<Region, List<MapObject>>()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {

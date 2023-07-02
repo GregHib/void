@@ -9,7 +9,7 @@ object OreIdentifier {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = ObjectDecoder(cache, member = false, lowDetail = false)
+        val decoder = ObjectDecoder(member = false, lowDetail = false)
         val map = mapOf(
             3184 to 1,
             3183 to 2,

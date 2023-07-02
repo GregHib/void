@@ -34,7 +34,7 @@ object ItemDefinitionsParamConverter {
 
         var count = 0
         var itemCount = 0
-        val decoder = ItemDecoder(koin.get())
+        val decoder = ItemDecoder()
         val cache = koin.get<Cache>() as CacheDelegate
         val encoder = ItemEncoder()
         for (id in decoder.indices) {

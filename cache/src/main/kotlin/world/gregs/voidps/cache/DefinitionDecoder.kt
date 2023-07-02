@@ -4,12 +4,12 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 
-abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, val index: Int) {
+abstract class DefinitionDecoder<T : Definition>(val index: Int) {
 
     open fun fileName() = "index${index}.dat"
 
-    open val last: Int
-        get() = cache.lastArchiveId(index) * 256 + (cache.archiveCount(index, cache.lastArchiveId(index)))
+    open var last: Int = 0
+//        get() = cache.lastArchiveId(index) * 256 + (cache.archiveCount(index, cache.lastArchiveId(index)))
 
     val indices: IntRange
         get() = 0..last
@@ -26,7 +26,7 @@ abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, val 
         return CacheDefinitionLoader(cache).load(this)
     }
 
-    open fun load(archiveId: Int, fileId: Int, definitions: Array<T>, reader: Reader) {
+    open fun load(cache: Cache, archiveId: Int, fileId: Int, definitions: Array<T>, reader: Reader) {
         val id = id(archiveId, fileId)
         val definition = definitions[id]
         readLoop(definition, reader)
@@ -64,7 +64,7 @@ abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, val 
     }
 
     protected open fun getData(archive: Int, file: Int): ByteArray? {
-        return cache.getFile(index, archive, file)
+        return null//cache.getFile(index, archive, file)
     }
 
     protected open fun readData(id: Int): T? {

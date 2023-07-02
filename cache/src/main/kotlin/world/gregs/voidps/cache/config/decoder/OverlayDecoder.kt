@@ -1,12 +1,11 @@
 package world.gregs.voidps.cache.config.decoder
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Configs.FLOOR_OVERLAY
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.OverlayDefinition
 
-class OverlayDecoder(cache: Cache) : ConfigDecoder<OverlayDefinition>(cache, FLOOR_OVERLAY) {
+class OverlayDecoder : ConfigDecoder<OverlayDefinition>(FLOOR_OVERLAY) {
 
     override fun create() = OverlayDefinition()
 

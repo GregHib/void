@@ -41,7 +41,6 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.file.MapExtract
-import world.gregs.voidps.engine.map.file.Maps
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.gameModule
@@ -148,7 +147,6 @@ abstract class WorldTest : KoinTest {
                 single(createdAtStart = true) { graphicDefinitions }
                 single(createdAtStart = true) { interfaceDefinitions }
                 single(createdAtStart = true) { containerDefinitions }
-                single(createdAtStart = true) { enumDefinitions }
                 single(createdAtStart = true) { structDefinitions }
                 single(createdAtStart = true) { quickChatPhraseDefinitions }
                 single(createdAtStart = true) { styleDefinitions }
@@ -161,7 +159,7 @@ abstract class WorldTest : KoinTest {
             modules(postCacheModule, postCacheGameModule)
         }
         loadScripts(getProperty("scriptModule"))
-        Maps(cache, get(), get(), get(), get(), get()).load()
+        MapExtract(get(), get(), get()).loadMap(File("./data/cache/live/index5.dat")) // FIXME
         saves = File(getProperty("savePath"))
         saves?.mkdirs()
         store = get()
@@ -224,18 +222,17 @@ abstract class WorldTest : KoinTest {
     companion object {
         private val cache: Cache by lazy { CacheDelegate(getProperty("cachePath")) }
         private val loader: DefinitionLoader by lazy { CacheDefinitionLoader(cache) }
-        private val huffman: Huffman by lazy { Huffman(cache.getFile(Indices.HUFFMAN, 1)!!) }
-        private val objectDefinitions: ObjectDefinitions by lazy { ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false).load(loader)).load() }
-        private val npcDefinitions: NPCDefinitions by lazy { NPCDefinitions(NPCDecoder(cache, member = true).load(loader)).load() }
-        private val itemDefinitions: ItemDefinitions by lazy { ItemDefinitions(ItemDecoder(cache).load(loader)).load() }
-        private val animationDefinitions: AnimationDefinitions by lazy { AnimationDefinitions(AnimationDecoder(cache).load(loader)).load() }
-        private val graphicDefinitions: GraphicDefinitions by lazy { GraphicDefinitions(GraphicDecoder(cache).load(loader)).load() }
-        private val interfaceDefinitions: InterfaceDefinitions by lazy { InterfaceDefinitions(InterfaceDecoder(cache).load(loader)).load() }
-        private val containerDefinitions: ContainerDefinitions by lazy { ContainerDefinitions(ContainerDecoder(cache).load(loader)).load() }
-        private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(cache).load(loader)).load() }
-        private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder(cache).load(loader), structDefinitions).load() }
-        private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cache).load(loader)).load() }
-        private val styleDefinitions: StyleDefinitions by lazy { StyleDefinitions(ClientScriptDecoder(cache, revision634 = true).load(loader)) }
+        private val huffman: Huffman by lazy { Huffman().load(cache.getFile(Indices.HUFFMAN, 1)!!) }
+        private val objectDefinitions: ObjectDefinitions by lazy { ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(loader)).load() }
+        private val npcDefinitions: NPCDefinitions by lazy { NPCDefinitions(NPCDecoder(member = true).load(loader)).load() }
+        private val itemDefinitions: ItemDefinitions by lazy { ItemDefinitions(ItemDecoder().load(loader)).load() }
+        private val animationDefinitions: AnimationDefinitions by lazy { AnimationDefinitions(AnimationDecoder().load(loader)).load() }
+        private val graphicDefinitions: GraphicDefinitions by lazy { GraphicDefinitions(GraphicDecoder().load(loader)).load() }
+        private val interfaceDefinitions: InterfaceDefinitions by lazy { InterfaceDefinitions(InterfaceDecoder().load(loader)).load() }
+        private val containerDefinitions: ContainerDefinitions by lazy { ContainerDefinitions(ContainerDecoder().load(loader)).load() }
+        private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder().load(loader)).load() }
+        private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(loader)).load() }
+        private val styleDefinitions: StyleDefinitions by lazy { StyleDefinitions(ClientScriptDecoder(revision634 = true).load(loader)) }
         private val collisions: Collisions by lazy { Collisions() }
         private val objectCollision: GameObjectCollision by lazy { GameObjectCollision(collisions) }
         private val xteas: Xteas by lazy { Xteas().apply { XteaLoader().load(this, getProperty("xteaPath")) } }

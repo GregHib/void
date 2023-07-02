@@ -31,7 +31,7 @@ class EncoderComparator {
                 single(createdAtStart = true) { cache as Cache }
             })
         }
-        val decoder = ItemDecoder(cache)
+        val decoder = ItemDecoder()
         every { cache.getFile(ITEMS, archive = any(), file = any()) } answers {
             if (arg<Int>(1) == decoder.getArchive(0) && arg<Int>(2) == decoder.getFile(0)) {
                 data

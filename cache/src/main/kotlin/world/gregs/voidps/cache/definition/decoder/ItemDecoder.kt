@@ -1,19 +1,18 @@
 package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.ITEMS
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 
-class ItemDecoder(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, ITEMS) {
+class ItemDecoder : DefinitionDecoder<ItemDefinition>(ITEMS) {
 
     override fun id(archive: Int, file: Int): Int {
         return file or (archive shl 8)
     }
 
     override fun create(size: Int): Array<ItemDefinition> {
-        return Array(size) { create() }
+        return Array(size) { ItemDefinition(it) }
     }
 
     override fun create() = ItemDefinition()

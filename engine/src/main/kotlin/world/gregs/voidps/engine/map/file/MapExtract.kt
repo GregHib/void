@@ -222,7 +222,7 @@ class MapExtract(
         @JvmStatic
         fun main(args: Array<String>) {
             val cache = CacheDelegate("./data/cache")
-            val definitions = ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false).loadCache(cache))
+            val definitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).loadCache(cache))
                 .load(Yaml(), "./data/definitions/objects.yml", null)
             val collisions = Collisions()
             val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = true)

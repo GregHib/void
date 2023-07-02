@@ -8,7 +8,7 @@ object WorldMapDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = WorldMapDetailsDecoder(cache)
+        val decoder = WorldMapDetailsDecoder()
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
             println(def)

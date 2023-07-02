@@ -8,25 +8,26 @@ import world.gregs.voidps.cache.Indices.WORLD_MAP
 import world.gregs.voidps.cache.definition.data.WorldMapIcon
 import world.gregs.voidps.cache.definition.data.WorldMapIconDefinition
 
-class WorldMapIconDecoder(cache: Cache) : DefinitionDecoder<WorldMapIconDefinition>(cache, WORLD_MAP) {
+class WorldMapIconDecoder : DefinitionDecoder<WorldMapIconDefinition>(WORLD_MAP) {
 
     private var archive = -1
     var aBoolean1313 = false
 
     override fun getArchive(id: Int) = archive
 
-    override val last: Int
-        get() = cache.lastFileId(index, archive)
+    override fun size(cache: Cache): Int {
+        return cache.lastFileId(index, archive)
+    }
 
     override fun create() = WorldMapIconDefinition()
 
     fun getOrNull(map: String): WorldMapIconDefinition? {
-        archive = cache.getArchiveId(index, "${map}_staticelements")
+        archive = -1//cache.getArchiveId(index, "${map}_staticelements")
         return super.getOrNull(map.hashCode())
     }
 
     fun get(map: String): WorldMapIconDefinition {
-        archive = cache.getArchiveId(index, "${map}_staticelements")
+        archive = -1//cache.getArchiveId(index, "${map}_staticelements")
         return super.get(map.hashCode())
     }
 
@@ -36,7 +37,7 @@ class WorldMapIconDecoder(cache: Cache) : DefinitionDecoder<WorldMapIconDefiniti
 
     override fun readData(id: Int): WorldMapIconDefinition? {
         val archive = getArchive(id)
-        var length = cache.archiveCount(index, archive)
+        var length = -1//cache.archiveCount(index, archive)
         var counter = 0
         var index = 0
         if (length > 0) {

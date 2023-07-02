@@ -7,15 +7,16 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.TEXTURE_DEFINITIONS
 import world.gregs.voidps.cache.definition.data.TextureDefinition
 
-class TextureDecoder(cache: Cache) : DefinitionDecoder<TextureDefinition>(cache, TEXTURE_DEFINITIONS) {
+class TextureDecoder : DefinitionDecoder<TextureDefinition>(TEXTURE_DEFINITIONS) {
 
     override fun create() = TextureDefinition()
     lateinit var data: Array<TextureDefinition?>
 
     var metricsCount = 0
 
-    override val last: Int
-        get() = metricsCount
+    override fun size(cache: Cache): Int {
+        return metricsCount
+    }
 
     init {
         val data = getData(0, 0)

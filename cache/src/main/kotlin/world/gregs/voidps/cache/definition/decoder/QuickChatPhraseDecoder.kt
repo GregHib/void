@@ -8,14 +8,14 @@ import world.gregs.voidps.cache.Indices.QUICK_CHAT_MESSAGES
 import world.gregs.voidps.cache.definition.data.QuickChatPhraseDefinition
 import world.gregs.voidps.cache.definition.data.QuickChatType
 
-class QuickChatPhraseDecoder(cache: Cache) : DefinitionDecoder<QuickChatPhraseDefinition>(cache, QUICK_CHAT_MESSAGES) {
+class QuickChatPhraseDecoder : DefinitionDecoder<QuickChatPhraseDefinition>(QUICK_CHAT_MESSAGES) {
 
     override fun create() = QuickChatPhraseDefinition()
 
     override fun getArchive(id: Int) = 1
 
     override fun create(size: Int): Array<QuickChatPhraseDefinition> {
-        return Array(size) { create() }
+        return Array(size) { QuickChatPhraseDefinition(it) }
     }
 
     override fun readId(reader: Reader): Int {
@@ -26,18 +26,17 @@ class QuickChatPhraseDecoder(cache: Cache) : DefinitionDecoder<QuickChatPhraseDe
         return file
     }
 
-    override val last: Int
-        get() {
-            val lastArchive = cache.lastArchiveId(index)
-            val lastArchive2 = cache.lastArchiveId(QUICK_CHAT_MENUS)
-            return lastArchive * 256 + cache.lastFileId(index, lastArchive) + (lastArchive2 * 256 + cache.lastFileId(index, lastArchive2))
-        }
+    override fun size(cache: Cache): Int {
+        val lastArchive = cache.lastArchiveId(index)
+        val lastArchive2 = cache.lastArchiveId(QUICK_CHAT_MENUS)
+        return lastArchive * 256 + cache.lastFileId(index, lastArchive) + (lastArchive2 * 256 + cache.lastFileId(index, lastArchive2))
+    }
 
     override fun getData(archive: Int, file: Int): ByteArray? {
         return if (file < 32768) {
             super.getData(archive, file)
         } else {
-            cache.getFile(QUICK_CHAT_MENUS, archive, file and 0x7fff)
+            null//cache.getFile(QUICK_CHAT_MENUS, archive, file and 0x7fff)
         }
     }
 

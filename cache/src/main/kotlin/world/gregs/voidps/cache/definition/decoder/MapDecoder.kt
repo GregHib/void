@@ -2,14 +2,13 @@ package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.MAPS
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.data.MapTile
 
-class MapDecoder(cache: Cache, private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapDefinition>(cache, MAPS) {
+class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapDefinition>(MAPS) {
 
     override fun create() = MapDefinition()
 
@@ -118,7 +117,7 @@ class MapDecoder(cache: Cache, private val xteas: Map<Int, IntArray>) : Definiti
     }
 
     fun getFile(name: String, xteas: IntArray?): ByteArray? {
-        return cache.getFile(index, name, xteas)
+        return null//cache.getFile(index, name, xteas)
     }
 
     companion object {

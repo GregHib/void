@@ -1,17 +1,16 @@
 package world.gregs.voidps.cache.config.decoder
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Configs.CONTAINERS
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 
-class ContainerDecoder(cache: Cache) : ConfigDecoder<ContainerDefinition>(cache, CONTAINERS) {
+class ContainerDecoder : ConfigDecoder<ContainerDefinition>(CONTAINERS) {
 
     override fun create() = ContainerDefinition()
 
     override fun create(size: Int): Array<ContainerDefinition> {
-        return Array(size) { create() }
+        return Array(size) { ContainerDefinition(it) }
     }
 
     override fun ContainerDefinition.read(opcode: Int, buffer: Reader) {

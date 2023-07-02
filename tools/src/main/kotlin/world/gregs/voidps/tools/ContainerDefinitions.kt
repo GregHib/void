@@ -8,7 +8,7 @@ object ContainerDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\")
-        val decoder = ContainerDecoder(cache)
+        val decoder = ContainerDecoder()
         for (i in 0 until decoder.last) {
             val def = decoder.getOrNull(i) ?: continue
             println(def)

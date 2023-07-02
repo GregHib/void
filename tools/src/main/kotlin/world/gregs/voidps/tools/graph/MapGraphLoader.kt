@@ -20,7 +20,7 @@ object MapGraphLoader {
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val collisions: Collisions = Collisions()
-        val objectDefinitions = ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false).loadCache(cache))
+        val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).loadCache(cache))
             .load(Yaml(), property("objectDefinitionsPath"), null)
         val objects = GameObjects(GameObjectCollision(Collisions()), ChunkBatchUpdates(), objectDefinitions)
         val xteas: Xteas = Xteas(mutableMapOf()).apply {

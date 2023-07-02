@@ -1,12 +1,11 @@
 package world.gregs.voidps.cache.config.decoder
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Configs.QUESTS
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.QuestDefinition
 
-class QuestDecoder(cache: Cache) : ConfigDecoder<QuestDefinition>(cache, QUESTS) {
+class QuestDecoder : ConfigDecoder<QuestDefinition>(QUESTS) {
 
     override fun create() = QuestDefinition()
 

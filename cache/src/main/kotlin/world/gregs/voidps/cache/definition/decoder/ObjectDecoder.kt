@@ -1,19 +1,17 @@
 package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.OBJECTS
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 
 open class ObjectDecoder(
-    cache: Cache,
     val member: Boolean,
     val lowDetail: Boolean
-) : DefinitionDecoder<ObjectDefinition>(cache, OBJECTS) {
+) : DefinitionDecoder<ObjectDefinition>(OBJECTS) {
 
     override fun create(size: Int): Array<ObjectDefinition> {
-        return Array(size) { create() }
+        return Array(size) { ObjectDefinition(it) }
     }
 
     override fun id(archive: Int, file: Int): Int {

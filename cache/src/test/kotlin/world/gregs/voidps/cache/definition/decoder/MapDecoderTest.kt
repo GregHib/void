@@ -18,7 +18,7 @@ internal class MapDecoderTest {
     @BeforeEach
     fun setup() {
         cache = mockk()
-        decoder = MapDecoder(cache, xteas)
+        decoder = MapDecoder(xteas)
     }
 
     @Test

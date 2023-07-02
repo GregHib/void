@@ -128,9 +128,9 @@ class MapCompress(
         @JvmStatic
         fun main(args: Array<String>) {
             val cache = WeakReference(CacheDelegate("./data/cache"))
-            val definitions = ObjectDefinitions(ObjectDecoder(cache.get()!!, true, false).loadCache(cache.get()!!))
+            val definitions = ObjectDefinitions(ObjectDecoder(true, false).loadCache(cache.get()!!))
             val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
-            val decoder = MapDecoder(cache.get()!!, xteas)
+            val decoder = MapDecoder(xteas)
             val collisions = Collisions()
             val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions)
             MapLoader(decoder, CollisionReader(collisions), definitions, objects).run()

@@ -16,7 +16,7 @@ object ObjectDefinitions {
     fun main(args: Array<String>) {
         val cache = CacheDelegate("./data/cache")
 
-        val decoder = ObjectDecoder(cache, false, true)
+        val decoder = ObjectDecoder(false, true)
         val count = decoder.last
         println(count)
         var start = System.currentTimeMillis()

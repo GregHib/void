@@ -17,11 +17,12 @@ class LiveDefinitionLoader(
         }
         val reader = BufferReader(file.readBytes())
         val size = reader.readInt() + 1
+        decoder.last = size - 1
         val array = decoder.create(size)
         while (reader.position() < reader.length) {
             decoder.load(array, reader)
         }
-        logger.info { "${decoder::class.simpleName} loaded $size in ${System.currentTimeMillis() - start}ms" }
+        logger.info { "$size ${decoder::class.simpleName} definitions loaded in ${System.currentTimeMillis() - start}ms" }
         return array
     }
 }

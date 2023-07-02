@@ -162,7 +162,7 @@ class Checksum(
                 ConfigEncoder(Configs.RENDER_ANIMATIONS),
                 InterfaceEncoder(),
                 MapEncoder(OBJECT_DEF_SIZE, "./data/xteas.dat"),
-                IndexEncoder(Indices.HUFFMAN),
+                HuffmanEncoder(),
                 ClientScriptEncoder(),
                 ShiftEncoder(Indices.OBJECTS, 8),
                 ShiftEncoder(Indices.ENUMS, 8),

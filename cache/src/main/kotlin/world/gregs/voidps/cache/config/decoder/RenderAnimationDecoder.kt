@@ -1,12 +1,11 @@
 package world.gregs.voidps.cache.config.decoder
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Configs.RENDER_ANIMATIONS
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.RenderAnimationDefinition
 
-class RenderAnimationDecoder(cache: Cache) : ConfigDecoder<RenderAnimationDefinition>(cache, RENDER_ANIMATIONS) {
+class RenderAnimationDecoder : ConfigDecoder<RenderAnimationDefinition>(RENDER_ANIMATIONS) {
 
     override fun create() = RenderAnimationDefinition()
 

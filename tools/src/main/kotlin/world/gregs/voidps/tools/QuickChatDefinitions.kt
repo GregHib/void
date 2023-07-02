@@ -12,10 +12,10 @@ object QuickChatDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val options = QuickChatOptionDecoder(cache)
-        val phrases = QuickChatPhraseDecoder(cache).loadCache(cache)
-        val enums = EnumDecoder(cache)
-        val items = ItemDecoder(cache)
+        val options = QuickChatOptionDecoder()
+        val phrases = QuickChatPhraseDecoder().loadCache(cache)
+        val enums = EnumDecoder()
+        val items = ItemDecoder()
         val data = BufferReader((0..32).map { 0.toByte() }.toByteArray())
         /*for (i in 0..32784) {
             val def = options.getOrNull(i) ?: continue

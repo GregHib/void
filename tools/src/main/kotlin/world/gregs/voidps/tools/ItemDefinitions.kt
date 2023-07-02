@@ -8,7 +8,7 @@ object ItemDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = ItemDecoder(cache)
+        val decoder = ItemDecoder()
         println(decoder.last)
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue

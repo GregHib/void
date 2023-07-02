@@ -11,15 +11,16 @@ class CacheDefinitionLoader(
     override fun <T : Definition> load(decoder: DefinitionDecoder<T>): Array<T> {
         val start = System.currentTimeMillis()
         val size = decoder.size(cache) + 1
+        decoder.last = size - 1
         val array = decoder.create(size)
         for (id in decoder.indices) {
             val archive = decoder.getArchive(id)
             val file = decoder.getFile(id)
             val data = cache.getFile(decoder.index, archive, file) ?: continue
             array[id].id = id
-            decoder.load(archive, file, array, BufferReader(data))
+            decoder.load(cache, archive, file, array, BufferReader(data))
         }
-        logger.info { "${decoder::class.simpleName} loaded $size in ${System.currentTimeMillis() - start}ms" }
+        logger.info { "$size ${decoder::class.simpleName} definitions loaded in ${System.currentTimeMillis() - start}ms" }
         return array
     }
 }

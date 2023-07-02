@@ -32,15 +32,15 @@ object WorldMapLinkIdentifier {
         val xteas: Xteas = Xteas(mutableMapOf()).apply {
             XteaLoader().load(this, property("xteaPath"), propertyOrNull("xteaJsonKey"), propertyOrNull("xteaJsonValue"))
         }
-        val worldMapDetailsDecoder = WorldMapDetailsDecoder(cache)
-        val worldMapIconDecoder = WorldMapIconDecoder(cache)
-        val definitions: ObjectDefinitions = ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false).loadCache(cache)).load(Yaml(), property("objectDefinitionsPath"), null)
-        val mapDecoder = MapDecoder(cache, xteas)
+        val worldMapDetailsDecoder = WorldMapDetailsDecoder()
+        val worldMapIconDecoder = WorldMapIconDecoder()
+        val definitions: ObjectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).loadCache(cache)).load(Yaml(), property("objectDefinitionsPath"), null)
+        val mapDecoder = MapDecoder(xteas)
         val collisions = Collisions()
         val collisionReader = CollisionReader(collisions)
         val graph = MutableNavigationGraph()
         val linker = ObjectLinker(collisions)
-        val clientScriptDecoder = ClientScriptDecoder(cache, revision634 = true)
+        val clientScriptDecoder = ClientScriptDecoder(revision634 = true)
         val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions)
         val regions = mutableListOf<Region>()
         for (regionX in 0 until 256) {

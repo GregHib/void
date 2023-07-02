@@ -12,7 +12,7 @@ object DumpSprites {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = SpriteDecoder(cache)
+        val decoder = SpriteDecoder()
         println(decoder.last)
         File("./sprites/").mkdir()
         repeat(decoder.last) { i ->

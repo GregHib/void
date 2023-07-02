@@ -2,15 +2,14 @@ package world.gregs.voidps.cache.definition.decoder
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.ENUMS
 import world.gregs.voidps.cache.definition.data.EnumDefinition
 
-class EnumDecoder(cache: Cache) : DefinitionDecoder<EnumDefinition>(cache, ENUMS) {
+class EnumDecoder : DefinitionDecoder<EnumDefinition>(ENUMS) {
 
     override fun create(size: Int): Array<EnumDefinition> {
-        return Array(size) { create() }
+        return Array(size) { EnumDefinition(it) }
     }
 
     override fun id(archive: Int, file: Int): Int {

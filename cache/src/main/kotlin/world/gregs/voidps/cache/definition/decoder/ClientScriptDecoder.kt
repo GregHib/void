@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 
-class ClientScriptDecoder(cache: Cache, private val revision634: Boolean) : DefinitionDecoder<ClientScriptDefinition>(cache, Indices.CLIENT_SCRIPTS) {
+class ClientScriptDecoder(private val revision634: Boolean) : DefinitionDecoder<ClientScriptDefinition>(Indices.CLIENT_SCRIPTS) {
 
     override fun id(archive: Int, file: Int): Int {
         return archive
@@ -18,15 +18,12 @@ class ClientScriptDecoder(cache: Cache, private val revision634: Boolean) : Defi
     }
 
     override fun create(size: Int): Array<ClientScriptDefinition> {
-        return Array(size) { create() }
+        return Array(size) { ClientScriptDefinition(it) }
     }
 
     override fun readId(reader: Reader): Int {
         return reader.readShort()
     }
-
-    override val last: Int
-        get() = cache.lastArchiveId(index)
 
     override fun getFile(id: Int): Int {
         return 0
@@ -44,7 +41,6 @@ class ClientScriptDecoder(cache: Cache, private val revision634: Boolean) : Defi
         val id = reader.readShort()
         val definition = definitions[id]
         val length = reader.readInt()
-        println("Read $length")
         val bytes = ByteArray(length)
         reader.readBytes(bytes)
         readLoop(definition, BufferReader(bytes))

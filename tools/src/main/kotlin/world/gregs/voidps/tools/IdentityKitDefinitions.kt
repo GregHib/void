@@ -8,7 +8,7 @@ object IdentityKitDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = IdentityKitDecoder(cache)
+        val decoder = IdentityKitDecoder()
         println(decoder.last)
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue

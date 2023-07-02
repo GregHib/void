@@ -11,10 +11,10 @@ object ItemDefinitionPatcher {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = ItemDecoder(cache)
+        val decoder = ItemDecoder()
         val yaml = Yaml()
-        val current = ItemDefinitions(ItemDecoder(cache).loadCache(cache)).load(yaml, property("itemDefinitionsPath"))
-        val newer = ItemDefinitions(ItemDecoder(cache).loadCache(cache)).load(yaml, "./items.yml")
+        val current = ItemDefinitions(ItemDecoder().loadCache(cache)).load(yaml, property("itemDefinitionsPath"))
+        val newer = ItemDefinitions(ItemDecoder().loadCache(cache)).load(yaml, "./items.yml")
         val map = mutableMapOf<Int, Double>()
         for (id in decoder.indices) {
             val def = current.getOrNull(id) ?: continue

@@ -1,23 +1,18 @@
 package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.ANIMATIONS
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 
-class AnimationDecoder(cache: Cache) : DefinitionDecoder<AnimationDefinition>(cache, ANIMATIONS) {
+class AnimationDecoder : DefinitionDecoder<AnimationDefinition>(ANIMATIONS) {
 
     override fun id(archive: Int, file: Int): Int {
         return file or (archive shl 7)
     }
 
-    override fun size(cache: Cache): Int {
-        return super.size(cache)
-    }
-
     override fun create(size: Int): Array<AnimationDefinition> {
-        return Array(size) { create() }
+        return Array(size) { AnimationDefinition(it) }
     }
 
     override fun create() = AnimationDefinition()
