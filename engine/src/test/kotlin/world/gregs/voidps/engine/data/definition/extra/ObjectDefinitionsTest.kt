@@ -10,6 +10,7 @@ import world.gregs.yaml.Yaml
 internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, ObjectDecoder, ObjectDefinitions>() {
 
     override lateinit var decoder: ObjectDecoder
+    override lateinit var definitions: Array<ObjectDefinition>
     override val id: String = "door_closed"
     override val intId: Int = 3
 
@@ -28,7 +29,7 @@ internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, 
     }
 
     override fun definitions(): ObjectDefinitions {
-        return ObjectDefinitions(decoder)
+        return ObjectDefinitions(definitions)
     }
 
     override fun load(definitions: ObjectDefinitions) {

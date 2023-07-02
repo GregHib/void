@@ -96,7 +96,7 @@ object Main {
                         val huffman = cache().getFile(Indices.HUFFMAN, 1)!!
                         Huffman(huffman)
                     }
-                    single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(cache(), member = true, lowDetail = false)).load() }
+                    single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(cache(), member = true, lowDetail = false).loadCache(cache())).load() }
                     single(createdAtStart = true) { NPCDefinitions(NPCDecoder(cache(), member = true).loadCache(cache())).load() }
                     single(createdAtStart = true) { ItemDefinitions(ItemDecoder(cache()).loadCache(cache())).load() }
                     single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder(cache()).loadCache(cache())).load() }

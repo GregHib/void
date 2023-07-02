@@ -34,7 +34,7 @@ object WorldMapLinkIdentifier {
         }
         val worldMapDetailsDecoder = WorldMapDetailsDecoder(cache)
         val worldMapIconDecoder = WorldMapIconDecoder(cache)
-        val definitions: ObjectDefinitions = ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false)).load(Yaml(), property("objectDefinitionsPath"), null)
+        val definitions: ObjectDefinitions = ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false).loadCache(cache)).load(Yaml(), property("objectDefinitionsPath"), null)
         val mapDecoder = MapDecoder(cache, xteas)
         val collisions = Collisions()
         val collisionReader = CollisionReader(collisions)

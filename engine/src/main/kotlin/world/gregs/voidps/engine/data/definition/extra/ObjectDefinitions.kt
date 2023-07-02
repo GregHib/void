@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.data.definition.extra
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.DefinitionConfig
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
@@ -17,17 +16,10 @@ import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 
 class ObjectDefinitions(
-    decoder: ObjectDecoder
+    override var definitions: Array<ObjectDefinition>
 ) : DefinitionsDecoder<ObjectDefinition> {
 
-    override lateinit var definitions: Array<ObjectDefinition>
     override lateinit var ids: Map<String, Int>
-
-    init {
-        val start = System.currentTimeMillis()
-        definitions = decoder.indices.map { decoder.get(it) }.toTypedArray()
-        timedLoad("object definition", definitions.size, start)
-    }
 
     override fun get(id: Int): ObjectDefinition {
         return definitions[id]

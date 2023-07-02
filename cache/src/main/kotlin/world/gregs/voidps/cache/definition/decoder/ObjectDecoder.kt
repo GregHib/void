@@ -12,6 +12,14 @@ open class ObjectDecoder(
     val lowDetail: Boolean
 ) : DefinitionDecoder<ObjectDefinition>(cache, OBJECTS) {
 
+    override fun create(size: Int): Array<ObjectDefinition> {
+        return Array(size) { create() }
+    }
+
+    override fun id(archive: Int, file: Int): Int {
+        return file or (archive shl 8)
+    }
+
     override fun create() = ObjectDefinition()
 
     override fun getFile(id: Int) = id and 0xff
