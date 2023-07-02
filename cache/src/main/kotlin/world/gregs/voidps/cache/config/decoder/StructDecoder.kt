@@ -10,6 +10,10 @@ class StructDecoder(cache: Cache) : ConfigDecoder<StructDefinition>(cache, STRUC
 
     override fun create() = StructDefinition()
 
+    override fun create(size: Int): Array<StructDefinition> {
+        return Array(size) { create() }
+    }
+
     override fun StructDefinition.read(opcode: Int, buffer: Reader) {
         if (opcode == 249) {
             readParameters(buffer)
