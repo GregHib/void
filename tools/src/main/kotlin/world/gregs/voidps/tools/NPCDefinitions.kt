@@ -8,9 +8,9 @@ object NPCDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = NPCDecoder(true)
-        println(decoder.last)
-        for (i in 0 until decoder.last) {
+        val decoder = NPCDecoder(true).loadCache(cache)
+        println(decoder.lastIndex)
+        for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
             if (def.name.contains("sir prysin", true)) {
                 println("$i ${def.name} ${def.walkMask}")

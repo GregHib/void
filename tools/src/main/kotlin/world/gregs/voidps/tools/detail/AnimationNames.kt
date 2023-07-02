@@ -22,14 +22,14 @@ object AnimationNames {
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val yaml = Yaml()
-        val decoder = AnimationDecoder()
+        val decoder = AnimationDecoder().loadCache(cache)
         val itemDecoder = ItemDecoder()
         val renders = getRenderAnimations(cache)
         val map = mutableMapOf<String, MutableList<Int>>()
-        repeat(decoder.last) { id ->
-            val def = decoder.getOrNull(id) ?: return@repeat
+        for (id in decoder.indices) {
+            val def = decoder.getOrNull(id) ?: continue
             val render = renders[id]
-            if(render != null) {
+            if (render != null) {
                 map.getOrPut(render) { mutableListOf() }.add(id)
             }
             if (def.leftHandItem != -1) {
@@ -42,7 +42,7 @@ object AnimationNames {
 
         val path = "./animation-details.yml"
         val sorted = map.flatMap {
-            it.value.sortedBy { value -> value }.mapIndexed { index, i -> (if(index > 0) "${it.key}_${index + 1}" else it.key) to Ids(i) }
+            it.value.sortedBy { value -> value }.mapIndexed { index, i -> (if (index > 0) "${it.key}_${index + 1}" else it.key) to Ids(i) }
         }.sortedBy { it.second.id }.toMap()
         yaml.save(path, sorted)
         println("${sorted.size} animation identifiers dumped to $path.")
@@ -50,11 +50,11 @@ object AnimationNames {
 
     private fun getRenderAnimations(cache: Cache): Map<Int, String> {
         val renders = getNPCRenderIds(cache)
-        val decoder = RenderAnimationDecoder()
+        val decoder = RenderAnimationDecoder().loadCache(cache)
         val map = mutableMapOf<Int, String>()
-        repeat(decoder.last) { id ->
-            val def = decoder.getOrNull(id) ?: return@repeat
-            val name = toIdentifier(renders[id] ?: return@repeat)
+        for (id in decoder.indices) {
+            val def = decoder.getOrNull(id) ?: continue
+            val name = toIdentifier(renders[id] ?: continue)
             map.add(def.run, name, "_run")
             map.add(def.primaryIdle, name, "_idle")
             map.add(def.primaryWalk, name, "_walk")
@@ -68,16 +68,16 @@ object AnimationNames {
     }
 
     private fun MutableMap<Int, String>.add(id: Int, name: String, suffix: String) {
-        if(id != -1 && name != "" && name != "null") {
+        if (id != -1 && name != "" && name != "null") {
             set(id, "${name}${suffix}")
         }
     }
 
     private fun getNPCRenderIds(cache: Cache): Map<Int, String> {
         val map = mutableMapOf<Int, String>()
-        val decoder = NPCDecoder(member = true)
-        repeat(decoder.last) { id ->
-            val def = decoder.getOrNull(id) ?: return@repeat
+        val decoder = NPCDecoder(member = true).loadCache(cache)
+        for (id in decoder.indices) {
+            val def = decoder.getOrNull(id) ?: continue
             map[def.renderEmote] = def.name
         }
         return map

@@ -7,6 +7,7 @@ import org.sweble.wikitext.parser.nodes.WtPageName
 import org.sweble.wikitext.parser.nodes.WtText
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.pipe.extra.ItemDefaults
@@ -54,7 +55,7 @@ object ItemDefinitionPipeline {
 
         val start = System.currentTimeMillis()
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = ItemDecoder()
+        val decoder = ItemDecoder().loadCache(cache)
 
         val pages = getPages(decoder, rs2Wiki)
         val output = buildItemExtras(revisionDate, decoder, cache718, rs2Wiki, pages)
@@ -70,7 +71,7 @@ object ItemDefinitionPipeline {
 
     private fun buildItemExtras(
         revisionDate: LocalDate,
-        decoder: ItemDecoder,
+        decoder: Array<ItemDefinition>,
         cache718: CacheDelegate,
         rs2Wiki: Wiki,
         pages: MutableMap<Int, PageCollector>
@@ -88,11 +89,11 @@ object ItemDefinitionPipeline {
             add(ItemExchangeLimits())
             add(ItemNoted(decoder))
         }
-        repeat(decoder.last) { id ->
+        for (id in decoder.indices) {
             if (debugId >= 0 && id != debugId) {
-                return@repeat
+                continue
             }
-            val def = decoder.getOrNull(id) ?: return@repeat
+            val def = decoder.getOrNull(id) ?: continue
             val page = pages[def.id]
             if (page != null) {
                 val result = pipeline.modify(page to mutableMapOf())
@@ -113,7 +114,7 @@ object ItemDefinitionPipeline {
     /**
      * Collects a rs2 and a rs3 page for each [decoder] item id.
      */
-    private fun getPages(decoder: ItemDecoder, rs2Wiki: Wiki): MutableMap<Int, PageCollector> {
+    private fun getPages(decoder: Array<ItemDefinition>, rs2Wiki: Wiki): MutableMap<Int, PageCollector> {
         val infoboxes = listOf("infobox item" to "id", "infobox pet" to "itemid")
         val pipeline = Pipeline<PageCollector>().apply {
             add(LivePageCollector("rs3-item", listOf("Items", "Pets"), infoboxes, "runescape.wiki", true) { content, page, idd ->
@@ -128,11 +129,11 @@ object ItemDefinitionPipeline {
         val pages = mutableMapOf<Int, PageCollector>()
         val incomplete = mutableListOf<PageCollector>()
 
-        repeat(decoder.last) { id ->
+        for (id in decoder.indices) {
             if (debugId >= 0 && id != debugId) {
-                return@repeat
+                continue
             }
-            val def = decoder.getOrNull(id) ?: return@repeat
+            val def = decoder.getOrNull(id) ?: continue
             val processed = pipeline.modify(PageCollector(id, def.name))
             val (_, name, rs2, _, rs3, _) = processed
             if (rs2 == null && rs3 == null && name != "null") {

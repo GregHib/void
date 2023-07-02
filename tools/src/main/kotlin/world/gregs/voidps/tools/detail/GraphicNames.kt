@@ -26,12 +26,12 @@ object GraphicNames {
         addNPCModels(cache, models)
         addObjectModels(cache, models)
         val yaml = Yaml()
-        val decoder = GraphicDecoder()
+        val decoder = GraphicDecoder().loadCache(cache)
         val map = mutableMapOf<Int, MutableList<String>>()
-        repeat(decoder.last) { id ->
-            val def = decoder.getOrNull(id) ?: return@repeat
-            if(def.modelId != 0) {
-                val name = models[def.modelId]?.firstOrNull() ?: return@repeat
+        for (id in decoder.indices) {
+            val def = decoder.getOrNull(id) ?: continue
+            if (def.modelId != 0) {
+                val name = models[def.modelId]?.firstOrNull() ?: continue
                 map.getOrPut(id) { mutableListOf() }.add(toIdentifier(name))
             }
         }
@@ -43,9 +43,9 @@ object GraphicNames {
     }
 
     private fun addItemModels(cache: Cache, models: MutableMap<Int, MutableList<String>>) {
-        val decoder = ItemDecoder()
-        repeat(decoder.last) { id ->
-            val def = decoder.getOrNull(id) ?: return@repeat
+        val decoder = ItemDecoder().loadCache(cache)
+        for (id in decoder.indices) {
+            val def = decoder.getOrNull(id) ?: continue
             models.add(def.primaryMaleModel, def.name)
             models.add(def.secondaryMaleModel, def.name)
             models.add(def.tertiaryMaleModel, def.name)
@@ -57,9 +57,9 @@ object GraphicNames {
     }
 
     private fun addNPCModels(cache: Cache, models: MutableMap<Int, MutableList<String>>) {
-        val decoder = NPCDecoder(member = true)
-        repeat(decoder.last) { id ->
-            val def = decoder.getOrNull(id) ?: return@repeat
+        val decoder = NPCDecoder(member = true).loadCache(cache)
+        for (id in decoder.indices) {
+            val def = decoder.getOrNull(id) ?: continue
             def.modelIds?.forEach { model ->
                 models.add(model, def.name)
             }
@@ -67,9 +67,9 @@ object GraphicNames {
     }
 
     private fun addObjectModels(cache: Cache, models: MutableMap<Int, MutableList<String>>) {
-        val decoder = ObjectDecoder(member = true, lowDetail = false)
-        repeat(decoder.last) { id ->
-            val def = decoder.getOrNull(id) ?: return@repeat
+        val decoder = ObjectDecoder(member = true, lowDetail = false).loadCache(cache)
+        for (id in decoder.indices) {
+            val def = decoder.getOrNull(id) ?: continue
             def.modelIds?.forEach { array ->
                 array.forEach { model ->
                     models.add(model, def.name)
@@ -79,7 +79,7 @@ object GraphicNames {
     }
 
     private fun MutableMap<Int, MutableList<String>>.add(id: Int, name: String) {
-        if(id != -1 && name != "" && name != "null") {
+        if (id != -1 && name != "" && name != "null") {
             getOrPut(id) { mutableListOf() }.add(name)
         }
     }

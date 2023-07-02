@@ -12,13 +12,13 @@ object DumpSprites {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = SpriteDecoder()
-        println(decoder.last)
+        val decoder = SpriteDecoder().loadCache(cache)
+        println(decoder.lastIndex)
         File("./sprites/").mkdir()
-        repeat(decoder.last) { i ->
-            val def = decoder.getOrNull(i) ?: return@repeat
+        for (i in decoder.indices) {
+            val def = decoder.getOrNull(i) ?: continue
             println("Sprite $i ${def.sprites?.size}")
-            val sprites = def.sprites ?: return@repeat
+            val sprites = def.sprites ?: continue
             for ((index, sprite) in sprites.withIndex()) {
                 if (sprite.width > 0 && sprite.height > 0) {
                     ImageIO.write(sprite.toBufferedImage(), "png", File("./sprites/${i}_${index}.png"))
@@ -26,5 +26,4 @@ object DumpSprites {
             }
         }
     }
-
 }

@@ -10,7 +10,7 @@ object DumpEnums {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = EnumDecoder()
+        val decoder = EnumDecoder().loadCache(cache)
         val builder = StringBuilder()
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue

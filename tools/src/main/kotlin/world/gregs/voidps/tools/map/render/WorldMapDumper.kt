@@ -45,7 +45,7 @@ object WorldMapDumper {
 
         val cache: Cache = koin.get()
         val mapDecoder = MapDecoder(koin.get<Xteas>())
-        val objectDecoder = ObjectDecoder(member = true, lowDetail = false)
+        val objectDecoder = ObjectDecoder(member = true, lowDetail = false).loadCache(cache)
         val overlayDefinitions = OverlayDecoder()
         val underlayDefinitions = UnderlayDecoder()
         val textureDefinitions = TextureDecoder()

@@ -9,7 +9,7 @@ object OreIdentifier {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = ObjectDecoder(member = false, lowDetail = false)
+        val decoder = ObjectDecoder(member = false, lowDetail = false).loadCache(cache)
         val map = mapOf(
             3184 to 1,
             3183 to 2,
@@ -27,9 +27,9 @@ object OreIdentifier {
             48536 to 3,
         )
         val search = map.keys
-        repeat(decoder.last) { id ->
-            val def = decoder.getOrNull(id) ?: return@repeat
-            val models = def.modelIds ?: return@repeat
+        for (id in decoder.indices) {
+            val def = decoder.getOrNull(id) ?: continue
+            val models = def.modelIds ?: continue
             if (models.any { it.any { id -> search.contains(id) } } && def.contains("Mine")) {
                 val single = id <= 2111
                 val rockId = def.modifiedColours?.getOrNull(0)?.toUShort()?.toInt()

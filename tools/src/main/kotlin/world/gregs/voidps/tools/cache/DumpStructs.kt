@@ -10,7 +10,7 @@ object DumpStructs {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = StructDecoder()
+        val decoder = StructDecoder().loadCache(cache)
         val builder = StringBuilder()
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue

@@ -10,7 +10,7 @@ import java.math.BigInteger
 import java.security.MessageDigest
 
 class Checksum(
-    private val encoders: () -> List<IndexEncoder>
+    private val encoders: () -> List<IndexEncoder> = ::load
 ) {
 
     private val logger = InlineLogger()

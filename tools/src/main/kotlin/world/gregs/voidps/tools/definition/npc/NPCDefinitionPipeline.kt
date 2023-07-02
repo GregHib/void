@@ -2,6 +2,7 @@ package world.gregs.voidps.tools.definition.npc
 
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
@@ -31,7 +32,7 @@ object NPCDefinitionPipeline {
         val rs2Wiki = Wiki.load("${System.getProperty("user.home")}\\Downloads\\runescape_pages_full\\runescapewiki-latest-pages-articles-2011-01-31.xml")
         val start = System.currentTimeMillis()
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = NPCDecoder(true)
+        val decoder = NPCDecoder(true).loadCache(cache)
         val pages = getPages(decoder, rs2Wiki)
         val output = buildNPCExtras(decoder, pages)
         val map = convertToYaml(output)
@@ -47,7 +48,7 @@ object NPCDefinitionPipeline {
     /**
      * Collects a rs2 and a rs3 page for each [decoder] item id.
      */
-    private fun getPages(decoder: NPCDecoder, rs2Wiki: Wiki): MutableMap<Int, PageCollector> {
+    private fun getPages(decoder: Array<NPCDefinition>, rs2Wiki: Wiki): MutableMap<Int, PageCollector> {
         val pipeline = Pipeline<PageCollector>().apply {
             add(LivePageCollector(
                 "osrs-npc",
@@ -83,11 +84,11 @@ object NPCDefinitionPipeline {
         val pages = mutableMapOf<Int, PageCollector>()
         val incomplete = mutableListOf<PageCollector>()
 
-        repeat(decoder.last) { id ->
-            if(debugId >= 0 && id != debugId) {
-                return@repeat
+        for (id in decoder.indices) {
+            if (debugId >= 0 && id != debugId) {
+                continue
             }
-            val def = decoder.getOrNull(id) ?: return@repeat
+            val def = decoder.getOrNull(id) ?: continue
             val processed = pipeline.modify(PageCollector(id, def.name))
             val (_, name, page, _, rs3, _) = processed
             if (page == null && rs3 == null && name != "null") {
@@ -113,7 +114,7 @@ object NPCDefinitionPipeline {
     private val revision = LocalDate.of(2011, Month.OCTOBER, 4)
 
     private fun buildNPCExtras(
-        decoder: NPCDecoder,
+        decoder: Array<NPCDefinition>,
         pages: MutableMap<Int, PageCollector>
     ): MutableMap<Int, Extras> {
         val output = mutableMapOf<Int, Extras>()
@@ -121,11 +122,11 @@ object NPCDefinitionPipeline {
         val pipeline = Pipeline<Extras>().apply {
             add(InfoBoxNPC(revision, infoboxes))
         }
-        repeat(decoder.last) { id ->
+        for (id in decoder.indices) {
             if (debugId >= 0 && id != debugId) {
-                return@repeat
+                continue
             }
-            val def = decoder.getOrNull(id) ?: return@repeat
+            val def = decoder.getOrNull(id) ?: continue
             val page = pages[def.id]
             if (page != null) {
                 val result = pipeline.modify(page to mutableMapOf())

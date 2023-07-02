@@ -1,10 +1,10 @@
 package world.gregs.voidps.tools.map.obj
 
+import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
 
 class WorldMapLinks(
-    private val scriptDecoder: ClientScriptDecoder
+    private val scriptDecoder: Array<ClientScriptDefinition>
 ) {
 
     fun getLinks(): List<Pair<Tile, Tile>> {

@@ -1,12 +1,11 @@
 package world.gregs.voidps.tools.convert
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.ITEMS
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 
-class ItemDecoder718(cache: Cache) : DefinitionDecoder<ItemDefinition>(ITEMS) {
+class ItemDecoder718 : DefinitionDecoder<ItemDefinition>(ITEMS) {
 
     override fun create() = ItemDefinition()
 

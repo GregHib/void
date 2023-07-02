@@ -8,8 +8,8 @@ object ItemDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = ItemDecoder()
-        println(decoder.last)
+        val decoder = ItemDecoder().loadCache(cache)
+        println(decoder.lastIndex)
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
             if (def.name.contains("classic", true)) {

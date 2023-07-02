@@ -9,7 +9,6 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
     open fun fileName() = "index${index}.dat"
 
     open var last: Int = 0
-//        get() = cache.lastArchiveId(index) * 256 + (cache.archiveCount(index, cache.lastArchiveId(index)))
 
     val indices: IntRange
         get() = 0..last
@@ -98,16 +97,6 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
     protected abstract fun T.read(opcode: Int, buffer: Reader)
 
     open fun T.changeValues() {
-    }
-
-    open fun clear() {
-    }
-
-    fun forEach(function: (T) -> Unit) {
-        for (i in indices) {
-            val def = getOrNull(i) ?: continue
-            function.invoke(def)
-        }
     }
 
     companion object {

@@ -8,7 +8,7 @@ import world.gregs.voidps.cache.config.data.WorldMapInfoDefinition
 import world.gregs.voidps.cache.config.decoder.WorldMapInfoDecoder
 import world.gregs.voidps.cache.definition.data.IndexedSprite
 import world.gregs.voidps.cache.definition.data.MapObject
-import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.SpriteDecoder
 import world.gregs.voidps.cache.definition.decoder.WorldMapDetailsDecoder
 import world.gregs.voidps.engine.map.Tile
@@ -17,7 +17,7 @@ import java.awt.Graphics
 import java.awt.image.BufferedImage
 
 class MinimapIconPainter(
-    private val objectDefinitions: ObjectDecoder,
+    private val objectDefinitions: Array<ObjectDefinition>,
     private val worldMapDefinitions: WorldMapDetailsDecoder,
     private val worldMapInfoDefinitions: WorldMapInfoDecoder,
     private val spriteDefinitions: SpriteDecoder

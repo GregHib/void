@@ -5,9 +5,10 @@ import world.gregs.voidps.buffer.read.BufferReader
 import java.io.File
 
 class LiveDefinitionLoader(
-    private val directory: File
+    directory: File
 ) : DefinitionLoader {
     private val logger = InlineLogger()
+    private val directory: File = directory.resolve("/live/")
 
     override fun <T : Definition> load(decoder: DefinitionDecoder<T>): Array<T> {
         val start = System.currentTimeMillis()

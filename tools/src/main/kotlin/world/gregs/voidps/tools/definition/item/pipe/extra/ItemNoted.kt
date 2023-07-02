@@ -1,11 +1,11 @@
 package world.gregs.voidps.tools.definition.item.pipe.extra
 
-import world.gregs.voidps.cache.definition.decoder.ItemDecoder
+import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
 
-class ItemNoted(private val decoder: ItemDecoder) : Pipeline.Modifier<Extras> {
+class ItemNoted(private val decoder: Array<ItemDefinition>) : Pipeline.Modifier<Extras> {
 
     override fun modify(content: Extras): Extras {
         val (builder, extras) = content

@@ -2,16 +2,15 @@ package world.gregs.voidps.tools.map.obj
 
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
-import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
-import world.gregs.voidps.cache.definition.decoder.WorldMapDetailsDecoder
-import world.gregs.voidps.cache.definition.decoder.WorldMapIconDecoder
+import world.gregs.voidps.cache.definition.data.WorldMapDefinition
+import world.gregs.voidps.cache.definition.data.WorldMapIconDefinition
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.tools.ClientScriptDefinitions
 
 class WorldMapDungeons(
-    private val detailsDecoder: WorldMapDetailsDecoder,
-    private val iconDecoder: WorldMapIconDecoder,
-    private val scriptDecoder: ClientScriptDecoder,
+    private val detailsDecoder: Array<WorldMapDefinition>,
+    private val iconDecoder: Array<WorldMapIconDefinition>,
+    private val scriptDecoder: Array<ClientScriptDefinition>,
     private val cache: Cache
 ) {
 
@@ -19,7 +18,7 @@ class WorldMapDungeons(
         val list = mutableListOf<Pair<Tile, Tile>>()
         for (i in detailsDecoder.indices) {
             val def = detailsDecoder.getOrNull(i) ?: continue
-            val iconDef = iconDecoder.getOrNull(def.map) ?: continue
+            val iconDef = iconDecoder.getOrNull(def.map.hashCode()) ?: continue
             iconDef.icons.forEach { (id, position) ->
                 val scriptId = ClientScriptDefinitions.getScriptId(cache, id, 10)
                 val script = scriptDecoder.get(scriptId)

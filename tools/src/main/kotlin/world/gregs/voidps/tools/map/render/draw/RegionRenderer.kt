@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.map.render.draw
 
 import world.gregs.voidps.cache.config.decoder.MapSceneDecoder
 import world.gregs.voidps.cache.definition.data.MapObject
-import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.SpriteDecoder
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.tools.Pipeline
@@ -17,7 +17,7 @@ import javax.imageio.ImageIO
 
 class RegionRenderer(
     private val manager: RegionManager,
-    private val objectDecoder: ObjectDecoder,
+    private val objectDecoder: Array<ObjectDefinition>,
     private val spriteDecoder: SpriteDecoder,
     private val mapSceneDecoder: MapSceneDecoder,
     private val loader: MinimapIconPainter,

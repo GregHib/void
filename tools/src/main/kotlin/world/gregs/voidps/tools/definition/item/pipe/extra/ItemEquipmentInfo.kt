@@ -1,16 +1,16 @@
 package world.gregs.voidps.tools.definition.item.pipe.extra
 
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.definition.decoder.ItemDecoder
+import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.convert.ItemDecoder718
 import world.gregs.voidps.tools.definition.item.Extras
 
-class ItemEquipmentInfo(decoder: ItemDecoder, val cache: Cache) : Pipeline.Modifier<Extras> {
+class ItemEquipmentInfo(decoder: Array<ItemDefinition>, val cache: Cache) : Pipeline.Modifier<Extras> {
 
-    private val decoder718 = ItemDecoder718(cache)
+    private val decoder718 = ItemDecoder718()
     init {
         // Load equip slots and types
         repeat(decoder718.last) { id ->

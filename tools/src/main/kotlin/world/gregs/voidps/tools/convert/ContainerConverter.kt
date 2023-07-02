@@ -31,9 +31,9 @@ object ContainerConverter {
         val koin = startKoin {
         }.koin
         koin.loadModules(listOf(cache718Module))
-        var decoder = ContainerDecoder()
+        var decoder = ContainerDecoder().loadCache(get<Cache>())
 
-        val containers = (0 until decoder.last).associateWith { decoder.getOrNull(it) }
+        val containers = decoder.indices.associateWith { decoder.getOrNull(it) }
 
         koin.unloadModules(listOf(cache718Module))
         koin.loadModules(listOf(cacheModule))
@@ -45,9 +45,9 @@ object ContainerConverter {
 
 
         val itemDecoder = ItemDefinitions(ItemDecoder().loadCache(cache)).load(Yaml(), property("itemDefinitionsPath"))
-        decoder = ContainerDecoder()
+        decoder = ContainerDecoder().loadCache(cache)
         var counter = 0
-        for (i in 0 until decoder.last) {
+        for (i in decoder.indices) {
             val def = decoder.getOrNull(i)
             val cont = containers[i]
             if (def == null || cont == null) {
