@@ -12,10 +12,6 @@ class ItemDecoder(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, ITEMS
         return file or (archive shl 8)
     }
 
-    override fun size(cache: Cache): Int {
-        return super.size(cache)
-    }
-
     override fun create(size: Int): Array<ItemDefinition> {
         return Array(size) { create() }
     }

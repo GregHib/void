@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.data.definition.extra
 
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.voidps.cache.definition.data.NPCDefinition
-import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.data.DefinitionConfig
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.data.definition.data.Spot
@@ -13,17 +12,10 @@ import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 
 class NPCDefinitions(
-    decoder: NPCDecoder
+    override var definitions: Array<NPCDefinition>
 ) : DefinitionsDecoder<NPCDefinition> {
 
-    override lateinit var definitions: Array<NPCDefinition>
     override lateinit var ids: Map<String, Int>
-
-    init {
-        val start = System.currentTimeMillis()
-        definitions = decoder.indices.map { decoder.get(it) }.toTypedArray()
-        timedLoad("npc definition", definitions.size, start)
-    }
 
     override fun empty() = NPCDefinition.EMPTY
 

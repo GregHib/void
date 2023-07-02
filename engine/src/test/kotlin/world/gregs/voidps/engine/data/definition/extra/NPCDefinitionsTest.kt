@@ -10,6 +10,7 @@ import world.gregs.yaml.Yaml
 internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDecoder, NPCDefinitions>() {
 
     override lateinit var decoder: NPCDecoder
+    override lateinit var definitions: Array<NPCDefinition>
     override val id: String = "hans"
     override val intId: Int = 0
 
@@ -32,7 +33,7 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
     }
 
     override fun definitions(): NPCDefinitions {
-        return NPCDefinitions(decoder)
+        return NPCDefinitions(definitions)
     }
 
     override fun load(definitions: NPCDefinitions) {

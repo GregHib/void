@@ -8,6 +8,15 @@ import world.gregs.voidps.cache.definition.data.NPCDefinition
 
 class NPCDecoder(cache: Cache, val member: Boolean) : DefinitionDecoder<NPCDefinition>(cache, NPCS) {
 
+
+    override fun create(size: Int): Array<NPCDefinition> {
+        return Array(size) { create() }
+    }
+
+    override fun id(archive: Int, file: Int): Int {
+        return file or (archive shl 7)
+    }
+
     override fun create() = NPCDefinition()
 
     override fun getFile(id: Int) = id and 0x7f
