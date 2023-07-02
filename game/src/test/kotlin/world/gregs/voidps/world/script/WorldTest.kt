@@ -150,6 +150,7 @@ abstract class WorldTest : KoinTest {
                 single(createdAtStart = true) { structDefinitions }
                 single(createdAtStart = true) { quickChatPhraseDefinitions }
                 single(createdAtStart = true) { styleDefinitions }
+                single(createdAtStart = true) { enumDefinitions }
                 single { xteas }
                 single { gameObjects }
                 single { extract }
@@ -159,7 +160,7 @@ abstract class WorldTest : KoinTest {
             modules(postCacheModule, postCacheGameModule)
         }
         loadScripts(getProperty("scriptModule"))
-        MapExtract(get(), get(), get()).loadMap(File("./data/cache/live/index5.dat")) // FIXME
+        MapExtract(get(), get(), get()).loadMap(File("../data/cache/live/index5.dat")) // FIXME
         saves = File(getProperty("savePath"))
         saves?.mkdirs()
         store = get()
@@ -233,6 +234,7 @@ abstract class WorldTest : KoinTest {
         private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder().load(loader)).load() }
         private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(loader)).load() }
         private val styleDefinitions: StyleDefinitions by lazy { StyleDefinitions(ClientScriptDecoder(revision634 = true).load(loader)) }
+        private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(loader), structDefinitions).load() }
         private val collisions: Collisions by lazy { Collisions() }
         private val objectCollision: GameObjectCollision by lazy { GameObjectCollision(collisions) }
         private val xteas: Xteas by lazy { Xteas().apply { XteaLoader().load(this, getProperty("xteaPath")) } }
