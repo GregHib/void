@@ -14,8 +14,40 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
 
     override fun create() = InterfaceDefinition()
 
+    override fun create(size: Int): Array<InterfaceDefinition> {
+        return Array(size) { create() }
+    }
+
+    override fun size(cache: Cache): Int {
+        return cache.lastArchiveId(index)
+    }
+
+    override fun id(archive: Int, file: Int): Int {
+        return file or (archive shr 16)
+    }
+
     override val last: Int
         get() = cache.lastArchiveId(index)
+
+
+    override fun load(archiveId: Int, fileId: Int, array: Array<InterfaceDefinition>, reader: Reader) {
+        val lastArchive = cache.lastFileId(index, archiveId)
+        if (lastArchive == -1) {
+            return
+        }
+        val id = id(archiveId, fileId)
+        val definition = array[id]
+        val components = Int2ObjectOpenHashMap<InterfaceComponentDefinition>(lastArchive)
+        for(file in 0..lastArchive) {
+            val component = InterfaceComponentDefinition(id = file + (id shl 16))
+            val data = cache.getFile(index, archiveId, file)
+            if (data != null) {
+                component.read(BufferReader(data))
+            }
+            components[file] = component
+        }
+        definition.components = components
+    }
 
     override fun readData(id: Int): InterfaceDefinition? {
         val archive = getArchive(id)

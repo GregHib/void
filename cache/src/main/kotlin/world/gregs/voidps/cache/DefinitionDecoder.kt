@@ -36,20 +36,22 @@ abstract class DefinitionDecoder<T : Definition>(internal val cache: Cache, val 
         val start = System.currentTimeMillis()
         val size = size(cache) + 1
         val array = create(size)
-        for (archiveId in cache.getArchives(index)) {
-            val files = cache.getArchiveData(index, archiveId) ?: continue
-            for ((fileId, file) in files) {
-                if (file == null) {
-                    continue
-                }
-                val id = id(archiveId, fileId)
-                val definition = array[id]
-                readLoop(definition, BufferReader(file))
-                changeDefValues(definition)
-            }
+        for (id in indices) {
+            val archive = getArchive(id)
+            val file = getFile(id)
+            val data = cache.getFile(index, archive, file) ?: continue
+            array[id].id = id
+            load(archive, file, array, BufferReader(data))
         }
         logger.info { "${this::class.simpleName} loaded $size in ${System.currentTimeMillis() - start}ms" }
         return array
+    }
+
+    open fun load(archiveId: Int, fileId: Int, array: Array<T>, reader: Reader) {
+        val id = id(archiveId, fileId)
+        val definition = array[id]
+        readLoop(definition, reader)
+        changeDefValues(definition)
     }
 
     open fun get(id: Int) = getOrNull(id) ?: create()

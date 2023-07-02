@@ -5,7 +5,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
-import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.client.ui.GameFrame.Companion.GAME_FRAME_NAME
 import world.gregs.voidps.engine.client.ui.GameFrame.Companion.GAME_FRAME_RESIZE_NAME
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
@@ -23,19 +22,11 @@ private const val DEFAULT_PERMANENT = true
 
 @Suppress("UNCHECKED_CAST")
 class InterfaceDefinitions(
-    decoder: InterfaceDecoder
+    override var definitions: Array<InterfaceDefinition>
 ) : DefinitionsDecoder<InterfaceDefinition> {
 
-    override lateinit var definitions: Array<InterfaceDefinition>
-    override lateinit var ids: Map<String, Int>
 
-    init {
-        val start = System.currentTimeMillis()
-        definitions = decoder.indices.map {
-            decoder.get(it).apply { actualId = id;stringId = id.toString() }
-        }.toTypedArray()
-        timedLoad("interface definition", definitions.size, start)
-    }
+    override lateinit var ids: Map<String, Int>
 
     override fun empty() = InterfaceDefinition.EMPTY
 
