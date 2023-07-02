@@ -84,7 +84,12 @@ class Checksum(
                 outdated++
                 continue
             }
-            val actualMd5 = md5(liveDirectory.resolve(indexFile(index)).readBytes())
+            val file = liveDirectory.resolve(indexFile(index))
+            if (!file.exists()) {
+                outdated++
+                continue
+            }
+            val actualMd5 = md5(file.readBytes())
             if (md5 != actualMd5) {
                 outdated++
                 continue
