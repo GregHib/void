@@ -13,7 +13,7 @@ object QuickChatDefinitions {
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val options = QuickChatOptionDecoder(cache)
-        val phrases = QuickChatPhraseDecoder(cache)
+        val phrases = QuickChatPhraseDecoder(cache).loadCache(cache)
         val enums = EnumDecoder(cache)
         val items = ItemDecoder(cache)
         val data = BufferReader((0..32).map { 0.toByte() }.toByteArray())

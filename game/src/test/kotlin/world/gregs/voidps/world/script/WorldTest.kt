@@ -235,7 +235,7 @@ abstract class WorldTest : KoinTest {
         private val containerDefinitions: ContainerDefinitions by lazy { ContainerDefinitions(ContainerDecoder(cache)).load() }
         private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(cache)).load() }
         private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder(cache).loadCache(cache), structDefinitions).load() }
-        private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cache)).load() }
+        private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cache).loadCache(cache)).load() }
         private val styleDefinitions: StyleDefinitions by lazy { StyleDefinitions(ClientScriptDecoder(cache, revision634 = true).loadCache(cache)) }
         private val collisions: Collisions by lazy { Collisions() }
         private val objectCollision: GameObjectCollision by lazy { GameObjectCollision(collisions) }
