@@ -10,6 +10,10 @@ class ContainerDecoder(cache: Cache) : ConfigDecoder<ContainerDefinition>(cache,
 
     override fun create() = ContainerDefinition()
 
+    override fun create(size: Int): Array<ContainerDefinition> {
+        return Array(size) { create() }
+    }
+
     override fun ContainerDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
             2 -> length = buffer.readUnsignedShort()

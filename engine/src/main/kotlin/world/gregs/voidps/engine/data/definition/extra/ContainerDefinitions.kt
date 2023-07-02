@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.data.definition.extra
 
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.voidps.cache.config.data.ContainerDefinition
-import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.engine.data.DefinitionConfig
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.get
@@ -11,17 +10,10 @@ import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 
 class ContainerDefinitions(
-    decoder: ContainerDecoder
+    override var definitions: Array<ContainerDefinition>
 ) : DefinitionsDecoder<ContainerDefinition> {
 
-    override lateinit var definitions: Array<ContainerDefinition>
     override lateinit var ids: Map<String, Int>
-
-    init {
-        val start = System.currentTimeMillis()
-        definitions = decoder.indices.map { decoder.get(it) }.toTypedArray()
-        timedLoad("container definition", definitions.size, start)
-    }
 
     override fun empty() = ContainerDefinition.EMPTY
 

@@ -10,6 +10,7 @@ import world.gregs.yaml.Yaml
 internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ContainerDefinition, ContainerDecoder, ContainerDefinitions>() {
 
     override lateinit var decoder: ContainerDecoder
+    override lateinit var definitions: Array<ContainerDefinition>
     override val id: String = "bobs_brilliant_axes"
     override val intId: Int = 1
 
@@ -40,7 +41,7 @@ internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ContainerDefini
     }
 
     override fun definitions(): ContainerDefinitions {
-        return ContainerDefinitions(decoder)
+        return ContainerDefinitions(definitions)
     }
 
     override fun load(definitions: ContainerDefinitions) {

@@ -10,4 +10,12 @@ abstract class ConfigDecoder<T : Definition>(cache: Cache, internal val archive:
         get() = cache.lastFileId(Indices.CONFIGS, archive)
 
     override fun getArchive(id: Int) = archive
+
+    override fun id(archive: Int, file: Int): Int {
+        return file
+    }
+
+    override fun size(cache: Cache): Int {
+        return cache.lastFileId(Indices.CONFIGS, archive)
+    }
 }
