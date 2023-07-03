@@ -3,9 +3,12 @@ package world.gregs.voidps
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
+import org.koin.core.module.Module
 import org.koin.dsl.module
 import org.koin.fileProperties
 import org.koin.logger.slf4jLogger
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.cache.active.ActiveCache
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
@@ -24,7 +27,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.map.file.MapExtract
+import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.network.Network
 import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.loadScripts
@@ -42,15 +45,20 @@ object Main {
 
     lateinit var name: String
     private val logger = InlineLogger()
+    private const val USE_ACTIVE_CACHE = true
 
     @OptIn(ExperimentalUnsignedTypes::class)
     @JvmStatic
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
-        val activeDir = File("./data/cache/active/")
-        ActiveCache().checkChanges(activeDir.parent, activeDir.name)
-        preload(activeDir)
-
+        val module = if (USE_ACTIVE_CACHE) {
+            val activeDir = File("./data/cache/active/")
+            ActiveCache().checkChanges(activeDir.parent, activeDir.name)
+            active(activeDir)
+        } else {
+            cache(CacheDelegate("./data/cache/"))
+        }
+        preload(module)
         name = getProperty("name")
         val revision = getProperty("revision").toInt()
         val limit = getProperty("loginLimit").toInt()
@@ -82,35 +90,49 @@ object Main {
         server.start(getIntProperty("port"))
     }
 
-    private fun preload(activeDir: File) {
+    private fun preload(module: Module) {
         startKoin {
             slf4jLogger(level = Level.ERROR)
             fileProperties("/game.properties")
             fileProperties("/private.properties")
-            modules(engineModule, stairsModule, musicModule, bookModule, gameModule, postCacheModule, postCacheGameModule,
-                module {
-                    single(createdAtStart = true) { MapExtract(get(), get(), get()).loadMap(activeDir.resolve(ActiveCache.indexFile(Indices.MAPS))) }
-                    single(createdAtStart = true) {
-                        val bytes = activeDir.resolve(ActiveCache.indexFile(Indices.HUFFMAN)).readBytes()
-                        Huffman().load(bytes)
-                    }
-                    single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(activeDir)).load() }
-                    single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = true).load(activeDir)).load() }
-                    single(createdAtStart = true) { ItemDefinitions(ItemDecoder().load(activeDir)).load() }
-                    single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(activeDir)).load() }
-                    single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(activeDir), get()).load() }
-                    single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(activeDir)).load() }
-                    single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(activeDir)).load() }
-                    single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder().load(activeDir)).load() }
-                    single(createdAtStart = true) { StructDefinitions(StructDecoder().load(activeDir)).load() }
-                    single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(activeDir)).load() }
-                    single(createdAtStart = true) { StyleDefinitions(ClientScriptDecoder(revision634 = true).load(activeDir)) }
-                })
+            modules(engineModule, stairsModule, musicModule, bookModule, gameModule, postCacheModule, postCacheGameModule, module)
         }
         val saves = File(getProperty("savePath"))
         if (!saves.exists()) {
             saves.mkdir()
         }
         loadScripts(getProperty("scriptModule"))
+    }
+
+    private fun active(activeDir: File) = module {
+        single(createdAtStart = true) { MapDefinitions(get(), get(), get()).load(activeDir) }
+        single(createdAtStart = true) { Huffman().load(activeDir.resolve(ActiveCache.indexFile(Indices.HUFFMAN)).readBytes()) }
+        single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = getProperty<String>("members") == "true", lowDetail = false).load(activeDir)).load() }
+        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = getProperty<String>("members") == "true").load(activeDir)).load() }
+        single(createdAtStart = true) { ItemDefinitions(ItemDecoder().load(activeDir)).load() }
+        single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(activeDir)).load() }
+        single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(activeDir), get()).load() }
+        single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(activeDir)).load() }
+        single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(activeDir)).load() }
+        single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder().load(activeDir)).load() }
+        single(createdAtStart = true) { StructDefinitions(StructDecoder().load(activeDir)).load() }
+        single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(activeDir)).load() }
+        single(createdAtStart = true) { StyleDefinitions(ClientScriptDecoder(revision634 = true).load(activeDir)) }
+    }
+
+    private fun cache(cache: Cache) = module {
+        single(createdAtStart = true) { MapDefinitions(get(), get(), get()).loadCache(cache, get<Xteas>()) }
+        single(createdAtStart = true) { Huffman().load(cache.getFile(Indices.HUFFMAN, 1)!!) }
+        single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = getProperty<String>("members") == "true", lowDetail = false).loadCache(cache)).load() }
+        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = getProperty<String>("members") == "true").loadCache(cache)).load() }
+        single(createdAtStart = true) { ItemDefinitions(ItemDecoder().loadCache(cache)).load() }
+        single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().loadCache(cache)).load() }
+        single(createdAtStart = true) { EnumDefinitions(EnumDecoder().loadCache(cache), get()).load() }
+        single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().loadCache(cache)).load() }
+        single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().loadCache(cache)).load() }
+        single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder().loadCache(cache)).load() }
+        single(createdAtStart = true) { StructDefinitions(StructDecoder().loadCache(cache)).load() }
+        single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().loadCache(cache)).load() }
+        single(createdAtStart = true) { StyleDefinitions(ClientScriptDecoder(revision634 = true).loadCache(cache)) }
     }
 }
