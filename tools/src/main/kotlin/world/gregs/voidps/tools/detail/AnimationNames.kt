@@ -23,7 +23,7 @@ object AnimationNames {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val yaml = Yaml()
         val decoder = AnimationDecoder().loadCache(cache)
-        val itemDecoder = ItemDecoder()
+        val itemDecoder = ItemDecoder().loadCache(cache)
         val renders = getRenderAnimations(cache)
         val map = mutableMapOf<String, MutableList<Int>>()
         for (id in decoder.indices) {

@@ -13,37 +13,43 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
     val indices: IntRange
         get() = 0..last
 
-    fun getOrNull(cache: Cache, id: Int): T? {
-        return readData(cache, id)
-    }
-
-    fun getOrNull(id: Int): T? {
-        return readData(id)
-    }
-
     fun load(loader: DefinitionLoader): Array<T> {
         return loader.load(this)
     }
 
     fun loadCache(cache: Cache): Array<T> {
-        return CacheDefinitionLoader(cache).load(this)
+        val start = System.currentTimeMillis()
+        val size = size(cache) + 1
+        last = size - 1
+        val array = create(size)
+        for (id in indices) {
+            load(id, cache, array)
+        }
+        logger.info { "$size ${this::class.simpleName} definitions loaded in ${System.currentTimeMillis() - start}ms" }
+        return array
+    }
+
+    open fun load(id: Int, cache: Cache, array: Array<T>) {
+        val archive = getArchive(id)
+        val file = getFile(id)
+        val data = getData(cache, archive, file) ?: return
+        array[id].id = id
+        load(cache, archive, file, array, BufferReader(data))
     }
 
     open fun load(cache: Cache, archiveId: Int, fileId: Int, definitions: Array<T>, reader: Reader) {
         val id = id(archiveId, fileId)
         val definition = definitions[id]
         readLoop(definition, reader)
-        changeDefValues(definition)
+        changeDefValues(definitions, definition)
     }
 
     open fun load(definitions: Array<T>, reader: Reader) {
         val id = readId(reader)
         val definition = definitions[id]
         readLoop(definition, reader)
-        changeDefValues(definition)
+        changeDefValues(definitions, definition)
     }
-
-    open fun get(id: Int) = getOrNull(id) ?: create()
 
     protected abstract fun create(): T
 
@@ -63,7 +69,7 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
         return 0
     }
 
-    open fun changeDefValues(definition: T) {
+    open fun changeDefValues(definitions: Array<T>, definition: T) {
     }
 
     protected open fun getData(archive: Int, file: Int): ByteArray? {
@@ -74,20 +80,6 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
         return cache.getFile(index, archive, file)
     }
 
-    protected open fun readData(cache: Cache, id: Int): T? {
-        val archive = getArchive(id)
-        val file = getFile(id)
-        val data = getData(cache, archive, file)
-        if (data != null) {
-            val definition = create()
-            definition.id = id
-            readLoop(definition, BufferReader(data))
-            definition.changeValues()
-            return definition
-        }
-        return null
-    }
-
     protected open fun readData(id: Int): T? {
         val archive = getArchive(id)
         val file = getFile(id)
@@ -96,7 +88,7 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
             val definition = create()
             definition.id = id
             readLoop(definition, BufferReader(data))
-            definition.changeValues()
+//            definition.changeValues()
             return definition
         }
         return null

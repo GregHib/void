@@ -17,15 +17,6 @@ class BodyDecoder : DefinitionDecoder<BodyDefinition>(DEFAULTS) {
 
     override fun getArchive(id: Int) = 6
 
-    init {
-        this.definition = super.readData(0)
-        if (definition == null) {
-            logger.info { "Unable to find body definitions" }
-        }
-    }
-
-    override fun readData(id: Int) = get(id)
-
     override fun BodyDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
             1 -> disabledSlots = IntArray(buffer.readUnsignedByte()) { buffer.readUnsignedByte() }

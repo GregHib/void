@@ -21,28 +21,16 @@ class WorldMapIconDecoder : DefinitionDecoder<WorldMapIconDefinition>(WORLD_MAP)
 
     override fun create() = WorldMapIconDefinition()
 
-    fun getOrNull(map: String): WorldMapIconDefinition? {
-        archive = -1//cache.getArchiveId(index, "${map}_staticelements")
-        return super.getOrNull(map.hashCode())
-    }
+    //archive = cache.getArchiveId(index, "${map}_staticelements")
 
-    fun get(map: String): WorldMapIconDefinition {
-        archive = -1//cache.getArchiveId(index, "${map}_staticelements")
-        return super.get(map.hashCode())
-    }
 
-    override fun get(id: Int): WorldMapIconDefinition {
-        throw IllegalAccessError("Use get(map: String)")
-    }
-
-    override fun readData(id: Int): WorldMapIconDefinition? {
+    override fun load(id: Int, cache: Cache, array: Array<WorldMapIconDefinition>) {
         val archive = getArchive(id)
         var length = -1//cache.archiveCount(index, archive)
         var counter = 0
         var index = 0
         if (length > 0) {
-            val definition = create()
-            definition.id = id
+            val definition = array[id]
             val icons = mutableListOf<WorldMapIcon>()
             while (length > counter) {
                 val data = getData(archive, index++)
@@ -61,9 +49,7 @@ class WorldMapIconDecoder : DefinitionDecoder<WorldMapIconDefinition>(WORLD_MAP)
             }
             definition.icons = icons.toTypedArray()
             definition.changeValues()
-            return definition
         }
-        return null
     }
 
     override fun WorldMapIconDefinition.read(opcode: Int, buffer: Reader) {

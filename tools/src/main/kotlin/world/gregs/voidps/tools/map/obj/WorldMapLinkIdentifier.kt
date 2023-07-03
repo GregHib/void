@@ -35,7 +35,7 @@ object WorldMapLinkIdentifier {
         val worldMapDetailsDecoder = WorldMapDetailsDecoder().loadCache(cache)
         val worldMapIconDecoder = WorldMapIconDecoder().loadCache(cache)
         val definitions: ObjectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).loadCache(cache)).load(Yaml(), property("objectDefinitionsPath"), null)
-        val mapDecoder = MapDecoder(xteas)
+        val mapDecoder = MapDecoder(xteas).loadCache(cache)
         val collisions = Collisions()
         val collisionReader = CollisionReader(collisions)
         val graph = MutableNavigationGraph()

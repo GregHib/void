@@ -6,6 +6,7 @@ import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
@@ -31,7 +32,7 @@ class MapCompress(
     private val cache: Cache,
     private val file: File,
     private val collisions: Collisions,
-    private val decoder: MapDecoder,
+    private val decoder: Array<MapDefinition>,
     private val definitions: Array<ObjectDefinition>
 ) : Runnable {
 
@@ -49,7 +50,7 @@ class MapCompress(
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
                 val region = Region(regionX, regionY)
-                val def = decoder.getOrNull(cache, region.id) ?: continue
+                val def = decoder.getOrNull(region.id) ?: continue
                 var empty = true
                 for (chunk in region.toRectangle().toChunks()) {
                     val tiles = (0 until 8).sumOf { x -> (0 until 8).count { y -> collisions.check(chunk.tile.x + x, chunk.tile.y + y, chunk.plane, CollisionFlag.FLOOR) } }
@@ -132,8 +133,7 @@ class MapCompress(
             val cache = CacheDelegate("./data/cache")
             val definitions = ObjectDecoder(true, false).loadCache(cache)
             val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
-            val decoder = MapDecoder(xteas)
-            println(decoder.loadCache(cache))
+            val decoder = MapDecoder(xteas).loadCache(cache)
             val collisions = Collisions()
             val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), ObjectDefinitions(definitions))
             MapLoader(cache, decoder, CollisionReader(collisions), definitions, objects).run()

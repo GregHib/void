@@ -1,7 +1,6 @@
 package world.gregs.voidps.tools.definition.obj.pipe
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
 import world.gregs.voidps.world.interact.entity.obj.isDoor
@@ -9,7 +8,7 @@ import kotlin.math.abs
 
 fun ObjectDefinition.isDoor() = (name.contains("door", true) && !name.contains("trap", true)) || name.contains("gate", true)
 
-class ObjectDoorsGates(private val decoder: ObjectDecoder) : Pipeline.Modifier<MutableMap<Int, Extras>> {
+class ObjectDoorsGates(private val decoder: Array<ObjectDefinition>) : Pipeline.Modifier<MutableMap<Int, Extras>> {
 
     override fun modify(content: MutableMap<Int, Extras>): MutableMap<Int, Extras> {
         var fence = 0
@@ -46,7 +45,7 @@ class ObjectDoorsGates(private val decoder: ObjectDecoder) : Pipeline.Modifier<M
         34779, 34780, 36913, 36915, 36917, 36919, 37352, 37354, 45206, 45208, 45210, 45212
     )
 
-    private fun match(decoder: ObjectDecoder, def: ObjectDefinition): Int {
+    private fun match(decoder: Array<ObjectDefinition>, def: ObjectDefinition): Int {
         var matches = decoder.findMatchingModels(def)
         if (matches.isNotEmpty()) {
             var filtered = matches.filterByAppearance(def)
@@ -69,8 +68,8 @@ class ObjectDoorsGates(private val decoder: ObjectDecoder) : Pipeline.Modifier<M
         return -1
     }
 
-    private fun ObjectDecoder.findMatchingModels(definition: ObjectDefinition): List<ObjectDefinition> {
-        return (0 until last).mapNotNull {
+    private fun Array<ObjectDefinition>.findMatchingModels(definition: ObjectDefinition): List<ObjectDefinition> {
+        return indices.mapNotNull {
             val def = getOrNull(it) ?: return@mapNotNull null
             if (definition.id == it) {
                 return@mapNotNull null

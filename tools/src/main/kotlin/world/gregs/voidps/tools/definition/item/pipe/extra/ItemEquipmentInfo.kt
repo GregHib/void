@@ -10,12 +10,9 @@ import world.gregs.voidps.tools.definition.item.Extras
 
 class ItemEquipmentInfo(decoder: Array<ItemDefinition>, val cache: Cache) : Pipeline.Modifier<Extras> {
 
-    private val decoder718 = ItemDecoder718()
     init {
         // Load equip slots and types
-        repeat(decoder718.last) { id ->
-            decoder718.get(id)
-        }
+        ItemDecoder718().loadCache(cache)
     }
 
     private val types = ItemTypes(decoder)

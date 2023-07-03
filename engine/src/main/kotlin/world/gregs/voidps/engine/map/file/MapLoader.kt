@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.map.file
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -16,7 +17,7 @@ import kotlin.system.measureTimeMillis
  */
 class MapLoader(
     private val cache: Cache,
-    private val decoder: MapDecoder,
+    private val decoder: Array<MapDefinition>,
     private val reader: CollisionReader,
     private val definitions: Array<ObjectDefinition>,
     private val objects: GameObjects
@@ -40,7 +41,7 @@ class MapLoader(
     }
 
     fun load(region: Region): Boolean {
-        val def = decoder.getOrNull(cache, region.id) ?: return false
+        val def = decoder.getOrNull(region.id) ?: return false
         reader.read(region, def)
         val x = region.tile.x
         val y = region.tile.y

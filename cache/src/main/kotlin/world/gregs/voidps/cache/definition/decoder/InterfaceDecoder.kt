@@ -56,28 +56,6 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
         definition.components = components
     }
 
-    override fun readData(id: Int): InterfaceDefinition? {
-        return null
-//        val archive = getArchive(id)
-//        val lastArchive = cache.lastFileId(index, archive)
-//        if (lastArchive == -1) {
-//            return null
-//        }
-//        val definition = create()
-//        definition.id = id
-//        val components = Int2ObjectOpenHashMap<InterfaceComponentDefinition>(lastArchive)
-//        for (file in 0..lastArchive) {
-//            val component = InterfaceComponentDefinition(id = file + (id shl 16))
-//            val data = cache.getFile(index, archive, file)
-//            if (data != null) {
-//                component.read(BufferReader(data))
-//            }
-//            components[file] = component
-//        }
-//        definition.components = components
-//        return definition
-    }
-
     fun InterfaceComponentDefinition.read(buffer: Reader) {
         buffer.readUnsignedByte()
         type = buffer.readUnsignedByte()

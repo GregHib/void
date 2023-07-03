@@ -7,18 +7,19 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapObject
 
 internal class MapDecoderTest {
 
     private lateinit var cache: Cache
-    private lateinit var decoder: MapDecoder
+    private lateinit var decoder: Array<MapDefinition>
     private val xteas: Map<Int, IntArray> = mutableMapOf()
 
     @BeforeEach
     fun setup() {
         cache = mockk()
-        decoder = MapDecoder(xteas)
+        decoder = MapDecoder(xteas).loadCache(cache)
     }
 
     @Test

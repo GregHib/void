@@ -111,15 +111,15 @@ class ItemDecoder718 : DefinitionDecoder<ItemDefinition>(ITEMS) {
         }
     }
 
-    override fun ItemDefinition.changeValues() {
-        if (notedTemplateId != -1) {
-            toNote(getOrNull(notedTemplateId), getOrNull(noteId))
+    override fun changeDefValues(definitions: Array<ItemDefinition>, definition: ItemDefinition) {
+        if (definition.notedTemplateId != -1) {
+            definition.toNote(definitions.getOrNull(definition.notedTemplateId), definitions.getOrNull(definition.noteId))
         }
-        if (lendTemplateId != -1) {
-            toLend(getOrNull(lendId), getOrNull(lendTemplateId))
+        if (definition.lendTemplateId != -1) {
+            definition.toLend(definitions.getOrNull(definition.lendId), definitions.getOrNull(definition.lendTemplateId))
         }
-        if (singleNoteTemplateId != -1) {
-            toSingleNote(getOrNull(singleNoteTemplateId), getOrNull(singleNoteId))
+        if (definition.singleNoteTemplateId != -1) {
+            definition.toSingleNote(definitions.getOrNull(definition.singleNoteTemplateId), definitions.getOrNull(definition.singleNoteId))
         }
     }
 

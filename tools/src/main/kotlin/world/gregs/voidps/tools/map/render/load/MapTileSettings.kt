@@ -1,9 +1,9 @@
 package world.gregs.voidps.tools.map.render.load
 
-import world.gregs.voidps.cache.config.decoder.OverlayDecoder
-import world.gregs.voidps.cache.config.decoder.UnderlayDecoder
+import world.gregs.voidps.cache.config.data.OverlayDefinition
+import world.gregs.voidps.cache.config.data.UnderlayDefinition
 import world.gregs.voidps.cache.definition.data.MapTile
-import world.gregs.voidps.cache.definition.decoder.TextureDecoder
+import world.gregs.voidps.cache.definition.data.TextureDefinition
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.tools.map.render.draw.TilePlane
 import world.gregs.voidps.tools.map.render.load.MapConstants.TILE_TYPE_HEIGHT_OVERRIDE
@@ -20,9 +20,9 @@ import world.gregs.voidps.tools.map.render.raster.ColourPalette
 
 class MapTileSettings(
     private val planeCount: Int,
-    private val underlayDecoder: UnderlayDecoder,
-    private val overlayDecoder: OverlayDecoder,
-    private val textureDecoder: TextureDecoder,
+    private val underlayDecoder: Array<UnderlayDefinition>,
+    private val overlayDecoder: Array<OverlayDefinition>,
+    private val textureDecoder: Array<TextureDefinition>,
     private val samplingX: Int = 5,
     private val samplingY: Int = 5,
     private val manager: RegionManager
@@ -43,7 +43,7 @@ class MapTileSettings(
         val regionX = this.regionX + (localX / 64)
         val regionY = this.regionY + (localY / 64)
         val regionId = Region.id(regionX, regionY)
-        return manager.tiles[regionId]?.getTile(localX.rem(64), localY.rem(64), plane) ?: MapTile.EMPTY
+        return manager.tiles[regionId].getTile(localX.rem(64), localY.rem(64), plane)
     }
 
     fun set(regionX: Int, regionY: Int) {

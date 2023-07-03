@@ -1,6 +1,5 @@
 package world.gregs.voidps.cache.definition.decoder
 
-import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
@@ -18,11 +17,16 @@ class TextureDecoder : DefinitionDecoder<TextureDefinition>(TEXTURE_DEFINITIONS)
         return metricsCount
     }
 
-    init {
-        val data = getData(0, 0)
-        if (data != null) {
-            decode(BufferReader(data))
-        }
+    override fun load(cache: Cache, archiveId: Int, fileId: Int, definitions: Array<TextureDefinition>, reader: Reader) {
+        decode(reader)
+    }
+
+    override fun getArchive(id: Int): Int {
+        return 0
+    }
+
+    override fun getFile(id: Int): Int {
+        return 0
     }
 
     override fun readData(id: Int) = data[id]

@@ -44,18 +44,6 @@ class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapD
         return cache.getFile(index, "m${archive shr 8}_${archive and 0xff}", null)
     }
 
-    override fun readData(id: Int): MapDefinition? {
-        val tileData = getFile("m${id shr 8}_${id and 0xff}", null)
-        if (tileData != null) {
-            val definition = create()
-            definition.id = id
-            readLoop(definition, BufferReader(tileData))
-            definition.changeValues()
-            return definition
-        }
-        return null
-    }
-
     override fun readLoop(definition: MapDefinition, buffer: Reader) {
         for (plane in 0 until 4) {
             for (localX in 0 until 64) {

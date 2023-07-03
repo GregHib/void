@@ -22,18 +22,16 @@ abstract class DefinitionsDecoderTest<T, S : DefinitionDecoder<T>, D : Definitio
 
     abstract fun load(definitions: D)
 
-    abstract var decoder: S
-
     abstract var definitions: Array<T>
 
     @BeforeEach
     open fun setup() {
-        every { decoder.indices } returns (0..intId)
-        every { decoder.get(any()) } returns empty()
-        every { decoder.get(intId) } returns expected()
-        every { decoder.getOrNull(any()) } returns null
-        every { decoder.getOrNull(any()) } returns empty()
-        every { decoder.getOrNull(intId) } returns expected()
+        every { definitions.indices } returns (0..intId)
+        every { definitions.get(any()) } returns empty()
+        every { definitions.get(intId) } returns expected()
+        every { definitions.getOrNull(any()) } returns null
+        every { definitions.getOrNull(any()) } returns empty()
+        every { definitions.getOrNull(intId) } returns expected()
     }
 
     @Test
