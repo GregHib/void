@@ -7,11 +7,7 @@ import world.gregs.voidps.cache.config.data.ContainerDefinition
 
 class ContainerDecoder : ConfigDecoder<ContainerDefinition>(CONTAINERS) {
 
-    override fun create() = ContainerDefinition()
-
-    override fun create(size: Int): Array<ContainerDefinition> {
-        return Array(size) { ContainerDefinition(it) }
-    }
+    override fun create(size: Int) = Array(size) { ContainerDefinition(it) }
 
     override fun ContainerDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {

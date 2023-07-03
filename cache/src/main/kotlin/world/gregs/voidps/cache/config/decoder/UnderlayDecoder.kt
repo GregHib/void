@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.config.data.UnderlayDefinition
 
 class UnderlayDecoder : ConfigDecoder<UnderlayDefinition>(FLOOR_UNDERLAY) {
 
-    override fun create() = UnderlayDefinition()
+    override fun create(size: Int) = Array(size) { UnderlayDefinition(it) }
 
     override fun UnderlayDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {

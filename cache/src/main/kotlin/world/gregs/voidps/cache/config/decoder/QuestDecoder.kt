@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.config.data.QuestDefinition
 
 class QuestDecoder : ConfigDecoder<QuestDefinition>(QUESTS) {
 
-    override fun create() = QuestDefinition()
+    override fun create(size: Int) = Array(size) { QuestDefinition(it) }
 
     override fun QuestDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {

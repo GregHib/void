@@ -13,7 +13,7 @@ class SpriteDecoder : DefinitionDecoder<SpriteDefinition>(SPRITES) {
         return cache.lastArchiveId(index)
     }
 
-    override fun create() = SpriteDefinition()
+    override fun create(size: Int) = Array(size) { SpriteDefinition(it) }
 
     override fun getFile(id: Int) = 0
 

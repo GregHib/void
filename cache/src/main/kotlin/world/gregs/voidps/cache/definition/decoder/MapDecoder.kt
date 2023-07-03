@@ -11,15 +11,11 @@ import world.gregs.voidps.cache.definition.data.MapTile
 
 class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapDefinition>(MAPS) {
 
-    override fun create() = MapDefinition()
-
     override fun MapDefinition.read(opcode: Int, buffer: Reader) {
         TODO("Not yet implemented")
     }
 
-    override fun create(size: Int): Array<MapDefinition> {
-        return Array(size) { MapDefinition(it) }
-    }
+    override fun create(size: Int) = Array(size) { MapDefinition(it) }
 
     override fun size(cache: Cache): Int {
         return cache.lastArchiveId(index)

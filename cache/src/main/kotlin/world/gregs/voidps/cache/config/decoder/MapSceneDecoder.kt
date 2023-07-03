@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.config.data.MapSceneDefinition
 
 class MapSceneDecoder : ConfigDecoder<MapSceneDefinition>(MAP_SCENES) {
 
-    override fun create() = MapSceneDefinition()
+    override fun create(size: Int) = Array(size) { MapSceneDefinition(it) }
 
     override fun MapSceneDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {

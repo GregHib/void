@@ -11,11 +11,7 @@ class ItemDecoder : DefinitionDecoder<ItemDefinition>(ITEMS) {
         return file or (archive shl 8)
     }
 
-    override fun create(size: Int): Array<ItemDefinition> {
-        return Array(size) { ItemDefinition(it) }
-    }
-
-    override fun create() = ItemDefinition()
+    override fun create(size: Int) = Array(size) { ItemDefinition(it) }
 
     override fun getFile(id: Int) = id and 0xff
 

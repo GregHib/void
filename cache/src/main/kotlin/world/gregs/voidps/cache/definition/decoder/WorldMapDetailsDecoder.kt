@@ -18,7 +18,7 @@ class WorldMapDetailsDecoder : DefinitionDecoder<WorldMapDefinition>(WORLD_MAP) 
         return cache.lastFileId(index, archive)
     }
 
-    override fun create() = WorldMapDefinition()
+    override fun create(size: Int) = Array(size) { WorldMapDefinition(it) }
 
     override fun readLoop(definition: WorldMapDefinition, buffer: Reader) {
         definition.read(-1, buffer)

@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.config.data.WorldMapInfoDefinition
 
 class WorldMapInfoDecoder : ConfigDecoder<WorldMapInfoDefinition>(WORLD_MAP_INFO) {
 
-    override fun create() = WorldMapInfoDefinition()
+    override fun create(size: Int) = Array(size) { WorldMapInfoDefinition(it) }
 
     override fun WorldMapInfoDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {

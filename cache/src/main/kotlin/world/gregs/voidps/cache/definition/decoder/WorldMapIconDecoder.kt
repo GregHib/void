@@ -19,7 +19,7 @@ class WorldMapIconDecoder : DefinitionDecoder<WorldMapIconDefinition>(WORLD_MAP)
         return cache.lastFileId(index, archive)
     }
 
-    override fun create() = WorldMapIconDefinition()
+    override fun create(size: Int) = Array(size) { WorldMapIconDefinition(it) }
 
     //archive = cache.getArchiveId(index, "${map}_staticelements")
 

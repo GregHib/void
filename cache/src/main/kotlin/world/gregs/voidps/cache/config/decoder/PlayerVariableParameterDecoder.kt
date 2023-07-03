@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.config.data.PlayerVariableParameterDefinition
 
 class PlayerVariableParameterDecoder : ConfigDecoder<PlayerVariableParameterDefinition>(VARP) {
 
-    override fun create() = PlayerVariableParameterDefinition()
+    override fun create(size: Int) = Array(size) { PlayerVariableParameterDefinition(it) }
 
     override fun PlayerVariableParameterDefinition.read(opcode: Int, buffer: Reader) {
         if (opcode == 5) {

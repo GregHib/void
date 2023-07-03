@@ -11,7 +11,7 @@ class BodyDecoder : DefinitionDecoder<BodyDefinition>(DEFAULTS) {
     val logger = InlineLogger()
     var definition: BodyDefinition? = null
 
-    override fun create() = BodyDefinition()
+    override fun create(size: Int) = Array(size) { BodyDefinition(it) }
 
     override fun getFile(id: Int) = 0
 

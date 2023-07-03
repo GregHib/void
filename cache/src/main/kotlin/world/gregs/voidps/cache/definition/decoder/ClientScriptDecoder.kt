@@ -17,9 +17,7 @@ class ClientScriptDecoder(private val revision634: Boolean) : DefinitionDecoder<
         return cache.lastArchiveId(index)
     }
 
-    override fun create(size: Int): Array<ClientScriptDefinition> {
-        return Array(size) { ClientScriptDefinition(it) }
-    }
+    override fun create(size: Int) = Array(size) { ClientScriptDefinition(it) }
 
     override fun readId(reader: Reader): Int {
         return reader.readShort()
@@ -28,8 +26,6 @@ class ClientScriptDecoder(private val revision634: Boolean) : DefinitionDecoder<
     override fun getFile(id: Int): Int {
         return 0
     }
-
-    override fun create() = ClientScriptDefinition()
 
     override fun readLoop(definition: ClientScriptDefinition, buffer: Reader) {
         definition.read(-1, buffer)

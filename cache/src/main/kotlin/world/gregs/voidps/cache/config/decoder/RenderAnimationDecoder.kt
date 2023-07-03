@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.config.data.RenderAnimationDefinition
 
 class RenderAnimationDecoder : ConfigDecoder<RenderAnimationDefinition>(RENDER_ANIMATIONS) {
 
-    override fun create() = RenderAnimationDefinition()
+    override fun create(size: Int) = Array(size) { RenderAnimationDefinition(it) }
 
     override fun RenderAnimationDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {

@@ -11,11 +11,7 @@ import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 
 class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
 
-    override fun create() = InterfaceDefinition()
-
-    override fun create(size: Int): Array<InterfaceDefinition> {
-        return Array(size) { InterfaceDefinition(it) }
-    }
+    override fun create(size: Int) = Array(size) { InterfaceDefinition(it) }
 
     override fun size(cache: Cache): Int {
         return cache.lastArchiveId(index)

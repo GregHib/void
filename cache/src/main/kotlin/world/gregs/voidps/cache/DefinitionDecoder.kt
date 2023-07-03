@@ -3,6 +3,7 @@ package world.gregs.voidps.cache
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
+import java.io.File
 
 abstract class DefinitionDecoder<T : Definition>(val index: Int) {
 
@@ -13,11 +14,31 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
     val indices: IntRange
         get() = 0..last
 
-    fun load(loader: DefinitionLoader): Array<T> {
-        return loader.load(this)
+    fun load(cache: File): Array<T> {
+        val start = System.currentTimeMillis()
+        val file = cache.resolve(fileName())
+        if (!file.exists()) {
+            return create(0)
+        }
+        val reader = BufferReader(file.readBytes())
+        val size = reader.readInt() + 1
+        last = size - 1
+        val array = create(size)
+        while (reader.position() < reader.length) {
+            load(array, reader)
+        }
+        logger.info { "$size ${this::class.simpleName} definitions loaded in ${System.currentTimeMillis() - start}ms" }
+        return array
     }
 
-    fun loadCache(cache: Cache): Array<T> {
+    open fun load(definitions: Array<T>, reader: Reader) {
+        val id = readId(reader)
+        val definition = definitions[id]
+        readLoop(definition, reader)
+        changeValues(definitions, definition)
+    }
+
+    open fun loadCache(cache: Cache): Array<T> {
         val start = System.currentTimeMillis()
         val size = size(cache) + 1
         last = size - 1
@@ -44,18 +65,7 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
         changeValues(definitions, definition)
     }
 
-    open fun load(definitions: Array<T>, reader: Reader) {
-        val id = readId(reader)
-        val definition = definitions[id]
-        readLoop(definition, reader)
-        changeValues(definitions, definition)
-    }
-
-    protected abstract fun create(): T
-
-    open fun create(size: Int): Array<T> {
-        return emptyArray<Any>() as Array<T>
-    }
+    abstract fun create(size: Int): Array<T>
 
     open fun size(cache: Cache): Int {
         return cache.lastArchiveId(index) * 256 + (cache.archiveCount(index, cache.lastArchiveId(index)))
@@ -89,7 +99,7 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
     protected abstract fun T.read(opcode: Int, buffer: Reader)
 
     companion object {
-        private val logger = InlineLogger()
+        internal val logger = InlineLogger()
 
         fun byteToChar(b: Byte): Char {
             var i = 0xff and b.toInt()

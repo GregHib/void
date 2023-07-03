@@ -8,15 +8,11 @@ import world.gregs.voidps.cache.definition.data.EnumDefinition
 
 class EnumDecoder : DefinitionDecoder<EnumDefinition>(ENUMS) {
 
-    override fun create(size: Int): Array<EnumDefinition> {
-        return Array(size) { EnumDefinition(it) }
-    }
+    override fun create(size: Int) = Array(size) { EnumDefinition(it) }
 
     override fun id(archive: Int, file: Int): Int {
         return file or (archive shl 8)
     }
-
-    override fun create() = EnumDefinition()
 
     override fun getFile(id: Int) = id and 0xff
 

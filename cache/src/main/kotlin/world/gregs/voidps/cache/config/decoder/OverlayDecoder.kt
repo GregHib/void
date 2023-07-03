@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.config.data.OverlayDefinition
 
 class OverlayDecoder : ConfigDecoder<OverlayDefinition>(FLOOR_OVERLAY) {
 
-    override fun create() = OverlayDefinition()
+    override fun create(size: Int) = Array(size) { OverlayDefinition(it) }
 
     override fun OverlayDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {

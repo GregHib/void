@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.config.data.IdentityKitDefinition
 
 class IdentityKitDecoder : ConfigDecoder<IdentityKitDefinition>(IDENTITY_KIT) {
 
-    override fun create() = IdentityKitDefinition()
+    override fun create(size: Int) = Array(size) { IdentityKitDefinition(it) }
 
     override fun IdentityKitDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {

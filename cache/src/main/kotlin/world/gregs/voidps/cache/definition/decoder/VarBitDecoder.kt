@@ -12,7 +12,7 @@ class VarBitDecoder : DefinitionDecoder<VarBitDefinition>(VAR_BIT) {
         return cache.lastArchiveId(index) * 0x400 + cache.archiveCount(index, cache.lastArchiveId(index))
     }
 
-    override fun create() = VarBitDefinition()
+    override fun create(size: Int) = Array(size) { VarBitDefinition(it) }
 
     override fun getFile(id: Int) = id and 0x3ff
 

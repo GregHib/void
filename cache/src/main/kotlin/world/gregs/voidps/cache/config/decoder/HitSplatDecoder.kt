@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.config.data.HitSplatDefinition
 
 class HitSplatDecoder : ConfigDecoder<HitSplatDefinition>(HIT_SPLATS) {
 
-    override fun create() = HitSplatDefinition()
+    override fun create(size: Int) = Array(size) { HitSplatDefinition(it) }
 
     override fun HitSplatDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {

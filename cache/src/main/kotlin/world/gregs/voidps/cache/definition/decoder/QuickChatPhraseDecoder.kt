@@ -10,13 +10,9 @@ import world.gregs.voidps.cache.definition.data.QuickChatType
 
 class QuickChatPhraseDecoder : DefinitionDecoder<QuickChatPhraseDefinition>(QUICK_CHAT_MESSAGES) {
 
-    override fun create() = QuickChatPhraseDefinition()
-
     override fun getArchive(id: Int) = 1
 
-    override fun create(size: Int): Array<QuickChatPhraseDefinition> {
-        return Array(size) { QuickChatPhraseDefinition(it) }
-    }
+    override fun create(size: Int) = Array(size) { QuickChatPhraseDefinition(it) }
 
     override fun readId(reader: Reader): Int {
         return reader.readShort()

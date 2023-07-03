@@ -9,14 +9,14 @@ import world.gregs.voidps.cache.definition.data.QuickChatOptionDefinition
 
 class QuickChatOptionDecoder : DefinitionDecoder<QuickChatOptionDefinition>(QUICK_CHAT_MESSAGES) {
 
-    override fun create() = QuickChatOptionDefinition()
+    override fun create(size: Int) = Array(size) { QuickChatOptionDefinition(it) }
 
     override fun getArchive(id: Int) = 0
 
     override fun size(cache: Cache): Int {
-     val lastArchive = cache.lastArchiveId(index)
-     val lastArchive2 = cache.lastArchiveId(QUICK_CHAT_MENUS)
-     return lastArchive * 256 + cache.lastFileId(index, lastArchive) + (lastArchive2 * 256 + cache.lastFileId(index, lastArchive2))
+        val lastArchive = cache.lastArchiveId(index)
+        val lastArchive2 = cache.lastArchiveId(QUICK_CHAT_MENUS)
+        return lastArchive * 256 + cache.lastFileId(index, lastArchive) + (lastArchive2 * 256 + cache.lastFileId(index, lastArchive2))
     }
 
     /*override fun getData(archive: Int, file: Int): ByteArray? {
