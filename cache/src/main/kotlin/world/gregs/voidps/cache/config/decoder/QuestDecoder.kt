@@ -64,9 +64,9 @@ class QuestDecoder : ConfigDecoder<QuestDefinition>(QUESTS) {
         }
     }
 
-    override fun QuestDefinition.changeValues() {
-        if (aString2202 == null) {
-            aString2202 = aString2211
+    override fun changeValues(definitions: Array<QuestDefinition>, definition: QuestDefinition) {
+        if (definition.aString2202 == null) {
+            definition.aString2202 = definition.aString2211
         }
     }
 

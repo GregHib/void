@@ -32,8 +32,8 @@ class OverlayDecoder : ConfigDecoder<OverlayDefinition>(FLOOR_OVERLAY) {
         }
     }
 
-    override fun OverlayDefinition.changeValues() {
-        anInt3633 = id or (anInt3633 shl 8)
+    override fun changeValues(definitions: Array<OverlayDefinition>, definition: OverlayDefinition) {
+        definition.anInt3633 = definition.id or (definition.anInt3633 shl 8)
     }
 
     companion object {

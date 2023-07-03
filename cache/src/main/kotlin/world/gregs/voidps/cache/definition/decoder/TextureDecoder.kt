@@ -29,7 +29,7 @@ class TextureDecoder : DefinitionDecoder<TextureDefinition>(TEXTURE_DEFINITIONS)
         return 0
     }
 
-    override fun readData(id: Int) = data[id]
+//    override fun readData(id: Int) = data[id]
 
     fun decode(buffer: Reader) {
         metricsCount = buffer.readShort()

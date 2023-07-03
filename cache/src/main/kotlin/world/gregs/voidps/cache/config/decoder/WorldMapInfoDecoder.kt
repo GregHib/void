@@ -79,21 +79,21 @@ class WorldMapInfoDecoder : ConfigDecoder<WorldMapInfoDefinition>(WORLD_MAP_INFO
         }
     }
 
-    override fun WorldMapInfoDefinition.changeValues() {
-        if (anIntArray1049 != null) {
+    override fun changeValues(definitions: Array<WorldMapInfoDefinition>, definition: WorldMapInfoDefinition) {
+        if (definition.anIntArray1049 != null) {
             var i = 0
-            while (anIntArray1049!!.size > i) {
-                if (anIntArray1049!![i] >= anInt1068) {
-                    if (anInt1089 < anIntArray1049!![i]) {
-                        anInt1089 = anIntArray1049!![i]
+            while (definition.anIntArray1049!!.size > i) {
+                if (definition.anIntArray1049!![i] >= definition.anInt1068) {
+                    if (definition.anInt1089 < definition.anIntArray1049!![i]) {
+                        definition.anInt1089 = definition.anIntArray1049!![i]
                     }
                 } else {
-                    anInt1068 = anIntArray1049!![i]
+                    definition.anInt1068 = definition.anIntArray1049!![i]
                 }
-                if (anInt1051 > anIntArray1049!![i + 1]) {
-                    anInt1051 = anIntArray1049!![1 + i]
-                } else if (anIntArray1049!![1 + i] > anInt1060) {
-                    anInt1060 = anIntArray1049!![i + 1]
+                if (definition.anInt1051 > definition.anIntArray1049!![i + 1]) {
+                    definition.anInt1051 = definition.anIntArray1049!![1 + i]
+                } else if (definition.anIntArray1049!![1 + i] > definition.anInt1060) {
+                    definition.anInt1060 = definition.anIntArray1049!![i + 1]
                 }
                 i += 2
             }

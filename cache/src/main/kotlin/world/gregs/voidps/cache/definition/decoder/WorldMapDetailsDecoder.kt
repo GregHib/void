@@ -55,24 +55,24 @@ class WorldMapDetailsDecoder : DefinitionDecoder<WorldMapDefinition>(WORLD_MAP) 
         }
     }
 
-    override fun WorldMapDefinition.changeValues() {
-        minX = 12800
-        minY = 12800
-        maxX = 0
-        maxY = 0
+    override fun changeValues(definitions: Array<WorldMapDefinition>, definition: WorldMapDefinition) {
+        definition.minX = 12800
+        definition.minY = 12800
+        definition.maxX = 0
+        definition.maxY = 0
 
-        sections?.forEach { definition ->
-            if (minX > definition.startX) {
-                minX = definition.startX
+        definition.sections?.forEach { section ->
+            if (definition.minX > section.startX) {
+                definition.minX = section.startX
             }
-            if (minY > definition.startY) {
-                minY = definition.startY
+            if (definition.minY > section.startY) {
+                definition.minY = section.startY
             }
-            if (maxX < definition.endX) {
-                maxX = definition.endX
+            if (definition.maxX < section.endX) {
+                definition.maxX = section.endX
             }
-            if (maxY < definition.endY) {
-                maxY = definition.endY
+            if (definition.maxY < section.endY) {
+                definition.maxY = section.endY
             }
         }
     }

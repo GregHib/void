@@ -23,32 +23,28 @@ class WorldMapIconDecoder : DefinitionDecoder<WorldMapIconDefinition>(WORLD_MAP)
 
     //archive = cache.getArchiveId(index, "${map}_staticelements")
 
-
     override fun load(id: Int, cache: Cache, array: Array<WorldMapIconDefinition>) {
         val archive = getArchive(id)
-        var length = -1//cache.archiveCount(index, archive)
+        var length = cache.archiveCount(index, archive)
         var counter = 0
         var index = 0
         if (length > 0) {
             val definition = array[id]
             val icons = mutableListOf<WorldMapIcon>()
             while (length > counter) {
-                val data = getData(archive, index++)
-                if (data != null) {
-                    val buffer = BufferReader(data)
-                    val position = buffer.readInt()
-                    val iconId = buffer.readShort()
-                    val skip = buffer.readUnsignedByte()
-                    if (aBoolean1313 && skip == 1) {
-                        length--
-                    } else {
-                        counter++
-                        icons.add(WorldMapIcon(iconId, position))
-                    }
+                val data = cache.getFile(this.index, archive, index++) ?: continue
+                val buffer = BufferReader(data)
+                val position = buffer.readInt()
+                val iconId = buffer.readShort()
+                val skip = buffer.readUnsignedByte()
+                if (aBoolean1313 && skip == 1) {
+                    length--
+                } else {
+                    counter++
+                    icons.add(WorldMapIcon(iconId, position))
                 }
             }
             definition.icons = icons.toTypedArray()
-            definition.changeValues()
         }
     }
 

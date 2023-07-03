@@ -40,8 +40,10 @@ class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapD
         definition.changeValues(cache)
     }
 
-    override fun getData(cache: Cache, archive: Int, file: Int): ByteArray? {
-        return cache.getFile(index, "m${archive shr 8}_${archive and 0xff}", null)
+    override fun load(id: Int, cache: Cache, array: Array<MapDefinition>) {
+        val data = cache.getFile(index, "m${id shr 8}_${id and 0xff}", null) ?: return
+        array[id].id = id
+        load(cache, getArchive(id), getFile(id), array, BufferReader(data))
     }
 
     override fun readLoop(definition: MapDefinition, buffer: Reader) {

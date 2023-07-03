@@ -32,7 +32,7 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
     open fun load(id: Int, cache: Cache, array: Array<T>) {
         val archive = getArchive(id)
         val file = getFile(id)
-        val data = getData(cache, archive, file) ?: return
+        val data = cache.getFile(index, archive, file) ?: return
         array[id].id = id
         load(cache, archive, file, array, BufferReader(data))
     }
@@ -41,14 +41,14 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
         val id = id(archiveId, fileId)
         val definition = definitions[id]
         readLoop(definition, reader)
-        changeDefValues(definitions, definition)
+        changeValues(definitions, definition)
     }
 
     open fun load(definitions: Array<T>, reader: Reader) {
         val id = readId(reader)
         val definition = definitions[id]
         readLoop(definition, reader)
-        changeDefValues(definitions, definition)
+        changeValues(definitions, definition)
     }
 
     protected abstract fun create(): T
@@ -69,30 +69,12 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
         return 0
     }
 
-    open fun changeDefValues(definitions: Array<T>, definition: T) {
+    open fun changeValues(definitions: Array<T>, definition: T) {
     }
 
-    protected open fun getData(archive: Int, file: Int): ByteArray? {
-        return null//cache.getFile(index, archive, file)
-    }
+    open fun getFile(id: Int) = id
 
-    open fun getData(cache: Cache, archive: Int, file: Int): ByteArray? {
-        return cache.getFile(index, archive, file)
-    }
-
-    protected open fun readData(id: Int): T? {
-        val archive = getArchive(id)
-        val file = getFile(id)
-        val data = getData(archive, file)
-        if (data != null) {
-            val definition = create()
-            definition.id = id
-            readLoop(definition, BufferReader(data))
-//            definition.changeValues()
-            return definition
-        }
-        return null
-    }
+    open fun getArchive(id: Int) = id
 
     open fun readLoop(definition: T, buffer: Reader) {
         while (true) {
@@ -104,14 +86,7 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
         }
     }
 
-    open fun getFile(id: Int) = id
-
-    open fun getArchive(id: Int) = id
-
     protected abstract fun T.read(opcode: Int, buffer: Reader)
-
-    open fun T.changeValues() {
-    }
 
     companion object {
         private val logger = InlineLogger()

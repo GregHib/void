@@ -32,13 +32,13 @@ class QuickChatPhraseDecoder : DefinitionDecoder<QuickChatPhraseDefinition>(QUIC
         return lastArchive * 256 + cache.lastFileId(index, lastArchive) + (lastArchive2 * 256 + cache.lastFileId(index, lastArchive2))
     }
 
-    override fun getData(archive: Int, file: Int): ByteArray? {
+    /*override fun getData(archive: Int, file: Int): ByteArray? {
         return if (file < 32768) {
             super.getData(archive, file)
         } else {
-            null//cache.getFile(QUICK_CHAT_MENUS, archive, file and 0x7fff)
+            cache.getFile(QUICK_CHAT_MENUS, archive, file and 0x7fff)
         }
-    }
+    }*/
 
     override fun QuickChatPhraseDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
@@ -57,9 +57,9 @@ class QuickChatPhraseDecoder : DefinitionDecoder<QuickChatPhraseDefinition>(QUIC
         }
     }
 
-    override fun QuickChatPhraseDefinition.changeValues() {
-        val options = responses
-        if (id >= 32768 && options != null) {
+    override fun changeValues(definitions: Array<QuickChatPhraseDefinition>, definition: QuickChatPhraseDefinition) {
+        val options = definition.responses
+        if (definition.id >= 32768 && options != null) {
             for (index in options.indices) {
                 options[index] = options[index] or 32768
             }

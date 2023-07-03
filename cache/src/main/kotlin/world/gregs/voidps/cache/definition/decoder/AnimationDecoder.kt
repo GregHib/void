@@ -95,12 +95,12 @@ class AnimationDecoder : DefinitionDecoder<AnimationDefinition>(ANIMATIONS) {
         }
     }
 
-    override fun AnimationDefinition.changeValues() {
-        if (walkingPrecedence == -1) {
-            walkingPrecedence = if (interleaveOrder == null) 0 else 2
+    override fun changeValues(definitions: Array<AnimationDefinition>, definition: AnimationDefinition) {
+        if (definition.walkingPrecedence == -1) {
+            definition.walkingPrecedence = if (definition.interleaveOrder == null) 0 else 2
         }
-        if (animatingPrecedence == -1) {
-            animatingPrecedence = if (interleaveOrder == null) 0 else 2
+        if (definition.animatingPrecedence == -1) {
+            definition.animatingPrecedence = if (definition.interleaveOrder == null) 0 else 2
         }
     }
 }

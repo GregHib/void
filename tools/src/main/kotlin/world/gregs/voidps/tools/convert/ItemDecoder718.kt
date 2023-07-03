@@ -111,7 +111,7 @@ class ItemDecoder718 : DefinitionDecoder<ItemDefinition>(ITEMS) {
         }
     }
 
-    override fun changeDefValues(definitions: Array<ItemDefinition>, definition: ItemDefinition) {
+    override fun changeValues(definitions: Array<ItemDefinition>, definition: ItemDefinition) {
         if (definition.notedTemplateId != -1) {
             definition.toNote(definitions.getOrNull(definition.notedTemplateId), definitions.getOrNull(definition.noteId))
         }

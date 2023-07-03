@@ -19,13 +19,13 @@ class QuickChatOptionDecoder : DefinitionDecoder<QuickChatOptionDefinition>(QUIC
      return lastArchive * 256 + cache.lastFileId(index, lastArchive) + (lastArchive2 * 256 + cache.lastFileId(index, lastArchive2))
     }
 
-    override fun getData(archive: Int, file: Int): ByteArray? {
+    /*override fun getData(archive: Int, file: Int): ByteArray? {
         return if (file < 32768) {
             super.getData(archive, file)
         } else {
-            null//cache.getFile(QUICK_CHAT_MENUS, archive, file and 0x7fff)
+            cache.getFile(QUICK_CHAT_MENUS, archive, file and 0x7fff)
         }
-    }
+    }*/
 
     override fun QuickChatOptionDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
@@ -51,16 +51,16 @@ class QuickChatOptionDecoder : DefinitionDecoder<QuickChatOptionDefinition>(QUIC
         }
     }
 
-    override fun QuickChatOptionDefinition.changeValues() {
-        if (id >= 32768) {
-            if (dynamicData != null) {
-                for (i in dynamicData!!.indices) {
-                    dynamicData!![i] = dynamicData!![i] or 32768
+    override fun changeValues(definitions: Array<QuickChatOptionDefinition>, definition: QuickChatOptionDefinition) {
+        if (definition.id >= 32768) {
+            if (definition.dynamicData != null) {
+                for (i in definition.dynamicData!!.indices) {
+                    definition.dynamicData!![i] = definition.dynamicData!![i] or 32768
                 }
             }
-            if (quickReplyOptions != null) {
-                for (count in 0 until quickReplyOptions!!.size) {
-                    quickReplyOptions!![count] = quickReplyOptions!![count] or 32768
+            if (definition.quickReplyOptions != null) {
+                for (count in 0 until definition.quickReplyOptions!!.size) {
+                    definition.quickReplyOptions!![count] = definition.quickReplyOptions!![count] or 32768
                 }
             }
         }

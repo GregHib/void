@@ -42,7 +42,7 @@ class ClientScriptDecoder(private val revision634: Boolean) : DefinitionDecoder<
         val bytes = ByteArray(length)
         reader.readBytes(bytes)
         readLoop(definition, BufferReader(bytes))
-        changeDefValues(definitions, definition)
+        changeValues(definitions, definition)
     }
 
     override fun ClientScriptDefinition.read(opcode: Int, buffer: Reader) {
