@@ -28,6 +28,8 @@ class MapEncoder(
     override fun encode(writer: Writer, cache: Cache) {
         objectCount = 0
         tileCount = 0
+        val lastArchiveId = cache.lastArchiveId(Indices.OBJECTS)
+        val objectSize = lastArchiveId * 256 + (cache.archiveCount(Indices.OBJECTS, lastArchiveId))
         val definitions = MapDecoder(loadXteas(xteasPath)).loadCache(cache)
         val start = System.currentTimeMillis()
         val tiles = LongArray(TOTAL_ZONE_COUNT)
@@ -94,11 +96,13 @@ class MapEncoder(
             }
             for (obj in definition.objects) {
                 val tile = region.tile.add(obj.x, obj.y)
-                val chunkX = tile.chunk.tile.x
-                val chunkY = tile.chunk.tile.y
                 objectCount++
                 empty = false
-                objects.getOrPut(tile.chunk.id) { IntArrayList() }.add(ZoneObject.pack(obj.id, tile.x - chunkX, tile.y - chunkY, obj.plane, obj.shape, obj.rotation))
+                if (obj.id > objectSize) {
+                    logger.info { "Skipping $obj" }
+                    continue
+                }
+                objects.getOrPut(tile.chunk.id) { IntArrayList() }.add(ZoneObject.pack(obj.id, tile.x and 0x7, tile.y and 0x7, obj.plane, obj.shape, obj.rotation))
             }
             if (!empty) {
                 regions++

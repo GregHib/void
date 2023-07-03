@@ -6,6 +6,7 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.active.encode.ZoneObject
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
@@ -86,7 +87,7 @@ class MapExtract(
             objectIndices[chunkIndex] = reader.position()
             for (j in 0 until reader.readShort()) {
                 val obj = ZoneObject(reader.readInt())
-                val def = definitions.get(obj.id)
+                val def = definitions.getValue(obj.id)
                 objects.set(obj, chunkIndex, def)
             }
         }

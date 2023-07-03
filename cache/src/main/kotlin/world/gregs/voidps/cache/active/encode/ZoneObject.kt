@@ -3,7 +3,7 @@ package world.gregs.voidps.cache.active.encode
 @JvmInline
 value class ZoneObject(val packed: Int) {
 
-    constructor(id: Int, x: Int, y: Int, plane: Int, type: Int, rotation: Int) : this(pack(id, x, y, plane, type, rotation))
+    constructor(id: Int, x: Int, y: Int, plane: Int, shape: Int, rotation: Int) : this(pack(id, x, y, plane, shape, rotation))
 
     val id: Int
         get() = id(packed)
@@ -19,7 +19,7 @@ value class ZoneObject(val packed: Int) {
         get() = rotation(packed)
 
     override fun toString(): String {
-        return "ZoneObject(value=$packed, id=$id, x=$x, y=$y, plane=$plane, shape=$shape, rotation=$rotation)"
+        return "ZoneObject(id=$id, x=$x, y=$y, plane=$plane, shape=$shape, rotation=$rotation)"
     }
 
     companion object {
