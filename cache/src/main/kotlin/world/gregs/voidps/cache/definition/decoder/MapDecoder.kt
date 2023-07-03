@@ -1,5 +1,6 @@
 package world.gregs.voidps.cache.definition.decoder
 
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
@@ -8,6 +9,7 @@ import world.gregs.voidps.cache.Indices.MAPS
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.data.MapTile
+import world.gregs.voidps.engine.map.region.Region
 
 class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapDefinition>(MAPS) {
 
@@ -29,10 +31,30 @@ class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapD
         return 0
     }
 
+    private val regionHashes: MutableMap<Int, Int> = Int2IntOpenHashMap(1600)
+
+    override fun loadCache(cache: Cache): Array<MapDefinition> {
+        regionHashes.clear()
+        for (regionX in 0 until 256) {
+            for (regionY in 0 until 256) {
+                val archiveId = cache.getArchiveId(index, "m${regionX}_$regionY")
+                if (archiveId == -1) {
+                    continue
+                }
+                regionHashes[archiveId] = Region.id(regionX, regionY)
+            }
+        }
+        return super.loadCache(cache)
+    }
+
     override fun load(definitions: Array<MapDefinition>, cache: Cache, id: Int) {
-        val data = cache.getFile(index, "m${id shr 8}_${id and 0xff}", null) ?: return
+        val region = regionHashes[id] ?: return
+        val data = cache.getFile(index, id, 0, null) ?: return
         val reader = BufferReader(data)
-        read(definitions, id, reader)
+        val definition = definitions[id]
+        definition.id = region
+        readLoop(definition, reader)
+        definition.changeValues(cache)
     }
 
     override fun readLoop(definition: MapDefinition, buffer: Reader) {
@@ -107,24 +129,19 @@ class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapD
                 // Decrease bridges
                 if (getTile(localX, localY, 1).isTile(BRIDGE_TILE)) {
                     plane--
+                    // Validate plane
+                    if (plane < 0) {
+                        continue
+                    }
                 }
 
-                // Validate plane
-                if (plane !in 0 until 4) {
-                    continue
-                }
-
-                val type = obj shr 2
+                val shape = obj shr 2
                 val rotation = obj and 0x3
 
                 // Valid object
-                objects.add(MapObject(objectId, localX, localY, plane, type, rotation))
+                objects.add(MapObject(objectId, localX, localY, plane, shape, rotation))
             }
         }
-    }
-
-    fun getFile(name: String, xteas: IntArray?): ByteArray? {
-        return null//cache.getFile(index, name, xteas)
     }
 
     companion object {

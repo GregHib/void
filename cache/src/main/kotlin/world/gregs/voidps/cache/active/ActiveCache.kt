@@ -156,7 +156,6 @@ class ActiveCache(
 
         private const val CHECKSUM_FILE = "checksum.dat"
         private const val VERSION = 1
-        private const val OBJECT_DEF_SIZE = 57265
 
         private fun md5(bytes: ByteArray?): String {
             val hash = MessageDigest.getInstance("MD5").digest(bytes)
@@ -172,7 +171,7 @@ class ActiveCache(
                 ConfigEncoder(Configs.STRUCTS),
                 ConfigEncoder(Configs.RENDER_ANIMATIONS),
                 InterfaceEncoder(),
-                MapEncoder(OBJECT_DEF_SIZE, "./data/xteas.dat"),
+                MapEncoder("./data/xteas.dat"),
                 HuffmanEncoder(),
                 ClientScriptEncoder(),
                 ShiftEncoder(Indices.OBJECTS, 8),

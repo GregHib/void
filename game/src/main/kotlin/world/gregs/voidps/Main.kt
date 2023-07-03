@@ -48,8 +48,8 @@ object Main {
     @JvmStatic
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
-        ActiveCache().checkChanges("./data/cache/", "live")
-        val activeDir = File("./data/cache/live/")
+        val activeDir = File("./data/cache/active/")
+        ActiveCache().checkChanges(activeDir.parent, activeDir.name)
         preload(activeDir)
 
         name = getProperty("name")

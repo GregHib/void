@@ -6,8 +6,6 @@ import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 import java.io.File
 
-private typealias Xtea = IntArray
-
 class XteaLoader {
 
     fun load(xteas: Xteas, path: String, key: String? = null, value: String? = null) {
@@ -35,7 +33,7 @@ class XteaLoader {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun loadJson(text: String, key: String = DEFAULT_KEY, value: String = DEFAULT_VALUE): Map<Int, Xtea> {
+    fun loadJson(text: String, key: String = DEFAULT_KEY, value: String = DEFAULT_VALUE): Map<Int, IntArray> {
         val mapper = Yaml()
         val map = mapper.read(text) as List<Map<String, Any>>
         return map.associate {
@@ -45,19 +43,19 @@ class XteaLoader {
         }
     }
 
-    private fun loadDirectory(file: File): Map<Int, Xtea> {
+    private fun loadDirectory(file: File): Map<Int, IntArray> {
         return loadTextFiles(file.listFiles { f -> f.extension == "txt" } ?: emptyArray())
     }
 
-    private fun loadTextFiles(files: Array<File>): Map<Int, Xtea> {
+    private fun loadTextFiles(files: Array<File>): Map<Int, IntArray> {
         return files.associate { loadTextFile(it) }
     }
 
-    private fun loadTextFile(file: File): Pair<Int, Xtea> {
+    private fun loadTextFile(file: File): Pair<Int, IntArray> {
         return file.nameWithoutExtension.toInt() to loadText(file.readText())
     }
 
-    private fun loadBinary(file: File): Map<Int, Xtea> {
+    private fun loadBinary(file: File): Map<Int, IntArray> {
         val xteas = Int2ObjectOpenHashMap<IntArray>()
         val reader = BufferReader(file.readBytes())
         while (reader.position() < reader.length) {
