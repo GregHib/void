@@ -7,10 +7,6 @@ import world.gregs.voidps.cache.definition.data.AnimationDefinition
 
 class AnimationDecoder : DefinitionDecoder<AnimationDefinition>(ANIMATIONS) {
 
-    override fun id(archive: Int, file: Int): Int {
-        return file or (archive shl 7)
-    }
-
     override fun create(size: Int) = Array(size) { AnimationDefinition(it) }
 
     override fun getFile(id: Int) = id and 0x7f

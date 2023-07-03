@@ -9,10 +9,6 @@ class GraphicDecoder : DefinitionDecoder<GraphicDefinition>(GRAPHICS) {
 
     override fun create(size: Int) = Array(size) { GraphicDefinition(it) }
 
-    override fun id(archive: Int, file: Int): Int {
-        return file or (archive shl 8)
-    }
-
     override fun getFile(id: Int) = id and 0xff
 
     override fun getArchive(id: Int) = id ushr 8

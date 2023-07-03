@@ -18,10 +18,6 @@ class QuickChatPhraseDecoder : DefinitionDecoder<QuickChatPhraseDefinition>(QUIC
         return reader.readShort()
     }
 
-    override fun id(archive: Int, file: Int): Int {
-        return file
-    }
-
     override fun size(cache: Cache): Int {
         val lastArchive = cache.lastArchiveId(index)
         val lastArchive2 = cache.lastArchiveId(QUICK_CHAT_MENUS)

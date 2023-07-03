@@ -17,10 +17,6 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
         return cache.lastArchiveId(index)
     }
 
-    override fun id(archive: Int, file: Int): Int {
-        return file or (archive shr 16)
-    }
-
     override fun load(definitions: Array<InterfaceDefinition>, reader: Reader) {
         val id = readId(reader)
         val definition = definitions[id shr 16]
@@ -33,12 +29,12 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
         definition.components!![file] = component
     }
 
-    override fun load(cache: Cache, archiveId: Int, fileId: Int, definitions: Array<InterfaceDefinition>, reader: Reader) {
+    override fun load(definitions: Array<InterfaceDefinition>, cache: Cache, id: Int) {
+        val archiveId = getArchive(id)
         val lastArchive = cache.lastFileId(index, archiveId)
         if (lastArchive == -1) {
             return
         }
-        val id = id(archiveId, fileId)
         val definition = definitions[id]
         val components = Int2ObjectOpenHashMap<InterfaceComponentDefinition>(lastArchive)
         for (file in 0..lastArchive) {

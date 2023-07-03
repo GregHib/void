@@ -23,13 +23,13 @@ class WorldMapIconDecoder : DefinitionDecoder<WorldMapIconDefinition>(WORLD_MAP)
 
     //archive = cache.getArchiveId(index, "${map}_staticelements")
 
-    override fun load(id: Int, cache: Cache, array: Array<WorldMapIconDefinition>) {
+    override fun load(definitions: Array<WorldMapIconDefinition>, cache: Cache, id: Int) {
         val archive = getArchive(id)
         var length = cache.archiveCount(index, archive)
         var counter = 0
         var index = 0
         if (length > 0) {
-            val definition = array[id]
+            val definition = definitions[id]
             val icons = mutableListOf<WorldMapIcon>()
             while (length > counter) {
                 val data = cache.getFile(this.index, archive, index++) ?: continue

@@ -18,10 +18,6 @@ abstract class ConfigDecoder<T : Definition>(internal val archive: Int) : Defini
         return reader.readShort()
     }
 
-    override fun id(archive: Int, file: Int): Int {
-        return file
-    }
-
     override fun size(cache: Cache): Int {
         return cache.lastFileId(Indices.CONFIGS, archive)
     }

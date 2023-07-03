@@ -11,7 +11,7 @@ object ItemDefinitionPatcher {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = ItemDecoder()
+        val decoder = ItemDecoder().loadCache(cache)
         val yaml = Yaml()
         val current = ItemDefinitions(ItemDecoder().loadCache(cache)).load(yaml, property("itemDefinitionsPath"))
         val newer = ItemDefinitions(ItemDecoder().loadCache(cache)).load(yaml, "./items.yml")

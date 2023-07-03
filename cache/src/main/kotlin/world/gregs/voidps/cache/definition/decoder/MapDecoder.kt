@@ -29,17 +29,10 @@ class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapD
         return 0
     }
 
-    override fun load(cache: Cache, archiveId: Int, fileId: Int, definitions: Array<MapDefinition>, reader: Reader) {
-        val definition = definitions[archiveId]
-        definition.id = archiveId
-        readLoop(definition, reader)
-        definition.changeValues(cache)
-    }
-
-    override fun load(id: Int, cache: Cache, array: Array<MapDefinition>) {
+    override fun load(definitions: Array<MapDefinition>, cache: Cache, id: Int) {
         val data = cache.getFile(index, "m${id shr 8}_${id and 0xff}", null) ?: return
-        array[id].id = id
-        load(cache, getArchive(id), getFile(id), array, BufferReader(data))
+        val reader = BufferReader(data)
+        read(definitions, id, reader)
     }
 
     override fun readLoop(definition: MapDefinition, buffer: Reader) {
