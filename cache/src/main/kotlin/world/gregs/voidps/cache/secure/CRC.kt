@@ -1,9 +1,12 @@
-package world.gregs.voidps.cache
+package world.gregs.voidps.cache.secure
 
 import com.displee.cache.index.Index
 import world.gregs.voidps.buffer.read.BufferReader
 import java.io.RandomAccessFile
 
+/**
+ * Quickly reads cache index crc without loading the full [CacheDelegate]
+ */
 class CRC(
     private val mainFile: RandomAccessFile,
     private val raf: RandomAccessFile

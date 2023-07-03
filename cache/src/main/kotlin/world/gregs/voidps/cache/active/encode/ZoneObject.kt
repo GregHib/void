@@ -1,4 +1,4 @@
-package world.gregs.voidps.cache.encode
+package world.gregs.voidps.cache.active.encode
 
 @JvmInline
 value class ZoneObject(val packed: Int) {

@@ -7,8 +7,8 @@ import org.koin.core.logger.Level
 import org.koin.dsl.module
 import org.koin.fileProperties
 import org.koin.logger.slf4jLogger
-import world.gregs.voidps.cache.Checksum
 import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.active.ActiveCache
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
@@ -48,8 +48,9 @@ object Main {
     @JvmStatic
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
-        Checksum().checkChanges("./data/cache/")
-        preload()
+        ActiveCache().checkChanges("./data/cache/", "live")
+        val activeDir = File("./data/cache/live/")
+        preload(activeDir)
 
         name = getProperty("name")
         val revision = getProperty("revision").toInt()
@@ -82,30 +83,29 @@ object Main {
         server.start(getIntProperty("port"))
     }
 
-    private fun preload() {
+    private fun preload(activeDir: File) {
         startKoin {
             slf4jLogger(level = Level.ERROR)
             fileProperties("/game.properties")
             fileProperties("/private.properties")
             modules(engineModule, stairsModule, musicModule, bookModule, gameModule, postCacheModule, postCacheGameModule,
                 module {
-                    val livePath = File(getProperty("cachePath")).resolve("live/")
-                    single(createdAtStart = true) { MapExtract(get(), get(), get()).loadMap(File("./data/cache/live/index5.dat")) }
+                    single(createdAtStart = true) { MapExtract(get(), get(), get()).loadMap(activeDir.resolve(ActiveCache.indexFile(Indices.MAPS))) }
                     single(createdAtStart = true) {
-                        val bytes = File("./data/cache/live/index${Indices.HUFFMAN}.dat").readBytes()
+                        val bytes = activeDir.resolve(ActiveCache.indexFile(Indices.HUFFMAN)).readBytes()
                         Huffman().load(bytes)
                     }
-                    single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(livePath)).load() }
-                    single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = true).load(livePath)).load() }
-                    single(createdAtStart = true) { ItemDefinitions(ItemDecoder().load(livePath)).load() }
-                    single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(livePath)).load() }
-                    single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(livePath), get()).load() }
-                    single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(livePath)).load() }
-                    single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(livePath)).load() }
-                    single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder().load(livePath)).load() }
-                    single(createdAtStart = true) { StructDefinitions(StructDecoder().load(livePath)).load() }
-                    single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(livePath)).load() }
-                    single(createdAtStart = true) { StyleDefinitions(ClientScriptDecoder(revision634 = true).load(livePath)) }
+                    single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(activeDir)).load() }
+                    single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = true).load(activeDir)).load() }
+                    single(createdAtStart = true) { ItemDefinitions(ItemDecoder().load(activeDir)).load() }
+                    single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(activeDir)).load() }
+                    single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(activeDir), get()).load() }
+                    single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(activeDir)).load() }
+                    single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(activeDir)).load() }
+                    single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder().load(activeDir)).load() }
+                    single(createdAtStart = true) { StructDefinitions(StructDecoder().load(activeDir)).load() }
+                    single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(activeDir)).load() }
+                    single(createdAtStart = true) { StyleDefinitions(ClientScriptDecoder(revision634 = true).load(activeDir)) }
                 })
         }
         val saves = File(getProperty("savePath"))

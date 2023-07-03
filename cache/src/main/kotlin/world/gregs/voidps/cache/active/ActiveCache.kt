@@ -1,31 +1,38 @@
-package world.gregs.voidps.cache
+package world.gregs.voidps.cache.active
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
-import world.gregs.voidps.cache.encode.*
+import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.Configs
+import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.active.encode.*
+import world.gregs.voidps.cache.secure.CRC
 import java.io.File
 import java.io.RandomAccessFile
 import java.math.BigInteger
 import java.security.MessageDigest
 
-class Checksum(
-    private val encoders: () -> List<IndexEncoder> = ::load
+/**
+ * Stores all the actively used data from the main cache into a small and fast to load format
+ */
+class ActiveCache(
+    private val encoders: () -> List<IndexEncoder> = Companion::load
 ) {
 
     private val logger = InlineLogger()
 
     /**
-     * Keeps the live cache up to date by checking for any cache modifications
+     * Keeps the active cache up to date by checking for any cache modifications
      */
-    fun checkChanges(cachePath: String) {
+    fun checkChanges(cachePath: String, activeDirectoryName: String) {
         val cacheDir = File(cachePath)
         if (!cacheDir.exists()) {
             throw IllegalStateException("Unable to find cache.")
         }
 
-        val live = cacheDir.resolve("live/")
-        val checksum = live.resolve(CHECKSUM_FILE)
+        val active = cacheDir.resolve(activeDirectoryName)
+        val checksum = active.resolve(CHECKSUM_FILE)
         val mainFile = cacheDir.resolve("main_file_cache.dat2")
         val index255 = cacheDir.resolve("main_file_cache.idx255")
 
@@ -33,14 +40,14 @@ class Checksum(
             val encoders = encoders()
             val crc = CRC(RandomAccessFile(mainFile.path, "r"), RandomAccessFile(index255.path, "r"))
             if (checksum.exists()) {
-                val outdated = readChecksum(checksum, live, encoders, crc)
+                val outdated = readChecksum(checksum, active, encoders, crc)
                 if (outdated > 0) {
-                    update(cachePath, live, encoders, crc)
+                    update(cachePath, active, encoders, crc)
                 }
             } else {
-                live.mkdir()
-                logger.info { "Creating live cache." }
-                update(cachePath, live, encoders, crc)
+                active.mkdir()
+                logger.info { "Creating active cache." }
+                update(cachePath, active, encoders, crc)
             }
             crc.close()
         } else if (!checksum.exists()) {
@@ -49,12 +56,12 @@ class Checksum(
     }
 
     /**
-     * Compares all values in [checksumFile] with current [liveDirectory] and cache [main], [index255]
+     * Compares all values in [checksumFile] with current [activeDirectory] and cache [main], [index255]
      *
      */
     private fun readChecksum(
         checksumFile: File,
-        liveDirectory: File,
+        activeDirectory: File,
         indices: List<IndexEncoder>,
         crc32: CRC
     ): Int {
@@ -82,7 +89,7 @@ class Checksum(
                 outdated++
                 continue
             }
-            val file = encoder.file(liveDirectory)
+            val file = encoder.file(activeDirectory)
             if (!file.exists()) {
                 logger.debug { "Missing file ${encoder.index}_${encoder.config} ${file.path}" }
                 outdated++
@@ -103,7 +110,7 @@ class Checksum(
     /**
      * (Re)encodes any [Indices] which are [IndexEncoder.outdated]
      */
-    private fun update(cachePath: String, live: File, encoders: List<IndexEncoder>, crc32: CRC) {
+    private fun update(cachePath: String, active: File, encoders: List<IndexEncoder>, crc32: CRC) {
         val cache = CacheDelegate(cachePath)
         val writer = BufferWriter(20_000_000)
         for (encoder in encoders) {
@@ -116,14 +123,14 @@ class Checksum(
             if (writer.position() <= 0) {
                 continue
             }
-            val file = encoder.file(live)
+            val file = encoder.file(active)
             val bytes = writer.toArray()
             file.writeBytes(bytes)
             encoder.md5 = md5(bytes)
             encoder.crc = crc32.read(encoder.index)
             logger.info { "Encoded index ${encoder.index}_${encoder.config} in ${System.currentTimeMillis() - start}ms" }
         }
-        writeChecksum(live.resolve(CHECKSUM_FILE), encoders)
+        writeChecksum(active.resolve(CHECKSUM_FILE), encoders)
     }
 
     /**
@@ -143,6 +150,10 @@ class Checksum(
     }
 
     companion object {
+
+        fun indexFile(index: Int) = "index$index.dat"
+        fun configFile(config: Int) = "config$config.dat"
+
         private const val CHECKSUM_FILE = "checksum.dat"
         private const val VERSION = 1
         private const val OBJECT_DEF_SIZE = 57265
@@ -173,11 +184,5 @@ class Checksum(
                 QuickChatEncoder(),
             )
         }
-
-        @JvmStatic
-        fun main(args: Array<String>) {
-            Checksum(::load).checkChanges("./data/cache/")
-        }
     }
-
 }

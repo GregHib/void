@@ -1,4 +1,4 @@
-package world.gregs.voidps.cache.encode
+package world.gregs.voidps.cache.active.encode
 
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.Cache

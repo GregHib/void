@@ -5,14 +5,13 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.active.ActiveCache
 
 abstract class ConfigDecoder<T : Definition>(internal val archive: Int) : DefinitionDecoder<T>(Indices.CONFIGS) {
 
     override fun getArchive(id: Int) = archive
 
-    override fun fileName(): String {
-        return "config${archive}.dat"
-    }
+    override fun fileName() = ActiveCache.configFile(archive)
 
     override fun readId(reader: Reader): Int {
         return reader.readShort()

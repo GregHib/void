@@ -1,4 +1,4 @@
-package world.gregs.voidps.cache.encode
+package world.gregs.voidps.cache.active.encode
 
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap

@@ -3,6 +3,7 @@ package world.gregs.voidps.cache
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.active.ActiveCache
 import java.io.File
 
 abstract class DefinitionDecoder<T : Definition>(val index: Int) {
@@ -10,7 +11,7 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
     abstract fun create(size: Int): Array<T>
 
     /**
-     * Load from live cache
+     * Load from active cache
      */
     fun load(cache: File): Array<T> {
         val start = System.currentTimeMillis()
@@ -28,7 +29,7 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
         return array
     }
 
-    open fun fileName() = "index${index}.dat"
+    open fun fileName() = ActiveCache.indexFile(index)
 
     open fun load(definitions: Array<T>, reader: Reader) {
         val id = readId(reader)
