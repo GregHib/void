@@ -84,14 +84,14 @@ object Main {
     }
 
     private fun preload() {
-        val loader = LiveDefinitionLoader(File(getProperty("cachePath")))
         startKoin {
             slf4jLogger(level = Level.ERROR)
             fileProperties("/game.properties")
             fileProperties("/private.properties")
             modules(engineModule, stairsModule, musicModule, bookModule, gameModule, postCacheModule, postCacheGameModule,
                 module {
-                    single { MapExtract(get(), get(), get()).loadMap(File("./data/cache/live/index5.dat")) }
+                    val loader = LiveDefinitionLoader(File(getProperty("cachePath")))
+                    single(createdAtStart = true) { MapExtract(get(), get(), get()).loadMap(File("./data/cache/live/index5.dat")) }
                     single(createdAtStart = true) {
                         val bytes = File("./data/cache/live/index${Indices.HUFFMAN}.dat").readBytes()
                         Huffman().load(bytes)

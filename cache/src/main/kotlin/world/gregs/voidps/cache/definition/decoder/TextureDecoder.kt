@@ -98,7 +98,4 @@ class TextureDecoder : DefinitionDecoder<TextureDefinition>(TEXTURE_DEFINITIONS)
     override fun TextureDefinition.read(opcode: Int, buffer: Reader) {
         throw IllegalStateException("Shouldn't be used.")
     }
-
-    override fun clear() {
-    }
 }

@@ -4,7 +4,9 @@ import com.github.michaelbull.logging.InlineLogger
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -21,16 +23,16 @@ import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
 import java.io.File
-import java.lang.ref.WeakReference
 
 /**
  * Writes all map collision and objects into a [file] for faster load times via [MapExtract].
  */
 class MapCompress(
+    private val cache: Cache,
     private val file: File,
     private val collisions: Collisions,
     private val decoder: MapDecoder,
-    private val definitions: ObjectDefinitions
+    private val definitions: Array<ObjectDefinition>
 ) : Runnable {
 
     private val logger = InlineLogger()
@@ -47,7 +49,7 @@ class MapCompress(
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
                 val region = Region(regionX, regionY)
-                val def = decoder.getOrNull(region.id) ?: continue
+                val def = decoder.getOrNull(cache, region.id) ?: continue
                 var empty = true
                 for (chunk in region.toRectangle().toChunks()) {
                     val tiles = (0 until 8).sumOf { x -> (0 until 8).count { y -> collisions.check(chunk.tile.x + x, chunk.tile.y + y, chunk.plane, CollisionFlag.FLOOR) } }
@@ -61,7 +63,7 @@ class MapCompress(
                     }
                 }
                 for (obj in def.objects) {
-                    if (obj.id >= definitions.definitions.size) {
+                    if (obj.id >= definitions.size) {
                         logger.info { "Skipped out of bounds object $obj $region" }
                         continue
                     }
@@ -127,14 +129,15 @@ class MapCompress(
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val cache = WeakReference(CacheDelegate("./data/cache"))
-            val definitions = ObjectDefinitions(ObjectDecoder(true, false).loadCache(cache.get()!!))
+            val cache = CacheDelegate("./data/cache")
+            val definitions = ObjectDecoder(true, false).loadCache(cache)
             val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
             val decoder = MapDecoder(xteas)
+            println(decoder.loadCache(cache))
             val collisions = Collisions()
-            val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions)
-            MapLoader(decoder, CollisionReader(collisions), definitions, objects).run()
-            MapCompress(File("./data/map.dat"), collisions, decoder, definitions).run()
+            val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), ObjectDefinitions(definitions))
+            MapLoader(cache, decoder, CollisionReader(collisions), definitions, objects).run()
+            MapCompress(cache, File("./data/map-test.dat"), collisions, decoder, definitions).run()
         }
     }
 }

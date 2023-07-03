@@ -1,9 +1,10 @@
 package world.gregs.voidps.engine.map.file
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.region.Region
@@ -14,9 +15,10 @@ import kotlin.system.measureTimeMillis
  * Note: using a compressed file and [MapExtract] is preferred
  */
 class MapLoader(
+    private val cache: Cache,
     private val decoder: MapDecoder,
     private val reader: CollisionReader,
-    private val definitions: ObjectDefinitions,
+    private val definitions: Array<ObjectDefinition>,
     private val objects: GameObjects
 ) : Runnable {
 
@@ -38,16 +40,16 @@ class MapLoader(
     }
 
     fun load(region: Region): Boolean {
-        val def = decoder.getOrNull(region.id) ?: return false
+        val def = decoder.getOrNull(cache, region.id) ?: return false
         reader.read(region, def)
         val x = region.tile.x
         val y = region.tile.y
         for (location in def.objects) {
-            if (location.id >= definitions.definitions.size) {
+            if (location.id >= definitions.size) {
                 logger.info { "Object skipped $location $x $y" }
                 continue
             }
-            val definition = definitions.get(location.id)
+            val definition = definitions[location.id]
             objects.set(location.id, x + location.x, y + location.y, location.plane, location.shape, location.rotation, definition)
         }
         return true

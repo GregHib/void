@@ -229,7 +229,7 @@ class MapExtract(
             val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = true)
             val extract = MapExtract(collisions, definitions, objects)
             extract.loadMap(File("./data/cache/live/index5.dat"))
-            println(objects.size)
+            println(collisions.get(3227, 3147, 0))
         }
     }
 }

@@ -16,7 +16,7 @@ class CacheDefinitionLoader(
         for (id in decoder.indices) {
             val archive = decoder.getArchive(id)
             val file = decoder.getFile(id)
-            val data = cache.getFile(decoder.index, archive, file) ?: continue
+            val data = decoder.getData(cache, archive, file) ?: continue
             array[id].id = id
             decoder.load(cache, archive, file, array, BufferReader(data))
         }

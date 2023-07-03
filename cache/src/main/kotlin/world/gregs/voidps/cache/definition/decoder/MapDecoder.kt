@@ -2,6 +2,7 @@ package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.MAPS
 import world.gregs.voidps.cache.definition.data.MapDefinition
@@ -14,6 +15,33 @@ class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapD
 
     override fun MapDefinition.read(opcode: Int, buffer: Reader) {
         TODO("Not yet implemented")
+    }
+
+    override fun create(size: Int): Array<MapDefinition> {
+        return Array(size) { MapDefinition(it) }
+    }
+
+    override fun size(cache: Cache): Int {
+        return cache.lastArchiveId(index)
+    }
+
+    override fun getArchive(id: Int): Int {
+        return id
+    }
+
+    override fun getFile(id: Int): Int {
+        return 0
+    }
+
+    override fun load(cache: Cache, archiveId: Int, fileId: Int, definitions: Array<MapDefinition>, reader: Reader) {
+        val definition = definitions[archiveId]
+        definition.id = archiveId
+        readLoop(definition, reader)
+        definition.changeValues(cache)
+    }
+
+    override fun getData(cache: Cache, archive: Int, file: Int): ByteArray? {
+        return cache.getFile(index, "m${archive shr 8}_${archive and 0xff}", null)
     }
 
     override fun readData(id: Int): MapDefinition? {
@@ -73,8 +101,8 @@ class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapD
         }
     }
 
-    override fun MapDefinition.changeValues() {
-        val objectData = getFile("l${id shr 8}_${id and 0xff}", xteas[id]) ?: return
+    fun MapDefinition.changeValues(cache: Cache) {
+        val objectData = cache.getFile(index, "l${id shr 8}_${id and 0xff}", xteas[id]) ?: return
         val reader = BufferReader(objectData)
         var objectId = -1
         while (true) {

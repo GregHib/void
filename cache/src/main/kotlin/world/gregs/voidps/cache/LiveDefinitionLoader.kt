@@ -8,7 +8,7 @@ class LiveDefinitionLoader(
     directory: File
 ) : DefinitionLoader {
     private val logger = InlineLogger()
-    private val directory: File = directory.resolve("/live/")
+    private val directory: File = directory.resolve("live/")
 
     override fun <T : Definition> load(decoder: DefinitionDecoder<T>): Array<T> {
         val start = System.currentTimeMillis()

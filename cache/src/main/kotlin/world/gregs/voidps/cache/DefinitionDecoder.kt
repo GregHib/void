@@ -13,6 +13,10 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
     val indices: IntRange
         get() = 0..last
 
+    fun getOrNull(cache: Cache, id: Int): T? {
+        return readData(cache, id)
+    }
+
     fun getOrNull(id: Int): T? {
         return readData(id)
     }
@@ -64,6 +68,24 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
 
     protected open fun getData(archive: Int, file: Int): ByteArray? {
         return null//cache.getFile(index, archive, file)
+    }
+
+    open fun getData(cache: Cache, archive: Int, file: Int): ByteArray? {
+        return cache.getFile(index, archive, file)
+    }
+
+    protected open fun readData(cache: Cache, id: Int): T? {
+        val archive = getArchive(id)
+        val file = getFile(id)
+        val data = getData(cache, archive, file)
+        if (data != null) {
+            val definition = create()
+            definition.id = id
+            readLoop(definition, BufferReader(data))
+            definition.changeValues()
+            return definition
+        }
+        return null
     }
 
     protected open fun readData(id: Int): T? {

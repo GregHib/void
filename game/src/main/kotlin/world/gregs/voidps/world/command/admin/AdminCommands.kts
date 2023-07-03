@@ -314,7 +314,7 @@ on<Command>({ prefix == "song" || prefix == "track" }) { player: Player ->
 }
 
 on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->
-    player.message(player.tile.toString())
+    player.message("${player.tile} Chunk(${player.tile.chunk.id}) ${player.tile.region}")
     println(player.tile)
 }
 
