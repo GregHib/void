@@ -266,8 +266,8 @@ class MapEncoder(
     companion object {
         private fun tileIndex(localX: Int, localY: Int) = localY + (localX shl 6)
         private fun tileIndex(localX: Int, localY: Int, height: Int) = localY + (localX shl 6) + (height shl 12)
-        private fun localX(index: Int) = index and 0x3f
-        private fun localY(index: Int) = index shr 3 and 0x3f
+        private fun localX(index: Int) = index shr 6 and 0x3f
+        private fun localY(index: Int) = index and 0x3f
         private fun plane(index: Int) = index shr 12
 
         private const val TOTAL_ZONE_COUNT: Int = 2048 * 2048 * 4
