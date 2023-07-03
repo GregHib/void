@@ -22,7 +22,7 @@ import java.io.RandomAccessFile
 import kotlin.collections.set
 
 /**
- * Loads map collision and objects from the [raf] created by [MapCompress]
+ * Loads map collision and objects from the [raf] created by MapCompress
  */
 class MapExtract(
     private val collisions: Collisions,

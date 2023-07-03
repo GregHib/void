@@ -5,38 +5,21 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.ints.IntArrayList
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.active.ActiveIndexEncoder
+import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
 import java.io.File
 
-/*
-    TODO maybe encoding with a zone loop is better?
-    for regionPlane
-        if skip
-            fill all
-        for chunk in regionPlane
-            if has tiles
-               decode tiles
-            if has objects
-               decode objects
- */
 class MapEncoder(
     private val objectDefinitionsSize: Int,
     xteaPath: String
-) : IndexEncoder(Indices.MAPS) {
-
-    private fun loadXteas(path: String): Map<Int, IntArray> {
-        val xteas = Int2ObjectOpenHashMap<IntArray>()
-        val reader = BufferReader(File(path).readBytes())
-        while (reader.position() < reader.length) {
-            val region = reader.readShort()
-            xteas[region] = IntArray(4) { reader.readInt() }
-        }
-        return xteas
-    }
+) : ActiveIndexEncoder(Indices.MAPS) {
 
     private val xteas: Map<Int, IntArray> = loadXteas(xteaPath)
     private val logger = InlineLogger()
@@ -264,6 +247,16 @@ class MapEncoder(
     }
 
     companion object {
+        private fun loadXteas(path: String): Map<Int, IntArray> {
+            val xteas = Int2ObjectOpenHashMap<IntArray>()
+            val reader = BufferReader(File(path).readBytes())
+            while (reader.position() < reader.length) {
+                val region = reader.readShort()
+                xteas[region] = IntArray(4) { reader.readInt() }
+            }
+            return xteas
+        }
+
         private fun tileIndex(localX: Int, localY: Int) = localY + (localX shl 6)
         private fun tileIndex(localX: Int, localY: Int, height: Int) = localY + (localX shl 6) + (height shl 12)
         private fun localX(index: Int) = index shr 6 and 0x3f
@@ -274,5 +267,15 @@ class MapEncoder(
         private const val MAP_SQUARE_TILE_COUNT: Int = 64 * 64
         private const val BLOCKED_TILE = 0x1
         private const val BRIDGE_TILE = 0x2
+
+        @JvmStatic
+        fun main(args: Array<String>) {
+            val cache = CacheDelegate("./data/cache")
+            val definitions = ObjectDecoder(true, false).loadCache(cache)
+            val path = "./data/xteas.dat"
+            val writer = BufferWriter(20_000_000)
+            MapEncoder(definitions.size, path).encode(writer, cache)
+            File("./data/test-map.dat").writeBytes(writer.toArray())
+        }
     }
 }

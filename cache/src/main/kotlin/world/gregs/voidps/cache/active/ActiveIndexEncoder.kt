@@ -1,10 +1,10 @@
-package world.gregs.voidps.cache.active.encode
+package world.gregs.voidps.cache.active
 
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.Cache
 import java.io.File
 
-open class IndexEncoder(val index: Int, val config: Int = 0) {
+open class ActiveIndexEncoder(val index: Int, val config: Int = 0) {
     var crc: Int = -1
     var md5: String = ""
     var outdated: Boolean = true
@@ -13,7 +13,7 @@ open class IndexEncoder(val index: Int, val config: Int = 0) {
         return cache.lastArchiveId(index) * 256 + (cache.archiveCount(index, cache.lastArchiveId(index)))
     }
 
-    open fun file(directory: File) = directory.resolve("index$index.dat")
+    open fun file(directory: File) = directory.resolve(ActiveCache.indexFile(index))
 
     open fun encode(writer: Writer, cache: Cache) {
         writer.writeInt(size(cache))

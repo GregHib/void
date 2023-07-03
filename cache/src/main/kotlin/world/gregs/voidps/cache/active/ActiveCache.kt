@@ -17,7 +17,7 @@ import java.security.MessageDigest
  * Stores all the actively used data from the main cache into a small and fast to load format
  */
 class ActiveCache(
-    private val encoders: () -> List<IndexEncoder> = Companion::load
+    private val encoders: () -> List<ActiveIndexEncoder> = Companion::load
 ) {
 
     private val logger = InlineLogger()
@@ -62,7 +62,7 @@ class ActiveCache(
     private fun readChecksum(
         checksumFile: File,
         activeDirectory: File,
-        indices: List<IndexEncoder>,
+        indices: List<ActiveIndexEncoder>,
         crc32: CRC
     ): Int {
         val start = System.currentTimeMillis()
@@ -108,9 +108,9 @@ class ActiveCache(
     }
 
     /**
-     * (Re)encodes any [Indices] which are [IndexEncoder.outdated]
+     * (Re)encodes any [Indices] which are [ActiveIndexEncoder.outdated]
      */
-    private fun update(cachePath: String, active: File, encoders: List<IndexEncoder>, crc32: CRC) {
+    private fun update(cachePath: String, active: File, encoders: List<ActiveIndexEncoder>, crc32: CRC) {
         val cache = CacheDelegate(cachePath)
         val writer = BufferWriter(20_000_000)
         for (encoder in encoders) {
@@ -136,7 +136,7 @@ class ActiveCache(
     /**
      * Write all the latest checksum values to file
      */
-    private fun writeChecksum(file: File, encoders: List<IndexEncoder>) {
+    private fun writeChecksum(file: File, encoders: List<ActiveIndexEncoder>) {
         val writer = BufferWriter(encoders.sumOf { it.md5.length + 7 } + 2)
         writer.writeByte(VERSION)
         writer.writeByte(encoders.size)
@@ -163,7 +163,7 @@ class ActiveCache(
             return BigInteger(1, hash).toString(16)
         }
 
-        private fun load(): List<IndexEncoder> {
+        private fun load(): List<ActiveIndexEncoder> {
             return listOf(
                 ConfigEncoder(Configs.IDENTITY_KIT),
                 ConfigEncoder(Configs.CONTAINERS),
