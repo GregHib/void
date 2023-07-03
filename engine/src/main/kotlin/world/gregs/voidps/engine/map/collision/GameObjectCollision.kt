@@ -15,11 +15,11 @@ class GameObjectCollision(
         modify(obj.def, obj.x, obj.y, obj.plane, obj.shape, obj.rotation, add)
     }
 
-    fun modify(def: ObjectDefinition, x: Int, y: Int, plane: Int, type: Int, rotation: Int, add: Boolean) {
+    fun modify(def: ObjectDefinition, x: Int, y: Int, plane: Int, shape: Int, rotation: Int, add: Boolean) {
         if (def.solid == 0) {
             return
         }
-        when (type) {
+        when (shape) {
             ObjectShape.WALL_STRAIGHT -> modifyWall(x, y, plane, def.block, cardinal[(rotation + 3) and 0x3], add)
             ObjectShape.WALL_DIAGONAL_CORNER, ObjectShape.WALL_SQUARE_CORNER -> modifyWall(x, y, plane, def.block, ordinal[rotation], add)
             ObjectShape.WALL_CORNER -> modifyWallCorner(x, y, plane, def.block, ordinal[rotation], add)
