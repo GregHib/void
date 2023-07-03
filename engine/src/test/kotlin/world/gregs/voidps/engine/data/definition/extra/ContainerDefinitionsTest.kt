@@ -9,14 +9,13 @@ import world.gregs.yaml.Yaml
 
 internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ContainerDefinition, ContainerDecoder, ContainerDefinitions>() {
 
-    override lateinit var decoder: ContainerDecoder
     override lateinit var definitions: Array<ContainerDefinition>
     override val id: String = "bobs_brilliant_axes"
     override val intId: Int = 1
 
     @BeforeEach
     override fun setup() {
-        decoder = mockk(relaxed = true)
+        definitions = mockk(relaxed = true)
         super.setup()
     }
 

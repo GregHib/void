@@ -9,14 +9,13 @@ import world.gregs.yaml.Yaml
 
 internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDecoder, NPCDefinitions>() {
 
-    override lateinit var decoder: NPCDecoder
     override lateinit var definitions: Array<NPCDefinition>
     override val id: String = "hans"
     override val intId: Int = 0
 
     @BeforeEach
     override fun setup() {
-        decoder = mockk(relaxed = true)
+        definitions = mockk(relaxed = true)
         super.setup()
     }
 

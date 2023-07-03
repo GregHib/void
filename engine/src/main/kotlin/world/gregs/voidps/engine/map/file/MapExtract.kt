@@ -5,8 +5,10 @@ import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.active.encode.ZoneObject
+import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
@@ -14,9 +16,12 @@ import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
+import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
+import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
+import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.yaml.Yaml
 import java.io.File
 import java.io.RandomAccessFile
@@ -36,6 +41,24 @@ class MapExtract(
     private lateinit var raf: RandomAccessFile
     private val objectArray = ByteArray(2048)
     private val tileArray = ByteArray(12)
+
+    fun loadCache(cache: Cache, xteas: Xteas): MapExtract {
+        val start = System.currentTimeMillis()
+        val maps = MapDecoder(xteas).loadCache(cache)
+        val reader = CollisionReader(collisions)
+        for (map in maps) {
+            val region = Region(map.id)
+            reader.read(region, map)
+            val regionTileX = region.tile.x
+            val regionTileY = region.tile.y
+            for (obj in map.objects) {
+                val def = definitions.get(obj.id)
+                objects.set(obj.id, regionTileX + obj.x, regionTileY + obj.y, obj.plane, obj.shape, obj.rotation, def)
+            }
+        }
+        logger.info { "Loaded ${maps.size} maps ${objects.size} ${"object".plural(objects.size)} from cache in ${System.currentTimeMillis() - start}ms" }
+        return this
+    }
 
     fun loadMap(file: File): MapExtract {
         val start = System.currentTimeMillis()

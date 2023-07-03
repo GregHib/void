@@ -9,14 +9,13 @@ import world.gregs.yaml.Yaml
 
 internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, ItemDecoder, ItemDefinitions>() {
 
-    override lateinit var decoder: ItemDecoder
     override lateinit var definitions: Array<ItemDefinition>
     override val id: String = "lit_candle"
     override val intId: Int = 34
 
     @BeforeEach
     override fun setup() {
-        decoder = mockk(relaxed = true)
+        definitions = mockk(relaxed = true)
         super.setup()
     }
 

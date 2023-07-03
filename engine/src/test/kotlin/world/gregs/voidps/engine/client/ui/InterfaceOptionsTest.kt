@@ -37,7 +37,7 @@ internal class InterfaceOptionsTest {
         options = InterfaceOptions(player, definitions, containerDefinitions)
         every { definitions.get(name) } returns InterfaceDefinition(
             extras = mapOf("componentInts" to mapOf(comp to 0)),
-            components = mapOf(
+            components = mutableMapOf(
                 0 to InterfaceComponentDefinition(
                     id = 0,
                     extras = mapOf(

@@ -9,14 +9,13 @@ import world.gregs.yaml.Yaml
 
 internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefinition, AnimationDecoder, AnimationDefinitions>() {
 
-    override lateinit var decoder: AnimationDecoder
     override lateinit var definitions: Array<AnimationDefinition>
     override val id: String = "expression_yes"
     override val intId: Int = 9741
 
     @BeforeEach
     override fun setup() {
-        decoder = mockk(relaxed = true)
+        definitions = mockk(relaxed = true)
         super.setup()
     }
 
