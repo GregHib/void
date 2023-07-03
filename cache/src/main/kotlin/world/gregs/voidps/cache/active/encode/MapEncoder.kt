@@ -11,7 +11,6 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.cache.active.ActiveIndexEncoder
-import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
@@ -94,10 +93,12 @@ class MapEncoder(
                 }
             }
             for (obj in definition.objects) {
+                val tile = region.tile.add(obj.x, obj.y)
+                val chunkX = tile.chunk.tile.x
+                val chunkY = tile.chunk.tile.y
                 objectCount++
                 empty = false
-                val tile = region.tile.add(obj.x, obj.y)
-                objects.getOrPut(tile.chunk.id) { IntArrayList() }.add(MapObject.pack(obj.id, tile.x and 0x7, tile.y and 0x7, obj.plane, obj.shape, obj.rotation))
+                objects.getOrPut(tile.chunk.id) { IntArrayList() }.add(ZoneObject.pack(obj.id, tile.x - chunkX, tile.y - chunkY, obj.plane, obj.shape, obj.rotation))
             }
             if (!empty) {
                 regions++

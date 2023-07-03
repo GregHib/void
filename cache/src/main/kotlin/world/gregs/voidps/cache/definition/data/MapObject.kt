@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache.definition.data
 
 @JvmInline
-value class MapObject(val packed: Int) {
+value class MapObject(val packed: Long) {
 
     constructor(id: Int, x: Int, y: Int, plane: Int, type: Int, rotation: Int) : this(pack(id, x, y, plane, type, rotation))
 
@@ -18,36 +18,26 @@ value class MapObject(val packed: Int) {
     val rotation: Int
         get() = rotation(packed)
 
-    override fun toString(): String {
-        return "MapObject(value=$packed, id=$id, x=$x, y=$y, plane=$plane, shape=$shape, rotation=$rotation)"
-    }
-
     companion object {
 
-        fun pack(id: Int, x: Int, y: Int, plane: Int, shape: Int, rotation: Int): Int {
-            return x + (y shl 3) + (plane shl 6) + (rotation shl 8) + (shape shl 10) + (id shl 15)
+        fun pack(id: Int, x: Int, y: Int, plane: Int, shape: Int, rotation: Int): Long {
+            return pack(id.toLong(), x.toLong(), y.toLong(), plane.toLong(), shape.toLong(), rotation.toLong())
         }
 
-        fun id(packed: Int): Int = packed shr 15 and 0x1ffff
-        fun x(packed: Int): Int = packed and 0x7
-        fun y(packed: Int): Int = packed shr 3 and 0x7
-        fun plane(packed: Int): Int = packed shr 6 and 0x3
-        fun shape(packed: Int): Int = packed shr 10 and 0x1f
-        fun rotation(packed: Int): Int = packed shr 8 and 0x3
+        fun pack(id: Long, x: Long, y: Long, plane: Long, shape: Long, rotation: Long): Long {
+            return rotation + (shape shl 2) + (plane shl 7) + (y shl 9) + (x shl 23) + (id shl 37)
+        }
 
-        /**
-         * Takes the first half of the [packed] value which is equivalent to Tile#index
-         */
-        fun tile(value: Int): Int = value and 0x3f
+        fun id(packed: Long): Int = (packed shr 37 and 0x1ffff).toInt()
+        fun x(packed: Long): Int = (packed shr 23 and 0x3fff).toInt()
+        fun y(packed: Long): Int = (packed shr 9 and 0x3fff).toInt()
+        fun plane(packed: Long): Int = (packed shr 7 and 0x3).toInt()
+        fun shape(packed: Long): Int = (packed shr 2 and 0x1f).toInt()
+        fun rotation(packed: Long): Int = (packed and 0x3).toInt()
 
-        /**
-         * Takes the second half of [packed] which is the id, rotation and type
-         * @see world.gregs.voidps.engine.entity.obj.GameObjects for usage
-         */
-        fun info(value: Int): Int = value shr 8
-        fun infoId(info: Int) = info shr 7
-        fun infoRotation(info: Int) = info and 0x3
-        fun infoShape(info: Int) = info shr 2 and 0x1f
+    }
 
+    override fun toString(): String {
+        return "MapObject(id=$id, x=$x, y=$y, plane=$plane, shape=$shape, rotation=$rotation)"
     }
 }

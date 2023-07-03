@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.obj
 
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
-import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
@@ -11,6 +10,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
+import world.gregs.voidps.engine.map.file.ZoneObject
 import world.gregs.voidps.network.encode.chunk.ObjectAddition
 import world.gregs.voidps.network.encode.chunk.ObjectRemoval
 import world.gregs.voidps.network.encode.send
@@ -99,12 +99,12 @@ class GameObjects(
     /**
      * Sets the original placement of a game object (but faster)
      */
-    fun set(obj: MapObject, chunk: Int, definition: ObjectDefinition) {
+    fun set(obj: ZoneObject, chunk: Int, definition: ObjectDefinition) {
         collisions.modify(obj, chunk, definition)
         if (interactive(definition)) {
             val zone = chunk or (obj.plane shl 22)
-            val tile = MapObject.tile(obj.packed) or (ObjectLayer.layer(obj.shape) shl 6)
-            map[zone, tile] = MapObject.info(obj.packed) shl 1
+            val tile = ZoneObject.tile(obj.packed) or (ObjectLayer.layer(obj.shape) shl 6)
+            map[zone, tile] = ZoneObject.info(obj.packed) shl 1
             size++
         }
     }

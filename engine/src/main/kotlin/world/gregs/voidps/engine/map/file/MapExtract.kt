@@ -1,28 +1,21 @@
-package world.gregs.voidps.engine.data.definition.extra
+package world.gregs.voidps.engine.map.file
 
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.Indices
-import world.gregs.voidps.cache.active.ActiveCache
-import world.gregs.voidps.cache.definition.data.MapObject
-import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
-import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.yaml.Yaml
 import java.io.File
 import java.io.RandomAccessFile
@@ -31,7 +24,7 @@ import kotlin.collections.set
 /**
  * Loads map collision and objects from the [raf] created by MapCompress
  */
-class MapDefinitions(
+class MapExtract(
     private val collisions: Collisions,
     private val definitions: ObjectDefinitions,
     private val objects: GameObjects
@@ -43,27 +36,8 @@ class MapDefinitions(
     private val objectArray = ByteArray(2048)
     private val tileArray = ByteArray(12)
 
-    fun loadCache(cache: Cache, xteas: Xteas): MapDefinitions {
+    fun loadMap(file: File): MapExtract {
         val start = System.currentTimeMillis()
-        val maps = MapDecoder(xteas).loadCache(cache)
-        val reader = CollisionReader(collisions)
-        for (map in maps) {
-            val region = Region(map.id)
-            reader.read(region, map)
-            val regionTileX = region.tile.x
-            val regionTileY = region.tile.y
-            for (obj in map.objects) {
-                val def = definitions.get(obj.id)
-                objects.set(obj.id, regionTileX + obj.x, regionTileY + obj.y, obj.plane, obj.shape, obj.rotation, def)
-            }
-        }
-        logger.info { "Loaded ${maps.size} maps ${objects.size} ${"object".plural(objects.size)} from cache in ${System.currentTimeMillis() - start}ms" }
-        return this
-    }
-
-    fun load(directory: File): MapDefinitions {
-        val start = System.currentTimeMillis()
-        val file = directory.resolve(ActiveCache.indexFile(Indices.MAPS))
         val reader = BufferReader(file.readBytes())
         val regions = reader.readInt()
         readEmptyTiles(reader)
@@ -111,7 +85,7 @@ class MapDefinitions(
             val chunkIndex = reader.readInt()
             objectIndices[chunkIndex] = reader.position()
             for (j in 0 until reader.readShort()) {
-                val obj = MapObject(reader.readInt())
+                val obj = ZoneObject(reader.readInt())
                 val def = definitions.get(obj.id)
                 objects.set(obj, chunkIndex, def)
             }
@@ -150,7 +124,7 @@ class MapDefinitions(
         val chunkX = chunk.tile.x
         val chunkY = chunk.tile.y
         for (i in 0 until reader.readShort()) {
-            val obj = MapObject(reader.readInt())
+            val obj = ZoneObject(reader.readInt())
             val def = definitions.get(obj.id)
             val rotation = (obj.rotation + chunkRotation) and 0x3
             val rotX = chunkX + rotateX(obj.x, obj.y, def.sizeX, def.sizeY, rotation, chunkRotation)
@@ -253,8 +227,8 @@ class MapDefinitions(
                 .load(Yaml(), "./data/definitions/objects.yml", null)
             val collisions = Collisions()
             val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = true)
-            val extract = MapDefinitions(collisions, definitions, objects)
-            extract.load(File("./data/cache/active/"))
+            val extract = MapExtract(collisions, definitions, objects)
+            extract.loadMap(File("./data/cache/live/index5.dat"))
         }
     }
 }
