@@ -1,7 +1,6 @@
 package world.gregs.voidps
 
 import com.github.michaelbull.logging.InlineLogger
-import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import org.koin.dsl.module
@@ -112,7 +111,6 @@ object Main {
         if (!saves.exists()) {
             saves.mkdir()
         }
-        loadKoinModules(listOf(postCacheModule, postCacheGameModule))
         loadScripts(getProperty("scriptModule"))
     }
 }

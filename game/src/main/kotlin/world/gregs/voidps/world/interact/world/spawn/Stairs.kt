@@ -2,6 +2,7 @@ package world.gregs.voidps.world.interact.world.spawn
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import org.koin.dsl.module
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
@@ -10,12 +11,10 @@ import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
 
 val stairsModule = module {
-    single(createdAtStart = true) { Stairs(get()).load() }
+    single(createdAtStart = true) { Stairs().load() }
 }
 
-class Stairs(
-    private val yaml: Yaml
-) {
+class Stairs {
 
     private lateinit var teleports: Map<Int, Map<String, Teleport>>
 
@@ -28,7 +27,7 @@ class Stairs(
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load(path: String = getProperty("stairsPath")): Stairs {
+    fun load(yaml: Yaml = get(), path: String = getProperty("stairsPath")): Stairs {
         timedLoad("stair") {
             val config = object : YamlReaderConfiguration() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {

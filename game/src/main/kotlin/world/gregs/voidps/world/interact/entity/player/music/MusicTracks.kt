@@ -14,7 +14,7 @@ import world.gregs.yaml.read.YamlReaderConfiguration
 import kotlin.collections.set
 
 val musicModule = module {
-    single(createdAtStart = true) { MusicTracks() }
+    single(createdAtStart = true) { MusicTracks().load() }
 }
 
 class MusicTracks {
@@ -24,16 +24,12 @@ class MusicTracks {
 
     fun get(name: String): Int = trackNames.getOrDefault(name, -1)
 
-    init {
-        load()
-    }
-
     operator fun get(region: Region): List<Track> {
         return tracks[region.id] ?: emptyList()
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get()) = timedLoad("music track") {
+    fun load(yaml: Yaml = get(), path: String = getProperty("musicPath")) = timedLoad("music track") {
         var count = 0
         val tracks = Int2ObjectOpenHashMap<MutableList<Track>>()
         val names = Object2IntOpenHashMap<String>()
@@ -66,7 +62,7 @@ class MusicTracks {
                 }
             }
         }
-        yaml.load<Any>(getProperty("musicPath"), config)
+        yaml.load<Any>(path, config)
         // Prioritise smaller shape checks over larger region checks
         for (entry in tracks) {
             entry.value.sortBy { it.area.area }
