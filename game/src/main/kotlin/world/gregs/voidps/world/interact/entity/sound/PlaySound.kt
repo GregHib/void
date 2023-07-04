@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.sound
 
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
-import world.gregs.voidps.engine.data.definition.extra.SoundDefinitions
+import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.encode.chunk.MidiAddition

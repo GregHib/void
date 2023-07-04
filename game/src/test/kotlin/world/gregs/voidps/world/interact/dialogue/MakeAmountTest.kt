@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import kotlin.test.assertEquals

@@ -11,9 +11,9 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.data.definition.config.GearDefinition
+import world.gregs.voidps.engine.data.config.GearDefinition
+import world.gregs.voidps.engine.data.definition.GearDefinitions
 import world.gregs.voidps.engine.data.definition.data.Spot
-import world.gregs.voidps.engine.data.definition.extra.GearDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC

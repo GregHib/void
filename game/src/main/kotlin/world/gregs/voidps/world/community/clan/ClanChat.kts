@@ -2,7 +2,7 @@ package world.gregs.voidps.world.community.clan
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.*
-import world.gregs.voidps.engine.data.definition.extra.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World

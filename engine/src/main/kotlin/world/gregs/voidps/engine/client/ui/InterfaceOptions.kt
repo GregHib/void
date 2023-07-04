@@ -2,9 +2,9 @@ package world.gregs.voidps.engine.client.ui
 
 import world.gregs.voidps.engine.client.sendInterfaceSettings
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.data.definition.extra.ContainerDefinitions
-import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
-import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
+import world.gregs.voidps.engine.data.definition.ContainerDefinitions
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
 import kotlin.math.min
 

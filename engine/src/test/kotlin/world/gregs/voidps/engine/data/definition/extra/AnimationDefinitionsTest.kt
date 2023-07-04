@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.data.definition.extra
 
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoderTest
 import world.gregs.yaml.Yaml
 

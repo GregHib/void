@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.ItemChanged
-import world.gregs.voidps.engine.data.definition.extra.StyleDefinitions
+import world.gregs.voidps.engine.data.definition.StyleDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player

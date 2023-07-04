@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.iterator.ParallelIterator
 import world.gregs.voidps.engine.data.PlayerFactory
-import world.gregs.voidps.engine.data.definition.extra.*
+import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players

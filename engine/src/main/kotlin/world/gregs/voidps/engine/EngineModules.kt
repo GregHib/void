@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.data.PlayerFactory
-import world.gregs.voidps.engine.data.definition.extra.*
+import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.drop.DropTables

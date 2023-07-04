@@ -16,8 +16,8 @@ import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.PlayerFactory
-import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
-import world.gregs.voidps.engine.data.definition.extra.StructDefinitions
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.running

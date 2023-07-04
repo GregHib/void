@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.proj
 
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
-import world.gregs.voidps.engine.data.definition.extra.GraphicDefinitions
+import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get

@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.remove
 import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC

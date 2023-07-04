@@ -1,8 +1,8 @@
 package world.gregs.voidps.bot.skill.combat
 
 import world.gregs.voidps.bot.Bot
-import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
-import world.gregs.voidps.engine.data.definition.extra.getComponentIntId
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.getComponentIntId
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.instruct.InteractInterface

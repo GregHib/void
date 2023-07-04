@@ -4,10 +4,10 @@ import world.gregs.voidps.cache.definition.data.QuickChatType
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.extra.QuickChatPhraseDefinitions
-import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.QuickChatPhraseDefinitions
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanQuickChatMessage

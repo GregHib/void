@@ -4,6 +4,7 @@ import io.mockk.mockk
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoderTest
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.yaml.Yaml
 
 internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDecoder, NPCDefinitions>() {

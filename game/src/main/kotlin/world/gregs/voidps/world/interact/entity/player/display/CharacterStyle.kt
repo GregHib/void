@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.display
 
 import world.gregs.voidps.cache.config.data.StructDefinition
-import world.gregs.voidps.engine.data.definition.extra.StructDefinitions
+import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.get
 
 object CharacterStyle {

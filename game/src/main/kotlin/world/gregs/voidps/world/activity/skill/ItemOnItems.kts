@@ -14,8 +14,8 @@ import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
-import world.gregs.voidps.engine.data.definition.config.ItemOnItemDefinition
-import world.gregs.voidps.engine.data.definition.extra.ItemOnItemDefinitions
+import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
+import world.gregs.voidps.engine.data.definition.ItemOnItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull

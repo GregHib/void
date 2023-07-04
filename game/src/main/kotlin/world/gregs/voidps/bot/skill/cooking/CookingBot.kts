@@ -11,7 +11,7 @@ import world.gregs.voidps.bot.skill.combat.hasExactGear
 import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.data.definition.config.GearDefinition
+import world.gregs.voidps.engine.data.config.GearDefinition
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

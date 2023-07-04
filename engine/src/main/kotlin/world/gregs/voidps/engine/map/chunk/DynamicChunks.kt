@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.map.chunk
 
 import it.unimi.dsi.fastutil.ints.Int2IntArrayMap
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet
-import world.gregs.voidps.engine.data.definition.extra.MapDefinitions
+import world.gregs.voidps.engine.data.definition.MapDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.Collisions

@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.obj
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Distance

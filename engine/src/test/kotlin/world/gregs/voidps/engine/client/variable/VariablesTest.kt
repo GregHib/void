@@ -4,8 +4,8 @@ import io.mockk.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.data.definition.config.VariableDefinition
-import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
+import world.gregs.voidps.engine.data.config.VariableDefinition
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.network.Client

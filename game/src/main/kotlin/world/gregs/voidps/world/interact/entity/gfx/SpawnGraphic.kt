@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.gfx
 
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
-import world.gregs.voidps.engine.data.definition.extra.GraphicDefinitions
+import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile

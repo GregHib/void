@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.sendContainer
-import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
-import world.gregs.voidps.engine.data.definition.extra.StructDefinitions
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.event.on

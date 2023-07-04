@@ -17,9 +17,9 @@ import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.data.definition.extra.AnimationDefinitions
-import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
-import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
 import world.gregs.voidps.network.Client

@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.item.drop
 
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
 

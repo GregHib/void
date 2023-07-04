@@ -4,6 +4,7 @@ import io.mockk.mockk
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoderTest
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.yaml.Yaml
 
 internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, ObjectDecoder, ObjectDefinitions>() {

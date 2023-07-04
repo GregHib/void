@@ -2,7 +2,7 @@ package world.gregs.voidps.bot.navigation.graph
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
-import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty

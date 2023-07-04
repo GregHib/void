@@ -12,7 +12,7 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendItem
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
 import world.gregs.voidps.world.interact.dialogue.type.destroy
 

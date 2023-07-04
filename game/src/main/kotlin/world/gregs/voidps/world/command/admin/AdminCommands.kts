@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.data.PlayerFactory
-import world.gregs.voidps.engine.data.definition.extra.*
+import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World

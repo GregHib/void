@@ -5,7 +5,7 @@ import com.github.weisj.darklaf.LafManager.getPreferredThemeStyle
 import world.gregs.voidps.bot.navigation.graph.NavigationGraph
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.tools.map.view.draw.MapView
 import world.gregs.yaml.Yaml

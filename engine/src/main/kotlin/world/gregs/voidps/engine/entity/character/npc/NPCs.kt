@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.entity.character.npc
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.face

@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.moveToLimit
 import world.gregs.voidps.engine.contain.transact.TransactionError
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.event.on

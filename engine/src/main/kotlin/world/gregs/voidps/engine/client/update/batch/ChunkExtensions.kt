@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.client.update.batch
 
-import world.gregs.voidps.engine.data.definition.extra.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.encode.chunk.ObjectAnimation

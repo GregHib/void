@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendSprite
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
 import world.gregs.voidps.world.interact.dialogue.type.item
 import kotlin.test.assertTrue

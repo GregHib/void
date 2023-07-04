@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.contain.stack.ItemStackingRule
 import world.gregs.voidps.engine.contain.transact.Transaction
 import world.gregs.voidps.engine.contain.transact.TransactionError
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.script.KoinMock
 
 abstract class TransactionOperationTest : KoinMock() {

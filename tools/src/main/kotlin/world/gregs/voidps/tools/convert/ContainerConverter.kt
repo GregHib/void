@@ -10,7 +10,7 @@ import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.cache.config.encoder.ContainerEncoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.tools.property
 import world.gregs.yaml.Yaml

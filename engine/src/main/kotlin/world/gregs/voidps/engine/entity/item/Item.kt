@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.item
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.get
 
 data class Item(
