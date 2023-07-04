@@ -12,7 +12,7 @@ class AreaSet {
 
     fun getPointOrNull(x: Int, y: Int, z: Int): Point? {
         for (area in areas) {
-            if (z !in area.planes) {
+            if (z !in area.levels) {
                 continue
             }
             return area.points.firstOrNull { it.x == x && it.y == y } ?: continue
@@ -50,7 +50,7 @@ class AreaSet {
     }
 
     fun removeArea(area: Area) {
-        areas.removeIf { it.planes == area.planes && it.minX == area.minX && it.minY == area.minY && it.maxX == area.maxX && it.maxY == area.maxY }
+        areas.removeIf { it.levels == area.levels && it.minX == area.minX && it.minY == area.minY && it.maxX == area.maxX && it.maxY == area.maxY }
         changed = true
     }
 
@@ -74,8 +74,8 @@ class AreaSet {
                 val y = a["y"] as List<Int>
                 Area(
                     key,
-                    value["plane"] as? Int ?: 0,
-                    value["plane"] as? Int ?: 0,
+                    value["level"] as? Int ?: 0,
+                    value["level"] as? Int ?: 0,
                     x.mapIndexed { index, m -> Point(m, y[index]) }.toMutableList()
                 )
             }

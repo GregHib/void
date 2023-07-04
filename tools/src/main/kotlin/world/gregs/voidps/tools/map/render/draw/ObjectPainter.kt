@@ -18,7 +18,7 @@ class ObjectPainter(
 
     var offsetX = 0
     var offsetY = 0
-    var plane = 0
+    var level = 0
 
     val drawWalls = true
     val drawMapScenes = true
@@ -182,7 +182,7 @@ class ObjectPainter(
         if (definition.hideMinimap) {
             return
         }
-        if (obj.plane != plane) {//FIXME should render more than one plane at once
+        if (obj.level != level) {//FIXME should render more than one level at once
             return
         }
         offsetX = Region.x(regionId) - region.x + 1

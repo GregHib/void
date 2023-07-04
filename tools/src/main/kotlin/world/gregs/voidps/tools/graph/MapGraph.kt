@@ -32,7 +32,7 @@ class MapGraph(
         val links = mutableSetOf<Triple<Tile, Tile, Int>>()
         val strategy = SmallTraversal
 
-        val reg = Region(27, 40).toPlane(0)
+        val reg = Region(27, 40).toLevel(0)
         runBlocking {
             for (region in reg.toCuboid(width = 33, height = 23).toRegions()) {
                 // TODO better way of determining empty maps

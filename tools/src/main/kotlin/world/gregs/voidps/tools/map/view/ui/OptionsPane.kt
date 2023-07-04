@@ -8,12 +8,12 @@ class OptionsPane(private val view: MapView) : JPanel() {
     private val region = JLabel("16383")
     private val tileX = JTextField("16383")
     private val tileY = JTextField("16383")
-    private val tilePlane = JTextField("4")
+    private val tileLevel = JTextField("4")
 
-    fun updatePosition(mapX: Int, mapY: Int, plane: Int) {
+    fun updatePosition(mapX: Int, mapY: Int, level: Int) {
         tileX.text = mapX.toString()
         tileY.text = mapY.toString()
-        tilePlane.text = plane.toString()
+        tileLevel.text = level.toString()
         region.text = Region.id(mapX / 64, mapY / 64).toString()
     }
 
@@ -32,24 +32,24 @@ class OptionsPane(private val view: MapView) : JPanel() {
             layout = BoxLayout(this, BoxLayout.X_AXIS)
             add(tileX)
             add(tileY)
-            add(tilePlane)
+            add(tileLevel)
         }
         add(coordinates)
 
-        val planeControls = JPanel().apply {
+        val levelControls = JPanel().apply {
             layout = BoxLayout(this, BoxLayout.X_AXIS)
             add(JButton("+").apply {
                 addActionListener {
-                    view.updatePlane((view.plane + 1).coerceIn(0, 4))
+                    view.updateLevel((view.level + 1).coerceIn(0, 4))
                 }
             })
             add(JButton("-").apply {
                 addActionListener {
-                    view.updatePlane((view.plane - 1).coerceIn(0, 4))
+                    view.updateLevel((view.level - 1).coerceIn(0, 4))
                     parent.transferFocus()
                 }
             })
         }
-        add(planeControls)
+        add(levelControls)
     }
 }

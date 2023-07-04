@@ -12,19 +12,19 @@ class GameObjectCollision(
     private val collisions: Collisions
 ) {
     fun modify(obj: GameObject, add: Boolean) {
-        modify(obj.def, obj.x, obj.y, obj.plane, obj.shape, obj.rotation, add)
+        modify(obj.def, obj.x, obj.y, obj.level, obj.shape, obj.rotation, add)
     }
 
-    fun modify(def: ObjectDefinition, x: Int, y: Int, plane: Int, shape: Int, rotation: Int, add: Boolean) {
+    fun modify(def: ObjectDefinition, x: Int, y: Int, level: Int, shape: Int, rotation: Int, add: Boolean) {
         if (def.solid == 0) {
             return
         }
         when (shape) {
-            ObjectShape.WALL_STRAIGHT -> modifyWall(x, y, plane, def.block, cardinal[(rotation + 3) and 0x3], add)
-            ObjectShape.WALL_DIAGONAL_CORNER, ObjectShape.WALL_SQUARE_CORNER -> modifyWall(x, y, plane, def.block, ordinal[rotation], add)
-            ObjectShape.WALL_CORNER -> modifyWallCorner(x, y, plane, def.block, ordinal[rotation], add)
-            in ObjectShape.WALL_DIAGONAL until ObjectShape.GROUND_DECOR -> modifyObject(def, x, y, plane, rotation, def.block, add)
-            ObjectShape.GROUND_DECOR -> if (def.interactive == 1 && def.solid == 1) modifyCardinal(x, y, plane, def.block, add)
+            ObjectShape.WALL_STRAIGHT -> modifyWall(x, y, level, def.block, cardinal[(rotation + 3) and 0x3], add)
+            ObjectShape.WALL_DIAGONAL_CORNER, ObjectShape.WALL_SQUARE_CORNER -> modifyWall(x, y, level, def.block, ordinal[rotation], add)
+            ObjectShape.WALL_CORNER -> modifyWallCorner(x, y, level, def.block, ordinal[rotation], add)
+            in ObjectShape.WALL_DIAGONAL until ObjectShape.GROUND_DECOR -> modifyObject(def, x, y, level, rotation, def.block, add)
+            ObjectShape.GROUND_DECOR -> if (def.interactive == 1 && def.solid == 1) modifyCardinal(x, y, level, def.block, add)
         }
     }
 
@@ -34,70 +34,70 @@ class GameObjectCollision(
         }
         val x = obj.x + (Zone.x(zone) shl 3)
         val y = obj.y + (Zone.y(zone) shl 3)
-        val plane = obj.plane
+        val level = obj.level
         val rotation = obj.rotation
         when (obj.shape) {
-            ObjectShape.WALL_STRAIGHT -> modifyWall(x, y, plane, def.block, cardinal[(rotation + 3) and 0x3], true)
-            ObjectShape.WALL_DIAGONAL_CORNER, ObjectShape.WALL_SQUARE_CORNER -> modifyWall(x, y, plane, def.block, ordinal[rotation], true)
-            ObjectShape.WALL_CORNER -> modifyWallCorner(x, y, plane, def.block, ordinal[rotation], true)
-            in ObjectShape.WALL_DIAGONAL until ObjectShape.GROUND_DECOR -> modifyObject(def, x, y, plane, rotation, def.block, true)
-            ObjectShape.GROUND_DECOR -> if (def.interactive == 1 && def.solid == 1) modifyCardinal(x, y, plane, def.block, true)
+            ObjectShape.WALL_STRAIGHT -> modifyWall(x, y, level, def.block, cardinal[(rotation + 3) and 0x3], true)
+            ObjectShape.WALL_DIAGONAL_CORNER, ObjectShape.WALL_SQUARE_CORNER -> modifyWall(x, y, level, def.block, ordinal[rotation], true)
+            ObjectShape.WALL_CORNER -> modifyWallCorner(x, y, level, def.block, ordinal[rotation], true)
+            in ObjectShape.WALL_DIAGONAL until ObjectShape.GROUND_DECOR -> modifyObject(def, x, y, level, rotation, def.block, true)
+            ObjectShape.GROUND_DECOR -> if (def.interactive == 1 && def.solid == 1) modifyCardinal(x, y, level, def.block, true)
         }
     }
 
-    private fun modifyWall(x: Int, y: Int, plane: Int, block: Int, direction: Int, add: Boolean) {
-        modifyTile(x, y, plane, block, direction, add)
-        modifyTile(x + deltaX[direction], y + deltaY[direction], plane, block, inverse[direction], add)
+    private fun modifyWall(x: Int, y: Int, level: Int, block: Int, direction: Int, add: Boolean) {
+        modifyTile(x, y, level, block, direction, add)
+        modifyTile(x + deltaX[direction], y + deltaY[direction], level, block, inverse[direction], add)
     }
 
-    private fun modifyWallCorner(x: Int, y: Int, plane: Int, block: Int, direction: Int, add: Boolean) {
-        modifyWall(x, y, plane, block, vertical[direction], add)
-        modifyWall(x, y, plane, block, horizontal[direction], add)
+    private fun modifyWallCorner(x: Int, y: Int, level: Int, block: Int, direction: Int, add: Boolean) {
+        modifyWall(x, y, level, block, vertical[direction], add)
+        modifyWall(x, y, level, block, horizontal[direction], add)
     }
 
-    private fun modifyObject(def: ObjectDefinition, x: Int, y: Int, plane: Int, rotation: Int, block: Int, add: Boolean) {
+    private fun modifyObject(def: ObjectDefinition, x: Int, y: Int, level: Int, rotation: Int, block: Int, add: Boolean) {
         if (def.sizeX == 1 && def.sizeY == 1) {
-            modifyCardinal(x, y, plane, block, add)
+            modifyCardinal(x, y, level, block, add)
         } else if (def.sizeX == 2 && def.sizeY == 2) {
-            modifyCardinal(x, y, plane, block, add)
-            modifyCardinal(x + 1, y, plane, block, add)
-            modifyCardinal(x, y + 1, plane, block, add)
-            modifyCardinal(x + 1, y + 1, plane, block, add)
+            modifyCardinal(x, y, level, block, add)
+            modifyCardinal(x + 1, y, level, block, add)
+            modifyCardinal(x, y + 1, level, block, add)
+            modifyCardinal(x + 1, y + 1, level, block, add)
         } else if (def.sizeX == 3 && def.sizeY == 3) {
-            modifyCardinal(x, y + 1, plane, block, add)
-            modifyCardinal(x, y + 2, plane, block, add)
-            modifyCardinal(x + 1, y, plane, block, add)
-            modifyCardinal(x + 1, y + 1, plane, block, add)
-            modifyCardinal(x + 2, y, plane, block, add)
-            modifyCardinal(x + 2, y + 2, plane, block, add)
+            modifyCardinal(x, y + 1, level, block, add)
+            modifyCardinal(x, y + 2, level, block, add)
+            modifyCardinal(x + 1, y, level, block, add)
+            modifyCardinal(x + 1, y + 1, level, block, add)
+            modifyCardinal(x + 2, y, level, block, add)
+            modifyCardinal(x + 2, y + 2, level, block, add)
         } else {
             val width = if (rotation and 0x1 == 1) def.sizeY else def.sizeX
             val height = if (rotation and 0x1 == 1) def.sizeX else def.sizeY
             if (width == 1 && height == 2) {
-                modifyCardinal(x, y, plane, block, add)
-                modifyCardinal(x, y + 1, plane, block, add)
+                modifyCardinal(x, y, level, block, add)
+                modifyCardinal(x, y + 1, level, block, add)
             } else if (width == 2 && height == 1) {
-                modifyCardinal(x, y, plane, block, add)
-                modifyCardinal(x + 1, y, plane, block, add)
+                modifyCardinal(x, y, level, block, add)
+                modifyCardinal(x + 1, y, level, block, add)
             } else {
                 for (dx in 0 until width) {
                     for (dy in 0 until height) {
-                        modifyCardinal(x + dx, y + dy, plane, block, add)
+                        modifyCardinal(x + dx, y + dy, level, block, add)
                     }
                 }
             }
         }
     }
 
-    private fun modifyCardinal(x: Int, y: Int, plane: Int, block: Int, add: Boolean) {
-        modifyTile(x, y, plane, block, 1, add)
-        modifyTile(x, y, plane, block, 3, add)
-        modifyTile(x, y, plane, block, 5, add)
-        modifyTile(x, y, plane, block, 7, add)
+    private fun modifyCardinal(x: Int, y: Int, level: Int, block: Int, add: Boolean) {
+        modifyTile(x, y, level, block, 1, add)
+        modifyTile(x, y, level, block, 3, add)
+        modifyTile(x, y, level, block, 5, add)
+        modifyTile(x, y, level, block, 7, add)
     }
 
-    private fun modifyTile(x: Int, y: Int, plane: Int, block: Int, direction: Int, add: Boolean) {
-        val flags = collisions.flags[Zone.tileIndex(x, y, plane)] ?: return
+    private fun modifyTile(x: Int, y: Int, level: Int, block: Int, direction: Int, add: Boolean) {
+        val flags = collisions.flags[Zone.tileIndex(x, y, level)] ?: return
         if (add) {
             flags[Tile.index(x, y)] = flags[Tile.index(x, y)] or CollisionFlags.blocked[direction or block]
         } else {

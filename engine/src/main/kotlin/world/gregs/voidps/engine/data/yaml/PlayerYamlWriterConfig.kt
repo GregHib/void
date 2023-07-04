@@ -23,7 +23,7 @@ internal class PlayerYamlWriterConfig : YamlWriterConfiguration(quoteStrings = t
                 "tile" to mapOf(
                     "x" to value.tile.x,
                     "y" to value.tile.y,
-                    "plane" to value.tile.plane,
+                    "level" to value.tile.level,
                 ),
                 "experience" to mapOf(
                     "experience" to value.experience,

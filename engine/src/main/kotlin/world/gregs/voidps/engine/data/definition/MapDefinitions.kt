@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.map.region.RegionPlane
+import world.gregs.voidps.engine.map.region.RegionLevel
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.yaml.Yaml
@@ -54,7 +54,7 @@ class MapDefinitions(
             val regionTileY = region.tile.y
             for (obj in map.objects) {
                 val def = definitions.get(obj.id)
-                objects.set(obj.id, regionTileX + obj.x, regionTileY + obj.y, obj.plane, obj.shape, obj.rotation, def)
+                objects.set(obj.id, regionTileX + obj.x, regionTileY + obj.y, obj.level, obj.shape, obj.rotation, def)
             }
         }
         logger.info { "Loaded ${maps.size} maps ${objects.size} ${"object".plural(objects.size)} from cache in ${System.currentTimeMillis() - start}ms" }
@@ -77,21 +77,21 @@ class MapDefinitions(
 
     private fun readEmptyTiles(reader: BufferReader) {
         for (i in 0 until reader.readInt()) {
-            val regionPlane = RegionPlane(reader.readInt())
-            val regionX = regionPlane.x
-            val regionY = regionPlane.y
-            val plane = regionPlane.plane
+            val regionLevel = RegionLevel(reader.readInt())
+            val regionX = regionLevel.x
+            val regionY = regionLevel.y
+            val level = regionLevel.level
             for (zoneX in 0 until 64 step 8) {
                 for (zoneY in 0 until 64 step 8) {
                     val x = regionX + zoneX
                     val y = regionY + zoneY
-                    collisions.allocateIfAbsent(x, y, plane)
+                    collisions.allocateIfAbsent(x, y, level)
                 }
             }
         }
         for (i in 0 until reader.readInt()) {
             val zone = Zone(reader.readInt()).tile
-            collisions.allocateIfAbsent(zone.x, zone.y, zone.plane)
+            collisions.allocateIfAbsent(zone.x, zone.y, zone.level)
         }
     }
 
@@ -155,7 +155,7 @@ class MapDefinitions(
             val rotation = (obj.rotation + zoneRotation) and 0x3
             val rotX = zoneTileX + rotateX(obj.x, obj.y, def.sizeX, def.sizeY, rotation, zoneRotation)
             val rotY = zoneTileY + rotateY(obj.x, obj.y, def.sizeX, def.sizeY, rotation, zoneRotation)
-            objects.set(obj.id, rotX, rotY, obj.plane, obj.shape, rotation, def)
+            objects.set(obj.id, rotX, rotY, obj.level, obj.shape, rotation, def)
         }
     }
 
@@ -163,7 +163,7 @@ class MapDefinitions(
         val intArray = collisions.allocateIfAbsent(
             absoluteX = zone.tile.x,
             absoluteZ = zone.tile.y,
-            level = zone.plane
+            level = zone.level
         )
         val value = reader.readLong()
         for (i in 0 until ZONE_SIZE) {

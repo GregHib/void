@@ -12,16 +12,16 @@ import world.gregs.voidps.engine.map.zone.Zone
 
 typealias Collisions = CollisionFlagMap
 
-fun Collisions.check(x: Int, y: Int, plane: Int, flag: Int): Boolean {
-    return get(x, y, plane) and flag != 0
+fun Collisions.check(x: Int, y: Int, level: Int, flag: Int): Boolean {
+    return get(x, y, level) and flag != 0
 }
 
-fun Collisions.check(tile: Tile, flag: Int) = check(tile.x, tile.y, tile.plane, flag)
+fun Collisions.check(tile: Tile, flag: Int) = check(tile.x, tile.y, tile.level, flag)
 
 fun Collisions.print(zone: Zone) {
     for (y in 7 downTo 0) {
         for (x in 0 until 8) {
-            val value = get(zone.tile.x + x, zone.tile.y + y, zone.plane)
+            val value = get(zone.tile.x + x, zone.tile.y + y, zone.level)
             print("${if (value == 0) 0 else 1} ")
         }
         println()
@@ -30,7 +30,7 @@ fun Collisions.print(zone: Zone) {
 }
 
 fun Collisions.clear(zone: Zone) {
-    deallocateIfPresent(zone.tile.x, zone.tile.y, zone.plane)
+    deallocateIfPresent(zone.tile.x, zone.tile.y, zone.level)
 }
 
 
@@ -50,8 +50,8 @@ fun Area.random(collision: CollisionStrategy = CollisionStrategies.Normal): Tile
 }
 
 private fun canTravel(steps: StepValidator, tile: Tile, collision: CollisionStrategy) =
-    steps.canTravel(x = tile.x, z = tile.y - 1, level = tile.plane, size = 1, offsetX = 0, offsetZ = 1, extraFlag = 0, collision = collision) ||
-            steps.canTravel(x = tile.x, z = tile.y + 1, level = tile.plane, size = 1, offsetX = 0, offsetZ = -1, extraFlag = 0, collision = collision) ||
-            steps.canTravel(x = tile.x - 1, z = tile.y, level = tile.plane, size = 1, offsetX = 1, offsetZ = 0, extraFlag = 0, collision = collision) ||
-            steps.canTravel(x = tile.x + 1, z = tile.y, level = tile.plane, size = 1, offsetX = -1, offsetZ = 0, extraFlag = 0, collision = collision)
+    steps.canTravel(x = tile.x, z = tile.y - 1, level = tile.level, size = 1, offsetX = 0, offsetZ = 1, extraFlag = 0, collision = collision) ||
+            steps.canTravel(x = tile.x, z = tile.y + 1, level = tile.level, size = 1, offsetX = 0, offsetZ = -1, extraFlag = 0, collision = collision) ||
+            steps.canTravel(x = tile.x - 1, z = tile.y, level = tile.level, size = 1, offsetX = 1, offsetZ = 0, extraFlag = 0, collision = collision) ||
+            steps.canTravel(x = tile.x + 1, z = tile.y, level = tile.level, size = 1, offsetX = -1, offsetZ = 0, extraFlag = 0, collision = collision)
 

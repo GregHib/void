@@ -12,7 +12,7 @@ class ZoneObjectTest {
         assertEquals(43200, ZoneObject.id(value))
         assertEquals(7, ZoneObject.x(value))
         assertEquals(6, ZoneObject.y(value))
-        assertEquals(3, ZoneObject.plane(value))
+        assertEquals(3, ZoneObject.level(value))
         assertEquals(22, ZoneObject.shape(value))
         assertEquals(3, ZoneObject.rotation(value))
     }

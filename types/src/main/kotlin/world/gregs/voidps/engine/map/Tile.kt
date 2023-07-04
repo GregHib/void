@@ -3,45 +3,45 @@ package world.gregs.voidps.engine.map
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.map.region.RegionPlane
+import world.gregs.voidps.engine.map.region.RegionLevel
 import world.gregs.voidps.engine.map.zone.Zone
 
 @JvmInline
-value class Tile(override val id: Int) : Id {
+value class Tile(val id: Int) {
 
-    constructor(x: Int, y: Int, plane: Int = 0) : this(id(x, y, plane))
+    constructor(x: Int, y: Int, level: Int = 0) : this(id(x, y, level))
 
     val x: Int
         get() = x(id)
     val y: Int
         get() = y(id)
-    val plane: Int
-        get() = plane(id)
+    val level: Int
+        get() = level(id)
 
     val zone: Zone
-        get() = Zone(x shr 3, y shr 3, plane)
+        get() = Zone(x shr 3, y shr 3, level)
     val region: Region
         get() = Region(x shr 6, y shr 6)
-    val regionPlane: RegionPlane
-        get() = RegionPlane(x shr 6, y shr 6, plane)
+    val regionLevel: RegionLevel
+        get() = RegionLevel(x shr 6, y shr 6, level)
 
-    fun copy(x: Int = this.x, y: Int = this.y, plane: Int = this.plane) = Tile(x, y, plane)
-    fun add(x: Int, y: Int, plane: Int = 0) = copy(x = this.x + x, y = this.y + y, plane = this.plane + plane)
+    fun copy(x: Int = this.x, y: Int = this.y, level: Int = this.level) = Tile(x, y, level)
+    fun add(x: Int, y: Int, level: Int = 0) = copy(x = this.x + x, y = this.y + y, level = this.level + level)
 
     fun addX(value: Int) = add(value, 0, 0)
     fun addY(value: Int) = add(0, value, 0)
-    fun addPlane(value: Int) = add(0, 0, value)
+    fun addLevel(value: Int) = add(0, 0, value)
 
-    fun minus(x: Int = 0, y: Int = 0, plane: Int = 0) = add(-x, -y, -plane)
-    fun delta(x: Int = 0, y: Int = 0, plane: Int = 0) = Delta(this.x - x, this.y - y, this.plane - plane)
+    fun minus(x: Int = 0, y: Int = 0, level: Int = 0) = add(-x, -y, -level)
+    fun delta(x: Int = 0, y: Int = 0, level: Int = 0) = Delta(this.x - x, this.y - y, this.level - level)
 
-    fun add(point: Tile) = add(point.x, point.y, point.plane)
-    fun minus(point: Tile) = minus(point.x, point.y, point.plane)
-    fun delta(point: Tile) = delta(point.x, point.y, point.plane)
+    fun add(point: Tile) = add(point.x, point.y, point.level)
+    fun minus(point: Tile) = minus(point.x, point.y, point.level)
+    fun delta(point: Tile) = delta(point.x, point.y, point.level)
 
-    fun add(delta: Delta) = add(delta.x, delta.y, delta.plane)
-    fun minus(delta: Delta) = minus(delta.x, delta.y, delta.plane)
-    fun delta(delta: Delta) = delta(delta.x, delta.y, delta.plane)
+    fun add(delta: Delta) = add(delta.x, delta.y, delta.level)
+    fun minus(delta: Delta) = minus(delta.x, delta.y, delta.level)
+    fun delta(delta: Delta) = delta(delta.x, delta.y, delta.level)
 
     fun add(direction: Direction) = add(direction.delta)
     fun minus(direction: Direction) = minus(direction.delta)
@@ -50,36 +50,36 @@ value class Tile(override val id: Int) : Id {
     fun distanceTo(other: Tile, width: Int, height: Int) = distanceTo(Distance.getNearest(other, width, height, this))
 
     fun distanceTo(other: Tile): Int {
-        if (plane != other.plane) {
+        if (level != other.level) {
             return -1
         }
         return Distance.chebyshev(x, y, other.x, other.y)
     }
 
     fun within(other: Tile, radius: Int): Boolean {
-        return Distance.within(x, y, plane, other.x, other.y, other.plane, radius)
+        return Distance.within(x, y, level, other.x, other.y, other.level, radius)
     }
 
-    fun within(x: Int, y: Int, plane: Int, radius: Int): Boolean {
-        return Distance.within(this.x, this.y, this.plane, x, y, plane, radius)
+    fun within(x: Int, y: Int, level: Int, radius: Int): Boolean {
+        return Distance.within(this.x, this.y, this.level, x, y, level, radius)
     }
 
     fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(this, width, height, 1)
     fun toCuboid(radius: Int) = Cuboid(minus(radius, radius), radius * 2 + 1, radius * 2 + 1, 1)
 
     override fun toString(): String {
-        return "Tile($x, $y, $plane)"
+        return "Tile($x, $y, $level)"
     }
 
     companion object {
-        fun id(x: Int, y: Int, plane: Int = 0) = (y and 0x3fff) + ((x and 0x3fff) shl 14) + ((plane and 0x3) shl 28)
+        fun id(x: Int, y: Int, level: Int = 0) = (y and 0x3fff) + ((x and 0x3fff) shl 14) + ((level and 0x3) shl 28)
         fun x(id: Int) = id shr 14 and 0x3fff
         fun y(id: Int) = id and 0x3fff
-        fun plane(id: Int) = id shr 28
+        fun level(id: Int) = id shr 28
 
         val EMPTY = Tile(0)
 
-        fun fromMap(map: Map<String, Any>) = Tile(map["x"] as Int, map["y"] as Int, map["plane"] as? Int ?: 0)
+        fun fromMap(map: Map<String, Any>) = Tile(map["x"] as Int, map["y"] as Int, map["level"] as? Int ?: 0)
 
         /**
          * Index for a tile within a [Zone]
@@ -93,4 +93,4 @@ value class Tile(override val id: Int) : Id {
     }
 }
 
-fun Tile.equals(x: Int = this.x, y: Int = this.y, plane: Int = this.plane) = this.x == x && this.y == y && this.plane == plane
+fun Tile.equals(x: Int = this.x, y: Int = this.y, level: Int = this.level) = this.x == x && this.y == y && this.level == level

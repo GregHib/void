@@ -13,12 +13,12 @@ internal class ZoneTest {
         // When
         val x = zone.x
         val y = zone.y
-        val plane = zone.plane
+        val level = zone.level
         // Then
         assertEquals(0, zone.id)
         assertEquals(0, x)
         assertEquals(0, y)
-        assertEquals(0, plane)
+        assertEquals(0, level)
     }
 
     @Test
@@ -28,11 +28,11 @@ internal class ZoneTest {
         // When
         val x = zone.x
         val y = zone.y
-        val plane = zone.plane
+        val level = zone.level
         // Then
         assertEquals(2047, x)
         assertEquals(2047, y)
-        assertEquals(3, plane)
+        assertEquals(3, level)
     }
 
     @Test
@@ -42,11 +42,11 @@ internal class ZoneTest {
         // When
         val x = zone.x
         val y = zone.y
-        val plane = zone.plane
+        val level = zone.level
         // Then
         assertEquals(1, x)
         assertEquals(2, y)
-        assertEquals(1, plane)
+        assertEquals(1, level)
     }
 
     @Test
@@ -54,11 +54,11 @@ internal class ZoneTest {
         // Given
         val zone = Zone(385, 433, 2)
         // When
-        val tile = zone.tile
+        val level = zone.tile
         // Then
-        assertEquals(3080, tile.x)
-        assertEquals(3464, tile.y)
-        assertEquals(2, tile.plane)
+        assertEquals(3080, level.x)
+        assertEquals(3464, level.y)
+        assertEquals(2, level.level)
     }
 
     @Test
@@ -74,16 +74,16 @@ internal class ZoneTest {
     }
 
     @Test
-    fun `Region plane test`() {
+    fun `Region level test`() {
         // Given
         val zone = Zone(385, 433, 1)
         // When
-        val region = zone.regionPlane
+        val region = zone.regionLevel
         // Then
         assertEquals(77878, region.id)
         assertEquals(48, region.x)
         assertEquals(54, region.y)
-        assertEquals(1, region.plane)
+        assertEquals(1, region.level)
     }
 
     @Test

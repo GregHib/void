@@ -280,7 +280,7 @@ iban:
   index: 61
   areas:
     - region: 8519
-      plane: 1
+      level: 1
 in_the_manor:
   index: 62
   areas:
@@ -691,7 +691,7 @@ incarceration:
   index: 158
   areas:
     - region: 12610
-      plane: 1
+      level: 1
 scape_soft:
   index: 159
   areas:
@@ -772,7 +772,7 @@ grumpy:
     - region: 10286
     - x: [ 1968, 2112, 2112, 1984, 1984, 1920, 1920, 1968 ]
       y: [ 8960, 8960, 9024, 9024, 9088, 9088, 9024, 9024 ]
-      plane: 1
+      level: 1
 chompy_hunt:
   index: 178
   areas:
@@ -991,7 +991,7 @@ well_of_voyage:
   index: 221
   areas:
     - region: 8009
-      plane: 1
+      level: 1
     - region: 9365
 haunted_mine:
   index: 222
@@ -1120,7 +1120,7 @@ stillness:
     - x: [ 3392, 3512, 3512, 3520, 3520, 3456, 3456, 3392 ]
       y: [ 9792, 9792, 9828, 9828, 9920, 9920, 9856, 9856 ]
     - region: 14744
-      plane: 2
+      level: 2
 lighthouse:
   index: 251
   areas:
@@ -1259,7 +1259,7 @@ sarcophagus:
   index: 283
   areas:
     - region: 11085
-      plane: 1
+      level: 1
     - region: 12945
 down_below:
   index: 284
@@ -1318,7 +1318,7 @@ throne_of_the_demon:
   index: 297
   areas:
     - region: 10828
-      plane: 2
+      level: 2
 dance_of_the_undead:
   index: 298
   areas:
@@ -1366,7 +1366,7 @@ wayward:
   index: 308
   areas:
     - region: 9874
-      plane: 2
+      level: 2
 tale_of_keldagrim:
   index: 309
   areas:
@@ -1380,7 +1380,7 @@ tears_of_guthix:
   areas:
     - x: [ 3200, 3200, 3254, 3254 ]
       y: [ 9472, 9536, 9536, 9472 ]
-      plane: 2
+      level: 2
 romper_chomper:
   index: 312
   areas:
@@ -1390,12 +1390,12 @@ the_rogues_den:
   areas:
     - x: [ 2944, 3008, 3008, 3072, 3072, 3008, 3008, 2944 ]
       y: [ 5120, 5120, 5056, 5056, 4928, 4928, 4992, 4992 ]
-      plane: 1
+      level: 1
 the_far_side:
   index: 314
   areas:
     - region: 12111
-      plane: 1
+      level: 1
 the_lost_melody:
   index: 315
   areas:
@@ -1418,7 +1418,7 @@ the_power_of_tears:
   areas:
     - x: [ 3254, 3254, 3264, 3264 ]
       y: [ 9472, 9536, 9536, 9472 ]
-      plane: 2
+      level: 2
 pheasant_peasant:
   index: 321
   areas:
@@ -1444,12 +1444,12 @@ forgettable_melody:
   index: 326
   areas:
     - region: 7501
-      plane: 2
+      level: 2
 right_on_track:
   index: 327
   areas:
     - region: 7501
-      plane: 1
+      level: 1
 over_to_nardah:
   index: 328
   areas:
@@ -1626,22 +1626,22 @@ roll_the_bones:
   index: 372
   areas:
     - region: 13462
-      plane: 1
+      level: 1
 mind_over_matter:
   index: 373
   areas:
     - region: 13463
-      plane: 0
+      level: 0
 golden_touch:
   index: 374
   areas:
     - region: 13462
-      plane: 2
+      level: 2
 the_enchanter:
   index: 376
   areas:
     - region: 13462
-      plane: 0
+      level: 0
 making_waves:
   index: 378
   areas:
@@ -1664,7 +1664,7 @@ scarabaeoidea:
   areas:
     - x: [ 3363, 3373 ]
       y: [ 9260, 9267 ]
-      plane: 1
+      level: 1
 jungle_hunt:
   index: 384
   areas:
@@ -1700,7 +1700,7 @@ wrath_and_ruin:
   areas:
     - x: [ 2944, 2944, 3040, 3040, 3008, 3008 ]
       y: [ 5184, 5248, 5248, 5216, 5216, 5184 ]
-      plane: 1
+      level: 1
     - x: [ 3264, 3296, 3296, 3264 ]
       y: [ 9856, 9856, 9824, 9824 ]
 storm_brew:
@@ -1732,7 +1732,7 @@ chef_surprise:
   index: 399
   areas:
     - region: 7507
-      plane: 2
+      level: 2
 null_and_void:
   index: 400
   areas:
@@ -1820,10 +1820,10 @@ waking_dream:
   index: 418
   areas:
     - region: 7247
-      plane: 2
+      level: 2
     - x: [ 1744, 1744, 1776, 1776 ]
       y: [ 5072, 5104, 5104, 5072 ]
-      plane: 2
+      level: 2
 dreamstate:
   index: 419
   areas:
@@ -1841,7 +1841,7 @@ way_of_the_enchanter:
   areas:
     - x: [ 2304, 2336, 2336, 2368, 2368, 2304 ]
       y: [ 10368, 10368, 10352, 10352, 10304, 10304 ]
-      plane: 2
+      level: 2
 warriors_guild:
   index: 423
   areas:
@@ -1884,7 +1884,7 @@ lament_of_meiyerditch:
     - x: [ 3616, 3648, 3648, 3616 ]
       y: [ 9728, 9728, 9681, 9681 ]
     - region: 9544
-      plane: 2
+      level: 2
 sigmunds_showdown:
   index: 431
   areas:
@@ -1960,7 +1960,7 @@ ogre_the_top:
   index: 449
   areas:
     - region: 9632
-      plane: 1
+      level: 1
 work_work_work:
   index: 450
   areas:
@@ -1971,7 +1971,7 @@ magic_magic_magic:
   areas:
     - x: [ 2640, 2640, 2664, 2664 ]
       y: [ 3208, 3232, 3232, 3208 ]
-      plane: 1
+      level: 1
 mutant_medley:
   index: 452
   areas:
@@ -2032,7 +2032,7 @@ creature_cruelty:
   areas:
     - x: [ 2640, 2640, 2664, 2664 ]
       y: [ 3208, 3232, 3232, 3208 ]
-      plane: 2
+      level: 2
 alternative_root:
   index: 469
   areas:
@@ -2089,7 +2089,7 @@ fe_fi_fo_fum:
   index: 481
   areas:
     - region: 8534
-      plane: 3
+      level: 3
 schools_out:
   index: 482
   areas:
@@ -2098,28 +2098,28 @@ inadequacy:
   index: 483
   areas:
     - region: 7248
-      plane: 2
+      level: 2
 illusive:
   index: 484
   areas:
     - region: 7248
-      plane: 2
+      level: 2
 everlasting:
   index: 485
   areas:
     - region: 7248
-      plane: 2
+      level: 2
 untouchable:
   index: 486
   areas:
     - region: 7248
-      plane: 2
+      level: 2
 down_and_out:
   index: 487
   areas:
     - x: [ 2336, 2336, 2368, 2368 ]
       y: [ 10352, 10368, 10368, 10352 ]
-      plane: 2
+      level: 2
 the_maze:
   index: 489
   areas:
@@ -2132,31 +2132,31 @@ zamorak_zoo:
   areas:
     - x: [ 2880, 2944, 2944, 2912, 2912, 2904, 2904, 2880 ]
       y: [ 5376, 5376, 5312, 5312, 5336, 5336, 5344, 5344 ]
-      plane: 2
+      level: 2
 strength_of_saradomin:
   index: 491
   areas:
     - x: [ 2912, 2944, 2944, 2880, 2880, 2904, 2904, 2912 ]
       y: [ 5312, 5312, 5248, 5248, 5280, 5280, 5288, 5288 ]
-      plane: 1
+      level: 1
 bandos_battalion:
   index: 492
   areas:
     - x: [ 2816, 2816, 2880, 2880, 2856, 2856, 2848, 2848 ]
       y: [ 5312, 5376, 5376, 5344, 5344, 5336, 5336, 5312 ]
-      plane: 2
+      level: 2
 armadyl_alliance:
   index: 493
   areas:
     - x: [ 2816, 2848, 2848, 2856, 2856, 2880, 2880, 2816 ]
       y: [ 5312, 5312, 5288, 5288, 5280, 5280, 5248, 5248 ]
-      plane: 2
+      level: 2
 armageddon:
   index: 494
   areas:
     - x: [ 2848, 2856, 2856, 2904, 2904, 2912, 2911, 2904, 2904, 2856, 2856, 2848 ]
       y: [ 5336, 5336, 5344, 5344, 5336, 5336, 5288, 5288, 5280, 5280, 5288, 5288 ]
-      plane: 2
+      level: 2
 storeroom_shuffle:
   index: 495
   areas:
@@ -2170,9 +2170,9 @@ waste_defaced:
   index: 497
   areas:
     - region: 8001
-      plane: 1
+      level: 1
     - region: 8002
-      plane: 1
+      level: 1
 knightmare:
   index: 498
   areas:
@@ -2188,7 +2188,7 @@ terrorbird_tussle:
   areas:
     - x: [ 2019, 2032 ]
       y: [ 4248, 4268 ]
-      plane: 1
+      level: 1
 altar_ego:
   index: 501
   areas:
@@ -2198,7 +2198,7 @@ animal_apogee:
   areas:
     - x: [ 3436, 3448 ]
       y: [ 9744, 9753 ]
-      plane: 1
+      level: 1
 temple_of_tribes:
   index: 505
   areas:
@@ -2211,7 +2211,7 @@ dusk_in_yubiusk:
   index: 508
   areas:
     - region: 8770
-      plane: 1
+      level: 1
 grimly_fiendish:
   index: 509
   areas:
@@ -2224,9 +2224,9 @@ copris_lunaris:
   index: 512
   areas:
     - region: 13712
-      plane: 1
+      level: 1
     - region: 13456
-      plane: 1
+      level: 1
 narnodes_theme:
   index: 513
   areas:
@@ -2274,7 +2274,7 @@ bloodbath:
   index: 584
   areas:
     - region: 9804
-      plane: 1
+      level: 1
 the_route_of_all_evil:
   index: 585
   areas:
@@ -2356,7 +2356,7 @@ second_vision:
   index: 606
   areas:
     - region: 6741
-      plane: 2
+      level: 2
 undead_army:
   index: 607
   areas:
@@ -2384,7 +2384,7 @@ bane_of_summer:
   index: 617
   areas:
     - region: 11587
-      plane: 2
+      level: 2
 the_vacant_abyss:
   index: 618
   areas:
@@ -2427,7 +2427,7 @@ the_evil_within:
   areas:
     - x: [ 2954, 2957 ]
       y: [ 3189, 3822 ]
-      plane: 1
+      level: 1
 cavernous_mythology:
   index: 635
   areas:
@@ -2529,7 +2529,7 @@ the_horn_of_chill:
   areas:
     - x: [ 2891, 2917 ]
       y: [ 10315, 10325 ]
-      plane: 1
+      level: 1
 but_we_can_fight:
   index: 694
   areas:
@@ -2612,10 +2612,10 @@ the_duke:
   areas:
     - x: [ 3203, 3217 ]
       y: [ 3206, 3231 ]
-      plane: 1
+      level: 1
     - x: [ 3203, 3217 ]
       y: [ 3206, 3231 ]
-      plane: 2
+      level: 2
 the_fallen_hero:
   index: 726
   areas:
@@ -2733,7 +2733,7 @@ mindful:
   index: 761
   areas:
     - region: 17238
-      plane: 1
+      level: 1
 void_knights_theme:
   index: 762
   areas:
@@ -2742,9 +2742,9 @@ lortnoc_tsep:
   index: 763
   areas:
     - region: 16982
-      plane: 1
+      level: 1
     - region: 17494
-      plane: 1
+      level: 1
 judge_and_jury:
   index: 765
   areas:

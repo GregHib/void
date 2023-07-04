@@ -34,7 +34,7 @@ class HighlightedTile(private val view: MapView, private val options: OptionsPan
     }
 
     fun update() {
-        options.updatePosition(mapX, view.flipMapY(mapY), view.plane)
+        options.updatePosition(mapX, view.flipMapY(mapY), view.level)
     }
 
     private val colour = Color(0.0f, 0.0f, 0.0f, 0.5f)

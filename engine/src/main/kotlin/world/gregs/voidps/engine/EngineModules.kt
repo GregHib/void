@@ -37,7 +37,7 @@ val engineModule = module {
     single { FloorItemTracking(get(), get(), get()) }
     single {
         PlayerAccounts(get(), get(), get(), get(), get(), get(), getProperty("savePath"), get(), get(), Tile(
-            getIntProperty("homeX", 0), getIntProperty("homeY", 0), getIntProperty("homePlane", 0)
+            getIntProperty("homeX", 0), getIntProperty("homeY", 0), getIntProperty("homeLevel", 0)
         ))
     }
     // IO

@@ -14,13 +14,13 @@ class RegionManager(
     val height = regionRenderSize * 64
     val scale = 4
 
-    fun renderRegion(settings: MapTileSettings, currentPlane: Int): BufferedImage {
+    fun renderRegion(settings: MapTileSettings, currentLevel: Int): BufferedImage {
         val img = BufferedImage(width * scale, height * scale, BufferedImage.TYPE_INT_ARGB)
         val raster = Raster(img)
-        val planes = settings.load()
-        for (index in currentPlane until planes.size) {
-            val plane = planes[index]
-            plane.drawTiles(0, 0, width, height, currentPlane, settings, raster)
+        val levels = settings.load()
+        for (index in currentLevel until levels.size) {
+            val level = levels[index]
+            level.drawTiles(0, 0, width, height, currentLevel, settings, raster)
         }
         return img
     }

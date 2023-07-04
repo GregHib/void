@@ -29,7 +29,7 @@ interface TargetStrategy {
             flags = get(),
             srcX = character.tile.x,
             srcZ = character.tile.y,
-            level = character.tile.plane,
+            level = character.tile.level,
             srcSize = character.size,
             destX = tile.x,
             destZ = tile.y,

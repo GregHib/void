@@ -58,7 +58,7 @@ on<CombatHit>({ target -> source is Player && special && isThrowingAxe(weapon) &
             if (!lineOfSight.hasLineOfSight(
                     srcX = target.tile.x,
                     srcZ = target.tile.y,
-                    level = target.tile.plane,
+                    level = target.tile.level,
                     destX = character.tile.x,
                     destZ = character.tile.y,
                     srcSize = target.size,

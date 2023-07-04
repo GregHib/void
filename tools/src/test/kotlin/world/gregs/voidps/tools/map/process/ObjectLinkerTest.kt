@@ -68,7 +68,7 @@ internal class ObjectLinkerTest {
         assertNotNull(delta)
         assertEquals(0, delta!!.x)
         assertEquals(500, delta.y)
-        assertEquals(0, delta.plane)
+        assertEquals(0, delta.level)
     }
 
     */
@@ -100,7 +100,7 @@ internal class ObjectLinkerTest {
         assertNotNull(delta)
         assertEquals(0, delta!!.x)
         assertEquals(500, delta.y)
-        assertEquals(0, delta.plane)
+        assertEquals(0, delta.level)
     }
 
     */
@@ -130,7 +130,7 @@ internal class ObjectLinkerTest {
         assertNotNull(delta)
         assertEquals(3, delta!!.x)
         assertEquals(500, delta.y)
-        assertEquals(0, delta.plane)
+        assertEquals(0, delta.level)
     }
 
     */
@@ -162,7 +162,7 @@ internal class ObjectLinkerTest {
         assertNotNull(delta)
         assertEquals(1, delta!!.x)
         assertEquals(3, delta.y)
-        assertEquals(0, delta.plane)
+        assertEquals(0, delta.level)
     }
 
 }*/

@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.map.region.RegionPlane
+import world.gregs.voidps.engine.map.region.RegionLevel
 import world.gregs.voidps.network.encode.updateNPCs
 import world.gregs.voidps.network.visual.NPCVisuals
 import world.gregs.voidps.network.visual.VisualEncoder
@@ -116,10 +116,10 @@ class NPCUpdateTask(
         updates: Writer,
         set: IntSet
     ) {
-        var region: RegionPlane
+        var region: RegionLevel
         var npc: NPC
         for (direction in Direction.reversed) {
-            region = client.tile.regionPlane.add(direction)
+            region = client.tile.regionLevel.add(direction)
             for (index in npcs.getDirect(region) ?: continue) {
                 npc = npcs.indexed(index) ?: continue
                 if (!add(updates, sync, npc, client, viewport, set, index)) {
@@ -131,7 +131,7 @@ class NPCUpdateTask(
                 val teleporting = visuals.moved && visuals.walkStep == -1 && visuals.runStep == -1
                 set.add(npc.index)
                 sync.writeBits(15, index)
-                sync.writeBits(2, npc.tile.plane)
+                sync.writeBits(2, npc.tile.level)
                 sync.writeBits(1, teleporting)
                 sync.writeBits(5, delta.y + if (delta.y < 15) 32 else 0)
                 sync.writeBits(5, delta.x + if (delta.x < 15) 32 else 0)

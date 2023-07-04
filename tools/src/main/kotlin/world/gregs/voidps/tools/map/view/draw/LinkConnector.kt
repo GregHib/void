@@ -38,14 +38,14 @@ class LinkConnector(private val view: MapView, private val nav: MutableNavigatio
                 val mapY = view.flipMapY(view.viewToMapY(linkY))
                 val endX = view.viewToMapX(linkEndX)
                 val endY = view.flipMapY(view.viewToMapY(linkEndY))
-                val plane = view.plane
+                val level = view.level
 
-                val link = nav.getLinkOrNull(mapX, mapY, plane, endX, endY, plane)
+                val link = nav.getLinkOrNull(mapX, mapY, level, endX, endY, level)
                 if (link != null) {
                     nav.removeLink(link)
                 } else {
-                    nav.addNode(endX, endY, plane)
-                    nav.addLink(mapX, mapY, plane, endX, endY, plane)
+                    nav.addNode(endX, endY, level)
+                    nav.addLink(mapX, mapY, level, endX, endY, level)
                 }
             }
             draw = false

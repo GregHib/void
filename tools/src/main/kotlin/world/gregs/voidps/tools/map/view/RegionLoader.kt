@@ -30,8 +30,8 @@ class RegionLoader(private val grid: MapView) {
         scale(0.5, 0.5)
     }, AffineTransformOp.TYPE_BILINEAR)
 
-    fun getRegion(regionX: Int, regionY: Int, plane: Int): BufferedImage? {
-        val regionId = Tile.id(regionX, regionY, plane)
+    fun getRegion(regionX: Int, regionY: Int, level: Int): BufferedImage? {
+        val regionId = Tile.id(regionX, regionY, level)
         val region = regions[regionId]
         if (region == null) {
             loadQueue.add(regionId)
@@ -53,15 +53,15 @@ class RegionLoader(private val grid: MapView) {
                 }
                 val regionX = Tile.x(regionId)
                 val regionY = Tile.y(regionId)
-                val plane = Tile.plane(regionId)
-                loadRegion(regionX, regionY, regionId, plane)
+                val level = Tile.level(regionId)
+                loadRegion(regionX, regionY, regionId, level)
                 it.remove()
             }
         }
     }
 
-    private fun loadRegion(regionX: Int, regionY: Int, regionId: Int, plane: Int) {
-        val img = loadRegionImage(regionX, regionY, plane)
+    private fun loadRegion(regionX: Int, regionY: Int, regionId: Int, level: Int) {
+        val img = loadRegionImage(regionX, regionY, level)
         if (img == null) {
             regions[regionId] = null
             return
@@ -74,9 +74,9 @@ class RegionLoader(private val grid: MapView) {
         }
     }
 
-    private fun loadRegionImage(regionX: Int, regionY: Int, plane: Int): BufferedImage? {
+    private fun loadRegionImage(regionX: Int, regionY: Int, level: Int): BufferedImage? {
         val id = Region.id(regionX, regionY)
-        val file = File("./images/$plane/$id.png")
+        val file = File("./images/$level/$id.png")
         return if (file.exists()) ImageIO.read(file) else null
     }
 

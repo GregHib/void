@@ -22,7 +22,7 @@ internal class CuboidTest {
 
     @Test
     fun `Constructor params default to min`() {
-        val area = Cuboid(10, 15, minPlane = 1)
+        val area = Cuboid(10, 15, minLevel = 1)
         assertTrue(area.contains(10, 15, 1))
         assertFalse(area.contains(9, 15, 1))
         assertFalse(area.contains(10, 16, 1))
@@ -35,7 +35,7 @@ internal class CuboidTest {
         val random = area.random()
         assertEquals(10, random.x)
         assertEquals(10, random.y)
-        assertEquals(2, random.plane)
+        assertEquals(2, random.level)
     }
 
     @Test
@@ -60,10 +60,10 @@ internal class CuboidTest {
     fun `Cuboid zones`() {
         val area = Cuboid(7, 7, 17, 17, 1, 3)
         val expected = mutableListOf<Zone>()
-        for (plane in 1 until 4) {
+        for (level in 1 until 4) {
             for (x in 0 until 3) {
                 for (y in 0 until 3) {
-                    expected.add(Zone(x, y, plane))
+                    expected.add(Zone(x, y, level))
                 }
             }
         }

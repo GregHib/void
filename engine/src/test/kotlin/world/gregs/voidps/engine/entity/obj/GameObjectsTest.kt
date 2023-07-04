@@ -33,9 +33,9 @@ class GameObjectsTest {
 
     @Test
     fun `Set an object to a tile`() {
-        val obj = GameObject(id = 1234, x = 10, y = 10, plane = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val obj = GameObject(id = 1234, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
 
-        objects.set(obj.intId, obj.x, obj.y, obj.plane, obj.shape, obj.rotation, ObjectDefinition.EMPTY)
+        objects.set(obj.intId, obj.x, obj.y, obj.level, obj.shape, obj.rotation, ObjectDefinition.EMPTY)
 
         assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
         assertNull(objects.getLayer(obj.tile, ObjectLayer.WALL))
@@ -46,8 +46,8 @@ class GameObjectsTest {
 
     @Test
     fun `Temporarily remove an object`() {
-        val obj = GameObject(id = 1234, x = 10, y = 10, plane = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
-        objects.set(obj.intId, obj.x, obj.y, obj.plane, obj.shape, obj.rotation, ObjectDefinition.EMPTY)
+        val obj = GameObject(id = 1234, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        objects.set(obj.intId, obj.x, obj.y, obj.level, obj.shape, obj.rotation, ObjectDefinition.EMPTY)
 
         objects.remove(obj)
         assertNull(objects.getLayer(obj.tile, ObjectLayer.GROUND))
@@ -61,7 +61,7 @@ class GameObjectsTest {
 
     @Test
     fun `Temporarily add an object`() {
-        val obj = GameObject(id = 1234, x = 10, y = 10, plane = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val obj = GameObject(id = 1234, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
 
         objects.add(obj)
         assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
@@ -77,8 +77,8 @@ class GameObjectsTest {
 
     @Test
     fun `Override temporary object`() {
-        val obj = GameObject(id = 1234, x = 10, y = 10, plane = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
-        val override = GameObject(id = 4321, x = 10, y = 10, plane = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0)
+        val obj = GameObject(id = 1234, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val override = GameObject(id = 4321, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0)
 
         objects.add(obj)
         assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
@@ -102,10 +102,10 @@ class GameObjectsTest {
 
     @Test
     fun `Add and remove a temp object over an original`() {
-        val original = GameObject(id = 123, x = 10, y = 10, plane = 0, shape = 10, rotation = 1)
-        objects.set(original.intId, original.x, original.y, original.plane, original.shape, original.rotation, ObjectDefinition.EMPTY)
+        val original = GameObject(id = 123, x = 10, y = 10, level = 0, shape = 10, rotation = 1)
+        objects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
 
-        val obj = GameObject(id = 1234, x = 10, y = 10, plane = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0)
+        val obj = GameObject(id = 1234, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0)
         objects.add(obj)
         assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
 
@@ -122,14 +122,14 @@ class GameObjectsTest {
 
     @Test
     fun `Override temp over an original object`() {
-        val original = GameObject(id = 123, x = 10, y = 10, plane = 0, shape = 10, rotation = 1)
-        objects.set(original.intId, original.x, original.y, original.plane, original.shape, original.rotation, ObjectDefinition.EMPTY)
+        val original = GameObject(id = 123, x = 10, y = 10, level = 0, shape = 10, rotation = 1)
+        objects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
 
-        val obj = GameObject(id = 1234, x = 10, y = 10, plane = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0)
+        val obj = GameObject(id = 1234, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0)
         objects.add(obj)
         assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
 
-        val override = GameObject(id = 4321, x = 10, y = 10, plane = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0)
+        val override = GameObject(id = 4321, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0)
         objects.add(override)
         assertEquals(override, objects.getLayer(override.tile, ObjectLayer.GROUND))
 
@@ -158,7 +158,7 @@ class GameObjectsTest {
 
     @Test
     fun `Removed object is returned after ticks`() {
-        val obj = GameObject(id = 123, x = 100, y = 100, plane = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
+        val obj = GameObject(id = 123, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
         objects.add(obj, collision = false)
         objects.remove(obj = obj, ticks = 5, collision = false)
         repeat(5) {
@@ -170,7 +170,7 @@ class GameObjectsTest {
 
     @Test
     fun `Replaced temporary object is undone after ticks`() {
-        val obj = GameObject(id = 5678, x = 100, y = 100, plane = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
+        val obj = GameObject(id = 5678, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
         objects.add(obj, collision = false)
         val replacement = objects.replace(obj, "test", Tile(101, 100), ObjectShape.CENTRE_PIECE_STRAIGHT, 1, ticks = 5, collision = false)
         repeat(5) {
@@ -184,8 +184,8 @@ class GameObjectsTest {
 
     @Test
     fun `Replaced original object is undone after ticks`() {
-        val original = GameObject(id = 5678, x = 100, y = 100, plane = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
-        objects.set(original.intId, original.x, original.y, original.plane, original.shape, original.rotation, ObjectDefinition.EMPTY)
+        val original = GameObject(id = 5678, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
+        objects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
         val replacement = objects.replace(original, "test", Tile(101, 100), ObjectShape.CENTRE_PIECE_STRAIGHT, 1, ticks = 5, collision = false)
         repeat(5) {
             assertFalse(objects.contains(original))

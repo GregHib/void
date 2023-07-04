@@ -60,7 +60,7 @@ object WorldMapLinkIdentifier {
         for (region in regions) {
             val def = mapDecoder.getOrNull(region.id) ?: continue
             def.objects.forEach { loc ->
-                val tile = Tile(region.tile.x + loc.x, region.tile.y + loc.y, loc.plane)
+                val tile = Tile(region.tile.x + loc.x, region.tile.y + loc.y, loc.level)
                 val obj = GameObject(loc.id, tile, loc.shape, loc.rotation)
                 list.add(obj)
                 objects.add(obj)

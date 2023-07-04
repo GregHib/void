@@ -1,13 +1,12 @@
 package world.gregs.voidps.engine.map.region
 
 import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.Id
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.area.Rectangle
 
 @JvmInline
-value class Region(override val id: Int) : Id {
+value class Region(val id: Int) {
 
     constructor(x: Int, y: Int) : this(id(x, y))
 
@@ -27,7 +26,7 @@ value class Region(override val id: Int) : Id {
     fun minus(point: Region) = minus(point.x, point.y)
     fun delta(point: Region) = delta(point.x, point.y)
 
-    fun toPlane(plane: Int) = RegionPlane(x, y, plane)
+    fun toLevel(level: Int) = RegionLevel(x, y, level)
 
     fun toRectangle(radius: Int) = Rectangle(minus(radius, radius).tile, (radius * 2 + 1) * 64, (radius * 2 + 1) * 64)
     fun toRectangle(width: Int = 1, height: Int = 1) = Rectangle(tile, width * 64, height * 64)

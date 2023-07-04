@@ -12,10 +12,10 @@ internal class MapTileEncoderTest {
         // Given
         val def = MapDefinition(123)
         var count = 1
-        for (plane in 0 until 2) {
+        for (level in 0 until 2) {
             for (x in 0 until 2) {
                 for (y in 0 until 2) {
-                    def.setTile(x, y, plane, MapTile(0, 0, 0, count++, 0))
+                    def.setTile(x, y, level, MapTile(0, 0, 0, count++, 0))
                 }
             }
         }

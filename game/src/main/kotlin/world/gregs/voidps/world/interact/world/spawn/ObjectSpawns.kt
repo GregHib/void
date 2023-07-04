@@ -33,7 +33,7 @@ fun loadObjectSpawns(
             val type = value["type"] as Int
             val rotation = value["rotation"] as? Int ?: 0
             count++
-            objects.add(GameObject(definitions.get(id).id, tile.x, tile.y, tile.plane, type, rotation))
+            objects.add(GameObject(definitions.get(id).id, tile.x, tile.y, tile.level, type, rotation))
         }
     }
     yaml.load<Any>(path, config)

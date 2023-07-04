@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.map.area
 
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.map.region.RegionPlane
+import world.gregs.voidps.engine.map.region.RegionLevel
 import world.gregs.voidps.engine.map.zone.Zone
 import kotlin.random.Random
 
@@ -11,14 +11,14 @@ data class Cuboid(
     val minY: Int,
     val maxX: Int = minX,
     val maxY: Int = minY,
-    val minPlane: Int = 0,
-    val maxPlane: Int = minPlane
+    val minLevel: Int = 0,
+    val maxLevel: Int = minLevel
 ) : Area, Iterable<Tile> {
 
-    constructor(tile: Tile, width: Int, height: Int, planes: Int) : this(tile.x, tile.y, tile.x + width - 1, tile.y + height - 1, tile.plane, tile.plane + planes - 1)
+    constructor(tile: Tile, width: Int, height: Int, levels: Int) : this(tile.x, tile.y, tile.x + width - 1, tile.y + height - 1, tile.level, tile.level + levels - 1)
 
     override val area: Double
-        get() = (width * height * planes).toDouble()
+        get() = (width * height * levels).toDouble()
 
     val width: Int
         get() = maxX - minX + 1
@@ -26,13 +26,13 @@ data class Cuboid(
     val height: Int
         get() = maxY - minY + 1
 
-    val planes: Int
-        get() = maxPlane - minPlane + 1
+    val levels: Int
+        get() = maxLevel - minLevel + 1
 
     override fun toRegions(): List<Region> {
         val list = mutableListOf<Region>()
-        val max = Tile(maxX, maxY, maxPlane).region
-        val min = Tile(minX, minY, minPlane).region
+        val max = Tile(maxX, maxY, maxLevel).region
+        val min = Tile(minX, minY, minLevel).region
         for (x in min.x..max.x) {
             for (y in min.y..max.y) {
                 list.add(Region(x, y))
@@ -41,52 +41,52 @@ data class Cuboid(
         return list
     }
 
-    override fun toZones(p: Int): List<Zone> {
+    override fun toZones(l: Int): List<Zone> {
         val list = mutableListOf<Zone>()
-        val max = Tile(maxX, maxY, maxPlane).zone
-        val min = Tile(minX, minY, minPlane).zone
-        for (plane in min.plane..max.plane) {
+        val max = Tile(maxX, maxY, maxLevel).zone
+        val min = Tile(minX, minY, minLevel).zone
+        for (level in min.level..max.level) {
             for (x in min.x..max.x) {
                 for (y in min.y..max.y) {
-                    list.add(Zone(x, y, plane))
+                    list.add(Zone(x, y, level))
                 }
             }
         }
         return list
     }
 
-    fun toRegionPlanes(): List<RegionPlane> {
-        val list = mutableListOf<RegionPlane>()
-        val max = Tile(maxX, maxY, maxPlane).regionPlane
-        val min = Tile(minX, minY, minPlane).regionPlane
-        for (plane in min.plane..max.plane) {
+    fun toRegionLevels(): List<RegionLevel> {
+        val list = mutableListOf<RegionLevel>()
+        val max = Tile(maxX, maxY, maxLevel).regionLevel
+        val min = Tile(minX, minY, minLevel).regionLevel
+        for (level in min.level..max.level) {
             for (x in min.x..max.x) {
                 for (y in min.y..max.y) {
-                    list.add(RegionPlane(x, y, plane))
+                    list.add(RegionLevel(x, y, level))
                 }
             }
         }
         return list
     }
 
-    fun toRectangles(): List<Rectangle> = (minPlane..maxPlane).map { Rectangle(minX, minY, maxX, maxY) }
+    fun toRectangles(): List<Rectangle> = (minLevel..maxLevel).map { Rectangle(minX, minY, maxX, maxY) }
 
-    override fun contains(x: Int, y: Int, plane: Int): Boolean {
-        return plane in minPlane..maxPlane && x in minX..maxX && y in minY..maxY
+    override fun contains(x: Int, y: Int, levels: Int): Boolean {
+        return levels in minLevel..maxLevel && x in minX..maxX && y in minY..maxY
     }
 
-    override fun random() = Tile(Companion.random(minX, maxX), Companion.random(minY, maxY), Companion.random(minPlane, maxPlane))
+    override fun random() = Tile(Companion.random(minX, maxX), Companion.random(minY, maxY), Companion.random(minLevel, maxLevel))
 
     companion object {
         fun random(first: Int, second: Int) = if (first == second) first else Random.nextInt(first, second + 1)
     }
 
     override fun toString(): String {
-        return "Cuboid($minX..$maxX, $minY..$maxY, $minPlane..$maxPlane)"
+        return "Cuboid($minX..$maxX, $minY..$maxY, $minLevel..$maxLevel)"
     }
 
     override fun iterator(): Iterator<Tile> {
-        val tile = Tile(minX, minY, minPlane)
+        val tile = Tile(minX, minY, minLevel)
         return object : Iterator<Tile> {
             private val max = area
             private var index = 0
@@ -97,7 +97,7 @@ data class Cuboid(
                 val coords = tile.add(
                     x = index.rem(width * height) / height,
                     y = index.rem(width * height).rem(height),
-                    plane = index / (width * height)
+                    level = index / (width * height)
                 )
                 index++
                 return coords

@@ -21,7 +21,7 @@ class Patrol(
     override fun tick() {
         val (waypoint, delay) = waypoint()
 
-        if (character.tile.plane != waypoint.plane) {
+        if (character.tile.level != waypoint.level) {
             character.mode = EmptyMode
             return
         }

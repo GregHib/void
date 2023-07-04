@@ -34,7 +34,7 @@ internal class CollisionsTest {
     }
 
     private fun print(zone: Zone) {
-        val data = collisions.allocateIfAbsent(zone.tile.x, zone.tile.y, zone.plane)
+        val data = collisions.allocateIfAbsent(zone.tile.x, zone.tile.y, zone.level)
         for (y in 7 downTo 0) {
             for (x in 0 until 8) {
                 print("${data[(zone.tile.x + x) + ((zone.tile.y + y) shl 3)]} ")
@@ -44,11 +44,11 @@ internal class CollisionsTest {
         println()
     }
 
-    private fun set(x: Int, y: Int, plane: Int, value: Int) {
-        collisions[x, y, plane] = value
+    private fun set(x: Int, y: Int, level: Int, value: Int) {
+        collisions[x, y, level] = value
     }
 
-    private fun assertEquals(expected: Int, x: Int, y: Int, plane: Int) {
-        assertEquals(expected, collisions[x, y, plane]) { "x=$x, y=$y, plane=$plane" }
+    private fun assertEquals(expected: Int, x: Int, y: Int, level: Int) {
+        assertEquals(expected, collisions[x, y, level]) { "x=$x, y=$y, level=$level" }
     }
 }

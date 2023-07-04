@@ -50,7 +50,7 @@ on<NPCOption>({ operate && npc.id == "border_guard_al_kharid" && option == "Talk
     dialogue(player, npc)
 }
 
-fun getGuard(player: Player) = get<NPCs>()[player.tile.regionPlane].firstOrNull { it.id == "border_guard_al_kharid" }
+fun getGuard(player: Player) = get<NPCs>()[player.tile.regionLevel].firstOrNull { it.id == "border_guard_al_kharid" }
 
 suspend fun Interaction.dialogue(player: Player, npc: NPC? = getGuard(player)) {
     if (npc == null) {

@@ -57,7 +57,7 @@ class GameObjectHashMap : GameObjectMap {
 
     companion object {
         private const val EXPECTED_OBJECT_COUNT = 74_000
-        private fun index(obj: GameObject): Int = index(obj.x, obj.y, obj.plane, ObjectLayer.layer(obj.shape))
+        private fun index(obj: GameObject): Int = index(obj.x, obj.y, obj.level, ObjectLayer.layer(obj.shape))
         private fun index(x: Int, y: Int, level: Int, layer: Int): Int = index(Zone.tileIndex(x, y, level), Tile.index(x, y, layer))
         private fun index(zone: Int, tile: Int): Int = zone or (tile shl 24)
     }

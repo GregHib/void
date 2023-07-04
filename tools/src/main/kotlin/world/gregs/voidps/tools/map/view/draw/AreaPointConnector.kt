@@ -36,9 +36,9 @@ class AreaPointConnector(private val view: MapView, private val area: AreaSet) {
                 val mapY = view.flipMapY(view.viewToMapY(linkY))
                 val endX = view.viewToMapX(linkEndX)
                 val endY = view.flipMapY(view.viewToMapY(linkEndY))
-                val plane = view.plane
-                val start = area.getPointOrNull(mapX, mapY, plane) ?: area.addArea(mapX, mapY, plane).points.first()
-                val end = area.getPointOrNull(endX, endY, plane)
+                val level = view.level
+                val start = area.getPointOrNull(mapX, mapY, level) ?: area.addArea(mapX, mapY, level).points.first()
+                val end = area.getPointOrNull(endX, endY, level)
                 if (end == null) {
                     area.addPoint(start, endX, endY)
                 } else {

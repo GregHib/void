@@ -13,12 +13,12 @@ internal class TileTest {
         // When
         val x = tile.x
         val y = tile.y
-        val plane = tile.plane
+        val level = tile.level
         // Then
         assertEquals(0, tile.id)
         assertEquals(0, x)
         assertEquals(0, y)
-        assertEquals(0, plane)
+        assertEquals(0, level)
     }
 
     @Test
@@ -28,11 +28,11 @@ internal class TileTest {
         // When
         val x = tile.x
         val y = tile.y
-        val plane = tile.plane
+        val level = tile.level
         // Then
         assertEquals(16374, x)
         assertEquals(16334, y)
-        assertEquals(2, plane)
+        assertEquals(2, level)
     }
 
     @Test
@@ -42,11 +42,11 @@ internal class TileTest {
         // When
         val x = tile.x
         val y = tile.y
-        val plane = tile.plane
+        val level = tile.level
         // Then
         assertEquals(16320, x)
         assertEquals(16320, y)
-        assertEquals(3, plane)
+        assertEquals(3, level)
     }
 
     @Test
@@ -56,11 +56,11 @@ internal class TileTest {
         // When
         val x = tile.x
         val y = tile.y
-        val plane = tile.plane
+        val level = tile.level
         // Then
         assertEquals(0, x)
         assertEquals(1, y)
-        assertEquals(2, plane)
+        assertEquals(2, level)
     }
 
     @Test
@@ -71,14 +71,14 @@ internal class TileTest {
         val result = tile.add(1, 1, 1)
         val x = result.x
         val y = result.y
-        val plane = result.plane
+        val level = result.level
         // Then
         assertEquals(1, x)
         assertEquals(11, y)
-        assertEquals(2, plane)
+        assertEquals(2, level)
         assertEquals(0, tile.x)
         assertEquals(10, tile.y)
-        assertEquals(1, tile.plane)
+        assertEquals(1, tile.level)
     }
 
     @Test

@@ -49,7 +49,7 @@ open class Movement(
             val route = pathFinder.findPath(
                 srcX = character.tile.x,
                 srcZ = character.tile.y,
-                level = character.tile.plane,
+                level = character.tile.level,
                 destX = strategy.tile.x,
                 destZ = strategy.tile.y,
                 srcSize = character.size,
@@ -178,7 +178,7 @@ open class Movement(
     fun canStep(x: Int, y: Int): Boolean {
         val flag = if (character is NPC) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
         return stepValidator.canTravel(
-            level = character.tile.plane,
+            level = character.tile.level,
             x = character.tile.x,
             z = character.tile.y,
             offsetX = x,
@@ -202,7 +202,7 @@ open class Movement(
         return lineValidator.hasLineOfSight(
             srcX = character.tile.x,
             srcZ = character.tile.y,
-            level = character.tile.plane,
+            level = character.tile.level,
             srcSize = character.size,
             destX = strategy.tile.x,
             destZ = strategy.tile.y,

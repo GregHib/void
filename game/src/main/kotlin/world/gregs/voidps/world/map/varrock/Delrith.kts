@@ -117,13 +117,13 @@ fun destroyInstance(player: Player) {
     player.tele(target)
     val instance: Region = player.remove("demon_slayer_instance") ?: return
     Instances.free(instance)
-    val regionPlane = instance.toPlane(0)
-    npcs[regionPlane].forEach {
+    val regionLevel = instance.toLevel(0)
+    npcs[regionLevel].forEach {
         npcs.remove(it)
         npcs.removeIndex(it)
         npcs.releaseIndex(it)
     }
-    for (zone in regionPlane.toCuboid().toZones()) {
+    for (zone in regionLevel.toCuboid().toZones()) {
         objects.clear(zone)
         collisions.clear(zone)
     }

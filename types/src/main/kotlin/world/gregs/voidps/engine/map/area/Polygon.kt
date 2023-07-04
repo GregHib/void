@@ -5,26 +5,26 @@ import world.gregs.voidps.engine.map.Tile
 open class Polygon(
     val xPoints: IntArray,
     val yPoints: IntArray,
-    val plane: Int = 0,
-    maxPlane: Int = plane
+    val level: Int = 0,
+    maxLevel: Int = level
 ) : Area {
 
     init {
         assert(xPoints.size == yPoints.size) { "Both point arrays must have equal size." }
     }
 
-    val bounds = Cuboid(xPoints.minOf { it }, yPoints.minOf { it }, xPoints.maxOf { it }, yPoints.maxOf { it }, plane, maxPlane)
+    val bounds = Cuboid(xPoints.minOf { it }, yPoints.minOf { it }, xPoints.maxOf { it }, yPoints.maxOf { it }, level, maxLevel)
 
     override val area: Double
         get() = area()
 
     override fun toRegions() = bounds.toRegions()
 
-    override fun toZones(plane: Int) = bounds.toZones(plane)
+    override fun toZones(level: Int) = bounds.toZones(level)
 
-    override fun contains(x: Int, y: Int, plane: Int): Boolean {
+    override fun contains(x: Int, y: Int, level: Int): Boolean {
         val pointCount = xPoints.size
-        if (xPoints.size <= 2 || !bounds.contains(x, y, plane)) {
+        if (xPoints.size <= 2 || !bounds.contains(x, y, level)) {
             return false
         }
         var hits = 0

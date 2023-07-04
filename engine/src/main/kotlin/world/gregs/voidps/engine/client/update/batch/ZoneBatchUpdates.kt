@@ -51,9 +51,9 @@ class ZoneBatchUpdates : Runnable {
 
     fun run(player: Player) {
         val previousZone: Zone? = player.getOrNull("previous_zone")
-        val previous = previousZone?.toRectangle(radius = player.viewport!!.localRadius)?.toZones(player.tile.plane)?.toSet()
+        val previous = previousZone?.toRectangle(radius = player.viewport!!.localRadius)?.toZones(player.tile.level)?.toSet()
         player["previous_zone"] = player.tile.zone
-        for (zone in player.tile.zone.toRectangle(radius = player.viewport!!.localRadius).toZones(player.tile.plane)) {
+        for (zone in player.tile.zone.toRectangle(radius = player.viewport!!.localRadius).toZones(player.tile.level)) {
             val entered = previous == null || !previous.contains(zone)
             if (entered) {
                 player.clearZone(zone)
@@ -81,7 +81,7 @@ class ZoneBatchUpdates : Runnable {
     private fun Player.sendBatch(zone: Zone) {
         val encoded = encoded[zone.id] ?: return
         val zoneOffset = getZoneOffset(viewport!!, zone)
-        client?.sendBatch(encoded, zoneOffset.x, zoneOffset.y, zone.plane)
+        client?.sendBatch(encoded, zoneOffset.x, zoneOffset.y, zone.level)
     }
 
     companion object {
@@ -97,7 +97,7 @@ class ZoneBatchUpdates : Runnable {
 
         private fun Player.clearZone(zone: Zone) {
             val zoneOffset = getZoneOffset(viewport!!, zone)
-            client?.clearZone(zoneOffset.x, zoneOffset.y, zone.plane)
+            client?.clearZone(zoneOffset.x, zoneOffset.y, zone.level)
         }
     }
 }

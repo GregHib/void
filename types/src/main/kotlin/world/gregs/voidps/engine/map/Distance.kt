@@ -33,10 +33,10 @@ object Distance {
     }
 
     /**
-     * Check whether [x1], [y1], [plane1] is less than or equal to [radius] from [x2], [y2], [plane2]
+     * Check whether [x1], [y1], [level1] is less than or equal to [radius] from [x2], [y2], [level2]
      */
-    fun within(x1: Int, y1: Int, plane1: Int, x2: Int, y2: Int, plane2: Int, radius: Int): Boolean {
-        return plane1 == plane2 && within(x1, y1, x2, y2, radius)
+    fun within(x1: Int, y1: Int, level1: Int, x2: Int, y2: Int, level2: Int, radius: Int): Boolean {
+        return level1 == level2 && within(x1, y1, x2, y2, radius)
     }
 
     /**
@@ -70,11 +70,11 @@ object Distance {
     /**
      * @return the length of a line between the two points [first] & [second]
      */
-    fun euclidean(first: Tile, second: Tile, plane: Boolean = true): Double {
-        if (!plane) {
+    fun euclidean(first: Tile, second: Tile, level: Boolean = true): Double {
+        if (!level) {
             return euclidean(first.x, first.y, second.x, second.y)
         }
-        return euclidean(first.x, first.y, first.plane, second.x, second.y, second.plane)
+        return euclidean(first.x, first.y, first.level, second.x, second.y, second.level)
     }
 
     /**

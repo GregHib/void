@@ -11,10 +11,10 @@ class MapTileEncoder : DefinitionEncoder<MapDefinition> {
             return
         }
 
-        for (plane in 0 until 4) {
+        for (level in 0 until 4) {
             for (localX in 0 until 64) {
                 for (localY in 0 until 64) {
-                    val tile = definition.getTile(localX, localY, plane)
+                    val tile = definition.getTile(localX, localY, level)
                     if (tile.underlayId != 0) {
                         writeByte(tile.underlayId + 81)
                     }

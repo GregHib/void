@@ -104,9 +104,9 @@ class PlayerUpdateTask(
                 val local = abs(delta.x) <= viewport.radius && abs(delta.y) <= viewport.radius
                 sync.writeBits(1, !local)
                 if (local) {
-                    sync.writeBits(12, (delta.y and 0x1f) or (delta.x and 0x1f shl 5) or (delta.plane and 0x3 shl 10))
+                    sync.writeBits(12, (delta.y and 0x1f) or (delta.x and 0x1f shl 5) or (delta.level and 0x3 shl 10))
                 } else {
-                    sync.writeBits(30, (delta.y and 0x3fff) + (delta.x and 0x3fff shl 14) + (delta.plane and 0x3 shl 28))
+                    sync.writeBits(30, (delta.y and 0x3fff) + (delta.x and 0x3fff shl 14) + (delta.level and 0x3 shl 28))
                 }
             }
             else -> return
@@ -259,15 +259,15 @@ class PlayerUpdateTask(
     }
 
     fun encodeRegion(sync: Writer, viewport: Viewport, player: Player): Boolean {
-        val delta = player.tile.regionPlane.delta(viewport.lastSeen(player).regionPlane)
+        val delta = player.tile.regionLevel.delta(viewport.lastSeen(player).regionLevel)
         val change = calculateRegionUpdate(delta)
         sync.writeBits(1, change != RegionChange.None)
         if (change != RegionChange.None) {
             sync.writeBits(2, change.id)
             when (change) {
-                RegionChange.Height -> sync.writeBits(2, delta.plane)
-                RegionChange.Local -> sync.writeBits(5, (getWalkIndex(delta) and 0x7) or (delta.plane shl 3))
-                RegionChange.Global -> sync.writeBits(18, (delta.y and 0xff) or (delta.x and 0xff shl 8) or (delta.plane shl 16))
+                RegionChange.Height -> sync.writeBits(2, delta.level)
+                RegionChange.Local -> sync.writeBits(5, (getWalkIndex(delta) and 0x7) or (delta.level shl 3))
+                RegionChange.Global -> sync.writeBits(18, (delta.y and 0xff) or (delta.x and 0xff shl 8) or (delta.level shl 16))
                 else -> return false
             }
             return true
@@ -276,8 +276,8 @@ class PlayerUpdateTask(
     }
 
     fun calculateRegionUpdate(delta: Delta): RegionChange = when {
-        delta.x == 0 && delta.y == 0 && delta.plane == 0 -> RegionChange.None
-        delta.x == 0 && delta.y == 0 && delta.plane != 0 -> RegionChange.Height
+        delta.x == 0 && delta.y == 0 && delta.level == 0 -> RegionChange.None
+        delta.x == 0 && delta.y == 0 && delta.level != 0 -> RegionChange.Height
         delta.x == -1 || delta.y == -1 || delta.x == 1 || delta.y == 1 -> RegionChange.Local
         else -> RegionChange.Global
     }

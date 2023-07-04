@@ -29,17 +29,17 @@ class MouseClick(
             val popup = JPopupMenu()
             val mapX = view.viewToMapX(e.x)
             val mapY = view.flipMapY(view.viewToMapY(e.y))
-            val node = nav.getNodeOrNull(mapX, mapY, view.plane)
+            val node = nav.getNodeOrNull(mapX, mapY, view.level)
             val links = if (node != null) nav.getLinks(node) else null
             val areas = area.highlighted
             val point = getPoint(areas, mapX, mapY)
             if (node == null) {
                 popup.add(JMenuItem("Add node")).addActionListener {
-                    graph.repaint(nav.addNode(mapX, mapY, view.plane))
+                    graph.repaint(nav.addNode(mapX, mapY, view.level))
                 }
             }
             popup.add(JMenuItem("Add area")).addActionListener {
-                graph.repaint(areaSet.addArea(mapX, mapY, view.plane))
+                graph.repaint(areaSet.addArea(mapX, mapY, view.level))
             }
             if (node != null && links != null) {
                 popup.add(JMenuItem("Edit node")).addActionListener {
@@ -65,7 +65,7 @@ class MouseClick(
                 popup.add(JMenuItem("Go to link $index target")).addActionListener {
                     val dx = link.end.x - link.start.x
                     val dy = link.end.y - link.start.y
-                    val dz = link.end.plane - link.start.plane
+                    val dz = link.end.level - link.start.level
                     view.offset(-dx, dy, dz)
                 }
 //                popup.add(JMenuItem("Remove link $index")).addActionListener {
@@ -189,7 +189,7 @@ class MouseClick(
     private fun populate(node: Tile, settings: NodeSettings): Tile {
         val newX = settings.coords.xCoord.text.toIntOrNull() ?: node.x
         val newY = settings.coords.yCoord.text.toIntOrNull() ?: node.y
-        val newZ = settings.coords.zCoord.text.toIntOrNull() ?: node.plane
+        val newZ = settings.coords.zCoord.text.toIntOrNull() ?: node.level
         return nav.updateNode(node, newX, newY, newZ)
     }
 
@@ -207,10 +207,10 @@ class MouseClick(
     private fun populate(settings: LinkSettings, link: Link) {
         settings.start.xCoord.text = link.start.x.toString()
         settings.start.yCoord.text = link.start.y.toString()
-        settings.start.zCoord.text = link.start.plane.toString()
+        settings.start.zCoord.text = link.start.level.toString()
         settings.end.xCoord.text = link.end.x.toString()
         settings.end.yCoord.text = link.end.y.toString()
-        settings.end.zCoord.text = link.end.plane.toString()
+        settings.end.zCoord.text = link.end.level.toString()
         val actions = link.actions
         if (actions != null) {
             for (action in actions) {

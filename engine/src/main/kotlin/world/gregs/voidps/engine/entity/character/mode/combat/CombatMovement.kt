@@ -36,7 +36,7 @@ class CombatMovement(
         if (character is Player && character.dialogue != null) {
             return
         }
-        if (target.tile.plane != character.tile.plane) {
+        if (target.tile.level != character.tile.level) {
             character.mode = EmptyMode
             return
         }

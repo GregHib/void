@@ -233,7 +233,7 @@ on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player:
     }
     player.flagAppearance()
     player.closeMenu()
-    val mage = npcs[player.tile.regionPlane].first { it.id.startsWith("makeover_mage") }
+    val mage = npcs[player.tile.regionLevel].first { it.id.startsWith("makeover_mage") }
     player.talkWith(mage)
     if (!changed) {
         npc<Unsure>("""

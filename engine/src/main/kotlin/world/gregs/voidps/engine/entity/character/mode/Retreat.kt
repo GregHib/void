@@ -59,7 +59,7 @@ class Retreat(
     }
 
     private fun getRetreatDirection(npc: NPC, target: Entity): Direction? {
-        if (npc.tile.plane != target.tile.plane || npc.tile.distanceTo(target) > maxRetreatRadius) {
+        if (npc.tile.level != target.tile.level || npc.tile.distanceTo(target) > maxRetreatRadius) {
             return null
         }
         val delta = npc.tile.delta(target.tile)

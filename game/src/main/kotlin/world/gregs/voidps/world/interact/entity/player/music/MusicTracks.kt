@@ -38,10 +38,10 @@ class MusicTracks {
                         names[key] = index
                         for (element in value["areas"] as? List<Map<String, Any>> ?: return) {
                             val area = if (element.containsKey("region")) {
-                                val plane = element["plane"] as? Int ?: -1
+                                val level = element["level"] as? Int ?: -1
                                 val region = Region(element["region"] as Int)
-                                if (plane != -1) {
-                                    region.toPlane(plane).toCuboid()
+                                if (level != -1) {
+                                    region.toLevel(level).toCuboid()
                                 } else {
                                     region.toCuboid()
                                 }

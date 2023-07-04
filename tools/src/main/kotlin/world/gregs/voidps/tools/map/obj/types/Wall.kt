@@ -23,12 +23,12 @@ val isOppositeTile: ObjectIdentificationContext.(Tile) -> Double = { target ->
     }
 }
 
-val isPopulatedPlane: ObjectIdentificationContext.(Tile) -> Double = { target ->
+val isPopulatedLevel: ObjectIdentificationContext.(Tile) -> Double = { target ->
     val collisions: Collisions = get()
-    if (obj.tile.plane == target.plane) {
+    if (obj.tile.level == target.level) {
         (availableTiles.contains(target) && obj.reachableFrom(target)).toDouble()
     } else {
-        target.toCuboid(4).any { collisions[it.x, it.y, it.plane] != 0 }.toDouble()
+        target.toCuboid(4).any { collisions[it.x, it.y, it.level] != 0 }.toDouble()
     }
 }
 
@@ -61,7 +61,7 @@ private fun check(obj: GameObject, tiles: Set<Tile>, dir: Direction): Boolean {
 
 private fun GameObject.reachableFrom(tile: Tile): Boolean {
     val collisions: Collisions = get()
-    return false//interactTarget.reached(tile, Size.ONE) && !collisions.check(tile.x, tile.y, tile.plane, 0x100)// BLOCKED
+    return false//interactTarget.reached(tile, Size.ONE) && !collisions.check(tile.x, tile.y, tile.level, 0x100)// BLOCKED
 }
 
 fun Boolean.toDouble() = if (this) 1.0 else 0.0

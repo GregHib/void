@@ -24,7 +24,7 @@ internal class RectangleTest {
         val random = area.random()
         assertEquals(10, random.x)
         assertEquals(10, random.y)
-        assertEquals(0, random.plane)
+        assertEquals(0, random.level)
     }
 
     @Test

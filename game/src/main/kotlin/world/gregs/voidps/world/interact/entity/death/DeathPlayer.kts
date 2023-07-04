@@ -45,8 +45,8 @@ val Character.damageDealers: MutableMap<Character, Int>
 
 val x = getIntProperty("homeX", 0)
 val y = getIntProperty("homeY", 0)
-val plane = getIntProperty("homePlane", 0)
-val respawnTile = Tile(x, y, plane)
+val level = getIntProperty("homeLevel", 0)
+val respawnTile = Tile(x, y, level)
 
 on<Death> { player: Player ->
     player.dead = true

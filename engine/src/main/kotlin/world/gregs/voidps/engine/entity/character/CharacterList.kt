@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.character
 
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.region.RegionPlane
+import world.gregs.voidps.engine.map.region.RegionLevel
 import world.gregs.voidps.engine.map.zone.Zone
 
 abstract class CharacterList<C : Character>(
@@ -18,12 +18,12 @@ abstract class CharacterList<C : Character>(
             return false
         }
         index(element)
-        region.add(element.tile.regionPlane, element)
+        region.add(element.tile.regionLevel, element)
         return delegate.add(element)
     }
 
     override fun remove(element: C): Boolean {
-        region.remove(element.tile.regionPlane, element)
+        region.remove(element.tile.regionLevel, element)
         return delegate.remove(element)
     }
 
@@ -36,14 +36,14 @@ abstract class CharacterList<C : Character>(
     }
 
     operator fun get(tile: Tile): List<C> {
-        return get(tile.regionPlane).filter { it.tile == tile }
+        return get(tile.regionLevel).filter { it.tile == tile }
     }
 
     operator fun get(zone: Zone): List<C> {
-        return get(zone.regionPlane).filter { it.tile.zone == zone }
+        return get(zone.regionLevel).filter { it.tile.zone == zone }
     }
 
-    operator fun get(region: RegionPlane): List<C> {
+    operator fun get(region: RegionLevel): List<C> {
         val list = mutableListOf<C>()
         for (index in this.region[region] ?: return list) {
             list.add(indexed(index) ?: continue)
@@ -51,14 +51,14 @@ abstract class CharacterList<C : Character>(
         return list
     }
 
-    fun getDirect(region: RegionPlane): List<Int>? = this.region[region]
+    fun getDirect(region: RegionLevel): List<Int>? = this.region[region]
 
     fun indexed(index: Int): C? = indexArray[index]
 
     fun update(from: Tile, to: Tile, element: C) {
-        if (from.regionPlane != to.regionPlane) {
-            region.remove(from.regionPlane, element)
-            region.add(to.regionPlane, element)
+        if (from.regionLevel != to.regionLevel) {
+            region.remove(from.regionLevel, element)
+            region.add(to.regionLevel, element)
         }
     }
 

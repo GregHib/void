@@ -17,7 +17,7 @@ class InterfaceOnObjectOptionHandler(
 
     override fun validate(player: Player, instruction: InteractInterfaceObject) {
         val (objectId, x, y, interfaceId, componentId, itemId, itemSlot) = instruction
-        val tile = Tile(x, y, player.tile.plane)
+        val tile = Tile(x, y, player.tile.level)
         val obj = objects[tile, objectId]
         if (obj == null) {
             player.noInterest()

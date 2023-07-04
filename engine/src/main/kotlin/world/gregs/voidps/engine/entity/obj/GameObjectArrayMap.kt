@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.map.zone.Zone
 class GameObjectArrayMap : GameObjectMap {
     private val data: Array<IntArray?> = arrayOfNulls(TOTAL_ZONE_COUNT)
 
-    override fun get(obj: GameObject) = get(obj.x, obj.y, obj.plane, ObjectLayer.layer(obj.shape))
+    override fun get(obj: GameObject) = get(obj.x, obj.y, obj.level, ObjectLayer.layer(obj.shape))
 
     override operator fun get(x: Int, y: Int, level: Int, layer: Int): Int {
         val zoneIndex = Zone.tileIndex(x, y, level)
@@ -32,7 +32,7 @@ class GameObjectArrayMap : GameObjectMap {
     override fun add(obj: GameObject, mask: Int) {
         val x = obj.x
         val y = obj.y
-        val level = obj.plane
+        val level = obj.level
         val layer = ObjectLayer.layer(obj.shape)
         val zoneIndex = Zone.tileIndex(x, y, level)
         val tileIndex = Tile.index(x, y, layer)
@@ -43,7 +43,7 @@ class GameObjectArrayMap : GameObjectMap {
     override fun remove(obj: GameObject, mask: Int) {
         val x = obj.x
         val y = obj.y
-        val level = obj.plane
+        val level = obj.level
         val layer = ObjectLayer.layer(obj.shape)
         val currentFlags = this[x, y, level, layer]
         this[x, y, level, layer] = currentFlags and mask.inv()

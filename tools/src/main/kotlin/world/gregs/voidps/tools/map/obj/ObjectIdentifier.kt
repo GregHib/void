@@ -14,14 +14,14 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
     val objs = get<GameObjects>()
 
     /**
-     * Ignore re-used objects, e.g. chains on planes > 0 in stronghold of security
+     * Ignore re-used objects, e.g. chains on levels > 0 in stronghold of security
      */
     private fun isReused(obj: GameObject): Boolean {
-        if (obj.tile.plane > 0) {
-            if (objs[obj.tile.addPlane(1), obj.id] != null) {
+        if (obj.tile.level > 0) {
+            if (objs[obj.tile.addLevel(1), obj.id] != null) {
                 return false
             }
-            if (objs[obj.tile.minus(plane = 1), obj.id] != null) {
+            if (objs[obj.tile.minus(level = 1), obj.id] != null) {
                 return false
             }
         }
@@ -83,7 +83,7 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
                 listOf(
                     wallOptions,
                     isOppositeTile,
-                    isPopulatedPlane
+                    isPopulatedLevel
                 )
             )
         )

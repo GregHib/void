@@ -11,11 +11,11 @@ import world.gregs.voidps.tools.map.render.model.TileColours
 import world.gregs.voidps.tools.map.render.raster.Raster
 import kotlin.math.sqrt
 
-class TilePlane(
+class TileLevel(
     private val textureDefinitions: Array<TextureDefinition>,
     private val width: Int,
     private val height: Int,
-    val plane: Int,
+    val level: Int,
     private val tiles: Array<MapDefinition>
 ) {
 
@@ -77,7 +77,7 @@ class TilePlane(
         val regionX = x / 64
         val regionY = y / 64
         val regionId = Region.id(regionX, regionY)
-        return tiles[regionId].getTile(x.rem(64), y.rem(64), plane)
+        return tiles[regionId].getTile(x.rem(64), y.rem(64), level)
     }
 
     fun averageHeight(worldY: Int, worldX: Int): Int {
@@ -136,7 +136,7 @@ class TilePlane(
         return lighting + (colour and 0xff80)
     }
 
-    fun drawTiles(startX: Int, startY: Int, endX: Int, endY: Int, currentPlane: Int, useUnderlay: MapTileSettings, raster: Raster) {
+    fun drawTiles(startX: Int, startY: Int, endX: Int, endY: Int, currentLevel: Int, useUnderlay: MapTileSettings, raster: Raster) {
         val actualWidth = (endY - startY) * 1024 / 256// width * 4
         var y = 0
         var x = actualWidth
@@ -144,7 +144,7 @@ class TilePlane(
         var yOffsets: IntArray? = null
         for (localX in startX until endX) {
             for (localY in startY until endY) {
-                if (useUnderlay.useUnderlay(localX - startX, localY - startY, currentPlane, plane)) {
+                if (useUnderlay.useUnderlay(localX - startX, localY - startY, currentLevel, level)) {
                     if (tileColours?.get(localX)?.get(localY) != null) {
                         val colours = tileColours!![localX][localY]!!
                         if (colours.textureId.toInt() != -1 && colours.type.toInt() and 0x2 == 0 && colours.initialColourIndex == -1) {

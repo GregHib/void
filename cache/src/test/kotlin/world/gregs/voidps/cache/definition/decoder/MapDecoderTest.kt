@@ -45,7 +45,7 @@ internal class MapDecoderTest {
     }
 
     @Test
-    fun `Read object ignores invalid planes`() {
+    fun `Read object ignores invalid levels`() {
         val tileData = ByteArray((4 * 64 * 64) + 4)
         val objectData = byteArrayOf(-80, 58, -64, 66, 17, 0, 0)
         every { cache.getFile(5, 123, 0, null) } returns tileData
@@ -97,11 +97,11 @@ internal class MapDecoderTest {
         assertObject(12345, 63, 63, 3, 4, 1, def.objects.last())
     }
 
-    private fun assertObject(id: Int, x: Int, y: Int, plane: Int, shape: Int, rotation: Int, obj: MapObject) {
+    private fun assertObject(id: Int, x: Int, y: Int, level: Int, shape: Int, rotation: Int, obj: MapObject) {
         assertEquals(id, obj.id)
         assertEquals(x, obj.x)
         assertEquals(y, obj.y)
-        assertEquals(plane, obj.plane)
+        assertEquals(level, obj.level)
         assertEquals(shape, obj.shape)
         assertEquals(rotation, obj.rotation)
     }

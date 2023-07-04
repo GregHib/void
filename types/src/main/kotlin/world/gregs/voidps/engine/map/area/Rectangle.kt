@@ -33,13 +33,13 @@ data class Rectangle(
         return list
     }
 
-    override fun toZones(plane: Int): List<Zone> {
+    override fun toZones(level: Int): List<Zone> {
         val list = mutableListOf<Zone>()
         val max = Tile(maxX, maxY).zone
         val min = Tile(minX, minY).zone
         for (x in min.x..max.x) {
             for (y in min.y..max.y) {
-                list.add(Zone(x, y, plane))
+                list.add(Zone(x, y, level))
             }
         }
         return list
@@ -55,7 +55,7 @@ data class Rectangle(
                 (maxY <= minY || maxY - 1 > other.minY)
     }
 
-    override fun contains(x: Int, y: Int, plane: Int): Boolean {
+    override fun contains(x: Int, y: Int, level: Int): Boolean {
         return x in minX..maxX && y in minY..maxY
     }
 

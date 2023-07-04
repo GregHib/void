@@ -94,11 +94,11 @@ object MusicInfoBoxDumper {
                     if (coords.isEmpty()) {
                         missing.add(name)
                     } else {
-                        val plane = m.firstOrNull { it.first == "plane" }?.second?.toInt() ?: 0
+                        val level = m.firstOrNull { it.first == "level" }?.second?.toInt() ?: 0
                         areas.add(mapOf(
                             "x" to "[ ${coords.map { it.second.split(",")[0].toInt() }.joinToString(", ")} ]",
                             "y" to "[ ${coords.map { it.second.split(",")[1].toInt() }.joinToString(", ")} ]",
-                            "plane" to plane
+                            "level" to level
                         ))
                     }
                 }
@@ -141,7 +141,7 @@ object MusicInfoBoxDumper {
                         mapOf(
                             "x" to "[ ${coordinates.map { it.x }.joinToString(", ")} ]",
                             "y" to "[ ${coordinates.map { it.y }.joinToString(", ")} ]",
-                            "plane" to coordinates.first().plane
+                            "level" to coordinates.first().level
                         )
                     )
                 )

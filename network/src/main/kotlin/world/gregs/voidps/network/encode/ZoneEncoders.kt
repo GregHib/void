@@ -9,14 +9,14 @@ import world.gregs.voidps.network.writeByteInverse
 /**
  * @param xOffset The zone x coordinate relative to viewport
  * @param yOffset The zone y coordinate relative to viewport
- * @param plane The zones plane
+ * @param level The zones level
  */
 fun Client.clearZone(
     xOffset: Int,
     yOffset: Int,
-    plane: Int
+    level: Int
 ) = send(CLEAR_ZONE) {
-    writeByteAdd(plane)
+    writeByteAdd(level)
     writeByteInverse(yOffset)
     writeByteInverse(xOffset)
 }
@@ -24,14 +24,14 @@ fun Client.clearZone(
 /**
  * @param xOffset The zone x coordinate relative to viewport
  * @param yOffset The zone y coordinate relative to viewport
- * @param plane The zones plane
+ * @param level The zones level
  */
 fun Client.updateZone(
     xOffset: Int,
     yOffset: Int,
-    plane: Int
+    level: Int
 ) = send(Protocol.UPDATE_ZONE) {
     writeByteInverse(xOffset)
-    writeByteAdd(plane)
+    writeByteAdd(level)
     writeByteAdd(yOffset)
 }

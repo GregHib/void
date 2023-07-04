@@ -49,7 +49,7 @@ class WorldMap(private val view: MapView) {
                 val mapY = view.regionToMapY(regionY) + 1
                 val viewX = view.regionToViewX(regionX)
                 val viewY = view.imageToViewY(view.mapToImageY(mapY))
-                val region = regions.getRegion(regionX, flipRegionY(regionY), view.plane)
+                val region = regions.getRegion(regionX, flipRegionY(regionY), view.level)
                 g.drawImage(region, viewX, viewY, view.regionToImageX(1), view.regionToImageY(1), null)
 
                 // Zones

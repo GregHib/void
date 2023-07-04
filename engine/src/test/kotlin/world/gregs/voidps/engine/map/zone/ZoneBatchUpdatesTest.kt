@@ -63,7 +63,7 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
         batches.add(zone, update)
         player.tile = Tile(20, 20)
         val objects = GameObjects(GameObjectCollision(Collisions()), ZoneBatchUpdates(), mockk(relaxed = true), storeUnused = true)
-        objects.set(id = 1234, x = 21, y = 20, plane = 0, shape = ObjectShape.WALL_DECOR_STRAIGHT_NO_OFFSET, rotation = 0, definition = ObjectDefinition.EMPTY)
+        objects.set(id = 1234, x = 21, y = 20, level = 0, shape = ObjectShape.WALL_DECOR_STRAIGHT_NO_OFFSET, rotation = 0, definition = ObjectDefinition.EMPTY)
         batches.register(objects)
         val added = GameObject(4321, Tile(20, 21), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
         objects.add(added, collision = false) // Avoid koin

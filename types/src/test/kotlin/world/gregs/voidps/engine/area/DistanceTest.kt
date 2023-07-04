@@ -48,7 +48,7 @@ internal class DistanceTest {
     }
 
     @Test
-    fun `Distance on two planes is invalid`() {
+    fun `Distance on two levels is invalid`() {
         val tile = Tile(0, 0, 0)
         val other = Tile(0, 0, 1)
         // Then

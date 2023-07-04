@@ -57,7 +57,7 @@ internal class MapGraphTest {
     }
 
     @Test
-    fun `Other planes collision ignored`() {
+    fun `Other levels collision ignored`() {
         every { strategy.blocked(collisions, Tile(0, 0, 1), 1, any()) } returns true
         val tile = Tile(0, 0)
         val tiles = graph.getFloodedTiles(strategy, tile, tile.toCuboid(width = 1, height = 1))

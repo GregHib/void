@@ -3,72 +3,72 @@ package world.gregs.voidps.engine.region
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.region.RegionPlane
+import world.gregs.voidps.engine.map.region.RegionLevel
 
-internal class RegionPlaneTest {
+internal class RegionLevelTest {
 
     @Test
     fun `Zero values`() {
         // Given
-        val region = RegionPlane(0, 0, 0)
+        val region = RegionLevel(0, 0, 0)
         // When
         val x = region.x
         val y = region.y
-        val plane = region.plane
+        val level = region.level
         // Then
         assertEquals(0, region.id)
         assertEquals(0, x)
         assertEquals(0, y)
-        assertEquals(0, plane)
+        assertEquals(0, level)
     }
 
     @Test
     fun `Negative values safe`() {
         // Given
-        val region = RegionPlane(-10, -50, -2)
+        val region = RegionLevel(-10, -50, -2)
         // When
         val x = region.x
         val y = region.y
-        val plane = region.plane
+        val level = region.level
         // Then
         assertEquals(246, x)
         assertEquals(206, y)
-        assertEquals(2, plane)
+        assertEquals(2, level)
     }
 
     @Test
     fun `Maximum values`() {
         // Given
-        val region = RegionPlane(255, 255, 3)
+        val region = RegionLevel(255, 255, 3)
         // When
         val x = region.x
         val y = region.y
-        val plane = region.plane
+        val level = region.level
         // Then
         assertEquals(262143, region.id)
         assertEquals(255, x)
         assertEquals(255, y)
-        assertEquals(3, plane)
+        assertEquals(3, level)
     }
 
     @Test
     fun `Overflow values`() {
         // Given
-        val region = RegionPlane(257, 258, 5)
+        val region = RegionLevel(257, 258, 5)
         // When
         val x = region.x
         val y = region.y
-        val plane = region.plane
+        val level = region.level
         // Then
         assertEquals(1, x)
         assertEquals(2, y)
-        assertEquals(1, plane)
+        assertEquals(1, level)
     }
 
     @Test
     fun `Region id smoke test`() {
         // Given
-        val region = RegionPlane(48, 54, 1)
+        val region = RegionLevel(48, 54, 1)
         // When
         val id = region.id
         // Then
@@ -78,21 +78,21 @@ internal class RegionPlaneTest {
     @Test
     fun `Tile test`() {
         // Given
-        val region = RegionPlane(48, 54, 1)
+        val region = RegionLevel(48, 54, 1)
         // When
         val tile = region.tile
         // Then
         assertEquals(3072, tile.x)
         assertEquals(3456, tile.y)
-        assertEquals(1, tile.plane)
+        assertEquals(1, tile.level)
     }
 
     @Test
     fun `Region test`() {
         // Given
-        val regionPlane = RegionPlane(48, 54, 1)
+        val regionLevel = RegionLevel(48, 54, 1)
         // When
-        val region = regionPlane.region
+        val region = regionLevel.region
         // Then
         assertEquals(48, region.x)
         assertEquals(54, region.y)
@@ -101,18 +101,18 @@ internal class RegionPlaneTest {
     @Test
     fun `Zone test`() {
         // Given
-        val region = RegionPlane(48, 54, 1)
+        val region = RegionLevel(48, 54, 1)
         // When
         val zone = region.zone
         // Then
         assertEquals(384, zone.x)
         assertEquals(432, zone.y)
-        assertEquals(1, zone.plane)
+        assertEquals(1, zone.level)
     }
 
     @Test
     fun `Cuboid test`() {
-        val cuboid = RegionPlane(2, 2, 1).toCuboid(width = 1, height = 1, planes = 1)
+        val cuboid = RegionLevel(2, 2, 1).toCuboid(width = 1, height = 1, levels = 1)
         val m = 160
         assertFalse(cuboid.contains(Tile(134, m, 0)))
         assertTrue(cuboid.contains(Tile(134, m, 1)))
@@ -129,23 +129,23 @@ internal class RegionPlaneTest {
 
     @Test
     fun `Cuboid area test`() {
-        val cuboid = RegionPlane(1, 1, 1).toCuboid(width = 2, height = 3, planes = 2)
+        val cuboid = RegionLevel(1, 1, 1).toCuboid(width = 2, height = 3, levels = 2)
         assertEquals(64, cuboid.minX)
         assertEquals(64, cuboid.minY)
-        assertEquals(1, cuboid.minPlane)
+        assertEquals(1, cuboid.minLevel)
         assertEquals(191, cuboid.maxX)
         assertEquals(255, cuboid.maxY)
-        assertEquals(2, cuboid.maxPlane)
+        assertEquals(2, cuboid.maxLevel)
     }
 
     @Test
     fun `Cuboid radius test`() {
-        val cuboid = RegionPlane(2, 3, 1).toCuboid(radius = 2, planes = 2)
+        val cuboid = RegionLevel(2, 3, 1).toCuboid(radius = 2, levels = 2)
         assertEquals(0, cuboid.minX)
         assertEquals(64, cuboid.minY)
-        assertEquals(1, cuboid.minPlane)
+        assertEquals(1, cuboid.minLevel)
         assertEquals(319, cuboid.maxX)
         assertEquals(383, cuboid.maxY)
-        assertEquals(2, cuboid.maxPlane)
+        assertEquals(2, cuboid.maxLevel)
     }
 }

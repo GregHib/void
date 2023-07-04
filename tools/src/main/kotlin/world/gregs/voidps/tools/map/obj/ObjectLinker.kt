@@ -45,21 +45,21 @@ class ObjectLinker(private val collisions: Collisions) {
      * Returns a walkable tile within radius of 1
      */
     fun getValidTile(tile: Tile): Tile? {
-        if (!collisions.check(tile.x, tile.y, tile.plane, 0x100)) { // BLOCKED
+        if (!collisions.check(tile.x, tile.y, tile.level, 0x100)) { // BLOCKED
             return tile
         }
         Direction.all.forEach {
             val tile = tile.add(it.delta)
-            if (!collisions.check(tile.x, tile.y, tile.plane, 0x100)) { // BLOCKED
+            if (!collisions.check(tile.x, tile.y, tile.level, 0x100)) { // BLOCKED
                 return tile
             }
         }
         return null
     }
 
-    fun getAvailableTiles(obj: GameObject, plane: Int = obj.tile.plane, list: MutableList<Tile> = mutableListOf()): List<Tile> {
+    fun getAvailableTiles(obj: GameObject, level: Int = obj.tile.level, list: MutableList<Tile> = mutableListOf()): List<Tile> {
         for (dir in Direction.values) {
-            val tile = getSizedTile(obj, dir).copy(plane = plane)
+            val tile = getSizedTile(obj, dir).copy(level = level)
             when (dir) {
                 Direction.WEST, Direction.EAST -> {
                     for (y in 0 until obj.height) {
@@ -85,8 +85,8 @@ class ObjectLinker(private val collisions: Collisions) {
 
     fun getAllTiles(obj: GameObject): List<Tile> {
         val list = mutableListOf<Tile>()
-        for (plane in 0 until 4) {
-            getAvailableTiles(obj, plane, list)
+        for (level in 0 until 4) {
+            getAvailableTiles(obj, level, list)
         }
         return list
     }
@@ -119,7 +119,7 @@ class ObjectLinker(private val collisions: Collisions) {
     }
 
     private fun GameObject.reachableFrom(tile: Tile): Boolean {
-        return false//interactTarget.reached(tile, Size.ONE) && !collisions.check(tile.x, tile.y, tile.plane, 0x100) // BLOCKED
+        return false//interactTarget.reached(tile, Size.ONE) && !collisions.check(tile.x, tile.y, tile.level, 0x100) // BLOCKED
     }
 
     private fun getSizedTile(obj: GameObject, dir: Direction): Tile {

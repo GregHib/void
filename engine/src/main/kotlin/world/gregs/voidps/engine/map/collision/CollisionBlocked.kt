@@ -17,7 +17,7 @@ fun Character.blocked(tile: Tile, direction: Direction): Boolean {
     val size = if (this is NPC) def.size else if (this is Player) appearance.size else 1
     return !get<StepValidator>().canTravel(x = tile.x,
         z = tile.y,
-        level = tile.plane,
+        level = tile.level,
         size = size,
         offsetX = direction.delta.x,
         offsetZ = direction.delta.y,

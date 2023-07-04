@@ -54,7 +54,7 @@ on<RegionRetry>({ it.networked }) { player: Player ->
  */
 on<Registered> { player: Player ->
     player.viewport?.seen(player)
-    playerRegions[player.index - 1] = player.tile.regionPlane.id
+    playerRegions[player.index - 1] = player.tile.regionLevel.id
 }
 
 on<Unregistered> { player: Player ->
@@ -64,8 +64,8 @@ on<Unregistered> { player: Player ->
 /*
     Region updating
  */
-on<Moved>({ from.regionPlane != to.regionPlane }) { player: Player ->
-    playerRegions[player.index - 1] = to.regionPlane.id
+on<Moved>({ from.regionLevel != to.regionLevel }) { player: Player ->
+    playerRegions[player.index - 1] = to.regionLevel.id
 }
 
 on<Moved>({ it.networked && needsRegionChange(it) }, Priority.HIGH) { player: Player ->
@@ -148,7 +148,7 @@ fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
     val view = player.tile.zone.minus(viewport.zoneRadius, viewport.zoneRadius)
     val zoneSize = viewport.zoneArea
     var append = 0
-    for (origin in view.toCuboid(zoneSize, zoneSize).copy(minPlane = 0, maxPlane = 3).toZones()) {
+    for (origin in view.toCuboid(zoneSize, zoneSize).copy(minLevel = 0, maxLevel = 3).toZones()) {
         val target = dynamicZones.getDynamicZone(origin)
         if (target == null) {
             zones.add(null)

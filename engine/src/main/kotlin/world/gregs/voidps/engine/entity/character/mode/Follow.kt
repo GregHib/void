@@ -25,7 +25,7 @@ class Follow(
         if (!character.watching(target)) {
             character.watch(target)
         }
-        if (target.tile.plane != character.tile.plane) {
+        if (target.tile.level != character.tile.level) {
             if (character is NPC) {
                 character.tele(strategy.tile, clearMode = false)
             } else {

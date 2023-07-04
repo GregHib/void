@@ -28,7 +28,7 @@ internal class PolygonTest {
     }
 
     @Test
-    fun `Plane of polygon`() {
+    fun `Level of polygon`() {
         val area = Polygon(intArrayOf(1, 6, 6, 1), intArrayOf(1, 1, 6, 6), 1)
         assertFalse(area.contains(Tile(5, 5, 2)))
         assertTrue(area.contains(Tile(5, 5, 1)))
@@ -36,7 +36,7 @@ internal class PolygonTest {
     }
 
     @Test
-    fun `Planes of polygon`() {
+    fun `Levels of polygon`() {
         val area = Polygon(intArrayOf(1, 6, 6, 1), intArrayOf(1, 1, 6, 6), 0, 4)
         assertTrue(area.contains(Tile(5, 5, 3)))
         assertTrue(area.contains(Tile(5, 5, 0)))

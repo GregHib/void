@@ -71,10 +71,10 @@ val players: Players by inject()
 on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
     if (content.contains(",")) {
         val params = content.split(",")
-        val plane = params[0].toInt()
+        val level = params[0].toInt()
         val x = params[1].toInt() shl 6 or params[3].toInt()
         val y = params[2].toInt() shl 6 or params[4].toInt()
-        player.tele(x, y, plane)
+        player.tele(x, y, level)
     } else {
         val parts = content.split(" ")
         val int = parts[0].toIntOrNull()
@@ -116,7 +116,7 @@ on<Command>({ prefix == "npc" }) { player: Player ->
         - name: $content
           x: ${player.tile.x}
           y: ${player.tile.y}
-          plane: ${player.tile.plane}
+          level: ${player.tile.level}
     """.trimIndent())
     val npc = npcs.add(definition.stringId, player.tile, Direction.NORTH)
     npc?.start("movement_delay", -1)

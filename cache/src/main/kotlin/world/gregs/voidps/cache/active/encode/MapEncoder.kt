@@ -37,29 +37,29 @@ class MapEncoder(
         val zones = IntOpenHashSet(85_000)
         val full = IntOpenHashSet(18_000)
         val all = IntOpenHashSet()
-        val planes = IntOpenHashSet()
+        val levels = IntOpenHashSet()
         var regions = 0
         for (definition in definitions) {
             val region = Region(definition.id)
             val regionZoneX = region.tile.zone.x
             val regionZoneY = region.tile.zone.y
             empty = true
-            val emptyPlane = BooleanArray(4) { true }
-            for (plane in 0 until 4) {
+            val emptyLevels = BooleanArray(4) { true }
+            for (level in 0 until 4) {
                 for (localX in 0 until 8) {
                     for (localY in 0 until 8) {
-                        all.add(Zone.id(regionZoneX + localX, regionZoneY + localY, plane))
+                        all.add(Zone.id(regionZoneX + localX, regionZoneY + localY, level))
                     }
                 }
             }
-            for (plane in 0 until 4) {
+            for (level in 0 until 4) {
                 for (localX in 0 until 64) {
                     for (localY in 0 until 64) {
-                        val blocked = definition.getTile(localX, localY, plane).isTile(BLOCKED_TILE)
+                        val blocked = definition.getTile(localX, localY, level).isTile(BLOCKED_TILE)
                         if (!blocked) {
                             continue
                         }
-                        var height = plane
+                        var height = level
                         val bridge = definition.getTile(localX, localY, 1).isTile(BRIDGE_TILE)
                         if (bridge) {
                             height--
@@ -69,7 +69,7 @@ class MapEncoder(
                         }
                         tileCount++
                         empty = false
-                        emptyPlane[height] = false
+                        emptyLevels[height] = false
                         val zone = Zone.id(regionZoneX + (localX shr 3), regionZoneY + (localY shr 3), height)
                         val offset = (localX and 0x7) or ((localY and 0x7) shl 3)
                         tiles[zone] = tiles[zone] or (1L shl offset)
@@ -83,14 +83,14 @@ class MapEncoder(
                     }
                 }
             }
-            for (plane in emptyPlane.indices) {
-                if (!emptyPlane[plane]) {
+            for (level in emptyLevels.indices) {
+                if (!emptyLevels[level]) {
                     continue
                 }
-                planes.add(region.toPlane(plane).id)
+                levels.add(region.toLevel(level).id)
                 for (x in 0 until 8) {
                     for (y in 0 until 8) {
-                        all.remove(Zone.id(regionZoneX + x, regionZoneY + y, plane))
+                        all.remove(Zone.id(regionZoneX + x, regionZoneY + y, level))
                     }
                 }
             }
@@ -102,24 +102,24 @@ class MapEncoder(
                     logger.info { "Skipping $obj" }
                     continue
                 }
-                objects.getOrPut(tile.zone.id) { IntArrayList() }.add(ZoneObject.pack(obj.id, tile.x and 0x7, tile.y and 0x7, obj.plane, obj.shape, obj.rotation))
+                objects.getOrPut(tile.zone.id) { IntArrayList() }.add(ZoneObject.pack(obj.id, tile.x and 0x7, tile.y and 0x7, obj.level, obj.shape, obj.rotation))
             }
             if (!empty) {
                 regions++
             }
         }
         writer.writeInt(regions)
-        writeEmptyTiles(writer, all, planes)
+        writeEmptyTiles(writer, all, levels)
         writeTiles(writer, zones, tiles)
         writeFilledZones(writer, full)
         writeObjects(writer, objects)
         logger.info { "Compressed $regions maps ($objectCount objects, $tileCount tiles) to ${writer.position() / 1000000}mb in ${System.currentTimeMillis() - start}ms" }
     }
 
-    private fun writeEmptyTiles(writer: Writer, all: Set<Int>, planes: Set<Int>) {
-        writer.writeInt(planes.size)
-        for (plane in planes) {
-            writer.writeInt(plane)
+    private fun writeEmptyTiles(writer: Writer, all: Set<Int>, levels: Set<Int>) {
+        writer.writeInt(levels.size)
+        for (level in levels) {
+            writer.writeInt(level)
         }
         writer.writeInt(all.size)
         for (zone in all) {

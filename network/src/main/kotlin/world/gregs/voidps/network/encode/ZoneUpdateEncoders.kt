@@ -16,10 +16,10 @@ fun encodeBatch(messages: Collection<ZoneUpdate>): ByteArray {
     return writeChannel.toByteArray()
 }
 
-fun Client.sendBatch(messages: ByteArray, zoneOffsetX: Int, zoneOffsetY: Int, zonePlane: Int) {
+fun Client.sendBatch(messages: ByteArray, zoneOffsetX: Int, zoneOffsetY: Int, zoneLevel: Int) {
     send(Protocol.BATCH_UPDATE_ZONE, messages.size + 3, Client.SHORT) {
         writeByteInverse(zoneOffsetX)
-        writeByteSubtract(zonePlane)
+        writeByteSubtract(zoneLevel)
         writeByteSubtract(zoneOffsetY)
         writeBytes(messages)
     }

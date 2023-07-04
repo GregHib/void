@@ -67,7 +67,7 @@ class GameObjects(
             // Remove original (if exists)
             map.add(obj, REPLACED)
             if (original > 0 && !replaced(original)) {
-                val originalObj = GameObject(id(original), obj.x, obj.y, obj.plane, shape(original), rotation(original))
+                val originalObj = GameObject(id(original), obj.x, obj.y, obj.level, shape(original), rotation(original))
                 batches.add(obj.tile.zone, ObjectRemoval(obj.tile.id, originalObj.shape, originalObj.rotation))
                 if (collision) {
                     collisions.modify(originalObj, add = false)
@@ -88,10 +88,10 @@ class GameObjects(
     /**
      * Sets the original placement of a game object
      */
-    fun set(id: Int, x: Int, y: Int, plane: Int, shape: Int, rotation: Int, definition: ObjectDefinition) {
-        collisions.modify(definition, x, y, plane, shape, rotation, add = true)
+    fun set(id: Int, x: Int, y: Int, level: Int, shape: Int, rotation: Int, definition: ObjectDefinition) {
+        collisions.modify(definition, x, y, level, shape, rotation, add = true)
         if (interactive(definition)) {
-            map[x, y, plane, ObjectLayer.layer(shape)] = value(false, id, shape, rotation)
+            map[x, y, level, ObjectLayer.layer(shape)] = value(false, id, shape, rotation)
             size++
         }
     }
@@ -102,7 +102,7 @@ class GameObjects(
     fun set(obj: ZoneObject, zoneIndex: Int, definition: ObjectDefinition) {
         collisions.modify(obj, zoneIndex, definition)
         if (interactive(definition)) {
-            val zone = zoneIndex or (obj.plane shl 22)
+            val zone = zoneIndex or (obj.level shl 22)
             val tile = ZoneObject.tile(obj.packed) or (ObjectLayer.layer(obj.shape) shl 6)
             map[zone, tile] = ZoneObject.info(obj.packed) shl 1
             size++
@@ -147,7 +147,7 @@ class GameObjects(
             // Re-add original (if exists)
             map.remove(obj, REPLACED)
             if (original > 1) {
-                val originalObj = GameObject(id(original), obj.x, obj.y, obj.plane, shape(original), rotation(original))
+                val originalObj = GameObject(id(original), obj.x, obj.y, obj.level, shape(original), rotation(original))
                 batches.add(obj.tile.zone, ObjectAddition(obj.tile.id, originalObj.intId, originalObj.shape, originalObj.rotation))
                 if (collision) {
                     collisions.modify(originalObj, add = true)
@@ -243,15 +243,15 @@ class GameObjects(
      * Get object by [layer]
      */
     fun getLayer(tile: Tile, layer: Int): GameObject? {
-        val value = map[tile.x, tile.y, tile.plane, layer]
+        val value = map[tile.x, tile.y, tile.level, layer]
         if (empty(value)) {
             return null
         }
         if (replaced(value)) {
             val replacement = replacements[index(tile, layer)] ?: return null
-            return GameObject(id(replacement), tile.x, tile.y, tile.plane, shape(replacement), rotation(replacement))
+            return GameObject(id(replacement), tile.x, tile.y, tile.level, shape(replacement), rotation(replacement))
         }
-        return GameObject(id(value), tile.x, tile.y, tile.plane, shape(value), rotation(value))
+        return GameObject(id(value), tile.x, tile.y, tile.level, shape(value), rotation(value))
     }
 
     /**
@@ -301,7 +301,7 @@ class GameObjects(
      * Note: Doesn't undo collision changes
      */
     fun clear(zone: Zone) {
-        map.deallocateZone(zone.tile.x, zone.tile.y, zone.plane)
+        map.deallocateZone(zone.tile.x, zone.tile.y, zone.level)
     }
 
     /**
@@ -328,11 +328,11 @@ class GameObjects(
     private fun forEachReplaced(zone: Zone, block: (Tile, Int, Int) -> Unit) {
         val zoneTileX = zone.tile.x
         val zoneTileY = zone.tile.y
-        val plane = zone.plane
+        val level = zone.level
         for (x in 0 until 8) {
             for (y in 0 until 8) {
                 for (layer in 0 until 4) {
-                    val value = map[zoneTileX + x, zoneTileY + y, plane, layer]
+                    val value = map[zoneTileX + x, zoneTileY + y, level, layer]
                     if (empty(value) || !replaced(value)) {
                         continue
                     }

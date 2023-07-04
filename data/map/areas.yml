@@ -51,13 +51,13 @@ lumbridge_castle_bank:
   area:
     x: [ 3207, 3210 ]
     y: [ 3215, 3222 ]
-    plane: 2
+    level: 2
   tags: [ bank ]
 lumbridge_castle_portcullis:
   area:
     x: [ 3227, 3230 ]
     y: [ 3212, 3225 ]
-    plane: 2
+    level: 2
   tags: [ high ]
 drayor_willow_trees:
   area:
@@ -487,13 +487,13 @@ wilderness_agility_multi_area:
   area:
     x: [ 2984, 3007 ]
     y: [ 3912, 3927 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 wilderness_chaos_temple_multi_area:
   area:
     x: [ 2944, 2959 ]
     y: [ 3816, 3831 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 wilderness_bandit_camp_multi_area:
   area:
@@ -504,133 +504,133 @@ chaos_temple_multi_area:
   area:
     x: [ 2928, 2943 ]
     y: [ 3512, 3519 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 burthorpe_multi_area:
   area:
     x: [ 2880, 2903 ]
     y: [ 3520, 3543 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 white_wolf_mountain_multi_area:
   area:
     x: [ 2816, 2879 ]
     y: [ 3456, 3519 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 death_plateu_multi_area:
   area:
     x: [ 2848, 2879 ]
     y: [ 3600, 3607 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 trollheim_multi_area:
   area:
     x: [ 2880, 2912, 2912, 2920, 2920, 2896, 2896, 2880, 2880, 2888, 2888, 2880 ]
     y: [ 3776, 3776, 3696, 3696, 3688, 3688, 3696, 3696, 3728, 3728, 3744, 3744 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 rellekka_multi_area:
   area:
     x: [ 2656, 2704, 2704, 2712, 2712, 2736, 2736, 2656 ]
     y: [ 3736, 3736, 3728, 3728, 3736, 3736, 3712, 3712 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 norther_fremennik_isles_multi_area:
   area:
     x: [ 2304, 2432, 2432, 2368, 2368, 2352, 2352, 2304 ]
     y: [ 3904, 3904, 3840, 3840, 3816, 3816, 3824, 3824 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 pirates_cove_multi_area:
   area:
     x: [ 2176, 2239 ]
     y: [ 3776, 3839 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 lunar_isle_multi_area:
   area:
     x: [ 2048, 2175 ]
     y: [ 3840, 3967 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 piscatoris_multi_area:
   area:
     x: [ 2304, 2367 ]
     y: [ 3648, 3711 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 ranging_guild_multi_area:
   area:
     x: [ 2656, 2680, 2680, 2688, 2688, 2680, 2680, 2656, 2656, 2648, 2648, 2656 ]
     y: [ 3448, 3448, 3440, 3440, 3416, 3416, 3408, 3408, 3416, 3416, 3440, 3440 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 battlefield_multi_area:
   area:
     x: [ 2504, 2544, 2544, 2552, 2552, 2504 ]
     y: [ 3248, 3248, 3232, 3232, 3208, 3208 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 castle_wars_multi_area:
   area:
     x: [ 2368, 2431 ]
     y: [ 3072, 3135 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 east_feldip_hills_multi_area:
   area:
     x: [ 2648, 2655 ]
     y: [ 2952, 2975 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 ape_atoll_multi_area:
   area:
     x: [ 2688, 2815 ]
     y: [ 2688, 2815 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 pest_control_multi_area:
   area:
     x: [ 2624, 2687 ]
     y: [ 2560, 2623 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 desert_bandit_camp_multi_area:
   area:
     x: [ 3152, 3191 ]
     y: [ 2960, 2999 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 al_kharid_multi_area:
   area:
     x: [ 3264, 3327 ]
     y: [ 3136, 3199 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 wizards_tower_multi_area:
   area:
     x: [ 3094, 3125 ]
     y: [ 3144, 3176 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 draynor_village_multi_area:
   area:
     x: [ 3112, 3136, 3136, 3104, 3104, 3112 ]
     y: [ 3264, 3264, 3232, 3232, 3256, 3256 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 falador_multi_area:
   area:
     x: [ 2944, 3008, 3008, 3016, 3016, 2944 ]
     y: [ 3456, 3456, 3328, 3328, 3304, 3304 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 barbarian_village_multi_area:
   area:
     x: [ 3072, 3136, 3136, 3048, 3048, 3056, 3056, 3064, 3064, 3072 ]
     y: [ 3456, 3456, 3392, 3392, 3408, 3408, 3440, 3440, 3448, 3448 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 waterbirth_island_axes_multi_area:
   area:
@@ -741,7 +741,7 @@ jiggig_multi_area:
   area:
     x: [ 2456, 2495 ]
     y: [ 3032, 3055 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 godwars_dungeon_multi_area:
   area:
@@ -752,13 +752,13 @@ necromancer_house_multi_area:
   area:
     x: [ 2656, 2680, 2680, 2664, 2664, 2656 ]
     y: [ 3256, 3256, 3216, 3216, 3232, 3232 ]
-    plane: 0
+    level: 0
   tags: [ multi_combat ]
 fally_castle_non_combat_multi_area:
   area:
     x: [ 2960, 2967 ]
     y: [ 3328, 3335 ]
-    plane: 0
+    level: 0
   tags: [ single_combat ]
 zmi_alter_multi_area:
   area:

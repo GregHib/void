@@ -58,7 +58,7 @@ class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapD
     }
 
     override fun readLoop(definition: MapDefinition, buffer: Reader) {
-        for (plane in 0 until 4) {
+        for (level in 0 until 4) {
             for (localX in 0 until 64) {
                 for (localY in 0 until 64) {
                     var height = 0
@@ -87,7 +87,7 @@ class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapD
                         }
                     }
                     if (height != 0 || attrOpcode != 0 || overlayPath != 0 || overlayRotation != 0 || overlayId != 0 || settings != 0 || underlayId != 0) {
-                        definition.setTile(localX, localY, plane, MapTile(
+                        definition.setTile(localX, localY, level, MapTile(
                             height,
                             attrOpcode,
                             overlayId,
@@ -123,16 +123,16 @@ class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapD
                 // Data
                 val localX = tile shr 6 and 0x3f
                 val localY = tile and 0x3f
-                var plane = tile shr 12
+                var level = tile shr 12
                 val obj = reader.readUnsignedByte()
 
                 // Decrease bridges
                 if (definition.getTile(localX, localY, 1).isTile(BRIDGE_TILE)) {
-                    plane--
+                    level--
                 }
 
-                // Validate plane
-                if (plane !in 0 until 4) {
+                // Validate level
+                if (level !in 0 until 4) {
                     continue
                 }
 
@@ -140,7 +140,7 @@ class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapD
                 val rotation = obj and 0x3
 
                 // Valid object
-                definition.objects.add(MapObject(objectId, localX, localY, plane, shape, rotation))
+                definition.objects.add(MapObject(objectId, localX, localY, level, shape, rotation))
             }
         }
     }
