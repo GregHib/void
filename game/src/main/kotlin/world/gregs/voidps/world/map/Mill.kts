@@ -2,7 +2,6 @@ package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
-import world.gregs.voidps.engine.client.update.batch.animate
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.hasItem

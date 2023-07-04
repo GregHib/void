@@ -3,7 +3,6 @@ package world.gregs.voidps.world.map.wizards_tower
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
-import world.gregs.voidps.engine.client.update.batch.animate
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add

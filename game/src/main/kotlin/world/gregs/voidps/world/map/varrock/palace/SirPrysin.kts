@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.map.varrock.palace
 
-import world.gregs.voidps.engine.client.update.batch.animate
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add

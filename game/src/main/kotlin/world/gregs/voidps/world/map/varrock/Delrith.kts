@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
-import world.gregs.voidps.engine.client.update.batch.animate
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Unregistered

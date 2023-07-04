@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.map
 
-import world.gregs.voidps.engine.client.update.batch.animate
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.Registered
