@@ -46,30 +46,28 @@ class PlayerFactory(
 ) : Runnable {
 
     private val validItems = ValidItemRestriction(itemDefinitions)
-
-    private val saveQueue = mutableSetOf<Player>()
+    private val writeConfig = PlayerYamlWriterConfig()
+    private val readerConfig = PlayerYamlReaderConfig(itemDefinitions)
+    private val saveQueue = mutableMapOf<String, PlayerSave>()
 
     private fun path(name: String) = "$path${name}.json"
 
     override fun run() {
-        for (player in saveQueue) {
-            save(player.accountName, player)
+        for ((name, player) in saveQueue) {
+            save(name, player)
         }
         saveQueue.clear()
     }
 
     fun queueSave(player: Player) {
-        saveQueue.add(player)
+        saveQueue[player.accountName] = player.copy()
     }
 
-    fun saving(name: String) = saveQueue.any { it.accountName == name }
+    fun saving(name: String) = saveQueue.containsKey(name)
 
-    fun save(name: String, player: Player) {
+    private fun save(name: String, player: PlayerSave) {
         yaml.save(path(name), player, writeConfig)
     }
-
-    private val writeConfig = PlayerYamlWriterConfig()
-    private val readerConfig = PlayerYamlReaderConfig(itemDefinitions)
 
     @Suppress("UNCHECKED_CAST")
     fun getOrElse(name: String, index: Int, block: () -> Player): Player {

@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data.yaml
 
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.male
+import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.yaml.write.YamlWriterConfiguration
 
@@ -17,25 +16,25 @@ internal class PlayerYamlWriterConfig : YamlWriterConfiguration(quoteStrings = t
                 }
                 map
             }
-        } else if (value is Player) {
+        } else if (value is PlayerSave) {
             mapOf(
-                "accountName" to value.accountName,
-                "passwordHash" to value.passwordHash,
+                "accountName" to value.name,
+                "passwordHash" to value.password,
                 "tile" to mapOf(
                     "x" to value.tile.x,
                     "y" to value.tile.y,
                     "plane" to value.tile.plane,
                 ),
                 "experience" to mapOf(
-                    "experience" to value.experience.experience,
-                    "blocked" to value.experience.blocked
+                    "experience" to value.experience,
+                    "blocked" to value.blocked
                 ),
-                "levels" to value.levels.levels,
+                "levels" to value.levels,
                 "male" to value.male,
-                "looks" to value.body.looks,
-                "colours" to value.body.colours,
-                "variables" to value.variables.data,
-                "containers" to value.containers.containers,
+                "looks" to value.looks,
+                "colours" to value.colours,
+                "variables" to value.variables,
+                "containers" to value.containers,
                 "friends" to value.friends,
                 "ignores" to value.ignores
             )
