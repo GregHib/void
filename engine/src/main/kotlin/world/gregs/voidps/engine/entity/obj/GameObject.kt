@@ -1,14 +1,14 @@
 package world.gregs.voidps.engine.entity.obj
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.network.encode.chunk.ObjectAnimation
+import world.gregs.voidps.network.encode.zone.ObjectAnimation
 
 /**
  * Interactive Object
@@ -43,8 +43,8 @@ value class GameObject(internal val packed: Long) : Entity {
     val rotation: Int
         get() = rotation(packed)
 
-    fun animate(id: String) = get<ChunkBatchUpdates>()
-        .add(tile.chunk, ObjectAnimation(tile.id, get<AnimationDefinitions>().get(id).id, shape, rotation))
+    fun animate(id: String) = get<ZoneBatchUpdates>()
+        .add(tile.zone, ObjectAnimation(tile.id, get<AnimationDefinitions>().get(id).id, shape, rotation))
 
     fun nearestTo(tile: Tile) = Tile(
         x = Distance.getNearest(x, width, tile.x),

@@ -11,19 +11,19 @@ import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
 
 class ItemSpawns(
-    private val chunks: MutableMap<Int, ItemSpawn> = Int2ObjectOpenHashMap()
+    private val zones: MutableMap<Int, ItemSpawn> = Int2ObjectOpenHashMap()
 ) {
     val size: Int
-        get() = chunks.size
+        get() = zones.size
 
     fun set(tile: Tile, spawn: ItemSpawn) {
-        chunks[tile.id] = spawn
+        zones[tile.id] = spawn
     }
 
-    fun get(tile: Tile): ItemSpawn? = chunks[tile.id]
+    fun get(tile: Tile): ItemSpawn? = zones[tile.id]
 
     fun clear() {
-        chunks.clear()
+        zones.clear()
     }
 }
 

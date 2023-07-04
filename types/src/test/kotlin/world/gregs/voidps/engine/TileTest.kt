@@ -82,14 +82,14 @@ internal class TileTest {
     }
 
     @Test
-    fun `Chunk test`() {
+    fun `Zone test`() {
         // Given
         val tile = Tile(3083, 3466, 1)
         // When
-        val chunk = tile.chunk
+        val zone = tile.zone
         // Then
-        assertEquals(385, chunk.x)
-        assertEquals(433, chunk.y)
+        assertEquals(385, zone.x)
+        assertEquals(433, zone.y)
     }
 
     @Test

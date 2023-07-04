@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.map.chunk
+package world.gregs.voidps.engine.map.zone
 
 import it.unimi.dsi.fastutil.ints.Int2IntArrayMap
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet
@@ -11,24 +11,24 @@ import world.gregs.voidps.engine.map.region.Region
 import java.util.*
 import kotlin.collections.set
 
-class DynamicChunks(
+class DynamicZones(
     private val objects: GameObjects,
     private val collisions: Collisions,
     private val extract: MapDefinitions
 ) {
-    private val chunks: MutableMap<Int, Int> = Int2IntArrayMap()
+    private val zones: MutableMap<Int, Int> = Int2IntArrayMap()
     private val regions = IntOpenHashSet()
 
     fun isDynamic(region: Region) = regions.contains(region.id)
 
-    fun getDynamicChunk(chunk: Chunk) = chunks[chunk.id]
+    fun getDynamicZone(zone: Zone) = zones[zone.id]
 
     /**
-     * @param from The chunk to be copied
-     * @param to The chunk things will be copied to
+     * @param from The zone to be copied
+     * @param to The zone things will be copied to
      */
-    fun copy(from: Chunk, to: Chunk = from, rotation: Int = 0) {
-        chunks[to.id] = from.rotatedId(rotation)
+    fun copy(from: Zone, to: Zone = from, rotation: Int = 0) {
+        zones[to.id] = from.rotatedId(rotation)
         update(from, to, rotation, true)
     }
 
@@ -37,68 +37,68 @@ class DynamicChunks(
      * @param to The region to be replaced
      */
     fun copy(from: Region, to: Region) {
-        val targetChunks = LinkedList(to.toCuboid().toChunks())
-        for (chunk in from.toCuboid().toChunks()) {
-            copy(chunk, targetChunks.poll())
+        val targetZones = LinkedList(to.toCuboid().toZones())
+        for (zone in from.toCuboid().toZones()) {
+            copy(zone, targetZones.poll())
         }
     }
 
     /**
-     * Clear the dynamic [chunk] and replace it with the original
+     * Clear the dynamic [zone] and replace it with the original
      */
-    fun clear(chunk: Chunk) {
-        chunks.remove(chunk.id)
-        update(chunk, chunk, 0, false)
+    fun clear(zone: Zone) {
+        zones.remove(zone.id)
+        update(zone, zone, 0, false)
     }
 
     /**
      * Clear the dynamic [region] and replace it with the original
      */
     fun clear(region: Region) {
-        for (chunk in region.toCuboid().toChunks()) {
-            clear(chunk)
+        for (zone in region.toCuboid().toZones()) {
+            clear(zone)
         }
     }
 
-    private fun update(from: Chunk, to: Chunk, rotation: Int, set: Boolean) {
+    private fun update(from: Zone, to: Zone, rotation: Int, set: Boolean) {
         objects.reset(to)
         collisions.clear(to)
-        extract.loadChunk(from, to, rotation)
+        extract.loadZone(from, to, rotation)
         for (region in to.toCuboid(radius = 3).toRegions()) {
             if (set) {
                 regions.add(region.id)
-            } else if (region.toRectangle().toChunks().none { chunks.containsKey(it.id) }) {
+            } else if (region.toRectangle().toZones().none { zones.containsKey(it.id) }) {
                 regions.remove(region.id)
             }
         }
-        World.events.emit(ReloadChunk(to))
+        World.events.emit(ReloadZone(to))
     }
 
     companion object {
 
-        fun Chunk.dynamicId() =
-            toChunkPosition(x, y, plane)
+        fun Zone.dynamicId() =
+            toZonePosition(x, y, plane)
 
-        fun Chunk.rotatedId(rotation: Int) =
-            toRotatedChunkPosition(
+        fun Zone.rotatedId(rotation: Int) =
+            toRotatedZonePosition(
                 x,
                 y,
                 plane,
                 rotation
             )
 
-        fun getChunk(id: Int) = Chunk(x(id), y(id), plane(id))
+        fun getZone(id: Int) = Zone(x(id), y(id), plane(id))
 
         private fun x(id: Int) = id shr 14 and 0x7ff
         private fun y(id: Int) = id shr 3 and 0x7ff
         private fun plane(id: Int) = id shr 28 and 0x7ff
 
-        private fun toChunkPosition(chunkX: Int, chunkY: Int, plane: Int): Int {
-            return chunkY + (chunkX shl 14) + (plane shl 28)
+        private fun toZonePosition(zoneX: Int, zoneY: Int, plane: Int): Int {
+            return zoneY + (zoneX shl 14) + (plane shl 28)
         }
 
-        private fun toRotatedChunkPosition(chunkX: Int, chunkY: Int, plane: Int, rotation: Int): Int {
-            return rotation shl 1 or (plane shl 24) or (chunkX shl 14) or (chunkY shl 3)
+        private fun toRotatedZonePosition(zoneX: Int, zoneY: Int, plane: Int, rotation: Int): Int {
+            return rotation shl 1 or (plane shl 24) or (zoneX shl 14) or (zoneY shl 3)
         }
     }
 }

@@ -7,7 +7,7 @@ import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
-import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -19,12 +19,12 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Areas
-import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
 
@@ -32,8 +32,8 @@ val engineModule = module {
     // Entities
     single { NPCs(get(), get(), get(), get()) }
     single { Players() }
-    single { GameObjects(get(), get(), get(), getProperty<String>("loadUnusedObjects") == "true").apply { get<ChunkBatchUpdates>().register(this) } }
-    single { FloorItems(get(), get(), get()).apply { get<ChunkBatchUpdates>().register(this) } }
+    single { GameObjects(get(), get(), get(), getProperty<String>("loadUnusedObjects") == "true").apply { get<ZoneBatchUpdates>().register(this) } }
+    single { FloorItems(get(), get(), get()).apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItemTracking(get(), get(), get()) }
     single {
         PlayerAccounts(get(), get(), get(), get(), get(), get(), getProperty("savePath"), get(), get(), Tile(
@@ -43,8 +43,8 @@ val engineModule = module {
     // IO
     single { Yaml(YamlReaderConfiguration(2, 8, VERY_FAST_LOAD_FACTOR)) }
     // Map
-    single { ChunkBatchUpdates() }
-    single { DynamicChunks(get(), get(), get()) }
+    single { ZoneBatchUpdates() }
+    single { DynamicZones(get(), get(), get()) }
     single { EventHandlerStore() }
     single(createdAtStart = true) { Areas().load() }
     single(createdAtStart = true) {

@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.chunk.Chunk
+import world.gregs.voidps.engine.map.zone.Zone
 
 class GameObjectCollision(
     private val collisions: Collisions
@@ -28,12 +28,12 @@ class GameObjectCollision(
         }
     }
 
-    fun modify(obj: ZoneObject, chunk: Int, def: ObjectDefinition) {
+    fun modify(obj: ZoneObject, zone: Int, def: ObjectDefinition) {
         if (def.solid == 0) {
             return
         }
-        val x = obj.x + (Chunk.x(chunk) shl 3)
-        val y = obj.y + (Chunk.y(chunk) shl 3)
+        val x = obj.x + (Zone.x(zone) shl 3)
+        val y = obj.y + (Zone.y(zone) shl 3)
         val plane = obj.plane
         val rotation = obj.rotation
         when (obj.shape) {
@@ -97,7 +97,7 @@ class GameObjectCollision(
     }
 
     private fun modifyTile(x: Int, y: Int, plane: Int, block: Int, direction: Int, add: Boolean) {
-        val flags = collisions.flags[Chunk.tileIndex(x, y, plane)] ?: return
+        val flags = collisions.flags[Zone.tileIndex(x, y, plane)] ?: return
         if (add) {
             flags[Tile.index(x, y)] = flags[Tile.index(x, y)] or CollisionFlags.blocked[direction or block]
         } else {

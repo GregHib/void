@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.entity.character
 
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.RegionPlane
+import world.gregs.voidps.engine.map.zone.Zone
 
 abstract class CharacterList<C : Character>(
     capacity: Int,
@@ -39,8 +39,8 @@ abstract class CharacterList<C : Character>(
         return get(tile.regionPlane).filter { it.tile == tile }
     }
 
-    operator fun get(chunk: Chunk): List<C> {
-        return get(chunk.regionPlane).filter { it.tile.chunk == chunk }
+    operator fun get(zone: Zone): List<C> {
+        return get(zone.regionPlane).filter { it.tile.zone == zone }
     }
 
     operator fun get(region: RegionPlane): List<C> {

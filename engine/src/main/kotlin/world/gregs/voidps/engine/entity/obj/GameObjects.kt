@@ -4,16 +4,16 @@ import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.cache.active.encode.ZoneObject
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.ui.chat.toInt
-import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.network.encode.chunk.ObjectAddition
-import world.gregs.voidps.network.encode.chunk.ObjectRemoval
+import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.network.encode.send
+import world.gregs.voidps.network.encode.zone.ObjectAddition
+import world.gregs.voidps.network.encode.zone.ObjectRemoval
 
 /**
  * Stores GameObjects and modifications mainly for verifying interactions
@@ -24,10 +24,10 @@ import world.gregs.voidps.network.encode.send
  */
 class GameObjects(
     private val collisions: GameObjectCollision,
-    private val batches: ChunkBatchUpdates,
+    private val batches: ZoneBatchUpdates,
     private val definitions: ObjectDefinitions,
     private val storeUnused: Boolean = false
-) : ChunkBatchUpdates.Sender {
+) : ZoneBatchUpdates.Sender {
     private val map = if (storeUnused) GameObjectArrayMap() else GameObjectHashMap()
     private val replacements: MutableMap<Int, Int> = Int2IntOpenHashMap()
     val timers = GameObjectTimers()
@@ -58,7 +58,7 @@ class GameObjects(
         if (original == obj.value(replaced = true)) {
             // Re-add original
             map.remove(obj, REPLACED)
-            batches.add(obj.tile.chunk, ObjectAddition(obj.tile.id, obj.intId, obj.shape, obj.rotation))
+            batches.add(obj.tile.zone, ObjectAddition(obj.tile.id, obj.intId, obj.shape, obj.rotation))
             if (collision) {
                 collisions.modify(obj, add = true)
             }
@@ -68,7 +68,7 @@ class GameObjects(
             map.add(obj, REPLACED)
             if (original > 0 && !replaced(original)) {
                 val originalObj = GameObject(id(original), obj.x, obj.y, obj.plane, shape(original), rotation(original))
-                batches.add(obj.tile.chunk, ObjectRemoval(obj.tile.id, originalObj.shape, originalObj.rotation))
+                batches.add(obj.tile.zone, ObjectRemoval(obj.tile.id, originalObj.shape, originalObj.rotation))
                 if (collision) {
                     collisions.modify(originalObj, add = false)
                 }
@@ -77,7 +77,7 @@ class GameObjects(
 
             // Add replacement
             replacements[obj.index] = obj.value(replaced = true)
-            batches.add(obj.tile.chunk, ObjectAddition(obj.tile.id, obj.intId, obj.shape, obj.rotation))
+            batches.add(obj.tile.zone, ObjectAddition(obj.tile.id, obj.intId, obj.shape, obj.rotation))
             if (collision) {
                 collisions.modify(obj, add = true)
             }
@@ -99,10 +99,10 @@ class GameObjects(
     /**
      * Sets the original placement of a game object (but faster)
      */
-    fun set(obj: ZoneObject, chunk: Int, definition: ObjectDefinition) {
-        collisions.modify(obj, chunk, definition)
+    fun set(obj: ZoneObject, zoneIndex: Int, definition: ObjectDefinition) {
+        collisions.modify(obj, zoneIndex, definition)
         if (interactive(definition)) {
-            val zone = chunk or (obj.plane shl 22)
+            val zone = zoneIndex or (obj.plane shl 22)
             val tile = ZoneObject.tile(obj.packed) or (ObjectLayer.layer(obj.shape) shl 6)
             map[zone, tile] = ZoneObject.info(obj.packed) shl 1
             size++
@@ -139,7 +139,7 @@ class GameObjects(
         if (replacements[obj.index] == obj.value(replaced = true)) {
             // Remove replacement
             replacements.remove(obj.index)
-            batches.add(obj.tile.chunk, ObjectRemoval(obj.tile.id, obj.shape, obj.rotation))
+            batches.add(obj.tile.zone, ObjectRemoval(obj.tile.id, obj.shape, obj.rotation))
             if (collision) {
                 collisions.modify(obj, add = false)
             }
@@ -148,7 +148,7 @@ class GameObjects(
             map.remove(obj, REPLACED)
             if (original > 1) {
                 val originalObj = GameObject(id(original), obj.x, obj.y, obj.plane, shape(original), rotation(original))
-                batches.add(obj.tile.chunk, ObjectAddition(obj.tile.id, originalObj.intId, originalObj.shape, originalObj.rotation))
+                batches.add(obj.tile.zone, ObjectAddition(obj.tile.id, originalObj.intId, originalObj.shape, originalObj.rotation))
                 if (collision) {
                     collisions.modify(originalObj, add = true)
                 }
@@ -157,7 +157,7 @@ class GameObjects(
         } else if (original == obj.value(replaced = false) && original != 0) {
             // Remove original
             map.add(obj, REPLACED)
-            batches.add(obj.tile.chunk, ObjectRemoval(obj.tile.id, obj.shape, obj.rotation))
+            batches.add(obj.tile.zone, ObjectRemoval(obj.tile.id, obj.shape, obj.rotation))
             if (collision) {
                 collisions.modify(obj, add = false)
             }
@@ -268,10 +268,10 @@ class GameObjects(
     }
 
     /**
-     * Resets all original objects in [chunk]
+     * Resets all original objects in [zone]
      */
-    fun reset(chunk: Chunk, collision: Boolean = true) {
-        forEachReplaced(chunk) { tile, layer, value ->
+    fun reset(zone: Zone, collision: Boolean = true) {
+        forEachReplaced(zone) { tile, layer, value ->
             if (value != 1) {
                 add(GameObject(id(value), tile, shape(value), rotation(value)), collision)
             }
@@ -297,11 +297,11 @@ class GameObjects(
     }
 
     /**
-     * Clears [chunk] of all original and replacement objects
+     * Clears [zone] of all original and replacement objects
      * Note: Doesn't undo collision changes
      */
-    fun clear(chunk: Chunk) {
-        map.deallocateZone(chunk.tile.x, chunk.tile.y, chunk.plane)
+    fun clear(zone: Zone) {
+        map.deallocateZone(zone.tile.x, zone.tile.y, zone.plane)
     }
 
     /**
@@ -313,8 +313,8 @@ class GameObjects(
         replacements.clear()
     }
 
-    override fun send(player: Player, chunk: Chunk) {
-        forEachReplaced(chunk) { tile, layer, value ->
+    override fun send(player: Player, zone: Zone) {
+        forEachReplaced(zone) { tile, layer, value ->
             if (value != 1) {
                 player.client?.send(ObjectRemoval(tile.id, shape(value), rotation(value)))
             }
@@ -325,18 +325,18 @@ class GameObjects(
         }
     }
 
-    private fun forEachReplaced(chunk: Chunk, block: (Tile, Int, Int) -> Unit) {
-        val chunkX = chunk.tile.x
-        val chunkY = chunk.tile.y
-        val plane = chunk.plane
+    private fun forEachReplaced(zone: Zone, block: (Tile, Int, Int) -> Unit) {
+        val zoneTileX = zone.tile.x
+        val zoneTileY = zone.tile.y
+        val plane = zone.plane
         for (x in 0 until 8) {
             for (y in 0 until 8) {
                 for (layer in 0 until 4) {
-                    val value = map[chunkX + x, chunkY + y, plane, layer]
+                    val value = map[zoneTileX + x, zoneTileY + y, plane, layer]
                     if (empty(value) || !replaced(value)) {
                         continue
                     }
-                    val tile = chunk.tile.add(x, y)
+                    val tile = zone.tile.add(x, y)
                     block.invoke(tile, layer, value)
                 }
             }

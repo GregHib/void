@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Id
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
-import world.gregs.voidps.engine.map.chunk.Chunk
+import world.gregs.voidps.engine.map.zone.Zone
 
 @JvmInline
 value class RegionPlane(override val id: Int) : Id {
@@ -20,8 +20,8 @@ value class RegionPlane(override val id: Int) : Id {
         get() = plane(id)
     val region: Region
         get() = Region(x, y)
-    val chunk: Chunk
-        get() = Chunk(x shl 3, y shl 3, plane)
+    val zone: Zone
+        get() = Zone(x shl 3, y shl 3, plane)
     val tile: Tile
         get() = Tile(x shl 6, y shl 6, plane)
 

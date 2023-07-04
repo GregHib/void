@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Rectangle
-import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.engine.map.zone.Zone
 
 internal class RectangleTest {
 
@@ -46,14 +46,14 @@ internal class RectangleTest {
     }
 
     @Test
-    fun `Rectangle chunks`() {
+    fun `Rectangle zones`() {
         val area = Rectangle(7, 7, 17, 17)
-        val expected = mutableListOf<Chunk>()
+        val expected = mutableListOf<Zone>()
         for(x in 0 until 3) {
             for(y in 0 until 3) {
-                expected.add(Chunk(x, y, 0))
+                expected.add(Zone(x, y, 0))
             }
         }
-        assertEquals(expected, area.toChunks())
+        assertEquals(expected, area.toZones())
     }
 }

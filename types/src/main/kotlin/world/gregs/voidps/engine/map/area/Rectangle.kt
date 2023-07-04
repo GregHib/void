@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.map.area
 
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.engine.map.zone.Zone
 import kotlin.random.Random
 
 data class Rectangle(
@@ -33,13 +33,13 @@ data class Rectangle(
         return list
     }
 
-    override fun toChunks(plane: Int): List<Chunk> {
-        val list = mutableListOf<Chunk>()
-        val max = Tile(maxX, maxY).chunk
-        val min = Tile(minX, minY).chunk
+    override fun toZones(plane: Int): List<Zone> {
+        val list = mutableListOf<Zone>()
+        val max = Tile(maxX, maxY).zone
+        val min = Tile(minX, minY).zone
         for (x in min.x..max.x) {
             for (y in min.y..max.y) {
-                list.add(Chunk(x, y, plane))
+                list.add(Zone(x, y, plane))
             }
         }
         return list

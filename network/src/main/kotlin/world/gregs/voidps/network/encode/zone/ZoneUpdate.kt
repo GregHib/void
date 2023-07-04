@@ -1,6 +1,6 @@
-package world.gregs.voidps.network.encode.chunk
+package world.gregs.voidps.network.encode.zone
 
-abstract class ChunkUpdate(
+abstract class ZoneUpdate(
     val packetId: Int,
     val packetIndex: Int,
     val size: Int

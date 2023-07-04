@@ -123,9 +123,9 @@ fun destroyInstance(player: Player) {
         npcs.removeIndex(it)
         npcs.releaseIndex(it)
     }
-    for (chunk in regionPlane.toCuboid().toChunks()) {
-        objects.clear(chunk)
-        collisions.clear(chunk)
+    for (zone in regionPlane.toCuboid().toZones()) {
+        objects.clear(zone)
+        collisions.clear(zone)
     }
 }
 

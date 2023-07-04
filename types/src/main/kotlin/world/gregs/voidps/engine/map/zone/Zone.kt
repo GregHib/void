@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.map.chunk
+package world.gregs.voidps.engine.map.zone
 
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Id
@@ -8,8 +8,11 @@ import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
 
+/**
+ * Represents a 8x8 tiled area
+ */
 @JvmInline
-value class Chunk(override val id: Int) : Id {
+value class Zone(override val id: Int) : Id {
 
     constructor(x: Int, y: Int, plane: Int = 0) : this(id(x, y, plane))
 
@@ -26,20 +29,20 @@ value class Chunk(override val id: Int) : Id {
     val tile: Tile
         get() = Tile(x shl 3, y shl 3, plane)
 
-    fun copy(x: Int = this.x, y: Int = this.y, plane: Int = this.plane) = Chunk(x, y, plane)
+    fun copy(x: Int = this.x, y: Int = this.y, plane: Int = this.plane) = Zone(x, y, plane)
     fun add(x: Int, y: Int, plane: Int = 0) = copy(x = this.x + x, y = this.y + y, plane = this.plane + plane)
     fun minus(x: Int = 0, y: Int = 0, plane: Int = 0) = add(-x, -y, -plane)
     fun delta(x: Int = 0, y: Int = 0, plane: Int = 0) = Delta(this.x - x, this.y - y, this.plane - plane)
 
-    fun add(point: Chunk) = add(point.x, point.y, point.plane)
-    fun minus(point: Chunk) = minus(point.x, point.y, point.plane)
-    fun delta(point: Chunk) = delta(point.x, point.y, point.plane)
+    fun add(point: Zone) = add(point.x, point.y, point.plane)
+    fun minus(point: Zone) = minus(point.x, point.y, point.plane)
+    fun delta(point: Zone) = delta(point.x, point.y, point.plane)
 
     fun add(delta: Delta) = add(delta.x, delta.y, delta.plane)
 
-    fun safeMinus(chunk: Chunk) = safeMinus(chunk.x, chunk.y, chunk.plane)
-    fun safeMinus(x: Int = 0, y: Int = 0, plane: Int = 0): Chunk {
-        return Chunk((this.x - x).coerceAtLeast(0), (this.y - y).coerceAtLeast(0), (this.plane - plane).coerceAtLeast(0))
+    fun safeMinus(zone: Zone) = safeMinus(zone.x, zone.y, zone.plane)
+    fun safeMinus(x: Int = 0, y: Int = 0, plane: Int = 0): Zone {
+        return Zone((this.x - x).coerceAtLeast(0), (this.y - y).coerceAtLeast(0), (this.plane - plane).coerceAtLeast(0))
     }
 
     fun toRectangle(radius: Int) = Rectangle(safeMinus(radius, radius).tile, (radius * 2 + 1) * 8, (radius * 2 + 1) * 8)
@@ -48,7 +51,7 @@ value class Chunk(override val id: Int) : Id {
     fun toCuboid(radius: Int) = Cuboid(safeMinus(radius, radius).tile, (radius * 2 + 1) * 8, (radius * 2 + 1) * 8, 1)
 
     override fun toString(): String {
-        return "Chunk($x, $y, $plane)"
+        return "Zone($x, $y, $plane)"
     }
 
     companion object {
@@ -56,13 +59,13 @@ value class Chunk(override val id: Int) : Id {
         fun x(id: Int) = id and 0x7ff
         fun y(id: Int) = id shr 11 and 0x7ff
         fun plane(id: Int) = id shr 22 and 0x3
-        val EMPTY = Chunk(0, 0, 0)
+        val EMPTY = Zone(0, 0, 0)
 
         /**
-         * Index of a local tile within a chunk
+         * Index of a local tile within a zone
          */
         fun tileIndex(tileX: Int, tileY: Int, level: Int): Int = id(tileX shr 3, tileY shr 3, level)
     }
 }
 
-fun Chunk.equals(x: Int, y: Int, plane: Int) = this.x == x && this.y == y && this.plane == plane
+fun Zone.equals(x: Int, y: Int, plane: Int) = this.x == x && this.y == y && this.plane == plane

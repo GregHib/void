@@ -1,9 +1,9 @@
 package world.gregs.voidps.engine.map.area
 
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
+import world.gregs.voidps.engine.map.zone.Zone
 import kotlin.random.Random
 
 data class Cuboid(
@@ -41,14 +41,14 @@ data class Cuboid(
         return list
     }
 
-    override fun toChunks(p: Int): List<Chunk> {
-        val list = mutableListOf<Chunk>()
-        val max = Tile(maxX, maxY, maxPlane).chunk
-        val min = Tile(minX, minY, minPlane).chunk
+    override fun toZones(p: Int): List<Zone> {
+        val list = mutableListOf<Zone>()
+        val max = Tile(maxX, maxY, maxPlane).zone
+        val min = Tile(minX, minY, minPlane).zone
         for (plane in min.plane..max.plane) {
             for (x in min.x..max.x) {
                 for (y in min.y..max.y) {
-                    list.add(Chunk(x, y, plane))
+                    list.add(Zone(x, y, plane))
                 }
             }
         }

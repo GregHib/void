@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.map.Tile
 
@@ -13,7 +13,7 @@ class FloorItemTrackingTest {
 
     private lateinit var items: FloorItems
     private lateinit var players: Players
-    private lateinit var batches: ChunkBatchUpdates
+    private lateinit var batches: ZoneBatchUpdates
     private lateinit var tracking: FloorItemTracking
 
     @BeforeEach

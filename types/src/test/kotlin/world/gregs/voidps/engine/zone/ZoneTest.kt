@@ -1,21 +1,21 @@
-package world.gregs.voidps.engine.chunk
+package world.gregs.voidps.engine.zone
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.map.chunk.Chunk
+import world.gregs.voidps.engine.map.zone.Zone
 
-internal class ChunkTest {
+internal class ZoneTest {
 
     @Test
     fun `Zero values`() {
         // Given
-        val chunk = Chunk(0, 0, 0)
+        val zone = Zone(0, 0, 0)
         // When
-        val x = chunk.x
-        val y = chunk.y
-        val plane = chunk.plane
+        val x = zone.x
+        val y = zone.y
+        val plane = zone.plane
         // Then
-        assertEquals(0, chunk.id)
+        assertEquals(0, zone.id)
         assertEquals(0, x)
         assertEquals(0, y)
         assertEquals(0, plane)
@@ -24,11 +24,11 @@ internal class ChunkTest {
     @Test
     fun `Maximum values`() {
         // Given
-        val chunk = Chunk(2047, 2047, 3)
+        val zone = Zone(2047, 2047, 3)
         // When
-        val x = chunk.x
-        val y = chunk.y
-        val plane = chunk.plane
+        val x = zone.x
+        val y = zone.y
+        val plane = zone.plane
         // Then
         assertEquals(2047, x)
         assertEquals(2047, y)
@@ -38,11 +38,11 @@ internal class ChunkTest {
     @Test
     fun `Overflow values`() {
         // Given
-        val chunk = Chunk(4097, 4098, 5)
+        val zone = Zone(4097, 4098, 5)
         // When
-        val x = chunk.x
-        val y = chunk.y
-        val plane = chunk.plane
+        val x = zone.x
+        val y = zone.y
+        val plane = zone.plane
         // Then
         assertEquals(1, x)
         assertEquals(2, y)
@@ -52,9 +52,9 @@ internal class ChunkTest {
     @Test
     fun `Tile test`() {
         // Given
-        val chunk = Chunk(385, 433, 2)
+        val zone = Zone(385, 433, 2)
         // When
-        val tile = chunk.tile
+        val tile = zone.tile
         // Then
         assertEquals(3080, tile.x)
         assertEquals(3464, tile.y)
@@ -64,9 +64,9 @@ internal class ChunkTest {
     @Test
     fun `Region test`() {
         // Given
-        val chunk = Chunk(385, 433)
+        val zone = Zone(385, 433)
         // When
-        val region = chunk.region
+        val region = zone.region
         // Then
         assertEquals(12342, region.id)
         assertEquals(48, region.x)
@@ -76,9 +76,9 @@ internal class ChunkTest {
     @Test
     fun `Region plane test`() {
         // Given
-        val chunk = Chunk(385, 433, 1)
+        val zone = Zone(385, 433, 1)
         // When
-        val region = chunk.regionPlane
+        val region = zone.regionPlane
         // Then
         assertEquals(77878, region.id)
         assertEquals(48, region.x)
@@ -87,9 +87,9 @@ internal class ChunkTest {
     }
 
     @Test
-    fun `Chunk area test`() {
+    fun `Zone area test`() {
         // Given
-        val area = Chunk(0, 0, 0).toCuboid(width = 1, height = 1)
+        val area = Zone(0, 0, 0).toCuboid(width = 1, height = 1)
         // When
         assertFalse(area.contains(0, 0, 1))
         assertTrue(area.contains(0, 0))
@@ -102,7 +102,7 @@ internal class ChunkTest {
     @Test
     fun `Rectangle area test`() {
         // Given
-        val area = Chunk(3, 3, 1).toCuboid(width = 2, height = 3)
+        val area = Zone(3, 3, 1).toCuboid(width = 2, height = 3)
         // When
         assertTrue(area.contains(24, 24, 1))
         assertFalse(area.contains(24, 24, 0))
@@ -119,7 +119,7 @@ internal class ChunkTest {
     @Test
     fun `Rectangle radius test`() {
         // Given
-        val area = Chunk(3, 3, 1).toCuboid(radius = 2)
+        val area = Zone(3, 3, 1).toCuboid(radius = 2)
         // When
         assertTrue(area.contains(24, 24, 1))
         assertFalse(area.contains(24, 24, 0))

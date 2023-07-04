@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.map.area
 
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.engine.map.zone.Zone
 
 interface Area {
     val area: Double
@@ -15,7 +15,7 @@ interface Area {
 
     fun toRegions(): List<Region>
 
-    fun toChunks(plane: Int = 0): List<Chunk>
+    fun toZones(plane: Int = 0): List<Zone>
 
     companion object {
         @Suppress("UNCHECKED_CAST")

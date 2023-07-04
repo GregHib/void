@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
-import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.engine.map.zone.Zone
 
 internal class CuboidTest {
 
@@ -57,16 +57,16 @@ internal class CuboidTest {
     }
 
     @Test
-    fun `Cuboid chunks`() {
+    fun `Cuboid zones`() {
         val area = Cuboid(7, 7, 17, 17, 1, 3)
-        val expected = mutableListOf<Chunk>()
+        val expected = mutableListOf<Zone>()
         for (plane in 1 until 4) {
             for (x in 0 until 3) {
                 for (y in 0 until 3) {
-                    expected.add(Chunk(x, y, plane))
+                    expected.add(Zone(x, y, plane))
                 }
             }
         }
-        assertEquals(expected, area.toChunks())
+        assertEquals(expected, area.toZones())
     }
 }

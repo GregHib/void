@@ -99,15 +99,15 @@ internal class RegionPlaneTest {
     }
 
     @Test
-    fun `Chunk test`() {
+    fun `Zone test`() {
         // Given
         val region = RegionPlane(48, 54, 1)
         // When
-        val chunk = region.chunk
+        val zone = region.zone
         // Then
-        assertEquals(384, chunk.x)
-        assertEquals(432, chunk.y)
-        assertEquals(1, chunk.plane)
+        assertEquals(384, zone.x)
+        assertEquals(432, zone.y)
+        assertEquals(1, zone.plane)
     }
 
     @Test

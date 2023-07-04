@@ -2,9 +2,9 @@ package world.gregs.voidps.engine.map
 
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.map.area.Cuboid
-import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
+import world.gregs.voidps.engine.map.zone.Zone
 
 @JvmInline
 value class Tile(override val id: Int) : Id {
@@ -18,8 +18,8 @@ value class Tile(override val id: Int) : Id {
     val plane: Int
         get() = plane(id)
 
-    val chunk: Chunk
-        get() = Chunk(x shr 3, y shr 3, plane)
+    val zone: Zone
+        get() = Zone(x shr 3, y shr 3, plane)
     val region: Region
         get() = Region(x shr 6, y shr 6)
     val regionPlane: RegionPlane
@@ -82,7 +82,7 @@ value class Tile(override val id: Int) : Id {
         fun fromMap(map: Map<String, Any>) = Tile(map["x"] as Int, map["y"] as Int, map["plane"] as? Int ?: 0)
 
         /**
-         * Index for a tile within a [Chunk]
+         * Index for a tile within a [Zone]
          * Used for indexing tiles in arrays
          */
         fun index(x: Int, y: Int): Int = (x and 0x7) or ((y and 0x7) shl 3)

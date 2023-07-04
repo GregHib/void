@@ -20,7 +20,7 @@ open class Polygon(
 
     override fun toRegions() = bounds.toRegions()
 
-    override fun toChunks(plane: Int) = bounds.toChunks(plane)
+    override fun toZones(plane: Int) = bounds.toZones(plane)
 
     override fun contains(x: Int, y: Int, plane: Int): Boolean {
         val pointCount = xPoints.size

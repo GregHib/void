@@ -39,12 +39,11 @@ class MapGraph(
                 val xtea = xteas[region.id]
                 cache.getFile(5, "l${region.x}_${region.y}", xtea) ?: continue
 
-                for (chunk in region.tile.chunk.toCuboid(width = 8, height = 8).toChunks()) {
+                for (zone in region.tile.zone.toCuboid(width = 8, height = 8).toZones()) {
                     val time = measureNanoTime {
-
-                        val loaded = chunk.toCuboid().flatMap { tile -> objects[tile]  }
+                        val loaded = zone.toCuboid().flatMap { tile -> objects[tile]  }
                         objs.addAll(loaded)
-                        all.addAll(getCenterPoints(strategy, chunk.toCuboid(width = 2, height = 2)))
+                        all.addAll(getCenterPoints(strategy, zone.toCuboid(width = 2, height = 2)))
                     }
                     println("Objects ${objs.size} Points ${all.size} Took ${time}ns")
                 }
@@ -142,7 +141,7 @@ class MapGraph(
             val tiles = getFloodedTiles(
                 traversal,
                 start,
-                start.chunk.tile.minus(clusterSize, clusterSize).toCuboid(width = cluster, height = cluster)
+                start.zone.tile.minus(clusterSize, clusterSize).toCuboid(width = cluster, height = cluster)
             )
             val visited = mutableSetOf<Tile>()
             for ((end, distance) in tiles) {

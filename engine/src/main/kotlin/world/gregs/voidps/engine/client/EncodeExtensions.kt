@@ -154,7 +154,7 @@ fun Player.moveCamera(
     variableSpeed: Int = 232,
 ) {
     val viewport = viewport ?: return
-    val result = viewport.lastLoadChunk.safeMinus(viewport.chunkRadius, viewport.chunkRadius)
+    val result = viewport.lastLoadZone.safeMinus(viewport.zoneRadius, viewport.zoneRadius)
     val local = tile.minus(result.tile)
     return client?.moveCamera(local.x, local.y, height, constantSpeed, variableSpeed) ?: Unit
 }
@@ -166,7 +166,7 @@ fun Player.turnCamera(
     variableSpeed: Int = 232,
 ) {
     val viewport = viewport ?: return
-    val result = viewport.lastLoadChunk.safeMinus(viewport.chunkRadius, viewport.chunkRadius)
+    val result = viewport.lastLoadZone.safeMinus(viewport.zoneRadius, viewport.zoneRadius)
     val local = tile.minus(result.tile)
     return client?.turnCamera(local.x, local.y, height, constantSpeed, variableSpeed) ?: Unit
 }

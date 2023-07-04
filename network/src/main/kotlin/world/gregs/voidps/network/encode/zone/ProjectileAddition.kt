@@ -1,4 +1,4 @@
-package world.gregs.voidps.network.encode.chunk
+package world.gregs.voidps.network.encode.zone
 
 import world.gregs.voidps.network.Protocol
 
@@ -14,7 +14,7 @@ data class ProjectileAddition(
     val flightTime: Int,
     val curve: Int,
     val offset: Int
-) : ChunkUpdate(
+) : ZoneUpdate(
     Protocol.PROJECTILE_ADD,
     Protocol.Batch.PROJECTILE_ADD,
     16

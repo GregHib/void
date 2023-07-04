@@ -3,9 +3,9 @@ package world.gregs.voidps.network.encode
 import io.ktor.utils.io.*
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.network.*
-import world.gregs.voidps.network.encode.chunk.*
+import world.gregs.voidps.network.encode.zone.*
 
-fun encodeBatch(messages: Collection<ChunkUpdate>): ByteArray {
+fun encodeBatch(messages: Collection<ZoneUpdate>): ByteArray {
     val writeChannel = ByteArrayChannel()
     runBlocking {
         messages.forEach { update ->
@@ -16,22 +16,22 @@ fun encodeBatch(messages: Collection<ChunkUpdate>): ByteArray {
     return writeChannel.toByteArray()
 }
 
-fun Client.sendBatch(messages: ByteArray, chunkOffsetX: Int, chunkOffsetY: Int, chunkPlane: Int) {
-    send(Protocol.BATCH_UPDATE_CHUNK, messages.size + 3, Client.SHORT) {
-        writeByteInverse(chunkOffsetX)
-        writeByteSubtract(chunkPlane)
-        writeByteSubtract(chunkOffsetY)
+fun Client.sendBatch(messages: ByteArray, zoneOffsetX: Int, zoneOffsetY: Int, zonePlane: Int) {
+    send(Protocol.BATCH_UPDATE_ZONE, messages.size + 3, Client.SHORT) {
+        writeByteInverse(zoneOffsetX)
+        writeByteSubtract(zonePlane)
+        writeByteSubtract(zoneOffsetY)
         writeBytes(messages)
     }
 }
 
-fun Client.send(update: ChunkUpdate) {
+fun Client.send(update: ZoneUpdate) {
     send(update.packetId) {
         encode(update)
     }
 }
 
-suspend fun ByteWriteChannel.encode(update: ChunkUpdate) {
+suspend fun ByteWriteChannel.encode(update: ZoneUpdate) {
     when (update) {
         is FloorItemAddition -> floorItemAddition(update)
         is FloorItemRemoval -> floorItemRemoval(update) // update

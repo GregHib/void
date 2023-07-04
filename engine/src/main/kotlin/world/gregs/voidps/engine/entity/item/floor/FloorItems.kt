@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import kotlinx.io.pool.DefaultPool
-import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
@@ -13,20 +13,20 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems.Companion.MAX_TILE_ITEMS
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.network.encode.chunk.FloorItemAddition
-import world.gregs.voidps.network.encode.chunk.FloorItemRemoval
-import world.gregs.voidps.network.encode.chunk.FloorItemUpdate
+import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.network.encode.send
+import world.gregs.voidps.network.encode.zone.FloorItemAddition
+import world.gregs.voidps.network.encode.zone.FloorItemRemoval
+import world.gregs.voidps.network.encode.zone.FloorItemUpdate
 
 /**
  * Stores up to [MAX_TILE_ITEMS] [FloorItem]s per tile
  */
 class FloorItems(
-    private val batches: ChunkBatchUpdates,
+    private val batches: ZoneBatchUpdates,
     private val definitions: ItemDefinitions,
     private val store: EventHandlerStore
-) : ChunkBatchUpdates.Sender {
+) : ZoneBatchUpdates.Sender {
 
     internal val data = Int2ObjectOpenHashMap<MutableList<FloorItem>>()
     private val pool = object : DefaultPool<MutableList<FloorItem>>(INITIAL_POOL_CAPACITY) {
@@ -57,7 +57,7 @@ class FloorItems(
             return
         }
         if (list.add(item)) {
-            batches.add(item.tile.chunk, FloorItemAddition(item.tile.id, item.def.id, item.amount, item.owner))
+            batches.add(item.tile.zone, FloorItemAddition(item.tile.id, item.def.id, item.amount, item.owner))
             item.events.emit(Registered)
         }
     }
@@ -86,7 +86,7 @@ class FloorItems(
         val existing = list.firstOrNull { it.owner == item.owner && it.id == item.id } ?: return false
         val original = existing.amount
         if (existing.merge(item)) {
-            batches.add(item.tile.chunk, FloorItemUpdate(item.tile.id, existing.def.id, original, existing.amount, existing.owner))
+            batches.add(item.tile.zone, FloorItemUpdate(item.tile.id, existing.def.id, original, existing.amount, existing.owner))
             return true
         }
         return false
@@ -99,7 +99,7 @@ class FloorItems(
     fun remove(item: FloorItem): Boolean {
         val list = data.get(item.tile.id) ?: return false
         if (list.remove(item)) {
-            batches.add(item.tile.chunk, FloorItemRemoval(item.tile.id, item.def.id, item.owner))
+            batches.add(item.tile.zone, FloorItemRemoval(item.tile.id, item.def.id, item.owner))
             if (list.isEmpty() && data.remove<Int, Any>(item.tile.id, list)) {
                 pool.recycle(list)
             }
@@ -112,7 +112,7 @@ class FloorItems(
     fun clear() {
         for ((_, list) in data) {
             for (item in list) {
-                batches.add(item.tile.chunk, FloorItemRemoval(item.tile.id, item.def.id, item.owner))
+                batches.add(item.tile.zone, FloorItemRemoval(item.tile.id, item.def.id, item.owner))
                 item.events.emit(Unregistered)
             }
             pool.recycle(list)
@@ -120,8 +120,8 @@ class FloorItems(
         data.clear()
     }
 
-    override fun send(player: Player, chunk: Chunk) {
-        for (tile in chunk.tile.toCuboid(8, 8)) {
+    override fun send(player: Player, zone: Zone) {
+        for (tile in zone.tile.toCuboid(8, 8)) {
             for (item in data.get(tile.id) ?: continue) {
                 if (item.owner != null && item.owner != player.name) {
                     continue

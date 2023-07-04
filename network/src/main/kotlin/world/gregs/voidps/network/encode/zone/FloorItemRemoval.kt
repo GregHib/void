@@ -1,4 +1,4 @@
-package world.gregs.voidps.network.encode.chunk
+package world.gregs.voidps.network.encode.zone
 
 import world.gregs.voidps.network.Protocol
 
@@ -6,7 +6,7 @@ data class FloorItemRemoval(
     val tile: Int,
     val id: Int,
     val owner: String?
-) : ChunkUpdate(
+) : ZoneUpdate(
     Protocol.FLOOR_ITEM_REMOVE,
     Protocol.Batch.FLOOR_ITEM_REMOVE,
     3

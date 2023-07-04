@@ -12,8 +12,8 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.active.ActiveIndexEncoder
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
-import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.engine.map.zone.Zone
 import java.io.File
 
 class MapEncoder(
@@ -34,21 +34,21 @@ class MapEncoder(
         val start = System.currentTimeMillis()
         val tiles = LongArray(TOTAL_ZONE_COUNT)
         val objects = Int2ObjectOpenHashMap<MutableList<Int>>()
-        val chunks = IntOpenHashSet(85_000)
+        val zones = IntOpenHashSet(85_000)
         val full = IntOpenHashSet(18_000)
         val all = IntOpenHashSet()
         val planes = IntOpenHashSet()
         var regions = 0
         for (definition in definitions) {
             val region = Region(definition.id)
-            val regionChunkX = region.tile.chunk.x
-            val regionChunkY = region.tile.chunk.y
+            val regionZoneX = region.tile.zone.x
+            val regionZoneY = region.tile.zone.y
             empty = true
             val emptyPlane = BooleanArray(4) { true }
             for (plane in 0 until 4) {
                 for (localX in 0 until 8) {
                     for (localY in 0 until 8) {
-                        all.add(Chunk.id(regionChunkX + localX, regionChunkY + localY, plane))
+                        all.add(Zone.id(regionZoneX + localX, regionZoneY + localY, plane))
                     }
                 }
             }
@@ -70,15 +70,15 @@ class MapEncoder(
                         tileCount++
                         empty = false
                         emptyPlane[height] = false
-                        val chunk = Chunk.id(regionChunkX + (localX shr 3), regionChunkY + (localY shr 3), height)
+                        val zone = Zone.id(regionZoneX + (localX shr 3), regionZoneY + (localY shr 3), height)
                         val offset = (localX and 0x7) or ((localY and 0x7) shl 3)
-                        tiles[chunk] = tiles[chunk] or (1L shl offset)
-                        all.remove(chunk)
-                        if (tiles[chunk] == -1L) {
-                            full.add(chunk)
-                            chunks.remove(chunk)
+                        tiles[zone] = tiles[zone] or (1L shl offset)
+                        all.remove(zone)
+                        if (tiles[zone] == -1L) {
+                            full.add(zone)
+                            zones.remove(zone)
                         } else {
-                            chunks.add(chunk)
+                            zones.add(zone)
                         }
                     }
                 }
@@ -90,7 +90,7 @@ class MapEncoder(
                 planes.add(region.toPlane(plane).id)
                 for (x in 0 until 8) {
                     for (y in 0 until 8) {
-                        all.remove(Chunk.id(regionChunkX + x, regionChunkY + y, plane))
+                        all.remove(Zone.id(regionZoneX + x, regionZoneY + y, plane))
                     }
                 }
             }
@@ -102,7 +102,7 @@ class MapEncoder(
                     logger.info { "Skipping $obj" }
                     continue
                 }
-                objects.getOrPut(tile.chunk.id) { IntArrayList() }.add(ZoneObject.pack(obj.id, tile.x and 0x7, tile.y and 0x7, obj.plane, obj.shape, obj.rotation))
+                objects.getOrPut(tile.zone.id) { IntArrayList() }.add(ZoneObject.pack(obj.id, tile.x and 0x7, tile.y and 0x7, obj.plane, obj.shape, obj.rotation))
             }
             if (!empty) {
                 regions++
@@ -110,8 +110,8 @@ class MapEncoder(
         }
         writer.writeInt(regions)
         writeEmptyTiles(writer, all, planes)
-        writeTiles(writer, chunks, tiles)
-        writeFilledChunks(writer, full)
+        writeTiles(writer, zones, tiles)
+        writeFilledZones(writer, full)
         writeObjects(writer, objects)
         logger.info { "Compressed $regions maps ($objectCount objects, $tileCount tiles) to ${writer.position() / 1000000}mb in ${System.currentTimeMillis() - start}ms" }
     }
@@ -122,23 +122,23 @@ class MapEncoder(
             writer.writeInt(plane)
         }
         writer.writeInt(all.size)
-        for (chunk in all) {
-            writer.writeInt(chunk)
+        for (zone in all) {
+            writer.writeInt(zone)
         }
     }
 
-    private fun writeTiles(writer: Writer, chunks: Set<Int>, collisions: LongArray) {
-        writer.writeInt(chunks.size)
-        for (chunk in chunks) {
-            writer.writeInt(chunk)
-            writer.writeLong(collisions[chunk])
+    private fun writeTiles(writer: Writer, zones: Set<Int>, collisions: LongArray) {
+        writer.writeInt(zones.size)
+        for (zone in zones) {
+            writer.writeInt(zone)
+            writer.writeLong(collisions[zone])
         }
     }
 
     private fun writeObjects(writer: Writer, objects: Map<Int, List<Int>>) {
         writer.writeInt(objects.size)
-        objects.forEach { (chunk, objs) ->
-            writer.writeInt(chunk)
+        objects.forEach { (zone, objs) ->
+            writer.writeInt(zone)
             writer.writeShort(objs.size)
             for (obj in objs) {
                 writer.writeInt(obj)
@@ -146,10 +146,10 @@ class MapEncoder(
         }
     }
 
-    private fun writeFilledChunks(writer: Writer, full: Set<Int>) {
+    private fun writeFilledZones(writer: Writer, full: Set<Int>) {
         writer.writeInt(full.size)
-        for (chunk in full) {
-            writer.writeInt(chunk)
+        for (zone in full) {
+            writer.writeInt(zone)
         }
     }
 

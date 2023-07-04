@@ -7,9 +7,9 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.engine.map.zone.DynamicZones
 
 private val tabs = listOf(
     "combat_styles",
@@ -26,7 +26,7 @@ private val tabs = listOf(
 
 fun PlayerContext.startCutscene(region: Region): Region {
     val instance = Instances.small()
-    get<DynamicChunks>().copy(region, instance)
+    get<DynamicZones>().copy(region, instance)
     hideTabs()
     return instance
 }
@@ -40,7 +40,7 @@ fun PlayerContext.hideTabs() {
 
 fun PlayerContext.stopCutscene(instance: Region) {
     Instances.free(instance)
-    get<DynamicChunks>().clear(instance)
+    get<DynamicZones>().clear(instance)
     player.open("fade_in")
     showTabs()
 }

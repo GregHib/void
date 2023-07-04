@@ -5,7 +5,7 @@ import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.chunk.Chunk
+import world.gregs.voidps.engine.map.zone.Zone
 
 class Viewport {
 
@@ -19,17 +19,17 @@ class Viewport {
     val npcChanges = BufferWriter(3000)
     val npcUpdates = BufferWriter(4000)
 
-    var lastLoadChunk: Chunk = Chunk.EMPTY
+    var lastLoadZone: Zone = Zone.EMPTY
     var loaded: Boolean = false
     var dynamic: Boolean = false
     var size: Int = 0
     val tileSize: Int
         get() = VIEWPORT_SIZES[size]
-    val chunkRadius: Int
+    val zoneRadius: Int
         get() = tileSize shr 4
     val localRadius: Int
         get() = tileSize shr 5
-    val chunkArea: Int
+    val zoneArea: Int
         get() = tileSize / 8
 
     var radius: Int = VIEW_RADIUS

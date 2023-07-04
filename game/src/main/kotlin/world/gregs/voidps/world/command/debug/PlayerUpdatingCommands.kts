@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.chunk.DynamicChunks
+import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -103,14 +103,14 @@ on<Command>({ prefix == "face" }) { player: Player ->
     player.turn(parts[0].toInt(), parts[1].toInt())
 }
 
-on<Command>({ prefix == "chunk" }) { player: Player ->
-    val chunks: DynamicChunks = get()
-    chunks.copy(player.tile.chunk, player.tile.chunk, rotation = 2)
+on<Command>({ prefix == "zone" || prefix == "chunk" }) { player: Player ->
+    val zones: DynamicZones = get()
+    zones.copy(player.tile.zone, player.tile.zone, rotation = 2)
 }
 
-on<Command>({ prefix == "chunk2" }) { player: Player ->
-    val chunks: DynamicChunks = get()
-    chunks.clear(player.tile.chunk)
+on<Command>({ prefix == "clear_zone" }) { player: Player ->
+    val zones: DynamicZones = get()
+    zones.clear(player.tile.zone)
 }
 
 on<Command>({ prefix == "skill" }) { player: Player ->

@@ -6,11 +6,11 @@ import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.network.encode.chunk.ObjectAddition
-import world.gregs.voidps.network.encode.chunk.ObjectRemoval
+import world.gregs.voidps.network.encode.zone.ObjectAddition
+import world.gregs.voidps.network.encode.zone.ObjectRemoval
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
@@ -19,7 +19,7 @@ import kotlin.test.assertTrue
 class GameObjectsTest {
 
     private lateinit var objects: GameObjects
-    private lateinit var updates: ChunkBatchUpdates
+    private lateinit var updates: ZoneBatchUpdates
 
     @BeforeEach
     fun setup() {
@@ -55,7 +55,7 @@ class GameObjectsTest {
         objects.add(obj)
         assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
         verify {
-            updates.add(obj.tile.chunk, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
+            updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
         }
     }
 
@@ -67,11 +67,11 @@ class GameObjectsTest {
         assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
         assertTrue(objects.contains(obj))
 
-        objects.reset(obj.tile.chunk)
+        objects.reset(obj.tile.zone)
         assertNull(objects.getLayer(obj.tile, ObjectLayer.GROUND))
         assertFalse(objects.contains(obj))
         verify {
-            updates.add(obj.tile.chunk, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
+            updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
         }
     }
 
@@ -94,9 +94,9 @@ class GameObjectsTest {
         assertFalse(objects.contains(obj))
         assertFalse(objects.contains(override))
         verify {
-            updates.add(obj.tile.chunk, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
-            updates.add(obj.tile.chunk, ObjectAddition(tile = obj.tile.id, id = 4321, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            updates.add(obj.tile.chunk, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
+            updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
+            updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 4321, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
+            updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
         }
     }
 
@@ -113,10 +113,10 @@ class GameObjectsTest {
         assertEquals(original, objects.getLayer(obj.tile, ObjectLayer.GROUND))
 
         verify {
-            updates.add(obj.tile.chunk, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
-            updates.add(obj.tile.chunk, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            updates.add(obj.tile.chunk, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            updates.add(obj.tile.chunk, ObjectAddition(tile = obj.tile.id, id = 123, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
+            updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
+            updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
+            updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
+            updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 123, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
         }
     }
 
@@ -137,12 +137,12 @@ class GameObjectsTest {
         assertEquals(original, objects.getLayer(obj.tile, ObjectLayer.GROUND))
 
         verify {
-            updates.add(obj.tile.chunk, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
-            updates.add(obj.tile.chunk, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            updates.add(obj.tile.chunk, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            updates.add(obj.tile.chunk, ObjectAddition(tile = obj.tile.id, id = 4321, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            updates.add(obj.tile.chunk, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            updates.add(obj.tile.chunk, ObjectAddition(tile = obj.tile.id, id = 123, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
+            updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
+            updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
+            updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
+            updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 4321, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
+            updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
+            updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 123, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
         }
     }
 

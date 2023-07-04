@@ -1,4 +1,4 @@
-package world.gregs.voidps.network.encode.chunk
+package world.gregs.voidps.network.encode.zone
 
 import world.gregs.voidps.network.Protocol
 
@@ -10,7 +10,7 @@ data class SoundAddition(
     val delay: Int,
     val volume: Int,
     val speed: Int
-) : ChunkUpdate(
+) : ZoneUpdate(
     Protocol.SOUND_AREA,
     Protocol.Batch.SOUND_AREA,
     8

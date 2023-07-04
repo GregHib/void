@@ -5,7 +5,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.*
-import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -41,7 +41,7 @@ object WorldMapLinkIdentifier {
         val graph = MutableNavigationGraph()
         val linker = ObjectLinker(collisions)
         val clientScriptDecoder = ClientScriptDecoder(revision634 = true).loadCache(cache)
-        val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions)
+        val objects = GameObjects(GameObjectCollision(collisions), ZoneBatchUpdates(), definitions)
         val regions = mutableListOf<Region>()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {

@@ -1,4 +1,4 @@
-package world.gregs.voidps.network.encode.chunk
+package world.gregs.voidps.network.encode.zone
 
 import world.gregs.voidps.network.Protocol
 
@@ -7,7 +7,7 @@ data class ObjectAnimation(
     val id: Int,
     val type: Int,
     val rotation: Int
-) : ChunkUpdate(
+) : ZoneUpdate(
     Protocol.OBJECT_ANIMATION_SPECIFIC,
     Protocol.Batch.OBJECT_ANIMATION_SPECIFIC,
     4
