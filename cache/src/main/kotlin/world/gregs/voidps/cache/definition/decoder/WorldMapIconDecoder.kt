@@ -21,8 +21,6 @@ class WorldMapIconDecoder : DefinitionDecoder<WorldMapIconDefinition>(WORLD_MAP)
 
     override fun create(size: Int) = Array(size) { WorldMapIconDefinition(it) }
 
-    //archive = cache.getArchiveId(index, "${map}_staticelements")
-
     override fun load(definitions: Array<WorldMapIconDefinition>, cache: Cache, id: Int) {
         val archive = getArchive(id)
         var length = cache.archiveCount(index, archive)

@@ -1,5 +1,6 @@
 package world.gregs.voidps.cache.definition.decoder
 
+import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
@@ -24,13 +25,16 @@ class QuickChatPhraseDecoder : DefinitionDecoder<QuickChatPhraseDefinition>(QUIC
         return lastArchive * 256 + cache.lastFileId(index, lastArchive) + (lastArchive2 * 256 + cache.lastFileId(index, lastArchive2))
     }
 
-    /*override fun getData(archive: Int, file: Int): ByteArray? {
-        return if (file < 32768) {
-            super.getData(archive, file)
+    override fun load(definitions: Array<QuickChatPhraseDefinition>, cache: Cache, id: Int) {
+        val archive = getArchive(id)
+        val file = getFile(id)
+        val data = (if (file <= 0x7fff) {
+            cache.getFile(index, archive, file)
         } else {
             cache.getFile(QUICK_CHAT_MENUS, archive, file and 0x7fff)
-        }
-    }*/
+        }) ?: return
+        read(definitions, id, BufferReader(data))
+    }
 
     override fun QuickChatPhraseDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {

@@ -15,11 +15,11 @@ class MapDefinition(
     }
 
     companion object {
-        fun index(localX: Int, localY: Int, plane: Int): Int {
+        internal fun index(localX: Int, localY: Int, plane: Int): Int {
             return plane * 64 * 64 + localX * 64 + localY
         }
-        fun getLocalX(tile: Int) = tile shr 6 and 0x3f
-        fun getLocalY(tile: Int) = tile and 0x3f
-        fun getPlane(tile: Int) = tile shr 12 and 0x3
+        internal fun localX(tile: Int) = tile shr 6 and 0x3f
+        internal fun localY(tile: Int) = tile and 0x3f
+        internal fun plane(tile: Int) = tile shr 12 and 0x3
     }
 }
