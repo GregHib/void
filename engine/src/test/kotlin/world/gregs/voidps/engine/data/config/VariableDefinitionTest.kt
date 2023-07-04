@@ -1,11 +1,10 @@
-package world.gregs.voidps.engine.data.definition.config
+package world.gregs.voidps.engine.data.config
 
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.sendVarbit
 import world.gregs.voidps.network.encode.sendVarc

@@ -1,9 +1,7 @@
-package world.gregs.voidps.engine.data.definition.extra
+package world.gregs.voidps.engine.data.definition
 
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
-import world.gregs.voidps.engine.data.definition.AnimationDefinitions
-import world.gregs.voidps.engine.data.definition.DefinitionsDecoderTest
 import world.gregs.yaml.Yaml
 
 internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefinition, AnimationDecoder, AnimationDefinitions>() {

@@ -1,9 +1,7 @@
-package world.gregs.voidps.engine.data.definition.extra
+package world.gregs.voidps.engine.data.definition
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.data.definition.DefinitionsDecoderTest
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.yaml.Yaml
 
 internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, ItemDecoder, ItemDefinitions>() {

@@ -27,7 +27,6 @@ import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.data.definition.*
-import world.gregs.voidps.engine.data.definition.extra.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs

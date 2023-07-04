@@ -1,10 +1,8 @@
-package world.gregs.voidps.engine.data.definition.extra
+package world.gregs.voidps.engine.data.definition
 
 import io.mockk.mockk
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
-import world.gregs.voidps.engine.data.definition.ContainerDefinitions
-import world.gregs.voidps.engine.data.definition.DefinitionsDecoderTest
 import world.gregs.yaml.Yaml
 
 internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ContainerDefinition, ContainerDecoder, ContainerDefinitions>() {
