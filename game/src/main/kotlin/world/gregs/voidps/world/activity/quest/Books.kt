@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.activity.quest
 
-import org.koin.dsl.module
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -9,10 +8,6 @@ import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
-
-val bookModule = module {
-    single(createdAtStart = true) { Books().load() }
-}
 
 class Books {
 

@@ -1,10 +1,9 @@
-package world.gregs.voidps.engine.map
+package world.gregs.voidps.engine.entity.character
 
 import it.unimi.dsi.fastutil.ints.IntArrayList
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.map.region.RegionPlane
 
-class RegionMap {
+class CharacterMap {
 
     val regions = arrayOfNulls<IntArrayList?>(256 * 256 * 4)
 

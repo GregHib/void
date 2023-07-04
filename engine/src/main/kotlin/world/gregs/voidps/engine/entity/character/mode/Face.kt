@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.watch
+import world.gregs.voidps.engine.entity.distanceTo
 
 class Face(
     val character: Character,

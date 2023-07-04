@@ -34,9 +34,9 @@ fun Collisions.clear(chunk: Chunk) {
 }
 
 
-fun Area.random(collisions: Collisions, character: Character): Tile? = random(collisions, character.collision)
+fun Area.random(character: Character): Tile? = random(character.collision)
 
-fun Area.random(collisions: Collisions, collision: CollisionStrategy = CollisionStrategies.Normal): Tile? {
+fun Area.random(collision: CollisionStrategy = CollisionStrategies.Normal): Tile? {
     val steps = get<StepValidator>()
     var tile = random()
     var exit = 100

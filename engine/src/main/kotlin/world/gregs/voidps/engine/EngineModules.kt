@@ -67,12 +67,6 @@ val engineModule = module {
     single { LineValidator(flags = get<Collisions>()) }
     // Misc
     single(createdAtStart = true) { DropTables().load() }
-}
-
-/**
- * Modules which depend on cache definitions
- */
-val postCacheModule = module {
     // Definitions
     single(createdAtStart = true) { SoundDefinitions().load() }
     single(createdAtStart = true) { RenderEmoteDefinitions().load() }

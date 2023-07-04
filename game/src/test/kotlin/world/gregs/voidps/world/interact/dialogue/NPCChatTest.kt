@@ -118,7 +118,7 @@ internal class NPCChatTest : DialogueTest() {
     @ValueSource(booleans = [true, false])
     fun `Send player chat head size and animation`(large: Boolean) {
         mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
-        mockkStatic("world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitionsKt")
+        mockkStatic("world.gregs.voidps.engine.data.definition.InterfaceDefinitionsKt")
         val client: Client = mockk(relaxed = true)
         player.client = client
         val definition: InterfaceDefinition = mockk(relaxed = true)
@@ -175,7 +175,7 @@ internal class NPCChatTest : DialogueTest() {
     @Test
     fun `Send different npc chat`() {
         mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
-        mockkStatic("world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitionsKt")
+        mockkStatic("world.gregs.voidps.engine.data.definition.InterfaceDefinitionsKt")
         val client: Client = mockk(relaxed = true)
         player.client = client
         val definition: InterfaceDefinition = mockk(relaxed = true)

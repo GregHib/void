@@ -47,12 +47,8 @@ import world.gregs.voidps.gameModule
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.NetworkGatekeeper
-import world.gregs.voidps.postCacheGameModule
 import world.gregs.voidps.script.loadScripts
-import world.gregs.voidps.world.activity.quest.bookModule
-import world.gregs.voidps.world.interact.entity.player.music.musicModule
 import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
-import world.gregs.voidps.world.interact.world.spawn.stairsModule
 import java.io.File
 import kotlin.system.measureTimeMillis
 
@@ -136,8 +132,7 @@ abstract class WorldTest : KoinTest {
             fileProperties("/test.properties")
             properties(extraProperties)
             allowOverride(true)
-            modules(engineModule, stairsModule, musicModule, bookModule, gameModule)
-            modules(module {
+            modules(engineModule, gameModule, module {
                 single(createdAtStart = true) { cache }
                 single(createdAtStart = true) { huffman }
                 single(createdAtStart = true) { objectDefinitions }
@@ -157,7 +152,6 @@ abstract class WorldTest : KoinTest {
                 single { collisions }
                 single { objectCollision }
             })
-            modules(postCacheModule, postCacheGameModule)
         }
         loadScripts(getProperty("scriptModule"))
         MapDefinitions(get(), get(), get()).load(active)

@@ -31,9 +31,6 @@ import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.network.Network
 import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.loadScripts
-import world.gregs.voidps.world.activity.quest.bookModule
-import world.gregs.voidps.world.interact.entity.player.music.musicModule
-import world.gregs.voidps.world.interact.world.spawn.stairsModule
 import java.io.File
 import java.math.BigInteger
 
@@ -95,7 +92,7 @@ object Main {
             slf4jLogger(level = Level.ERROR)
             fileProperties("/game.properties")
             fileProperties("/private.properties")
-            modules(engineModule, stairsModule, musicModule, bookModule, gameModule, postCacheModule, postCacheGameModule, module)
+            modules(engineModule, gameModule, module)
         }
         val saves = File(getProperty("savePath"))
         if (!saves.exists()) {
