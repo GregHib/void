@@ -19,14 +19,13 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
 
     override fun load(definitions: Array<InterfaceDefinition>, reader: Reader) {
         val id = readId(reader)
-        val definition = definitions[id shr 16]
+        val definition = definitions[InterfaceDefinition.id(id)]
         if (definition.components == null) {
             definition.components = Int2ObjectOpenHashMap()
         }
-        val file = id and 0xffff
         val component = InterfaceComponentDefinition(id = id)
         component.read(reader)
-        definition.components!![file] = component
+        definition.components!![InterfaceDefinition.componentId(id)] = component
     }
 
     override fun load(definitions: Array<InterfaceDefinition>, cache: Cache, id: Int) {

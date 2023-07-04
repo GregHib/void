@@ -7,6 +7,8 @@ import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.active.ActiveCache
 import world.gregs.voidps.cache.active.encode.ZoneObject
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
@@ -60,8 +62,9 @@ class MapExtract(
         return this
     }
 
-    fun loadMap(file: File): MapExtract {
+    fun load(directory: File): MapExtract {
         val start = System.currentTimeMillis()
+        val file = directory.resolve(ActiveCache.indexFile(Indices.MAPS))
         val reader = BufferReader(file.readBytes())
         val regions = reader.readInt()
         readEmptyTiles(reader)
@@ -252,7 +255,7 @@ class MapExtract(
             val collisions = Collisions()
             val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions, storeUnused = true)
             val extract = MapExtract(collisions, definitions, objects)
-            extract.loadMap(File("./data/cache/live/index5.dat"))
+            extract.load(File("./data/cache/active/"))
         }
     }
 }

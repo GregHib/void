@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 
 class ItemDecoder718 : DefinitionDecoder<ItemDefinition>(ITEMS) {
 
-    override fun create() = ItemDefinition()
+    override fun create(size: Int) = Array(size) { ItemDefinition(it) }
 
     override fun getFile(id: Int) = id and 0xff
 
