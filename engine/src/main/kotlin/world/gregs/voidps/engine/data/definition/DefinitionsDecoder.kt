@@ -4,7 +4,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
-import world.gregs.voidps.engine.data.DefinitionConfig
+import world.gregs.voidps.engine.data.yaml.DefinitionConfig
 import world.gregs.yaml.Yaml
 
 /**

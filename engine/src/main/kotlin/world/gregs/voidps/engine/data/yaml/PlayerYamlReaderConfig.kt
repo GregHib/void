@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.data
+package world.gregs.voidps.engine.data.yaml
 
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
