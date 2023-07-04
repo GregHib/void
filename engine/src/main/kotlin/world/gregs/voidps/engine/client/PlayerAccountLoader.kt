@@ -5,7 +5,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.withContext
 import org.mindrot.jbcrypt.BCrypt
-import world.gregs.voidps.engine.data.PlayerFactory
+import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.*
 
@@ -14,7 +14,7 @@ import world.gregs.voidps.network.*
  */
 class PlayerAccountLoader(
     private val queue: NetworkQueue,
-    private val factory: PlayerFactory,
+    private val accounts: PlayerAccounts,
     private val gameContext: CoroutineDispatcher
 ) : AccountLoader {
     private val logger = InlineLogger()
@@ -24,12 +24,12 @@ class PlayerAccountLoader(
      */
     override suspend fun load(client: Client, username: String, password: String, index: Int, displayMode: Int): MutableSharedFlow<Instruction>? {
         try {
-            val saving = factory.saving(username)
+            val saving = accounts.saving(username)
             if (saving) {
                 client.disconnect(Response.ACCOUNT_ONLINE)
                 return null
             }
-            val player = factory.getOrElse(username, index) { factory.create(username, password) }
+            val player = accounts.getOrElse(username, index) { accounts.create(username, password) }
             if (validPassword(player, password)) {
                 client.disconnect(Response.INVALID_CREDENTIALS)
                 return null

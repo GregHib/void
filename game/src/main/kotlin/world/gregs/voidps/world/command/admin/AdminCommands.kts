@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.client.ui.chat.toSIPrefix
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.*
-import world.gregs.voidps.engine.data.PlayerFactory
+import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Registered
@@ -123,7 +123,7 @@ on<Command>({ prefix == "npc" }) { player: Player ->
 }
 
 on<Command>({ prefix == "save" }) { _: Player ->
-    val account: PlayerFactory = get()
+    val account: PlayerAccounts = get()
     players.forEach(account::queueSave)
 }
 

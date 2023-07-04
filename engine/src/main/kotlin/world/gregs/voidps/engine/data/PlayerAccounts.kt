@@ -32,7 +32,7 @@ import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.yaml.Yaml
 import java.io.File
 
-class PlayerFactory(
+class PlayerAccounts(
     private val store: EventHandlerStore,
     private val interfaceDefinitions: InterfaceDefinitions,
     private val containerDefinitions: ContainerDefinitions,

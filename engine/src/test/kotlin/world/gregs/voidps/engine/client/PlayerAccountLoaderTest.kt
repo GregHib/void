@@ -13,7 +13,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import world.gregs.voidps.engine.data.PlayerFactory
+import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.Client
@@ -28,7 +28,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
     private lateinit var queue: NetworkQueue
 
     @RelaxedMockK
-    private lateinit var factory: PlayerFactory
+    private lateinit var factory: PlayerAccounts
 
     private lateinit var loader: PlayerAccountLoader
 

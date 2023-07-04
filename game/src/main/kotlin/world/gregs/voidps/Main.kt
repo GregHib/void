@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.iterator.ParallelIterator
-import world.gregs.voidps.engine.data.PlayerFactory
+import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -64,11 +64,11 @@ object Main {
 
         val huffman: Huffman = get()
         val players: Players = get()
-        val factory: PlayerFactory = get()
+        val accounts: PlayerAccounts = get()
         val queue: ConnectionQueue = get()
         val gatekeeper: ConnectionGatekeeper = get()
 
-        val accountLoader = PlayerAccountLoader(queue, factory, Contexts.Game)
+        val accountLoader = PlayerAccountLoader(queue, accounts, Contexts.Game)
         val protocol = protocol(huffman)
         val server = Network(revision, modulus, private, gatekeeper, accountLoader, limit, Contexts.Game, protocol)
 

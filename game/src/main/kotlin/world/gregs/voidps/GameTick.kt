@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.client.update.npc.NPCResetTask
 import world.gregs.voidps.engine.client.update.npc.NPCUpdateTask
 import world.gregs.voidps.engine.client.update.player.PlayerResetTask
 import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
-import world.gregs.voidps.engine.data.PlayerFactory
+import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
@@ -46,7 +46,7 @@ fun getTickStages(
     floorItems: FloorItemTracking,
     objects: GameObjects,
     queue: NetworkQueue,
-    factory: PlayerFactory,
+    factory: PlayerAccounts,
     batches: ChunkBatchUpdates,
     objectDefinitions: ObjectDefinitions,
     npcDefinitions: NPCDefinitions,

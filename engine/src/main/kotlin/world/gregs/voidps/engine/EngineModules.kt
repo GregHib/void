@@ -8,7 +8,7 @@ import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
-import world.gregs.voidps.engine.data.PlayerFactory
+import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -36,7 +36,7 @@ val engineModule = module {
     single { FloorItems(get(), get(), get()).apply { get<ChunkBatchUpdates>().register(this) } }
     single { FloorItemTracking(get(), get(), get()) }
     single {
-        PlayerFactory(get(), get(), get(), get(), get(), get(), getProperty("savePath"), get(), get(), Tile(
+        PlayerAccounts(get(), get(), get(), get(), get(), get(), getProperty("savePath"), get(), get(), Tile(
             getIntProperty("homeX", 0), getIntProperty("homeY", 0), getIntProperty("homePlane", 0)
         ))
     }

@@ -25,7 +25,7 @@ import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.Container
-import world.gregs.voidps.engine.data.PlayerFactory
+import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -98,10 +98,10 @@ abstract class WorldTest : KoinTest {
     }
 
     fun createPlayer(name: String, tile: Tile = Tile.EMPTY): Player {
-        val factory: PlayerFactory = get()
+        val accounts: PlayerAccounts = get()
         val index = gatekeeper.connect(name)!!
         val player = Player(tile = tile, accountName = name, passwordHash = "")
-        factory.initPlayer(player, index)
+        accounts.initPlayer(player, index)
         accountDefs.add(player)
         tick()
         player["creation"] = -1
