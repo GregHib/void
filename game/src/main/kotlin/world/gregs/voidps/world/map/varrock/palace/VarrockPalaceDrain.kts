@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.map.varrock.palace
+
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject

@@ -1,6 +1,6 @@
 package world.gregs.voidps.tools.definition.item.pipe.extra
 
-import world.gregs.voidps.cache.definition.decoder.ItemDecoder
+import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.tools.convert.ItemDecoder718
@@ -8,7 +8,7 @@ import world.gregs.voidps.tools.convert.ItemDecoder718
 /**
  * Determines items [EquipType]
  */
-class ItemTypes(val decoder: ItemDecoder) {
+class ItemTypes(val decoder: Array<ItemDefinition>) {
 
     val slots = ItemDecoder718.equipSlots
     private val types = ItemDecoder718.equipTypes

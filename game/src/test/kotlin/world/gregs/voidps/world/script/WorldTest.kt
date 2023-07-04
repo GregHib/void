@@ -10,9 +10,8 @@ import org.koin.core.logger.Level
 import org.koin.dsl.module
 import org.koin.fileProperties
 import org.koin.test.KoinTest
-import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.*
+import world.gregs.voidps.cache.active.ActiveCache
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
@@ -27,7 +26,7 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.data.PlayerFactory
-import world.gregs.voidps.engine.data.definition.extra.*
+import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -42,20 +41,14 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.map.file.MapExtract
-import world.gregs.voidps.engine.map.file.Maps
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.gameModule
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.NetworkGatekeeper
-import world.gregs.voidps.postCacheGameModule
 import world.gregs.voidps.script.loadScripts
-import world.gregs.voidps.world.activity.quest.bookModule
-import world.gregs.voidps.world.interact.entity.player.music.musicModule
 import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
-import world.gregs.voidps.world.interact.world.spawn.stairsModule
 import java.io.File
 import kotlin.system.measureTimeMillis
 
@@ -139,8 +132,7 @@ abstract class WorldTest : KoinTest {
             fileProperties("/test.properties")
             properties(extraProperties)
             allowOverride(true)
-            modules(engineModule, stairsModule, musicModule, bookModule, gameModule)
-            modules(module {
+            modules(engineModule, gameModule, module {
                 single(createdAtStart = true) { cache }
                 single(createdAtStart = true) { huffman }
                 single(createdAtStart = true) { objectDefinitions }
@@ -150,20 +142,19 @@ abstract class WorldTest : KoinTest {
                 single(createdAtStart = true) { graphicDefinitions }
                 single(createdAtStart = true) { interfaceDefinitions }
                 single(createdAtStart = true) { containerDefinitions }
-                single(createdAtStart = true) { enumDefinitions }
                 single(createdAtStart = true) { structDefinitions }
                 single(createdAtStart = true) { quickChatPhraseDefinitions }
                 single(createdAtStart = true) { styleDefinitions }
+                single(createdAtStart = true) { enumDefinitions }
                 single { xteas }
                 single { gameObjects }
-                single { extract }
+                single { mapDefinitions }
                 single { collisions }
                 single { objectCollision }
             })
-            modules(postCacheModule, postCacheGameModule)
         }
         loadScripts(getProperty("scriptModule"))
-        Maps(cache, get(), get(), get(), get(), get()).load()
+        MapDefinitions(get(), get(), get()).load(active)
         saves = File(getProperty("savePath"))
         saves?.mkdirs()
         store = get()
@@ -224,28 +215,25 @@ abstract class WorldTest : KoinTest {
     }
 
     companion object {
+        private val active = File("../data/cache/active/")
         private val cache: Cache by lazy { CacheDelegate(getProperty("cachePath")) }
-        private val huffman: Huffman by lazy { Huffman(cache.getFile(Indices.HUFFMAN, 1)!!) }
-        private val objectDefinitions: ObjectDefinitions by lazy { ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false)).load() }
-        private val npcDefinitions: NPCDefinitions by lazy { NPCDefinitions(NPCDecoder(cache, member = true)).load() }
-        private val itemDefinitions: ItemDefinitions by lazy { ItemDefinitions(ItemDecoder(cache)).load() }
-        private val animationDefinitions: AnimationDefinitions by lazy { AnimationDefinitions(AnimationDecoder(cache)).load() }
-        private val graphicDefinitions: GraphicDefinitions by lazy { GraphicDefinitions(GraphicDecoder(cache)).load() }
-        private val interfaceDefinitions: InterfaceDefinitions by lazy { InterfaceDefinitions(InterfaceDecoder(cache)).load() }
-        private val containerDefinitions: ContainerDefinitions by lazy { ContainerDefinitions(ContainerDecoder(cache)).load() }
-        private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(cache)).load() }
-        private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder(cache), structDefinitions).load() }
-        private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cache)).load() }
-        private val styleDefinitions: StyleDefinitions by lazy { StyleDefinitions().load(ClientScriptDecoder(cache, revision634 = true)) }
+        private val huffman: Huffman by lazy { Huffman().load(active.resolve(ActiveCache.indexFile(Index.HUFFMAN)).readBytes()) }
+        private val objectDefinitions: ObjectDefinitions by lazy { ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(active)).load() }
+        private val npcDefinitions: NPCDefinitions by lazy { NPCDefinitions(NPCDecoder(member = true).load(active)).load() }
+        private val itemDefinitions: ItemDefinitions by lazy { ItemDefinitions(ItemDecoder().load(active)).load() }
+        private val animationDefinitions: AnimationDefinitions by lazy { AnimationDefinitions(AnimationDecoder().load(active)).load() }
+        private val graphicDefinitions: GraphicDefinitions by lazy { GraphicDefinitions(GraphicDecoder().load(active)).load() }
+        private val interfaceDefinitions: InterfaceDefinitions by lazy { InterfaceDefinitions(InterfaceDecoder().load(active)).load() }
+        private val containerDefinitions: ContainerDefinitions by lazy { ContainerDefinitions(ContainerDecoder().load(active)).load() }
+        private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder().load(active)).load() }
+        private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(active)).load() }
+        private val styleDefinitions: StyleDefinitions by lazy { StyleDefinitions(ClientScriptDecoder(revision634 = true).load(active)) }
+        private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(active), structDefinitions).load() }
         private val collisions: Collisions by lazy { Collisions() }
         private val objectCollision: GameObjectCollision by lazy { GameObjectCollision(collisions) }
         private val xteas: Xteas by lazy { Xteas().apply { XteaLoader().load(this, getProperty("xteaPath")) } }
         private val gameObjects: GameObjects by lazy { GameObjects(objectCollision, ChunkBatchUpdates(), objectDefinitions, storeUnused = true) }
-        private val extract: MapExtract by lazy {
-            val extract = MapExtract(collisions, objectDefinitions, gameObjects, xteas)
-            extract.loadMap(File(getProperty("mapPath")))
-            extract
-        }
+        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(collisions, objectDefinitions, gameObjects).load(active) }
         val emptyTile = Tile(2655, 4640)
     }
 }

@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.activity.skill.cooking
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.contain.inventory

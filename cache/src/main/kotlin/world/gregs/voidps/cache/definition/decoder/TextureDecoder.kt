@@ -4,100 +4,96 @@ import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
-import world.gregs.voidps.cache.Indices.TEXTURE_DEFINITIONS
+import world.gregs.voidps.cache.Index.TEXTURE_DEFINITIONS
 import world.gregs.voidps.cache.definition.data.TextureDefinition
 
-class TextureDecoder(cache: Cache) : DefinitionDecoder<TextureDefinition>(cache, TEXTURE_DEFINITIONS) {
+class TextureDecoder : DefinitionDecoder<TextureDefinition>(TEXTURE_DEFINITIONS) {
 
-    override fun create() = TextureDefinition()
-    lateinit var data: Array<TextureDefinition?>
+    override fun create(size: Int) = Array(size) { TextureDefinition(it) }
 
-    var metricsCount = 0
+    override fun getArchive(id: Int) = 0
 
-    override val last: Int
-        get() = metricsCount
+    override fun getFile(id: Int) = 0
 
-    init {
-        val data = getData(0, 0)
-        if (data != null) {
-            decode(BufferReader(data))
-        }
+    override fun loadCache(cache: Cache): Array<TextureDefinition> {
+        val start = System.currentTimeMillis()
+        val data = cache.getFile(index, 0, 0)!!
+        val reader = BufferReader(data)
+        val size = reader.readShort()
+        val definitions = create(size)
+        load(definitions, reader)
+        logger.info { "$size ${this::class.simpleName} definitions loaded in ${System.currentTimeMillis() - start}ms" }
+        return definitions
     }
 
-    override fun readData(id: Int) = data[id]
-
-    fun decode(buffer: Reader) {
-        metricsCount = buffer.readShort()
-        data = arrayOfNulls(metricsCount)
-        for (id in 0 until metricsCount) {
-            if (buffer.readUnsignedBoolean()) {
-                data[id] = TextureDefinition(id = id)
+    override fun load(definitions: Array<TextureDefinition>, reader: Reader) {
+        val data = mutableListOf<TextureDefinition>()
+        for (index in definitions.indices) {
+            if (reader.readUnsignedBoolean()) {
+                data.add(definitions[index])
             }
         }
 
         for (texture in data) {
-            texture?.useTextureColour = !buffer.readUnsignedBoolean()
+            texture.useTextureColour = !reader.readUnsignedBoolean()
         }
         for (texture in data) {
-            texture?.aBoolean1204 = buffer.readUnsignedBoolean()
+            texture.aBoolean1204 = reader.readUnsignedBoolean()
         }
         for (texture in data) {
-            texture?.aBoolean1205 = buffer.readUnsignedBoolean()
+            texture.aBoolean1205 = reader.readUnsignedBoolean()
         }
         for (texture in data) {
-            texture?.aByte1217 = buffer.readByte().toByte()
+            texture.aByte1217 = reader.readByte().toByte()
         }
         for (texture in data) {
-            texture?.aByte1225 = buffer.readByte().toByte()
+            texture.aByte1225 = reader.readByte().toByte()
         }
         for (texture in data) {
-            texture?.type = buffer.readByte().toByte()
+            texture.type = reader.readByte().toByte()
         }
         for (texture in data) {
-            texture?.aByte1213 = buffer.readByte().toByte()
+            texture.aByte1213 = reader.readByte().toByte()
         }
         for (texture in data) {
-            texture?.colour = buffer.readShort()
+            texture.colour = reader.readShort()
         }
         for (texture in data) {
-            texture?.aByte1211 = buffer.readByte().toByte()
+            texture.aByte1211 = reader.readByte().toByte()
         }
         for (texture in data) {
-            texture?.aByte1203 = buffer.readByte().toByte()
+            texture.aByte1203 = reader.readByte().toByte()
         }
         for (texture in data) {
-            texture?.aBoolean1222 = buffer.readUnsignedBoolean()
+            texture.aBoolean1222 = reader.readUnsignedBoolean()
         }
         for (texture in data) {
-            texture?.aBoolean1216 = buffer.readUnsignedBoolean()
+            texture.aBoolean1216 = reader.readUnsignedBoolean()
         }
         for (texture in data) {
-            texture?.aByte1207 = buffer.readByte().toByte()
+            texture.aByte1207 = reader.readByte().toByte()
         }
         for (texture in data) {
-            texture?.aBoolean1212 = buffer.readUnsignedBoolean()
+            texture.aBoolean1212 = reader.readUnsignedBoolean()
         }
         for (texture in data) {
-            texture?.aBoolean1210 = buffer.readUnsignedBoolean()
+            texture.aBoolean1210 = reader.readUnsignedBoolean()
         }
         for (texture in data) {
-            texture?.aBoolean1215 = buffer.readUnsignedBoolean()
+            texture.aBoolean1215 = reader.readUnsignedBoolean()
         }
         for (texture in data) {
-            texture?.anInt1202 = buffer.readUnsignedByte()
+            texture.anInt1202 = reader.readUnsignedByte()
         }
         for (texture in data) {
-            texture?.anInt1206 = buffer.readInt()
+            texture.anInt1206 = reader.readInt()
         }
         for (texture in data) {
-            texture?.anInt1226 = buffer.readUnsignedByte()
+            texture.anInt1226 = reader.readUnsignedByte()
         }
     }
 
     override fun TextureDefinition.read(opcode: Int, buffer: Reader) {
         throw IllegalStateException("Shouldn't be used.")
-    }
-
-    override fun clear() {
     }
 }

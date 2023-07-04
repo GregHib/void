@@ -4,7 +4,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import org.jsoup.Jsoup
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.Index
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
@@ -17,32 +17,32 @@ object MapPacker {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val target = CacheDelegate("./data/cache/")
+        val target = CacheDelegate("${System.getProperty("user.home")}/rs634_cache/")
         val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
-        packMissingMaps(target, xteas, CacheDelegate("./727 cache with most xteas/"), Xteas(), all())
-        packMissingMaps(target, xteas, CacheDelegate("./cache-280/"), getKeys(280), all()) // revision 681
-        packEaster08Map(target, CacheDelegate("./cache-257/")) // revision 537
+        packMissingMaps(target, xteas, CacheDelegate("${System.getProperty("user.home")}/Downloads/727 cache with most xteas/"), Xteas(), all())
+        packMissingMaps(target, xteas, CacheDelegate("${System.getProperty("user.home")}/Downloads/cache-280/"), getKeys(280), all()) // revision 681
+        packEaster08Map(target, CacheDelegate("${System.getProperty("user.home")}/Downloads/cache-257/")) // revision 537
     }
 
     private fun packMissingMaps(target: CacheDelegate, sourceXteas: Xteas, source: CacheDelegate, targetXteas: Xteas, regions: List<Region>) {
         val invalid = mutableSetOf<Region>()
         runBlocking {
-            val archives = target.getArchives(Indices.MAPS).toSet()
+            val archives = target.getArchives(Index.MAPS).toSet()
             for (region in regions) {
-                val archive = target.getArchiveId(Indices.MAPS, "l${region.x}_${region.y}")
+                val archive = target.getArchiveId(Index.MAPS, "l${region.x}_${region.y}")
                 if (!archives.contains(archive)) {
                     continue
                 }
-                val data = target.getFile(Indices.MAPS, archive, 0, sourceXteas[region])
+                val data = target.getFile(Index.MAPS, archive, 0, sourceXteas[region])
                 if (data == null) {
-                    val objData = source.getFile(Indices.MAPS, "l${region.x}_${region.y}", targetXteas[region])
-                    val tileData = source.getFile(Indices.MAPS, "m${region.x}_${region.y}")
+                    val objData = source.getFile(Index.MAPS, "l${region.x}_${region.y}", targetXteas[region])
+                    val tileData = source.getFile(Index.MAPS, "m${region.x}_${region.y}")
                     if (objData == null || tileData == null) {
                         println("Can't find map $region")
                     } else {
                         println("Written missing map $region")
-                        target.write(Indices.MAPS, "l${region.x}_${region.y}", objData)
-                        target.write(Indices.MAPS, "m${region.x}_${region.y}", tileData)
+                        target.write(Index.MAPS, "m${region.x}_${region.y}", tileData)
+                        target.write(Index.MAPS, "l${region.x}_${region.y}", objData)
                     }
                     invalid.add(region)
                 }
@@ -54,15 +54,15 @@ object MapPacker {
 
     private fun packEaster08Map(target: CacheDelegate, source: CacheDelegate) {
         val region = Region(9811)
-        val objData = source.getFile(Indices.MAPS, "l${region.x}_${region.y}", intArrayOf(-929935426, 1005492936, -2143736251, 386758357))
-        val tileData = source.getFile(Indices.MAPS, "m${region.x}_${region.y}")
+        val objData = source.getFile(Index.MAPS, "l${region.x}_${region.y}", intArrayOf(-929935426, 1005492936, -2143736251, 386758357))
+        val tileData = source.getFile(Index.MAPS, "m${region.x}_${region.y}")
         if (objData == null || tileData == null) {
             println("Can't find map $region")
         } else {
             val newRegion = Region(9555)
             println("Written missing map $newRegion")
-            target.write(Indices.MAPS, "l${newRegion.x}_${newRegion.y}", objData)
-            target.write(Indices.MAPS, "m${newRegion.x}_${newRegion.y}", tileData)
+            target.write(Index.MAPS, "m${newRegion.x}_${newRegion.y}", tileData)
+            target.write(Index.MAPS, "l${newRegion.x}_${newRegion.y}", objData)
         }
         target.update()
     }
@@ -87,7 +87,7 @@ object MapPacker {
                 .get()
                 .body()
                 .ownText()
-            file.mkdirs()
+            file.parentFile.mkdirs()
             file.writeText(text)
             text
         }

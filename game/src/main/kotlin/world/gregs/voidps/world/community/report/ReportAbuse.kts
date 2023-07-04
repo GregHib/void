@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.community.report
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.hasScreenOpen

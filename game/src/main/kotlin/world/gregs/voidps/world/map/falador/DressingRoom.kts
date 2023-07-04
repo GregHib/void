@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.map.falador
+
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.clearGraphic

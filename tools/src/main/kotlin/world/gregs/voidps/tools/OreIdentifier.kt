@@ -1,20 +1,15 @@
 package world.gregs.voidps.tools
 
-import org.koin.core.context.startKoin
-import org.koin.fileProperties
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
-import world.gregs.voidps.engine.client.cacheModule
 
 object OreIdentifier {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val koin = startKoin {
-            fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule)
-        }.koin
-        val decoder = ObjectDecoder(koin.get(), member = false, lowDetail = false)
+        val cache: Cache = CacheDelegate(property("cachePath"))
+        val decoder = ObjectDecoder(member = false, lowDetail = false).loadCache(cache)
         val map = mapOf(
             3184 to 1,
             3183 to 2,
@@ -32,9 +27,9 @@ object OreIdentifier {
             48536 to 3,
         )
         val search = map.keys
-        repeat(decoder.last) { id ->
-            val def = decoder.getOrNull(id) ?: return@repeat
-            val models = def.modelIds ?: return@repeat
+        for (id in decoder.indices) {
+            val def = decoder.getOrNull(id) ?: continue
+            val models = def.modelIds ?: continue
             if (models.any { it.any { id -> search.contains(id) } } && def.contains("Mine")) {
                 val single = id <= 2111
                 val rockId = def.modifiedColours?.getOrNull(0)?.toUShort()?.toInt()

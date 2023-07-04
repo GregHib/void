@@ -1,10 +1,10 @@
 package world.gregs.voidps.tools.definition.obj.pipe
 
-import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
 
-class ObjectTrapdoors(private val decoder: ObjectDecoder) : Pipeline.Modifier<MutableMap<Int, Extras>> {
+class ObjectTrapdoors(private val decoder: Array<ObjectDefinition>) : Pipeline.Modifier<MutableMap<Int, Extras>> {
 
     private fun check(id: Int): Boolean {
         val def = decoder.get(id)

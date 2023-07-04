@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.npc.move
+
 import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.set

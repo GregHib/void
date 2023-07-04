@@ -1,20 +1,23 @@
 package world.gregs.voidps.cache.secure
 
+import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.buffer.write.BufferWriter
 
-class Huffman(huffman: ByteArray) {
+class Huffman {
 
+    private val logger = InlineLogger()
     private var masks: IntArray? = null
-    private val frequencies: ByteArray
-    private var decryptKeys: IntArray
-    private val decryptedKeys: IntArray
+    private lateinit var frequencies: ByteArray
+    private lateinit var decryptKeys: IntArray
+    private lateinit var decryptedKeys: IntArray
     private var decryptionValues = listOf(0, 0x40, 0x20, 0x10, 0x8, 0x4, 0x2, 0x1)
 
     /**
      * Load huffman tree from cache for compression
      */
-    init {
+    fun load(huffman: ByteArray) : Huffman {
+        val start = System.currentTimeMillis()
         frequencies = huffman
         masks = IntArray(huffman.size)
         decryptKeys = IntArray(8)
@@ -81,6 +84,8 @@ class Huffman(huffman: ByteArray) {
         }
 
         decryptedKeys = decryptKeys.map { it xor -0x1 }.toIntArray()
+        logger.info { "Huffman tree decoded in ${System.currentTimeMillis() - start}ms" }
+        return this
     }
 
     /**

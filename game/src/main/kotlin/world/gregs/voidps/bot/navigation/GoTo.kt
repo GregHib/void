@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile

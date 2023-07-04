@@ -1,43 +1,79 @@
 package world.gregs.voidps.cache
 
+import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.active.ActiveCache
+import java.io.File
 
-abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, internal val index: Int) {
+abstract class DefinitionDecoder<T : Definition>(val index: Int) {
 
-    open val last: Int
-        get() = cache.lastArchiveId(index) * 256 + (cache.archiveCount(index, cache.lastArchiveId(index)))
+    abstract fun create(size: Int): Array<T>
 
-    val indices: IntRange
-        get() = 0..last
-
-    fun getOrNull(id: Int): T? {
-        return readData(id)
+    /**
+     * Load from active cache
+     */
+    fun load(cache: File): Array<T> {
+        val start = System.currentTimeMillis()
+        val file = cache.resolve(fileName())
+        if (!file.exists()) {
+            return create(0)
+        }
+        val reader = BufferReader(file.readBytes())
+        val size = reader.readInt() + 1
+        val array = create(size)
+        while (reader.position() < reader.length) {
+            load(array, reader)
+        }
+        logger.info { "$size ${this::class.simpleName} definitions loaded in ${System.currentTimeMillis() - start}ms" }
+        return array
     }
 
-    open fun get(id: Int) = getOrNull(id) ?: create()
+    open fun fileName() = ActiveCache.indexFile(index)
 
-    protected abstract fun create(): T
-
-    protected open fun getData(archive: Int, file: Int): ByteArray? {
-        return cache.getFile(index, archive, file)
+    open fun load(definitions: Array<T>, reader: Reader) {
+        val id = readId(reader)
+        read(definitions, id, reader)
     }
 
-    protected open fun readData(id: Int): T? {
+    open fun readId(reader: Reader) = reader.readInt()
+
+    /**
+     * Load from cache
+     */
+    open fun loadCache(cache: Cache): Array<T> {
+        val start = System.currentTimeMillis()
+        val size = size(cache)
+        val definitions = create(size)
+        for (id in 0 until size) {
+            load(definitions, cache, id)
+        }
+        logger.info { "$size ${this::class.simpleName} definitions loaded in ${System.currentTimeMillis() - start}ms" }
+        return definitions
+    }
+
+    open fun size(cache: Cache): Int {
+        return cache.lastArchiveId(index) * 256 + (cache.archiveCount(index, cache.lastArchiveId(index)))
+    }
+
+    open fun load(definitions: Array<T>, cache: Cache, id: Int) {
         val archive = getArchive(id)
         val file = getFile(id)
-        val data = getData(archive, file)
-        if (data != null) {
-            val definition = create()
-            definition.id = id
-            readLoop(definition, BufferReader(data))
-            definition.changeValues()
-            return definition
-        }
-        return null
+        val data = cache.getFile(index, archive, file) ?: return
+        read(definitions, id, BufferReader(data))
     }
 
-    protected open fun readLoop(definition: T, buffer: Reader) {
+    open fun getFile(id: Int) = id
+
+    open fun getArchive(id: Int) = id
+
+    protected fun read(definitions: Array<T>, id: Int, reader: Reader) {
+        val definition = definitions[id]
+        readLoop(definition, reader)
+        changeValues(definitions, definition)
+    }
+
+    open fun readLoop(definition: T, buffer: Reader) {
         while (true) {
             val opcode = buffer.readUnsignedByte()
             if (opcode == 0) {
@@ -47,26 +83,13 @@ abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, int
         }
     }
 
-    open fun getFile(id: Int) = id
-
-    open fun getArchive(id: Int) = id
-
     protected abstract fun T.read(opcode: Int, buffer: Reader)
 
-    protected open fun T.changeValues() {
-    }
-
-    open fun clear() {
-    }
-
-    fun forEach(function: (T) -> Unit) {
-        for (i in indices) {
-            val def = getOrNull(i) ?: continue
-            function.invoke(def)
-        }
+    open fun changeValues(definitions: Array<T>, definition: T) {
     }
 
     companion object {
+        internal val logger = InlineLogger()
 
         fun byteToChar(b: Byte): Char {
             var i = 0xff and b.toInt()

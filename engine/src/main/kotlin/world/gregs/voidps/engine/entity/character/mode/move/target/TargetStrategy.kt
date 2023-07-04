@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.mode.move.target
 
 import org.rsmod.game.pathfinder.reach.ReachStrategy
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get
@@ -10,8 +11,14 @@ import world.gregs.voidps.engine.map.Tile
 interface TargetStrategy {
     val bitMask: Int
     val tile: Tile
+    /*
+        Rotated values
+     */
     val width: Int
     val height: Int
+    /*
+        Original sizes
+     */
     val sizeX: Int
     val sizeY: Int
     val rotation: Int
@@ -23,7 +30,7 @@ interface TargetStrategy {
             srcX = character.tile.x,
             srcZ = character.tile.y,
             level = character.tile.plane,
-            srcSize = character.size.width,
+            srcSize = character.size,
             destX = tile.x,
             destZ = tile.y,
             destWidth = sizeX,

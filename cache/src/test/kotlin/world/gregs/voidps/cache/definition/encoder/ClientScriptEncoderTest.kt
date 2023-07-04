@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.Indices.CLIENT_SCRIPTS
+import world.gregs.voidps.cache.Index.CLIENT_SCRIPTS
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
 
@@ -40,8 +40,9 @@ internal class ClientScriptEncoderTest {
         val data = writer.array().copyOf(writer.position())
 
         val cache: Cache = mockk(relaxed = true)
-        every { cache.getFile(CLIENT_SCRIPTS, any(), any<Int>()) } returns data
-        val decoder = ClientScriptDecoder(cache, revision634)
+        every { cache.getFile(CLIENT_SCRIPTS, any<Int>(), any<Int>(), any()) } returns data
+        every { cache.lastArchiveId(any()) } returns 1
+        val decoder = ClientScriptDecoder(revision634).loadCache(cache)
         val decoded = decoder.get(0)
         assertEquals(definition, decoded)
     }
@@ -72,7 +73,8 @@ internal class ClientScriptEncoderTest {
 
         val cache: Cache = mockk(relaxed = true)
         every { cache.getFile(CLIENT_SCRIPTS, any(), any<Int>()) } returns data
-        val decoder = ClientScriptDecoder(cache, revision634)
+        every { cache.lastArchiveId(any()) } returns 1
+        val decoder = ClientScriptDecoder(revision634).loadCache(cache)
         val decoded = decoder.get(0)
         assertEquals(definition, decoded)
     }

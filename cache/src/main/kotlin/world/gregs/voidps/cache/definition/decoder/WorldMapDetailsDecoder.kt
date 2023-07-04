@@ -1,23 +1,28 @@
 package world.gregs.voidps.cache.definition.decoder
 
+import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
-import world.gregs.voidps.cache.Indices.WORLD_MAP
+import world.gregs.voidps.cache.Index.WORLD_MAP
 import world.gregs.voidps.cache.definition.data.WorldMapDefinition
 import world.gregs.voidps.cache.definition.data.WorldMapSection
 import java.util.*
 
-class WorldMapDetailsDecoder(cache: Cache) : DefinitionDecoder<WorldMapDefinition>(cache, WORLD_MAP) {
+class WorldMapDetailsDecoder : DefinitionDecoder<WorldMapDefinition>(WORLD_MAP) {
 
-    val archive = cache.getArchiveId(index, "details")
+    override fun size(cache: Cache): Int {
+        return cache.lastFileId(index, cache.getArchiveId(index, "details"))
+    }
 
-    override fun getArchive(id: Int) = archive
+    override fun load(definitions: Array<WorldMapDefinition>, cache: Cache, id: Int) {
+        val archive = cache.getArchiveId(index, "details")
+        val file = getFile(id)
+        val data = cache.getFile(index, archive, file) ?: return
+        read(definitions, id, BufferReader(data))
+    }
 
-    override val last: Int
-        get() = cache.lastFileId(index, archive)
-
-    override fun create() = WorldMapDefinition()
+    override fun create(size: Int) = Array(size) { WorldMapDefinition(it) }
 
     override fun readLoop(definition: WorldMapDefinition, buffer: Reader) {
         definition.read(-1, buffer)
@@ -37,7 +42,7 @@ class WorldMapDetailsDecoder(cache: Cache) : DefinitionDecoder<WorldMapDefinitio
         }
         sections = LinkedList()
         val length = buffer.readUnsignedByte()
-        repeat(length) {
+        for (i in 0 until length) {
             sections!!.addLast(
                 WorldMapSection(
                     buffer.readUnsignedByte(),
@@ -54,24 +59,24 @@ class WorldMapDetailsDecoder(cache: Cache) : DefinitionDecoder<WorldMapDefinitio
         }
     }
 
-    override fun WorldMapDefinition.changeValues() {
-        minX = 12800
-        minY = 12800
-        maxX = 0
-        maxY = 0
+    override fun changeValues(definitions: Array<WorldMapDefinition>, definition: WorldMapDefinition) {
+        definition.minX = 12800
+        definition.minY = 12800
+        definition.maxX = 0
+        definition.maxY = 0
 
-        sections?.forEach { definition ->
-            if (minX > definition.startX) {
-                minX = definition.startX
+        definition.sections?.forEach { section ->
+            if (definition.minX > section.startX) {
+                definition.minX = section.startX
             }
-            if (minY > definition.startY) {
-                minY = definition.startY
+            if (definition.minY > section.startY) {
+                definition.minY = section.startY
             }
-            if (maxX < definition.endX) {
-                maxX = definition.endX
+            if (definition.maxX < section.endX) {
+                definition.maxX = section.endX
             }
-            if (maxY < definition.endY) {
-                maxY = definition.endY
+            if (definition.maxY < section.endY) {
+                definition.maxY = section.endY
             }
         }
     }

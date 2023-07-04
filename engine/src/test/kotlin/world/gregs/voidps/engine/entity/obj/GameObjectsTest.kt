@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
-import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.encode.chunk.ObjectAddition
 import world.gregs.voidps.network.encode.chunk.ObjectRemoval

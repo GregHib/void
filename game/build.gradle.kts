@@ -6,9 +6,9 @@ dependencies {
     implementation(project(":engine"))
     implementation(project(":cache"))
     implementation(project(":network"))
+    implementation(project(":types"))
     implementation(project(":yaml"))
     implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
-    implementation("io.github.classgraph:classgraph:${findProperty("classgraphVersion")}")
     implementation("net.pearx.kasechange:kasechange:${findProperty("kaseChangeVersion")}")
 
     implementation(kotlin("script-runtime"))

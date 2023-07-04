@@ -5,7 +5,6 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.map.RegionMap
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.region.RegionPlane
 import kotlin.test.assertEquals
@@ -16,12 +15,12 @@ import kotlin.test.assertTrue
 internal class CharacterListTest {
 
     private lateinit var list: CharacterList<Character>
-    private lateinit var regionMap: RegionMap
+    private lateinit var characterMap: CharacterMap
 
     @BeforeEach
     fun setup() {
-        regionMap = mockk(relaxed = true)
-        list = object : CharacterList<Character>(10, regionMap) {
+        characterMap = mockk(relaxed = true)
+        list = object : CharacterList<Character>(10, characterMap) {
             override val indexArray: Array<Character?> = arrayOfNulls(10)
         }
     }
@@ -73,8 +72,8 @@ internal class CharacterListTest {
         list.update(Tile(1), Tile(64), character)
 
         verify {
-            regionMap.remove(RegionPlane(0), character)
-            regionMap.add(RegionPlane(1), character)
+            characterMap.remove(RegionPlane(0), character)
+            characterMap.add(RegionPlane(1), character)
         }
     }
 

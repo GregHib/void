@@ -3,13 +3,14 @@ package world.gregs.voidps.engine.entity.character
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.extra.AnimationDefinitions
-import world.gregs.voidps.engine.data.definition.extra.GraphicDefinitions
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectShape
@@ -268,8 +269,8 @@ fun Character.facing(entity: Entity) = turn == nearestTile(entity).delta(tile)
 fun Character.nearestTile(entity: Entity): Tile {
     return when (entity) {
         is GameObject -> Distance.getNearest(entity.tile, entity.width, entity.height, this.tile)
-        is NPC -> Distance.getNearest(entity.tile, entity.size.width, entity.size.height, this.tile)
-        is Player -> Distance.getNearest(entity.tile, entity.size.width, entity.size.height, this.tile)
+        is NPC -> Distance.getNearest(entity.tile, entity.def.size, entity.def.size, this.tile)
+        is Player -> Distance.getNearest(entity.tile, entity.appearance.size, entity.appearance.size, this.tile)
         else -> entity.tile
     }
 }

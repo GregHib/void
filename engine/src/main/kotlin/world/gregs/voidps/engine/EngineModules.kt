@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.data.PlayerFactory
-import world.gregs.voidps.engine.data.definition.extra.*
+import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.drop.DropTables
@@ -23,7 +23,6 @@ import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.map.file.MapExtract
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.yaml.Yaml
@@ -68,13 +67,6 @@ val engineModule = module {
     single { LineValidator(flags = get<Collisions>()) }
     // Misc
     single(createdAtStart = true) { DropTables().load() }
-}
-
-/**
- * Modules which depend on cache definitions
- */
-val postCacheModule = module {
-    single { MapExtract(get(), get(), get(), get()) }
     // Definitions
     single(createdAtStart = true) { SoundDefinitions().load() }
     single(createdAtStart = true) { RenderEmoteDefinitions().load() }

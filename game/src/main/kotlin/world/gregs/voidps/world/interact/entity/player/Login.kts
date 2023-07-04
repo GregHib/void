@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.player
+
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance

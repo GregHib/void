@@ -10,7 +10,9 @@ import world.gregs.voidps.engine.contain.Containers
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.restrict.ValidItemRestriction
 import world.gregs.voidps.engine.contain.stack.DependentOnItem
-import world.gregs.voidps.engine.data.definition.extra.*
+import world.gregs.voidps.engine.data.definition.*
+import world.gregs.voidps.engine.data.yaml.PlayerYamlReaderConfig
+import world.gregs.voidps.engine.data.yaml.PlayerYamlWriterConfig
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.player.Player

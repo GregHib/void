@@ -139,7 +139,7 @@ class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinition> {
         if(icons != null) {
             if(icons.isNotEmpty()) {
                 writeByte(icons.lastIndex)
-                repeat(icons.size) { index ->
+                for (index in icons.indices) {
                     writeShort(icons[index])
                 }
             }

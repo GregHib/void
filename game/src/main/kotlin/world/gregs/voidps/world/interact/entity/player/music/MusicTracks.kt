@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.music
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
-import org.koin.dsl.module
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.area.Area
@@ -13,10 +12,6 @@ import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
 import kotlin.collections.set
 
-val musicModule = module {
-    single(createdAtStart = true) { MusicTracks() }
-}
-
 class MusicTracks {
 
     private lateinit var tracks: Map<Int, List<Track>>
@@ -24,56 +19,55 @@ class MusicTracks {
 
     fun get(name: String): Int = trackNames.getOrDefault(name, -1)
 
-    init {
-        load()
-    }
-
     operator fun get(region: Region): List<Track> {
         return tracks[region.id] ?: emptyList()
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get()) = timedLoad("music track") {
-        var count = 0
-        val tracks = Int2ObjectOpenHashMap<MutableList<Track>>()
-        val names = Object2IntOpenHashMap<String>()
-        val config = object : YamlReaderConfiguration() {
-            override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-                if (indent == 0) {
-                    count++
-                    value as Map<String, Any>
-                    val index = value["index"] as Int
-                    names[key] = index
-                    for (element in value["areas"] as? List<Map<String, Any>> ?: return) {
-                        val area = if (element.containsKey("region")) {
-                            val plane = element["plane"] as? Int ?: -1
-                            val region = Region(element["region"] as Int)
-                            if (plane != -1) {
-                                region.toPlane(plane).toCuboid()
+    fun load(yaml: Yaml = get(), path: String = getProperty("musicPath")): MusicTracks {
+        timedLoad("music track") {
+            var count = 0
+            val tracks = Int2ObjectOpenHashMap<MutableList<Track>>()
+            val names = Object2IntOpenHashMap<String>()
+            val config = object : YamlReaderConfiguration() {
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+                    if (indent == 0) {
+                        count++
+                        value as Map<String, Any>
+                        val index = value["index"] as Int
+                        names[key] = index
+                        for (element in value["areas"] as? List<Map<String, Any>> ?: return) {
+                            val area = if (element.containsKey("region")) {
+                                val plane = element["plane"] as? Int ?: -1
+                                val region = Region(element["region"] as Int)
+                                if (plane != -1) {
+                                    region.toPlane(plane).toCuboid()
+                                } else {
+                                    region.toCuboid()
+                                }
                             } else {
-                                region.toCuboid()
+                                Area.fromMap(element, 4)
                             }
-                        } else {
-                            Area.fromMap(element, 4)
+                            val track = Track(key, index, area)
+                            for (region in area.toRegions()) {
+                                tracks.getOrPut(region.id) { ObjectArrayList() }.add(track)
+                            }
                         }
-                        val track = Track(key, index, area)
-                        for (region in area.toRegions()) {
-                            tracks.getOrPut(region.id) { ObjectArrayList() }.add(track)
-                        }
+                    } else {
+                        super.set(map, key, value, indent, parentMap)
                     }
-                } else {
-                    super.set(map, key, value, indent, parentMap)
                 }
             }
+            yaml.load<Any>(path, config)
+            // Prioritise smaller shape checks over larger region checks
+            for (entry in tracks) {
+                entry.value.sortBy { it.area.area }
+            }
+            this.tracks = tracks
+            this.trackNames = names
+            count
         }
-        yaml.load<Any>(getProperty("musicPath"), config)
-        // Prioritise smaller shape checks over larger region checks
-        for (entry in tracks) {
-            entry.value.sortBy { it.area.area }
-        }
-        this.tracks = tracks
-        this.trackNames = names
-        count
+        return this
     }
 
     data class Track(val name: String, val index: Int, val area: Area)

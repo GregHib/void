@@ -1,14 +1,13 @@
 package world.gregs.voidps.cache.config.decoder
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.Configs.QUESTS
+import world.gregs.voidps.cache.Config.QUESTS
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.QuestDefinition
 
-class QuestDecoder(cache: Cache) : ConfigDecoder<QuestDefinition>(cache, QUESTS) {
+class QuestDecoder : ConfigDecoder<QuestDefinition>(QUESTS) {
 
-    override fun create() = QuestDefinition()
+    override fun create(size: Int) = Array(size) { QuestDefinition(it) }
 
     override fun QuestDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
@@ -22,26 +21,16 @@ class QuestDecoder(cache: Cache) : ConfigDecoder<QuestDefinition>(cache, QUESTS)
             9 -> buffer.readUnsignedByte()
             10 -> {
                 val length = buffer.readUnsignedByte()
-                anIntArray2209 = IntArray(length)
-                repeat(length) { count ->
-                    anIntArray2209!![count] = buffer.readInt()
-                }
+                anIntArray2209 = IntArray(length) { buffer.readInt() }
             }
             12 -> buffer.readInt()
             13 -> {
                 val length = buffer.readUnsignedByte()
-                anIntArray2207 = IntArray(length)
-                repeat(length) { count ->
-                    anIntArray2207!![count] = buffer.readShort()
-                }
+                anIntArray2207 = IntArray(length) { buffer.readShort() }
             }
             14 -> {
                 val length = buffer.readUnsignedByte()
-                anIntArrayArray2210 = Array(length) { IntArray(2) }
-                repeat(length) { count ->
-                    anIntArrayArray2210!![count][0] = buffer.readUnsignedByte()
-                    anIntArrayArray2210!![count][1] = buffer.readUnsignedByte()
-                }
+                anIntArrayArray2210 = Array(length) { IntArray(2) { buffer.readUnsignedByte() } }
             }
             15 -> buffer.readShort()
             17 -> anInt2188 = buffer.readShort()
@@ -51,7 +40,7 @@ class QuestDecoder(cache: Cache) : ConfigDecoder<QuestDefinition>(cache, QUESTS)
                 anIntArray2200 = IntArray(length)
                 anIntArray2199 = IntArray(length)
                 anIntArray2191 = IntArray(length)
-                repeat(length) { count ->
+                for (count in 0 until length) {
                     anIntArray2200!![count] = buffer.readInt()
                     anIntArray2191!![count] = buffer.readInt()
                     anIntArray2199!![count] = buffer.readInt()
@@ -64,7 +53,7 @@ class QuestDecoder(cache: Cache) : ConfigDecoder<QuestDefinition>(cache, QUESTS)
                 aStringArray2198 = arrayOfNulls(length)
                 anIntArray2195 = IntArray(length)
                 anIntArray2190 = IntArray(length)
-                repeat(length) { count ->
+                for (count in 0 until length) {
                     anIntArray2204!![count] = buffer.readInt()
                     anIntArray2195!![count] = buffer.readInt()
                     anIntArray2190!![count] = buffer.readInt()
@@ -75,16 +64,16 @@ class QuestDecoder(cache: Cache) : ConfigDecoder<QuestDefinition>(cache, QUESTS)
         }
     }
 
-    override fun QuestDefinition.changeValues() {
-        if (aString2202 == null) {
-            aString2202 = aString2211
+    override fun changeValues(definitions: Array<QuestDefinition>, definition: QuestDefinition) {
+        if (definition.aString2202 == null) {
+            definition.aString2202 = definition.aString2211
         }
     }
 
     private fun readArray(buffer: Reader) : Array<IntArray> {
         val length = buffer.readUnsignedByte()
         val array = Array(length) { IntArray(3) }
-        repeat(length) { count ->
+        for (count in 0 until length) {
             array[count][0] = buffer.readShort()
             array[count][1] = buffer.readInt()
             array[count][2] = buffer.readInt()

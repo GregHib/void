@@ -1,7 +1,9 @@
+package world.gregs.voidps.world.interact.entity.player.display
+
 import world.gregs.voidps.engine.client.sendInterfaceItemUpdate
 import world.gregs.voidps.engine.contain.ContainerUpdate
-import world.gregs.voidps.engine.data.definition.extra.ContainerDefinitions
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.ContainerDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject

@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.*
-import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.Character

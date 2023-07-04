@@ -1,14 +1,13 @@
 package world.gregs.voidps.cache.config.decoder
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.Configs.RENDER_ANIMATIONS
+import world.gregs.voidps.cache.Config.RENDER_ANIMATIONS
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.RenderAnimationDefinition
 
-class RenderAnimationDecoder(cache: Cache) : ConfigDecoder<RenderAnimationDefinition>(cache, RENDER_ANIMATIONS) {
+class RenderAnimationDecoder : ConfigDecoder<RenderAnimationDefinition>(RENDER_ANIMATIONS) {
 
-    override fun create() = RenderAnimationDefinition()
+    override fun create(size: Int) = Array(size) { RenderAnimationDefinition(it) }
 
     override fun RenderAnimationDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
@@ -40,14 +39,14 @@ class RenderAnimationDecoder(cache: Cache) : ConfigDecoder<RenderAnimationDefini
                 }
                 val length = buffer.readUnsignedByte()
                 anIntArrayArray3273!![length] = IntArray(6)
-                repeat(5) { index ->
+                for (index in 0 until 5) {
                     anIntArrayArray3273!![length]!![index] = buffer.readUnsignedShort()
                 }
             }
             28 -> {
                 val length = buffer.readUnsignedByte()
                 anIntArray3276 = IntArray(length)
-                repeat(length) { count ->
+                for (count in 0 until length) {
                     anIntArray3276!![count] = buffer.readUnsignedByte()
                     if (anIntArray3276!![count] == 255) {
                         anIntArray3276!![count] = -1
@@ -81,7 +80,7 @@ class RenderAnimationDecoder(cache: Cache) : ConfigDecoder<RenderAnimationDefini
                 val length = buffer.readUnsignedByte()
                 anIntArray3294 = IntArray(length)
                 anIntArray3302 = IntArray(length)
-                repeat(length) { index ->
+                for (index in 0 until length) {
                     anIntArray3294!![index] = buffer.readShort()
                     val value = buffer.readUnsignedByte()
                     anIntArray3302!![index] = value
@@ -106,7 +105,7 @@ class RenderAnimationDecoder(cache: Cache) : ConfigDecoder<RenderAnimationDefini
                 }
                 val length = buffer.readUnsignedByte()
                 anIntArrayArray3249!![length] = IntArray(3)
-                repeat(2) { index ->
+                for (index in 0 until 2) {
                     anIntArrayArray3249!![length]!![index] = buffer.readUnsignedShort()
                 }
             }

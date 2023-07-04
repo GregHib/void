@@ -3,7 +3,6 @@ package world.gregs.voidps.tools.map.render.draw
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapTile
 import world.gregs.voidps.cache.definition.data.TextureDefinition
-import world.gregs.voidps.cache.definition.decoder.TextureDecoder
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.tools.map.render.load.MapConstants.size
 import world.gregs.voidps.tools.map.render.load.MapTileSettings
@@ -13,11 +12,11 @@ import world.gregs.voidps.tools.map.render.raster.Raster
 import kotlin.math.sqrt
 
 class TilePlane(
-    private val textureDefinitions: TextureDecoder,
+    private val textureDefinitions: Array<TextureDefinition>,
     private val width: Int,
     private val height: Int,
     val plane: Int,
-    private val tiles: Map<Int, MapDefinition?>
+    private val tiles: Array<MapDefinition>
 ) {
 
     private val tileBrightness = Array(width + 1) { ByteArray(height + 1) }
@@ -78,7 +77,7 @@ class TilePlane(
         val regionX = x / 64
         val regionY = y / 64
         val regionId = Region.id(regionX, regionY)
-        return tiles[regionId]?.getTile(x.rem(64), y.rem(64), plane) ?: MapTile.EMPTY
+        return tiles[regionId].getTile(x.rem(64), y.rem(64), plane)
     }
 
     fun averageHeight(worldY: Int, worldX: Int): Int {

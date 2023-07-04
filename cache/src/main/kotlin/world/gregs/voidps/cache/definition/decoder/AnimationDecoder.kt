@@ -1,14 +1,13 @@
 package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
-import world.gregs.voidps.cache.Indices.ANIMATIONS
+import world.gregs.voidps.cache.Index.ANIMATIONS
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 
-class AnimationDecoder(cache: Cache) : DefinitionDecoder<AnimationDefinition>(cache, ANIMATIONS) {
+class AnimationDecoder : DefinitionDecoder<AnimationDefinition>(ANIMATIONS) {
 
-    override fun create() = AnimationDefinition()
+    override fun create(size: Int) = Array(size) { AnimationDefinition(it) }
 
     override fun getFile(id: Int) = id and 0x7f
 
@@ -18,15 +17,9 @@ class AnimationDecoder(cache: Cache) : DefinitionDecoder<AnimationDefinition>(ca
         when (opcode) {
             1 -> {
                 val length = buffer.readShort()
-                durations = IntArray(length)
-                repeat(length) { count ->
-                    durations!![count] = buffer.readShort()
-                }
-                frames = IntArray(length)
-                repeat(length) { count ->
-                    frames!![count] = buffer.readShort()
-                }
-                repeat(length) { count ->
+                durations = IntArray(length) { buffer.readShort() }
+                frames = IntArray(length) { buffer.readShort() }
+                for (count in 0 until length) {
                     frames!![count] = (buffer.readShort() shl 16) + frames!![count]
                 }
             }
@@ -34,7 +27,7 @@ class AnimationDecoder(cache: Cache) : DefinitionDecoder<AnimationDefinition>(ca
             3 -> {
                 interleaveOrder = BooleanArray(256)
                 val length = buffer.readUnsignedByte()
-                repeat(length) {
+                for (count in 0 until length) {
                     interleaveOrder!![buffer.readUnsignedByte()] = true
                 }
             }
@@ -47,18 +40,15 @@ class AnimationDecoder(cache: Cache) : DefinitionDecoder<AnimationDefinition>(ca
             11 -> replayMode = buffer.readUnsignedByte()
             12 -> {
                 val length = buffer.readUnsignedByte()
-                expressionFrames = IntArray(length)
-                repeat(length) { count ->
-                    expressionFrames!![count] = buffer.readShort()
-                }
-                repeat(length) { count ->
+                expressionFrames = IntArray(length) { buffer.readShort() }
+                for (count in 0 until length) {
                     expressionFrames!![count] = (buffer.readShort() shl 16) + expressionFrames!![count]
                 }
             }
             13 -> {
                 val length = buffer.readShort()
                 sounds = arrayOfNulls(length)
-                repeat(length) { count ->
+                for (count in 0 until length) {
                     val size = buffer.readUnsignedByte()
                     if (size > 0) {
                         sounds!![count] = IntArray(size)
@@ -97,12 +87,12 @@ class AnimationDecoder(cache: Cache) : DefinitionDecoder<AnimationDefinition>(ca
         }
     }
 
-    override fun AnimationDefinition.changeValues() {
-        if (walkingPrecedence == -1) {
-            walkingPrecedence = if (interleaveOrder == null) 0 else 2
+    override fun changeValues(definitions: Array<AnimationDefinition>, definition: AnimationDefinition) {
+        if (definition.walkingPrecedence == -1) {
+            definition.walkingPrecedence = if (definition.interleaveOrder == null) 0 else 2
         }
-        if (animatingPrecedence == -1) {
-            animatingPrecedence = if (interleaveOrder == null) 0 else 2
+        if (definition.animatingPrecedence == -1) {
+            definition.animatingPrecedence = if (definition.interleaveOrder == null) 0 else 2
         }
     }
 }

@@ -2,11 +2,11 @@ package world.gregs.voidps.engine.map.chunk
 
 import it.unimi.dsi.fastutil.ints.Int2IntArrayMap
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet
+import world.gregs.voidps.engine.data.definition.MapDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.clear
-import world.gregs.voidps.engine.map.file.MapExtract
 import world.gregs.voidps.engine.map.region.Region
 import java.util.*
 import kotlin.collections.set
@@ -14,7 +14,7 @@ import kotlin.collections.set
 class DynamicChunks(
     private val objects: GameObjects,
     private val collisions: Collisions,
-    private val extract: MapExtract
+    private val extract: MapDefinitions
 ) {
     private val chunks: MutableMap<Int, Int> = Int2IntArrayMap()
     private val regions = IntOpenHashSet()
@@ -87,19 +87,11 @@ class DynamicChunks(
                 rotation
             )
 
-        fun getChunk(id: Int) = Chunk(getX(id), getY(id), getPlane(id))
+        fun getChunk(id: Int) = Chunk(x(id), y(id), plane(id))
 
-        private fun getX(id: Int): Int {
-            return id shr 14 and 0x7ff
-        }
-
-        private fun getY(id: Int): Int {
-            return id shr 3 and 0x7ff
-        }
-
-        private fun getPlane(id: Int): Int {
-            return id shr 28 and 0x7ff
-        }
+        private fun x(id: Int) = id shr 14 and 0x7ff
+        private fun y(id: Int) = id shr 3 and 0x7ff
+        private fun plane(id: Int) = id shr 28 and 0x7ff
 
         private fun toChunkPosition(chunkX: Int, chunkY: Int, plane: Int): Int {
             return chunkY + (chunkX shl 14) + (plane shl 28)
@@ -108,6 +100,5 @@ class DynamicChunks(
         private fun toRotatedChunkPosition(chunkX: Int, chunkY: Int, plane: Int, rotation: Int): Int {
             return rotation shl 1 or (plane shl 24) or (chunkX shl 14) or (chunkY shl 3)
         }
-
     }
 }

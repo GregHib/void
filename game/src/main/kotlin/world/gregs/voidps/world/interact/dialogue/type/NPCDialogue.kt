@@ -6,9 +6,9 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.getOrNull
-import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
-import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
-import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player

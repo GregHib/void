@@ -81,7 +81,7 @@ object ObjectShape {
 
     const val WALL_DECOR_DIAGONAL_BOTH_ALT = 24
 
-    fun isWall(type: Int): Boolean = type == WALL_STRAIGHT || type in WALL_DECOR_STRAIGHT_NO_OFFSET..WALL_DIAGONAL
+    fun isWall(shape: Int): Boolean = shape == WALL_STRAIGHT || shape in WALL_DECOR_STRAIGHT_NO_OFFSET..WALL_DIAGONAL
 
-    fun isCorner(type: Int) = type in WALL_DIAGONAL_CORNER..WALL_SQUARE_CORNER
+    fun isCorner(shape: Int) = shape in WALL_DIAGONAL_CORNER..WALL_SQUARE_CORNER
 }

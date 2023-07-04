@@ -1,14 +1,14 @@
 package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.Index
 
 object PrefetchKeyGeneration {
 
     @JvmStatic
     fun main(args: Array<String>) {
         val cache = CacheLibrary("./data/cache/")
-        println(cache.archive(Indices.DEFAULTS))
+        println(cache.archive(Index.DEFAULTS))
         println(cache.native("jaclib"))
         println(cache.native("jaggl"))
         println(cache.native("jagdx"))
@@ -16,25 +16,25 @@ object PrefetchKeyGeneration {
         println(cache.native("sw3d"))
         println(cache.native("hw3d"))
         println(cache.native("jagtheora"))
-        println(cache.archive(Indices.SHADERS))
-        println(cache.archive(Indices.TEXTURE_DEFINITIONS))
-        println(cache.archive(Indices.CONFIGS))
-        println(cache.archive(Indices.OBJECTS))
-        println(cache.archive(Indices.ENUMS))
-        println(cache.archive(Indices.NPCS))
-        println(cache.archive(Indices.ITEMS))
-        println(cache.archive(Indices.ANIMATIONS))
-        println(cache.archive(Indices.GRAPHICS))
-        println(cache.archive(Indices.VAR_BIT))
-        println(cache.archive(Indices.QUICK_CHAT_MESSAGES))
-        println(cache.archive(Indices.QUICK_CHAT_MENUS))
-        println(cache.archive(Indices.PARTICLES))
-        println(cache.archive(Indices.BILLBOARDS))
-        println(cache.group(Indices.HUFFMAN, "huffman"))
-        println(cache.archive(Indices.INTERFACES))
-        println(cache.archive(Indices.CLIENT_SCRIPTS))
-        println(cache.archive(Indices.FONT_METRICS))
-        println(cache.group(Indices.WORLD_MAP, "details"))
+        println(cache.archive(Index.SHADERS))
+        println(cache.archive(Index.TEXTURE_DEFINITIONS))
+        println(cache.archive(Index.CONFIGS))
+        println(cache.archive(Index.OBJECTS))
+        println(cache.archive(Index.ENUMS))
+        println(cache.archive(Index.NPCS))
+        println(cache.archive(Index.ITEMS))
+        println(cache.archive(Index.ANIMATIONS))
+        println(cache.archive(Index.GRAPHICS))
+        println(cache.archive(Index.VAR_BIT))
+        println(cache.archive(Index.QUICK_CHAT_MESSAGES))
+        println(cache.archive(Index.QUICK_CHAT_MENUS))
+        println(cache.archive(Index.PARTICLES))
+        println(cache.archive(Index.BILLBOARDS))
+        println(cache.group(Index.HUFFMAN, "huffman"))
+        println(cache.archive(Index.INTERFACES))
+        println(cache.archive(Index.CLIENT_SCRIPTS))
+        println(cache.archive(Index.FONT_METRICS))
+        println(cache.group(Index.WORLD_MAP, "details"))
     }
 
     private fun CacheLibrary.group(index: Int, name: String): Int {
@@ -56,6 +56,6 @@ object PrefetchKeyGeneration {
     }
 
     private fun CacheLibrary.native(name: String): Int {
-        return group(Indices.NATIVE_LIBRARIES, "windows/x86/$name.dll")
+        return group(Index.NATIVE_LIBRARIES, "windows/x86/$name.dll")
     }
 }

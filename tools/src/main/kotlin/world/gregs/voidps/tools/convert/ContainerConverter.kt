@@ -5,14 +5,14 @@ import org.koin.dsl.module
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.Configs.CONTAINERS
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.Config.CONTAINERS
+import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.cache.config.encoder.ContainerEncoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.tools.property
 import world.gregs.yaml.Yaml
 
 /**
@@ -23,18 +23,17 @@ object ContainerConverter {
     @JvmStatic
     fun main(args: Array<String>) {
         val cacheModule = module {
-            single { CacheDelegate("./data/cache/") as Cache }
+            single { CacheDelegate("${System.getProperty("user.home")}/Downloads/rs634_cache/") as Cache }
         }
         val cache718Module = module {
-            single { CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\") as Cache }
+            single { CacheDelegate("${System.getProperty("user.home")}/Downloads/rs718_cache/") as Cache }
         }
         val koin = startKoin {
-            modules(cacheDefinitionModule)
         }.koin
         koin.loadModules(listOf(cache718Module))
-        var decoder = ContainerDecoder(koin.get())
+        var decoder = ContainerDecoder().loadCache(get<Cache>())
 
-        val containers = (0 until decoder.last).associateWith { decoder.getOrNull(it) }
+        val containers = decoder.indices.associateWith { decoder.getOrNull(it) }
 
         koin.unloadModules(listOf(cache718Module))
         koin.loadModules(listOf(cacheModule))
@@ -42,14 +41,13 @@ object ContainerConverter {
         val cache: Cache = get()
 
         val yaml = Yaml()
-        val path = "./data/definitions/containers.yml"
-        val data: MutableMap<String, Any> = yaml.load<Map<String, Any>>(path).toMutableMap()
+        val data: MutableMap<String, Any> = yaml.load<Map<String, Any>>(property("containerDefinitionsPath")).toMutableMap()
 
 
-        val itemDecoder = ItemDefinitions(ItemDecoder(cache)).load(Yaml(), "./data/definitions/items.yml")
-        decoder = ContainerDecoder(cache)
+        val itemDecoder = ItemDefinitions(ItemDecoder().loadCache(cache)).load(Yaml(), property("itemDefinitionsPath"))
+        decoder = ContainerDecoder().loadCache(cache)
         var counter = 0
-        for (i in 0 until decoder.last) {
+        for (i in decoder.indices) {
             val def = decoder.getOrNull(i)
             val cont = containers[i]
             if (def == null || cont == null) {
@@ -69,7 +67,7 @@ object ContainerConverter {
                 with(encoder) {
                     writer.encode(def)
                 }
-                cache.write(Indices.CONFIGS, CONTAINERS, i, writer.toArray())
+                cache.write(Index.CONFIGS, CONTAINERS, i, writer.toArray())
 
                 var found: String? = null
                 var int = false
@@ -100,6 +98,6 @@ object ContainerConverter {
         }
         cache.update()
         println("Shops: $counter")
-        yaml.save("containers.yml", data)
+//        yaml.save("containers.yml", data)
     }
 }

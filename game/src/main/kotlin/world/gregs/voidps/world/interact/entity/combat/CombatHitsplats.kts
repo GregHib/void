@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.combat
 
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.data.definition.extra.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.hit
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

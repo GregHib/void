@@ -1,14 +1,13 @@
 package world.gregs.voidps.cache.config.decoder
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.Configs.FLOOR_OVERLAY
+import world.gregs.voidps.cache.Config.FLOOR_OVERLAY
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.OverlayDefinition
 
-class OverlayDecoder(cache: Cache) : ConfigDecoder<OverlayDefinition>(cache, FLOOR_OVERLAY) {
+class OverlayDecoder : ConfigDecoder<OverlayDefinition>(FLOOR_OVERLAY) {
 
-    override fun create() = OverlayDefinition()
+    override fun create(size: Int) = Array(size) { OverlayDefinition(it) }
 
     override fun OverlayDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
@@ -33,8 +32,8 @@ class OverlayDecoder(cache: Cache) : ConfigDecoder<OverlayDefinition>(cache, FLO
         }
     }
 
-    override fun OverlayDefinition.changeValues() {
-        anInt3633 = id or (anInt3633 shl 8)
+    override fun changeValues(definitions: Array<OverlayDefinition>, definition: OverlayDefinition) {
+        definition.anInt3633 = definition.id or (definition.anInt3633 shl 8)
     }
 
     companion object {

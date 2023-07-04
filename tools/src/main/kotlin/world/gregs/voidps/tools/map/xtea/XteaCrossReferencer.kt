@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.map.xtea
 
 import com.displee.cache.CacheLibrary
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.Index
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
@@ -55,14 +55,14 @@ object XteaCrossReferencer {
 
         xteas.forEach { regionId, keys ->
             val region = Region(regionId)
-            if (library.data(Indices.MAPS, "l${region.x}_${region.y}", keys) != null) {
+            if (library.data(Index.MAPS, "l${region.x}_${region.y}", keys) != null) {
                 decrypted[region.id] = keys
             }
         }
 
         println("${decrypted.size} decrypted from original keys.")
 
-        val index = library.index(Indices.MAPS)
+        val index = library.index(Index.MAPS)
         val archives = index.archiveIds()
         val missing = mutableListOf<Region>()
         for (regionX in 0 until 256) {
@@ -107,7 +107,7 @@ object XteaCrossReferencer {
     private fun blank(keys: IntArray) = keys[0] == 0 && keys[1] == 0 && keys[2] == 0 && keys[3] == 0
 
     private fun isReal(library: CacheLibrary, archiveId: Int, keys: IntArray): Boolean {
-        return library.data(Indices.MAPS, archiveId, 0, keys) != null
+        return library.data(Index.MAPS, archiveId, 0, keys) != null
     }
 
     /*fun isValid(buffer: ByteBuf, sector: ByteArray, keys: IntArray): Boolean {

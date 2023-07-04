@@ -163,7 +163,7 @@ fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
             append++
         }
     }
-    repeat(append) {
+    for (i in 0 until append) {
         xteaList.add(blankXtea)
     }
     viewport.dynamic = true

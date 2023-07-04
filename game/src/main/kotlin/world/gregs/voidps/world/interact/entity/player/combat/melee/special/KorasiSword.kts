@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
+import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
@@ -82,9 +83,9 @@ on<CombatHit>({ target -> special && isKorasisSword(weapon) && target.inMultiCom
                     level = target.tile.plane,
                     destX = character.tile.x,
                     destZ = character.tile.y,
-                    srcSize = target.size.width,
-                    destWidth = character.size.width,
-                    destHeight = character.size.height)
+                    srcSize = target.size,
+                    destWidth = character.size,
+                    destHeight = character.size)
             ) {
                 return@forEach
             }

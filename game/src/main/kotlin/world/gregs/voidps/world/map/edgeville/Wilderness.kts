@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.map.edgeville
+
 import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Registered

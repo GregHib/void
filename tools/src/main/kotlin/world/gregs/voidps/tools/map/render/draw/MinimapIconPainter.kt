@@ -2,25 +2,20 @@ package world.gregs.voidps.tools.map.render.draw
 
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.Indices.DEFAULTS
-import world.gregs.voidps.cache.Indices.WORLD_MAP
+import world.gregs.voidps.cache.Index.DEFAULTS
+import world.gregs.voidps.cache.Index.WORLD_MAP
 import world.gregs.voidps.cache.config.data.WorldMapInfoDefinition
-import world.gregs.voidps.cache.config.decoder.WorldMapInfoDecoder
-import world.gregs.voidps.cache.definition.data.IndexedSprite
-import world.gregs.voidps.cache.definition.data.MapObject
-import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.cache.definition.decoder.SpriteDecoder
-import world.gregs.voidps.cache.definition.decoder.WorldMapDetailsDecoder
+import world.gregs.voidps.cache.definition.data.*
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.region.Region
 import java.awt.Graphics
 import java.awt.image.BufferedImage
 
 class MinimapIconPainter(
-    private val objectDefinitions: ObjectDecoder,
-    private val worldMapDefinitions: WorldMapDetailsDecoder,
-    private val worldMapInfoDefinitions: WorldMapInfoDecoder,
-    private val spriteDefinitions: SpriteDecoder
+    private val objectDefinitions: Array<ObjectDefinition>,
+    private val worldMapDefinitions: Array<WorldMapDefinition>,
+    private val worldMapInfoDefinitions: Array<WorldMapInfoDefinition>,
+    private val spriteDefinitions: Array<SpriteDefinition>
 ) {
 
     data class MapIcon(val x: Int, val y: Int, val plane: Int, val bi: BufferedImage)

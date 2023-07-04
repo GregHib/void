@@ -5,7 +5,7 @@ import io.mockk.mockkStatic
 import io.mockk.spyk
 import org.junit.jupiter.api.BeforeEach
 import org.koin.test.mock.declare
-import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.Client

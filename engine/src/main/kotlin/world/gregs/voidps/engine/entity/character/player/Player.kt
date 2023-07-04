@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.Containers
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
@@ -49,7 +48,6 @@ import kotlin.coroutines.Continuation
 class Player(
     override var index: Int = -1,
     override var tile: Tile = Tile.EMPTY,
-    override var size: Size = Size.ONE,
     val containers: Containers = Containers(),
     variables: MutableMap<String, Any> = mutableMapOf(),
     val experience: Experience = Experience(),

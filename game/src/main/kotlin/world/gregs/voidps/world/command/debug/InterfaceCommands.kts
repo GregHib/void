@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
 import world.gregs.voidps.engine.client.ui.sendItem
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
-import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.event.on

@@ -1,0 +1,49 @@
+package world.gregs.voidps.engine.data.definition
+
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import world.gregs.voidps.cache.config.data.ContainerDefinition
+import world.gregs.voidps.engine.data.yaml.DefinitionConfig
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.getProperty
+import world.gregs.voidps.engine.timedLoad
+import world.gregs.yaml.Yaml
+
+class ContainerDefinitions(
+    override var definitions: Array<ContainerDefinition>
+) : DefinitionsDecoder<ContainerDefinition> {
+
+    override lateinit var ids: Map<String, Int>
+
+    override fun empty() = ContainerDefinition.EMPTY
+
+    @Suppress("UNCHECKED_CAST")
+    fun load(yaml: Yaml = get(), path: String = getProperty("containerDefinitionsPath"), itemDefs: ItemDefinitions = get()): ContainerDefinitions {
+        timedLoad("container extra") {
+            val ids = Object2IntOpenHashMap<String>()
+            val config = object : DefinitionConfig<ContainerDefinition>(ids, definitions) {
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+                    if (key == "defaults" && value is List<*>) {
+                        val id = map["id"] as Int
+                        value as List<Map<String, Int>>
+                        if (id !in definitions.indices) {
+                            return
+                        }
+                        val def = definitions[id]
+                        def.ids = IntArray(def.length) { itemDefs.get(value[it].keys.first()).id }
+                        def.amounts = IntArray(def.length) { value[it].values.first() }
+                    }
+                    super.set(map, key, value, indent, parentMap)
+                }
+            }
+            yaml.load<Any>(path, config)
+            this.ids = ids
+            ids.size
+        }
+        return this
+    }
+}
+
+fun ContainerDefinition.items(): List<String> {
+    val defs: ItemDefinitions = get()
+    return ids?.map { defs.get(it).stringId } ?: emptyList()
+}

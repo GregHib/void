@@ -1,21 +1,19 @@
 package world.gregs.voidps.tools.map.render.draw
 
 import world.gregs.voidps.cache.config.data.MapSceneDefinition
-import world.gregs.voidps.cache.config.decoder.MapSceneDecoder
 import world.gregs.voidps.cache.definition.data.IndexedSprite
 import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.cache.definition.decoder.SpriteDecoder
+import world.gregs.voidps.cache.definition.data.SpriteDefinition
 import world.gregs.voidps.engine.map.region.Region
 import java.awt.Color
 import java.awt.Graphics2D
 import kotlin.math.ceil
 
 class ObjectPainter(
-    private val objectDefinitions: ObjectDecoder,
-    private val spriteDefinitions: SpriteDecoder,
-    private val mapSceneDefinitions: MapSceneDecoder
+    private val objectDefinitions: Array<ObjectDefinition>,
+    private val spriteDefinitions: Array<SpriteDefinition>,
+    private val mapSceneDefinitions: Array<MapSceneDefinition>
 ) {
 
     var offsetX = 0

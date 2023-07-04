@@ -1,5 +1,7 @@
+package world.gregs.voidps.world.interact.entity.item
+
 import world.gregs.voidps.engine.client.ui.event.Command
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World

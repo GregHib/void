@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.obj
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects

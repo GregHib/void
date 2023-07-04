@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.character.npc
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.variable.Variables
-import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
@@ -24,7 +23,6 @@ import kotlin.coroutines.Continuation
 data class NPC(
     val id: String = "",
     override var tile: Tile = Tile.EMPTY,
-    override val size: Size = Size.ONE,
     override val levels: Levels = Levels()
 ) : Character {
 

@@ -1,32 +1,60 @@
 package world.gregs.voidps.cache.definition.decoder
 
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
-import world.gregs.voidps.cache.Indices.MAPS
+import world.gregs.voidps.cache.Index.MAPS
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.data.MapTile
+import world.gregs.voidps.engine.map.region.Region
 
-class MapDecoder(cache: Cache, private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapDefinition>(cache, MAPS) {
-
-    override fun create() = MapDefinition()
+class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapDefinition>(MAPS) {
 
     override fun MapDefinition.read(opcode: Int, buffer: Reader) {
         TODO("Not yet implemented")
     }
 
-    override fun readData(id: Int): MapDefinition? {
-        val tileData = getFile("m${id shr 8}_${id and 0xff}", null)
-        if (tileData != null) {
-            val definition = create()
-            definition.id = id
-            readLoop(definition, BufferReader(tileData))
-            definition.changeValues()
-            return definition
+    override fun create(size: Int) = Array(size) { MapDefinition(it) }
+
+    override fun size(cache: Cache): Int {
+        return cache.lastArchiveId(index)
+    }
+
+    override fun getArchive(id: Int): Int {
+        return id
+    }
+
+    override fun getFile(id: Int): Int {
+        return 0
+    }
+
+    val regionHashes: MutableMap<Int, Int> = Int2IntOpenHashMap(1600)
+
+    override fun loadCache(cache: Cache): Array<MapDefinition> {
+        regionHashes.clear()
+        for (regionX in 0 until 256) {
+            for (regionY in 0 until 256) {
+                val archiveId = cache.getArchiveId(index, "m${regionX}_$regionY")
+                if (archiveId == -1) {
+                    continue
+                }
+                regionHashes[archiveId] = Region.id(regionX, regionY)
+            }
         }
-        return null
+        return super.loadCache(cache)
+    }
+
+    override fun load(definitions: Array<MapDefinition>, cache: Cache, id: Int) {
+        val region = regionHashes[id] ?: return
+        val data = cache.getFile(index, id, 0, null) ?: return
+        val reader = BufferReader(data)
+        val definition = definitions[id]
+        definition.id = region
+        readLoop(definition, reader)
+        loadObjects(cache, definition)
     }
 
     override fun readLoop(definition: MapDefinition, buffer: Reader) {
@@ -74,8 +102,8 @@ class MapDecoder(cache: Cache, private val xteas: Map<Int, IntArray>) : Definiti
         }
     }
 
-    override fun MapDefinition.changeValues() {
-        val objectData = getFile("l${id shr 8}_${id and 0xff}", xteas[id]) ?: return
+    private fun loadObjects(cache: Cache, definition: MapDefinition) {
+        val objectData = cache.getFile(index, "l${definition.id shr 8}_${definition.id and 0xff}", xteas[definition.id]) ?: return
         val reader = BufferReader(objectData)
         var objectId = -1
         while (true) {
@@ -99,7 +127,7 @@ class MapDecoder(cache: Cache, private val xteas: Map<Int, IntArray>) : Definiti
                 val obj = reader.readUnsignedByte()
 
                 // Decrease bridges
-                if (getTile(localX, localY, 1).isTile(BRIDGE_TILE)) {
+                if (definition.getTile(localX, localY, 1).isTile(BRIDGE_TILE)) {
                     plane--
                 }
 
@@ -108,17 +136,13 @@ class MapDecoder(cache: Cache, private val xteas: Map<Int, IntArray>) : Definiti
                     continue
                 }
 
-                val type = obj shr 2
+                val shape = obj shr 2
                 val rotation = obj and 0x3
 
                 // Valid object
-                objects.add(MapObject(objectId, localX, localY, plane, type, rotation))
+                definition.objects.add(MapObject(objectId, localX, localY, plane, shape, rotation))
             }
         }
-    }
-
-    fun getFile(name: String, xteas: IntArray?): ByteArray? {
-        return cache.getFile(index, name, xteas)
     }
 
     companion object {

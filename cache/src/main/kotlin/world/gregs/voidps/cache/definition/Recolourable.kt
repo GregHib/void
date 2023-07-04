@@ -13,7 +13,7 @@ interface Recolourable {
         val length = buffer.readUnsignedByte()
         originalColours = ShortArray(length)
         modifiedColours = ShortArray(length)
-        repeat(length) { count ->
+        for (count in 0 until length) {
             originalColours!![count] = buffer.readShort().toShort()
             modifiedColours!![count] = buffer.readShort().toShort()
         }
@@ -23,7 +23,7 @@ interface Recolourable {
         val length = buffer.readUnsignedByte()
         originalTextureColours = ShortArray(length)
         modifiedTextureColours = ShortArray(length)
-        repeat(length) { count ->
+        for (count in 0 until length) {
             originalTextureColours!![count] = buffer.readShort().toShort()
             modifiedTextureColours!![count] = buffer.readShort().toShort()
         }

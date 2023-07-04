@@ -1,8 +1,10 @@
+package world.gregs.voidps.world.community.friend
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.updateFriend
-import world.gregs.voidps.engine.data.definition.config.AccountDefinition
-import world.gregs.voidps.engine.data.definition.extra.AccountDefinitions
+import world.gregs.voidps.engine.data.config.AccountDefinition
+import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
@@ -21,7 +23,6 @@ import world.gregs.voidps.network.encode.Friend
 import world.gregs.voidps.network.encode.sendFriendsList
 import world.gregs.voidps.world.community.chat.privateStatus
 import world.gregs.voidps.world.community.clan.clan
-import world.gregs.voidps.world.community.friend.friend
 import world.gregs.voidps.world.community.ignore.ignores
 
 val players: Players by inject()

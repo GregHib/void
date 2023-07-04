@@ -1,14 +1,13 @@
 package world.gregs.voidps.cache.config.decoder
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.Configs.WORLD_MAP_INFO
+import world.gregs.voidps.cache.Config.WORLD_MAP_INFO
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.WorldMapInfoDefinition
 
-class WorldMapInfoDecoder(cache: Cache) : ConfigDecoder<WorldMapInfoDefinition>(cache, WORLD_MAP_INFO) {
+class WorldMapInfoDecoder : ConfigDecoder<WorldMapInfoDefinition>(WORLD_MAP_INFO) {
 
-    override fun create() = WorldMapInfoDefinition()
+    override fun create(size: Int) = Array(size) { WorldMapInfoDefinition(it) }
 
     override fun WorldMapInfoDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
@@ -43,20 +42,11 @@ class WorldMapInfoDecoder(cache: Cache) : ConfigDecoder<WorldMapInfoDefinition>(
             in 10..14 -> aStringArray1065[opcode - 10] = buffer.readString()
             15 -> {
                 val length = buffer.readUnsignedByte()
-                anIntArray1049 = IntArray(length * 2)
-                repeat(length * 2) { count ->
-                    anIntArray1049!![count] = buffer.readUnsignedShort()
-                }
+                anIntArray1049 = IntArray(length * 2) { buffer.readUnsignedShort() }
                 anInt1084 = buffer.readInt()
                 val size = buffer.readUnsignedByte()
-                anIntArray1066 = IntArray(size)
-                repeat(size) { count ->
-                    anIntArray1066!![count] = buffer.readInt()
-                }
-                aByteArray1057 = ByteArray(length)
-                repeat(length) { count ->
-                    aByteArray1057!![count] = buffer.readByte().toByte()
-                }
+                anIntArray1066 = IntArray(size) { buffer.readInt() }
+                aByteArray1057 = ByteArray(length) { buffer.readByte().toByte() }
             }
             16 -> aBoolean1064 = false
             17 -> aString1045 = buffer.readString()
@@ -89,21 +79,21 @@ class WorldMapInfoDecoder(cache: Cache) : ConfigDecoder<WorldMapInfoDefinition>(
         }
     }
 
-    override fun WorldMapInfoDefinition.changeValues() {
-        if (anIntArray1049 != null) {
+    override fun changeValues(definitions: Array<WorldMapInfoDefinition>, definition: WorldMapInfoDefinition) {
+        if (definition.anIntArray1049 != null) {
             var i = 0
-            while (anIntArray1049!!.size > i) {
-                if (anIntArray1049!![i] >= anInt1068) {
-                    if (anInt1089 < anIntArray1049!![i]) {
-                        anInt1089 = anIntArray1049!![i]
+            while (definition.anIntArray1049!!.size > i) {
+                if (definition.anIntArray1049!![i] >= definition.anInt1068) {
+                    if (definition.anInt1089 < definition.anIntArray1049!![i]) {
+                        definition.anInt1089 = definition.anIntArray1049!![i]
                     }
                 } else {
-                    anInt1068 = anIntArray1049!![i]
+                    definition.anInt1068 = definition.anIntArray1049!![i]
                 }
-                if (anInt1051 > anIntArray1049!![i + 1]) {
-                    anInt1051 = anIntArray1049!![1 + i]
-                } else if (anIntArray1049!![1 + i] > anInt1060) {
-                    anInt1060 = anIntArray1049!![i + 1]
+                if (definition.anInt1051 > definition.anIntArray1049!![i + 1]) {
+                    definition.anInt1051 = definition.anIntArray1049!![1 + i]
+                } else if (definition.anIntArray1049!![1 + i] > definition.anInt1060) {
+                    definition.anInt1060 = definition.anIntArray1049!![i + 1]
                 }
                 i += 2
             }

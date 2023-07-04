@@ -1,8 +1,8 @@
 package world.gregs.voidps.tools.definition.item
 
 import com.displee.cache.CacheLibrary
-import world.gregs.voidps.cache.Configs
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.Config
+import world.gregs.voidps.cache.Index
 
 object MoveContainerDefinitions {
     @JvmStatic
@@ -10,8 +10,8 @@ object MoveContainerDefinitions {
         val cache718 = CacheLibrary("${System.getProperty("user.home")}/Downloads/rs718_cache/")
         val cache634 = CacheLibrary("./data/cache")
 
-        val archive718 = cache718.index(Indices.CONFIGS).archive(Configs.CONTAINERS)!!
-        val archive634 = cache634.index(Indices.CONFIGS).archive(Configs.CONTAINERS)!!
+        val archive718 = cache718.index(Index.CONFIGS).archive(Config.CONTAINERS)!!
+        val archive634 = cache634.index(Index.CONFIGS).archive(Config.CONTAINERS)!!
 
         val size = archive634.last()?.id ?: -1
 

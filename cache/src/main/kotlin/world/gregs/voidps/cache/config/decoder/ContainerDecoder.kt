@@ -1,14 +1,13 @@
 package world.gregs.voidps.cache.config.decoder
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.Configs.CONTAINERS
+import world.gregs.voidps.cache.Config.CONTAINERS
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 
-class ContainerDecoder(cache: Cache) : ConfigDecoder<ContainerDefinition>(cache, CONTAINERS) {
+class ContainerDecoder : ConfigDecoder<ContainerDefinition>(CONTAINERS) {
 
-    override fun create() = ContainerDefinition()
+    override fun create(size: Int) = Array(size) { ContainerDefinition(it) }
 
     override fun ContainerDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
@@ -17,7 +16,7 @@ class ContainerDecoder(cache: Cache) : ConfigDecoder<ContainerDefinition>(cache,
                 val size = buffer.readUnsignedByte()
                 ids = IntArray(size)
                 amounts = IntArray(size)
-                repeat(size) { i ->
+                for (i in 0 until size) {
                     ids!![i] = buffer.readUnsignedShort()
                     amounts!![i] = buffer.readUnsignedShort()
                 }

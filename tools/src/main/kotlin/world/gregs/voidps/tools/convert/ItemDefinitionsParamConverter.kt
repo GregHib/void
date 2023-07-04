@@ -6,10 +6,9 @@ import org.koin.fileProperties
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.Indices.ITEMS
+import world.gregs.voidps.cache.Index.ITEMS
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.cache.definition.encoder.ItemEncoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 
 object ItemDefinitionsParamConverter {
     @JvmStatic
@@ -24,10 +23,10 @@ object ItemDefinitionsParamConverter {
 
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cache718, cacheDefinitionModule)
+            modules(cache718)
         }.koin
 
-        val decoder718 = ItemDecoder718(koin.get())
+        val decoder718 = ItemDecoder718().loadCache(koin.get())
         val definitions = decoder718.indices.mapNotNull { decoder718.getOrNull(it) }.associateBy { it.id }
 
         koin.unloadModules(listOf(cache718))
@@ -35,7 +34,8 @@ object ItemDefinitionsParamConverter {
 
         var count = 0
         var itemCount = 0
-        val decoder = ItemDecoder(koin.get())
+        val itemDecoder = ItemDecoder()
+        val decoder = itemDecoder.loadCache(koin.get())
         val cache = koin.get<Cache>() as CacheDelegate
         val encoder = ItemEncoder()
         for (id in decoder.indices) {
@@ -54,7 +54,7 @@ object ItemDefinitionsParamConverter {
                     with(encoder) {
                         writer.encode(def)
                     }
-                    cache.write(ITEMS, decoder.getArchive(id), decoder.getFile(id), writer.toArray())
+                    cache.write(ITEMS, itemDecoder.getArchive(id), itemDecoder.getFile(id), writer.toArray())
                     count++
                     modified = true
                 }

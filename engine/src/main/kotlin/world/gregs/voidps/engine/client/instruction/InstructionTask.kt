@@ -1,9 +1,9 @@
 package world.gregs.voidps.engine.client.instruction
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
-import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
-import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.FloorItems

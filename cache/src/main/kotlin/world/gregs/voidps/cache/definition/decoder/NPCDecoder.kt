@@ -1,14 +1,13 @@
 package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
-import world.gregs.voidps.cache.Indices.NPCS
+import world.gregs.voidps.cache.Index.NPCS
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 
-class NPCDecoder(cache: Cache, val member: Boolean) : DefinitionDecoder<NPCDefinition>(cache, NPCS) {
+class NPCDecoder(val member: Boolean) : DefinitionDecoder<NPCDefinition>(NPCS) {
 
-    override fun create() = NPCDefinition()
+    override fun create(size: Int) = Array(size) { NPCDefinition(it) }
 
     override fun getFile(id: Int) = id and 0x7f
 
@@ -19,7 +18,7 @@ class NPCDecoder(cache: Cache, val member: Boolean) : DefinitionDecoder<NPCDefin
             1 -> {
                 val length = buffer.readUnsignedByte()
                 modelIds = IntArray(length)
-                repeat(length) { count ->
+                for (count in 0 until length) {
                     modelIds!![count] = buffer.readUnsignedShort()
                     if (modelIds!![count] == 65535) {
                         modelIds!![count] = -1
@@ -31,20 +30,8 @@ class NPCDecoder(cache: Cache, val member: Boolean) : DefinitionDecoder<NPCDefin
             in 30..34 -> options[-30 + opcode] = buffer.readString()
             40 -> readColours(buffer)
             41 -> readTextures(buffer)
-            42 -> {
-                val length = buffer.readUnsignedByte()
-                recolourPalette = ByteArray(length)
-                repeat(length) { count ->
-                    recolourPalette!![count] = buffer.readByte().toByte()
-                }
-            }
-            60 -> {
-                val length = buffer.readUnsignedByte()
-                dialogueModels = IntArray(length)
-                repeat(length) { count ->
-                    dialogueModels!![count] = buffer.readUnsignedShort()
-                }
-            }
+            42 -> recolourPalette = ByteArray(buffer.readUnsignedByte()) { buffer.readByte().toByte() }
+            60 -> dialogueModels = IntArray(buffer.readUnsignedByte()) { buffer.readUnsignedShort() }
             93 -> drawMinimapDot = false
             95 -> combat = buffer.readShort()
             97 -> scaleXY = buffer.readShort()
@@ -70,7 +57,7 @@ class NPCDecoder(cache: Cache, val member: Boolean) : DefinitionDecoder<NPCDefin
             121 -> {
                 translations = arrayOfNulls(modelIds!!.size)
                 val length = buffer.readUnsignedByte()
-                repeat(length) {
+                for (count in 0 until length) {
                     val index = buffer.readUnsignedByte()
                     translations!![index] = intArrayOf(
                         buffer.readByte(),
@@ -134,10 +121,7 @@ class NPCDecoder(cache: Cache, val member: Boolean) : DefinitionDecoder<NPCDefin
             159 -> mainOptionIndex = 0.toByte()
             160 -> {
                 val length = buffer.readUnsignedByte()
-                campaigns = IntArray(length)
-                repeat(length) { count ->
-                    campaigns!![count] = buffer.readShort()
-                }
+                campaigns = IntArray(length) { buffer.readShort() }
             }
             162 -> aBoolean2883 = true
             163 -> anInt2803 = buffer.readUnsignedByte()

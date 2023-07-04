@@ -1,9 +1,9 @@
+package world.gregs.voidps.world.activity.combat.consume.drink
+
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.combat.consume.Consume
-import world.gregs.voidps.world.activity.combat.consume.drink.antifire
-import world.gregs.voidps.world.activity.combat.consume.drink.superAntifire
 import world.gregs.voidps.world.interact.entity.player.toxin.antiPoison
 
 on<Consume>({ item.id == "weak_melee_potion" }) { player: Player ->

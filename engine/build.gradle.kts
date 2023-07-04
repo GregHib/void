@@ -2,6 +2,7 @@ dependencies {
     implementation(project(":buffer"))
     implementation(project(":cache"))
     implementation(project(":network"))
+    implementation(project(":types"))
     implementation(project(":yaml"))
 
     implementation(kotlin("reflect"))

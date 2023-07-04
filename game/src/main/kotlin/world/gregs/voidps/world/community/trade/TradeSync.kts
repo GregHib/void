@@ -2,15 +2,14 @@ package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.client.variable.containsVarbit
 import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.data.definition.extra.ContainerDefinitions
-import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
-import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
+import world.gregs.voidps.engine.data.definition.ContainerDefinitions
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.removeRequest

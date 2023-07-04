@@ -2,14 +2,13 @@ package world.gregs.voidps.cache.definition.decoder
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
-import world.gregs.voidps.cache.Indices.ENUMS
+import world.gregs.voidps.cache.Index.ENUMS
 import world.gregs.voidps.cache.definition.data.EnumDefinition
 
-class EnumDecoder(cache: Cache) : DefinitionDecoder<EnumDefinition>(cache, ENUMS) {
+class EnumDecoder : DefinitionDecoder<EnumDefinition>(ENUMS) {
 
-    override fun create() = EnumDefinition()
+    override fun create(size: Int) = Array(size) { EnumDefinition(it) }
 
     override fun getFile(id: Int) = id and 0xff
 
@@ -24,7 +23,7 @@ class EnumDecoder(cache: Cache) : DefinitionDecoder<EnumDefinition>(cache, ENUMS
             5, 6 -> {
                 length = buffer.readShort()
                 val hashtable = Int2ObjectArrayMap<Any>()
-                repeat(length) {
+                for (count in 0 until length) {
                     val id = buffer.readInt()
                     hashtable[id] = if (opcode == 5) {
                         buffer.readString()
@@ -38,7 +37,7 @@ class EnumDecoder(cache: Cache) : DefinitionDecoder<EnumDefinition>(cache, ENUMS
                 val size = buffer.readShort()
                 length = buffer.readShort()
                 val strings = Int2ObjectArrayMap<Any>(size)
-                repeat(length) {
+                for (count in 0 until length) {
                     val index = buffer.readShort()
                     strings[index] = buffer.readString()
                 }
@@ -48,7 +47,7 @@ class EnumDecoder(cache: Cache) : DefinitionDecoder<EnumDefinition>(cache, ENUMS
                 val size = buffer.readShort()
                 length = buffer.readShort()
                 val integers = Int2ObjectArrayMap<Any>(size)
-                repeat(length) {
+                for (i in 0 until length) {
                     val index = buffer.readShort()
                     integers[index] = buffer.readInt()
                 }

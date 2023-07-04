@@ -3,7 +3,7 @@ package world.gregs.voidps.cache.definition.data
 @JvmInline
 value class MapObject(val packed: Long) {
 
-    constructor(id: Int, x: Int, y: Int, plane: Int, type: Int, rotation: Int) : this(pack(id, x, y, plane, type, rotation))
+    constructor(id: Int, x: Int, y: Int, plane: Int, shape: Int, rotation: Int) : this(pack(id, x, y, plane, shape, rotation))
 
     val id: Int
         get() = id(packed)

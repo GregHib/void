@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.map.xtea
 
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.Index
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
@@ -13,19 +13,19 @@ object XteaValidator {
         val cache = CacheDelegate("./data/cache/")
         val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
 
-        val archives = cache.getArchives(Indices.MAPS).toSet()
+        val archives = cache.getArchives(Index.MAPS).toSet()
         var total = 0
         var valid = 0
         val invalid = mutableSetOf<Region>()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
                 val region = Region(regionX, regionY)
-                val archive = cache.getArchiveId(Indices.MAPS, "l${regionX}_${regionY}")
+                val archive = cache.getArchiveId(Index.MAPS, "l${regionX}_${regionY}")
                 if (!archives.contains(archive)) {
                     continue
                 }
                 total++
-                val data = cache.getFile(Indices.MAPS, archive, 0, xteas[region])
+                val data = cache.getFile(Index.MAPS, archive, 0, xteas[region])
                 if (data == null) {
                     if (xteas.containsKey(region.id)) {
                         println("Failed key ${region.id} $archive ${xteas[region]?.toList()}")

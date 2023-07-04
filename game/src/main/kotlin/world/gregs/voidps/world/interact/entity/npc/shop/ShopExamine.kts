@@ -1,8 +1,9 @@
+package world.gregs.voidps.world.interact.entity.npc.shop
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
 
 on<InterfaceOption>({ id == "shop_side" && component == "container" && option == "Examine" }) { player: Player ->
     val examine: String = item.def.getOrNull("examine") ?: return@on

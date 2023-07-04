@@ -1,6 +1,8 @@
+package world.gregs.voidps.world.community.ignore
+
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.config.AccountDefinition
-import world.gregs.voidps.engine.data.definition.extra.AccountDefinitions
+import world.gregs.voidps.engine.data.config.AccountDefinition
+import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ignore.AddIgnore

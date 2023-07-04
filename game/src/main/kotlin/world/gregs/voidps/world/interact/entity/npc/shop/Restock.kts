@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.npc.shop
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.remove
-import world.gregs.voidps.engine.data.definition.extra.ContainerDefinitions
+import world.gregs.voidps.engine.data.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World

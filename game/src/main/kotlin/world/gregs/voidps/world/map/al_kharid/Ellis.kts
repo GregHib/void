@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Tanning
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male

@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity
+
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.npc.NPC

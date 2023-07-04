@@ -1,14 +1,13 @@
 package world.gregs.voidps.tools.convert
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
-import world.gregs.voidps.cache.Indices.ITEMS
+import world.gregs.voidps.cache.Index.ITEMS
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 
-class ItemDecoder718(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, ITEMS) {
+class ItemDecoder718 : DefinitionDecoder<ItemDefinition>(ITEMS) {
 
-    override fun create() = ItemDefinition()
+    override fun create(size: Int) = Array(size) { ItemDefinition(it) }
 
     override fun getFile(id: Int) = id and 0xff
 
@@ -103,10 +102,7 @@ class ItemDecoder718(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, IT
             }
             132 -> {
                 val length = buffer.readUnsignedByte()
-                campaigns = IntArray(length)
-                repeat(length) { count ->
-                    campaigns!![count] = buffer.readShort()
-                }
+                campaigns = IntArray(length) { buffer.readShort() }
             }
             134 -> pickSizeShift = buffer.readUnsignedByte()
             139 -> singleNoteId = buffer.readShort()
@@ -115,15 +111,15 @@ class ItemDecoder718(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, IT
         }
     }
 
-    override fun ItemDefinition.changeValues() {
-        if (notedTemplateId != -1) {
-            toNote(getOrNull(notedTemplateId), getOrNull(noteId))
+    override fun changeValues(definitions: Array<ItemDefinition>, definition: ItemDefinition) {
+        if (definition.notedTemplateId != -1) {
+            definition.toNote(definitions.getOrNull(definition.notedTemplateId), definitions.getOrNull(definition.noteId))
         }
-        if (lendTemplateId != -1) {
-            toLend(getOrNull(lendId), getOrNull(lendTemplateId))
+        if (definition.lendTemplateId != -1) {
+            definition.toLend(definitions.getOrNull(definition.lendId), definitions.getOrNull(definition.lendTemplateId))
         }
-        if (singleNoteTemplateId != -1) {
-            toSingleNote(getOrNull(singleNoteTemplateId), getOrNull(singleNoteId))
+        if (definition.singleNoteTemplateId != -1) {
+            definition.toSingleNote(definitions.getOrNull(definition.singleNoteTemplateId), definitions.getOrNull(definition.singleNoteId))
         }
     }
 

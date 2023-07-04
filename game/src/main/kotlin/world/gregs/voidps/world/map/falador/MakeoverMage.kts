@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.transact.TransactionError
-import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction

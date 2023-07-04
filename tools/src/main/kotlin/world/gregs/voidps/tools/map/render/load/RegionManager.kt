@@ -2,16 +2,14 @@ package world.gregs.voidps.tools.map.render.load
 
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapObject
-import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.tools.map.render.raster.Raster
 import java.awt.image.BufferedImage
 
 class RegionManager(
-    private val mapDecoder: MapDecoder,
+    val tiles: Array<MapDefinition>,
     private val regionRenderSize: Int = 3
 ) {
-    val tiles = mutableMapOf<Int, MapDefinition?>()
     val width = regionRenderSize * 64
     val height = regionRenderSize * 64
     val scale = 4
@@ -40,12 +38,7 @@ class RegionManager(
     }
 
     private fun setOrLoadTiles(regionId: Int): MapDefinition? {
-        if (tiles.containsKey(regionId)) {
-            return tiles[regionId]
-        }
-        val def = mapDecoder.getOrNull(regionId) ?: return null
-        tiles[regionId] = def
-        return def
+        return tiles.getOrNull(regionId)
     }
 
     fun loadObjects(region: Region): MutableList<MapObject>? {

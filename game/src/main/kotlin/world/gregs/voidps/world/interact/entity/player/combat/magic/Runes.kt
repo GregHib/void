@@ -4,9 +4,9 @@ import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
-import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

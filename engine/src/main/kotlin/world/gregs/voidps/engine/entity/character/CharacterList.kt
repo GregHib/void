@@ -1,13 +1,12 @@
 package world.gregs.voidps.engine.entity.character
 
-import world.gregs.voidps.engine.map.RegionMap
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.RegionPlane
 
 abstract class CharacterList<C : Character>(
     capacity: Int,
-    private val region: RegionMap = RegionMap(),
+    private val region: CharacterMap = CharacterMap(),
     private val delegate: MutableList<C> = mutableListOf()
 ) : MutableList<C> by delegate {
 

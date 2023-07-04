@@ -17,8 +17,8 @@ import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.data.definition.extra.AnimationDefinitions
-import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.getComponentOrNull
 import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.playerDialogueHead
@@ -108,7 +108,7 @@ internal class PlayerChatTest : DialogueTest() {
     @ValueSource(booleans = [true, false])
     fun `Send player chat head size and animation`(large: Boolean) {
         mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
-        mockkStatic("world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitionsKt")
+        mockkStatic("world.gregs.voidps.engine.data.definition.InterfaceDefinitionsKt")
         val client: Client = mockk(relaxed = true)
         player.client = client
         val definition: InterfaceDefinition = mockk(relaxed = true)

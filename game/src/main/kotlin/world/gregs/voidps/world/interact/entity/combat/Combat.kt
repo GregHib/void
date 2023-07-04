@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.remove
-import world.gregs.voidps.engine.data.definition.extra.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs

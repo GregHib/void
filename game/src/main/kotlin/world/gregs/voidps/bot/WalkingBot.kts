@@ -1,5 +1,5 @@
-import world.gregs.voidps.bot.Task
-import world.gregs.voidps.bot.TaskManager
+package world.gregs.voidps.bot
+
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World

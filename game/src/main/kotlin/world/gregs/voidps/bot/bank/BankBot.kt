@@ -7,7 +7,7 @@ import world.gregs.voidps.bot.navigation.goToNearest
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.instruct.EnterInt
 import world.gregs.voidps.network.instruct.InteractInterface

@@ -1,24 +1,38 @@
 package world.gregs.voidps.cache.definition.decoder
 
+import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 
-class ClientScriptDecoder(cache: Cache, private val revision634: Boolean) : DefinitionDecoder<ClientScriptDefinition>(cache, Indices.CLIENT_SCRIPTS) {
+class ClientScriptDecoder(private val revision634: Boolean) : DefinitionDecoder<ClientScriptDefinition>(Index.CLIENT_SCRIPTS) {
 
-    override val last: Int
-        get() = cache.lastArchiveId(index)
+    override fun size(cache: Cache): Int {
+        return cache.lastArchiveId(index)
+    }
+
+    override fun create(size: Int) = Array(size) { ClientScriptDefinition(it) }
+
+    override fun readId(reader: Reader): Int {
+        return reader.readShort()
+    }
 
     override fun getFile(id: Int): Int {
         return 0
     }
 
-    override fun create() = ClientScriptDefinition()
-
     override fun readLoop(definition: ClientScriptDefinition, buffer: Reader) {
         definition.read(-1, buffer)
+    }
+
+    override fun load(definitions: Array<ClientScriptDefinition>, reader: Reader) {
+        val id = readId(reader)
+        val length = reader.readInt()
+        val bytes = ByteArray(length)
+        reader.readBytes(bytes)
+        read(definitions, id, BufferReader(bytes))
     }
 
     override fun ClientScriptDefinition.read(opcode: Int, buffer: Reader) {
@@ -40,11 +54,11 @@ class ClientScriptDecoder(cache: Cache, private val revision634: Boolean) : Defi
         val count = buffer.readUnsignedByte()
         if (count > 0) {
             val list = mutableListOf<List<Pair<Int, Int>>>()
-            repeat(count) {
+            for (i in 0 until count) {
                 val size = buffer.readShort()
                 val hashtable = mutableListOf<Pair<Int, Int>>()
                 list.add(hashtable)
-                repeat(size) {
+                for (j in 0 until size) {
                     hashtable.add(buffer.readInt() to buffer.readInt())
                 }
             }

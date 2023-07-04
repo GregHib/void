@@ -1,14 +1,13 @@
 package world.gregs.voidps.cache.config.decoder
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.Configs.HIT_SPLATS
+import world.gregs.voidps.cache.Config.HIT_SPLATS
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.HitSplatDefinition
 
-class HitSplatDecoder(cache: Cache) : ConfigDecoder<HitSplatDefinition>(cache, HIT_SPLATS) {
+class HitSplatDecoder : ConfigDecoder<HitSplatDefinition>(HIT_SPLATS) {
 
-    override fun create() = HitSplatDefinition()
+    override fun create(size: Int) = Array(size) { HitSplatDefinition(it) }
 
     override fun HitSplatDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {

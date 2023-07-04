@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.music
 
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.client.variable.addVarbit
-import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 

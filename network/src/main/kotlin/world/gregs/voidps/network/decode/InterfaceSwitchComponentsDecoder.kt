@@ -2,10 +2,10 @@ package world.gregs.voidps.network.decode
 
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.network.Decoder
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.MoveContainerItem
-import world.gregs.voidps.network.misc.Interface
 import world.gregs.voidps.network.readShortAddLittle
 import world.gregs.voidps.network.readUnsignedIntMiddle
 
@@ -19,12 +19,12 @@ class InterfaceSwitchComponentsDecoder : Decoder(16) {
         val fromSlot = packet.readShortAddLittle()
         val fromItemId = packet.readShortAddLittle()
         instructions.emit(MoveContainerItem(
-            fromId = Interface.getId(fromPacked),
-            fromComponentId = Interface.getComponentId(fromPacked),
+            fromId = InterfaceDefinition.id(fromPacked),
+            fromComponentId = InterfaceDefinition.componentId(fromPacked),
             fromItemId = fromItemId,
             fromSlot = fromSlot,
-            toId = Interface.getId(toPacked),
-            toComponentId = Interface.getComponentId(toPacked),
+            toId = InterfaceDefinition.id(toPacked),
+            toComponentId = InterfaceDefinition.componentId(toPacked),
             toItemId = toItemId,
             toSlot = toSlot
         ))

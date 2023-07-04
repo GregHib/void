@@ -1,18 +1,16 @@
 package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
-import world.gregs.voidps.cache.Indices.OBJECTS
+import world.gregs.voidps.cache.Index.OBJECTS
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 
 open class ObjectDecoder(
-    cache: Cache,
     val member: Boolean,
     val lowDetail: Boolean
-) : DefinitionDecoder<ObjectDefinition>(cache, OBJECTS) {
+) : DefinitionDecoder<ObjectDefinition>(OBJECTS) {
 
-    override fun create() = ObjectDefinition()
+    override fun create(size: Int) = Array(size) { ObjectDefinition(it) }
 
     override fun getFile(id: Int) = id and 0xff
 
@@ -25,17 +23,12 @@ open class ObjectDecoder(
                     skip(buffer)
                 }
                 val length = buffer.readUnsignedByte()
-                val modelIds = arrayOfNulls<IntArray>(length)
                 modelTypes = ByteArray(length)
-                repeat(length) { count ->
+                this.modelIds = Array(length) { count ->
                     modelTypes!![count] = buffer.readByte().toByte()
                     val size = buffer.readUnsignedByte()
-                    modelIds[count] = IntArray(size)
-                    repeat(size) { index ->
-                        modelIds[count]!![index] = buffer.readUnsignedShort()
-                    }
+                    IntArray(size) { buffer.readUnsignedShort() }
                 }
-                this.modelIds = modelIds.filterNotNull().toTypedArray()
                 if (opcode == 5 && !lowDetail) {
                     skip(buffer)
                 }
@@ -100,10 +93,7 @@ open class ObjectDecoder(
                 anInt2971 = buffer.readShort()
                 anInt3012 = buffer.readUnsignedByte()
                 val length = buffer.readUnsignedByte()
-                anIntArray3036 = IntArray(length)
-                repeat(length) { count ->
-                    anIntArray3036!![count] = buffer.readShort()
-                }
+                anIntArray3036 = IntArray(length) { buffer.readShort() }
             }
             81 -> {
                 contouredGround = 2.toByte()
@@ -142,7 +132,7 @@ open class ObjectDecoder(
                 var total = 0
                 animations = IntArray(length)
                 percents = IntArray(length)
-                repeat(length) { count ->
+                for (count in 0 until length) {
                     animations!![count] = buffer.readShort()
                     if (animations!![count] == 65535) {
                         animations!![count] = -1
@@ -150,7 +140,7 @@ open class ObjectDecoder(
                     percents!![count] = buffer.readUnsignedByte()
                     total += percents!![count]
                 }
-                repeat(length) { count ->
+                for (count in 0 until length) {
                     percents!![count] = 65535 * percents!![count] / total
                 }
             }
@@ -164,13 +154,7 @@ open class ObjectDecoder(
                     options!![opcode - 150] = null
                 }
             }
-            160 -> {
-                val length = buffer.readUnsignedByte()
-                anIntArray2981 = IntArray(length)
-                repeat(length) { count ->
-                    anIntArray2981!![count] = buffer.readShort()
-                }
-            }
+            160 -> anIntArray2981 = IntArray(buffer.readUnsignedByte()) { buffer.readShort() }
             162 -> {
                 contouredGround = 3
                 anInt3023 = buffer.readInt()
@@ -202,7 +186,7 @@ open class ObjectDecoder(
     companion object {
         private fun skip(buffer: Reader) {
             val length = buffer.readUnsignedByte()
-            repeat(length) {
+            for (i in 0 until length) {
                 buffer.skip(1)
                 val amount = buffer.readUnsignedByte()
                 buffer.skip(amount * 2)

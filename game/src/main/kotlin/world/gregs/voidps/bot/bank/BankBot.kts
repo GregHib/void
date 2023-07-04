@@ -1,3 +1,5 @@
+package world.gregs.voidps.bot.bank
+
 import world.gregs.voidps.bot.Bot
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.bot.onBot

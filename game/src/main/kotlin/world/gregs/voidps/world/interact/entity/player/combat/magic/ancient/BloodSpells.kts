@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.ancient
 
-import world.gregs.voidps.engine.data.definition.extra.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation

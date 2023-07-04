@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player

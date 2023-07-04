@@ -1,14 +1,13 @@
 package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
-import world.gregs.voidps.cache.Indices.GRAPHICS
+import world.gregs.voidps.cache.Index.GRAPHICS
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
 
-class GraphicDecoder(cache: Cache) : DefinitionDecoder<GraphicDefinition>(cache, GRAPHICS) {
+class GraphicDecoder : DefinitionDecoder<GraphicDefinition>(GRAPHICS) {
 
-    override fun create() = GraphicDefinition()
+    override fun create(size: Int) = Array(size) { GraphicDefinition(it) }
 
     override fun getFile(id: Int) = id and 0xff
 

@@ -4,8 +4,7 @@ import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.remove
 import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
-import world.gregs.voidps.engine.entity.Size
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.flagTransform
@@ -28,11 +27,10 @@ on<TimerStart>({ timer == "transform" }) { character: Character ->
 }
 
 on<TimerStop>({ timer == "transform" }) { player: Player ->
-    player.size = Size.ONE
     player.appearance.apply {
         emote = 1426
         transform = -1
-        size = Size.ONE.width
+        size = 1
         idleSound = -1
         crawlSound = -1
         walkSound = -1

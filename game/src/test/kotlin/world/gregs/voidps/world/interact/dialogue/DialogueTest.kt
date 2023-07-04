@@ -14,7 +14,7 @@ import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.world.script.KoinMock

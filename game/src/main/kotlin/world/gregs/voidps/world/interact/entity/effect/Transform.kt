@@ -3,8 +3,7 @@ package world.gregs.voidps.world.interact.entity.effect
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
-import world.gregs.voidps.engine.entity.Size
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.flagTransform
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -27,7 +26,6 @@ fun Player.transform(npc: String) {
 
 private fun Player.transform(definition: NPCDefinition) {
     softTimers.start("transform")
-    size = Size(definition.size, definition.size)
     appearance.apply {
         emote = definition.renderEmote
         transform = definition.id

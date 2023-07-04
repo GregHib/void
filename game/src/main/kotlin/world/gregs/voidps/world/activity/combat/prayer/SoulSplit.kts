@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.activity.combat.prayer
+
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remove
 import world.gregs.voidps.engine.client.variable.set
@@ -5,11 +7,11 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setGraphic
+import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
-import world.gregs.voidps.world.activity.combat.prayer.praying
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
 import world.gregs.voidps.world.interact.entity.combat.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.dead

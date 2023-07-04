@@ -5,37 +5,47 @@ import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
-import world.gregs.voidps.cache.Indices.INTERFACES
+import world.gregs.voidps.cache.Index.INTERFACES
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentSetting
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 
-class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(cache, INTERFACES) {
+class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
 
-    override fun create() = InterfaceDefinition()
+    override fun create(size: Int) = Array(size) { InterfaceDefinition(it) }
 
-    override val last: Int
-        get() = cache.lastArchiveId(index)
+    override fun size(cache: Cache): Int {
+        return cache.lastArchiveId(index)
+    }
 
-    override fun readData(id: Int): InterfaceDefinition? {
-        val archive = getArchive(id)
-        val lastArchive = cache.lastFileId(index, archive)
-        if (lastArchive == -1) {
-            return null
+    override fun load(definitions: Array<InterfaceDefinition>, reader: Reader) {
+        val id = readId(reader)
+        val definition = definitions[InterfaceDefinition.id(id)]
+        if (definition.components == null) {
+            definition.components = Int2ObjectOpenHashMap()
         }
-        val definition = create()
-        definition.id = id
+        val component = InterfaceComponentDefinition(id = id)
+        component.read(reader)
+        definition.components!![InterfaceDefinition.componentId(id)] = component
+    }
+
+    override fun load(definitions: Array<InterfaceDefinition>, cache: Cache, id: Int) {
+        val archiveId = getArchive(id)
+        val lastArchive = cache.lastFileId(index, archiveId)
+        if (lastArchive == -1) {
+            return
+        }
+        val definition = definitions[id]
         val components = Int2ObjectOpenHashMap<InterfaceComponentDefinition>(lastArchive)
-        for(file in 0..lastArchive) {
+        for (file in 0..lastArchive) {
             val component = InterfaceComponentDefinition(id = file + (id shl 16))
-            val data = cache.getFile(index, archive, file)
+            val data = cache.getFile(index, archiveId, file)
             if (data != null) {
                 component.read(BufferReader(data))
             }
             components[file] = component
         }
         definition.components = components
-        return definition
     }
 
     fun InterfaceComponentDefinition.read(buffer: Reader) {
@@ -64,13 +74,11 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
             scrollWidth = buffer.readShort()
             scrollHeight = buffer.readShort()
             disableHover = buffer.readUnsignedByte() == 1
-        }
-        if (type == 3) {
+        } else if (type == 3) {
             colour = buffer.readInt()
             filled = buffer.readUnsignedByte() == 1
             alpha = buffer.readUnsignedByte()
-        }
-        if (type == 4) {
+        } else if (type == 4) {
             fontId = buffer.readShort()
             if (fontId == 65535) {
                 fontId = -1
@@ -82,8 +90,7 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
             shaded = buffer.readUnsignedByte() == 1
             colour = buffer.readInt()
             alpha = buffer.readUnsignedByte()
-        }
-        if (type == 5) {
+        } else if (type == 5) {
             defaultImage = buffer.readInt()
             imageRotation = buffer.readShort()
             val i_18_ = buffer.readUnsignedByte()
@@ -95,8 +102,7 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
             flipVertical = buffer.readUnsignedByte() == 1
             flipHorizontal = buffer.readUnsignedByte() == 1
             colour = buffer.readInt()
-        }
-        if (type == 6) {
+        } else if (type == 6) {
             defaultMediaType = 1
             defaultMediaId = buffer.readShort()
             if (defaultMediaId == 65535) {
@@ -133,8 +139,7 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
             if (verticalSizeMode.toInt() != 0) {
                 viewportHeight = buffer.readShort()
             }
-        }
-        if (type == 9) {
+        } else if (type == 9) {
             lineWidth = buffer.readUnsignedByte()
             colour = buffer.readInt()
             lineMirrored = buffer.readUnsignedByte() == 1
@@ -167,17 +172,12 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
         val i_25_ = buffer.readUnsignedByte()
         val optionCount = i_25_ and 0xf
         if (optionCount > 0) {
-            options = (0 until optionCount).map { buffer.readString() }.toTypedArray()
+            options = Array(optionCount) { buffer.readString() }
         }
         val iconCount = i_25_ shr 4
         if (iconCount > 0) {
             val i_29_ = buffer.readUnsignedByte()
-            mouseIcon = IntArray(i_29_ + 1)
-            var i_30_ = 0
-            while (mouseIcon!!.size > i_30_) {
-                mouseIcon!![i_30_] = -1
-                i_30_++
-            }
+            mouseIcon = IntArray(i_29_ + 1) { if (i_29_ + 1 > it) -1 else 0 }
             mouseIcon!![i_29_] = buffer.readShort()
         }
         if (iconCount > 1) {
