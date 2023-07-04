@@ -41,7 +41,6 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.map.file.MapExtract
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.gameModule
@@ -154,14 +153,14 @@ abstract class WorldTest : KoinTest {
                 single(createdAtStart = true) { enumDefinitions }
                 single { xteas }
                 single { gameObjects }
-                single { extract }
+                single { mapDefinitions }
                 single { collisions }
                 single { objectCollision }
             })
             modules(postCacheModule, postCacheGameModule)
         }
         loadScripts(getProperty("scriptModule"))
-        MapExtract(get(), get(), get()).load(active)
+        MapDefinitions(get(), get(), get()).load(active)
         saves = File(getProperty("savePath"))
         saves?.mkdirs()
         store = get()
@@ -240,7 +239,7 @@ abstract class WorldTest : KoinTest {
         private val objectCollision: GameObjectCollision by lazy { GameObjectCollision(collisions) }
         private val xteas: Xteas by lazy { Xteas().apply { XteaLoader().load(this, getProperty("xteaPath")) } }
         private val gameObjects: GameObjects by lazy { GameObjects(objectCollision, ChunkBatchUpdates(), objectDefinitions, storeUnused = true) }
-        private val extract: MapExtract by lazy { MapExtract(collisions, objectDefinitions, gameObjects).load(active) }
+        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(collisions, objectDefinitions, gameObjects).load(active) }
         val emptyTile = Tile(2655, 4640)
     }
 }
