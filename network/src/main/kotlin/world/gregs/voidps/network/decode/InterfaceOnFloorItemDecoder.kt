@@ -2,9 +2,9 @@ package world.gregs.voidps.network.decode
 
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.network.*
 import world.gregs.voidps.network.instruct.InteractInterfaceFloorItem
-import world.gregs.voidps.network.misc.Interface
 
 class InterfaceOnFloorItemDecoder : Decoder(15) {
 
@@ -16,7 +16,15 @@ class InterfaceOnFloorItemDecoder : Decoder(15) {
         val run = packet.readBoolean()
         val item = packet.readUnsignedShortAdd()
         val packed = packet.readUnsignedIntMiddle()
-        instructions.emit(InteractInterfaceFloorItem(floorItem, x, y, Interface.getId(packed), Interface.getComponentId(packed), item, itemSlot))
+        instructions.emit(InteractInterfaceFloorItem(
+            floorItem,
+            x,
+            y,
+            InterfaceDefinition.id(packed),
+            InterfaceDefinition.componentId(packed),
+            item,
+            itemSlot
+        ))
     }
 
 }
