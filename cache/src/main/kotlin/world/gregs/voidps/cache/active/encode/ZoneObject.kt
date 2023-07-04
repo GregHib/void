@@ -41,7 +41,7 @@ value class ZoneObject(val packed: Int) {
         fun tile(value: Int): Int = value and 0x3f
 
         /**
-         * Takes the second half of [packed] which is the id, rotation and type
+         * Takes the second half of [packed] which is the id, rotation and shape
          * @see world.gregs.voidps.engine.entity.obj.GameObjects for usage
          */
         fun info(value: Int): Int = value shr 8

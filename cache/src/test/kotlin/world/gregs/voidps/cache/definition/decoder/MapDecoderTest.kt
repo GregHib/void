@@ -88,12 +88,12 @@ internal class MapDecoderTest {
         assertObject(12345, 63, 63, 3, 4, 1, def.objects.last())
     }
 
-    private fun assertObject(id: Int, x: Int, y: Int, plane: Int, type: Int, rotation: Int, obj: MapObject) {
+    private fun assertObject(id: Int, x: Int, y: Int, plane: Int, shape: Int, rotation: Int, obj: MapObject) {
         assertEquals(id, obj.id)
         assertEquals(x, obj.x)
         assertEquals(y, obj.y)
         assertEquals(plane, obj.plane)
-        assertEquals(type, obj.shape)
+        assertEquals(shape, obj.shape)
         assertEquals(rotation, obj.rotation)
     }
 }
