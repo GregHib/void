@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.forceWalk
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
+import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.collision.blocked
@@ -23,7 +24,7 @@ import java.util.concurrent.TimeUnit
 fun isDragonSpear(item: Item?) = item != null && (item.id.startsWith("dragon_spear") || item.id.startsWith("zamorakian_spear"))
 
 on<CombatSwing>({ !swung() && it.specialAttack && isDragonSpear(it.weapon) }) { player: Player ->
-    if (target.size.width > 1 || target.size.height > 1) {
+    if (target.size > 1) {
         player.message("That creature is too large to knock back!")
         delay = -1
         return@on

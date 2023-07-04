@@ -3,7 +3,6 @@ package world.gregs.voidps.tools.graph
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.Distance
@@ -89,7 +88,7 @@ class MapGraph(
             val parent = queue.poll()
             for (direction in Direction.clockwise) {
                 val tile = parent.add(direction.delta)
-                if (!distances.containsKey(tile) && area.contains(tile) && !traversal.blocked(collision, parent, Size.ONE, direction)) {
+                if (!distances.containsKey(tile) && area.contains(tile) && !traversal.blocked(collision, parent, 1, direction)) {
                     distances[tile] = distances[parent]!! + 1
                     queue.addLast(tile)
                 }
@@ -116,7 +115,7 @@ class MapGraph(
         val list = mutableListOf<Tile>()
         val visitedTiles = mutableSetOf<Tile>()
         for (tile in area) {
-            if (!visitedTiles.contains(tile) && !traversal.blocked(collision, tile, Size.ONE, Direction.NONE)) {
+            if (!visitedTiles.contains(tile) && !traversal.blocked(collision, tile, 1, Direction.NONE)) {
                 val knots = getFloodedTiles(traversal, tile, area).keys
                 if (knots.size > 2) {
                     var center = centroid(knots)

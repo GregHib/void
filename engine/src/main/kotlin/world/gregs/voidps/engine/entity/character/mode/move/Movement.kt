@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
+import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Overlap
@@ -51,7 +52,7 @@ open class Movement(
                 level = character.tile.plane,
                 destX = strategy.tile.x,
                 destZ = strategy.tile.y,
-                srcSize = character.size.width,
+                srcSize = character.size,
                 destWidth = strategy.sizeX,
                 destHeight = strategy.sizeY,
                 objShape = shape ?: strategy.exitStrategy,
@@ -182,7 +183,7 @@ open class Movement(
             z = character.tile.y,
             offsetX = x,
             offsetZ = y,
-            size = character.size.width,
+            size = character.size,
             extraFlag = flag,
             collision = character.collision)
     }
@@ -192,7 +193,7 @@ open class Movement(
         if (distance == -1) {
             return strategy.reached(character)
         }
-        if (Overlap.isUnder(character.tile, character.size.width, character.size.height, strategy.tile, strategy.width, strategy.height)) {
+        if (Overlap.isUnder(character.tile, character.size, character.size, strategy.tile, strategy.width, strategy.height)) {
             return false
         }
         if (!character.tile.within(strategy.tile, distance)) {
@@ -202,7 +203,7 @@ open class Movement(
             srcX = character.tile.x,
             srcZ = character.tile.y,
             level = character.tile.plane,
-            srcSize = character.size.width,
+            srcSize = character.size,
             destX = strategy.tile.x,
             destZ = strategy.tile.y,
             destWidth = strategy.width,

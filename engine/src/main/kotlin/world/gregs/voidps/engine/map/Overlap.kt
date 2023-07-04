@@ -1,7 +1,5 @@
 package world.gregs.voidps.engine.map
 
-import world.gregs.voidps.engine.entity.Size
-
 object Overlap {
 
     fun isUnder(tile: Tile, width: Int, height: Int, target: Tile, targetWidth: Int, targetHeight: Int) = isUnder(tile.x, tile.y, width, height, target.x, target.y, targetWidth, targetHeight)
@@ -19,17 +17,17 @@ object Overlap {
         return y <= targetY + targetHeight - 1
     }
 
-    fun isDiagonal(x: Int, y: Int, size: Size, targetX: Int, targetY: Int, targetSize: Size): Boolean {
-        if (x >= targetX + targetSize.width && y >= targetY + targetSize.height) {
+    fun isDiagonal(x: Int, y: Int, width: Int, height: Int, targetX: Int, targetY: Int, targetWidth: Int, targetHeight: Int): Boolean {
+        if (x >= targetX + targetWidth && y >= targetY + targetHeight) {
             return true// ne
         }
-        if (x + size.width <= targetX && y >= targetY + targetSize.height) {
+        if (x + width <= targetX && y >= targetY + targetHeight) {
             return true// nw
         }
-        if (x >= targetX + targetSize.width && y + size.height <= targetY) {
+        if (x >= targetX + targetWidth && y + height <= targetY) {
             return true// se
         }
-        if (x + size.width <= targetX && y + size.height <= targetY) {
+        if (x + width <= targetX && y + height <= targetY) {
             return true// sw
         }
         return false

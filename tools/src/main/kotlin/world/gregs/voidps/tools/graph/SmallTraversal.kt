@@ -1,7 +1,6 @@
 package world.gregs.voidps.tools.graph
 
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 
@@ -11,7 +10,7 @@ import world.gregs.voidps.engine.map.collision.check
  */
 object SmallTraversal : TileTraversalStrategy {
 
-    override fun blocked(collisions: Collisions, x: Int, y: Int, plane: Int, size: Size, direction: Direction): Boolean {
+    override fun blocked(collisions: Collisions, x: Int, y: Int, plane: Int, size: Int, direction: Direction): Boolean {
         return when (direction) {
             Direction.NONE -> collisions.check(x, y, plane, 2359552)
             Direction.NORTH -> collisions.check(x, y + 1, plane, 2359584)

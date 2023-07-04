@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
+import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
@@ -54,7 +55,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonLongsword(it.weapon) }
     list.take(if (target is Player) 3 else 10).onEach {
         player.hit(it)
     }
-    if (target.size.width > 1 || target.size.height > 1) {
+    if (target.size > 1) {
         player["second_hit"] = true
         player.hit(target)
         player.clear("second_hit")

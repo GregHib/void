@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.inject
@@ -52,29 +53,29 @@ on<Moved> { npc: NPC ->
 }
 
 fun Collisions.add(char: Character) {
-    for (x in 0 until char.size.width) {
-        for (y in 0 until char.size.height) {
+    for (x in 0 until char.size) {
+        for (y in 0 until char.size) {
             add(char.tile.x + x, char.tile.y + y, char.tile.plane, entity(char))
         }
     }
 }
 
 fun Collisions.remove(char: Character) {
-    for (x in 0 until char.size.width) {
-        for (y in 0 until char.size.height) {
+    for (x in 0 until char.size) {
+        for (y in 0 until char.size) {
             remove(char.tile.x + x, char.tile.y + y, char.tile.plane, entity(char))
         }
     }
 }
 
 fun Collisions.move(character: Character, from: Tile, to: Tile) {
-    for (x in 0 until character.size.width) {
-        for (y in 0 until character.size.height) {
+    for (x in 0 until character.size) {
+        for (y in 0 until character.size) {
             remove(from.x + x, from.y + y, from.plane, entity(character))
         }
     }
-    for (x in 0 until character.size.width) {
-        for (y in 0 until character.size.height) {
+    for (x in 0 until character.size) {
+        for (y in 0 until character.size) {
             add(to.x + x, to.y + y, to.plane, entity(character))
         }
     }

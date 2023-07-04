@@ -3,7 +3,10 @@ package world.gregs.voidps.engine.entity.character.npc
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.MAX_NPCS
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Wander
@@ -44,7 +47,7 @@ data class NPCs(
             logger.warn { "No npc found for name $id" }
             return null
         }
-        val npc = NPC(id, tile, Size(def.size, def.size))
+        val npc = NPC(id, tile)
         npc.def = def
         npc.levels.link(npc.events, NPCLevels(def))
         npc.levels.clear()

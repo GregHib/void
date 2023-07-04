@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
@@ -79,7 +80,7 @@ fun Character.shoot(
     endHeight = endHeight,
     curve = curve,
     offset = offset,
-    width = size.width,
+    width = size,
     sourceHeight = this.height,
     targetHeight = target.height,
     targetTile = target.tile,
@@ -102,7 +103,7 @@ fun Character.shoot(
     endHeight = endHeight,
     curve = curve,
     offset = offset,
-    width = size.width,
+    width = size,
     sourceHeight = this.height,
     sourceTile = this.tile)
 
