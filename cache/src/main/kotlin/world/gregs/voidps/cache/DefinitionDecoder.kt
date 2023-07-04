@@ -43,7 +43,7 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
      */
     open fun loadCache(cache: Cache): Array<T> {
         val start = System.currentTimeMillis()
-        val size = size(cache) + 1
+        val size = size(cache)
         val definitions = create(size)
         for (id in 0 until size - 1) {
             load(definitions, cache, id)
