@@ -45,7 +45,7 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
         val start = System.currentTimeMillis()
         val size = size(cache)
         val definitions = create(size)
-        for (id in 0 until size - 1) {
+        for (id in 0 until size) {
             load(definitions, cache, id)
         }
         logger.info { "$size ${this::class.simpleName} definitions loaded in ${System.currentTimeMillis() - start}ms" }

@@ -7,6 +7,7 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Index.INTERFACES
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
+import world.gregs.voidps.cache.definition.data.InterfaceComponentSetting
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 
 class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
@@ -206,6 +207,7 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
                 anInt4839 = -1
             }
         }
+        this.setting = InterfaceComponentSetting(setting, i_32_)
         anObjectArray4758 = decodeScript(buffer)
         mouseEnterHandler = decodeScript(buffer)
         mouseExitHandler = decodeScript(buffer)
