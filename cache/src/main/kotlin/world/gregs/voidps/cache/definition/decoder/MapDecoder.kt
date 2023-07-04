@@ -31,7 +31,7 @@ class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapD
         return 0
     }
 
-    private val regionHashes: MutableMap<Int, Int> = Int2IntOpenHashMap(1600)
+    val regionHashes: MutableMap<Int, Int> = Int2IntOpenHashMap(1600)
 
     override fun loadCache(cache: Cache): Array<MapDefinition> {
         regionHashes.clear()
@@ -54,7 +54,7 @@ class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapD
         val definition = definitions[id]
         definition.id = region
         readLoop(definition, reader)
-        definition.changeValues(cache)
+        loadObjects(cache, definition)
     }
 
     override fun readLoop(definition: MapDefinition, buffer: Reader) {
@@ -102,8 +102,8 @@ class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapD
         }
     }
 
-    fun MapDefinition.changeValues(cache: Cache) {
-        val objectData = cache.getFile(index, "l${id shr 8}_${id and 0xff}", xteas[id]) ?: return
+    private fun loadObjects(cache: Cache, definition: MapDefinition) {
+        val objectData = cache.getFile(index, "l${definition.id shr 8}_${definition.id and 0xff}", xteas[definition.id]) ?: return
         val reader = BufferReader(objectData)
         var objectId = -1
         while (true) {
@@ -127,19 +127,20 @@ class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapD
                 val obj = reader.readUnsignedByte()
 
                 // Decrease bridges
-                if (getTile(localX, localY, 1).isTile(BRIDGE_TILE)) {
+                if (definition.getTile(localX, localY, 1).isTile(BRIDGE_TILE)) {
                     plane--
-                    // Validate plane
-                    if (plane < 0) {
-                        continue
-                    }
+                }
+
+                // Validate plane
+                if (plane !in 0 until 4) {
+                    continue
                 }
 
                 val shape = obj shr 2
                 val rotation = obj and 0x3
 
                 // Valid object
-                objects.add(MapObject(objectId, localX, localY, plane, shape, rotation))
+                definition.objects.add(MapObject(objectId, localX, localY, plane, shape, rotation))
             }
         }
     }
