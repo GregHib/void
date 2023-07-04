@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data.definition.extra
 
 import io.mockk.mockk
-import org.junit.jupiter.api.BeforeEach
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoderTest
@@ -9,15 +8,10 @@ import world.gregs.yaml.Yaml
 
 internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, ObjectDecoder, ObjectDefinitions>() {
 
+    override var decoder: ObjectDecoder = ObjectDecoder(member = true, lowDetail = false)
     override lateinit var definitions: Array<ObjectDefinition>
     override val id: String = "door_closed"
     override val intId: Int = 3
-
-    @BeforeEach
-    override fun setup() {
-        definitions = mockk(relaxed = true)
-        super.setup()
-    }
 
     override fun expected(): ObjectDefinition {
         return ObjectDefinition(intId, stringId = id, extras = mapOf("id" to intId, "examine" to "The door is closed."))
@@ -32,6 +26,6 @@ internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, 
     }
 
     override fun load(definitions: ObjectDefinitions) {
-        definitions.load(Yaml(), "../data/definitions/objects.yml")
+        definitions.load(Yaml(), "../data/definitions/objects.yml", mockk(relaxed = true))
     }
 }

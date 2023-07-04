@@ -1,7 +1,5 @@
 package world.gregs.voidps.engine.data.definition.extra
 
-import io.mockk.mockk
-import org.junit.jupiter.api.BeforeEach
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoderTest
@@ -9,15 +7,10 @@ import world.gregs.yaml.Yaml
 
 internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefinition, AnimationDecoder, AnimationDefinitions>() {
 
+    override var decoder: AnimationDecoder = AnimationDecoder()
     override lateinit var definitions: Array<AnimationDefinition>
     override val id: String = "expression_yes"
     override val intId: Int = 9741
-
-    @BeforeEach
-    override fun setup() {
-        definitions = mockk(relaxed = true)
-        super.setup()
-    }
 
     override fun expected(): AnimationDefinition {
         return AnimationDefinition(intId, stringId = id, extras = mapOf("id" to intId))

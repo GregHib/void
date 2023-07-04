@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.data.definition
 
-import io.mockk.every
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -24,14 +23,12 @@ abstract class DefinitionsDecoderTest<T, S : DefinitionDecoder<T>, D : Definitio
 
     abstract var definitions: Array<T>
 
+    abstract var decoder: S
+
     @BeforeEach
     open fun setup() {
-        every { definitions.indices } returns (0..intId)
-        every { definitions.get(any()) } returns empty()
-        every { definitions.get(intId) } returns expected()
-        every { definitions.getOrNull(any()) } returns null
-        every { definitions.getOrNull(any()) } returns empty()
-        every { definitions.getOrNull(intId) } returns expected()
+        definitions = decoder.create(intId + 1)
+        definitions[intId] = expected()
     }
 
     @Test

@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data.definition.extra
 
 import io.mockk.mockk
-import org.junit.jupiter.api.BeforeEach
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoderTest
@@ -9,15 +8,10 @@ import world.gregs.yaml.Yaml
 
 internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ContainerDefinition, ContainerDecoder, ContainerDefinitions>() {
 
+    override var decoder: ContainerDecoder = ContainerDecoder()
     override lateinit var definitions: Array<ContainerDefinition>
     override val id: String = "bobs_brilliant_axes"
     override val intId: Int = 1
-
-    @BeforeEach
-    override fun setup() {
-        definitions = mockk(relaxed = true)
-        super.setup()
-    }
 
     override fun expected(): ContainerDefinition {
         return ContainerDefinition(intId,
