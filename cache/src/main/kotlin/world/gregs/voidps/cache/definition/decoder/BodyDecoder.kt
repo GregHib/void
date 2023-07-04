@@ -3,7 +3,7 @@ package world.gregs.voidps.cache.definition.decoder
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.DefinitionDecoder
-import world.gregs.voidps.cache.Indices.DEFAULTS
+import world.gregs.voidps.cache.Index.DEFAULTS
 import world.gregs.voidps.cache.definition.data.BodyDefinition
 
 class BodyDecoder : DefinitionDecoder<BodyDefinition>(DEFAULTS) {

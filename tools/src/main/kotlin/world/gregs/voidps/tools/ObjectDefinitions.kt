@@ -5,7 +5,7 @@ import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import java.io.File
@@ -55,8 +55,8 @@ object ObjectDefinitions {
     }
 
     fun loadAll2(cache: Cache, definitions: Array<ObjectDefinition>, getId: (archive: Int, file: Int) -> Int) {
-        for (archiveId in cache.getArchives(Indices.OBJECTS)) {
-            val files = cache.getArchiveData(Indices.OBJECTS, archiveId) ?: continue
+        for (archiveId in cache.getArchives(Index.OBJECTS)) {
+            val files = cache.getArchiveData(Index.OBJECTS, archiveId) ?: continue
             for ((fileId, file) in files) {
                 if (file == null) {
                     continue

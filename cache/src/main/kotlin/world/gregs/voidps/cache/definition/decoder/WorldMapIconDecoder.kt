@@ -4,7 +4,7 @@ import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
-import world.gregs.voidps.cache.Indices.WORLD_MAP
+import world.gregs.voidps.cache.Index.WORLD_MAP
 import world.gregs.voidps.cache.definition.data.WorldMapIcon
 import world.gregs.voidps.cache.definition.data.WorldMapIconDefinition
 

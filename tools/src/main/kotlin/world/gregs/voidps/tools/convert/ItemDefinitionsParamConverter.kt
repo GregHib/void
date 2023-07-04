@@ -6,7 +6,7 @@ import org.koin.fileProperties
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.Indices.ITEMS
+import world.gregs.voidps.cache.Index.ITEMS
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.cache.definition.encoder.ItemEncoder
 

@@ -1,6 +1,6 @@
 package world.gregs.voidps.cache
 
-object Indices {
+object Index {
     const val ANIMATION_SKELETONS = 0
     const val ANIMATION_SKINS = 1
     const val CONFIGS = 2

@@ -2,8 +2,8 @@ package world.gregs.voidps.tools.map.render.draw
 
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.Indices.DEFAULTS
-import world.gregs.voidps.cache.Indices.WORLD_MAP
+import world.gregs.voidps.cache.Index.DEFAULTS
+import world.gregs.voidps.cache.Index.WORLD_MAP
 import world.gregs.voidps.cache.config.data.WorldMapInfoDefinition
 import world.gregs.voidps.cache.definition.data.*
 import world.gregs.voidps.engine.map.Tile

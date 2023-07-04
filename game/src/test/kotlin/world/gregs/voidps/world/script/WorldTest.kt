@@ -223,7 +223,7 @@ abstract class WorldTest : KoinTest {
     companion object {
         private val active = File("../data/cache/active/")
         private val cache: Cache by lazy { CacheDelegate(getProperty("cachePath")) }
-        private val huffman: Huffman by lazy { Huffman().load(active.resolve(ActiveCache.indexFile(Indices.HUFFMAN)).readBytes()) }
+        private val huffman: Huffman by lazy { Huffman().load(active.resolve(ActiveCache.indexFile(Index.HUFFMAN)).readBytes()) }
         private val objectDefinitions: ObjectDefinitions by lazy { ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(active)).load() }
         private val npcDefinitions: NPCDefinitions by lazy { NPCDefinitions(NPCDecoder(member = true).load(active)).load() }
         private val itemDefinitions: ItemDefinitions by lazy { ItemDefinitions(ItemDecoder().load(active)).load() }

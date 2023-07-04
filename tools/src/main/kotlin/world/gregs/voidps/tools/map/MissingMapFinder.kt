@@ -7,7 +7,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import org.jsoup.Jsoup
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.Index
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
@@ -126,15 +126,15 @@ object MissingMapFinder {
         }
         val invalid = mutableSetOf<Region>()
         runBlocking {
-            val archives = cache.getArchives(Indices.MAPS).toSet()
+            val archives = cache.getArchives(Index.MAPS).toSet()
             for (regionX in 0 until 256) {
                 for (regionY in 0 until 256) {
                     val region = Region(regionX, regionY)
-                    val archive = cache.getArchiveId(Indices.MAPS, "l${regionX}_${regionY}")
+                    val archive = cache.getArchiveId(Index.MAPS, "l${regionX}_${regionY}")
                     if (!archives.contains(archive)) {
                         continue
                     }
-                    val data = cache.getFile(Indices.MAPS, archive, 0, xteas[region])
+                    val data = cache.getFile(Index.MAPS, archive, 0, xteas[region])
                     if (data == null) {
                         invalid.add(region)
                     }

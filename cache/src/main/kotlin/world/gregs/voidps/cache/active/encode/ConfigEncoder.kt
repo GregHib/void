@@ -2,15 +2,15 @@ package world.gregs.voidps.cache.active.encode
 
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.active.ActiveCache
 import world.gregs.voidps.cache.active.ActiveIndexEncoder
 import java.io.File
 
-class ConfigEncoder(config: Int) : ActiveIndexEncoder(Indices.CONFIGS, config) {
+class ConfigEncoder(config: Int) : ActiveIndexEncoder(Index.CONFIGS, config) {
 
     override fun size(cache: Cache): Int {
-        return cache.lastFileId(Indices.CONFIGS, config)
+        return cache.lastFileId(Index.CONFIGS, config)
     }
 
     override fun file(directory: File): File {

@@ -4,7 +4,7 @@ import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
-import world.gregs.voidps.cache.Indices.TEXTURE_DEFINITIONS
+import world.gregs.voidps.cache.Index.TEXTURE_DEFINITIONS
 import world.gregs.voidps.cache.definition.data.TextureDefinition
 
 class TextureDecoder : DefinitionDecoder<TextureDefinition>(TEXTURE_DEFINITIONS) {

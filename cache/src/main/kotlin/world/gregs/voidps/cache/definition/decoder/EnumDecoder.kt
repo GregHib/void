@@ -3,7 +3,7 @@ package world.gregs.voidps.cache.definition.decoder
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.DefinitionDecoder
-import world.gregs.voidps.cache.Indices.ENUMS
+import world.gregs.voidps.cache.Index.ENUMS
 import world.gregs.voidps.cache.definition.data.EnumDefinition
 
 class EnumDecoder : DefinitionDecoder<EnumDefinition>(ENUMS) {

@@ -7,7 +7,7 @@ import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.active.ActiveCache
 import world.gregs.voidps.cache.active.encode.ZoneObject
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
@@ -63,7 +63,7 @@ class MapDefinitions(
 
     fun load(directory: File): MapDefinitions {
         val start = System.currentTimeMillis()
-        val file = directory.resolve(ActiveCache.indexFile(Indices.MAPS))
+        val file = directory.resolve(ActiveCache.indexFile(Index.MAPS))
         val reader = BufferReader(file.readBytes())
         val regions = reader.readInt()
         readEmptyTiles(reader)

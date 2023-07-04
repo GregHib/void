@@ -2,7 +2,7 @@ package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.DefinitionDecoder
-import world.gregs.voidps.cache.Indices.ITEMS
+import world.gregs.voidps.cache.Index.ITEMS
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 
 class ItemDecoder : DefinitionDecoder<ItemDefinition>(ITEMS) {

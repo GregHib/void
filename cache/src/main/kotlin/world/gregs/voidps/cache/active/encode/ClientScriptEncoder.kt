@@ -2,10 +2,10 @@ package world.gregs.voidps.cache.active.encode
 
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.active.ActiveIndexEncoder
 
-class ClientScriptEncoder : ActiveIndexEncoder(Indices.CLIENT_SCRIPTS) {
+class ClientScriptEncoder : ActiveIndexEncoder(Index.CLIENT_SCRIPTS) {
 
     override fun size(cache: Cache): Int {
         return cache.lastArchiveId(index)

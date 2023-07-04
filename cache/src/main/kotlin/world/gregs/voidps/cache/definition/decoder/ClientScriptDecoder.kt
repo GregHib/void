@@ -4,10 +4,10 @@ import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 
-class ClientScriptDecoder(private val revision634: Boolean) : DefinitionDecoder<ClientScriptDefinition>(Indices.CLIENT_SCRIPTS) {
+class ClientScriptDecoder(private val revision634: Boolean) : DefinitionDecoder<ClientScriptDefinition>(Index.CLIENT_SCRIPTS) {
 
     override fun size(cache: Cache): Int {
         return cache.lastArchiveId(index)

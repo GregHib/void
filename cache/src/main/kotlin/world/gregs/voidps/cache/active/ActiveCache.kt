@@ -4,8 +4,8 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.Configs
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.Config
+import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.active.encode.*
 import world.gregs.voidps.cache.secure.CRC
 import java.io.File
@@ -108,7 +108,7 @@ class ActiveCache(
     }
 
     /**
-     * (Re)encodes any [Indices] which are [ActiveIndexEncoder.outdated]
+     * (Re)encodes any [Index] which are [ActiveIndexEncoder.outdated]
      */
     private fun update(cachePath: String, active: File, encoders: List<ActiveIndexEncoder>, crc32: CRC) {
         val cache = CacheDelegate(cachePath)
@@ -164,22 +164,22 @@ class ActiveCache(
 
         private fun load(): List<ActiveIndexEncoder> {
             return listOf(
-                ConfigEncoder(Configs.IDENTITY_KIT),
-                ConfigEncoder(Configs.CONTAINERS),
-                ConfigEncoder(Configs.VARP),
-                ConfigEncoder(Configs.VARC),
-                ConfigEncoder(Configs.STRUCTS),
-                ConfigEncoder(Configs.RENDER_ANIMATIONS),
+                ConfigEncoder(Config.IDENTITY_KIT),
+                ConfigEncoder(Config.CONTAINERS),
+                ConfigEncoder(Config.VARP),
+                ConfigEncoder(Config.VARC),
+                ConfigEncoder(Config.STRUCTS),
+                ConfigEncoder(Config.RENDER_ANIMATIONS),
                 InterfaceEncoder(),
                 MapEncoder("./data/xteas.dat"),
                 HuffmanEncoder(),
                 ClientScriptEncoder(),
-                ShiftEncoder(Indices.OBJECTS, 8),
-                ShiftEncoder(Indices.ENUMS, 8),
-                ShiftEncoder(Indices.NPCS, 7),
-                ShiftEncoder(Indices.ITEMS, 8),
-                ShiftEncoder(Indices.ANIMATIONS, 7),
-                ShiftEncoder(Indices.GRAPHICS, 8),
+                ShiftEncoder(Index.OBJECTS, 8),
+                ShiftEncoder(Index.ENUMS, 8),
+                ShiftEncoder(Index.NPCS, 7),
+                ShiftEncoder(Index.ITEMS, 8),
+                ShiftEncoder(Index.ANIMATIONS, 7),
+                ShiftEncoder(Index.GRAPHICS, 8),
                 QuickChatEncoder(),
             )
         }

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.Indices.CLIENT_SCRIPTS
+import world.gregs.voidps.cache.Index.CLIENT_SCRIPTS
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
 

@@ -1,6 +1,6 @@
 package world.gregs.voidps.cache
 
-object Configs {
+object Config {
     const val FLOOR_UNDERLAY = 1
     const val IDENTITY_KIT = 3
     const val FLOOR_OVERLAY = 4

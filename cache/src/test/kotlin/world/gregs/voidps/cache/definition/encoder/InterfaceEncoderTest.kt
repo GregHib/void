@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.Indices.INTERFACES
+import world.gregs.voidps.cache.Index.INTERFACES
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentSetting
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder

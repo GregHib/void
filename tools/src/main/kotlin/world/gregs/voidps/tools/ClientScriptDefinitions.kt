@@ -2,7 +2,7 @@ package world.gregs.voidps.tools
 
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
 
 object ClientScriptDefinitions {
@@ -30,15 +30,15 @@ object ClientScriptDefinitions {
     }
 
     fun getScriptId(cache: Cache, id: Int, context: Int): Int {
-        var scriptId = cache.getArchiveId(Indices.CLIENT_SCRIPTS, context or (id shl 10))
+        var scriptId = cache.getArchiveId(Index.CLIENT_SCRIPTS, context or (id shl 10))
         if (scriptId != -1) {
             return scriptId
         }
-        scriptId = cache.getArchiveId(Indices.CLIENT_SCRIPTS, (65536 + id shl 10) or context)
+        scriptId = cache.getArchiveId(Index.CLIENT_SCRIPTS, (65536 + id shl 10) or context)
         if (scriptId != -1) {
             return scriptId
         }
-        scriptId = cache.getArchiveId(Indices.CLIENT_SCRIPTS, context or 0x3fffc00)
+        scriptId = cache.getArchiveId(Index.CLIENT_SCRIPTS, context or 0x3fffc00)
         return scriptId
     }
 

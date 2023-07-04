@@ -5,8 +5,8 @@ import org.koin.dsl.module
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.Configs.CONTAINERS
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.Config.CONTAINERS
+import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.cache.config.encoder.ContainerEncoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
@@ -67,7 +67,7 @@ object ContainerConverter {
                 with(encoder) {
                     writer.encode(def)
                 }
-                cache.write(Indices.CONFIGS, CONTAINERS, i, writer.toArray())
+                cache.write(Index.CONFIGS, CONTAINERS, i, writer.toArray())
 
                 var found: String? = null
                 var int = false

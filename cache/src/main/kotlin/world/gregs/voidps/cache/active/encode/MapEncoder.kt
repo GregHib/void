@@ -9,7 +9,7 @@ import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.active.ActiveIndexEncoder
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.engine.map.chunk.Chunk
@@ -18,7 +18,7 @@ import java.io.File
 
 class MapEncoder(
     private val xteasPath: String
-) : ActiveIndexEncoder(Indices.MAPS) {
+) : ActiveIndexEncoder(Index.MAPS) {
 
     private val logger = InlineLogger()
     private var empty = true
@@ -28,8 +28,8 @@ class MapEncoder(
     override fun encode(writer: Writer, cache: Cache) {
         objectCount = 0
         tileCount = 0
-        val lastArchiveId = cache.lastArchiveId(Indices.OBJECTS)
-        val objectSize = lastArchiveId * 256 + (cache.archiveCount(Indices.OBJECTS, lastArchiveId))
+        val lastArchiveId = cache.lastArchiveId(Index.OBJECTS)
+        val objectSize = lastArchiveId * 256 + (cache.archiveCount(Index.OBJECTS, lastArchiveId))
         val definitions = MapDecoder(loadXteas(xteasPath)).loadCache(cache)
         val start = System.currentTimeMillis()
         val tiles = LongArray(TOTAL_ZONE_COUNT)

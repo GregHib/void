@@ -9,7 +9,7 @@ import org.koin.fileProperties
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.active.ActiveCache
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
@@ -106,7 +106,7 @@ object Main {
 
     private fun active(activeDir: File) = module {
         single(createdAtStart = true) { MapDefinitions(get(), get(), get()).load(activeDir) }
-        single(createdAtStart = true) { Huffman().load(activeDir.resolve(ActiveCache.indexFile(Indices.HUFFMAN)).readBytes()) }
+        single(createdAtStart = true) { Huffman().load(activeDir.resolve(ActiveCache.indexFile(Index.HUFFMAN)).readBytes()) }
         single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = getProperty<String>("members") == "true", lowDetail = false).load(activeDir)).load() }
         single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = getProperty<String>("members") == "true").load(activeDir)).load() }
         single(createdAtStart = true) { ItemDefinitions(ItemDecoder().load(activeDir)).load() }
@@ -122,7 +122,7 @@ object Main {
 
     private fun cache(cache: Cache) = module {
         single(createdAtStart = true) { MapDefinitions(get(), get(), get()).loadCache(cache, get<Xteas>()) }
-        single(createdAtStart = true) { Huffman().load(cache.getFile(Indices.HUFFMAN, 1)!!) }
+        single(createdAtStart = true) { Huffman().load(cache.getFile(Index.HUFFMAN, 1)!!) }
         single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = getProperty<String>("members") == "true", lowDetail = false).loadCache(cache)).load() }
         single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = getProperty<String>("members") == "true").loadCache(cache)).load() }
         single(createdAtStart = true) { ItemDefinitions(ItemDecoder().loadCache(cache)).load() }
