@@ -1,5 +1,6 @@
 package world.gregs.voidps.cache.definition.decoder
 
+import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
@@ -10,12 +11,15 @@ import java.util.*
 
 class WorldMapDetailsDecoder : DefinitionDecoder<WorldMapDefinition>(WORLD_MAP) {
 
-    val archive = 0//cache.getArchiveId(index, "details")
-
-    override fun getArchive(id: Int) = archive
-
     override fun size(cache: Cache): Int {
-        return cache.lastFileId(index, archive)
+        return cache.lastFileId(index, cache.getArchiveId(index, "details"))
+    }
+
+    override fun load(definitions: Array<WorldMapDefinition>, cache: Cache, id: Int) {
+        val archive = cache.getArchiveId(index, "details")
+        val file = getFile(id)
+        val data = cache.getFile(index, archive, file) ?: return
+        read(definitions, id, BufferReader(data))
     }
 
     override fun create(size: Int) = Array(size) { WorldMapDefinition(it) }

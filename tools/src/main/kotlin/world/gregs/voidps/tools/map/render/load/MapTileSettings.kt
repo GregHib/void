@@ -43,7 +43,7 @@ class MapTileSettings(
         val regionX = this.regionX + (localX / 64)
         val regionY = this.regionY + (localY / 64)
         val regionId = Region.id(regionX, regionY)
-        return manager.tiles[regionId].getTile(localX.rem(64), localY.rem(64), plane)
+        return manager.tiles.getOrNull(regionId)?.getTile(localX.rem(64), localY.rem(64), plane) ?: MapTile.EMPTY
     }
 
     fun set(regionX: Int, regionY: Int) {
