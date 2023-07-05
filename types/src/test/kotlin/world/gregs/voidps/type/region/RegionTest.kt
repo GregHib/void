@@ -1,10 +1,10 @@
-package world.gregs.voidps.engine.region
+package world.gregs.voidps.type.region
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 
 internal class RegionTest {
 

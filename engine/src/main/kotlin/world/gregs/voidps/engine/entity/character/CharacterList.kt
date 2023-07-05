@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.character
 
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.region.RegionLevel
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.engine.map.zone.Zone
 
 abstract class CharacterList<C : Character>(

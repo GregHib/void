@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.map.collision
 
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.MapDefinition
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 
 /**
  * Adds collision for all blocked tiles except bridges

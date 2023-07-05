@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.map.Distance
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Distance
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.engine.map.region.Xteas

@@ -1,6 +1,6 @@
 package world.gregs.voidps.tools.map.view.interact
 
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.tools.map.view.draw.GraphDrawer
 import world.gregs.voidps.tools.map.view.draw.HighlightedArea
 import world.gregs.voidps.tools.map.view.draw.MapView

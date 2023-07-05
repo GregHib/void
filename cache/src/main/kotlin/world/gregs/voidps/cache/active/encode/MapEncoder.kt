@@ -12,7 +12,7 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.active.ActiveIndexEncoder
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.engine.map.zone.Zone
 import java.io.File
 

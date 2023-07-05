@@ -5,7 +5,7 @@ import world.gregs.voidps.cache.definition.data.IndexedSprite
 import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.data.SpriteDefinition
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 import java.awt.Color
 import java.awt.Graphics2D
 import kotlin.math.ceil

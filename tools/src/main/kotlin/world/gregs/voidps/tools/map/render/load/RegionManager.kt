@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.map.render.load
 
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapObject
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.tools.map.render.raster.Raster
 import java.awt.image.BufferedImage
 

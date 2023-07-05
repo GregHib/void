@@ -6,8 +6,8 @@ import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.map.Distance
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Distance
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.network.encode.zone.ObjectAnimation
 
 /**

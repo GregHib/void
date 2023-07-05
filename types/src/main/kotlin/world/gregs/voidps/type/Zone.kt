@@ -1,11 +1,11 @@
 package world.gregs.voidps.engine.map.zone
 
-import world.gregs.voidps.engine.map.Coordinate3D
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.Cuboid
-import world.gregs.voidps.engine.map.area.Rectangle
-import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.map.region.RegionLevel
+import world.gregs.voidps.type.Coordinate3D
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.area.Cuboid
+import world.gregs.voidps.type.area.Rectangle
+import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.RegionLevel
 
 /**
  * Represents a 8x8 tiled area

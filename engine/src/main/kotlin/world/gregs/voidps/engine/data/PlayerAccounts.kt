@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.contain.stack.DependentOnItem
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.data.yaml.PlayerYamlReaderConfig
 import world.gregs.voidps.engine.data.yaml.PlayerYamlWriterConfig
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOptions
@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.EventHandlerStore
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.yaml.Yaml

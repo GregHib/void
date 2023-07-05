@@ -9,7 +9,7 @@ import world.gregs.voidps.cache.Index.MAPS
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.data.MapTile
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 
 class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapDefinition>(MAPS) {
 

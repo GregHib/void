@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.zone
+package world.gregs.voidps.type.zone
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test

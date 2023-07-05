@@ -4,7 +4,7 @@ import world.gregs.voidps.cache.config.data.MapSceneDefinition
 import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.data.SpriteDefinition
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.map.render.WorldMapDumper
 import world.gregs.voidps.tools.map.render.load.MapTileSettings

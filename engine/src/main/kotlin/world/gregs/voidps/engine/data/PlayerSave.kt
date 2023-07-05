@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.data
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 
 internal class PlayerSave(
     val name: String,

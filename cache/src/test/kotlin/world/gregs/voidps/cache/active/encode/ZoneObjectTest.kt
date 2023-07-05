@@ -2,7 +2,7 @@ package world.gregs.voidps.cache.active.encode
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 
 class ZoneObjectTest {
 

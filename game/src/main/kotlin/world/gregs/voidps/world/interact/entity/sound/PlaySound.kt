@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.sound
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.network.encode.zone.MidiAddition
 import world.gregs.voidps.network.encode.zone.SoundAddition
 

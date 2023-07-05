@@ -6,8 +6,8 @@ import world.gregs.voidps.cache.Index.DEFAULTS
 import world.gregs.voidps.cache.Index.WORLD_MAP
 import world.gregs.voidps.cache.config.data.WorldMapInfoDefinition
 import world.gregs.voidps.cache.definition.data.*
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Region
 import java.awt.Graphics
 import java.awt.image.BufferedImage
 

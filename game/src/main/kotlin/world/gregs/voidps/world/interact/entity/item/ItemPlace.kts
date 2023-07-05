@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.map.Distance.nearestTo
+import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.interact.entity.sound.playSound
 

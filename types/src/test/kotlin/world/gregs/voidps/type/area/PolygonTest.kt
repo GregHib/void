@@ -1,9 +1,9 @@
-package world.gregs.voidps.engine.area
+package world.gregs.voidps.type.area
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.Polygon
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.area.Polygon
 
 internal class PolygonTest {
 

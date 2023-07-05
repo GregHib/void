@@ -4,7 +4,7 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.data.WorldMapDefinition
 import world.gregs.voidps.cache.definition.data.WorldMapIconDefinition
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.tools.ClientScriptDefinitions
 
 class WorldMapDungeons(

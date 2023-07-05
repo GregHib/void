@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.instance.Instances
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.engine.map.zone.DynamicZones
 
 private val tabs = listOf(

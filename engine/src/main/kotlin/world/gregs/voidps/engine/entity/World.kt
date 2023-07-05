@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import java.util.concurrent.ConcurrentHashMap
 
 const val MAX_PLAYERS = 0x800 // 2048

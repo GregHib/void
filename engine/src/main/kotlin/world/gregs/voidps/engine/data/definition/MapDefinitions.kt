@@ -15,12 +15,12 @@ import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.map.region.RegionLevel
+import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.yaml.Yaml

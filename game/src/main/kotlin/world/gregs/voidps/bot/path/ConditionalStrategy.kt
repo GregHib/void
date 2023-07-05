@@ -1,7 +1,7 @@
 package world.gregs.voidps.bot.path
 
 import world.gregs.voidps.bot.navigation.graph.NavigationGraph
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.area.MapArea
 
 class ConditionalStrategy(

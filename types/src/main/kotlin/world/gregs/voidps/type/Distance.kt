@@ -1,6 +1,6 @@
-package world.gregs.voidps.engine.map
+package world.gregs.voidps.type
 
-import world.gregs.voidps.engine.map.area.Rectangle
+import world.gregs.voidps.type.area.Rectangle
 import kotlin.math.abs
 import kotlin.math.min
 import kotlin.math.sqrt

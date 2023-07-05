@@ -4,8 +4,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.tools.map.view.draw.MapView
 import world.gregs.voidps.tools.map.view.draw.WorldMap.Companion.flipRegionY
 import java.awt.geom.AffineTransform

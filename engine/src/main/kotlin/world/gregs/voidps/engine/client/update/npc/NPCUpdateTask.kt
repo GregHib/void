@@ -4,11 +4,11 @@ import it.unimi.dsi.fastutil.ints.IntSet
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.LOCAL_NPC_CAP
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.map.region.RegionLevel
+import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.network.encode.updateNPCs
 import world.gregs.voidps.network.visual.NPCVisuals
 import world.gregs.voidps.network.visual.VisualEncoder

@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.entity.character.mode.move.target
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 
 data class FloorItemTargetStrategy(
     private val floorItem: FloorItem

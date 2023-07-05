@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Delta
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.network.encode.zone.ProjectileAddition
 import world.gregs.voidps.world.interact.entity.combat.height
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.DEFAULT_CURVE

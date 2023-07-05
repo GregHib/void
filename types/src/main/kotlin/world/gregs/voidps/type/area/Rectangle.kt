@@ -1,8 +1,9 @@
-package world.gregs.voidps.engine.map.area
+package world.gregs.voidps.type.area
 
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.engine.map.zone.Zone
+import world.gregs.voidps.type.Area
 import kotlin.random.Random
 
 data class Rectangle(

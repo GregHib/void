@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.character.mode.move.target
 
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 
 data class ObjectTargetStrategy(
     private val obj: GameObject

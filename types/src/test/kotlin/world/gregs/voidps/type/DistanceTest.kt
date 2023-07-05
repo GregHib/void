@@ -1,8 +1,8 @@
-package world.gregs.voidps.engine
+package world.gregs.voidps.type
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.map.Distance.levenshtein
+import world.gregs.voidps.type.Distance.levenshtein
 
 internal class DistanceTest {
     @Test

@@ -1,9 +1,9 @@
 package world.gregs.voidps.tools.map.obj
 
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Delta
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 

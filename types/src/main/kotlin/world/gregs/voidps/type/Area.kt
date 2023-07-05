@@ -1,7 +1,7 @@
-package world.gregs.voidps.engine.map.area
+package world.gregs.voidps.type
 
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.area.Cuboid
+import world.gregs.voidps.type.area.Polygon
 import world.gregs.voidps.engine.map.zone.Zone
 
 /**

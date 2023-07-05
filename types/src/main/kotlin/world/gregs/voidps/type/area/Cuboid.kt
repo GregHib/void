@@ -1,9 +1,10 @@
-package world.gregs.voidps.engine.map.area
+package world.gregs.voidps.type.area
 
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.map.region.RegionLevel
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.engine.map.zone.Zone
+import world.gregs.voidps.type.Area
 import kotlin.random.Random
 
 data class Cuboid(
@@ -75,7 +76,7 @@ data class Cuboid(
         return levels in minLevel..maxLevel && x in minX..maxX && y in minY..maxY
     }
 
-    override fun random() = Tile(Companion.random(minX, maxX), Companion.random(minY, maxY), Companion.random(minLevel, maxLevel))
+    override fun random() = Tile(random(minX, maxX), random(minY, maxY), random(minLevel, maxLevel))
 
     companion object {
         fun random(first: Int, second: Int) = if (first == second) first else Random.nextInt(first, second + 1)

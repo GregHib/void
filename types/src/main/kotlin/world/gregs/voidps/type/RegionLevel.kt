@@ -1,8 +1,6 @@
-package world.gregs.voidps.engine.map.region
+package world.gregs.voidps.type
 
-import world.gregs.voidps.engine.map.Coordinate3D
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.Cuboid
+import world.gregs.voidps.type.area.Cuboid
 import world.gregs.voidps.engine.map.zone.Zone
 
 @JvmInline

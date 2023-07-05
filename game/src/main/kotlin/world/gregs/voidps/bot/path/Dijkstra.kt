@@ -6,7 +6,7 @@ import world.gregs.voidps.bot.navigation.graph.NavigationGraph
 import world.gregs.voidps.bot.navigation.graph.waypoints
 import world.gregs.voidps.bot.path.DijkstraFrontier.Companion.MAX_COST
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import java.util.*
 
 class Dijkstra(

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.network.encode.zone.ObjectAddition
 import world.gregs.voidps.network.encode.zone.ObjectRemoval
 import kotlin.test.assertEquals

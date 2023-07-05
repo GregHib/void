@@ -4,7 +4,7 @@ import it.unimi.dsi.fastutil.ints.IntLinkedOpenHashSet
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.zone.Zone
 
 class Viewport {
@@ -38,7 +38,7 @@ class Viewport {
         lastSeen[player.index] = player.tile.id
     }
 
-    fun lastSeen(player: Player): Tile =Tile(lastSeen[player.index])
+    fun lastSeen(player: Player): Tile = Tile(lastSeen[player.index])
 
     fun delta(player: Player) = player.tile.delta(lastSeen(player))
 

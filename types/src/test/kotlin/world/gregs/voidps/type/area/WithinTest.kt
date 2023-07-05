@@ -1,9 +1,9 @@
-package world.gregs.voidps.engine.area
+package world.gregs.voidps.type.area
 
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 
 internal class WithinTest {
 

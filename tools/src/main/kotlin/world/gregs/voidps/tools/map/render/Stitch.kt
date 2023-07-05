@@ -1,6 +1,6 @@
 package world.gregs.voidps.tools.map.render
 
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 import java.awt.image.BufferedImage
 import java.io.File
 import java.io.IOException

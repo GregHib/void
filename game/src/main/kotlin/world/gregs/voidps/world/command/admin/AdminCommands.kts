@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
-import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -37,13 +36,14 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Areas
-import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.pauseForever
 import world.gregs.voidps.network.encode.playJingle
 import world.gregs.voidps.network.encode.playMIDI
 import world.gregs.voidps.network.encode.playSoundEffect
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.isCurses

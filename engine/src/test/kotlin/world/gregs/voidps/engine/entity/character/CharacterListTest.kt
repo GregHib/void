@@ -5,8 +5,8 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.region.RegionLevel
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.RegionLevel
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull

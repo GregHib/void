@@ -1,7 +1,7 @@
 package world.gregs.voidps.bot.path
 
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.Area
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Area
 
 class AreaStrategy(
     val area: Area

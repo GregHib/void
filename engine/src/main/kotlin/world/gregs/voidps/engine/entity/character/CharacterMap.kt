@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.character
 
 import it.unimi.dsi.fastutil.ints.IntArrayList
-import world.gregs.voidps.engine.map.region.RegionLevel
+import world.gregs.voidps.type.RegionLevel
 
 class CharacterMap {
 

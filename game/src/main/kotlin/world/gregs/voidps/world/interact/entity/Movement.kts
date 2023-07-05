@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 
 val collisions: Collisions by inject()

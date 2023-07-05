@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.entity
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 
 /**
  * An identifiable object with a physical spatial location

@@ -1,6 +1,6 @@
-package world.gregs.voidps.engine.map
+package world.gregs.voidps.type
 
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.type.Direction
 
 interface Coordinate3D<T> {
 

@@ -1,6 +1,6 @@
 package world.gregs.voidps.tools.map.view.ui
 
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.tools.map.view.draw.MapView
 import javax.swing.*
 

@@ -1,9 +1,7 @@
-package world.gregs.voidps.engine.map.region
+package world.gregs.voidps.type
 
-import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.Cuboid
-import world.gregs.voidps.engine.map.area.Rectangle
+import world.gregs.voidps.type.area.Cuboid
+import world.gregs.voidps.type.area.Rectangle
 
 /**
  * Represents a 64x64 tiled area

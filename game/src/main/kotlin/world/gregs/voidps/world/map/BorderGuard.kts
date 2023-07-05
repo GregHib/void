@@ -12,11 +12,11 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.map.Distance.nearestTo
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Distance.nearestTo
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.area.Areas
-import world.gregs.voidps.engine.map.area.Cuboid
-import world.gregs.voidps.engine.map.area.Rectangle
+import world.gregs.voidps.type.area.Cuboid
+import world.gregs.voidps.type.area.Rectangle
 import world.gregs.voidps.engine.map.zone.Zone
 import kotlin.collections.set
 

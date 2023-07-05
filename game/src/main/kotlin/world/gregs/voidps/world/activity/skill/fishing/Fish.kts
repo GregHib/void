@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.map.area.Area
+import world.gregs.voidps.type.Area
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.softQueue
 import kotlin.random.Random

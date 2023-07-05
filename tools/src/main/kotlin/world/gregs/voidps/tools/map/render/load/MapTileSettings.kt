@@ -4,7 +4,7 @@ import world.gregs.voidps.cache.config.data.OverlayDefinition
 import world.gregs.voidps.cache.config.data.UnderlayDefinition
 import world.gregs.voidps.cache.definition.data.MapTile
 import world.gregs.voidps.cache.definition.data.TextureDefinition
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.tools.map.render.draw.TileLevel
 import world.gregs.voidps.tools.map.render.load.MapConstants.TILE_TYPE_HEIGHT_OVERRIDE
 import world.gregs.voidps.tools.map.render.load.MapConstants.firstTileTypeVertices

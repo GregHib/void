@@ -2,9 +2,9 @@ package world.gregs.voidps.world.interact.entity.gfx
 
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.network.encode.zone.GraphicAddition
 
 fun areaGraphic(

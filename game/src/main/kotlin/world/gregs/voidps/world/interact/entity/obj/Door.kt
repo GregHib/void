@@ -2,12 +2,12 @@ package world.gregs.voidps.world.interact.entity.obj
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.equals
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.equals
 
 object Door {
 
