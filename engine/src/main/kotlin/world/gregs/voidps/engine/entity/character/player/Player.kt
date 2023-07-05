@@ -14,12 +14,14 @@ import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.Containers
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
+import world.gregs.voidps.engine.entity.character.mode.move.AreaEntered
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
@@ -125,6 +127,12 @@ class Player(
             viewport?.players?.addSelf(this)
         }
         events.emit(Registered)
+        val definitions = get<AreaDefinitions>()
+        for (def in definitions.get(tile.zone)) {
+            if (tile in def.area) {
+                events.emit(AreaEntered(def.name, def.tags, def.area))
+            }
+        }
     }
 
     fun logout(safely: Boolean) {

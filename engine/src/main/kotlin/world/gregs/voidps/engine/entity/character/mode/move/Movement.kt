@@ -213,21 +213,21 @@ open class Movement(
     }
 
     companion object {
-
         fun move(character: Character, delta: Delta) {
             val from = character.tile
             character.tile = character.tile.add(delta)
             character.visuals.moved = true
             if (character is Player) {
                 val definitions = get<AreaDefinitions>()
+                val to = character.tile
                 for (def in definitions.get(from.zone)) {
-                    if (from in def.area && character.tile !in def.area) {
-                        character.events.emit(AreaExited(def.name, def.area))
+                    if (from in def.area && to !in def.area) {
+                        character.events.emit(AreaExited(def.name, def.tags, def.area))
                     }
                 }
-                for (def in definitions.get(character.tile.zone)) {
-                    if (from !in def.area && character.tile in def.area) {
-                        character.events.emit(AreaEntered(def.name, def.area))
+                for (def in definitions.get(to.zone)) {
+                    if (to in def.area && from !in def.area) {
+                        character.events.emit(AreaEntered(def.name, def.tags, def.area))
                     }
                 }
             }

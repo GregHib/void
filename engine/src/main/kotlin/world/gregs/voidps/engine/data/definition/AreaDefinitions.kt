@@ -14,7 +14,7 @@ class AreaDefinitions {
 
     private var named: Map<String, AreaDefinition> = mutableMapOf()
     private var tagged: Map<String, Set<AreaDefinition>> = mutableMapOf()
-    private var zones: Map<Int, List<AreaDefinition>> = Int2ObjectOpenHashMap()
+    private var areas: Map<Int, Set<AreaDefinition>> = Int2ObjectOpenHashMap()
 
     fun getOrNull(name: String): AreaDefinition? {
         return named[name]
@@ -24,8 +24,8 @@ class AreaDefinitions {
         return named[name]?.area ?: AreaDefinition.EMPTY.area
     }
 
-    fun get(zone: Zone): List<AreaDefinition> {
-        return zones[zone.id] ?: emptyList()
+    fun get(zone: Zone): Set<AreaDefinition> {
+        return areas[zone.id] ?: emptySet()
     }
 
     fun getTagged(tag: String): Set<AreaDefinition> {
@@ -53,17 +53,17 @@ class AreaDefinitions {
             }
             named = yaml.load(path, config)
             val tagged = Object2ObjectOpenHashMap<String, MutableSet<AreaDefinition>>()
-            val zones = Int2ObjectOpenHashMap<MutableList<AreaDefinition>>()
+            val areas = Int2ObjectOpenHashMap<MutableSet<AreaDefinition>>()
             for (key in named.keys) {
                 val area = named.getValue(key)
                 for (tag in area.tags) {
                     tagged.getOrPut(tag) { mutableSetOf() }.add(area)
                 }
                 for (zone in area.area.toZones()) {
-                    zones.getOrPut(zone.id) { mutableListOf() }.add(area)
+                    areas.getOrPut(zone.id) { mutableSetOf() }.add(area)
                 }
             }
-            this.zones = zones
+            this.areas = areas
             this.tagged = tagged
             named.size
         }
