@@ -130,7 +130,7 @@ class Player(
         val definitions = get<AreaDefinitions>()
         for (def in definitions.get(tile.zone)) {
             if (tile in def.area) {
-                events.emit(AreaEntered(def.name, def.tags, def.area))
+                events.emit(AreaEntered(this, def.name, def.tags, def.area))
             }
         }
     }

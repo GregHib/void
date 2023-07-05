@@ -1,19 +1,17 @@
 package world.gregs.voidps.world.map.varrock
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.variable.*
-import world.gregs.voidps.type.Direction
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.mode.move.AreaEntered
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.move.walkTo
@@ -29,14 +27,14 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.area.Rectangle
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.clear
 import world.gregs.voidps.engine.map.instance.Instances
-import world.gregs.voidps.type.Region
 import world.gregs.voidps.engine.queue.*
 import world.gregs.voidps.engine.suspend.delay
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.activity.quest.*
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -54,8 +52,9 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 val objects: GameObjects by inject()
 val collisions: Collisions by inject()
 val npcs: NPCs by inject()
+val areas: AreaDefinitions by inject()
 
-val rect = Rectangle(3221, 3363, 3234, 3376)
+val area = areas["demon_slayer_stone_circle"]
 val defaultTile = Tile(3220, 3367)
 val targets = listOf(
     Tile(3227, 3369) to Tile(3224, 3366),
@@ -64,18 +63,8 @@ val targets = listOf(
     Tile(3228, 3370) to Tile(3231, 3373)
 )
 
-on<Moved>({ it["demon_slayer_silverlight", false] && enterArea(it, from, to) }) { player: Player ->
-    // FIXME temp hack. Add EnterArea + ExitArea event
-    val context = object : PlayerContext {
-        override val player: Player = player
-        override var onCancel: (() -> Unit)? = null
-    }
-    cancel()
-    GlobalScope.launch(Dispatchers.Unconfined) {
-        with(context) {
-            cutscene()
-        }
-    }
+on<AreaEntered>({ name == "demon_slayer_stone_circle" && it["demon_slayer_silverlight", false] && !player.hasClock("demon_slayer_instance_exit") }) { _: Player ->
+    cutscene()
 }
 
 fun PlayerContext.setCutsceneEnd(instance: Region) {
@@ -100,14 +89,10 @@ on<Unregistered>({ it.contains("demon_slayer_instance") }) { player: Player ->
     destroyInstance(player)
 }
 
-fun enterArea(player: Player, from: Tile, to: Tile): Boolean {
-    return !rect.contains(from) && rect.contains(to) && !player.hasClock("demon_slayer_instance_exit")
-}
-
 fun exitArea(player: Player, to: Tile): Boolean {
     val offset: Tile = player.getOrNull("demon_slayer_offset") ?: return false
     val actual = to.minus(offset)
-    return !rect.contains(actual) && !player.hasClock("demon_slayer_instance_exit")
+    return !area.contains(actual) && !player.hasClock("demon_slayer_instance_exit")
 }
 
 fun destroyInstance(player: Player) {
