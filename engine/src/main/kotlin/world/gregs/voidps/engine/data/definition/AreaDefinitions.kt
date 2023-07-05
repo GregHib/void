@@ -1,32 +1,39 @@
-package world.gregs.voidps.engine.map.area
+package world.gregs.voidps.engine.data.definition
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Area
+import world.gregs.voidps.type.Region
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
 
-class Areas {
+class AreaDefinitions {
 
-    private var named: Map<String, MapArea> = mutableMapOf()
-    private var tagged: Map<String, Set<MapArea>> = mutableMapOf()
+    private var named: Map<String, AreaDefinition> = mutableMapOf()
+    private var tagged: Map<String, Set<AreaDefinition>> = mutableMapOf()
+    private var regions: Map<Int, List<AreaDefinition>> = Int2ObjectOpenHashMap()
 
-    operator fun get(name: String): MapArea? {
+    fun getOrNull(name: String): AreaDefinition? {
         return named[name]
     }
 
-    fun getValue(name: String): MapArea {
-        return named[name] ?: MapArea.EMPTY
+    operator fun get(name: String): Area {
+        return named[name]?.area ?: AreaDefinition.EMPTY.area
     }
 
-    fun getTagged(tag: String): Set<MapArea> {
+    fun get(region: Region): List<AreaDefinition> {
+        return regions[region.id] ?: emptyList()
+    }
+
+    fun getTagged(tag: String): Set<AreaDefinition> {
         return tagged[tag] ?: emptySet()
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = getProperty("areaPath")): Areas {
+    fun load(yaml: Yaml = get(), path: String = getProperty("areaPath")): AreaDefinitions {
         timedLoad("map area") {
             val config = object : YamlReaderConfiguration() {
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
@@ -37,19 +44,23 @@ class Areas {
                         val area = Area.fromMap(value, 0)
                         super.set(map, key, area, indent, parentMap)
                     } else if (indent == 0) {
-                        val mapArea = MapArea.fromMap(key, value as Map<String, Any>)
-                        super.set(map, key, mapArea, indent, parentMap)
+                        val area = AreaDefinition.fromMap(key, value as Map<String, Any>)
+                        super.set(map, key, area, indent, parentMap)
                     } else {
                         super.set(map, key, value, indent, parentMap)
                     }
                 }
             }
             named = yaml.load(path, config)
-            val tagged = Object2ObjectOpenHashMap<String, MutableSet<MapArea>>()
+            val tagged = Object2ObjectOpenHashMap<String, MutableSet<AreaDefinition>>()
+            val regions = Int2ObjectOpenHashMap<MutableList<AreaDefinition>>()
             for (key in named.keys) {
                 val area = named.getValue(key)
                 for (tag in area.tags) {
                     tagged.getOrPut(tag) { mutableSetOf() }.add(area)
+                }
+                for (region in area.area.toRegions()) {
+                    regions.getOrPut(region.id) { mutableListOf() }.add(area)
                 }
             }
             this.tagged = tagged

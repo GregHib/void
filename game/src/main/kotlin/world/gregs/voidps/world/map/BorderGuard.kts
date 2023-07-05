@@ -2,6 +2,7 @@ package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
@@ -12,16 +13,15 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.type.area.Cuboid
 import world.gregs.voidps.type.area.Rectangle
-import world.gregs.voidps.engine.map.zone.Zone
 import kotlin.collections.set
 
 val objects: GameObjects by inject()
-val areas: Areas by inject()
+val areas: AreaDefinitions by inject()
 
 val borders = mutableMapOf<Zone, Rectangle>()
 val guards = mutableMapOf<Rectangle, List<GameObject>>()

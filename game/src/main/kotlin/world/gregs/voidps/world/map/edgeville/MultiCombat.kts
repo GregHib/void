@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -11,9 +12,8 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.map.area.Areas
 
-val areas: Areas by inject()
+val areas: AreaDefinitions by inject()
 
 val multiAreas = areas.getTagged("multi_combat")
 val singleAreas = areas.getTagged("single_combat")

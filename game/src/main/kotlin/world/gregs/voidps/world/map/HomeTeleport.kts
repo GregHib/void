@@ -8,19 +8,19 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes.hasSpellRequirements
 import java.util.concurrent.TimeUnit
 
-val areas: Areas by inject()
+val areas: AreaDefinitions by inject()
 
 on<InterfaceOption>({ id == "modern_spellbook" && component == "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
     val seconds = player.remaining("home_teleport_timeout", epochSeconds())
@@ -46,8 +46,7 @@ on<InterfaceOption>({ id == "modern_spellbook" && component == "lumbridge_home_t
             player.playAnimation("home_tele_${it + 1}")
         }
         withContext(NonCancellable) {
-            val lumbridge = areas.getValue("lumbridge_teleport")
-            player.tele(lumbridge.area.random())
+            player.tele(areas["lumbridge_teleport"].random())
             player.start("home_teleport_timeout", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
         }
     }

@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.inc
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.type.Direction
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.face
@@ -23,12 +23,13 @@ import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.type.Delta
 import world.gregs.voidps.engine.map.Overlap
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.equals
 import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.network.visual.update.player.MoveType
+import world.gregs.voidps.type.Delta
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.equals
 import kotlin.math.sign
 
 open class Movement(
@@ -217,6 +218,17 @@ open class Movement(
             val from = character.tile
             character.tile = character.tile.add(delta)
             character.visuals.moved = true
+            val definitions = get<AreaDefinitions>()
+            for (def in definitions.get(from.region)) {
+                if (from in def.area && character.tile !in def.area) {
+                    character.events.emit(AreaExited(def.name))
+                }
+            }
+            for (def in definitions.get(character.tile.region)) {
+                if (from !in def.area && character.tile in def.area) {
+                    character.events.emit(AreaEntered(def.name))
+                }
+            }
             character.events.emit(Moved(character, from, character.tile))
         }
 

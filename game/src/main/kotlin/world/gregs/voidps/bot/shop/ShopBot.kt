@@ -6,17 +6,17 @@ import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.goToNearest
 import world.gregs.voidps.engine.client.update.view.Viewport
+import world.gregs.voidps.engine.data.definition.AreaDefinition
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.map.area.Areas
-import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractNPC
 import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
 
 suspend fun Bot.openShop(id: String): NPC {
-    return openShop(get<Areas>()[id]!!)
+    return openShop(get<AreaDefinitions>().getOrNull(id)!!)
 }
 
 suspend fun Bot.openNearestShop(id: String): Boolean {
@@ -25,7 +25,7 @@ suspend fun Bot.openNearestShop(id: String): Boolean {
     return reached
 }
 
-suspend fun Bot.openShop(map: MapArea): NPC {
+suspend fun Bot.openShop(map: AreaDefinition): NPC {
     goToArea(map)
     return openShop()
 }

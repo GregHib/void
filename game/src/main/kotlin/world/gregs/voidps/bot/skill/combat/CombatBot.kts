@@ -15,6 +15,8 @@ import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.data.definition.AreaDefinition
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -30,10 +32,8 @@ import world.gregs.voidps.engine.entity.item.hasRequirements
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.map.area.Areas
-import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.ammo
 import world.gregs.voidps.world.interact.entity.combat.attackers
@@ -43,7 +43,7 @@ import world.gregs.voidps.world.interact.entity.death.weightedSample
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
 import kotlin.random.Random
 
-val areas: Areas by inject()
+val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 val floorItems: FloorItems by inject()
 
@@ -90,7 +90,7 @@ on<World, Registered> {
     }
 }
 
-suspend fun Bot.fight(map: MapArea, skill: Skill, races: Set<String>) {
+suspend fun Bot.fight(map: AreaDefinition, skill: Skill, races: Set<String>) {
     setupGear(skill)
     goToArea(map)
     setAttackStyle(skill)
@@ -145,7 +145,7 @@ suspend fun Bot.pickupItems(tile: Tile, amount: Int) {
     }
 }
 
-fun Bot.isAvailableTarget(map: MapArea, npc: NPC, races: Set<String>): Boolean {
+fun Bot.isAvailableTarget(map: AreaDefinition, npc: NPC, races: Set<String>): Boolean {
     if (!npc.tile.within(player.tile, Viewport.VIEW_RADIUS)) {
         return false
     }

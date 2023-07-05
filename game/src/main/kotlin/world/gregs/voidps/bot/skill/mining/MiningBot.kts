@@ -10,6 +10,8 @@ import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.data.definition.AreaDefinition
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
@@ -19,13 +21,11 @@ import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.map.area.Areas
-import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.world.interact.entity.death.weightedSample
 
-val areas: Areas by inject()
+val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 
 onBot<TimerStop>({ timer == "mining" }) { bot: Bot ->
@@ -55,7 +55,7 @@ on<World, Registered> {
     }
 }
 
-suspend fun Bot.mineRocks(map: MapArea, type: String) {
+suspend fun Bot.mineRocks(map: AreaDefinition, type: String) {
     setupGear(Skill.Mining)
     goToArea(map)
     while (player.inventory.spaces > 0) {
@@ -74,7 +74,7 @@ suspend fun Bot.mineRocks(map: MapArea, type: String) {
     }
 }
 
-fun Bot.isAvailableRock(map: MapArea, obj: GameObject, type: String): Boolean {
+fun Bot.isAvailableRock(map: AreaDefinition, obj: GameObject, type: String): Boolean {
     if (!map.area.contains(obj.tile)) {
         return false
     }

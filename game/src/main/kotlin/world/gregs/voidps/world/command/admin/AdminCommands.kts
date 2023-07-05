@@ -35,7 +35,6 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.pauseForever
@@ -65,7 +64,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.collections.set
 import kotlin.system.measureTimeMillis
 
-val areas: Areas by inject()
+val areas: AreaDefinitions by inject()
 val players: Players by inject()
 
 on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
@@ -79,7 +78,7 @@ on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
         val parts = content.split(" ")
         val int = parts[0].toIntOrNull()
         when {
-            int == null -> player.tele(areas.getValue(content).area)
+            int == null -> player.tele(areas[content])
             parts.size == 1 -> player.tele(Region(int).tile.add(32, 32))
             else -> player.tele(int, parts[1].toInt(), if (parts.size > 2) parts[2].toInt() else 0)
         }
@@ -335,7 +334,7 @@ on<Command>({ prefix == "reload" }) { player: Player ->
             val npcs: NPCs = get()
             loadNpcSpawns(npcs)
         }
-        "areas" -> get<Areas>().load()
+        "areas" -> get<AreaDefinitions>().load()
         "object defs" -> get<ObjectDefinitions>().load()
         "anim defs", "anims" -> get<AnimationDefinitions>().load()
         "container defs", "containers" -> get<ContainerDefinitions>().load()
