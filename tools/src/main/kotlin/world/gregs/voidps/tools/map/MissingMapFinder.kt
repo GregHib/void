@@ -158,7 +158,7 @@ object MissingMapFinder {
             file.writeText(text)
             text
         }
-        return Xteas(XteaLoader().loadJson(content, value = "key").toMutableMap())
+        return Xteas(Xteas.loadJson(content, value = "key").toMutableMap())
     }
 
 }
