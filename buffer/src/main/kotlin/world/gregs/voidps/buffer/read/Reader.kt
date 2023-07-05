@@ -7,6 +7,8 @@ interface Reader {
      */
     val length: Int
 
+    val remaining: Int
+
     fun readBoolean() = readByte() == 1
 
     fun readBooleanAdd() = readByteAdd() == 1

@@ -10,14 +10,13 @@ import world.gregs.voidps.cache.config.decoder.OverlayDecoder
 import world.gregs.voidps.cache.config.decoder.UnderlayDecoder
 import world.gregs.voidps.cache.config.decoder.WorldMapInfoDecoder
 import world.gregs.voidps.cache.definition.decoder.*
-import world.gregs.voidps.type.Region
-import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.map.render.draw.MinimapIconPainter
 import world.gregs.voidps.tools.map.render.draw.RegionRenderer
 import world.gregs.voidps.tools.map.render.load.MapTileSettings
 import world.gregs.voidps.tools.map.render.load.RegionManager
+import world.gregs.voidps.type.Region
 import java.io.File
 
 /**
@@ -36,9 +35,7 @@ object WorldMapDumper {
                 single { CacheDelegate(getProperty("cachePath")) as Cache }
                 single { MapDecoder(get<Xteas>()) }
                 single(createdAtStart = true) {
-                    Xteas(mutableMapOf()).apply {
-                        XteaLoader().load(this, getProperty("xteaPath"), getPropertyOrNull("xteaJsonKey"), getPropertyOrNull("xteaJsonValue"))
-                    }
+                    Xteas().load(getProperty("xteaPath"), getPropertyOrNull("xteaJsonKey") ?: Xteas.DEFAULT_KEY, getPropertyOrNull("xteaJsonValue") ?: Xteas.DEFAULT_VALUE)
                 }
             })
         }.koin

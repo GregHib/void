@@ -8,9 +8,8 @@ import kotlinx.coroutines.runBlocking
 import org.jsoup.Jsoup
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index
-import world.gregs.voidps.type.Region
-import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.type.Region
 import java.io.File
 
 private data class Cache(

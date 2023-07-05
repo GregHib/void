@@ -38,16 +38,15 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.EventHandlerStore
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.gameModule
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.NetworkGatekeeper
 import world.gregs.voidps.script.loadScripts
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
 import java.io.File
 import kotlin.system.measureTimeMillis
@@ -231,7 +230,7 @@ abstract class WorldTest : KoinTest {
         private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(active), structDefinitions).load() }
         private val collisions: Collisions by lazy { Collisions() }
         private val objectCollision: GameObjectCollision by lazy { GameObjectCollision(collisions) }
-        private val xteas: Xteas by lazy { Xteas().apply { XteaLoader().load(this, getProperty("xteaPath")) } }
+        private val xteas: Xteas by lazy { Xteas().load()}
         private val gameObjects: GameObjects by lazy { GameObjects(objectCollision, ZoneBatchUpdates(), objectDefinitions, storeUnused = true) }
         private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(collisions, objectDefinitions, gameObjects).load(active) }
         val emptyTile = Tile(2655, 4640)

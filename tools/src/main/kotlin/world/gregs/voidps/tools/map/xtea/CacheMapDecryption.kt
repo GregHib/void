@@ -3,16 +3,15 @@ package world.gregs.voidps.tools.map.xtea
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index
-import world.gregs.voidps.type.Region
-import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.type.Region
 
 object CacheMapDecryption {
 
     @JvmStatic
     fun main(args: Array<String>) = runBlocking {
         val cache = CacheDelegate("./data/cache_decrypted/")
-        val xteas = Xteas().apply { XteaLoader().load(this, "./xteas/") }
+        val xteas = Xteas().load("./xteas/")
         var count = 0
         val archives = cache.getArchives(Index.MAPS).toSet()
         for (regionX in 0 until 256) {
