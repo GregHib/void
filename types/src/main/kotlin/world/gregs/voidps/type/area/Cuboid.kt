@@ -1,10 +1,10 @@
 package world.gregs.voidps.type.area
 
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.Region
-import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.type.Area
+import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.RegionLevel
+import world.gregs.voidps.type.Tile
 import kotlin.random.Random
 
 data class Cuboid(
@@ -14,7 +14,7 @@ data class Cuboid(
     val maxY: Int = minY,
     val minLevel: Int = 0,
     val maxLevel: Int = minLevel
-) : Area, Iterable<Tile> {
+) : Area {
 
     constructor(tile: Tile, width: Int, height: Int, levels: Int) : this(tile.x, tile.y, tile.x + width - 1, tile.y + height - 1, tile.level, tile.level + levels - 1)
 

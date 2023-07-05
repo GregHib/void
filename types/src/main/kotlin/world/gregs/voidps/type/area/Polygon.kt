@@ -127,4 +127,28 @@ open class Polygon(
         }
         return area / 2.0
     }
+
+    override fun iterator(): Iterator<Tile> {
+        val iterator = bounds.iterator()
+        return object : Iterator<Tile> {
+            var tile: Tile? = null
+            override fun hasNext(): Boolean {
+                while (iterator.hasNext()) {
+                    val next = iterator.next()
+                    if (this@Polygon.contains(next.x, next.y, next.level)) {
+                        tile = next
+                        return true
+                    }
+                }
+                tile = null
+                return false
+            }
+
+            override fun next(): Tile {
+                val next = tile!!
+                tile = null
+                return next
+            }
+        }
+    }
 }

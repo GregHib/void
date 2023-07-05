@@ -1,9 +1,9 @@
 package world.gregs.voidps.type.area
 
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.Region
 import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.type.Area
+import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.Tile
 import kotlin.random.Random
 
 data class Rectangle(
@@ -11,7 +11,7 @@ data class Rectangle(
     val minY: Int,
     val maxX: Int,
     val maxY: Int
-) : Area, Iterable<Tile> {
+) : Area {
 
     constructor(tile: Tile, width: Int, height: Int) : this(tile.x, tile.y, tile.x + width - 1, tile.y + height - 1)
 

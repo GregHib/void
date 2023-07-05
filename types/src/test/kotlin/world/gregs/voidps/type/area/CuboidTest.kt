@@ -2,10 +2,9 @@ package world.gregs.voidps.type.area
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.area.Cuboid
-import world.gregs.voidps.type.Region
 import world.gregs.voidps.engine.map.zone.Zone
+import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.Tile
 
 internal class CuboidTest {
 
@@ -68,5 +67,19 @@ internal class CuboidTest {
             }
         }
         assertEquals(expected, area.toZones())
+    }
+
+    @Test
+    fun `Cuboid tiles`() {
+        val area = Cuboid(7, 9, 17, 18, 1, 3)
+        val expected = mutableListOf<Tile>()
+        for (level in 1 until 4) {
+            for (x in 7 until 18) {
+                for (y in 9 until 19) {
+                    expected.add(Tile(x, y, level))
+                }
+            }
+        }
+        assertEquals(expected, area.toList())
     }
 }

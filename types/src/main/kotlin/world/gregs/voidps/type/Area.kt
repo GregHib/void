@@ -8,7 +8,7 @@ import world.gregs.voidps.type.area.Rectangle
 /**
  * Represents a tiled area of any size or shape
  */
-interface Area {
+interface Area : Iterable<Tile> {
     val area: Double
 
     operator fun contains(tile: Tile): Boolean = contains(tile.x, tile.y, tile.level)
