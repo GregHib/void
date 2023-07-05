@@ -27,8 +27,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.Suspension
@@ -40,6 +38,7 @@ import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.encode.login
 import world.gregs.voidps.network.encode.logout
 import world.gregs.voidps.network.visual.PlayerVisuals
+import world.gregs.voidps.type.Tile
 import kotlin.coroutines.Continuation
 
 /**
@@ -123,7 +122,6 @@ class Player(
             client.on(Contexts.Game, ClientState.Disconnecting) {
                 logout(false)
             }
-            events.emit(RegionLogin)
             viewport?.players?.addSelf(this)
         }
         events.emit(Registered)
