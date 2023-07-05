@@ -218,15 +218,17 @@ open class Movement(
             val from = character.tile
             character.tile = character.tile.add(delta)
             character.visuals.moved = true
-            val definitions = get<AreaDefinitions>()
-            for (def in definitions.get(from.region)) {
-                if (from in def.area && character.tile !in def.area) {
-                    character.events.emit(AreaExited(def.name))
+            if (character is Player) {
+                val definitions = get<AreaDefinitions>()
+                for (def in definitions.get(from.zone)) {
+                    if (from in def.area && character.tile !in def.area) {
+                        character.events.emit(AreaExited(def.name, def.area))
+                    }
                 }
-            }
-            for (def in definitions.get(character.tile.region)) {
-                if (from !in def.area && character.tile in def.area) {
-                    character.events.emit(AreaEntered(def.name))
+                for (def in definitions.get(character.tile.zone)) {
+                    if (from !in def.area && character.tile in def.area) {
+                        character.events.emit(AreaEntered(def.name, def.area))
+                    }
                 }
             }
             character.events.emit(Moved(character, from, character.tile))

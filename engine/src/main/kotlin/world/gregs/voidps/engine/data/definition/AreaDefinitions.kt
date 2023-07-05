@@ -4,9 +4,9 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
+import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Area
-import world.gregs.voidps.type.Region
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
 
@@ -14,7 +14,7 @@ class AreaDefinitions {
 
     private var named: Map<String, AreaDefinition> = mutableMapOf()
     private var tagged: Map<String, Set<AreaDefinition>> = mutableMapOf()
-    private var regions: Map<Int, List<AreaDefinition>> = Int2ObjectOpenHashMap()
+    private var zones: Map<Int, List<AreaDefinition>> = Int2ObjectOpenHashMap()
 
     fun getOrNull(name: String): AreaDefinition? {
         return named[name]
@@ -24,8 +24,8 @@ class AreaDefinitions {
         return named[name]?.area ?: AreaDefinition.EMPTY.area
     }
 
-    fun get(region: Region): List<AreaDefinition> {
-        return regions[region.id] ?: emptyList()
+    fun get(zone: Zone): List<AreaDefinition> {
+        return zones[zone.id] ?: emptyList()
     }
 
     fun getTagged(tag: String): Set<AreaDefinition> {
@@ -53,16 +53,17 @@ class AreaDefinitions {
             }
             named = yaml.load(path, config)
             val tagged = Object2ObjectOpenHashMap<String, MutableSet<AreaDefinition>>()
-            val regions = Int2ObjectOpenHashMap<MutableList<AreaDefinition>>()
+            val zones = Int2ObjectOpenHashMap<MutableList<AreaDefinition>>()
             for (key in named.keys) {
                 val area = named.getValue(key)
                 for (tag in area.tags) {
                     tagged.getOrPut(tag) { mutableSetOf() }.add(area)
                 }
-                for (region in area.area.toRegions()) {
-                    regions.getOrPut(region.id) { mutableListOf() }.add(area)
+                for (zone in area.area.toZones()) {
+                    zones.getOrPut(zone.id) { mutableListOf() }.add(area)
                 }
             }
+            this.zones = zones
             this.tagged = tagged
             named.size
         }
