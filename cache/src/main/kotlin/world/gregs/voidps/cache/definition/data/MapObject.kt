@@ -21,7 +21,7 @@ value class MapObject(val packed: Long) {
     companion object {
 
         fun pack(id: Int, x: Int, y: Int, level: Int, shape: Int, rotation: Int): Long {
-            return rotation.toLong() + (shape shl 2) + (level shl 7) + (y shl 9) + (x shl 23) + (id shl 37)
+            return rotation.toLong() + (shape.toLong() shl 2) + (level.toLong() shl 7) + (y.toLong() shl 9) + (x.toLong() shl 23) + (id.toLong() shl 37)
         }
 
         fun id(packed: Long): Int = (packed shr 37 and 0x1ffff).toInt()
