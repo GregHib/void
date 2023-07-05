@@ -1,21 +1,20 @@
 package world.gregs.voidps.engine.map
 
-import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionLevel
 import world.gregs.voidps.engine.map.zone.Zone
 
 @JvmInline
-value class Tile(val id: Int) {
+value class Tile(val id: Int) : Coordinate3D<Tile> {
 
     constructor(x: Int, y: Int, level: Int = 0) : this(id(x, y, level))
 
-    val x: Int
+    override val x: Int
         get() = x(id)
-    val y: Int
+    override val y: Int
         get() = y(id)
-    val level: Int
+    override val level: Int
         get() = level(id)
 
     val zone: Zone
@@ -25,27 +24,7 @@ value class Tile(val id: Int) {
     val regionLevel: RegionLevel
         get() = RegionLevel(x shr 6, y shr 6, level)
 
-    fun copy(x: Int = this.x, y: Int = this.y, level: Int = this.level) = Tile(x, y, level)
-    fun add(x: Int, y: Int, level: Int = 0) = copy(x = this.x + x, y = this.y + y, level = this.level + level)
-
-    fun addX(value: Int) = add(value, 0, 0)
-    fun addY(value: Int) = add(0, value, 0)
-    fun addLevel(value: Int) = add(0, 0, value)
-
-    fun minus(x: Int = 0, y: Int = 0, level: Int = 0) = add(-x, -y, -level)
-    fun delta(x: Int = 0, y: Int = 0, level: Int = 0) = Delta(this.x - x, this.y - y, this.level - level)
-
-    fun add(point: Tile) = add(point.x, point.y, point.level)
-    fun minus(point: Tile) = minus(point.x, point.y, point.level)
-    fun delta(point: Tile) = delta(point.x, point.y, point.level)
-
-    fun add(delta: Delta) = add(delta.x, delta.y, delta.level)
-    fun minus(delta: Delta) = minus(delta.x, delta.y, delta.level)
-    fun delta(delta: Delta) = delta(delta.x, delta.y, delta.level)
-
-    fun add(direction: Direction) = add(direction.delta)
-    fun minus(direction: Direction) = minus(direction.delta)
-    fun delta(direction: Direction) = delta(direction.delta)
+    override fun copy(x: Int, y: Int, level: Int) = Tile(x, y, level)
 
     fun distanceTo(other: Tile, width: Int, height: Int) = distanceTo(Distance.getNearest(other, width, height, this))
 

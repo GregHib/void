@@ -1,21 +1,20 @@
 package world.gregs.voidps.engine.map.region
 
-import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.map.Coordinate3D
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.zone.Zone
 
 @JvmInline
-value class RegionLevel(val id: Int) {
+value class RegionLevel(val id: Int) : Coordinate3D<RegionLevel> {
 
     constructor(x: Int, y: Int, level: Int) : this(id(x, y, level))
 
-    val x: Int
+    override val x: Int
         get() = x(id)
-    val y: Int
+    override val y: Int
         get() = y(id)
-    val level: Int
+    override val level: Int
         get() = level(id)
     val region: Region
         get() = Region(x, y)
@@ -24,20 +23,7 @@ value class RegionLevel(val id: Int) {
     val tile: Tile
         get() = Tile(x shl 6, y shl 6, level)
 
-    fun copy(x: Int = this.x, y: Int = this.y, level: Int = this.level) = RegionLevel(x, y, level)
-    fun add(x: Int, y: Int, level: Int = 0) = copy(x = this.x + x, y = this.y + y, level = this.level + level)
-    fun minus(x: Int = 0, y: Int = 0, level: Int = 0) = add(-x, -y, level)
-    fun delta(x: Int = 0, y: Int = 0, level: Int = 0) = Delta(this.x - x, this.y - y, this.level - level)
-
-    fun add(delta: Delta) = add(delta.x, delta.y)
-    fun minus(delta: Delta) = minus(delta.x, delta.y)
-
-    fun add(direction: Direction) = add(direction.delta)
-    fun minus(direction: Direction) = minus(direction.delta)
-
-    fun add(point: RegionLevel) = add(point.x, point.y, point.level)
-    fun minus(point: RegionLevel) = minus(point.x, point.y, point.level)
-    fun delta(point: RegionLevel) = delta(point.x, point.y, point.level)
+    override fun copy(x: Int, y: Int, level: Int) = RegionLevel(x, y, level)
 
     fun toCuboid(width: Int = 1, height: Int = 1, levels: Int = 1) = Cuboid(tile, width * 64, height * 64, levels)
     fun toCuboid(radius: Int, levels: Int = 1) = Cuboid(minus(radius, radius).tile, (radius * 2 + 1) * 64, (radius * 2 + 1) * 64, levels)

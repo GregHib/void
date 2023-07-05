@@ -5,6 +5,9 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.area.Rectangle
 
+/**
+ * Represents a 64x64 tiled area
+ */
 @JvmInline
 value class Region(val id: Int) {
 

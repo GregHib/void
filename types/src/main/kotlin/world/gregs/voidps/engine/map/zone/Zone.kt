@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.map.zone
 
-import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.map.Coordinate3D
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.area.Rectangle
@@ -11,15 +11,15 @@ import world.gregs.voidps.engine.map.region.RegionLevel
  * Represents a 8x8 tiled area
  */
 @JvmInline
-value class Zone(val id: Int) {
+value class Zone(val id: Int) : Coordinate3D<Zone> {
 
     constructor(x: Int, y: Int, level: Int = 0) : this(id(x, y, level))
 
-    val x: Int
+    override val x: Int
         get() = x(id)
-    val y: Int
+    override val y: Int
         get() = y(id)
-    val level: Int
+    override val level: Int
         get() = level(id)
     val region: Region
         get() = Region(x shr 3, y shr 3)
@@ -28,16 +28,7 @@ value class Zone(val id: Int) {
     val tile: Tile
         get() = Tile(x shl 3, y shl 3, level)
 
-    fun copy(x: Int = this.x, y: Int = this.y, level: Int = this.level) = Zone(x, y, level)
-    fun add(x: Int, y: Int, level: Int = 0) = copy(x = this.x + x, y = this.y + y, level = this.level + level)
-    fun minus(x: Int = 0, y: Int = 0, level: Int = 0) = add(-x, -y, -level)
-    fun delta(x: Int = 0, y: Int = 0, level: Int = 0) = Delta(this.x - x, this.y - y, this.level - level)
-
-    fun add(point: Zone) = add(point.x, point.y, point.level)
-    fun minus(point: Zone) = minus(point.x, point.y, point.level)
-    fun delta(point: Zone) = delta(point.x, point.y, point.level)
-
-    fun add(delta: Delta) = add(delta.x, delta.y, delta.level)
+    override fun copy(x: Int, y: Int, level: Int) = Zone(x, y, level)
 
     fun safeMinus(zone: Zone) = safeMinus(zone.x, zone.y, zone.level)
     fun safeMinus(x: Int = 0, y: Int = 0, level: Int = 0): Zone {

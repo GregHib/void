@@ -4,6 +4,9 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.zone.Zone
 
+/**
+ * Represents a tiled area of any size or shape
+ */
 interface Area {
     val area: Double
 

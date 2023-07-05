@@ -31,11 +31,12 @@ allprojects {
     tasks {
         compileKotlin {
             kotlinOptions.jvmTarget = JavaVersion.VERSION_19.toString()
-            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers")
+            // https://youtrack.jetbrains.com/issue/KT-4779/Generate-default-methods-for-implementations-in-interfaces
+            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility")
         }
         compileTestKotlin {
             kotlinOptions.jvmTarget = JavaVersion.VERSION_19.toString()
-            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers")
+            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility")
         }
     }
 
