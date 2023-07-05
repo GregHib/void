@@ -1,6 +1,6 @@
 package world.gregs.voidps.tools.map.view.graph
 
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.yaml.Yaml
 
 class MutableNavigationGraph {

@@ -1,6 +1,8 @@
 package world.gregs.voidps.engine.map.area
 
 import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.type.Area
+import world.gregs.voidps.type.area.Rectangle
 
 data class MapArea(
     val name: String,

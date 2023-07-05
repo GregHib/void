@@ -5,7 +5,7 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.tools.property
@@ -35,11 +35,11 @@ object ObjectUsageFinder {
             for (obj in list) {
                 val def = decoder.getOrNull(obj.id) ?: continue
                 if (obj.shape == 0 && def.solid != 1 && !def.blocksSky && !def.ignoreOnRoute && def.options?.any { it != null && it != "Examine" } == true) {
-                    println("Found ${obj.id} ${obj.shape} - ${region.tile.x + obj.x}, ${region.tile.y + obj.y}, ${obj.plane}")
+                    println("Found ${obj.id} ${obj.shape} - ${region.tile.x + obj.x}, ${region.tile.y + obj.y}, ${obj.level}")
                 }
             }
 //            val obj = list.firstOrNull { it.id == objectId } ?: continue
-//            println("Found in region ${region.id} ${region.tile.x + obj.x}, ${region.tile.y + obj.y}, ${obj.plane}")
+//            println("Found in region ${region.id} ${region.tile.x + obj.x}, ${region.tile.y + obj.y}, ${obj.level}")
         }
     }
 }

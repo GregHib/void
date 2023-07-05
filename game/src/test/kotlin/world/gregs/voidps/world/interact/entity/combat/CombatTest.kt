@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.network.instruct.InteractPlayer
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.script.*

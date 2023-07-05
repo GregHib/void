@@ -4,8 +4,8 @@ import world.gregs.voidps.cache.config.data.OverlayDefinition
 import world.gregs.voidps.cache.config.data.UnderlayDefinition
 import world.gregs.voidps.cache.definition.data.MapTile
 import world.gregs.voidps.cache.definition.data.TextureDefinition
-import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.tools.map.render.draw.TilePlane
+import world.gregs.voidps.type.Region
+import world.gregs.voidps.tools.map.render.draw.TileLevel
 import world.gregs.voidps.tools.map.render.load.MapConstants.TILE_TYPE_HEIGHT_OVERRIDE
 import world.gregs.voidps.tools.map.render.load.MapConstants.firstTileTypeVertices
 import world.gregs.voidps.tools.map.render.load.MapConstants.groundBlending
@@ -19,7 +19,7 @@ import world.gregs.voidps.tools.map.render.load.MapConstants.waterMovement
 import world.gregs.voidps.tools.map.render.raster.ColourPalette
 
 class MapTileSettings(
-    private val planeCount: Int,
+    private val levelCount: Int,
     private val underlayDecoder: Array<UnderlayDefinition>,
     private val overlayDecoder: Array<OverlayDefinition>,
     private val textureDecoder: Array<TextureDefinition>,
@@ -39,11 +39,11 @@ class MapTileSettings(
     private var regionX: Int = 0
     private var regionY: Int = 0
 
-    fun tile(plane: Int, localX: Int, localY: Int): MapTile {
+    fun tile(level: Int, localX: Int, localY: Int): MapTile {
         val regionX = this.regionX + (localX / 64)
         val regionY = this.regionY + (localY / 64)
         val regionId = Region.id(regionX, regionY)
-        return manager.tiles.getOrNull(regionId)?.getTile(localX.rem(64), localY.rem(64), plane) ?: MapTile.EMPTY
+        return manager.tiles.getOrNull(regionId)?.getTile(localX.rem(64), localY.rem(64), level) ?: MapTile.EMPTY
     }
 
     fun set(regionX: Int, regionY: Int) {
@@ -51,17 +51,17 @@ class MapTileSettings(
         this.regionY = regionY
     }
 
-    private val planes = (0 until planeCount).map { plane ->
-        TilePlane(textureDecoder, width, height, plane, manager.tiles)
+    private val level = (0 until levelCount).map { level ->
+        TileLevel(textureDecoder, width, height, level, manager.tiles)
     }
 
-    fun load(): List<TilePlane> {
+    fun load(): List<TileLevel> {
         loadSettings()
         loadUnderlays(null)
-        return planes
+        return level
     }
 
-    private fun loadSettings() = planes.forEach { plane ->
+    private fun loadSettings() = level.forEach { level ->
         var i_23_ = 0
         var settings = 0
         if (!waterMovement) {
@@ -73,7 +73,7 @@ class MapTileSettings(
             }
             if (MapConstants.sceneryShadows != 0) {
                 i_23_ = i_23_ or 0x1
-                if ((plane.plane == 0) or MapConstants.aBoolean8715) {
+                if ((level.level == 0) or MapConstants.aBoolean8715) {
                     settings = settings or 0x10
                 }
             }
@@ -84,13 +84,13 @@ class MapTileSettings(
         if (!MapConstants.aBoolean10563) {
             settings = settings or 0x20
         }
-        plane.loadBrightness()
-        plane.settings = settings
+        level.loadBrightness()
+        level.settings = settings
     }
 
-    private fun loadUnderlays(tilePlane: TilePlane?) {
+    private fun loadUnderlays(tileLevel: TileLevel?) {
         val colours = Array(width) { IntArray(height) }
-        for (plane in 0 until planeCount) {
+        for (level in 0 until levelCount) {
             for (y in 0 until height) {
                 underlayHue[y] = 0
                 underlaySaturation[y] = 0
@@ -102,7 +102,7 @@ class MapTileSettings(
                 for (y in 0 until height) {
                     val maxX = dx + samplingX
                     if (maxX < width) {
-                        val underlay = tile(plane, maxX, y).underlayId
+                        val underlay = tile(level, maxX, y).underlayId
                         if (underlay > 0) {
                             val underlayDefinition = underlayDecoder.get(underlay - 1)
                             underlayHue[y] += underlayDefinition.hue
@@ -114,7 +114,7 @@ class MapTileSettings(
                     }
                     val minX = dx - samplingX
                     if (minX >= 0) {
-                        val underlay = tile(plane, minX, y).underlayId
+                        val underlay = tile(level, minX, y).underlayId
                         if (underlay > 0) {
                             val underlayDefinition = underlayDecoder.get(underlay - 1)
                             underlayHue[y] -= underlayDefinition.hue
@@ -154,15 +154,15 @@ class MapTileSettings(
                     }
                 }
             }
-            loadTileVertices(plane, colours, if (plane == 0) tilePlane else null, planes[plane])
+            loadTileVertices(level, colours, if (level == 0) tileLevel else null, this.level[level])
         }
     }
 
-    private fun loadTileVertices(plane: Int, parentColours: Array<IntArray>, abovePlane: TilePlane?, tilePlane: TilePlane) {
+    private fun loadTileVertices(level: Int, parentColours: Array<IntArray>, aboveLevel: TileLevel?, tileLevel: TileLevel) {
         for (x in 0 until width) {
             for (y in 0 until height) {
-                if (groundBlending == -1 || useUnderlay(x, y, groundBlending, plane)) {
-                    val tile = tile(plane, x, y)
+                if (groundBlending == -1 || useUnderlay(x, y, groundBlending, level)) {
+                    val tile = tile(level, x, y)
                     var tileType = tile.overlayPath
                     val tileDirection = tile.overlayRotation
                     val overlay = tile.overlayId
@@ -225,7 +225,7 @@ class MapTileSettings(
                         val offsetSize = tileXOffsets.size
                         val xOffsets = IntArray(offsetSize)
                         val yOffsets = IntArray(offsetSize)
-                        val heightOffsets = if (abovePlane == null) null else IntArray(offsetSize)
+                        val heightOffsets = if (aboveLevel == null) null else IntArray(offsetSize)
                         for (index in 0 until offsetSize) {
                             val offsetX = tileXOffsets[index]
                             val offsetY = tileYOffsets[index]
@@ -250,28 +250,28 @@ class MapTileSettings(
                             if (heightOffsets != null && TILE_TYPE_HEIGHT_OVERRIDE[tileType][index]) {
                                 val dx = xOffsets[index] + (x shl 9)
                                 val dy = (y shl 9) + yOffsets[index]
-                                heightOffsets[index] = abovePlane!!.averageHeight(dy, dx) - tilePlane.averageHeight(dy, dx)
+                                heightOffsets[index] = aboveLevel!!.averageHeight(dy, dx) - tileLevel.averageHeight(dy, dx)
                             }
                         }
-                        tilePlane.calculateColours(x, y, xOffsets, heightOffsets, yOffsets, vertexIndices1, vertexIndices2, vertexIndices3, colours, blendColours, textures, scales)
+                        tileLevel.calculateColours(x, y, xOffsets, heightOffsets, yOffsets, vertexIndices1, vertexIndices2, vertexIndices3, colours, blendColours, textures, scales)
                     }
                 }
             }
         }
     }
 
-    fun useUnderlay(x: Int, y: Int, currentPlane: Int, otherPlane: Int): Boolean {
+    fun useUnderlay(x: Int, y: Int, currentLevel: Int, otherLevel: Int): Boolean {
         if (tile(0, x, y).settings and BRIDGE_TILE != 0) {
             return true
         }
-        return if (tile(otherPlane, x, y).settings and 0x10 != 0) false else currentPlane == offsetPlane(y, x, otherPlane)
+        return if (tile(otherLevel, x, y).settings and 0x10 != 0) false else currentLevel == offsetLevel(y, x, otherLevel)
     }
 
-    private fun offsetPlane(y: Int, x: Int, plane: Int): Int {
-        if (tile(plane, x, y).settings and 0x8 != 0) {
+    private fun offsetLevel(y: Int, x: Int, level: Int): Int {
+        if (tile(level, x, y).settings and 0x8 != 0) {
             return 0
         }
-        return if (plane > 0 && tile(1, x, y).settings and BRIDGE_TILE != 0) plane - 1 else plane
+        return if (level > 0 && tile(1, x, y).settings and BRIDGE_TILE != 0) level - 1 else level
     }
 
     companion object {

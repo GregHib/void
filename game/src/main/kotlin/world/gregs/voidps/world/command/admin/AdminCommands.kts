@@ -16,9 +16,8 @@ import world.gregs.voidps.engine.client.ui.chat.toSIPrefix
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.*
-import world.gregs.voidps.engine.data.PlayerFactory
+import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
-import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -37,13 +36,14 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Areas
-import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.pauseForever
 import world.gregs.voidps.network.encode.playJingle
 import world.gregs.voidps.network.encode.playMIDI
 import world.gregs.voidps.network.encode.playSoundEffect
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.isCurses
@@ -71,10 +71,10 @@ val players: Players by inject()
 on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
     if (content.contains(",")) {
         val params = content.split(",")
-        val plane = params[0].toInt()
+        val level = params[0].toInt()
         val x = params[1].toInt() shl 6 or params[3].toInt()
         val y = params[2].toInt() shl 6 or params[4].toInt()
-        player.tele(x, y, plane)
+        player.tele(x, y, level)
     } else {
         val parts = content.split(" ")
         val int = parts[0].toIntOrNull()
@@ -116,14 +116,14 @@ on<Command>({ prefix == "npc" }) { player: Player ->
         - name: $content
           x: ${player.tile.x}
           y: ${player.tile.y}
-          plane: ${player.tile.plane}
+          level: ${player.tile.level}
     """.trimIndent())
     val npc = npcs.add(definition.stringId, player.tile, Direction.NORTH)
     npc?.start("movement_delay", -1)
 }
 
 on<Command>({ prefix == "save" }) { _: Player ->
-    val account: PlayerFactory = get()
+    val account: PlayerAccounts = get()
     players.forEach(account::queueSave)
 }
 
@@ -314,7 +314,7 @@ on<Command>({ prefix == "song" || prefix == "track" }) { player: Player ->
 }
 
 on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->
-    player.message("${player.tile} Chunk(${player.tile.chunk.id}) ${player.tile.region}")
+    player.message("${player.tile} Zone(${player.tile.zone.id}) ${player.tile.region}")
     println(player.tile)
 }
 

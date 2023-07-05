@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.map.obj
 
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 
 class WorldMapLinks(
     private val scriptDecoder: Array<ClientScriptDefinition>

@@ -5,14 +5,14 @@ import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.CharacterUpdateTask
 import world.gregs.voidps.engine.client.update.NPCTask
 import world.gregs.voidps.engine.client.update.PlayerTask
-import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.client.update.npc.NPCResetTask
 import world.gregs.voidps.engine.client.update.npc.NPCUpdateTask
 import world.gregs.voidps.engine.client.update.player.PlayerResetTask
 import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
-import world.gregs.voidps.engine.data.PlayerFactory
+import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
@@ -46,8 +46,8 @@ fun getTickStages(
     floorItems: FloorItemTracking,
     objects: GameObjects,
     queue: NetworkQueue,
-    factory: PlayerFactory,
-    batches: ChunkBatchUpdates,
+    factory: PlayerAccounts,
+    batches: ZoneBatchUpdates,
     objectDefinitions: ObjectDefinitions,
     npcDefinitions: NPCDefinitions,
     interfaceDefinitions: InterfaceDefinitions,

@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.entity.item.floor
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 
 class FloorItemTest {
 

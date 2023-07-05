@@ -6,17 +6,17 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.network.encode.chunk.FloorItemAddition
-import world.gregs.voidps.network.encode.chunk.FloorItemRemoval
-import world.gregs.voidps.network.encode.chunk.FloorItemUpdate
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.engine.map.zone.Zone
+import world.gregs.voidps.network.encode.zone.FloorItemAddition
+import world.gregs.voidps.network.encode.zone.FloorItemRemoval
+import world.gregs.voidps.network.encode.zone.FloorItemUpdate
 
 class FloorItemsTest {
 
     private lateinit var items: FloorItems
-    private lateinit var batches: ChunkBatchUpdates
+    private lateinit var batches: ZoneBatchUpdates
 
     @BeforeEach
     fun setup() {
@@ -35,8 +35,8 @@ class FloorItemsTest {
         assertEquals(items[Tile(10, 10, 1)].first(), second)
         assertTrue(items[Tile(100, 100)].isEmpty())
         verify {
-            batches.add(Chunk.EMPTY, FloorItemAddition(tile = 0, id = -1, amount = 1, owner = null))
-            batches.add(Chunk(1, 1, 1), FloorItemAddition(tile = 268599306, id = -1, amount = 1, owner = "player"))
+            batches.add(Zone.EMPTY, FloorItemAddition(tile = 0, id = -1, amount = 1, owner = null))
+            batches.add(Zone(1, 1, 1), FloorItemAddition(tile = 268599306, id = -1, amount = 1, owner = "player"))
         }
     }
 
@@ -68,7 +68,7 @@ class FloorItemsTest {
         assertEquals(item.revealTicks, 5)
         assertEquals(item.owner, "player")
         verify {
-            batches.add(Chunk.EMPTY, FloorItemUpdate(
+            batches.add(Zone.EMPTY, FloorItemUpdate(
                 tile = 0,
                 id = -1,
                 stack = 1,
@@ -125,7 +125,7 @@ class FloorItemsTest {
         assertFalse(items.contains(first))
         assertTrue(items.contains(second))
         verify {
-            batches.add(Chunk.EMPTY, FloorItemRemoval(tile = 0, id = -1, owner = null))
+            batches.add(Zone.EMPTY, FloorItemRemoval(tile = 0, id = -1, owner = null))
         }
     }
 
@@ -168,7 +168,7 @@ class FloorItemsTest {
         val items = items[Tile.EMPTY]
         assertTrue(items.isEmpty())
         verify {
-            batches.add(Chunk.EMPTY, FloorItemRemoval(tile = 0, id = -1, owner = null))
+            batches.add(Zone.EMPTY, FloorItemRemoval(tile = 0, id = -1, owner = null))
         }
     }
 

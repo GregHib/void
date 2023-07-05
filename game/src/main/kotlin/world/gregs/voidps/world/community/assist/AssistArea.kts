@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.network.visual.update.player.MoveType
 
 /**

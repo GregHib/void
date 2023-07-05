@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.map
 
+import world.gregs.voidps.type.Tile
+
 object Overlap {
 
     fun isUnder(tile: Tile, width: Int, height: Int, target: Tile, targetWidth: Int, targetHeight: Int) = isUnder(tile.x, tile.y, width, height, target.x, target.y, targetWidth, targetHeight)

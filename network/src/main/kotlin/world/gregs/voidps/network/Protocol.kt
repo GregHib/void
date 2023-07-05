@@ -18,7 +18,7 @@ object Protocol {
     const val CLIENT_VARBIT = 73
     const val FLOOR_ITEM_REMOVE = 27
     const val INTERFACE_PLAYER_BODY = 114
-    const val CHUNK_CLEAR = 33
+    const val CLEAR_ZONE = 33
     const val INTERFACE_ANIMATION = 24
     const val OBJECT_ADD = 82
     const val TILE_TEXT = 46
@@ -29,8 +29,8 @@ object Protocol {
     const val REGION = 19
     const val INTERFACE_CUSTOM_HEAD = 95
     const val OBJECT_REMOVE = 58
-    const val UPDATE_CHUNK = 41
-    const val BATCH_UPDATE_CHUNK = 48
+    const val UPDATE_ZONE = 41
+    const val BATCH_UPDATE_ZONE = 48
     const val OBJECT_ANIMATION_SPECIFIC = 17
     const val FLOOR_ITEM_ADD = 63
     const val SCRIPT = 8

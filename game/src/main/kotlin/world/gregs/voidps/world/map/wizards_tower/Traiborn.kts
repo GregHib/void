@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.removeToLimit
 import world.gregs.voidps.engine.contain.transact.TransactionError
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.mode.interact.NPCInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption

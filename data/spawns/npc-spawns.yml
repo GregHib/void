@@ -122,8 +122,8 @@
 - { id: shop_assistant_lumbridge, x: 3217, y: 3242 }
 - { id: hank, x: 3194, y: 3254 }
 - { id: bob, x: 3228, y: 3203 }
-- { id: banker_lumbridge, x: 3208, y: 3222, plane: 2, direction: SOUTH }
-- { id: duke_horacio, x: 3212, y: 3220, plane: 1 }
+- { id: banker_lumbridge, x: 3208, y: 3222, level: 2, direction: SOUTH }
+- { id: duke_horacio, x: 3212, y: 3220, level: 1 }
 - { id: millie_miller, x: 3169, y: 3306}
 - { id: gillie_groats, x: 3254, y: 3274}
 - { id: cook_lumbridge, x: 3209, y: 3215}
@@ -323,8 +323,8 @@
 - { id: giant_spider, x: 3135, y: 3340 }
 - { id: armour, x: 3113, y: 3363, direction: EAST }
 - { id: armour, x: 3119, y: 3366, direction: WEST }
-- { id: armour, x: 3114, y: 3373, plane: 1, direction: SOUTH }
-- { id: armour, x: 3105, y: 3369, plane: 1, direction: NORTH }
+- { id: armour, x: 3114, y: 3373, level: 1, direction: SOUTH }
+- { id: armour, x: 3105, y: 3369, level: 1, direction: NORTH }
 ## Draynor fishing spots
 - { id: fishing_spot_small_net_bait_draynor, x: 3086, y: 3228 }
 - { id: fishing_spot_small_net_bait_draynor, x: 3086, y: 3227 }
@@ -332,7 +332,7 @@
 - { id: fishing_spot_small_net_bait_draynor, x: 3085, y: 3230 }
 # wizards tower
 - { id: sedridor, x: 3103, y: 9571 }
-- { id: traiborn, x: 3112, y: 3162, plane: 1 }
+- { id: traiborn, x: 3112, y: 3162, level: 1 }
 # Al Kharid
 - { id: zeke, x: 3288, y: 3190 }
 - { id: border_guard_al_kharid, x: 3267, y: 3226, direction: NORTH }
@@ -363,7 +363,7 @@
 - { id: gypsy_aris, x: 3202, y: 3424 }
 ## Palace
 - { id: sir_prysin, x: 3205, y: 3472 }
-- { id: captain_rovin, x: 3204, y: 3496, plane: 2 }
+- { id: captain_rovin, x: 3204, y: 3496, level: 2 }
 ## Stone circle
 - { id: dark_wizard_water, x: 3222, y: 3364, direction: NORTH }
 - { id: dark_wizard_water_2, x: 3222, y: 3374, direction: EAST }

@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 
 interface TargetStrategy {
     val bitMask: Int
@@ -29,7 +29,7 @@ interface TargetStrategy {
             flags = get(),
             srcX = character.tile.x,
             srcZ = character.tile.y,
-            level = character.tile.plane,
+            level = character.tile.level,
             srcSize = character.size,
             destX = tile.x,
             destZ = tile.y,

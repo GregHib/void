@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.floorItemOption
 import world.gregs.voidps.world.script.interfaceOption

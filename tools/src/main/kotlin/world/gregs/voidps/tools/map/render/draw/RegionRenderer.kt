@@ -4,7 +4,7 @@ import world.gregs.voidps.cache.config.data.MapSceneDefinition
 import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.data.SpriteDefinition
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.map.render.WorldMapDumper
 import world.gregs.voidps.tools.map.render.load.MapTileSettings
@@ -39,18 +39,18 @@ class RegionRenderer(
             }
         }
 
-        for (plane in 0 until 4) {
-            val img = manager.renderRegion(settings, plane)
+        for (level in 0 until 4) {
+            val img = manager.renderRegion(settings, level)
 
             val overlay = BufferedImage(manager.width * manager.scale, manager.height * manager.scale, BufferedImage.TYPE_INT_ARGB)
             val o = overlay.graphics as Graphics2D
 
             val painter = ObjectPainter(objectDecoder, spriteDecoder, mapSceneDecoder)
-            painter.plane = plane
+            painter.level = level
             painter.paint(o, Region(content.x, content.y), objects)
 
             if (WorldMapDumper.minimapIcons) {
-                loader.paint(o, content, plane, objects)
+                loader.paint(o, content, level, objects)
             }
             val g = img.graphics
             g.drawImage(overlay, 0, 1 + overlay.height, overlay.width, -overlay.height, null)
@@ -58,7 +58,7 @@ class RegionRenderer(
             try {
                 val image = img.getSubimage(256, 257, 256, 256)
                 if (isNotBlank(image)) {
-                    ImageIO.write(image, "png", File("./images/$plane/${content.id}.png"))
+                    ImageIO.write(image, "png", File("./images/$level/${content.id}.png"))
                 }
             } catch (e: IOException) {
                 e.printStackTrace()

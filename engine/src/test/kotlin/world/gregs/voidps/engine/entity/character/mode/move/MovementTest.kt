@@ -12,7 +12,7 @@ import org.rsmod.game.pathfinder.*
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.character.facing
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.mode.move.target.TileTargetStrategy
@@ -23,7 +23,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.voidps.network.visual.update.player.MoveType

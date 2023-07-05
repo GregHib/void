@@ -4,7 +4,7 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 
 /**
  * An [Item] with physical location

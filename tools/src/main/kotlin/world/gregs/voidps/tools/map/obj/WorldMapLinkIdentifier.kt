@@ -5,15 +5,15 @@ import org.koin.dsl.module
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.*
-import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
@@ -41,7 +41,7 @@ object WorldMapLinkIdentifier {
         val graph = MutableNavigationGraph()
         val linker = ObjectLinker(collisions)
         val clientScriptDecoder = ClientScriptDecoder(revision634 = true).loadCache(cache)
-        val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), definitions)
+        val objects = GameObjects(GameObjectCollision(collisions), ZoneBatchUpdates(), definitions)
         val regions = mutableListOf<Region>()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
@@ -60,7 +60,7 @@ object WorldMapLinkIdentifier {
         for (region in regions) {
             val def = mapDecoder.getOrNull(region.id) ?: continue
             def.objects.forEach { loc ->
-                val tile = Tile(region.tile.x + loc.x, region.tile.y + loc.y, loc.plane)
+                val tile = Tile(region.tile.x + loc.x, region.tile.y + loc.y, loc.level)
                 val obj = GameObject(loc.id, tile, loc.shape, loc.rotation)
                 list.add(obj)
                 objects.add(obj)

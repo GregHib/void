@@ -58,7 +58,7 @@ class CRC(
         }
         val data = ByteArray(size)
         var read = 0
-        var chunkCount = 0
+        var zoneCount = 0
         val sectorHeaderSize = if (bigSector) Index.SECTOR_HEADER_SIZE_BIG else Index.SECTOR_HEADER_SIZE_SMALL
         val sectorDataSize = if (bigSector) Index.SECTOR_DATA_SIZE_BIG else Index.SECTOR_DATA_SIZE_SMALL
         while (read < size) {
@@ -77,10 +77,10 @@ class CRC(
             } else {
                 buffer.readUnsignedShort()
             }
-            val chunk = buffer.readUnsignedShort()
+            val zone = buffer.readUnsignedShort()
             val nextPosition = buffer.readUnsignedMedium()
             val index = buffer.readUnsignedByte()
-            if (index != 255 || id != sectorId || chunkCount != chunk) {
+            if (index != 255 || id != sectorId || zoneCount != zone) {
                 return null
             } else if (nextPosition < 0 || nextPosition > mainFile.length() / Index.SECTOR_SIZE) {
                 return null
@@ -90,7 +90,7 @@ class CRC(
                 data[read++] = bufferData[i + sectorHeaderSize]
             }
             position = nextPosition
-            chunkCount++
+            zoneCount++
         }
         return data
     }

@@ -5,8 +5,8 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.region.RegionPlane
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.RegionLevel
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
@@ -72,8 +72,8 @@ internal class CharacterListTest {
         list.update(Tile(1), Tile(64), character)
 
         verify {
-            characterMap.remove(RegionPlane(0), character)
-            characterMap.add(RegionPlane(1), character)
+            characterMap.remove(RegionLevel(0), character)
+            characterMap.add(RegionLevel(1), character)
         }
     }
 

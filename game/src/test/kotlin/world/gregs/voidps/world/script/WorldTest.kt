@@ -20,12 +20,12 @@ import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
-import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.Container
-import world.gregs.voidps.engine.data.PlayerFactory
+import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -38,7 +38,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.EventHandlerStore
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.XteaLoader
@@ -98,10 +98,10 @@ abstract class WorldTest : KoinTest {
     }
 
     fun createPlayer(name: String, tile: Tile = Tile.EMPTY): Player {
-        val factory: PlayerFactory = get()
+        val accounts: PlayerAccounts = get()
         val index = gatekeeper.connect(name)!!
         val player = Player(tile = tile, accountName = name, passwordHash = "")
-        factory.initPlayer(player, index)
+        accounts.initPlayer(player, index)
         accountDefs.add(player)
         tick()
         player["creation"] = -1
@@ -232,7 +232,7 @@ abstract class WorldTest : KoinTest {
         private val collisions: Collisions by lazy { Collisions() }
         private val objectCollision: GameObjectCollision by lazy { GameObjectCollision(collisions) }
         private val xteas: Xteas by lazy { Xteas().apply { XteaLoader().load(this, getProperty("xteaPath")) } }
-        private val gameObjects: GameObjects by lazy { GameObjects(objectCollision, ChunkBatchUpdates(), objectDefinitions, storeUnused = true) }
+        private val gameObjects: GameObjects by lazy { GameObjects(objectCollision, ZoneBatchUpdates(), objectDefinitions, storeUnused = true) }
         private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(collisions, objectDefinitions, gameObjects).load(active) }
         val emptyTile = Tile(2655, 4640)
     }

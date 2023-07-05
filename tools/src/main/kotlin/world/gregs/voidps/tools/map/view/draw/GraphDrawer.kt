@@ -1,8 +1,8 @@
 package world.gregs.voidps.tools.map.view.draw
 
 import world.gregs.voidps.bot.navigation.graph.NavigationGraph
-import world.gregs.voidps.engine.map.Distance
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Distance
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.tools.map.view.MapViewer.Companion.FILTER_VIEWPORT
 import world.gregs.voidps.tools.map.view.graph.Area
 import world.gregs.voidps.tools.map.view.graph.AreaSet
@@ -41,7 +41,7 @@ class GraphDrawer(
     fun draw(g: Graphics) {
         g.color = linkColour
         nav?.nodes?.filterIsInstance<Tile>()?.forEach { node ->
-            if (node.plane != view.plane) {
+            if (node.level != view.level) {
                 return@forEach
             }
             val viewX = view.mapToViewX(node.x)
@@ -57,7 +57,7 @@ class GraphDrawer(
             edges.forEachIndexed { index, edge ->
                 val start = edge.start as? Tile ?: return@forEachIndexed
                 val end = edge.end as? Tile ?: return@forEachIndexed
-                if (start.plane != view.plane || end.plane != view.plane) {
+                if (start.level != view.level || end.level != view.level) {
                     return@forEachIndexed
                 }
                 val distance = distances?.get(edge)
@@ -79,7 +79,7 @@ class GraphDrawer(
         }
         g.color = areaColour
         area.areas.forEach { area ->
-            if (view.plane !in area.planes) {
+            if (view.level !in area.levels) {
                 return@forEach
             }
             if (FILTER_VIEWPORT && !area.points.all { view.contains(view.mapToViewX(it.x), view.mapToViewY(view.flipMapY(it.y))) }) {

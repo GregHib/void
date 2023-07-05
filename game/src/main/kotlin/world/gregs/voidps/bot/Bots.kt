@@ -96,8 +96,8 @@ suspend fun Bot.dialogueOption(option: String) {
 
 fun Bot.getObject(filter: (GameObject) -> Boolean): GameObject? {
     val objects = get<GameObjects>()
-    for (chunk in player.tile.chunk.spiral(2)) {
-        val obj = chunk.toCuboid()
+    for (zone in player.tile.zone.spiral(2)) {
+        val obj = zone.toCuboid()
             .flatMap { tile -> objects[tile] }
             .firstOrNull(filter)
         if (obj != null) {
@@ -110,8 +110,8 @@ fun Bot.getObject(filter: (GameObject) -> Boolean): GameObject? {
 fun Bot.getObjects(filter: (GameObject) -> Boolean): List<GameObject> {
     val objects = get<GameObjects>()
     val list = mutableListOf<GameObject>()
-    for (chunk in player.tile.chunk.spiral(2)) {
-        list.addAll(chunk.toCuboid()
+    for (zone in player.tile.zone.spiral(2)) {
+        list.addAll(zone.toCuboid()
             .flatMap { tile -> objects[tile] }
             .filter(filter))
     }

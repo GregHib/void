@@ -7,8 +7,8 @@ import world.gregs.voidps.network.Client.Companion.bits
 import world.gregs.voidps.network.Protocol.REGION
 
 fun Client.mapRegion(
-    chunkX: Int,
-    chunkY: Int,
+    zoneX: Int,
+    zoneY: Int,
     forceRefresh: Boolean,
     mapSize: Int,
     xteas: Array<IntArray>,
@@ -18,8 +18,8 @@ fun Client.mapRegion(
 ) = send(REGION, getLength(clientTile, playerRegions, clientIndex, xteas), SHORT) {
     mapInit(clientTile, playerRegions, clientIndex)
     writeByteSubtract(mapSize)
-    writeShortAddLittle(chunkY)
-    writeShortLittle(chunkX)
+    writeShortAddLittle(zoneY)
+    writeShortLittle(zoneX)
     writeByteInverse(forceRefresh)
     xteas.forEach {
         it.forEach { key ->
@@ -52,25 +52,25 @@ private fun getLength(clientTile: Int?, playerRegions: IntArray?, clientIndex: I
  * @param unknownMode (0 = only shows 1 region, 1 = ?, 2 = ?, 3 = ?, 4 = ?)
  */
 fun Client.dynamicMapRegion(
-    chunkX: Int,
-    chunkY: Int,
+    zoneX: Int,
+    zoneY: Int,
     forceRefresh: Boolean,
     mapSize: Int,
-    chunks: List<Int?>,
+    zones: List<Int?>,
     xteas: Array<IntArray>,
     clientIndex: Int? = null,
     clientTile: Int? = null,
     playerRegions: IntArray? = null,
     unknownMode: Int = 3
-) = send(Protocol.DYNAMIC_REGION, getLength(clientTile, playerRegions, clientIndex, chunks, xteas), SHORT) {
+) = send(Protocol.DYNAMIC_REGION, getLength(clientTile, playerRegions, clientIndex, zones, xteas), SHORT) {
     mapInit(clientTile, playerRegions, clientIndex)
     writeByte(mapSize)
-    writeShortAddLittle(chunkY)
+    writeShortAddLittle(zoneY)
     writeByte(forceRefresh)
-    writeShortAdd(chunkX)
+    writeShortAdd(zoneX)
     writeByteAdd(unknownMode)
     bitAccess {
-        chunks.forEach { data ->
+        zones.forEach { data ->
             writeBit(data != null)
             if (data != null) {
                 writeBits(26, data)
@@ -84,10 +84,10 @@ fun Client.dynamicMapRegion(
     }
 }
 
-private fun getLength(clientTile: Int?, playerRegions: IntArray?, clientIndex: Int?, chunks: List<Int?>, xteas: Array<IntArray>): Int {
+private fun getLength(clientTile: Int?, playerRegions: IntArray?, clientIndex: Int?, zones: List<Int?>, xteas: Array<IntArray>): Int {
     var count = 7
     count += getMapInitLength(clientTile, playerRegions, clientIndex)
-    count += bits(chunks.sumOf(::notNull))
+    count += bits(zones.sumOf(::notNull))
     count += xteas.sumOf { it.size * 4 }
     return count
 }

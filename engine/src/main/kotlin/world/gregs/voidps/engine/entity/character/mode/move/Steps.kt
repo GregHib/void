@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.entity.character.mode.move
 
 import org.rsmod.game.pathfinder.Route
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import java.util.*
 
 class Steps(

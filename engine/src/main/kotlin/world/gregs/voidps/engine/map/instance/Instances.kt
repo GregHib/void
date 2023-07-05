@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.map.instance
 
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 import java.util.*
 
 object Instances {

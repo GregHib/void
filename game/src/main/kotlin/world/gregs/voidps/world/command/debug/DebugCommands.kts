@@ -19,10 +19,10 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.chunk.Chunk
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.TimerTick
@@ -50,7 +50,7 @@ on<Command>({ prefix == "reset_cam" }) { player: Player ->
 on<Command>({ prefix == "move_to" }) { player: Player ->
     val test = content.split(" ")
     val viewport = player.viewport!!
-    val result = viewport.lastLoadChunk.safeMinus(viewport.chunkRadius, viewport.chunkRadius)
+    val result = viewport.lastLoadZone.safeMinus(viewport.zoneRadius, viewport.zoneRadius)
     val local = Tile(test[0].toInt(), test[1].toInt()).minus(result.tile)
     println(local)
     player.moveCamera(local, test[2].toInt(), test[3].toInt(), test[4].toInt())
@@ -59,7 +59,7 @@ on<Command>({ prefix == "move_to" }) { player: Player ->
 on<Command>({ prefix == "look_at" }) { player: Player ->
     val test = content.split(" ")
     val viewport = player.viewport!!
-    val result = viewport.lastLoadChunk.safeMinus(viewport.chunkRadius, viewport.chunkRadius)
+    val result = viewport.lastLoadZone.safeMinus(viewport.zoneRadius, viewport.zoneRadius)
     val local = Tile(test[0].toInt(), test[1].toInt()).minus(result.tile)
     println(local)
     player.turnCamera(local, test[2].toInt(), test[3].toInt(), test[4].toInt())
@@ -162,7 +162,7 @@ on<Command>({ prefix == "showcol" }) { player: Player ->
     val area = player.tile.toCuboid(10)
     val collisions: Collisions = get()
     for (tile in area) {
-        if (collisions[tile.x, tile.y, tile.plane] != 0) {
+        if (collisions[tile.x, tile.y, tile.level] != 0) {
             areaGraphic("2000", tile)
         }
     }
@@ -182,11 +182,11 @@ on<TimerTick>({ timer == "show_path" }) { player: Player ->
 
 on<Command>({ prefix == "col" }) { player: Player ->
     val collisions: Collisions = get()
-    println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.plane] and (CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER) == 0}")
-    println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.plane] and CollisionFlag.BLOCK_NORTH == 0}")
-    println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.plane] and CollisionFlag.WALL_NORTH == 0}")
-    println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.plane] and CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER == 0}")
-    println(collisions[player.tile.x, player.tile.y - 1, player.tile.plane])
+    println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.level] and (CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER) == 0}")
+    println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.level] and CollisionFlag.BLOCK_NORTH == 0}")
+    println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.level] and CollisionFlag.WALL_NORTH == 0}")
+    println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.level] and CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER == 0}")
+    println(collisions[player.tile.x, player.tile.y - 1, player.tile.level])
     println(collisions[3281, 3327, 0])
     println(player.tile.minus(y = 1))
 
@@ -202,7 +202,7 @@ on<Command>({ prefix == "col" }) { player: Player ->
 operator fun Array<IntArray?>.get(baseX: Int, baseY: Int, localX: Int, localY: Int, z: Int): Int {
     val x = baseX + localX
     val y = baseY + localY
-    val zone = this[Chunk.tileIndex(x, y, z)] ?: return 0
+    val zone = this[Zone.tileIndex(x, y, z)] ?: return 0
     return zone[Tile.index(x, y)]
 }
 

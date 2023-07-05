@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.variable.*
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -29,12 +29,12 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.Rectangle
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.area.Rectangle
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.clear
 import world.gregs.voidps.engine.map.instance.Instances
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.engine.queue.*
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.world.activity.quest.*
@@ -117,15 +117,15 @@ fun destroyInstance(player: Player) {
     player.tele(target)
     val instance: Region = player.remove("demon_slayer_instance") ?: return
     Instances.free(instance)
-    val regionPlane = instance.toPlane(0)
-    npcs[regionPlane].forEach {
+    val regionLevel = instance.toLevel(0)
+    npcs[regionLevel].forEach {
         npcs.remove(it)
         npcs.removeIndex(it)
         npcs.releaseIndex(it)
     }
-    for (chunk in regionPlane.toCuboid().toChunks()) {
-        objects.clear(chunk)
-        collisions.clear(chunk)
+    for (zone in regionLevel.toCuboid().toZones()) {
+        objects.clear(zone)
+        collisions.clear(zone)
     }
 }
 

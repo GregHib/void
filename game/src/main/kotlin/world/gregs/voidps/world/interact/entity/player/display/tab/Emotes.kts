@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.getComponentId
 import world.gregs.voidps.engine.data.definition.getComponentIntId
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.facing
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction

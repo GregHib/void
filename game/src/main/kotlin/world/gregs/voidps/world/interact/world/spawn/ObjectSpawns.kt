@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
@@ -33,7 +33,7 @@ fun loadObjectSpawns(
             val type = value["type"] as Int
             val rotation = value["rotation"] as? Int ?: 0
             count++
-            objects.add(GameObject(definitions.get(id).id, tile.x, tile.y, tile.plane, type, rotation))
+            objects.add(GameObject(definitions.get(id).id, tile.x, tile.y, tile.level, type, rotation))
         }
     }
     yaml.load<Any>(path, config)

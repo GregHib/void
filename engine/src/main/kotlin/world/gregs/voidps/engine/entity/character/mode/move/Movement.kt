@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.inc
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.face
@@ -23,10 +23,10 @@ import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.type.Delta
 import world.gregs.voidps.engine.map.Overlap
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.equals
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.equals
 import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.network.visual.update.player.MoveType
 import kotlin.math.sign
@@ -49,7 +49,7 @@ open class Movement(
             val route = pathFinder.findPath(
                 srcX = character.tile.x,
                 srcZ = character.tile.y,
-                level = character.tile.plane,
+                level = character.tile.level,
                 destX = strategy.tile.x,
                 destZ = strategy.tile.y,
                 srcSize = character.size,
@@ -178,7 +178,7 @@ open class Movement(
     fun canStep(x: Int, y: Int): Boolean {
         val flag = if (character is NPC) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
         return stepValidator.canTravel(
-            level = character.tile.plane,
+            level = character.tile.level,
             x = character.tile.x,
             z = character.tile.y,
             offsetX = x,
@@ -202,7 +202,7 @@ open class Movement(
         return lineValidator.hasLineOfSight(
             srcX = character.tile.x,
             srcZ = character.tile.y,
-            level = character.tile.plane,
+            level = character.tile.level,
             srcSize = character.size,
             destX = strategy.tile.x,
             destZ = strategy.tile.y,

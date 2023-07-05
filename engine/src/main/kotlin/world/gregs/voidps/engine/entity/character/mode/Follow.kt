@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.entity.character.watching
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 
 class Follow(
     character: Character,
@@ -25,7 +25,7 @@ class Follow(
         if (!character.watching(target)) {
             character.watch(target)
         }
-        if (target.tile.plane != character.tile.plane) {
+        if (target.tile.level != character.tile.level) {
             if (character is NPC) {
                 character.tele(strategy.tile, clearMode = false)
             } else {

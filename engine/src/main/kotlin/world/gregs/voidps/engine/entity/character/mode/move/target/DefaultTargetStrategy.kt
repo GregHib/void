@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.character.mode.move.target
 
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 
 object DefaultTargetStrategy : TargetStrategy {
     override val bitMask = 0

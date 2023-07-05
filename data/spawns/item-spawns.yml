@@ -4,19 +4,19 @@
 - { id: leather_gloves, x: 3206, y: 3147, delay: 100 }
 - { id: knife, x: 3224, y: 3202, delay: 100 }
 - { id: knife, x: 3205, y: 3212, delay: 100 }
-- { id: bronze_pickaxe, x: 3229, y: 3215, plane: 2, delay: 228 }
-- { id: bronze_pickaxe, x: 3229, y: 3223, plane: 2, delay: 228 }
+- { id: bronze_pickaxe, x: 3229, y: 3215, level: 2, delay: 228 }
+- { id: bronze_pickaxe, x: 3229, y: 3223, level: 2, delay: 228 }
 - { id: mind_rune, x: 3206, y: 3208, delay: 100 }
 - { id: bowl, x: 3208, y: 3214, delay: 100 }
 - { id: empty_pot, x: 3209, y: 3214, delay: 100 }
 - { id: empty_pot, x: 3167, y: 3310, delay: 100 }
 - { id: jug, x: 3211, y: 3212, delay: 100 }
 - { id: bronze_arrow, x: 3205, y: 3227, delay: 100 }
-- { id: bronze_dagger, x: 3213, y: 3216, plane: 1, delay: 230 }
-- { id: logs, x: 3209, y: 3224, plane: 2, delay: 100 }
-- { id: logs, x: 3208, y: 3225, plane: 2, delay: 100 }
-- { id: logs, x: 3205, y: 3225, plane: 2, delay: 100 }
-- { id: logs, x: 3205, y: 3226, plane: 2, delay: 100 }
+- { id: bronze_dagger, x: 3213, y: 3216, level: 1, delay: 230 }
+- { id: logs, x: 3209, y: 3224, level: 2, delay: 100 }
+- { id: logs, x: 3208, y: 3225, level: 2, delay: 100 }
+- { id: logs, x: 3205, y: 3225, level: 2, delay: 100 }
+- { id: logs, x: 3205, y: 3226, level: 2, delay: 100 }
 - { id: iron_dagger, x: 3248, y: 3245, delay: 500 }
 - { id: bucket, x: 3263, y: 3277, delay: 100 }
 - { id: bucket, x: 3225, y: 3294, delay: 100 }
@@ -57,7 +57,7 @@
 - { id: leather_boots, x: 3210, y: 9615, delay: 100 }
 # Wizards tower
 - { id: leather_boots, x: 3111, y: 3159, delay: 100 }
-- { id: leather_boots, x: 3112, y: 3155, plane: 1, delay: 100 }
+- { id: leather_boots, x: 3112, y: 3155, level: 1, delay: 100 }
 - { id: logs, x: 3105, y: 3159, delay: 100 }
 - { id: logs, x: 3106, y: 3159, delay: 100 }
 - { id: logs, x: 3106, y: 3160, delay: 100 }
@@ -73,8 +73,8 @@
 - { id: bronze_med_helm, x: 3120, y: 3361, delay: 230 }
 - { id: bucket, x: 3120, y: 3360, delay: 100 }
 - { id: rubber_tube, x: 3112, y: 3368, delay: 100 }
-- { id: fish_food, x: 3107, y: 3356, plane: 1, delay: 100 }
-- { id: tinderbox, x: 3112, y: 3369, plane: 2, delay: 100 }
+- { id: fish_food, x: 3107, y: 3356, level: 1, delay: 100 }
+- { id: tinderbox, x: 3112, y: 3369, level: 2, delay: 100 }
 # Draynor Manor Basement
 - { id: oil_can, x: 3092, y: 9755, delay: 100 }
 # Port sarim
@@ -83,7 +83,7 @@
 - { id: bronze_mace, x: 3320, y: 3137, delay: 230 }
 - { id: bucket, x: 3306, y: 3195, delay: 100 }
 - { id: leather_boots, x: 3303, y: 3189, delay: 100 }
-- { id: body_rune, x: 3289, y: 3191, plane: 1, delay: 100 }
+- { id: body_rune, x: 3289, y: 3191, level: 1, delay: 100 }
 - { id: cabbage, x: 3285, y: 3175, delay: 100 }
 - { id: jug_of_water, x: 3302, y: 3170, delay: 100 }
 - { id: fire_rune, amount: 3, x: 3304, y: 3311, delay: 100 }
@@ -243,10 +243,10 @@
 - { id: gold_ore, x: 3296, y: 3933, delay: 500 }
 - { id: gold_ore, x: 3292, y: 3931, delay: 500 }
 - { id: gold_ore, x: 3291, y: 3927, delay: 500 }
-- { id: gold_ore, x: 3287, y: 3932, plane: 1, delay: 500 }
-- { id: gold_ore, x: 3283, y: 3936, plane: 3, delay: 500 }
-- { id: bronze_sq_shield, x: 3294, y: 3935, plane: 1, delay: 230 }
-- { id: iron_dagger, x: 3279, y: 3938, plane: 3, delay: 500 }
+- { id: gold_ore, x: 3287, y: 3932, level: 1, delay: 500 }
+- { id: gold_ore, x: 3283, y: 3936, level: 3, delay: 500 }
+- { id: bronze_sq_shield, x: 3294, y: 3935, level: 1, delay: 230 }
+- { id: iron_dagger, x: 3279, y: 3938, level: 3, delay: 500 }
 - { id: iron_dagger, x: 3217, y: 3693, delay: 500 }
 - { id: burnt_bones, x: 3321, y: 3892, delay: 100 }
 - { id: burnt_bones, x: 3316, y: 3888, delay: 100 }
@@ -303,7 +303,7 @@
 - { id: beer_glass, x: 2907, y: 3538, delay: 100, members: true }
 - { id: asgarnian_ale, x: 2906, y: 3538, delay: 100, members: true }
 # Taverley
-- { id: shortbow, x: 2914, y: 3439, plane: 1, delay: 200, members: true }
+- { id: shortbow, x: 2914, y: 3439, level: 1, delay: 200, members: true }
 - { id: cup_of_tea, x: 2903, y: 3441, delay: 100, members: true }
 - { id: cup_of_tea, x: 2886, y: 3412, delay: 100, members: true }
 - { id: king_worm, x: 2896, y: 3414, delay: 100, members: true }
@@ -319,14 +319,14 @@
 - { id: knife, x: 2820, y: 3450, delay: 100, members: true }
 - { id: burnt_herring, x: 2820, y: 3453, delay: 100, members: true }
 - { id: pie_dish, x: 2820, y: 3455, delay: 100, members: true }
-- { id: pie_dish, x: 2813, y: 3449, plane: 1, delay: 100, members: true }
+- { id: pie_dish, x: 2813, y: 3449, level: 1, delay: 100, members: true }
 - { id: insect_repellent, x: 2807, y: 3450, delay: 100, members: true }
-- { id: jug_of_wine, x: 2806, y: 3449, plane: 1, delay: 100, members: true }
+- { id: jug_of_wine, x: 2806, y: 3449, level: 1, delay: 100, members: true }
 # Seers Village
 - { id: bucket, x: 2766, y: 3441, delay: 100, members: true }
 - { id: knife, x: 2704, y: 3475, delay: 100, members: true }
 - { id: garlic, x: 2714, y: 3478, delay: 100, members: true }
-- { id: fire_rune, amount: 2, x: 2767, y: 3504,plane: 1, delay: 100, members: true }
+- { id: fire_rune, amount: 2, x: 2767, y: 3504,level: 1, delay: 100, members: true }
 # McGrubors Wood
 - { id: dwellberries, x: 2664, y: 3476, delay: 100, members: true }
 - { id: dwellberries, x: 2667, y: 3494, delay: 100, members: true }
@@ -362,9 +362,9 @@
 - { id: broken_arrow, x: 2668, y: 3419, delay: 100, members: true }
 - { id: broken_arrow, x: 2655, y: 3424, delay: 100, members: true }
 - { id: broken_arrow, x: 2670, y: 3437, delay: 100, members: true }
-- { id: broken_arrow, x: 2667, y: 3425, plane: 2, delay: 100, members: true }
-- { id: broken_arrow, x: 2669, y: 3431, plane: 2, delay: 100, members: true }
-- { id: broken_arrow, x: 2667, y: 3427, plane: 2, delay: 100, members: true }
+- { id: broken_arrow, x: 2667, y: 3425, level: 2, delay: 100, members: true }
+- { id: broken_arrow, x: 2669, y: 3431, level: 2, delay: 100, members: true }
+- { id: broken_arrow, x: 2667, y: 3427, level: 2, delay: 100, members: true }
 # Legends guild
 - { id: papyrus, x: 2724, y: 3367, delay: 100, members: true }
 # Sorcerers Tower
@@ -375,7 +375,7 @@
 # Ardougne
 - { id: knife, x: 2542, y: 3286, delay: 100, members: true }
 - { id: chisel, x: 2543, y: 3286, delay: 100, members: true }
-- { id: black_scimitar, x: 2571, y: 3288, plane: 1, delay: 1500 }
+- { id: black_scimitar, x: 2571, y: 3288, level: 1, delay: 1500 }
 - { id: picture, x: 2576, y: 3334, delay: 1, members: true }
 - { id: bucket, x: 2564, y: 3332, delay: 100, members: true }
 - { id: spade, x: 2566, y: 3330, delay: 100, members: true }
@@ -483,8 +483,8 @@
 - { id: bones, x: 2562, y: 3012, delay: 100, members: true }
 - { id: bones, x: 2563, y: 3011, delay: 100, members: true }
 # Yanille
-- { id: vial, x: 2587, y: 3090, plane: 2, delay: 100, members: true }
-- { id: vial, x: 2588, y: 3090, plane: 2, delay: 100, members: true }
+- { id: vial, x: 2587, y: 3090, level: 2, delay: 100, members: true }
+- { id: vial, x: 2588, y: 3090, level: 2, delay: 100, members: true }
 - { id: jug_of_water, x: 2568, y: 3102, delay: 100, members: true }
 - { id: lit_candle, x: 2547, y: 3114, delay: 100, members: true }
 - { id: jangerberries, x: 2512, y: 3080, delay: 100, members: true }
@@ -520,9 +520,9 @@
 - { id: old_journal, x: 2417, y: 9673, delay: 100, members: true }
 - { id: plank, x: 2435, y: 9726, delay: 100, members: true }
 # Eagles Peak cave
-- { id: feathered_journal, x: 2004, y: 4983, plane: 3, delay: 60, members: true }
-- { id: coins, x: 2020, y: 4948, plane: 3, delay: 100, members: true }
-- { id: coins, x: 2017, y: 4949, plane: 3, delay: 100, members: true }
+- { id: feathered_journal, x: 2004, y: 4983, level: 3, delay: 60, members: true }
+- { id: coins, x: 2020, y: 4948, level: 3, delay: 100, members: true }
+- { id: coins, x: 2017, y: 4949, level: 3, delay: 100, members: true }
 # Tree Gnome Stronghold
 - { id: swamp_toad, x: 2417, y: 3508, delay: 100, members: true }
 - { id: swamp_toad, x: 2421, y: 3509, delay: 100, members: true }
@@ -549,9 +549,9 @@
 - { id: king_worm, x: 2414, y: 3518, delay: 100, members: true }
 - { id: king_worm, x: 2415, y: 3517, delay: 100, members: true }
 - { id: king_worm, x: 2425, y: 3515, delay: 100, members: true }
-- { id: cocktail_shaker, x: 2449, y: 3510, plane: 1, delay: 100, members: true }
-- { id: cocktail_glass, x: 2489, y: 3489, plane: 1, delay: 100, members: true }
-- { id: cocktail_glass, x: 2483, y: 3482, plane: 1, delay: 100, members: true }
+- { id: cocktail_shaker, x: 2449, y: 3510, level: 1, delay: 100, members: true }
+- { id: cocktail_glass, x: 2489, y: 3489, level: 1, delay: 100, members: true }
+- { id: cocktail_glass, x: 2483, y: 3482, level: 1, delay: 100, members: true }
 - { id: swamp_toad, x: 2382, y: 3411, delay: 100, members: true }
 - { id: swamp_toad, x: 2380, y: 3414, delay: 100, members: true }
 - { id: swamp_toad, x: 2408, y: 3408, delay: 100, members: true }

@@ -10,7 +10,7 @@ import world.gregs.voidps.cache.config.decoder.OverlayDecoder
 import world.gregs.voidps.cache.config.decoder.UnderlayDecoder
 import world.gregs.voidps.cache.config.decoder.WorldMapInfoDecoder
 import world.gregs.voidps.cache.definition.decoder.*
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.tools.Pipeline

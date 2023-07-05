@@ -41,7 +41,7 @@ fun canAttack(source: Character, target: Character): Boolean {
             return false
         }
     }
-    if (source.tile.plane != target.tile.plane) {
+    if (source.tile.level != target.tile.level) {
         return false
     }
     if (source.dead || target.dead) {
@@ -299,7 +299,7 @@ private fun remove(player: Player, target: Character, ammo: String, required: In
                 player.message("That was your last one!")
             }
 
-            if (random > 1.0 - dropChance && !get<Collisions>().check(target.tile.x, target.tile.y, target.tile.plane, CollisionFlag.FLOOR)) {
+            if (random > 1.0 - dropChance && !get<Collisions>().check(target.tile.x, target.tile.y, target.tile.level, CollisionFlag.FLOOR)) {
                 get<FloorItems>().add(target.tile, ammo, required, revealTicks = 100, disappearTicks = 200, owner = player)
             }
         }

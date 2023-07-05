@@ -5,7 +5,7 @@ import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.Protocol
 
 /**
- * @param offset The tile offset from the chunk update sent (encoded with 3 rather than the usual 4)
+ * @param offset The tile offset from the zone update sent (encoded with 3 rather than the usual 4)
  * @param id Projectile graphic id
  * @param distanceX The delta between start and end x coordinates
  * @param distanceY The delta between start and end y coordinates

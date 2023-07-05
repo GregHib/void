@@ -3,7 +3,7 @@ package world.gregs.voidps.tools.graph
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -22,7 +22,7 @@ object MapGraphLoader {
         val collisions: Collisions = Collisions()
         val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).loadCache(cache))
             .load(Yaml(), property("objectDefinitionsPath"), null)
-        val objects = GameObjects(GameObjectCollision(Collisions()), ChunkBatchUpdates(), objectDefinitions)
+        val objects = GameObjects(GameObjectCollision(Collisions()), ZoneBatchUpdates(), objectDefinitions)
         val xteas: Xteas = Xteas(mutableMapOf()).apply {
             XteaLoader().load(this, property("xteaPath"), propertyOrNull("xteaJsonKey"), propertyOrNull("xteaJsonValue"))
         }

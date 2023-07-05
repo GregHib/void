@@ -2,14 +2,14 @@ package world.gregs.voidps.tools.graph
 
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.map.Distance
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.Cuboid
+import world.gregs.voidps.type.Distance
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.area.Cuboid
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.world.interact.entity.obj.isDoor
 import java.io.DataOutputStream
@@ -32,19 +32,18 @@ class MapGraph(
         val links = mutableSetOf<Triple<Tile, Tile, Int>>()
         val strategy = SmallTraversal
 
-        val reg = Region(27, 40).toPlane(0)
+        val reg = Region(27, 40).toLevel(0)
         runBlocking {
             for (region in reg.toCuboid(width = 33, height = 23).toRegions()) {
                 // TODO better way of determining empty maps
                 val xtea = xteas[region.id]
                 cache.getFile(5, "l${region.x}_${region.y}", xtea) ?: continue
 
-                for (chunk in region.tile.chunk.toCuboid(width = 8, height = 8).toChunks()) {
+                for (zone in region.tile.zone.toCuboid(width = 8, height = 8).toZones()) {
                     val time = measureNanoTime {
-
-                        val loaded = chunk.toCuboid().flatMap { tile -> objects[tile]  }
+                        val loaded = zone.toCuboid().flatMap { tile -> objects[tile]  }
                         objs.addAll(loaded)
-                        all.addAll(getCenterPoints(strategy, chunk.toCuboid(width = 2, height = 2)))
+                        all.addAll(getCenterPoints(strategy, zone.toCuboid(width = 2, height = 2)))
                     }
                     println("Objects ${objs.size} Points ${all.size} Took ${time}ns")
                 }
@@ -142,7 +141,7 @@ class MapGraph(
             val tiles = getFloodedTiles(
                 traversal,
                 start,
-                start.chunk.tile.minus(clusterSize, clusterSize).toCuboid(width = cluster, height = cluster)
+                start.zone.tile.minus(clusterSize, clusterSize).toCuboid(width = cluster, height = cluster)
             )
             val visited = mutableSetOf<Tile>()
             for ((end, distance) in tiles) {

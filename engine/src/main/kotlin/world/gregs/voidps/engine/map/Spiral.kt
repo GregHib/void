@@ -1,7 +1,9 @@
 package world.gregs.voidps.engine.map
 
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
-import world.gregs.voidps.engine.map.chunk.Chunk
+import world.gregs.voidps.engine.map.zone.Zone
+import world.gregs.voidps.type.Delta
+import world.gregs.voidps.type.Tile
 
 object Spiral {
 
@@ -28,20 +30,20 @@ object Spiral {
         }
     }
 
-    fun spiral(chunk: Chunk, radius: Int): Iterator<Chunk> = ChunkIterator(chunk, STEPS[radius])
+    fun spiral(zone: Zone, radius: Int): Iterator<Zone> = ZoneIterator(zone, STEPS[radius])
 
-    internal class ChunkIterator(
-        private val chunk: Chunk,
+    internal class ZoneIterator(
+        private val zone: Zone,
         private val steps: Array<Delta>
-    ) : Iterator<Chunk> {
+    ) : Iterator<Zone> {
         private var index = 0
 
         override fun hasNext(): Boolean {
             return index < steps.size
         }
 
-        override fun next(): Chunk {
-            return chunk.add(steps[index++])
+        override fun next(): Zone {
+            return zone.add(steps[index++])
         }
     }
 
@@ -89,4 +91,4 @@ object Spiral {
 
 fun Tile.spiral(radius: Int) = Spiral.spiral(this, radius)
 
-fun Chunk.spiral(radius: Int) = Spiral.spiral(this, radius)
+fun Zone.spiral(radius: Int) = Spiral.spiral(this, radius)

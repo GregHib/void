@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 
 var Character.followTile: Tile
     get() = get("follow_tile", tile)

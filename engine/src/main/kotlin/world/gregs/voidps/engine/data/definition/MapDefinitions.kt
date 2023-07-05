@@ -13,16 +13,16 @@ import world.gregs.voidps.cache.active.encode.ZoneObject
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.chunk.Chunk
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.map.region.RegionPlane
+import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.yaml.Yaml
 import java.io.File
 import java.io.RandomAccessFile
@@ -54,7 +54,7 @@ class MapDefinitions(
             val regionTileY = region.tile.y
             for (obj in map.objects) {
                 val def = definitions.get(obj.id)
-                objects.set(obj.id, regionTileX + obj.x, regionTileY + obj.y, obj.plane, obj.shape, obj.rotation, def)
+                objects.set(obj.id, regionTileX + obj.x, regionTileY + obj.y, obj.level, obj.shape, obj.rotation, def)
             }
         }
         logger.info { "Loaded ${maps.size} maps ${objects.size} ${"object".plural(objects.size)} from cache in ${System.currentTimeMillis() - start}ms" }
@@ -77,30 +77,30 @@ class MapDefinitions(
 
     private fun readEmptyTiles(reader: BufferReader) {
         for (i in 0 until reader.readInt()) {
-            val regionPlane = RegionPlane(reader.readInt())
-            val regionX = regionPlane.x
-            val regionY = regionPlane.y
-            val plane = regionPlane.plane
+            val regionLevel = RegionLevel(reader.readInt())
+            val regionX = regionLevel.x
+            val regionY = regionLevel.y
+            val level = regionLevel.level
             for (zoneX in 0 until 64 step 8) {
                 for (zoneY in 0 until 64 step 8) {
                     val x = regionX + zoneX
                     val y = regionY + zoneY
-                    collisions.allocateIfAbsent(x, y, plane)
+                    collisions.allocateIfAbsent(x, y, level)
                 }
             }
         }
         for (i in 0 until reader.readInt()) {
-            val chunk = Chunk(reader.readInt()).tile
-            collisions.allocateIfAbsent(chunk.x, chunk.y, chunk.plane)
+            val zone = Zone(reader.readInt()).tile
+            collisions.allocateIfAbsent(zone.x, zone.y, zone.level)
         }
     }
 
     private fun readTiles(reader: BufferReader) {
         for (i in 0 until reader.readInt()) {
-            val chunkIndex = reader.readInt()
-            tileIndices[chunkIndex] = reader.position()
+            val zoneIndex = reader.readInt()
+            tileIndices[zoneIndex] = reader.position()
             val value = reader.readLong()
-            collisions.flags[chunkIndex] = IntArray(CHUNK_SIZE) {
+            collisions.flags[zoneIndex] = IntArray(ZONE_SIZE) {
                 if (value ushr it and 0x1 == 1L) CollisionFlag.FLOOR else 0
             }
         }
@@ -108,24 +108,24 @@ class MapDefinitions(
 
     private fun readObjects(reader: BufferReader) {
         for (i in 0 until reader.readInt()) {
-            val chunkIndex = reader.readInt()
-            objectIndices[chunkIndex] = reader.position()
+            val zoneIndex = reader.readInt()
+            objectIndices[zoneIndex] = reader.position()
             for (j in 0 until reader.readShort()) {
                 val obj = ZoneObject(reader.readInt())
                 val def = definitions.getValue(obj.id)
-                objects.set(obj, chunkIndex, def)
+                objects.set(obj, zoneIndex, def)
             }
         }
     }
 
     private fun readFullTiles(reader: BufferReader) {
         for (i in 0 until reader.readInt()) {
-            val chunkIndex = reader.readInt()
-            fillTiles(chunkIndex)
+            val zoneIndex = reader.readInt()
+            fillTiles(zoneIndex)
         }
     }
 
-    fun loadChunk(from: Chunk, to: Chunk, rotation: Int) {
+    fun loadZone(from: Zone, to: Zone, rotation: Int) {
         val start = System.currentTimeMillis()
         val tilePosition = tileIndices[from.id]?.toLong()
         if (tilePosition == null) {
@@ -146,47 +146,47 @@ class MapDefinitions(
         logger.info { "Loaded $from -> $to $rotation in ${System.currentTimeMillis() - start}ms" }
     }
 
-    private fun readObjects(chunk: Chunk, reader: Reader, chunkRotation: Int) {
-        val chunkX = chunk.tile.x
-        val chunkY = chunk.tile.y
+    private fun readObjects(zone: Zone, reader: Reader, zoneRotation: Int) {
+        val zoneTileX = zone.tile.x
+        val zoneTileY = zone.tile.y
         for (i in 0 until reader.readShort()) {
             val obj = ZoneObject(reader.readInt())
             val def = definitions.get(obj.id)
-            val rotation = (obj.rotation + chunkRotation) and 0x3
-            val rotX = chunkX + rotateX(obj.x, obj.y, def.sizeX, def.sizeY, rotation, chunkRotation)
-            val rotY = chunkY + rotateY(obj.x, obj.y, def.sizeX, def.sizeY, rotation, chunkRotation)
-            objects.set(obj.id, rotX, rotY, obj.plane, obj.shape, rotation, def)
+            val rotation = (obj.rotation + zoneRotation) and 0x3
+            val rotX = zoneTileX + rotateX(obj.x, obj.y, def.sizeX, def.sizeY, rotation, zoneRotation)
+            val rotY = zoneTileY + rotateY(obj.x, obj.y, def.sizeX, def.sizeY, rotation, zoneRotation)
+            objects.set(obj.id, rotX, rotY, obj.level, obj.shape, rotation, def)
         }
     }
 
-    private fun readTiles(chunk: Chunk, reader: Reader, chunkRotation: Int) {
+    private fun readTiles(zone: Zone, reader: Reader, zoneRotation: Int) {
         val intArray = collisions.allocateIfAbsent(
-            absoluteX = chunk.tile.x,
-            absoluteZ = chunk.tile.y,
-            level = chunk.plane
+            absoluteX = zone.tile.x,
+            absoluteZ = zone.tile.y,
+            level = zone.level
         )
         val value = reader.readLong()
-        for (i in 0 until CHUNK_SIZE) {
+        for (i in 0 until ZONE_SIZE) {
             if (value ushr i and 0x1 == 1L) {
                 val x = Tile.indexX(i)
                 val y = Tile.indexY(i)
-                val index = Tile.index(rotateX(x, y, chunkRotation), rotateY(x, y, chunkRotation))
+                val index = Tile.index(rotateX(x, y, zoneRotation), rotateY(x, y, zoneRotation))
                 intArray[index] = intArray[i] or CollisionFlag.FLOOR
             }
         }
     }
 
-    private fun fillTiles(chunkIndex: Int) {
-        val array = collisions.flags[chunkIndex]
+    private fun fillTiles(zoneIndex: Int) {
+        val array = collisions.flags[zoneIndex]
         if (array == null) {
-            collisions.flags[chunkIndex] = IntArray(CHUNK_SIZE) { CollisionFlag.FLOOR }
+            collisions.flags[zoneIndex] = IntArray(ZONE_SIZE) { CollisionFlag.FLOOR }
             return
         }
         array.fill(CollisionFlag.FLOOR)
     }
 
     companion object {
-        private const val CHUNK_SIZE = 64
+        private const val ZONE_SIZE = 64
 
         private fun rotateX(x: Int, y: Int, rotation: Int): Int {
             return (if (rotation == 1) y else if (rotation == 2) 7 - x else if (rotation == 3) 7 - y else x) and 0x7
@@ -202,11 +202,11 @@ class MapDefinitions(
             sizeX: Int,
             sizeY: Int,
             objRotation: Int,
-            chunkRotation: Int
+            zoneRotation: Int
         ): Int {
             var x = sizeX
             var y = sizeY
-            val rotation = chunkRotation and 0x3
+            val rotation = zoneRotation and 0x3
             if (objRotation and 0x1 == 1) {
                 val temp = x
                 x = y
@@ -227,9 +227,9 @@ class MapDefinitions(
             sizeX: Int,
             sizeY: Int,
             objRotation: Int,
-            chunkRotation: Int
+            zoneRotation: Int
         ): Int {
-            val rotation = chunkRotation and 0x3
+            val rotation = zoneRotation and 0x3
             var x = sizeY
             var y = sizeX
             if (objRotation and 0x1 == 1) {
@@ -252,7 +252,7 @@ class MapDefinitions(
             val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).loadCache(cache))
                 .load(Yaml(), "./data/definitions/objects.yml", null)
             val collisions = Collisions()
-            val objects = GameObjects(GameObjectCollision(collisions), ChunkBatchUpdates(), objectDefinitions, storeUnused = true)
+            val objects = GameObjects(GameObjectCollision(collisions), ZoneBatchUpdates(), objectDefinitions, storeUnused = true)
             val mapDefinitions = MapDefinitions(collisions, objectDefinitions, objects)
             mapDefinitions.load(File("./data/cache/active/"))
         }

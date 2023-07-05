@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.SuspendableEvent
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 
 /**
  * Entity moved between [from] and [to] tiles

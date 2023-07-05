@@ -3,8 +3,8 @@ package world.gregs.voidps.tools.map.obj
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.equals
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.equals
 import world.gregs.voidps.tools.map.obj.types.*
 import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
 import kotlin.system.exitProcess
@@ -14,14 +14,14 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
     val objs = get<GameObjects>()
 
     /**
-     * Ignore re-used objects, e.g. chains on planes > 0 in stronghold of security
+     * Ignore re-used objects, e.g. chains on levels > 0 in stronghold of security
      */
     private fun isReused(obj: GameObject): Boolean {
-        if (obj.tile.plane > 0) {
-            if (objs[obj.tile.addPlane(1), obj.id] != null) {
+        if (obj.tile.level > 0) {
+            if (objs[obj.tile.addLevel(1), obj.id] != null) {
                 return false
             }
-            if (objs[obj.tile.minus(plane = 1), obj.id] != null) {
+            if (objs[obj.tile.minus(level = 1), obj.id] != null) {
                 return false
             }
         }
@@ -83,7 +83,7 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
                 listOf(
                     wallOptions,
                     isOppositeTile,
-                    isPopulatedPlane
+                    isPopulatedLevel
                 )
             )
         )

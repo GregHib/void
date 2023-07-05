@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.instruct.Walk
 import world.gregs.voidps.world.script.WorldTest
@@ -59,7 +59,7 @@ internal class ObjectTest : WorldTest() {
         player.objectOption(ladder, "Climb-up")
         tick(3)
 
-        assertEquals(1, player.tile.plane)
+        assertEquals(1, player.tile.level)
     }
 
     @Test
@@ -72,7 +72,7 @@ internal class ObjectTest : WorldTest() {
         player.objectOption(ladder, "Climb-down")
         tick(3)
 
-        assertEquals(0, player.tile.plane)
+        assertEquals(0, player.tile.level)
     }
 
 }

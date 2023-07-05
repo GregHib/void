@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -15,9 +15,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.Distance
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Delta
+import world.gregs.voidps.type.Distance
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.visual.VisualMask
 import world.gregs.voidps.network.visual.Visuals
@@ -214,7 +214,7 @@ fun Character.forceWalk(target: Tile, delay: Int = tile.distanceTo(target) * 30,
 }
 
 val Character.turn: Delta
-    get() = Tile(visuals.turn.targetX, visuals.turn.targetY, tile.plane).delta(tile)
+    get() = Tile(visuals.turn.targetX, visuals.turn.targetY, tile.level).delta(tile)
 
 fun Character.turn(delta: Delta, update: Boolean = true): Boolean {
     if (delta == Delta.EMPTY) {

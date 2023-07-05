@@ -30,7 +30,7 @@ import world.gregs.voidps.engine.entity.item.hasRequirements
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.network.visual.update.player.EquipSlot

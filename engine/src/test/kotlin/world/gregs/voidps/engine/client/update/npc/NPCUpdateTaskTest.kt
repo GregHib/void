@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.EventHandlerStore
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.visual.NPCVisuals
@@ -188,7 +188,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.def.id } returns id
         every { npc.visuals.turn } returns Turn(direction = direction)
         every { npc.visuals.animation } returns Animation(123)
-        every { npcs.getDirect(player.tile.regionPlane) } returns listOf(index)
+        every { npcs.getDirect(player.tile.regionLevel) } returns listOf(index)
         every { npcs.indexed(index) } returns npc
         every { npc.visuals.flag } returns if (update) 10 else 0
         every { npc.visuals.flagged(2) } returns update
@@ -227,7 +227,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.tile } returns value(Tile(5, 3, 0))
         every { npc.index } returns index
         every { npc.def.id } returns id
-        every { npcs.getDirect(player.tile.regionPlane) } returns listOf(index)
+        every { npcs.getDirect(player.tile.regionLevel) } returns listOf(index)
         every { npcs.indexed(index) } returns npc
         every { npc.visuals.turn.direction } returns 8194
         every { entities.size } returns 256
@@ -251,7 +251,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.tile } returns value(Tile(15, 15, 0))
         every { npc.index } returns index
         every { npc.def.id } returns 20
-        every { npcs.getDirect(player.tile.regionPlane) } returns listOf(index)
+        every { npcs.getDirect(player.tile.regionLevel) } returns listOf(index)
         every { npcs.indexed(index) } returns npc
         every { npc.visuals.turn.direction } returns 8194
         // When
@@ -274,7 +274,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.tile } returns value(Tile(5, 3, 0))
         every { npc.index } returns index
         every { npc.def.id } returns 20
-        every { npcs.getDirect(player.tile.regionPlane) } returns listOf(index)
+        every { npcs.getDirect(player.tile.regionLevel) } returns listOf(index)
         every { npcs.indexed(index) } returns npc
         every { npc.visuals.turn.direction } returns 8194
         // When

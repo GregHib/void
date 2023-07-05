@@ -8,18 +8,18 @@ class MapDefinition(
     val objects: MutableList<MapObject> = mutableListOf()
 ) : Definition {
 
-    fun getTile(localX: Int, localY: Int, plane: Int) = MapTile(tiles[index(localX, localY, plane)])
+    fun getTile(localX: Int, localY: Int, level: Int) = MapTile(tiles[index(localX, localY, level)])
 
-    fun setTile(localX: Int, localY: Int, plane: Int, tile: MapTile) {
-        tiles[index(localX, localY, plane)] = tile.packed
+    fun setTile(localX: Int, localY: Int, level: Int, tile: MapTile) {
+        tiles[index(localX, localY, level)] = tile.packed
     }
 
     companion object {
-        internal fun index(localX: Int, localY: Int, plane: Int): Int {
-            return plane * 64 * 64 + localX * 64 + localY
+        internal fun index(localX: Int, localY: Int, level: Int): Int {
+            return (level shl 12) + (localX shl 6) + localY
         }
         internal fun localX(tile: Int) = tile shr 6 and 0x3f
         internal fun localY(tile: Int) = tile and 0x3f
-        internal fun plane(tile: Int) = tile shr 12 and 0x3
+        internal fun level(level: Int) = level shr 12 and 0x3
     }
 }

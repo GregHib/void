@@ -5,8 +5,8 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
-import world.gregs.voidps.engine.map.area.Area
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Area
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
@@ -38,10 +38,10 @@ class MusicTracks {
                         names[key] = index
                         for (element in value["areas"] as? List<Map<String, Any>> ?: return) {
                             val area = if (element.containsKey("region")) {
-                                val plane = element["plane"] as? Int ?: -1
+                                val level = element["level"] as? Int ?: -1
                                 val region = Region(element["region"] as Int)
-                                if (plane != -1) {
-                                    region.toPlane(plane).toCuboid()
+                                if (level != -1) {
+                                    region.toLevel(level).toCuboid()
                                 } else {
                                     region.toCuboid()
                                 }

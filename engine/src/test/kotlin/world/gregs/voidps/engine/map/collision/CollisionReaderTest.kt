@@ -11,7 +11,7 @@ import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapTile
 import world.gregs.voidps.engine.map.collision.CollisionReader.Companion.BLOCKED_TILE
 import world.gregs.voidps.engine.map.collision.CollisionReader.Companion.BRIDGE_TILE
-import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.type.Region
 
 internal class CollisionReaderTest {
     lateinit var collisions: Collisions

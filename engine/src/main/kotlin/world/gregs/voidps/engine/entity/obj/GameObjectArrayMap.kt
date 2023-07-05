@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.entity.obj
 
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.chunk.Chunk
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.zone.Zone
 
 /**
  * Much like [Collisions] this stores [GameObject]s by zone + [ObjectLayer]
@@ -11,10 +11,10 @@ import world.gregs.voidps.engine.map.collision.Collisions
 class GameObjectArrayMap : GameObjectMap {
     private val data: Array<IntArray?> = arrayOfNulls(TOTAL_ZONE_COUNT)
 
-    override fun get(obj: GameObject) = get(obj.x, obj.y, obj.plane, ObjectLayer.layer(obj.shape))
+    override fun get(obj: GameObject) = get(obj.x, obj.y, obj.level, ObjectLayer.layer(obj.shape))
 
     override operator fun get(x: Int, y: Int, level: Int, layer: Int): Int {
-        val zoneIndex = Chunk.tileIndex(x, y, level)
+        val zoneIndex = Zone.tileIndex(x, y, level)
         val tileIndex = Tile.index(x, y, layer)
         return data[zoneIndex]?.get(tileIndex) ?: -1
     }
@@ -25,16 +25,16 @@ class GameObjectArrayMap : GameObjectMap {
     }
 
     override operator fun set(x: Int, y: Int, level: Int, layer: Int, mask: Int) {
-        val tiles = data[Chunk.tileIndex(x, y, level)] ?: allocateIfAbsent(x, y, level)
+        val tiles = data[Zone.tileIndex(x, y, level)] ?: allocateIfAbsent(x, y, level)
         tiles[Tile.index(x, y, layer)] = mask
     }
 
     override fun add(obj: GameObject, mask: Int) {
         val x = obj.x
         val y = obj.y
-        val level = obj.plane
+        val level = obj.level
         val layer = ObjectLayer.layer(obj.shape)
-        val zoneIndex = Chunk.tileIndex(x, y, level)
+        val zoneIndex = Zone.tileIndex(x, y, level)
         val tileIndex = Tile.index(x, y, layer)
         val currentFlags = data[zoneIndex]?.get(tileIndex) ?: 0
         this[x, y, level, layer] = currentFlags or mask
@@ -43,14 +43,14 @@ class GameObjectArrayMap : GameObjectMap {
     override fun remove(obj: GameObject, mask: Int) {
         val x = obj.x
         val y = obj.y
-        val level = obj.plane
+        val level = obj.level
         val layer = ObjectLayer.layer(obj.shape)
         val currentFlags = this[x, y, level, layer]
         this[x, y, level, layer] = currentFlags and mask.inv()
     }
 
     private fun allocateIfAbsent(absoluteX: Int, absoluteY: Int, level: Int): IntArray {
-        val zoneIndex = Chunk.tileIndex(absoluteX, absoluteY, level)
+        val zoneIndex = Zone.tileIndex(absoluteX, absoluteY, level)
         return allocateIfAbsent(zoneIndex)
     }
 
@@ -63,11 +63,11 @@ class GameObjectArrayMap : GameObjectMap {
     }
 
     override fun deallocateZone(zoneX: Int, zoneY: Int, level: Int) {
-        data[Chunk.tileIndex(zoneX, zoneY, level)] = null
+        data[Zone.tileIndex(zoneX, zoneY, level)] = null
     }
 
     fun isZoneAllocated(absoluteX: Int, absoluteY: Int, level: Int): Boolean {
-        return data[Chunk.tileIndex(absoluteX, absoluteY, level)] != null
+        return data[Zone.tileIndex(absoluteX, absoluteY, level)] != null
     }
 
     override fun clear() {

@@ -34,7 +34,7 @@ class MapViewer {
 
     companion object {
         const val FILTER_VIEWPORT = false
-        const val DISPLAY_CHUNKS = false
+        const val DISPLAY_ZONES = false
         @JvmStatic
         fun main(args: Array<String>) {
             MapViewer()

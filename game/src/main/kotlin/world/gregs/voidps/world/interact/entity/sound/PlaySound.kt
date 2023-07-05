@@ -1,11 +1,11 @@
 package world.gregs.voidps.world.interact.entity.sound
 
-import world.gregs.voidps.engine.client.update.batch.ChunkBatchUpdates
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.network.encode.chunk.MidiAddition
-import world.gregs.voidps.network.encode.chunk.SoundAddition
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.network.encode.zone.MidiAddition
+import world.gregs.voidps.network.encode.zone.SoundAddition
 
 fun areaMidi(
     id: String,
@@ -17,8 +17,8 @@ fun areaMidi(
     speed: Int = 255,
 ) {
     val definitions: SoundDefinitions = get()
-    val batches: ChunkBatchUpdates = get()
-    batches.add(tile.chunk, MidiAddition(tile.id, definitions.get(id).id, radius, repeat, delay, volume, speed))
+    val batches: ZoneBatchUpdates = get()
+    batches.add(tile.zone, MidiAddition(tile.id, definitions.get(id).id, radius, repeat, delay, volume, speed))
 }
 
 fun areaSound(
@@ -31,6 +31,6 @@ fun areaSound(
     speed: Int = 255,
 ) {
     val definitions: SoundDefinitions = get()
-    val batches: ChunkBatchUpdates = get()
-    batches.add(tile.chunk, SoundAddition(tile.id, definitions.get(id).id, radius, repeat, delay, volume, speed))
+    val batches: ZoneBatchUpdates = get()
+    batches.add(tile.zone, SoundAddition(tile.id, definitions.get(id).id, radius, repeat, delay, volume, speed))
 }

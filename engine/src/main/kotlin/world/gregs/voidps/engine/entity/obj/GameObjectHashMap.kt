@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.entity.obj
 
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.chunk.Chunk
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.engine.map.zone.Zone
 
 /**
  * Stores [GameObject]s by zone + [ObjectLayer]
@@ -40,7 +40,7 @@ class GameObjectHashMap : GameObjectMap {
     }
 
     override fun deallocateZone(zoneX: Int, zoneY: Int, level: Int) {
-        val zone = Chunk.id(zoneX, zoneY, level)
+        val zone = Zone.id(zoneX, zoneY, level)
         for (x in 0 until 8) {
             for (y in 0 until 8) {
                 data.remove(index(zone, Tile.index(x, y, ObjectLayer.WALL)))
@@ -57,8 +57,8 @@ class GameObjectHashMap : GameObjectMap {
 
     companion object {
         private const val EXPECTED_OBJECT_COUNT = 74_000
-        private fun index(obj: GameObject): Int = index(obj.x, obj.y, obj.plane, ObjectLayer.layer(obj.shape))
-        private fun index(x: Int, y: Int, level: Int, layer: Int): Int = index(Chunk.tileIndex(x, y, level), Tile.index(x, y, layer))
+        private fun index(obj: GameObject): Int = index(obj.x, obj.y, obj.level, ObjectLayer.layer(obj.shape))
+        private fun index(x: Int, y: Int, level: Int, layer: Int): Int = index(Zone.tileIndex(x, y, level), Tile.index(x, y, layer))
         private fun index(zone: Int, tile: Int): Int = zone or (tile shl 24)
     }
 }

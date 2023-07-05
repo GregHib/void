@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Retreat
@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.character.watch
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 
 /**
  * Keeps [character] within attack range of [target]
@@ -36,7 +36,7 @@ class CombatMovement(
         if (character is Player && character.dialogue != null) {
             return
         }
-        if (target.tile.plane != character.tile.plane) {
+        if (target.tile.level != character.tile.level) {
             character.mode = EmptyMode
             return
         }

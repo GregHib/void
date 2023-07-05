@@ -10,14 +10,14 @@ import kotlin.math.min
 
 data class Area(
     val name: String? = null,
-    var planeMin: Int,
-    var planeMax: Int,
+    var levelMin: Int,
+    var levelMax: Int,
     var points: MutableList<Point> = mutableListOf(),
     var tags: List<String>? = null
 ) {
 
     @JsonIgnore
-    val planes: IntRange = planeMin..planeMax
+    val levels: IntRange = levelMin..levelMax
 
     @get:JsonIgnore
     val minX: Int

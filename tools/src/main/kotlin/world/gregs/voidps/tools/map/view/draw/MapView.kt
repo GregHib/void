@@ -40,7 +40,7 @@ class MapView(nav: NavigationGraph?, private val areaFile: String) : JPanel() {
      */
     var offsetX = 0
     var offsetY = 0
-    var plane = 0
+    var level = 0
         private set
 
     /*
@@ -88,9 +88,9 @@ class MapView(nav: NavigationGraph?, private val areaFile: String) : JPanel() {
         area.update(x, y)
     }
 
-    fun updatePlane(plane: Int) {
-        if (this.plane != plane) {
-            this.plane = plane
+    fun updateLevel(level: Int) {
+        if (this.level != level) {
+            this.level = level
             highlight.update()
             repaint()
         }
@@ -152,8 +152,8 @@ class MapView(nav: NavigationGraph?, private val areaFile: String) : JPanel() {
     }
 
     fun drag(mouseX: Int, mouseY: Int, mapStartX: Int, mapStartY: Int, offsetX: Int, offsetY: Int) {
-        val point = areaSet.getPointOrNull(mapStartX, flipMapY(mapStartY), plane)
-        val node = null//nav.nodes.firstOrNull { it is Tile && it.id == Tile.getId(mapStartX, flipMapY(mapStartY), plane) }
+        val point = areaSet.getPointOrNull(mapStartX, flipMapY(mapStartY), level)
+        val node = null//nav.nodes.firstOrNull { it is Tile && it.id == Tile.getId(mapStartX, flipMapY(mapStartY), level) }
         when {
             node != null -> {
 //                lc.update(mapStartX, mapStartY, mouseX, mouseY)
@@ -184,22 +184,22 @@ class MapView(nav: NavigationGraph?, private val areaFile: String) : JPanel() {
      * Move [mapY], [mapY] to the center of the view
      * @param mapY Flipped y map coordinate
      */
-    fun centreOn(mapX: Int, mapY: Int, plane: Int = this.plane) = align(width / 2, height / 2, mapX, mapY, plane)
+    fun centreOn(mapX: Int, mapY: Int, level: Int = this.level) = align(width / 2, height / 2, mapX, mapY, level)
 
     /**
      * Aligns the [mapX], [mapY] with a position in the view [viewX], [viewY]
      */
-    fun align(viewX: Int, viewY: Int, mapX: Int, mapY: Int, plane: Int = this.plane) {
+    fun align(viewX: Int, viewY: Int, mapX: Int, mapY: Int, level: Int = this.level) {
         offsetX = viewX - mapToImageX(mapX)
         offsetY = viewY - mapToImageY(mapY)
-        this.plane = plane
+        this.level = level
         update()
     }
 
-    fun offset(mapX: Int, mapY: Int, plane: Int = 0) {
+    fun offset(mapX: Int, mapY: Int, level: Int = 0) {
         offsetX += mapToImageX(mapX)
         offsetY += mapToImageY(mapY)
-        this.plane += plane
+        this.level += level
         update()
     }
 

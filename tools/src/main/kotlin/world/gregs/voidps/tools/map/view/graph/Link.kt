@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.map.view.graph
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.type.Tile
 
 data class Link(
     @get:JsonProperty("start")
