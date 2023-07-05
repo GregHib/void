@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.move.AreaEntered
+import world.gregs.voidps.engine.entity.character.mode.move.AreaExited
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
@@ -153,6 +154,12 @@ class Player(
                     players.remove(this@Player)
                     players.removeIndex(this@Player)
                     gatekeeper.releaseIndex(index)
+                }
+                val definitions = get<AreaDefinitions>()
+                for (def in definitions.get(tile.zone)) {
+                    if (tile in def.area) {
+                        events.emit(AreaExited(this@Player, def.name, def.tags, def.area))
+                    }
                 }
                 events.emit(Unregistered)
             }
