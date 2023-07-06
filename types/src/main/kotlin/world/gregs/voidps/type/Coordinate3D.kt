@@ -1,7 +1,5 @@
 package world.gregs.voidps.type
 
-import world.gregs.voidps.type.Direction
-
 interface Coordinate3D<T> {
 
     val x: Int
