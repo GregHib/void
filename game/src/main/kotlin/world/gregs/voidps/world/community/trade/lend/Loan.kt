@@ -7,10 +7,11 @@ import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.epochSeconds
-import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.activity.bank.bank
 import java.util.concurrent.TimeUnit
 
@@ -18,7 +19,7 @@ object Loan {
     private val definitions: ItemDefinitions by inject()
     private val logger = InlineLogger()
 
-    fun startLendTimer(player: Player) {
+    fun startLendTimer(player: Player, restart: Boolean) {
         if (!player.contains("lent_item")) {
             return
         }
@@ -26,14 +27,11 @@ object Loan {
         if (remaining < 0) {
             player.message("The item you lent has been returned to your collection box.")
         } else if (remaining > 0) {
-            val ticks = TimeUnit.MINUTES.toTicks(remaining + 1)
-            player.softQueue("loan_message", ticks) {
-                player.message("The item you lent has been returned to your collection box.")
-            }
+            player.softTimers.start("loan_message", restart)
         }
     }
 
-    fun startBorrowTimer(player: Player) {
+    fun startBorrowTimer(player: Player, restart: Boolean) {
         if (!player.contains("borrowed_item")) {
             return
         }
@@ -42,14 +40,7 @@ object Loan {
             player.message("The item you borrowed has been returned to its owner.")
             returnLoan(player)
         } else if (remaining > 0) {
-            val ticks = TimeUnit.MINUTES.toTicks(remaining)
-            player.softQueue("borrow_message", ticks) {
-                player.message("The item you borrowed will be returned to its owner in a minute.")
-                player.softQueue("expired_message", TimeUnit.MINUTES.toTicks(1)) {
-                    player.message("Your loan has expired; the item you borrowed will now be returned to its owner.")
-                    returnLoan(player)
-                }
-            }
+            player.softTimers.start("borrow_message", restart)
         }
     }
 
@@ -82,6 +73,16 @@ object Loan {
             logger.warn { "Player doesn't have lent item to remove $player $item" }
             return
         }
+        logger.info { "$player discarded item $item" }
+        val name: String? = player.getOrNull("borrowed_from")
+        if (name == null) {
+            logger.error { "Unable to find borrowed item partner for $player" }
+        } else {
+            player.softTimers.stop("lend_timeout")
+            val partner = get<Players>().get(name) ?: return
+            partner.softTimers.stop("lend_timeout")
+            partner.message("The item you lent has been returned to your collection box.")
+        }
     }
 
     private fun reset(player: Player) {
@@ -99,10 +100,11 @@ object Loan {
                 other.start("lend_timeout", seconds, epochSeconds())
             }
             player["borrowed_item"] = lend
-            player["borrowed_from"] = other
+            player["borrowed_from"] = other.name
             other["lent_item"] = item
-            other["lent_to"] = player
-            startBorrowTimer(player)
+            other["lent_to"] = player.name
+            startBorrowTimer(player, false)
+            startLendTimer(other, false)
         }
     }
 
