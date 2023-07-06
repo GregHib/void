@@ -98,7 +98,7 @@ fun exitArea(player: Player, to: Tile): Boolean {
 
 fun destroyInstance(player: Player) {
     val offset: Delta? = player.remove("demon_slayer_offset")
-    val target = if (offset == null) defaultTile else player.tile.minus(offset)
+    val target = if (offset != null && player.tile.minus(offset) in area) player.tile.minus(offset) else defaultTile
     player.start("demon_slayer_instance_exit", 2)
     player.tele(target)
     val instance: Region = player.remove("demon_slayer_instance") ?: return
@@ -119,7 +119,7 @@ suspend fun PlayerContext.cutscene() {
     val region = Region(12852)
     val instance = startCutscene(region)
     val offset = instance.offset(region)
-    println("Instance ${instance.x} ${instance.y} <- ${ region.x} ${region.y}")
+    println("Instance ${instance.x} ${instance.y} <- ${region.x} ${region.y}")
     player["demon_slayer_instance"] = instance
     player["demon_slayer_offset"] = offset
     player.steps.clear()
