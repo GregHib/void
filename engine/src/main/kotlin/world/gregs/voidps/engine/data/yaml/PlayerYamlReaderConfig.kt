@@ -22,7 +22,6 @@ internal class PlayerYamlReaderConfig(
         } else {
             super.add(list, when (parentMap) {
                 "blocked" -> Skill.valueOf(value as String)
-                "friends" -> ClanRank.valueOf(value as String)
                 else -> value
             }, parentMap)
         }
@@ -45,6 +44,9 @@ internal class PlayerYamlReaderConfig(
         } else if (key == "looks" || key == "colours") {
             value as List<Int>
             super.set(map, key, value.toIntArray(), indent, parentMap)
+        } else if (key == "friends") {
+            value as Map<String, Any>
+            super.set(map, key, value.mapValues { ClanRank.of(it.value as String) }, indent, parentMap)
         } else {
             super.set(map, key, value, indent, parentMap)
         }
