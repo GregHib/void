@@ -353,7 +353,7 @@ suspend fun NPCOption.cutscene() {
     player.shakeCamera(type = 3, intensity = 0, movement = 0, speed = 0, cycle = 0)
     player.playSound("rumbling")
     npc<Furious>("wally", "Die, foul demon!", clickToContinue = false)
-    player.tele(offset.add(3225, 3363), clearInterfaces = false)
+    player.tele(Tile(3225, 3363).add(offset), clearInterfaces = false)
 
     delay(2)
     player.start("no_clip", 3)

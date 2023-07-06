@@ -144,11 +144,10 @@ class Player(
         if (safely) {
             client?.logout()
             strongQueue("logout") {
-                disconnect()
+                // Make sure nothing else starts
             }
-        } else {
-            disconnect()
         }
+        disconnect()
     }
 
     private fun disconnect() {
