@@ -312,8 +312,8 @@ object ObjectDefinitions {
     fun Array<ObjectDefinition>.findTransforms(id: Int) {
         for (i in indices) {
             val def = getOrNull(i) ?: continue
-            if (def.transformIds?.contains(id) == true) {
-                println("Found $i ${def.transformIds?.contentToString()}")
+            if (def.transforms?.contains(id) == true) {
+                println("Found $i ${def.transforms?.contentToString()}")
             }
         }
     }

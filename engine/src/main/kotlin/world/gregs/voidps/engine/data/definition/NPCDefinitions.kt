@@ -42,9 +42,6 @@ class NPCDefinitions(
                 }
             }
             yaml.load<Any>(path, config)
-            for (def in definitions) {
-                def.transforms = def.transformIds?.map { if (it == -1) null else get(it).stringId }?.toTypedArray()
-            }
             ids.size
         }
         return this

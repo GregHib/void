@@ -5,8 +5,7 @@ import world.gregs.voidps.buffer.read.Reader
 interface Transforms {
     var varbit: Int
     var varp: Int
-    var transformIds: IntArray?
-    var transforms: Array<String?>?
+    var transforms: IntArray?
 
     fun readTransforms(buffer: Reader, isLast: Boolean) {
         varbit = buffer.readShort()
@@ -25,13 +24,13 @@ interface Transforms {
             }
         }
         val length = buffer.readUnsignedByte()
-        transformIds = IntArray(length + 2)
+        transforms = IntArray(length + 2)
         for (count in 0..length) {
-            transformIds!![count] = buffer.readUnsignedShort()
-            if (transformIds!![count] == 65535) {
-                transformIds!![count] = -1
+            transforms!![count] = buffer.readUnsignedShort()
+            if (transforms!![count] == 65535) {
+                transforms!![count] = -1
             }
         }
-        transformIds!![length + 1] = last
+        transforms!![length + 1] = last
     }
 }

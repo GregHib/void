@@ -166,7 +166,7 @@ class ObjectEncoder : DefinitionEncoder<ObjectDefinition> {
             writeByte(definition.supportItems)
         }
 
-        val configIds = definition.transformIds
+        val configIds = definition.transforms
         if (configIds != null && (definition.varbit != -1 || definition.varp != -1)) {
             val last = configIds.last()
             val ninetyTwo = last != -1

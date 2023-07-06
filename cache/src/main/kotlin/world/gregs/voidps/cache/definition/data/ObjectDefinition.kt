@@ -38,8 +38,7 @@ data class ObjectDefinition(
     var supportItems: Int = -1,
     override var varbit: Int = -1,
     override var varp: Int = -1,
-    override var transformIds: IntArray? = null,
-    override var transforms: Array<String?>? = null,
+    override var transforms: IntArray? = null,
     var anInt3015: Int = -1,
     var anInt3012: Int = 0,
     var anInt2989: Int = 0,
@@ -131,7 +130,10 @@ data class ObjectDefinition(
         if (delayShading != other.delayShading) return false
         if (offsetMultiplier != other.offsetMultiplier) return false
         if (brightness != other.brightness) return false
-        if (!options.contentEquals(other.options)) return false
+        if (options != null) {
+            if (other.options == null) return false
+            if (!options.contentEquals(other.options)) return false
+        } else if (other.options != null) return false
         if (contrast != other.contrast) return false
         if (originalColours != null) {
             if (other.originalColours == null) return false
@@ -227,7 +229,6 @@ data class ObjectDefinition(
         if (params != other.params) return false
         if (stringId != other.stringId) return false
         if (extras != other.extras) return false
-
         return true
     }
 
@@ -245,7 +246,7 @@ data class ObjectDefinition(
         result = 31 * result + delayShading.hashCode()
         result = 31 * result + offsetMultiplier
         result = 31 * result + brightness
-        result = 31 * result + options.contentHashCode()
+        result = 31 * result + (options?.contentHashCode() ?: 0)
         result = 31 * result + contrast
         result = 31 * result + (originalColours?.contentHashCode() ?: 0)
         result = 31 * result + (modifiedColours?.contentHashCode() ?: 0)
@@ -310,7 +311,7 @@ data class ObjectDefinition(
         result = 31 * result + anInt2975
         result = 31 * result + (params?.hashCode() ?: 0)
         result = 31 * result + stringId.hashCode()
-        result = 31 * result + extras.hashCode()
+        result = 31 * result + (extras?.hashCode() ?: 0)
         return result
     }
 

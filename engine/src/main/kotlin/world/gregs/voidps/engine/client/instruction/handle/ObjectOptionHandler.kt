@@ -13,8 +13,8 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.network.instruct.InteractObject
+import world.gregs.voidps.type.Tile
 
 class ObjectOptionHandler(
     private val objects: GameObjects,
@@ -86,13 +86,13 @@ class ObjectOptionHandler(
             val varbit = def.varbit
             if (varbit != -1) {
                 val index = getVarbitIndex(player, varbit)
-                return definitions.get(transforms[index] ?: return definition)
+                return definitions.get(transforms[index])
             }
 
             val varp = def.varp
             if (varp != -1) {
                 val index = this.getVarpIndex(player, varp)
-                return definitions.get(transforms[index] ?: return definition)
+                return definitions.get(transforms[index])
             }
             return definition
         }
