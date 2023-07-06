@@ -99,8 +99,8 @@ fun lend(player: Player, other: Player, id: String, slot: Int) {
     }
     if (!lent) {
         player.message("That item cannot be lent.")
-    } else {
-        player["lend_time"] = 0
-        other["other_lend_time"] = 0
+        return
     }
+    player["lend_time"] = 0
+    other["other_lend_time"] = 0
 }

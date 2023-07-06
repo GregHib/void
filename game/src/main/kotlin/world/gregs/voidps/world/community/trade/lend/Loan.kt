@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.activity.bank.bank
 import java.util.concurrent.TimeUnit
@@ -52,19 +53,17 @@ object Loan {
         }
     }
 
-    fun getTimeRemaining(player: Player, timeKey: String): Long {
-        return when {
-            player.contains(timeKey) -> {
-                val timeout: Long = player.getOrNull(timeKey) ?: return -1
-                System.currentTimeMillis() - timeout
-            }
-            else -> 0
+    fun getSecondsRemaining(player: Player, timeKey: String): Int {
+        val remaining = player.remaining(timeKey, epochSeconds())
+        if (remaining == -1) {
+            return 0
         }
+        return remaining
     }
 
-    fun getMinutesRemaining(player: Player, timeKey: String): Int {
-        val millis = getTimeRemaining(player, timeKey)
-        return TimeUnit.MILLISECONDS.toMinutes(millis).toInt()
+    private fun getMinutesRemaining(player: Player, timeKey: String): Int {
+        val seconds = player.remaining(timeKey, epochSeconds())
+        return TimeUnit.SECONDS.toMinutes(seconds.toLong()).toInt()
     }
 
     fun returnLoan(player: Player) {
@@ -95,22 +94,22 @@ object Loan {
         val lend = definitions.get(def.lendId).stringId
         if (player.inventory.add(lend)) {
             if (duration > 0) {
-                val millis = TimeUnit.HOURS.toMillis(duration.toLong()) - TimeUnit.MINUTES.toMillis(1L)
-                player["borrow_timeout"] = System.currentTimeMillis() + millis
-                other["lend_timeout"] = System.currentTimeMillis() + millis
+                val seconds = TimeUnit.HOURS.toSeconds(duration.toLong()).toInt()
+                player.start("borrow_timeout", seconds, epochSeconds())
+                other.start("lend_timeout", seconds, epochSeconds())
             }
             player["borrowed_item"] = lend
-            other["lent_item"] = item
             player["borrowed_from"] = other
+            other["lent_item"] = item
             other["lent_to"] = player
             startBorrowTimer(player)
         }
     }
 
     fun getExpiry(player: Player, key: String): String {
-        val remainder = getMinutesRemaining(player, key)
-        val hours = remainder / 60
-        val minutes = remainder.rem(60)
+        val seconds = getMinutesRemaining(player, key)
+        val hours = seconds / 60
+        val minutes = seconds.rem(60)
         val hour = if (hours > 0) " $hours ${"hour".plural(hours)}" else ""
         val minute = if (minutes > 0) " $minutes ${"minute".plural(minutes)}" else ""
         return "in$hour$minute"

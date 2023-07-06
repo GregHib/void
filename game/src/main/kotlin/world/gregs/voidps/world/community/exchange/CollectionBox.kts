@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.community.trade.lend.Loan
-import world.gregs.voidps.world.community.trade.lend.Loan.getTimeRemaining
+import world.gregs.voidps.world.community.trade.lend.Loan.getSecondsRemaining
 import world.gregs.voidps.world.community.trade.lent
 
 on<InterfaceOpened>({ id == "collection_box" }) { player: Player ->
@@ -21,7 +21,7 @@ on<InterfaceOpened>({ id == "collection_box" }) { player: Player ->
         player.containers.container("lent_collection_box").transaction {
             set(0, Item(lentItem, 1))
         }
-        val time = getTimeRemaining(player, "lend_timeout")
+        val time = getSecondsRemaining(player, "lend_timeout")
         if (time < 0) {
             player["lent_item_id"] = ""
             player["lent_item_amount"] = 0
@@ -33,7 +33,7 @@ on<InterfaceOption>({ id == "collection_box" && component == "box_lent" && optio
     if (!player.contains("lend_timeout")) {
         // Force reclaim
     } else {
-        val remainder = getTimeRemaining(player, "lend_timeout")
+        val remainder = getSecondsRemaining(player, "lend_timeout")
         if (remainder > 0) {
             player.message("Loan expires ${Loan.getExpiry(player, "lend_timeout")}")
         } else {

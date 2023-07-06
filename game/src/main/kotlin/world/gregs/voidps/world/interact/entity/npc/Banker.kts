@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.world.community.trade.lend.Loan.getTimeRemaining
+import world.gregs.voidps.world.community.trade.lend.Loan.getSecondsRemaining
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -18,7 +18,7 @@ on<NPCOption>({ approach && def.name == "Banker" && option == "Talk-to" }) { pla
     player.approachRange(2)
     pause()
     npc<Unsure>("Good day. How may I help you?")
-    val loanReturned = getTimeRemaining(player, "lend_timeout") < 0
+    val loanReturned = getSecondsRemaining(player, "lend_timeout") < 0
     val collection = false
 
     if (loanReturned) {
