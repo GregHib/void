@@ -52,7 +52,7 @@ on<ContainerOption>({ container == "inventory" && option == "Discard" }) { playe
 }
 
 fun getExpiryMessage(player: Player): String {
-    return if (!player.contains("borrow_timeout")) {
+    return if (player.contains("borrow_timeout")) {
         getExpiry(player, "borrow_timeout")
     } else {
         "after logout"
