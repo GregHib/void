@@ -141,28 +141,34 @@ class Player(
             return
         }
         this["logged_out"] = true
-        strongQueue("logout") {
-            if (safely) {
-                client?.logout()
+        if (safely) {
+            client?.logout()
+            strongQueue("logout") {
+                disconnect()
             }
-            client?.disconnect()
-            val queue: ConnectionQueue = get()
-            val gatekeeper: ConnectionGatekeeper = get()
-            queue.disconnect {
-                val players: Players = get()
-                World.run("logout", 1) {
-                    players.remove(this@Player)
-                    players.removeIndex(this@Player)
-                    gatekeeper.releaseIndex(index)
-                }
-                val definitions = get<AreaDefinitions>()
-                for (def in definitions.get(tile.zone)) {
-                    if (tile in def.area) {
-                        events.emit(AreaExited(this@Player, def.name, def.tags, def.area))
-                    }
-                }
-                events.emit(Unregistered)
+        } else {
+            disconnect()
+        }
+    }
+
+    private fun disconnect() {
+        client?.disconnect()
+        val queue: ConnectionQueue = get()
+        val gatekeeper: ConnectionGatekeeper = get()
+        queue.disconnect {
+            val players: Players = get()
+            World.run("logout", 1) {
+                players.remove(this@Player)
+                players.removeIndex(this@Player)
+                gatekeeper.releaseIndex(index)
             }
+            val definitions = get<AreaDefinitions>()
+            for (def in definitions.get(tile.zone)) {
+                if (tile in def.area) {
+                    events.emit(AreaExited(this@Player, def.name, def.tags, def.area))
+                }
+            }
+            events.emit(Unregistered)
         }
     }
 
