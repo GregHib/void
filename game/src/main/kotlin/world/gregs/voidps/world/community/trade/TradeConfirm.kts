@@ -54,6 +54,8 @@ on<InterfaceOption>({ id == "trade_confirm" && component == "accept" && option =
         val success = acceptor.offer.transaction {
             moveAll(requester.inventory)
             link(requester.offer).moveAll(acceptor.inventory)
+            link(requester.loan).moveAll(requester.returnedItems)
+            link(acceptor.loan).moveAll(acceptor.returnedItems)
         }
         if (!success) {
             logger.info { "Issue exchanging items $player ${player.offer} ${player.otherOffer} ${player.loan} ${player.otherLoan} ${player.inventory}" }
@@ -67,7 +69,7 @@ on<InterfaceOption>({ id == "trade_confirm" && component == "accept" && option =
 }
 
 fun loanItem(player: Player, other: Player) {
-    val loanItem = player.otherLoan[0].id
+    val loanItem = other.returnedItems[0].id
     val duration = other["lend_time", -1]
     if (loanItem.isBlank() || duration == -1) {
         return
