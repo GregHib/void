@@ -12,11 +12,11 @@ val accounts: PlayerAccounts by inject()
 
 on<Unregistered>(priority = Priority.LOWEST) { player: Player ->
     player.queue.logout()
-    player.softTimers.clearAll()
-    player.timers.clearAll()
+    player.softTimers.stopAll()
+    player.timers.stopAll()
     accounts.queueSave(player)
 }
 
 on<Unregistered>(priority = Priority.LOWEST) { npc: NPC ->
-    npc.softTimers.clearAll()
+    npc.softTimers.stopAll()
 }

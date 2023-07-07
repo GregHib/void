@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
@@ -26,8 +25,9 @@ import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.community.clan.clan
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.damageDealers
@@ -59,7 +59,7 @@ on<Death> { npc: NPC ->
         pause(4)
         dropLoot(npc, killer, name, tile)
         npc.attackers.clear()
-        npc.softTimers.clearAll()
+        npc.softTimers.stopAll()
         npcs.removeIndex(npc)
         val respawn = npc.getOrNull<Tile>("respawn_tile")
         if (respawn != null) {
