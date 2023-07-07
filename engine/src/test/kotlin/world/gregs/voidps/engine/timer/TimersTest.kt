@@ -123,12 +123,22 @@ abstract class TimersTest {
     }
 
     @Test
+    fun `Stopping timers emit stop`() {
+        timers.start("timer")
+        timers.stopAll()
+        assertFalse(timers.contains("timer"))
+        assertEquals(TimerStart("timer"), emitted.pop())
+        assertEquals(TimerStop("timer", logout = true), emitted.pop())
+        assertTrue(emitted.isEmpty())
+    }
+
+    @Test
     fun `Cleared timers are cancelled`() {
         timers.start("timer")
         timers.clearAll()
         assertFalse(timers.contains("timer"))
         assertEquals(TimerStart("timer"), emitted.pop())
-        assertEquals(TimerStop("timer", logout = true), emitted.pop())
+        assertTrue(emitted.isEmpty())
         assertTrue(emitted.isEmpty())
     }
 }

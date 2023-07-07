@@ -54,15 +54,23 @@ class TimerQueue(
     }
 
     override fun stop(name: String) {
-        if (names.remove(name) && queue.removeIf { it.name == name }) {
+        if (clear(name)) {
             events.emit(TimerStop(name, logout = false))
         }
     }
 
+    override fun clear(name: String): Boolean {
+        return names.remove(name) && queue.removeIf { it.name == name }
+    }
+
     override fun clearAll() {
-        val names = names.toList()
-        this.names.clear()
+        names.clear()
         queue.clear()
+    }
+
+    override fun stopAll() {
+        val names = names.toList()
+        clearAll()
         for (name in names) {
             events.emit(TimerStop(name, logout = true))
         }

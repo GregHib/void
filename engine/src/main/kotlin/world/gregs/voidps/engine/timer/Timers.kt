@@ -4,7 +4,25 @@ interface Timers : Runnable {
     fun start(name: String, restart: Boolean = false): Boolean
     fun restart(name: String) = start(name, restart = true)
     fun contains(name: String): Boolean
+
+    /**
+     * Clears timer [name] and emits [TimerStop]
+     */
     fun stop(name: String)
+
+    /**
+     * Removes timer [name]
+     */
+    fun clear(name: String): Boolean
+
+    /**
+     * Stops all timers
+     */
+    fun stopAll()
+
+    /**
+     * Removes all timers
+     */
     fun clearAll()
 
     fun toggle(name: String) {
