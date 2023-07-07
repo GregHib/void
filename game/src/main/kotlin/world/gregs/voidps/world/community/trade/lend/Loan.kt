@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.community.trade.lend
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.*
@@ -13,36 +12,12 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.activity.bank.bank
+import world.gregs.voidps.world.community.trade.returnedItems
 import java.util.concurrent.TimeUnit
 
 object Loan {
     private val definitions: ItemDefinitions by inject()
     private val logger = InlineLogger()
-
-    fun startLendTimer(player: Player, restart: Boolean) {
-        if (!player.contains("lent_item")) {
-            return
-        }
-        val remaining = getMinutesRemaining(player, "lend_timeout")
-        if (remaining < 0) {
-            player.message("The item you lent has been returned to your collection box.")
-        } else if (remaining > 0) {
-            player.softTimers.start("loan_message", restart)
-        }
-    }
-
-    fun startBorrowTimer(player: Player, restart: Boolean) {
-        if (!player.contains("borrowed_item")) {
-            return
-        }
-        val remaining = getMinutesRemaining(player, "borrow_timeout")
-        if (remaining < 0) {
-            player.message("The item you borrowed has been returned to its owner.")
-            returnLoan(player)
-        } else if (remaining > 0) {
-            player.softTimers.start("borrow_message", restart)
-        }
-    }
 
     fun getSecondsRemaining(player: Player, timeKey: String): Int {
         val remaining = player.remaining(timeKey, epochSeconds())
@@ -68,20 +43,18 @@ object Loan {
     }
 
     fun returnLoan(player: Player, item: String) {
-        reset(player)
         if (!player.inventory.remove(item) && !player.equipment.remove(item) && !player.bank.remove(item) && !player.beastOfBurden.remove(item)) {
             logger.warn { "Player doesn't have lent item to remove $player $item" }
             return
         }
+        reset(player)
         logger.info { "$player discarded item $item" }
         val name: String? = player.getOrNull("borrowed_from")
         if (name == null) {
             logger.error { "Unable to find borrowed item partner for $player" }
         } else {
-            player.softTimers.stop("lend_timeout")
-            val partner = get<Players>().get(name) ?: return
-            partner.softTimers.stop("lend_timeout")
-            partner.message("The item you lent has been returned to your collection box.")
+            val lender = get<Players>().get(name) ?: return
+            lender.softTimers.stop("loan_message")
         }
     }
 
@@ -90,22 +63,25 @@ object Loan {
         player.clear("borrow_timeout")
     }
 
-    fun lendItem(player: Player, other: Player, item: String, duration: Int) {
+    fun lendItem(borrower: Player, lender: Player, item: String, duration: Int) {
         val def = definitions.get(item)
         val lend = definitions.get(def.lendId).stringId
-        if (player.inventory.add(lend)) {
-            if (duration > 0) {
-                val seconds = TimeUnit.HOURS.toSeconds(duration.toLong()).toInt()
-                player.start("borrow_timeout", seconds, epochSeconds())
-                other.start("lend_timeout", seconds, epochSeconds())
-            }
-            player["borrowed_item"] = lend
-            player["borrowed_from"] = other.name
-            other["lent_item"] = item
-            other["lent_to"] = player.name
-            startBorrowTimer(player, false)
-            startLendTimer(other, false)
+        if (!borrower.inventory.add(lend)) {
+            return
         }
+        if (duration > 0) {
+            val seconds = TimeUnit.HOURS.toSeconds(duration.toLong()).toInt()
+            borrower.start("borrow_timeout", seconds, epochSeconds())
+            lender.start("lend_timeout", seconds, epochSeconds())
+        }
+        borrower["borrowed_item"] = lend
+        borrower["borrowed_from"] = lender.name
+        borrower.softTimers.start("borrow_message")
+
+        lender["lent_to"] = borrower.name
+        lender["lent_item_id"] = lender.returnedItems[0].def.id
+        lender["lent_item_amount"] = lender.returnedItems[0].amount
+        lender.softTimers.start("loan_message")
     }
 
     fun getExpiry(player: Player, key: String): String {

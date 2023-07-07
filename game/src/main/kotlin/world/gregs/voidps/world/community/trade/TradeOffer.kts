@@ -84,7 +84,7 @@ fun lend(player: Player, other: Player, id: String, slot: Int) {
         return
     }
 
-    if (player.contains("lent_item")) {
+    if (player.returnedItems.isFull()) {
         player.message("You are already lending an item, you can't lend another.")
         return
     }

@@ -61,7 +61,7 @@ abstract class WorldTest : KoinTest {
     private val logger = InlineLogger()
     private lateinit var engine: GameLoop
     private lateinit var store: EventHandlerStore
-    private lateinit var players: Players
+    lateinit var players: Players
     private lateinit var gatekeeper: NetworkGatekeeper
     private lateinit var npcs: NPCs
     lateinit var floorItems: FloorItems
