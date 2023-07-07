@@ -1,55 +1,107 @@
 package world.gregs.voidps.world.community.trade.lend
 
-import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.getOrNull
-import world.gregs.voidps.engine.client.variable.containsVarbit
-import world.gregs.voidps.engine.client.variable.contains
-import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.world.community.trade.lend.Loan.returnLoan
-import world.gregs.voidps.world.community.trade.lend.Loan.startBorrowTimer
-import world.gregs.voidps.world.community.trade.lend.Loan.startLendTimer
+import world.gregs.voidps.world.community.trade.returnedItems
+import java.util.concurrent.TimeUnit
 
 /**
  * Reschedule timers on player login
  * On logout return items borrowed or lent until logout
  */
-
-val logger = InlineLogger()
+val players: Players by inject()
 
 on<Registered> { player: Player ->
-    startLendTimer(player)
-    startBorrowTimer(player)
+    checkBorrowComplete(player)
+    checkLoanComplete(player)
+}
+
+fun checkBorrowComplete(player: Player) {
+    if (!player.contains("borrowed_item")) {
+        return
+    }
+    val remaining = player.remaining("borrow_timeout", epochSeconds())
+    if (remaining <= 0) {
+        player.message("The item you borrowed has been returned to its owner.")
+        returnLoan(player)
+    } else {
+        player.softTimers.start("borrow_message", true)
+    }
+}
+
+fun checkLoanComplete(player: Player) {
+    if (!player.returnedItems.isFull()) {
+        return
+    }
+    val remaining = player.remaining("lend_timeout", epochSeconds())
+    if (remaining <= 0) {
+        stopLending(player)
+    } else {
+        player.softTimers.start("loan_message", true)
+    }
 }
 
 on<Unregistered> { player: Player ->
+    checkBorrowUntilLogout(player)
+    checkLoanUntilLogout(player)
+}
+
+fun checkBorrowUntilLogout(player: Player) {
     if (!player.contains("borrow_timeout") && player.contains("borrowed_item")) {
         returnLoan(player)
-        val partner: Player? = player.getOrNull("borrowed_from")
-        if (partner == null) {
-            logger.error { "Unable to find borrowed item partner for $player" }
-        } else {
-            reset(player, partner)
-            partner.message("The item you lent has been returned to your collection box.")
-        }
-    }
-    if (!player.contains("lend_timeout") && player.contains("lent_item")) {
-        val partner: Player? = player.getOrNull("lent_to")
-        if (partner == null) {
-            logger.error { "Unable to find lent item partner for $player" }
-            return@on
-        }
-        reset(partner, player)
-        partner.message("The item you borrowed has been returned to its owner.")
     }
 }
 
-fun reset(borrower: Player, lender: Player) {
-    val time = System.currentTimeMillis() - 1
-    lender["lend_timeout"] = time
-    borrower["borrow_timeout"] = time
+fun checkLoanUntilLogout(player: Player) {
+    if (!player.contains("lend_timeout") && player.returnedItems.isFull() && player.contains("lent_to")) {
+        val name: String = player["lent_to"]
+        player.stop("lend_timeout")
+        player.softTimers.stop("loan_message")
+        val borrower = players.get(name) ?: return
+        borrower.stop("borrow_timeout")
+        borrower.softTimers.stop("borrow_message")
+        borrower.message("The item you borrowed has been returned to its owner.")
+    }
+}
+
+on<TimerStart>({ timer == "loan_message" }) { player: Player ->
+    val remaining = player.remaining("lend_timeout", epochSeconds())
+    interval = TimeUnit.SECONDS.toTicks(remaining)
+}
+
+on<TimerStop>({ timer == "loan_message" && !logout }) { player: Player ->
+    stopLending(player)
+}
+
+on<TimerStart>({ timer == "borrow_message" }) { _: Player ->
+    interval = TimeUnit.MINUTES.toTicks(1)
+}
+
+on<TimerTick>({ timer == "borrow_message" }) { player: Player ->
+    val remaining = player.remaining("borrow_timeout", epochSeconds())
+    if (remaining <= 0) {
+        player.message("Your loan has expired; the item you borrowed will now be returned to its owner.")
+        cancel()
+    } else if (remaining == 60) {
+        player.message("The item you borrowed will be returned to its owner in a minute.")
+    }
+}
+
+on<TimerStop>({ timer == "borrow_message" && !logout }) { player: Player ->
+    returnLoan(player)
+}
+
+fun stopLending(player: Player) {
+    player.message("The item you lent has been returned to your collection box.")
+    player.clear("lent_to")
+    player.clear("lent_item_id")
+    player.clear("lent_item_amount")
 }

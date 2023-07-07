@@ -34,8 +34,8 @@ value class Region(val id: Int) {
     fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(tile, width * 64, height * 64, 4)
     fun toCuboid(radius: Int) = Cuboid(minus(radius, radius).tile, (radius * 2 + 1) * 64, (radius * 2 + 1) * 64, 4)
 
-    fun offset(region: Region): Tile {
-        return tile.minus(region.tile)
+    fun offset(region: Region): Delta {
+        return tile.delta(region.tile)
     }
 
     companion object {

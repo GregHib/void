@@ -2,28 +2,28 @@ package world.gregs.voidps.bot.navigation.graph
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import world.gregs.voidps.engine.data.definition.AreaDefinition
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
-import world.gregs.voidps.type.Distance
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.map.area.Areas
-import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.network.instruct.Walk
+import world.gregs.voidps.type.Distance
+import world.gregs.voidps.type.Tile
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
 
 class NavigationGraph(
     private val definitions: ObjectDefinitions,
-    private val areas: Areas
+    private val areas: AreaDefinitions
 ) {
 
     private var adjacencyList: Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>> = Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>>()
-    private val tags = mutableMapOf<Any, Set<MapArea>>()
+    private val tags = mutableMapOf<Any, Set<AreaDefinition>>()
 
     val nodes: Set<Any>
         get() = adjacencyList.keys
@@ -36,7 +36,7 @@ class NavigationGraph(
 
     fun get(node: Any): ObjectOpenHashSet<Edge> = adjacencyList.getOrPut(node) { ObjectOpenHashSet() }
 
-    fun areas(node: Any): Set<MapArea> = tags[node] ?: emptyTags
+    fun areas(node: Any): Set<AreaDefinition> = tags[node] ?: emptyTags
 
     fun add(node: Any, set: ObjectOpenHashSet<Edge>) {
         adjacencyList[node] = set
@@ -154,7 +154,7 @@ class NavigationGraph(
 
     companion object {
         private val empty = emptySet<Edge>()
-        private val emptyTags = emptySet<MapArea>()
+        private val emptyTags = emptySet<AreaDefinition>()
     }
 
 }

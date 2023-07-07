@@ -121,6 +121,10 @@ class ActionQueue(private val character: Character) : CoroutineScope {
         queue.removeIf {
             if (it.behaviour == LogoutBehaviour.Accelerate) {
                 launch(it)
+                while (character.delay != null) {
+                    character.delay?.resume(Unit)
+                    character.delay = null
+                }
             }
             it.cancel()
             true

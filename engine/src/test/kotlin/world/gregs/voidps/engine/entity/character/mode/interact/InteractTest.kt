@@ -12,6 +12,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.koin.core.module.Module
 import org.koin.dsl.module
+import org.koin.test.mock.declareMock
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
@@ -20,6 +21,7 @@ import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -27,12 +29,13 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.event.EventHandler
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.suspend.TickSuspension
 import world.gregs.voidps.network.visual.NPCVisuals
 import world.gregs.voidps.network.visual.PlayerVisuals
+import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -78,6 +81,9 @@ internal class InteractTest : KoinMock() {
         target.visuals = NPCVisuals(0)
         target.collision = CollisionStrategies.Normal
         target.def = NPCDefinition.EMPTY
+        declareMock<AreaDefinitions> {
+            every { get(any<Zone>()) } returns emptySet()
+        }
     }
 
 

@@ -5199,7 +5199,7 @@ slayer_equipment:
     - slayer_bell: 10
     - broad_arrow_heads: 3000
     - unfinished_broad_bolts: 3000
-lent_collection_box:
+returned_lent_items:
   id: 540
   width: 0
   height: 1

@@ -14,12 +14,15 @@ import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.Containers
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
+import world.gregs.voidps.engine.entity.character.mode.move.AreaEntered
+import world.gregs.voidps.engine.entity.character.mode.move.AreaExited
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
@@ -27,8 +30,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.Suspension
@@ -40,6 +41,7 @@ import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.encode.login
 import world.gregs.voidps.network.encode.logout
 import world.gregs.voidps.network.visual.PlayerVisuals
+import world.gregs.voidps.type.Tile
 import kotlin.coroutines.Continuation
 
 /**
@@ -123,10 +125,15 @@ class Player(
             client.on(Contexts.Game, ClientState.Disconnecting) {
                 logout(false)
             }
-            events.emit(RegionLogin)
             viewport?.players?.addSelf(this)
         }
         events.emit(Registered)
+        val definitions = get<AreaDefinitions>()
+        for (def in definitions.get(tile.zone)) {
+            if (tile in def.area) {
+                events.emit(AreaEntered(this, def.name, def.tags, def.area))
+            }
+        }
     }
 
     fun logout(safely: Boolean) {
@@ -134,22 +141,33 @@ class Player(
             return
         }
         this["logged_out"] = true
-        strongQueue("logout") {
-            if (safely) {
-                client?.logout()
+        if (safely) {
+            client?.logout()
+            strongQueue("logout") {
+                // Make sure nothing else starts
             }
-            client?.disconnect()
-            val queue: ConnectionQueue = get()
-            val gatekeeper: ConnectionGatekeeper = get()
-            queue.disconnect {
-                val players: Players = get()
-                World.run("logout", 1) {
-                    players.remove(this@Player)
-                    players.removeIndex(this@Player)
-                    gatekeeper.releaseIndex(index)
+        }
+        disconnect()
+    }
+
+    private fun disconnect() {
+        client?.disconnect()
+        val queue: ConnectionQueue = get()
+        val gatekeeper: ConnectionGatekeeper = get()
+        queue.disconnect {
+            val players: Players = get()
+            World.run("logout", 1) {
+                players.remove(this@Player)
+                players.removeIndex(this@Player)
+                gatekeeper.releaseIndex(index)
+            }
+            val definitions = get<AreaDefinitions>()
+            for (def in definitions.get(tile.zone)) {
+                if (tile in def.area) {
+                    events.emit(AreaExited(this@Player, def.name, def.tags, def.area))
                 }
-                events.emit(Unregistered)
             }
+            events.emit(Unregistered)
         }
     }
 

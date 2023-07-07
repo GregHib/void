@@ -66,6 +66,7 @@ class InterfaceHandler(
         val slot = when {
             itemSlot == -1 && containerId == "worn_equipment" -> player.equipment.indexOf(itemId)
             itemSlot == -1 && containerId == "item_loan" -> 0
+            itemSlot == -1 && containerId == "returned_lent_items" -> 0
             containerId == "inventory" -> itemSlot
             else -> itemSlot
         }

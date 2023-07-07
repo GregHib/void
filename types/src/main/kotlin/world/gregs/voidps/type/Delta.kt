@@ -1,7 +1,5 @@
 package world.gregs.voidps.type
 
-import world.gregs.voidps.type.Direction
-
 /**
  * Difference between two coordinates
  */

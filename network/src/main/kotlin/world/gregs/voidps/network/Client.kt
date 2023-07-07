@@ -16,7 +16,7 @@ open class Client(
 
     private val logger = InlineLogger()
     private val handler = Dispatchers.IO + CoroutineExceptionHandler { _, throwable ->
-        logger.warn { throwable.message }
+        logger.warn { "Client error: ${throwable.message}" }
         disconnect()
     }
     var disconnected: Boolean = false

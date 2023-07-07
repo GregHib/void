@@ -25,7 +25,7 @@ internal class TimerSlotTest : TimersTest() {
         assertTrue(timers.contains("2"))
         assertEquals(TimerStart("1"), emitted.pop())
         assertEquals(TimerStart("2"), emitted.pop())
-        assertEquals(TimerStop("1"), emitted.pop())
+        assertEquals(TimerStop("1", logout = false), emitted.pop())
         assertEquals(TimerTick("2"), emitted.pop())
         assertEquals(TimerTick("2"), emitted.pop())
         assertEquals(TimerTick("2"), emitted.pop())

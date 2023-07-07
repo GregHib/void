@@ -175,9 +175,6 @@ collection_box:
     box4: 32
     box5: 37
     box6: 42
-    box_lent:
-      id: 58
-      container: lent_collection_box
 # Item
 dialogue_double_obj_box:
   id: 131
@@ -1848,7 +1845,12 @@ bank_side:
         Examine: 9
 bank_help: 767
 loan_return_side: 771
-loan_returned: 772
+returned_items:
+  id: 772
+  components:
+    item:
+      id: 10
+      container: returned_lent_items
 rc_guild_side: 778
 rc_guild_rewards: 779
 circus_side: 784

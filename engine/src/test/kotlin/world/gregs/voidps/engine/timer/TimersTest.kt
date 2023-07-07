@@ -13,7 +13,7 @@ abstract class TimersTest {
     lateinit var emitted: LinkedList<Event>
     lateinit var events: Events
     lateinit var timers: Timers
-    private var block: ((Event) -> Unit)? = null
+    internal var block: ((Event) -> Unit)? = null
 
     open fun setup() {
         GameLoop.tick = 0
@@ -109,7 +109,7 @@ abstract class TimersTest {
         assertFalse(timers.contains("timer"))
         assertEquals(TimerStart("timer"), emitted.pop())
         assertEquals(TimerTick("timer"), emitted.pop())
-        assertEquals(TimerStop("timer"), emitted.pop())
+        assertEquals(TimerStop("timer", logout = false), emitted.pop())
         assertTrue(emitted.isEmpty())
     }
 
@@ -118,7 +118,17 @@ abstract class TimersTest {
         timers.start("timer")
         timers.stop("timer")
         assertEquals(TimerStart("timer"), emitted.pop())
-        assertEquals(TimerStop("timer"), emitted.pop())
+        assertEquals(TimerStop("timer", logout = false), emitted.pop())
+        assertTrue(emitted.isEmpty())
+    }
+
+    @Test
+    fun `Stopping timers emit stop`() {
+        timers.start("timer")
+        timers.stopAll()
+        assertFalse(timers.contains("timer"))
+        assertEquals(TimerStart("timer"), emitted.pop())
+        assertEquals(TimerStop("timer", logout = true), emitted.pop())
         assertTrue(emitted.isEmpty())
     }
 
@@ -128,7 +138,7 @@ abstract class TimersTest {
         timers.clearAll()
         assertFalse(timers.contains("timer"))
         assertEquals(TimerStart("timer"), emitted.pop())
-        assertEquals(TimerStop("timer"), emitted.pop())
+        assertTrue(emitted.isEmpty())
         assertTrue(emitted.isEmpty())
     }
 }

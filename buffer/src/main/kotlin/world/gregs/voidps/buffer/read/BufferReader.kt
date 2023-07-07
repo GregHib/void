@@ -9,6 +9,8 @@ class BufferReader(
     constructor(array: ByteArray) : this(buffer = ByteBuffer.wrap(array))
 
     override val length: Int = buffer.remaining()
+    override val remaining: Int
+        get() = buffer.remaining()
     private var bitIndex = 0
 
     override fun readByte(): Int {

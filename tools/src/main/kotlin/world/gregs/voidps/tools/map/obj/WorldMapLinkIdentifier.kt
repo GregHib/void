@@ -9,16 +9,15 @@ import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.type.Region
-import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
 import world.gregs.voidps.tools.property
 import world.gregs.voidps.tools.propertyOrNull
+import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.Tile
 import world.gregs.yaml.Yaml
 
 /**
@@ -29,9 +28,7 @@ object WorldMapLinkIdentifier {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val xteas: Xteas = Xteas(mutableMapOf()).apply {
-            XteaLoader().load(this, property("xteaPath"), propertyOrNull("xteaJsonKey"), propertyOrNull("xteaJsonValue"))
-        }
+        val xteas: Xteas = Xteas().load(property("xteaPath"), propertyOrNull("xteaJsonKey") ?: Xteas.DEFAULT_KEY, propertyOrNull("xteaJsonValue") ?: Xteas.DEFAULT_VALUE)
         val worldMapDetailsDecoder = WorldMapDetailsDecoder().loadCache(cache)
         val worldMapIconDecoder = WorldMapIconDecoder().loadCache(cache)
         val definitions: ObjectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).loadCache(cache)).load(Yaml(), property("objectDefinitionsPath"), null)

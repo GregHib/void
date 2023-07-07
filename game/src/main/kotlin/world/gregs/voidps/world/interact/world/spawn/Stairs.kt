@@ -3,9 +3,9 @@ package world.gregs.voidps.world.interact.world.spawn
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
+import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
 
@@ -48,9 +48,13 @@ class Stairs {
                     }, indent, parentMap)
                 }
             }
-            val teleports: List<Pair<Int, Map<String, Teleport>>> = yaml.load(path, config)
-            this.teleports = Int2ObjectOpenHashMap(teleports.toMap())
-            teleports.size
+            val data: List<Pair<Int, MutableMap<String, Teleport>>> = yaml.load(path, config)
+            val teleports = Int2ObjectOpenHashMap<MutableMap<String, Teleport>>()
+            for ((tile, map) in data) {
+                teleports[tile] = teleports.get(tile)?.apply { putAll(map) } ?: map
+            }
+            this.teleports = teleports
+            data.size
         }
         return this
     }

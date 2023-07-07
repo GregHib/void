@@ -765,3 +765,7 @@ zmi_alter_multi_area:
     x: [ 3264, 3327 ]
     y: [ 4800, 4863 ]
   tags: [ multi_combat ]
+demon_slayer_stone_circle:
+  area:
+    x: [ 3221, 3234 ]
+    y: [ 3363, 3376 ]

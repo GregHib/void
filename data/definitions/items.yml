@@ -3846,8 +3846,10 @@ cadava_potion:
   kept: "Reclaim"
 the_shield_of_arrav_book:
   id: 757
+  book: shield_of_arrav
   tradeable: false
   weight: 0.2
+  aka: [ book_of_arrav ]
   destroy: "You can check this book out at the Varrock palace library."
   examine: "'The Shield of Arrav' by A R Wright."
   kept: "Wilderness"

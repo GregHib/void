@@ -42,6 +42,7 @@ class MapDefinitions(
     private lateinit var raf: RandomAccessFile
     private val objectArray = ByteArray(2048)
     private val tileArray = ByteArray(12)
+    private var position = 0
 
     fun loadCache(cache: Cache, xteas: Xteas): MapDefinitions {
         val start = System.currentTimeMillis()
@@ -68,6 +69,7 @@ class MapDefinitions(
         val regions = reader.readInt()
         readEmptyTiles(reader)
         readTiles(reader)
+        position = reader.position()
         readFullTiles(reader)
         readObjects(reader)
         logger.info { "Loaded $regions maps ${objects.size} ${"object".plural(objects.size)} from file in ${System.currentTimeMillis() - start}ms" }
@@ -121,29 +123,39 @@ class MapDefinitions(
     private fun readFullTiles(reader: BufferReader) {
         for (i in 0 until reader.readInt()) {
             val zoneIndex = reader.readInt()
+            tileIndices[zoneIndex] = reader.position()
             fillTiles(zoneIndex)
         }
     }
 
     fun loadZone(from: Zone, to: Zone, rotation: Int) {
         val start = System.currentTimeMillis()
-        val tilePosition = tileIndices[from.id]?.toLong()
+        val tilePosition = tileIndices[from.id]
         if (tilePosition == null) {
+            collisions.allocateIfAbsent(
+                absoluteX = to.tile.x,
+                absoluteZ = to.tile.y,
+                level = to.level
+            )
+        } else if (tilePosition > position) {
             fillTiles(to.id)
         } else {
-            raf.seek(tilePosition)
+            raf.seek(tilePosition.toLong())
             raf.read(tileArray)
             val reader = BufferReader(tileArray)
             readTiles(to, reader, rotation)
         }
-        val objectPosition = objectIndices[from.id]?.toLong()
+        val objectPosition = objectIndices[from.id]
         if (objectPosition != null) {
-            raf.seek(objectPosition)
+            raf.seek(objectPosition.toLong())
             raf.read(objectArray)
             val reader = BufferReader(objectArray)
             readObjects(to, reader, rotation)
         }
-        logger.info { "Loaded $from -> $to $rotation in ${System.currentTimeMillis() - start}ms" }
+        val took = System.currentTimeMillis() - start
+        if (took > 5) {
+            logger.info { "Loaded zone $from -> $to $rotation in ${took}ms" }
+        }
     }
 
     private fun readObjects(zone: Zone, reader: Reader, zoneRotation: Int) {

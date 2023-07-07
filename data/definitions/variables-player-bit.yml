@@ -153,9 +153,11 @@ turmoil_defence_bonus:
 lend_time:
   id: 5026
   format: int
+  default: -1
 other_lend_time:
   id: 5070
   format: int
+  default: -1
 level_up_icon:
   id: 4757
   format: list

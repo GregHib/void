@@ -5,9 +5,8 @@ import kotlinx.coroutines.runBlocking
 import org.jsoup.Jsoup
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index
-import world.gregs.voidps.type.Region
-import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.type.Region
 import java.io.File
 
 /**
@@ -18,7 +17,7 @@ object MapPacker {
     @JvmStatic
     fun main(args: Array<String>) {
         val target = CacheDelegate("${System.getProperty("user.home")}/rs634_cache/")
-        val xteas = Xteas().apply { XteaLoader().load(this, "./data/xteas.dat") }
+        val xteas = Xteas().load("./data/xteas.dat")
         packMissingMaps(target, xteas, CacheDelegate("${System.getProperty("user.home")}/Downloads/727 cache with most xteas/"), Xteas(), all())
         packMissingMaps(target, xteas, CacheDelegate("${System.getProperty("user.home")}/Downloads/cache-280/"), getKeys(280), all()) // revision 681
         packEaster08Map(target, CacheDelegate("${System.getProperty("user.home")}/Downloads/cache-257/")) // revision 537
@@ -91,7 +90,7 @@ object MapPacker {
             file.writeText(text)
             text
         }
-        return Xteas(XteaLoader().loadJson(content, value = "key").toMutableMap())
+        return Xteas(Xteas.loadJson(content, value = "key").toMutableMap())
     }
 
 }

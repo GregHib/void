@@ -13,6 +13,8 @@ fun getIntProperty(key: String): Int = getKoin().getProperty<String>(key)!!.toIn
 
 fun getProperty(key: String): String = getKoin().getProperty(key)!!
 
+fun getPropertyOrNull(key: String): String? = getKoin().getProperty(key)
+
 fun getFloatProperty(key: String): Float = getKoin().getProperty(key)!!
 
 fun getIntProperty(key: String, defaultValue: Int): Int = getKoin().getProperty<String>(key)?.toIntOrNull() ?: defaultValue

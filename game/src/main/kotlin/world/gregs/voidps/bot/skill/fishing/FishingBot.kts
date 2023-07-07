@@ -12,6 +12,8 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.config.GearDefinition
+import world.gregs.voidps.engine.data.definition.AreaDefinition
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.GearDefinitions
 import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.entity.Registered
@@ -24,13 +26,11 @@ import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.map.area.Areas
-import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.network.instruct.InteractNPC
 import world.gregs.voidps.world.interact.entity.death.weightedSample
 
-val areas: Areas by inject()
+val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 val gear: GearDefinitions by inject()
 
@@ -65,7 +65,7 @@ on<World, Registered> {
     }
 }
 
-suspend fun Bot.fish(map: MapArea, option: String, bait: String, set: GearDefinition) {
+suspend fun Bot.fish(map: AreaDefinition, option: String, bait: String, set: GearDefinition) {
     setupGear(set)
     goToArea(map)
     while (player.inventory.spaces > 0 && (bait == "none" || player.hasItem(bait))) {
@@ -85,7 +85,7 @@ suspend fun Bot.fish(map: MapArea, option: String, bait: String, set: GearDefini
     }
 }
 
-fun Bot.isAvailableSpot(map: MapArea, npc: NPC, option: String, bait: String): Boolean {
+fun Bot.isAvailableSpot(map: AreaDefinition, npc: NPC, option: String, bait: String): Boolean {
     if (!npc.tile.within(player.tile, Viewport.VIEW_RADIUS)) {
         return false
     }

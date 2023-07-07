@@ -13,6 +13,8 @@ import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.data.definition.AreaDefinition
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.walkTo
@@ -26,8 +28,6 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.map.area.Areas
-import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.bank.hasBanked
@@ -35,11 +35,11 @@ import world.gregs.voidps.world.interact.entity.combat.attackRange
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.spellBook
 
-val areas: Areas by inject()
+val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 
 on<World, Registered> {
-    val area = areas["lumbridge_combat_tutors"] ?: return@on
+    val area = areas.getOrNull("lumbridge_combat_tutors") ?: return@on
     val range = 1..5
     val skills = listOf(Skill.Attack, Skill.Magic, Skill.Ranged)
     val melees = listOf(Skill.Attack, Skill.Strength, Skill.Defence)
@@ -62,7 +62,7 @@ on<World, Registered> {
     }
 }
 
-suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
+suspend fun Bot.train(map: AreaDefinition, skill: Skill, range: IntRange) {
     setupGear(map, skill)
     if (skill == Skill.Magic) {
         setAutoCast("wind_strike")
@@ -102,7 +102,7 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
 }
 
 
-suspend fun Bot.setupGear(area: MapArea, skill: Skill) {
+suspend fun Bot.setupGear(area: AreaDefinition, skill: Skill) {
     when (skill) {
         Skill.Magic -> {
             withdrawAll("air_rune", "mind_rune")
@@ -155,7 +155,7 @@ suspend fun Bot.claim(npc: String) {
     dialogueOption("continue")
 }
 
-fun Bot.isAvailableTarget(map: MapArea, npc: NPC, skill: Skill): Boolean {
+fun Bot.isAvailableTarget(map: AreaDefinition, npc: NPC, skill: Skill): Boolean {
     if (!npc.tile.within(player.tile, Viewport.VIEW_RADIUS)) {
         return false
     }

@@ -44,7 +44,12 @@ class ItemDefinitions(
     }
 
     @Suppress("UNCHECKED_CAST")
-    private class CustomConfig(private val equipment: Map<Int, Int>, ids: MutableMap<String, Int>, definitions: Array<ItemDefinition>, private val defs: ItemDefinitions) : DefinitionConfig<ItemDefinition>(ids, definitions) {
+    private class CustomConfig(
+        private val equipment: Map<Int, Int>,
+        ids: MutableMap<String, Int>,
+        definitions: Array<ItemDefinition>,
+        private val defs: ItemDefinitions
+    ) : DefinitionConfig<ItemDefinition>(ids, definitions) {
         override fun setMapValue(reader: YamlReader, map: MutableMap<String, Any>, key: String, indent: Int, indentOffset: Int, withinMap: String?, parentMap: String?) {
             if (indent > 1 && parentMap == "pottery") {
                 val value = reader.value(indentOffset, withinMap)
@@ -53,6 +58,20 @@ class ItemDefinitions(
                 set(map, key, reader.readIntRange(), indent, parentMap)
             } else {
                 super.setMapValue(reader, map, key, indent, indentOffset, withinMap, parentMap)
+            }
+        }
+
+        override fun set(map: MutableMap<String, Any>, key: String, id: Int, extras: Map<String, Any>?) {
+            if (key.endsWith("_lent") && id in definitions.indices) {
+                val def = definitions[id]
+                val normal = definitions[def.lendId]
+                val lentExtras = normal.extras?.toMutableMap()
+                if (lentExtras != null && extras != null) {
+                    lentExtras.putAll(extras)
+                }
+                super.set(map, key, id, lentExtras ?: extras)
+            } else {
+                super.set(map, key, id, extras)
             }
         }
 

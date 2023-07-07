@@ -29,8 +29,7 @@ data class NPCDefinition(
     var rotation: Int = 32,
     override var varbit: Int = -1,
     override var varp: Int = -1,
-    override var transformIds: IntArray? = null,
-    override var transforms: Array<String?>? = null,
+    override var transforms: IntArray? = null,
     var clickable: Boolean = true,
     var slowWalk: Boolean = true,
     var animateIdle: Boolean = true,
@@ -178,9 +177,7 @@ data class NPCDefinition(
         if (anInt2862 != other.anInt2862) return false
         if (params != other.params) return false
         if (stringId != other.stringId) return false
-        if (extras != other.extras) return false
-
-        return true
+        return extras == other.extras
     }
 
     override fun hashCode(): Int {
@@ -250,7 +247,7 @@ data class NPCDefinition(
         result = 31 * result + anInt2862
         result = 31 * result + (params?.hashCode() ?: 0)
         result = 31 * result + stringId.hashCode()
-        result = 31 * result + extras.hashCode()
+        result = 31 * result + (extras?.hashCode() ?: 0)
         return result
     }
 

@@ -12,9 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.type.Distance
-import world.gregs.voidps.type.Region
-import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.engine.map.zone.DynamicZones
@@ -22,6 +19,8 @@ import world.gregs.voidps.engine.map.zone.ReloadZone
 import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.network.encode.dynamicMapRegion
 import world.gregs.voidps.network.encode.mapRegion
+import world.gregs.voidps.type.Distance
+import world.gregs.voidps.type.Region
 
 /**
  * Keeps track of when players enter and move between regions
@@ -36,7 +35,7 @@ val playerRegions = IntArray(MAX_PLAYERS - 1)
 
 private val blankXtea = IntArray(4)
 
-on<RegionLogin>({ it.networked }) { player: Player ->
+on<Registered>({ it.networked }, Priority.HIGHEST) { player: Player ->
     val viewport = player.viewport ?: return@on
     players.forEach { other ->
         viewport.seen(other)

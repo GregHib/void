@@ -12,8 +12,13 @@ import world.gregs.voidps.engine.client.variable.inc
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
 
 val books: Books by inject()
+
+on<ContainerOption>({ item.def.has("book") && option == "Read" }) { player: Player ->
+    player.openBook(item.def["book"])
+}
 
 on<InterfaceRefreshed>({ id == "book" }) { player: Player ->
     refreshBook(player)

@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.move.running
@@ -24,12 +23,14 @@ import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.type.Region
 import world.gregs.voidps.engine.queue.LogoutBehaviour
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.activity.quest.DemonSlayerSpell.getWord
 import world.gregs.voidps.world.activity.quest.DemonSlayerSpell.randomiseOrder
 import world.gregs.voidps.world.activity.quest.startCutscene
@@ -329,12 +330,12 @@ suspend fun NPCOption.cutscene() {
     val offset = instance.offset(region)
     setCutsceneEnd(instance)
     delay(1)
-    player.tele(offset.add(3225, 3371), clearInterfaces = false)
+    player.tele(Tile(3225, 3371).add(offset), clearInterfaces = false)
     delay(2)
     player.transform("wally")
     player.clearCamera()
-    player.moveCamera(offset.add(3227, 3369), 300)
-    player.turnCamera(offset.add(3229, 3367), 250)
+    player.moveCamera(Tile(3227, 3369).add(offset), 300)
+    player.turnCamera(Tile(3229, 3367).add(offset), 250)
     player.shakeCamera(type = 1, intensity = 0, movement = 10, speed = 10, cycle = 0)
     player.shakeCamera(type = 3, intensity = 0, movement = 90, speed = 1, cycle = 0)
     player.playSound("rumbling")
@@ -347,16 +348,16 @@ suspend fun NPCOption.cutscene() {
 
     player.face(Direction.NORTH)
     player.clearCamera()
-    player.turnCamera(offset.add(3227, 3367), height = 200, constantSpeed = 2, variableSpeed = 10)
-    player.turnCamera(offset.add(3227, 3367), height = 100, constantSpeed = 1, variableSpeed = 10)
+    player.turnCamera(Tile(3227, 3367).add(offset), height = 200, constantSpeed = 2, variableSpeed = 10)
+    player.turnCamera(Tile(3227, 3367).add(offset), height = 100, constantSpeed = 1, variableSpeed = 10)
     player.shakeCamera(type = 3, intensity = 0, movement = 0, speed = 0, cycle = 0)
     player.playSound("rumbling")
     npc<Furious>("wally", "Die, foul demon!", clickToContinue = false)
-    player.tele(offset.add(3225, 3363), clearInterfaces = false)
+    player.tele(Tile(3225, 3363).add(offset), clearInterfaces = false)
 
     delay(2)
     player.start("no_clip", 3)
-    player.walkTo(offset.add(3227, 3367))
+    player.walkTo(Tile(3227, 3367).add(offset))
     player.running = true
     delay(3)
     player.face(Direction.NORTH)
@@ -365,7 +366,7 @@ suspend fun NPCOption.cutscene() {
     delay(4)
 
     player.clearCamera()
-    player.moveCamera(offset.add(3227, 3369), height = 100, constantSpeed = 2, variableSpeed = 10)
+    player.moveCamera(Tile(3227, 3369).add(offset), height = 100, constantSpeed = 2, variableSpeed = 10)
     player.shakeCamera(type = 1, intensity = 0, movement = 10, speed = 5, cycle = 0)
     player.shakeCamera(type = 3, intensity = 0, movement = 2, speed = 50, cycle = 0)
     player.playSound("rumbling")
@@ -379,8 +380,8 @@ suspend fun NPCOption.cutscene() {
     player.shakeCamera(type = 1, intensity = 0, movement = 0, speed = 0, cycle = 0)
     player.shakeCamera(type = 3, intensity = 0, movement = 0, speed = 0, cycle = 0)
     player.playSound("rumbling")
-    player.moveCamera(offset.add(3225, 3363), height = 500)
-    player.turnCamera(offset.add(3227, 3367), height = 200)
+    player.moveCamera(Tile(3225, 3363).add(offset), height = 500)
+    player.turnCamera(Tile(3227, 3367).add(offset), height = 200)
     player.playSound("equip_silverlight")
     player.playJingle("quest_complete_1")
     player.face(Direction.SOUTH_WEST)

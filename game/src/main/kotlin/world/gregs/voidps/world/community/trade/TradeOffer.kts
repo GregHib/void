@@ -3,6 +3,7 @@ package world.gregs.voidps.world.community.trade
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.contains
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -83,7 +84,7 @@ fun lend(player: Player, other: Player, id: String, slot: Int) {
         return
     }
 
-    if (player.contains("lent_item")) {
+    if (player.returnedItems.isFull()) {
         player.message("You are already lending an item, you can't lend another.")
         return
     }
@@ -94,10 +95,12 @@ fun lend(player: Player, other: Player, id: String, slot: Int) {
     }
 
     val lent = player.inventory.transaction {
-        clear(slot)
-        link(player.loan).add(id)
+        swap(slot, player.loan, 0)
     }
     if (!lent) {
         player.message("That item cannot be lent.")
+        return
     }
+    player["lend_time"] = 0
+    other["other_lend_time"] = 0
 }

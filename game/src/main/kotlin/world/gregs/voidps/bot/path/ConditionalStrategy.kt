@@ -1,15 +1,15 @@
 package world.gregs.voidps.bot.path
 
 import world.gregs.voidps.bot.navigation.graph.NavigationGraph
+import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.map.area.MapArea
 
 class ConditionalStrategy(
     val graph: NavigationGraph,
-    val block: (MapArea) -> Boolean
+    val block: (AreaDefinition) -> Boolean
 ) : NodeTargetStrategy() {
 
-    var area: MapArea? = null
+    var area: AreaDefinition? = null
 
     override fun reached(node: Any): Boolean {
         if (node !is Tile) {

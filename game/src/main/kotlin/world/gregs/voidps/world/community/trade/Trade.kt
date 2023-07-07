@@ -46,8 +46,8 @@ val Player.offer: Container
 val Player.otherOffer: Container
     get() = containers.container("trade_offer", true)
 
-val Player.lent: Container
-    get() = containers.container("lent_collection_box", false)
+val Player.returnedItems: Container
+    get() = containers.container("returned_lent_items", false)
 
 val Player.loan: Container
     get() = containers.container("item_loan", false)

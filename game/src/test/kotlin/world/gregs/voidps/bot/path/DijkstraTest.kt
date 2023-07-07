@@ -13,9 +13,9 @@ import world.gregs.voidps.bot.navigation.graph.Condition
 import world.gregs.voidps.bot.navigation.graph.Edge
 import world.gregs.voidps.bot.navigation.graph.NavigationGraph
 import world.gregs.voidps.bot.navigation.graph.waypoints
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.map.area.Areas
 import java.util.*
 import kotlin.test.assertNotNull
 
@@ -27,7 +27,7 @@ internal class DijkstraTest {
 
     @BeforeEach
     fun setup() {
-        graph = NavigationGraph(mockk(), Areas())
+        graph = NavigationGraph(mockk(), AreaDefinitions())
         pool = object : DefaultPool<DijkstraFrontier>(1) {
             override fun produceInstance() = DijkstraFrontier(3)
         }

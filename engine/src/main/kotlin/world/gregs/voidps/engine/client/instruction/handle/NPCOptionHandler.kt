@@ -38,7 +38,7 @@ class NPCOptionHandler(
         val selectedOption = options.getOrNull(index)
         if (selectedOption == null) {
             player.noInterest()
-            logger.warn { "Invalid npc option $npc $index" }
+            logger.warn { "Invalid npc option $npc $index ${options.contentToString()}" }
             return
         }
         if (selectedOption == "Listen-to" && player["movement", "walk"] == "music") {

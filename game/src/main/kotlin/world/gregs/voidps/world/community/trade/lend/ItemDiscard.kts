@@ -2,6 +2,7 @@ package world.gregs.voidps.world.community.trade.lend
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.contain.clear
 import world.gregs.voidps.engine.contain.inventory
@@ -10,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.world.community.trade.lend.Loan.getExpiry
-import world.gregs.voidps.world.community.trade.lend.Loan.returnLoan
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
@@ -42,17 +42,16 @@ on<ContainerOption>({ container == "inventory" && option == "Discard" }) { playe
 
     if (discard == 1) {
         player.message("The item has been returned to it's owner.")
-        returnLoan(player, item.id)
-        if (player.inventory.clear(slot)) {
-            logger.info { "$player discarded item $item" }
-        } else {
-            logger.info { "Error discarding item $item for $player" }
-        }
+        player.inventory.clear(slot)
+        player.clear("borrowed_item")
+        player.clear("borrowed_from")
+        player.clear("borrow_timeout")
+        player.softTimers.clear("borrow_message")
     }
 }
 
 fun getExpiryMessage(player: Player): String {
-    return if (!player.contains("borrow_timeout")) {
+    return if (player.contains("borrow_timeout")) {
         getExpiry(player, "borrow_timeout")
     } else {
         "after logout"

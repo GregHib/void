@@ -1,13 +1,14 @@
 package world.gregs.voidps.type
 
+import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.type.area.Cuboid
 import world.gregs.voidps.type.area.Polygon
-import world.gregs.voidps.engine.map.zone.Zone
+import world.gregs.voidps.type.area.Rectangle
 
 /**
  * Represents a tiled area of any size or shape
  */
-interface Area {
+interface Area : Iterable<Tile> {
     val area: Double
 
     operator fun contains(tile: Tile): Boolean = contains(tile.x, tile.y, tile.level)
@@ -27,7 +28,11 @@ interface Area {
             val y = map["y"] as List<Int>
             val level = map["level"] as? Int
             return if (x.size <= 2) {
-                Cuboid(x.first(), y.first(), x.last(), y.last(), level ?: 0, level ?: maxLevel)
+                if (level == null) {
+                    Rectangle(x.first(), y.first(), x.last(), y.last())
+                } else {
+                    Cuboid(x.first(), y.first(), x.last(), y.last(), level, level)
+                }
             } else {
                 Polygon(x.toIntArray(), y.toIntArray(), level ?: 0, level ?: maxLevel)
             }

@@ -14,16 +14,11 @@ class TimerSlot(
         if (start.cancelled) {
             return false
         }
-        set(Timer(name, start.interval))
-        return true
-    }
-
-    private fun set(timer: Timer?) {
-        val previous = this.timer
-        this.timer = timer
-        if (previous != null) {
-            events.emit(TimerStop(previous.name))
+        if (timer != null) {
+            events.emit(TimerStop(timer!!.name, logout = false))
         }
+        this.timer = Timer(name, start.interval)
+        return true
     }
 
     override fun contains(name: String): Boolean {
@@ -39,17 +34,34 @@ class TimerSlot(
         val tick = TimerTick(timer.name)
         events.emit(tick)
         if (tick.cancelled) {
-            set(null)
+            events.emit(TimerStop(timer.name, logout = false))
+            this.timer = null
         }
     }
 
     override fun stop(name: String) {
         if (contains(name)) {
-            clearAll()
+            events.emit(TimerStop(timer!!.name, logout = false))
+            timer = null
         }
     }
 
+    override fun clear(name: String): Boolean {
+        if (contains(name)) {
+            timer = null
+            return true
+        }
+        return false
+    }
+
     override fun clearAll() {
-        set(null)
+        timer = null
+    }
+
+    override fun stopAll() {
+        if (timer != null) {
+            events.emit(TimerStop(timer!!.name, logout = true))
+        }
+        timer = null
     }
 }

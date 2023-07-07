@@ -9,31 +9,31 @@ import world.gregs.voidps.bot.path.*
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractNPC
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.network.instruct.Walk
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.entity.player.energy.energyPercent
 
 suspend fun Bot.goToNearest(tag: String) = goToNearest { it.tags.contains(tag) }
 
-suspend fun Bot.goToNearest(block: (MapArea) -> Boolean): Boolean {
-    val current: MapArea? = this.getOrNull("area")
+suspend fun Bot.goToNearest(block: (AreaDefinition) -> Boolean): Boolean {
+    val current: AreaDefinition? = this.getOrNull("area")
     if (current != null && block.invoke(current)) {
         return true
     }
     val graph: NavigationGraph = get()
     val strategy = ConditionalStrategy(graph, block)
     val result = goTo(strategy)
-    val area: MapArea? = strategy.area
+    val area: AreaDefinition? = strategy.area
     assert(result != null) { "Unable to find path." }
     assert(area != null) { "Unable to find path target." }
     if (result != null && area != null) {
@@ -43,7 +43,7 @@ suspend fun Bot.goToNearest(block: (MapArea) -> Boolean): Boolean {
     return false
 }
 
-suspend fun Bot.goToArea(map: MapArea) {
+suspend fun Bot.goToArea(map: AreaDefinition) {
     if (map.area.contains(player.tile)) {
         return
     }
