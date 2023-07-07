@@ -40,9 +40,9 @@ data class Xteas(
     companion object {
         fun loadDirectory(file: File): Map<Int, IntArray> = (file
             .listFiles { f -> f.extension == "txt" } ?: emptyArray<File>()).associate {
-            val lines = file.readLines()
+            val lines = it.readLines()
             val keys = IntArray(4) { i -> lines.getOrNull(i)?.toInt() ?: 0 }
-            file.nameWithoutExtension.toInt() to keys
+            it.nameWithoutExtension.toInt() to keys
         }
 
         @Suppress("UNCHECKED_CAST")
