@@ -48,7 +48,8 @@ class ItemDefinitions(
         private val equipment: Map<Int, Int>,
         ids: MutableMap<String, Int>,
         definitions: Array<ItemDefinition>,
-        private val defs: ItemDefinitions) : DefinitionConfig<ItemDefinition>(ids, definitions) {
+        private val defs: ItemDefinitions
+    ) : DefinitionConfig<ItemDefinition>(ids, definitions) {
         override fun setMapValue(reader: YamlReader, map: MutableMap<String, Any>, key: String, indent: Int, indentOffset: Int, withinMap: String?, parentMap: String?) {
             if (indent > 1 && parentMap == "pottery") {
                 val value = reader.value(indentOffset, withinMap)
@@ -61,7 +62,7 @@ class ItemDefinitions(
         }
 
         override fun set(map: MutableMap<String, Any>, key: String, id: Int, extras: Map<String, Any>?) {
-            if (key.endsWith("_lent")) {
+            if (key.endsWith("_lent") && id in definitions.indices) {
                 val def = definitions[id]
                 val normal = definitions[def.lendId]
                 val lentExtras = normal.extras?.toMutableMap()
@@ -73,6 +74,7 @@ class ItemDefinitions(
                 super.set(map, key, id, extras)
             }
         }
+
         override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
             if (key == "<<") {
                 map.putAll(value as Map<String, Any>)
