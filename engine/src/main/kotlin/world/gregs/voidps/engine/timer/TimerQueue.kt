@@ -39,9 +39,10 @@ class TimerQueue(
             timer.reset()
             val tick = TimerTick(timer.name)
             events.emit(tick)
+
             if (tick.cancelled) {
                 names.remove(timer.name)
-                events.emit(TimerStop(timer.name))
+                events.emit(TimerStop(timer.name, logout = false))
             } else {
                 changes.add(timer)
             }
@@ -54,7 +55,7 @@ class TimerQueue(
 
     override fun stop(name: String) {
         if (names.remove(name) && queue.removeIf { it.name == name }) {
-            events.emit(TimerStop(name))
+            events.emit(TimerStop(name, logout = false))
         }
     }
 
@@ -63,7 +64,7 @@ class TimerQueue(
         this.names.clear()
         queue.clear()
         for (name in names) {
-            events.emit(TimerStop(name))
+            events.emit(TimerStop(name, logout = true))
         }
     }
 }

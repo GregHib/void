@@ -14,15 +14,15 @@ class TimerSlot(
         if (start.cancelled) {
             return false
         }
-        set(Timer(name, start.interval))
+        set(Timer(name, start.interval), false)
         return true
     }
 
-    private fun set(timer: Timer?) {
+    private fun set(timer: Timer?, logout: Boolean) {
         val previous = this.timer
         this.timer = timer
         if (previous != null) {
-            events.emit(TimerStop(previous.name))
+            events.emit(TimerStop(previous.name, logout))
         }
     }
 
@@ -39,17 +39,17 @@ class TimerSlot(
         val tick = TimerTick(timer.name)
         events.emit(tick)
         if (tick.cancelled) {
-            set(null)
+            set(null, false)
         }
     }
 
     override fun stop(name: String) {
         if (contains(name)) {
-            clearAll()
+            set(null, false)
         }
     }
 
     override fun clearAll() {
-        set(null)
+        set(null, true)
     }
 }

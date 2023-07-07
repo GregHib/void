@@ -109,7 +109,7 @@ abstract class TimersTest {
         assertFalse(timers.contains("timer"))
         assertEquals(TimerStart("timer"), emitted.pop())
         assertEquals(TimerTick("timer"), emitted.pop())
-        assertEquals(TimerStop("timer"), emitted.pop())
+        assertEquals(TimerStop("timer", logout = false), emitted.pop())
         assertTrue(emitted.isEmpty())
     }
 
@@ -118,7 +118,7 @@ abstract class TimersTest {
         timers.start("timer")
         timers.stop("timer")
         assertEquals(TimerStart("timer"), emitted.pop())
-        assertEquals(TimerStop("timer"), emitted.pop())
+        assertEquals(TimerStop("timer", logout = false), emitted.pop())
         assertTrue(emitted.isEmpty())
     }
 
@@ -128,7 +128,7 @@ abstract class TimersTest {
         timers.clearAll()
         assertFalse(timers.contains("timer"))
         assertEquals(TimerStart("timer"), emitted.pop())
-        assertEquals(TimerStop("timer"), emitted.pop())
+        assertEquals(TimerStop("timer", logout = true), emitted.pop())
         assertTrue(emitted.isEmpty())
     }
 }
