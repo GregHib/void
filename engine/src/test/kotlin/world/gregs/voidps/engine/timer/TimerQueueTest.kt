@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.timer
 
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
@@ -30,6 +31,32 @@ internal class TimerQueueTest : TimersTest() {
             assertEquals(TimerTick("1"), emitted.pop())
             assertEquals(TimerTick("2"), emitted.pop())
         }
+        assertTrue(emitted.isEmpty())
+    }
+
+    @Test
+    fun `Updating next timer tick changes order`() {
+        block = {
+            if (it is TimerStart) {
+                it.interval = 2
+            }
+        }
+        timers.start("mutable")
+        block = {
+            if (it is TimerStart) {
+                it.interval = 3
+            }
+        }
+        timers.start("fixed")
+
+        repeat(3) {
+            timers.run()
+            GameLoop.tick++
+        }
+        Assertions.assertFalse(timers.contains("timer"))
+        assertEquals(TimerStart("mutable"), emitted.pop())
+        assertEquals(TimerStart("fixed"), emitted.pop())
+        assertEquals(TimerTick("mutable"), emitted.pop())
         assertTrue(emitted.isEmpty())
     }
 }

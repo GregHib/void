@@ -9,6 +9,7 @@ class TimerQueue(
 
     val queue = PriorityQueue<Timer>()
     val names = mutableSetOf<String>()
+    private val changes = mutableListOf<Timer>()
 
     override fun start(name: String, restart: Boolean): Boolean {
         val start = TimerStart(name, restart)
@@ -34,14 +35,20 @@ class TimerQueue(
             if (!timer.ready()) {
                 break
             }
+            iterator.remove()
             timer.reset()
             val tick = TimerTick(timer.name)
             events.emit(tick)
             if (tick.cancelled) {
-                iterator.remove()
                 names.remove(timer.name)
                 events.emit(TimerStop(timer.name))
+            } else {
+                changes.add(timer)
             }
+        }
+        if (changes.isNotEmpty()) {
+            queue.addAll(changes)
+            changes.clear()
         }
     }
 
@@ -55,7 +62,7 @@ class TimerQueue(
         val names = names.toList()
         this.names.clear()
         queue.clear()
-        for(name in names) {
+        for (name in names) {
             events.emit(TimerStop(name))
         }
     }
