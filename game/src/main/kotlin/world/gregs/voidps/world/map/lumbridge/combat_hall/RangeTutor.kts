@@ -5,19 +5,16 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.item
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
+import world.gregs.voidps.world.interact.dialogue.type.*
 import java.util.concurrent.TimeUnit
 
 on<NPCOption>({ operate && def.name == "Ranged instructor" && option == "Talk-to" }) { player: Player ->
@@ -28,25 +25,21 @@ on<NPCOption>({ operate && def.name == "Ranged instructor" && option == "Talk-to
     menu()
 }
 
-suspend fun Interaction.menu(followUp: String = "") {
+suspend fun PlayerContext.menu(followUp: String = "") {
     if (followUp.isNotEmpty()) {
         npc<Unsure>(followUp)
     }
-    val choice = choice("""
-        How can I train my Ranged?
-        How do I create a bow and arrows?
-        I'd like some arrows and a training bow.
-        Goodbye.
-    """)
-    when (choice) {
-        1 -> rangedTraining()
-        2 -> arrowMaking()
-        3 -> claimBow()
+    choice {
+        rangedTraining()
+        arrowMaking()
+        option("I'd like some arrows and a training bow.") {
+            claimBow()
+        }
+        option("Goodbye.")
     }
 }
 
-suspend fun Interaction.rangedTraining() {
-    player<Talking>("How can I train my Ranged?")
+suspend fun PlayerChoice.rangedTraining(): Unit = option<Talking>("How can I train my Ranged?") {
     npc<Cheerful>("""
         To start with you'll need a bow and arrows, you were
         given a Shortbow and some arrows when you arrived
@@ -100,8 +93,7 @@ suspend fun Interaction.rangedTraining() {
     menu("Is there anything else you want to know?")
 }
 
-suspend fun Interaction.arrowMaking() {
-    player<Unsure>("How do I create a bow and arrows?")
+suspend fun PlayerChoice.arrowMaking(): Unit = option<Unsure>("How do I create a bow and arrows?") {
     npc<Cheerful>("""
         Ahh the art of fletching. Fletching is used to create
         your own bow and arrows.
@@ -151,7 +143,7 @@ suspend fun Interaction.arrowMaking() {
     menu("Is there anything else you want to know?")
 }
 
-suspend fun Interaction.claimBow() {
+suspend fun PlayerContext.claimBow() {
     if (player.remaining("claimed_tutor_consumables", epochSeconds()) > 0) {
         npc<Amazed>("""
             I work with the Magic tutor to give out consumable
@@ -202,7 +194,7 @@ suspend fun Interaction.claimBow() {
     player.start("claimed_tutor_consumables", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
 }
 
-suspend fun Interaction.hasEquipment() {
+suspend fun PlayerContext.hasEquipment() {
     var banked = false
     if (player.bank.contains("training_arrows")) {
         npc<Cheerful>("You have some training arrows in your bank.")

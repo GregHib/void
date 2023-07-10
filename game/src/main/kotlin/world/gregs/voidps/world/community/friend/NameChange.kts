@@ -35,23 +35,19 @@ on<Command>({ prefix == "rename" }) { player: Player ->
         player.message("Name too long, a username must be less than 12 characters.")
         return@on
     }
-    val choice = choice(
-        title = "Change your name to '$toName'?",
-        text = """
-            Yes, call me $toName
-            No, I like my current name
-        """
-    )
-    if (choice == 1) {
-        val previous = player.name
-        player.name = toName
-        players
-            .filter { it.friend(player) }
-            .forEach { friend ->
-                friend.updateFriend(Friend(toName, previous, renamed = true, world = World.id, worldName = World.name))
-            }
-        player.message("Your name has been successfully changed to '$toName'.")
-        player.message("You can change your name again in 30 days.")
-        player.start("rename_delay", TimeUnit.DAYS.toSeconds(30).toInt(), epochSeconds())
+    choice("Change your name to '$toName'?") {
+        option("Yes, call me $toName") {
+            val previous = player.name
+            player.name = toName
+            players
+                .filter { it.friend(player) }
+                .forEach { friend ->
+                    friend.updateFriend(Friend(toName, previous, renamed = true, world = World.id, worldName = World.name))
+                }
+            player.message("Your name has been successfully changed to '$toName'.")
+            player.message("You can change your name again in 30 days.")
+            player.start("rename_delay", TimeUnit.DAYS.toSeconds(30).toInt(), epochSeconds())
+        }
+        option("No, I like my current name")
     }
 }

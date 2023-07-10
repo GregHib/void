@@ -1,13 +1,14 @@
 package world.gregs.voidps.world.map.musicians
 
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.Drunk
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.RollEyes
 import world.gregs.voidps.world.interact.dialogue.Unsure
+import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -16,15 +17,9 @@ on<NPCOption>({ operate && npc.id == "drunken_musician" && option == "Talk-to" }
     choice()
 }
 
-suspend fun Interaction.choice() {
-    val choice = choice("""
-        Who are you?
-        Can I ask you some questions about resting?
-        That's all for now
-    """)
-    when (choice) {
-        1 -> {
-            player<Unsure>("Who are you?")
+suspend fun PlayerContext.choice() {
+    choice {
+        option<Unsure>("Who are you?") {
             npc<Drunk>("""
                 Me? I'sh mooshian! Lemme her help youse relaxsh:
                 sit down, reshst your weery limz an' stuff.
@@ -40,23 +35,16 @@ suspend fun Interaction.choice() {
             player<RollEyes>("Clearly...")
             choice()
         }
-        2 -> resting()
-        3 -> exit()
+        option("Can I ask you some questions about resting?") {
+            resting()
+        }
+        exit()
     }
 }
 
-suspend fun Interaction.resting() {
-    val choice = choice(
-        title = "Can I ask you some questions about resting?",
-        text = """
-            How does resting work?
-            What's special about resting by a musician?
-            Can you summarise the effects for me?
-            That's all for now.
-        """
-    )
-    when (choice) {
-        1 -> {
+suspend fun PlayerContext.resting() {
+    choice("Can I ask you some questions about resting?") {
+        option("How does resting work?") {
             player<Unsure>("So how does resting work?")
             npc<Drunk>("""
                 Well, youze sit down and resht.
@@ -69,27 +57,24 @@ suspend fun Interaction.resting() {
             player<Unsure>("Right; that's nice and clear. Thanks.")
             resting()
         }
-        2 -> {
-            player<Happy>("What's special about resting by a musician?")
+        option<Happy>("What's special about resting by a musician?") {
             npc<Drunk>("""
                 Moozik's great! My moozik is the bessht.
                 Mush more relaxshing than those else.
             """)
             resting()
         }
-        3 -> {
-            player<Happy>("Can you summarise the effects for me?")
+        option<Happy>("Can you summarise the effects for me?") {
             npc<Drunk>("""
                 Yeshh, 'course. 'f youze sit down you resht.
                 Moozik make reshting better.
             """)
             resting()
         }
-        4 -> exit()
+        exit()
     }
 }
 
-suspend fun Interaction.exit() {
-    player<Unsure>("That's all for now.")
+suspend fun PlayerChoice.exit(): Unit = option<Unsure>("That's all for now") {
     npc<Drunk>("Fanks. Sshtay relaxshed!")
 }

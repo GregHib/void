@@ -14,13 +14,8 @@ import world.gregs.voidps.world.interact.entity.npc.minimumCanoeLevel
 on<NPCOption>({ operate && npc.id == "sigurd" && option == "Talk-To" }) { player: Player ->
     player<Talking>("Hello there.")
     npc<Drunk>("Ha Ha! Hello!")
-    var choice = choice("""
-        Who are you?
-        Can you teach me about Canoeing?
-    """)
-    when (choice) {
-        1 -> {
-            player<Talking>("Who are you?")
+    choice {
+        option<Talking>("Who are you?") {
             npc<Drunk>("I'm Sigurd the Great and Brainy.")
             player<Unsure>("Why do they call you the Great and Brainy?")
             npc<Drunk>("Because I invented the Log Canoe!")
@@ -54,16 +49,18 @@ on<NPCOption>({ operate && npc.id == "sigurd" && option == "Talk-To" }) { player
                 I cut all the branches off to make it more comfortable.
                 I could tell you how to if you like?
             """)
-            choice = choice("""
-                Yes
-                No
-            """)
-            when (choice) {
-                1 -> canoeing()
-                2 -> player<Talking>("No thanks, not right now.")
+            choice {
+                option("Yes") {
+                    canoeing()
+                }
+                option("No") {
+                    player<Talking>("No thanks, not right now.")
+                }
             }
         }
-        2 -> canoeing()
+        option("Can you teach me about Canoeing?") {
+            canoeing()
+        }
     }
 }
 

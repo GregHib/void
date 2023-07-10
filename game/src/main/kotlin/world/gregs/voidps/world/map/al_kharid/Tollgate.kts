@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -19,11 +18,12 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.suspend.approachRange
+import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
-import world.gregs.voidps.engine.suspend.approachRange
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Uncertain
 import world.gregs.voidps.world.interact.dialogue.Unsure
@@ -59,14 +59,8 @@ suspend fun Interaction.dialogue(player: Player, npc: NPC? = getGuard(player)) {
     player.talkWith(npc)
     player<Unsure>("Can I come through this gate?")
     npc<Talk>("You must pay a toll of 10 gold coins to pass.")
-    val choice = choice("""
-        Okay, I'll pay.
-        Who does my money go to?
-        No thank you, I'll walk around.
-    """)
-    when (choice) {
-        1 -> {
-            player<Unsure>("Okay, I'll pay.")
+    choice {
+        option<Unsure>("Okay, I'll pay.") {
             if (!player.inventory.contains("coins", 10)) {
                 player<Upset>("Oh dear I don't actually seem to have enough money.")
             } else {
@@ -74,12 +68,10 @@ suspend fun Interaction.dialogue(player: Player, npc: NPC? = getGuard(player)) {
                 player.mode = Interact(player, gate, ObjectOption(player, gate, gate.def, "Pay-toll(10gp)"))
             }
         }
-        2 -> {
-            player<Uncertain>("Who does my money go to?")
+        option<Uncertain>("Who does my money go to?") {
             npc<Talk>("The money goes to the city of Al-Kharid.")
         }
-        3 -> {
-            player<Unsure>("No thank you, I'll walk around.")
+        option<Unsure>("No thank you, I'll walk around.") {
             npc<Talk>("Ok suit yourself.")
         }
     }

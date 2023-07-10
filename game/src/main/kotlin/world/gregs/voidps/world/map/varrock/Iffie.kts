@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
 on<NPCOption>({ operate && npc.id == "iffie" && option == "Talk-to" }) { player: Player ->
@@ -16,13 +15,8 @@ on<NPCOption>({ operate && npc.id == "iffie" && option == "Talk-to" }) { player:
         event costume, or is there something else I can do for
         you today?
     """)
-    val choice = choice("""
-        I've come for a random event costume.
-        Aren't you selling anything?
-        I just came for a chat.
-    """)
-    when (choice) {
-        1 -> {
+    choice {
+        option("I've come for a random event costume.") {
             npc<Cheerful>("Some of these costumes even come with a free emote!")
             npc<Cheerful>("""
                 Just buy one piece of the mine of zombie costumes and
@@ -30,16 +24,14 @@ on<NPCOption>({ operate && npc.id == "iffie" && option == "Talk-to" }) { player:
             """)
             player.openShop("iffies_random_costume_shop")
         }
-        2 -> {
-            player<Unsure>("Aren't you selling anything?")
+        option<Unsure>("Aren't you selling anything?") {
             npc<Chuckle>("""
                 Oh, yes, but only costumes.
                 Thessalia sells some other clothes and runs the makeover
                 service.
             """)
         }
-        3 -> {
-            player<Talk>("I just came for a chat.")
+        option<Talk>("I just came for a chat.") {
             npc<Sad>("""
                 Oh, I'm sorry, but I'll never get my knitting
                 done if I stop for a chit-chat with every young ${if (player.male) "lad" else "lass"}

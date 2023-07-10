@@ -15,11 +15,11 @@ import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.forceChat
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.male
@@ -34,10 +34,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.item
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
+import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.effect.transform
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random
@@ -55,24 +52,16 @@ on<NPCOption>({ operate && npc.id.startsWith("makeover_mage") && option == "Talk
         I call it a 'makeover'.
         Would you like me to perform my magicks on you?
     """)
-    val choice = choice("""
-        Tell me more about this 'makeover'.
-        Sure, do it.
-        No, thanks.
-        Cool amulet! Can I have one?
-        Can you make me a different colour?
-    """)
-    when (choice) {
-        1 -> more()
-        2 -> start()
-        3 -> exit()
-        4 -> amulet()
-        5 -> colour()
+    choice {
+        more()
+        start()
+        exit()
+        amulet()
+        colour()
     }
 }
 
-suspend fun Interaction.more() {
-    player<Unsure>("Tell me more about this 'makeover'.")
+suspend fun PlayerChoice.more(): Unit = option<Unsure>("Tell me more about this 'makeover'.") {
     npc<Cheerful>("""
         Why, of course! Basically, and I will explain this so that
         you understand it correctly,
@@ -94,36 +83,29 @@ suspend fun Interaction.more() {
     whatDoYouSay()
 }
 
-suspend fun Interaction.whatDoYouSay() {
+suspend fun PlayerContext.whatDoYouSay() {
     npc<Uncertain>("So, what do you say? Feel like a change?")
-    val choice = choice("""
-        Sure, do it.
-        No, thanks
-    """)
-    if (choice == 1) {
+    choice {
         start()
-    } else if (choice == 2) {
         exit()
     }
 }
 
-suspend fun Interaction.start() {
-    player<Talk>("Sure, do it.")
+suspend fun PlayerChoice.start(): Unit = option<Talk>("Sure, do it.") {
     npc<Cheerful>("""
         You, of course, agree that if by some accident you are
         turned into a frog you have no rights for compensation or
         refund.
     """)
-    startMakeover()
+    openDressingRoom("skin_colour")
 }
 
-suspend fun Interaction.exit() {
+suspend fun PlayerChoice.exit(): Unit = option("No, thanks.") {
     player<Angry>("No, thanks. I'm happy as I am.")
     npc<Sad>("Ehhh..suit yourself.")
 }
 
-suspend fun Interaction.amulet() {
-    player<Happy>("Cool amulet! Can I have one?")
+suspend fun PlayerChoice.amulet(): Unit = option<Happy>("Cool amulet! Can I have one?") {
     val cost = 100
     npc<Talk>("""
         No problem, but please remember that the amulet I will
@@ -132,59 +114,50 @@ suspend fun Interaction.amulet() {
     """)
     if (!player.hasItem("coins", cost)) {
         player<Upset>("Oh, I don't have enough money for that.")
-        return
+        return@option
     }
-    val choice = choice("""
-        Sure, here you go.
-        No way! That's too expensive.
-    """)
-    if (choice == 1) {
-        player<Cheerful>("Sure, here you go.")
-        player.inventory.transaction {
-            remove("coins", cost)
-            add("yin_yang_amulet")
-        }
-        when (player.inventory.transaction.error) {
-            TransactionError.None -> item("You receive an amulet in exchange for $cost coins", "yin_yang_amulet", 300)
-            is TransactionError.Deficient -> player.notEnough("coins")
-            is TransactionError.Full -> {
-                npc<Unsure>("""
+    choice {
+        option<Cheerful>("Sure, here you go.") {
+            player.inventory.transaction {
+                remove("coins", cost)
+                add("yin_yang_amulet")
+            }
+            when (player.inventory.transaction.error) {
+                TransactionError.None -> item("You receive an amulet in exchange for $cost coins", "yin_yang_amulet", 300)
+                is TransactionError.Deficient -> player.notEnough("coins")
+                is TransactionError.Full -> {
+                    npc<Unsure>("""
                     Um...you don't seem to have room to take the amulet.
                     Maybe you should buy it some other time.
                 """)
-                player<Talk>("Oh yeah, that's true.")
+                    player<Talk>("Oh yeah, that's true.")
+                }
+                else -> {}
             }
-            else -> {}
+            explain()
         }
-        explain()
-    } else if (choice == 2) {
-        player<Surprised>("No way! That's too expensive.")
-        npc<Talk>("""
-            That's fair enough, my jewellery is not to everyone's
-            taste. Now, would you like a makeover?
-        """)
+        option<Surprised>("No way! That's too expensive.") {
+            npc<Talk>("""
+                That's fair enough, my jewellery is not to everyone's
+                taste. Now, would you like a makeover?
+            """)
+        }
     }
 }
 
-suspend fun Interaction.explain() {
+suspend fun PlayerContext.explain() {
     npc<Happy>("""
         I can alter your physical form if you wish. Would you like
         me to perform my magicks on you?
     """)
-    val choice = choice("""
-        Tell me more about this 'makeover'.
-        Sure, do it.
-        No, thanks
-    """)
-    when (choice) {
-        1 -> more()
-        2 -> start()
-        3 -> exit()
+    choice {
+        more()
+        start()
+        exit()
     }
 }
 
-suspend fun Interaction.colour() {
-    player<Happy>("Can you make me a different colour?")
+suspend fun PlayerChoice.colour(): Unit = option<Happy>("Can you make me a different colour?") {
     npc<Cheerful>("""
         Why, of course! I have a wide array of colours for you to
         choose from.
@@ -193,10 +166,6 @@ suspend fun Interaction.colour() {
 }
 
 on<NPCOption>({ operate && npc.id.startsWith("makeover_mage") && option == "Makeover" }) { player: Player ->
-    startMakeover()
-}
-
-suspend fun Interaction.startMakeover() {
     openDressingRoom("skin_colour")
 }
 

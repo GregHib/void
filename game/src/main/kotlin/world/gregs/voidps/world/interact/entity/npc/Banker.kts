@@ -48,42 +48,33 @@ on<ObjectOption>({ operate && option == "Use" }) { player: Player ->
 }
 
 suspend fun Interaction.menu() {
-    var choice = choice("""
-        I'd like to access my bank account, please.
-        I'd like to check my PIN settings.
-        I'd like to see my collection box.
-        I'd like to see my Returned Items box.
-        What is this place?
-    """)
-    when (choice) {
-        1 -> player.open("bank")
-        2 -> player.open("bank_pin")
-        3 -> player.open("collection_box")
-        4 -> player.open("returned_items")
-        5 -> {
+    choice {
+        option("I'd like to access my bank account, please.", block = { player.open("bank") })
+        option("I'd like to check my PIN settings.", block = { player.open("bank_pin") })
+        option("I'd like to see my collection box.", block = { player.open("collection_box") })
+        option("I'd like to see my Returned Items box.", block = { player.open("returned_items") })
+        option("What is this place?") {
             npc<Talk>("""
                 This is a branch of the Bank of $name. We have
                 branches in many towns.
             """)
-            choice = choice("""
-                And what do you do?
-                Didn't you used to be called the Bank of Varrock?
-            """)
-            when (choice) {
-                1 -> npc<Talk>("""
-                    We will look after your items and money for you.
-                    Leave your valuables with us if you want to keep them
-                    safe.
-                """
-                )
-                2 -> npc<Talk>("""
-                    Yes we did, but people kept on coming into our
-                    branches outside of Varrock and telling us that our
-                    signs were wrong. They acted as if we didn't know
-                    what town we were in or something.
-                """)
+            choice {
+                option("And what do you do?") {
+                    npc<Talk>("""
+                        We will look after your items and money for you.
+                        Leave your valuables with us if you want to keep them
+                        safe.
+                    """)
+                }
+                option("Didn't you used to be called the Bank of Varrock?") {
+                    npc<Talk>("""
+                        Yes we did, but people kept on coming into our
+                        branches outside of Varrock and telling us that our
+                        signs were wrong. They acted as if we didn't know
+                        what town we were in or something.
+                    """)
+                }
             }
-            menu()
         }
     }
 }

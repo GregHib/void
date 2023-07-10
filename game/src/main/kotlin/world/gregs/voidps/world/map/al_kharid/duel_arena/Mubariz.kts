@@ -1,10 +1,11 @@
 package world.gregs.voidps.world.map.al_kharid.duel_arena
 
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.*
+import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -17,25 +18,17 @@ on<NPCOption>({ operate && npc.id == "mubariz" && option == "Talk-to" }) { playe
     menu()
 }
 
-suspend fun Interaction.menu() {
-    val choice = choice("""
-        What is this place?
-        How do I challenge someone to a duel?
-        What kind of options are there?
-        Do you have any advice for me?
-        I'll be off.
-    """)
-    when (choice) {
-        1 -> place()
-        2 -> duelling()
-        3 -> options()
-        4 -> advice()
-        5 -> exit()
+suspend fun PlayerContext.menu() {
+    choice {
+        place()
+        duelling()
+        options()
+        advice()
+        exit()
     }
 }
 
-suspend fun Interaction.place() {
-    player<Uncertain>("What is this place?")
+suspend fun PlayerChoice.place(): Unit = option<Uncertain>("What is this place?") {
     npc<Talking>("""
         The Duel Arena has six arenas where you can fight
         other players in a controlled environment. We have our
@@ -52,23 +45,16 @@ suspend fun Interaction.place() {
         In between the arenas are walkways where you can
         watch the fights and challenge other players.
     """)
-    val choice = choice("""
-        It looks really old. Where did it come from?
-        How do I challenge someone to a duel?
-        What kind of options are there?
-        Do you have any advice for me?
-        I'll be off.
-    """)
-    when (choice) {
-        1 -> looksOld()
-        2 -> duelling()
-        3 -> options()
-        4 -> advice()
-        5 -> exit()
+    choice {
+        looksOld()
+        duelling()
+        options()
+        advice()
+        exit()
     }
 }
 
-suspend fun Interaction.looksOld() {
+suspend fun PlayerContext.looksOld() {
     player<Uncertain>("It looks really old. Where did it come from?")
     npc<Talking>("""
         The archaeologists that are excavating the area east of
@@ -82,29 +68,21 @@ suspend fun Interaction.looksOld() {
         converted it to a set of arenas for duels. The best
         fighters from around the world come here to fight!
     """)
-    val choice = choice("""
-        I challenge you!
-        How do I challenge someone to a duel?
-        What kind of options are there?
-        Do you have any advice for me?
-        I'll be off.
-    """)
-    when (choice) {
-        1 -> challenge()
-        2 -> duelling()
-        3 -> options()
-        4 -> advice()
-        5 -> exit()
+    choice {
+        challenge()
+        duelling()
+        options()
+        advice()
+        exit()
     }
 }
 
-suspend fun Interaction.challenge() {
-    player<Angry>("I challenge you!")
+suspend fun PlayerChoice.challenge(): Unit = option<Angry>("I challenge you!") {
     npc<Laugh>("Ho! Ho! Ho!")
     menu()
 }
 
-suspend fun Interaction.duelling() {
+suspend fun PlayerContext.duelling() {
     player<Uncertain>("How do I challenge someone to a duel?")
     npc<Talking>("""
         When you go to the arena you'll go up an access ramp
@@ -116,24 +94,16 @@ suspend fun Interaction.duelling() {
         You'll know you're in the right place as you'll have a
         Duel-with option when you right-click a player.
     """)
-    val choice = choice("""
-        I challenge you!
-        What is this place?
-        What kind of options are there?
-        Do you have any advice for me?
-        I'll be off.
-    """)
-    when (choice) {
-        1 -> challenge()
-        2 -> place()
-        3 -> options()
-        4 -> advice()
-        5 -> exit()
+    choice {
+        challenge()
+        place()
+        options()
+        advice()
+        exit()
     }
 }
 
-suspend fun Interaction.options() {
-    player<Uncertain>("What kind of options are there?")
+suspend fun PlayerChoice.options(): Unit = option<Uncertain>("What kind of options are there?") {
     npc<Talking>("""
         You and your opponent can offer coins or platinum as
         a stake. If you win, you receive what your opponent
@@ -151,26 +121,18 @@ suspend fun Interaction.options() {
         The rules are fairly self-evident with lots of different
         combinations for you to try out!
     """)
-    val choice = choice("""
-        What is this place?
-        How do I challenge someone to a duel?
-        Do you have any advice for me?
-        I'll be off.
-    """)
-    when (choice) {
-        1 -> place()
-        2 -> duelling()
-        3 -> advice()
-        4 -> exit()
+    choice {
+        place()
+        duelling()
+        advice()
+        exit()
     }
 }
 
-suspend fun Interaction.advice() {
-    player<Unsure>("Do you have any advice for me?")
+suspend fun PlayerChoice.advice(): Unit = option<Unsure>("Do you have any advice for me?") {
     npc<Laugh>("Win. And if you ever stop having fun, stop dueling.")
 }
 
-suspend fun Interaction.exit() {
-    player<RollEyes>("I'll be off.")
+suspend fun PlayerChoice.exit(): Unit = option<RollEyes>("I'll be off.") {
     npc<Suspicious>("See you in the arenas!")
 }

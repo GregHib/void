@@ -23,7 +23,6 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
 
 val enums: EnumDefinitions by inject()
 
@@ -32,21 +31,15 @@ on<NPCOption>({ operate && npc.id == "hairdresser" && option == "Talk-to" }) { p
         Good afternoon ${if (player.male) "sir" else "madam"}. In need of a haircut${if (player.male) " or shave" else ""} are
         we?
     """)
-    val choice = choice("""
-        Yes, please.
-        No, thank you.
-    """)
-    when (choice) {
-        1 -> {
-            player<Talk>("Yes, please.")
+    choice {
+        option<Talk>("Yes, please.") {
             npc<Happy>("""
                 Please select the hairstyle you would like from this
                 brochure. I'll even throw in a free recolour.
             """)
             startHairdressing()
         }
-        2 -> {
-            player<Talk>("No, thank you.")
+        option<Talk>("No, thank you.") {
             npc<Talk>("Very well. Come back if you change your mind.")
         }
     }

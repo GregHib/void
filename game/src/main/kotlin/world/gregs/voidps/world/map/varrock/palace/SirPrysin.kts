@@ -5,56 +5,53 @@ import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.suspend.delay
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.item
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
+import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 on<NPCOption>({ operate && npc.id == "sir_prysin" && option == "Talk-to" }) { player: Player ->
     when (player["demon_slayer", "unstarted"]) {
-        "sir_prysin" -> arisChoice()
         "key_hunt" -> {
-            if (player["demon_slayer_silverlight", false]) {
-                npc<Talk>("Have you sorted that demon out yet?")
-                if (player.hasBanked("silverlight")) {
-                    player<Upset>("No, not yet.")
-                    npc<Talk>("""
+            if (!player["demon_slayer_silverlight", false]) {
+                keyProgressCheck()
+                return@on
+            }
+            npc<Talk>("Have you sorted that demon out yet?")
+            if (player.hasBanked("silverlight")) {
+                player<Upset>("No, not yet.")
+                npc<Talk>("""
                     Well get on with it. He'll be pretty powerful when he
                     gets to full strength.
                 """)
-                    return@on
-                }
-                player<Upset>("Not yet. And I, um, lost Silverlight.")
-                if (player.inventory.add("silverlight")) {
-                    npc<Furious>("""
+                return@on
+            }
+            player<Upset>("Not yet. And I, um, lost Silverlight.")
+            if (player.inventory.add("silverlight")) {
+                npc<Furious>("""
                     Yes, I know, someone returned it to me. Take better
                     care of it this time.
                 """)
-                } else {
-                    npc<Furious>("""
-                    Yes, I know, someone returned it to me. I'll keep it
-                    until you have free inventory space.")
-                """)
-                }
             } else {
-                keyProgressCheck()
+                npc<Furious>("""
+                    Yes, I know, someone returned it to me. I'll keep it
+                    until you have free inventory space.
+                """)
             }
         }
         "completed" -> {
@@ -63,24 +60,32 @@ on<NPCOption>({ operate && npc.id == "sir_prysin" && option == "Talk-to" }) { pl
             npc<Talking>("A good job well done then.")
             player<Talking>("Thank you.")
         }
-        else -> regularChoice()
+        else -> {
+            npc<Talk>("Hello, who are you?")
+            choice {
+                mightyAdventurer()
+                youTellMe()
+                arisWantsToTalk()
+            }
+        }
     }
 }
 
-suspend fun NPCOption.arisWantsToTalk() {
+suspend fun PlayerChoice.arisWantsToTalk(): Unit = option(
+    "Aris said I should come and talk to you.",
+    { player["demon_slayer", "unstarted"] == "sir_prysin" }
+) {
     player<Talk>("Aris said I should come and talk to you.")
     npc<Talk>("""
         Aris? Is she still alive? I remember her from when I
         was pretty young. Well what do you need to talk to me
         about?
     """)
-    val choice = choice("""
-        I need to find Silverlight.
-        Yes, she is still alive.
-    """)
-    when (choice) {
-        1 -> findSilverlight()
-        2 -> {
+    choice {
+        option("I need to find Silverlight.") {
+            findSilverlight()
+        }
+        option("Yes, she is still alive.") {
             player<Cheerful>("Yes she is still alive. She lives right outside the castle!")
             npc<Talk>("""
                 Oh, is that the same Aris? I would have thought she
@@ -93,7 +98,7 @@ suspend fun NPCOption.arisWantsToTalk() {
     }
 }
 
-suspend fun NPCOption.findSilverlight() {
+suspend fun PlayerContext.findSilverlight() {
     player<Talk>("I need to find Silverlight.")
     npc<Talk>("What do you need to find that for?")
     player<Talk>("I need it to fight Delrith.")
@@ -101,17 +106,13 @@ suspend fun NPCOption.findSilverlight() {
         Delrith? I thought the world was rid of him, thanks to
         my great-grandfather.
     """)
-    val choice = choice("""
-        Well, Aris' crystal ball seems to think otherwise.
-        He's back and unfortunately I've got to deal with him.
-    """)
-    when (choice) {
-        1 -> {
+    choice {
+        option("Well, Aris' crystal ball seems to think otherwise.") {
             player<Talk>("Well Aris' crystal ball seems to think otherwise.")
             npc<Talk>("Well if the ball says so, I'd better help you.")
             problemIs()
         }
-        2 -> {
+        option("He's back and unfortunately I've got to deal with him.") {
             player<Upset>("He's back and unfortunately I've got to deal with him.")
             npc<Talk>("""
                 You don't look up to much. I suppose Silverlight may be
@@ -122,7 +123,7 @@ suspend fun NPCOption.findSilverlight() {
     }
 }
 
-suspend fun NPCOption.problemIs() {
+suspend fun PlayerContext.problemIs() {
     npc<Talk>("The problem is getting Silverlight.")
     player<Upset>("You mean you don't have it?")
     npc<Talk>("""
@@ -131,24 +132,20 @@ suspend fun NPCOption.problemIs() {
         different keys to open it. That way it won't fall into the
         wrong hands.
     """)
-    val choice = choice("""
-        So give me the keys!
-        And why is this a problem?
-    """)
-    when (choice) {
-        1 -> {
+    choice {
+        option("So give me the keys!") {
             player<Furious>("So give me the keys!")
             npc<Upset>("Um, well, it's not so easy.")
             theKeys()
         }
-        2 -> {
+        option("And why is this a problem?") {
             player<Talk>("And why is this a problem?")
             theKeys()
         }
     }
 }
 
-suspend fun NPCOption.theKeys() {
+suspend fun PlayerContext.theKeys() {
     npc<Talk>("""
         I kept one of the keys. I gave the other two to other
         people for safe keeping.
@@ -156,52 +153,37 @@ suspend fun NPCOption.theKeys() {
     npc<Talk>("One I gave to Rovin, the captain of the palace guard.")
     npc<Talk>("I gave the other to the wizard Traiborn.")
     player["demon_slayer"] = "key_hunt"
-    val choice = choice("""
-        Can you give me your key?
-        Where can I find Captain Rovin?
-        Where does the wizard live?
-    """)
-    when (choice) {
-        1 -> giveYourKey()
-        2 -> wheresCaptainRovin()
-        3 -> wheresWizard()
+    choice {
+        giveYourKey()
+        wheresCaptainRovin()
+        wheresWizard()
     }
 }
 
-suspend fun NPCOption.wheresWizard() {
+suspend fun PlayerChoice.wheresWizard(): Unit = option("Where does the wizard live?") {
     player<Talk>("Where does the wizard live?")
     npc<Talk>("""
         He is one of the wizards who lives in the tower on the
         little island just off the south coast. I believe his
         quarters are on the first floor of the tower.
     """)
-    val choice = choice("""
-        Can you give me your key?
-        Where can I find Captain Rovin?
-        Well I'd better go key hunting.
-    """)
-    when (choice) {
-        1 -> giveYourKey()
-        2 -> wheresCaptainRovin()
-        3 -> huntingTime()
+    choice {
+        giveYourKey()
+        wheresCaptainRovin()
+        huntingTime()
     }
 }
 
-suspend fun NPCOption.wheresCaptainRovin() {
+suspend fun PlayerChoice.wheresCaptainRovin(): Unit = option("Where can I find Captain Rovin?") {
     player<Talk>("Where can I find Captain Rovin?")
     npc<Talk>("""
         Captain Rovin lives at the top of the guards' quarters in
         the north-west wing of this palace.
     """)
-    val choice = choice("""
-        Can you give me your key?
-        Where does the wizard live?
-        Well I'd better go key hunting.
-    """)
-    when (choice) {
-        1 -> giveYourKey()
-        2 -> wheresWizard()
-        3 -> huntingTime()
+    choice {
+        giveYourKey()
+        wheresWizard()
+        huntingTime()
     }
 }
 
@@ -230,17 +212,13 @@ suspend fun NPCOption.keyProgressCheck() {
         prysin -> player<Talk>("I've got the key which you dropped down the drain.")
         else -> player<Upset>("I haven't found any of them yet.")
     }
-    val choice = choice("""
-        Can you remind me where all the keys were again?
-        I'm still looking.
-    """)
-    when (choice) {
-        1 -> remindMe()
-        2 -> stillLooking()
+    choice {
+        remindMe()
+        stillLooking()
     }
 }
 
-suspend fun NPCOption.giveYourKey() {
+suspend fun PlayerChoice.giveYourKey(): Unit = option("Can you give me your key?") {
     player<Talk>("Can you give me your key?")
     npc<Upset>("Um.... ah....")
     npc<Upset>("Well there's a problem there as well.")
@@ -248,42 +226,32 @@ suspend fun NPCOption.giveYourKey() {
         I managed to drop the key in the drain just outside the
         palace kitchen. It is just inside and I can't reach it.
     """)
-    val choice = choice("""
-        So what does the drain lead to?
-        Where can I find Captain Rovin?
-        Where does the wizard live?
-    """)
-    when (choice) {
-        1 -> drain()
-        2 -> wheresCaptainRovin()
-        3 -> wheresWizard()
+    choice {
+        drain()
+        wheresCaptainRovin()
+        wheresWizard()
     }
 }
 
-suspend fun NPCOption.drain() {
+suspend fun PlayerChoice.drain(): Unit = option("So what does the drain lead to?") {
     player<Talk>("So what does the drain connect to?")
     npc<Talk>("""
         It is the drain for the drainpipe running from the sink
         in the kitchen down to the palace sewers.
     """)
-    val choice = choice("""
-        Where can I find Captain Rovin?
-        Where does the wizard live?
-        Well I'd better go key hunting.
-    """)
-    when (choice) {
-        1 -> wheresCaptainRovin()
-        2 -> wheresWizard()
-        3 -> huntingTime()
+    choice {
+        wheresCaptainRovin()
+        wheresWizard()
+        huntingTime()
     }
 }
 
-suspend fun NPCOption.huntingTime() {
+suspend fun PlayerChoice.huntingTime(): Unit = option("Well I'd better go key hunting.") {
     player<Talk>("Well I'd better go key hunting.")
     npc<Talk>("Ok, goodbye.")
 }
 
-suspend fun NPCOption.mightyAdventurer() {
+suspend fun PlayerChoice.mightyAdventurer(): Unit = option("I am a mighty adventurer. Who are you?") {
     player<Talk>("I am a mighty adventurer, who are you?")
     npc<Talk>("""
         I am Sir Prysin. A bold and famous knight of the
@@ -291,17 +259,17 @@ suspend fun NPCOption.mightyAdventurer() {
     """)
 }
 
-suspend fun NPCOption.youTellMe() {
+suspend fun PlayerChoice.youTellMe(): Unit = option("I'm not sure, I was hoping you could tell me.") {
     player<Uncertain>("I was hoping you could tell me.")
     npc<Talk>("Well I've never met you before.")
 }
 
-suspend fun NPCOption.remindMe() {
+suspend fun PlayerChoice.remindMe(): Unit = option("Can you remind me where all the keys were again?") {
     player<Talk>("Can you remind me where all the keys were again?")
     theKeys()
 }
 
-suspend fun NPCOption.stillLooking() {
+suspend fun PlayerChoice.stillLooking(): Unit = option("I'm still looking.") {
     player<Talk>("I'm still looking.")
     npc<Talk>("Ok, tell me when you've got them all.")
 }
@@ -368,30 +336,4 @@ suspend fun NPCOption.giveSilverlight() {
         sure you treat it with respect!
     """)
     npc<Talking>("Now go kill that demon!")
-}
-
-suspend fun NPCOption.regularChoice() {
-    npc<Talk>("Hello, who are you?")
-    val choice = choice("""
-        I am a mighty adventurer. Who are you?
-        I'm not sure, I was hoping you could tell me.
-    """)
-    when (choice) {
-        1 -> mightyAdventurer()
-        2 -> youTellMe()
-    }
-}
-
-suspend fun NPCOption.arisChoice() {
-    npc<Talk>("Hello, who are you?")
-    val choice = choice("""
-        I am a mighty adventurer. Who are you?
-        I'm not sure, I was hoping you could tell me.
-        Aris said I should come and talk to you.
-    """)
-    when (choice) {
-        1 -> mightyAdventurer()
-        2 -> youTellMe()
-        3 -> arisWantsToTalk()
-    }
 }

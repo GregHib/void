@@ -8,6 +8,7 @@ import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Unsure
+import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -17,14 +18,8 @@ on<NPCOption>({ operate && npc.id.startsWith("musician") && option == "Talk-to" 
 }
 
 suspend fun Interaction.choice() {
-    val choice = choice("""
-        Who are you?
-        Can I ask you some questions about resting?
-        That's all for now
-    """)
-    when (choice) {
-        1 -> {
-            player<Unsure>("Who are you?")
+    choice {
+        option<Unsure>("Who are you?") {
             npc<Cheerful>("""
                 Me? I'm a musician Let me help you relax: sit down,
                 rest your weary limbs and allow me to wash away the
@@ -36,23 +31,16 @@ suspend fun Interaction.choice() {
             """)
             choice()
         }
-        2 -> resting()
-        3 -> exit()
+        option("Can I ask you some questions about resting?") {
+            resting()
+        }
+        exit()
     }
 }
 
 suspend fun Interaction.resting() {
-    val choice = choice(
-        title = "Can I ask you some questions about resting?",
-        text = """
-            How does resting work?
-            What's special about resting by a musician?
-            Can you summarise the effects for me?
-            That's all for now.
-        """
-    )
-    when (choice) {
-        1 -> {
+    choice("Can I ask you some questions about resting?") {
+        option("How does resting work?") {
             player<Unsure>("So how does resting work?")
             npc<Cheerful>("""
                 Have you ever been on a long journey, and simply
@@ -82,8 +70,7 @@ suspend fun Interaction.resting() {
             """)
             resting()
         }
-        2 -> {
-            player<Happy>("What's special about resting by a musician?")
+        option<Happy>("What's special about resting by a musician?") {
             npc<Cheerful>("""
                 The effects of resting are enhanced by music. Your
                 run energy will recharge many times the normal rate,
@@ -97,8 +84,7 @@ suspend fun Interaction.resting() {
             """)
             resting()
         }
-        3 -> {
-            player<Happy>("Can you summarise the effects for me?")
+        option<Happy>("Can you summarise the effects for me?") {
             npc<Cheerful>("""
                 Certainly. You can rest anywhere, simply choose the Rest
                 option on the run buttons.
@@ -115,11 +101,10 @@ suspend fun Interaction.resting() {
             """)
             resting()
         }
-        4 -> exit()
+        exit()
     }
 }
 
-suspend fun Interaction.exit() {
-    player<Unsure>("That's all for now.")
+suspend fun PlayerChoice.exit(): Unit = option<Unsure>("That's all for now.") {
     npc<Cheerful>("Well, don't forget to have a rest every now and again.")
 }

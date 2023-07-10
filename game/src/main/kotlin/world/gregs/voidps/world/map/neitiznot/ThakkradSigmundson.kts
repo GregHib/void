@@ -3,9 +3,9 @@ package world.gregs.voidps.world.map.neitiznot
 import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.transact.TransactionError
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Uncertain
@@ -28,16 +28,11 @@ on<NPCOption>({ operate && npc.id == "thakkrad_sigmundson" && option == "Talk-to
 }
 
 on<NPCOption>({ operate && npc.id == "thakkrad_sigmundson" && option == "Craft-goods" }) { player: Player ->
-    val choice = choice(
-        title = "What can I help you with?",
-        text = """
-            Cure my yak hide, please.
-            Nothing, thanks.
-        """)
-    when (choice) {
-        1 -> cureHide()
-        2 -> {
-            player<Talk>("Nothing, thanks.")
+    choice("What can I help you with?") {
+        option("Cure my yak hide, please.") {
+            cureHide()
+        }
+        option<Talk>("Nothing, thanks.") {
             npc<Talk>("""
                 See you later. You won't find anyone else
                 who can cure yak-hide.
@@ -50,24 +45,20 @@ on<ItemOnNPC>({ operate && npc.id == "thakkrad_sigmundson" && item.id == "yak_hi
     cureHide()
 }
 
-suspend fun Interaction.cureHide() {
+suspend fun PlayerContext.cureHide() {
     player<Talk>("Cure my yak hide please.")
     npc<Talk>("I will cure yak-hide for a fee of 5 gp per hide.")
-    val choice = choice(
-        title = "How many hides do you want cured?",
-        text = """
-            Cure all my hides.
-            Cure one hide.
-            Cure no hide.
-            Can you cure any type of leather?
-        """
-    )
-    when (choice) {
-        1 -> cure(player.inventory.count("yak_hide"))
-        2 -> cure(1)
-        3 -> npc<Talk>("Bye.")
-        4 -> {
-            player<Unsure>("Can you cure any other types of leather?.")
+    choice("How many hides do you want cured?") {
+        option("Cure all my hides.") {
+            cure(player.inventory.count("yak_hide"))
+        }
+        option("Cure one hide.") {
+            cure(1)
+        }
+        option("Cure no hide.") {
+            npc<Talk>("Bye.")
+        }
+        option<Unsure>("Can you cure any type of leather?") {
             npc<Uncertain>("""
                 Other types of leather?
                 Why would you need any other type of leather?
@@ -77,7 +68,7 @@ suspend fun Interaction.cureHide() {
     }
 }
 
-suspend fun Interaction.cure(amount: Int) {
+suspend fun PlayerContext.cure(amount: Int) {
     if (!player.inventory.contains("yak_hide")) {
         npc<Talk>("You have no yak-hide to cure.")
         return

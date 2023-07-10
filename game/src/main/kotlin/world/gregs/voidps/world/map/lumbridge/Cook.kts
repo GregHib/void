@@ -24,21 +24,20 @@ on<NPCOption>({ operate && npc.id == "cook_lumbridge" && option == "Talk-to" }) 
     when (player["cooks_assistant", "unstarted"]) {
         "unstarted" -> {
             npc<Sad>("What am I to do?")
-            val choice = choice("""
-                What's wrong?
-                Can you make me a cake?
-                You don't look very happy.
-                Nice hat!
-            """)
-            when (choice) {
-                1 -> startQuest()
-                2 -> {
-                    player<Cheerful>("Can you make me a cake?")
+            choice {
+                option("What's wrong?") {
+                    startQuest()
+                }
+                option<Cheerful>("Can you make me a cake?") {
                     npc<Sad>("*sniff* Don't talk to me about cakes...")
                     startQuest()
                 }
-                3 -> dontLookHappy()
-                4 -> niceHat()
+                option<Talking>("You don't look very happy.") {
+                    dontLookHappy()
+                }
+                option<Cheerful>("Nice hat!") {
+                    niceHat()
+                }
             }
         }
         "started" -> started()
@@ -130,21 +129,17 @@ suspend fun Interaction.started() {
 
 suspend fun Interaction.completed() {
     npc<Cheerful>("Hello, friend, how is the adventuring going?")
-    val choice = choice("""
-        I'm getting strong and mighty.
-        I keep on dying.
-        Can I use your range?
-    """)
-    when (choice) {
-        1 -> {
+    choice {
+        option("I'm getting strong and mighty.") {
             player<Cheerful>("I'm getting strong and mighty. Grr.")
             npc<Cheerful>("Glad to hear it.")
         }
-        2 -> {
-            player<Upset>("I keep on dying.")
+        option<Upset>("I keep on dying.") {
             npc<Cheerful>("Ah, well, at least you keep coming back to life too!")
         }
-        3 -> canIUseRange()
+        option<Talk>("Can I use your range?") {
+            canIUseRange()
+        }
     }
 }
 
@@ -180,12 +175,8 @@ suspend fun Interaction.startQuest() {
         four children and a goat to look after. Would you help me? 
         Please?
     """)
-    val choice = choice("""
-        Yes.
-        No.
-    """, "Start the Cook's Assistant quest?")
-    when (choice) {
-        1 -> {
+    choice("Start the Cook's Assistant quest?") {
+        option("Yes.") {
             player<Cheerful>("I'm always happy to help a cook in distress.")
             player["cooks_assistant"] = "started"
             player.refreshQuestJournal()
@@ -199,7 +190,7 @@ suspend fun Interaction.startQuest() {
             player<Unsure>("Where can I find those, then?")
             whereToFind()
         }
-        2 -> {
+        option("No.") {
             player<Talking>("No, I don't feel like it. Maybe later.")
             npc<Sad>("""
                 Fine. I always knew you Adventurer types were callous
@@ -225,18 +216,15 @@ suspend fun Interaction.stillNeed() {
         You still need to get:
         ${if (player["cooks_assistant_milk", 0] == 0) "Some top-quality milk." else ""}${if (player["cooks_assistant_flour", 0] == 0) " Some extra fine flour." else ""}${if (player["cooks_assistant_egg", 0] == 0) " A super large egg." else ""}
     """)
-    val choice = choice("""
-        I'll get right on it.
-        Where can I find the ingredients?
-    """)
-    when (choice) {
-        1 -> player<Cheerful>("I'll get right on it.")
-        2 -> whereToFind()
+    choice {
+        option<Cheerful>("I'll get right on it.")
+        option("Where can I find the ingredients?") {
+            whereToFind()
+        }
     }
 }
 
 suspend fun Interaction.niceHat() {
-    player<Cheerful>("Nice hat!")
     npc<Sad>("Err thank you. It's a pretty ordinary cooks hat really.")
     player<Cheerful>("Still, suits you. The trousers are pretty special too. ")
     npc<Sad>("Its all standard cook's issue uniform...")
@@ -252,10 +240,9 @@ suspend fun Interaction.niceHat() {
 }
 
 suspend fun Interaction.canIUseRange() {
-    player<Talk>("Can I use your range?")
     npc<Cheerful>("""
-         Go ahead! It's very good range; it's better than most
-         other ranges.
+        Go ahead! It's very good range; it's better than most
+        other ranges.
     """)
     npc<Cheerful>("""
          It's called the Cook-o-Matic 25 and it uses a combination
@@ -285,19 +272,15 @@ suspend fun Interaction.canIUseRange() {
 }
 
 suspend fun NPCOption.dontLookHappy() {
-    player<Talking>("You don't look very happy.")
     npc<Sad>("""
         No, I'm not. The world is caving in around me - I am
         overcome by dark feelings of impending doom.
     """)
-    val choice = choice("""
-        What's wrong?
-        I'd take the rest of the day off if I were you.
-    """)
-    when (choice) {
-        1 -> startQuest()
-        2 -> {
-            player<Talking>("I'd take the rest of the day off if I were you.")
+    choice {
+        option("What's wrong?") {
+            startQuest()
+        }
+        option<Talking>("I'd take the rest of the day off if I were you.") {
             npc<Sad>("""
                 No, that's the worst thing I could do. I'd get in terrible
                 trouble.

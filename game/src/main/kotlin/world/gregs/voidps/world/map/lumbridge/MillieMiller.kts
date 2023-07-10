@@ -3,13 +3,14 @@ package world.gregs.voidps.world.map.lumbridge
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.hasItem
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Unsure
+import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -19,65 +20,36 @@ on<NPCOption>({ operate && npc.id == "millie_miller" && option == "Talk-to" }) {
         Hello Adventurer. Welcome to Mill Lane Mill. Can I
         help you?
     """)
-    if (player["cooks_assistant", "unstarted"] == "started" && !player.hasItem("extra_fine_flour")) {
-        val choice = choice("""
-            I'm looking for extra fine flour.
-            Who are you?
-            What is this place?
-            How do I mill flour?
-            I'm fine, thanks.
-        """)
-        when (choice) {
-            1 -> {
-                npc<Unsure>("What's wrong with ordinary flour?")
-                player<Talk>("""
+    menu()
+}
+
+suspend fun PlayerContext.menu() {
+    choice {
+        option("I'm looking for extra fine flour.", { player["cooks_assistant", "unstarted"] == "started" && !player.hasItem("extra_fine_flour") }) {
+            npc<Unsure>("What's wrong with ordinary flour?")
+            player<Talk>("""
                     Well, I'm no expert chef, but apparently it makes better
                     cakes. This cake, you see, is for Duke Horacio.
                 """)
-                npc<Cheerful>("""
+            npc<Cheerful>("""
                     Really? How marvellous! Well, I can sure help you out
                     there. Go ahead and use the mill and I'll realign the
                     millstones to produce extra fine flour. Anything else?
                 """)
-                player["cooks_assistant_talked_to_millie"] = 1
-                val choice = choice("""
-                    How do I mill flour?
-                    I'm fine, thanks.
-                """)
-                when (choice) {
-                    1 -> millFlour()
-                    2 -> {
-                        player<Cheerful>("I'm fine, thanks.")
-                    }
-                }
+            player["cooks_assistant_talked_to_millie"] = 1
+            choice {
+                millFlour()
+                option<Cheerful>("I'm fine, thanks.")
             }
-            2 -> whoAreYou()
-            3 -> whatIsThisPlace()
-            4 -> millFlour()
-            5 -> player<Cheerful>("I'm fine, thanks.")
         }
-    } else {
-        menu()
+        whoAreYou()
+        whatIsThisPlace()
+        millFlour()
+        option<Cheerful>("I'm fine, thanks.")
     }
 }
 
-suspend fun Interaction.menu() {
-    val choice = choice("""
-            Who are you?
-            What is this place?
-            How do I mill flour?
-            I'm fine, thanks.
-        """)
-    when (choice) {
-        1 -> whoAreYou()
-        2 -> whatIsThisPlace()
-        3 -> millFlour()
-        4 -> player<Cheerful>("I'm fine, thanks.")
-    }
-}
-
-suspend fun Interaction.whoAreYou() {
-    player<Unsure>("Who are you?")
+suspend fun PlayerChoice.whoAreYou(): Unit = option<Unsure>("Who are you?") {
     npc<Cheerful>("""
         I'm Miss Millicent Miller the Miller of Mill Lane Mill.Our 
         family have been milling flour for generations.
@@ -90,8 +62,7 @@ suspend fun Interaction.whoAreYou() {
     menu()
 }
 
-suspend fun Interaction.whatIsThisPlace() {
-    player<Unsure>("What is this place?")
+suspend fun PlayerChoice.whatIsThisPlace(): Unit = option<Unsure>("What is this place?") {
     npc<Cheerful>("""
         This is Mill Lane Mill. source of the finest flour in Gielinor, 
         and home to the Miller family for many generations
@@ -100,8 +71,7 @@ suspend fun Interaction.whatIsThisPlace() {
     menu()
 }
 
-suspend fun Interaction.millFlour() {
-    player<Unsure>("How do I mill flour?")
+suspend fun PlayerChoice.millFlour(): Unit = option<Unsure>("How do I mill flour?") {
     npc<Cheerful>("""
         Making flour is pretty easy. First of all you need to get 
         some wheat. You can pick some from wheat fields. There 

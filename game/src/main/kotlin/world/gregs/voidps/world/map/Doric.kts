@@ -22,17 +22,17 @@ on<NPCOption>({ operate && npc.id == "doric" && option == "Talk-to" }) { player:
     when (player["dorics_quest", "unstarted"]) {
         "started" -> {
             npc<Unsure>("Have you got my materials yet, traveller?")
-            if (player.inventory.contains("clay" to 6, "copper_ore" to 4, "iron_ore" to 2)) {
-                player<Cheerful>("I have everything you need!")
-                npc<Cheerful>("""
-                    Many thanks! Pass them here, please. I can spare you
-                    some coins for your trouble, and please use my anvils
-                    any time you want.
-                """)
-                takeOre()
-            } else {
+            if (!player.inventory.contains("clay" to 6, "copper_ore" to 4, "iron_ore" to 2)) {
                 noOre()
+                return@on
             }
+            player<Cheerful>("I have everything you need!")
+            npc<Cheerful>("""
+                Many thanks! Pass them here, please. I can spare you
+                some coins for your trouble, and please use my anvils
+                any time you want.
+            """)
+            takeOre()
         }
         "completed" -> {
             npc<Talking>("Hello traveller, how is your metalworking coming along?")
@@ -49,13 +49,8 @@ suspend fun Interaction.noOre() {
         Not to worry, stick at it. Remember, I need 6 clay, 4
         copper ore, and 2 iron ore.
     """)
-    val choice = choice("""
-        Where can I find those?
-        Certainly, I'll be right back!
-    """)
-    when (choice) {
-        1 -> {
-            player<Unsure>("Where can I find those?")
+    choice {
+        option<Unsure>("Where can I find those?") {
             npc<Cheerful>("""
                 You'll be able to find all those ores in the rocks just
                 inside the Dwarven Mine. Head east from here and
@@ -71,24 +66,14 @@ suspend fun Interaction.noOre() {
                 """)
             }
         }
-        2 -> {
-            player<Cheerful>("Certainly, I'll be right back!")
-        }
+        option<Cheerful>("Certainly, I'll be right back!")
     }
 }
 
 suspend fun Interaction.unstarted() {
     npc<Unsure>("Hello traveller, what brings you to my humble smithy?")
-    var choice = choice("""
-        I wanted to use your anvils.
-        I want to use your whetstone.
-        Mind your own business, shortstuff!
-        I was just checking out the landscape.
-        What do you make here?
-    """)
-    when (choice) {
-        1 -> {
-            player<Talking>("I wanted to use your anvils.")
+    choice {
+        option<Talking>("I wanted to use your anvils.") {
             npc<Talking>("""
                 My anvils get enough work with my own use. I make
                 pickaxes, and it takes a lot of hard work. If you could
@@ -96,8 +81,7 @@ suspend fun Interaction.unstarted() {
             """)
             startQuest()
         }
-        2 -> {
-            player<Talking>("I wanted to use your whetstone.")
+        option<Talking>("I want to use your whetstone.") {
             npc<Talking>("""
                 The whetstone is for more advanced smithing, but I
                 could let you use it as well as my anvils if you could
@@ -105,38 +89,32 @@ suspend fun Interaction.unstarted() {
             """)
             startQuest()
         }
-        3 -> {
-            player<Angry>("Mind your own business, shortstuff!")
+        option<Angry>("Mind your own business, shortstuff!") {
             npc<Angry>("""
                 How nice to meet someone with such pleasant manners.
                 Do come again when you need to shout at someone
                 smaller than you!
             """)
         }
-        4 -> {
+        option("I was just checking out the landscape.") {
             player<Talking>("I was just checking out the landscape.")
             npc<Cheerful>("""
                 Hope you like it. I do enjoy the solitude of my little
                 home. If you get time, please say hi to my friends in
                 the Dwarven Mine.
             """)
-            choice = choice("""
-                Dwarven Mine?
-                Will do!
-            """)
-            when (choice) {
-                1 -> {
-                    player<Unsure>("Dwarven Mine?")
+            choice {
+                option<Unsure>("Dwarven Mine?") {
                     npc<Cheerful>("""
                         Yep, the entrance is in the side of Ice Mountain just to
                         the east of here. They're a friendly bunch. Stop in at
                         Nurmof's store and buy one of my pickaxes!
                     """)
                 }
-                2 -> player<Cheerful>("Will do!")
+                option<Cheerful>("Will do!")
             }
         }
-        5 -> {
+        option("What do you make here?") {
             player<Unsure>("What do you make here?")
             npc<Cheerful>("""
                 I make pickaxes. I am the best maker of pickaxes in the
@@ -144,20 +122,15 @@ suspend fun Interaction.unstarted() {
             """)
             player<Unsure>("Do you have any to sell?")
             npc<Talking>("Sorry, but I've got a running order with Nurmof.")
-            choice = choice("""
-                Who's Nurmof?
-                Ah, fair enough.
-            """)
-            when (choice) {
-                1 -> {
-                    player<Unsure>("Who's Nurmof?")
+            choice {
+                option<Unsure>("Who's Nurmof?") {
                     npc<Cheerful>("""
                         Nurmof has a store over in the Dwarven Mine. You
                         can find the entrance on the side of Ice Mountain to
                         the east of here.
                     """)
                 }
-                2 -> player<Talking>("Ah, fair enough.")
+                option<Talking>("Ah, fair enough.")
             }
         }
     }
@@ -170,12 +143,8 @@ suspend fun Interaction.startQuest() {
             levels are lower than recommended.
         """)
     }
-    val choice = choice(title = "Start Doric's Quest?", text = """
-        Yes, I will get you the materials.
-        No, hitting rocks is for the boring people, sorry.
-    """)
-    when (choice) {
-        1 -> {
+    choice("Start Doric's Quest?") {
+        option("Yes, I will get you the materials.") {
             player<Cheerful>("Yes, I will get you the materials.")
             player["dorics_quest"] = "started"
             player.inventory.add("bronze_pickaxe")
@@ -211,7 +180,7 @@ suspend fun Interaction.startQuest() {
                 takeOre()
             }
         }
-        2 -> {
+        option("No, hitting rocks is for the boring people, sorry.") {
             player<RollEyes>("No, hitting rocks is for the boring people, sorry.")
             npc<Uncertain>("That is your choice. Nice to meet you anyway.")
         }

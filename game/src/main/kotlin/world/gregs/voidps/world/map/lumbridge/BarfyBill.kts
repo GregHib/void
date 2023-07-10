@@ -14,13 +14,8 @@ import world.gregs.voidps.world.interact.entity.npc.minimumCanoeLevel
 on<NPCOption>({ operate && npc.id == "barfy_bill" && option == "Talk-To" }) { player: Player ->
     player<Talking>("Hello there.")
     npc<Talking>("Oh! Hello there.")
-    var choice = choice("""
-        Who are you?
-        Can you teach me about Canoeing?
-    """)
-    when (choice) {
-        1 -> {
-            player<Talking>("Who are you?")
+    choice {
+        option<Talking>("Who are you?") {
             npc<Talking>("My name is Ex Sea Captain Barfy Bill.")
             player<Unsure>("Ex sea captain?")
             npc<Sad>("""
@@ -47,16 +42,18 @@ on<NPCOption>({ operate && npc.id == "barfy_bill" && option == "Talk-To" }) { pl
             """)
             npc<Cheerful>("I don't get river sick!")
             npc<Unsure>("Would you like to know how to make a canoe?")
-            choice = choice("""
-                Yes
-                No
-            """)
-            when (choice) {
-                1 -> canoeing()
-                2 -> player<Talking>("No thanks, not right now.")
+            choice {
+                option("Yes") {
+                    canoeing()
+                }
+                option("No") {
+                    player<Talking>("No thanks, not right now.")
+                }
             }
         }
-        2 -> canoeing()
+        option("Can you teach me about Canoeing?") {
+            canoeing()
+        }
     }
 }
 

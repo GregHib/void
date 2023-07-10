@@ -5,9 +5,9 @@ import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -16,10 +16,10 @@ import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.dialogue.*
+import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.player.display.Tab
 import java.util.concurrent.TimeUnit
 
@@ -32,25 +32,19 @@ on<NPCOption>({ operate && def.name == "Magic instructor" && option == "Talk-to"
     menu()
 }
 
-suspend fun Interaction.menu(followUp: String = "") {
+suspend fun PlayerContext.menu(followUp: String = "") {
     if (followUp.isNotEmpty()) {
         npc<Unsure>(followUp)
     }
-    val choice = choice("""
-        Tell me about magic combat please.
-        How do I make runes?
-        I'd like some air and mind runes.
-        Goodbye.
-    """)
-    when (choice) {
-        1 -> magicCombat()
-        2 -> runeMaking()
-        3 -> claimRunes()
+    choice {
+        magicCombat()
+        runeMaking()
+        claimRunes()
+        option("Goodbye.")
     }
 }
 
-suspend fun Interaction.magicCombat() {
-    player<Talking>("Tell me about magic combat please.")
+suspend fun PlayerChoice.magicCombat(): Unit = option<Talking>("Tell me about magic combat please.") {
     npc<Cheerful>("""
         Of course ${player.name}! As a rule of thumb, if you cast the
         highest spell of which you're capable, you'll get the best
@@ -79,8 +73,7 @@ suspend fun Interaction.magicCombat() {
     menu("Is there anything else you would like to know?")
 }
 
-suspend fun Interaction.runeMaking() {
-    player<Unsure>("How do I make runes?")
+suspend fun PlayerChoice.runeMaking(): Unit = option<Unsure>("How do I make runes?") {
     npc<Cheerful>("""
         There are a couple of things you will need to make
         runes, rune essence and a talisman to enter the temple
@@ -138,7 +131,7 @@ suspend fun Interaction.runeMaking() {
     menu("Is there anything else you would like to know?")
 }
 
-suspend fun Interaction.claimRunes() {
+suspend fun PlayerChoice.claimRunes(): Unit = option("I'd like some air and mind runes.") {
     if (player.remaining("claimed_tutor_consumables", epochSeconds()) > 0) {
         npc<Amazed>("""
             I work with the Ranged Combat tutor to give out
@@ -151,11 +144,11 @@ suspend fun Interaction.claimRunes() {
             either arrows OR runes, but not both. Come back in a
             while for runes, or simply make your own.
         """)
-        return
+        return@option
     }
     if (player.hasBanked("mind_rune") || player.hasBanked("air_rune")) {
         hasRunes()
-        return
+        return@option
     }
     if (player.inventory.isFull()) {
         npc<Upset>("""
@@ -163,7 +156,7 @@ suspend fun Interaction.claimRunes() {
             you some mind runes, come back when you do.
         """)
         player.inventoryFull()
-        return
+        return@option
     }
     if (player.inventory.spaces < 2) {
         npc<Upset>("""
@@ -171,7 +164,7 @@ suspend fun Interaction.claimRunes() {
             you some air runes, come back when you do.
         """)
         player.inventoryFull()
-        return
+        return@option
     }
     item("Mikasi gives you 30 air runes.", "air_rune", 400)
     player.inventory.add("air_rune", 30)
@@ -180,7 +173,7 @@ suspend fun Interaction.claimRunes() {
     player.inventory.add("mind_rune", 30)
 }
 
-suspend fun Interaction.hasRunes() {
+suspend fun PlayerContext.hasRunes() {
     var banked = false
     if (player.bank.contains("mind_rune")) {
         npc<Cheerful>("You have some mind runes in your bank.")

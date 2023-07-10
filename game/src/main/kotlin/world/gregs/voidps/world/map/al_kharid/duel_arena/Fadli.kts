@@ -15,16 +15,8 @@ import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 on<NPCOption>({ operate && npc.id == "fadli" && option == "Talk-to" }) { player: Player ->
     player<Cheerful>("Hi.")
     npc<RollEyes>("What?")
-    val choice = choice("""
-	    What do you do?
-	    What is this place?
-	    I'd like to access my bank, please.
-	    I'd like to collect items.
-	    Do you watch any matches?
-	""")
-    when (choice) {
-        1 -> {
-            player<Talking>("What do you do?")
+    choice {
+        option<Talking>("What do you do?") {
             npc<RollEyes>("""
 			    You can store your stuff here if you want. You can
 			    dump anything you don't want to carry whilst you're
@@ -37,30 +29,26 @@ on<NPCOption>({ operate && npc.id == "fadli" && option == "Talk-to" }) { player:
 			""")
             player<Uncertain>("Easy, tiger!")
         }
-        2 -> {
-            player<Uncertain>("What is this place?")
+        option<Uncertain>("What is this place?") {
             npc<Angry>("Isn't it obvious?")
             npc<Talking>("This is the Duel Arena...duh!")
         }
-        3 -> {
-            player<Talking>("I'd like to access my bank, please.")
+        option<Talking>("I'd like to access my bank, please.") {
             npc<RollEyes>("Sure.")
             player.open("bank")
         }
-        4 -> {
-            player<Cheerful>("I'd like to collect items.")
+        option<Cheerful>("I'd like to collect items.") {
             npc<RollEyes>("Yeah, okay.")
             player.open("collection_box")
         }
-        5 -> {
-            player<Talking>("Do you watch any matches?")
+        option<Talking>("Do you watch any matches?") {
             npc<Talking>("When I can.")
             npc<Cheerful>("Most aren't any good so I throw rotten fruit at them!")
             player<Cheerful>("Heh. Can I buy some?")
             if (World.members) {
                 npc<Laugh>("Sure.")
                 player.openShop("shop_of_distaste")
-                return@on
+                return@option
             }
             npc<RollEyes>("Nope.")
             player.message("You need to be on a members world to use this feature.")

@@ -11,8 +11,34 @@ import world.gregs.voidps.world.interact.dialogue.sendLines
 private val CHOICE_LINE_RANGE = 2..5
 private const val APPROXIMATE_WIDE_TITLE_LENGTH = 30
 
-suspend fun PlayerContext.choice(text: String, title: String? = null): Int {
-    val lines = text.trimIndent().lines()
+/**
+ * Usage:
+ *  choice("Pick an option") {
+ *      option("one") {
+ *          // ...
+ *      }
+ *      option<Happy>("two") {
+ *      }
+ *      option("three", ::condition) {
+ *      }
+ *  }
+ */
+suspend fun <T : PlayerContext> T.choice(title: String? = null, block: suspend ChoiceBuilder<T>.() -> Unit) {
+    val builder = ChoiceBuilder<T>()
+    block.invoke(builder)
+    val lines = builder.build(this)
+    val choice = choice(lines, title)
+    builder.invoke(choice - 1, this)
+}
+
+/**
+ * Usage:
+ *  val choice = choice(listOf("One", "Two", "Three"))
+ *  if (choice == 1) {
+ *     // ...
+ *  }
+ */
+suspend fun PlayerContext.choice(lines: List<String>, title: String? = null): Int {
     check(lines.size in CHOICE_LINE_RANGE) { "Invalid choice line count ${lines.size} for $player" }
     val question = title?.trimIndent()?.replace("\n", "<br>")
     val multilineTitle = question?.contains("<br>") ?: false
