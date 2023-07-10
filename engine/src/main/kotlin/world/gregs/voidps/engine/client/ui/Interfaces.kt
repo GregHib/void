@@ -218,7 +218,7 @@ fun Player.hasOpen(interfaceId: String) = interfaces.contains(interfaceId)
 
 fun Player.hasTypeOpen(interfaceType: String) = interfaces.get(interfaceType) != null
 
-fun Character.hasScreenOpen(): Boolean {
+fun Character.hasMenuOpen(): Boolean {
     if (this !is Player) {
         return false
     }
@@ -239,9 +239,6 @@ val Player.dialogue: String?
 
 val Player.menu: String?
     get() = interfaces.get("main_screen") ?: interfaces.get("wide_screen") ?: interfaces.get("underlay")
-
-val Player.model: String?
-    get() = menu ?: dialogue
 
 fun Player.closeDialogue(): Boolean {
     if (dialogueSuspension != null) {

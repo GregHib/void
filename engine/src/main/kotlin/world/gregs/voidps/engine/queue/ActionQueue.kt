@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.queue
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.dialogue
-import world.gregs.voidps.engine.client.ui.hasScreenOpen
+import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearAnimation
@@ -91,7 +91,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
 
     private fun noDelay() = !character.hasClock("delay")
 
-    private fun noInterrupt() = character is NPC || (character is Player && !character.hasScreenOpen() && character.dialogue == null)
+    private fun noInterrupt() = character is NPC || (character is Player && !character.hasMenuOpen() && character.dialogue == null)
 
     private fun launch(action: Action) {
         if (character.resumeSuspension() || (character is Player && character.dialogueSuspension != null)) {

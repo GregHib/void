@@ -3,7 +3,7 @@ package world.gregs.voidps.world.community.clan
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.client.ui.hasScreenOpen
+import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.*
@@ -21,7 +21,7 @@ import world.gregs.voidps.network.encode.updateClanChat
 import world.gregs.voidps.world.interact.dialogue.type.stringEntry
 
 on<InterfaceOption>({ id == "clan_chat" && component == "settings" && option == "Clan Setup" }) { player: Player ->
-    if (player.hasScreenOpen()) {
+    if (player.hasMenuOpen()) {
         player.message("Please close the interface you have open before using Clan Chat setup.")
         return@on
     }
