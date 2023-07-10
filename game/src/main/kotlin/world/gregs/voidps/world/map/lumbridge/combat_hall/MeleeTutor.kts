@@ -4,18 +4,15 @@ import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.transact.TransactionError
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.item
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
+import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.player.display.Tab
 
 on<NPCOption>({ operate && def.name == "Melee instructor" && option == "Talk-to" }) { player: Player ->
@@ -26,31 +23,20 @@ on<NPCOption>({ operate && def.name == "Melee instructor" && option == "Talk-to"
     menu()
 }
 
-suspend fun Interaction.menu(followUp: String = "") {
+suspend fun PlayerContext.menu(followUp: String = "") {
     if (followUp.isNotEmpty()) {
         npc<Unsure>(followUp)
     }
-    val choice = choice("""
-        Tell me about melee combat.
-        Tell me about different weapon types I can use.
-        Tell me about skillcapes.
-        I'd like a training sword and shield.
-        Goodbye.
-    """)
-    chosen(choice)
-}
-
-suspend fun Interaction.chosen(choice: Int) {
-    when (choice) {
-        1 -> meleeCombat()
-        2 -> weaponTypes()
-        3 -> skillcapes()
-        4 -> training()
+    choice {
+        meleeCombat()
+        weaponTypes()
+        skillcapes()
+        training()
+        option("Goodbye.")
     }
 }
 
-suspend fun Interaction.meleeCombat() {
-    player<Unsure>("Tell me about melee combat.")// raised eyebrow then quiet
+suspend fun PlayerChoice.meleeCombat(): Unit = option<Unsure>("Tell me about melee combat.") {
     npc<Talking>("""
         Well adventurer, the first thing you will need is a
         sword and a shield appropriate for your level.
@@ -111,75 +97,71 @@ suspend fun Interaction.meleeCombat() {
         mouse cursor over the style button.
     """)
     npc<Unsure>("Is there anything else you would like to know?")
-    val choice = choice("""
-        What if I wanted to fight something a bit more... human.
-        Tell me about different weapon types I can use.
-        Tell me about skillcapes.
-        I'd like a training sword and shield.
-        Goodbye.
-    """)
-    if (choice != 1) {
-        chosen(choice)
-        return
+    choice {
+        option("What if I wanted to fight something a bit more... human.") {
+            player<Talking>("""
+                What if I wanted to fight something a bit more...
+                human.
+            """)
+            npc<Cheerful>("""
+                Well adventurer, there are a few places you might be
+                able to do this.
+            """)
+            npc<Talking>("""
+                You could try your luck at castle wars. Here, two
+                teams fight each other to defend their respective flags.
+                To win the game you will need to get the other team's
+                flag and return it to your flag stand.
+            """)
+            player<Cheerful>("Capture the flag, sounds like a lot of fun.")
+            npc<Talking>("""
+                If you are in a clan, you should gather some clan
+                members and try out clan wars. There you can see
+                which clan is better than the other by fighting each
+                other in an arena.
+            """)
+            npc<Talking>("""
+                Both activities are safe minigame, which means if you
+                die you will not loose any of your items. You can get
+                to them by using the teleport option in your minigames
+                tab.
+            """)
+            npc<Suspicious>("""
+                There is also the wilderness. The wilderness is north of
+                Varrock and you can fight other players there. But
+                bare in mind if you die to another player in the
+                wilderness you will lose your stuff.
+            """)
+            npc<Suspicious>("""
+                But this also means that if you kill another player you
+                will be able to take their stuff too.
+            """)
+            npc<Suspicious>("""
+                Only go into the wilderness with items you are willing
+                to lose and pay attention to the wilderness level you are
+                in. The higher the level you go, more player will be able
+                to attack you.
+            """)
+            npc<Suspicious>("""
+                You can find which player can attack you by checking
+                your combat level.
+            """)
+            npc<Suspicious>("""
+                Minus the wilderness level from your combat level to
+                find the lowest level that you can attack, then add the
+                wilderness level to your combat level to find the highest
+                level that you can attack.
+            """)
+            menu("Is there anything else you would like to know?")
+        }
+        weaponTypes()
+        skillcapes()
+        training()
+        option("Goodbye.")
     }
-    player<Talking>("""
-        What if I wanted to fight something a bit more...
-        human.
-    """)
-    npc<Cheerful>("""
-        Well adventurer, there are a few places you might be
-        able to do this.
-    """)
-    npc<Talking>("""
-        You could try your luck at castle wars. Here, two
-        teams fight each other to defend their respective flags.
-        To win the game you will need to get the other team's
-        flag and return it to your flag stand.
-    """)
-    player<Cheerful>("Capture the flag, sounds like a lot of fun.")
-    npc<Talking>("""
-        If you are in a clan, you should gather some clan
-        members and try out clan wars. There you can see
-        which clan is better than the other by fighting each
-        other in an arena.
-    """)
-    npc<Talking>("""
-        Both activities are safe minigame, which means if you
-        die you will not loose any of your items. You can get
-        to them by using the teleport option in your minigames
-        tab.
-    """)
-    npc<Suspicious>("""
-        There is also the wilderness. The wilderness is north of
-        Varrock and you can fight other players there. But
-        bare in mind if you die to another player in the
-        wilderness you will lose your stuff.
-    """)
-    npc<Suspicious>("""
-        But this also means that if you kill another player you
-        will be able to take their stuff too.
-    """)
-    npc<Suspicious>("""
-        Only go into the wilderness with items you are willing
-        to lose and pay attention to the wilderness level you are
-        in. The higher the level you go, more player will be able
-        to attack you.
-    """)
-    npc<Suspicious>("""
-        You can find which player can attack you by checking
-        your combat level.
-    """)
-    npc<Suspicious>("""
-        Minus the wilderness level from your combat level to
-        find the lowest level that you can attack, then add the
-        wilderness level to your combat level to find the highest
-        level that you can attack.
-    """)
-    menu("Is there anything else you would like to know?")
 }
 
-suspend fun Interaction.weaponTypes() {
-    player<Talking>("Tell me about different weapon types I can use.")
+suspend fun PlayerChoice.weaponTypes(): Unit = option<Talking>("Tell me about different weapon types I can use.") {
     npc<Cheerful>("""
         Well let me see now...There are stabbing type weapons
         such as daggers, then you have swords which are
@@ -207,8 +189,7 @@ suspend fun Interaction.weaponTypes() {
     menu("Is there anything else you would like to know?")
 }
 
-suspend fun Interaction.skillcapes() {
-    player<Talking>("Tell me about skillcapes.")
+suspend fun PlayerChoice.skillcapes(): Unit = option<Talking>("Tell me about skillcapes.") {
     if (player.levels.getMax(Skill.Defence) < Level.MAX_LEVEL) {
         npc<Talking>("""
             Of course. Skillcapes are a symbol of achievement. Only
@@ -221,7 +202,7 @@ suspend fun Interaction.skillcapes() {
             from combat if your hitpoints become low.
         """)
         menu("Is there anything else you would like to know?")
-        return
+        return@option
     }
     npc<Talking>("""
         Ah, but I can see you're already a master in the fine
@@ -234,83 +215,77 @@ suspend fun Interaction.skillcapes() {
         it equipped it will act as ring of life, saving you from
         combat if your hitpoints become low.
     """)
-    var choice = choice("""
-        May I buy a Skillcape of Defence, please?
-        Can I ask about something else?
-    """)
-    if (choice == 1) {
-        buySkillcape()
-        return
+    choice {
+        option("May I buy a Skillcape of Defence, please?") {
+            buySkillcape()
+        }
+        option("Can I ask about something else?") {
+            choice {
+                option("Skillcape") {
+                    buySkillcape()
+                }
+                option("Hood") {
+                    player<Unsure>("May I have another hood for my cape, please?")
+                    npc<Talking>("Most certainly, and free of charge!")
+                    item("The tutor hands you another hood for your skillcape.", "defence_hood", 400)
+                    player.inventory.add("defence_hood")
+                }
+            }
+        }
     }
-    choice = choice("""
-        Skillcape
-        Hood
-    """)
-    if (choice == 1) {
-        buySkillcape()
-        return
-    }
-    player<Unsure>("May I have another hood for my cape, please?")
-    npc<Talking>("Most certainly, and free of charge!")
-    item("The tutor hands you another hood for your skillcape.", "defence_hood", 400)
-    player.inventory.add("defence_hood")
 }
 
-suspend fun Interaction.buySkillcape() {
+suspend fun PlayerContext.buySkillcape() {
     player<Unsure>("May I buy a Skillcape of Defence, please?")
     npc<Talking>("""
         You wish to join the elite defenders of this world? I'm
         afraid such things do not come cheaply - in fact they
         cost 99000 coins, to be precise!
     """)
-    val choice = choice("""
-        99000 coins? That's much too expensive.
-        I think I have the money right here, actually.
-    """)
-    if (choice == 1) {
-        player<Unsure>("99000 coins? That's much too expensive.")
-        npc<Talking>("""
-            Not at all; there are many other adventurers who
-            would love the opportunity to purchase such a
-            prestigious item! You can find me here if you change
-            your mind.
-        """)
-        return
-    }
-    player<Cheerful>("I think I have the money right here, actually.")
-    player.inventory.transaction {
-        remove("coins", 99000)
-        add("defence_hood")
-        val trimmed = Skill.values().any { it != Skill.Defence && player.levels.getMax(it) >= Level.MAX_LEVEL }
-        add("defence_skillcape${if (trimmed) "_t" else ""}")
-    }
-    when (player.inventory.transaction.error) {
-        TransactionError.None -> npc<Cheerful>("Excellent! Wear that cape with pride my friend.")
-        is TransactionError.Deficient -> {
-            player<Upset>("But, unfortunately, I was mistaken.")
-            npc<Talking>("Well, come back and see me when you do.")
-        }
-        is TransactionError.Full -> {
-            npc<Upset>("""
-                Unfortunately all Skillcapes are only available with a free
-                hood, it's part of a skill promotion deal; buy one get one
-                free, you know. So you'll need to free up some
-                inventory space before I can sell you one.
+    choice {
+        option<Unsure>("99000 coins? That's much too expensive.") {
+            npc<Talking>("""
+                Not at all; there are many other adventurers who
+                would love the opportunity to purchase such a
+                prestigious item! You can find me here if you change
+                your mind.
             """)
         }
-        else -> {}
+        option("I think I have the money right here, actually.") {
+            player<Cheerful>("I think I have the money right here, actually.")
+            player.inventory.transaction {
+                remove("coins", 99000)
+                add("defence_hood")
+                val trimmed = Skill.values().any { it != Skill.Defence && player.levels.getMax(it) >= Level.MAX_LEVEL }
+                add("defence_skillcape${if (trimmed) "_t" else ""}")
+            }
+            when (player.inventory.transaction.error) {
+                TransactionError.None -> npc<Cheerful>("Excellent! Wear that cape with pride my friend.")
+                is TransactionError.Deficient -> {
+                    player<Upset>("But, unfortunately, I was mistaken.")
+                    npc<Talking>("Well, come back and see me when you do.")
+                }
+                is TransactionError.Full, is TransactionError.Invalid -> {
+                    npc<Upset>("""
+                        Unfortunately all Skillcapes are only available with a free
+                        hood, it's part of a skill promotion deal; buy one get one
+                        free, you know. So you'll need to free up some
+                        inventory space before I can sell you one.
+                    """)
+                }
+            }
+        }
     }
 }
 
-suspend fun Interaction.training() {
-    player<Talking>("I'd like a training sword and shield.")
+suspend fun PlayerChoice.training(): Unit = option<Talking>("I'd like a training sword and shield.") {
     if (player.hasBanked("training_sword") || player.hasBanked("training_shield")) {
         npc<Unsure>("""
             You already have a training sword and shield. Save
             some for the other adventurers.
         """)
         menu("Is there anything else I can help you with?")
-        return
+        return@option
     }
 
     if (player.inventory.spaces < 2) {
@@ -319,7 +294,7 @@ suspend fun Interaction.training() {
             training sword, nor a shield.
         """)
         menu("Is there anything else I can help you with?")
-        return
+        return@option
     }
 
     item("Harlan gives you a Training sword.", "training_sword", 800)

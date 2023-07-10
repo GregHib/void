@@ -34,19 +34,16 @@ on<ContainerOption>({ container == "inventory" && option == "Discard" }) { playe
         You won't be able to pick it up again.
     """, get<ItemDefinitions>().get(item.def.lendId).stringId, 900)
 
-
-    val discard = choice("""
-        Yes, discard it. I won't need it again.
-        No, I'll keep hold of it.
-    """, "Really discard item?")
-
-    if (discard == 1) {
-        player.message("The item has been returned to it's owner.")
-        player.inventory.clear(slot)
-        player.clear("borrowed_item")
-        player.clear("borrowed_from")
-        player.clear("borrow_timeout")
-        player.softTimers.clear("borrow_message")
+    choice("Really discard item?") {
+        option("Yes, discard it. I won't need it again.") {
+            player.message("The item has been returned to it's owner.")
+            player.inventory.clear(slot)
+            player.clear("borrowed_item")
+            player.clear("borrowed_from")
+            player.clear("borrow_timeout")
+            player.softTimers.clear("borrow_message")
+        }
+        option("No, I'll keep hold of it.")
     }
 }
 

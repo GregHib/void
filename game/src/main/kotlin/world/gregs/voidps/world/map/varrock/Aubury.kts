@@ -12,80 +12,53 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.item
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
+import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 
 on<NPCOption>({ operate && npc.id == "aubury" && option == "Talk-to" }) { player: Player ->
     if (player["rune_mysteries", "unstarted"] == "completed") {
         npc<Cheerful>("Do you want to buy some runes?")
-            val choice = choice("""
-                Can you tell me about your cape?
-                Yes please!
-                Oh, it's a rune shop. No thank you, then.
-                Can you teleport me to the Rune Essence?
-            """)
-            when (choice) {
-                1 -> skillcapes()
-                2 -> openShop()
-                3 -> noThanks()
-                4 -> {
-                }
-            }
-        }else {
-            if (player["rune_mysteries", "unstarted"] == "stage3") {
-                stage3()
-            }else if (player["rune_mysteries", "unstarted"] == "stage4") {
-                stage4()
-            }else if (player["rune_mysteries", "unstarted"] == "stage5") {
-                stage5()
-            }else {
-                npc<Cheerful>("Do you want to buy some runes?")
-                val choice = choice("""
-                    Can you tell me about your cape?
-                    Yes please!
-                    Oh, it's a rune shop. No thank you, then.
-                """)
-                when (choice) {
-                    1 -> {
-                        skillcapes()
-                    }
-                    2 -> {
-                        openShop()
-                    }
-                    3 -> {
-                        noThanks()
-                    }
-                }
+        choice {
+            skillcapes()
+            openShop()
+            noThanks()
+            option("Can you teleport me to the Rune Essence?") {
             }
         }
+    } else {
+        if (player["rune_mysteries", "unstarted"] == "stage3") {
+            stage3()
+        } else if (player["rune_mysteries", "unstarted"] == "stage4") {
+            stage4()
+        } else if (player["rune_mysteries", "unstarted"] == "stage5") {
+            stage5()
+        } else {
+            npc<Cheerful>("Do you want to buy some runes?")
+            choice {
+                skillcapes()
+                openShop()
+                noThanks()
+            }
+        }
+    }
 }
-suspend fun Interaction.openShop() {
-    player<Cheerful>("Yes please!")
+
+fun PlayerChoice.openShop(): Unit = option<Cheerful>("Yes please!") {
     player.events.emit(OpenShop("auburys_rune_shop"))
 }
-suspend fun Interaction.noThanks() {
-    player<Talking>("Oh, it's a rune shop. No thank you, then.")
+
+suspend fun PlayerChoice.noThanks(message: String = "Oh, it's a rune shop. No thank you, then."): Unit = option<Talking>(message) {
     npc<Cheerful>("""
         Well, if you find someone who does want runes, please
         send them my way.
     """)
 }
+
 suspend fun Interaction.stage3() {
     npc<Cheerful>("Do you want to buy some runes?")
-    val choice = choice("""
-        Yes please!
-        I've been sent here with a package for you.
-        Oh, it's a rune shop. No thank you, then.
-    """)
-    when (choice) {
-        1 -> {
-            openShop()
-        }
-        2 -> {
-            player<Talking>("I've been sent here with a package for you.")
+    choice {
+        openShop()
+        option<Talking>("I've been sent here with a package for you.") {
             npc<Uncertain>("A package? From who?")
             player<Talking>("From Sedridor at the Wizards' Tower.")
             npc<Surprised>("""
@@ -99,7 +72,7 @@ suspend fun Interaction.stage3() {
                 item("You hand the package to Aubury.", "research_package_rune_mysteries", 600)
                 npc<Cheerful>("Now, let's have a look...")
                 researchPackage()
-            } else{
+            } else {
                 player<Uncertain>("""
                     Uh... yeah... about that... I kind of don't have it with
                     me...
@@ -111,31 +84,19 @@ suspend fun Interaction.stage3() {
                 npc<Talking>("Come back when you have it.")
             }
         }
-        3 -> {
-            noThanks()
-        }
+        noThanks()
     }
 }
 
 suspend fun Interaction.stage4() {
     npc<Cheerful>("Do you want to buy some runes?")
-    val choice = choice("""
-        Yes please!
-        Anything useful in that package I gave you?
-        No thank you.
-    """)
-    when (choice) {
-        1 -> {
-            openShop()
-        }
-        2 -> {
-            player<Unsure>("Anything useful in that package I gave you?")
+    choice {
+        openShop()
+        option<Unsure>("Anything useful in that package I gave you?") {
             npc<Cheerful>("Well, let's have a look...")
             researchPackage()
         }
-        3 -> {
-            noThanks()
-        }
+        noThanks()
     }
 }
 
@@ -182,23 +143,11 @@ suspend fun Interaction.stage5() {
             indeed the breakthrough we were hoping for.
         """)
         npc<Unsure>("Now, did you want to buy some runes?")
-        val choice = choice("""
-            Yes please!
-            No thank you.
-        """)
-        when (choice) {
-            1 -> {
-                openShop()
-            }
-            2 -> {
-                player<Talking>("No thank you.")
-                npc<Cheerful>("""
-                    Well, if you find someone who does want runes, please
-                    send them my way.
-                """)
-            }
+        choice {
+            openShop()
+            noThanks("No thank you.")
         }
-    }else{
+    } else {
         player<Sad>("Sorry, but I lost them.")
         npc<Talking>("""
             Well, luckily I have duplicates. It's a good thing they
@@ -212,14 +161,15 @@ suspend fun Interaction.stage5() {
             """, "research_notes_rune_mysteries", 600)
             return
         }
-        if (player.bank.contains("research_notes_rune_mysteries")){
+        if (player.bank.contains("research_notes_rune_mysteries")) {
             player.bank.remove("research_notes_rune_mysteries")
         }
         player.inventory.add("research_notes_rune_mysteries")
         item("Aubury hands you some research notes.", "research_notes_rune_mysteries", 600)
     }
 }
-suspend fun Interaction.skillcapes() {
+
+suspend fun PlayerChoice.skillcapes(): Unit = option("Can you tell me about your cape?") {
     npc<Cheerful>("""
         Certainly! Skillcapes are a symbol of achievement. Only
         people who have mastered a skill and reached level 99
@@ -231,21 +181,10 @@ suspend fun Interaction.skillcapes() {
         talisman, allowing you to access all Runecrafting altars.
         Is there anything else I can help you with?
     """)
-    val choice = choice("""
-        I'd like to view your store please.
-        No thank you.
-    """)
-    when (choice) {
-        1 -> {
-            player<Cheerful>("I'd like to view your store please.")
+    choice {
+        option<Cheerful>("I'd like to view your store please.") {
             player.events.emit(OpenShop("runecrafting_skillcape_skillcape"))
         }
-        2 -> {
-            player<Talking>("No thank you.")
-            npc<Cheerful>("""
-                Well, if you find someone who does want runes, please
-                send them my way.
-            """)
-        }
+        noThanks("No thank you.")
     }
 }

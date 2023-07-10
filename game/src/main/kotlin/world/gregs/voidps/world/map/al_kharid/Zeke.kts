@@ -14,23 +14,15 @@ import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
 on<NPCOption>({ operate && npc.id == "zeke" && option == "Talk-to" }) { player: Player ->
     npc<Talk>("A thousand greetings, ${if (player.male) "sir" else "madam"}.")
-    val choice = choice("""
-        Do you want to trade?
-        Nice cloak.
-        Could you sell me a dragon scimitar?
-        What do you think of Ali Morrisane?
-    """)
-    when (choice) {
-        1 -> {
+    choice {
+        option("Do you want to trade?") {
             npc<Cheerful>("Yes, certainly. I deal in scimitars.")
             player.openShop("zekes_superior_scimitars")
         }
-        2 -> {
-            player<Unsure>("Nice cloak.")
+        option<Unsure>("Nice cloak.") {
             npc<Unsure>("Thank you.")
         }
-        3 -> {
-            player<Unsure>("Could you sell me a dragon scimitar?")
+        option<Unsure>("Could you sell me a dragon scimitar?") {
             npc<Angry>("A dragon scimitar? A DRAGON scimitar?")
             npc<Angry>("No way, man!")
             npc<Furious>("""
@@ -49,8 +41,7 @@ on<NPCOption>({ operate && npc.id == "zeke" && option == "Talk-to" }) { player: 
             npc<Unsure>("Perhaps you'd like to take a look at my stock?")
             takeALook()
         }
-        4 -> {
-            player<Unsure>("What do you think of Ali Morrisane?")
+        option<Unsure>("What do you think of Ali Morrisane?") {
             npc<Unsure>("He is a dangerous man.")
             npc<Unsure>("""
                 Although he does not appear to be dangerous, he has
@@ -73,12 +64,8 @@ on<NPCOption>({ operate && npc.id == "zeke" && option == "Talk-to" }) { player: 
 }
 
 suspend fun Interaction.takeALook() {
-    val choice = choice("""
-            Yes please, Zeke.
-            Not today, thank you.
-        """)
-    when (choice) {
-        1 -> player.openShop("zekes_superior_scimitars")
-        2 -> player<Unsure>("Not today, thank you.")
+    choice {
+        option("Yes please, Zeke.", block = { player.openShop("zekes_superior_scimitars") })
+        option<Unsure>("Not today, thank you.")
     }
 }

@@ -1,9 +1,9 @@
 package world.gregs.voidps.world.map.musicians
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
@@ -22,14 +22,9 @@ on<NPCOption>({ operate && npc.id == "ghostly_piper" && option == "Talk-to" }) {
     choice()
 }
 
-suspend fun Interaction.choice() {
-    val choice = choice("""
-        Who are you?
-        That's all for now
-    """)
-    when (choice) {
-        1 -> {
-            player<Unsure>("Who are you?")
+suspend fun PlayerContext.choice() {
+    choice {
+        option<Unsure>("Who are you?") {
             npc<Cheerful>("""
                 I play the pipes, to rouse
                 the brave warriors of Saradomin for the fight!
@@ -57,11 +52,8 @@ suspend fun Interaction.choice() {
             """)
             choice()
         }
-        2 -> exit()
+        option<Unsure>("That's all for now") {
+            npc<Cheerful>("Be strong and fight the good fight, my friend!")
+        }
     }
-}
-
-suspend fun Interaction.exit() {
-    player<Unsure>("That's all for now.")
-    npc<Cheerful>("Be strong and fight the good fight, my friend!")
 }

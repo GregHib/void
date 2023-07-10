@@ -23,7 +23,6 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 import world.gregs.voidps.world.map.falador.openDressingRoom
 
@@ -34,22 +33,14 @@ on<NPCOption>({ operate && npc.id == "yrsa" && option == "Talk-to" }) { player: 
         Hi. You wanted to buy some clothes? Or
         did you want to makeover your shoes?
     """)
-    val choice = choice("""
-        I'd like to buy some clothes.
-        I'd like to change my shoes.
-        Neither, thanks.
-    """)
-    when (choice) {
-        1 -> {
-            player<Happy>("I'd like to buy some clothes.")
+    choice {
+        option<Happy>("I'd like to buy some clothes.") {
             player.openShop("yrsas_shoe_store")
         }
-        2 -> {
-            player<Happy>("I'd like to change my shoes.")
+        option<Happy>("I'd like to change my shoes.") {
             startShoeShopping()
         }
-        3 -> {
-            player<Talk>("Neither, thanks.")
+        option<Talk>("Neither, thanks.") {
             npc<Talk>("As you wish.")
         }
     }

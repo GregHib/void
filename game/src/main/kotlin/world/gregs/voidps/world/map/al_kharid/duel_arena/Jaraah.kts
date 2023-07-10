@@ -11,18 +11,11 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 on<NPCOption>({ operate && npc.id == "jaraah" && option == "Talk-to" }) { player: Player ->
     player<Cheerful>("Hi!")
     npc<Angry>("What? Can't you see I'm busy?!")
-    val choice = choice("""
-        Can you heal me?
-        You must see some gruesome things?
-        Why do they call you 'The Butcher'?
-    """)
-    when (choice) {
-        1 -> {
-            player<Uncertain>("Can you heal me?")
+    choice {
+        option<Uncertain>("Can you heal me?") {
             heal()
         }
-        2 -> {
-            player<Uncertain>("You must see some gruesome things?")
+        option<Uncertain>("You must see some gruesome things?") {
             npc<Angry>("""
                 It's a gruesome business and with the tools they give
                 me it gets more gruesome before it gets better!
@@ -30,8 +23,7 @@ on<NPCOption>({ operate && npc.id == "jaraah" && option == "Talk-to" }) { player
             player<Laugh>("Really?")
             npc<Laugh>("It beats being stuck in the monastery!")
         }
-        3 -> {
-            player<Uncertain>("Why do they call you 'The Butcher'?")
+        option<Uncertain>("Why do they call you 'The Butcher'?") {
             npc<Laugh>("'The Butcher'?")
             npc<Angry>("Ha!")
             npc<Angry>("Would you like me to demonstrate?")

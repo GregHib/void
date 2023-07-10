@@ -245,13 +245,7 @@ on<NPCOption>({ operate && npc.id == "delrith" && npc.transform == "delrith_weak
         player<Furious>("Now what was that incantation again?")
         var correct = true
         repeat(5) { index ->
-            val choice = choice("""
-                Carlem
-                Aber
-                Camerinthum
-                Purchai
-                Gabindo
-            """)
+            val choice = choice(listOf("Carlem", "Aber", "Camerinthum", "Purchai", "Gabindo"))
             val selected = words[choice - 1]
             val suffix = if (index == 4) "!" else "..."
             val text = "$selected$suffix"

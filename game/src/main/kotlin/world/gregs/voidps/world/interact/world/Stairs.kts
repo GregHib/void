@@ -21,18 +21,10 @@ on<ObjectOption>({ operate && stairs.get(def.id, obj.tile, option) != null }) { 
 }
 
 on<ObjectOption>({ operate && operate && option == "Climb" && (def.options?.count { it?.startsWith("Climb") == true } ?: 0) > 1 }) { _: Player ->
-    val choice = choice(
-        title = "What would you like to do?",
-        text = """
-            Go up the stairs.
-            Go down the stairs.
-            Never mind.
-        """
-    )
-    when (choice) {
-        1 -> climb("Climb-up")
-        2 -> climb("Climb-down")
-        else -> return@on
+    choice("What would you like to do?") {
+        option("Go up the stairs.", block = { climb("Climb-up") })
+        option("Go down the stairs.", block = { climb("Climb-down") })
+        option("Never mind.")
     }
 }
 

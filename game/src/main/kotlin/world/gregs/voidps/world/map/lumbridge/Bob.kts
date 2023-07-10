@@ -14,19 +14,14 @@ import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.Upset
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
 on<NPCOption>({ operate && npc.id == "bob" && option == "Talk-to" }) { player: Player ->
-    val choice = choice("""
-        Give me a quest!
-        I'd like to trade.
-        Can you repair my items for me?
-    """)
-    when (choice) {
-        1 -> npc<Talk>("Sorry I don't have any quests for you at the moment.")
-        2 -> {
-            player<Unsure>("I'd like to trade.")
+    choice {
+        option("Give me a quest!") {
+            npc<Talk>("Sorry I don't have any quests for you at the moment.")
+        }
+        option<Unsure>("I'd like to trade.") {
             npc<Cheerful>("""
                 Great! I buy and sell pickaxes and hatchets. There are
                 plenty to choose from, and I've some free samples too.
@@ -34,8 +29,7 @@ on<NPCOption>({ operate && npc.id == "bob" && option == "Talk-to" }) { player: P
             """)
             player.openShop("bobs_brilliant_axes")
         }
-        3 -> {
-            player<Upset>("Can you repair my items for me?")
+        option<Upset>("Can you repair my items for me?") {
             npc<Unsure>("""
                 Of course I can, though the material may cost you. Just
                 hand me the item and I'll have a look.
@@ -51,18 +45,17 @@ on<ItemOnNPC>({ operate && npc.id == "bob" }) { player: Player ->
     }
     val cost = repairCost(player, item)
     npc<Talk>("That'll cost you $cost gold coins to fix, are you sure?")
-    val choice = choice("""
-        Yes I'm sure!
-        On second thoughts, no thanks.
-    """)
-    if (choice == 1) {
-        val repaired = player.inventory.transaction {
-            remove("coins", cost)
-            replace(item.id, repaired(item.id))
+    choice {
+        option("Yes I'm sure!") {
+            val repaired = player.inventory.transaction {
+                remove("coins", cost)
+                replace(item.id, repaired(item.id))
+            }
+            if (repaired) {
+                npc<Cheerful>("There you go. It's a pleasure doing business with you!")
+            }
         }
-        if (repaired) {
-            npc<Cheerful>("There you go. It's a pleasure doing business with you!")
-        }
+        option("On second thoughts, no thanks.")
     }
 }
 

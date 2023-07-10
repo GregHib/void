@@ -11,11 +11,8 @@ import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
-import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.engine.entity.character.player.male
-import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.BodyColour
@@ -23,6 +20,7 @@ import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Unsure
+import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -40,55 +38,46 @@ on<NPCOption>({ operate && npc.id == "thessalia" && option == "Talk-to" }) { pla
         Or if you're more after fancy dress costumes or
         commemorative capes, talk to granny Iffie.
     """)
-    var choice = choice("""
-        What do you have?
-        No, thank you.
-    """)
-    if (choice == 1) {
-        return@on
+    choice {
+        option<Unsure>("What do you have?") {
+            npc<Cheerful>("""
+                Well, I have a number of fine pieces of clothing on sale or,
+                if you prefer, I can offer you an exclusive, total clothing
+                makeover?
+            """)
+            choice {
+                option<Unsure>("Tell me more about this makeover.") {
+                    npc<Cheerful>("Certainly!")
+                    npc<Cheerful>("""
+                        Here at Thessalia's Fine Clothing Boutique we offer a
+                        unique service, where we will totally revamp your outfit to
+                        your choosing. Tired of always wearing the same old
+                        outfit, day-in, day-out? Then this is the service for you!
+                    """)
+                    npc<Cheerful>("So, what do you say? Interested?")
+                    choice {
+                        openShop()
+                        option("No, thank you.")
+                    }
+                }
+                openShop()
+            }
+        }
+        option("No, thank you.")
     }
-    player<Unsure>("What do you have?")
-    npc<Cheerful>("""
-        Well, I have a number of fine pieces of clothing on sale or,
-        if you prefer, I can offer you an exclusive, total clothing
-        makeover?
-    """)
-    choice = choice("""
-        Tell me more about this makeover.
-        I'd just like to buy some clothes.
-    """)
-    if (choice == 2) {
-        player.openShop("thessalias_fine_clothes")
-        return@on
-    }
-    player<Unsure>("Tell me more about this makeover.")
-    npc<Cheerful>("Certainly!")
-    npc<Cheerful>("""
-        Here at Thessalia's Fine Clothing Boutique we offer a
-        unique service, where we will totally revamp your outfit to
-        your choosing. Tired of always wearing the same old
-        outfit, day-in, day-out? Then this is the service for you!
-    """)
-    npc<Cheerful>("So, what do you say? Interested?")
-    choice = choice("""
-        I'd like to change my outfit, please.
-        I'd just like to buy some clothes.
-        No, thank you.
-    """)
-    if (choice == 2) {
-        player.openShop("thessalias_fine_clothes")
-        return@on
-    }
-    if (choice == 3) {
-        return@on
-    }
-    player<Cheerful>("I'd like to change my outfit, please")
+}
+
+on<NPCOption>({ operate && npc.id == "thessalia" && option == "Change-clothes" }) { player: Player ->
+    startMakeover()
+}
+
+fun PlayerChoice.changeOutfit(): Unit = option<Cheerful>("I'd like to change my outfit, please.") {
     if (!player.equipment.isEmpty()) {
         npc<Talk>("""
             You can't try them on while wearing armour. Take it off
             and speak to me again.
         """)
-        return@on
+        return@option
     }
     npc<Cheerful>("""
         Wonderful. Feel free to try on some items and see if
@@ -98,11 +87,11 @@ on<NPCOption>({ operate && npc.id == "thessalia" && option == "Talk-to" }) { pla
     startMakeover()
 }
 
-on<NPCOption>({ operate && npc.id == "thessalia" && option == "Change-clothes" }) { player: Player ->
-    startMakeover()
+fun PlayerChoice.openShop(): Unit = option("I'd just like to buy some clothes.") {
+    player.openShop("thessalias_fine_clothes")
 }
 
-suspend fun NPCOption.startMakeover() {
+suspend fun PlayerContext.startMakeover() {
     player.closeDialogue()
     if (!player.equipment.isEmpty()) {
         npc<Talk>("""

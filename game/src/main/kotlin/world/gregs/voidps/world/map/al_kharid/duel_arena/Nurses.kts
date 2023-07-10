@@ -12,18 +12,12 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 on<NPCOption>({ operate && (npc.id == "sabreen" || npc.id == "a_abla") && option == "Talk-to" }) { player: Player ->
     player<Cheerful>("Hi!")
     npc<Cheerful>("Hi. How can I help?")
-    val choice = choice("""
-        Can you heal me?
-        Do you see a lot of injured fighters?
-        Do you come here often?
-    """)
-    when (choice) {
-        1 -> {
-            player<Uncertain>("Can you heal me?")
+    choice {
+        option<Uncertain>("Can you heal me?") {
             heal()
         }
-        2 -> fighters()
-        3 -> often()
+        fighters()
+        often()
     }
 }
 

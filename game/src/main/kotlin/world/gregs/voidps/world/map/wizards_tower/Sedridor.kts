@@ -8,9 +8,11 @@ import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.forceChat
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
@@ -19,10 +21,7 @@ import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.activity.quest.sendQuestComplete
 import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.item
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
+import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
@@ -50,10 +49,10 @@ on<NPCOption>({ operate && npc.id == "sedridor" && option == "Talk-to" }) { play
 }
 
 on<NPCOption>({ operate && npc.id == "sedridor" && option == "Teleport" }) { player: Player ->
-    teleportEssenceMine()
+    teleport()
 }
 
-suspend fun Interaction.started() {
+suspend fun PlayerContext.started() {
     npc<Cheerful>("""
         Welcome adventurer, to the world renowned Wizards'
         Tower, home to the Order of Wizards. We are the
@@ -71,26 +70,20 @@ suspend fun Interaction.started() {
         Did he now? Well hand it over then, and we'll see what
         all the hubbub is about.
     """)
-    var choice = choice("""
-        Okay, here you are.
-        No, I'll only give it to Sedridor.
-    """)
-    when (choice) {
-        1 -> okHere()
-        2 -> {
-            player<Uncertain>("No, I'll only give it to Sedridor.")
+    choice {
+        option("Okay, here you are.") {
+            okHere()
+        }
+        option<Uncertain>("No, I'll only give it to Sedridor.") {
             npc<Cheerful>("""
                 Well good news, for I am Sedridor! Now, hand it over
                 and let me have a proper look at it, hmm?
             """)
-            choice = choice("""
-                Okay, here you are.
-                No, I don't think you are Sedridor.
-            """)
-            when (choice) {
-                1 -> okHere()
-                2 -> {
-                    player<Uncertain>("No, I don't think you are Sedridor.")
+            choice {
+                option("Okay, here you are.") {
+                    okHere()
+                }
+                option<Uncertain>("No, I don't think you are Sedridor.") {
                     npc<Cheerful>("""
                         Hmm... Well, I admire your caution adventurer.
                         Perhaps I can prove myself? I will use my mental
@@ -113,7 +106,7 @@ suspend fun Interaction.started() {
     }
 }
 
-suspend fun Interaction.okHere() {
+suspend fun PlayerContext.okHere() {
     player<Talking>("Okay, here you are.")
     if (player.inventory.contains("air_talisman")) {
         player["rune_mysteries"] = "stage2"
@@ -145,13 +138,8 @@ suspend fun Interaction.okHere() {
             about?
         """)
         npc<Cheerful>("Ah, my apologies, adventurer. Allow me to fill you in.")
-        val choice = choice("""
-            Go ahead.
-            Actually, I'm not interested.
-        """)
-        when (choice) {
-            1 -> {
-                player<Talking>("Go ahead.")
+        choice {
+            option<Talking>("Go ahead.") {
                 npc<Cheerful>("""
                     As you are likely aware, when we cast spells, we do so
                     using the power of runes.
@@ -231,8 +219,7 @@ suspend fun Interaction.okHere() {
                 """)
                 discovery()
             }
-            2 -> {
-                player<Talking>("Actually, I'm not interested.")
+            option<Talking>("Actually, I'm not interested.") {
                 npc<Sad>("""
                     Oh... Well I guess the short of it is that this talisman
                     could be key to helping us rediscover an important
@@ -257,7 +244,7 @@ suspend fun Interaction.okHere() {
     }
 }
 
-suspend fun Interaction.discovery() {
+suspend fun PlayerContext.discovery() {
     npc<Cheerful>("""
         It is critical I share this discovery with my associate,
         Aubury, as soon as possible. He's not much of a wizard,
@@ -268,33 +255,25 @@ suspend fun Interaction.discovery() {
         Would you be willing to visit him for me? I would go
         myself, but I wish to study this talisman some more.
     """)
-    val choice = choice("""
-        Yes, certainly.
-        No, I'm busy.
-    """)
-    when (choice) {
-        1 -> yesCertainly()
-        2 -> imBusy()
+    choice {
+        yesCertainly()
+        imBusy()
     }
 }
 
-suspend fun Interaction.stage2() {
+suspend fun PlayerContext.stage2() {
     npc<Unsure>("""
         Hello again, adventurer. You have already done so
         much, but I would really appreciate it if you were to
         visit my associate, Aubury. Would you be willing to?
     """)
-    val choice = choice("""
-        Yes, certainly.
-        No, I'm busy.
-    """)
-    when (choice) {
-        1 -> yesCertainly()
-        2 -> imBusy()
+    choice {
+        yesCertainly()
+        imBusy()
     }
 }
 
-suspend fun Interaction.stage3() {
+suspend fun PlayerContext.stage3() {
     npc<Unsure>("""
         Hello again, adventurer. Did you take that package to
         Aubury?
@@ -324,7 +303,7 @@ suspend fun Interaction.stage3() {
     }
 }
 
-suspend fun Interaction.stage5() {
+suspend fun PlayerContext.stage5() {
     npc<Talking>("""
         Ah, ${player.name}. How goes your quest? Have you delivered
         my research to Aubury yet?
@@ -382,8 +361,7 @@ suspend fun Interaction.stage5() {
     }
 }
 
-suspend fun Interaction.imBusy() {
-    player<Talking>("No, I'm busy.")
+suspend fun PlayerChoice.imBusy(): Unit = option<Talking>("No, I'm busy.") {
     npc<Talking>("""
         As you wish adventurer. I will continue to study this
         talisman you have brought me. Return here if you find
@@ -391,8 +369,7 @@ suspend fun Interaction.imBusy() {
     """)
 }
 
-suspend fun Interaction.yesCertainly() {
-    player<Talking>("Yes, certainly.")
+suspend fun PlayerChoice.yesCertainly(): Unit = option<Talking>("Yes, certainly.") {
     player["rune_mysteries"] = "stage3"
     npc<Cheerful>("""
         He runs a rune shop in the south east of Varrock.
@@ -405,31 +382,21 @@ suspend fun Interaction.yesCertainly() {
             Sedridor tries to hand you a package, but you don't
             have enough room to take it.
         """, "research_package_rune_mysteries", 600)
-        return
+        return@option
     }
     player.inventory.add("research_package_rune_mysteries")
     item("Sedridor hands you a package.", "research_package_rune_mysteries", 600)
     npc<Cheerful>("Best of luck, ${player.name}.")
 }
 
-suspend fun Interaction.completed() {
+suspend fun NPCOption.completed() {
     player<Talking>("Hello there.")
     npc<Cheerful>("Hello again, ${player.name}. What can I do for you?")
-    val choice = choice("""
-        Can you teleport me to the Rune Essence Mine?
-        Who else knows the teleport to the Rune Essence Mine?
-        Could you tell me about the old Wizards' Tower?
-        Nothing thanks, I'm just looking around.
-    """)
-    when (choice) {
-        1 -> {
-            player<Unsure>("Can you teleport me to the Rune Essence Mine?")
-            teleportEssenceMine()
-        }
-        2 -> whoElseKnows()
-        3 -> oldWizardsTower()
-        4 -> {
-            player<Talking>("Nothing thanks, I'm just looking around.")
+    choice {
+        teleportEssenceMine()
+        whoElseKnows()
+        oldWizardsTower()
+        option<Talking>("Nothing thanks, I'm just looking around.") {
             npc<Cheerful>("""
                 Well, take care. You stand on the ruins of the old
                 destroyed Wizards' Tower. Strange and powerful
@@ -439,39 +406,34 @@ suspend fun Interaction.completed() {
     }
 }
 
-suspend fun Interaction.teleportEssenceMine() {
-    //npc.forceChat = "Seventior disthiae molenko!"
-    //2910 4830
+fun ChoiceBuilder<NPCOption>.teleportEssenceMine(): Unit = option<Unsure>("Can you teleport me to the Rune Essence Mine?") {
+    teleport()
 }
 
-suspend fun Interaction.whoElseKnows() {
-    player<Unsure>("""
+fun NPCOption.teleport() {
+    // TODO animation + gfx
+    npc.forceChat = "Seventior disthiae molenko!"
+    player.tele(2910, 4830)
+}
+
+suspend fun ChoiceBuilder<NPCOption>.whoElseKnows(): Unit = option<Unsure>("""
         Who else knows the teleport to the Rune Essence
         Mine?
-    """)
+    """) {
     npc<Cheerful>("""
         Apart from myself, there's also Aubury in Varrock,
         Wizard Cromperty in East Ardougne, Brimstail in the
         Tree Gnome Stronghold and Wizard Distentor in
         Yanille's Wizards' Guild.
     """)
-    val choice = choice("""
-        Can you teleport me to the Rune Essence Mine?
-        Could you tell me about the old Wizards' Tower?
-        Thanks for the information.
-    """)
-    when (choice) {
-        1 -> {
-            player<Unsure>("Can you teleport me to the Rune Essence Mine?")
-            teleportEssenceMine()
-        }
-        2 -> oldWizardsTower()
-        3 -> thanksForInformation()
+    choice {
+        teleportEssenceMine()
+        oldWizardsTower()
+        thanksForInformation()
     }
 }
 
-suspend fun Interaction.oldWizardsTower() {
-    player<Unsure>("Could you tell me about the old Wizards' Tower?")
+suspend fun ChoiceBuilder<NPCOption>.oldWizardsTower(): Unit = option<Unsure>("Could you tell me about the old Wizards' Tower?") {
     npc<Cheerful>("""
         Of course. The first Wizards' Tower was built at the
         same time the Order of Wizards was founded. It was
@@ -506,27 +468,18 @@ suspend fun Interaction.oldWizardsTower() {
         teleportation incantation to the Rune Essence Mine.
         We have you to thank for that.
     """)
-    val choice = choice("""
-        Can you teleport me to the Rune Essence Mine?
-        Who else knows the teleport to the Rune Essence Mine?
-        Thanks for the information.
-    """)
-    when (choice) {
-        1 -> {
-            player<Unsure>("Can you teleport me to the Rune Essence Mine?")
-            teleportEssenceMine()
-        }
-        2 -> whoElseKnows()
-        3 -> thanksForInformation()
+    choice {
+        teleportEssenceMine()
+        whoElseKnows()
+        thanksForInformation()
     }
 }
 
-suspend fun Interaction.thanksForInformation() {
-    player<Cheerful>("Thanks for the information.")
+suspend fun PlayerChoice.thanksForInformation(): Unit = option<Cheerful>("Thanks for the information.") {
     npc<Cheerful>("My pleasure.")
 }
 
-fun Interaction.questComplete() {
+fun PlayerContext.questComplete() {
     player["rune_mysteries"] = "completed"
     player.playJingle("quest_complete_1")
     if (player.inventory.isFull()) {

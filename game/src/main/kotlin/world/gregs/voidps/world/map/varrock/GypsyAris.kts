@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -36,10 +37,7 @@ import world.gregs.voidps.world.activity.quest.DemonSlayerSpell.randomiseOrder
 import world.gregs.voidps.world.activity.quest.startCutscene
 import world.gregs.voidps.world.activity.quest.stopCutscene
 import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.dialogue.type.statement
+import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.effect.clearTransform
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.player.music.playTrack
@@ -65,129 +63,88 @@ on<NPCOption>({ operate && npc.id == "gypsy_aris" && option == "Talk-to" }) { pl
                     than the recommended level of 15.
                 """)
             }
-            val choice = choice("""
-                Okay, here you go.
-                Who are you called 'young one'?
-                No, I don't believe in that stuff.
-                With silver?
-            """)
-            when (choice) {
-                1 -> hereYouGo()
-                2 -> whoYouCallingYoung()
-                3 -> notBeliever()
-                4 -> withSilver()
+            choice {
+                hereYouGo()
+                whoYouCallingYoung()
+                notBeliever()
+                withSilver()
             }
         }
         "sir_prysin", "key_hunt" -> howGoesQuest()
         "completed" -> {
             npc<Talking>("Greetings young one.")
             npc<Cheerful>("You're a hero now. That was a good bit of demon-slaying.")
-            val choice = choice("""
-                How do you know I killed it?
-                Thanks.
-                Stop calling me that!
-            """)
-            when(choice) {
-                1 -> {
-                    player<Uncertain>("How do you know I killed it?")
+            choice {
+                option<Uncertain>("How do you know I killed it?") {
                     npc<Talk>("You forget. I'm good at knowing things.")
                 }
-                2 -> player<Talking>("Thanks.")
-                3 -> stopCallingMeThat()
+                option<Talking>("Thanks.")
+                stopCallingMeThat()
             }
         }
     }
 }
 
 suspend fun NPCOption.whatToDo() {
-    val choice = choice("""
-        How am I meant to fight a demon who can destroy cities?
-        Okay, where is he? I'll kill him for you.
-        Wally doesn't sound like a very heroic name.
-    """)
-    when (choice) {
-        1 -> {
-            cityDestroyer()
+    choice {
+        cityDestroyer {
             wallyQuestions()
         }
-        2 -> whereIsHe()
-        3 -> notVeryHeroicName()
+        whereIsHe()
+        notVeryHeroicName()
     }
 }
 
-suspend fun NPCOption.howToDo() {
-    val choice = choice("""
-        How am I meant to fight a demon who can destroy cities?
-        Okay, where is he? I'll kill him for you.
-        So, how did Wally kill Delrith?
-    """)
-    when (choice) {
-        1 -> {
-            cityDestroyer()
+suspend fun PlayerContext.howToDo() {
+    choice {
+        cityDestroyer {
             wallyQuestions()
         }
-        2 -> whereIsHe()
-        3 -> howWallyWon()
+        whereIsHe()
+        howWallyWon()
     }
 }
 
-suspend fun NPCOption.howWallyWon() {
-    player<Unsure>("So, how did Wally kill Delrith?")
+suspend fun PlayerChoice.howWallyWon(): Unit = option<Unsure>("So, how did Wally kill Delrith?") {
     player.playTrack("wally_the_hero")
     cutscene()
 }
 
-suspend fun NPCOption.finalQuestions() {
-    val choice = choice("""
-        How am I meant to fight a demon who can destroy cities?
-        Okay, where is he? I'll kill him for you.
-        Wally doesn't sound like a very heroic name.
-        What is the magical incantation?
-        Okay, thanks I'll do my best to stop the demon.
-    """)
-    when (choice) {
-        1 -> {
-            cityDestroyer()
+suspend fun PlayerContext.finalQuestions() {
+    choice {
+        cityDestroyer {
             otherQuestions()
         }
-        2 -> whereIsHe()
-        3 -> notVeryHeroicName()
-        4 -> {
+        whereIsHe()
+        notVeryHeroicName()
+        option("What is the magical incantation?") {
             incantation()
             finalQuestions()
         }
-        5 -> okThanks()
+        okThanks()
     }
 }
 
-suspend fun NPCOption.otherQuestions() {
-    val choice = choice("""
-        Okay, where is he? I'll kill him for you.
-        Wally doesn't sound like a very heroic name.
-        What is the magical incantation?
-        Where can I find Silverlight?
-        Okay, thanks I'll do my best to stop the demon.
-    """)
-    when (choice) {
-        1 -> whereIsHe()
-        2 -> notVeryHeroicName()
-        3 -> {
+suspend fun PlayerContext.otherQuestions() {
+    choice {
+        whereIsHe()
+        notVeryHeroicName()
+        option("What is the magical incantation?") {
             incantation()
             finalQuestions()
         }
-        4 -> {
+        option("Where can I find Silverlight?") {
             whereSilverlight()
             finalQuestions()
         }
-        5 -> okThanks()
+        okThanks()
     }
 }
 
-suspend fun NPCOption.cityDestroyer() {
-    player<Afraid>("""
+suspend fun PlayerChoice.cityDestroyer(end: suspend PlayerContext.() -> Unit): Unit = option<Afraid>("""
         How am I meant to fight a demon who can destroy
         cities?
-    """)
+    """) {
     npc<Talk>("""
         If you face Delrith while he is still weak from being
         summoned, and use the correct weapon, you will not
@@ -197,10 +154,10 @@ suspend fun NPCOption.cityDestroyer() {
         Do not fear. If you follow the path of the great hero
         Wally, then you are sure to defeat the demon.
     """)
+    end.invoke(this)
 }
 
-suspend fun NPCOption.whereIsHe() {
-    player<Cheerful>("Okay, where is he? I'll kill him for you.")
+suspend fun PlayerChoice.whereIsHe(): Unit = option<Cheerful>("Okay, where is he? I'll kill him for you.") {
     npc<Chuckle>("Ah, the overconfidence of the young!")
     npc<Talk>("""
         Delrith can't be harmed by ordinary weapons. You
@@ -209,8 +166,7 @@ suspend fun NPCOption.whereIsHe() {
     howToDo()
 }
 
-suspend fun NPCOption.notVeryHeroicName() {
-    player<Cheerful>("Wally doesn't sound like a very heroic name.")
+suspend fun PlayerChoice.notVeryHeroicName(): Unit = option<Cheerful>("Wally doesn't sound like a very heroic name.") {
     npc<Talk>("""
        Yes, I know. Maybe that is why history doesn't
        remember him. However, he was a great hero.
@@ -223,7 +179,7 @@ suspend fun NPCOption.notVeryHeroicName() {
     howToDo()
 }
 
-suspend fun NPCOption.incantation() {
+suspend fun PlayerContext.incantation() {
     player<Talk>("What is the magical incantation?")
     npc<Talk>("Oh yes, let me think a second.")
     npc<Talking>("""
@@ -234,8 +190,7 @@ suspend fun NPCOption.incantation() {
     player<Talking>("I think so, yes.")
 }
 
-suspend fun NPCOption.notBeliever() {
-    player<Talk>("No, I don't believe in that stuff.")
+suspend fun PlayerChoice.notBeliever(): Unit = option<Talk>("No, I don't believe in that stuff.") {
     npc<Upset>("Ok suit yourself.")
 }
 
@@ -251,8 +206,7 @@ on<TimerTick>({ timer == "demon_slayer_crystal_ball" }) { npc: NPC ->
     areaSound("demon_slayer_crystal_ball_anim", npc.tile)
 }
 
-suspend fun NPCOption.hereYouGo() {
-    player<Talk>("Okay, here you go.")
+suspend fun ChoiceBuilder<NPCOption>.hereYouGo(): Unit = option<Talk>("Okay, here you go.") {
     player.inventory.remove("coins", 1)
     npc<Cheerful>("""
         Come closer and listen carefully to what the future
@@ -296,22 +250,16 @@ suspend fun NPCOption.hereYouGo() {
     whatToDo()
 }
 
-suspend fun NPCOption.whoYouCallingYoung() {
-    player<Angry>("Who are you calling 'young one'?")
+suspend fun ChoiceBuilder<NPCOption>.whoYouCallingYoung(): Unit = option<Angry>("Who are you called 'young one'?") {
     npc<Talk>("""
         You have been on this world a relatively short time. At
         least compared to me.
     """)
     npc<Talk>("So, do you want your fortune told or not?")
-    val choice = choice("""
-        Okay, here you go.
-        No, I don't believe in that stuff.
-        Ooh, how old are you then?
-    """)
-    when (choice) {
-        1 -> hereYouGo()
-        2 -> notBeliever()
-        3 -> {
+    choice {
+        hereYouGo()
+        notBeliever()
+        option("Ooh, how old are you then?") {
             npc<Talking>("""
                 Count the number of legs on the stools in the Blue
                 Moon inn, and multiply that number by seven.
@@ -321,7 +269,7 @@ suspend fun NPCOption.whoYouCallingYoung() {
     }
 }
 
-suspend fun NPCOption.cutscene() {
+suspend fun PlayerContext.cutscene() {
     val region = Region(12852)
     player.open("fade_out")
     statement("", clickToContinue = false)
@@ -403,13 +351,13 @@ suspend fun NPCOption.cutscene() {
     delrithWillCome()
 }
 
-fun NPCOption.setCutsceneEnd(instance: Region) {
+fun PlayerContext.setCutsceneEnd(instance: Region) {
     player.queue("demon_slayer_wally_cutscene_end", 1, LogoutBehaviour.Accelerate) {
         endCutscene(instance)
     }
 }
 
-suspend fun NPCOption.endCutscene(instance: Region) {
+suspend fun PlayerContext.endCutscene(instance: Region) {
     player.open("fade_out")
     delay(3)
     player.tele(3203, 3424)
@@ -419,53 +367,41 @@ suspend fun NPCOption.endCutscene(instance: Region) {
     player.clearTransform()
 }
 
-suspend fun NPCOption.withSilver() {
-    player<Unsure>("With silver?")
+suspend fun ChoiceBuilder<NPCOption>.withSilver(): Unit = option<Unsure>("With silver?") {
     npc<Talking>("""
         Oh, sorry, I forgot. With gold, I mean. They haven't
         used silver coins since before you were born! So, do
         you want your fortune told?
     """)
-    val choice = choice("""
-        Ok, here you go.
-        No, I don't believe in that stuff.
-    """)
-    when (choice) {
-        1 -> hereYouGo()
-        2 -> notBeliever()
+    choice {
+        hereYouGo()
+        notBeliever()
     }
 }
 
-suspend fun NPCOption.delrithWillCome() {
+suspend fun PlayerContext.delrithWillCome() {
     npc<Upset>("Delrith will come forth from the stone circle again.")
     npc<Upset>("""
         I would imagine an evil sorcerer is already beginning
         the rituals to summon Delrith as we speak.
     """)
-    val choice = choice("""
-        How am I meant to fight a demon who can destroy cities?
-        Okay, where is he? I'll kill him for you.
-        What is the magical incantation?
-        Where can I find Silverlight?
-    """)
-    when (choice) {
-        1 -> {
-            cityDestroyer()
+    choice {
+        cityDestroyer {
             otherQuestions()
         }
-        2 -> whereIsHe()
-        3 -> {
+        whereIsHe()
+        option("What is the magical incantation?") {
             incantation()
             finalQuestions()
         }
-        4 -> {
+        option("Where can I find Silverlight?") {
             whereSilverlight()
             finalQuestions()
         }
     }
 }
 
-suspend fun NPCOption.whereSilverlight() {
+suspend fun PlayerContext.whereSilverlight() {
     player<Angry>("Where can I find Silverlight?")
     npc<Talk>("""
         Silverlight has been passed down by Wally's
@@ -485,84 +421,56 @@ suspend fun NPCOption.howGoesQuest() {
         Well if you need any advice I'm always here, young
         one.
     """)
-    val choice = choice("""
-        What is the magical incantation?
-        Where can I find Silverlight?
-        Stop calling me that!
-        Well I'd better press on with it.
-    """)
-    when (choice) {
-        1 -> incantationReminder()
-        2 -> silverlightReminder()
-        3 -> stopCallingMeThat()
-        4 -> {
-            player<Talk>("Well I'd better press on with it.")
+    choice {
+        incantationReminder()
+        silverlightReminder()
+        stopCallingMeThat()
+        option<Talk>("Well I'd better press on with it.") {
             npc<Talk>("See you anon.")
         }
     }
 }
 
-suspend fun NPCOption.okThanks() {
-    player<Talk>("Ok thanks. I'll do my best to stop the demon.")
+suspend fun PlayerChoice.okThanks(): Unit = option<Talk>("Ok thanks. I'll do my best to stop the demon.") {
     npc<Cheerful>("Good luck, and may Guthix be with you!")
 }
 
-suspend fun NPCOption.silverlightReminder() {
+suspend fun PlayerChoice.silverlightReminder(): Unit = option("Where can I find Silverlight?") {
     whereSilverlight()
-    val choice = choice("""
-        Ok thanks. I'll do my best to stop the demon.
-        What is the magical incantation?
-    """)
-    when (choice) {
-        1 -> okThanks()
-        2 -> incantationReminder()
+    choice {
+        okThanks()
+        incantationReminder()
     }
 }
 
-suspend fun NPCOption.incantationReminder() {
+suspend fun PlayerChoice.incantationReminder(): Unit = option("What is the magical incantation?") {
     incantation()
-    val choice = choice("""
-        Ok thanks. I'll do my best to stop the demon.
-        Where can I find Silverlight?
-    """)
-    when (choice) {
-        1 -> okThanks()
-        2 -> silverlightReminder()
+    choice {
+        okThanks()
+        silverlightReminder()
     }
 }
 
-suspend fun NPCOption.stopCallingMeThat() {
-    player<Furious>("Stop calling me that!")
+suspend fun PlayerChoice.stopCallingMeThat(): Unit = option<Furious>("Stop calling me that!") {
     npc<Talk>("In the scheme of things you are very young.")
-    val choice = choice("""
-        Ok but how old are you?
-        Oh if it's in the scheme of things that's ok.
-    """)
-    when (choice) {
-        1 -> {
-            player<Talk>("Ok, but how old are you?")
+    choice {
+        option<Talk>("Ok but how old are you?") {
             npc<Talk>("""
                 Count the number of legs on the stools in the Blue
                 Moon inn, and multiply that number by seven.
             """)
             player<Talk>("Er, yeah, whatever.")
         }
-        2 -> {
-            player<Cheerful>("Oh if it's in the scheme of things that's ok.")
+        option<Cheerful>("Oh if it's in the scheme of things that's ok.") {
             npc<Cheerful>("You show wisdom for one so young.")
         }
     }
 }
 
-suspend fun NPCOption.wallyQuestions() {
-    val choice = choice("""
-        Okay, where is he? I'll kill him for you.
-        Wally doesn't sound like a very heroic name.
-        So how did Wally kill Delrith?
-    """)
-    when (choice) {
-        1 -> whereIsHe()
-        2 -> notVeryHeroicName()
-        3 -> howWallyWon()
+suspend fun PlayerContext.wallyQuestions() {
+    choice {
+        whereIsHe()
+        notVeryHeroicName()
+        howWallyWon()
     }
 }

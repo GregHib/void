@@ -17,14 +17,11 @@ on<NPCOption>({ operate && (def.name == "Shopkeeper" || def.name == "Shop assist
 
 on<NPCOption>({ operate && def.name == "Shopkeeper" && option == "Talk-to" }) { player: Player ->
     npc<Talking>("Can I help you at all?")
-    val choice = choice("""
-        Yes please. What are you selling?
-        How should I use your shop?
-        No thanks.
-    """)
-    when (choice) {
-        1 -> player.openShop("lumbridge_general_store")
-        2 -> {
+    choice {
+        option("Yes please. What are you selling?") {
+            player.openShop("lumbridge_general_store")
+        }
+        option("How should I use your shop?") {
             npc<Talk>("""
                 I'm glad you ask! The shop has two sections to it: 'Main
                 stock' and 'Free sample items'.
@@ -41,19 +38,17 @@ on<NPCOption>({ operate && def.name == "Shopkeeper" && option == "Talk-to" }) { 
             npc<Talking>("You can also sell most items to the shop.")
             player<Cheerful>("Thank you.")
         }
+        option("No thanks.")
     }
 }
 
 on<NPCOption>({ operate && def.name == "Shop assistant" && option == "Talk-to" }) { player: Player ->
     npc<Cheerful>("Can I help you at all?")
-    val choice = choice("""
-        Yes please. What are you selling?
-        How should I use your shop?
-        No thanks.
-    """)
-    when (choice) {
-        1 -> player.openShop("lumbridge_general_store")
-        2 -> {
+    choice {
+        option("Yes please. What are you selling?") {
+            player.openShop("lumbridge_general_store")
+        }
+        option("How should I use your shop?") {
             npc<Talk>("""
                 I'm glad you ask! You can buy as many of the items
                 stocked as you wish. You can also sell most items to the
@@ -61,5 +56,6 @@ on<NPCOption>({ operate && def.name == "Shop assistant" && option == "Talk-to" }
             """)
             player<Cheerful>("Thank you.")
         }
+        option("No thanks.")
     }
 }

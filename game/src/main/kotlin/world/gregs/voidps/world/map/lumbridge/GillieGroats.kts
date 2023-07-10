@@ -15,30 +15,17 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 
 on<NPCOption>({ operate && npc.id == "gillie_groats" && option == "Talk-to" }) { player: Player ->
     npc<Cheerful>("Hello, I'm Gillie the Milkmaid. What can I do for you?")
-    if (player["cooks_assistant", "unstarted"] == "started" && !player.hasItem("top_quality_milk")) {
-        val choice = choice("""
-            I'm after some Top-quality milk.
-            Who are you?
-            Can you tell me how to milk a cow?
-            I'm fine, thanks.
-        """)
-        when (choice) {
-            1 -> topQualityMilk()
-            2 -> whoAreYou()
-            3 -> howToMilkCow()
-            4 -> player<Cheerful>("I'm fine, thanks.")
+    choice {
+        option("I'm after some Top-quality milk.", { player["cooks_assistant", "unstarted"] == "started" && !player.hasItem("top_quality_milk") }) {
+            topQualityMilk()
         }
-    } else {
-        val choice = choice("""
-        Who are you?
-        Can you tell me how to milk a cow?
-        I'm fine, thanks.
-    """)
-        when (choice) {
-            1 -> whoAreYou()
-            2 -> howToMilkCow()
-            3 -> player<Cheerful>("I'm fine, thanks.")
+        option("Who are you?") {
+            whoAreYou()
         }
+        option("Can you tell me how to milk a cow?") {
+            howToMilkCow()
+        }
+        option<Cheerful>("I'm fine, thanks.")
     }
 }
 
