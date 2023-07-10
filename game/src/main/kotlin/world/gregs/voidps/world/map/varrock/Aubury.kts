@@ -26,18 +26,17 @@ on<NPCOption>({ operate && npc.id == "aubury" && option == "Talk-to" }) { player
             }
         }
     } else {
-        if (player["rune_mysteries", "unstarted"] == "stage3") {
-            stage3()
-        } else if (player["rune_mysteries", "unstarted"] == "stage4") {
-            stage4()
-        } else if (player["rune_mysteries", "unstarted"] == "stage5") {
-            stage5()
-        } else {
-            npc<Cheerful>("Do you want to buy some runes?")
-            choice {
-                skillcapes()
-                openShop()
-                noThanks()
+        when (player["rune_mysteries", "unstarted"]) {
+            "research_package" -> sendWithAPackage()
+            "package_delivered" -> packageFeedback()
+            "research_notes" -> checkNotes()
+            else -> {
+                npc<Cheerful>("Do you want to buy some runes?")
+                choice {
+                    skillcapes()
+                    openShop()
+                    noThanks()
+                }
             }
         }
     }
@@ -54,7 +53,7 @@ suspend fun PlayerChoice.noThanks(message: String = "Oh, it's a rune shop. No th
     """)
 }
 
-suspend fun Interaction.stage3() {
+suspend fun Interaction.sendWithAPackage() {
     npc<Cheerful>("Do you want to buy some runes?")
     choice {
         openShop()
@@ -67,7 +66,7 @@ suspend fun Interaction.stage3() {
                 have sent a stranger.
             """)
             if (player.hasBanked("research_package_rune_mysteries")) {
-                player["rune_mysteries"] = "stage4"
+                player["rune_mysteries"] = "package_delivered"
                 player.inventory.remove("research_package_rune_mysteries")
                 item("You hand the package to Aubury.", "research_package_rune_mysteries", 600)
                 npc<Cheerful>("Now, let's have a look...")
@@ -88,7 +87,7 @@ suspend fun Interaction.stage3() {
     }
 }
 
-suspend fun Interaction.stage4() {
+suspend fun Interaction.packageFeedback() {
     npc<Cheerful>("Do you want to buy some runes?")
     choice {
         openShop()
@@ -129,12 +128,12 @@ suspend fun Interaction.researchPackage() {
         """, "research_notes_rune_mysteries", 600)
         return
     }
-    player["rune_mysteries"] = "stage5"
+    player["rune_mysteries"] = "research_notes"
     player.inventory.add("research_notes_rune_mysteries")
     item("Aubury hands you some research notes.", "research_notes_rune_mysteries", 600)
 }
 
-suspend fun Interaction.stage5() {
+suspend fun Interaction.checkNotes() {
     npc<Unsure>("Hello. Did you take those notes back to Sedridor?")
     if (player.inventory.contains("research_notes_rune_mysteries")) {
         player<Talking>("I'm still working on it.")

@@ -45,7 +45,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             }
             list
         }
-        "stage2" -> listOf(
+        "talisman_delivered" -> listOf(
             "<str>I spoke to Duke Horacio in Lumbridge Castle. He told me",
             "<str>that he'd found a Strange Talisman in the Castle which",
             "<str>might be of use to the Order of Wizards at the Wizards'",
@@ -55,7 +55,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             "<navy>basement of the <maroon>Wizards' Tower.<navy> I should see what he can",
             "<navy>tell me about it."
         )
-        "stage3" -> {
+        "research_package" -> {
             val list = mutableListOf(
                 "<str>I spoke to Duke Horacio in Lumbridge Castle. He told me",
                 "<str>that he'd found a Strange Talisman in the Castle which",
@@ -76,7 +76,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             }
             list
         }
-        "stage4" -> listOf(
+        "package_delivered" -> listOf(
             "<str>I spoke to Duke Horacio in Lumbridge Castle. He told me",
             "<str>that he'd found a Strange Talisman in the Castle which",
             "<str>might be of use to the Order of Wizards at the Wizards'",
@@ -91,7 +91,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             "<navy>south east <maroon>Varrock<navy> . I should see what he can tell me about",
             "<navy>the <maroon>Teleportation Incantation.",
         )
-        "stage5" -> {
+        "research_notes" -> {
             val list = mutableListOf(
                 "<str>I spoke to Duke Horacio in Lumbridge Castle. He told me",
                 "<str>that he'd found a Strange Talisman in the Castle which",

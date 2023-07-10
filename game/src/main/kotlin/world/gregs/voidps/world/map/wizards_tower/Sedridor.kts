@@ -41,9 +41,9 @@ on<NPCOption>({ operate && npc.id == "sedridor" && option == "Talk-to" }) { play
             """)
         }
         "started" -> started()
-        "stage2" -> stage2()
-        "stage3" -> stage3()
-        "stage5" -> stage5()
+        "talisman_delivered" -> visitAubury()
+        "research_package" -> checkPackageDelivered()
+        "research_notes" -> checkResearchDelivered()
         else -> completed()
     }
 }
@@ -109,7 +109,7 @@ suspend fun PlayerContext.started() {
 suspend fun PlayerContext.okHere() {
     player<Talking>("Okay, here you are.")
     if (player.inventory.contains("air_talisman")) {
-        player["rune_mysteries"] = "stage2"
+        player["rune_mysteries"] = "talisman_delivered"
         item("You hand the talisman to Sedridor.", "air_talisman", 600)
         player.inventory.remove("air_talisman")
         npc<Uncertain>("""
@@ -261,7 +261,7 @@ suspend fun PlayerContext.discovery() {
     }
 }
 
-suspend fun PlayerContext.stage2() {
+suspend fun PlayerContext.visitAubury() {
     npc<Unsure>("""
         Hello again, adventurer. You have already done so
         much, but I would really appreciate it if you were to
@@ -273,7 +273,7 @@ suspend fun PlayerContext.stage2() {
     }
 }
 
-suspend fun PlayerContext.stage3() {
+suspend fun PlayerContext.checkPackageDelivered() {
     npc<Unsure>("""
         Hello again, adventurer. Did you take that package to
         Aubury?
@@ -303,7 +303,7 @@ suspend fun PlayerContext.stage3() {
     }
 }
 
-suspend fun PlayerContext.stage5() {
+suspend fun PlayerContext.checkResearchDelivered() {
     npc<Talking>("""
         Ah, ${player.name}. How goes your quest? Have you delivered
         my research to Aubury yet?
@@ -370,7 +370,7 @@ suspend fun PlayerChoice.imBusy(): Unit = option<Talking>("No, I'm busy.") {
 }
 
 suspend fun PlayerChoice.yesCertainly(): Unit = option<Talking>("Yes, certainly.") {
-    player["rune_mysteries"] = "stage3"
+    player["rune_mysteries"] = "research_package"
     npc<Cheerful>("""
         He runs a rune shop in the south east of Varrock.
         Please, take this package of research notes to him. If all

@@ -116,10 +116,10 @@ rune_mysteries:
   values:
     unstarted: 0
     started: 1
-    stage2: 2
-    stage3: 3
-    stage4: 4
-    stage5: 5
+    talisman_delivered: 2
+    research_package: 3
+    package_delivered: 4
+    research_notes: 5
     completed: 6     
 unstable_foundations:
   id: 281
