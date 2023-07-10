@@ -5,9 +5,9 @@ import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.hasBanked
@@ -16,29 +16,24 @@ import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 
 on<NPCOption>({ operate && npc.id == "aubury" && option == "Talk-to" }) { player: Player ->
-    if (player["rune_mysteries", "unstarted"] == "completed") {
-        npc<Cheerful>("Do you want to buy some runes?")
-        choice {
-            skillcapes()
-            openShop()
-            noThanks()
-            option("Can you teleport me to the Rune Essence?") {
-            }
+    if (player["rune_mysteries", "unstarted"] == "research_notes") {
+        checkNotes()
+        return@on
+    }
+    npc<Cheerful>("Do you want to buy some runes?")
+    choice {
+        skillcapes()
+        openShop()
+        packageForYou()
+        option<Unsure>(
+            "Anything useful in that package I gave you?",
+            { player["rune_mysteries", "unstarted"] == "package_delivered" }
+        ) {
+            npc<Cheerful>("Well, let's have a look...")
+            researchPackage()
         }
-    } else {
-        when (player["rune_mysteries", "unstarted"]) {
-            "research_package" -> sendWithAPackage()
-            "package_delivered" -> packageFeedback()
-            "research_notes" -> checkNotes()
-            else -> {
-                npc<Cheerful>("Do you want to buy some runes?")
-                choice {
-                    skillcapes()
-                    openShop()
-                    noThanks()
-                }
-            }
-        }
+        noThanks()
+        teleport()
     }
 }
 
@@ -53,53 +48,43 @@ suspend fun PlayerChoice.noThanks(message: String = "Oh, it's a rune shop. No th
     """)
 }
 
-suspend fun Interaction.sendWithAPackage() {
-    npc<Cheerful>("Do you want to buy some runes?")
-    choice {
-        openShop()
-        option<Talking>("I've been sent here with a package for you.") {
-            npc<Uncertain>("A package? From who?")
-            player<Talking>("From Sedridor at the Wizards' Tower.")
-            npc<Surprised>("""
-                From Sedridor? But... surely, he can't have? Please, let
-                me have it. It must be extremely important for him to
-                have sent a stranger.
-            """)
-            if (player.hasBanked("research_package_rune_mysteries")) {
-                player["rune_mysteries"] = "package_delivered"
-                player.inventory.remove("research_package_rune_mysteries")
-                item("You hand the package to Aubury.", "research_package_rune_mysteries", 600)
-                npc<Cheerful>("Now, let's have a look...")
-                researchPackage()
-            } else {
-                player<Uncertain>("""
+fun PlayerChoice.teleport(): Unit = option(
+    "Can you teleport me to the Rune Essence?",
+    { player["rune_mysteries", "unstarted"] == "completed" }
+) {
+}
+
+suspend fun PlayerChoice.packageForYou(): Unit = option<Talking>(
+    "I've been sent here with a package for you.",
+    { player["rune_mysteries", "unstarted"] == "research_package" }
+) {
+    npc<Uncertain>("A package? From who?")
+    player<Talking>("From Sedridor at the Wizards' Tower.")
+    npc<Surprised>("""
+        From Sedridor? But... surely, he can't have? Please, let
+        me have it. It must be extremely important for him to
+        have sent a stranger.
+    """)
+    if (player.hasBanked("research_package_rune_mysteries")) {
+        player["rune_mysteries"] = "package_delivered"
+        player.inventory.remove("research_package_rune_mysteries")
+        item("You hand the package to Aubury.", "research_package_rune_mysteries", 600)
+        npc<Cheerful>("Now, let's have a look...")
+        researchPackage()
+    } else {
+        player<Uncertain>("""
                     Uh... yeah... about that... I kind of don't have it with
                     me...
                 """)
-                npc<Surprised>("""
+        npc<Surprised>("""
                     What kind of person says they have a delivery for me,
                     but not with them? Honestly.
                 """)
-                npc<Talking>("Come back when you have it.")
-            }
-        }
-        noThanks()
+        npc<Talking>("Come back when you have it.")
     }
 }
 
-suspend fun Interaction.packageFeedback() {
-    npc<Cheerful>("Do you want to buy some runes?")
-    choice {
-        openShop()
-        option<Unsure>("Anything useful in that package I gave you?") {
-            npc<Cheerful>("Well, let's have a look...")
-            researchPackage()
-        }
-        noThanks()
-    }
-}
-
-suspend fun Interaction.researchPackage() {
+suspend fun PlayerContext.researchPackage() {
     item("Aubury goes through the package of research notes.", "research_package_rune_mysteries", 600)
     npc<Surprised>("This... this is incredible.")
     npc<Cheerful>("""
@@ -133,7 +118,7 @@ suspend fun Interaction.researchPackage() {
     item("Aubury hands you some research notes.", "research_notes_rune_mysteries", 600)
 }
 
-suspend fun Interaction.checkNotes() {
+suspend fun PlayerContext.checkNotes() {
     npc<Unsure>("Hello. Did you take those notes back to Sedridor?")
     if (player.inventory.contains("research_notes_rune_mysteries")) {
         player<Talking>("I'm still working on it.")
