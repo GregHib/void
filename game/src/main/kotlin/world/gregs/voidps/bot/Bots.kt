@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.getComponentIntId
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.slot
@@ -89,8 +88,9 @@ suspend fun Bot.objectOption(obj: GameObject, option: String) {
 
 suspend fun Bot.dialogueOption(option: String) {
     val current = player.dialogue!!
-    val def = get<InterfaceDefinitions>().get(current)
-    player.instructions.emit(InteractDialogue(def.actualId, def.getComponentIntId(option)!!, -1))
+    val definitions = get<InterfaceDefinitions>()
+    val def = definitions.get(current)
+    player.instructions.emit(InteractDialogue(def.actualId, definitions.getComponentId(current, option)!!, -1))
     await("tick")
 }
 

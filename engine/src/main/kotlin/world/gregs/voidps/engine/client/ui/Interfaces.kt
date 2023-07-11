@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.data.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -122,6 +121,7 @@ class Interfaces(
         return definitions.get(id)[if (gameFrame.resizable) "index_resize" else "index_fixed", -1]
     }
 
+    // String -> type
     private fun getType(id: String): String {
         return definitions.get(id)["type", "main_screen"]
     }
@@ -159,9 +159,12 @@ class Interfaces(
     }
 }
 
+// String, String -> InterfaceComponentDefinition -> Parent id
+// Map<String, InterfaceId>
+// Map<String, ComponentId>
 private fun getComponent(id: String, component: String): InterfaceComponentDefinition? {
     val definitions: InterfaceDefinitions = get()
-    return definitions.get(id).getComponentOrNull(component)
+    return definitions.getComponent(id, component)
 }
 
 fun Interfaces.sendAnimation(id: String, component: String, animation: Int): Boolean {

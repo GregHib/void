@@ -11,6 +11,7 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.koin.test.mock.declareMock
+import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.open
@@ -61,6 +62,7 @@ abstract class DialogueTest : KoinMock() {
         })
         every { player.open(any()) } returns true
         every { definitions.get(any<String>()) } returns InterfaceDefinition()
+        every { definitions.getComponent(any<String>(), any<String>()) } returns InterfaceComponentDefinition()
     }
 
 }

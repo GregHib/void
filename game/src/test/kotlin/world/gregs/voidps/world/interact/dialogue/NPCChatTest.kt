@@ -11,7 +11,6 @@ import org.junit.jupiter.params.provider.ValueSource
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
-import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
@@ -19,7 +18,6 @@ import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.data.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
 import world.gregs.voidps.network.Client
@@ -118,12 +116,9 @@ internal class NPCChatTest : DialogueTest() {
     @ValueSource(booleans = [true, false])
     fun `Send player chat head size and animation`(large: Boolean) {
         mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
-        mockkStatic("world.gregs.voidps.engine.data.definition.InterfaceDefinitionsKt")
         val client: Client = mockk(relaxed = true)
         player.client = client
-        val definition: InterfaceDefinition = mockk(relaxed = true)
-        every { definitions.get("dialogue_npc_chat1") } returns definition
-        every { definition.getComponentOrNull(any()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
+        every { definitions.getComponent("dialogue_npc_chat1", any<String>()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
         npc = NPC(id = "john")
         dialogue {
             npc<Talk>(text = "Text", largeHead = large)
@@ -178,9 +173,7 @@ internal class NPCChatTest : DialogueTest() {
         mockkStatic("world.gregs.voidps.engine.data.definition.InterfaceDefinitionsKt")
         val client: Client = mockk(relaxed = true)
         player.client = client
-        val definition: InterfaceDefinition = mockk(relaxed = true)
-        every { definitions.get("dialogue_npc_chat1") } returns definition
-        every { definition.getComponentOrNull(any()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
+        every { definitions.getComponent("dialogue_npc_chat1", any<String>()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
         npc = NPC("bill")
         dialogue {
             npc<Talk>(npcId = "jim", title = "Bill", text = "text")

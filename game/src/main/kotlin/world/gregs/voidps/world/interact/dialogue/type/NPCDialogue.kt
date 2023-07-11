@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.data.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -62,6 +61,6 @@ private fun getInterfaceId(lines: Int, prompt: Boolean): String {
 
 private fun sendNPCHead(player: Player, id: String, component: String, npc: Int) {
     val definitions: InterfaceDefinitions = get()
-    val comp = definitions.get(id).getComponentOrNull(component) ?: return
+    val comp = definitions.getComponent(id, component) ?: return
     player.client?.npcDialogueHead(comp["parent", -1], comp.id, npc)
 }
