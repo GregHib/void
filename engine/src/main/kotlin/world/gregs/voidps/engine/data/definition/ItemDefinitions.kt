@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.data.*
@@ -64,11 +65,15 @@ class ItemDefinitions(
             if (key.endsWith("_lent") && id in definitions.indices) {
                 val def = definitions[id]
                 val normal = definitions[def.lendId]
-                val lentExtras = normal.extras?.toMutableMap()
-                if (lentExtras != null && extras != null) {
-                    lentExtras.putAll(extras)
+                if(normal.extras != null) {
+                    val lentExtras = Object2ObjectOpenHashMap(normal.extras)
+                    if (extras != null) {
+                        lentExtras.putAll(extras)
+                    }
+                    super.set(map, key, id, lentExtras)
+                } else {
+                    super.set(map, key, id, extras)
                 }
-                super.set(map, key, id, lentExtras ?: extras)
             } else {
                 super.set(map, key, id, extras)
             }

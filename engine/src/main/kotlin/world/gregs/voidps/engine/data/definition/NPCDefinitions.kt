@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.data.yaml.DefinitionConfig
@@ -30,7 +31,7 @@ class NPCDefinitions(
                     }
                     super.set(map, key,
                         if (indent == 1 && key == "fishing") {
-                            (value as Map<String, Map<String, Any>>).mapValues { Spot(it.value) }
+                            Object2ObjectOpenHashMap((value as Map<String, Map<String, Any>>).mapValues { Spot(it.value) })
                         } else {
                             value
                         }, indent, parentMap)

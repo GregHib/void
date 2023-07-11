@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.event
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -13,12 +14,12 @@ import kotlin.reflect.KClass
  */
 class EventHandlerStore {
 
-    private val handlers = mutableMapOf<KClass<out EventDispatcher>, MutableMap<KClass<out Event>, MutableList<EventHandler>>>()
+    private val handlers = Object2ObjectOpenHashMap<KClass<out EventDispatcher>, MutableMap<KClass<out Event>, MutableList<EventHandler>>>()
 
-    private val parents = mapOf<KClass<out EventDispatcher>, List<KClass<out EventDispatcher>>>(
+    private val parents = Object2ObjectOpenHashMap(mapOf<KClass<out EventDispatcher>, List<KClass<out EventDispatcher>>>(
         EventDispatcher::class to listOf(World::class, FloorItem::class, Character::class),
         Character::class to listOf(Player::class, NPC::class)
-    )
+    ))
 
     fun populate(clazz: KClass<out EventDispatcher>, events: Events) {
         events.set(get(clazz))
@@ -33,7 +34,7 @@ class EventHandlerStore {
     }
 
     fun add(entity: KClass<out EventDispatcher>, event: KClass<out Event>, handler: EventHandler) {
-        val list = handlers.getOrPut(entity) { mutableMapOf() }.getOrPut(event) { mutableListOf() }
+        val list = handlers.getOrPut(entity) { Object2ObjectOpenHashMap(2) }.getOrPut(event) { mutableListOf() }
         list.add(handler)
         list.sort()
     }

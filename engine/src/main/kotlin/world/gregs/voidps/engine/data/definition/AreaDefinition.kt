@@ -14,15 +14,12 @@ data class AreaDefinition(
     companion object {
         val EMPTY = AreaDefinition("", Rectangle(0, 0, 0, 0), emptySet())
 
-        fun fromMap(name: String, map: Map<String, Any>): AreaDefinition {
-            val extras = map.toMutableMap()
-            extras.remove("area")
-            extras.remove("tags")
+        fun fromMap(name: String, map: MutableMap<String, Any>): AreaDefinition {
             return AreaDefinition(
                 name = name,
-                area = map["area"] as Area,
-                tags = (map["tags"] as? Set<String>) ?: emptySet(),
-                extras = extras
+                area = map.remove("area") as Area,
+                tags = (map.remove("tags") as? Set<String>) ?: emptySet(),
+                extras = map
             )
         }
     }

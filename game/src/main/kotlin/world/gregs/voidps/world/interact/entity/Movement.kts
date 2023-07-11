@@ -14,8 +14,8 @@ import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.type.Tile
 
 val collisions: Collisions by inject()
 val npcs: NPCs by inject()
@@ -42,10 +42,6 @@ on<Unregistered> { character: Character ->
 
 on<Moved>({ active }) { character: Character ->
     collisions.move(character, from, to)
-}
-
-on<Moved> { player: Player ->
-    players.update(from, to, player)
 }
 
 on<Moved> { npc: NPC ->

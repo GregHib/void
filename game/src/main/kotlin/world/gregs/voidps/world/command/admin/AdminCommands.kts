@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.command.admin
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
@@ -129,7 +130,7 @@ on<Command>({ prefix == "save" }) { _: Player ->
 }
 
 val definitions: ItemDefinitions by inject()
-val alternativeNames = mutableMapOf<String, String>()
+val alternativeNames = Object2ObjectOpenHashMap<String, String>()
 
 on<World, Registered> {
     for (id in 0 until definitions.size) {
