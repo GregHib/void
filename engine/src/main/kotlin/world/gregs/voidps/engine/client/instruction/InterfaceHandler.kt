@@ -91,7 +91,7 @@ data class InterfaceData(
     val component: String,
     val item: Item,
     val container: String,
-    val options: Array<String>?
+    val options: Array<String?>?
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

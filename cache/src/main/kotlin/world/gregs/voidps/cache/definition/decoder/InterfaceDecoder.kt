@@ -102,7 +102,7 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
         val data = buffer.readUnsignedByte()
         val optionCount = data and 0xf
         if (optionCount > 0) {
-            options = Array(optionCount) { buffer.readString() }
+            options = Array(optionCount) { buffer.readString().ifBlank { null } }
         }
         val iconCount = data shr 4
         if (iconCount > 0) {

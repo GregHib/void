@@ -17,11 +17,7 @@ class InterfaceOptions(
         return get(id, component).getOrNull(index) ?: ""
     }
 
-    fun get(id: String, component: String): Array<String> {
-        return getStatic(id, component)
-    }
-
-    private fun getStatic(id: String, component: String): Array<String> {
+    fun get(id: String, component: String): Array<String?> {
         return definitions.getComponent(id, component)?.getOrNull("options") ?: emptyArray()
     }
 

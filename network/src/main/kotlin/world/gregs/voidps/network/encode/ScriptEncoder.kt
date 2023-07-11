@@ -13,26 +13,26 @@ import world.gregs.voidps.network.writeString
  */
 fun Client.sendScript(
     id: Int,
-    params: List<Any>
+    params: List<Any?>
 ) = send(SCRIPT, getLength(params), SHORT) {
     val types = StringBuilder()
     for (param in params) {
-        types.append(if (param is String) "s" else "i")
+        types.append(if (param == null || param is String) "s" else "i")
     }
     writeString(types.toString())
     for (param in params.reversed()) {
-        if (param is String) {
-            writeString(param)
-        } else if (param is Int) {
-            writeInt(param)
+        when (param) {
+            null -> writeByte(0)
+            is String -> writeString(param)
+            is Int -> writeInt(param)
         }
     }
     writeInt(id)
 }
 
-private fun getLength(params: List<Any>): Int {
+private fun getLength(params: List<Any?>): Int {
     var count = 4
     count += params.size + 1
-    count += params.sumOf { if (it is String) string(it) else if (it is Int) 4 else 0 }
+    count += params.sumOf { if (it == null) 1 else if (it is String) string(it) else if (it is Int) 4 else 0 }
     return count
 }

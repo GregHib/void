@@ -5,7 +5,7 @@ import world.gregs.voidps.cache.definition.Extra
 
 data class InterfaceComponentDefinition(
     override var id: Int = -1,
-    var options: Array<String>? = null,
+    var options: Array<String?>? = null,
     var anObjectArray4758: Array<Any>? = null,
     override var stringId: String = "",
     override var extras: Map<String, Any>? = null
