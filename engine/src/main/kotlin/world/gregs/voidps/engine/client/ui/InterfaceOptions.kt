@@ -10,8 +10,7 @@ import kotlin.math.min
 class InterfaceOptions(
     private val player: Player,
     private val definitions: InterfaceDefinitions,
-    private val containerDefinitions: ContainerDefinitions,
-    private val options: MutableMap<String, Array<String>> = mutableMapOf()
+    private val containerDefinitions: ContainerDefinitions
 ) {
 
     fun get(id: String, component: String, index: Int): String {
@@ -19,26 +18,11 @@ class InterfaceOptions(
     }
 
     fun get(id: String, component: String): Array<String> {
-        val overrides = options[getOptionId(id, component)]
-        if (overrides != null) {
-            return overrides
-        }
         return getStatic(id, component)
     }
 
     private fun getStatic(id: String, component: String): Array<String> {
-        return definitions.getComponent(id, component)?.get("options") ?: emptyArray()
-    }
-
-    private fun getOptionId(id: String, component: String) = "${id}_$component"
-
-    fun set(id: String, component: String, options: Array<String>): Boolean {
-        this.options[getOptionId(id, component)] = options
-        return true
-    }
-
-    fun remove(id: String, component: String): Boolean {
-        return options.remove(getOptionId(id, component)) != null
+        return definitions.getComponent(id, component)?.getOrNull("options") ?: emptyArray()
     }
 
     fun send(id: String, component: String) {

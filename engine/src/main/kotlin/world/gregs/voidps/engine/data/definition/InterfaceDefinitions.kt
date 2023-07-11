@@ -57,9 +57,7 @@ class InterfaceDefinitions(
                             options[index] = option
                         }
                         super.set(map, key, options, indent, parentMap)
-                        return
-                    }
-                    if (indent == 0 && value is Int) {
+                    } else if (indent == 0 && value is Int) {
                         val extras = createMap()
                         set(extras, "id", value, 1, parentMap)
                         ids[key] = value

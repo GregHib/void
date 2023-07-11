@@ -1,7 +1,8 @@
 package world.gregs.voidps.engine.client.ui
 
 import io.mockk.*
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.config.data.ContainerDefinition
@@ -21,7 +22,6 @@ internal class InterfaceOptionsTest {
     private lateinit var containerDefinitions: ContainerDefinitions
 
     private val staticOptions = arrayOf("", "", "", "", "", "", "", "", "", "Examine")
-    private val overrideOptions = arrayOf("Option1")
     private val name = "name"
     private val comp = "component"
 
@@ -55,21 +55,6 @@ internal class InterfaceOptionsTest {
     }
 
     @Test
-    fun `Options can be overridden`() {
-        assertTrue(options.set(name, comp, overrideOptions))
-        assertArrayEquals(overrideOptions, options.get(name, comp))
-    }
-
-    @Test
-    fun `Removing options returns to use static`() {
-        options.set(name, comp, overrideOptions)
-
-        assertTrue(options.remove(name, comp))
-        assertFalse(options.remove(name, comp))
-        assertArrayEquals(staticOptions, options.get(name, comp))
-    }
-
-    @Test
     fun `Send all options`() {
         every { containerDefinitions.get(any<String>()) } returns ContainerDefinition(10, extras = mapOf("width" to 2, "height" to 3))
         options.send(name, comp)
@@ -89,8 +74,16 @@ internal class InterfaceOptionsTest {
 
     @Test
     fun `Unlock few options`() {
+        every { definitions.getComponent(name, comp) } returns InterfaceComponentDefinition(
+            id = 0,
+            extras = mapOf(
+                "parent" to 5,
+                "container" to "container",
+                "primary" to false,
+                "options" to arrayOf("one", "two", "three")
+            )
+        )
         every { containerDefinitions.get(name) } returns ContainerDefinition(10, extras = mapOf("width" to 2, "height" to 3))
-        options.set(name, comp, arrayOf("one", "two", "three"))
         options.unlock(name, comp, 0..27, "two", "three")
         verify {
             player.sendInterfaceSettings(5, 0, 0, 27, getHash(1, 2))
