@@ -179,7 +179,7 @@ class Interfaces(
         return sendItem(id, component, item.def.id, item.amount)
     }
 
-    fun sendItem(id: String, component: String, item: Int, amount: Int): Boolean {
+    fun sendItem(id: String, component: String, item: Int, amount: Int = 1): Boolean {
         val comp = definitions.getComponent(id, component) ?: return false
         client?.interfaceItem(comp["parent", -1], comp.id, item, amount)
         return true

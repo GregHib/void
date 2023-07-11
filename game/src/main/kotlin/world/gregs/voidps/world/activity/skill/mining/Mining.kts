@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Ore
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.entity.World
@@ -35,6 +36,7 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import kotlin.random.Random
 
 val objects: GameObjects by inject()
+val itemDefinitions: ItemDefinitions by inject()
 
 on<ObjectOption>({ operate && option == "Mine" }) { player: Player ->
     if (obj.id.startsWith("depleted")) {
@@ -91,14 +93,14 @@ on<ObjectOption>({ operate && option == "Mine" }) { player: Player ->
         var ores = rock.ores
         if (obj.id == "rune_essence_rocks") {
             val name = if (World.members && player.has(Skill.Mining, 30)) "pure_essence" else "rune_essence"
-            ores = rock.ores.filter { it.id == name }
+            ores = rock.ores.filter { it == name }
         }
         for (item in ores) {
-            val ore = item.def["mining", Ore.EMPTY]
+            val ore = itemDefinitions.get(item)["mining", Ore.EMPTY]
             if (success(player.levels.get(Skill.Mining), ore.chance)) {
                 player.experience.add(Skill.Mining, ore.xp)
 
-                if (!addOre(player, item.id) || deplete(rock, obj)) {
+                if (!addOre(player, item) || deplete(rock, obj)) {
                     player.clearAnimation()
                     break
                 }
@@ -179,7 +181,7 @@ on<ObjectOption>({ approach && option == "Prospect" }) { player: Player ->
         if (ore == null) {
             player.message("This rock contains no ore.")
         } else {
-            player.message("This rock contains ${ore.id.toLowerSpaceCase()}.")
+            player.message("This rock contains ${ore.toLowerSpaceCase()}.")
         }
     }
 }

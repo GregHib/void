@@ -35,12 +35,10 @@ open class ObjectDecoder(
             14 -> sizeX = buffer.readUnsignedByte()
             15 -> sizeY = buffer.readUnsignedByte()
             17 -> {
-                blocksSky = false
                 solid = 0
                 block = block and ObjectDefinition.PROJECTILE.inv()
             }
             18 -> {
-                blocksSky = false
                 block = block and ObjectDefinition.PROJECTILE.inv()
             }
             19 -> interactive = buffer.readUnsignedByte()

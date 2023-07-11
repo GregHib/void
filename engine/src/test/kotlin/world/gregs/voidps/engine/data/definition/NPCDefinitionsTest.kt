@@ -34,6 +34,6 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
         val itemDefinitions: ItemDefinitions = mockk(relaxed = true)
         every { itemDefinitions.get(any<Int>()) } returns ItemDefinition.EMPTY
         every { itemDefinitions.get(any<String>()) } returns ItemDefinition.EMPTY
-        definitions.load(Yaml(), "../data/definitions/npcs.yml", itemDefinitions)
+        definitions.load(Yaml(), "../data/definitions/npcs.yml")
     }
 }

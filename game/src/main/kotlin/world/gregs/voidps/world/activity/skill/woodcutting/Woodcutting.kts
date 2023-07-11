@@ -153,9 +153,9 @@ fun addLog(player: Player, tree: Tree): Boolean {
     if (log.isEmpty()) {
         return true
     }
-    val added = player.inventory.add(log.id)
+    val added = player.inventory.add(log)
     if (added) {
-        player.message("You get some ${log.id.toLowerSpaceCase()}.")
+        player.message("You get some ${log.toLowerSpaceCase()}.")
     } else {
         player.inventoryFull()
     }

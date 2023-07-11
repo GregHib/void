@@ -30,6 +30,6 @@ internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, 
         val itemDefinitions = mockk<ItemDefinitions>(relaxed = true)
         every { itemDefinitions.get(any<Int>()) } returns ItemDefinition.EMPTY
         every { itemDefinitions.get(any<String>()) } returns ItemDefinition.EMPTY
-        definitions.load(Yaml(), "../data/definitions/objects.yml", itemDefinitions)
+        definitions.load(Yaml(), "../data/definitions/objects.yml")
     }
 }

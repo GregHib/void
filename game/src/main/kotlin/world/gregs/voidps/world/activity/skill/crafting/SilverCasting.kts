@@ -2,12 +2,15 @@ package world.gregs.voidps.world.activity.skill.crafting
 
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.*
+import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.replace
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Silver
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -16,10 +19,13 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.quest.started
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
+
+val itemDefinitions: ItemDefinitions by inject()
 
 val moulds = listOf(
     Item("holy_mould"),
@@ -48,11 +54,11 @@ on<InterfaceOpened>({ id == "silver_mould" }) { player: Player ->
             "${mould.id}_text",
             if (has) {
                 val colour = if (has && player.hasItem("silver_bar")) "green" else "orange"
-                "<$colour>Make ${item.def.name.toTitleCase()}"
+                "<$colour>Make ${itemDefinitions.get(item).name.toTitleCase()}"
             } else {
                 "<orange>You need a ${silver.name ?: mould.def.name.lowercase()} to make this item."
             })
-        player.interfaces.sendItem(id, "${mould.id}_model", if (has) item else mould)
+        player.interfaces.sendItem(id, "${mould.id}_model", if (has) itemDefinitions.get(item).id else mould.def.id)
     }
 }
 
@@ -87,23 +93,23 @@ fun Player.make(item: Item, amount: Int) {
     val data = item.silver ?: return
     closeMenu()
     if (!inventory.contains(item.id)) {
-        message("You need a ${item.def.name} in order to make a ${data.item.def.name}.")
+        message("You need a ${item.def.name} in order to make a ${itemDefinitions.get(data.item).name}.")
         return
     }
     if (!inventory.contains("silver_bar")) {
-        message("You need a silver bar in order to make a ${data.item.def.name}.")
+        message("You need a silver bar in order to make a ${itemDefinitions.get(data.item).name}.")
         return
     }
     if (!has(Skill.Crafting, data.level)) {
         return
     }
     if (!inventory.contains("silver_bar")) {
-        message("You have run out of silver bars to make another ${data.item.def.name}.")
+        message("You have run out of silver bars to make another ${itemDefinitions.get(data.item).name}.")
         return
     }
     setAnimation("cook_range")
     weakQueue("cast_silver", 3) {
-        inventory.replace("silver_bar", data.item.id)
+        inventory.replace("silver_bar", data.item)
         exp(Skill.Crafting, data.xp)
         make(item, amount - 1)
     }

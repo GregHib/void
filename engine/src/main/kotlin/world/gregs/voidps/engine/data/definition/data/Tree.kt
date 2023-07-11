@@ -1,7 +1,5 @@
 package world.gregs.voidps.engine.data.definition.data
 
-import world.gregs.voidps.engine.entity.item.Item
-
 /**
  * Note: all regular tree data is accurate to wiki/skilling chances spreadsheet
  * @param log The log given on success
@@ -14,7 +12,7 @@ import world.gregs.voidps.engine.entity.item.Item
  * @param respawnDelay The delay in ticks before regrowing at 2000 and 0 players online (Taken from https://www.runehq.com/skill/woodcutting#respawntimes and unknown ones balanced around those values)
  */
 data class Tree(
-    val log: Item = Item.EMPTY,
+    val log: String = "",
     val level: Int = 1,
     val xp: Double = 0.0,
     val depleteRate: Double = 1.0,
@@ -25,7 +23,7 @@ data class Tree(
 ) {
     companion object {
         operator fun invoke(map: Map<String, Any>) = Tree(
-            log = map["log"] as? Item ?: EMPTY.log,
+            log = map["log"] as? String ?: EMPTY.log,
             level = map["level"] as? Int ?: EMPTY.level,
             xp = map["xp"] as? Double ?: EMPTY.xp,
             depleteRate = map["deplete_rate"] as? Double ?: EMPTY.depleteRate,

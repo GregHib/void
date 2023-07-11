@@ -1,7 +1,5 @@
 package world.gregs.voidps.engine.data.definition.data
 
-import world.gregs.voidps.engine.entity.item.Item
-
 /**
  * @param name interface override
  * @param item the silver item to craft
@@ -11,7 +9,7 @@ import world.gregs.voidps.engine.entity.item.Item
  */
 data class Silver(
     val name: String? = null,
-    val item: Item = Item.EMPTY,
+    val item: String = "",
     val xp: Double = 0.0,
     val level: Int = 1,
     val quest: String? = null
@@ -20,7 +18,7 @@ data class Silver(
 
         operator fun invoke(map: Map<String, Any>) = Silver(
             name = map["name"] as? String ?: EMPTY.name,
-            item = map["item"] as? Item ?: EMPTY.item,
+            item = map["item"] as? String ?: EMPTY.item,
             xp = map["xp"] as? Double ?: EMPTY.xp,
             level = map["level"] as? Int ?: EMPTY.level,
             quest = map["quest"] as? String ?: EMPTY.quest,

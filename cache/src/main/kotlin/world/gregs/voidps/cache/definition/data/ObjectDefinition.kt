@@ -10,7 +10,6 @@ data class ObjectDefinition(
     var name: String = "null",
     var sizeX: Int = 1,
     var sizeY: Int = 1,
-    var blocksSky: Boolean = true,
     var solid: Int = 2,
     var interactive: Int = -1,
     var options: Array<String?>? = null,
@@ -54,7 +53,6 @@ data class ObjectDefinition(
         if (name != other.name) return false
         if (sizeX != other.sizeX) return false
         if (sizeY != other.sizeY) return false
-        if (blocksSky != other.blocksSky) return false
         if (solid != other.solid) return false
         if (interactive != other.interactive) return false
         if (options != null) {
@@ -80,7 +78,6 @@ data class ObjectDefinition(
         result = 31 * result + name.hashCode()
         result = 31 * result + sizeX
         result = 31 * result + sizeY
-        result = 31 * result + blocksSky.hashCode()
         result = 31 * result + solid
         result = 31 * result + interactive
         result = 31 * result + (options?.contentHashCode() ?: 0)
