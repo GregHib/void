@@ -23,7 +23,6 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.activity.combat.prayer.getActivePrayerVarKey
-import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.dead
 import world.gregs.voidps.world.interact.entity.combat.inWilderness
@@ -37,7 +36,6 @@ val enums: EnumDefinitions by inject()
 on<Registered> { character: Character ->
     character["damage_dealers"] = mutableMapOf<Character, Int>()
     character["attackers"] = mutableListOf<Character>()
-    character["hits"] = mutableListOf<CombatHit>()
 }
 
 val Character.damageDealers: MutableMap<Character, Int>
