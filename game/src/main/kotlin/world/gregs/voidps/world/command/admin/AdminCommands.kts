@@ -8,12 +8,14 @@ import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.bot.navigation.graph.NavigationGraph
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.chat.toSIInt
 import world.gregs.voidps.engine.client.ui.chat.toSILong
 import world.gregs.voidps.engine.client.ui.chat.toSIPrefix
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.Command
+import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.data.PlayerAccounts
@@ -130,13 +132,11 @@ val definitions: ItemDefinitions by inject()
 val alternativeNames = mutableMapOf<String, String>()
 
 on<World, Registered> {
-    repeat(definitions.size) { id ->
+    for (id in 0 until definitions.size) {
         val definition = definitions.get(id)
-        if (definition.has("aka")) {
-            val list: List<String> = definition["aka"]
-            for (name in list) {
-                alternativeNames[name] = definition.stringId
-            }
+        val list = (definition.extras as? MutableMap<String, Any>)?.remove("aka") as? List<String> ?: continue
+        for (name in list) {
+            alternativeNames[name] = definition.stringId
         }
     }
 }

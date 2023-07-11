@@ -2,11 +2,11 @@ package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.data.*
 import world.gregs.voidps.engine.data.yaml.DefinitionConfig
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
@@ -36,7 +36,7 @@ class ItemDefinitions(
             }
             val ids = Object2IntOpenHashMap<String>()
             this.ids = ids
-            val config = CustomConfig(equipment, ids, definitions, this)
+            val config = CustomConfig(equipment, ids, definitions)
             yaml.load<Any>(path, config)
             ids.size
         }
@@ -47,8 +47,7 @@ class ItemDefinitions(
     private class CustomConfig(
         private val equipment: Map<Int, Int>,
         ids: MutableMap<String, Int>,
-        definitions: Array<ItemDefinition>,
-        private val defs: ItemDefinitions
+        definitions: Array<ItemDefinition>
     ) : DefinitionConfig<ItemDefinition>(ids, definitions) {
         override fun setMapValue(reader: YamlReader, map: MutableMap<String, Any>, key: String, indent: Int, indentOffset: Int, withinMap: String?, parentMap: String?) {
             if (indent > 1 && parentMap == "pottery") {
@@ -81,9 +80,9 @@ class ItemDefinitions(
                 return
             }
             super.set(map, key, when (indent) {
-                0 -> value
                 1 -> when (key) {
                     "id" -> {
+
                         super.set(map, "equip", equipment.getOrDefault(value as Int, -1), indent, parentMap)
                         value
                     }
@@ -100,15 +99,10 @@ class ItemDefinitions(
                     "weaving" -> Weaving(value as Map<String, Any>)
                     "jewellery" -> Jewellery(value as Map<String, Any>)
                     "silver_jewellery" -> Silver(value as Map<String, Any>)
+                    "ammo" -> ObjectOpenHashSet(value as List<String>)
                     else -> value
                 }
-                else -> when (key) {
-                    "item" -> {
-                        val id = value as String
-                        Item(id, def = defs.get(id))
-                    }
-                    else -> value
-                }
+                else -> value
 
             }, indent, parentMap)
         }

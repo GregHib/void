@@ -18,7 +18,6 @@ class ObjectDefinitions(
 
     override lateinit var ids: Map<String, Int>
 
-
     fun getValue(id: Int): ObjectDefinition {
         return definitions[id]
     }
