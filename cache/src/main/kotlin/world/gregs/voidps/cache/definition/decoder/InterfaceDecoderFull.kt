@@ -1,6 +1,5 @@
 package world.gregs.voidps.cache.definition.decoder
 
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
@@ -19,14 +18,13 @@ class InterfaceDecoderFull : DefinitionDecoder<InterfaceDefinitionFull>(INTERFAC
     }
 
     override fun load(definitions: Array<InterfaceDefinitionFull>, reader: Reader) {
-        val id = readId(reader)
-        val definition = definitions[InterfaceDefinitionFull.id(id)]
+        val packed = readId(reader)
+        val id = InterfaceDefinitionFull.id(packed)
+        val definition = definitions[id]
         if (definition.components == null) {
-            definition.components = Int2ObjectOpenHashMap()
+            definition.components = Array(InterfaceDefinitionFull.componentId(packed) + 1) { InterfaceComponentDefinitionFull(id = it + (id shl 16)) }
         }
-        val component = InterfaceComponentDefinitionFull(id = id)
-        component.read(reader)
-        definition.components!![InterfaceDefinitionFull.componentId(id)] = component
+        definition.components!![InterfaceDefinitionFull.componentId(packed)].read(reader)
     }
 
     override fun load(definitions: Array<InterfaceDefinitionFull>, cache: Cache, id: Int) {
@@ -36,14 +34,12 @@ class InterfaceDecoderFull : DefinitionDecoder<InterfaceDefinitionFull>(INTERFAC
             return
         }
         val definition = definitions[id]
-        val components = Int2ObjectOpenHashMap<InterfaceComponentDefinitionFull>(lastArchive)
-        for (file in 0..lastArchive) {
-            val component = InterfaceComponentDefinitionFull(id = file + (id shl 16))
-            val data = cache.getFile(index, archiveId, file)
+        val components = Array(lastArchive) { InterfaceComponentDefinitionFull(id = it + (id shl 16)) }
+        for (i in 0..lastArchive) {
+            val data = cache.getFile(index, archiveId, i)
             if (data != null) {
-                component.read(BufferReader(data))
+                components[i].read(BufferReader(data))
             }
-            components[file] = component
         }
         definition.components = components
     }

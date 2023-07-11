@@ -29,7 +29,9 @@ class InterfaceDefinitions(
 
     fun getComponentId(id: String, component: String) = componentIds["${id}_$component"]
 
-    fun getComponent(id: String, component: String) = get(id).components?.get(getComponentId(id, component))
+    fun getComponent(id: String, component: String): InterfaceComponentDefinition? {
+        return get(id).components?.get(getComponentId(id, component) ?: return null)
+    }
 
     fun getComponent(id: String, component: Int) = get(id).components?.get(component)
 
@@ -93,7 +95,7 @@ class InterfaceDefinitions(
                     when (value) {
                         is Int -> {
                             componentIds["${stringId}_$key"] = value
-                            val componentDefinition = definitions[intId].components?.getOrPut(value) { InterfaceComponentDefinition(value) }!!
+                            val componentDefinition = getOrPut(intId, value)
                             componentDefinition.stringId = key
                             componentDefinition.extras = Object2ObjectOpenHashMap<String, Any>(1).apply {
                                 put("parent", intId)
@@ -103,7 +105,7 @@ class InterfaceDefinitions(
                             value as MutableMap<String, Any>
                             val id = value["id"] as Int
                             componentIds["${stringId}_$key"] = id
-                            val componentDefinition = definitions[intId].components?.getOrPut(id) { InterfaceComponentDefinition(id) }!!
+                            val componentDefinition = getOrPut(intId, id)
                             componentDefinition.stringId = key
                             value["parent"] = intId
                             componentDefinition.extras = value
@@ -116,7 +118,7 @@ class InterfaceDefinitions(
                                 val name = "$prefix${startDigit + index}"
                                 map[name] = id
                                 componentIds["${stringId}_$name"] = id
-                                val componentDefinition = definitions[intId].components?.getOrPut(id) { InterfaceComponentDefinition(id) }!!
+                                val componentDefinition = getOrPut(intId, id)
                                 componentDefinition.stringId = name
                                 componentDefinition.extras = Object2ObjectOpenHashMap<String, Any>(1).apply {
                                     put("parent", intId)
@@ -129,6 +131,18 @@ class InterfaceDefinitions(
             data.size
         }
         return this
+    }
+
+    private fun getOrPut(id: Int, index: Int): InterfaceComponentDefinition {
+        val definition = definitions[id]
+        val components = definition.components
+            ?: throw IllegalArgumentException("Unable to find components for interface: $id.")
+        val component = components.getOrNull(index)
+        if (component != null) {
+            return component
+        }
+        definition.components = Array(index + 1) { components.getOrNull(it) ?: InterfaceComponentDefinition(id = it + (id shl 16))}
+        return definition.components!![index]
     }
 
     private fun loadTypes(data: Map<String, Map<String, Any>>): Map<String, Map<String, Any>> {
