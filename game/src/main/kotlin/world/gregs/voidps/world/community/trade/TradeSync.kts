@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.Container

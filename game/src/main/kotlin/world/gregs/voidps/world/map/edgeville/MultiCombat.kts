@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.map.edgeville
 
-import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.set
