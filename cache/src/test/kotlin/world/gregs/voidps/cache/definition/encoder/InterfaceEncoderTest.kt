@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index.INTERFACES
-import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
+import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinitionFull
 import world.gregs.voidps.cache.definition.data.InterfaceComponentSetting
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 
@@ -15,7 +15,7 @@ internal class InterfaceEncoderTest {
 
     @Test
     fun `Encode full test`() {
-        val definition = InterfaceComponentDefinition(
+        val definition = InterfaceComponentDefinitionFull(
             id = 0,
             type = 1,
             unknown = "Bob",

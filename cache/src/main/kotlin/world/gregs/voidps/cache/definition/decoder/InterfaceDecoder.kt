@@ -7,6 +7,7 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Index.INTERFACES
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
+import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinitionFull
 import world.gregs.voidps.cache.definition.data.InterfaceComponentSetting
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 
@@ -24,9 +25,9 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
         if (definition.components == null) {
             definition.components = Int2ObjectOpenHashMap()
         }
-        val component = InterfaceComponentDefinition(id = id)
+        val component = InterfaceComponentDefinitionFull(id = id)
         component.read(reader)
-        definition.components!![InterfaceDefinition.componentId(id)] = component
+        definition.components!![InterfaceDefinition.componentId(id)] = component.toLite()
     }
 
     override fun load(definitions: Array<InterfaceDefinition>, cache: Cache, id: Int) {
@@ -38,17 +39,17 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
         val definition = definitions[id]
         val components = Int2ObjectOpenHashMap<InterfaceComponentDefinition>(lastArchive)
         for (file in 0..lastArchive) {
-            val component = InterfaceComponentDefinition(id = file + (id shl 16))
+            val component = InterfaceComponentDefinitionFull(id = file + (id shl 16))
             val data = cache.getFile(index, archiveId, file)
             if (data != null) {
                 component.read(BufferReader(data))
             }
-            components[file] = component
+            components[file] = component.toLite()
         }
         definition.components = components
     }
 
-    fun InterfaceComponentDefinition.read(buffer: Reader) {
+    internal fun InterfaceComponentDefinitionFull.read(buffer: Reader) {
         buffer.readUnsignedByte()
         type = buffer.readUnsignedByte()
         if (type and 0x80 != 0) {
@@ -241,7 +242,15 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
 
     companion object {
 
-        private fun InterfaceComponentDefinition.decodeScript(buffer: Reader): Array<Any>? {
+        private fun InterfaceComponentDefinitionFull.toLite() = InterfaceComponentDefinition(
+            id = id,
+            options = options,
+            anObjectArray4758 = anObjectArray4758,
+            stringId = stringId,
+            extras = extras,
+        )
+
+        private fun InterfaceComponentDefinitionFull.decodeScript(buffer: Reader): Array<Any>? {
             val length = buffer.readUnsignedByte()
             if (length == 0) {
                 return null

@@ -2,11 +2,11 @@ package world.gregs.voidps.cache.definition.encoder
 
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.DefinitionEncoder
-import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
+import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinitionFull
 
-class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinition> {
+internal class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinitionFull> {
 
-    override fun Writer.encode(definition: InterfaceComponentDefinition) {
+    override fun Writer.encode(definition: InterfaceComponentDefinitionFull) {
         if (definition.id == -1) {
             return
         }

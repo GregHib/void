@@ -47,7 +47,7 @@ class InterfaceDefinitions(
             this.ids = ids
             val componentIds = Object2IntOpenHashMap<String>()
             this.componentIds = componentIds
-            val config = object : YamlReaderConfiguration() {
+            val config = object : YamlReaderConfiguration(2, 2) {
                 @Suppress("UNCHECKED_CAST")
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                     if (key == "options" && value is Map<*, *> && indent == 3) {
@@ -97,7 +97,9 @@ class InterfaceDefinitions(
                             componentIds["${stringId}_$key"] = value
                             val componentDefinition = definitions[intId].components?.getOrPut(value) { InterfaceComponentDefinition(value) }!!
                             componentDefinition.stringId = key
-                            componentDefinition.extras = mapOf<String, Any>("parent" to intId)
+                            componentDefinition.extras = Object2ObjectOpenHashMap<String, Any>(1).apply {
+                                put("parent", intId)
+                            }
                         }
                         is Map<*, *> -> {
                             value as MutableMap<String, Any>
@@ -118,7 +120,9 @@ class InterfaceDefinitions(
                                 componentIds["${stringId}_$name"] = id
                                 val componentDefinition = definitions[intId].components?.getOrPut(id) { InterfaceComponentDefinition(id) }!!
                                 componentDefinition.stringId = name
-                                componentDefinition.extras = mapOf<String, Any>("parent" to intId)
+                                componentDefinition.extras = Object2ObjectOpenHashMap<String, Any>(1).apply {
+                                    put("parent", intId)
+                                }
                             }
                         }
                     }
@@ -133,12 +137,17 @@ class InterfaceDefinitions(
         return data.mapValues { (_, values) ->
             val index = values["index"] as? Int
             val parent = values["parent"] as? String
-            val map = Object2ObjectOpenHashMap<String, Any>()
+            val map = Object2ObjectOpenHashMap<String, Any>(5)
             map["parent_fixed"] = (parent ?: values["fixedParent"] as? String ?: DEFAULT_FIXED_PARENT)
             map["parent_resize"] = (parent ?: values["resizeParent"] as? String ?: DEFAULT_RESIZE_PARENT)
             map["index_fixed"] = (index ?: values["fixedIndex"] as Int)
             map["index_resize"] = (index ?: values["resizeIndex"] as Int)
-            map["permanent"] = (values["permanent"] as? Boolean ?: DEFAULT_PERMANENT)
+            if (values.containsKey("permanent")) {
+                val permanent = values["permanent"] as Boolean
+                if (permanent != DEFAULT_PERMANENT) {
+                    map["permanent"] = permanent
+                }
+            }
             map
         }
     }
