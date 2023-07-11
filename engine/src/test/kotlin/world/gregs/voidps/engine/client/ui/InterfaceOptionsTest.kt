@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
-import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.sendInterfaceSettings
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
@@ -16,13 +15,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 
 internal class InterfaceOptionsTest {
 
-    lateinit var options: InterfaceOptions
-
-    lateinit var player: Player
-
-    lateinit var definitions: InterfaceDefinitions
-
-    lateinit var containerDefinitions: ContainerDefinitions
+    private lateinit var options: InterfaceOptions
+    private lateinit var player: Player
+    private lateinit var definitions: InterfaceDefinitions
+    private lateinit var containerDefinitions: ContainerDefinitions
 
     private val staticOptions = arrayOf("", "", "", "", "", "", "", "", "", "Examine")
     private val overrideOptions = arrayOf("Option1")
@@ -35,17 +31,14 @@ internal class InterfaceOptionsTest {
         definitions = mockk(relaxed = true)
         containerDefinitions = mockk(relaxed = true)
         options = InterfaceOptions(player, definitions, containerDefinitions)
-        every { definitions.get(name) } returns InterfaceDefinition(
-            extras = mapOf("componentInts" to mapOf(comp to 0)),
-            components = mutableMapOf(
-                0 to InterfaceComponentDefinition(
-                    id = 0,
-                    extras = mapOf(
-                    "parent" to 5,
-                    "container" to "container",
-                    "primary" to false,
-                    "options" to staticOptions
-                ))
+        every { definitions.getComponent(any<String>(), any<String>()) } returns null
+        every { definitions.getComponent(name, comp) } returns InterfaceComponentDefinition(
+            id = 0,
+            extras = mapOf(
+                "parent" to 5,
+                "container" to "container",
+                "primary" to false,
+                "options" to staticOptions
             ))
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         every { player.sendInterfaceSettings(any(), any(), any(), any(), any()) } just Runs
