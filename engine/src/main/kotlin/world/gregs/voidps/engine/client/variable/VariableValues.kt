@@ -70,12 +70,11 @@ class MapValues(
     val values: Map<Any, Int>
 ) : VariableValues() {
     constructor(values: Map<Any, Int>, default: Any?) : this(values) {
-        if (default != null) {
-            check(values.containsKey(default)) { "Map must contain default value '$default'" }
-        }
+        check(default != null) { "Maps must have a default value" }
+        check(values.containsKey(default) || values.containsKey(default.toString())) { "Map must contain default value '$default'." }
     }
 
-    override fun default() = values.keys.first()
+    override fun default() = "null"
     override fun toInt(value: Any) =
         values[value] ?: if (value is Boolean) values[value.toString()] ?: -1 else -1
 

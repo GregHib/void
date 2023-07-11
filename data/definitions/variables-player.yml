@@ -15,6 +15,7 @@ free_container:
 shop_currency:
   id: 532
   format: map
+  default: coins
   values:
     coins: 995
     tokkul: 6529
@@ -45,6 +46,7 @@ auto_retaliate:
   id: 172
   persist: true
   format: map
+  default: false
   values:
     false: 1
     true: 0
@@ -159,6 +161,7 @@ movement:
   id: 173
   persist: true
   format: map
+  default: walk
   values:
     walk: 0
     run: 1
@@ -388,6 +391,7 @@ lent_item_amount:
 show_summoning_orb:
   id: 1160
   format: map
+  default: true
   values:
     true: -1
     false: 0
