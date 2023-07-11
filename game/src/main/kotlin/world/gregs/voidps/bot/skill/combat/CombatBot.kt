@@ -18,7 +18,7 @@ suspend fun Bot.setAttackStyle(skill: Skill) {
 suspend fun Bot.setAutoCast(spell: String) {
     val definitions = get<InterfaceDefinitions>()
     val def = definitions.get(player.spellBook)
-    player.instructions.emit(InteractInterface(def.actualId, definitions.getComponentId(player.spellBook, spell) ?: return, -1, -1, 0))
+    player.instructions.emit(InteractInterface(def.id, definitions.getComponentId(player.spellBook, spell) ?: return, -1, -1, 0))
 }
 
 suspend fun Bot.setAttackStyle(style: Int) {

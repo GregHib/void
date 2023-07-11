@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.definition
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
@@ -135,14 +136,12 @@ class InterfaceDefinitions(
 
     private fun getOrPut(id: Int, index: Int): InterfaceComponentDefinition {
         val definition = definitions[id]
-        val components = definition.components
-            ?: throw IllegalArgumentException("Unable to find components for interface: $id.")
-        val component = components.getOrNull(index)
-        if (component != null) {
-            return component
+        var components = definition.components
+        if (components == null) {
+            components = Int2ObjectOpenHashMap(2)
+            definition.components = components
         }
-        definition.components = Array(index + 1) { components.getOrNull(it) ?: InterfaceComponentDefinition(id = it + (id shl 16))}
-        return definition.components!![index]
+        return components.getOrPut(index) { InterfaceComponentDefinition(id = index + (id shl 16)) }
     }
 
     private fun loadTypes(data: Map<String, Map<String, Any>>): Map<String, Map<String, Any>> {

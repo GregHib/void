@@ -90,7 +90,7 @@ suspend fun Bot.dialogueOption(option: String) {
     val current = player.dialogue!!
     val definitions = get<InterfaceDefinitions>()
     val def = definitions.get(current)
-    player.instructions.emit(InteractDialogue(def.actualId, definitions.getComponentId(current, option)!!, -1))
+    player.instructions.emit(InteractDialogue(def.id, definitions.getComponentId(current, option)!!, -1))
     await("tick")
 }
 

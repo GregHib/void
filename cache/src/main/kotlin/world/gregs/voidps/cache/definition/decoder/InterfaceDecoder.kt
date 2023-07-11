@@ -1,5 +1,6 @@
 package world.gregs.voidps.cache.definition.decoder
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
@@ -20,10 +21,13 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
         val packed = readId(reader)
         val id = InterfaceDefinition.id(packed)
         val definition = definitions[id]
-        if (definition.components == null) {
-            definition.components = Array(InterfaceDefinition.componentId(packed) + 1) { InterfaceComponentDefinition(id = it + (id shl 16)) }
+        val componentDefinition = InterfaceComponentDefinition(packed)
+        if (!componentDefinition.isEmpty(reader)) {
+            if (definition.components == null) {
+                definition.components = Int2ObjectOpenHashMap(2)
+            }
+            definition.components!![InterfaceDefinition.componentId(packed)] = componentDefinition
         }
-        definition.components!![InterfaceDefinition.componentId(packed)].read(reader)
     }
 
     override fun load(definitions: Array<InterfaceDefinition>, cache: Cache, id: Int) {
@@ -33,17 +37,23 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
             return
         }
         val definition = definitions[id]
-        val components = Array(lastArchive) { InterfaceComponentDefinition(id = it + (id shl 16)) }
+        val components = Int2ObjectOpenHashMap<InterfaceComponentDefinition>(2)
         for (i in 0..lastArchive) {
             val data = cache.getFile(index, archiveId, i)
             if (data != null) {
-                components[i].read(BufferReader(data))
+                val componentDefinition = InterfaceComponentDefinition(id = i + (id shl 16))
+                if (!componentDefinition.isEmpty(BufferReader(data))) {
+                    components[i] = componentDefinition
+                }
             }
         }
-        definition.components = components
+        if (components.isNotEmpty()) {
+            definition.components = components
+        }
     }
 
-    private fun InterfaceComponentDefinition.read(buffer: Reader) {
+    private fun InterfaceComponentDefinition.isEmpty(buffer: Reader): Boolean {
+        var empty = true
         buffer.readUnsignedByte()
         var type = buffer.readUnsignedByte()
         if (type and 0x80 != 0) {
@@ -98,7 +108,15 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
         val data = buffer.readUnsignedByte()
         val optionCount = data and 0xf
         if (optionCount > 0) {
-            options = Array(optionCount) { buffer.readString().ifBlank { null } }
+            options = Array(optionCount) {
+                val string = buffer.readString()
+                if (string.isBlank()) {
+                    null
+                } else {
+                    empty = false
+                    string
+                }
+            }
         }
         val iconCount = data shr 4
         if (iconCount > 0) {
@@ -114,6 +132,9 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
             buffer.skip(6)
         }
         anObjectArray4758 = decodeScript(buffer)
+        if (anObjectArray4758 != null) {
+            empty = false
+        }
         skipScript(buffer)
         skipScript(buffer)
         skipScript(buffer)
@@ -138,6 +159,7 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
         buffer.skip(buffer.readUnsignedByte() * 4)
         buffer.skip(buffer.readUnsignedByte() * 4)
         buffer.skip(buffer.readUnsignedByte() * 4)
+        return empty
     }
 
     override fun InterfaceDefinition.read(opcode: Int, buffer: Reader) {
