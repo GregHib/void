@@ -8,6 +8,10 @@ import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 
 class InterfaceEncoder : ActiveIndexEncoder(Index.INTERFACES) {
 
+    override fun size(cache: Cache): Int {
+        return cache.lastArchiveId(index)
+    }
+
     override fun encode(writer: Writer, cache: Cache) {
         writer.writeInt(size(cache))
         for (archiveId in cache.getArchives(index).reversed()) {
