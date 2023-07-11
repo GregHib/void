@@ -32,12 +32,22 @@ class VariableDefinitions {
             val varpIds = Int2ObjectOpenHashMap<String>()
             for (file in files) {
                 val type = file.nameWithoutExtension.removePrefix("variables-")
-                val factory = when (type) {
-                    "player" -> VariableDefinition.varp()
-                    "player-bit" -> VariableDefinition.varbit()
-                    "client" -> VariableDefinition.varc()
-                    "client-string" -> VariableDefinition.varcStr()
-                    else -> VariableDefinition.custom()
+                val factory: (Map<String, Any>) -> VariableDefinition = when (type) {
+                    "player" -> {
+                        { VariableDefinition.VarpDefinition(it) }
+                    }
+                    "player-bit" -> {
+                        { VariableDefinition.VarbitDefinition(it) }
+                    }
+                    "client" -> {
+                        { VariableDefinition.VarcDefinition(it) }
+                    }
+                    "client-string" -> {
+                        { VariableDefinition.VarcStrDefinition(it) }
+                    }
+                    else -> {
+                        { VariableDefinition.CustomVariableDefinition(it) }
+                    }
                 }
                 val config = object : DefinitionIdsConfig() {
                     override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 

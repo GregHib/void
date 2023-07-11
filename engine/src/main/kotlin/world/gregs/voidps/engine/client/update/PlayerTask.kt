@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.client.update
 
-import world.gregs.voidps.engine.client.ui.hasScreenOpen
+import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.CharacterList
@@ -19,7 +19,7 @@ class PlayerTask(
             delay.resume(Unit)
         }
         player.queue.tick()
-        if (!player.hasClock("delay") && !player.hasScreenOpen()) {
+        if (!player.hasClock("delay") && !player.hasMenuOpen()) {
             player.timers.run()
         }
         player.softTimers.run()

@@ -1,12 +1,12 @@
 package world.gregs.voidps.engine.client.ui
 
 import io.mockk.*
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
-import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.sendInterfaceSettings
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
@@ -16,16 +16,12 @@ import world.gregs.voidps.engine.entity.character.player.Player
 
 internal class InterfaceOptionsTest {
 
-    lateinit var options: InterfaceOptions
-
-    lateinit var player: Player
-
-    lateinit var definitions: InterfaceDefinitions
-
-    lateinit var containerDefinitions: ContainerDefinitions
+    private lateinit var options: InterfaceOptions
+    private lateinit var player: Player
+    private lateinit var definitions: InterfaceDefinitions
+    private lateinit var containerDefinitions: ContainerDefinitions
 
     private val staticOptions = arrayOf("", "", "", "", "", "", "", "", "", "Examine")
-    private val overrideOptions = arrayOf("Option1")
     private val name = "name"
     private val comp = "component"
 
@@ -35,17 +31,14 @@ internal class InterfaceOptionsTest {
         definitions = mockk(relaxed = true)
         containerDefinitions = mockk(relaxed = true)
         options = InterfaceOptions(player, definitions, containerDefinitions)
-        every { definitions.get(name) } returns InterfaceDefinition(
-            extras = mapOf("componentInts" to mapOf(comp to 0)),
-            components = mutableMapOf(
-                0 to InterfaceComponentDefinition(
-                    id = 0,
-                    extras = mapOf(
-                    "parent" to 5,
-                    "container" to "container",
-                    "primary" to false,
-                    "options" to staticOptions
-                ))
+        every { definitions.getComponent(any<String>(), any<String>()) } returns null
+        every { definitions.getComponent(name, comp) } returns InterfaceComponentDefinition(
+            id = 0,
+            extras = mapOf(
+                "parent" to 5,
+                "container" to "container",
+                "primary" to false,
+                "options" to staticOptions
             ))
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         every { player.sendInterfaceSettings(any(), any(), any(), any(), any()) } just Runs
@@ -59,27 +52,6 @@ internal class InterfaceOptionsTest {
         assertArrayEquals(staticOptions, options.get(name, comp))
         assertEquals("", options.get(name, comp, 0))
         assertEquals("Examine", options.get(name, comp, 9))
-    }
-
-    @Test
-    fun `Options can be overridden`() {
-        assertTrue(options.set(name, comp, overrideOptions))
-        assertArrayEquals(overrideOptions, options.get(name, comp))
-    }
-
-    @Test
-    fun `Removing options returns to use static`() {
-        options.set(name, comp, overrideOptions)
-
-        assertTrue(options.remove(name, comp))
-        assertFalse(options.remove(name, comp))
-        assertArrayEquals(staticOptions, options.get(name, comp))
-    }
-
-    @Test
-    fun `Set individual options`() {
-        assertTrue(options.set(name, comp, 0, "option"))
-        assertArrayEquals(arrayOf("option", "", "", "", "", "", "", "", "", "Examine"), options.get(name, comp))
     }
 
     @Test
@@ -102,8 +74,16 @@ internal class InterfaceOptionsTest {
 
     @Test
     fun `Unlock few options`() {
+        every { definitions.getComponent(name, comp) } returns InterfaceComponentDefinition(
+            id = 0,
+            extras = mapOf(
+                "parent" to 5,
+                "container" to "container",
+                "primary" to false,
+                "options" to arrayOf("one", "two", "three")
+            )
+        )
         every { containerDefinitions.get(name) } returns ContainerDefinition(10, extras = mapOf("width" to 2, "height" to 3))
-        options.set(name, comp, arrayOf("one", "two", "three"))
         options.unlock(name, comp, 0..27, "two", "three")
         verify {
             player.sendInterfaceSettings(5, 0, 0, 27, getHash(1, 2))

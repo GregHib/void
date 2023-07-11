@@ -196,6 +196,7 @@ unlocked_emote_lost_tribe:
   id: 532
   persist: true
   format: map
+  default: false
   values:
     false: 0
     true: 7
@@ -239,6 +240,7 @@ unlocked_emote_zombie_hand:
   id: 4075
   persist: true
   format: map
+  default: false
   values:
     false: 0
     true: 12
@@ -274,6 +276,7 @@ unlocked_emote_around_the_world_in_eggty_days:
   id: 6014
   persist: true
   format: map
+  default: false
   values:
     false: 0
     true: 85
@@ -289,6 +292,7 @@ unlocked_emote_puppet_master:
   id: 8300
   persist: true
   format: map
+  default: false
   values:
     false: 0
     true: 20
@@ -300,6 +304,7 @@ unlocked_emote_taskmaster:
   id: 8601
   persist: true
   format: map
+  default: false
   values:
     false: 0
     true: 417
@@ -412,6 +417,7 @@ makeover_female:
 character_part:
   id: 6501
   format: map
+  default: skin
   values:
     skin: 0
     hair: 1

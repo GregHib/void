@@ -1,8 +1,6 @@
 package world.gregs.voidps.world.interact.dialogue
 
 import world.gregs.voidps.engine.client.ui.Interfaces
-import world.gregs.voidps.engine.client.ui.sendAnimation
-import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get

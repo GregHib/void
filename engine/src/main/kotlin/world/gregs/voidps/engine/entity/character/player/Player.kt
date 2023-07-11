@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.character.player
 import kotlinx.coroutines.flow.MutableSharedFlow
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.engine.Contexts
-import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.GameFrame
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
@@ -153,13 +152,12 @@ class Player(
     private fun disconnect() {
         client?.disconnect()
         val queue: ConnectionQueue = get()
-        val gatekeeper: ConnectionGatekeeper = get()
         queue.disconnect {
             val players: Players = get()
             World.run("logout", 1) {
                 players.remove(this@Player)
                 players.removeIndex(this@Player)
-                gatekeeper.releaseIndex(index)
+                players.releaseIndex(this@Player)
             }
             val definitions = get<AreaDefinitions>()
             for (def in definitions.get(tile.zone)) {

@@ -155,7 +155,7 @@ class ActiveCache(
         fun configFile(config: Int) = "config$config.dat"
 
         private const val CHECKSUM_FILE = "checksum.dat"
-        private const val VERSION = 1
+        private const val VERSION = 2
 
         private fun md5(bytes: ByteArray?): String {
             val hash = MessageDigest.getInstance("MD5").digest(bytes)

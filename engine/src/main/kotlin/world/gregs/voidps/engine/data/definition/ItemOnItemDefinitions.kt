@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
@@ -46,7 +47,7 @@ class ItemOnItemDefinitions {
                                 if (a != b) {
                                     val one = usable[a]
                                     val two = usable[b]
-                                    val list = definitions.getOrPut(id(one, two)) { mutableListOf() }
+                                    val list = definitions.getOrPut(id(one, two)) { ObjectArrayList(2) }
                                     if (!list.contains(definition)) {
                                         list.add(definition)
                                     }

@@ -3,7 +3,7 @@ package world.gregs.voidps.tools.map.render.draw
 import world.gregs.voidps.cache.config.data.MapSceneDefinition
 import world.gregs.voidps.cache.definition.data.IndexedSprite
 import world.gregs.voidps.cache.definition.data.MapObject
-import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
 import world.gregs.voidps.cache.definition.data.SpriteDefinition
 import world.gregs.voidps.type.Region
 import java.awt.Color
@@ -11,7 +11,7 @@ import java.awt.Graphics2D
 import kotlin.math.ceil
 
 class ObjectPainter(
-    private val objectDefinitions: Array<ObjectDefinition>,
+    private val objectDefinitions: Array<ObjectDefinitionFull>,
     private val spriteDefinitions: Array<SpriteDefinition>,
     private val mapSceneDefinitions: Array<MapSceneDefinition>
 ) {
@@ -55,7 +55,7 @@ class ObjectPainter(
         }
     }
 
-    fun drawDiagonalCorner(g: Graphics2D, definition: ObjectDefinition, baseX: Int, baseY: Int, type: Int, rotation: Int) {
+    fun drawDiagonalCorner(g: Graphics2D, definition: ObjectDefinitionFull, baseX: Int, baseY: Int, type: Int, rotation: Int) {
         if (definition.mapscene != -1) {
             method2343(definition, rotation, g, baseX, baseY)
         } else if (type == 9 && drawWalls) {
@@ -71,7 +71,7 @@ class ObjectPainter(
         }
     }
 
-    fun drawWall(graphicstoolkit: Graphics2D, definition: ObjectDefinition, baseX: Int, baseY: Int, type: Int, rotation: Int) {
+    fun drawWall(graphicstoolkit: Graphics2D, definition: ObjectDefinitionFull, baseX: Int, baseY: Int, type: Int, rotation: Int) {
         if (definition.mapscene == -1) {
             if (!drawWalls) {
                 return
@@ -109,7 +109,7 @@ class ObjectPainter(
         }
     }
 
-    fun method2343(objectdefinition: ObjectDefinition, settings: Int, graphicstoolkit: Graphics2D, baseX: Int, baseY: Int) {
+    fun method2343(objectdefinition: ObjectDefinitionFull, settings: Int, graphicstoolkit: Graphics2D, baseX: Int, baseY: Int) {
         if (!drawMapScenes) {
             return
         }
@@ -178,7 +178,7 @@ class ObjectPainter(
         return image
     }
 
-    fun drawObject(g: Graphics2D, region: Region, regionId: Int, obj: MapObject, definition: ObjectDefinition) {
+    fun drawObject(g: Graphics2D, region: Region, regionId: Int, obj: MapObject, definition: ObjectDefinitionFull) {
         if (definition.hideMinimap) {
             return
         }

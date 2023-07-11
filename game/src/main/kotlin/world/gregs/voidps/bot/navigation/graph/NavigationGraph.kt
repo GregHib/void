@@ -23,7 +23,7 @@ class NavigationGraph(
 ) {
 
     private var adjacencyList: Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>> = Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>>()
-    private val tags = mutableMapOf<Any, Set<AreaDefinition>>()
+    private val tags = Object2ObjectOpenHashMap<Any, Set<AreaDefinition>>()
 
     val nodes: Set<Any>
         get() = adjacencyList.keys
@@ -49,7 +49,7 @@ class NavigationGraph(
     @Suppress("UNCHECKED_CAST")
     fun load(yaml: Yaml = get(), path: String = getProperty("navGraphPath")): NavigationGraph {
         timedLoad("ai nav graph edge") {
-            val config = object : YamlReaderConfiguration() {
+            val config = object : YamlReaderConfiguration(2, 2) {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
                     if (parentMap == "steps") {
                         super.add(list, toInstruction(value as Map<String, Any>) ?: return, parentMap)
@@ -91,9 +91,9 @@ class NavigationGraph(
                     } else {
                         steps
                     }
-                    map.getOrPut(start) { ObjectOpenHashSet() }.add(Edge(path, start, end, cost, instructions, conditions?.mapNotNull { toCondition(it) } ?: emptyList()))
+                    map.getOrPut(start) { ObjectOpenHashSet(1) }.add(Edge(path, start, end, cost, instructions, conditions?.mapNotNull { toCondition(it) } ?: emptyList()))
                     if (walk) {
-                        map.getOrPut(end) { ObjectOpenHashSet() }.add(Edge(path, end, start, cost, listOf(Walk(start.x, start.y))))
+                        map.getOrPut(end) { ObjectOpenHashSet(1) }.add(Edge(path, end, start, cost, listOf(Walk(start.x, start.y))))
                     }
                 }
             }

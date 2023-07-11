@@ -3,14 +3,14 @@ package world.gregs.voidps.cache.definition.encoder
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.buffer.write.BufferWriter
-import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.cache.definition.data.ItemDefinitionFull
 import java.io.File
 
 internal class ItemEncoderTest {
 
     @Test
     fun `Encode full test`() {
-        val definition = ItemDefinition(
+        val definition = ItemDefinitionFull(
             id = 10,
             modelId = 13450,
             name = "Not a null",

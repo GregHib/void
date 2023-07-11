@@ -26,6 +26,17 @@ class InterfaceDefinitions(
 
 
     override lateinit var ids: Map<String, Int>
+    private lateinit var componentIds: Map<String, Int>
+
+    fun getComponentId(id: String, component: String) = componentIds["${id}_$component"]
+
+    fun getComponent(id: String, component: String): InterfaceComponentDefinition? {
+        return get(id).components?.get(getComponentId(id, component) ?: return null)
+    }
+
+    fun getComponent(id: String, component: Int) = get(id).components?.get(component)
+
+    fun getComponent(id: Int, component: Int) = get(id).components?.get(component)
 
     override fun empty() = InterfaceDefinition.EMPTY
 
@@ -37,14 +48,24 @@ class InterfaceDefinitions(
         timedLoad("interface extra") {
             val ids = Object2IntOpenHashMap<String>()
             this.ids = ids
-            val config = object : YamlReaderConfiguration() {
+            val componentIds = Object2IntOpenHashMap<String>()
+            this.componentIds = componentIds
+            val config = object : YamlReaderConfiguration(2, 2) {
                 @Suppress("UNCHECKED_CAST")
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-                    if (indent == 0 && value is Int) {
+                    if (key == "options" && value is Map<*, *> && indent == 3) {
+                        value as Map<String, Int>
+                        val options = Array(value.maxOf { it.value } + 1) { "" }
+                        for ((option, index) in value) {
+                            options[index] = option
+                        }
+                        super.set(map, key, options, indent, parentMap)
+                    } else if (indent == 0 && value is Int) {
                         val extras = createMap()
                         set(extras, "id", value, 1, parentMap)
                         ids[key] = value
                         definitions[value].stringId = key
+                        definitions[value].extras = extras
                         super.set(map, key, createMap().apply {
                             put("id", value)
                         }, indent, parentMap)
@@ -56,168 +77,90 @@ class InterfaceDefinitions(
                         }
                         ids[key] = id
                         definitions[id].stringId = key
+                        definitions[id].extras = value
                         super.set(map, key, value, indent, parentMap)
                     } else {
                         super.set(map, key, value, indent, parentMap)
                     }
                 }
             }
-            val data = yaml.load<Map<String, Map<String, Any>>>(path, config)
             val typeData: Map<String, Map<String, Any>> = yaml.load(typePath)
-            val names = definitions.associate { it.id to it.stringId }
             val types = loadTypes(typeData)
-            val components = getComponentsMap(data)
-            val idToNames = components.mapValues { it.value.toMap() }
-            val componentNames = components.mapValues { entry -> entry.value.associate { it.second to it.first } }
-            val extras = loadInterfaceExtras(data, types, idToNames, componentNames)
-            val componentExtras = loadComponentExtras(data)
-            apply(names, extras) {
-                val componentExtra = componentExtras[it.stringId]
-                it.components?.forEach { (id, component) ->
-                    componentExtra?.get(id)?.let { extras ->
-                        component.stringId = extras["name"] as String
-                        component.extras = Object2ObjectOpenHashMap(extras)
+            val data = yaml.load<Map<String, MutableMap<String, Any>>>(path, config)
+            for ((stringId, map) in data) {
+                val typeName = map["type"] as? String ?: DEFAULT_TYPE
+                map.putAll(types[typeName]!!)
+                val components = map.remove("components") as? Map<String, Any> ?: continue
+                val intId = ids.getValue(stringId)
+                for ((key, value) in components) {
+                    when (value) {
+                        is Int -> {
+                            componentIds["${stringId}_$key"] = value
+                            val componentDefinition = getOrPut(intId, value)
+                            componentDefinition.stringId = key
+                            componentDefinition.extras = Object2ObjectOpenHashMap<String, Any>(1).apply {
+                                put("parent", intId)
+                            }
+                        }
+                        is Map<*, *> -> {
+                            value as MutableMap<String, Any>
+                            val id = value["id"] as Int
+                            componentIds["${stringId}_$key"] = id
+                            val componentDefinition = getOrPut(intId, id)
+                            componentDefinition.stringId = key
+                            value["parent"] = intId
+                            componentDefinition.extras = value
+                        }
+                        is String -> {
+                            val range = value.toIntRange(inclusive = true)
+                            val startDigit = key.takeLastWhile { it.isDigit() }.toInt()
+                            val prefix = key.removeSuffix(startDigit.toString())
+                            for ((index, id) in range.withIndex()) {
+                                val name = "$prefix${startDigit + index}"
+                                map[name] = id
+                                componentIds["${stringId}_$name"] = id
+                                val componentDefinition = getOrPut(intId, id)
+                                componentDefinition.stringId = name
+                                componentDefinition.extras = Object2ObjectOpenHashMap<String, Any>(1).apply {
+                                    put("parent", intId)
+                                }
+                            }
+                        }
                     }
                 }
             }
-            names.size
+            data.size
         }
         return this
     }
 
-    private fun getComponentsMap(data: Map<String, Map<String, Any>>): Map<String, List<Pair<String, Int>>> {
-        return data.mapNotNull { (name, values) ->
-            val map = values["components"] as? Map<*, *> ?: return@mapNotNull null
-            name to listComponents(map)
-        }.toMap()
-    }
-
-    private fun listComponents(map: Map<*, *>): List<Pair<String, Int>> {
-        val all = mutableListOf<Pair<String, Int>>()
-        for ((key, value) in map) {
-            val name = key as String
-            val id = when (value) {
-                is String -> {
-                    addComponentRange(name, value, all)
-                    continue
-                }
-                is Int -> value
-                is Map<*, *> -> value["id"] as Int
-                else -> continue
-            }
-            all.add(name to id)
+    private fun getOrPut(id: Int, index: Int): InterfaceComponentDefinition {
+        val definition = definitions[id]
+        var components = definition.components
+        if (components == null) {
+            components = Int2ObjectOpenHashMap(2)
+            definition.components = components
         }
-        return all
-    }
-
-    private fun addComponentRange(name: String, value: String, all: MutableList<Pair<String, Int>>) {
-        val startDigit = name.dropWhile { !it.isDigit() }.toIntOrNull()
-        val range = value.toIntRange(inclusive = true)
-        if (startDigit != null) {
-            val prefix = name.removeSuffix(startDigit.toString())
-            for ((index, i) in range.withIndex()) {
-                all.add("$prefix${startDigit + index}" to i)
-            }
-        }
+        return components.getOrPut(index) { InterfaceComponentDefinition(id = index + (id shl 16)) }
     }
 
     private fun loadTypes(data: Map<String, Map<String, Any>>): Map<String, Map<String, Any>> {
         return data.mapValues { (_, values) ->
             val index = values["index"] as? Int
             val parent = values["parent"] as? String
-            val map = Object2ObjectOpenHashMap<String, Any>()
+            val map = Object2ObjectOpenHashMap<String, Any>(5)
             map["parent_fixed"] = (parent ?: values["fixedParent"] as? String ?: DEFAULT_FIXED_PARENT)
             map["parent_resize"] = (parent ?: values["resizeParent"] as? String ?: DEFAULT_RESIZE_PARENT)
             map["index_fixed"] = (index ?: values["fixedIndex"] as Int)
             map["index_resize"] = (index ?: values["resizeIndex"] as Int)
-            map["permanent"] = (values["permanent"] as? Boolean ?: DEFAULT_PERMANENT)
+            if (values.containsKey("permanent")) {
+                val permanent = values["permanent"] as Boolean
+                if (permanent != DEFAULT_PERMANENT) {
+                    map["permanent"] = permanent
+                }
+            }
             map
         }
     }
 
-    private fun loadInterfaceExtras(
-        data: Map<String, Map<String, Any>>,
-        types: Map<String, Map<String, Any>>,
-        components: Map<String, Map<String, Int>>,
-        componentNames: Map<String, Map<Int, String>>
-    ) = data.mapValues { (name, values) ->
-        val typeName = values["type"] as? String ?: DEFAULT_TYPE
-        val type = types[typeName]
-        checkNotNull(type) { "Missing interface type $typeName" }
-        values.toMutableMap().apply {
-            putAll(type)
-            this["name"] = name
-            components[name]?.let {
-                this["componentInts"] = Object2IntOpenHashMap(it)
-            }
-            componentNames[name]?.let {
-                this["componentIds"] = Int2ObjectOpenHashMap(it)
-            }
-        }
-    }
-
-    private fun loadComponentExtras(
-        data: Map<String, Map<String, Any>>
-    ) = data.mapNotNull { (name, values) ->
-        val parent = values["id"] as Int
-        val map = values["components"] as? Map<String, Any> ?: return@mapNotNull null
-        name to extrasMap(map, parent)
-    }.toMap()
-
-    private fun extrasMap(map: Map<String, Any>, parent: Int): Map<Int, MutableMap<String, Any>> {
-        val all = Int2ObjectOpenHashMap<MutableMap<String, Any>>()
-        for ((name, value) in map) {
-            if (value is String) {
-                val startDigit = name.dropWhile { !it.isDigit() }.toInt()
-                val prefix = name.removeSuffix(startDigit.toString())
-                for ((index, i) in value.toIntRange(inclusive = true).withIndex()) {
-                    all[i] = Object2ObjectOpenHashMap<String, Any>().apply {
-                        put("name", "$prefix${startDigit + index}")
-                        put("parent", parent)
-                    }
-                }
-            } else {
-                var id = value as? Int
-                val out = Object2ObjectOpenHashMap<String, Any>().apply {
-                    put("name", name)
-                    put("parent", parent)
-                }
-                (value as? Map<*, *>)?.forEach { (key, value) ->
-                    if (key is String) {
-                        if (key == "id") {
-                            id = value as Int
-                        } else if (key == "options") {
-                            val it = value as Map<*, *>
-                            val options = Array(it.maxOf { it.value as Int } + 1) { "" }
-                            it.forEach { (option, index) ->
-                                options[index as Int] = option as String
-                            }
-                            out["options"] = options
-                        } else if (value is String) {
-                            out[key] = value
-                        } else if (value is Boolean) {
-                            out[key] = value
-                        } else if (value is Int) {
-                            out[key] = value
-                        }
-                    }
-                }
-                all[id!!] = out
-            }
-        }
-        return all
-    }
-
-}
-
-fun InterfaceDefinition.getComponentId(id: Int): String {
-    return getOrNull<Map<Int, String>>("componentIds")?.get(id) ?: return ""
-}
-
-fun InterfaceDefinition.getComponentIntId(component: String): Int? {
-    return getOrNull<Map<String, Int>>("componentInts")?.get(component)
-}
-
-fun InterfaceDefinition.getComponentOrNull(component: String): InterfaceComponentDefinition? {
-    return components?.get(getComponentIntId(component))
 }

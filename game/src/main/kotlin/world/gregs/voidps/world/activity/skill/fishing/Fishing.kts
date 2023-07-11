@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.contain.transact.TransactionError
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Catch
 import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.entity.character.face
@@ -25,12 +26,13 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 
 val logger = InlineLogger()
+val itemDefinitions: ItemDefinitions by inject()
 
 on<Moved>({ it.contains("fishers") && it.def.has("fishing") }) { npc: NPC ->
     val fishers: Set<Player> = npc.remove("fishers") ?: return@on
@@ -61,9 +63,9 @@ on<NPCOption>({ operate && def.has("fishing") }) { player: Player ->
             break
         }
 
-        val tackle = data.tackle.firstOrNull { tackle -> player.hasItem(tackle.id) }
+        val tackle = data.tackle.firstOrNull { tackle -> player.hasItem(tackle) }
         if (tackle == null) {
-            player.message("You need a ${data.tackle.first().id.toTitleCase()} to catch these fish.")
+            player.message("You need a ${data.tackle.first().toTitleCase()} to catch these fish.")
             break@fishing
         }
 
@@ -74,21 +76,21 @@ on<NPCOption>({ operate && def.has("fishing") }) { player: Player ->
             break
         }
         if (first) {
-            player.message(tackle.def["cast", ""], ChatType.Filter)
+            player.message(itemDefinitions.get(tackle)["cast", ""], ChatType.Filter)
             first = false
         }
 
         val remaining = player.remaining("skill_delay")
         if (remaining < 0) {
             player.face(npc)
-            val rod = tackle.id == "fishing_rod" || tackle.id == "fly_fishing_rod" || tackle.id == "barbarian_rod"
-            player.setAnimation("fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle.id}")
+            val rod = tackle == "fishing_rod" || tackle == "fly_fishing_rod" || tackle == "barbarian_rod"
+            player.setAnimation("fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle}")
             pause(5)
         } else if (remaining > 0) {
             return@on
         }
         for (item in catches) {
-            val catch = item.fishing
+            val catch = itemDefinitions.get(item)["fishing", Catch.EMPTY]
             val level = player.levels.get(Skill.Fishing)
             if (level >= catch.level && success(level, catch.chance)) {
                 if (bait != "none" && !player.inventory.remove(bait)) {
@@ -103,10 +105,10 @@ on<NPCOption>({ operate && def.has("fishing") }) { player: Player ->
     }
 }
 
-fun addCatch(player: Player, catch: Item) {
-    player.inventory.add(catch.id)
+fun addCatch(player: Player, catch: String) {
+    player.inventory.add(catch)
     when (player.inventory.transaction.error) {
-        TransactionError.None -> player.message("You catch some ${catch.id.toLowerSpaceCase()}.", ChatType.Filter)
+        TransactionError.None -> player.message("You catch some ${catch.toLowerSpaceCase()}.", ChatType.Filter)
         is TransactionError.Full -> player.inventoryFull()
         else -> logger.warn { "Error adding fish $catch ${player.inventory.transaction.error}" }
     }
@@ -115,5 +117,9 @@ fun addCatch(player: Player, catch: Item) {
 val NPC.spot: Map<String, Spot>
     get() = def["fishing", emptyMap()]
 
-val Item.fishing: Catch
-    get() = def["fishing", Catch.EMPTY]
+val Spot.minimumLevel: Int
+    get() = bait.keys.minOf { minimumLevel(it) ?: Int.MAX_VALUE }
+
+fun Spot.minimumLevel(bait: String): Int? {
+    return this.bait[bait]?.minOf { itemDefinitions.get(it)["fishing", Catch.EMPTY].level }
+}

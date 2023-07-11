@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.ui.hasScreenOpen
+import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.set
@@ -66,7 +66,7 @@ class Interact(
         if (!validTarget()) {
             return
         }
-        if (character.hasClock("delay") || character.hasScreenOpen()) {
+        if (character.hasClock("delay") || character.hasMenuOpen()) {
             super.tick()
             return
         }
@@ -103,7 +103,7 @@ class Interact(
         if (interacted && !updateRange && arrived(approachRange ?: -1)) {
             character.steps.clear()
         }
-        if (!character.hasScreenOpen()) {
+        if (!character.hasMenuOpen()) {
             super.tick()
         }
         if (!interacted || updateRange) {

@@ -2,17 +2,15 @@ package world.gregs.voidps.engine.data.yaml
 
 import world.gregs.yaml.read.YamlReaderConfiguration
 
-open class DefinitionIdsConfig : YamlReaderConfiguration() {
+open class DefinitionIdsConfig : YamlReaderConfiguration(2, 2) {
 
     @Suppress("UNCHECKED_CAST")
     override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
         if (indent == 0 && value is Int) {
-            val extras = createMap()
-            set(extras, "id", value, 1, parentMap)
-            set(map, key, value, extras)
+            set(map, key, value, null)
         } else if (indent == 0) {
             value as MutableMap<String, Any>
-            val id = value["id"] as Int
+            val id = value.remove("id") as Int
             set(map, key, id, value)
         } else {
             super.set(map, key, value, indent, parentMap)

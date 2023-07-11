@@ -3,17 +3,17 @@ package world.gregs.voidps.tools.convert
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Index.ITEMS
-import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.cache.definition.data.ItemDefinitionFull
 
-class ItemDecoder718 : DefinitionDecoder<ItemDefinition>(ITEMS) {
+class ItemDecoder718 : DefinitionDecoder<ItemDefinitionFull>(ITEMS) {
 
-    override fun create(size: Int) = Array(size) { ItemDefinition(it) }
+    override fun create(size: Int) = Array(size) { ItemDefinitionFull(it) }
 
     override fun getFile(id: Int) = id and 0xff
 
     override fun getArchive(id: Int) = id ushr 8
 
-    override fun ItemDefinition.read(opcode: Int, buffer: Reader) {
+    override fun ItemDefinitionFull.read(opcode: Int, buffer: Reader) {
         when (opcode) {
             1 -> modelId = buffer.readBigSmart()
             2 -> name = buffer.readString()
@@ -111,7 +111,7 @@ class ItemDecoder718 : DefinitionDecoder<ItemDefinition>(ITEMS) {
         }
     }
 
-    override fun changeValues(definitions: Array<ItemDefinition>, definition: ItemDefinition) {
+    override fun changeValues(definitions: Array<ItemDefinitionFull>, definition: ItemDefinitionFull) {
         if (definition.notedTemplateId != -1) {
             definition.toNote(definitions.getOrNull(definition.notedTemplateId), definitions.getOrNull(definition.noteId))
         }
@@ -121,124 +121,6 @@ class ItemDecoder718 : DefinitionDecoder<ItemDefinition>(ITEMS) {
         if (definition.singleNoteTemplateId != -1) {
             definition.toSingleNote(definitions.getOrNull(definition.singleNoteTemplateId), definitions.getOrNull(definition.singleNoteId))
         }
-    }
-
-    fun ItemDefinition.toLend(item: ItemDefinition?, template: ItemDefinition?) {
-        if (item == null || template == null) {
-            return
-        }
-        modifiedColours = item.modifiedColours
-        primaryMaleDialogueHead = item.primaryMaleDialogueHead
-        secondaryMaleDialogueHead = item.secondaryMaleDialogueHead
-        tertiaryMaleModel = item.tertiaryMaleModel
-        team = item.team
-        params = item.params
-        members = item.members
-        modifiedTextureColours = item.modifiedTextureColours
-        maleWieldZ = item.maleWieldZ
-        secondaryFemaleModel = item.secondaryFemaleModel
-        spriteCameraYaw = template.spriteCameraYaw
-        floorOptions = item.floorOptions
-        secondaryFemaleDialogueHead = item.secondaryFemaleDialogueHead
-        recolourPalette = item.recolourPalette
-        femaleWieldZ = item.femaleWieldZ
-        spritePitch = template.spritePitch
-        primaryFemaleModel = item.primaryFemaleModel
-        modelId = template.modelId
-        options = arrayOfNulls(5)
-        spriteCameraRoll = template.spriteCameraRoll
-        spriteTranslateY = template.spriteTranslateY
-        originalTextureColours = item.originalTextureColours
-        femaleWieldX = item.femaleWieldX
-        secondaryMaleModel = item.secondaryMaleModel
-        cost = 0
-        maleWieldY = item.maleWieldY
-        originalColours = item.originalColours
-        spriteTranslateX = template.spriteTranslateX
-        femaleWieldY = item.femaleWieldY
-        primaryFemaleDialogueHead = item.primaryFemaleDialogueHead
-        spriteScale = template.spriteScale
-        name = item.name
-        tertiaryFemaleModel = item.tertiaryFemaleModel
-        primaryMaleModel = item.primaryMaleModel
-        maleWieldX = item.maleWieldX
-        System.arraycopy(item.options, 0, options, 0, 4)
-        options[4] = "Discard"
-
-        val slot = equipSlots[item.id]
-        if(slot != null) {
-            equipSlots[id] = slot
-        }
-        val type = equipTypes[item.id]
-        if(type != null) {
-            equipTypes[id] = type
-        }
-    }
-
-    fun ItemDefinition.toNote(template: ItemDefinition?, item: ItemDefinition?) {
-        if (item == null || template == null) {
-            return
-        }
-        spriteTranslateY = template.spriteTranslateY
-        originalColours = template.originalColours
-        cost = item.cost
-        name = item.name
-        modifiedTextureColours = template.modifiedTextureColours
-        spriteCameraRoll = template.spriteCameraRoll
-        spriteCameraYaw = template.spriteCameraYaw
-        originalTextureColours = template.originalTextureColours
-        modelId = template.modelId
-        spriteScale = template.spriteScale
-        recolourPalette = template.recolourPalette
-        stackable = 1
-        spritePitch = template.spritePitch
-        spriteTranslateX = template.spriteTranslateX
-        members = item.members
-        modifiedColours = template.modifiedColours
-    }
-
-    fun ItemDefinition.toSingleNote(template: ItemDefinition?, item: ItemDefinition?) {
-        if (item == null || template == null) {
-            return
-        }
-        cost = 0
-        tertiaryMaleModel = item.tertiaryMaleModel
-        stackable = item.stackable
-        members = item.members
-        recolourPalette = item.recolourPalette
-        spriteTranslateY = template.spriteTranslateY
-        team = item.team
-        secondaryMaleModel = item.secondaryMaleModel
-        options = arrayOfNulls(5)
-        floorOptions = item.floorOptions
-        maleWieldZ = item.maleWieldZ
-        primaryMaleDialogueHead = item.primaryMaleDialogueHead
-        femaleWieldZ = item.femaleWieldZ
-        name = item.name
-        spriteScale = template.spriteScale
-        originalColours = item.originalColours
-        secondaryFemaleDialogueHead = item.secondaryFemaleDialogueHead
-        params = item.params
-        primaryFemaleModel = item.primaryFemaleModel
-        spritePitch = template.spritePitch
-        spriteCameraRoll = template.spriteCameraRoll
-        femaleWieldX = item.femaleWieldX
-        secondaryMaleDialogueHead = item.secondaryMaleDialogueHead
-        tertiaryFemaleModel = item.tertiaryFemaleModel
-        modifiedTextureColours = item.modifiedTextureColours
-        maleWieldX = item.maleWieldX
-        primaryFemaleDialogueHead = item.primaryFemaleDialogueHead
-        modelId = template.modelId
-        modifiedColours = item.modifiedColours
-        secondaryFemaleModel = item.secondaryFemaleModel
-        spriteTranslateX = template.spriteTranslateX
-        spriteCameraYaw = template.spriteCameraYaw
-        primaryMaleModel = item.primaryMaleModel
-        femaleWieldY = item.femaleWieldY
-        maleWieldY = item.maleWieldY
-        originalTextureColours = item.originalTextureColours
-        System.arraycopy(item.options, 0, options, 0, 4)
-        options[4] = "Discard"
     }
 
     companion object {

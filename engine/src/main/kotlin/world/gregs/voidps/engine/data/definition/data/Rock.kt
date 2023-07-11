@@ -1,7 +1,5 @@
 package world.gregs.voidps.engine.data.definition.data
 
-import world.gregs.voidps.engine.entity.item.Item
-
 /**
  * @param level required to attempt to mine
  * @param ores List of materials that can be mined
@@ -10,7 +8,7 @@ import world.gregs.voidps.engine.entity.item.Item
  */
 data class Rock(
     val level: Int = 1,
-    val ores: List<Item> = emptyList(),
+    val ores: List<String> = emptyList(),
     val life: Int = -1,
     val gems: Boolean = false
 ) {
@@ -19,7 +17,7 @@ data class Rock(
         @Suppress("UNCHECKED_CAST")
         operator fun invoke(map: Map<String, Any>) = Rock(
             level = map["level"] as? Int ?: EMPTY.level,
-            ores = map["ores"] as? List<Item> ?: EMPTY.ores,
+            ores = map["ores"] as? List<String> ?: EMPTY.ores,
             life = map["life"] as? Int ?: EMPTY.life,
             gems = map["gems"] as? Boolean ?: EMPTY.gems,
         )

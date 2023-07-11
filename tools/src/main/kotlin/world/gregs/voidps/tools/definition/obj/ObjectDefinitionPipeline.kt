@@ -2,8 +2,8 @@ package world.gregs.voidps.tools.definition.obj
 
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
+import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
+import world.gregs.voidps.cache.definition.decoder.ObjectDecoderFull
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit
 private object ObjectDefinitionPipeline {
 
     private fun buildObjectExtras(
-        decoder: Array<ObjectDefinition>,
+        decoder: Array<ObjectDefinitionFull>,
         pages: Map<Int, PageCollector>
     ): MutableMap<Int, Extras> {
         val output = mutableMapOf<Int, Extras>()
@@ -51,7 +51,7 @@ private object ObjectDefinitionPipeline {
     fun main(args: Array<String>) {
         val start = System.currentTimeMillis()
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = ObjectDecoder(member = true, lowDetail = false).loadCache(cache)
+        val decoder = ObjectDecoderFull(member = true, lowDetail = false).loadCache(cache)
         val pages = decoder.indices.mapNotNull {
             val def = decoder.getOrNull(it)
             if (def != null) {

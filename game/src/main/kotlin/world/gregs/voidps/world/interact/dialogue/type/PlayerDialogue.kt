@@ -4,7 +4,6 @@ import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.data.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.name
@@ -43,6 +42,6 @@ private fun getInterfaceId(lines: Int, prompt: Boolean): String {
 
 private fun sendPlayerHead(player: Player, id: String, component: String) {
     val definitions: InterfaceDefinitions = get()
-    val comp = definitions.get(id).getComponentOrNull(component) ?: return
+    val comp = definitions.getComponent(id, component) ?: return
     player.client?.playerDialogueHead(comp["parent", -1], comp.id)
 }

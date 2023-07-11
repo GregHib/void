@@ -19,7 +19,7 @@ object MapGraphLoader {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val collisions: Collisions = Collisions()
         val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).loadCache(cache))
-            .load(Yaml(), property("objectDefinitionsPath"), null)
+            .load(Yaml(), property("objectDefinitionsPath"))
         val objects = GameObjects(GameObjectCollision(Collisions()), ZoneBatchUpdates(), objectDefinitions)
         val xteas: Xteas = Xteas().load()
         val graph = MapGraph(objects, xteas, cache, collisions)

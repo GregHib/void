@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.definition
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.config.GearDefinition
@@ -40,7 +41,7 @@ class GearDefinitions {
                         }
                     } else if (parentMap == "equipment") {
                         value as Map<String, List<Item>>
-                        super.add(list, value.mapKeys { EquipSlot.valueOf(it.key.toSentenceCase()) }, parentMap)
+                        super.add(list, Object2ObjectOpenHashMap(value.mapKeys { EquipSlot.valueOf(it.key.toSentenceCase()) }), parentMap)
                     } else if (value is Map<*, *> && value.containsKey("id")) {
                         val id = value["id"] as String
                         val item = Item(id, value["amount"] as? Int ?: 1, itemDefinitions.get(id))

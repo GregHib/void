@@ -31,7 +31,7 @@ object WorldMapLinkIdentifier {
         val xteas: Xteas = Xteas().load(property("xteaPath"), propertyOrNull("xteaJsonKey") ?: Xteas.DEFAULT_KEY, propertyOrNull("xteaJsonValue") ?: Xteas.DEFAULT_VALUE)
         val worldMapDetailsDecoder = WorldMapDetailsDecoder().loadCache(cache)
         val worldMapIconDecoder = WorldMapIconDecoder().loadCache(cache)
-        val definitions: ObjectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).loadCache(cache)).load(Yaml(), property("objectDefinitionsPath"), null)
+        val definitions: ObjectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).loadCache(cache)).load(Yaml(), property("objectDefinitionsPath"))
         val mapDecoder = MapDecoder(xteas).loadCache(cache)
         val collisions = Collisions()
         val collisionReader = CollisionReader(collisions)

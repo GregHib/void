@@ -3,18 +3,21 @@ package world.gregs.voidps.engine.entity.character.npc
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.MAX_NPCS
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.CharacterList
+import world.gregs.voidps.engine.entity.character.CharacterMap
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.getProperty
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.zone.Zone
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.RegionLevel
+import world.gregs.voidps.type.Tile
 
 data class NPCs(
     private val definitions: NPCDefinitions,
@@ -24,10 +27,58 @@ data class NPCs(
 ) : CharacterList<NPC>(MAX_NPCS) {
     override val indexArray: Array<NPC?> = arrayOfNulls(MAX_NPCS)
     private val logger = InlineLogger()
+    private val map: CharacterMap = CharacterMap()
 
     init {
         Wander.active = getProperty("randomWalk") == "true"
     }
+
+    override operator fun get(tile: Tile): List<NPC> {
+        return get(tile.regionLevel).filter { it.tile == tile }
+    }
+
+    override operator fun get(zone: Zone): List<NPC> {
+        return get(zone.regionLevel).filter { it.tile.zone == zone }
+    }
+
+    operator fun get(region: RegionLevel): List<NPC> {
+        val list = mutableListOf<NPC>()
+        for (index in map[region] ?: return list) {
+            list.add(indexed(index) ?: continue)
+        }
+        return list
+    }
+
+    override fun add(element: NPC): Boolean {
+        if (super.add(element)) {
+            map.add(element.tile.regionLevel, element)
+            return true
+        }
+        return false
+    }
+
+    fun update(from: Tile, to: Tile, element: NPC) {
+        if (from.regionLevel != to.regionLevel) {
+            map.remove(from.regionLevel, element)
+            map.add(to.regionLevel, element)
+        }
+    }
+
+    fun clear(region: RegionLevel) {
+        for (index in map[region] ?: return) {
+            val element = indexed(index) ?: continue
+            super.remove(element)
+            removeIndex(element)
+            releaseIndex(element)
+        }
+    }
+
+    override fun remove(element: NPC): Boolean {
+        map.remove(element.tile.regionLevel, element)
+        return super.remove(element)
+    }
+
+    fun getDirect(region: RegionLevel): List<Int>? = this.map[region]
 
     fun add(id: String, tile: Tile, direction: Direction = Direction.NONE, delay: Int? = null): NPC? {
         val npc = add(id, tile, direction) ?: return null
@@ -60,14 +111,8 @@ data class NPCs(
         npc.index = indexer.obtain() ?: return null
         npc.face(dir)
         npc.collision = collision.get(npc)
-        super.add(npc)
+        add(npc)
         return npc
-    }
-
-    fun releaseIndex(npc: NPC) {
-        if (npc.index > 0) {
-            indexer.release(npc.index)
-        }
     }
 
     override fun clear() {

@@ -3,8 +3,8 @@ package world.gregs.voidps.tools.detail
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.config.decoder.RenderAnimationDecoder
-import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
-import world.gregs.voidps.cache.definition.decoder.ItemDecoder
+import world.gregs.voidps.cache.definition.decoder.AnimationDecoderFull
+import world.gregs.voidps.cache.definition.decoder.ItemDecoderFull
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.tools.property
@@ -22,8 +22,8 @@ object AnimationNames {
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val yaml = Yaml()
-        val decoder = AnimationDecoder().loadCache(cache)
-        val itemDecoder = ItemDecoder().loadCache(cache)
+        val decoder = AnimationDecoderFull().loadCache(cache)
+        val itemDecoder = ItemDecoderFull().loadCache(cache)
         val renders = getRenderAnimations(cache)
         val map = mutableMapOf<String, MutableList<Int>>()
         for (id in decoder.indices) {

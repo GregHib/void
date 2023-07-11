@@ -5,9 +5,9 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
+import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Region
-import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
 import kotlin.collections.set
@@ -29,7 +29,7 @@ class MusicTracks {
             var count = 0
             val tracks = Int2ObjectOpenHashMap<MutableList<Track>>()
             val names = Object2IntOpenHashMap<String>()
-            val config = object : YamlReaderConfiguration() {
+            val config = object : YamlReaderConfiguration(2, 2) {
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                     if (indent == 0) {
                         count++
@@ -50,7 +50,7 @@ class MusicTracks {
                             }
                             val track = Track(key, index, area)
                             for (region in area.toRegions()) {
-                                tracks.getOrPut(region.id) { ObjectArrayList() }.add(track)
+                                tracks.getOrPut(region.id) { ObjectArrayList(1) }.add(track)
                             }
                         }
                     } else {

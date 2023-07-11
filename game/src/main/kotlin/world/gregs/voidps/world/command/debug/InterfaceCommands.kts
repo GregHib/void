@@ -6,8 +6,6 @@ import world.gregs.voidps.engine.client.sendInterfaceSettings
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
-import world.gregs.voidps.engine.client.ui.sendItem
-import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions

@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.zone.Zone
@@ -12,8 +13,8 @@ import world.gregs.yaml.read.YamlReaderConfiguration
 
 class AreaDefinitions {
 
-    private var named: Map<String, AreaDefinition> = mutableMapOf()
-    private var tagged: Map<String, Set<AreaDefinition>> = mutableMapOf()
+    private var named: Map<String, AreaDefinition> = Object2ObjectOpenHashMap()
+    private var tagged: Map<String, Set<AreaDefinition>> = Object2ObjectOpenHashMap()
     private var areas: Map<Int, Set<AreaDefinition>> = Int2ObjectOpenHashMap()
 
     fun getOrNull(name: String): AreaDefinition? {
@@ -35,16 +36,16 @@ class AreaDefinitions {
     @Suppress("UNCHECKED_CAST")
     fun load(yaml: Yaml = get(), path: String = getProperty("areaPath")): AreaDefinitions {
         timedLoad("map area") {
-            val config = object : YamlReaderConfiguration() {
+            val config = object : YamlReaderConfiguration(2, 2) {
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                     if (key == "tags") {
-                        super.set(map, key, (value as List<Any>).toSet(), indent, parentMap)
+                        super.set(map, key, ObjectOpenHashSet(value as List<Any>), indent, parentMap)
                     } else if (key == "area") {
                         value as Map<String, Any>
                         val area = Area.fromMap(value, 0)
                         super.set(map, key, area, indent, parentMap)
                     } else if (indent == 0) {
-                        val area = AreaDefinition.fromMap(key, value as Map<String, Any>)
+                        val area = AreaDefinition.fromMap(key, value as MutableMap<String, Any>)
                         super.set(map, key, area, indent, parentMap)
                     } else {
                         super.set(map, key, value, indent, parentMap)
@@ -57,10 +58,10 @@ class AreaDefinitions {
             for (key in named.keys) {
                 val area = named.getValue(key)
                 for (tag in area.tags) {
-                    tagged.getOrPut(tag) { mutableSetOf() }.add(area)
+                    tagged.getOrPut(tag) { ObjectOpenHashSet(2) }.add(area)
                 }
                 for (zone in area.area.toZones()) {
-                    areas.getOrPut(zone.id) { mutableSetOf() }.add(area)
+                    areas.getOrPut(zone.id) { ObjectOpenHashSet(2) }.add(area)
                 }
             }
             this.areas = areas

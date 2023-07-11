@@ -1,5 +1,7 @@
 package world.gregs.voidps.world.interact.entity.death
 
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.get
@@ -23,7 +25,6 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.activity.combat.prayer.getActivePrayerVarKey
-import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.dead
 import world.gregs.voidps.world.interact.entity.combat.inWilderness
@@ -35,9 +36,8 @@ val floorItems: FloorItems by inject()
 val enums: EnumDefinitions by inject()
 
 on<Registered> { character: Character ->
-    character["damage_dealers"] = mutableMapOf<Character, Int>()
-    character["attackers"] = mutableListOf<Character>()
-    character["hits"] = mutableListOf<CombatHit>()
+    character["damage_dealers"] = Object2IntOpenHashMap<Character>(1)
+    character["attackers"] = ObjectArrayList<Character>(1)
 }
 
 val Character.damageDealers: MutableMap<Character, Int>

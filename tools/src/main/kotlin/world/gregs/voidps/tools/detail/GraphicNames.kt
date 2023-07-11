@@ -3,9 +3,9 @@ package world.gregs.voidps.tools.detail
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.GraphicDecoder
-import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.cache.definition.decoder.NPCDecoder
-import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
+import world.gregs.voidps.cache.definition.decoder.ItemDecoderFull
+import world.gregs.voidps.cache.definition.decoder.NPCDecoderFull
+import world.gregs.voidps.cache.definition.decoder.ObjectDecoderFull
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.tools.property
 import world.gregs.yaml.Yaml
@@ -43,7 +43,7 @@ object GraphicNames {
     }
 
     private fun addItemModels(cache: Cache, models: MutableMap<Int, MutableList<String>>) {
-        val decoder = ItemDecoder().loadCache(cache)
+        val decoder = ItemDecoderFull().loadCache(cache)
         for (id in decoder.indices) {
             val def = decoder.getOrNull(id) ?: continue
             models.add(def.primaryMaleModel, def.name)
@@ -57,7 +57,7 @@ object GraphicNames {
     }
 
     private fun addNPCModels(cache: Cache, models: MutableMap<Int, MutableList<String>>) {
-        val decoder = NPCDecoder(member = true).loadCache(cache)
+        val decoder = NPCDecoderFull(member = true).loadCache(cache)
         for (id in decoder.indices) {
             val def = decoder.getOrNull(id) ?: continue
             def.modelIds?.forEach { model ->
@@ -67,7 +67,7 @@ object GraphicNames {
     }
 
     private fun addObjectModels(cache: Cache, models: MutableMap<Int, MutableList<String>>) {
-        val decoder = ObjectDecoder(member = true, lowDetail = false).loadCache(cache)
+        val decoder = ObjectDecoderFull(member = true, lowDetail = false).loadCache(cache)
         for (id in decoder.indices) {
             val def = decoder.getOrNull(id) ?: continue
             def.modelIds?.forEach { array ->

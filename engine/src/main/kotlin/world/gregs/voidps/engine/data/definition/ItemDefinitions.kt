@@ -1,12 +1,12 @@
 package world.gregs.voidps.engine.data.definition
 
-import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.data.*
 import world.gregs.voidps.engine.data.yaml.DefinitionConfig
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
@@ -27,7 +27,7 @@ class ItemDefinitions(
 
     fun load(yaml: Yaml = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {
         timedLoad("item extra") {
-            val equipment = Int2IntOpenHashMap()
+            val equipment = IntArray(definitions.size) { -1 }
             var index = 0
             for (def in definitions) {
                 if (def.primaryMaleModel >= 0 || def.primaryFemaleModel >= 0) {
@@ -36,7 +36,7 @@ class ItemDefinitions(
             }
             val ids = Object2IntOpenHashMap<String>()
             this.ids = ids
-            val config = CustomConfig(equipment, ids, definitions, this)
+            val config = CustomConfig(equipment, ids, definitions)
             yaml.load<Any>(path, config)
             ids.size
         }
@@ -45,10 +45,9 @@ class ItemDefinitions(
 
     @Suppress("UNCHECKED_CAST")
     private class CustomConfig(
-        private val equipment: Map<Int, Int>,
+        private val equipment: IntArray,
         ids: MutableMap<String, Int>,
-        definitions: Array<ItemDefinition>,
-        private val defs: ItemDefinitions
+        definitions: Array<ItemDefinition>
     ) : DefinitionConfig<ItemDefinition>(ids, definitions) {
         override fun setMapValue(reader: YamlReader, map: MutableMap<String, Any>, key: String, indent: Int, indentOffset: Int, withinMap: String?, parentMap: String?) {
             if (indent > 1 && parentMap == "pottery") {
@@ -65,26 +64,32 @@ class ItemDefinitions(
             if (key.endsWith("_lent") && id in definitions.indices) {
                 val def = definitions[id]
                 val normal = definitions[def.lendId]
-                val lentExtras = normal.extras?.toMutableMap()
-                if (lentExtras != null && extras != null) {
-                    lentExtras.putAll(extras)
+                if (normal.extras != null) {
+                    val lentExtras = Object2ObjectOpenHashMap(normal.extras)
+                    if (extras != null) {
+                        lentExtras.putAll(extras)
+                    }
+                    super.set(map, key, id, lentExtras)
+                } else {
+                    super.set(map, key, id, extras)
                 }
-                super.set(map, key, id, lentExtras ?: extras)
             } else {
                 super.set(map, key, id, extras)
             }
         }
 
         override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-            if (key == "<<") {
-                map.putAll(value as Map<String, Any>)
-                return
-            }
-            super.set(map, key, when (indent) {
-                0 -> value
-                1 -> when (key) {
+            if(indent == 1) {
+                super.set(map, key, when (key) {
+                    "<<" -> {
+                        map.putAll(value as Map<String, Any>)
+                        return
+                    }
                     "id" -> {
-                        super.set(map, "equip", equipment.getOrDefault(value as Int, -1), indent, parentMap)
+                        value as Int
+                        if (value in equipment.indices && equipment[value] != -1) {
+                            super.set(map, "equip", equipment[value], indent, parentMap)
+                        }
                         value
                     }
                     "slot" -> EquipSlot.valueOf(value as String)
@@ -100,17 +105,12 @@ class ItemDefinitions(
                     "weaving" -> Weaving(value as Map<String, Any>)
                     "jewellery" -> Jewellery(value as Map<String, Any>)
                     "silver_jewellery" -> Silver(value as Map<String, Any>)
+                    "ammo" -> ObjectOpenHashSet(value as List<String>)
                     else -> value
-                }
-                else -> when (key) {
-                    "item" -> {
-                        val id = value as String
-                        Item(id, def = defs.get(id))
-                    }
-                    else -> value
-                }
-
-            }, indent, parentMap)
+                }, indent, parentMap)
+            } else {
+                super.set(map, key, value, indent, parentMap)
+            }
         }
 
         private fun YamlReader.readIntRange(): IntRange {

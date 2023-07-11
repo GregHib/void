@@ -6,13 +6,13 @@ import world.gregs.voidps.cache.Index.DEFAULTS
 import world.gregs.voidps.cache.Index.WORLD_MAP
 import world.gregs.voidps.cache.config.data.WorldMapInfoDefinition
 import world.gregs.voidps.cache.definition.data.*
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.Tile
 import java.awt.Graphics
 import java.awt.image.BufferedImage
 
 class MinimapIconPainter(
-    private val objectDefinitions: Array<ObjectDefinition>,
+    private val objectDefinitions: Array<ObjectDefinitionFull>,
     private val worldMapDefinitions: Array<WorldMapDefinition>,
     private val worldMapInfoDefinitions: Array<WorldMapInfoDefinition>,
     private val spriteDefinitions: Array<SpriteDefinition>

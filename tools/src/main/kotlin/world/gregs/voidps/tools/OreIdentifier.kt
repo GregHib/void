@@ -2,14 +2,14 @@ package world.gregs.voidps.tools
 
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
+import world.gregs.voidps.cache.definition.decoder.ObjectDecoderFull
 
 object OreIdentifier {
 
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = ObjectDecoder(member = false, lowDetail = false).loadCache(cache)
+        val decoder = ObjectDecoderFull(member = false, lowDetail = false).loadCache(cache)
         val map = mapOf(
             3184 to 1,
             3183 to 2,

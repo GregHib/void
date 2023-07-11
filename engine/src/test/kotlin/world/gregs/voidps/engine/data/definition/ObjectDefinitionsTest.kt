@@ -15,7 +15,7 @@ internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, 
     override val intId: Int = 3
 
     override fun expected(): ObjectDefinition {
-        return ObjectDefinition(intId, stringId = id, extras = mapOf("id" to intId, "examine" to "The door is closed."))
+        return ObjectDefinition(intId, stringId = id, extras = mapOf("examine" to "The door is closed."))
     }
 
     override fun empty(): ObjectDefinition {
@@ -30,6 +30,6 @@ internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, 
         val itemDefinitions = mockk<ItemDefinitions>(relaxed = true)
         every { itemDefinitions.get(any<Int>()) } returns ItemDefinition.EMPTY
         every { itemDefinitions.get(any<String>()) } returns ItemDefinition.EMPTY
-        definitions.load(Yaml(), "../data/definitions/objects.yml", itemDefinitions)
+        definitions.load(Yaml(), "../data/definitions/objects.yml")
     }
 }

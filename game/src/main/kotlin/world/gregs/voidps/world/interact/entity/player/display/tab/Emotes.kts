@@ -11,9 +11,6 @@ import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.data.definition.getComponentId
-import world.gregs.voidps.engine.data.definition.getComponentIntId
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.facing
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
@@ -31,6 +28,7 @@ import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
@@ -39,15 +37,13 @@ import kotlin.random.Random
 
 val definitions: InterfaceDefinitions by inject()
 
-fun isUnlockableId(id: Int): Boolean = id in 26..52
+val unlockableRange = 26..52
 
 on<InterfaceOpened>({ id == "emotes" }) { player: Player ->
     val definition = definitions.get(id)
-    definition.components?.forEach { (intId, _) ->
-        if (isUnlockableId(intId)) {
-            val id = definition.getComponentId(intId)
-            player.sendVariable("unlocked_emote_$id")
-        }
+    for (compId in unlockableRange) {
+        val component = definitions.getComponent(id, compId) ?: continue
+        player.sendVariable("unlocked_emote_${component.stringId}")
     }
     player.sendVariable("unlocked_emote_lost_tribe")
 }
@@ -58,8 +54,7 @@ on<InterfaceRefreshed>({ id == "emotes" }) { player: Player ->
 
 on<InterfaceOption>({ id == "emotes" }) { player: Player ->
     val id = option.toSnakeCase()
-    val definition = definitions.get(this.id)
-    val componentId = definition.getComponentIntId(component)!!
+    val componentId = definitions.getComponentId(this.id, component)!!
     if (componentId > 23 && !unlocked(id, option)) {
         return@on
     }
@@ -243,12 +238,12 @@ suspend fun PlayerContext.playDungeoneeringMasterCapeEmote(player: Player) {
 }
 
 on<Command>({ prefix == "emotes" }) { player: Player ->
-    val definition = definitions.get("emotes")
-    definition.components?.forEach { (intId, _) ->
-        if (isUnlockableId(intId) && intId != 39) {
-            val id = definition.getComponentId(intId)
-            player["unlocked_emote_$id"] = true
+    for (compId in unlockableRange) {
+        if (compId == 39) {
+            continue
         }
+        val component = definitions.getComponent("emotes", compId) ?: continue
+        player["unlocked_emote_${component.stringId}"] = true
     }
     player["unlocked_emote_lost_tribe"] = true
 }

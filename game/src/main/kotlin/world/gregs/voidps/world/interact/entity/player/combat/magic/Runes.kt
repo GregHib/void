@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -48,7 +47,7 @@ object Runes {
     }
 
     fun hasSpellRequirements(player: Player, spell: String): Boolean {
-        val component = definitions.get(player.spellBook).getComponentOrNull(spell) ?: return false
+        val component = definitions.getComponent(player.spellBook, spell) ?: return false
         if (!player.has(Skill.Magic, component.magicLevel, message = true)) {
             return false
         }

@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.network.encode.*
+import world.gregs.voidps.type.Tile
 
 /**
  * Helper functions to simplify common client calls
@@ -105,12 +105,12 @@ fun Player.sendRunEnergy(energy: Int) = client?.sendRunEnergy(energy) ?: Unit
  */
 fun Player.sendScript(
     id: Int,
-    vararg params: Any
+    vararg params: Any?
 ) = sendScript(id, params.toList())
 
 fun Player.sendScript(
     id: Int,
-    params: List<Any>
+    params: List<Any?>
 ) = client?.sendScript(id, params) ?: Unit
 
 fun Player.playMusicTrack(

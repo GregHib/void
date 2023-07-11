@@ -2,12 +2,12 @@ package world.gregs.voidps.cache.definition.encoder
 
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.DefinitionEncoder
-import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
 import kotlin.math.roundToInt
 
-class ObjectEncoder : DefinitionEncoder<ObjectDefinition> {
+class ObjectEncoder : DefinitionEncoder<ObjectDefinitionFull> {
 
-    override fun Writer.encode(definition: ObjectDefinition) {
+    override fun Writer.encode(definition: ObjectDefinitionFull) {
         if (definition.id == -1) {
             return
         }

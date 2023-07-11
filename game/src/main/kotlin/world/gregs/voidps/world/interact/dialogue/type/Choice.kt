@@ -2,8 +2,6 @@ package world.gregs.voidps.world.interact.dialogue.type
 
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
 import world.gregs.voidps.world.interact.dialogue.sendLines
@@ -44,6 +42,7 @@ suspend fun PlayerContext.choice(lines: List<String>, title: String? = null): In
     val multilineTitle = question?.contains("<br>") ?: false
     val multilineOptions = lines.any { isMultiline(it) }
     val id = getChoiceId(multilineTitle, multilineOptions, lines.size)
+    println(id)
     check(player.open(id)) { "Unable to open choice dialogue for $player" }
     if (question != null) {
         val longestLine = question.split("<br>").maxByOrNull { it.length }?.length ?: 0

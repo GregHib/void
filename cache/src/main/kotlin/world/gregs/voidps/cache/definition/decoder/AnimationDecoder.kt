@@ -15,84 +15,24 @@ class AnimationDecoder : DefinitionDecoder<AnimationDefinition>(ANIMATIONS) {
 
     override fun AnimationDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
-            1 -> {
-                val length = buffer.readShort()
-                durations = IntArray(length) { buffer.readShort() }
-                frames = IntArray(length) { buffer.readShort() }
-                for (count in 0 until length) {
-                    frames!![count] = (buffer.readShort() shl 16) + frames!![count]
-                }
-            }
-            2 -> loopOffset = buffer.readShort()
-            3 -> {
-                interleaveOrder = BooleanArray(256)
-                val length = buffer.readUnsignedByte()
-                for (count in 0 until length) {
-                    interleaveOrder!![buffer.readUnsignedByte()] = true
-                }
-            }
+            1 -> buffer.skip(buffer.readShort() * 6)
+            2, 6, 7, 19 -> buffer.skip(2)
+            3 -> buffer.skip(buffer.readUnsignedByte())
             5 -> priority = buffer.readUnsignedByte()
-            6 -> leftHandItem = buffer.readShort()
-            7 -> rightHandItem = buffer.readShort()
-            8 -> maxLoops = buffer.readUnsignedByte()
-            9 -> animatingPrecedence = buffer.readUnsignedByte()
-            10 -> walkingPrecedence = buffer.readUnsignedByte()
-            11 -> replayMode = buffer.readUnsignedByte()
-            12 -> {
-                val length = buffer.readUnsignedByte()
-                expressionFrames = IntArray(length) { buffer.readShort() }
-                for (count in 0 until length) {
-                    expressionFrames!![count] = (buffer.readShort() shl 16) + expressionFrames!![count]
-                }
-            }
+            8, 9, 10, 11 -> buffer.skip(1)
+            12 -> buffer.skip(buffer.readUnsignedByte() * 4)
             13 -> {
                 val length = buffer.readShort()
-                sounds = arrayOfNulls(length)
                 for (count in 0 until length) {
                     val size = buffer.readUnsignedByte()
                     if (size > 0) {
-                        sounds!![count] = IntArray(size)
-                        sounds!![count]!![0] = buffer.readUnsignedMedium()
-                        for (index in 1 until size) {
-                            sounds!![count]!![index] = buffer.readShort()
-                        }
+                        buffer.readUnsignedMedium()
+                        buffer.skip((size - 1) * 2)
                     }
                 }
             }
-            14 -> aBoolean691 = true
-            15 -> tweened = true
-            18 -> useSounds = true
-            19 -> {
-                if (volumes == null) {
-                    volumes = IntArray(sounds!!.size)
-                    for (index in sounds!!.indices) {
-                        volumes!![index] = 255
-                    }
-                }
-                volumes!![buffer.readUnsignedByte()] = buffer.readUnsignedByte()
-            }
-            20 -> {
-                if (primarySpeeds == null || secondarySpeeds == null) {
-                    primarySpeeds = IntArray(sounds!!.size)
-                    secondarySpeeds = IntArray(sounds!!.size)
-                    for (index in sounds!!.indices) {
-                        primarySpeeds!![index] = 256
-                        secondarySpeeds!![index] = 256
-                    }
-                }
-                val length = buffer.readUnsignedByte()
-                primarySpeeds!![length] = buffer.readShort()
-                secondarySpeeds!![length] = buffer.readShort()
-            }
-        }
-    }
-
-    override fun changeValues(definitions: Array<AnimationDefinition>, definition: AnimationDefinition) {
-        if (definition.walkingPrecedence == -1) {
-            definition.walkingPrecedence = if (definition.interleaveOrder == null) 0 else 2
-        }
-        if (definition.animatingPrecedence == -1) {
-            definition.animatingPrecedence = if (definition.interleaveOrder == null) 0 else 2
+            14, 15, 18 -> return
+            20 -> buffer.skip(5)
         }
     }
 }

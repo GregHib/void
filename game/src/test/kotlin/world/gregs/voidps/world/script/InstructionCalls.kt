@@ -13,15 +13,14 @@ import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
-import world.gregs.voidps.engine.data.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.network.instruct.*
+import world.gregs.voidps.type.Tile
 
 /**
  * Helper functions to make fake instruction calls in [WorldTest] tests
@@ -105,8 +104,7 @@ fun Player.dialogueOption(
 
 private fun getOptionIndex(id: String, componentId: String, option: String): Int? {
     val definitions: InterfaceDefinitions = get()
-    val definition = definitions.get(id)
-    val component = definition.getComponentOrNull(componentId) ?: return null
+    val component = definitions.getComponent(id, componentId) ?: return null
     val options: Array<String> = component.getOrNull("options") ?: return null
     return options.indexOf(option)
 }

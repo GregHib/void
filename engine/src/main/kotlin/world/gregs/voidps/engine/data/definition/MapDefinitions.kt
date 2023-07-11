@@ -15,14 +15,14 @@ import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.type.Region
-import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.engine.map.zone.Zone
+import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.RegionLevel
+import world.gregs.voidps.type.Tile
 import world.gregs.yaml.Yaml
 import java.io.File
 import java.io.RandomAccessFile
@@ -262,7 +262,7 @@ class MapDefinitions(
         fun main(args: Array<String>) {
             val cache = CacheDelegate("./data/cache")
             val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).loadCache(cache))
-                .load(Yaml(), "./data/definitions/objects.yml", null)
+                .load(Yaml(), "./data/definitions/objects.yml")
             val collisions = Collisions()
             val objects = GameObjects(GameObjectCollision(collisions), ZoneBatchUpdates(), objectDefinitions, storeUnused = true)
             val mapDefinitions = MapDefinitions(collisions, objectDefinitions, objects)

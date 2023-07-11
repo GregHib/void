@@ -1,12 +1,10 @@
 package world.gregs.voidps.engine.entity.character
 
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.engine.map.zone.Zone
+import world.gregs.voidps.type.Tile
 
 abstract class CharacterList<C : Character>(
     capacity: Int,
-    private val region: CharacterMap = CharacterMap(),
     private val delegate: MutableList<C> = mutableListOf()
 ) : MutableList<C> by delegate {
 
@@ -18,12 +16,10 @@ abstract class CharacterList<C : Character>(
             return false
         }
         index(element)
-        region.add(element.tile.regionLevel, element)
         return delegate.add(element)
     }
 
     override fun remove(element: C): Boolean {
-        region.remove(element.tile.regionLevel, element)
         return delegate.remove(element)
     }
 
@@ -35,30 +31,15 @@ abstract class CharacterList<C : Character>(
         indexArray[element.index] = null
     }
 
-    operator fun get(tile: Tile): List<C> {
-        return get(tile.regionLevel).filter { it.tile == tile }
-    }
+    abstract operator fun get(tile: Tile): List<C>
 
-    operator fun get(zone: Zone): List<C> {
-        return get(zone.regionLevel).filter { it.tile.zone == zone }
-    }
-
-    operator fun get(region: RegionLevel): List<C> {
-        val list = mutableListOf<C>()
-        for (index in this.region[region] ?: return list) {
-            list.add(indexed(index) ?: continue)
-        }
-        return list
-    }
-
-    fun getDirect(region: RegionLevel): List<Int>? = this.region[region]
+    abstract operator fun get(zone: Zone): List<C>
 
     fun indexed(index: Int): C? = indexArray[index]
 
-    fun update(from: Tile, to: Tile, element: C) {
-        if (from.regionLevel != to.regionLevel) {
-            region.remove(from.regionLevel, element)
-            region.add(to.regionLevel, element)
+    fun releaseIndex(character: C) {
+        if (character.index > 0) {
+            indexer.release(character.index)
         }
     }
 

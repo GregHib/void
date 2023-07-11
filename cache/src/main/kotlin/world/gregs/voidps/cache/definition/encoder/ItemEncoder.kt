@@ -2,11 +2,11 @@ package world.gregs.voidps.cache.definition.encoder
 
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.DefinitionEncoder
-import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.cache.definition.data.ItemDefinitionFull
 
-class ItemEncoder : DefinitionEncoder<ItemDefinition> {
+class ItemEncoder : DefinitionEncoder<ItemDefinitionFull> {
 
-    override fun Writer.encode(definition: ItemDefinition) {
+    override fun Writer.encode(definition: ItemDefinitionFull) {
         if (definition.id == -1) {
             return
         }
