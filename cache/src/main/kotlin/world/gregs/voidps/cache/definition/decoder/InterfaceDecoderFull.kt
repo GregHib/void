@@ -34,7 +34,7 @@ class InterfaceDecoderFull : DefinitionDecoder<InterfaceDefinitionFull>(INTERFAC
             return
         }
         val definition = definitions[id]
-        val components = Array(lastArchive) { InterfaceComponentDefinitionFull(id = it + (id shl 16)) }
+        val components = Array(lastArchive + 1) { InterfaceComponentDefinitionFull(id = it + (id shl 16)) }
         for (i in 0..lastArchive) {
             val data = cache.getFile(index, archiveId, i)
             if (data != null) {

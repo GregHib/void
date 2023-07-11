@@ -17,7 +17,7 @@ internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ContainerDefini
             stringId = id,
             ids = IntArray(0),
             amounts = IntArray(0),
-            extras = mapOf("id" to intId,
+            extras = mapOf(
                 "shop" to true,
                 "defaults" to listOf(mapOf("bronze_pickaxe" to 10),
                     mapOf("bronze_hatchet" to 10),

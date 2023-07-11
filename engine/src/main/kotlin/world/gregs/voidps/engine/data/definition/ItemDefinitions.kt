@@ -87,7 +87,7 @@ class ItemDefinitions(
                     }
                     "id" -> {
                         value as Int
-                        if (equipment[value] != -1) {
+                        if (value in equipment.indices && equipment[value] != -1) {
                             super.set(map, "equip", equipment[value], indent, parentMap)
                         }
                         value

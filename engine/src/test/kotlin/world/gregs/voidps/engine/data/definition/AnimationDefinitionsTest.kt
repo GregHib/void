@@ -12,7 +12,7 @@ internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefini
     override val intId: Int = 9741
 
     override fun expected(): AnimationDefinition {
-        return AnimationDefinition(intId, stringId = id, extras = mapOf("id" to intId))
+        return AnimationDefinition(intId, stringId = id)
     }
 
     override fun empty(): AnimationDefinition {

@@ -2,11 +2,10 @@ package world.gregs.voidps.engine.entity.character
 
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.RegionLevel
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
@@ -20,8 +19,16 @@ internal class CharacterListTest {
     @BeforeEach
     fun setup() {
         characterMap = mockk(relaxed = true)
-        list = object : CharacterList<Character>(10, characterMap) {
+        list = object : CharacterList<Character>(10) {
             override val indexArray: Array<Character?> = arrayOfNulls(10)
+            override fun get(tile: Tile): List<Character> {
+                return emptyList()
+            }
+
+            override fun get(zone: Zone): List<Character> {
+                return emptyList()
+            }
+
         }
     }
 
@@ -60,21 +67,6 @@ internal class CharacterListTest {
 
         assertNull(list.indexed(1))
         assertEquals(1, list.size)
-    }
-
-    @Test
-    fun `Update character position`() {
-        val index = 1
-        val character: Character = mockk(relaxed = true)
-        every { character.index } returns index
-        every { character.tile } returns Tile(3)
-        assertTrue(list.add(character))
-        list.update(Tile(1), Tile(64), character)
-
-        verify {
-            characterMap.remove(RegionLevel(0), character)
-            characterMap.add(RegionLevel(1), character)
-        }
     }
 
     @Test

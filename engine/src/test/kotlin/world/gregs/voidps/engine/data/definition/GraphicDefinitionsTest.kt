@@ -12,7 +12,7 @@ internal class GraphicDefinitionsTest : DefinitionsDecoderTest<GraphicDefinition
     override val intId: Int = 1576
 
     override fun expected(): GraphicDefinition {
-        return GraphicDefinition(intId, stringId = id, extras = mapOf("id" to intId))
+        return GraphicDefinition(intId, stringId = id)
     }
 
     override fun empty(): GraphicDefinition {
