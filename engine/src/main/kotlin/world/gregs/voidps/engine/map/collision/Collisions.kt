@@ -6,9 +6,9 @@ import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.Area
 import world.gregs.voidps.engine.map.zone.Zone
+import world.gregs.voidps.type.Area
+import world.gregs.voidps.type.Tile
 
 typealias Collisions = CollisionFlagMap
 
@@ -32,7 +32,6 @@ fun Collisions.print(zone: Zone) {
 fun Collisions.clear(zone: Zone) {
     deallocateIfPresent(zone.tile.x, zone.tile.y, zone.level)
 }
-
 
 fun Area.random(character: Character): Tile? = random(character.collision)
 

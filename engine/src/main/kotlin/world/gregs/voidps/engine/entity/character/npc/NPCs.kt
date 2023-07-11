@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.character.npc
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.MAX_NPCS
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
@@ -12,9 +11,10 @@ import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.getProperty
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 
 data class NPCs(
     private val definitions: NPCDefinitions,
@@ -62,12 +62,6 @@ data class NPCs(
         npc.collision = collision.get(npc)
         super.add(npc)
         return npc
-    }
-
-    fun releaseIndex(npc: NPC) {
-        if (npc.index > 0) {
-            indexer.release(npc.index)
-        }
     }
 
     override fun clear() {

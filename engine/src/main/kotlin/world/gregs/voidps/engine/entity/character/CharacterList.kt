@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.entity.character
 
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.engine.map.zone.Zone
+import world.gregs.voidps.type.RegionLevel
+import world.gregs.voidps.type.Tile
 
 abstract class CharacterList<C : Character>(
     capacity: Int,
@@ -59,6 +59,21 @@ abstract class CharacterList<C : Character>(
         if (from.regionLevel != to.regionLevel) {
             region.remove(from.regionLevel, element)
             region.add(to.regionLevel, element)
+        }
+    }
+
+    fun clear(region: RegionLevel) {
+        for (index in this.region[region] ?: return) {
+            val element = indexed(index) ?: continue
+            delegate.remove(element)
+            removeIndex(element)
+            releaseIndex(element)
+        }
+    }
+
+    fun releaseIndex(character: C) {
+        if (character.index > 0) {
+            indexer.release(character.index)
         }
     }
 

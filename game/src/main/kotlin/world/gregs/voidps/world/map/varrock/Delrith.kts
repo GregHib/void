@@ -104,11 +104,7 @@ fun destroyInstance(player: Player) {
     val instance: Region = player.remove("demon_slayer_instance") ?: return
     Instances.free(instance)
     val regionLevel = instance.toLevel(0)
-    npcs[regionLevel].forEach {
-        npcs.remove(it)
-        npcs.removeIndex(it)
-        npcs.releaseIndex(it)
-    }
+    npcs.clear(regionLevel)
     for (zone in regionLevel.toCuboid().toZones()) {
         objects.clear(zone)
         collisions.clear(zone)
