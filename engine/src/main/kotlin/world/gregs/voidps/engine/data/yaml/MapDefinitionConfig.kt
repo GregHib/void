@@ -10,7 +10,7 @@ import world.gregs.yaml.read.YamlReaderConfiguration
 
 class MapDefinitionConfig<T : Extra>(
     val producer: (id: Int, key: String, extras: Map<String, Any>?) -> T
-) : YamlReaderConfiguration() {
+) : YamlReaderConfiguration(2, 2) {
     val ids = Object2IntOpenHashMap<String>()
     val definitions = Int2ObjectOpenHashMap<T>()
 

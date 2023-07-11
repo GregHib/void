@@ -1,11 +1,11 @@
-package world.gregs.voidps.tools.convert
+package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Index.ITEMS
 import world.gregs.voidps.cache.definition.data.ItemDefinitionFull
 
-class ItemDecoder718 : DefinitionDecoder<ItemDefinitionFull>(ITEMS) {
+class ItemDecoderFull : DefinitionDecoder<ItemDefinitionFull>(ITEMS) {
 
     override fun create(size: Int) = Array(size) { ItemDefinitionFull(it) }
 
@@ -15,7 +15,7 @@ class ItemDecoder718 : DefinitionDecoder<ItemDefinitionFull>(ITEMS) {
 
     override fun ItemDefinitionFull.read(opcode: Int, buffer: Reader) {
         when (opcode) {
-            1 -> modelId = buffer.readBigSmart()
+            1 -> modelId = buffer.readUnsignedShort()
             2 -> name = buffer.readString()
             4 -> spriteScale = buffer.readShort()
             5 -> spritePitch = buffer.readShort()
@@ -34,26 +34,24 @@ class ItemDecoder718 : DefinitionDecoder<ItemDefinitionFull>(ITEMS) {
             }
             11 -> stackable = 1
             12 -> cost = buffer.readInt()
-            13 -> equipSlots[id] = buffer.readUnsignedByte()
-            14 -> equipTypes[id] = buffer.readUnsignedByte()
             16 -> members = true
             18 -> multiStackSize = buffer.readShort()
-            23 -> primaryMaleModel = buffer.readBigSmart()
-            24 -> secondaryMaleModel = buffer.readBigSmart()
-            25 -> primaryFemaleModel = buffer.readBigSmart()
-            26 -> secondaryFemaleModel = buffer.readBigSmart()
+            23 -> primaryMaleModel = buffer.readUnsignedShort()
+            24 -> secondaryMaleModel = buffer.readUnsignedShort()
+            25 -> primaryFemaleModel = buffer.readUnsignedShort()
+            26 -> secondaryFemaleModel = buffer.readUnsignedShort()
             in 30..34 -> floorOptions[opcode - 30] = buffer.readString()
             in 35..39 -> options[opcode - 35] = buffer.readString()
             40 -> readColours(buffer)
             41 -> readTextures(buffer)
             42 -> readColourPalette(buffer)
             65 -> exchangeable = true
-            78 -> tertiaryMaleModel = buffer.readBigSmart()
-            79 -> tertiaryFemaleModel = buffer.readBigSmart()
-            90 -> primaryMaleDialogueHead = buffer.readBigSmart()
-            91 -> primaryFemaleDialogueHead = buffer.readBigSmart()
-            92 -> secondaryMaleDialogueHead = buffer.readBigSmart()
-            93 -> secondaryFemaleDialogueHead = buffer.readBigSmart()
+            78 -> tertiaryMaleModel = buffer.readShort()
+            79 -> tertiaryFemaleModel = buffer.readShort()
+            90 -> primaryMaleDialogueHead = buffer.readShort()
+            91 -> primaryFemaleDialogueHead = buffer.readShort()
+            92 -> secondaryMaleDialogueHead = buffer.readShort()
+            93 -> secondaryFemaleDialogueHead = buffer.readShort()
             95 -> spriteCameraYaw = buffer.readShort()
             96 -> dummyItem = buffer.readUnsignedByte()
             97 -> noteId = buffer.readShort()
@@ -121,10 +119,5 @@ class ItemDecoder718 : DefinitionDecoder<ItemDefinitionFull>(ITEMS) {
         if (definition.singleNoteTemplateId != -1) {
             definition.toSingleNote(definitions.getOrNull(definition.singleNoteTemplateId), definitions.getOrNull(definition.singleNoteId))
         }
-    }
-
-    companion object {
-        val equipSlots = mutableMapOf<Int, Int>()
-        val equipTypes = mutableMapOf<Int, Int>()
     }
 }

@@ -3,14 +3,14 @@ package world.gregs.voidps.cache.definition.encoder
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.buffer.write.BufferWriter
-import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
 import java.io.File
 
 internal class ObjectEncoderTest {
 
     @Test
     fun `Encode full test`() {
-        val definition = ObjectDefinition(
+        val definition = ObjectDefinitionFull(
             0,
             modelIds = arrayOf(intArrayOf(1, 2, 35000), intArrayOf(60000, 1, 2)),
             modelTypes = byteArrayOf(1, 2, 3),

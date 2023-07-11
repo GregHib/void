@@ -8,13 +8,13 @@ import org.koin.dsl.module
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index.ITEMS
-import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.cache.definition.data.ItemDefinitionFull
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 
 class EncoderComparator {
     @Test
     fun compare() {
-        val definition = ItemDefinition()
+        val definition = ItemDefinitionFull()
         val encoder = ItemEncoder()
 
         val writer = BufferWriter()

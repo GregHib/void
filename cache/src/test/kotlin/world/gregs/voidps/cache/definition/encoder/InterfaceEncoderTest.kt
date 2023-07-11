@@ -9,7 +9,7 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index.INTERFACES
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinitionFull
 import world.gregs.voidps.cache.definition.data.InterfaceComponentSetting
-import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
+import world.gregs.voidps.cache.definition.decoder.InterfaceDecoderFull
 
 internal class InterfaceEncoderTest {
 
@@ -60,7 +60,7 @@ internal class InterfaceEncoderTest {
         val cache: Cache = mockk(relaxed = true)
         every { cache.getFile(INTERFACES, any(), any<Int>()) } returns data
         every { cache.lastArchiveId(any()) } returns 1
-        val decoder = InterfaceDecoder().loadCache(cache)
+        val decoder = InterfaceDecoderFull().loadCache(cache)
         val inter = decoder.get(0)
         val decoded = inter.components?.get(0)
         assertEquals(definition, decoded)

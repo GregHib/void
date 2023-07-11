@@ -7,7 +7,7 @@ import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index.ITEMS
-import world.gregs.voidps.cache.definition.decoder.ItemDecoder
+import world.gregs.voidps.cache.definition.decoder.ItemDecoderFull
 import world.gregs.voidps.cache.definition.encoder.ItemEncoder
 
 object ItemDefinitionsParamConverter {
@@ -34,7 +34,7 @@ object ItemDefinitionsParamConverter {
 
         var count = 0
         var itemCount = 0
-        val itemDecoder = ItemDecoder()
+        val itemDecoder = ItemDecoderFull()
         val decoder = itemDecoder.loadCache(koin.get())
         val cache = koin.get<Cache>() as CacheDelegate
         val encoder = ItemEncoder()

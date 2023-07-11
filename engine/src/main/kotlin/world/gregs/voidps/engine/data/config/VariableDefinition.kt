@@ -49,12 +49,6 @@ open class VariableDefinition internal constructor(
 
     companion object {
         private val logger = InlineLogger()
-        fun varbit(): (Map<String, Any>) -> VariableDefinition = { VarbitDefinition(it) }
-        fun varp(): (Map<String, Any>) -> VariableDefinition = { VarpDefinition(it) }
-        fun varc(): (Map<String, Any>) -> VariableDefinition = { VarcDefinition(it) }
-        fun varcStr(): (Map<String, Any>) -> VariableDefinition = { VarcStrDefinition(it) }
-        fun custom(): (Map<String, Any>) -> VariableDefinition = { CustomVariableDefinition(it) }
-
         val VariableDefinition?.persist: Boolean
             get() = this?.persistent ?: false
     }

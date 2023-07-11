@@ -21,7 +21,7 @@ class Books {
     @Suppress("UNCHECKED_CAST")
     fun load(yaml: Yaml = get(), path: String = getProperty("bookPath")): Books{
         timedLoad("book") {
-            val config = object : YamlReaderConfiguration() {
+            val config = object : YamlReaderConfiguration(2, 2) {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
                     super.add(list, (value as String).trimIndent(), parentMap)
                 }
