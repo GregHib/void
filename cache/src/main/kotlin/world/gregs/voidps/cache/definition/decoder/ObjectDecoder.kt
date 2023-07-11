@@ -18,18 +18,10 @@ open class ObjectDecoder(
 
     override fun ObjectDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
-            1, 5 -> {
-                if (opcode == 5 && lowDetail) {
-                    skip(buffer)
-                }
-                val length = buffer.readUnsignedByte()
-                for (i in 0 until length) {
-                    buffer.skip(1)
-                    buffer.skip(buffer.readUnsignedByte() * 2)
-                }
-                if (opcode == 5 && !lowDetail) {
-                    skip(buffer)
-                }
+            1 -> skip(buffer)
+            5 -> {
+                skip(buffer)
+                skip(buffer)
             }
             2 -> name = buffer.readString()
             14 -> sizeX = buffer.readUnsignedByte()
@@ -85,8 +77,7 @@ open class ObjectDecoder(
             val length = buffer.readUnsignedByte()
             for (i in 0 until length) {
                 buffer.skip(1)
-                val amount = buffer.readUnsignedByte()
-                buffer.skip(amount * 2)
+                buffer.skip(buffer.readUnsignedByte() * 2)
             }
         }
     }

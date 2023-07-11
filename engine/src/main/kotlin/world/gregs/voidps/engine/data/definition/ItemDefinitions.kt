@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.data.definition
 
-import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
@@ -28,7 +27,7 @@ class ItemDefinitions(
 
     fun load(yaml: Yaml = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {
         timedLoad("item extra") {
-            val equipment = Int2IntOpenHashMap()
+            val equipment = IntArray(definitions.size) { -1 }
             var index = 0
             for (def in definitions) {
                 if (def.primaryMaleModel >= 0 || def.primaryFemaleModel >= 0) {
@@ -46,7 +45,7 @@ class ItemDefinitions(
 
     @Suppress("UNCHECKED_CAST")
     private class CustomConfig(
-        private val equipment: Map<Int, Int>,
+        private val equipment: IntArray,
         ids: MutableMap<String, Int>,
         definitions: Array<ItemDefinition>
     ) : DefinitionConfig<ItemDefinition>(ids, definitions) {
@@ -65,7 +64,7 @@ class ItemDefinitions(
             if (key.endsWith("_lent") && id in definitions.indices) {
                 val def = definitions[id]
                 val normal = definitions[def.lendId]
-                if(normal.extras != null) {
+                if (normal.extras != null) {
                     val lentExtras = Object2ObjectOpenHashMap(normal.extras)
                     if (extras != null) {
                         lentExtras.putAll(extras)
@@ -80,15 +79,17 @@ class ItemDefinitions(
         }
 
         override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-            if (key == "<<") {
-                map.putAll(value as Map<String, Any>)
-                return
-            }
-            super.set(map, key, when (indent) {
-                1 -> when (key) {
+            if(indent == 1) {
+                super.set(map, key, when (key) {
+                    "<<" -> {
+                        map.putAll(value as Map<String, Any>)
+                        return
+                    }
                     "id" -> {
-
-                        super.set(map, "equip", equipment.getOrDefault(value as Int, -1), indent, parentMap)
+                        value as Int
+                        if (equipment[value] != -1) {
+                            super.set(map, "equip", equipment[value], indent, parentMap)
+                        }
                         value
                     }
                     "slot" -> EquipSlot.valueOf(value as String)
@@ -106,10 +107,10 @@ class ItemDefinitions(
                     "silver_jewellery" -> Silver(value as Map<String, Any>)
                     "ammo" -> ObjectOpenHashSet(value as List<String>)
                     else -> value
-                }
-                else -> value
-
-            }, indent, parentMap)
+                }, indent, parentMap)
+            } else {
+                super.set(map, key, value, indent, parentMap)
+            }
         }
 
         private fun YamlReader.readIntRange(): IntRange {
