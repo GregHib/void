@@ -121,7 +121,6 @@ class Interfaces(
         return definitions.get(id)[if (gameFrame.resizable) "index_resize" else "index_fixed", -1]
     }
 
-    // String -> type
     private fun getType(id: String): String {
         return definitions.get(id)["type", "main_screen"]
     }
@@ -159,9 +158,6 @@ class Interfaces(
     }
 }
 
-// String, String -> InterfaceComponentDefinition -> Parent id
-// Map<String, InterfaceId>
-// Map<String, ComponentId>
 private fun getComponent(id: String, component: String): InterfaceComponentDefinition? {
     val definitions: InterfaceDefinitions = get()
     return definitions.getComponent(id, component)

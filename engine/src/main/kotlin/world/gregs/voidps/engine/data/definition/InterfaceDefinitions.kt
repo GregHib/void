@@ -50,6 +50,15 @@ class InterfaceDefinitions(
             val config = object : YamlReaderConfiguration() {
                 @Suppress("UNCHECKED_CAST")
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+                    if (key == "options" && value is Map<*, *> && indent == 3) {
+                        value as Map<String, Int>
+                        val options = Array(value.maxOf { it.value } + 1) { "" }
+                        for ((option, index) in value) {
+                            options[index] = option
+                        }
+                        super.set(map, key, options, indent, parentMap)
+                        return
+                    }
                     if (indent == 0 && value is Int) {
                         val extras = createMap()
                         set(extras, "id", value, 1, parentMap)
@@ -85,13 +94,15 @@ class InterfaceDefinitions(
                 for ((key, value) in components) {
                     when (value) {
                         is Int -> {
+                            componentIds["${stringId}_$key"] = value
                             val componentDefinition = definitions[intId].components?.getOrPut(value) { InterfaceComponentDefinition(value) }!!
                             componentDefinition.stringId = key
-                            componentDefinition.extras = mapOf<String, Any>("name" to key, "parent" to intId)
+                            componentDefinition.extras = mapOf<String, Any>("parent" to intId)
                         }
                         is Map<*, *> -> {
                             value as MutableMap<String, Any>
                             val id = value["id"] as Int
+                            componentIds["${stringId}_$key"] = id
                             val componentDefinition = definitions[intId].components?.getOrPut(id) { InterfaceComponentDefinition(id) }!!
                             componentDefinition.stringId = key
                             value["parent"] = intId
@@ -104,9 +115,10 @@ class InterfaceDefinitions(
                             for ((index, id) in range.withIndex()) {
                                 val name = "$prefix${startDigit + index}"
                                 map[name] = id
+                                componentIds["${stringId}_$name"] = id
                                 val componentDefinition = definitions[intId].components?.getOrPut(id) { InterfaceComponentDefinition(id) }!!
                                 componentDefinition.stringId = name
-                                componentDefinition.extras = mapOf<String, Any>("name" to name, "parent" to intId)
+                                componentDefinition.extras = mapOf<String, Any>("parent" to intId)
                             }
                         }
                     }

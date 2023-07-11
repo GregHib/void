@@ -70,12 +70,6 @@ internal class InterfaceOptionsTest {
     }
 
     @Test
-    fun `Set individual options`() {
-        assertTrue(options.set(name, comp, 0, "option"))
-        assertArrayEquals(arrayOf("option", "", "", "", "", "", "", "", "", "Examine"), options.get(name, comp))
-    }
-
-    @Test
     fun `Send all options`() {
         every { containerDefinitions.get(any<String>()) } returns ContainerDefinition(10, extras = mapOf("width" to 2, "height" to 3))
         options.send(name, comp)

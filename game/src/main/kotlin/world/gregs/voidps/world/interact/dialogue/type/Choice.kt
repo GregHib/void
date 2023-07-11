@@ -44,6 +44,7 @@ suspend fun PlayerContext.choice(lines: List<String>, title: String? = null): In
     val multilineTitle = question?.contains("<br>") ?: false
     val multilineOptions = lines.any { isMultiline(it) }
     val id = getChoiceId(multilineTitle, multilineOptions, lines.size)
+    println(id)
     check(player.open(id)) { "Unable to open choice dialogue for $player" }
     if (question != null) {
         val longestLine = question.split("<br>").maxByOrNull { it.length }?.length ?: 0
