@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.config
 
+import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.engine.client.variable.StringValues
 import world.gregs.voidps.engine.client.variable.VariableValues
@@ -33,16 +34,21 @@ open class VariableDefinition internal constructor(
     class CustomVariableDefinition(map: Map<String, Any?>) : VariableDefinition(map, id = -1, transmit = false)
 
     fun send(client: Client, value: Any) {
-        when (this) {
-            is VarpDefinition -> client.sendVarp(id, values.toInt(value))
-            is VarbitDefinition -> client.sendVarbit(id, values.toInt(value))
-            is VarcDefinition -> client.sendVarc(id, values.toInt(value))
-            is VarcStrDefinition -> client.sendVarcStr(id, value as String)
-            else -> return
+        try {
+            when (this) {
+                is VarpDefinition -> client.sendVarp(id, values.toInt(value))
+                is VarbitDefinition -> client.sendVarbit(id, values.toInt(value))
+                is VarcDefinition -> client.sendVarc(id, values.toInt(value))
+                is VarcStrDefinition -> client.sendVarcStr(id, value as String)
+                else -> return
+            }
+        } catch (e: Exception) {
+            logger.warn(e) { "Error sending variable $id '$value'" }
         }
     }
 
     companion object {
+        private val logger = InlineLogger()
         fun varbit(): (Map<String, Any>) -> VariableDefinition = { VarbitDefinition(it) }
         fun varp(): (Map<String, Any>) -> VariableDefinition = { VarpDefinition(it) }
         fun varc(): (Map<String, Any>) -> VariableDefinition = { VarcDefinition(it) }
