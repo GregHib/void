@@ -5465,78 +5465,78 @@ container_582:
 container_585:
   id: 585
   defaults:
-    - character_creation_1: 1
+    - character_creation_shadow: 1
 character_creation_2:
   id: 586
   defaults:
-    - character_creation_1: 1
+    - character_creation_shadow: 1
     - character_creation_2: 1
 character_creation_8:
   id: 587
   defaults:
-    - character_creation_1: 1
+    - character_creation_shadow: 1
     - character_creation_3: 1
 character_creation_15:
   id: 588
   defaults:
-    - character_creation_1: 1
+    - character_creation_shadow: 1
     - character_creation_4: 1
 character_creation_16:
   id: 589
   defaults:
-    - character_creation_1: 1
+    - character_creation_shadow: 1
     - character_creation_6: 1
     - character_creation_7: 1
 character_creation_17:
   id: 590
   defaults:
-    - character_creation_1: 1
+    - character_creation_shadow: 1
     - character_creation_8: 1
     - character_creation_9: 1
 character_creation_9:
   id: 591
   defaults:
-    - character_creation_1: 1
+    - character_creation_shadow: 1
     - character_creation_13: 1
 character_creation_4:
   id: 592
   defaults:
-    - character_creation_1: 1
+    - character_creation_shadow: 1
     - character_creation_16: 1
 character_creation_14:
   id: 593
   defaults:
-    - character_creation_1: 1
+    - character_creation_shadow: 1
     - character_creation_17: 1
 character_creation_1:
   id: 594
   defaults:
-    - character_creation_1: 1
+    - character_creation_shadow: 1
     - character_creation_18: 1
 character_creation_11:
   id: 595
   defaults:
-    - character_creation_1: 1
+    - character_creation_shadow: 1
     - character_creation_19: 1
 character_creation_10:
   id: 596
   defaults:
-    - character_creation_1: 1
+    - character_creation_shadow: 1
     - character_creation_20: 1
 character_creation_13:
   id: 597
   defaults:
-    - character_creation_1: 1
+    - character_creation_shadow: 1
     - character_creation_5: 1
 character_creation_18:
   id: 598
   defaults:
-    - character_creation_1: 1
+    - character_creation_shadow: 1
     - character_creation_21: 1
 character_creation_19:
   id: 599
   defaults:
-    - character_creation_1: 1
+    - character_creation_shadow: 1
     - character_creation_22: 1
 naffs_knockoff_staves:
   id: 600
