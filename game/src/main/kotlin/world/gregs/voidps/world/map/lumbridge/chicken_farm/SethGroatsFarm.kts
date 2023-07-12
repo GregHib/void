@@ -2,9 +2,9 @@ package world.gregs.voidps.world.map.lumbridge.chicken_farm
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.contain.add
-import world.gregs.voidps.engine.contain.hasItem
-import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption

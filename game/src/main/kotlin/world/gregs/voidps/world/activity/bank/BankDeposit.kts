@@ -5,13 +5,13 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.contain.beastOfBurden
-import world.gregs.voidps.engine.contain.equipment
-import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.beastOfBurden
+import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.world.activity.bank.Bank.tabIndex
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
@@ -35,7 +35,7 @@ on<InterfaceOption>({ id == "bank_side" && component == "inventory" && option ==
     deposit(player, player.inventory, item, amount)
 }
 
-fun deposit(player: Player, inventory: world.gregs.voidps.engine.contain.Inventory, item: Item, amount: Int): Boolean {
+fun deposit(player: Player, inventory: world.gregs.voidps.engine.inv.Inventory, item: Item, amount: Int): Boolean {
     if (player.menu != "bank" || amount < 1) {
         return true
     }
@@ -101,7 +101,7 @@ on<InterfaceOption>({ id == "bank" && component == "burden" && option == "Deposi
     }
 }
 
-fun bankAll(player: Player, inventory: world.gregs.voidps.engine.contain.Inventory) {
+fun bankAll(player: Player, inventory: world.gregs.voidps.engine.inv.Inventory) {
     for (index in inventory.indices) {
         val item = inventory[index]
         if (item.isNotEmpty()) {

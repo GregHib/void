@@ -2,8 +2,8 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic
 
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.contain.remove
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player

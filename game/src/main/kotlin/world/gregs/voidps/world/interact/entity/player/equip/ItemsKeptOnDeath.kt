@@ -1,11 +1,11 @@
 package world.gregs.voidps.world.interact.entity.player.equip
 
-import world.gregs.voidps.engine.contain.equipment
-import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.world.interact.entity.player.effect.skulled
 import java.util.*
 

@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.*
-import world.gregs.voidps.engine.contain.ItemChanged
+import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player

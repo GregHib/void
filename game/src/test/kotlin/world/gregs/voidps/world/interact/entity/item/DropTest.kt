@@ -3,9 +3,9 @@ package world.gregs.voidps.world.interact.entity.item
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.contain.add
-import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.floorItemOption

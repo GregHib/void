@@ -1,15 +1,15 @@
 package world.gregs.voidps.world.interact.entity.player.effect
 
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.contain.ItemChanged
-import world.gregs.voidps.engine.contain.add
-import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.ItemChanged
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.engine.timer.toTicks

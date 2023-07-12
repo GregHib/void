@@ -1,14 +1,14 @@
 package world.gregs.voidps.world.interact.entity.npc.shop
 
-import world.gregs.voidps.engine.contain.Inventory
-import world.gregs.voidps.engine.contain.remove.ItemIndexRemovalChecker
-import world.gregs.voidps.engine.contain.sendInventory
-import world.gregs.voidps.engine.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.remove.ItemIndexRemovalChecker
+import world.gregs.voidps.engine.inv.sendInventory
+import world.gregs.voidps.engine.inv.stack.AlwaysStack
 
 object GeneralStores {
 

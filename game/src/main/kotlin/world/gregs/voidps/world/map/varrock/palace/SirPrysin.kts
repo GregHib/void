@@ -1,9 +1,9 @@
 package world.gregs.voidps.world.map.varrock.palace
 
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.contain.add
-import world.gregs.voidps.engine.contain.hasItem
-import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.PauseMode

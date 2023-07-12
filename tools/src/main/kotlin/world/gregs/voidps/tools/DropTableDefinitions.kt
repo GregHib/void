@@ -6,11 +6,11 @@ import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.contain.Inventory
-import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
+import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.add
 import world.gregs.yaml.Yaml
 
 object DropTableDefinitions {

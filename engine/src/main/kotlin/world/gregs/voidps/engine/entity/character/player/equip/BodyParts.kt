@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.entity.character.player.equip
 
-import world.gregs.voidps.engine.contain.Inventory
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.type
+import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.network.visual.update.player.Body
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart

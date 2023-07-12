@@ -1,9 +1,9 @@
 package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.contain.Inventory
-import world.gregs.voidps.engine.contain.ItemChanged
-import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.ItemChanged
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player

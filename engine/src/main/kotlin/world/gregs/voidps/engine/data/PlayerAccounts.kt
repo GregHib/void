@@ -4,10 +4,10 @@ import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.variable.PlayerVariables
-import world.gregs.voidps.engine.contain.Inventories
-import world.gregs.voidps.engine.contain.equipment
-import world.gregs.voidps.engine.contain.restrict.ValidItemRestriction
-import world.gregs.voidps.engine.contain.stack.DependentOnItem
+import world.gregs.voidps.engine.inv.Inventories
+import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.restrict.ValidItemRestriction
+import world.gregs.voidps.engine.inv.stack.DependentOnItem
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.data.yaml.PlayerYamlReaderConfig
 import world.gregs.voidps.engine.data.yaml.PlayerYamlWriterConfig

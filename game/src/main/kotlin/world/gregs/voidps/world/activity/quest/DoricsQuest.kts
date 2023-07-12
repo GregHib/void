@@ -3,9 +3,9 @@ package world.gregs.voidps.world.activity.quest
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.inventory
 
 on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemSlot == 3 }) { player: Player ->
     val lines = when (player["dorics_quest", "unstarted"]) {

@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.VariableSet
-import world.gregs.voidps.engine.contain.ItemChanged
+import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on

@@ -9,8 +9,6 @@ import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
-import world.gregs.voidps.engine.contain.Inventory
-import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -19,6 +17,8 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.instruct.*
 import world.gregs.voidps.type.Tile
 

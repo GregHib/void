@@ -4,10 +4,10 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.contain.add
-import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.contain.removeToLimit
-import world.gregs.voidps.engine.contain.transact.TransactionError
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.removeToLimit
+import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.mode.interact.NPCInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption

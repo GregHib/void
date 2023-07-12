@@ -2,18 +2,18 @@ package world.gregs.voidps.world.activity.bank
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
-import world.gregs.voidps.engine.contain.ItemChanged
-import world.gregs.voidps.engine.contain.shift
-import world.gregs.voidps.engine.contain.swap
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.ItemChanged
+import world.gregs.voidps.engine.inv.shift
+import world.gregs.voidps.engine.inv.swap
 
 on<ItemChanged>({ inventory == "bank" }) { player: Player ->
     player["bank_spaces_used_free"] = player.bank.getFreeToPlayItemCount()
     player["bank_spaces_used_member"] = player.bank.count
 }
 
-fun world.gregs.voidps.engine.contain.Inventory.getFreeToPlayItemCount(): Int {
+fun world.gregs.voidps.engine.inv.Inventory.getFreeToPlayItemCount(): Int {
     return items.count { it.isNotEmpty() && !it.def.members }
 }
 

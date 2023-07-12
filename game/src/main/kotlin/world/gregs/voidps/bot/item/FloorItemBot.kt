@@ -3,8 +3,8 @@ package world.gregs.voidps.bot.item
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeoutOrNull
 import world.gregs.voidps.bot.Bot
-import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.network.instruct.InteractFloorItem
 
