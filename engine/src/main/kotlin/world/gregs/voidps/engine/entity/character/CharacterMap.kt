@@ -1,15 +1,14 @@
 package world.gregs.voidps.engine.entity.character
 
-import it.unimi.dsi.fastutil.ints.IntArrayList
 import world.gregs.voidps.type.RegionLevel
 
 class CharacterMap {
 
-    val regions = arrayOfNulls<IntArrayList?>(256 * 256 * 4)
+    val regions = arrayOfNulls<MutableList<Int>?>(256 * 256 * 4)
 
     fun add(region: RegionLevel, character: Character) {
         if (regions[region.id] == null) {
-            regions[region.id] = IntArrayList(8)
+            regions[region.id] = ArrayList(8)
         }
         regions[region.id]!!.add(character.index)
     }

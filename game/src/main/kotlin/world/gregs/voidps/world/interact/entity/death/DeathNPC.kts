@@ -1,13 +1,11 @@
 package world.gregs.voidps.world.interact.entity.death
 
-import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
@@ -39,11 +37,6 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 val npcs: NPCs by inject()
 val floorItems: FloorItems by inject()
 val tables: DropTables by inject()
-
-on<Registered> { character: Character ->
-    character.damageDealers = mutableMapOf()
-    character.attackers = ObjectArrayList()
-}
 
 on<Death> { npc: NPC ->
     npc.dead = true
