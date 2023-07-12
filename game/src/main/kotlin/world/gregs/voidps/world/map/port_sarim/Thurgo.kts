@@ -11,11 +11,9 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 
-
 on<NPCOption>({ operate && npc.id == "thurgo" && option == "Talk-to" }) { player: Player ->
     when (player["the_knights_sword", "unstarted"]) {
-        "started" -> menu()
-        "stage2" -> menuRedberryPie()
+        "started", "stage2" -> menu()
         "stage3" -> menuSword()
         "stage4", "stage5"  -> menuAboutSword()
         "stage6" -> menuReplacementSword()
@@ -121,28 +119,15 @@ suspend fun Interaction.menuSword() {
     }
 }
 
-suspend fun Interaction.menuRedberryPie() {
-    if (player.hasItem("redberry_pie")) {
-        choice {
-            option("Are you an Imcando dwarf? I need a special sword.") {
-                imcandoDwarf()
-            }
-            option("Would you like a redberry pie?") {
-                redberryPie()
-            }
-            option("What is that cape you're wearing?") {
-                thatCape()
-            }
-        }
-    } else {
-        menu()
-    }
-}
-
 suspend fun Interaction.menu() {
     choice {
         option("Are you an Imcando dwarf? I need a special sword.") {
             imcandoDwarf()
+        }
+        if (player["the_knights_sword", "unstarted"] == "stage2" && player.hasItem("redberry_pie")) {
+            option("Would you like a redberry pie?") {
+                redberryPie()
+            }
         }
         option("What is that cape you're wearing?") {
             thatCape()
@@ -271,12 +256,10 @@ suspend fun Interaction.thatCape() {
         """, largeHead = true)
 }
 
-
-
 on<ItemOnNPC>({ operate && npc.id == "thurgo" }) { player: Player ->
     if (item.id == "redberry_pie") {
         when (player["the_knights_sword", "unstarted"]) {
-            "stage2" -> menuRedberryPie()
+            "stage2" -> menu()
             "stage3" -> menuSword()
             else -> player<Uncertain>("Why would I give him my pie?")
         }
