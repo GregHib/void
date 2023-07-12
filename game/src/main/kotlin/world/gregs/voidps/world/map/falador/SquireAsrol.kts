@@ -91,6 +91,14 @@ suspend fun Interaction.stage5() {
 }
 
 suspend fun Interaction.stage6() {
+    if (player.equipment.contains("blurite_sword")) {
+        player<Cheerful>("I have retrieved your sword for you.")
+        npc<Uncertain>("""
+            So can you un-equip it and hand it over to me now
+            please?
+        """)
+        return
+    }
     if (player.hasItem("blurite_sword")) {
         player<Cheerful>("I have retrieved your sword for you.")
         npc<Cheerful>("""
@@ -100,14 +108,6 @@ suspend fun Interaction.stage6() {
         statement("You give the sword to the squire.")
         player.inventory.remove("blurite_sword")
         questComplete()
-        return
-    }
-    if (player.equipment.contains("blurite_sword")) {
-        player<Cheerful>("I have retrieved your sword for you.")
-        npc<Uncertain>("""
-            So can you un-equip it and hand it over to me now
-            please?
-        """)
         return
     }
     if (player.hasBanked("blurite_sword")) {
