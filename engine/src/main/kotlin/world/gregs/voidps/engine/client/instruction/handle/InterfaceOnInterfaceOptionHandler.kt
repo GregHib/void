@@ -17,8 +17,8 @@ class InterfaceOnInterfaceOptionHandler(
     override fun validate(player: Player, instruction: InteractInterfaceItem) {
         val (fromItemId, toItemId, fromSlot, toSlot, fromInterfaceId, fromComponentId, toInterfaceId, toComponentId) = instruction
 
-        val (fromId, fromComponent, fromItem, fromContainer) = handler.getInterfaceItem(player, fromInterfaceId, fromComponentId, fromItemId, fromSlot) ?: return
-        val (toId, toComponent, toItem, toContainer) = handler.getInterfaceItem(player, toInterfaceId, toComponentId, toItemId, toSlot) ?: return
+        val (fromId, fromComponent, fromItem, fromInventory) = handler.getInterfaceItem(player, fromInterfaceId, fromComponentId, fromItemId, fromSlot) ?: return
+        val (toId, toComponent, toItem, toInventory) = handler.getInterfaceItem(player, toInterfaceId, toComponentId, toItemId, toSlot) ?: return
 
         player.events.emit(
             ItemOnItem(
@@ -30,8 +30,8 @@ class InterfaceOnInterfaceOptionHandler(
                 fromComponent,
                 toId,
                 toComponent,
-                fromContainer,
-                toContainer
+                fromInventory,
+                toInventory
             )
         )
     }

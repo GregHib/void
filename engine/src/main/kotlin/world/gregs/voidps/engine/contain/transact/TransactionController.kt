@@ -5,7 +5,7 @@ import com.github.michaelbull.logging.InlineLogger
 /**
  * The transaction controller handles starting and stopping the transaction,
  * Committing or reverting a transaction will update the state of
- * the container and its linked transactions.
+ * the inventory and its linked transactions.
  */
 abstract class TransactionController {
 
@@ -16,7 +16,7 @@ abstract class TransactionController {
 
     /**
      * Function to start the transaction.
-     * Resets the transaction and saves the container state
+     * Resets the transaction and saves the inventory state
      */
     fun start() {
         error = TransactionError.None
@@ -59,7 +59,7 @@ abstract class TransactionController {
     }
 
     /**
-     * Permanently applies the changes made to the containers during the transaction.
+     * Permanently applies the changes made to the inventories during the transaction.
      * If an error occurs during the transaction, the transaction and its linked transactions are reverted to the last saved state.
      * @return a boolean indicating whether the commit was successful
      */

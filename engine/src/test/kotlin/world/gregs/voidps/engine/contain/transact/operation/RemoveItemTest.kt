@@ -18,8 +18,8 @@ internal class RemoveItemTest : TransactionOperationTest() {
         }
         transaction.error = TransactionError.Invalid
         transaction.remove("item", 1)
-        // Assert that the item was not removed from the container
-        assertEquals(1, container[0].amount)
+        // Assert that the item was not removed from the inventory
+        assertEquals(1, inventory[0].amount)
     }
 
     @Test
@@ -29,7 +29,7 @@ internal class RemoveItemTest : TransactionOperationTest() {
         }
         transaction.remove("invalid_id", 1)
         assertTrue(transaction.commit())
-        assertEquals(0, container[0].amount)
+        assertEquals(0, inventory[0].amount)
     }
 
     @Test
@@ -50,8 +50,8 @@ internal class RemoveItemTest : TransactionOperationTest() {
         transaction.remove("item", 4)
         assertTrue(transaction.commit())
 
-        assertEquals(1, container.count)
-        assertEquals(1, container.count("item"))
+        assertEquals(1, inventory.count)
+        assertEquals(1, inventory.count("item"))
     }
 
     @Test
@@ -63,7 +63,7 @@ internal class RemoveItemTest : TransactionOperationTest() {
         assertFalse(transaction.commit())
 
         assertErrorDeficient(amount = 5)
-        assertEquals(5, container.count)
+        assertEquals(5, inventory.count)
     }
 
     @Test
@@ -74,8 +74,8 @@ internal class RemoveItemTest : TransactionOperationTest() {
         transaction.remove("item", 3)
         assertTrue(transaction.commit())
 
-        assertEquals(1, container.count)
-        assertEquals(2, container[0].amount)
+        assertEquals(1, inventory.count)
+        assertEquals(2, inventory[0].amount)
     }
 
     @Test
@@ -87,8 +87,8 @@ internal class RemoveItemTest : TransactionOperationTest() {
         assertFalse(transaction.commit())
 
         assertErrorDeficient(amount = 5)
-        assertEquals(1, container.count)
-        assertEquals(5, container[0].amount)
+        assertEquals(1, inventory.count)
+        assertEquals(5, inventory[0].amount)
     }
 
     @Test

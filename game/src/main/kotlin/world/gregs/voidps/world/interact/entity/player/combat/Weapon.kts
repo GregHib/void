@@ -16,7 +16,7 @@ on<Registered>(priority = Priority.HIGH) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index }, Priority.HIGH) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && index == EquipSlot.Weapon.index }, Priority.HIGH) { player: Player ->
     updateWeapon(player, item)
 }
 

@@ -5,11 +5,10 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.Inventory
 import world.gregs.voidps.engine.contain.ItemChanged
-import world.gregs.voidps.engine.contain.sendContainer
-import world.gregs.voidps.engine.data.definition.ContainerDefinitions
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.contain.sendInventory
+import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -17,8 +16,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 
-val itemDefs: ItemDefinitions by inject()
-val containerDefs: ContainerDefinitions by inject()
+val inventoryDefinitions: InventoryDefinitions by inject()
 val logger = InlineLogger()
 
 on<NPCOption>({ operate && def.has("shop") && option == "Trade" }) { player: Player ->
@@ -36,21 +34,21 @@ on<InterfaceClosed>({ id == "shop" }) { player: Player ->
 }
 
 on<OpenShop> { player: Player ->
-    val definition = containerDefs.getOrNull(id) ?: return@on
+    val definition = inventoryDefinitions.getOrNull(id) ?: return@on
     val currency: String = definition["currency", "coins"]
     player["shop_currency"] = currency
     player["item_info_currency"] = currency
     player["shop"] = id
     player.interfaces.open("shop")
     player.open("shop_side")
-    val containerSample = "${id}_sample"
+    val inventorySample = "${id}_sample"
 
-    player["free_container"] = containerDefs.get(containerSample).id
-    val sample = openShopContainer(player, containerSample)
+    player["free_inventory"] = inventoryDefinitions.get(inventorySample).id
+    val sample = openShopInventory(player, inventorySample)
     player.interfaceOptions.unlockAll("shop", "sample", 0 until sample.size * 5)
 
-    player["main_container"] = definition.id
-    val main = openShopContainer(player, id)
+    player["main_inventory"] = definition.id
+    val main = openShopInventory(player, id)
     sendAmounts(player, main)
     player.interfaceOptions.unlockAll("shop", "stock", 0 until main.size * 6)
 
@@ -59,26 +57,26 @@ on<OpenShop> { player: Player ->
 }
 
 on<InterfaceRefreshed>({ id == "shop_side" }) { player: Player ->
-    player.interfaceOptions.send("shop_side", "container")
-    player.interfaceOptions.unlockAll("shop_side", "container", 0 until 28)
+    player.interfaceOptions.send("shop_side", "inventory")
+    player.interfaceOptions.unlockAll("shop_side", "inventory", 0 until 28)
 }
 
-fun openShopContainer(player: Player, id: String): Container {
+fun openShopInventory(player: Player, id: String): Inventory {
     return if (id.endsWith("general_store")) {
         GeneralStores.bind(player, id)
     } else {
-        val new = !player.containers.containsKey(id)
-        val container = player.containers.container(id)
+        val new = !player.inventories.containsKey(id)
+        val inventory = player.inventories.inventory(id)
         if (new) {
-            fillShop(container, id)
+            fillShop(inventory, id)
         }
-        player.sendContainer(id)
-        container
+        player.sendInventory(id)
+        inventory
     }
 }
 
-fun fillShop(container: Container, shopId: String) {
-    val def = containerDefs.get(shopId)
+fun fillShop(inventory: Inventory, shopId: String) {
+    val def = inventoryDefinitions.get(shopId)
     if (!def.has("shop")) {
         logger.warn { "Invalid shop definition $shopId" }
     }
@@ -87,16 +85,16 @@ fun fillShop(container: Container, shopId: String) {
         val map = list.getOrNull(index) ?: continue
         val id = map.keys.firstOrNull() ?: continue
         val amount = map.values.firstOrNull() ?: 0
-        container.transaction { set(index, Item(id, amount)) }
+        inventory.transaction { set(index, Item(id, amount)) }
     }
 }
 
-on<ItemChanged>({ it.contains("shop") && container == it["shop"] }) { player: Player ->
+on<ItemChanged>({ it.contains("shop") && inventory == it["shop"] }) { player: Player ->
     player["amount_${index}"] = item.amount
 }
 
-fun sendAmounts(player: Player, container: Container) {
-    for ((index, item) in container.items.withIndex()) {
+fun sendAmounts(player: Player, inventory: Inventory) {
+    for ((index, item) in inventory.items.withIndex()) {
         player["amount_$index"] = item.amount
     }
 }

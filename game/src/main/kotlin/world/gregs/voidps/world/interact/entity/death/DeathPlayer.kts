@@ -95,8 +95,8 @@ fun dropItems(player: Player, killer: Character?, tile: Tile, inWilderness: Bool
     }
 }
 
-fun drop(player: Player, container: Container, tile: Tile, inWilderness: Boolean, killer: Character?) {
-    for (item in container.items) {
+fun drop(player: Player, inventory: Inventory, tile: Tile, inWilderness: Boolean, killer: Character?) {
+    for (item in inventory.items) {
         if (item.isEmpty()) {
             continue
         }

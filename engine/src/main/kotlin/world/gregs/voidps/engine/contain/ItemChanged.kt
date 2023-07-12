@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
 
 data class ItemChanged(
-    val container: String,
+    val inventory: String,
     val index: Int,
     val oldItem: Item,
     val item: Item,

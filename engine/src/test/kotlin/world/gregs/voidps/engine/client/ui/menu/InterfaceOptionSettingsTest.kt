@@ -16,7 +16,7 @@ internal class InterfaceOptionSettingsTest {
     }
 
     @Test
-    fun `Hash multiple container option indices`() {
+    fun `Hash multiple inventory option indices`() {
         assertEquals(6, getHash(0, 1))
         assertEquals(18, getHash(0, 3))
         assertEquals(14, getHash(0, 1, 2))

@@ -27,12 +27,12 @@ on<InterfaceOption>({ id == "item_info" && component == "button" && option.start
     }
     val id: Int = player["info_item"]
     val item = itemDefs.get(id).stringId
-    val container = player.shopContainer()
-    val index = container.indexOf(item)
+    val inventory = player.shopInventory()
+    val index = inventory.indexOf(item)
     if (player.hasShopSample()) {
-        take(player, container, index, amount)
+        take(player, inventory, index, amount)
     } else {
-        buy(player, container, index, amount)
+        buy(player, inventory, index, amount)
     }
 }
 
@@ -44,10 +44,10 @@ on<InterfaceOption>({ id == "shop" && component == "sample" && option.startsWith
         "Take-50" -> 50
         else -> return@on
     }
-    take(player, player.shopContainer(true), itemSlot / 4, amount)
+    take(player, player.shopInventory(true), itemSlot / 4, amount)
 }
 
-fun take(player: Player, shop: world.gregs.voidps.engine.contain.Container, index: Int, amount: Int) {
+fun take(player: Player, shop: world.gregs.voidps.engine.contain.Inventory, index: Int, amount: Int) {
     val item = shop[index]
     if (item.isEmpty()) {
         logger.warn { "Error taking from shop ${shop.id} $index $amount" }
@@ -75,10 +75,10 @@ on<InterfaceOption>({ id == "shop" && component == "stock" && option.startsWith(
         "Buy-500" -> 500
         else -> return@on
     }
-    buy(player, player.shopContainer(false), itemSlot / 6, amount)
+    buy(player, player.shopInventory(false), itemSlot / 6, amount)
 }
 
-fun buy(player: Player, shop: world.gregs.voidps.engine.contain.Container, index: Int, amount: Int) {
+fun buy(player: Player, shop: world.gregs.voidps.engine.contain.Inventory, index: Int, amount: Int) {
     val item = shop[index]
     val price = Price.getPrice(player, item.id, index, amount)
     val currency: String = player["shop_currency", "coins"]

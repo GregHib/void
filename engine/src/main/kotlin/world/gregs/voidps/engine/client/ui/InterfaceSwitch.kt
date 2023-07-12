@@ -8,10 +8,10 @@ data class InterfaceSwitch(
     val component: String,
     val fromItem: Item,
     val fromSlot: Int,
-    val fromContainer: String,
+    val fromInventory: String,
     val toId: String,
     val toComponent: String,
     val toItem: Item,
     val toSlot: Int,
-    val toContainer: String
+    val toInventory: String
 ) : Event

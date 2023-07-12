@@ -4,7 +4,7 @@ object Config {
     const val FLOOR_UNDERLAY = 1
     const val IDENTITY_KIT = 3
     const val FLOOR_OVERLAY = 4
-    const val CONTAINERS = 5
+    const val INVENTORIES = 5
     const val PARAMS = 11
     const val SEQUENCES = 12
     const val VARC_STRINGS = 15

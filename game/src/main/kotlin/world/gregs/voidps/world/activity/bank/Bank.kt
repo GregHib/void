@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.activity.bank
 
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.Inventory
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -56,8 +56,8 @@ object Bank {
     }
 }
 
-val Player.bank: Container
-    get() = containers.container("bank")
+val Player.bank: Inventory
+    get() = inventories.inventory("bank")
 
 fun Player.hasBanked(id: String) = hasItem(id) || bank.contains(id)
 

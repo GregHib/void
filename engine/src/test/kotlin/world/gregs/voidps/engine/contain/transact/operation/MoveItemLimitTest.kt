@@ -13,7 +13,7 @@ internal class MoveItemLimitTest : TransactionOperationTest() {
         transaction(stackRule = NeverStack) {
             add("item", 5)
         }
-        val target = container(3, stackRule = NeverStack) {
+        val target = inventory(3, stackRule = NeverStack) {
             add("item", 1)
         }
         transaction.error = TransactionError.Invalid
@@ -23,11 +23,11 @@ internal class MoveItemLimitTest : TransactionOperationTest() {
     }
 
     @Test
-    fun `Move stackable items to a partially filled container`() {
+    fun `Move stackable items to a partially filled inventory`() {
         transaction(stackRule = AlwaysStack) {
             add("item", 5)
         }
-        val target = container(3, stackRule = AlwaysStack) {
+        val target = inventory(3, stackRule = AlwaysStack) {
             add("item", Int.MAX_VALUE - 2)
         }
         val moved = transaction.moveToLimit("item", 4, target)
@@ -36,11 +36,11 @@ internal class MoveItemLimitTest : TransactionOperationTest() {
     }
 
     @Test
-    fun `Move non-stackable items to a partially filled container`() {
+    fun `Move non-stackable items to a partially filled inventory`() {
         transaction(stackRule = NeverStack) {
             add("item", 5)
         }
-        val target = container(3, stackRule = NeverStack) {
+        val target = inventory(3, stackRule = NeverStack) {
             add("item", 1)
         }
         val moved = transaction.moveToLimit("item", 4, target)
@@ -49,11 +49,11 @@ internal class MoveItemLimitTest : TransactionOperationTest() {
     }
 
     @Test
-    fun `Move items to full container`() {
+    fun `Move items to full inventory`() {
         transaction(stackRule = NeverStack) {
             add("item", 5)
         }
-        val target = container(3, stackRule = NeverStack) {
+        val target = inventory(3, stackRule = NeverStack) {
             add("item", 3)
         }
         val moved = transaction.moveToLimit("item", 2, target)
@@ -62,22 +62,22 @@ internal class MoveItemLimitTest : TransactionOperationTest() {
     }
 
     @Test
-    fun `Move more stackable items than exists to target container`() {
+    fun `Move more stackable items than exists to target inventory`() {
         transaction(stackRule = AlwaysStack) {
             add("item", 3)
         }
-        val target = container(5, stackRule = AlwaysStack)
+        val target = inventory(5, stackRule = AlwaysStack)
         val moved = transaction.moveToLimit("item", 4, target)
         assertTrue(transaction.commit())
         assertEquals(3, moved)
     }
 
     @Test
-    fun `Move more non-stackable items than exists to target container`() {
+    fun `Move more non-stackable items than exists to target inventory`() {
         transaction(stackRule = NeverStack) {
             add("item", 3)
         }
-        val target = container(5, stackRule = NeverStack)
+        val target = inventory(5, stackRule = NeverStack)
         val moved = transaction.moveToLimit("item", 4, target, "non_stackable_item")
         assertTrue(transaction.commit())
         assertEquals(3, moved)
@@ -87,7 +87,7 @@ internal class MoveItemLimitTest : TransactionOperationTest() {
     @Test
     fun `Move without any item`() {
         transaction()
-        val target = container()
+        val target = inventory()
         val moved = transaction.moveToLimit("item", 4, target)
         assertTrue(transaction.commit())
         assertEquals(0, moved)
@@ -98,34 +98,34 @@ internal class MoveItemLimitTest : TransactionOperationTest() {
      */
 
     @Test
-    fun `Move all items to target container`() {
+    fun `Move all items to target inventory`() {
         transaction(stackRule = normalStackRule) {
             add("stackable_item", 4)
             add("non_stackable_item", 3)
         }
-        val target = container(5, stackRule = normalStackRule)
+        val target = inventory(5, stackRule = normalStackRule)
         transaction.moveAllToLimit(target)
         assertTrue(transaction.commit())
-        assertTrue(container.isEmpty())
+        assertTrue(inventory.isEmpty())
         assertEquals(4, target[0].amount)
         assertEquals(1, target[1].amount)
         assertEquals(1, target[3].amount)
     }
 
     @Test
-    fun `Move all items to target partially filled container`() {
+    fun `Move all items to target partially filled inventory`() {
         transaction(stackRule = normalStackRule) {
             add("stackable_item", 4)
             add("non_stackable_item", 3)
         }
-        val target = container(5, stackRule = normalStackRule) {
+        val target = inventory(5, stackRule = normalStackRule) {
             add("stackable_item", Int.MAX_VALUE - 3)
             add("non_stackable_item", 2)
         }
         transaction.moveAllToLimit(target)
         assertTrue(transaction.commit())
-        assertEquals(2, container.count)
-        assertEquals(1, container[0].amount)
+        assertEquals(2, inventory.count)
+        assertEquals(1, inventory[0].amount)
         assertEquals(Int.MAX_VALUE, target[0].amount)
         assertEquals(1, target[1].amount)
         assertEquals(1, target[3].amount)

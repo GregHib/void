@@ -17,7 +17,8 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.playTrack
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
@@ -338,7 +339,7 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "areas" -> get<AreaDefinitions>().load()
         "object defs" -> get<ObjectDefinitions>().load()
         "anim defs", "anims" -> get<AnimationDefinitions>().load()
-        "container defs", "containers" -> get<ContainerDefinitions>().load()
+        "container defs", "containers", "inventory defs", "inventories", "inv defs", "invs" -> get<InventoryDefinitions>().load()
         "graphic defs", "graphics", "gfx" -> get<GraphicDefinitions>().load()
         "npc defs" -> get<NPCDefinitions>().load()
         "item on item", "item-on-item" -> {
@@ -363,12 +364,12 @@ on<Command>({ prefix == "debug" }) { player: Player ->
 
 val tables: DropTables by inject()
 
-class ContainerDelegate(
-    private val container: Container,
+class InventoryDelegate(
+    private val inventory: Inventory,
     private val list: MutableList<ItemDrop> = mutableListOf()
 ) : MutableList<ItemDrop> by list {
     override fun add(element: ItemDrop): Boolean {
-        container.add(element.id, element.amount.random())
+        inventory.add(element.id, element.amount.random())
         return true
     }
 }
@@ -391,7 +392,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
         player.message("Calculating...")
     }
     val job = GlobalScope.async {
-        val container = Container.debug(capacity = 40, id = "al_kharid_general_store")
+        val inventory = Inventory.debug(capacity = 40, id = "al_kharid_general_store")
         coroutineScope {
             val time = measureTimeMillis {
                 val divisor = 1000000
@@ -399,15 +400,15 @@ on<Command>({ prefix == "sim" }) { player: Player ->
                 (0..sections)
                     .map {
                         async {
-                            val temp = Container.debug(capacity = 40)
-                            val list = ContainerDelegate(temp)
+                            val temp = Inventory.debug(capacity = 40)
+                            val list = InventoryDelegate(temp)
                             for (i in 0L until if (it == sections) count.rem(divisor) else divisor) {
                                 table.role(list = list)
                             }
                             temp
                         }
                     }.forEach {
-                        it.await().moveAll(container)
+                        it.await().moveAll(inventory)
                     }
             }
             if (time > 0) {
@@ -415,26 +416,26 @@ on<Command>({ prefix == "sim" }) { player: Player ->
                 player.message("Simulation took ${if (seconds > 1) "${seconds}s" else "${time}ms"}")
             }
         }
-        container.sortedByDescending { it.amount }
-        container
+        inventory.sortedByDescending { it.amount }
+        inventory
     }
     player.queue(name = "simulate drops") {
         try {
-            val container = job.await()
+            val inventory = job.await()
             var value = 0L
-            for (item in container.items) {
+            for (item in inventory.items) {
                 if (item.isNotEmpty()) {
                     value += item.amount * item.def.cost.toLong()
                 }
             }
             player.interfaces.open("shop")
-            player["free_container"] = -1
-            player["main_container"] = 3
-            player.interfaceOptions.unlock("shop", "stock", 0 until container.size * 6, "Info")
-            for ((index, item) in container.items.withIndex()) {
+            player["free_inventory"] = -1
+            player["main_inventory"] = 3
+            player.interfaceOptions.unlock("shop", "stock", 0 until inventory.size * 6, "Info")
+            for ((index, item) in inventory.items.withIndex()) {
                 player["amount_$index"] = item.amount
             }
-            player.sendContainer(container)
+            player.sendInventory(inventory)
             player.interfaces.sendVisibility("shop", "store", false)
             player.interfaces.sendText("shop", "title", "$title - ${value.toDigitGroupString()}gp (${value.toSIPrefix()})")
             pauseForever()
@@ -444,7 +445,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
     }
 }
 
-fun Container.sortedByDescending(block: (Item) -> Int) {
+fun Inventory.sortedByDescending(block: (Item) -> Int) {
     transaction {
         clear()
         items.sortedByDescending(block).forEachIndexed { index, item ->

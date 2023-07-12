@@ -1,17 +1,17 @@
 package world.gregs.voidps.engine.contain.transact
 
-import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.Inventory
 import world.gregs.voidps.engine.contain.transact.operation.*
 import world.gregs.voidps.engine.entity.item.Item
 
 /**
- * Class for performing modification operations on a [container].
- * It manages the [state] of the container and tracks any [changes] made during the transaction.
- * Any operation [error]s in this or linked [container]s will revert all changes upon [commit].
+ * Class for performing modification operations on a [inventory].
+ * It manages the [state] of the inventory and tracks any [changes] made during the transaction.
+ * Any operation [error]s in this or linked [inventory]s will revert all changes upon [commit].
  *
  * Example usage:
  * ```
- * val transaction = container.transaction
+ * val transaction = inventory.transaction
  * transaction.start()
  * transaction.add("item", amount = 2)
  * transaction.remove("item", amount = 1)
@@ -21,31 +21,31 @@ import world.gregs.voidps.engine.entity.item.Item
  * @see TransactionController for more info.
  */
 class Transaction(
-    override val container: Container
+    override val inventory: Inventory
 ) : TransactionController(), AddItem, AddItemLimit, ClearItem, MoveItem, MoveItemLimit, RemoveItem, RemoveItemLimit, ReplaceItem, ShiftItem, SwapItem {
 
     override var error: TransactionError = TransactionError.None
-    override val state = StateManager(container)
-    override val changes = ChangeManager(container)
+    override val state = StateManager(inventory)
+    override val changes = ChangeManager(inventory)
 
     override fun set(index: Int, item: Item?, from: String?, to: String?) {
         if (failed) {
             return
         }
-        val previous = container[index]
-        val fromId = from ?: container.id
-        val toId = to ?: container.id
+        val previous = inventory[index]
+        val fromId = from ?: inventory.id
+        val toId = to ?: inventory.id
         changes.track(fromId, index, previous, toId, item ?: Item.EMPTY)
-        container.items[index] = item ?: Item.EMPTY
+        inventory.items[index] = item ?: Item.EMPTY
     }
 
-    override fun link(container: Container): Transaction {
-        val transaction = container.transaction
+    override fun link(inventory: Inventory): Transaction {
+        val transaction = inventory.transaction
         if (transaction == this || linked(transaction)) {
             return transaction
         }
         if (transaction.state.hasSaved()) {
-            // Container has unrelated transaction active
+            // Inventory has unrelated transaction active
             error = TransactionError.Invalid
             return transaction
         }

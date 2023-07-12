@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.Inventory
 import world.gregs.voidps.engine.contain.remove.DefaultItemRemovalChecker
 import world.gregs.voidps.engine.contain.remove.ItemRemovalChecker
 import world.gregs.voidps.engine.contain.restrict.ItemRestrictionRule
@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.script.KoinMock
 
 abstract class TransactionOperationTest : KoinMock() {
 
-    protected lateinit var container: Container
+    protected lateinit var inventory: Inventory
     protected lateinit var transaction: Transaction
     val normalStackRule = object : ItemStackingRule {
         override fun stackable(id: String): Boolean {
@@ -48,31 +48,31 @@ abstract class TransactionOperationTest : KoinMock() {
         removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
         block: Transaction.() -> Unit = {}
     ) {
-        container = container(capacity, stackRule, itemRule, removalCheck, block)
-        transaction = container.transaction
+        inventory = inventory(capacity, stackRule, itemRule, removalCheck, block)
+        transaction = inventory.transaction
         transaction.start()
     }
 
-    protected fun container(
+    protected fun inventory(
         capacity: Int = 5,
         stackRule: ItemStackingRule = AlwaysStack,
         itemRule: ItemRestrictionRule = NoRestrictions,
         removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
         block: (Transaction.() -> Unit)? = null
-    ): Container {
-        val container = Container.debug(
+    ): Inventory {
+        val inventory = Inventory.debug(
             capacity = capacity,
             stackRule = stackRule,
             itemRule = itemRule,
             removalCheck = removalCheck
         )
-        val transaction = container.transaction
+        val transaction = inventory.transaction
         if (block != null) {
             transaction.start()
             block.invoke(transaction)
             assertTrue(transaction.commit())
         }
-        return container
+        return inventory
     }
 
     protected fun assertErrorDeficient(amount: Int) {

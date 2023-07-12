@@ -1,11 +1,11 @@
 package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.Inventory
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.data.definition.ContainerDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.removeRequest
@@ -17,12 +17,12 @@ import world.gregs.voidps.engine.inject
  */
 
 val interfaceDefinitions: InterfaceDefinitions by inject()
-val containerDefinitions: ContainerDefinitions by inject()
+val inventoryDefinitions: InventoryDefinitions by inject()
 
 /*
     Offer
  */
-on<ItemChanged>({ container == "trade_offer" && it.contains("trade_partner") }) { player: Player ->
+on<ItemChanged>({ inventory == "trade_offer" && it.contains("trade_partner") }) { player: Player ->
     val other: Player = Trade.getPartner(player) ?: return@on
     applyUpdates(other.otherOffer, this)
     val warn = player.hasRequest(other, "accept_trade") && removedAnyItems(this)
@@ -40,10 +40,10 @@ fun highlightRemovedSlots(player: Player, other: Player, update: ItemChanged) {
     }
 }
 
-fun Player.warn(id: String, component: String, slot: Int) {
-    val comp = interfaceDefinitions.getComponent(id, component) ?: return
-    val container = containerDefinitions.get(comp["container", ""])
-    sendScript(143, (comp["parent", -1] shl 16) or comp.id, container["width", 0.0], container["height", 0.0], slot)
+fun Player.warn(id: String, componentId: String, slot: Int) {
+    val component = interfaceDefinitions.getComponent(id, componentId) ?: return
+    val inventory = inventoryDefinitions.get(component["inventory", ""])
+    sendScript(143, (component["parent", -1] shl 16) or component.id, inventory["width", 0.0], inventory["height", 0.0], slot)
 }
 
 fun updateValue(player: Player, other: Player) {
@@ -55,15 +55,15 @@ fun updateValue(player: Player, other: Player) {
 /*
     Loan
  */
-on<ItemChanged>({ container == "item_loan" && it.contains("trade_partner") }) { player: Player ->
+on<ItemChanged>({ inventory == "item_loan" && it.contains("trade_partner") }) { player: Player ->
     val other: Player = Trade.getPartner(player) ?: return@on
     applyUpdates(other.otherLoan, this)
     val warn = player.hasRequest(other, "accept_trade") && removedAnyItems(this)
     modified(player, other, warn)
 }
 
-fun applyUpdates(container: Container, update: ItemChanged) {
-    container.transaction { set(update.index, update.item, update.from, update.to) }
+fun applyUpdates(inventory: Inventory, update: ItemChanged) {
+    inventory.transaction { set(update.index, update.item, update.from, update.to) }
 }
 
 fun removedAnyItems(change: ItemChanged) = change.item.amount < change.oldItem.amount
@@ -81,7 +81,7 @@ fun modified(player: Player, other: Player, warned: Boolean) {
 /*
     Item count
  */
-on<ItemChanged>({ container == "inventory" && it.contains("trade_partner") }) { player: Player ->
+on<ItemChanged>({ inventory == "inventory" && it.contains("trade_partner") }) { player: Player ->
     val other: Player = Trade.getPartner(player) ?: return@on
     updateInventorySpaces(other, player)
 }

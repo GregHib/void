@@ -146,7 +146,7 @@ fun areaClear(player: Player): Boolean {
     return true
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Cape.index }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && index == EquipSlot.Cape.index }) { player: Player ->
     player["unlocked_emote_skillcape"] = item.def.isSkillCape() || item.def.isTrimmedSkillCape() || item.id == "quest_point_cape"
 }
 

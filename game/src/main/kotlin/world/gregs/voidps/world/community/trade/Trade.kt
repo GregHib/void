@@ -3,7 +3,7 @@ package world.gregs.voidps.world.community.trade
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.getOrNull
-import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.Inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 
 object Trade {
@@ -30,7 +30,7 @@ object Trade {
     }
 }
 
-fun Container.calculateValue(): Long {
+fun Inventory.calculateValue(): Long {
     var value = 0L
     for (item in items) {
         if (item.isNotEmpty() && item.amount > 0) {
@@ -40,17 +40,17 @@ fun Container.calculateValue(): Long {
     return value
 }
 
-val Player.offer: Container
-    get() = containers.container("trade_offer", false)
+val Player.offer: Inventory
+    get() = inventories.inventory("trade_offer", false)
 
-val Player.otherOffer: Container
-    get() = containers.container("trade_offer", true)
+val Player.otherOffer: Inventory
+    get() = inventories.inventory("trade_offer", true)
 
-val Player.returnedItems: Container
-    get() = containers.container("returned_lent_items", false)
+val Player.returnedItems: Inventory
+    get() = inventories.inventory("returned_lent_items", false)
 
-val Player.loan: Container
-    get() = containers.container("item_loan", false)
+val Player.loan: Inventory
+    get() = inventories.inventory("item_loan", false)
 
-val Player.otherLoan: Container
-    get() = containers.container("item_loan", true)
+val Player.otherLoan: Inventory
+    get() = inventories.inventory("item_loan", true)

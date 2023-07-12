@@ -24,7 +24,7 @@ class InterfaceOnFloorItemOptionHandler(
             logger.warn { "Invalid floor item $itemId $tile" }
             return
         }
-        val (id, component, item, container) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
-        player.mode = Interact(player, floorItem, ItemOnFloorItem(player, floorItem, id, component, item, itemSlot, container), approachRange = -1)
+        val (id, component, item, inventory) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
+        player.mode = Interact(player, floorItem, ItemOnFloorItem(player, floorItem, id, component, item, itemSlot, inventory), approachRange = -1)
     }
 }

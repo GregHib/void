@@ -17,7 +17,7 @@ class InterfaceOnNPCOptionHandler(
         val (npcIndex, interfaceId, componentId, itemId, itemSlot) = instruction
         val npc = npcs.indexed(npcIndex) ?: return
 
-        val (id, component, item, container) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
+        val (id, component, item, inventory) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
 
         player.mode = Interact(player, npc, ItemOnNPC(
             player,
@@ -26,7 +26,7 @@ class InterfaceOnNPCOptionHandler(
             component,
             item,
             itemSlot,
-            container
+            inventory
         ))
     }
 }

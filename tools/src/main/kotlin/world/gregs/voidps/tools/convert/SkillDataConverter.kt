@@ -37,7 +37,7 @@ object SkillDataConverter {
         val items: ItemDefinitions = get()
         val sounds = SoundDefinitions().load(storage, "./data/definitions/sounds.yml")
         val animations = AnimationDefinitions(AnimationDecoder().loadCache(cache)).load(storage, "./data/definitions/animations.yml")
-//        var decoder = ContainerDecoder(koin.get())
+//        var decoder = InventoryDecoder(koin.get())
         val mapper = ObjectMapper()
         val yaml = ObjectMapper(YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER).apply {
             enable(YAMLGenerator.Feature.MINIMIZE_QUOTES)

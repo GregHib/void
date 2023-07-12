@@ -25,7 +25,7 @@ import kotlin.math.floor
 
 fun isStaffOfLight(item: Item?) = item != null && item.id.startsWith("staff_of_light")
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isStaffOfLight(oldItem) }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && index == EquipSlot.Weapon.index && isStaffOfLight(oldItem) }) { player: Player ->
     player.softTimers.stop("power_of_light")
 }
 

@@ -32,7 +32,7 @@ on<Registered> { player: Player ->
     updateStats(player)
 }
 
-on<ItemChanged>({ container == "worn_equipment" }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" }) { player: Player ->
     updateStats(player, oldItem, false)
     updateStats(player, item, true)
 }
@@ -41,7 +41,7 @@ on<InterfaceOpened>({ id == "equipment_bonuses" }) { player: Player ->
     player.interfaces.sendVisibility("equipment_bonuses", "close", !player["equipment_banking", false])
     updateEmote(player)
     player.open("equipment_side")
-    player.interfaceOptions.unlockAll("equipment_bonuses", "container", 0 until 16)
+    player.interfaceOptions.unlockAll("equipment_bonuses", "inventory", 0 until 16)
     updateStats(player)
 }
 
@@ -50,25 +50,25 @@ on<InterfaceClosed>({ id == "equipment_bonuses" }) { player: Player ->
 }
 
 on<InterfaceRefreshed>({ id == "equipment_side" }) { player: Player ->
-    player.interfaceOptions.send("equipment_side", "container")
-    player.interfaceOptions.unlockAll("equipment_side", "container", 0 until 28)
+    player.interfaceOptions.send("equipment_side", "inventory")
+    player.interfaceOptions.unlockAll("equipment_side", "inventory", 0 until 28)
 }
 
-on<InterfaceOption>({ it.equipping() && (id == "equipment_side" || id == "equipment_bonuses") && component == "container" && option == "Stats" }) { player: Player ->
+on<InterfaceOption>({ it.equipping() && (id == "equipment_side" || id == "equipment_bonuses") && component == "inventory" && option == "Stats" }) { player: Player ->
     showStats(player, definitions.get(item.id))
 }
 
 /*
-    Redirect equipping actions to regular containers
+    Redirect equipping actions to regular inventories
  */
 
-on<InterfaceOption>({ it.equipping() && id == "equipment_side" && component == "container" && option == "Equip" }) { player: Player ->
-    player.events.emit(ContainerOption(player, "inventory", item, itemSlot, "Wield"))
+on<InterfaceOption>({ it.equipping() && id == "equipment_side" && component == "inventory" && option == "Equip" }) { player: Player ->
+    player.events.emit(InventoryOption(player, "inventory", item, itemSlot, "Wield"))
     checkEmoteUpdate(player)
 }
 
-on<InterfaceOption>({ it.equipping() && id == "equipment_bonuses" && component == "container" && option == "Remove" }) { player: Player ->
-    player.events.emit(ContainerOption(player, "worn_equipment", item, itemSlot, "Remove"))
+on<InterfaceOption>({ it.equipping() && id == "equipment_bonuses" && component == "inventory" && option == "Remove" }) { player: Player ->
+    player.events.emit(InventoryOption(player, "worn_equipment", item, itemSlot, "Remove"))
     checkEmoteUpdate(player)
 }
 

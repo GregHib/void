@@ -34,7 +34,7 @@ internal class PlayerYamlWriterConfig : YamlWriterConfiguration(quoteStrings = t
                 "looks" to value.looks,
                 "colours" to value.colours,
                 "variables" to value.variables,
-                "containers" to value.containers,
+                "inventories" to value.inventories,
                 "friends" to value.friends,
                 "ignores" to value.ignores
             )

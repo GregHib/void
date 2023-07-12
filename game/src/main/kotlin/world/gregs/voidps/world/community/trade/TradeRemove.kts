@@ -43,7 +43,7 @@ fun remove(player: Player, id: String, slot: Int, amount: Int) {
     }
     player.offer.transaction {
         val added = link(player.inventory).addToLimit(id, amount)
-        if (!container.stackable(id) && added == 1) {
+        if (!inventory.stackable(id) && added == 1) {
             clear(slot)
         } else {
             removeToLimit(id, added)

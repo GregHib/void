@@ -1,15 +1,15 @@
 package world.gregs.voidps.cache.config.decoder
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.Config.CONTAINERS
+import world.gregs.voidps.cache.Config.INVENTORIES
 import world.gregs.voidps.cache.config.ConfigDecoder
-import world.gregs.voidps.cache.config.data.ContainerDefinition
+import world.gregs.voidps.cache.config.data.InventoryDefinition
 
-class ContainerDecoder : ConfigDecoder<ContainerDefinition>(CONTAINERS) {
+class InventoryDecoder : ConfigDecoder<InventoryDefinition>(INVENTORIES) {
 
-    override fun create(size: Int) = Array(size) { ContainerDefinition(it) }
+    override fun create(size: Int) = Array(size) { InventoryDefinition(it) }
 
-    override fun ContainerDefinition.read(opcode: Int, buffer: Reader) {
+    override fun InventoryDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
             2 -> length = buffer.readUnsignedShort()
             4 -> {

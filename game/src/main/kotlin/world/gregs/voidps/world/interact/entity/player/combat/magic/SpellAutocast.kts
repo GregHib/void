@@ -27,6 +27,6 @@ on<VariableSet>({ key == "autocast" && to == null }) { player: Player ->
     player.clear("autocast_spell")
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && index == EquipSlot.Weapon.index }) { player: Player ->
     player.clear("autocast")
 }

@@ -6,7 +6,7 @@ import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.Inventory
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.drop.DropTables
@@ -30,14 +30,14 @@ object DropTableDefinitions {
         repeat(1000000) {
             table.role(list = list)
         }
-        val container = Container.debug(capacity = 100)
+        val inventory = Inventory.debug(capacity = 100)
         list.forEach {
             val item = it.toItem()
             if (item.isNotEmpty()) {
-                container.add(item.id, item.amount)
+                inventory.add(item.id, item.amount)
             }
         }
-        for (item in container.items) {
+        for (item in inventory.items) {
             if (item.isNotEmpty()) {
                 println(item)
             }

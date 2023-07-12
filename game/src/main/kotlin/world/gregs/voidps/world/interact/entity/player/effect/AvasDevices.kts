@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
+import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
 import java.util.concurrent.TimeUnit
 
 val attractor = setOf(
@@ -74,11 +74,11 @@ on<Registered> { player: Player ->
     update(player)
 }
 
-on<ItemChanged>({ container == "worn_equipment" && changedMetalChestplate() || changedAvasDevice() }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && changedMetalChestplate() || changedAvasDevice() }) { player: Player ->
     update(player)
 }
 
-on<ContainerOption>({ (container == "inventory" || container == "worn_equipment") && option == "Toggle" && item.id.startsWith("avas_") }) { player: Player ->
+on<InventoryOption>({ (inventory == "inventory" || inventory == "worn_equipment") && option == "Toggle" && item.id.startsWith("avas_") }) { player: Player ->
     player["collect_junk"] = !player["collect_junk", false]
     update(player)
 }

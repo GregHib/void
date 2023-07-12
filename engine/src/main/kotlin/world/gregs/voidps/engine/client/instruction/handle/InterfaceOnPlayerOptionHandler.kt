@@ -17,7 +17,7 @@ class InterfaceOnPlayerOptionHandler(
         val (playerIndex, interfaceId, componentId, itemId, itemSlot) = instruction
         val target = players.indexed(playerIndex) ?: return
 
-        val (id, component, item, container) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
+        val (id, component, item, inventory) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
 
         player.mode = Interact(player, target, ItemOnPlayer(
             player,
@@ -26,7 +26,7 @@ class InterfaceOnPlayerOptionHandler(
             component,
             item,
             itemSlot,
-            container
+            inventory
         ))
     }
 }

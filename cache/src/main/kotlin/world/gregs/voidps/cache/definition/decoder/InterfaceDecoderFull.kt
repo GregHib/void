@@ -225,7 +225,7 @@ class InterfaceDecoderFull : DefinitionDecoder<InterfaceDefinitionFull>(INTERFAC
         anObjectArray4688 = decodeScript(buffer)
         anObjectArray4775 = decodeScript(buffer)
         clientVarp = decodeIntArray(buffer)
-        containers = decodeIntArray(buffer)
+        inventories = decodeIntArray(buffer)
         anIntArray4789 = decodeIntArray(buffer)
         clientVarc = decodeIntArray(buffer)
         anIntArray4805 = decodeIntArray(buffer)

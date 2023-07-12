@@ -19,10 +19,10 @@ object Assistance {
 
     fun toggleInventory(player: Player, enabled: Boolean) {
         if(enabled) {
-            player.interfaceOptions.unlockAll("inventory", "container", 0 until 28)
-            player.interfaceOptions.unlock("inventory", "container", 28 until 56, "Drag")
+            player.interfaceOptions.unlockAll("inventory", "inventory", 0 until 28)
+            player.interfaceOptions.unlock("inventory", "inventory", 28 until 56, "Drag")
         } else {
-            player.interfaceOptions.lockAll("inventory", "container", 0 until 56)
+            player.interfaceOptions.lockAll("inventory", "inventory", 0 until 56)
         }
     }
 

@@ -13,10 +13,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
+import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<ContainerOption>({ (item.def.has("heals") || item.def.has("excess")) && (option == "Eat" || option == "Drink" || option == "Heal") }) { player: Player ->
+on<InventoryOption>({ (item.def.has("heals") || item.def.has("excess")) && (option == "Eat" || option == "Drink" || option == "Heal") }) { player: Player ->
     val drink = option == "Drink"
     val combo = item.def.has("combo")
     val delay = when {

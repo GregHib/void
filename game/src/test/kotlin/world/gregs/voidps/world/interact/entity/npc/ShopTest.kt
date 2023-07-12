@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
+import world.gregs.voidps.world.interact.entity.npc.shop.shopInventory
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.interfaceOption
 import world.gregs.voidps.world.script.npcOption
@@ -21,7 +21,7 @@ internal class ShopTest : WorldTest() {
 
         player.npcOption(npc, "Trade")
         tick(4)
-        val shop = player.shopContainer(false)
+        val shop = player.shopInventory(false)
         player.interfaceOption("shop", "stock", "Buy-1", item = Item("iron_battleaxe"), slot = 4 * 6)
         tick()
 
@@ -38,7 +38,7 @@ internal class ShopTest : WorldTest() {
 
         player.npcOption(npc, "Trade")
         tick()
-        val shop = player.shopContainer(true)
+        val shop = player.shopInventory(true)
         player.interfaceOption("shop", "sample", "Take-1", item = Item("bronze_pickaxe"), slot = 0)
 
         assertEquals(1000, player.inventory.count("coins"))
@@ -54,8 +54,8 @@ internal class ShopTest : WorldTest() {
 
         player.npcOption(npc, "Trade")
         tick()
-        val shop = player.shopContainer(false)
-        player.interfaceOption("shop_side", "container", "Sell 1", item = Item("iron_battleaxe"), slot = 0)
+        val shop = player.shopInventory(false)
+        player.interfaceOption("shop_side", "inventory", "Sell 1", item = Item("iron_battleaxe"), slot = 0)
 
         assertTrue(player.inventory.count("coins") > 0)
         assertEquals(11, shop.count("iron_battleaxe"))

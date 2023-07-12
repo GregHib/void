@@ -12,7 +12,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.Inventory
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.type
 import world.gregs.voidps.network.visual.update.player.BodyPart
@@ -22,7 +22,7 @@ import kotlin.test.assertFalse
 internal class BodyPartsTest {
 
     @MockK
-    lateinit var equipment: Container
+    lateinit var equipment: Inventory
 
     lateinit var looks: IntArray
 

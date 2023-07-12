@@ -165,7 +165,7 @@ class ActiveCache(
         private fun load(): List<ActiveIndexEncoder> {
             return listOf(
                 ConfigEncoder(Config.IDENTITY_KIT),
-                ConfigEncoder(Config.CONTAINERS),
+                ConfigEncoder(Config.INVENTORIES),
                 ConfigEncoder(Config.VARP),
                 ConfigEncoder(Config.VARC),
                 ConfigEncoder(Config.STRUCTS),

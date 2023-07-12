@@ -4,7 +4,7 @@ import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.variable.PlayerVariables
-import world.gregs.voidps.engine.contain.Containers
+import world.gregs.voidps.engine.contain.Inventories
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.restrict.ValidItemRestriction
 import world.gregs.voidps.engine.contain.stack.DependentOnItem
@@ -33,7 +33,7 @@ import java.io.File
 class PlayerAccounts(
     private val store: EventHandlerStore,
     private val interfaceDefinitions: InterfaceDefinitions,
-    private val containerDefinitions: ContainerDefinitions,
+    private val inventoryDefinitions: InventoryDefinitions,
     private val itemDefinitions: ItemDefinitions,
     private val accountDefinitions: AccountDefinitions,
     private val yaml: Yaml,
@@ -80,7 +80,7 @@ class PlayerAccounts(
                 levels = map["levels"] as Levels,
                 body = BodyParts(map["male"] as Boolean, map["looks"] as IntArray, map["colours"] as IntArray),
                 variables = map["variables"] as MutableMap<String, Any>,
-                containers = Containers((map["containers"] as MutableMap<String, List<Item>>).mapValues { (_, value: List<Item>) ->
+                inventories = Inventories((map["inventories"] as MutableMap<String, List<Item>>).mapValues { (_, value: List<Item>) ->
                     value.toTypedArray()
                 }.toMutableMap()),
                 friends = map["friends"] as MutableMap<String, ClanRank>,
@@ -106,14 +106,14 @@ class PlayerAccounts(
         player.index = index
         player.visuals = PlayerVisuals(index, player.body)
         player.interfaces = Interfaces(player.events, player.client, interfaceDefinitions, player.gameFrame)
-        player.interfaceOptions = InterfaceOptions(player, interfaceDefinitions, containerDefinitions)
+        player.interfaceOptions = InterfaceOptions(player, interfaceDefinitions, inventoryDefinitions)
         player.options = PlayerOptions(player)
         (player.variables as PlayerVariables).definitions = variableDefinitions
-        player.containers.definitions = containerDefinitions
-        player.containers.itemDefinitions = itemDefinitions
-        player.containers.validItemRule = validItems
-        player.containers.normalStack = DependentOnItem(itemDefinitions)
-        player.containers.events = player.events
+        player.inventories.definitions = inventoryDefinitions
+        player.inventories.itemDefinitions = itemDefinitions
+        player.inventories.validItemRule = validItems
+        player.inventories.normalStack = DependentOnItem(itemDefinitions)
+        player.inventories.events = player.events
         player.previousTile = player.tile.add(Direction.WEST.delta)
         player.experience.events = player.events
         player.levels.link(player.events, PlayerLevels(player.experience))

@@ -11,19 +11,19 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelModifier
 import kotlin.math.floor
 
-on<ItemChanged>({ container == "worn_equipment" && isSetSlot(index) && it.contains("void_set_effect") && !isVoid(item) }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && isSetSlot(index) && it.contains("void_set_effect") && !isVoid(item) }) { player: Player ->
     player.clear("void_set_effect")
 }
 
-on<ItemChanged>({ container == "worn_equipment" && isSetSlot(index) && !it.contains("void_set_effect") && isVoid(item) && it.hasFullSet("") }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && isSetSlot(index) && !it.contains("void_set_effect") && isVoid(item) && it.hasFullSet("") }) { player: Player ->
     player["void_set_effect"] = true
 }
 
-on<ItemChanged>({ container == "worn_equipment" && isSetSlot(index) && it.contains("elite_void_set_effect") && !isEliteVoid(item) }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && isSetSlot(index) && it.contains("elite_void_set_effect") && !isEliteVoid(item) }) { player: Player ->
     player.clear("elite_void_set_effect")
 }
 
-on<ItemChanged>({ container == "worn_equipment" && isSetSlot(index) && !it.contains("elite_void_set_effect") && isEliteVoid(item) && it.hasFullSet("elite_") }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && isSetSlot(index) && !it.contains("elite_void_set_effect") && isEliteVoid(item) && it.hasFullSet("elite_") }) { player: Player ->
     player["elite_void_set_effect"] = true
 }
 

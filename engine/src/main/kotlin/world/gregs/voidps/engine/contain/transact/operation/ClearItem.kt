@@ -1,13 +1,13 @@
 package world.gregs.voidps.engine.contain.transact.operation
 
 /**
- * Transaction operation for clearing items in a container.
- * The clear operation removes all items from the container, or a specific item if its index is provided.
+ * Transaction operation for clearing items in an inventory.
+ * The clear operation removes all items from the inventory, or a specific item if its index is provided.
  */
 interface ClearItem : TransactionOperation {
 
     /**
-     * Removes a specific item from the container.
+     * Removes a specific item from the inventory.
      * @param index the index of the item to be removed.
      */
     fun clear(index: Int) {
@@ -18,13 +18,13 @@ interface ClearItem : TransactionOperation {
     }
 
     /**
-     * Removes all items from the container.
+     * Removes all items from the inventory.
      */
     fun clear() {
         if (failed) {
             return
         }
-        for (index in container.indices) {
+        for (index in inventory.indices) {
             set(index, null)
         }
     }

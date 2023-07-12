@@ -20,7 +20,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 fun canWear(option: String) = option == "Wield" || option == "Wear" || option == "Hold" || option == "Equip"
 
-on<ContainerOption>({ container == "inventory" && canWear(option) }) { player: Player ->
+on<InventoryOption>({ inventory == "inventory" && canWear(option) }) { player: Player ->
     val def = item.def
 
     if (!player.hasRequirements(def, true)) {
@@ -46,7 +46,7 @@ on<ContainerOption>({ container == "inventory" && canWear(option) }) { player: P
     playEquipSound(player, def)
 }
 
-on<ContainerOption>({ container == "worn_equipment" && option == "Remove" }) { player: Player ->
+on<InventoryOption>({ inventory == "worn_equipment" && option == "Remove" }) { player: Player ->
     player.equipment.move(slot, player.inventory)
     when (player.equipment.transaction.error) {
         TransactionError.None -> playEquipSound(player, item.def)
@@ -55,7 +55,7 @@ on<ContainerOption>({ container == "worn_equipment" && option == "Remove" }) { p
     }
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && index == EquipSlot.Weapon.index }) { player: Player ->
     updateWeaponEmote(player)
 }
 

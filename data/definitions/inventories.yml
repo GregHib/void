@@ -41,7 +41,7 @@ al_kharid_general_store:
     - hammer: 10
     - newcomer_map: 10
     - security_book: 10
-container_4:
+inventory_4:
   id: 4
   defaults:
     - empty_pot: 30
@@ -535,7 +535,7 @@ arheins_store:
     - rope: 10
     - empty_pot: 30
     - knife: 10
-container_48:
+inventory_48:
   id: 48
   defaults:
     - white_candle: 10
@@ -578,7 +578,7 @@ gruds_herblore_stall:
     - pestle_and_mortar: 10
     - eye_of_newt: 10
     - eye_of_newt_pack: 20
-container_51:
+inventory_51:
   id: 51
   defaults:
     - staff: 10
@@ -1118,7 +1118,7 @@ giannes_restaurant:
     - premade_toad_crunchies: 10
     - premade_chocolate_chip_crunchies: 10
     - premade_spicy_crunchies: 10
-container_101:
+inventory_101:
   id: 101
   defaults:
     - bronze_dagger: 1
@@ -1126,21 +1126,21 @@ container_101:
     - bronze_scimitar: 1
     - bronze_longsword: 1
     - bronze_2h_sword: 1
-container_102:
+inventory_102:
   id: 102
   defaults:
     - bronze_hatchet: 1
     - bronze_mace: 1
     - bronze_warhammer: 1
     - bronze_battleaxe: 1
-container_103:
+inventory_103:
   id: 103
   defaults:
     - bronze_chainbody: 1
     - bronze_platelegs: 1
     - bronze_plateskirt: 1
     - bronze_platebody: 1
-container_104:
+inventory_104:
   id: 104
   defaults:
     - bronze_med_helm: 1
@@ -1148,14 +1148,14 @@ container_104:
     - bronze_sq_shield: 1
     - bronze_kiteshield: 1
     - bronze_nails: 15
-container_105:
+inventory_105:
   id: 105
   defaults:
     - bronze_dart_tip: 10
     - bronze_arrowtips: 15
     - bronze_knife: 5
     - bronze_wire: 1
-container_106:
+inventory_106:
   id: 106
   defaults:
     - iron_dagger: 1
@@ -1163,21 +1163,21 @@ container_106:
     - iron_scimitar: 1
     - iron_longsword: 1
     - iron_2h_sword: 1
-container_107:
+inventory_107:
   id: 107
   defaults:
     - iron_hatchet: 1
     - iron_mace: 1
     - iron_warhammer: 1
     - iron_battleaxe: 1
-container_108:
+inventory_108:
   id: 108
   defaults:
     - iron_chainbody: 1
     - iron_platelegs: 1
     - iron_plateskirt: 1
     - iron_platebody: 1
-container_109:
+inventory_109:
   id: 109
   defaults:
     - iron_med_helm: 1
@@ -1185,14 +1185,14 @@ container_109:
     - iron_sq_shield: 1
     - iron_kiteshield: 1
     - iron_nails: 15
-container_110:
+inventory_110:
   id: 110
   defaults:
     - iron_dart_tip: 10
     - iron_arrowtips: 15
     - iron_knife: 5
     - iron_spit: 1
-container_111:
+inventory_111:
   id: 111
   defaults:
     - steel_dagger: 1
@@ -1200,21 +1200,21 @@ container_111:
     - steel_scimitar: 1
     - steel_longsword: 1
     - steel_2h_sword: 1
-container_112:
+inventory_112:
   id: 112
   defaults:
     - steel_hatchet: 1
     - steel_mace: 1
     - steel_warhammer: 1
     - steel_battleaxe: 1
-container_113:
+inventory_113:
   id: 113
   defaults:
     - steel_chainbody: 1
     - steel_platelegs: 1
     - steel_plateskirt: 1
     - steel_platebody: 1
-container_114:
+inventory_114:
   id: 114
   defaults:
     - steel_med_helm: 1
@@ -1222,14 +1222,14 @@ container_114:
     - steel_sq_shield: 1
     - steel_kiteshield: 1
     - steel_nails: 15
-container_115:
+inventory_115:
   id: 115
   defaults:
     - steel_dart_tip: 10
     - steel_arrowtips: 15
     - steel_knife: 5
     - steel_studs: 1
-container_116:
+inventory_116:
   id: 116
   defaults:
     - mithril_dagger: 1
@@ -1237,21 +1237,21 @@ container_116:
     - mithril_scimitar: 1
     - mithril_longsword: 1
     - mithril_2h_sword: 1
-container_117:
+inventory_117:
   id: 117
   defaults:
     - mithril_hatchet: 1
     - mithril_mace: 1
     - mithril_warhammer: 1
     - mithril_battleaxe: 1
-container_118:
+inventory_118:
   id: 118
   defaults:
     - mithril_chainbody: 1
     - mithril_platelegs: 1
     - mithril_plateskirt: 1
     - mithril_platebody: 1
-container_119:
+inventory_119:
   id: 119
   defaults:
     - mithril_med_helm: 1
@@ -1259,13 +1259,13 @@ container_119:
     - mithril_sq_shield: 1
     - mithril_kiteshield: 1
     - mithril_nails: 15
-container_120:
+inventory_120:
   id: 120
   defaults:
     - mithril_dart_tip: 10
     - mithril_arrowtips: 15
     - mithril_knife: 5
-container_121:
+inventory_121:
   id: 121
   defaults:
     - adamant_dagger: 1
@@ -1273,21 +1273,21 @@ container_121:
     - adamant_scimitar: 1
     - adamant_longsword: 1
     - adamant_2h_sword: 1
-container_122:
+inventory_122:
   id: 122
   defaults:
     - adamant_hatchet: 1
     - adamant_mace: 1
     - adamant_warhammer: 1
     - adamant_battleaxe: 1
-container_123:
+inventory_123:
   id: 123
   defaults:
     - adamant_chainbody: 1
     - adamant_platelegs: 1
     - adamant_plateskirt: 1
     - adamant_platebody: 1
-container_124:
+inventory_124:
   id: 124
   defaults:
     - adamant_med_helm: 1
@@ -1295,13 +1295,13 @@ container_124:
     - adamant_sq_shield: 1
     - adamant_kiteshield: 1
     - adamant_nails: 15
-container_125:
+inventory_125:
   id: 125
   defaults:
     - adamant_dart_tip: 10
     - adamant_arrowtips: 15
     - adamant_knife: 5
-container_126:
+inventory_126:
   id: 126
   defaults:
     - rune_dagger: 1
@@ -1309,21 +1309,21 @@ container_126:
     - rune_scimitar: 1
     - rune_longsword: 1
     - rune_2h_sword: 1
-container_127:
+inventory_127:
   id: 127
   defaults:
     - rune_hatchet: 1
     - rune_mace: 1
     - rune_warhammer: 1
     - rune_battleaxe: 1
-container_128:
+inventory_128:
   id: 128
   defaults:
     - rune_chainbody: 1
     - rune_platelegs: 1
     - rune_plateskirt: 1
     - rune_platebody: 1
-container_129:
+inventory_129:
   id: 129
   defaults:
     - rune_med_helm: 1
@@ -1331,7 +1331,7 @@ container_129:
     - rune_sq_shield: 1
     - rune_kiteshield: 1
     - rune_nails: 15
-container_130:
+inventory_130:
   id: 130
   defaults:
     - rune_dart_tip: 10
@@ -1357,11 +1357,11 @@ mage_arena_staves:
     - saradomin_staff: 10
     - guthix_staff: 10
     - zamorak_staff: 10
-container_135:
+inventory_135:
   id: 135
   defaults:
     - rotten_tomato: 100
-container_137:
+inventory_137:
   id: 137
   defaults:
     - toy_horsey_brown: 10
@@ -1470,7 +1470,7 @@ canifis_general_store:
     - hammer: 10
     - sample_bottle: 10
     - knife: 10
-container_146:
+inventory_146:
   id: 146
   defaults:
     - chisel: 10
@@ -1481,7 +1481,7 @@ container_146:
     - thread: 1000
     - holy_mould: 10
     - tiara_mould: 10
-container_147:
+inventory_147:
   id: 147
   defaults:
     - chisel: 10
@@ -1504,33 +1504,33 @@ burthorpe_supplies:
     - hammer: 10
     - knife: 10
     - empty_cup: 10
-container_149:
+inventory_149:
   id: 149
   defaults:
     - asgarnian_ale: 10
     - wizards_mind_bomb: 10
     - dwarven_stout: 10
-container_150:
+inventory_150:
   id: 150
   defaults:
     - bronze_claws: 1
-container_151:
+inventory_151:
   id: 151
   defaults:
     - iron_claws: 1
-container_152:
+inventory_152:
   id: 152
   defaults:
     - steel_claws: 1
-container_153:
+inventory_153:
   id: 153
   defaults:
     - mithril_claws: 1
-container_154:
+inventory_154:
   id: 154
   defaults:
     - adamant_claws: 1
-container_155:
+inventory_155:
   id: 155
   defaults:
     - rune_claws: 1
@@ -1558,7 +1558,7 @@ tamayus_spear_stall:
     - adamant_spear_kp: 10
     - rune_spear_kp: 10
     - cleaning_cloth: 10
-container_159:
+inventory_159:
   id: 159
   defaults:
     - empty_pot: 30
@@ -1649,7 +1649,7 @@ yrsas_shoe_store:
     - fremennik_cloak_purple: 10
     - fremennik_cloak_pink: 10
     - fremennik_cloak_black: 10
-container_209:
+inventory_209:
   id: 209
   defaults:
     - beer: 10
@@ -1837,7 +1837,7 @@ tutabs_magical_market:
     - eye_of_gnome: 10
     - monkey_dentures: 10
     - monkey_talisman: 10
-container_224:
+inventory_224:
   id: 224
   defaults:
     - bronze_scimitar: 10
@@ -1881,7 +1881,7 @@ ranging_guild_ticket_exchange:
     - studded_leather_coif: 1
     - green_dragonhide_body: 1
     - adamant_javelin: 20
-container_231:
+inventory_231:
   id: 231
   defaults:
     - enchanted_gem: 300
@@ -2002,11 +2002,11 @@ sams_wilderness_cape_shop:
     - team_30_cape: 10
     - team_40_cape: 10
     - team_50_cape: 10
-container_248:
+inventory_248:
   id: 248
   defaults:
     - oil_lantern_frame: 1
-container_249:
+inventory_249:
   id: 249
   defaults:
     - bullseye_lantern_frame: 1
@@ -2119,7 +2119,7 @@ the_big_heist_lodge:
   id: 257
   defaults:
     - bandits_brew: 10
-container_258:
+inventory_258:
   id: 258
   defaults:
     - linen: 10
@@ -2159,7 +2159,7 @@ vigrs_warhammers:
     - black_warhammer: 10
     - mithril_warhammer: 10
     - adamant_warhammer: 10
-container_262:
+inventory_262:
   id: 262
   defaults:
     - steel_battleaxe: 10
@@ -2200,7 +2200,7 @@ gunsliks_assorted_items:
     - vial: 300
     - pestle_and_mortar: 10
     - rope: 10
-container_265:
+inventory_265:
   id: 265
   defaults:
     - bronze_pickaxe: 10
@@ -2236,14 +2236,14 @@ carefree_crafting_stall:
     - needle: 10
     - thread: 1000
     - ball_of_wool: 100
-container_269:
+inventory_269:
   id: 269
   defaults:
     - sapphire: 0
     - emerald: 0
     - ruby: 0
     - diamond: 0
-container_270:
+inventory_270:
   id: 270
   defaults:
     - unstrung_symbol: 10
@@ -2288,7 +2288,7 @@ battle_runes:
     - body_rune: 100
     - chaos_rune: 30
     - death_rune: 30
-container_277:
+inventory_277:
   id: 277
   defaults:
     - fire_rune: 1000
@@ -2377,7 +2377,7 @@ richards_farming_shop:
     - barley: 0
     - plant_cure: 10
     - amulet_of_farming_8: 10
-container_282:
+inventory_282:
   id: 282
   defaults:
     - rake: 10
@@ -2532,7 +2532,7 @@ gabootys_tai_bwo_wannai_drinky_store:
     - blurberry_special: 0
     - chocolate_saturday: 0
     - short_green_guy: 0
-container_309:
+inventory_309:
   id: 309
   defaults:
     - oak_blackjack_o: 30
@@ -2540,7 +2540,7 @@ container_309:
     - maple_blackjack_o: 30
     - maple_blackjack: 30
     - willow_blackjack: 30
-container_310:
+inventory_310:
   id: 310
   defaults:
     - oak_blackjack_d: 30
@@ -2548,7 +2548,7 @@ container_310:
     - maple_blackjack_d: 30
     - maple_blackjack: 30
     - willow_blackjack: 30
-container_311:
+inventory_311:
   id: 311
   defaults:
     - menap_headgear_purple: 30
@@ -2559,7 +2559,7 @@ container_311:
     - menaphite_top_red: 30
     - menaphite_robe_red: 30
     - menap_action_kilt_red: 30
-container_312:
+inventory_312:
   id: 312
   defaults:
     - fez: 30
@@ -2567,14 +2567,14 @@ container_312:
     - desert_robes: 30
     - desert_top_overcoat: 30
     - desert_legs: 30
-container_313:
+inventory_313:
   id: 313
   defaults:
     - fire_rune: 300
     - water_rune: 300
     - air_rune: 300
     - earth_rune: 300
-container_314:
+inventory_314:
   id: 314
   defaults:
     - nature_rune: 300
@@ -2623,7 +2623,7 @@ armour_store:
     - mithril_sq_shield: 0
     - mithril_kiteshield: 0
     - mithril_chainbody: 0
-container_320:
+inventory_320:
   id: 320
   defaults:
     - pet_kitten: 1
@@ -2667,7 +2667,7 @@ tzhaar_mej_rohs_rune_store:
     - body_rune: 1000
     - chaos_rune: 300
     - death_rune: 100
-container_328:
+inventory_328:
   id: 328
   defaults:
     - white_chainbody: 10
@@ -2691,7 +2691,7 @@ container_328:
     - white_claws: 0
     - white_2h_sword: 0
     - white_halberd: 0
-container_329:
+inventory_329:
   id: 329
   defaults:
     - white_chainbody: 10
@@ -2715,7 +2715,7 @@ container_329:
     - white_claws: 0
     - white_2h_sword: 0
     - white_halberd: 0
-container_330:
+inventory_330:
   id: 330
   defaults:
     - white_chainbody: 10
@@ -2739,7 +2739,7 @@ container_330:
     - white_claws: 0
     - white_2h_sword: 0
     - white_halberd: 0
-container_331:
+inventory_331:
   id: 331
   defaults:
     - white_chainbody: 10
@@ -2763,7 +2763,7 @@ container_331:
     - white_claws: 0
     - white_2h_sword: 0
     - white_halberd: 0
-container_332:
+inventory_332:
   id: 332
   defaults:
     - white_chainbody: 10
@@ -2816,27 +2816,27 @@ shop_of_distaste:
   shop: true
   defaults:
     - rotten_tomato: 100
-container_337:
+inventory_337:
   id: 337
   defaults:
     - unstrung_symbol: 1
-container_338:
+inventory_338:
   id: 338
   defaults:
     - unstrung_emblem: 1
-container_339:
+inventory_339:
   id: 339
   defaults:
     - silver_sickle: 1
-container_340:
+inventory_340:
   id: 340
   defaults:
     - conductor: 1
-container_341:
+inventory_341:
   id: 341
   defaults:
     - tiara: 1
-container_342:
+inventory_342:
   id: 342
   defaults:
     - demonic_sigil: 1
@@ -2867,7 +2867,7 @@ roks_chocs_box:
   defaults:
     - choc_ice: 10
     - chocolate_bar: 10
-container_346:
+inventory_346:
   id: 346
   defaults:
     - bread: 10
@@ -2962,7 +2962,7 @@ pie_shop:
     - summer_pie: 0
     - pot_of_flour: 100
     - pie_dish: 100
-container_356:
+inventory_356:
   id: 356
   defaults:
     - chocolate_bar: 30
@@ -2984,7 +2984,7 @@ container_356:
     - empty_pot: 1
     - empty_cup: 1
     - bucket: 1
-container_357:
+inventory_357:
   id: 357
   defaults:
     - chocolate_bar: 60
@@ -3006,7 +3006,7 @@ container_357:
     - empty_pot: 2
     - empty_cup: 2
     - bucket: 2
-container_358:
+inventory_358:
   id: 358
   defaults:
     - chocolate_bar: 90
@@ -3028,7 +3028,7 @@ container_358:
     - empty_pot: 3
     - empty_cup: 3
     - bucket: 3
-container_359:
+inventory_359:
   id: 359
   defaults:
     - chocolate_bar: 120
@@ -3050,7 +3050,7 @@ container_359:
     - empty_pot: 4
     - empty_cup: 4
     - bucket: 4
-container_360:
+inventory_360:
   id: 360
   defaults:
     - chocolate_bar: 150
@@ -3072,7 +3072,7 @@ container_360:
     - empty_pot: 5
     - empty_cup: 5
     - bucket: 5
-container_361:
+inventory_361:
   id: 361
   defaults:
     - chocolate_bar: 180
@@ -3094,7 +3094,7 @@ container_361:
     - empty_pot: 6
     - empty_cup: 6
     - bucket: 6
-container_362:
+inventory_362:
   id: 362
   defaults:
     - chocolate_bar: 210
@@ -3116,7 +3116,7 @@ container_362:
     - empty_pot: 7
     - empty_cup: 7
     - bucket: 7
-container_363:
+inventory_363:
   id: 363
   defaults:
     - chocolate_bar: 240
@@ -3138,7 +3138,7 @@ container_363:
     - empty_pot: 8
     - empty_cup: 8
     - bucket: 8
-container_364:
+inventory_364:
   id: 364
   defaults:
     - chocolate_bar: 270
@@ -3182,19 +3182,19 @@ culinaromancers_chest:
     - empty_pot: 10
     - empty_cup: 10
     - bucket: 10
-container_366:
+inventory_366:
   id: 366
   defaults:
     - culinaromancers_gloves_1: 10
     - wooden_spoon: 10
-container_367:
+inventory_367:
   id: 367
   defaults:
     - culinaromancers_gloves_1: 10
     - culinaromancers_gloves_2: 10
     - wooden_spoon: 10
     - egg_whisk: 10
-container_368:
+inventory_368:
   id: 368
   defaults:
     - culinaromancers_gloves_1: 10
@@ -3203,7 +3203,7 @@ container_368:
     - wooden_spoon: 10
     - egg_whisk: 10
     - spork: 10
-container_369:
+inventory_369:
   id: 369
   defaults:
     - culinaromancers_gloves_1: 10
@@ -3214,7 +3214,7 @@ container_369:
     - egg_whisk: 10
     - spork: 10
     - spatula: 10
-container_370:
+inventory_370:
   id: 370
   defaults:
     - culinaromancers_gloves_1: 10
@@ -3227,7 +3227,7 @@ container_370:
     - spork: 10
     - spatula: 10
     - frying_pan: 10
-container_371:
+inventory_371:
   id: 371
   defaults:
     - culinaromancers_gloves_1: 10
@@ -3242,7 +3242,7 @@ container_371:
     - spatula: 10
     - frying_pan: 10
     - skewer: 10
-container_372:
+inventory_372:
   id: 372
   defaults:
     - culinaromancers_gloves_1: 10
@@ -3259,7 +3259,7 @@ container_372:
     - frying_pan: 10
     - skewer: 10
     - rolling_pin: 10
-container_373:
+inventory_373:
   id: 373
   defaults:
     - culinaromancers_gloves_1: 10
@@ -3278,7 +3278,7 @@ container_373:
     - skewer: 10
     - rolling_pin: 10
     - kitchen_knife: 10
-container_374:
+inventory_374:
   id: 374
   defaults:
     - culinaromancers_gloves_1: 10
@@ -3299,7 +3299,7 @@ container_374:
     - rolling_pin: 10
     - kitchen_knife: 10
     - meat_tenderiser: 10
-container_375:
+inventory_375:
   id: 375
   defaults:
     - culinaromancers_gloves_1: 10
@@ -3389,7 +3389,7 @@ lumbridge_guide_quiz_5:
     - water_rune_3: 1
     - logs: 1
     - black_longsword: 1
-container_382:
+inventory_382:
   id: 382
   defaults:
     - silvthrill_rod: 1
@@ -3401,7 +3401,7 @@ aurels_supplies:
     - thin_snail: 10
     - raw_mackerel: 10
     - spade: 10
-container_384:
+inventory_384:
   id: 384
   defaults:
     - jug_of_wine: 10
@@ -3414,7 +3414,7 @@ fortunatos_fine_wine:
     - jug_of_vinegar: 10
     - bottle_of_wine: 10
     - jug: 10
-container_386:
+inventory_386:
   id: 386
   defaults:
     - jug_of_wine: 10
@@ -3459,7 +3459,7 @@ void_knight_general_store:
     - hammer: 10
     - bronze_hatchet: 10
     - field_ration: 50
-container_391:
+inventory_391:
   id: 391
   defaults:
     - empty_pot: 30
@@ -3491,7 +3491,7 @@ miscellanian_clothes_shop:
     - woven_top_blue: 10
     - shirt_tan: 10
     - shirt_lilac: 10
-container_393:
+inventory_393:
   id: 393
   defaults:
     - beer: 10
@@ -3552,7 +3552,7 @@ garden_centre:
     - bagged_sunflower: 10
     - bagged_marigolds: 10
     - bagged_roses: 10
-container_399:
+inventory_399:
   id: 399
   defaults:
     - pond: 1
@@ -3574,7 +3574,7 @@ container_399:
     - spikes: 1
     - steel_plated_door: 1
     - mahogany_chest: 1
-container_400:
+inventory_400:
   id: 400
   defaults:
     - crude_wooden_chair: 1
@@ -3615,7 +3615,7 @@ container_400:
     - skeleton_throne: 1
     - crystal_throne: 1
     - demonic_throne: 1
-container_401:
+inventory_401:
   id: 401
   defaults:
     - wooden_bookcase: 1
@@ -3656,7 +3656,7 @@ container_401:
     - gilded_dresser: 1
     - mahogany_drobe: 1
     - gilded_wardrobe: 1
-container_402:
+inventory_402:
   id: 402
   defaults:
     - clay_fireplace: 1
@@ -3687,7 +3687,7 @@ container_402:
     - marble_fireplace: 1
     - banner_easel: 1
     - bench_with_lathe: 1
-container_403:
+inventory_403:
   id: 403
   defaults:
     - brown_rug: 1
@@ -3725,7 +3725,7 @@ container_403:
     - hanging_skeleton: 1
     - skull_torches: 1
     - large_orrery: 1
-container_404:
+inventory_404:
   id: 404
   defaults:
     - hoop_and_stick: 1
@@ -3751,7 +3751,7 @@ container_404:
     - marble_att_stone: 1
     - archery_target: 1
     - balance_beam: 1
-container_405:
+inventory_405:
   id: 405
   defaults:
     - exit_portal: 1
@@ -3793,7 +3793,7 @@ container_405:
     - marble_wall: 1
     - tall_box_hedge: 1
     - posh_fountain: 1
-container_406:
+inventory_406:
   id: 406
   defaults:
     - cat_blanket: 1
@@ -3822,7 +3822,7 @@ container_406:
     - mahogany_ladder: 1
     - mahogany_lever: 1
     - marble_spiral: 1
-container_407:
+inventory_407:
   id: 407
   defaults:
     - oak_altar: 1
@@ -3855,7 +3855,7 @@ container_407:
     - gilded_altar: 1
     - large_statues: 1
     - stained_glass: 1
-container_408:
+inventory_408:
   id: 408
   defaults:
     - floor_decoration: 1
@@ -3897,7 +3897,7 @@ container_408:
     - marble_door: 1
     - hellhound: 1
     - steel_dragon: 1
-container_409:
+inventory_409:
   id: 409
   defaults:
     - oak_decoration: 1
@@ -4047,7 +4047,7 @@ moon_clan_fine_clothes:
     - moonclan_cape: 10
     - needle: 10
     - thread: 1000
-container_418:
+inventory_418:
   id: 418
   defaults:
     - air_rune: 1000
@@ -4090,7 +4090,7 @@ baba_yagas_magic_shop:
     - staff_of_air: 10
     - staff_of_earth: 10
     - moonclan_manual: 10
-container_427:
+inventory_427:
   id: 427
   defaults:
     - wooden_stock: 10
@@ -4134,45 +4134,45 @@ crossbow_shop:
     - mithril_crossbow: 0
     - adamant_crossbow: 0
     - rune_crossbow: 0
-container_429:
+inventory_429:
   id: 429
   defaults:
     - silver_bolts_unf: 10
-container_430:
+inventory_430:
   id: 430
   defaults:
     - bronze_bolts_unf: 10
     - bronze_limbs: 1
-container_431:
+inventory_431:
   id: 431
   defaults:
     - iron_bolts_unf: 10
     - iron_limbs: 1
-container_432:
+inventory_432:
   id: 432
   defaults:
     - steel_bolts_unf: 10
     - steel_limbs: 1
-container_433:
+inventory_433:
   id: 433
   defaults:
     - mithril_bolts_unf: 10
     - mithril_limbs: 1
-container_434:
+inventory_434:
   id: 434
   defaults:
     - mithril_grapple_tip: 1
-container_435:
+inventory_435:
   id: 435
   defaults:
     - adamant_bolts_unf: 10
     - adamant_limbs: 1
-container_436:
+inventory_436:
   id: 436
   defaults:
     - rune_bolts_unf: 10
     - rune_limbs: 1
-container_440:
+inventory_440:
   id: 440
   defaults:
     - red_circle: 0
@@ -4203,7 +4203,7 @@ container_440:
     - violet_triangle: 0
     - violet_square: 0
     - violet_pentagon: 0
-container_441:
+inventory_441:
   id: 441
   defaults:
     - empty_pot: 30
@@ -4262,7 +4262,7 @@ proselyte_temple_knight_armoury:
     - proselyte_tasset: 10
     - proselyte_harness_m: 10
     - proselyte_harness_f: 10
-container_446:
+inventory_446:
   id: 446
   defaults:
     - mystic_hat: 1
@@ -4314,7 +4314,7 @@ castle_wars_ticket_exchange:
     - void_ranger_helm_2: 1
     - void_mage_helm_2: 1
     - more: 1
-container_448:
+inventory_448:
   id: 448
   defaults:
     - mime_mask_2: 1
@@ -4325,7 +4325,7 @@ container_448:
     - lederhosen_top_2: 1
     - shade_robe: 1
     - swanky_boots_2: 1
-container_449:
+inventory_449:
   id: 449
   defaults:
     - black_platebody_h1_2: 1
@@ -4358,7 +4358,7 @@ container_449:
     - elegant_shirt_3: 1
     - beret_mask: 1
     - more: 1
-container_450:
+inventory_450:
   id: 450
   defaults:
     - red_boater_2: 1
@@ -4391,7 +4391,7 @@ container_450:
     - cat_mask_2: 1
     - pith_helmet_2: 1
     - more: 1
-container_451:
+inventory_451:
   id: 451
   defaults:
     - rune_platebody_h1_2: 1
@@ -4424,7 +4424,7 @@ container_451:
     - rune_cane_2: 1
     - top_hat_2: 1
     - more: 1
-container_452:
+inventory_452:
   id: 452
   defaults:
     - cape_of_legends_3: 1
@@ -4457,7 +4457,7 @@ container_452:
     - hunter_cape_2: 1
     - quest_point_cape_2: 1
     - more: 1
-container_453:
+inventory_453:
   id: 453
   defaults:
     - reindeer_hat_2: 1
@@ -4491,7 +4491,7 @@ container_453:
     - ice_amulet_2: 1
     - easter_carrot_2: 1
     - more: 1
-container_454:
+inventory_454:
   id: 454
   defaults:
     - oak_magic_wardrobe: 1
@@ -4605,7 +4605,7 @@ character_creation_3:
     - character_creation_1: 1
     - character_creation_14: 1
     - character_creation_15: 1
-container_464:
+inventory_464:
   id: 464
   defaults:
     - driftwood_hunter: 150
@@ -4625,7 +4625,7 @@ leprechaun_larrys_farming_supplies:
     - plant_cure: 10
     - cocktail_glass: 10
     - rock_ore: 10
-container_466:
+inventory_466:
   id: 466
   defaults:
     - bronze_bolts: 300
@@ -4657,7 +4657,7 @@ container_466:
     - studded_body: 10
     - studded_chaps: 10
     - fletching_cape: 1
-container_467:
+inventory_467:
   id: 467
   defaults:
     - bronze_bolts: 300
@@ -4689,7 +4689,7 @@ container_467:
     - studded_body: 10
     - studded_chaps: 10
     - fletching_cape_t: 1
-container_482:
+inventory_482:
   id: 482
   defaults:
     - polar_camo_top: 1
@@ -4725,7 +4725,7 @@ alecks_hunter_emporium:
     - unlit_torch: 10
     - rabbit_snare: 30
     - grenwall_spikes: 0
-container_484:
+inventory_484:
   id: 484
   defaults:
     - butterfly_net: 10
@@ -4738,7 +4738,7 @@ container_484:
     - unlit_torch: 10
     - rabbit_snare: 30
     - grenwall_spikes: 0
-container_485:
+inventory_485:
   id: 485
   defaults:
     - black_cane_2: 1
@@ -4750,7 +4750,7 @@ character_creation_7:
     - character_creation_1: 1
     - character_creation_11: 1
     - character_creation_10: 1
-container_487:
+inventory_487:
   id: 487
   defaults:
     - fox_mask_2: 1
@@ -4760,7 +4760,7 @@ container_487:
     - blue_dragon_mask_2: 1
     - red_dragon_mask_2: 1
     - back: 1
-container_488:
+inventory_488:
   id: 488
   defaults:
     - summoning_cape_2: 1
@@ -4778,7 +4778,7 @@ avas_odds_and_ends:
     - steel_arrow: 1000
     - iron_arrowtips: 1000
     - steel_arrowtips: 1000
-container_491:
+inventory_491:
   id: 491
   defaults:
     - chisel: 10
@@ -4829,7 +4829,7 @@ raetul_and_cos_cloth_store:
     - silk: 10
     - thread: 1000
     - needle: 10
-container_496:
+inventory_496:
   id: 496
   defaults:
     - black_platebody_h1: 1
@@ -4862,13 +4862,13 @@ container_496:
     - blue_elegant_shirt: 1
     - beret_and_mask: 1
     - more: 1
-container_497:
+inventory_497:
   id: 497
   defaults:
     - black_cane: 1
     - spiked_helmet: 1
     - back: 1
-container_498:
+inventory_498:
   id: 498
   defaults:
     - red_boater: 1
@@ -4906,7 +4906,7 @@ character_creation_12:
   defaults:
     - character_creation_1: 1
     - character_creation_12: 1
-container_500:
+inventory_500:
   id: 500
   defaults:
     - rune_platebody_h1: 1
@@ -4939,7 +4939,7 @@ container_500:
     - rune_cane: 1
     - top_hat: 1
     - more: 1
-container_501:
+inventory_501:
   id: 501
   defaults:
     - fox_mask: 1
@@ -5013,7 +5013,7 @@ contraband_yak_produce:
     - yak_hide: 1000
     - raw_yak_meat: 10
     - yak_hair: 10
-container_509:
+inventory_509:
   id: 509
   defaults:
     - thin_snail_meat: 1
@@ -5155,7 +5155,7 @@ beefy_bills_supplies:
     - bronze_sq_shield: 10
     - shortbow: 10
     - bronze_arrow: 30
-container_537:
+inventory_537:
   id: 537
   defaults:
     - void_knight_deflector_2: 1
@@ -5270,7 +5270,7 @@ bobs_brilliant_axes_sample:
   defaults:
     - bronze_pickaxe: 1
     - bronze_hatchet: 1
-container_555:
+inventory_555:
   id: 555
   defaults:
     - bronze_sword: 1
@@ -5333,43 +5333,43 @@ elnocks_backup_supply:
   id: 564
   defaults:
     - impling_jar: 10
-container_565:
+inventory_565:
   id: 565
   defaults:
     - noose_wand: 1
     - bird_snare: 1
-container_566:
+inventory_566:
   id: 566
   defaults:
     - noose_wand: 1
     - bird_snare: 1
-container_567:
+inventory_567:
   id: 567
   defaults:
     - butterfly_net: 5
     - butterfly_jar: 30
     - noose_wand: 5
     - bird_snare: 20
-container_568:
+inventory_568:
   id: 568
   defaults:
     - butterfly_net: 5
     - butterfly_jar: 30
     - noose_wand: 5
     - bird_snare: 20
-container_569:
+inventory_569:
   id: 569
   defaults:
     - rock_climbing_boots: 30
-container_570:
+inventory_570:
   id: 570
   defaults:
     - bronze_pickaxe: 5
-container_571:
+inventory_571:
   id: 571
   defaults:
     - poison_chalice: 30
-container_572:
+inventory_572:
   id: 572
   defaults:
     - air_rune: 300
@@ -5394,20 +5394,20 @@ dodgy_dereks_dirty_deals:
     - rubber_blackjack: 100
     - tinderbox: 10
     - rope: 10
-container_576:
+inventory_576:
   id: 576
   defaults:
     - willow_blackjack: 5
     - rubber_blackjack: 100
     - tinderbox: 10
     - rope: 10
-container_577:
+inventory_577:
   id: 577
   defaults:
     - lockpick: 2
     - tinderbox: 10
     - rope: 10
-container_578:
+inventory_578:
   id: 578
   defaults:
     - tinderbox: 10
@@ -5420,7 +5420,7 @@ the_milk_shop:
   id: 580
   defaults:
     - bucket_of_milk: 200
-container_581:
+inventory_581:
   id: 581
   defaults:
     - black_dragon_mask_2: 1
@@ -5441,7 +5441,7 @@ container_581:
     - armadyl_dragonhide: 1
     - bandos_dragonhide: 1
     - ancient_dragonhide: 1
-container_582:
+inventory_582:
   id: 582
   defaults:
     - black_dragon_mask: 1
@@ -5462,7 +5462,7 @@ container_582:
     - armadyl_body: 1
     - bandos_body: 1
     - ancient_body: 1
-container_585:
+inventory_585:
   id: 585
   defaults:
     - character_creation_shadow: 1
@@ -5547,7 +5547,7 @@ yaktwees_invizzy_critters_stall:
   defaults:
     - sprite_lure: 1
     - yaktwee_stick: 1
-container_602:
+inventory_602:
   id: 602
   defaults:
     - amulet_of_accuracy: 30
@@ -5589,7 +5589,7 @@ monkey_colony_general_store:
     - desert_shirt: 1
     - desert_robe: 1
     - desert_boots: 1
-container_606:
+inventory_606:
   id: 606
   defaults:
     - uncut_sapphire: 1

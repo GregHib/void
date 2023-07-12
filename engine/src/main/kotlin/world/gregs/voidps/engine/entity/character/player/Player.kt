@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.contain.Containers
+import world.gregs.voidps.engine.contain.Inventories
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
@@ -48,7 +48,7 @@ import kotlin.coroutines.Continuation
 class Player(
     override var index: Int = -1,
     override var tile: Tile = Tile.EMPTY,
-    val containers: Containers = Containers(),
+    val inventories: Inventories = Inventories(),
     variables: MutableMap<String, Any> = mutableMapOf(),
     val experience: Experience = Experience(),
     override val levels: Levels = Levels(),

@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.contain.sendContainer
+import world.gregs.voidps.engine.contain.sendInventory
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -32,13 +32,13 @@ on<InterfaceOpened>({ id == "character_creation" }) { player: Player ->
     player.sendVariable("character_creation_hair_style")
     player.sendVariable("character_creation_colour_offset")
     for (i in 1 until 20) {
-        player.sendContainer("character_creation_${i}")
+        player.sendInventory("character_creation_${i}")
     }
 }
 
 on<InterfaceClosed>({ id == "character_creation" }) { player: Player ->
     for (i in 1 until 20) {
-        player.containers.clear("character_creation_${i}")
+        player.inventories.clear("character_creation_${i}")
     }
 }
 

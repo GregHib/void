@@ -6,10 +6,10 @@ xp_counter:
   id: 1801
   persist: true
   format: double
-main_container:
+main_inventory:
   id: 118
   default: -1
-free_container:
+free_inventory:
   id: 1496
   default: -1
 shop_currency:

@@ -37,7 +37,7 @@ internal class MagicTest : WorldTest() {
         player.levels.set(Skill.Magic, 1)
         player.inventory.add("lumbridge_teleport")
 
-        player.interfaceOption("inventory", "container", "Break", 0, Item("lumbridge_teleport"), 0)
+        player.interfaceOption("inventory", "inventory", "Break", 0, Item("lumbridge_teleport"), 0)
         tick(5)
 
         assertTrue(player.inventory.isEmpty())

@@ -1,23 +1,23 @@
 package world.gregs.voidps.engine.contain.transact.operation
 
-import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.Inventory
 
 /**
- * Transaction operation for moving an item inside a container.
- * The moveToLimit operation moves items from the current container to another container until
- * the target container reaches its capacity or the desired amount is moved.
+ * Transaction operation for moving an item inside an inventory.
+ * The moveToLimit operation moves items from the current inventory to another inventory until
+ * the target inventory reaches its capacity or the desired amount is moved.
  */
 interface MoveItemLimit : RemoveItemLimit {
 
     /**
-     * Moves items from the current container to another container until the target
-     * container reaches its capacity or the desired amount is moved.
+     * Moves items from the current inventory to another inventory until the target
+     * inventory reaches its capacity or the desired amount is moved.
      * @param id the identifier of the item to be moved.
      * @param amount the number of items to be moved.
-     * @param target the target container for the items.
+     * @param target the target inventory for the items.
      * @return the number of items actually moved.
      */
-    fun moveToLimit(id: String, amount: Int, target: Container, replace: String = id): Int {
+    fun moveToLimit(id: String, amount: Int, target: Inventory, replace: String = id): Int {
         if (failed) {
             return 0
         }
@@ -43,16 +43,16 @@ interface MoveItemLimit : RemoveItemLimit {
     }
 
     /**
-     * Moves as many items from the current container to another container until the target
-     * container reaches its capacity or everything is moved.
-     * @param target the target container for the items.
+     * Moves as many items from the current inventory to another inventory until the target
+     * inventory reaches its capacity or everything is moved.
+     * @param target the target inventory for the items.
      */
-    fun moveAllToLimit(target: Container) {
+    fun moveAllToLimit(target: Inventory) {
         if (failed) {
             return
         }
-        for (index in container.indices) {
-            val item = container[index]
+        for (index in inventory.indices) {
+            val item = inventory[index]
             if (item.isEmpty()) {
                 continue
             }

@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.command.debug
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.sendContainerItems
 import world.gregs.voidps.engine.client.sendInterfaceSettings
+import world.gregs.voidps.engine.client.sendInventoryItems
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
@@ -75,10 +75,10 @@ on<Command>({ prefix == "script" }) { player: Player ->
 
 on<Command>({ prefix == "sendItems" }) { player: Player ->
     repeat(1200) {
-        player.sendContainerItems(it, 0, intArrayOf(), false)
+        player.sendInventoryItems(it, 0, intArrayOf(), false)
     }
-    for (container in 0 until 1200) {
-        player.sendContainerItems(container, 1, intArrayOf(995, 100), false)
+    for (inventory in 0 until 1200) {
+        player.sendInventoryItems(inventory, 1, intArrayOf(995, 100), false)
     }
 }
 

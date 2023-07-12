@@ -20,8 +20,8 @@ val enums: EnumDefinitions by inject()
 on<InterfaceOption>({ id == "shop" && option == "Info" }) { player: Player ->
     val sample = component == "sample"
     val actualIndex = itemSlot / (if (sample) 4 else 6)
-    val container = player.shopContainer(sample)
-    val item = container[actualIndex]
+    val inventory = player.shopInventory(sample)
+    val item = inventory[actualIndex]
     player["info_sample"] = sample
     player["info_index"] = actualIndex
     showInfo(player, item, actualIndex, sample)
@@ -29,13 +29,13 @@ on<InterfaceOption>({ id == "shop" && option == "Info" }) { player: Player ->
 
 on<InterfaceOption>({ id == "item_info" && component == "exit" }) { player: Player ->
     player.open("shop_side")
-    player.interfaceOptions.send("shop_side", "container")
+    player.interfaceOptions.send("shop_side", "inventory")
 }
 
 on<ItemChanged>({ it.contains("shop") && it.contains("info_sample") && it.contains("info_index") }) { player: Player ->
     val shop: String = player["shop"]
     val index: Int = player["info_index"]
-    if (container == shop && this.index == index) {
+    if (inventory == shop && this.index == index) {
         player["item_info_price"] = if (this.item.amount == 0) 0 else Price.getPrice(player, item.id, index, this.item.amount)
     }
 }
