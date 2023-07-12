@@ -1,12 +1,12 @@
 package world.gregs.voidps.world.activity.bank
 
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.contain.Inventory
-import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.hasItem
 
 object Bank {
     const val tabCount = 8

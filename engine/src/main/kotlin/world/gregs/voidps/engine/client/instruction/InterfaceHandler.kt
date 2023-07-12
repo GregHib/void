@@ -2,12 +2,12 @@ package world.gregs.voidps.engine.client.instruction
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
-import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.equipment
 
 class InterfaceHandler(
     private val itemDefinitions: ItemDefinitions,

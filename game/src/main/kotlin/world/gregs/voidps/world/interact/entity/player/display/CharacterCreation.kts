@@ -6,13 +6,13 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.contain.sendInventory
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.armParam

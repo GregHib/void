@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.contain.Inventories
+import world.gregs.voidps.engine.inv.Inventories
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered

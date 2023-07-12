@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
-import world.gregs.voidps.engine.contain.add
-import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.world.script.WorldTest

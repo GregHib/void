@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.interact.entity.npc.shop
 
 import world.gregs.voidps.cache.config.data.InventoryDefinition
-import world.gregs.voidps.engine.contain.add
-import world.gregs.voidps.engine.contain.remove
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
@@ -70,7 +70,7 @@ fun restock() {
     }
 }
 
-fun restock(def: InventoryDefinition, inventory: world.gregs.voidps.engine.contain.Inventory) {
+fun restock(def: InventoryDefinition, inventory: world.gregs.voidps.engine.inv.Inventory) {
     val defaults = def.getOrNull<List<Map<String, Int>>>("defaults")
     for (index in 0 until def.length) {
         val map = defaults?.getOrNull(index)

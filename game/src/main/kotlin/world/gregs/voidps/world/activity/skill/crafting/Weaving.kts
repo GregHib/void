@@ -4,8 +4,8 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
-import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.contain.transact.TransactionError
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.data.definition.data.Weaving
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player

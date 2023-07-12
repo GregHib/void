@@ -2,8 +2,8 @@ package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.contain.restrict.ItemRestrictionRule
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player

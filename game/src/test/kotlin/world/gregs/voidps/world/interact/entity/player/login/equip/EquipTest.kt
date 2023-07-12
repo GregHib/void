@@ -3,13 +3,13 @@ package world.gregs.voidps.world.interact.entity.player.login.equip
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.contain.add
-import world.gregs.voidps.engine.contain.equipment
-import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.interfaceOption

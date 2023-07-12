@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.Registered
@@ -39,6 +38,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.pauseForever

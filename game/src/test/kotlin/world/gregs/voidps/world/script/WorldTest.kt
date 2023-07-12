@@ -23,7 +23,7 @@ import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.contain.Inventory
+import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World

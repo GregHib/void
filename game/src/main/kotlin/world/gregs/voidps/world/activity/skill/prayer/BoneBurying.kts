@@ -4,13 +4,13 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.contain.clear
-import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.clear
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
 

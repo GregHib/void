@@ -2,16 +2,16 @@ package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
-import world.gregs.voidps.engine.client.variable.*
-import world.gregs.voidps.engine.contain.add
-import world.gregs.voidps.engine.contain.hasItem
-import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.contain.remove
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.interact.dialogue.Talk

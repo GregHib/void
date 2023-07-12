@@ -7,8 +7,6 @@ import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
 import world.gregs.voidps.engine.client.ui.interact.either
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.contain.clear
-import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.data.Fire
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
@@ -29,6 +27,8 @@ import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.clear
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause

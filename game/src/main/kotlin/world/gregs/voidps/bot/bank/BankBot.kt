@@ -5,10 +5,10 @@ import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.cancel
 import world.gregs.voidps.bot.navigation.goToNearest
 import world.gregs.voidps.engine.client.ui.menu
-import world.gregs.voidps.engine.contain.equipment
-import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.instruct.EnterInt
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.world.activity.bank.bank

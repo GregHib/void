@@ -5,9 +5,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
-import world.gregs.voidps.engine.contain.add
-import world.gregs.voidps.engine.contain.hasItem
-import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Ore
 import world.gregs.voidps.engine.data.definition.data.Rock
@@ -29,6 +26,9 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause

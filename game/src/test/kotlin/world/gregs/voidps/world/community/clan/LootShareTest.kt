@@ -7,11 +7,11 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
+import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.ClanChatJoin
 import world.gregs.voidps.network.visual.update.player.EquipSlot

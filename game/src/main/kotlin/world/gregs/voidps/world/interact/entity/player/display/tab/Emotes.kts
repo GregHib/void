@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.facing
@@ -22,6 +21,7 @@ import world.gregs.voidps.engine.entity.item.isSkillCape
 import world.gregs.voidps.engine.entity.item.isTrimmedSkillCape
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.playAnimation

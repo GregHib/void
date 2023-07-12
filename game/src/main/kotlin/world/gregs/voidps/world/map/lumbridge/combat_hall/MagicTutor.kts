@@ -2,8 +2,6 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.contain.add
-import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
@@ -11,6 +9,8 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.hasBanked

@@ -3,8 +3,8 @@ package world.gregs.voidps.world.map.al_kharid
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.contain.remove
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPC

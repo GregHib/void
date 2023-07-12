@@ -2,13 +2,13 @@ package world.gregs.voidps.world.activity.skill.cooking
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
-import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.contain.replace
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 

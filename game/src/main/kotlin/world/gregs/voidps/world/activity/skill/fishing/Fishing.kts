@@ -6,12 +6,8 @@ import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.variable.*
-import world.gregs.voidps.engine.contain.add
-import world.gregs.voidps.engine.contain.hasItem
-import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.contain.remove
-import world.gregs.voidps.engine.contain.transact.TransactionError
+import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Catch
 import world.gregs.voidps.engine.data.definition.data.Spot
@@ -28,6 +24,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.succe
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 

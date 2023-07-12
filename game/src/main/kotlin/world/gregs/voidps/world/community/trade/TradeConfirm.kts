@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.event.on

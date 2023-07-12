@@ -5,9 +5,9 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.contain.Inventory
-import world.gregs.voidps.engine.contain.ItemChanged
-import world.gregs.voidps.engine.contain.sendInventory
+import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.ItemChanged
+import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.npc.NPCOption

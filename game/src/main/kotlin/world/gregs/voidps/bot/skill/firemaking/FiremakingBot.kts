@@ -12,7 +12,6 @@ import world.gregs.voidps.bot.skill.combat.getGear
 import world.gregs.voidps.bot.skill.combat.getSuitableItem
 import world.gregs.voidps.bot.skill.combat.hasExactGear
 import world.gregs.voidps.bot.skill.combat.setupGear
-import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Registered
@@ -24,6 +23,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.network.instruct.InteractInterfaceItem
 

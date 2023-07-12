@@ -4,8 +4,8 @@ import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
-import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.contain.replace
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.data.definition.data.Spinning
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player

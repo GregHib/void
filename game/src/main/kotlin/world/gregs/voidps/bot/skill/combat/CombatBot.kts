@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Registered
@@ -31,6 +30,7 @@ import world.gregs.voidps.engine.entity.item.hasRequirements
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing

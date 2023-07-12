@@ -4,9 +4,9 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.contain.moveToLimit
-import world.gregs.voidps.engine.contain.transact.TransactionError
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.moveToLimit
+import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -47,7 +47,7 @@ on<InterfaceOption>({ id == "shop" && component == "sample" && option.startsWith
     take(player, player.shopInventory(true), itemSlot / 4, amount)
 }
 
-fun take(player: Player, shop: world.gregs.voidps.engine.contain.Inventory, index: Int, amount: Int) {
+fun take(player: Player, shop: world.gregs.voidps.engine.inv.Inventory, index: Int, amount: Int) {
     val item = shop[index]
     if (item.isEmpty()) {
         logger.warn { "Error taking from shop ${shop.id} $index $amount" }
@@ -78,7 +78,7 @@ on<InterfaceOption>({ id == "shop" && component == "stock" && option.startsWith(
     buy(player, player.shopInventory(false), itemSlot / 6, amount)
 }
 
-fun buy(player: Player, shop: world.gregs.voidps.engine.contain.Inventory, index: Int, amount: Int) {
+fun buy(player: Player, shop: world.gregs.voidps.engine.inv.Inventory, index: Int, amount: Int) {
     val item = shop[index]
     val price = Price.getPrice(player, item.id, index, amount)
     val currency: String = player["shop_currency", "coins"]
