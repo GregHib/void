@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.map.wizards_tower
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -9,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.engine.inv.inventory
@@ -488,10 +490,11 @@ fun CharacterContext.questComplete() {
     player.inc("quest_points")
     player.message("Congratulations, you've completed a quest: <col=081190>Rune Mysteries</col>")
     player.refreshQuestJournal()
-    val lines = listOf(
-        "1 Quest Point",
-        "An Air Talisman",
-        "Rune Essence Mine Access"
-    )
-    player.sendQuestComplete("Rune Mysteries", lines, Item("air_talisman"))
+    player.softQueue("quest_complete", 1) {
+        player.sendQuestComplete("Rune Mysteries", listOf(
+            "1 Quest Point",
+            "An Air Talisman",
+            "Rune Essence Mine Access"
+        ), Item("air_talisman"))
+    }
 }

@@ -13,9 +13,10 @@ on<InterfaceOpened>({ id == "quest_journals" }) { player: Player ->
     player.sendVariable("unstable_foundations")
     //free
     player.sendVariable("cooks_assistant")
-    player.sendVariable("dorics_quest")
-    player.sendVariable("rune_mysteries")
     player.sendVariable("demon_slayer")
+    player.sendVariable("dorics_quest")
+    player.sendVariable("the_knights_sword")
+    player.sendVariable("rune_mysteries")
     //members
 }
 

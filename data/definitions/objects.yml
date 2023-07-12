@@ -1406,6 +1406,12 @@ gate_55_opened:
 gate_55_closed:
   id: 2438
   examine: "A wooden gate."
+cupboard_the_knights_sword_closed:
+  id: 2271
+  examine: "I wonder what's inside?"
+cupboard_the_knights_sword_opened:
+  id: 2272
+  examine: "It's open."
 gate_56_opened:
   id: 2264
 gate_56_closed:

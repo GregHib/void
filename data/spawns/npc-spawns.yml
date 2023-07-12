@@ -362,6 +362,8 @@
 - { id: iffie, x: 3204, y: 3419, direction: SOUTH }
 - { id: gypsy_aris, x: 3202, y: 3424 }
 - { id: ash_cleaner, x: 3252, y: 3428 }
+- { id: surok_magis, x: 3208, y: 3496 }
+- { id: reldo, x: 3209, y: 3495 }
 ## Palace
 - { id: sir_prysin, x: 3205, y: 3472 }
 - { id: captain_rovin, x: 3204, y: 3496, level: 2 }
@@ -389,9 +391,12 @@
 - { id: hairdresser, x: 2946, y: 3379 }
 - { id: makeover_mage_male, x: 2916, y: 3323 }
 - { id: iconis, x: 2930, y: 3326, direction: SOUTH }
+- { id: squire_asrol, x: 2975, y: 3343 }
 # Rellekka
 - { id: yrsa, x: 2625, y: 3675, members: true }
 # Neitiznot
 - { id: thakkrad_sigmundson, x: 2334, y: 3798, members: true, direction: EAST }
 # Taverley
 - { id: nora_t_hagg, x: 2904, y: 3463, members: true }
+# Port Sarim
+- { id: thurgo, x: 3001, y: 3144 }
