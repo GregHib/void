@@ -1,24 +1,17 @@
 package world.gregs.voidps.world.interact.dialogue
 
-import io.mockk.*
-import org.junit.jupiter.api.BeforeEach
+import io.mockk.coVerify
+import io.mockk.every
+import io.mockk.verify
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
 import world.gregs.voidps.world.interact.dialogue.type.levelUp
 import kotlin.test.assertTrue
 
 internal class LevelUpTest : DialogueTest() {
-
-    @BeforeEach
-    override fun setup() {
-        super.setup()
-        mockkStatic("world.gregs.voidps.engine.client.variable.VariablesKt")
-        every { player[any()] = any<Int>() } just Runs
-    }
 
     @Test
     fun `Send level up`() {

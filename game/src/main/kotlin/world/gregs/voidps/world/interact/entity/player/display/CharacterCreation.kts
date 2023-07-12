@@ -6,8 +6,6 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.sendVariable
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.sendContainer
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions

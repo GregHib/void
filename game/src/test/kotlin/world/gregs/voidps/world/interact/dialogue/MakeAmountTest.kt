@@ -1,6 +1,9 @@
 package world.gregs.voidps.world.interact.dialogue
 
-import io.mockk.*
+import io.mockk.coVerify
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -8,9 +11,6 @@ import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.sendVariable
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
@@ -19,16 +19,12 @@ import kotlin.test.assertNotNull
 
 internal class MakeAmountTest : DialogueTest() {
 
-    lateinit var interfaceOptions: InterfaceOptions
+    private lateinit var interfaceOptions: InterfaceOptions
 
     @BeforeEach
     override fun setup() {
         super.setup()
-        mockkStatic("world.gregs.voidps.engine.client.variable.VariablesKt")
         interfaceOptions = mockk(relaxed = true)
-        every { player.sendVariable(any()) } just Runs
-        every { player[any()] = any<Int>() } just Runs
-        every { player[any(), any<Int>()] } returns 0
         player.interfaceOptions = interfaceOptions
         declareMock<ItemDefinitions> {
             every { this@declareMock.get("1").id } returns 1
@@ -73,7 +69,7 @@ internal class MakeAmountTest : DialogueTest() {
 
     @Test
     fun `Persistent amount exceeding maximum will be capped`() {
-        every { player["skill_creation_amount", any<Int>()] } returns 30
+        player.variables.set("skill_creation_amount", 30)
         dialogue {
             makeAmount(listOf("1", "2", "3"), "ants", 25)
         }

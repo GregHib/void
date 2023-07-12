@@ -2,9 +2,6 @@ package world.gregs.voidps.world.activity.bank
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.inc
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.contain.shift
 import world.gregs.voidps.engine.contain.swap

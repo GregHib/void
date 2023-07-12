@@ -1,9 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import org.rsmod.game.pathfinder.LineValidator
-import world.gregs.voidps.engine.client.variable.clear
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player

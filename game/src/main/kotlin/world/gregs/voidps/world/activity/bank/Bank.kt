@@ -1,8 +1,6 @@
 package world.gregs.voidps.world.activity.bank
 
-import world.gregs.voidps.engine.client.variable.dec
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.data.definition.ItemDefinitions

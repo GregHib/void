@@ -1,6 +1,5 @@
 package world.gregs.voidps.bot.navigation.graph
 
-import world.gregs.voidps.engine.client.variable.getOrPut
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.network.Instruction

@@ -4,8 +4,6 @@ import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.variable.PlayerVariables
-import world.gregs.voidps.engine.client.variable.contains
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.Containers
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.restrict.ValidItemRestriction

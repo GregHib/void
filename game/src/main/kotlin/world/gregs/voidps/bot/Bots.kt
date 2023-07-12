@@ -9,7 +9,6 @@ import world.gregs.voidps.bot.shop.buy
 import world.gregs.voidps.bot.shop.closeShop
 import world.gregs.voidps.bot.shop.openNearestShop
 import world.gregs.voidps.engine.client.ui.dialogue
-import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions

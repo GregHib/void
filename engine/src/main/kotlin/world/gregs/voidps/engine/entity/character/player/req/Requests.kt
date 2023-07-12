@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.entity.character.player.req
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.client.variable.getOrPut
 
 fun Player.hasRequest(target: Player, type: String): Boolean {
     return getSet(type).contains(target.name)

@@ -5,8 +5,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.inc
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.beastOfBurden
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.inventory

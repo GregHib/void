@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.energy
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.move.running

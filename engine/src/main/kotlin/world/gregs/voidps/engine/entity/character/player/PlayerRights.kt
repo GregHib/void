@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.entity.character.player
 
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
 
 enum class PlayerRights {
     None,

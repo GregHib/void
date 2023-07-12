@@ -10,14 +10,12 @@ import org.koin.dsl.module
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.EventHandlerStore
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.script.KoinMock
@@ -28,6 +26,7 @@ import world.gregs.voidps.network.encode.sendBatch
 import world.gregs.voidps.network.encode.zone.ObjectAddition
 import world.gregs.voidps.network.encode.zone.ObjectRemoval
 import world.gregs.voidps.network.encode.zone.ZoneUpdate
+import world.gregs.voidps.type.Tile
 
 internal class ZoneBatchUpdatesTest : KoinMock() {
 

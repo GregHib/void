@@ -45,7 +45,7 @@ abstract class DialogueTest : KoinMock() {
     @BeforeEach
     open fun setup() {
         mockkStatic("world.gregs.voidps.engine.client.ui.InterfacesKt")
-        player = Player()
+        player = spyk(Player())
         interfaces = mockk(relaxed = true)
         player.interfaces = interfaces
         definitions = declareMock()

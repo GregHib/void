@@ -1,6 +1,9 @@
 package world.gregs.voidps.engine.entity
 
+import org.koin.core.component.KoinComponent
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.client.variable.Variable
+import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.Events
@@ -11,9 +14,11 @@ import java.util.concurrent.ConcurrentHashMap
 const val MAX_PLAYERS = 0x800 // 2048
 const val MAX_NPCS = 0x8000 // 32768
 
-object World : Entity, EventDispatcher, Runnable {
+object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
     override var tile = Tile.EMPTY
     override val events: Events = Events(this)
+
+    override val variables = Variables(events)
 
     const val id = 16
     const val name = "World $id"

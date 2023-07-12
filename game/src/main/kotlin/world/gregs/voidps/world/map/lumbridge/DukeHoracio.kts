@@ -2,7 +2,6 @@ package world.gregs.voidps.world.map.lumbridge
 
 
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
