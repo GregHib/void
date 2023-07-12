@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.network.instruct.InteractInterfaceObject
+import world.gregs.voidps.type.Tile
 
 class InterfaceOnObjectOptionHandler(
     private val objects: GameObjects,
@@ -24,7 +24,7 @@ class InterfaceOnObjectOptionHandler(
             return
         }
 
-        val (id, component, item, container) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
+        val (id, component, item, inventory) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
         player.mode = Interact(player, obj, ItemOnObject(
             player,
             obj,
@@ -32,7 +32,7 @@ class InterfaceOnObjectOptionHandler(
             component,
             item,
             itemSlot,
-            container
+            inventory
         ))
     }
 }

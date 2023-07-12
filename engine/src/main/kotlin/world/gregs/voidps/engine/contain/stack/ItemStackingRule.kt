@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.contain.stack
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 
 /**
- * Rules for whether items can be stacked in a container
+ * Rules for whether items can be stacked in an inventory
  */
 interface ItemStackingRule {
     /**

@@ -5,8 +5,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.engine.client.variable.toggle
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -16,7 +14,7 @@ import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
 val logger = InlineLogger()
 
-on<InterfaceOption>({ id == "bank" && component == "container" && option.startsWith("Withdraw") }) { player: Player ->
+on<InterfaceOption>({ id == "bank" && component == "inventory" && option.startsWith("Withdraw") }) { player: Player ->
     val amount = when (option) {
         "Withdraw-1" -> 1
         "Withdraw-5" -> 5
@@ -29,7 +27,7 @@ on<InterfaceOption>({ id == "bank" && component == "container" && option.startsW
     withdraw(player, item, itemSlot, amount)
 }
 
-on<InterfaceOption>({ id == "bank" && component == "container" && option == "Withdraw-X" }) { player: Player ->
+on<InterfaceOption>({ id == "bank" && component == "inventory" && option == "Withdraw-X" }) { player: Player ->
     val amount = intEntry("Enter amount:")
     player["last_bank_amount"] = amount
     withdraw(player, item, itemSlot, amount)
@@ -57,7 +55,7 @@ fun withdraw(player: Player, item: Item, index: Int, amount: Int) {
             error = TransactionError.Full()
             return@transaction
         }
-        if (container[index].isEmpty()) {
+        if (inventory[index].isEmpty()) {
             shiftToFreeIndex(index)
             removed = true
         }

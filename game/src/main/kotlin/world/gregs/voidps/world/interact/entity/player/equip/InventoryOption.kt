@@ -4,9 +4,9 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 
-data class ContainerOption(
+data class InventoryOption(
     override val player: Player,
-    val container: String,
+    val inventory: String,
     val item: Item,
     val slot: Int,
     val option: String

@@ -3,17 +3,17 @@ package world.gregs.voidps.world.interact.entity.npc.shop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 
-on<InterfaceOption>({ id == "shop_side" && component == "container" && option == "Value" }) { player: Player ->
-    val container = player.shopContainer(false)
-    if (container.restricted(item.id)) {
+on<InterfaceOption>({ id == "shop_side" && component == "inventory" && option == "Value" }) { player: Player ->
+    val inventory = player.shopInventory(false)
+    if (inventory.restricted(item.id)) {
         player.message("You can't sell this item to this shop.")
         return@on
     }
@@ -22,7 +22,7 @@ on<InterfaceOption>({ id == "shop_side" && component == "container" && option ==
     player.message("${item.def.name}: shop will buy for $price $currency.")
 }
 
-on<InterfaceOption>({ id == "shop_side" && component == "container" && option.startsWith("Sell") }) { player: Player ->
+on<InterfaceOption>({ id == "shop_side" && component == "inventory" && option.startsWith("Sell") }) { player: Player ->
     val amount = when (option) {
         "Sell 1" -> 1
         "Sell 5" -> 5
@@ -40,7 +40,7 @@ fun Player.shopCurrency(): String = this["shop_currency", "coins"]
 fun sell(player: Player, item: Item, amount: Int) {
     player.inventory.transaction {
         val removed = removeToLimit(item.id, amount)
-        val shop = link(player.shopContainer(false))
+        val shop = link(player.shopInventory(false))
         val added = shop.addToLimit(item.id, removed)
         if (added == 0) {
             return@transaction

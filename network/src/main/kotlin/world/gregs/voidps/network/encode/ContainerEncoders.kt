@@ -7,19 +7,19 @@ import world.gregs.voidps.network.Protocol.INTERFACE_ITEMS
 
 /**
  * Sends a list of items to display on an interface item group component
- * @param container The id of the container
- * @param size The capacity of items in the container
+ * @param inventory The id of the inventory
+ * @param size The capacity of items in the inventory
  * @param items List of the item ids and amounts to display
- * @param primary Optional to send to the primary or secondary container
+ * @param primary Optional to send to the primary or secondary inventory
  */
-fun Client.sendContainerItems(
-    container: Int,
+fun Client.sendInventoryItems(
+    inventory: Int,
     size: Int,
     items: IntArray,
     primary: Boolean
 ) {
     send(INTERFACE_ITEMS, getLength(items, size), SHORT) {
-        writeShort(container)
+        writeShort(inventory)
         writeByte(primary)
         writeShort(size)
         for (index in 0 until size) {

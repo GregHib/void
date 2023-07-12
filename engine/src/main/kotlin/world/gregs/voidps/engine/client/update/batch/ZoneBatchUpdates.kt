@@ -6,7 +6,6 @@ import kotlinx.io.pool.DefaultPool
 import kotlinx.io.pool.ObjectPool
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.getOrNull
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.map.zone.Zone

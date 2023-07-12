@@ -1,7 +1,5 @@
 package world.gregs.voidps.world.map.edgeville
 
-import world.gregs.voidps.engine.client.variable.clear
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.mode.move.Moved

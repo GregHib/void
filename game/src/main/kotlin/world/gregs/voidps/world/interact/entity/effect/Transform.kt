@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.effect
 
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.flagTransform

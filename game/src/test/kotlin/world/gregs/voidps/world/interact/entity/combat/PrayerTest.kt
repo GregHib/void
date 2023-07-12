@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.combat
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs

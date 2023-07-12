@@ -2,8 +2,6 @@ package world.gregs.voidps.world.map.wizards_tower
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.inc
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory

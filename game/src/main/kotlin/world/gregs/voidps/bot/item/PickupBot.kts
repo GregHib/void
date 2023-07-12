@@ -2,10 +2,7 @@ package world.gregs.voidps.bot.item
 
 import kotlinx.coroutines.CancellableContinuation
 import world.gregs.voidps.bot.isBot
-import world.gregs.voidps.engine.client.variable.clear
-import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.remove
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.FloorItem

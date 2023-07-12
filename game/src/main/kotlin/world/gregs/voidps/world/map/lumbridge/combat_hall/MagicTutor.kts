@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.map.lumbridge.combat_hall
 
 import world.gregs.voidps.engine.client.variable.remaining
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory

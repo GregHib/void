@@ -1,9 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
-import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player

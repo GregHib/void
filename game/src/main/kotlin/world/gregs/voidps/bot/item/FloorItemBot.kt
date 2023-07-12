@@ -3,7 +3,6 @@ package world.gregs.voidps.bot.item
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeoutOrNull
 import world.gregs.voidps.bot.Bot
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.timer.TICKS

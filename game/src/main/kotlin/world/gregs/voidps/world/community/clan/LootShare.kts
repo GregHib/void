@@ -3,8 +3,6 @@ package world.gregs.voidps.world.community.clan
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.engine.client.variable.toggle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan

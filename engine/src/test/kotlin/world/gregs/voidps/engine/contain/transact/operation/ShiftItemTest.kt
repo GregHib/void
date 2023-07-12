@@ -20,8 +20,8 @@ internal class ShiftItemTest : TransactionOperationTest() {
         // Set the transaction to failed
         transaction.error = TransactionError.Invalid
         transaction.shift(0, 1)
-        // Assert that the item was not changed in the container
-        Assertions.assertEquals("item", container[0].id)
+        // Assert that the item was not changed in the inventory
+        Assertions.assertEquals("item", inventory[0].id)
     }
 
     @Test
@@ -48,7 +48,7 @@ internal class ShiftItemTest : TransactionOperationTest() {
     }
 
     @Test
-    fun `Shift item to end of full container`() {
+    fun `Shift item to end of full inventory`() {
         transaction(4, stackRule = NeverStack) {
             add("item", 1)
             add("non_stackable_item", 3)
@@ -56,14 +56,14 @@ internal class ShiftItemTest : TransactionOperationTest() {
         transaction.shiftToFreeIndex(0)
         assertTrue(transaction.commit())
 
-        assertEquals("non_stackable_item", container[0].id)
-        assertEquals("non_stackable_item", container[1].id)
-        assertEquals("non_stackable_item", container[2].id)
-        assertEquals("item", container[3].id)
+        assertEquals("non_stackable_item", inventory[0].id)
+        assertEquals("non_stackable_item", inventory[1].id)
+        assertEquals("non_stackable_item", inventory[2].id)
+        assertEquals("item", inventory[3].id)
     }
 
     @Test
-    fun `Shift item to end of partially full container`() {
+    fun `Shift item to end of partially full inventory`() {
         transaction(5, stackRule = NeverStack) {
             add("item", 1)
             add("non_stackable_item", 2)
@@ -71,13 +71,13 @@ internal class ShiftItemTest : TransactionOperationTest() {
         transaction.shiftToFreeIndex(0)
         assertTrue(transaction.commit())
 
-        assertEquals("non_stackable_item", container[0].id)
-        assertEquals("non_stackable_item", container[1].id)
-        assertEquals("item", container[2].id)
+        assertEquals("non_stackable_item", inventory[0].id)
+        assertEquals("non_stackable_item", inventory[1].id)
+        assertEquals("item", inventory[2].id)
     }
 
     @Test
-    fun `Shift empty index to end of partially full container`() {
+    fun `Shift empty index to end of partially full inventory`() {
         transaction(5, stackRule = NeverStack) {
             add("item", 5)
             clear(0)
@@ -86,15 +86,15 @@ internal class ShiftItemTest : TransactionOperationTest() {
         transaction.shiftToFreeIndex(0)
         assertTrue(transaction.commit())
 
-        assertEquals("item", container[0].id)
-        assertEquals("item", container[1].id)
-        assertEquals("", container[2].id)
-        assertEquals("", container[3].id)
-        assertEquals("item", container[4].id)
+        assertEquals("item", inventory[0].id)
+        assertEquals("item", inventory[1].id)
+        assertEquals("", inventory[2].id)
+        assertEquals("", inventory[3].id)
+        assertEquals("item", inventory[4].id)
     }
 
     @Test
-    fun `Shift item forward to specific index in container`() {
+    fun `Shift item forward to specific index in inventory`() {
         transaction(10, stackRule = NeverStack) {
             add("non_stackable_item", 10)
             set(3, Item("item", 1, def = ItemDefinition.EMPTY))
@@ -102,12 +102,12 @@ internal class ShiftItemTest : TransactionOperationTest() {
         transaction.shift(3, 7)
         assertTrue(transaction.commit())
 
-        assertEquals("non_stackable_item", container[3].id)
-        assertEquals("item", container[7].id)
+        assertEquals("non_stackable_item", inventory[3].id)
+        assertEquals("item", inventory[7].id)
     }
 
     @Test
-    fun `Shift item backwards to specific index in container`() {
+    fun `Shift item backwards to specific index in inventory`() {
         transaction(10, stackRule = NeverStack) {
             add("non_stackable_item", 10)
             set(7, Item("item", 1, def = ItemDefinition.EMPTY))
@@ -115,7 +115,7 @@ internal class ShiftItemTest : TransactionOperationTest() {
         transaction.shift(7, 3)
         assertTrue(transaction.commit())
 
-        assertEquals("non_stackable_item", container[7].id)
-        assertEquals("item", container[3].id)
+        assertEquals("non_stackable_item", inventory[7].id)
+        assertEquals("item", inventory[3].id)
     }
 }

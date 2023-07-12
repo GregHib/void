@@ -3,9 +3,6 @@ package world.gregs.voidps.world.interact.entity.death
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.clear
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.Registered
@@ -98,8 +95,8 @@ fun dropItems(player: Player, killer: Character?, tile: Tile, inWilderness: Bool
     }
 }
 
-fun drop(player: Player, container: Container, tile: Tile, inWilderness: Boolean, killer: Character?) {
-    for (item in container.items) {
+fun drop(player: Player, inventory: Inventory, tile: Tile, inWilderness: Boolean, killer: Character?) {
+    for (item in inventory.items) {
         if (item.isEmpty()) {
             continue
         }

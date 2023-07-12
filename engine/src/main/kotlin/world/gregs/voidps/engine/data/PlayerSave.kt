@@ -15,7 +15,7 @@ internal class PlayerSave(
     val looks: IntArray,
     val colours: IntArray,
     val variables: Map<String, Any>,
-    val containers: Map<String, Array<Item>>,
+    val inventories: Map<String, Array<Item>>,
     val friends: Map<String, String>,
     val ignores: List<String>
 )
@@ -31,7 +31,7 @@ internal fun Player.copy() = PlayerSave(
     looks = body.looks.copyOf(),
     colours = body.colours.copyOf(),
     variables = variables.data.toMap(),
-    containers = containers.containers.mapValues { it.value.copyOf() },
+    inventories = inventories.inventories.mapValues { it.value.copyOf() },
     friends = friends.mapValues { it.value.name },
     ignores = ignores.toList()
 )

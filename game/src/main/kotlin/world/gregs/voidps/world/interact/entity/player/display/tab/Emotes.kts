@@ -7,8 +7,6 @@ import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.sendVariable
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.clearAnimation
@@ -148,7 +146,7 @@ fun areaClear(player: Player): Boolean {
     return true
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Cape.index }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && index == EquipSlot.Cape.index }) { player: Player ->
     player["unlocked_emote_skillcape"] = item.def.isSkillCape() || item.def.isTrimmedSkillCape() || item.id == "quest_point_cape"
 }
 

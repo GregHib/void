@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.character.player.equip
 
-import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.Inventory
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.type
 import world.gregs.voidps.network.visual.update.player.Body
@@ -17,9 +17,9 @@ data class BodyParts(
 ) : Body {
     private val parts = IntArray(12)
 
-    private lateinit var equipment: Container
+    private lateinit var equipment: Inventory
 
-    fun link(equipment: Container) {
+    fun link(equipment: Inventory) {
         this.equipment = equipment
     }
 

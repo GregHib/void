@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
-import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.Inventory
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
@@ -33,15 +33,15 @@ fun Player.interfaceOption(
     optionIndex: Int = getOptionIndex(id, component, option) ?: -1,
     item: Item = Item("", -1),
     slot: Int = -1,
-    container: String = ""
+    inventory: String = ""
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    events.emit(InterfaceOption(this, id = id, component = component, optionIndex = optionIndex, option = option, item = item, itemSlot = slot, container = container))
+    events.emit(InterfaceOption(this, id = id, component = component, optionIndex = optionIndex, option = option, item = item, itemSlot = slot, inventory = inventory))
 }
 fun Player.interfaceUse(
     id: String,
     component: String,
-    container: String = "",
+    inventory: String = "",
     fromItem: Item = Item("", -1),
     toItem: Item = Item("", -1),
     fromSlot: Int = -1,
@@ -57,15 +57,15 @@ fun Player.interfaceUse(
         fromComponent = component,
         toInterface = id,
         toComponent = component,
-        fromContainer = container,
-        toContainer = container
+        fromInventory = inventory,
+        toInventory = inventory
     ))
 }
 
 fun Player.interfaceSwitch(
     id: String,
     component: String,
-    container: String = "",
+    inventory: String = "",
     fromItem: Item = Item("", -1),
     toItem: Item = Item("", -1),
     fromSlot: Int = -1,
@@ -77,12 +77,12 @@ fun Player.interfaceSwitch(
         component = component,
         fromItem = fromItem,
         fromSlot = fromSlot,
-        fromContainer = container,
+        fromInventory = inventory,
         toId = id,
         toComponent = component,
         toItem = toItem,
         toSlot = toSlot,
-        toContainer = container
+        toInventory = inventory
     ))
 }
 
@@ -90,7 +90,7 @@ fun Player.equipItem(
     item: String,
     slot: Int = inventory.indexOf(item)
 ) {
-    interfaceOption("inventory", "container", "Wield", item = Item(item, 1), slot = slot, optionIndex = Item(item).def.options.indexOf("Wield"))
+    interfaceOption("inventory", "inventory", "Wield", item = Item(item, 1), slot = slot, optionIndex = Item(item).def.options.indexOf("Wield"))
 }
 
 fun Player.dialogueOption(
@@ -117,25 +117,25 @@ fun Player.walk(toTile: Tile) = runTest {
     instructions.emit(Walk(toTile.x, toTile.y))
 }
 
-fun Player.itemOnObject(obj: GameObject, itemSlot: Int, id: String, component: String = "container", container: String = "inventory") {
-    val item = containers.container(container)[itemSlot]
-    events.emit(ItemOnObject(this, obj, id, component, item, itemSlot, container))
+fun Player.itemOnObject(obj: GameObject, itemSlot: Int, id: String, component: String = "inventory", inventory: String = "inventory") {
+    val item = inventories.inventory(inventory)[itemSlot]
+    events.emit(ItemOnObject(this, obj, id, component, item, itemSlot, inventory))
 }
 
-fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstContainer: String = "inventory", firstComponent: String = "container", secondContainer: String = firstContainer, secondComponent: String = firstComponent) {
-    val one = containers.container(firstContainer)
-    val two = containers.container(secondContainer)
+fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstInventory: String = "inventory", firstComponent: String = "inventory", secondInventory: String = firstInventory, secondComponent: String = firstComponent) {
+    val one = inventories.inventory(firstInventory)
+    val two = inventories.inventory(secondInventory)
     events.emit(ItemOnItem(
         one[firstSlot],
         two[secondSlot],
         firstSlot,
         secondSlot,
-        firstContainer,
+        firstInventory,
         firstComponent,
-        secondContainer,
+        secondInventory,
         secondComponent,
-        firstContainer,
-        secondContainer
+        firstInventory,
+        secondInventory
     ))
 }
 
@@ -152,4 +152,4 @@ fun Player.floorItemOption(floorItem: FloorItem, option: String) = runTest {
     instructions.emit(InteractFloorItem(floorItem.def.id, floorItem.tile.x, floorItem.tile.y, floorItem.def.floorOptions.indexOf(option)))
 }
 
-fun Container.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount, def = ItemDefinition.EMPTY))  }
+fun Inventory.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount, def = ItemDefinition.EMPTY))  }

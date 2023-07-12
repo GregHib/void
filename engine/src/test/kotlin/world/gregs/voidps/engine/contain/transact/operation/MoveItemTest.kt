@@ -21,21 +21,21 @@ internal class MoveItemTest : TransactionOperationTest() {
         }
         transaction.error = TransactionError.Invalid
         transaction.move(0, 1)
-        assertEquals("item", container[0].id)
+        assertEquals("item", inventory[0].id)
         assertFalse(transaction.commit())
-        assertTrue(container[1].isEmpty())
+        assertTrue(inventory[1].isEmpty())
     }
 
     @Test
-    fun `Move item from one index to index in target container`() {
+    fun `Move item from one index to index in target inventory`() {
         transaction(stackRule = NeverStack) {
             add("item", 1)
         }
         transaction.move(0, 1)
         assertTrue(transaction.commit())
 
-        assertTrue(container[0].isEmpty())
-        assertEquals("item", container[1].id)
+        assertTrue(inventory[0].isEmpty())
+        assertEquals("item", inventory[1].id)
     }
 
     @Test
@@ -63,95 +63,95 @@ internal class MoveItemTest : TransactionOperationTest() {
     }
 
     @Test
-    fun `Move item from one index to index in another container`() {
+    fun `Move item from one index to index in another inventory`() {
         transaction(stackRule = NeverStack) {
             add("item", 1)
         }
-        val target = container(2)
+        val target = inventory(2)
         transaction.move(0, target, 1)
         assertTrue(transaction.commit())
 
-        assertTrue(container[0].isEmpty())
+        assertTrue(inventory[0].isEmpty())
         assertEquals("item", target[1].id)
     }
 
     @Test
-    fun `Move item from one index to wrong type target container`() {
+    fun `Move item from one index to wrong type target inventory`() {
         transaction(stackRule = NeverStack) {
             add("item", 1)
         }
-        val target = container(1, stackRule = NeverStack) {
+        val target = inventory(1, stackRule = NeverStack) {
             add("non_stackable_item", 1)
         }
         transaction.move(0, target, 0)
         assertFalse(transaction.commit())
 
         assertErrorFull(0)
-        assertEquals(1, container[0].amount)
+        assertEquals(1, inventory[0].amount)
         assertEquals(1, target[0].amount)
     }
 
     @Test
-    fun `Move non-stackable item from one index to full target container`() {
+    fun `Move non-stackable item from one index to full target inventory`() {
         transaction(stackRule = NeverStack) {
             add("item", 1)
         }
-        val target = container(2, stackRule = NeverStack) {
+        val target = inventory(2, stackRule = NeverStack) {
             add("item", 1)
         }
         transaction.move(0, target, 0)
         assertFalse(transaction.commit())
 
         assertErrorFull(0)
-        assertEquals(1, container[0].amount)
+        assertEquals(1, inventory[0].amount)
         assertEquals(1, target[0].amount)
         assertEquals(0, target[1].amount)
     }
 
     @Test
-    fun `Move stackable items from one index to target container with overflow`() {
+    fun `Move stackable items from one index to target inventory with overflow`() {
         transaction(stackRule = AlwaysStack) {
             add("item", 2)
         }
-        val target = container(1, stackRule = AlwaysStack) {
+        val target = inventory(1, stackRule = AlwaysStack) {
             add("item", Int.MAX_VALUE - 1)
         }
         transaction.move(0, target, 0)
         assertFalse(transaction.commit())
 
         assertErrorFull(1)
-        assertEquals(2, container[0].amount)
+        assertEquals(2, inventory[0].amount)
         assertEquals(Int.MAX_VALUE - 1, target[0].amount)
     }
 
     @Test
-    fun `Move stackable items from one index to target container`() {
+    fun `Move stackable items from one index to target inventory`() {
         transaction(stackRule = AlwaysStack) {
             add("item", 5)
         }
-        val target = container(1, stackRule = AlwaysStack) {
+        val target = inventory(1, stackRule = AlwaysStack) {
             add("item", 5)
         }
         transaction.move(0, target, 0)
         assertTrue(transaction.commit())
 
-        assertEquals(0, container[0].amount)
+        assertEquals(0, inventory[0].amount)
         assertEquals(10, target[0].amount)
     }
 
     @Test
-    fun `Move from index to free index in target container`() {
+    fun `Move from index to free index in target inventory`() {
         transaction(stackRule = NeverStack) {
             add("item", 3)
         }
-        val target = container(2, stackRule = NeverStack) {
+        val target = inventory(2, stackRule = NeverStack) {
             add("non_stackable_item", 1)
         }
         transaction.move(1, target)
         assertTrue(transaction.commit())
 
-        assertEquals(2, container.count)
-        assertTrue(container[1].isEmpty())
+        assertEquals(2, inventory.count)
+        assertTrue(inventory[1].isEmpty())
         assertEquals(1, target[1].amount)
     }
 
@@ -167,96 +167,96 @@ internal class MoveItemTest : TransactionOperationTest() {
         }
         transaction.error = TransactionError.Invalid
         transaction.move("item", amount = 1, toIndex = 1)
-        assertEquals("item", container[0].id)
+        assertEquals("item", inventory[0].id)
         assertFalse(transaction.commit())
-        assertTrue(container[1].isEmpty())
+        assertTrue(inventory[1].isEmpty())
     }
 
     @Test
-    fun `Move non-stackable item to target container`() {
+    fun `Move non-stackable item to target inventory`() {
         transaction(stackRule = NeverStack) {
             add("item", 3)
         }
-        val target = container(2, stackRule = NeverStack)
+        val target = inventory(2, stackRule = NeverStack)
         transaction.move("item", 2, target)
         assertTrue(transaction.commit())
 
         assertEquals(2, target.count)
         assertEquals(1, target[1].amount)
-        assertTrue(container[0].isEmpty())
-        assertEquals("item", container[2].id)
+        assertTrue(inventory[0].isEmpty())
+        assertEquals("item", inventory[2].id)
     }
 
     @Test
-    fun `Move non-stackable item to stackable target container`() {
+    fun `Move non-stackable item to stackable target inventory`() {
         transaction(stackRule = NeverStack) {
             add("item", 3)
         }
-        val target = container(2, stackRule = AlwaysStack)
+        val target = inventory(2, stackRule = AlwaysStack)
         transaction.move("item", 2, target)
         assertTrue(transaction.commit())
 
         assertEquals(1, target.count)
         assertEquals(2, target[0].amount)
-        assertTrue(container[0].isEmpty())
-        assertEquals("item", container[2].id)
+        assertTrue(inventory[0].isEmpty())
+        assertEquals("item", inventory[2].id)
     }
 
     @Test
-    fun `Move item to index in target container`() {
+    fun `Move item to index in target inventory`() {
         transaction(stackRule = NeverStack) {
             add("item", 3)
         }
-        val target = container(2, stackRule = AlwaysStack)
+        val target = inventory(2, stackRule = AlwaysStack)
         transaction.move("item", 2, target, 1)
         assertTrue(transaction.commit())
 
         assertEquals(1, target.count)
         assertEquals(2, target[1].amount)
-        assertTrue(container[0].isEmpty())
-        assertEquals("item", container[2].id)
+        assertTrue(inventory[0].isEmpty())
+        assertEquals("item", inventory[2].id)
     }
 
     @Test
-    fun `Move item to index in target container with overflow`() {
+    fun `Move item to index in target inventory with overflow`() {
         transaction(stackRule = AlwaysStack) {
             add("item", 4)
         }
-        val target = container(2, stackRule = AlwaysStack) {
+        val target = inventory(2, stackRule = AlwaysStack) {
             set(1, Item("item", Int.MAX_VALUE - 2, def = ItemDefinition.EMPTY))
         }
         transaction.move("item", 3, target, 1)
         assertFalse(transaction.commit())
         assertErrorFull(2)
-        assertEquals(4, container[0].amount)
+        assertEquals(4, inventory[0].amount)
     }
 
     @Test
-    fun `Move item to index in full target container`() {
+    fun `Move item to index in full target inventory`() {
         transaction(stackRule = AlwaysStack) {
             add("item", 2)
         }
-        val target = container(2, stackRule = NeverStack) {
+        val target = inventory(2, stackRule = NeverStack) {
             add("item", 1)
         }
         transaction.move("item", 2, target, 1)
         assertFalse(transaction.commit())
         assertErrorFull(1)
-        assertEquals(2, container[0].amount)
+        assertEquals(2, inventory[0].amount)
     }
 
     @Test
-    fun `Move item to index in target container with wrong type`() {
+    fun `Move item to index in target inventory with wrong type`() {
         transaction(stackRule = NeverStack) {
             add("item", 1)
         }
-        val target = container(2, stackRule = NeverStack) {
+        val target = inventory(2, stackRule = NeverStack) {
             add("non_stackable_item", 1)
         }
         transaction.move("item", 1, target, 0)
         assertFalse(transaction.commit())
         assertErrorFull(0)
-        assertEquals(1, container[0].amount)
+        assertEquals(1, inventory[0].amount)
     }
 
 
@@ -270,36 +270,36 @@ internal class MoveItemTest : TransactionOperationTest() {
             add("item", 1)
         }
         transaction.error = TransactionError.Invalid
-        val target = container(1, stackRule = NeverStack)
+        val target = inventory(1, stackRule = NeverStack)
         transaction.moveAll(target)
-        assertEquals(1, container[0].amount)
+        assertEquals(1, inventory[0].amount)
         assertFalse(transaction.commit())
         assertTrue(target.isEmpty())
     }
 
     @Test
-    fun `Move all non-stackable items to target container`() {
+    fun `Move all non-stackable items to target inventory`() {
         transaction(stackRule = NeverStack) {
             add("item", 1)
             add("stackable_item", 1)
             add("non_stackable_item", 1)
         }
-        val target = container(4, stackRule = NeverStack)
+        val target = inventory(4, stackRule = NeverStack)
         transaction.moveAll(target)
         assertTrue(transaction.commit())
 
-        assertTrue(container.isEmpty())
+        assertTrue(inventory.isEmpty())
         assertEquals(3, target.count)
     }
 
     @Test
-    fun `Move all non-stackable items to target container with insufficient space`() {
+    fun `Move all non-stackable items to target inventory with insufficient space`() {
         transaction(stackRule = NeverStack) {
             add("item", 1)
             add("stackable_item", 1)
             add("non_stackable_item", 1)
         }
-        val target = container(4, stackRule = NeverStack) {
+        val target = inventory(4, stackRule = NeverStack) {
             add("item", 3)
         }
         transaction.moveAll(target)
@@ -308,62 +308,62 @@ internal class MoveItemTest : TransactionOperationTest() {
     }
 
     @Test
-    fun `Move all stackable items to target container`() {
+    fun `Move all stackable items to target inventory`() {
         transaction(stackRule = AlwaysStack) {
             add("item", 4)
             add("stackable_item", 5)
         }
-        val target = container(2, stackRule = AlwaysStack) {
+        val target = inventory(2, stackRule = AlwaysStack) {
             add("stackable_item", 5)
         }
         transaction.moveAll(target)
         assertTrue(transaction.commit())
 
-        assertTrue(container.isEmpty())
+        assertTrue(inventory.isEmpty())
         assertEquals(10, target[0].amount)
         assertEquals(4, target[1].amount)
     }
 
     @Test
-    fun `Move all stackable items to non-stackable target container`() {
+    fun `Move all stackable items to non-stackable target inventory`() {
         transaction(stackRule = AlwaysStack) {
             add("item", 4)
         }
-        val target = container(5, stackRule = NeverStack)
+        val target = inventory(5, stackRule = NeverStack)
         transaction.moveAll(target)
         assertTrue(transaction.commit())
 
-        assertTrue(container.isEmpty())
+        assertTrue(inventory.isEmpty())
         assertEquals(1, target[0].amount)
         assertEquals(1, target[3].amount)
     }
 
     @Test
-    fun `Move all non-stackable items to stackable target container`() {
+    fun `Move all non-stackable items to stackable target inventory`() {
         transaction(stackRule = NeverStack) {
             add("item", 4)
         }
-        val target = container(1, stackRule = AlwaysStack)
+        val target = inventory(1, stackRule = AlwaysStack)
         transaction.moveAll(target)
         assertTrue(transaction.commit())
 
-        assertTrue(container.isEmpty())
+        assertTrue(inventory.isEmpty())
         assertEquals(4, target[0].amount)
     }
 
     @Test
-    fun `Move all stackable items to target container with overflow`() {
+    fun `Move all stackable items to target inventory with overflow`() {
         transaction(stackRule = AlwaysStack) {
             add("item", 4)
         }
-        val target = container(2, stackRule = AlwaysStack) {
+        val target = inventory(2, stackRule = AlwaysStack) {
             add("item", Int.MAX_VALUE - 2)
         }
         transaction.moveAll(target)
         assertFalse(transaction.commit())
 
         assertErrorFull(2)
-        assertEquals(4, container[0].amount)
+        assertEquals(4, inventory[0].amount)
     }
 
 }

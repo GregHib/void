@@ -1,9 +1,6 @@
 package world.gregs.voidps.world.interact.entity.npc.move
 
-import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.getOrNull
-import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -16,6 +13,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.world.interact.entity.death.Death
 import kotlin.random.Random
 

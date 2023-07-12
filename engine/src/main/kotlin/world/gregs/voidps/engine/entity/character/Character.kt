@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character
 
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
+import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.mode.Mode
@@ -16,7 +17,7 @@ import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.network.visual.Visuals
 import kotlin.coroutines.Continuation
 
-interface Character : Entity, EventDispatcher, Comparable<Character> {
+interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
     val index: Int
     val visuals: Visuals
     val levels: Levels
@@ -26,7 +27,7 @@ interface Character : Entity, EventDispatcher, Comparable<Character> {
     var softTimers: Timers
     var suspension: Suspension?
     var delay: Continuation<Unit>?
-    var variables: Variables
+    override var variables: Variables
     val steps: Steps
 
     override fun compareTo(other: Character): Int {

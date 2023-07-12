@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.character.npc
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.MAX_NPCS
 import world.gregs.voidps.engine.entity.Registered
@@ -10,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.CharacterMap
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Wander
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
@@ -101,7 +101,12 @@ data class NPCs(
         val npc = NPC(id, tile)
         npc.def = def
         npc.levels.link(npc.events, NPCLevels(def))
-        npc.levels.clear()
+        npc.levels.clear(Skill.Constitution)
+        npc.levels.clear(Skill.Attack)
+        npc.levels.clear(Skill.Strength)
+        npc.levels.clear(Skill.Defence)
+        npc.levels.clear(Skill.Ranged)
+        npc.levels.clear(Skill.Magic)
         npc["spawn_tile"] = tile
         if (Wander.wanders(npc)) {
             npc.mode = Wander(npc, tile)

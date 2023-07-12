@@ -5,8 +5,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.inc
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.beastOfBurden
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.inventory
@@ -19,7 +17,7 @@ import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
 val logger = InlineLogger()
 
-on<InterfaceOption>({ id == "bank_side" && component == "container" && option.startsWith("Deposit") }) { player: Player ->
+on<InterfaceOption>({ id == "bank_side" && component == "inventory" && option.startsWith("Deposit") }) { player: Player ->
     val amount = when (option) {
         "Deposit-1" -> 1
         "Deposit-5" -> 5
@@ -31,13 +29,13 @@ on<InterfaceOption>({ id == "bank_side" && component == "container" && option.st
     deposit(player, player.inventory, item, amount)
 }
 
-on<InterfaceOption>({ id == "bank_side" && component == "container" && option == "Deposit-X" }) { player: Player ->
+on<InterfaceOption>({ id == "bank_side" && component == "inventory" && option == "Deposit-X" }) { player: Player ->
     val amount = intEntry("Enter amount:")
     player["last_bank_amount"] = amount
     deposit(player, player.inventory, item, amount)
 }
 
-fun deposit(player: Player, container: world.gregs.voidps.engine.contain.Container, item: Item, amount: Int): Boolean {
+fun deposit(player: Player, inventory: world.gregs.voidps.engine.contain.Inventory, item: Item, amount: Int): Boolean {
     if (player.menu != "bank" || amount < 1) {
         return true
     }
@@ -56,7 +54,7 @@ fun deposit(player: Player, container: world.gregs.voidps.engine.contain.Contain
     val tab = player["open_bank_tab", 1] - 1
     val bank = player.bank
     var shifted = false
-    container.transaction {
+    inventory.transaction {
         val existing = bank.indexOf(notNoted.id)
         val moved = moveToLimit(item.id, amount, bank, notNoted.id)
         if (moved == 0) {
@@ -69,10 +67,10 @@ fun deposit(player: Player, container: world.gregs.voidps.engine.contain.Contain
             shifted = true
         }
     }
-    when (container.transaction.error) {
+    when (inventory.transaction.error) {
         TransactionError.None -> if (shifted) player.inc("bank_tab_$tab")
         is TransactionError.Full -> player.message("Your bank is too full to deposit any more.")
-        TransactionError.Invalid -> logger.info { "Bank deposit issue: $player $item $amount $container " }
+        TransactionError.Invalid -> logger.info { "Bank deposit issue: $player $item $amount $inventory " }
         else -> {}
     }
     return true
@@ -103,11 +101,11 @@ on<InterfaceOption>({ id == "bank" && component == "burden" && option == "Deposi
     }
 }
 
-fun bankAll(player: Player, container: world.gregs.voidps.engine.contain.Container) {
-    for (index in container.indices) {
-        val item = container[index]
+fun bankAll(player: Player, inventory: world.gregs.voidps.engine.contain.Inventory) {
+    for (index in inventory.indices) {
+        val item = inventory[index]
         if (item.isNotEmpty()) {
-            deposit(player, container, item, item.amount)
+            deposit(player, inventory, item, item.amount)
         }
     }
 }

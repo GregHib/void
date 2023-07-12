@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.contain.stack.ItemStackingRule
 import world.gregs.voidps.engine.contain.transact.Transaction
 import world.gregs.voidps.engine.entity.item.Item
 
-class Container(
+class Inventory(
     internal var data: Array<Item>,
     val id: String = "",
     var itemRule: ItemRestrictionRule = NoRestrictions,
@@ -81,14 +81,14 @@ class Container(
     }
 
     override fun toString(): String {
-        return "Container($id)"
+        return "Inventory($id)"
     }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as Container
+        other as Inventory
 
         if (stackRule != other.stackRule) return false
         if (!items.contentEquals(other.items)) return false
@@ -108,7 +108,7 @@ class Container(
             stackRule: ItemStackingRule = AlwaysStack,
             id: String = "",
             removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
-        ) = Container(
+        ) = Inventory(
             Array(capacity) { Item("", removalCheck.getMinimum(it), def = ItemDefinition.EMPTY) },
             id,
             itemRule,

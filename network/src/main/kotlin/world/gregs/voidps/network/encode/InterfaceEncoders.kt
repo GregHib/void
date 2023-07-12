@@ -99,7 +99,7 @@ fun Client.interfaceItem(
  * Sends a list of items to display on an interface item group component
  * @param key The id of the interface item group
  * @param updates List of the indices, item ids and amounts to update
- * @param secondary Optional to send to the primary or secondary container
+ * @param secondary Optional to send to the primary or secondary inventory
  */
 fun Client.sendInterfaceItemUpdate(
     key: Int,

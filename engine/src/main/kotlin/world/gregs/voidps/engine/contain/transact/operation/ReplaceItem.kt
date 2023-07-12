@@ -4,22 +4,22 @@ import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.item.Item
 
 /**
- * Transaction operation for replacing items in a container.
+ * Transaction operation for replacing items in an inventory.
  * This operation allows replacing an item at a specific index with another item.
  */
 interface ReplaceItem : TransactionOperation {
 
     /**
-     * Replaces an item in the container with another item.
+     * Replaces an item in the inventory with another item.
      * @param id the identifier of the item to be replaced.
      * @param with the identifier of the item to replace with.
      */
     fun replace(id: String, with: String) {
-        replace(container.indexOf(id), id, with)
+        replace(inventory.indexOf(id), id, with)
     }
 
     /**
-     * Replaces an item at the specified index in the container with another item.
+     * Replaces an item at the specified index in the inventory with another item.
      * @param index the index of the item to be replaced.
      * @param id the identifier of the item to be replaced.
      * @param with the identifier of the item to replace with.
@@ -29,8 +29,8 @@ interface ReplaceItem : TransactionOperation {
             return
         }
 
-        val item = container[index]
-        if (!container.inBounds(index) || item.id != id || container.restricted(id)) {
+        val item = inventory[index]
+        if (!inventory.inBounds(index) || item.id != id || inventory.restricted(id)) {
             error = TransactionError.Invalid
             return
         }

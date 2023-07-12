@@ -11,7 +11,7 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.active.ActiveCache
-import world.gregs.voidps.cache.config.decoder.ContainerDecoder
+import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
@@ -116,7 +116,7 @@ object Main {
         single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(activeDir), get()).load() }
         single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(activeDir)).load() }
         single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(activeDir)).load() }
-        single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder().load(activeDir)).load() }
+        single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().load(activeDir)).load() }
         single(createdAtStart = true) { StructDefinitions(StructDecoder().load(activeDir)).load() }
         single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(activeDir)).load() }
         single(createdAtStart = true) { StyleDefinitions(ClientScriptDecoder(revision634 = true).load(activeDir)) }
@@ -132,7 +132,7 @@ object Main {
         single(createdAtStart = true) { EnumDefinitions(EnumDecoder().loadCache(cache), get()).load() }
         single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().loadCache(cache)).load() }
         single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().loadCache(cache)).load() }
-        single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder().loadCache(cache)).load() }
+        single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().loadCache(cache)).load() }
         single(createdAtStart = true) { StructDefinitions(StructDecoder().loadCache(cache)).load() }
         single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().loadCache(cache)).load() }
         single(createdAtStart = true) { StyleDefinitions(ClientScriptDecoder(revision634 = true).loadCache(cache)) }

@@ -22,7 +22,7 @@ style:
   name: 1160
   sprite_male: 1161
   sprite_female: 1162
-  container: 1163
+  inventory: 1163
   anim_male: 1164
   anim_female: 1165
   sub_style_male_0: 1169

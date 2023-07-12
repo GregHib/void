@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.cache.config.data.ContainerDefinition
+import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.engine.client.sendInterfaceSettings
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
-import world.gregs.voidps.engine.data.definition.ContainerDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 
 internal class InterfaceOptionsTest {
@@ -19,7 +19,7 @@ internal class InterfaceOptionsTest {
     private lateinit var options: InterfaceOptions
     private lateinit var player: Player
     private lateinit var definitions: InterfaceDefinitions
-    private lateinit var containerDefinitions: ContainerDefinitions
+    private lateinit var inventoryDefinitions: InventoryDefinitions
 
     private val staticOptions = arrayOf("", "", "", "", "", "", "", "", "", "Examine")
     private val name = "name"
@@ -29,14 +29,14 @@ internal class InterfaceOptionsTest {
     fun setup() {
         player = mockk(relaxed = true)
         definitions = mockk(relaxed = true)
-        containerDefinitions = mockk(relaxed = true)
-        options = InterfaceOptions(player, definitions, containerDefinitions)
+        inventoryDefinitions = mockk(relaxed = true)
+        options = InterfaceOptions(player, definitions, inventoryDefinitions)
         every { definitions.getComponent(any<String>(), any<String>()) } returns null
         every { definitions.getComponent(name, comp) } returns InterfaceComponentDefinition(
             id = 0,
             extras = mapOf(
                 "parent" to 5,
-                "container" to "container",
+                "inventory" to "inventory",
                 "primary" to false,
                 "options" to staticOptions
             ))
@@ -56,7 +56,7 @@ internal class InterfaceOptionsTest {
 
     @Test
     fun `Send all options`() {
-        every { containerDefinitions.get(any<String>()) } returns ContainerDefinition(10, extras = mapOf("width" to 2, "height" to 3))
+        every { inventoryDefinitions.get(any<String>()) } returns InventoryDefinition(10, extras = mapOf("width" to 2, "height" to 3))
         options.send(name, comp)
         verify {
             player.sendScript(695, (5 shl 16) or 0, 10, 2, 3, 0, -1, "", "", "", "", "", "", "", "", "")
@@ -65,7 +65,7 @@ internal class InterfaceOptionsTest {
 
     @Test
     fun `Unlock all options`() {
-        every { containerDefinitions.get(name) } returns ContainerDefinition(10, extras = mapOf("width" to 2, "height" to 3))
+        every { inventoryDefinitions.get(name) } returns InventoryDefinition(10, extras = mapOf("width" to 2, "height" to 3))
         options.unlockAll(name, comp, 0..27)
         verify {
             player.sendInterfaceSettings(5, 0, 0, 27, getHash(9))
@@ -78,12 +78,12 @@ internal class InterfaceOptionsTest {
             id = 0,
             extras = mapOf(
                 "parent" to 5,
-                "container" to "container",
+                "inventory" to "inventory",
                 "primary" to false,
                 "options" to arrayOf("one", "two", "three")
             )
         )
-        every { containerDefinitions.get(name) } returns ContainerDefinition(10, extras = mapOf("width" to 2, "height" to 3))
+        every { inventoryDefinitions.get(name) } returns InventoryDefinition(10, extras = mapOf("width" to 2, "height" to 3))
         options.unlock(name, comp, 0..27, "two", "three")
         verify {
             player.sendInterfaceSettings(5, 0, 0, 27, getHash(1, 2))
@@ -92,7 +92,7 @@ internal class InterfaceOptionsTest {
 
     @Test
     fun `Lock all options`() {
-        every { containerDefinitions.get(name) } returns ContainerDefinition(10, stringId = "10", extras = mapOf("width" to 2, "height" to 3))
+        every { inventoryDefinitions.get(name) } returns InventoryDefinition(10, stringId = "10", extras = mapOf("width" to 2, "height" to 3))
         options.lockAll(name, comp, 0..27)
         verify {
             player.sendInterfaceSettings(5, 0, 0, 27, 0)

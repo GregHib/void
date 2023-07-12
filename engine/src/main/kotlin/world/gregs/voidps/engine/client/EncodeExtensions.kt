@@ -34,23 +34,23 @@ fun Character.message(
 
 /**
  * Sends a list of items to display on an interface item group component
- * @param container The id of the container
- * @param size The capacity of items in the container
+ * @param inventory The id of the inventory
+ * @param size The capacity of items in the inventory
  * @param items List of the item ids to display
- * @param primary Optional to send to the primary or secondary container
+ * @param primary Optional to send to the primary or secondary inventory
  */
-fun Player.sendContainerItems(
-    container: Int,
+fun Player.sendInventoryItems(
+    inventory: Int,
     size: Int,
     items: IntArray,
     primary: Boolean
-) = client?.sendContainerItems(container, size, items, primary) ?: Unit
+) = client?.sendInventoryItems(inventory, size, items, primary) ?: Unit
 
 /**
  * Sends a list of items to display on an interface item group component
  * @param key The id of the interface item group
  * @param updates List of the indices, item ids and amounts to update
- * @param secondary Optional to send to the primary or secondary container
+ * @param secondary Optional to send to the primary or secondary inventory
  */
 fun Player.sendInterfaceItemUpdate(
     key: Int,

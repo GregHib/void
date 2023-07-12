@@ -16,8 +16,8 @@ data class ItemOnItem(
     val fromComponent: String,
     val toInterface: String,
     val toComponent: String,
-    val fromContainer: String,
-    val toContainer: String
+    val fromInventory: String,
+    val toInventory: String
 ) : Event
 
 fun ItemOnItem.either(block: (Item, Item) -> Boolean): Boolean {

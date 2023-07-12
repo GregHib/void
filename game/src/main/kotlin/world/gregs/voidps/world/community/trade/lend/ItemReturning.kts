@@ -4,11 +4,8 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.client.variable.clear
-import world.gregs.voidps.engine.client.variable.contains
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.contain.sendContainer
+import world.gregs.voidps.engine.contain.sendInventory
 import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -23,7 +20,7 @@ val logger = InlineLogger()
 val players: Players by inject()
 
 on<InterfaceOpened>({ id == "returned_items" }) { player: Player ->
-    player.sendContainer(player.returnedItems)
+    player.sendInventory(player.returnedItems)
 }
 
 on<InterfaceOption>({ id == "returned_items" && component == "item" && option == "Reclaim" }) { player: Player ->

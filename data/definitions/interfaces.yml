@@ -5,7 +5,7 @@ root:
 free_lumbridge_guide_quiz:
   id: 2
   components:
-    container: 30
+    inventory: 30
 bank_pin: 13
 bank_deposit_box: 11
 bank_pin_settings: 14
@@ -203,9 +203,9 @@ inventory:
   id: 149
   type: inventory_tab
   components:
-    container:
+    inventory:
       id: 0
-      container: inventory
+      inventory: inventory
       options:
         Option1: 0
         Equip: 1
@@ -882,7 +882,7 @@ trade_main:
     name: 22
     offer_options:
       id: 31
-      container: trade_offer
+      inventory: trade_offer
       options:
         Remove: 0
         Remove-5: 1
@@ -893,18 +893,18 @@ trade_main:
         Examine: 9
     offer_warning:
       id: 32
-      container: trade_offer
+      inventory: trade_offer
     other_items: 33
     other_options:
       id: 34
-      container: trade_offer
+      inventory: trade_offer
       primary: false
       options:
         Value<col=FF9040>: 0
         Examine<col=FF9040>: 8
     other_warning:
       id: 35
-      container: trade_offer
+      inventory: trade_offer
       primary: false
     status: 38
     modified: 40
@@ -912,19 +912,19 @@ trade_main:
     loan: 88
     loan_item:
       id: 89
-      container: item_loan
+      inventory: item_loan
       options:
         Remove: 0
         Examine: 9
     loan_time:
       id: 90
-      container: item_loan
+      inventory: item_loan
       options:
         "‘Until Logout‘": 0
         Specify: 1
     other_loan_item:
       id: 85
-      container: item_loan
+      inventory: item_loan
       primary: false
       options:
         Examine: 9
@@ -935,7 +935,7 @@ trade_side:
   components:
     offer:
       id: 0
-      container: inventory
+      inventory: inventory
       options:
         Offer: 0
         Offer-5: 1
@@ -967,7 +967,7 @@ worn_equipment:
     items: 45
     hat:
       id: 8
-      container: worn_equipment
+      inventory: worn_equipment
       options:
         Remove: 0
         Option2: 1
@@ -978,7 +978,7 @@ worn_equipment:
         Examine: 9
     cape:
       id: 11
-      container: worn_equipment
+      inventory: worn_equipment
       options:
         Remove: 0
         Option2: 1
@@ -989,7 +989,7 @@ worn_equipment:
         Examine: 9
     amulet:
       id: 14
-      container: worn_equipment
+      inventory: worn_equipment
       options:
         Remove: 0
         Option2: 1
@@ -1000,7 +1000,7 @@ worn_equipment:
         Examine: 9
     weapon:
       id: 17
-      container: worn_equipment
+      inventory: worn_equipment
       options:
         Remove: 0
         Option2: 1
@@ -1011,7 +1011,7 @@ worn_equipment:
         Examine: 9
     chest:
       id: 20
-      container: worn_equipment
+      inventory: worn_equipment
       options:
         Remove: 0
         Option2: 1
@@ -1022,7 +1022,7 @@ worn_equipment:
         Examine: 9
     shield:
       id: 23
-      container: worn_equipment
+      inventory: worn_equipment
       options:
         Remove: 0
         Option2: 1
@@ -1033,7 +1033,7 @@ worn_equipment:
         Examine: 9
     legs:
       id: 26
-      container: worn_equipment
+      inventory: worn_equipment
       options:
         Remove: 0
         Option2: 1
@@ -1044,7 +1044,7 @@ worn_equipment:
         Examine: 9
     hands:
       id: 29
-      container: worn_equipment
+      inventory: worn_equipment
       options:
         Remove: 0
         Option2: 1
@@ -1055,7 +1055,7 @@ worn_equipment:
         Examine: 9
     feet:
       id: 32
-      container: worn_equipment
+      inventory: worn_equipment
       options:
         Remove: 0
         Option2: 1
@@ -1066,7 +1066,7 @@ worn_equipment:
         Examine: 9
     ring:
       id: 35
-      container: worn_equipment
+      inventory: worn_equipment
       options:
         Remove: 0
         Option2: 1
@@ -1077,7 +1077,7 @@ worn_equipment:
         Examine: 9
     ammo:
       id: 38
-      container: worn_equipment
+      inventory: worn_equipment
       options:
         Remove: 0
         Option2: 1
@@ -1480,7 +1480,7 @@ shop:
     store: 19
     sample:
       id: 26
-      container: inventory
+      inventory: inventory
       options:
         Info: 0
         Take-1: 1
@@ -1490,7 +1490,7 @@ shop:
         Examine: 9
     stock:
       id: 25
-      container: inventory
+      inventory: inventory
       options:
         Info: 0
         Buy-1: 1
@@ -1503,9 +1503,9 @@ shop_side:
   id: 621
   type: overlay_tab
   components:
-    container:
+    inventory:
       id: 0
-      container: inventory
+      inventory: inventory
       options:
         Value: 0
         Sell 1: 1
@@ -1542,9 +1542,9 @@ equipment_bonuses:
   id: 667
   type: main_screen
   components:
-    container:
+    inventory:
       id: 7
-      container: worn_equipment
+      inventory: worn_equipment
       options:
         Remove: 0
         Stats: 8
@@ -1577,9 +1577,9 @@ equipment_side:
   id: 670
   type: inventory_tab
   components:
-    container:
+    inventory:
       id: 0
-      container: inventory
+      inventory: inventory
       options:
         Equip: 0
         Stats: 2
@@ -1814,9 +1814,9 @@ bank:
     tab_2: 60
     tab_1: 62
     close: 75
-    container:
+    inventory:
       id: 93
-      container: bank
+      inventory: bank
       options:
         Withdraw-1: 0
         Withdraw-5: 1
@@ -1832,9 +1832,9 @@ bank_side:
   id: 763
   type: overlay_tab
   components:
-    container:
+    inventory:
       id: 0
-      container: inventory
+      inventory: inventory
       options:
         Deposit-1: 0
         Deposit-5: 1
@@ -1850,7 +1850,7 @@ returned_items:
   components:
     item:
       id: 10
-      container: returned_lent_items
+      inventory: returned_lent_items
 rc_guild_side: 778
 rc_guild_rewards: 779
 circus_side: 784

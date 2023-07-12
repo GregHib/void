@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractNPC
-import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
+import world.gregs.voidps.world.interact.entity.npc.shop.shopInventory
 
 suspend fun Bot.openShop(id: String): NPC {
     return openShop(get<AreaDefinitions>().getOrNull(id)!!)
@@ -40,7 +40,7 @@ private suspend fun Bot.openShop(): NPC {
 suspend fun Bot.closeShop() = closeInterface(620, 18)
 
 suspend fun Bot.buy(item: String, amount: Int = 1) {
-    val shop = player.shopContainer()
+    val shop = player.shopInventory()
     val index = shop.indexOf(item)
     if (index == -1) {
         throw IllegalArgumentException("Shop doesn't contain item '$item'")

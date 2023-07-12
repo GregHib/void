@@ -8,7 +8,7 @@ import world.gregs.voidps.network.visual.update.player.Body
 import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
-on<ItemChanged>({ container == "worn_equipment" && needsUpdate(index, it.body) }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && needsUpdate(index, it.body) }) { player: Player ->
     player.flagAppearance()
 }
 

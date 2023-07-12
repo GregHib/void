@@ -2,15 +2,15 @@ package world.gregs.voidps.engine.client.ui
 
 import world.gregs.voidps.engine.client.sendInterfaceSettings
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.data.definition.ContainerDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import kotlin.math.min
 
 class InterfaceOptions(
     private val player: Player,
     private val definitions: InterfaceDefinitions,
-    private val containerDefinitions: ContainerDefinitions
+    private val inventoryDefinitions: InventoryDefinitions
 ) {
 
     fun get(id: String, component: String, index: Int): String {
@@ -24,12 +24,12 @@ class InterfaceOptions(
     fun send(id: String, component: String) {
         val comp = definitions.getComponent(id, component) ?: return
         val script = if (comp["primary", true]) 150 else 695
-        val container = containerDefinitions.get(comp["container", ""])
-        if (container.id != -1) {
+        val inventory = inventoryDefinitions.get(comp["inventory", ""])
+        if (inventory.id != -1) {
             val combined = (comp["parent", -1] shl 16) or comp.id
             val all = get(id, component)
             val options = all.copyOfRange(0, min(9, all.size))
-            player.sendScript(script, combined, container.id, container["width", 0], container["height", 0], 0, -1, *options)
+            player.sendScript(script, combined, inventory.id, inventory["width", 0], inventory["height", 0], 0, -1, *options)
         }
     }
 

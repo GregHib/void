@@ -1,21 +1,21 @@
 package world.gregs.voidps.world.interact.entity.player.display
 
 import world.gregs.voidps.engine.client.sendInterfaceItemUpdate
-import world.gregs.voidps.engine.contain.ContainerUpdate
-import world.gregs.voidps.engine.data.definition.ContainerDefinitions
+import world.gregs.voidps.engine.contain.InventoryUpdate
+import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 
-val containerDefs: ContainerDefinitions by inject()
+val inventoryDefinitions: InventoryDefinitions by inject()
 val itemDefs: ItemDefinitions by inject()
 
-on<ContainerUpdate> { player: Player ->
-    val secondary = container.startsWith("_")
-    val id = if (secondary) container.removePrefix("_") else container
+on<InventoryUpdate> { player: Player ->
+    val secondary = inventory.startsWith("_")
+    val id = if (secondary) inventory.removePrefix("_") else inventory
     player.sendInterfaceItemUpdate(
-        key = containerDefs.get(id).id,
+        key = inventoryDefinitions.get(id).id,
         updates = updates.map { Triple(it.index, itemDefs.getOrNull(it.item.id)?.id ?: -1, it.item.amount) },
         secondary = secondary
     )

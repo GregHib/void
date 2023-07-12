@@ -12,7 +12,7 @@ import org.koin.fileProperties
 import org.koin.test.KoinTest
 import world.gregs.voidps.cache.*
 import world.gregs.voidps.cache.active.ActiveCache
-import world.gregs.voidps.cache.config.decoder.ContainerDecoder
+import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
@@ -23,8 +23,7 @@ import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.Inventory
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
@@ -122,7 +121,7 @@ abstract class WorldTest : KoinTest {
         return objects.add(id, tile, shape, rotation)
     }
 
-    fun Container.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }
+    fun Inventory.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }
 
     @BeforeAll
     fun beforeAll() {
@@ -140,7 +139,7 @@ abstract class WorldTest : KoinTest {
                 single(createdAtStart = true) { animationDefinitions }
                 single(createdAtStart = true) { graphicDefinitions }
                 single(createdAtStart = true) { interfaceDefinitions }
-                single(createdAtStart = true) { containerDefinitions }
+                single(createdAtStart = true) { inventoryDefinitions }
                 single(createdAtStart = true) { structDefinitions }
                 single(createdAtStart = true) { quickChatPhraseDefinitions }
                 single(createdAtStart = true) { styleDefinitions }
@@ -223,7 +222,7 @@ abstract class WorldTest : KoinTest {
         private val animationDefinitions: AnimationDefinitions by lazy { AnimationDefinitions(AnimationDecoder().load(active)).load() }
         private val graphicDefinitions: GraphicDefinitions by lazy { GraphicDefinitions(GraphicDecoder().load(active)).load() }
         private val interfaceDefinitions: InterfaceDefinitions by lazy { InterfaceDefinitions(InterfaceDecoder().load(active)).load() }
-        private val containerDefinitions: ContainerDefinitions by lazy { ContainerDefinitions(ContainerDecoder().load(active)).load() }
+        private val inventoryDefinitions: InventoryDefinitions by lazy { InventoryDefinitions(InventoryDecoder().load(active)).load() }
         private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder().load(active)).load() }
         private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(active)).load() }
         private val styleDefinitions: StyleDefinitions by lazy { StyleDefinitions(ClientScriptDecoder(revision634 = true).load(active)) }

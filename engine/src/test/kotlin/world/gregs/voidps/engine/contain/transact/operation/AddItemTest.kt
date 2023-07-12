@@ -13,25 +13,25 @@ internal class AddItemTest : TransactionOperationTest() {
         // Set the transaction to failed
         transaction.error = TransactionError.Invalid
         transaction.add("item", 1)
-        // Assert that the item was not removed from the container
-        assertEquals(0, container[0].amount)
+        // Assert that the item was not removed from the inventory
+        assertEquals(0, inventory[0].amount)
     }
 
     @Test
-    fun `Add invalid item to container`() {
+    fun `Add invalid item to inventory`() {
         transaction(itemRule = validItems)
         transaction.add("")
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
-        assertTrue(container.isEmpty())
+        assertTrue(inventory.isEmpty())
     }
 
     @Test
-    fun `Add invalid amount of item to container`() {
+    fun `Add invalid amount of item to inventory`() {
         transaction.add("item", -1)
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
-        assertTrue(container.isEmpty())
+        assertTrue(inventory.isEmpty())
     }
 
     @Test
@@ -43,7 +43,7 @@ internal class AddItemTest : TransactionOperationTest() {
         transaction.add(id, amountToAdd)
 
         assertTrue(transaction.commit())
-        assertEquals(initialAmount + amountToAdd, container[0].amount)
+        assertEquals(initialAmount + amountToAdd, inventory[0].amount)
     }
 
     @Test
@@ -64,7 +64,7 @@ internal class AddItemTest : TransactionOperationTest() {
         transaction.add(id, amount)
 
         assertTrue(transaction.commit())
-        assertEquals(amount, container[0].amount)
+        assertEquals(amount, inventory[0].amount)
     }
 
     @Test
@@ -74,8 +74,8 @@ internal class AddItemTest : TransactionOperationTest() {
         transaction.add(id)
         transaction.commit()
 
-        assertEquals(1, container[0].amount)
-        assertEquals(1, container.count(id))
+        assertEquals(1, inventory[0].amount)
+        assertEquals(1, inventory.count(id))
     }
 
     @Test
@@ -86,8 +86,8 @@ internal class AddItemTest : TransactionOperationTest() {
         transaction.add(id, amount)
         transaction.commit()
 
-        assertEquals(1, container[0].amount)
-        assertEquals(amount, container.count(id))
+        assertEquals(1, inventory[0].amount)
+        assertEquals(amount, inventory.count(id))
     }
 
     @Test
@@ -97,7 +97,7 @@ internal class AddItemTest : TransactionOperationTest() {
         val amount = 10
 
         transaction.add(id, amount)
-        assertEquals(5, container.count(id))
+        assertEquals(5, inventory.count(id))
         assertFalse(transaction.commit())
         assertErrorFull(5)
     }

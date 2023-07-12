@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove

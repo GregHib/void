@@ -1,9 +1,9 @@
 package world.gregs.voidps.world.interact.entity.npc.shop
 
-import world.gregs.voidps.cache.config.data.ContainerDefinition
+import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.remove
-import world.gregs.voidps.engine.data.definition.ContainerDefinitions
+import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
@@ -20,7 +20,7 @@ import kotlin.math.max
 /**
  * Every [restockTimeTicks] all players shops and [GeneralStores] update their stock by 10%
  */
-val containerDefs: ContainerDefinitions by inject()
+val inventoryDefinitions: InventoryDefinitions by inject()
 val restockTimeTicks = TimeUnit.SECONDS.toTicks(60)
 
 on<Registered> { player: Player ->
@@ -32,26 +32,26 @@ on<TimerStart>({ timer == "shop_restock" }) { _: Player ->
 }
 
 on<TimerTick>({ timer == "shop_restock" }) { player: Player ->
-    for (name in player.containers.keys) {
-        val container = player.containers.container(name)
-        val def = containerDefs.get(name)
+    for (name in player.inventories.keys) {
+        val inventory = player.inventories.inventory(name)
+        val def = inventoryDefinitions.get(name)
         if (!def["shop", false]) {
             continue
         }
-        restock(def, container)
+        restock(def, inventory)
     }
 }
 
 // Remove restocked shops to save space
 on<Unregistered> { player: Player ->
-    for ((name, container) in player.containers.instances) {
-        val def = containerDefs.get(name)
+    for ((name, inventory) in player.inventories.instances) {
+        val def = inventoryDefinitions.get(name)
         if (!def["shop", false]) {
             continue
         }
         val amounts = def.amounts ?: continue
-        if (container.items.withIndex().all { (index, item) -> item.amount == amounts.getOrNull(index) }) {
-            player.containers.remove(name)
+        if (inventory.items.withIndex().all { (index, item) -> item.amount == amounts.getOrNull(index) }) {
+            player.inventories.remove(name)
         }
     }
 }
@@ -62,21 +62,21 @@ on<World, Registered> {
 
 fun restock() {
     World.run("general_store_restock", restockTimeTicks) {
-        for ((key, container) in GeneralStores.stores) {
-            val def = containerDefs.get(key)
-            restock(def, container)
+        for ((key, inventory) in GeneralStores.stores) {
+            val def = inventoryDefinitions.get(key)
+            restock(def, inventory)
         }
         restock()
     }
 }
 
-fun restock(def: ContainerDefinition, container: world.gregs.voidps.engine.contain.Container) {
+fun restock(def: InventoryDefinition, inventory: world.gregs.voidps.engine.contain.Inventory) {
     val defaults = def.getOrNull<List<Map<String, Int>>>("defaults")
     for (index in 0 until def.length) {
         val map = defaults?.getOrNull(index)
         var maximum = map?.values?.firstOrNull()
         val id = map?.keys?.firstOrNull()
-        val item = container[index]
+        val item = inventory[index]
         if (id == null || maximum == null) {
             maximum = 0
         }
@@ -86,9 +86,9 @@ fun restock(def: ContainerDefinition, container: world.gregs.voidps.engine.conta
         val difference = abs(item.amount - maximum)
         val percent = max(1, (difference * 0.1).toInt())
         if (item.amount < maximum) {
-            container.add(item.id, percent)
+            inventory.add(item.id, percent)
         } else {
-            container.remove(item.id, percent)
+            inventory.remove(item.id, percent)
         }
     }
 }

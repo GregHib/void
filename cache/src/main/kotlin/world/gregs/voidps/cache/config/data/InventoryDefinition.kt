@@ -3,7 +3,7 @@ package world.gregs.voidps.cache.config.data
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 
-data class ContainerDefinition(
+data class InventoryDefinition(
     override var id: Int = -1,
     var length: Int = 0,
     var ids: IntArray? = null,
@@ -15,7 +15,7 @@ data class ContainerDefinition(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as ContainerDefinition
+        other as InventoryDefinition
 
         if (id != other.id) return false
         if (length != other.length) return false
@@ -44,6 +44,6 @@ data class ContainerDefinition(
     }
 
     companion object {
-        val EMPTY = ContainerDefinition()
+        val EMPTY = InventoryDefinition()
     }
 }

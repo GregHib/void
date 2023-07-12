@@ -4,14 +4,14 @@ import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.item.Item
 
 /**
- * Transaction operation for adding items to a container.
+ * Transaction operation for adding items to an inventory.
  * Stackable items are added to existing stack, or it is added to the first empty slot if no matching stack is found.
  * Items that aren't stackable are added to one or more empty slots, depending on amount and whether it is one or greater.
  */
 interface AddItem : TransactionOperation {
 
     /**
-     * Adds an item to the container.
+     * Adds an item to the inventory.
      * @param id the identifier of the item to be added.
      * @param amount the number of items to be added. Default value is 1.
      */
@@ -19,17 +19,17 @@ interface AddItem : TransactionOperation {
         if (failed) {
             return
         }
-        if (container.restricted(id) || container.shouldRemove(amount)) {
+        if (inventory.restricted(id) || inventory.shouldRemove(amount)) {
             error = TransactionError.Invalid
             return
         }
         // Check if the item is stackable
-        if (!container.stackable(id)) {
+        if (!inventory.stackable(id)) {
             addItemsToSlots(id, amount)
             return
         }
         // Try to add the item to an existing stack
-        val index = container.indexOf(id)
+        val index = inventory.indexOf(id)
         if (index != -1) {
             increaseStack(index, amount)
             return
@@ -44,7 +44,7 @@ interface AddItem : TransactionOperation {
      * @param amount the number of items to be added to the stack.
      */
     fun increaseStack(index: Int, amount: Int) {
-        val item = container[index]
+        val item = inventory[index]
         if (item.isEmpty()) {
             error = TransactionError.Invalid
             return
@@ -54,18 +54,18 @@ interface AddItem : TransactionOperation {
             error = TransactionError.Full(Int.MAX_VALUE - item.amount)
             return
         }
-        // Combine the stacks and update the item in the container
+        // Combine the stacks and update the item in the inventory
         set(index, item.copy(amount = item.amount + amount))
     }
 
     /**
-     * Adds the item to an empty slot in the container.
+     * Adds the item to an empty slot in the inventory.
      * @param id the identifier of the item to be added.
      * @param amount the number of items to be added to the stack.
      **/
     private fun addItemToEmptySlot(id: String, amount: Int) {
-        // Find an empty slot in the container
-        val emptySlot = container.freeIndex()
+        // Find an empty slot in the inventory
+        val emptySlot = inventory.freeIndex()
         if (emptySlot != -1) {
             // Add the item to the empty slot.
             set(emptySlot, Item(id, amount))
@@ -76,14 +76,14 @@ interface AddItem : TransactionOperation {
     }
 
     /**
-     * Adds the items to one or more empty slots in the container.
+     * Adds the items to one or more empty slots in the inventory.
      * @param id the identifier of the items to be added.
      * @param amount the number of items to be added.
      */
     private fun addItemsToSlots(id: String, amount: Int) {
         for (count in 0 until amount) {
-            // Find an empty slot in the container
-            val emptySlot = container.freeIndex()
+            // Find an empty slot in the inventory
+            val emptySlot = inventory.freeIndex()
             if (emptySlot == -1) {
                 error = TransactionError.Full(count)
                 return

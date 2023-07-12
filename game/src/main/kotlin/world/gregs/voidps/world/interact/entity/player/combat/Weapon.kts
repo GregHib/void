@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat
 
 import world.gregs.voidps.engine.client.variable.VariableSet
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -17,7 +16,7 @@ on<Registered>(priority = Priority.HIGH) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index }, Priority.HIGH) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && index == EquipSlot.Weapon.index }, Priority.HIGH) { player: Player ->
     updateWeapon(player, item)
 }
 

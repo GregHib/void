@@ -241,11 +241,11 @@ on<Command>({ prefix == "sendItems" }) { player: Player ->
     val array = IntArray(28 * 2)
     array[0] = 995
     array[28] = 1
-    player.sendContainerItems(90, 28, array, false)
+    player.sendInventoryItems(90, 28, array, false)
     val ags = IntArray(28 * 2)
     ags[0] = 11694
     ags[28] = 1
-    player.sendContainerItems(90, 28, ags, true)
+    player.sendInventoryItems(90, 28, ags, true)
 }
 
 on<Command>({ prefix == "obj" }) { player: Player ->

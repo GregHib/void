@@ -46,12 +46,12 @@ internal class WeakInteractionTest : WorldTest() {
             when (it) {
                 "Interface switch" -> {
                     val wool = Item("ball_of_wool", 1)
-                    player.interfaceSwitch("inventory", "container", "inventory", wool, wool, 0, 1)
+                    player.interfaceSwitch("inventory", "inventory", "inventory", wool, wool, 0, 1)
                 }
                 "Remove equipment" -> player.interfaceOption("worn_equipment", "weapon", "*", 0, Item("bronze_sword"))
                 "Item on item" -> {
                     val wool = Item("ball_of_wool", 1)
-                    player.interfaceUse("inventory", "container", "inventory", wool, wool, 0, 1)
+                    player.interfaceUse("inventory", "inventory", "inventory", wool, wool, 0, 1)
                 }
                 "Activate prayer" -> player.interfaceOption("prayer_list", "regular_prayers", "Activate", slot = 0)
                 "Skill guide" -> player.interfaceOption("stats", "attack", "View")
@@ -98,7 +98,7 @@ internal class WeakInteractionTest : WorldTest() {
         val target = player.tile.addY(10)
         player.walk(target)
         tick(4)
-        player.interfaceOption("inventory", "container", "Drop", 4, Item("vial", 1), 0)
+        player.interfaceOption("inventory", "inventory", "Drop", 4, Item("vial", 1), 0)
         tick(6)
 
         assertEquals(target, player.tile)

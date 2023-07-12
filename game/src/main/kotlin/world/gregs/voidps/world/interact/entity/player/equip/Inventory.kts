@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.contain.sendContainer
+import world.gregs.voidps.engine.contain.sendInventory
 import world.gregs.voidps.engine.contain.swap
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
@@ -16,9 +16,9 @@ import world.gregs.voidps.engine.event.on
 val logger = InlineLogger()
 
 on<InterfaceRefreshed>({ id == "inventory" }) { player: Player ->
-    player.interfaceOptions.unlockAll(id, "container", 0 until 28)
-    player.interfaceOptions.unlock(id, "container", 28 until 56, "Drag")
-    player.sendContainer(id)
+    player.interfaceOptions.unlockAll(id, "inventory", 0 until 28)
+    player.interfaceOptions.unlock(id, "inventory", 28 until 56, "Drag")
+    player.sendInventory(id)
 }
 
 on<InterfaceSwitch> { player: Player ->
@@ -35,7 +35,7 @@ on<InterfaceSwitch>({ id == "inventory" && toId == "inventory" }) { player: Play
     }
 }
 
-on<InterfaceOption>({ id == "inventory" && component == "container" }) { player: Player ->
+on<InterfaceOption>({ id == "inventory" && component == "inventory" }) { player: Player ->
     val itemDef = item.def
     val equipOption = when (optionIndex) {
         6 -> itemDef.options.getOrNull(3)
@@ -52,7 +52,7 @@ on<InterfaceOption>({ id == "inventory" && component == "container" }) { player:
         player.mode = EmptyMode
     }
     player.events.emit(
-        ContainerOption(
+        InventoryOption(
             player,
             id,
             item,

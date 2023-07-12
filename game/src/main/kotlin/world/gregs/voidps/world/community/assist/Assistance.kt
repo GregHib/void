@@ -2,8 +2,6 @@ package world.gregs.voidps.world.community.assist
 
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.remaining
-import world.gregs.voidps.engine.client.variable.remove
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.timer.epochSeconds
@@ -21,10 +19,10 @@ object Assistance {
 
     fun toggleInventory(player: Player, enabled: Boolean) {
         if(enabled) {
-            player.interfaceOptions.unlockAll("inventory", "container", 0 until 28)
-            player.interfaceOptions.unlock("inventory", "container", 28 until 56, "Drag")
+            player.interfaceOptions.unlockAll("inventory", "inventory", 0 until 28)
+            player.interfaceOptions.unlock("inventory", "inventory", 28 until 56, "Drag")
         } else {
-            player.interfaceOptions.lockAll("inventory", "container", 0 until 56)
+            player.interfaceOptions.lockAll("inventory", "inventory", 0 until 56)
         }
     }
 

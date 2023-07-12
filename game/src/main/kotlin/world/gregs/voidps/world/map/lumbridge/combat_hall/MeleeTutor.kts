@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.map.lumbridge.combat_hall
 
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.transact.TransactionError

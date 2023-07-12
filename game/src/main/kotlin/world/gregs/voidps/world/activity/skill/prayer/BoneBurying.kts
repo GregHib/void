@@ -12,11 +12,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
+import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
 
 val logger = InlineLogger()
 
-on<ContainerOption>({ container == "inventory" && item.def.has("prayer_xp") && option == "Bury" }) { player: Player ->
+on<InventoryOption>({ inventory == "inventory" && item.def.has("prayer_xp") && option == "Bury" }) { player: Player ->
     if (player.hasClock("bone_delay")) {
         return@on
     }

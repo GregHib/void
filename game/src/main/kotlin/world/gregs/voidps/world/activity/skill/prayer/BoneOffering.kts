@@ -10,14 +10,13 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.type.Distance.nearestTo
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 
-on<ItemOnObject>({ operate && container == "inventory" && item.def.has("prayer_xp") && obj.id.startsWith("altar") }) { player: Player ->
+on<ItemOnObject>({ operate && inventory == "inventory" && item.def.has("prayer_xp") && obj.id.startsWith("altar") }) { player: Player ->
     arriveDelay()
     val tile = obj.nearestTo(player.tile)
     val count = player.inventory.count(item.id)

@@ -12,7 +12,7 @@ data class ItemOnNPC(
     val component: String,
     val item: Item,
     val itemSlot: Int,
-    val container: String
+    val inventory: String
 ) : NPCInteraction() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 }

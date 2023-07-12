@@ -1,10 +1,10 @@
 package world.gregs.voidps.world.interact.entity.npc.shop
 
-import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.Inventory
 import world.gregs.voidps.engine.contain.remove.ItemIndexRemovalChecker
-import world.gregs.voidps.engine.contain.sendContainer
+import world.gregs.voidps.engine.contain.sendInventory
 import world.gregs.voidps.engine.contain.stack.AlwaysStack
-import world.gregs.voidps.engine.data.definition.ContainerDefinitions
+import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -12,18 +12,20 @@ import world.gregs.voidps.engine.inject
 
 object GeneralStores {
 
-    private val containerDefs: ContainerDefinitions by inject()
+    private val inventoryDefinitions: InventoryDefinitions by inject()
     private val itemDefs: ItemDefinitions by inject()
 
-    val stores: MutableMap<String, Container> = mutableMapOf()
+    val stores: MutableMap<String, Inventory> = mutableMapOf()
 
     fun get(key: String) = stores.getOrPut(key) {
-        val def = containerDefs.get(key)
-        val minimumQuantities = IntArray(def.length) { if (def.getOrNull<List<Map<String, Int>>>("defaults")?.getOrNull(it) != null) -1 else 0 }
+        val definition = inventoryDefinitions.get(key)
+        val minimumQuantities = IntArray(definition.length) {
+            if (definition.getOrNull<List<Map<String, Int>>>("defaults")?.getOrNull(it) != null) -1 else 0
+        }
         val checker = ItemIndexRemovalChecker(minimumQuantities)
-        Container(
-            data = Array(def.length) {
-                val map = def.getOrNull<List<Map<String, Int>>>("defaults")?.getOrNull(it)
+        Inventory(
+            data = Array(definition.length) {
+                val map = definition.getOrNull<List<Map<String, Int>>>("defaults")?.getOrNull(it)
                 Item(
                     id = map?.keys?.firstOrNull() ?: "",
                     amount = map?.values?.firstOrNull() ?: 0
@@ -36,12 +38,12 @@ object GeneralStores {
         )
     }
 
-    fun bind(player: Player, key: String): Container = get(key).apply {
+    fun bind(player: Player, key: String): Inventory = get(key).apply {
         this.transaction.changes.bind(player.events)
-        player.sendContainer(this, false)
+        player.sendInventory(this, false)
     }
 
-    fun unbind(player: Player, key: String): Container = get(key).apply {
+    fun unbind(player: Player, key: String): Inventory = get(key).apply {
         this.transaction.changes.unbind(player.events)
     }
 

@@ -15,9 +15,9 @@ internal class SwapItemTest : TransactionOperationTest() {
         // Set the transaction to failed
         transaction.error = TransactionError.Invalid
         transaction.swap(0, 1)
-        // Assert that the items were not swapped in the container
-        assertEquals("item", container[0].id)
-        assertEquals("stackable_item", container[1].id)
+        // Assert that the items were not swapped in the inventory
+        assertEquals("item", inventory[0].id)
+        assertEquals("stackable_item", inventory[1].id)
     }
 
     @Test
@@ -29,7 +29,7 @@ internal class SwapItemTest : TransactionOperationTest() {
         transaction.swap(-1, 1)
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
-        assertEquals("item", container[0].id)
+        assertEquals("item", inventory[0].id)
     }
 
     @Test
@@ -40,15 +40,15 @@ internal class SwapItemTest : TransactionOperationTest() {
         transaction.swap(0, -1)
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
-        assertEquals("item", container[0].id)
+        assertEquals("item", inventory[0].id)
     }
 
     @Test
-    fun `Swap items in the container`() {
+    fun `Swap items in the inventory`() {
         transaction(stackRule = normalStackRule) {
             add("item", 2)
         }
-        val target = container(stackRule = normalStackRule) {
+        val target = inventory(stackRule = normalStackRule) {
             add("item", 1)
             add("stackable_item", 4)
         }
@@ -56,8 +56,8 @@ internal class SwapItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         // Assert that the items were swapped
-        assertEquals("stackable_item", container[1].id)
-        assertEquals(4, container[1].amount)
+        assertEquals("stackable_item", inventory[1].id)
+        assertEquals(4, inventory[1].amount)
         assertEquals("item", target[1].id)
         assertEquals(1, target[1].amount)
     }
@@ -72,8 +72,8 @@ internal class SwapItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         // Assert that the item was moved to the empty slot
-        assertEquals(0, container[0].amount)
-        assertEquals(1, container[1].amount)
+        assertEquals(0, inventory[0].amount)
+        assertEquals(1, inventory[1].amount)
     }
 
 }

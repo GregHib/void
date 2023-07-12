@@ -4,9 +4,7 @@ import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.flag.CollisionFlag
-import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.client.variable.inc
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.Character

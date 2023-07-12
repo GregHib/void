@@ -15,7 +15,7 @@ object InterfaceDefinitions {
             for ((id, comp) in def.components ?: continue) {
 //                if(comp.anObjectArray4758 != null) {
                     println("$id - $comp")
-//                if (comp.containers != null) {
+//                if (comp.inventories != null) {
 //                    println("${comp.id} ${def.id} ${Interface.getId(comp.id)} ${Interface.getComponentId(comp.id)} $id ${comp.anObjectArray4758?.toList()}")
 //                }
             }

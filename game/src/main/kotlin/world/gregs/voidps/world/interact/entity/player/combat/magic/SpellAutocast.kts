@@ -2,9 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.VariableSet
-import world.gregs.voidps.engine.client.variable.clear
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -30,6 +27,6 @@ on<VariableSet>({ key == "autocast" && to == null }) { player: Player ->
     player.clear("autocast_spell")
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && index == EquipSlot.Weapon.index }) { player: Player ->
     player.clear("autocast")
 }

@@ -97,7 +97,7 @@ data class InterfaceComponentDefinitionFull(
     var anObjectArray4688: Array<Any>? = null,
     var anObjectArray4775: Array<Any>? = null,
     var clientVarp: IntArray? = null,
-    var containers: IntArray? = null,
+    var inventories: IntArray? = null,
     var anIntArray4789: IntArray? = null,
     var clientVarc: IntArray? = null,
     var anIntArray4805: IntArray? = null,
@@ -285,10 +285,10 @@ data class InterfaceComponentDefinitionFull(
             if (other.clientVarp == null) return false
             if (!clientVarp.contentEquals(other.clientVarp)) return false
         } else if (other.clientVarp != null) return false
-        if (containers != null) {
-            if (other.containers == null) return false
-            if (!containers.contentEquals(other.containers)) return false
-        } else if (other.containers != null) return false
+        if (inventories != null) {
+            if (other.inventories == null) return false
+            if (!inventories.contentEquals(other.inventories)) return false
+        } else if (other.inventories != null) return false
         if (anIntArray4789 != null) {
             if (other.anIntArray4789 == null) return false
             if (!anIntArray4789.contentEquals(other.anIntArray4789)) return false
@@ -402,7 +402,7 @@ data class InterfaceComponentDefinitionFull(
         result = 31 * result + (anObjectArray4688?.contentHashCode() ?: 0)
         result = 31 * result + (anObjectArray4775?.contentHashCode() ?: 0)
         result = 31 * result + (clientVarp?.contentHashCode() ?: 0)
-        result = 31 * result + (containers?.contentHashCode() ?: 0)
+        result = 31 * result + (inventories?.contentHashCode() ?: 0)
         result = 31 * result + (anIntArray4789?.contentHashCode() ?: 0)
         result = 31 * result + (clientVarc?.contentHashCode() ?: 0)
         result = 31 * result + (anIntArray4805?.contentHashCode() ?: 0)

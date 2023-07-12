@@ -2,7 +2,7 @@ package world.gregs.voidps.network.instruct
 
 import world.gregs.voidps.network.Instruction
 
-data class MoveContainerItem(
+data class MoveInventoryItem(
     val fromId: Int,
     val fromComponentId: Int,
     val fromItemId: Int,

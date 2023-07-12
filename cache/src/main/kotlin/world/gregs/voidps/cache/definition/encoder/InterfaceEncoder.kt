@@ -181,7 +181,7 @@ internal class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinition
         encodeScript(definition.anObjectArray4688)
         encodeScript(definition.anObjectArray4775)
         encodeIntArray(definition.clientVarp)
-        encodeIntArray(definition.containers)
+        encodeIntArray(definition.inventories)
         encodeIntArray(definition.anIntArray4789)
         encodeIntArray(definition.clientVarc)
         encodeIntArray(definition.anIntArray4805)

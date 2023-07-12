@@ -1,5 +1,7 @@
 package world.gregs.voidps.world.interact.entity.combat
 
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.message
@@ -17,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.weaponStyle
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
@@ -307,11 +310,11 @@ private fun remove(player: Player, target: Character, ammo: String, required: In
 }
 
 var Character.attackers: MutableList<Character>
-    get() = get("attackers")
+    get() = getOrPut("attackers") { ObjectArrayList() }
     set(value) = set("attackers", value)
 
 var Character.damageDealers: MutableMap<Character, Int>
-    get() = get("damage_dealers")
+    get() = getOrPut("damage_dealers") { Object2IntOpenHashMap() }
     set(value) = set("damage_dealers", value)
 
 val Character.inWilderness: Boolean

@@ -4,7 +4,7 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.Inventory
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.contain.transact.operation.TransactionOperationTest
 import world.gregs.voidps.engine.entity.item.Item
@@ -17,9 +17,9 @@ class TransactionTest : TransactionOperationTest() {
 
     @Test
     fun `Set tracks changes`() {
-        val container = Container.debug(1)
+        val inventory = Inventory.debug(1)
         val events: Events = mockk(relaxed = true)
-        val transaction = container.transaction
+        val transaction = inventory.transaction
         transaction.changes.bind(events)
         transaction.set(0, Item("item", 1, def = ItemDefinition.EMPTY))
         transaction.changes.send()
@@ -28,49 +28,49 @@ class TransactionTest : TransactionOperationTest() {
 
 
     @Test
-    fun `Link second container to transaction`() {
-        val container = Container.debug(1)
-        val transaction = container.transaction
-        val container2 = Container.debug(1)
+    fun `Link second inventory to transaction`() {
+        val inventory = Inventory.debug(1)
+        val transaction = inventory.transaction
+        val inventory2 = Inventory.debug(1)
         transaction.start()
 
-        assertFalse(container2.transaction.state.hasSaved())
-        transaction.link(container2)
-        assertTrue(transaction.linked(container2.transaction))
-        assertTrue(container2.transaction.state.hasSaved())
+        assertFalse(inventory2.transaction.state.hasSaved())
+        transaction.link(inventory2)
+        assertTrue(transaction.linked(inventory2.transaction))
+        assertTrue(inventory2.transaction.state.hasSaved())
         assertTrue(transaction.commit())
     }
 
     @Test
-    fun `Error in linked container fails main transaction`() {
-        val container = Container.debug(1)
-        val transaction = container.transaction
-        val container2 = Container.debug(1)
+    fun `Error in linked inventory fails main transaction`() {
+        val inventory = Inventory.debug(1)
+        val transaction = inventory.transaction
+        val inventory2 = Inventory.debug(1)
         transaction.start()
-        val transaction2 = transaction.link(container2)
+        val transaction2 = transaction.link(inventory2)
         transaction2.error = TransactionError.Invalid
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
     }
 
     @Test
-    fun `Can't link with container in a transaction`() {
-        val container = Container.debug(1)
-        val transaction = container.transaction
-        val container2 = Container.debug(1)
-        val transaction2 = container2.transaction
+    fun `Can't link with inventory in a transaction`() {
+        val inventory = Inventory.debug(1)
+        val transaction = inventory.transaction
+        val inventory2 = Inventory.debug(1)
+        val transaction2 = inventory2.transaction
         transaction2.start()
-        transaction.link(container2)
-        assertFalse(container.transaction.linked(transaction))
+        transaction.link(inventory2)
+        assertFalse(inventory.transaction.linked(transaction))
         assertEquals(TransactionError.Invalid, transaction.error)
     }
 
     @Test
     fun `Link transaction with itself does nothing`() {
-        val container = Container.debug(1)
-        val transaction = container.transaction
-        transaction.link(container)
-        assertFalse(container.transaction.linked(transaction))
+        val inventory = Inventory.debug(1)
+        val transaction = inventory.transaction
+        transaction.link(inventory)
+        assertFalse(inventory.transaction.linked(transaction))
         assertEquals(TransactionError.None, transaction.error)
     }
 }

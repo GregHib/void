@@ -5,10 +5,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.Contexts
-import world.gregs.voidps.engine.client.variable.clear
-import world.gregs.voidps.engine.client.variable.contains
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.AiTick
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World

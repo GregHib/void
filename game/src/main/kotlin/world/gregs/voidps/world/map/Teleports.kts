@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes.hasSpellRequirements
-import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
+import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val areas: AreaDefinitions by inject()
@@ -56,7 +56,7 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport
     }
 }
 
-on<ContainerOption>({ item.id.endsWith("_teleport") }) { player: Player ->
+on<InventoryOption>({ item.id.endsWith("_teleport") }) { player: Player ->
     if (player.queue.contains(ActionPriority.Normal)) {
         return@on
     }

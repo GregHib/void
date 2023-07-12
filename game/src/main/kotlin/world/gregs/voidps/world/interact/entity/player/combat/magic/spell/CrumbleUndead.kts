@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation

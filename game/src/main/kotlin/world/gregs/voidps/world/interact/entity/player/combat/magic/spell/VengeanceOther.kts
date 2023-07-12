@@ -2,9 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.ItemOnPlayer
-import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.remaining
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player

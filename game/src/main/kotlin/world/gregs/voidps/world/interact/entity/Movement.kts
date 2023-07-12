@@ -22,12 +22,19 @@ val npcs: NPCs by inject()
 val players: Players by inject()
 val active = getProperty("characterCollision") == "true"
 
-on<Registered> { character: Character ->
+on<Registered> { player: Player ->
     if (active) {
-        collisions.add(character)
+        collisions.add(player)
     }
-    if (character is Player) {
-        players.add(character)
+    players.add(player)
+}
+
+on<Registered>({ active }) { npc: NPC ->
+    val mask = entity(npc)
+    for (x in npc.tile.x until npc.tile.x + npc.def.size) {
+        for (y in npc.tile.y until npc.tile.y + npc.def.size) {
+            collisions.add(x, y, npc.tile.level, mask)
+        }
     }
 }
 
@@ -49,30 +56,33 @@ on<Moved> { npc: NPC ->
 }
 
 fun Collisions.add(char: Character) {
+    val mask = entity(char)
     for (x in 0 until char.size) {
         for (y in 0 until char.size) {
-            add(char.tile.x + x, char.tile.y + y, char.tile.level, entity(char))
+            add(char.tile.x + x, char.tile.y + y, char.tile.level, mask)
         }
     }
 }
 
 fun Collisions.remove(char: Character) {
+    val mask = entity(char)
     for (x in 0 until char.size) {
         for (y in 0 until char.size) {
-            remove(char.tile.x + x, char.tile.y + y, char.tile.level, entity(char))
+            remove(char.tile.x + x, char.tile.y + y, char.tile.level, mask)
         }
     }
 }
 
 fun Collisions.move(character: Character, from: Tile, to: Tile) {
+    val mask = entity(character)
     for (x in 0 until character.size) {
         for (y in 0 until character.size) {
-            remove(from.x + x, from.y + y, from.level, entity(character))
+            remove(from.x + x, from.y + y, from.level, mask)
         }
     }
     for (x in 0 until character.size) {
         for (y in 0 until character.size) {
-            add(to.x + x, to.y + y, to.level, entity(character))
+            add(to.x + x, to.y + y, to.level, mask)
         }
     }
 }
