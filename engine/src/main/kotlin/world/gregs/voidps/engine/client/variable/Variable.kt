@@ -53,6 +53,10 @@ interface Variable {
         return variables.get(key)
     }
 
+    operator fun <T : Any> get(key: String, default: T): T {
+        return variables.get(key, default)
+    }
+
     fun <T : Any> getOrPut(key: String, block: () -> T): T {
         return variables.getOrPut(key, block)
     }
