@@ -72,7 +72,3 @@ open class Variables(
 operator fun <T : Any> Character?.get(key: String, default: T): T {
     return this?.variables?.get(key, default) ?: default
 }
-
-fun <T : Any> Character?.getOrNull(key: String): T? {
-    return this?.variables?.getOrNull(key)
-}

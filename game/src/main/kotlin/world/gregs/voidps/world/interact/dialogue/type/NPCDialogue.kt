@@ -4,8 +4,6 @@ import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Face

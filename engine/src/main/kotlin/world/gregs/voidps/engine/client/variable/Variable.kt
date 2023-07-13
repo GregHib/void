@@ -57,6 +57,10 @@ interface Variable {
         return variables.get(key, default)
     }
 
+    fun <T : Any> getOrNull(key: String): T? {
+        return variables.getOrNull(key)
+    }
+
     fun <T : Any> getOrPut(key: String, block: () -> T): T {
         return variables.getOrPut(key, block)
     }

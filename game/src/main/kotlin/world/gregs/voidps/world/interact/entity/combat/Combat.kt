@@ -6,7 +6,6 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
