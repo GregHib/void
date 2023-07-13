@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.character.mode
 
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.watch

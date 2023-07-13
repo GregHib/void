@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.map.varrock
 
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext

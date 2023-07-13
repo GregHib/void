@@ -5,7 +5,6 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -225,7 +224,7 @@ fun getRating(source: Character, target: Character?, type: String, weapon: Item?
     source.events.emit(override)
     level = override.level
     val style = if (source is NPC && offense) "att_bonus" else if (type == "range" || type == "magic") type else target?.combatStyle ?: ""
-    val equipmentBonus = if (target is NPC) target.def[if (offense) style else "${style}_def", 0] else target[if (offense) style else "${style}_def", 0]
+    val equipmentBonus = if (target is NPC) target.def[if (offense) style else "${style}_def", 0] else target?.getOrNull(if (offense) style else "${style}_def") ?: 0
     val rating = level * (equipmentBonus + 64.0)
     val modifier = HitRatingModifier(target, type, offense, rating, weapon, special)
     source.events.emit(modifier)

@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.activity.bank
 
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item

@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.client.variable
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.Events
 
 open class Variables(
@@ -67,8 +66,4 @@ open class Variables(
     open fun data(key: String): MutableMap<String, Any> {
         return data
     }
-}
-
-operator fun <T : Any> Character?.get(key: String, default: T): T {
-    return this?.variables?.get(key, default) ?: default
 }

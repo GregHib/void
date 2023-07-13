@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.event.Priority
