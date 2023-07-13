@@ -235,3 +235,6 @@ disease_damage:
 poison_damage:
   format: int
   persist: true
+tolerance:
+  format: int
+  persist: true
