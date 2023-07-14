@@ -4,7 +4,6 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.config.HuntModeDefinition
 import world.gregs.voidps.engine.data.definition.HuntModeDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -43,13 +42,13 @@ class Hunting(
 
     override fun run() {
         for (npc in npcs) {
-            val mode: String? = npc.def.getOrNull("hunt_mode")
-            if (mode == null || npc.hasClock("hunting")) {
+            val mode: String = npc.def.getOrNull("hunt_mode") ?: continue
+            if (npc.hasClock("delay") || npc.dec("hunt_count_down") >= 0) {
                 continue
             }
             val range = npc.def["hunt_range", 5]
             val definition = huntModes.get(mode)
-            npc.start("hunting", definition.rate)
+            npc["hunt_count_down"] = definition.rate
             when (definition.type) {
                 "player" -> {
                     val targets = getCharacters(npc, players, range, definition)
@@ -83,9 +82,6 @@ class Hunting(
         for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZones(npc.tile.level)) {
             for (items in floorItems[zone]) {
                 for (item in items) {
-                    if (item.owner != null) {
-                        continue
-                    }
                     if (definition.id != null && item.id != definition.id) {
                         continue
                     }
