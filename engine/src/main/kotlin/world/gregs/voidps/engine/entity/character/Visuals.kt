@@ -226,7 +226,6 @@ fun Character.turn(delta: Delta, update: Boolean = true): Boolean {
 
 fun Character.clearTurn(): Boolean {
     visuals.turn.reset()
-    flagTurn()
     return true
 }
 
