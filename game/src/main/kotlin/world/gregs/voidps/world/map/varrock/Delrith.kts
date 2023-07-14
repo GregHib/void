@@ -249,25 +249,25 @@ on<NPCOption>({ operate && target.id == "delrith" && target.transform == "delrit
             player<Talk>(text, largeHead = true, clickToContinue = false)
             val expected = DemonSlayerSpell.getWord(player, index + 1)
             if (selected != expected) {
-                npc.setAnimation("delrith_continue")
+                target.setAnimation("delrith_continue")
                 delay(1)
                 correct = false
-                npcs.remove(npc)
-                npcs.removeIndex(npc)
-                npcs.releaseIndex(npc)
+                npcs.remove(target)
+                npcs.removeIndex(target)
+                npcs.releaseIndex(target)
                 delay(2)
             } else {
                 delay(3)
             }
         }
         if (correct) {
-            npc.setAnimation("delrith_death")
+            target.setAnimation("delrith_death")
             player.playSound("demon_slayer_delrith_banished")
             statement("Delrith is sucked into the vortex...", clickToContinue = false)
             delay(14)
-            npcs.remove(npc)
-            npcs.removeIndex(npc)
-            npcs.releaseIndex(npc)
+            npcs.remove(target)
+            npcs.removeIndex(target)
+            npcs.releaseIndex(target)
             statement("...back into the dark dimension from which he came.")
             destroyInstance(player)
             questComplete()
