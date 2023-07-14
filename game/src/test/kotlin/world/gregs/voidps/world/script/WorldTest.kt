@@ -23,7 +23,6 @@ import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
@@ -37,6 +36,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.EventHandlerStore
+import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Xteas
@@ -164,6 +164,7 @@ abstract class WorldTest : KoinTest {
                 get(),
                 get(),
                 get<ConnectionQueue>(),
+                get(),
                 get(),
                 get(),
                 get(),
