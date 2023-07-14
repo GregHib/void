@@ -79,7 +79,7 @@ class Hunting(
         definition: HuntModeDefinition
     ): MutableList<FloorItem> {
         val targets = ObjectArrayList<FloorItem>()
-        for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZones(npc.tile.level)) {
+        for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZonesReversed(npc.tile.level)) {
             for (items in floorItems[zone]) {
                 for (item in items) {
                     if (definition.id != null && item.id != definition.id) {
@@ -160,7 +160,7 @@ class Hunting(
         definition: HuntModeDefinition
     ): MutableList<T> {
         val targets = mutableListOf<T>()
-        for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZones(npc.tile.level)) {
+        for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZonesReversed(npc.tile.level)) {
             for (character in characterList[zone]) {
                 if (definition.filter != null && !definition.filter!!(character)) {
                     continue

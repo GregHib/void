@@ -51,7 +51,7 @@ class ZoneBatchUpdates : Runnable {
         val previousZone: Zone? = player.getOrNull("previous_zone")
         val previous = previousZone?.toRectangle(radius = player.viewport!!.localRadius)?.toZones(player.tile.level)?.toSet()
         player["previous_zone"] = player.tile.zone
-        for (zone in player.tile.zone.toRectangle(radius = player.viewport!!.localRadius).toZones(player.tile.level)) {
+        for (zone in player.tile.zone.toRectangle(radius = player.viewport!!.localRadius).toZonesReversed(player.tile.level)) {
             val entered = previous == null || !previous.contains(zone)
             if (entered) {
                 player.clearZone(zone)

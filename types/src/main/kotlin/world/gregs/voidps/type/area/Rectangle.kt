@@ -38,6 +38,18 @@ data class Rectangle(
         val list = mutableListOf<Zone>()
         val max = Tile(maxX, maxY).zone
         val min = Tile(minX, minY).zone
+        for (x in min.x..max.x) {
+            for (y in min.y..max.y) {
+                list.add(Zone(x, y, level))
+            }
+        }
+        return list
+    }
+
+    fun toZonesReversed(level: Int): List<Zone> {
+        val list = mutableListOf<Zone>()
+        val max = Tile(maxX, maxY).zone
+        val min = Tile(minX, minY).zone
         for (y in min.y..max.y) {
             for (x in min.x..max.x) {
                 list.add(Zone(x, y, level))
