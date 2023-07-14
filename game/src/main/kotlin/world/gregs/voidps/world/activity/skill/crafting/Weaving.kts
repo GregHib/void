@@ -4,12 +4,10 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.data.definition.data.Weaving
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -18,6 +16,8 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.dialogue.type.makeAmountIndex
@@ -54,7 +54,7 @@ on<ItemOnObject>({ operate && obj.id.startsWith("loom_") && item.def.has("weavin
     weave(obj, item, amount)
 }
 
-fun PlayerContext.weave(obj: GameObject, item: Item, amount: Int) {
+fun CharacterContext.weave(obj: GameObject, item: Item, amount: Int) {
     val data = item.weaving
     val current = player.inventory.count(item.id)
     if (current < data.amount) {

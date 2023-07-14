@@ -3,10 +3,10 @@ package world.gregs.voidps.world.interact.entity.npc
 import world.gregs.voidps.Main.name
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -47,7 +47,7 @@ on<ObjectOption>({ operate && option == "Use" }) { player: Player ->
     menu()
 }
 
-suspend fun PlayerContext.menu() {
+suspend fun CharacterContext.menu() {
     choice {
         option("I'd like to access my bank account, please.", block = { player.open("bank") })
         option("I'd like to check my PIN settings.", block = { player.open("bank_pin") })

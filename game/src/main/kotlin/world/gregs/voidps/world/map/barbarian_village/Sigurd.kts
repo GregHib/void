@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.map.barbarian_village
 
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.*
@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.minimumCanoeLevel
 
-on<NPCOption>({ operate && npc.id == "sigurd" && option == "Talk-To" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "sigurd" && option == "Talk-To" }) { player: Player ->
     player<Talking>("Hello there.")
     npc<Drunk>("Ha Ha! Hello!")
     choice {
@@ -64,7 +64,7 @@ on<NPCOption>({ operate && npc.id == "sigurd" && option == "Talk-To" }) { player
     }
 }
 
-suspend fun PlayerContext.canoeing() {
+suspend fun CharacterContext.canoeing() {
     if (minimumCanoeLevel()) {
         return
     }

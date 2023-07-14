@@ -2,9 +2,9 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -31,7 +31,7 @@ on<NPCOption>({ operate && def.name == "Magic instructor" && option == "Talk-to"
     menu()
 }
 
-suspend fun PlayerContext.menu(followUp: String = "") {
+suspend fun CharacterContext.menu(followUp: String = "") {
     if (followUp.isNotEmpty()) {
         npc<Unsure>(followUp)
     }
@@ -172,7 +172,7 @@ suspend fun PlayerChoice.claimRunes(): Unit = option("I'd like some air and mind
     player.inventory.add("mind_rune", 30)
 }
 
-suspend fun PlayerContext.hasRunes() {
+suspend fun CharacterContext.hasRunes() {
     var banked = false
     if (player.bank.contains("mind_rune")) {
         npc<Cheerful>("You have some mind runes in your bank.")

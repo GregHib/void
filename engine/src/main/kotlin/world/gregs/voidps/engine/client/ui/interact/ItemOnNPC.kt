@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.item.Item
 
 data class ItemOnNPC(
     override val player: Player,
-    override val npc: NPC,
+    override val target: NPC,
     val id: String,
     val component: String,
     val item: Item,

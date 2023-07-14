@@ -1,15 +1,15 @@
 package world.gregs.voidps.engine.entity.character.mode.move
 
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.type.Area
 
 data class AreaExited(
-    override val player: Player,
+    override val character: Character,
     val name: String,
     val tags: Set<String>,
     val area: Area
-) : SuspendableEvent, PlayerContext {
+) : SuspendableEvent, CharacterContext {
     override var onCancel: (() -> Unit)? = null
 }

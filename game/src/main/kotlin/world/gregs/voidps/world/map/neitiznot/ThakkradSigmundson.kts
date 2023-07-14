@@ -1,12 +1,12 @@
 package world.gregs.voidps.world.map.neitiznot
 
 import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Uncertain
 import world.gregs.voidps.world.interact.dialogue.Unsure
@@ -14,7 +14,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ operate && npc.id == "thakkrad_sigmundson" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "thakkrad_sigmundson" && option == "Talk-to" }) { player: Player ->
     npc<Talk>("""
         Thank you for leading the Burgher's militia against the
         Troll King. Now that the trolls are leaderless I have
@@ -27,7 +27,7 @@ on<NPCOption>({ operate && npc.id == "thakkrad_sigmundson" && option == "Talk-to
     npc<Talk>("Yes, you should be able to mine runite there if you wish.")
 }
 
-on<NPCOption>({ operate && npc.id == "thakkrad_sigmundson" && option == "Craft-goods" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "thakkrad_sigmundson" && option == "Craft-goods" }) { player: Player ->
     choice("What can I help you with?") {
         option("Cure my yak hide, please.") {
             cureHide()
@@ -41,11 +41,11 @@ on<NPCOption>({ operate && npc.id == "thakkrad_sigmundson" && option == "Craft-g
     }
 }
 
-on<ItemOnNPC>({ operate && npc.id == "thakkrad_sigmundson" && item.id == "yak_hide" }) { player: Player ->
+on<ItemOnNPC>({ operate && target.id == "thakkrad_sigmundson" && item.id == "yak_hide" }) { player: Player ->
     cureHide()
 }
 
-suspend fun PlayerContext.cureHide() {
+suspend fun CharacterContext.cureHide() {
     player<Talk>("Cure my yak hide please.")
     npc<Talk>("I will cure yak-hide for a fee of 5 gp per hide.")
     choice("How many hides do you want cured?") {
@@ -68,7 +68,7 @@ suspend fun PlayerContext.cureHide() {
     }
 }
 
-suspend fun PlayerContext.cure(amount: Int) {
+suspend fun CharacterContext.cure(amount: Int) {
     if (!player.inventory.contains("yak_hide")) {
         npc<Talk>("You have no yak-hide to cure.")
         return

@@ -28,10 +28,10 @@ internal suspend fun PlayerChoice.fighters(): Unit = option<Uncertain>("Do you s
 }
 
 internal suspend fun NPCTargetInteraction.heal() {
-    npc.face(player)
+    target.face(player)
     val heal = player.levels.getMax(Skill.Constitution)
     if (player.levels.get(Skill.Constitution) < heal) {
-        npc.setAnimation("pick_pocket")
+        target.setAnimation("pick_pocket")
         player.playSound("heal")
         player.levels.restore(Skill.Constitution, heal)
         player.message("You feel a little better.")

@@ -6,35 +6,35 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.world.interact.dialogue.Expression
 import world.gregs.voidps.world.interact.dialogue.sendChat
 
-suspend inline fun <reified E : Expression> PlayerContext.npc(text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+suspend inline fun <reified E : Expression> CharacterContext.npc(text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val expression = E::class.simpleName!!.toSnakeCase()
     npc(expression, text, largeHead, clickToContinue, title)
 }
 
-suspend inline fun <reified E : Expression> PlayerContext.npc(npcId: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+suspend inline fun <reified E : Expression> CharacterContext.npc(npcId: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val expression = E::class.simpleName!!.toSnakeCase()
     npc(npcId, expression, text, largeHead, clickToContinue, title)
 }
 
 @JvmName("npcExpression")
-suspend fun PlayerContext.npc(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+suspend fun CharacterContext.npc(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val target: NPC = player.getOrNull("dialogue_target") ?: throw IllegalArgumentException("No npc specified for dialogue. Please use player.talkWith(npc) or npc(npcId, text).")
     val id = target["transform_id", player.getOrNull<NPCDefinition>("dialogue_def")?.stringId ?: target.id]
     target.mode = Face(target, player)
     npc(id, expression, text, largeHead, clickToContinue, title)
 }
 
-suspend fun PlayerContext.npc(npcId: String, expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+suspend fun CharacterContext.npc(npcId: String, expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val lines = text.trimIndent().lines()
     check(lines.size <= 4) { "Maximum npc chat lines exceeded ${lines.size} for $player" }
     val id = getInterfaceId(lines.size, clickToContinue)

@@ -2,7 +2,9 @@ package world.gregs.voidps.world.interact.entity.combat
 
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.face
@@ -25,7 +27,7 @@ on<NPCOption>({ approach && option == "Attack" }) { player: Player ->
     } else {
         player.approachRange(null, update = true)
     }
-    combat(player, npc)
+    combat(player, target)
 }
 
 on<PlayerOption>({ approach && option == "Attack" }) { player: Player ->
@@ -43,7 +45,7 @@ on<ItemOnNPC>({ approach && id.endsWith("_spellbook") }, Priority.HIGH) { player
     player["attack_speed"] = 5
     player["one_time"] = true
     player.attackRange = 8
-    combat(player, npc, 8)
+    combat(player, target, 8)
     cancel()
 }
 

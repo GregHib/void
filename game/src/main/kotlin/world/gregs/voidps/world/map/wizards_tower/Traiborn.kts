@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.mode.interact.NPCTargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.on
@@ -30,7 +29,7 @@ var Player.bonesRequired: Int
     get() = get("demon_slayer_bones", -1)
     set(value) = set("demon_slayer_bones", value)
 
-on<NPCOption>({ operate && npc.id == "traiborn" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "traiborn" && option == "Talk-to" }) { player: Player ->
     npc<Uncertain>("Ello young thingummywut.")
     if (player["demon_slayer", "unstarted"] == "key_hunt") {
         if (player.inventory.contains("silverlight_key_wizard_traiborn")) {
@@ -49,8 +48,8 @@ on<NPCOption>({ operate && npc.id == "traiborn" && option == "Talk-to" }) { play
     }
 }
 
-on<ItemOnNPC>({ operate && npc.id == "traiborn" && item.id == "bones" && player.bonesRequired > 0 }) { player: Player ->
-    player.talkWith(npc)
+on<ItemOnNPC>({ operate && target.id == "traiborn" && item.id == "bones" && player.bonesRequired > 0 }) { player: Player ->
+    player.talkWith(target)
     giveBones()
 }
 
@@ -139,7 +138,7 @@ suspend fun PlayerChoice.needAKey(): Unit = option<Talk>("I need to get a key gi
     }
 }
 
-suspend fun PlayerContext.betterBeOffChoice() {
+suspend fun CharacterContext.betterBeOffChoice() {
     choice {
         betterBeOff()
         option<Talking>("They're right, you are mad.") {
@@ -168,7 +167,7 @@ suspend fun PlayerChoice.kingsKnight(): Unit = option<Talk>("He's one of the Kin
     }
 }
 
-suspend fun PlayerContext.spinachRoll() {
+suspend fun CharacterContext.spinachRoll() {
     player.inventory.add("spinach_roll")
     if (player.inventory.transaction.error != TransactionError.None) {
         floorItems.add(player.tile, "spinach_roll")
@@ -244,8 +243,8 @@ suspend fun PlayerChoice.justTellMe(): Unit = option<Talk>("Just tell me if you 
 
 suspend fun NPCTargetInteraction.startSpell() {
     npc<Talking>("Hurrah! That's all 25 sets of bones.")
-    npc.setAnimation("traiborn_bone_spell")
-    npc.setGraphic("traiborn_bone_spell")
+    target.setAnimation("traiborn_bone_spell")
+    target.setGraphic("traiborn_bone_spell")
     player.playSound("demon_slayer_bone_spell")
     npc<Uncertain>("""
         Wings of dark and colour too,
@@ -254,25 +253,25 @@ suspend fun NPCTargetInteraction.startSpell() {
         Return it now, please, unto me.
     """)
     player.playSound("demon_slayer_cupboard_appear")
-    val direction = Direction.westClockwise.first { !npc.blocked(it) }
+    val direction = Direction.westClockwise.first { !target.blocked(it) }
     val rotation = Direction.westClockwise.indexOf(direction.rotate(6))
-    val obj = objects.add("demon_slayer_spell_wardrobe", npc.tile.add(direction), 10, rotation, 5)
-    npc.clearWatch()
-    npc.face(obj)
+    val obj = objects.add("demon_slayer_spell_wardrobe", target.tile.add(direction), 10, rotation, 5)
+    target.clearWatch()
+    target.face(obj)
     delay(1)
-    npc.setAnimation("unlock_chest")
+    target.setAnimation("unlock_chest")
     player.playSound("chest_open")
     delay(1)
     player.inventory.add("silverlight_key_wizard_traiborn")
     obj.animate("demon_slayer_cupboard_disappear")
     player.playSound("demon_slayer_cupboard_disappear")
-    npc.watch(player)
+    target.watch(player)
     item("Traiborn hands you a key.", "silverlight_key_wizard_traiborn", 400)
     player<Talking>("Thank you very much.")
     npc<Talking>("Not a problem for a friend of Sir What's-his-face.")
 }
 
-suspend fun PlayerContext.somewhereToBe() {
+suspend fun CharacterContext.somewhereToBe() {
     npc<Uncertain>("""
         Don't you have somewhere to be, young
         thingummywut? You still have that key you asked me
@@ -304,7 +303,7 @@ suspend fun NPCOption.bonesCheck() {
     }
 }
 
-suspend fun PlayerContext.lostKey() {
+suspend fun CharacterContext.lostKey() {
     player<Upset>("I've lost the key you gave to me.")
     npc<Uncertain>("""
         Yes I know, it was returned to me. If you want it back

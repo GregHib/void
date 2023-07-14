@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.data.Jewellery
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -73,7 +73,7 @@ on<InterfaceOption>({ id.startsWith("make_mould") && component.startsWith("make_
     make(component, amount)
 }
 
-fun PlayerContext.make(component: String, amount: Int) {
+fun CharacterContext.make(component: String, amount: Int) {
     val type = component.split("options_").first().removePrefix("make_").removeSuffix("_")
     val index = component.split("_").last().toInt()
     val gem = gems[index]

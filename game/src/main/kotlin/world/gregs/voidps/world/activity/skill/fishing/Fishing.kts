@@ -44,10 +44,10 @@ on<Moved>({ it.contains("fishers") && it.def.has("fishing") }) { npc: NPC ->
 
 on<NPCOption>({ operate && def.has("fishing") }) { player: Player ->
     arriveDelay()
-    npc.getOrPut("fishers") { mutableSetOf<Player>() }.add(player)
+    target.getOrPut("fishers") { mutableSetOf<Player>() }.add(player)
     player.softTimers.start("fishing")
     onCancel = {
-        npc.get<MutableSet<Player>>("fishers").remove(player)
+        target.get<MutableSet<Player>>("fishers").remove(player)
         player.softTimers.stop("fishing")
     }
     player.closeDialogue()
@@ -58,7 +58,7 @@ on<NPCOption>({ operate && def.has("fishing") }) { player: Player ->
             break
         }
 
-        val data = npc.spot[option] ?: return@on
+        val data = target.spot[option] ?: return@on
 
         if (!player.has(Skill.Fishing, data.minimumLevel, true)) {
             break
@@ -83,7 +83,7 @@ on<NPCOption>({ operate && def.has("fishing") }) { player: Player ->
 
         val remaining = player.remaining("skill_delay")
         if (remaining < 0) {
-            player.face(npc)
+            player.face(target)
             val rod = tackle == "fishing_rod" || tackle == "fly_fishing_rod" || tackle == "barbarian_rod"
             player.setAnimation("fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle}")
             pause(5)

@@ -10,7 +10,7 @@ import kotlin.random.Random
 
 fun isSpectator(id: String) = id == "afrah" || id == "dalal" || id == "jadid" || id == "jeed" || id == "ima" || id == "sabeil"
 
-on<NPCOption>({ operate && isSpectator(npc.id) && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && isSpectator(target.id) && option == "Talk-to" }) { player: Player ->
     player<Cheerful>("Hi!")
     when (Random.nextInt(0, 14)) {
         0 -> {

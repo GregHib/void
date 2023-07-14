@@ -9,7 +9,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
-on<NPCOption>({ operate && npc.id == "iffie" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "iffie" && option == "Talk-to" }) { player: Player ->
     npc<Cheerful>("""
         Hello, dearie! Were you wanting to collect a random
         event costume, or is there something else I can do for
@@ -41,6 +41,6 @@ on<NPCOption>({ operate && npc.id == "iffie" && option == "Talk-to" }) { player:
     }
 }
 
-on<NPCOption>({ operate && npc.id == "iffie" && option == "Claim-costume" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "iffie" && option == "Claim-costume" }) { player: Player ->
     player.openShop("iffies_random_costume_shop")
 }

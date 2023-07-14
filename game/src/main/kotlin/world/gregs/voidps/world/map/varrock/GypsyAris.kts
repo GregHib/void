@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.move.running
@@ -15,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -43,7 +43,7 @@ import world.gregs.voidps.world.interact.entity.sound.areaSound
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<NPCOption>({ operate && npc.id == "gypsy_aris" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "gypsy_aris" && option == "Talk-to" }) { player: Player ->
     when (player["demon_slayer", "unstarted"]) {
         "unstarted" -> {
             npc<Talk>("Hello, young one.")
@@ -93,7 +93,7 @@ suspend fun NPCOption.whatToDo() {
     }
 }
 
-suspend fun PlayerContext.howToDo() {
+suspend fun CharacterContext.howToDo() {
     choice {
         cityDestroyer {
             wallyQuestions()
@@ -108,7 +108,7 @@ suspend fun PlayerChoice.howWallyWon(): Unit = option<Unsure>("So, how did Wally
     cutscene()
 }
 
-suspend fun PlayerContext.finalQuestions() {
+suspend fun CharacterContext.finalQuestions() {
     choice {
         cityDestroyer {
             otherQuestions()
@@ -123,7 +123,7 @@ suspend fun PlayerContext.finalQuestions() {
     }
 }
 
-suspend fun PlayerContext.otherQuestions() {
+suspend fun CharacterContext.otherQuestions() {
     choice {
         whereIsHe()
         notVeryHeroicName()
@@ -139,7 +139,7 @@ suspend fun PlayerContext.otherQuestions() {
     }
 }
 
-suspend fun PlayerChoice.cityDestroyer(end: suspend PlayerContext.() -> Unit): Unit = option<Afraid>("""
+suspend fun PlayerChoice.cityDestroyer(end: suspend CharacterContext.() -> Unit): Unit = option<Afraid>("""
         How am I meant to fight a demon who can destroy
         cities?
     """) {
@@ -177,7 +177,7 @@ suspend fun PlayerChoice.notVeryHeroicName(): Unit = option<Cheerful>("Wally doe
     howToDo()
 }
 
-suspend fun PlayerContext.incantation() {
+suspend fun CharacterContext.incantation() {
     player<Talk>("What is the magical incantation?")
     npc<Talk>("Oh yes, let me think a second.")
     npc<Talking>("""
@@ -212,14 +212,14 @@ suspend fun ChoiceBuilder<NPCOption>.hereYouGo(): Unit = option<Talk>("Okay, her
         ball.
     """)
     player.playSound("demon_slayer_crystal_ball_start")
-    npc.softTimers.start("demon_slayer_crystal_ball")
+    target.softTimers.start("demon_slayer_crystal_ball")
     npc<Talk>("I can see images forming. I can see you.")
     npc<Uncertain>("""
         You are holding a very impressive-looking sword. I'm
         sure I recognise it...
     """)
     npc<Uncertain>("There is a big, dark shadow appearing now.")
-    npc.softTimers.stop("demon_slayer_crystal_ball")
+    target.softTimers.stop("demon_slayer_crystal_ball")
     player.playSound("demon_slayer_crystal_ball_end")
     npc<Afraid>("Aaargh!")
     player<Unsure>("Are you all right?")
@@ -267,7 +267,7 @@ suspend fun ChoiceBuilder<NPCOption>.whoYouCallingYoung(): Unit = option<Angry>(
     }
 }
 
-suspend fun PlayerContext.cutscene() {
+suspend fun CharacterContext.cutscene() {
     val region = Region(12852)
     player.open("fade_out")
     statement("", clickToContinue = false)
@@ -349,13 +349,13 @@ suspend fun PlayerContext.cutscene() {
     delrithWillCome()
 }
 
-fun PlayerContext.setCutsceneEnd(instance: Region) {
+fun CharacterContext.setCutsceneEnd(instance: Region) {
     player.queue("demon_slayer_wally_cutscene_end", 1, LogoutBehaviour.Accelerate) {
         endCutscene(instance)
     }
 }
 
-suspend fun PlayerContext.endCutscene(instance: Region) {
+suspend fun CharacterContext.endCutscene(instance: Region) {
     player.open("fade_out")
     delay(3)
     player.tele(3203, 3424)
@@ -377,7 +377,7 @@ suspend fun ChoiceBuilder<NPCOption>.withSilver(): Unit = option<Unsure>("With s
     }
 }
 
-suspend fun PlayerContext.delrithWillCome() {
+suspend fun CharacterContext.delrithWillCome() {
     npc<Upset>("Delrith will come forth from the stone circle again.")
     npc<Upset>("""
         I would imagine an evil sorcerer is already beginning
@@ -399,7 +399,7 @@ suspend fun PlayerContext.delrithWillCome() {
     }
 }
 
-suspend fun PlayerContext.whereSilverlight() {
+suspend fun CharacterContext.whereSilverlight() {
     player<Angry>("Where can I find Silverlight?")
     npc<Talk>("""
         Silverlight has been passed down by Wally's
@@ -465,7 +465,7 @@ suspend fun PlayerChoice.stopCallingMeThat(): Unit = option<Furious>("Stop calli
     }
 }
 
-suspend fun PlayerContext.wallyQuestions() {
+suspend fun CharacterContext.wallyQuestions() {
     choice {
         whereIsHe()
         notVeryHeroicName()

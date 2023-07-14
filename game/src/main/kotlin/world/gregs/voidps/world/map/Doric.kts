@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.map
 
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
-on<NPCOption>({ operate && npc.id == "doric" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "doric" && option == "Talk-to" }) { player: Player ->
     when (player["dorics_quest", "unstarted"]) {
         "started" -> {
             npc<Unsure>("Have you got my materials yet, traveller?")
@@ -40,7 +40,7 @@ on<NPCOption>({ operate && npc.id == "doric" && option == "Talk-to" }) { player:
     }
 }
 
-suspend fun PlayerContext.noOre() {
+suspend fun CharacterContext.noOre() {
     player<Sad>("Sorry, I don't have them all yet.")
     npc<Talking>("""
         Not to worry, stick at it. Remember, I need 6 clay, 4
@@ -67,7 +67,7 @@ suspend fun PlayerContext.noOre() {
     }
 }
 
-suspend fun PlayerContext.unstarted() {
+suspend fun CharacterContext.unstarted() {
     npc<Unsure>("Hello traveller, what brings you to my humble smithy?")
     choice {
         option<Talking>("I wanted to use your anvils.") {
@@ -133,7 +133,7 @@ suspend fun PlayerContext.unstarted() {
     }
 }
 
-suspend fun PlayerContext.startQuest() {
+suspend fun CharacterContext.startQuest() {
     if (player.levels.get(Skill.Mining) < 15) {
         statement("""
             Before starting this quest, be aware that one or more of your skill
@@ -184,7 +184,7 @@ suspend fun PlayerContext.startQuest() {
     }
 }
 
-suspend fun PlayerContext.takeOre() {
+suspend fun CharacterContext.takeOre() {
     item("You hand the clay, copper, and iron to Doric.", "copper_ore", 600)
     player.inventory.transaction {
         remove("clay", 6)
@@ -194,7 +194,7 @@ suspend fun PlayerContext.takeOre() {
     questComplete()
 }
 
-fun PlayerContext.questComplete() {
+fun CharacterContext.questComplete() {
     player["dorics_quest"] = "completed"
     player.playJingle("quest_complete_1")
     player.experience.add(Skill.Mining, 1300.0)

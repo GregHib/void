@@ -1,9 +1,9 @@
 package world.gregs.voidps.world.map.lumbridge
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
-on<NPCOption>({ operate && npc.id == "cook_lumbridge" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "cook_lumbridge" && option == "Talk-to" }) { player: Player ->
     when (player["cooks_assistant", "unstarted"]) {
         "unstarted" -> {
             npc<Sad>("What am I to do?")
@@ -42,7 +42,7 @@ on<NPCOption>({ operate && npc.id == "cook_lumbridge" && option == "Talk-to" }) 
     }
 }
 
-suspend fun PlayerContext.started() {
+suspend fun CharacterContext.started() {
     npc<Upset>("how are you getting on with finding the ingredients?")
     if (player.hasItem("top_quality_milk")) {
         item("You give the top-quality milk to the cook.", "top_quality_milk", 500)
@@ -124,7 +124,7 @@ suspend fun PlayerContext.started() {
     }
 }
 
-suspend fun PlayerContext.completed() {
+suspend fun CharacterContext.completed() {
     npc<Cheerful>("Hello, friend, how is the adventuring going?")
     choice {
         option("I'm getting strong and mighty.") {
@@ -140,7 +140,7 @@ suspend fun PlayerContext.completed() {
     }
 }
 
-fun PlayerContext.questComplete() {
+fun CharacterContext.questComplete() {
     player["cooks_assistant"] = "completed"
     player.playJingle("quest_complete_1")
     player.inventory.add("sardine_noted", 20)
@@ -159,7 +159,7 @@ fun PlayerContext.questComplete() {
     player.sendQuestComplete("cook's assistant", lines, Item("cake"))
 }
 
-suspend fun PlayerContext.startQuest() {
+suspend fun CharacterContext.startQuest() {
     player<Talking>("What's wrong?")
     npc<Afraid>("""
         Oh dear, oh dear, oh dear, I'm in a terrible terrible
@@ -197,7 +197,7 @@ suspend fun PlayerContext.startQuest() {
     }
 }
 
-suspend fun PlayerContext.whereToFind() {
+suspend fun CharacterContext.whereToFind() {
     npc<Unsure>("""
         That's the problem: I don't exactly know. I usually send
         my assistant to get them for me but he quit.
@@ -208,7 +208,7 @@ suspend fun PlayerContext.whereToFind() {
     """)
 }
 
-suspend fun PlayerContext.stillNeed() {
+suspend fun CharacterContext.stillNeed() {
     statement("""
         You still need to get:
         ${if (player["cooks_assistant_milk", 0] == 0) "Some top-quality milk." else ""}${if (player["cooks_assistant_flour", 0] == 0) " Some extra fine flour." else ""}${if (player["cooks_assistant_egg", 0] == 0) " A super large egg." else ""}
@@ -221,7 +221,7 @@ suspend fun PlayerContext.stillNeed() {
     }
 }
 
-suspend fun PlayerContext.niceHat() {
+suspend fun CharacterContext.niceHat() {
     npc<Sad>("Err thank you. It's a pretty ordinary cooks hat really.")
     player<Cheerful>("Still, suits you. The trousers are pretty special too. ")
     npc<Sad>("Its all standard cook's issue uniform...")
@@ -236,7 +236,7 @@ suspend fun PlayerContext.niceHat() {
     startQuest()
 }
 
-suspend fun PlayerContext.canIUseRange() {
+suspend fun CharacterContext.canIUseRange() {
     npc<Cheerful>("""
         Go ahead! It's very good range; it's better than most
         other ranges.

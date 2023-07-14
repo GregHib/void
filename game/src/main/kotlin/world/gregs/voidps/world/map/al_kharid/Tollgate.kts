@@ -3,12 +3,12 @@ package world.gregs.voidps.world.map.al_kharid
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -46,13 +46,13 @@ on<ObjectOption>({ operate && obj.id.startsWith("toll_gate_al_kharid") && option
     dialogue(player)
 }
 
-on<NPCOption>({ operate && npc.id == "border_guard_al_kharid" && option == "Talk-to" }) { player: Player ->
-    dialogue(player, npc)
+on<NPCOption>({ operate && target.id == "border_guard_al_kharid" && option == "Talk-to" }) { player: Player ->
+    dialogue(player, target)
 }
 
 fun getGuard(player: Player) = get<NPCs>()[player.tile.regionLevel].firstOrNull { it.id == "border_guard_al_kharid" }
 
-suspend fun PlayerContext.dialogue(player: Player, npc: NPC? = getGuard(player)) {
+suspend fun CharacterContext.dialogue(player: Player, npc: NPC? = getGuard(player)) {
     if (npc == null) {
         return
     }
@@ -85,7 +85,7 @@ fun getGate(player: Player): GameObject {
 val rect = Rectangle(Tile(3267, 3227), 2, 2)
 val gates = Rectangle(Tile(3268, 3227), 1, 2)
 
-suspend fun PlayerContext.payToll(player: Player): Boolean {
+suspend fun CharacterContext.payToll(player: Player): Boolean {
     if (!player.inventory.remove("coins", 10)) {
         player.notEnough("coins")
         return false

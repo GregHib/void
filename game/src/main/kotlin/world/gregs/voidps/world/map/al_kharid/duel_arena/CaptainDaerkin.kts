@@ -8,7 +8,7 @@ import world.gregs.voidps.world.interact.dialogue.Talking
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ operate && npc.id == "captain_daerkin" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "captain_daerkin" && option == "Talk-to" }) { player: Player ->
     npc<Cheerful>("Hello old chap.")
     player<Talking>("""
         What are you doing here? Shouldn't you be looking

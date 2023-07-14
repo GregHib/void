@@ -4,7 +4,8 @@ import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.*
@@ -19,7 +20,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.CurrentLevelChanged
 import world.gregs.voidps.engine.entity.item.Item
@@ -68,13 +68,13 @@ on<AreaEntered>({ name == "demon_slayer_stone_circle" && it["demon_slayer_silver
     cutscene()
 }
 
-fun PlayerContext.setCutsceneEnd(instance: Region) {
+fun CharacterContext.setCutsceneEnd(instance: Region) {
     player.queue("demon_slayer_delrith_cutscene_end", 1, LogoutBehaviour.Accelerate) {
         endCutscene(instance, defaultTile)
     }
 }
 
-fun PlayerContext.endCutscene(instance: Region, tile: Tile? = null) {
+fun CharacterContext.endCutscene(instance: Region, tile: Tile? = null) {
     val offset: Delta = player.getOrNull("demon_slayer_offset") ?: return
     player.tele(tile ?: player.tile.minus(offset))
     stopCutscene(instance)
@@ -111,7 +111,7 @@ fun destroyInstance(player: Player) {
     }
 }
 
-suspend fun PlayerContext.cutscene() {
+suspend fun CharacterContext.cutscene() {
     val region = Region(12852)
     val instance = startCutscene(region)
     val offset = instance.offset(region)
@@ -236,7 +236,7 @@ on<CombatSwing>({ target is NPC && target.id == "delrith" && target.transform ==
 
 val words = listOf("Carlem", "Aber", "Camerinthum", "Purchai", "Gabindo")
 
-on<NPCOption>({ operate && npc.id == "delrith" && npc.transform == "delrith_weakened" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "delrith" && target.transform == "delrith_weakened" }) { player: Player ->
     player.weakQueue("banish_delrith") {
         player<Furious>("Now what was that incantation again?")
         var correct = true
@@ -285,7 +285,7 @@ on<CurrentLevelChanged>({ skill == Skill.Constitution && to <= 0 && it.id == "de
     npc.mode = PauseMode
 }
 
-fun PlayerContext.questComplete() {
+fun CharacterContext.questComplete() {
     player.setAnimation("silverlight_showoff")
     player.setGraphic("silverlight_sparkle")
     player.playSound("equip_silverlight")

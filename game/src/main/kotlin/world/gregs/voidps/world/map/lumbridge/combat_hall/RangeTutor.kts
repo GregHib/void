@@ -2,14 +2,14 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
-import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.hasBanked
@@ -25,7 +25,7 @@ on<NPCOption>({ operate && def.name == "Ranged instructor" && option == "Talk-to
     menu()
 }
 
-suspend fun PlayerContext.menu(followUp: String = "") {
+suspend fun CharacterContext.menu(followUp: String = "") {
     if (followUp.isNotEmpty()) {
         npc<Unsure>(followUp)
     }
@@ -143,7 +143,7 @@ suspend fun PlayerChoice.arrowMaking(): Unit = option<Unsure>("How do I create a
     menu("Is there anything else you want to know?")
 }
 
-suspend fun PlayerContext.claimBow() {
+suspend fun CharacterContext.claimBow() {
     if (player.remaining("claimed_tutor_consumables", epochSeconds()) > 0) {
         npc<Amazed>("""
             I work with the Magic tutor to give out consumable
@@ -194,7 +194,7 @@ suspend fun PlayerContext.claimBow() {
     player.start("claimed_tutor_consumables", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
 }
 
-suspend fun PlayerContext.hasEquipment() {
+suspend fun CharacterContext.hasEquipment() {
     var banked = false
     if (player.bank.contains("training_arrows")) {
         npc<Cheerful>("You have some training arrows in your bank.")

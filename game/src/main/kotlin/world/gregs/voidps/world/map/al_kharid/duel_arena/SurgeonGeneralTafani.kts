@@ -11,13 +11,13 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ operate && npc.id == "surgeon_general_tafani" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "surgeon_general_tafani" && option == "Talk-to" }) { player: Player ->
     player<Cheerful>("Hi!")
     npc<Cheerful>("Hi. How can I help?")
     menu()
 }
 
-on<NPCOption>({ operate && npc.id == "surgeon_general_tafani" && option == "Heal" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "surgeon_general_tafani" && option == "Heal" }) { player: Player ->
     heal()
 }
 
