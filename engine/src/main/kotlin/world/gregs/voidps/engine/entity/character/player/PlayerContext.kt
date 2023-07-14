@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterContext
 
 interface PlayerContext : CharacterContext {
-    val player: Player
+    override val player: Player
     override val character: Character
         get() = player
 }

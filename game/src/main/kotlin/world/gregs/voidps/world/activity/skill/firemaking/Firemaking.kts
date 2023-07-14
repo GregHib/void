@@ -8,10 +8,10 @@ import world.gregs.voidps.engine.client.ui.interact.either
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.data.Fire
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -67,7 +67,7 @@ on<FloorItemOption>({ operate && option == "Light" }) { player: Player ->
     lightFire(player, item)
 }
 
-suspend fun PlayerContext.lightFire(
+suspend fun CharacterContext.lightFire(
     player: Player,
     floorItem: FloorItem
 ) {
