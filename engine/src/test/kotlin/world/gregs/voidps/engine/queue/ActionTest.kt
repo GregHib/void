@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.queue
 
+import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -33,8 +34,6 @@ internal class ActionTest {
     }
 
     private fun action(priority: ActionPriority = ActionPriority.Normal, delay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, action: suspend Action.() -> Unit = {}): Action {
-        return object : Action("action", priority, delay, behaviour, action) {
-            override var onCancel: (() -> Unit)? = null
-        }
+        return Action(mockk(relaxed = true), "action", priority, delay, behaviour, null, action)
     }
 }
