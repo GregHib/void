@@ -43,11 +43,11 @@ class Hunting(
 
     override fun run() {
         for (npc in npcs) {
-            val mode: String? = npc.getOrNull("hunt_mode")
+            val mode: String? = npc.def.getOrNull("hunt_mode")
             if (mode == null || npc.hasClock("hunting")) {
                 continue
             }
-            val range = npc["hunt_range", 5]
+            val range = npc.def["hunt_range", 5]
             val definition = huntModes.get(mode)
             npc.start("hunting", definition.rate)
             when (definition.type) {

@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectLayer
 data class HuntModeDefinition(
     val type: String,
     val checkVisual: String = "none",
-    val checkNotTooStrong: Boolean = true,
+    val checkNotTooStrong: Boolean = type == "player",
     val checkNotCombat: Boolean = true,
     val checkNotCombatSelf: Boolean = true,
     val checkNotBusy: Boolean = true,
