@@ -35,7 +35,7 @@ fun Client.closeInterface(
 }
 
 /**
- * Sends a sprite to a interface component
+ * Sends a colour to an interface component
  * @param id The id of the parent interface
  * @param component The index of the component
  */

@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
@@ -33,6 +34,7 @@ val engineModule = module {
     single { GameObjects(get(), get(), get(), getProperty<String>("loadUnusedObjects") == "true").apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItems(get(), get(), get()).apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItemTracking(get(), get(), get()) }
+    single { Hunting(get(), get(), get(), get(), get(), get()) }
     single {
         PlayerAccounts(get(), get(), get(), get(), get(), get(), getProperty("savePath"), get(), get(), Tile(
             getIntProperty("homeX", 0), getIntProperty("homeY", 0), getIntProperty("homeLevel", 0)
@@ -71,4 +73,5 @@ val engineModule = module {
     single(createdAtStart = true) { GearDefinitions().load() }
     single(createdAtStart = true) { ItemOnItemDefinitions().load() }
     single(createdAtStart = true) { AccountDefinitions().load() }
+    single(createdAtStart = true) { HuntModeDefinitions().load() }
 }

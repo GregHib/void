@@ -1,0 +1,22 @@
+aggressive_melee:
+  &melee
+  type: player
+  check_visual: line_of_sight
+  check_not_too_strong: false
+  check_not_combat: true
+  check_not_combat_self: true
+  check_not_busy: false
+aggressive_ranged:
+  &ranged
+  type: player
+  check_visual: line_of_sight
+  check_not_too_strong: false
+  check_not_combat: true
+  check_not_combat_self: true
+  check_not_busy: false
+not_busy_melee:
+  <<: *melee
+  check_not_busy: true
+not_busy_ranged:
+  <<: *ranged
+  check_not_busy: true

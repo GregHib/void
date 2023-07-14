@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.entity.AiTick
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
@@ -51,6 +52,7 @@ fun getTickStages(
     objectDefinitions: ObjectDefinitions,
     npcDefinitions: NPCDefinitions,
     interfaceDefinitions: InterfaceDefinitions,
+    hunting: Hunting,
     handler: InterfaceHandler,
     parallelPlayer: TaskIterator<Player>
 ): List<Runnable> {
@@ -59,6 +61,7 @@ fun getTickStages(
     return listOf(
         PlayerResetTask(sequentialPlayer, players, batches),
         NPCResetTask(sequentialNpc, npcs),
+        hunting,
         // Connections/Tick Input
         queue,
         factory,
