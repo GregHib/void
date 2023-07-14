@@ -23,12 +23,12 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
-import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.voidps.network.visual.update.player.MoveType
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Zone
 
 internal class MovementTest : KoinMock() {
 

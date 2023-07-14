@@ -2,7 +2,7 @@ package world.gregs.voidps.type.zone
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.map.zone.Zone
+import world.gregs.voidps.type.Zone
 
 internal class ZoneTest {
 

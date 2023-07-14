@@ -1,6 +1,5 @@
 package world.gregs.voidps.type
 
-import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.type.area.Cuboid
 import world.gregs.voidps.type.area.Polygon
 import world.gregs.voidps.type.area.Rectangle

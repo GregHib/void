@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.clear
 import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.Zone
 import java.util.*
 import kotlin.collections.set
 

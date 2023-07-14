@@ -2,8 +2,8 @@ package world.gregs.voidps.engine.entity.character.player
 
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.character.CharacterList
-import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Zone
 
 class Players : CharacterList<Player>(MAX_PLAYERS) {
 

@@ -2,11 +2,11 @@ package world.gregs.voidps.engine.map.collision
 
 import world.gregs.voidps.cache.active.encode.ZoneObject
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectShape
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.map.zone.Zone
+import world.gregs.voidps.type.Zone
 
 class GameObjectCollision(
     private val collisions: Collisions

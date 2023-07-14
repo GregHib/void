@@ -4,8 +4,8 @@ import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Zone
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull

@@ -12,12 +12,12 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems.Companion.MAX_TILE_ITEMS
 import world.gregs.voidps.engine.event.EventHandlerStore
-import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.network.encode.send
 import world.gregs.voidps.network.encode.zone.FloorItemAddition
 import world.gregs.voidps.network.encode.zone.FloorItemRemoval
 import world.gregs.voidps.network.encode.zone.FloorItemUpdate
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Zone
 
 /**
  * Stores up to [MAX_TILE_ITEMS] [FloorItem]s per tile

@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.data.definition.MapDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.Zone
 
 internal class DynamicZonesTest {
 

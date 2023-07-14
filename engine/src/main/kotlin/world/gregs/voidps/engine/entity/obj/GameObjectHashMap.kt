@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.entity.obj
 
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.map.zone.Zone
+import world.gregs.voidps.type.Zone
 
 /**
  * Stores [GameObject]s by zone + [ObjectLayer]

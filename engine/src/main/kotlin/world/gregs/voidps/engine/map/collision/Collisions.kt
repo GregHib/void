@@ -6,9 +6,9 @@ import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Zone
 
 typealias Collisions = CollisionFlagMap
 

@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.entity.obj
 
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.zone.Zone
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Zone
 
 /**
  * Much like [Collisions] this stores [GameObject]s by zone + [ObjectLayer]
