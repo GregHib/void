@@ -52,19 +52,19 @@ class Hunting(
             when (definition.type) {
                 "player" -> {
                     val targets = getCharacters(npc, players, range, definition)
-                    npc.events.emit(HuntPlayer(mode, targets.randomOrNull() ?: return))
+                    npc.events.emit(HuntPlayer(mode, targets.randomOrNull() ?: continue))
                 }
                 "npc" -> {
                     val targets = getCharacters(npc, npcs, range, definition)
-                    npc.events.emit(HuntNPC(mode, targets.randomOrNull() ?: return))
+                    npc.events.emit(HuntNPC(mode, targets.randomOrNull() ?: continue))
                 }
                 "object" -> {
                     val targets = getObjects(npc, definition)
-                    npc.events.emit(HuntObject(mode, targets.randomOrNull() ?: return))
+                    npc.events.emit(HuntObject(mode, targets.randomOrNull() ?: continue))
                 }
                 "floor_item" -> {
                     val targets = getItems(npc, range, definition)
-                    npc.events.emit(HuntFloorItem(mode, targets.randomOrNull() ?: return))
+                    npc.events.emit(HuntFloorItem(mode, targets.randomOrNull() ?: continue))
                 }
             }
         }
