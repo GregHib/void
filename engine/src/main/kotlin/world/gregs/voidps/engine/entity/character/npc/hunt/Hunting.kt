@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.npc.hunt
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -7,16 +8,21 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.config.HuntModeDefinition
 import world.gregs.voidps.engine.data.definition.HuntModeDefinitions
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.size
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.map.Spiral
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
+import java.util.*
+import kotlin.math.ceil
 
 /**
  * Picks new target for an [NPC] based on it's [HuntModeDefinition]
@@ -46,59 +52,135 @@ class Hunting(
             npc.start("hunting", definition.rate)
             when (definition.type) {
                 "player" -> {
-                    val targets = players.filter { canHunt(npc, it, definition, range) }
-                    if (targets.isEmpty()) {
-                        return
-                    }
-                    npc.events.emit(HuntPlayer(mode, targets.random()))
+                    val targets = getCharacters(npc, players, range, definition)
+                    npc.events.emit(HuntPlayer(mode, targets.randomOrNull() ?: return))
                 }
                 "npc" -> {
-                    val targets = npcs.filter { canHunt(npc, it, definition, range) }
-                    if (targets.isEmpty()) {
-                        return
-                    }
-                    npc.events.emit(HuntNPC(mode, targets.random()))
+                    val targets = getCharacters(npc, npcs, range, definition)
+                    npc.events.emit(HuntNPC(mode, targets.randomOrNull() ?: return))
                 }
                 "object" -> {
-                    // Should prefer cardinal directions over ordinal but this is close enough
-                    for (tile in Spiral.spiral(npc.tile, range)) {
-                        val obj = objects[tile, definition.layer] ?: continue
-                        if (canSee(npc, obj.tile, obj.width, obj.height, definition)) {
-                            npc.events.emit(HuntObject(mode, obj))
-                            break
-                        }
-                    }
+                    val targets = getObjects(npc, definition)
+                    npc.events.emit(HuntObject(mode, targets.randomOrNull() ?: return))
                 }
                 "floor_item" -> {
-                    spiral@ for (tile in Spiral.spiral(npc.tile, range)) {
-                        val items = floorItems[tile]
-                        for (item in items) {
-                            if (canSee(npc, item.tile, 1, 1, definition)) {
-                                npc.events.emit(HuntFloorItem(mode, item))
-                                break@spiral
-                            }
-                        }
-                    }
+                    val targets = getItems(npc, range, definition)
+                    npc.events.emit(HuntFloorItem(mode, targets.randomOrNull() ?: return))
                 }
             }
         }
     }
 
-    private fun canSee(
+    /**
+     * Returns all the [FloorItem]s in the first [Zone] with possible targets
+     */
+    private fun getItems(
         npc: NPC,
-        tile: Tile,
-        width: Int,
-        height: Int,
+        range: Int,
         definition: HuntModeDefinition
-    ): Boolean {
-        if (definition.checkVisual == "line_of_sight" && !lineOfSight(npc, tile, width, height)) {
-            return false
-        } else if (definition.checkVisual == "line_of_walk" && !lineOfWalk(npc, tile, width, height)) {
-            return false
+    ): MutableList<FloorItem> {
+        val targets = ObjectArrayList<FloorItem>()
+        for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZones(npc.tile.level)) {
+            for (items in floorItems[zone]) {
+                for (item in items) {
+                    if (definition.id != null && item.id != definition.id) {
+                        continue
+                    }
+                    if (definition.filter != null && !definition.filter!!(item)) {
+                        continue
+                    }
+                    if (canSee(npc, item.tile, 1, 1, definition)) {
+                        targets.add(item)
+                    }
+                }
+            }
+            if (targets.isNotEmpty()) {
+                break
+            }
         }
-        return true
+        return targets
     }
 
+    /**
+     * Breadth first searches for the first [TARGET_CAP] possible [GameObject] targets
+     */
+    private fun getObjects(
+        npc: NPC,
+        definition: HuntModeDefinition
+    ): ObjectArrayList<GameObject> {
+        val targets = ObjectArrayList<GameObject>()
+        val queue: Queue<Tile> = LinkedList()
+        queue.add(npc.tile)
+        while (queue.isNotEmpty()) {
+            val parent = queue.poll()
+            if (addTargets(parent, queue, definition, npc, targets, Direction.cardinal)) {
+                return targets
+            }
+            if (addTargets(parent, queue, definition, npc, targets, Direction.ordinal)) {
+                return targets
+            }
+        }
+        return targets
+    }
+
+    private fun addTargets(
+        parent: Tile,
+        queue: Queue<Tile>,
+        definition: HuntModeDefinition,
+        npc: NPC,
+        targets: MutableList<GameObject>,
+        directions: List<Direction>
+    ): Boolean {
+        for (direction in directions) {
+            val tile = parent.add(direction)
+            queue.add(tile)
+            val obj = objects[tile, definition.layer] ?: continue
+            if (definition.id != null && obj.id != definition.id) {
+                continue
+            }
+            if (definition.filter != null && !definition.filter!!(obj)) {
+                continue
+            }
+            if (canSee(npc, obj.tile, obj.width, obj.height, definition)) {
+                targets.add(obj)
+                if (targets.size > TARGET_CAP) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+    /**
+     * Finds the first [TARGET_CAP] possible [Character] targets
+     */
+    private fun <T : Character> getCharacters(
+        npc: NPC,
+        characterList: CharacterList<T>,
+        range: Int,
+        definition: HuntModeDefinition
+    ): MutableList<T> {
+        val targets = mutableListOf<T>()
+        for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZones(npc.tile.level)) {
+            for (character in characterList[zone]) {
+                if (definition.filter != null && !definition.filter!!(character)) {
+                    continue
+                }
+                if (canHunt(npc, character, definition, range)) {
+                    targets.add(character)
+                    if (targets.size > TARGET_CAP) {
+                        return targets
+                    }
+                }
+            }
+        }
+        return targets
+    }
+
+    /**
+     * Checks if [character] meets all the [definition] requirements
+     */
+    @Suppress("RedundantIf")
     private fun canHunt(
         npc: NPC,
         character: Character,
@@ -112,7 +194,7 @@ class Hunting(
         if (!canSee(npc, character.tile, character.size, character.size, definition)) {
             return false
         }
-        if (definition.checkNotTooStrong && withinCombatLevel(npc, character)) {
+        if (definition.checkNotTooStrong && withinCombatRange(npc, character)) {
             return false
         }
         if (definition.checkNotCombat && character.hasClock("in_combat")) {
@@ -127,13 +209,20 @@ class Hunting(
         return true
     }
 
-    private fun withinCombatLevel(npc: NPC, character: Character): Boolean {
-        if (character is Player) {
-            return character.combatLevel <= npc.def.combat * 2
-        } else if (character is NPC) {
-            return character.def.combat <= npc.def.combat * 2
-        }
-        return false
+    private fun withinCombatRange(npc: NPC, character: Character): Boolean {
+        return character is Player && character.combatLevel <= npc.def.combat * 2
+    }
+
+    private fun canSee(
+        npc: NPC,
+        tile: Tile,
+        width: Int,
+        height: Int,
+        definition: HuntModeDefinition
+    ) = when (definition.checkVisual) {
+        "line_of_sight" -> lineOfSight(npc, tile, width, height)
+        "line_of_walk" -> lineOfWalk(npc, tile, width, height)
+        else -> true
     }
 
     private fun lineOfSight(npc: NPC, tile: Tile, width: Int, height: Int) = lineValidator.hasLineOfSight(
@@ -157,4 +246,8 @@ class Hunting(
         destWidth = width,
         destHeight = height
     )
+
+    companion object {
+        private const val TARGET_CAP = 20
+    }
 }

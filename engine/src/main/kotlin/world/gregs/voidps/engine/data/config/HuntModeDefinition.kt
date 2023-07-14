@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.config
 
+import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 
 /**
@@ -13,6 +14,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectLayer
  * @param findKeepHunting unknown
  * @param pauseIfNobodyNear stop finding new target when no players are around
  * @param rate ticks between checking for new targets. Non-player targets have min 3 ticks.
+ * @param id the id for object or floor item target
  * @param layer the [ObjectLayer] for object targets
  */
 data class HuntModeDefinition(
@@ -26,14 +28,20 @@ data class HuntModeDefinition(
     val findKeepHunting: Boolean = false,
     val pauseIfNobodyNear: Boolean = true,
     val rate: Int = if (type == "player") 1 else 3,
+    val id: String? = null,
     val layer: Int = -1
 ) {
+    var filter: ((Entity) -> Boolean)? = null
+
     init {
         if (type != "player") {
             check(rate >= 3) { "$type hunt rates must be more frequent than 3 ticks." }
         }
         if (type == "object") {
             check(layer != -1) { "Objects require an object layer." }
+        }
+        if (checkNotTooStrong) {
+            check(type == "player") { "Shouldn't compare combat levels with types other than player." }
         }
         if (layer != -1) {
             check(type == "object") { "Only object hunt types should have an object layer." }
@@ -53,6 +61,7 @@ data class HuntModeDefinition(
             checkAfk = map["check_afk"] as? Boolean ?: EMPTY.checkAfk,
             findKeepHunting = map["find_keep_hunting"] as? Boolean ?: EMPTY.findKeepHunting,
             pauseIfNobodyNear = map["pause_if_nobody_near"] as? Boolean ?: EMPTY.pauseIfNobodyNear,
+            id = map["id"] as? String ?: EMPTY.id,
             rate = map["rate"] as? Int ?: EMPTY.rate,
         )
     }
