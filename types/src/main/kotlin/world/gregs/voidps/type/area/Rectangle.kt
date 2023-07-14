@@ -38,8 +38,8 @@ data class Rectangle(
         val list = mutableListOf<Zone>()
         val max = Tile(maxX, maxY).zone
         val min = Tile(minX, minY).zone
-        for (x in min.x..max.x) {
-            for (y in min.y..max.y) {
+        for (y in min.y..max.y) {
+            for (x in min.x..max.x) {
                 list.add(Zone(x, y, level))
             }
         }

@@ -47,8 +47,8 @@ data class Cuboid(
         val max = Tile(maxX, maxY, maxLevel).zone
         val min = Tile(minX, minY, minLevel).zone
         for (level in min.level..max.level) {
-            for (x in min.x..max.x) {
-                for (y in min.y..max.y) {
+            for (y in min.y..max.y) {
+                for (x in min.x..max.x) {
                     list.add(Zone(x, y, level))
                 }
             }
