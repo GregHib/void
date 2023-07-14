@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity.item
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -34,6 +35,12 @@ on<FloorItemOption>({ operate && option == "Take" }) { player: Player ->
             else -> logger.warn { "Error picking up item $item ${player.inventory.transaction.error}" }
         }
     } else {
-        logger.warn { "Unable to pick up $item." }
+        logger.warn { "$player unable to pick up $item." }
+    }
+}
+
+on<FloorItemOption>({ operate && option == "Take" }) { npc: NPC ->
+    if (!floorItems.remove(item)) {
+        logger.warn { "$npc unable to pick up $item." }
     }
 }
