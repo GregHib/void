@@ -52,4 +52,24 @@ class FloorItemTrackingTest {
 
         assertFalse(items[Tile.EMPTY].contains(item))
     }
+
+    @Test
+    fun `Public items revealed and removed after timers`() {
+        val item = FloorItem(Tile.EMPTY, "item", revealTicks = 10, disappearTicks = 10, owner = "player")
+        item.def = ItemDefinition.EMPTY
+        items.add(item)
+
+        repeat(10) {
+            tracking.run()
+        }
+        assertTrue(items[Tile.EMPTY].contains(item))
+        assertNull(item.owner)
+        assertEquals(0, item.revealTicks)
+        assertEquals(10, item.disappearTicks)
+        repeat(10) {
+            tracking.run()
+        }
+        assertFalse(items[Tile.EMPTY].contains(item))
+        assertEquals(0, item.disappearTicks)
+    }
 }
