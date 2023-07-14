@@ -23,7 +23,7 @@ on<ObjectOption>({ operate && target.id == "hatchet_logs" && option == "Take-hat
     }
 }
 
-on<FloorItemOption>({ operate && item.id == "super_large_egg" && option == "Take" }, Priority.HIGH) { player: Player ->
+on<FloorItemOption>({ operate && target.id == "super_large_egg" && option == "Take" }, Priority.HIGH) { player: Player ->
     if (player["cooks_assistant", "unstarted"] == "completed") {
         player.message("You've no reason to pick that up; eggs of that size are only useful for royal cakes.")
         cancel()

@@ -19,28 +19,28 @@ val floorItems: FloorItems by inject()
 val logger = InlineLogger()
 
 on<FloorItemOption>({ operate && option == "Take" }) { player: Player ->
-    if (player.inventory.isFull() && (!player.inventory.stackable(item.id) || !player.inventory.contains(item.id))) {
+    if (player.inventory.isFull() && (!player.inventory.stackable(target.id) || !player.inventory.contains(target.id))) {
         player.inventoryFull()
-    } else if (floorItems.remove(item)) {
-        player.inventory.add(item.id, item.amount)
+    } else if (floorItems.remove(target)) {
+        player.inventory.add(target.id, target.amount)
         when (player.inventory.transaction.error) {
             TransactionError.None -> {
-                if (!player.visuals.moved && player.tile != item.tile) {
-                    player.turn(item.tile.delta(player.tile))
+                if (!player.visuals.moved && player.tile != target.tile) {
+                    player.turn(target.tile.delta(player.tile))
                     player.setAnimation("take")
                 }
                 player.playSound("pickup_item")
             }
             is TransactionError.Full -> player.inventoryFull()
-            else -> logger.warn { "Error picking up item $item ${player.inventory.transaction.error}" }
+            else -> logger.warn { "Error picking up item $target ${player.inventory.transaction.error}" }
         }
     } else {
-        logger.warn { "$player unable to pick up $item." }
+        logger.warn { "$player unable to pick up $target." }
     }
 }
 
 on<FloorItemOption>({ operate && option == "Take" }) { npc: NPC ->
-    if (!floorItems.remove(item)) {
-        logger.warn { "$npc unable to pick up $item." }
+    if (!floorItems.remove(target)) {
+        logger.warn { "$npc unable to pick up $target." }
     }
 }

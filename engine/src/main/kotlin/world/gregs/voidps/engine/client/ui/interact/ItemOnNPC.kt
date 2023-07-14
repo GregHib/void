@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.client.ui.interact
 
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.NPCTargetContext
+import world.gregs.voidps.engine.entity.character.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.item.Item
@@ -14,6 +14,6 @@ data class ItemOnNPC(
     val item: Item,
     val itemSlot: Int,
     val inventory: String
-) : Interaction(), NPCTargetContext {
+) : Interaction(), TargetNPCContext {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 }

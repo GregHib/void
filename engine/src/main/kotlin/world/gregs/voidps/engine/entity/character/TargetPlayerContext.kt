@@ -2,6 +2,6 @@ package world.gregs.voidps.engine.entity.character
 
 import world.gregs.voidps.engine.entity.character.player.Player
 
-interface PlayerTargetContext : CharacterContext {
+interface TargetPlayerContext : CharacterContext {
     val target: Player
 }

@@ -64,7 +64,7 @@ on<ItemOnFloorItem>({ operate && item.lighter && floorItem.def.has("firemaking")
 
 on<FloorItemOption>({ operate && option == "Light" }) { player: Player ->
     arriveDelay()
-    lightFire(player, item)
+    lightFire(player, target)
 }
 
 suspend fun CharacterContext.lightFire(

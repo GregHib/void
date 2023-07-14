@@ -240,7 +240,7 @@ suspend fun PlayerChoice.justTellMe(): Unit = option<Talk>("Just tell me if you 
     }
 }
 
-suspend fun NPCTargetContext.startSpell() {
+suspend fun TargetNPCContext.startSpell() {
     npc<Talking>("Hurrah! That's all 25 sets of bones.")
     target.setAnimation("traiborn_bone_spell")
     target.setGraphic("traiborn_bone_spell")
@@ -312,7 +312,7 @@ suspend fun CharacterContext.lostKey() {
     player.bonesRequired = 25
 }
 
-suspend fun NPCTargetContext.giveBones() {
+suspend fun TargetNPCContext.giveBones() {
     val removed = player.inventory.removeToLimit("bones", player.bonesRequired)
     statement("You give Traiborn $removed ${"set".plural(removed)} of bones.")
     player.bonesRequired -= removed
