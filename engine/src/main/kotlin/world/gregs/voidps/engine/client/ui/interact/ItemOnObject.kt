@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.client.ui.interact
 
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.TargetObjectContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetObjectContext
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 

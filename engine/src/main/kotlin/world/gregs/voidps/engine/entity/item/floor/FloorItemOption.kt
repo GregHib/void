@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.entity.item.floor
 
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.TargetFloorItemContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetFloorItemContext
 
 data class FloorItemOption(
     override val character: Character,

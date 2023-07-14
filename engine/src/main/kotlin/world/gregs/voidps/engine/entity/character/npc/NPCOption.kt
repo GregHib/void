@@ -2,8 +2,8 @@ package world.gregs.voidps.engine.entity.character.npc
 
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
 
 data class NPCOption(
     override val character: Character,
