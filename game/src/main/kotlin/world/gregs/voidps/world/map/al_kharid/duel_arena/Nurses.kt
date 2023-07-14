@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.map.al_kharid.duel_arena
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.NPCTargetContext
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.mode.interact.NPCTargetInteraction
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.world.interact.dialogue.Cheerful
@@ -27,7 +27,7 @@ internal suspend fun PlayerChoice.fighters(): Unit = option<Uncertain>("Do you s
     player<Uncertain>("That's reassuring.")
 }
 
-internal suspend fun NPCTargetInteraction.heal() {
+internal suspend fun NPCTargetContext.heal() {
     target.face(player)
     val heal = player.levels.getMax(Skill.Constitution)
     if (player.levels.get(Skill.Constitution) < heal) {

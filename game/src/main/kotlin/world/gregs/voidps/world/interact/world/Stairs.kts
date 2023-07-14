@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.world.spawn.Stairs
 
 val stairs: Stairs by inject()
 
-on<ObjectOption>({ operate && stairs.get(def.id, obj.tile, option) != null }) { _: Player ->
+on<ObjectOption>({ operate && stairs.get(def.id, target.tile, option) != null }) { _: Player ->
     arriveDelay()
     climb(option)
 }
@@ -29,7 +29,7 @@ on<ObjectOption>({ operate && operate && option == "Climb" && (def.options?.coun
 }
 
 suspend fun ObjectOption.climb(option: String) {
-    val teleport = stairs.get(def.id, obj.tile, option) ?: return
+    val teleport = stairs.get(def.id, target.tile, option) ?: return
     val name = def.name.lowercase()
     if (name.isLadder()) {
         val remaining = player.remaining("climb_delay")

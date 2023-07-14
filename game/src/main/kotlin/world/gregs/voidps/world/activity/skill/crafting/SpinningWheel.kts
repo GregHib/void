@@ -4,8 +4,6 @@ import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.data.definition.data.Spinning
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -17,6 +15,8 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
@@ -42,7 +42,7 @@ val treeRoots = listOf(
 val Item.spinning: Spinning
     get() = def["spinning"]
 
-on<ObjectOption>({ operate && obj.id.startsWith("spinning_wheel") && option == "Spin" }) { player: Player ->
+on<ObjectOption>({ operate && target.id.startsWith("spinning_wheel") && option == "Spin" }) { player: Player ->
     val strings = fibres.map { if (it.id == "tree_roots") "crossbow_string" else it.spinning.to }
     val (index, amount) = makeAmountIndex(
         items = strings,
@@ -64,17 +64,17 @@ on<ObjectOption>({ operate && obj.id.startsWith("spinning_wheel") && option == "
         }
         fibre = root
     }
-    start(player, obj, fibre, amount)
+    start(player, target, fibre, amount)
 }
 
-on<ItemOnObject>({ operate && obj.id.startsWith("spinning_wheel") && item.def.has("spinning") }) { player: Player ->
+on<ItemOnObject>({ operate && target.id.startsWith("spinning_wheel") && item.def.has("spinning") }) { player: Player ->
     val (_, amount) = makeAmount(
         items = listOf(item.spinning.to),
         type = "Make",
         maximum = player.inventory.count(item.id),
         text = "How many would you like to make?"
     )
-    start(player, obj, item, amount)
+    start(player, target, item, amount)
 }
 
 fun start(player: Player, obj: GameObject, fibre: Item, amount: Int) {

@@ -32,7 +32,7 @@ val materials = listOf(
 val Item.weaving: Weaving
     get() = def["weaving"]
 
-on<ObjectOption>({ operate && obj.id.startsWith("loom_") && option == "Weave" }) { player: Player ->
+on<ObjectOption>({ operate && target.id.startsWith("loom_") && option == "Weave" }) { player: Player ->
     val strings = materials.map { it.weaving.to }
     val (index, amount) = makeAmountIndex(
         items = strings,
@@ -41,17 +41,17 @@ on<ObjectOption>({ operate && obj.id.startsWith("loom_") && option == "Weave" })
         text = "How many would you like to make?"
     )
     val item = materials[index]
-    weave(obj, item, amount)
+    weave(target, item, amount)
 }
 
-on<ItemOnObject>({ operate && obj.id.startsWith("loom_") && item.def.has("weaving") }) { player: Player ->
+on<ItemOnObject>({ operate && target.id.startsWith("loom_") && item.def.has("weaving") }) { player: Player ->
     val (_, amount) = makeAmount(
         items = listOf(item.weaving.to),
         type = "Make",
         maximum = player.inventory.count(item.id) / item.weaving.amount,
         text = "How many would you like to make?"
     )
-    weave(obj, item, amount)
+    weave(target, item, amount)
 }
 
 fun CharacterContext.weave(obj: GameObject, item: Item, amount: Int) {

@@ -24,7 +24,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val logger = InlineLogger()
 
-on<ObjectOption>({ operate && obj.id == "varrock_palace_drain" && option == "Search" }) { player: Player ->
+on<ObjectOption>({ operate && target.id == "varrock_palace_drain" && option == "Search" }) { player: Player ->
     arriveDelay()
     player.setAnimation("climb_down")
     if (player["demon_slayer_drain_dislodged", false] || player.hasBanked("silverlight_key_sir_prysin")) {
@@ -48,7 +48,7 @@ on<Registered>({ it["demon_slayer_drain_dislodged", false] }) { player: Player -
     player.sendVariable("demon_slayer_drain_dislodged")
 }
 
-on<ItemOnObject>({ operate && obj.id == "varrock_palace_drain" && item.id.endsWith("of_water") }) { player: Player ->
+on<ItemOnObject>({ operate && target.id == "varrock_palace_drain" && item.id.endsWith("of_water") }) { player: Player ->
     arriveDelay()
     val replacement = when {
         item.id.startsWith("bucket_of") -> "bucket"

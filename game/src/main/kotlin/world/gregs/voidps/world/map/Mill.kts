@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<ObjectOption>({ operate && obj.id == "hopper_controls" && option == "Operate" }) { player: Player ->
+on<ObjectOption>({ operate && target.id == "hopper_controls" && option == "Operate" }) { player: Player ->
     if (player["flour_bin", 0] == 30) {
         player.message("The flour bin downstairs is full, I should empty it first.")
         return@on
@@ -26,13 +26,13 @@ on<ObjectOption>({ operate && obj.id == "hopper_controls" && option == "Operate"
     if (player["hopper_bin", 0] != 1) {
         player.setAnimation("pull_hopper_controls")
         player.playSound("lever")
-        obj.animate("3572")// todo find right anim
+        target.animate("3572")// todo find right anim
         player.message("You operate the empty hopper. Nothing interesting happens.")
         return@on
     }
     player.setAnimation("pull_hopper_controls")
     player.playSound("lever")
-    obj.animate("3568")// todo find right anim
+    target.animate("3568")// todo find right anim
     player["hopper_bin"] = 0
     player.inc("flour_bin")
     if (player["flour_bin", 0] == 30) {
@@ -42,7 +42,7 @@ on<ObjectOption>({ operate && obj.id == "hopper_controls" && option == "Operate"
     }
 }
 
-on<ItemOnObject>({ operate && obj.id == "hopper" && item.id == "grain" }) { player: Player ->
+on<ItemOnObject>({ operate && target.id == "hopper" && item.id == "grain" }) { player: Player ->
     arriveDelay()
     if (player["cooks_assistant", "unstarted"] != "started") {
         player.setAnimation("fill_hopper")
@@ -76,7 +76,7 @@ on<ItemOnObject>({ operate && obj.id == "hopper" && item.id == "grain" }) { play
     }
 }
 
-on<ObjectOption>({ operate && obj.id == "flour_bin_3" && option == "Take-flour" }) { player: Player ->
+on<ObjectOption>({ operate && target.id == "flour_bin_3" && option == "Take-flour" }) { player: Player ->
     if (!player.hasItem("empty_pot")) {
         player.message("You need an empty pot to hold the flour in.")
         return@on

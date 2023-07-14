@@ -16,9 +16,9 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 
-on<ItemOnObject>({ operate && inventory == "inventory" && item.def.has("prayer_xp") && obj.id.startsWith("altar") }) { player: Player ->
+on<ItemOnObject>({ operate && inventory == "inventory" && item.def.has("prayer_xp") && target.id.startsWith("altar") }) { player: Player ->
     arriveDelay()
-    val tile = obj.nearestTo(player.tile)
+    val tile = target.nearestTo(player.tile)
     val count = player.inventory.count(item.id)
     if (count > 1) {
         val (_, amount) = makeAmount(listOf(item.id), "", count)

@@ -15,9 +15,9 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.activity.bank.bank
 import java.util.concurrent.TimeUnit
 
-on<ObjectOption>({ operate && obj.id == "hatchet_logs" && option == "Take-hatchet" }, Priority.HIGH) { player: Player ->
+on<ObjectOption>({ operate && target.id == "hatchet_logs" && option == "Take-hatchet" }, Priority.HIGH) { player: Player ->
     if (player.inventory.add("bronze_hatchet")) {
-        obj.replace("logs", ticks = TimeUnit.MINUTES.toTicks(3))
+        target.replace("logs", ticks = TimeUnit.MINUTES.toTicks(3))
     } else {
         player.inventoryFull()
     }

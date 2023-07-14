@@ -19,11 +19,11 @@ val GameObject.pickable: Pickable?
     get() = def.getOrNull("pickable")
 
 on<ObjectOption>({ operate && option == "Pick" }) { player: Player ->
-    val pickable: Pickable = obj.pickable ?: return@on
+    val pickable: Pickable = target.pickable ?: return@on
     arriveDelay()
     if (player.inventory.add(pickable.item)) {
         player.setAnimation("climb_down")
-        obj.remove(TimeUnit.SECONDS.toTicks(pickable.respawnDelay))
+        target.remove(TimeUnit.SECONDS.toTicks(pickable.respawnDelay))
         player.message(pickable.message)
     } else {
         player.inventoryFull()

@@ -25,11 +25,11 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-on<ObjectOption>({ operate && obj.id == "archery_target" && option == "Shoot-at" }, Priority.HIGH) { player: Player ->
+on<ObjectOption>({ operate && target.id == "archery_target" && option == "Shoot-at" }, Priority.HIGH) { player: Player ->
     player.closeDialogue()
-    player.face(obj)
+    player.face(target)
     arriveDelay()
-    swing(player, obj, 0)
+    swing(player, target, 0)
 }
 
 fun swing(player: Player, obj: GameObject, delay: Int) {

@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val floorItems: FloorItems by inject()
 
-on<ItemOnObject>({ operate && obj.id.startsWith("table") }) { player: Player ->
+on<ItemOnObject>({ operate && target.id.startsWith("table") }) { player: Player ->
     arriveDelay()
     if (!World.members && item.def["members", false]) {
         player.message("To use this item please login to a members' server.")
@@ -28,7 +28,7 @@ on<ItemOnObject>({ operate && obj.id.startsWith("table") }) { player: Player ->
     if (player.inventory.clear(itemSlot)) {
         player.setAnimation("take")
         player.playSound("drop_item")
-        val tile = obj.nearestTo(player.tile)
+        val tile = target.nearestTo(player.tile)
         floorItems.add(tile, item.id, item.amount, revealTicks = 100, disappearTicks = 1000, owner = player)
     }
 }

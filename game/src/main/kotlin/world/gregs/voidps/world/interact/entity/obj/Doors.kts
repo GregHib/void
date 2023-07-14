@@ -1,7 +1,9 @@
 package world.gregs.voidps.world.interact.entity.obj
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -33,22 +35,22 @@ on<ObjectOption>({ operate && def.isDoor() && option == "Close" }) { player: Pla
         return@on
     }
 
-    val double = getDoubleDoor(objects, obj, def, 1)
-    if (resetExisting(obj, double)) {
+    val double = getDoubleDoor(objects, target, def, 1)
+    if (resetExisting(target, double)) {
         player.playSound(if (def.isGate()) "close_gate" else "close_door")
         return@on
     }
 
     // Single door
-    if (double == null && obj.id.endsWith("_opened")) {
-        replaceDoor(obj, def, "_opened", "_closed", 0, 3, doorResetDelay)
+    if (double == null && target.id.endsWith("_opened")) {
+        replaceDoor(target, def, "_opened", "_closed", 0, 3, doorResetDelay)
         player.playSound("close_door")
         return@on
     }
 
     // Double doors
-    if (double != null && obj.id.endsWith("_opened") && double.id.endsWith("_opened")) {
-        closeDoubleDoors(obj, def, double, doorResetDelay)
+    if (double != null && target.id.endsWith("_opened") && double.id.endsWith("_opened")) {
+        closeDoubleDoors(target, def, double, doorResetDelay)
         player.playSound("close_door")
         return@on
     }
@@ -57,17 +59,17 @@ on<ObjectOption>({ operate && def.isDoor() && option == "Close" }) { player: Pla
 
 on<ObjectOption>({ operate && def.isDoor() && option == "Open" }) { player: Player ->
     arriveDelay()
-    val double = getDoubleDoor(objects, obj, def, 0)
+    val double = getDoubleDoor(objects, target, def, 0)
 
-    if (resetExisting(obj, double)) {
+    if (resetExisting(target, double)) {
         player.playSound(if (def.isGate()) "open_gate" else "open_door")
         player.events.emit(OpenDoor)
         return@on
     }
 
     // Single door
-    if (double == null && obj.id.endsWith("_closed")) {
-        replaceDoor(obj, def, "_closed", "_opened", 1, 1, doorResetDelay)
+    if (double == null && target.id.endsWith("_closed")) {
+        replaceDoor(target, def, "_closed", "_opened", 1, 1, doorResetDelay)
         player.playSound("open_door")
         pause(1)
         player.events.emit(OpenDoor)
@@ -75,8 +77,8 @@ on<ObjectOption>({ operate && def.isDoor() && option == "Open" }) { player: Play
     }
 
     // Double doors
-    if (double != null && obj.id.endsWith("_closed") && double.id.endsWith("_closed")) {
-        openDoubleDoors(obj, def, double, doorResetDelay)
+    if (double != null && target.id.endsWith("_closed") && double.id.endsWith("_closed")) {
+        openDoubleDoors(target, def, double, doorResetDelay)
         player.playSound("open_door")
         pause(1)
         player.events.emit(OpenDoor)

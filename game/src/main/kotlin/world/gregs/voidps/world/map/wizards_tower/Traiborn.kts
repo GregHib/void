@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
 import world.gregs.voidps.engine.entity.character.*
-import world.gregs.voidps.engine.entity.character.mode.interact.NPCTargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -241,7 +240,7 @@ suspend fun PlayerChoice.justTellMe(): Unit = option<Talk>("Just tell me if you 
     }
 }
 
-suspend fun NPCTargetInteraction.startSpell() {
+suspend fun NPCTargetContext.startSpell() {
     npc<Talking>("Hurrah! That's all 25 sets of bones.")
     target.setAnimation("traiborn_bone_spell")
     target.setGraphic("traiborn_bone_spell")
@@ -313,7 +312,7 @@ suspend fun CharacterContext.lostKey() {
     player.bonesRequired = 25
 }
 
-suspend fun NPCTargetInteraction.giveBones() {
+suspend fun NPCTargetContext.giveBones() {
     val removed = player.inventory.removeToLimit("bones", player.bonesRequired)
     statement("You give Traiborn $removed ${"set".plural(removed)} of bones.")
     player.bonesRequired -= removed

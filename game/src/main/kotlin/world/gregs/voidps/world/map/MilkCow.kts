@@ -22,7 +22,7 @@ import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 
-on<ObjectOption>({ operate && obj.id == "prized_dairy_cow" && option == "Milk" }) { player: Player ->
+on<ObjectOption>({ operate && target.id == "prized_dairy_cow" && option == "Milk" }) { player: Player ->
     if (!player.hasItem("bucket")) {
         player.message("You'll need an empty bucket to collect the milk.")
         return@on
@@ -45,7 +45,7 @@ on<ObjectOption>({ operate && obj.id == "prized_dairy_cow" && option == "Milk" }
     }
 }
 
-on<ObjectOption>({ operate && obj.id == "dairy_cow" && option == "Milk" }) { player: Player ->
+on<ObjectOption>({ operate && target.id == "dairy_cow" && option == "Milk" }) { player: Player ->
     if (player.hasItem("bucket")) {
         arriveDelay()
         player.setAnimation("milk_cow")

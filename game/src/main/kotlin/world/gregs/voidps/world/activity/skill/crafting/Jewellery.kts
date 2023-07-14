@@ -31,7 +31,7 @@ val gems = listOf("gold", "sapphire", "emerald", "ruby", "diamond", "dragonstone
 val Item.jewellery: Jewellery?
     get() = def.getOrNull("jewellery")
 
-on<ItemOnObject>({ operate && obj.id.startsWith("furnace") && item.id.endsWith("_mould") }) { player: Player ->
+on<ItemOnObject>({ operate && target.id.startsWith("furnace") && item.id.endsWith("_mould") }) { player: Player ->
     player.open("make_mould${if (World.members) "_slayer" else ""}")
 }
 

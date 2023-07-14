@@ -3,8 +3,6 @@ package world.gregs.voidps.world.activity.skill.crafting
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.data.definition.data.Pottery
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -15,17 +13,19 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 
 val Item.pottery: Pottery
     get() = def["pottery"]
 
-on<ItemOnObject>({ operate && obj.id.startsWith("potters_wheel") && item.id == "soft_clay" }) { player: Player ->
+on<ItemOnObject>({ operate && target.id.startsWith("potters_wheel") && item.id == "soft_clay" }) { player: Player ->
     make("spinning")
 }
 
-on<ItemOnObject>({ operate && obj.id.startsWith("potters_oven") && item.id != "soft_clay" && item.def.has("pottery") }) { player: Player ->
+on<ItemOnObject>({ operate && target.id.startsWith("potters_oven") && item.id != "soft_clay" && item.def.has("pottery") }) { player: Player ->
     make("cook_range")
 }
 
@@ -43,7 +43,7 @@ suspend fun ItemOnObject.make(animation: String) {
     }
     val data = pottery.getValue(id)
     val actualAmount = if (current < amount) current else amount
-    player.make(animation, obj, item, id, data, actualAmount)
+    player.make(animation, target, item, id, data, actualAmount)
 }
 
 fun Player.make(animation: String, obj: GameObject, item: Item, id: String, data: Pottery.Ceramic, amount: Int) {
