@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.facing
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -85,7 +84,7 @@ on<InterfaceOption>({ id == "emotes" }) { player: Player ->
     }
 }
 
-suspend fun Interaction.unlocked(id: String, emote: String): Boolean {
+suspend fun PlayerContext.unlocked(id: String, emote: String): Boolean {
     if (emote.startsWith("Goblin")) {
         if (player["unlocked_emote_lost_tribe", false]) {
             return true

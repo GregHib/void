@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.map
 
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
@@ -40,7 +40,7 @@ on<NPCOption>({ operate && npc.id == "doric" && option == "Talk-to" }) { player:
     }
 }
 
-suspend fun Interaction.noOre() {
+suspend fun PlayerContext.noOre() {
     player<Sad>("Sorry, I don't have them all yet.")
     npc<Talking>("""
         Not to worry, stick at it. Remember, I need 6 clay, 4
@@ -67,7 +67,7 @@ suspend fun Interaction.noOre() {
     }
 }
 
-suspend fun Interaction.unstarted() {
+suspend fun PlayerContext.unstarted() {
     npc<Unsure>("Hello traveller, what brings you to my humble smithy?")
     choice {
         option<Talking>("I wanted to use your anvils.") {
@@ -133,7 +133,7 @@ suspend fun Interaction.unstarted() {
     }
 }
 
-suspend fun Interaction.startQuest() {
+suspend fun PlayerContext.startQuest() {
     if (player.levels.get(Skill.Mining) < 15) {
         statement("""
             Before starting this quest, be aware that one or more of your skill
@@ -184,7 +184,7 @@ suspend fun Interaction.startQuest() {
     }
 }
 
-suspend fun Interaction.takeOre() {
+suspend fun PlayerContext.takeOre() {
     item("You hand the clay, copper, and iron to Doric.", "copper_ore", 600)
     player.inventory.transaction {
         remove("clay", 6)
@@ -194,7 +194,7 @@ suspend fun Interaction.takeOre() {
     questComplete()
 }
 
-fun Interaction.questComplete() {
+fun PlayerContext.questComplete() {
     player["dorics_quest"] = "completed"
     player.playJingle("quest_complete_1")
     player.experience.add(Skill.Mining, 1300.0)

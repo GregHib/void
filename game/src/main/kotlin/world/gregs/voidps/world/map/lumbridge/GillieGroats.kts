@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.map.lumbridge
 
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.world.interact.dialogue.Cheerful
@@ -28,7 +28,7 @@ on<NPCOption>({ operate && npc.id == "gillie_groats" && option == "Talk-to" }) {
     }
 }
 
-suspend fun Interaction.whoAreYou() {
+suspend fun PlayerContext.whoAreYou() {
     npc<Cheerful>("""
         My name's Gillie Groats. My father is a farmer and I
         milk the cows for him.
@@ -42,7 +42,7 @@ suspend fun Interaction.whoAreYou() {
     player<Unsure>("Thanks.")
 }
 
-suspend fun Interaction.howToMilkCow() {
+suspend fun PlayerContext.howToMilkCow() {
     player<Unsure>("So how do you get milk from a cow then?")
     npc<Cheerful>("""
         It's very easy. First you need an empty bucket to hold
@@ -67,7 +67,7 @@ suspend fun Interaction.howToMilkCow() {
 }
 
 
-suspend fun Interaction.topQualityMilk() {
+suspend fun PlayerContext.topQualityMilk() {
     npc<Talk>("Really? Is it for something special?")
     player<Cheerful>("""
         Most certainly! It's for the cook to make a cake foe Duke

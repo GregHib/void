@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.map.musicians
 
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Happy
@@ -17,7 +17,7 @@ on<NPCOption>({ operate && npc.id.startsWith("musician") && option == "Talk-to" 
     choice()
 }
 
-suspend fun Interaction.choice() {
+suspend fun PlayerContext.choice() {
     choice {
         option<Unsure>("Who are you?") {
             npc<Cheerful>("""
@@ -38,7 +38,7 @@ suspend fun Interaction.choice() {
     }
 }
 
-suspend fun Interaction.resting() {
+suspend fun PlayerContext.resting() {
     choice("Can I ask you some questions about resting?") {
         option("How does resting work?") {
             player<Unsure>("So how does resting work?")
