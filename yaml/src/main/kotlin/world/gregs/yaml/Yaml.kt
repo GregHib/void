@@ -49,6 +49,9 @@ class Yaml(
         reader.anchors.clear()
         reader.set(charArray, length)
         reader.nextLine()
+        if (reader.outBounds) {
+            return Unit
+        }
         return normalReader.value(indentOffset = 0, withinMap = null)
     }
 
