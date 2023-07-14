@@ -740,6 +740,13 @@ iffie:
   id: 5914
   race: human
   examine: An old woman busily knitting.
+ash_cleaner:
+  id: 5916
+  race: human
+  wander_radius: 12
+  hunt_range: 4
+  hunt_mode: ash_finder
+  examine: Does what too many people aren't interested in doing.
 ducklings:
   id: 6112
   swim: true
