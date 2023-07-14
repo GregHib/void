@@ -13,3 +13,4 @@ ash_finder:
   type: floor_item
   check_visual: line_of_sight
   id: ashes
+  rate: 4
