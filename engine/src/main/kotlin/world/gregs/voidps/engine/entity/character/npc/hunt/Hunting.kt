@@ -83,6 +83,9 @@ class Hunting(
         for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZones(npc.tile.level)) {
             for (items in floorItems[zone]) {
                 for (item in items) {
+                    if (item.owner != null) {
+                        continue
+                    }
                     if (definition.id != null && item.id != definition.id) {
                         continue
                     }
