@@ -117,6 +117,8 @@ giant_spider:
   attack_speed: 4
   attack_radius: 8
   wander_radius: 10
+  hunt_mode: aggressive
+  hunt_range: 1
   hitpoints: 50
   aggressive: true
   slayer_xp: 5.0
@@ -1093,18 +1095,26 @@ denath:
   examine: "A practicer of dark arts."
 dark_wizard_water:
   id: 8871
+  hunt_mode: aggressive
+  hunt_range: 3
   wander_radius: 5
   examine: "He works evil magic."
 dark_wizard_water_2:
   id: 8872
+  hunt_mode: aggressive
+  hunt_range: 3
   wander_radius: 5
   examine: "He works evil magic."
 dark_wizard_earth:
   id: 8873
+  hunt_mode: aggressive
+  hunt_range: 3
   wander_radius: 5
   examine: "He works evil magic."
 dark_wizard_earth_2:
   id: 8874
+  hunt_mode: aggressive
+  hunt_range: 3
   wander_radius: 5
   examine: "He works evil magic."
 delrith:
