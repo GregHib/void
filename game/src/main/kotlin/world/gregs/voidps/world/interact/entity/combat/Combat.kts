@@ -21,22 +21,22 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.world.interact.entity.death.Death
 
-on<NPCOption>({ approach && option == "Attack" }) { player: Player ->
-    if (player.attackRange != 1) {
-        player.approachRange(player.attackRange, update = false)
+on<NPCOption>({ approach && option == "Attack" }) { character: Character ->
+    if (character.attackRange != 1) {
+        character.approachRange(character.attackRange, update = false)
     } else {
-        player.approachRange(null, update = true)
+        character.approachRange(null, update = true)
     }
-    combat(player, target)
+    combat(character, target)
 }
 
-on<PlayerOption>({ approach && option == "Attack" }) { player: Player ->
-    if (player.attackRange != 1) {
-        player.approachRange(player.attackRange, update = false)
+on<PlayerOption>({ approach && option == "Attack" }) { character: Character ->
+    if (character.attackRange != 1) {
+        character.approachRange(character.attackRange, update = false)
     } else {
-        player.approachRange(null, update = true)
+        character.approachRange(null, update = true)
     }
-    combat(player, target)
+    combat(character, target)
 }
 
 on<ItemOnNPC>({ approach && id.endsWith("_spellbook") }, Priority.HIGH) { player: Player ->
