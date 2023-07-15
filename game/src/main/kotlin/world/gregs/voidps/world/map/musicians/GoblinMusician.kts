@@ -61,5 +61,5 @@ suspend fun CharacterContext.resting() {
 }
 
 suspend fun PlayerChoice.exit(): Unit = option<Unsure>("That's all for now.") {
-    npc("cheerful_old", "You listen to boom boom. Good!")
+    npc<CheerfulOld>("You listen to boom boom. Good!")
 }

@@ -55,8 +55,8 @@ suspend fun Interaction.replacementSword() {
             Thurgo makes you a sword.
         """, "blurite_sword", 600)
         player<Cheerful>("Thank you very much!")
-        npc("cheerful_old", "Just remember to call in with more pie some time!")
-        return
+        npc<CheerfulOld>("Just remember to call in with more pie some time!")
+        return@option
     }
     if (player.inventory.contains("blurite_ore")) {
         player<Sad>("I don't have two iron bars.")
@@ -65,7 +65,7 @@ suspend fun Interaction.replacementSword() {
     }
     if (player.inventory.contains("iron_bar", 2)) {
         player<Sad>("I don't have any blurite ore yet.")
-        npc("talking_old", """
+        npc<TalkingOld>("""
             Better go get some then, huh? The only place I know
             to get it is under this cliff here, but it is guarded by a
             very powerful ice giant.
@@ -112,7 +112,7 @@ suspend fun Interaction.menu() {
 
 suspend fun Interaction.specialSword() {
     player<Cheerful>("Can you make a special sword for me?")
-    npc("talking_old", """
+    npc<TalkingOld>("""
         Well, after bringing me my favorite food I guess I
         should give it a go. What sort of sword is it?
     """)
@@ -149,7 +149,7 @@ suspend fun Interaction.aboutSword() {
         """, "portrait", 600)
         player["the_knights_sword"] = "blurite_sword"
         player.inventory.remove("portrait")
-        npc("talking_old", """
+        npc<TalkingOld>("""
             You'll need to get me some stuff to make this. I'll need
             two iron bars to make the sword, to start with. I'll also
             need an ore called blurite.
