@@ -117,10 +117,9 @@ giant_spider:
   attack_speed: 4
   attack_radius: 8
   wander_radius: 10
-  hunt_mode: aggressive
+  hunt_mode: cowardly
   hunt_range: 1
   hitpoints: 50
-  aggressive: true
   slayer_xp: 5.0
   max_hit_melee: 10
   respawn_delay: 30
@@ -1107,7 +1106,7 @@ dark_wizard_water:
   hitpoints: 120
   max_hit_magic: 60
   respawn_delay: 50
-  hunt_mode: aggressive
+  hunt_mode: cowardly
   hunt_range: 5
   wander_radius: 5
   examine: "He works evil magic."

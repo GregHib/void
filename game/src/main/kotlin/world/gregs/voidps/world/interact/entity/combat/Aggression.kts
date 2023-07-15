@@ -8,10 +8,10 @@ import world.gregs.voidps.engine.entity.character.npc.hunt.HuntPlayer
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.event.on
 
-on<HuntPlayer>({ mode == "aggressive" }) { npc: NPC ->
+on<HuntPlayer>({ mode == "aggressive" || mode == "cowardly" }) { npc: NPC ->
    npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
 }
 
-on<HuntNPC>({ mode == "aggressive" }) { npc: NPC ->
+on<HuntNPC>({ mode == "aggressive" || mode == "cowardly" }) { npc: NPC ->
    npc.mode = Interact(npc, target, NPCOption(npc, target, target.def, "Attack"))
 }

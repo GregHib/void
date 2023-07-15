@@ -9,6 +9,10 @@ aggressive:
 not_busy:
   <<: *aggressive
   check_not_busy: true
+cowardly:
+  <<: *aggressive
+  check_not_too_strong: true
+  check_not_busy: true
 ash_finder:
   type: floor_item
   check_visual: line_of_sight

@@ -54,7 +54,7 @@ data class HuntModeDefinition(
         fun fromMap(map: Map<String, Any>) = HuntModeDefinition(
             type = map["type"] as String,
             checkVisual = map["check_visual"] as? String ?: EMPTY.checkVisual,
-            checkNotTooStrong = map["check_not_too_trong"] as? Boolean ?: EMPTY.checkNotTooStrong,
+            checkNotTooStrong = map["check_not_too_strong"] as? Boolean ?: EMPTY.checkNotTooStrong,
             checkNotCombat = map["check_not_combat"] as? Boolean ?: EMPTY.checkNotCombat,
             checkNotCombatSelf = map["check_not_combat_self"] as? Boolean ?: EMPTY.checkNotCombatSelf,
             checkNotBusy = map["check_not_busy"] as? Boolean ?: EMPTY.checkNotBusy,

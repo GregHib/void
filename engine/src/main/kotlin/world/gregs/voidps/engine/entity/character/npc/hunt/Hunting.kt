@@ -52,19 +52,23 @@ class Hunting(
             when (definition.type) {
                 "player" -> {
                     val targets = getCharacters(npc, players, range, definition)
-                    npc.events.emit(HuntPlayer(mode, targets.randomOrNull() ?: continue))
+                    val target = targets.randomOrNull() ?: continue
+                    npc.events.emit(HuntPlayer(mode, target))
                 }
                 "npc" -> {
                     val targets = getCharacters(npc, npcs, range, definition)
-                    npc.events.emit(HuntNPC(mode, targets.randomOrNull() ?: continue))
+                    val target = targets.randomOrNull() ?: continue
+                    npc.events.emit(HuntNPC(mode, target))
                 }
                 "object" -> {
                     val targets = getObjects(npc, definition)
-                    npc.events.emit(HuntObject(mode, targets.randomOrNull() ?: continue))
+                    val target = targets.randomOrNull() ?: continue
+                    npc.events.emit(HuntObject(mode, target))
                 }
                 "floor_item" -> {
                     val targets = getItems(npc, range, definition)
-                    npc.events.emit(HuntFloorItem(mode, targets.randomOrNull() ?: continue))
+                    val target = targets.randomOrNull() ?: continue
+                    npc.events.emit(HuntFloorItem(mode, target))
                 }
             }
         }
@@ -193,13 +197,13 @@ class Hunting(
         if (!canSee(npc, character.tile, character.size, character.size, definition)) {
             return false
         }
-        if (definition.checkNotTooStrong && withinCombatRange(npc, character)) {
+        if (definition.checkNotTooStrong && targetTooStrong(npc, character)) {
             return false
         }
-        if (definition.checkNotCombat && character.hasClock("in_combat")) {
+        if (definition.checkNotCombat && character.hasClock("under_attack")) {
             return false
         }
-        if (definition.checkNotCombatSelf && npc.hasClock("in_combat")) {
+        if (definition.checkNotCombatSelf && npc.hasClock("under_attack")) {
             return false
         }
         if (definition.checkNotBusy && (character.hasClock("delay") || character.hasMenuOpen())) {
@@ -208,8 +212,8 @@ class Hunting(
         return true
     }
 
-    private fun withinCombatRange(npc: NPC, character: Character): Boolean {
-        return character is Player && character.combatLevel <= npc.def.combat * 2
+    private fun targetTooStrong(npc: NPC, character: Character): Boolean {
+        return character is Player && character.combatLevel > npc.def.combat * 2
     }
 
     private fun canSee(
