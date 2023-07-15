@@ -33,7 +33,7 @@ on<ObjectOption>({ target.id == "cupboard_the_knights_sword_opened" && option ==
 //""")
 on<ObjectOption>({ target.id == "cupboard_the_knights_sword_opened" && option == "Search" }) { player: Player ->
     when (player["the_knights_sword", "unstarted"]) {
-        "stage5", "stage6" -> {
+        "cupboard", "stage6" -> {
             if (player.hasItem("portrait")) {
                 statement("There is just a load of junk in here.")
             } else {

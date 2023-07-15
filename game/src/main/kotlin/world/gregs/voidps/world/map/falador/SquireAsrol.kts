@@ -37,8 +37,8 @@ on<NPCOption>({ operate && target.id == "squire_asrol" && option == "Talk-to" })
             }
         }
         "started" -> started()
-        "stage4" -> stage4()
-        "stage5" -> stage5()
+        "picture" -> askAboutPicture()
+        "cupboard" -> checkPicture()
         "stage6" -> stage6()
         else -> completed()
     }
@@ -53,7 +53,7 @@ suspend fun Interaction.started() {
     """)
 }
 
-suspend fun Interaction.stage4() {
+suspend fun Interaction.askAboutPicture() {
     npc<Unsure>("So how are you doing getting a sword?")
     player<Cheerful>("""
         I've found an Imcando dwarf but he needs a picture of
@@ -64,7 +64,7 @@ suspend fun Interaction.stage4() {
         in a small portrait of Sir Vyvin's father... Sir Vyvin
         keeps it in a cupboard in his room I think.
     """)
-    player["the_knights_sword"] = "stage5"
+    player["the_knights_sword"] = "cupboard"
     player<Talking>("Ok, I'll try and get that then.")
     npc<Uncertain>("""
         Please don't let him catch you! He MUSTN'T know
@@ -72,9 +72,9 @@ suspend fun Interaction.stage4() {
     """)
 }
 
-suspend fun Interaction.stage5() {
+suspend fun Interaction.checkPicture() {
+    npc<Unsure>("So how are you doing getting a sword?")
     if (player.hasItem("portrait")) {
-        npc<Unsure>("So how are you doing getting a sword?")
         player<Cheerful>("""
             I have the picture.
             I'll just take it to the dwarf now!
@@ -82,7 +82,6 @@ suspend fun Interaction.stage5() {
         npc<Uncertain>("Please hurry!")
         return
     }
-    npc<Unsure>("So how are you doing getting a sword?")
     player<Sad>("I didn't get the picture yet.")
     npc<Sad>("""
         Please try and get it quickly... I am scared Sir Vyvin

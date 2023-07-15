@@ -31,7 +31,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             "<maroon>Imcando <navy>except a few live on the <maroon>southern peninsula of",
             "<maroon>Asgarnia, <navy>they dislike strangers, and LOVE <maroon>redberry pies.",
         )
-        "stage3" -> listOf(
+        "happy_thurgo" -> listOf(
             "<str>I told the Squire I would help him to replace the sword he",
             "<str>had lost. It could only be made by an Imcando Dwarf.",
             "<str>I found an Imcando Dwarf named Thurgo thanks to",
@@ -39,7 +39,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             "<str>until I gave him a Redberry pie, which he gobbled up.",
             "<navy>He will help me now I have gained his trust through <maroon>pie.",
         )
-        "stage4" -> listOf(
+        "picture" -> listOf(
             "<str>I told the Squire I would help him to replace the sword he",
             "<str>had lost. It could only be made by an Imcando Dwarf.",
             "<str>I found an Imcando Dwarf named Thurgo thanks to",
@@ -48,7 +48,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             "<maroon>Thurgo <navy>needs a <maroon>picture of the sword <navy>before he can help.",
             "<navy>I should probably ask the <maroon>Squire <navy>about obtaining one.",
         )
-        "stage5" -> {
+        "cupboard" -> {
             val list = mutableListOf(
                 "<str>I told the Squire I would help him to replace the sword he",
                 "<str>had lost. It could only be made by an Imcando Dwarf.",

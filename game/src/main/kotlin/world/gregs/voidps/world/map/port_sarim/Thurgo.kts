@@ -13,8 +13,8 @@ import world.gregs.voidps.world.interact.dialogue.type.*
 on<NPCOption>({ operate && target.id == "thurgo" && option == "Talk-to" }) { player: Player ->
     when (player["the_knights_sword", "unstarted"]) {
         "started", "find_thurgo" -> menu()
-        "stage3" -> menuSword()
-        "stage4", "stage5" -> menuAboutSword()
+        "happy_thurgo" -> menuSword()
+        "picture", "cupboard" -> menuAboutSword()
         "stage6" -> menuReplacementSword()
         else -> thatCape()
     }
@@ -126,7 +126,7 @@ suspend fun Interaction.specialSword() {
         A knight's sword eh? Well, I'd need to know exactly
         how it looked before I could make a new one.
     """)
-    player["the_knights_sword"] = "stage4"
+    player["the_knights_sword"] = "picture"
     npc<TalkingOld>("""
         All the Faladian knights used to have swords with unique
         designs according to their position. Could you bring me
@@ -201,7 +201,7 @@ suspend fun PlayerChoice.redberryPie(): Unit = option<Unsure>(
         We Imcando dwarves love them - they're GREAT!
     """)
     if (player["the_knights_sword", "unstarted"] == "find_thurgo") {
-        player["the_knights_sword"] = "stage3"
+        player["the_knights_sword"] = "happy_thurgo"
     }
     player.inventory.remove("redberry_pie")
     statement("You hand over the pie Thurgo eats the pie. Thurgo pats his stomach.")
@@ -233,7 +233,7 @@ suspend fun CharacterContext.thatCape() {
 on<ItemOnNPC>({ operate && target.id == "thurgo" && item.id == "redberry_pie" }) { player: Player ->
     when (player["the_knights_sword", "unstarted"]) {
         "find_thurgo" -> menu()
-        "stage3" -> menuSword()
+        "happy_thurgo" -> menuSword()
         else -> player<Uncertain>("Why would I give him my pie?")
     }
 }

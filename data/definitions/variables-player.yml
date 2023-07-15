@@ -2,7 +2,7 @@ the_knights_sword:
   id: 122
   persist: true
   format: list
-  values: [ unstarted, started, find_thurgo, stage3, stage4, stage5, stage6, completed ]
+  values: [ unstarted, started, find_thurgo, happy_thurgo, picture, cupboard, stage6, completed ]
 flour_bin:
   id: 695
   persist: true
