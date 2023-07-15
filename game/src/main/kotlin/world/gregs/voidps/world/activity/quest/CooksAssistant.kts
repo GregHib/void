@@ -1,13 +1,14 @@
 package world.gregs.voidps.world.activity.quest
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.world.activity.bank.bank
 
 on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemSlot == 1 }) { player: Player ->
-    val lines = when (player.get("cooks_assistant", "unstarted")) {
+    val lines = when (player["cooks_assistant", "unstarted"]) {
         "completed" -> listOf(
             "<str>It was the Duke of Lumbridge's birthday, but his cook had",
             "<str>forgotten to buy the ingredients he needed to bake a ",
@@ -80,4 +81,8 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
         )
     }
     player.sendQuestJournal("Cook's Aassistant", lines)
+}
+
+on<VariableSet>({ key == "cooks_assistant" }) { player: Player ->
+    player.refreshQuestJournal()
 }

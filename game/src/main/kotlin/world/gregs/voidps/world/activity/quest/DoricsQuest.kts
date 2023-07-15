@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.quest
 
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.inventory
@@ -49,4 +50,8 @@ fun requiredItem(player: Player, item: String, required: Int): String {
         }
         append(".")
     }
+}
+
+on<VariableSet>({ key == "dorics_quest" }) { player: Player ->
+    player.refreshQuestJournal()
 }
