@@ -30,17 +30,17 @@ val floorItems: FloorItems by inject()
 val npcs: NPCs by inject()
 val lineValidator: LineValidator by inject()
 
-on<ObjectOption>({ target.id == "cupboard_the_knights_sword_closed" && option == "Open" }) { player: Player ->
+on<ObjectOption>({ operate && target.id == "cupboard_the_knights_sword_closed" && option == "Open" }) { player: Player ->
     player.playSound("cupboard_open")
     target.replace("cupboard_the_knights_sword_opened", ticks = TimeUnit.MINUTES.toTicks(3))
 }
 
-on<ObjectOption>({ target.id == "cupboard_the_knights_sword_opened" && option == "Shut" }) { player: Player ->
+on<ObjectOption>({ operate && target.id == "cupboard_the_knights_sword_opened" && option == "Shut" }) { player: Player ->
     player.playSound("cupboard_close")
     target.replace("cupboard_the_knights_sword_closed")
 }
 
-on<ObjectOption>({ target.id == "cupboard_the_knights_sword_opened" && option == "Search" }) { player: Player ->
+on<ObjectOption>({ operate && target.id == "cupboard_the_knights_sword_opened" && option == "Search" }) { player: Player ->
     when (player["the_knights_sword", "unstarted"]) {
         "cupboard", "blurite_sword" -> {
             val sirVyvin = npcs[player.tile.regionLevel].firstOrNull { it.id == "sir_vyvin" }
@@ -67,7 +67,7 @@ on<ObjectOption>({ target.id == "cupboard_the_knights_sword_opened" && option ==
     }
 }
 
-on<NPCOption>({ target.id == "sir_vyvin" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "sir_vyvin" && option == "Talk-to" }) { player: Player ->
     player<Talking>("Hello.")
     npc<Talking>("Greetings traveller.")
     choice {
