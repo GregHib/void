@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.map.varrock.palace
 
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
@@ -8,6 +7,7 @@ import world.gregs.voidps.world.interact.dialogue.Laugh
 import world.gregs.voidps.world.interact.dialogue.Suspicious
 import world.gregs.voidps.world.interact.dialogue.Talking
 import world.gregs.voidps.world.interact.dialogue.Unsure
+import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -15,22 +15,13 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 on<NPCOption>({ operate && target.id == "reldo" && option == "Talk-to" }) { player: Player ->
     npc<Talking>("Hello stranger.")
     choice {
-        option("Do you have anything to trade?") {
-            anythingToTrade()
-        }
-        option("What do you do?") {
-            whatDoYouDo()
-        }
-        option("What do you know about the Imcando dwarves?", {
-            player["the_knights_sword", "unstarted"] == "started" || player["the_knights_sword", "unstarted"] == "find_thurgo"
-        }) {
-            aboutImcandoDwarves()
-        }
+        anythingToTrade()
+        whatDoYouDo()
+        aboutImcandoDwarves()
     }
 }
 
-suspend fun Interaction.anythingToTrade() {
-    player<Unsure>("Do you have anything to trade?")
+suspend fun PlayerChoice.anythingToTrade() = option<Unsure>("Do you have anything to trade?") {
     npc<Talking>("Only knowledge.")
     player<Unsure>("How much do you want for that then?")
     npc<Laugh>("""
@@ -40,8 +31,7 @@ suspend fun Interaction.anythingToTrade() {
     player<Talking>("Ah well.")
 }
 
-suspend fun Interaction.whatDoYouDo() {
-    player<Unsure>("What do you do?")
+suspend fun PlayerChoice.whatDoYouDo() = option<Unsure>("What do you do?") {
     npc<Talking>("I am the palace librarian.")
     player<Talking>("Ah. That's why you're in the library then.")
     npc<Talking>("Yes.")
@@ -53,8 +43,13 @@ suspend fun Interaction.whatDoYouDo() {
     """)
 }
 
-suspend fun Interaction.aboutImcandoDwarves() {
-    player<Unsure>("What do you know about the Imcando dwarves?")
+suspend fun PlayerChoice.aboutImcandoDwarves() = option<Unsure>(
+    "What do you know about the Imcando dwarves?",
+    {
+        val stage = player["the_knights_sword", "unstarted"]
+        stage == "started" || stage == "find_thurgo"
+    }
+) {
     npc<Talking>("The Imcando dwarves, you say?")
     npc<Talking>("""
         Ah yes... for many hundreds of years they were the 
