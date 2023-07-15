@@ -37,13 +37,8 @@ on<Registered>({ active }) { npc: NPC ->
     }
 }
 
-on<Unregistered> { character: Character ->
-    if (active) {
-        collisions.remove(character)
-    }
-    if (character is Player) {
-        players.remove(character)
-    }
+on<Unregistered>({ active }) { character: Character ->
+    collisions.remove(character)
 }
 
 on<Moved>({ active }) { character: Character ->
