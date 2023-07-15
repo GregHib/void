@@ -2,12 +2,12 @@ package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
@@ -52,16 +52,7 @@ on<CombatHit>({ target -> source is Player && special && isThrowingAxe(weapon) &
             if (character == target || chain.contains(character.index) || !canAttack(player, character)) {
                 return@forEach
             }
-            if (!lineOfSight.hasLineOfSight(
-                    srcX = target.tile.x,
-                    srcZ = target.tile.y,
-                    level = target.tile.level,
-                    destX = character.tile.x,
-                    destZ = character.tile.y,
-                    srcSize = target.size,
-                    destWidth = character.size,
-                    destHeight = character.size)
-            ) {
+            if (!lineOfSight.hasLineOfSight(target, character)) {
                 return@forEach
             }
             if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 10)) {

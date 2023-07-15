@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.character.mode.move
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
-import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -15,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.move.running
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
@@ -45,19 +43,7 @@ open class Movement(
             return
         }
         if (character is Player) {
-            val route = pathFinder.findPath(
-                srcX = character.tile.x,
-                srcZ = character.tile.y,
-                level = character.tile.level,
-                destX = strategy.tile.x,
-                destZ = strategy.tile.y,
-                srcSize = character.size,
-                destWidth = strategy.sizeX,
-                destHeight = strategy.sizeY,
-                objShape = shape ?: strategy.exitStrategy,
-                objRot = strategy.rotation,
-                blockAccessFlags = strategy.bitMask
-            )
+            val route = pathFinder.findPath(character, strategy, shape)
             character.steps.queueRoute(route, strategy.tile)
         } else {
             character.steps.queueStep(strategy.tile)
@@ -175,16 +161,7 @@ open class Movement(
     }
 
     fun canStep(x: Int, y: Int): Boolean {
-        val flag = if (character is NPC) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
-        return stepValidator.canTravel(
-            level = character.tile.level,
-            x = character.tile.x,
-            z = character.tile.y,
-            offsetX = x,
-            offsetZ = y,
-            size = character.size,
-            extraFlag = flag,
-            collision = character.collision)
+        return stepValidator.canTravel(character, x, y)
     }
 
     fun arrived(distance: Int = -1): Boolean {
@@ -198,16 +175,7 @@ open class Movement(
         if (!character.tile.within(strategy.tile, distance)) {
             return false
         }
-        return lineValidator.hasLineOfSight(
-            srcX = character.tile.x,
-            srcZ = character.tile.y,
-            level = character.tile.level,
-            srcSize = character.size,
-            destX = strategy.tile.x,
-            destZ = strategy.tile.y,
-            destWidth = strategy.width,
-            destHeight = strategy.height
-        )
+        return lineValidator.hasLineOfSight(character, strategy.tile, strategy.width, strategy.height)
     }
 
     companion object {
