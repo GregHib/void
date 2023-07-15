@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.dialogue.type.*
 
 on<NPCOption>({ operate && target.id == "thurgo" && option == "Talk-to" }) { player: Player ->
     when (player["the_knights_sword", "unstarted"]) {
-        "started", "stage2" -> menu()
+        "started", "find_thurgo" -> menu()
         "stage3" -> menuSword()
         "stage4", "stage5" -> menuAboutSword()
         "stage6" -> menuReplacementSword()
@@ -228,7 +228,7 @@ suspend fun Interaction.redberryPie() {
         I'd never say no to a redberry pie!
         We Imcando dwarves love them - they're GREAT!
     """, largeHead = true)
-    if (player["the_knights_sword", "unstarted"] == "stage2") {
+    if (player["the_knights_sword", "unstarted"] == "find_thurgo") {
         player["the_knights_sword"] = "stage3"
     }
     player.inventory.remove("redberry_pie")
@@ -254,12 +254,10 @@ suspend fun Interaction.thatCape() {
         """, largeHead = true)
 }
 
-on<ItemOnNPC>({ operate && target.id == "thurgo" }) { player: Player ->
-    if (item.id == "redberry_pie") {
-        when (player["the_knights_sword", "unstarted"]) {
-            "stage2" -> menu()
-            "stage3" -> menuSword()
-            else -> player<Uncertain>("Why would I give him my pie?")
-        }
+on<ItemOnNPC>({ operate && target.id == "thurgo" && item.id == "redberry_pie" }) { player: Player ->
+    when (player["the_knights_sword", "unstarted"]) {
+        "find_thurgo" -> menu()
+        "stage3" -> menuSword()
+        else -> player<Uncertain>("Why would I give him my pie?")
     }
 }

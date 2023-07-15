@@ -24,7 +24,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             "<navy>The Squire suggests I speak to <maroon>Reldo <navy>in the <maroon>Varrock Palace",
             "<maroon>Library<navy> for information about the <maroon>Imcando Dwarves.",
         )
-        "stage2" -> listOf(
+        "find_thurgo" -> listOf(
             "<str>I told the Squire I would help him to replace the sword he",
             "<str>had lost. It could only be made by an Imcando Dwarf.",
             "<navy>Reldo couldn't give me much information about the",

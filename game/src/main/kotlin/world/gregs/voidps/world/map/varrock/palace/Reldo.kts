@@ -21,10 +21,10 @@ on<NPCOption>({ operate && target.id == "reldo" && option == "Talk-to" }) { play
         option("What do you do?") {
             whatDoYouDo()
         }
-        if (player["the_knights_sword", "unstarted"] == "started" || player["the_knights_sword", "unstarted"] == "stage2") {
-            option("What do you know about the Imcando dwarves?") {
-                aboutImcandoDwarves()
-            }
+        option("What do you know about the Imcando dwarves?", {
+            player["the_knights_sword", "unstarted"] == "started" || player["the_knights_sword", "unstarted"] == "find_thurgo"
+        }) {
+            aboutImcandoDwarves()
         }
     }
 }
@@ -78,7 +78,7 @@ suspend fun Interaction.aboutImcandoDwarves() {
         why people think the tribe is extinct. However...
     """)
     if (player["the_knights_sword", "unstarted"] == "started") {
-        player["the_knights_sword"] = "stage2"
+        player["the_knights_sword"] = "find_thurgo"
     }
     npc<Suspicious>("""
         ... you could try taking them some redberry pie. They 
