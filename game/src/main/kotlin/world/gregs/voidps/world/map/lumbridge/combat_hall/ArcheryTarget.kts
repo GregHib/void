@@ -2,7 +2,6 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.face
@@ -25,11 +24,11 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-on<ObjectOption>({ operate && obj.id == "archery_target" && option == "Shoot-at" }, Priority.HIGH) { player: Player ->
+on<ObjectOption>({ operate && target.id == "archery_target" && option == "Shoot-at" }, Priority.HIGH) { player: Player ->
     player.closeDialogue()
-    player.face(obj)
+    player.face(target)
     arriveDelay()
-    swing(player, obj, 0)
+    swing(player, target, 0)
 }
 
 fun swing(player: Player, obj: GameObject, delay: Int) {
@@ -43,7 +42,7 @@ fun swing(player: Player, obj: GameObject, delay: Int) {
             player.message("You can only use a Training bow and arrows against this target.")
             return@weakQueue
         }
-        if (player.hasClock("in_combat")) {
+        if (player.underAttack) {
             player.message("You are already in combat.")
             return@weakQueue
         }

@@ -12,12 +12,12 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems.Companion.MAX_TILE_ITEMS
 import world.gregs.voidps.engine.event.EventHandlerStore
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.network.encode.send
 import world.gregs.voidps.network.encode.zone.FloorItemAddition
 import world.gregs.voidps.network.encode.zone.FloorItemRemoval
 import world.gregs.voidps.network.encode.zone.FloorItemUpdate
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Zone
 
 /**
  * Stores up to [MAX_TILE_ITEMS] [FloorItem]s per tile
@@ -28,10 +28,14 @@ class FloorItems(
     private val store: EventHandlerStore
 ) : ZoneBatchUpdates.Sender {
 
-    internal val data = Int2ObjectOpenHashMap<MutableList<FloorItem>>()
-    private val pool = object : DefaultPool<MutableList<FloorItem>>(INITIAL_POOL_CAPACITY) {
+    internal val data = Int2ObjectOpenHashMap<MutableMap<Int, MutableList<FloorItem>>>()
+    private val tilePool = object : DefaultPool<MutableList<FloorItem>>(INITIAL_POOL_CAPACITY) {
         override fun produceInstance() = ObjectArrayList<FloorItem>()
         override fun clearInstance(instance: MutableList<FloorItem>) = instance.apply { clear() }
+    }
+    private val zonePool = object : DefaultPool<MutableMap<Int, MutableList<FloorItem>>>(INITIAL_POOL_CAPACITY) {
+        override fun produceInstance() = Int2ObjectOpenHashMap<MutableList<FloorItem>>()
+        override fun clearInstance(instance: MutableMap<Int, MutableList<FloorItem>>) = instance.apply { clear() }
     }
 
     fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = NEVER, disappearTicks: Int = NEVER, owner: Player?) = add(tile, id, amount, revealTicks, disappearTicks, owner?.name)
@@ -49,7 +53,7 @@ class FloorItems(
     }
 
     fun add(item: FloorItem) {
-        val list = data.getOrPut(item.tile.id) { pool.borrow() }
+        val list = data.getOrPut(item.tile.zone.id) { zonePool.borrow() }.getOrPut(item.tile.id) { tilePool.borrow() }
         if (combined(list, item)) {
             return
         }
@@ -93,15 +97,23 @@ class FloorItems(
     }
 
     operator fun get(tile: Tile): List<FloorItem> {
-        return data.getOrDefault(tile.id, emptyList())
+        return data.get(tile.zone.id)?.get(tile.id) ?: emptyList()
+    }
+
+    operator fun get(zone: Zone): Collection<List<FloorItem>> {
+        return data.get(zone.id)?.values ?: emptyList()
     }
 
     fun remove(item: FloorItem): Boolean {
-        val list = data.get(item.tile.id) ?: return false
+        val zone = data.get(item.tile.zone.id) ?: return false
+        val list = zone[item.tile.id] ?: return false
         if (list.remove(item)) {
             batches.add(item.tile.zone, FloorItemRemoval(item.tile.id, item.def.id, item.owner))
-            if (list.isEmpty() && data.remove<Int, Any>(item.tile.id, list)) {
-                pool.recycle(list)
+            if (list.isEmpty() && zone.remove(item.tile.id, list)) {
+                tilePool.recycle(list)
+                if (zone.isEmpty() && data.remove(item.tile.zone.id) != null) {
+                    zonePool.recycle(zone)
+                }
             }
             item.events.emit(Unregistered)
             return true
@@ -110,23 +122,26 @@ class FloorItems(
     }
 
     fun clear() {
-        for ((_, list) in data) {
-            for (item in list) {
-                batches.add(item.tile.zone, FloorItemRemoval(item.tile.id, item.def.id, item.owner))
-                item.events.emit(Unregistered)
+        for ((_, zone) in data) {
+            for ((_, items) in zone) {
+                for (item in items) {
+                    batches.add(item.tile.zone, FloorItemRemoval(item.tile.id, item.def.id, item.owner))
+                    item.events.emit(Unregistered)
+                }
+                tilePool.recycle(items)
             }
-            pool.recycle(list)
+            zonePool.recycle(zone)
         }
         data.clear()
     }
 
     override fun send(player: Player, zone: Zone) {
-        for (tile in zone.tile.toCuboid(8, 8)) {
-            for (item in data.get(tile.id) ?: continue) {
+        for ((_, items) in data.get(zone.id) ?: return) {
+            for (item in items) {
                 if (item.owner != null && item.owner != player.name) {
                     continue
                 }
-                player.client?.send(FloorItemAddition(tile.id, item.def.id, item.amount, item.owner))
+                player.client?.send(FloorItemAddition(item.tile.id, item.def.id, item.amount, item.owner))
             }
         }
     }
@@ -139,4 +154,3 @@ class FloorItems(
         private const val INITIAL_POOL_CAPACITY = 10
     }
 }
-

@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -24,7 +23,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 
 val enums: EnumDefinitions by inject()
 
-on<NPCOption>({ operate && npc.id == "hairdresser" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "hairdresser" && option == "Talk-to" }) { player: Player ->
     npc<Happy>("""
         Good afternoon ${if (player.male) "sir" else "madam"}. In need of a haircut${if (player.male) " or shave" else ""} are
         we?
@@ -43,7 +42,7 @@ on<NPCOption>({ operate && npc.id == "hairdresser" && option == "Talk-to" }) { p
     }
 }
 
-on<NPCOption>({ operate && npc.id == "hairdresser" && option == "Hair-cut" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "hairdresser" && option == "Hair-cut" }) { player: Player ->
     startHairdressing()
 }
 

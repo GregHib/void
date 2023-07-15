@@ -5,9 +5,9 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
-import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Area
+import world.gregs.voidps.type.Zone
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
 

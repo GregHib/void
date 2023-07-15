@@ -14,10 +14,10 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Zone
 
 data class NPCs(
     private val definitions: NPCDefinitions,

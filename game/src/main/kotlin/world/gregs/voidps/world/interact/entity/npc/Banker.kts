@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.npc
 import world.gregs.voidps.Main.name
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -47,7 +47,7 @@ on<ObjectOption>({ operate && option == "Use" }) { player: Player ->
     menu()
 }
 
-suspend fun Interaction.menu() {
+suspend fun CharacterContext.menu() {
     choice {
         option("I'd like to access my bank account, please.", block = { player.open("bank") })
         option("I'd like to check my PIN settings.", block = { player.open("bank_pin") })

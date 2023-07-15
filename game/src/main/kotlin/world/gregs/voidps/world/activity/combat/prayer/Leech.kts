@@ -3,7 +3,6 @@ package world.gregs.voidps.world.activity.combat.prayer
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.VariableSet
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -144,7 +143,7 @@ set("leech_magic", Skill.Magic)
 
 fun set(prayer: String, skill: Skill) {
     val sap = prayer.startsWith("sap")
-    on<VariableSet>({ key == "in_combat" && to == 0 }) { player: Player ->
+    on<VariableSet>({ key == "under_attack" && to == 0 }) { player: Player ->
         player.clear("${skill.name.lowercase()}_drain_msg")
         player.clear("${skill.name.lowercase()}_leech_msg")
     }

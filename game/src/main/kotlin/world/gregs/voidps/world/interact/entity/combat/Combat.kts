@@ -2,7 +2,9 @@ package world.gregs.voidps.world.interact.entity.combat
 
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.face
@@ -19,22 +21,22 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.world.interact.entity.death.Death
 
-on<NPCOption>({ approach && option == "Attack" }) { player: Player ->
-    if (player.attackRange != 1) {
-        player.approachRange(player.attackRange, update = false)
+on<NPCOption>({ approach && option == "Attack" }) { character: Character ->
+    if (character.attackRange != 1) {
+        character.approachRange(character.attackRange, update = false)
     } else {
-        player.approachRange(null, update = true)
+        character.approachRange(null, update = true)
     }
-    combat(player, npc)
+    combat(character, target)
 }
 
-on<PlayerOption>({ approach && option == "Attack" }) { player: Player ->
-    if (player.attackRange != 1) {
-        player.approachRange(player.attackRange, update = false)
+on<PlayerOption>({ approach && option == "Attack" }) { character: Character ->
+    if (character.attackRange != 1) {
+        character.approachRange(character.attackRange, update = false)
     } else {
-        player.approachRange(null, update = true)
+        character.approachRange(null, update = true)
     }
-    combat(player, target)
+    combat(character, target)
 }
 
 on<ItemOnNPC>({ approach && id.endsWith("_spellbook") }, Priority.HIGH) { player: Player ->
@@ -43,7 +45,7 @@ on<ItemOnNPC>({ approach && id.endsWith("_spellbook") }, Priority.HIGH) { player
     player["attack_speed"] = 5
     player["one_time"] = true
     player.attackRange = 8
-    combat(player, npc, 8)
+    combat(player, target, 8)
     cancel()
 }
 
@@ -95,7 +97,7 @@ on<CombatStop> { character: Character ->
 }
 
 on<CombatSwing> { character: Character ->
-    target.start("in_combat", 16)
+    target.start("under_attack", 16)
     if (target.inSingleCombat) {
         target.attackers.clear()
     }
@@ -103,7 +105,7 @@ on<CombatSwing> { character: Character ->
 }
 
 on<CombatHit>({ source != it && it.retaliates }) { character: Character ->
-    if (character.levels.get(Skill.Constitution) <= 0 || character.hasClock("in_combat") && character.target == source) {
+    if (character.levels.get(Skill.Constitution) <= 0 || character.underAttack && character.target == source) {
         return@on
     }
     combat(character, source)
@@ -112,7 +114,7 @@ on<CombatHit>({ source != it && it.retaliates }) { character: Character ->
 on<Death> { character: Character ->
     for (attacker in character.attackers) {
         if (attacker.target == character) {
-            attacker.stop("in_combat")
+            attacker.stop("under_attack")
         }
     }
 }

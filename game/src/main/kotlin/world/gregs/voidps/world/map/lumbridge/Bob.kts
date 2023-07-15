@@ -16,7 +16,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
-on<NPCOption>({ operate && npc.id == "bob" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "bob" && option == "Talk-to" }) { player: Player ->
     choice {
         option("Give me a quest!") {
             npc<Talk>("Sorry I don't have any quests for you at the moment.")
@@ -38,7 +38,7 @@ on<NPCOption>({ operate && npc.id == "bob" && option == "Talk-to" }) { player: P
     }
 }
 
-on<ItemOnNPC>({ operate && npc.id == "bob" }) { player: Player ->
+on<ItemOnNPC>({ operate && target.id == "bob" }) { player: Player ->
     if (!repairable(item.id)) {
         npc<Unsure>("Sorry friend, but I can't do anything with that.")
         return@on

@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.map.lumbridge.combat_hall
 
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.event.on
@@ -22,7 +22,7 @@ on<NPCOption>({ operate && def.name == "Melee instructor" && option == "Talk-to"
     menu()
 }
 
-suspend fun PlayerContext.menu(followUp: String = "") {
+suspend fun CharacterContext.menu(followUp: String = "") {
     if (followUp.isNotEmpty()) {
         npc<Unsure>(followUp)
     }
@@ -234,7 +234,7 @@ suspend fun PlayerChoice.skillcapes(): Unit = option<Talking>("Tell me about ski
     }
 }
 
-suspend fun PlayerContext.buySkillcape() {
+suspend fun CharacterContext.buySkillcape() {
     player<Unsure>("May I buy a Skillcape of Defence, please?")
     npc<Talking>("""
         You wish to join the elite defenders of this world? I'm

@@ -6,9 +6,6 @@ import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.data.Tree
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -26,6 +23,9 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
@@ -56,7 +56,7 @@ on<ObjectOption>({ operate && def.has("woodcutting") && (option == "Chop down" |
     val ivy = tree.log.isEmpty()
     var first = true
     while (awaitDialogues()) {
-        if (!objects.contains(obj)) {
+        if (!objects.contains(target)) {
             break
         }
 
@@ -86,7 +86,7 @@ on<ObjectOption>({ operate && def.has("woodcutting") && (option == "Chop down" |
         }
         if (success(player.levels.get(Skill.Woodcutting), hatchet, tree)) {
             player.experience.add(Skill.Woodcutting, tree.xp)
-            if (!addLog(player, tree) || deplete(tree, obj)) {
+            if (!addLog(player, tree) || deplete(tree, target)) {
                 break
             }
 

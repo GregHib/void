@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.setAnimation
 
 fun Character.resumeSuspension(): Boolean {
@@ -51,44 +50,50 @@ suspend fun CharacterContext.pause(ticks: Int = 1) {
     TickSuspension(ticks)
 }
 
-suspend fun PlayerContext.awaitDialogues(): Boolean {
+suspend fun CharacterContext.awaitDialogues(): Boolean {
+    if (character !is Player) {
+        return false
+    }
     PredicateSuspension { player.dialogue == null }
     return true
 }
 
-suspend fun PlayerContext.awaitInterfaces(): Boolean {
+suspend fun CharacterContext.awaitInterfaces(): Boolean {
+    if (character !is Player) {
+        return false
+    }
     PredicateSuspension { player.menu == null }
     return true
 }
 
-suspend fun PlayerContext.pauseForever() {
+suspend fun CharacterContext.pauseForever() {
     InfiniteSuspension()
 }
 
 /**
  * Movement delay, typically used by interactions that perform animations or force movements
  */
-suspend fun PlayerContext.arriveDelay() {
-    val delay = player.remaining("last_movement")
+suspend fun CharacterContext.arriveDelay() {
+    val delay = character.remaining("last_movement")
     if (delay == -1) {
         return
     }
     delay(delay)
 }
 
-context(PlayerContext) fun Player.approachRange(range: Int?, update: Boolean = true) {
+context(CharacterContext) fun Character.approachRange(range: Int?, update: Boolean = true) {
     val interact = mode as? Interact ?: return
     interact.updateRange(range, update)
 }
 
 private val logger = InlineLogger()
 
-context(PlayerContext) suspend fun Player.playAnimation(id: String, override: Boolean = false) {
+context(CharacterContext) suspend fun Character.playAnimation(id: String, override: Boolean = false) {
     val ticks = setAnimation(id, override = override)
     if (ticks == -1) {
         logger.warn { "No animation delay $id" }
     } else {
-        player.start("movement_delay", ticks)
+        character.start("movement_delay", ticks)
         pause(ticks)
     }
 }

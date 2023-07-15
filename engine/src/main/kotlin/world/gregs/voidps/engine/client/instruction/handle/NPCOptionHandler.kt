@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.instruction.handle.ObjectOptionHandler.Companion.getDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact

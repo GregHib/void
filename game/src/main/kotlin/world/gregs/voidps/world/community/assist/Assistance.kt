@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.community.assist
 
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

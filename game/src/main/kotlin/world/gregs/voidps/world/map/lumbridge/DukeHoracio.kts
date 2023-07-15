@@ -1,8 +1,7 @@
 package world.gregs.voidps.world.map.lumbridge
 
 
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
@@ -13,7 +12,7 @@ import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 
-on<NPCOption>({ operate && npc.id == "duke_horacio" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "duke_horacio" && option == "Talk-to" }) { player: Player ->
     npc<Talking>("Greetings. Welcome to my castle.")
     when (player["rune_mysteries", "unstarted"]) {
         "unstarted" -> unstarted()
@@ -22,7 +21,7 @@ on<NPCOption>({ operate && npc.id == "duke_horacio" && option == "Talk-to" }) { 
     }
 }
 
-suspend fun Interaction.started() {
+suspend fun CharacterContext.started() {
     choice {
         option<Unsure>("What did you want me to do again?") {
             if (player.hasBanked("air_talisman")) {
@@ -59,7 +58,7 @@ suspend fun Interaction.started() {
     }
 }
 
-suspend fun Interaction.unstarted() {
+suspend fun CharacterContext.unstarted() {
     choice {
         option<Unsure>("Have you any quests for me?") {
             npc<Uncertain>("""
@@ -86,7 +85,7 @@ suspend fun Interaction.unstarted() {
     }
 }
 
-suspend fun Interaction.completed() {
+suspend fun CharacterContext.completed() {
     choice {
         option<Unsure>("Have you any quests for me?") {
             npc<Talking>("""
@@ -106,7 +105,7 @@ suspend fun PlayerChoice.findMoney() : Unit = option<Unsure>("Where can I find m
     """)
 }
 
-suspend fun Interaction.startQuest() {
+suspend fun CharacterContext.startQuest() {
     choice("Start the Rune Mysteries quest?") {
         option<Cheerful>("Sure, no problem.") {
             if (player.inventory.isFull()) {

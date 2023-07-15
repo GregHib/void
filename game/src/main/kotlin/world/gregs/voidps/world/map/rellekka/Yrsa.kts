@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -25,7 +25,7 @@ import world.gregs.voidps.world.map.falador.openDressingRoom
 
 val enums: EnumDefinitions by inject()
 
-on<NPCOption>({ operate && npc.id == "yrsa" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "yrsa" && option == "Talk-to" }) { player: Player ->
     npc<Happy>("""
         Hi. You wanted to buy some clothes? Or
         did you want to makeover your shoes?
@@ -43,11 +43,11 @@ on<NPCOption>({ operate && npc.id == "yrsa" && option == "Talk-to" }) { player: 
     }
 }
 
-on<NPCOption>({ operate && npc.id == "yrsa" && option == "Change-shoes" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "yrsa" && option == "Change-shoes" }) { player: Player ->
     startShoeShopping()
 }
 
-suspend fun Interaction.startShoeShopping() {
+suspend fun CharacterContext.startShoeShopping() {
     player.closeDialogue()
     if (player.equipped(EquipSlot.Weapon).isNotEmpty() || player.equipped(EquipSlot.Shield).isNotEmpty()) {
         npc<Afraid>("""

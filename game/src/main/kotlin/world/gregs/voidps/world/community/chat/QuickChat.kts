@@ -3,7 +3,6 @@ package world.gregs.voidps.world.community.chat
 import world.gregs.voidps.cache.definition.data.QuickChatType
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.QuickChatPhraseDefinitions

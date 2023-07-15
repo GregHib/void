@@ -5,15 +5,14 @@ import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.male
@@ -39,7 +38,7 @@ import kotlin.random.Random
 val enums: EnumDefinitions by inject()
 val npcs: NPCs by inject()
 
-on<NPCOption>({ operate && npc.id.startsWith("makeover_mage") && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id.startsWith("makeover_mage") && option == "Talk-to" }) { player: Player ->
     npc<Happy>("""
         Hello there! I am known as the Makeover Mage! I have
         spent many years researching magicks that can change
@@ -80,7 +79,7 @@ suspend fun PlayerChoice.more(): Unit = option<Unsure>("Tell me more about this 
     whatDoYouSay()
 }
 
-suspend fun PlayerContext.whatDoYouSay() {
+suspend fun CharacterContext.whatDoYouSay() {
     npc<Uncertain>("So, what do you say? Feel like a change?")
     choice {
         start()
@@ -142,7 +141,7 @@ suspend fun PlayerChoice.amulet(): Unit = option<Happy>("Cool amulet! Can I have
     }
 }
 
-suspend fun PlayerContext.explain() {
+suspend fun CharacterContext.explain() {
     npc<Happy>("""
         I can alter your physical form if you wish. Would you like
         me to perform my magicks on you?
@@ -162,7 +161,7 @@ suspend fun PlayerChoice.colour(): Unit = option<Happy>("Can you make me a diffe
     whatDoYouSay()
 }
 
-on<NPCOption>({ operate && npc.id.startsWith("makeover_mage") && option == "Makeover" }) { player: Player ->
+on<NPCOption>({ operate && target.id.startsWith("makeover_mage") && option == "Makeover" }) { player: Player ->
     openDressingRoom("skin_colour")
 }
 

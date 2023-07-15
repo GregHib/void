@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.map.lumbridge
 
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.minimumCanoeLevel
 
-on<NPCOption>({ operate && npc.id == "barfy_bill" && option == "Talk-To" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "barfy_bill" && option == "Talk-To" }) { player: Player ->
     player<Talking>("Hello there.")
     npc<Talking>("Oh! Hello there.")
     choice {
@@ -57,7 +57,7 @@ on<NPCOption>({ operate && npc.id == "barfy_bill" && option == "Talk-To" }) { pl
     }
 }
 
-suspend fun Interaction.canoeing() {
+suspend fun CharacterContext.canoeing() {
     if (minimumCanoeLevel()) {
         return
     }

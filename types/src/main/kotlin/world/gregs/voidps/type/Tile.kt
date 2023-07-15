@@ -1,7 +1,6 @@
 package world.gregs.voidps.type
 
 import world.gregs.voidps.type.area.Cuboid
-import world.gregs.voidps.engine.map.zone.Zone
 
 @JvmInline
 value class Tile(val id: Int) : Coordinate3D<Tile> {

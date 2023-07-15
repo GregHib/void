@@ -1,9 +1,9 @@
 package world.gregs.voidps.type.area
 
-import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Zone
 import kotlin.random.Random
 
 data class Rectangle(
@@ -40,6 +40,18 @@ data class Rectangle(
         val min = Tile(minX, minY).zone
         for (x in min.x..max.x) {
             for (y in min.y..max.y) {
+                list.add(Zone(x, y, level))
+            }
+        }
+        return list
+    }
+
+    fun toZonesReversed(level: Int): List<Zone> {
+        val list = mutableListOf<Zone>()
+        val max = Tile(maxX, maxY).zone
+        val min = Tile(minX, minY).zone
+        for (y in min.y..max.y) {
+            for (x in min.x..max.x) {
                 list.add(Zone(x, y, level))
             }
         }

@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.combat
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -84,8 +83,9 @@ internal class CombatTest : WorldTest() {
 
         val drops = floorItems[tile]
         assertEquals(emptyTile, player.tile)
+        assertTrue(player.equipment[EquipSlot.Ammo.index].amount < 100)
         assertTrue(drops.any { it.id == "bones" })
-        assertTrue(drops.any { it.id == "rune_arrow" })
+        assertTrue(floorItems[emptyTile.addY(4)].any { it.id == "rune_arrow" })
         assertTrue(player.experience.get(Skill.Ranged) > experience)
         assertTrue(player.experience.get(Skill.Defence) > experience)
         assertTrue(player.inventory.count("rune_arrow") < 100)

@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.TimerTick
@@ -27,6 +26,7 @@ import world.gregs.voidps.network.encode.clearCamera
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Zone
 import world.gregs.voidps.world.activity.quest.openBook
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc

@@ -30,12 +30,12 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.suspend.TickSuspension
 import world.gregs.voidps.network.visual.NPCVisuals
 import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Zone
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue

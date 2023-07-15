@@ -1,10 +1,7 @@
 package world.gregs.voidps.engine.entity.character.mode.combat
 
 import world.gregs.voidps.engine.client.ui.dialogue
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Retreat
@@ -17,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.character.watch
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
 /**
@@ -84,7 +82,7 @@ class CombatMovement(
 
     private fun retreat(character: NPC): Boolean {
         val wanderRadius = character.def["wander_radius", 8]
-        val spawn: Tile = character["respawn_tile"]
+        val spawn: Tile = character.getOrNull("respawn_tile") ?: return false
         if (!character.tile.within(spawn, wanderRadius)) {
             character.walkTo(spawn)
             return true

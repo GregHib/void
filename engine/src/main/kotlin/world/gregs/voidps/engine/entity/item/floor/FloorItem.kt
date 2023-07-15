@@ -50,7 +50,7 @@ class FloorItem(
     /**
      * Reveal when public items countdown reaches 0
      */
-    fun remove(): Boolean = disappearTicks == 0 || disappearTicks > 0 && --disappearTicks == 0
+    fun remove(): Boolean = revealTicks <= 0 && (disappearTicks == 0 || disappearTicks > 0 && --disappearTicks == 0)
 
     override fun toString(): String {
         return "FloorItem(id='$id', tile=$tile, amount=$amount, disappear=$disappearTicks, reveal=$revealTicks, owner=$owner)"

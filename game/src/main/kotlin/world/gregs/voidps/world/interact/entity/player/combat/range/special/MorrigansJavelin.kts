@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player

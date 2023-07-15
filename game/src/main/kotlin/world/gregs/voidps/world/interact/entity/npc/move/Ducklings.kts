@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.npc.move
 
-import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode

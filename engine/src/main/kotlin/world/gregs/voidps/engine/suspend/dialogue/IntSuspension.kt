@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.suspend.dialogue
 
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.suspend.Suspension
 import kotlin.coroutines.resume
 
@@ -23,7 +23,7 @@ class IntSuspension(
     }
 
     companion object {
-        context(PlayerContext) suspend operator fun invoke(): Int {
+        context(CharacterContext) suspend operator fun invoke(): Int {
             val int = suspendCancellableCoroutine {
                 player.dialogueSuspension = IntSuspension(onCancel, it)
             }

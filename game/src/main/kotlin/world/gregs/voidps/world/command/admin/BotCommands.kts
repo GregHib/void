@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.event.Command
-import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions

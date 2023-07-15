@@ -15,12 +15,12 @@ import world.gregs.voidps.engine.suspend.pause
 val GameObject.waterSource: Boolean
     get() = def.name == "Sink" || def.name == "Fountain" || def.name == "Well" || def.name == "Water trough" || def.name == "Pump and drain"
 
-on<ItemOnObject>({ operate && obj.waterSource && item.def.has("full") }) { player: Player ->
+on<ItemOnObject>({ operate && target.waterSource && item.def.has("full") }) { player: Player ->
     arriveDelay()
     while (player.inventory.contains(item.id)) {
         player.setAnimation("take")
         player.inventory.replace(item.id, item.def["full"])
         pause(if (item.id == "vase") 3 else 1)
-        player.message("You fill the ${item.def.name.substringBefore(" (").lowercase()} from the ${obj.def.name.lowercase()}", ChatType.Filter)
+        player.message("You fill the ${item.def.name.substringBefore(" (").lowercase()} from the ${target.def.name.lowercase()}", ChatType.Filter)
     }
 }

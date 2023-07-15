@@ -3,16 +3,15 @@ package world.gregs.voidps.world.map.varrock.palace
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.bank.hasBanked
@@ -25,7 +24,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val logger = InlineLogger()
 
-on<ObjectOption>({ operate && obj.id == "varrock_palace_drain" && option == "Search" }) { player: Player ->
+on<ObjectOption>({ operate && target.id == "varrock_palace_drain" && option == "Search" }) { player: Player ->
     arriveDelay()
     player.setAnimation("climb_down")
     if (player["demon_slayer_drain_dislodged", false] || player.hasBanked("silverlight_key_sir_prysin")) {
@@ -49,7 +48,7 @@ on<Registered>({ it["demon_slayer_drain_dislodged", false] }) { player: Player -
     player.sendVariable("demon_slayer_drain_dislodged")
 }
 
-on<ItemOnObject>({ operate && obj.id == "varrock_palace_drain" && item.id.endsWith("of_water") }) { player: Player ->
+on<ItemOnObject>({ operate && target.id == "varrock_palace_drain" && item.id.endsWith("of_water") }) { player: Player ->
     arriveDelay()
     val replacement = when {
         item.id.startsWith("bucket_of") -> "bucket"

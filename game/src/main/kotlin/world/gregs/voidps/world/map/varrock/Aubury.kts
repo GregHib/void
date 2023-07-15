@@ -1,9 +1,8 @@
 package world.gregs.voidps.world.map.varrock
 
-import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -14,7 +13,7 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 
-on<NPCOption>({ operate && npc.id == "aubury" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "aubury" && option == "Talk-to" }) { player: Player ->
     if (player["rune_mysteries", "unstarted"] == "research_notes") {
         checkNotes()
         return@on
@@ -83,7 +82,7 @@ suspend fun PlayerChoice.packageForYou(): Unit = option<Talking>(
     }
 }
 
-suspend fun PlayerContext.researchPackage() {
+suspend fun CharacterContext.researchPackage() {
     item("Aubury goes through the package of research notes.", "research_package_rune_mysteries", 600)
     npc<Surprised>("This... this is incredible.")
     npc<Cheerful>("""
@@ -117,7 +116,7 @@ suspend fun PlayerContext.researchPackage() {
     item("Aubury hands you some research notes.", "research_notes_rune_mysteries", 600)
 }
 
-suspend fun PlayerContext.checkNotes() {
+suspend fun CharacterContext.checkNotes() {
     npc<Unsure>("Hello. Did you take those notes back to Sedridor?")
     if (player.inventory.contains("research_notes_rune_mysteries")) {
         player<Talking>("I'm still working on it.")

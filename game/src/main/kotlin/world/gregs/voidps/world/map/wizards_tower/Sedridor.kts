@@ -1,19 +1,18 @@
 package world.gregs.voidps.world.map.wizards_tower
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
@@ -23,7 +22,7 @@ import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<NPCOption>({ operate && npc.id == "sedridor" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "sedridor" && option == "Talk-to" }) { player: Player ->
     when (player["rune_mysteries", "unstarted"]) {
         "unstarted" -> {
             npc<Cheerful>("""
@@ -46,11 +45,11 @@ on<NPCOption>({ operate && npc.id == "sedridor" && option == "Talk-to" }) { play
     }
 }
 
-on<NPCOption>({ operate && npc.id == "sedridor" && option == "Teleport" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "sedridor" && option == "Teleport" }) { player: Player ->
     teleport()
 }
 
-suspend fun PlayerContext.started() {
+suspend fun CharacterContext.started() {
     npc<Cheerful>("""
         Welcome adventurer, to the world renowned Wizards'
         Tower, home to the Order of Wizards. We are the
@@ -104,7 +103,7 @@ suspend fun PlayerContext.started() {
     }
 }
 
-suspend fun PlayerContext.okHere() {
+suspend fun CharacterContext.okHere() {
     player<Talking>("Okay, here you are.")
     if (player.inventory.contains("air_talisman")) {
         player["rune_mysteries"] = "talisman_delivered"
@@ -242,7 +241,7 @@ suspend fun PlayerContext.okHere() {
     }
 }
 
-suspend fun PlayerContext.discovery() {
+suspend fun CharacterContext.discovery() {
     npc<Cheerful>("""
         It is critical I share this discovery with my associate,
         Aubury, as soon as possible. He's not much of a wizard,
@@ -259,7 +258,7 @@ suspend fun PlayerContext.discovery() {
     }
 }
 
-suspend fun PlayerContext.visitAubury() {
+suspend fun CharacterContext.visitAubury() {
     npc<Unsure>("""
         Hello again, adventurer. You have already done so
         much, but I would really appreciate it if you were to
@@ -271,7 +270,7 @@ suspend fun PlayerContext.visitAubury() {
     }
 }
 
-suspend fun PlayerContext.checkPackageDelivered() {
+suspend fun CharacterContext.checkPackageDelivered() {
     npc<Unsure>("""
         Hello again, adventurer. Did you take that package to
         Aubury?
@@ -301,7 +300,7 @@ suspend fun PlayerContext.checkPackageDelivered() {
     }
 }
 
-suspend fun PlayerContext.checkResearchDelivered() {
+suspend fun CharacterContext.checkResearchDelivered() {
     npc<Talking>("""
         Ah, ${player.name}. How goes your quest? Have you delivered
         my research to Aubury yet?
@@ -410,7 +409,7 @@ fun ChoiceBuilder<NPCOption>.teleportEssenceMine(): Unit = option<Unsure>("Can y
 
 fun NPCOption.teleport() {
     // TODO animation + gfx
-    npc.forceChat = "Seventior disthiae molenko!"
+    target.forceChat = "Seventior disthiae molenko!"
     player.tele(2910, 4830)
 }
 
@@ -477,7 +476,7 @@ suspend fun PlayerChoice.thanksForInformation(): Unit = option<Cheerful>("Thanks
     npc<Cheerful>("My pleasure.")
 }
 
-fun PlayerContext.questComplete() {
+fun CharacterContext.questComplete() {
     player["rune_mysteries"] = "completed"
     player.playJingle("quest_complete_1")
     if (player.inventory.isFull()) {

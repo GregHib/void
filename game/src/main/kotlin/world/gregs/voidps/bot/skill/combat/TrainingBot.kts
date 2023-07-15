@@ -9,9 +9,7 @@ import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.VariableSet
-import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Registered
@@ -27,12 +25,14 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.entity.combat.attackRange
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.spellBook
+import world.gregs.voidps.world.interact.entity.combat.underAttack
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
@@ -94,7 +94,7 @@ suspend fun Bot.train(map: AreaDefinition, skill: Skill, range: IntRange) {
             await("tick")
         } else if (target is NPC) {
             npcOption(target, "Attack")
-            await<Player, VariableSet> { key == "in_combat" }
+            await<Player, VariableSet> { key == "under_attack" }
             await("tick")
         }
     }
@@ -158,7 +158,7 @@ fun Bot.isAvailableTarget(map: AreaDefinition, npc: NPC, skill: Skill): Boolean 
     if (!npc.tile.within(player.tile, Viewport.VIEW_RADIUS)) {
         return false
     }
-    if (npc.hasClock("in_combat") && !npc.attackers.contains(player)) {
+    if (npc.underAttack && !npc.attackers.contains(player)) {
         return false
     }
     if (!npc.def.options.contains("Attack")) {

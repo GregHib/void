@@ -27,6 +27,7 @@ import world.gregs.voidps.network.encode.zone.ObjectAddition
 import world.gregs.voidps.network.encode.zone.ObjectRemoval
 import world.gregs.voidps.network.encode.zone.ZoneUpdate
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Zone
 
 internal class ZoneBatchUpdatesTest : KoinMock() {
 

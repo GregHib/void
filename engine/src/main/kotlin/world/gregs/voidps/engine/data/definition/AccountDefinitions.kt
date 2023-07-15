@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan

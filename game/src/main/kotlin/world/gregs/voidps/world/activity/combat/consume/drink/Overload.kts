@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.activity.combat.consume.drink
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

@@ -2,9 +2,8 @@ package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.menu
-import world.gregs.voidps.engine.client.variable.getOrNull
-import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.Inventory
 
 object Trade {
 

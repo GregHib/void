@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
-on<NPCOption>({ operate && npc.id == "fadli" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "fadli" && option == "Talk-to" }) { player: Player ->
     player<Cheerful>("Hi.")
     npc<RollEyes>("What?")
     choice {
@@ -56,15 +56,15 @@ on<NPCOption>({ operate && npc.id == "fadli" && option == "Talk-to" }) { player:
     }
 }
 
-on<NPCOption>({ operate && npc.id == "fadli" && option == "Bank" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "fadli" && option == "Bank" }) { player: Player ->
     player.open("bank")
 }
 
-on<NPCOption>({ operate && npc.id == "fadli" && option == "Collect" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "fadli" && option == "Collect" }) { player: Player ->
     player.open("collection_box")
 }
 
-on<NPCOption>({ operate && npc.id == "fadli" && option == "Buy" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "fadli" && option == "Buy" }) { player: Player ->
     if (World.members) {
         player.openShop("shop_of_distaste")
         return@on

@@ -2,9 +2,9 @@ package world.gregs.voidps.type.area
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Zone
 
 internal class CuboidTest {
 

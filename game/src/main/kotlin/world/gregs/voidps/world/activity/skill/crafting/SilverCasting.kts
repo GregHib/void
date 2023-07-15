@@ -7,9 +7,6 @@ import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.inv.hasItem
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Silver
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -20,6 +17,9 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.quest.started
@@ -62,11 +62,11 @@ on<InterfaceOpened>({ id == "silver_mould" }) { player: Player ->
     }
 }
 
-on<ItemOnObject>({ operate && obj.id.startsWith("furnace") && item.id == "silver_bar" }) { player: Player ->
+on<ItemOnObject>({ operate && target.id.startsWith("furnace") && item.id == "silver_bar" }) { player: Player ->
     player.open("silver_mould")
 }
 
-on<ItemOnObject>({ operate && obj.id.startsWith("furnace") && item.silver != null }) { player: Player ->
+on<ItemOnObject>({ operate && target.id.startsWith("furnace") && item.silver != null }) { player: Player ->
     arriveDelay()
     player.make(item, 1)
 }

@@ -2,8 +2,6 @@ package world.gregs.voidps.world.community.trade.lend
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.ItemDefinitions

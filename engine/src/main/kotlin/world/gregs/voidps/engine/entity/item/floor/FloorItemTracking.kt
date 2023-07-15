@@ -15,14 +15,16 @@ class FloorItemTracking(
     private val removal = mutableListOf<FloorItem>()
 
     override fun run() {
-        for ((_, list) in items.data) {
-            for (item in list) {
-                if (item.reveal()) {
-                    val player = players.get(item.owner!!)
-                    batches.add(item.tile.zone, FloorItemReveal(item.tile.id, item.def.id, item.amount, player?.index ?: -1))
-                    item.owner = null
-                } else if (item.remove()) {
-                    removal.add(item)
+        for ((_, zone) in items.data) {
+            for ((_, list) in zone) {
+                for (item in list) {
+                    if (item.reveal()) {
+                        val player = players.get(item.owner!!)
+                        batches.add(item.tile.zone, FloorItemReveal(item.tile.id, item.def.id, item.amount, player?.index ?: -1))
+                        item.owner = null
+                    } else if (item.remove()) {
+                        removal.add(item)
+                    }
                 }
             }
         }

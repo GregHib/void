@@ -114,7 +114,7 @@ internal class ActionQueueTest {
         assertTrue(resumed)
     }
 
-    private fun action(priority: ActionPriority = ActionPriority.Normal, delay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, action: suspend PlayerAction.() -> Unit = {}): Action {
-        return PlayerAction(player, "action", priority, delay, behaviour, null, action)
+    private fun action(priority: ActionPriority = ActionPriority.Normal, delay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, action: suspend Action.() -> Unit = {}): Action {
+        return Action(player, "action", priority, delay, behaviour, null, action)
     }
 }

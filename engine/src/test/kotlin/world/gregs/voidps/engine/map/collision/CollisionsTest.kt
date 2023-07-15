@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.rsmod.game.pathfinder.collision.CollisionFlagMap
 import org.rsmod.game.pathfinder.flag.CollisionFlag
-import world.gregs.voidps.engine.map.zone.Zone
+import world.gregs.voidps.type.Zone
 
 internal class CollisionsTest {
 

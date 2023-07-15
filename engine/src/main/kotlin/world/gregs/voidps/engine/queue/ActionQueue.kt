@@ -132,48 +132,36 @@ class ActionQueue(private val character: Character) : CoroutineScope {
     }
 }
 
-fun NPC.queue(name: String, initialDelay: Int = 0, block: suspend NPCAction.() -> Unit) {
-    queue.add(NPCAction(this, name, ActionPriority.Normal, initialDelay, action = block))
+fun Character.queue(name: String, initialDelay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, onCancel: (() -> Unit)? = { clearAnimation() }, block: suspend Action.() -> Unit) {
+    queue.add(Action(this, name, ActionPriority.Normal, initialDelay, behaviour, onCancel = onCancel, action = block))
 }
 
-fun NPC.strongQueue(name: String, initialDelay: Int = 0, block: suspend NPCAction.() -> Unit) {
-    queue.add(NPCAction(this, name, ActionPriority.Strong, initialDelay, action = block))
-}
-
-fun NPC.softQueue(name: String, initialDelay: Int = 0, block: suspend NPCAction.() -> Unit) {
-    queue.add(NPCAction(this, name, ActionPriority.Soft, initialDelay, action = block))
-}
-
-fun Player.queue(name: String, initialDelay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, onCancel: (() -> Unit)? = { clearAnimation() }, block: suspend PlayerAction.() -> Unit) {
-    queue.add(PlayerAction(this, name, ActionPriority.Normal, initialDelay, behaviour, onCancel = onCancel, action = block))
-}
-
-fun Player.softQueue(
+fun Character.softQueue(
     name: String,
     initialDelay: Int = 0,
     behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
     onCancel: (() -> Unit)? = { clearAnimation() },
-    block: suspend PlayerAction.() -> Unit
+    block: suspend Action.() -> Unit
 ) {
-    queue.add(PlayerAction(this, name, ActionPriority.Soft, initialDelay, behaviour, onCancel = onCancel, action = block))
+    queue.add(Action(this, name, ActionPriority.Soft, initialDelay, behaviour, onCancel = onCancel, action = block))
 }
 
-fun Player.weakQueue(
+fun Character.weakQueue(
     name: String,
     initialDelay: Int = 0,
     behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
     onCancel: (() -> Unit)? = { clearAnimation() },
-    block: suspend PlayerAction.() -> Unit
+    block: suspend Action.() -> Unit
 ) {
-    queue.add(PlayerAction(this, name, ActionPriority.Weak, initialDelay, behaviour, onCancel = onCancel, action = block))
+    queue.add(Action(this, name, ActionPriority.Weak, initialDelay, behaviour, onCancel = onCancel, action = block))
 }
 
-fun Player.strongQueue(
+fun Character.strongQueue(
     name: String,
     initialDelay: Int = 0,
     behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
     onCancel: (() -> Unit)? = { clearAnimation() },
-    block: suspend PlayerAction.() -> Unit
+    block: suspend Action.() -> Unit
 ) {
-    queue.add(PlayerAction(this, name, ActionPriority.Strong, initialDelay, behaviour, onCancel = onCancel, action = block))
+    queue.add(Action(this, name, ActionPriority.Strong, initialDelay, behaviour, onCancel = onCancel, action = block))
 }

@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.armour
 
-import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped

@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity
 
 import org.rsmod.game.pathfinder.flag.CollisionFlag
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.Character
@@ -38,13 +37,8 @@ on<Registered>({ active }) { npc: NPC ->
     }
 }
 
-on<Unregistered> { character: Character ->
-    if (active) {
-        collisions.remove(character)
-    }
-    if (character is Player) {
-        players.remove(character)
-    }
+on<Unregistered>({ active }) { character: Character ->
+    collisions.remove(character)
 }
 
 on<Moved>({ active }) { character: Character ->

@@ -5,15 +5,14 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import kotlinx.io.pool.DefaultPool
 import kotlinx.io.pool.ObjectPool
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.network.encode.clearZone
 import world.gregs.voidps.network.encode.encodeBatch
 import world.gregs.voidps.network.encode.send
 import world.gregs.voidps.network.encode.sendBatch
 import world.gregs.voidps.network.encode.zone.ZoneUpdate
+import world.gregs.voidps.type.Zone
 
 /**
  * Groups messages by [Zone] to send to all subscribed [Player]s
@@ -52,7 +51,7 @@ class ZoneBatchUpdates : Runnable {
         val previousZone: Zone? = player.getOrNull("previous_zone")
         val previous = previousZone?.toRectangle(radius = player.viewport!!.localRadius)?.toZones(player.tile.level)?.toSet()
         player["previous_zone"] = player.tile.zone
-        for (zone in player.tile.zone.toRectangle(radius = player.viewport!!.localRadius).toZones(player.tile.level)) {
+        for (zone in player.tile.zone.toRectangle(radius = player.viewport!!.localRadius).toZonesReversed(player.tile.level)) {
             val entered = previous == null || !previous.contains(zone)
             if (entered) {
                 player.clearZone(zone)

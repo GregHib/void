@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.effect
 
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC

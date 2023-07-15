@@ -1,9 +1,8 @@
 package world.gregs.voidps.world.map.lumbridge
 
-import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.world.interact.dialogue.Cheerful
@@ -14,7 +13,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ operate && npc.id == "millie_miller" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "millie_miller" && option == "Talk-to" }) { player: Player ->
     npc<Cheerful>("""
         Hello Adventurer. Welcome to Mill Lane Mill. Can I
         help you?
@@ -22,7 +21,7 @@ on<NPCOption>({ operate && npc.id == "millie_miller" && option == "Talk-to" }) {
     menu()
 }
 
-suspend fun PlayerContext.menu() {
+suspend fun CharacterContext.menu() {
     choice {
         option("I'm looking for extra fine flour.", { player["cooks_assistant", "unstarted"] == "started" && !player.hasItem("extra_fine_flour") }) {
             npc<Unsure>("What's wrong with ordinary flour?")

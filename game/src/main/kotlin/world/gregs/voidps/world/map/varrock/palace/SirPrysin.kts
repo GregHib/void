@@ -1,21 +1,16 @@
 package world.gregs.voidps.world.map.varrock.palace
 
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.entity.character.clearWatch
-import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
-import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -24,7 +19,7 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<NPCOption>({ operate && npc.id == "sir_prysin" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "sir_prysin" && option == "Talk-to" }) { player: Player ->
     when (player["demon_slayer", "unstarted"]) {
         "key_hunt" -> {
             if (!player["demon_slayer_silverlight", false]) {
@@ -97,7 +92,7 @@ suspend fun PlayerChoice.arisWantsToTalk(): Unit = option(
     }
 }
 
-suspend fun PlayerContext.findSilverlight() {
+suspend fun CharacterContext.findSilverlight() {
     player<Talk>("I need to find Silverlight.")
     npc<Talk>("What do you need to find that for?")
     player<Talk>("I need it to fight Delrith.")
@@ -122,7 +117,7 @@ suspend fun PlayerContext.findSilverlight() {
     }
 }
 
-suspend fun PlayerContext.problemIs() {
+suspend fun CharacterContext.problemIs() {
     npc<Talk>("The problem is getting Silverlight.")
     player<Upset>("You mean you don't have it?")
     npc<Talk>("""
@@ -144,7 +139,7 @@ suspend fun PlayerContext.problemIs() {
     }
 }
 
-suspend fun PlayerContext.theKeys() {
+suspend fun CharacterContext.theKeys() {
     npc<Talk>("""
         I kept one of the keys. I gave the other two to other
         people for safe keeping.
@@ -285,37 +280,37 @@ suspend fun NPCOption.giveSilverlight() {
         remove("silverlight_key_sir_prysin")
     }
     val tile = Tile(3204, 3470)
-    npc.mode = PauseMode
-    npc.clearWatch()
-    npc.steps.clear()
+    target.mode = PauseMode
+    target.clearWatch()
+    target.steps.clear()
     delay(1)
-    npc.tele(tile, clearMode = false)
+    target.tele(tile, clearMode = false)
     player.tele(tile.addY(1))
     val cupboard = objects[cupboardTile, "silverlight_sword_case_closed"]!!
     delay(1)
-    npc.face(cupboard)
-    player.face(npc)
+    target.face(cupboard)
+    player.face(target)
     cupboard.animate("silverlight_sword_case_open")
-    npc.setAnimation("silverlight_open_sword_case")
+    target.setAnimation("silverlight_open_sword_case")
     player.playSound("cupboard_open", delay = 19)
     delay(3)
     player.playSound("cupboard_open")
     delay(2)
     player.playSound("cupboard_open", delay = 10)
     delay(2)
-    npc.setAnimation("silverlight_remove_sword")
+    target.setAnimation("silverlight_remove_sword")
     cupboard.animate("silverlight_sword_removed")
     delay(8)
     player["demon_slayer_silverlight_case"] = "open"
     player.playSound("casket_open")
-    npc.setAnimation("12628")
+    target.setAnimation("12628")
     delay()
     player["demon_slayer_sir_prysin_sword"] = true
     player["demon_slayer_silverlight_case"] = "empty"
     delay(2)
-    npc.face(player)
+    target.face(player)
     delay(2)
-    npc.setAnimation("silverlight_hand_over")
+    target.setAnimation("silverlight_hand_over")
     player.setAnimation("silverlight_take")
     delay()
     player["demon_slayer_silverlight"] = true
@@ -328,7 +323,7 @@ suspend fun NPCOption.giveSilverlight() {
     player.setGraphic("silverlight_sparkle")
     player.playSound("equip_silverlight")
     delay()
-    npc.face(Direction.NONE)
+    target.face(Direction.NONE)
     delay()
     npc<Talk>("""
         That sword belonged to my great-grandfather. Make

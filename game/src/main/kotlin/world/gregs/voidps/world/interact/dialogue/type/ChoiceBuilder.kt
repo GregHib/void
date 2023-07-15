@@ -1,15 +1,15 @@
 package world.gregs.voidps.world.interact.dialogue.type
 
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.world.interact.dialogue.Expression
 
-typealias PlayerChoice = ChoiceBuilder<out PlayerContext>
+typealias PlayerChoice = ChoiceBuilder<out CharacterContext>
 
-class ChoiceBuilder<Context : PlayerContext> {
+class ChoiceBuilder<Context : CharacterContext> {
 
     val values = mutableListOf<Option<Context>>()
 
-    data class Option<Context : PlayerContext>(
+    data class Option<Context : CharacterContext>(
         val text: String,
         val filter: Context.() -> Boolean,
         val block: suspend Context.() -> Unit

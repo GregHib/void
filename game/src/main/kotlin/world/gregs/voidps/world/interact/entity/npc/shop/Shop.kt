@@ -1,8 +1,7 @@
 package world.gregs.voidps.world.interact.entity.npc.shop
 
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.Inventory
 
 fun Player.hasShopSample(): Boolean = this["info_sample", false]
 

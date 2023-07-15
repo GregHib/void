@@ -5,14 +5,17 @@ import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.*
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
+import world.gregs.voidps.engine.entity.character.player.flagAppearance
+import world.gregs.voidps.engine.entity.character.player.male
+import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.world.interact.dialogue.Cheerful
@@ -30,7 +33,7 @@ import world.gregs.voidps.world.map.falador.openDressingRoom
 
 val enums: EnumDefinitions by inject()
 
-on<NPCOption>({ operate && npc.id == "thessalia" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "thessalia" && option == "Talk-to" }) { player: Player ->
     npc<Cheerful>("Would you like to buy any fine clothes?")
     npc<Cheerful>("""
         Or if you're more after fancy dress costumes or
@@ -65,7 +68,7 @@ on<NPCOption>({ operate && npc.id == "thessalia" && option == "Talk-to" }) { pla
     }
 }
 
-on<NPCOption>({ operate && npc.id == "thessalia" && option == "Change-clothes" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "thessalia" && option == "Change-clothes" }) { player: Player ->
     startMakeover()
 }
 
@@ -89,7 +92,7 @@ fun PlayerChoice.openShop(): Unit = option("I'd just like to buy some clothes.")
     player.openShop("thessalias_fine_clothes")
 }
 
-suspend fun PlayerContext.startMakeover() {
+suspend fun CharacterContext.startMakeover() {
     player.closeDialogue()
     if (!player.equipment.isEmpty()) {
         npc<Talk>("""

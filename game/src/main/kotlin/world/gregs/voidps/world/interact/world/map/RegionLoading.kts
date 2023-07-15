@@ -16,11 +16,11 @@ import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.engine.map.zone.ReloadZone
-import world.gregs.voidps.engine.map.zone.Zone
 import world.gregs.voidps.network.encode.dynamicMapRegion
 import world.gregs.voidps.network.encode.mapRegion
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.Zone
 
 /**
  * Keeps track of when players enter and move between regions

@@ -1,9 +1,8 @@
 package world.gregs.voidps.world.map.varrock.palace
 
-import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.hasItem
@@ -12,7 +11,7 @@ import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 
-on<NPCOption>({ operate && npc.id == "captain_rovin" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "captain_rovin" && option == "Talk-to" }) { player: Player ->
     npc<Furious>("""
         What are you doing up here? Only the palace guards
         are allowed up here.
@@ -100,7 +99,7 @@ suspend fun PlayerChoice.aleDelivery(): Unit = option<Talking>("The castle has j
     """)
 }
 
-suspend fun PlayerContext.haveYouNotKilledIt() {
+suspend fun CharacterContext.haveYouNotKilledIt() {
     npc<Talk>("Yes, you said before, haven't you killed it yet?")
     player<Talk>("""
         I'm going to use the powerful sword Silverlight, which I
@@ -116,7 +115,7 @@ suspend fun PlayerContext.haveYouNotKilledIt() {
     }
 }
 
-suspend fun PlayerContext.isItPowerful() {
+suspend fun CharacterContext.isItPowerful() {
     npc<Unsure>("Is it a powerful demon?")
     choice {
         notReallyPowerful()

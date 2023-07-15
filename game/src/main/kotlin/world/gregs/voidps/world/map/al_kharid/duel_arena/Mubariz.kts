@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.map.al_kharid.duel_arena
 
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ operate && npc.id == "mubariz" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "mubariz" && option == "Talk-to" }) { player: Player ->
     npc<Cheerful>("""
         Welcome to the Duel Arena!
         What can I do for you?
@@ -18,7 +18,7 @@ on<NPCOption>({ operate && npc.id == "mubariz" && option == "Talk-to" }) { playe
     menu()
 }
 
-suspend fun PlayerContext.menu() {
+suspend fun CharacterContext.menu() {
     choice {
         place()
         duelling()
@@ -54,7 +54,7 @@ suspend fun PlayerChoice.place(): Unit = option<Uncertain>("What is this place?"
     }
 }
 
-suspend fun PlayerContext.looksOld() {
+suspend fun CharacterContext.looksOld() {
     player<Uncertain>("It looks really old. Where did it come from?")
     npc<Talking>("""
         The archaeologists that are excavating the area east of
@@ -82,7 +82,7 @@ suspend fun PlayerChoice.challenge(): Unit = option<Angry>("I challenge you!") {
     menu()
 }
 
-suspend fun PlayerContext.duelling() {
+suspend fun CharacterContext.duelling() {
     player<Uncertain>("How do I challenge someone to a duel?")
     npc<Talking>("""
         When you go to the arena you'll go up an access ramp

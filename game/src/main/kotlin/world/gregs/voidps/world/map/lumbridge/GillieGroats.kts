@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.map.lumbridge
 
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
@@ -13,7 +12,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ operate && npc.id == "gillie_groats" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "gillie_groats" && option == "Talk-to" }) { player: Player ->
     npc<Cheerful>("Hello, I'm Gillie the Milkmaid. What can I do for you?")
     choice {
         option("I'm after some Top-quality milk.", { player["cooks_assistant", "unstarted"] == "started" && !player.hasItem("top_quality_milk") }) {
@@ -29,7 +28,7 @@ on<NPCOption>({ operate && npc.id == "gillie_groats" && option == "Talk-to" }) {
     }
 }
 
-suspend fun Interaction.whoAreYou() {
+suspend fun CharacterContext.whoAreYou() {
     npc<Cheerful>("""
         My name's Gillie Groats. My father is a farmer and I
         milk the cows for him.
@@ -43,7 +42,7 @@ suspend fun Interaction.whoAreYou() {
     player<Unsure>("Thanks.")
 }
 
-suspend fun Interaction.howToMilkCow() {
+suspend fun CharacterContext.howToMilkCow() {
     player<Unsure>("So how do you get milk from a cow then?")
     npc<Cheerful>("""
         It's very easy. First you need an empty bucket to hold
@@ -68,7 +67,7 @@ suspend fun Interaction.howToMilkCow() {
 }
 
 
-suspend fun Interaction.topQualityMilk() {
+suspend fun CharacterContext.topQualityMilk() {
     npc<Talk>("Really? Is it for something special?")
     player<Cheerful>("""
         Most certainly! It's for the cook to make a cake foe Duke

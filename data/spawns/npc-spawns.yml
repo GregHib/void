@@ -361,6 +361,7 @@
 - { id: thessalia, x: 3204, y: 3417 }
 - { id: iffie, x: 3204, y: 3419, direction: SOUTH }
 - { id: gypsy_aris, x: 3202, y: 3424 }
+- { id: ash_cleaner, x: 3252, y: 3428 }
 ## Palace
 - { id: sir_prysin, x: 3205, y: 3472 }
 - { id: captain_rovin, x: 3204, y: 3496, level: 2 }

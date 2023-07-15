@@ -3,10 +3,6 @@ package world.gregs.voidps.world.community.trade
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.inv.clear
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.moveAll
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -15,6 +11,9 @@ import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.removeRequest
 import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.clear
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.moveAll
 import world.gregs.voidps.world.community.friend.friend
 import world.gregs.voidps.world.community.trade.Trade.getPartner
 import world.gregs.voidps.world.community.trade.Trade.isTradeInterface

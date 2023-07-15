@@ -1,8 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.variable.VariableSet
-import world.gregs.voidps.engine.client.variable.getOrNull
-import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -11,6 +9,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.underAttack
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
@@ -30,7 +29,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isGraniteMaul(it.weapon) }) { 
 }
 
 on<VariableSet>({ key == "special_attack" && to == true && isGraniteMaul(it.weapon) }) { player: Player ->
-    if (!player.hasClock("in_combat")) {
+    if (!player.underAttack) {
         return@on
     }
     val target: Character? = player.getOrNull("target")

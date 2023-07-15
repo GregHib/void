@@ -7,7 +7,6 @@ import world.gregs.voidps.bot.navigation.graph.NavigationGraph
 import world.gregs.voidps.bot.navigation.graph.waypoints
 import world.gregs.voidps.bot.path.*
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
-import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPCs

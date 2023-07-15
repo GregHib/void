@@ -23,7 +23,6 @@ import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
@@ -32,11 +31,13 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.EventHandlerStore
+import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Xteas
@@ -62,7 +63,7 @@ abstract class WorldTest : KoinTest {
     private lateinit var store: EventHandlerStore
     lateinit var players: Players
     private lateinit var gatekeeper: NetworkGatekeeper
-    private lateinit var npcs: NPCs
+    lateinit var npcs: NPCs
     lateinit var floorItems: FloorItems
     lateinit var objects: GameObjects
     private lateinit var accountDefs: AccountDefinitions
@@ -121,6 +122,10 @@ abstract class WorldTest : KoinTest {
         return objects.add(id, tile, shape, rotation)
     }
 
+    fun createFloorItem(id: String, tile: Tile = Tile.EMPTY, amount: Int = 1, revealTicks: Int = FloorItems.NEVER, disappearTicks: Int = FloorItems.NEVER, owner: Player? = null): FloorItem {
+        return floorItems.add(tile, id, amount, revealTicks, disappearTicks, owner)
+    }
+
     fun Inventory.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }
 
     @BeforeAll
@@ -164,6 +169,7 @@ abstract class WorldTest : KoinTest {
                 get(),
                 get(),
                 get<ConnectionQueue>(),
+                get(),
                 get(),
                 get(),
                 get(),
@@ -229,7 +235,7 @@ abstract class WorldTest : KoinTest {
         private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(active), structDefinitions).load() }
         private val collisions: Collisions by lazy { Collisions() }
         private val objectCollision: GameObjectCollision by lazy { GameObjectCollision(collisions) }
-        private val xteas: Xteas by lazy { Xteas().load()}
+        private val xteas: Xteas by lazy { Xteas().load() }
         private val gameObjects: GameObjects by lazy { GameObjects(objectCollision, ZoneBatchUpdates(), objectDefinitions, storeUnused = true) }
         private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(collisions, objectDefinitions, gameObjects).load(active) }
         val emptyTile = Tile(2655, 4640)

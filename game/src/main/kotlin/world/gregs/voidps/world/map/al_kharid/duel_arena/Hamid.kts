@@ -8,7 +8,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ operate && npc.id == "hamid" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "hamid" && option == "Talk-to" }) { player: Player ->
     player<Cheerful>("Hi!")
     npc<Talking>("Hello traveller. How can I be of assistance?")
     choice {

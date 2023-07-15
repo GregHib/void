@@ -83,7 +83,7 @@ object Main {
             get(), queue,
             get(),
             get(), objectDefinitions,
-            get(), interfaceDefinitions, handler, ParallelIterator())
+            get(), interfaceDefinitions, get(), handler, ParallelIterator())
         val engine = GameLoop(tickStages)
 
         World.start(getProperty("members") == "true")

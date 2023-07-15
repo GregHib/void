@@ -3,15 +3,19 @@ package world.gregs.voidps.engine.queue
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import net.pearx.kasechange.toSnakeCase
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.entity.character.clearAnimation
 
-abstract class Action(
+class Action(
+    override val character: Character,
     val name: String,
     val priority: ActionPriority,
     delay: Int = 0,
     val behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
+    override var onCancel: (() -> Unit)? = { character.clearAnimation() },
     var action: suspend Action.() -> Unit = {}
-) {
-    open var onCancel: (() -> Unit)? = null
+) : CharacterContext {
     var suspension: CancellableContinuation<Unit>? = null
     var delay: Int = delay
         private set

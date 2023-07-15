@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.energy
 
 import world.gregs.voidps.engine.client.sendRunEnergy
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.character.player.Player
 
 const val MAX_RUN_ENERGY = 10000

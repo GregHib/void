@@ -39,7 +39,7 @@ val objects: GameObjects by inject()
 val itemDefinitions: ItemDefinitions by inject()
 
 on<ObjectOption>({ operate && option == "Mine" }) { player: Player ->
-    if (obj.id.startsWith("depleted")) {
+    if (target.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
         return@on
     }
@@ -50,7 +50,7 @@ on<ObjectOption>({ operate && option == "Mine" }) { player: Player ->
     }
     var first = true
     while (true) {
-        if (!objects.contains(obj)) {
+        if (!objects.contains(target)) {
             break
         }
 
@@ -59,7 +59,7 @@ on<ObjectOption>({ operate && option == "Mine" }) { player: Player ->
             break
         }
 
-        val rock: Rock? = obj.def.getOrNull("mining")
+        val rock: Rock? = target.def.getOrNull("mining")
         if (rock == null || !player.has(Skill.Mining, rock.level, true)) {
             break
         }
@@ -76,7 +76,7 @@ on<ObjectOption>({ operate && option == "Mine" }) { player: Player ->
         }
         val remaining = player.remaining("skill_delay")
         if (remaining < 0) {
-            player.face(obj)
+            player.face(target)
             player.setAnimation("${pickaxe.id}_swing_low")
             player.start("skill_delay", delay)
             pause(delay)
@@ -91,7 +91,7 @@ on<ObjectOption>({ operate && option == "Mine" }) { player: Player ->
             }
         }
         var ores = rock.ores
-        if (obj.id == "rune_essence_rocks") {
+        if (target.id == "rune_essence_rocks") {
             val name = if (World.members && player.has(Skill.Mining, 30)) "pure_essence" else "rune_essence"
             ores = rock.ores.filter { it == name }
         }
@@ -100,7 +100,7 @@ on<ObjectOption>({ operate && option == "Mine" }) { player: Player ->
             if (success(player.levels.get(Skill.Mining), ore.chance)) {
                 player.experience.add(Skill.Mining, ore.xp)
 
-                if (!addOre(player, item) || deplete(rock, obj)) {
+                if (!addOre(player, item) || deplete(rock, target)) {
                     player.clearAnimation()
                     break
                 }
@@ -170,7 +170,7 @@ fun deplete(rock: Rock, obj: GameObject): Boolean {
 }
 
 on<ObjectOption>({ approach && option == "Prospect" }) { player: Player ->
-    if (obj.id.startsWith("depleted")) {
+    if (target.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
         return@on
     }
