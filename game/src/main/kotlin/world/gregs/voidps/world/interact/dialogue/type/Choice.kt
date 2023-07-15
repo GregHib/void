@@ -25,6 +25,10 @@ suspend fun <T : CharacterContext> T.choice(title: String? = null, block: suspen
     val builder = ChoiceBuilder<T>()
     block.invoke(builder)
     val lines = builder.build(this)
+    if (lines.size == 1) {
+        builder.invoke(0, this)
+        return
+    }
     val choice = choice(lines, title)
     builder.invoke(choice - 1, this)
 }
@@ -42,7 +46,6 @@ suspend fun CharacterContext.choice(lines: List<String>, title: String? = null):
     val multilineTitle = question?.contains("<br>") ?: false
     val multilineOptions = lines.any { isMultiline(it) }
     val id = getChoiceId(multilineTitle, multilineOptions, lines.size)
-    println(id)
     check(player.open(id)) { "Unable to open choice dialogue for $player" }
     if (question != null) {
         val longestLine = question.split("<br>").maxByOrNull { it.length }?.length ?: 0
