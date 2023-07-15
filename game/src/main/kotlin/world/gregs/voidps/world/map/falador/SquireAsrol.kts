@@ -1,17 +1,17 @@
 package world.gregs.voidps.world.map.falador
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.inc
-import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
@@ -23,7 +23,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
-on<NPCOption>({ operate && npc.id == "squire_asrol" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "squire_asrol" && option == "Talk-to" }) { player: Player ->
     when (player["the_knights_sword", "unstarted"]) {
         "unstarted" -> {
             npc<Talking>("Hello. I am the squire to Sir Vyvin.")

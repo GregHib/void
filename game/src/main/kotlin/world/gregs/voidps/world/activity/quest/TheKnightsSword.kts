@@ -1,14 +1,13 @@
 package world.gregs.voidps.world.activity.quest
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.world.activity.bank.hasBanked
 
 on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemSlot == 8 }) { player: Player ->
-    val lines = when (player.get("the_knights_sword", "unstarted")) {
+    val lines = when (player["the_knights_sword", "unstarted"]) {
         "completed" -> listOf(
             "<str>Thurgo needed a picture of the sword before he could",
             "<str>start work on a replacement. I took him a portrait of it.",
@@ -64,19 +63,19 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
                 list.add("<navy>The Squire told me about a <maroon>portrait <navy>of Sir Vyvin's father")
                 list.add("<navy>which has a <maroon>picture of the sword <navy>in <maroon>Sir Vyvin's room.")
             }
-                list
+            list
         }
         "stage6" -> {
             val list = mutableListOf(
-              "<str>I told the Squire I would help him to replace the sword he",
-              "<str>had lost. It could only be made by an Imcando Dwarf.",
-              "<str>I found an Imcando Dwarf named Thurgo thanks to",
-              "<str>information provided by Reldo. He wasn't very talkative",
-              "<str>until I gave him a Redberry pie, which he gobbled up.",
-              "<str>Thurgo needed a picture of the sword before he could",
-              "<str>start work on a replacement. I took him a portrait of it.",
+                "<str>I told the Squire I would help him to replace the sword he",
+                "<str>had lost. It could only be made by an Imcando Dwarf.",
+                "<str>I found an Imcando Dwarf named Thurgo thanks to",
+                "<str>information provided by Reldo. He wasn't very talkative",
+                "<str>until I gave him a Redberry pie, which he gobbled up.",
+                "<str>Thurgo needed a picture of the sword before he could",
+                "<str>start work on a replacement. I took him a portrait of it.",
 
-            )
+                )
             if (player.hasItem("blurite_sword") || player.hasBanked("blurite_sword")) {
                 list.add("<str>Thurgo has now smithed me a replica of Sir Vyvin's sword.")
                 list.add("")
@@ -89,7 +88,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             }
             list
         }
-         else -> listOf(
+        else -> listOf(
             "<navy>I can start this quest by speaking to the <maroon>Squire <navy>in the",
             "<navy>courtyard of the <maroon>White Knight's Castle <navy>in <maroon>southern Falador",
             "<navy>To complete this quest I need:",

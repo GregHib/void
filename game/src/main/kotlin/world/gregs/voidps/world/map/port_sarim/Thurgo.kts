@@ -1,21 +1,19 @@
 package world.gregs.voidps.world.map.port_sarim
 
 import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 
-on<NPCOption>({ operate && npc.id == "thurgo" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "thurgo" && option == "Talk-to" }) { player: Player ->
     when (player["the_knights_sword", "unstarted"]) {
         "started", "stage2" -> menu()
         "stage3" -> menuSword()
-        "stage4", "stage5"  -> menuAboutSword()
+        "stage4", "stage5" -> menuAboutSword()
         "stage6" -> menuReplacementSword()
         else -> thatCape()
     }
@@ -163,7 +161,7 @@ suspend fun Interaction.specialSword() {
 suspend fun Interaction.aboutSword() {
     player<Cheerful>("About that sword...")
     npc<Unsure>("Have you got a picture of the sword for me yet?", largeHead = true)
-    if (player.hasItem("portrait")){
+    if (player.hasItem("portrait")) {
         player<Talking>("""
             I have found a picture of the sword I would like you to
             make.
@@ -256,7 +254,7 @@ suspend fun Interaction.thatCape() {
         """, largeHead = true)
 }
 
-on<ItemOnNPC>({ operate && npc.id == "thurgo" }) { player: Player ->
+on<ItemOnNPC>({ operate && target.id == "thurgo" }) { player: Player ->
     if (item.id == "redberry_pie") {
         when (player["the_knights_sword", "unstarted"]) {
             "stage2" -> menu()

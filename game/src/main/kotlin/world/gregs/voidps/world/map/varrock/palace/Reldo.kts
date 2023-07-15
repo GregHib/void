@@ -1,19 +1,18 @@
 package world.gregs.voidps.world.map.varrock.palace
 
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.combatLevel
-import world.gregs.voidps.world.interact.dialogue.*
+import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.interact.dialogue.Laugh
+import world.gregs.voidps.world.interact.dialogue.Suspicious
+import world.gregs.voidps.world.interact.dialogue.Talking
+import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.dialogue.type.statement
 
-on<NPCOption>({ operate && npc.id == "reldo" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "reldo" && option == "Talk-to" }) { player: Player ->
     npc<Talking>("Hello stranger.")
     choice {
         option("Do you have anything to trade?") {
