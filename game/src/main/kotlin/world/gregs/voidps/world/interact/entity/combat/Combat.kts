@@ -97,7 +97,7 @@ on<CombatStop> { character: Character ->
 }
 
 on<CombatSwing> { character: Character ->
-    target.start("in_combat", 16)
+    target.start("under_attack", 16)
     if (target.inSingleCombat) {
         target.attackers.clear()
     }
@@ -105,7 +105,7 @@ on<CombatSwing> { character: Character ->
 }
 
 on<CombatHit>({ source != it && it.retaliates }) { character: Character ->
-    if (character.levels.get(Skill.Constitution) <= 0 || character.hasClock("in_combat") && character.target == source) {
+    if (character.levels.get(Skill.Constitution) <= 0 || character.underAttack && character.target == source) {
         return@on
     }
     combat(character, source)
@@ -114,7 +114,7 @@ on<CombatHit>({ source != it && it.retaliates }) { character: Character ->
 on<Death> { character: Character ->
     for (attacker in character.attackers) {
         if (attacker.target == character) {
-            attacker.stop("in_combat")
+            attacker.stop("under_attack")
         }
     }
 }

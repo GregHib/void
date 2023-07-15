@@ -2,7 +2,6 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.face
@@ -43,7 +42,7 @@ fun swing(player: Player, obj: GameObject, delay: Int) {
             player.message("You can only use a Training bow and arrows against this target.")
             return@weakQueue
         }
-        if (player.hasClock("in_combat")) {
+        if (player.underAttack) {
             player.message("You are already in combat.")
             return@weakQueue
         }

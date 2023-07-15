@@ -11,7 +11,6 @@ import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.VariableSet
-import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Registered
@@ -32,10 +31,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.ammo
-import world.gregs.voidps.world.interact.entity.combat.attackers
-import world.gregs.voidps.world.interact.entity.combat.spell
+import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.death.Death
 import world.gregs.voidps.world.interact.entity.death.weightedSample
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
@@ -45,7 +41,7 @@ val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 val floorItems: FloorItems by inject()
 
-onBot<VariableSet>({ key == "in_combat" && to == 0 }) { bot: Bot ->
+onBot<VariableSet>({ key == "under_attack" && to == 0 }) { bot: Bot ->
     bot.resume("combat")
 }
 
@@ -150,7 +146,7 @@ fun Bot.isAvailableTarget(map: AreaDefinition, npc: NPC, races: Set<String>): Bo
     if (player.attackers.isNotEmpty()) {
         return player.attackers.contains(npc)
     }
-    if (npc.hasClock("in_combat")) {
+    if (npc.underAttack) {
         return false
     }
     if (!npc.def.options.contains("Attack")) {

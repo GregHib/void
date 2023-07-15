@@ -65,7 +65,7 @@ fun canAttack(source: Character, target: Character): Boolean {
             return false
         }
     }
-    if (target.inSingleCombat && target.hasClock("in_combat") && !target.attackers.contains(source)) {
+    if (target.inSingleCombat && target.underAttack && !target.attackers.contains(source)) {
         if (target is NPC) {
             (source as? Player)?.message("Someone else is fighting that.")
         } else {
@@ -73,7 +73,7 @@ fun canAttack(source: Character, target: Character): Boolean {
         }
         return false
     }
-    if (source.inSingleCombat && source.hasClock("in_combat") && !source.attackers.contains(target)) {
+    if (source.inSingleCombat && source.underAttack && !source.attackers.contains(target)) {
         (source as? Player)?.message("You are already in combat.")
         return false
     }
@@ -307,6 +307,9 @@ private fun remove(player: Player, target: Character, ammo: String, required: In
         }
     }
 }
+
+val Character.underAttack: Boolean
+    get() = hasClock("under_attack")
 
 var Character.attackers: MutableList<Character>
     get() = getOrPut("attackers") { ObjectArrayList() }
