@@ -83,8 +83,9 @@ internal class CombatTest : WorldTest() {
 
         val drops = floorItems[tile]
         assertEquals(emptyTile, player.tile)
+        assertTrue(player.equipment[EquipSlot.Ammo.index].amount < 100)
         assertTrue(drops.any { it.id == "bones" })
-        assertTrue(drops.any { it.id == "rune_arrow" })
+        assertTrue(floorItems[emptyTile.addY(4)].any { it.id == "rune_arrow" })
         assertTrue(player.experience.get(Skill.Ranged) > experience)
         assertTrue(player.experience.get(Skill.Defence) > experience)
         assertTrue(player.inventory.count("rune_arrow") < 100)
