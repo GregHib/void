@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.world.script.WorldTest
 import kotlin.test.assertEquals
 
-internal class AggressionTest : WorldTest() {
+internal class HuntModeTest : WorldTest() {
 
     @BeforeEach
     fun setup() {
