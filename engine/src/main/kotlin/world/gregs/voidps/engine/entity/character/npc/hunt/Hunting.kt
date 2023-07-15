@@ -206,6 +206,9 @@ class Hunting(
         if (definition.checkNotCombatSelf && npc.hasClock("under_attack")) {
             return false
         }
+        if (definition.checkTolerance && character.hasClock("tolerance")) {
+            return false
+        }
         if (definition.checkNotBusy && (character.hasClock("delay") || character.hasMenuOpen())) {
             return false
         }
