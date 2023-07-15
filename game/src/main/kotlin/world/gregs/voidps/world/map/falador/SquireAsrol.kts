@@ -39,7 +39,7 @@ on<NPCOption>({ operate && target.id == "squire_asrol" && option == "Talk-to" })
         "started" -> started()
         "picture" -> askAboutPicture()
         "cupboard" -> checkPicture()
-        "stage6" -> stage6()
+        "blurite_sword" -> bluriteSword()
         else -> completed()
     }
 }
@@ -89,7 +89,7 @@ suspend fun Interaction.checkPicture() {
     """)
 }
 
-suspend fun Interaction.stage6() {
+suspend fun Interaction.bluriteSword() {
     if (player.equipment.contains("blurite_sword")) {
         player<Cheerful>("I have retrieved your sword for you.")
         npc<Uncertain>("""

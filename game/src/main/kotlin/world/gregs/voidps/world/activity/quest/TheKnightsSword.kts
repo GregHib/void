@@ -66,7 +66,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             }
             list
         }
-        "stage6" -> {
+        "blurite_sword" -> {
             val list = mutableListOf(
                 "<str>I told the Squire I would help him to replace the sword he",
                 "<str>had lost. It could only be made by an Imcando Dwarf.",

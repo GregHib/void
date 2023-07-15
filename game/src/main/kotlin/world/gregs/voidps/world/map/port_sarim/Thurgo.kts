@@ -15,7 +15,7 @@ on<NPCOption>({ operate && target.id == "thurgo" && option == "Talk-to" }) { pla
         "started", "find_thurgo" -> menu()
         "happy_thurgo" -> menuSword()
         "picture", "cupboard" -> menuAboutSword()
-        "stage6" -> menuReplacementSword()
+        "blurite_sword" -> menuReplacementSword()
         else -> thatCape()
     }
 }
@@ -147,7 +147,7 @@ suspend fun Interaction.aboutSword() {
             You give the portrait to Thurgo.
             Thurgo studies the portrait.
         """, "portrait", 600)
-        player["the_knights_sword"] = "stage6"
+        player["the_knights_sword"] = "blurite_sword"
         player.inventory.remove("portrait")
         npc("talking_old", """
             You'll need to get me some stuff to make this. I'll need

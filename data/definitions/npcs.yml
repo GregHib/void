@@ -354,6 +354,11 @@ thurgo:
   race: dwarf
   wander_radius: 4
   examine: "Dwarvish."
+sir_vyvin:
+  id: 605
+  race: human
+  wander_radius: 5
+  examine: "An elderly White Knight."
 squire_asrol:
   id: 606
   race: human
