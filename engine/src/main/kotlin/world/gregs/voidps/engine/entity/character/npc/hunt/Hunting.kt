@@ -8,6 +8,8 @@ import world.gregs.voidps.engine.data.config.HuntModeDefinition
 import world.gregs.voidps.engine.data.definition.HuntModeDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterList
+import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
+import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfWalk
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -226,32 +228,10 @@ class Hunting(
         height: Int,
         definition: HuntModeDefinition
     ) = when (definition.checkVisual) {
-        "line_of_sight" -> lineOfSight(npc, tile, width, height)
-        "line_of_walk" -> lineOfWalk(npc, tile, width, height)
+        "line_of_sight" -> lineValidator.hasLineOfSight(npc, tile, width, height)
+        "line_of_walk" -> lineValidator.hasLineOfWalk(npc, tile, width, height)
         else -> true
     }
-
-    private fun lineOfSight(npc: NPC, tile: Tile, width: Int, height: Int) = lineValidator.hasLineOfSight(
-        srcX = npc.tile.x,
-        srcZ = npc.tile.y,
-        level = npc.tile.level,
-        srcSize = npc.def.size,
-        destX = tile.x,
-        destZ = tile.y,
-        destWidth = width,
-        destHeight = height
-    )
-
-    private fun lineOfWalk(npc: NPC, tile: Tile, width: Int, height: Int) = lineValidator.hasLineOfWalk(
-        srcX = npc.tile.x,
-        srcZ = npc.tile.y,
-        level = npc.tile.level,
-        srcSize = npc.def.size,
-        destX = tile.x,
-        destZ = tile.y,
-        destWidth = width,
-        destHeight = height
-    )
 
     companion object {
         private const val TARGET_CAP = 20

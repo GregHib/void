@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
@@ -488,10 +489,11 @@ fun CharacterContext.questComplete() {
     player.inc("quest_points")
     player.message("Congratulations, you've completed a quest: <col=081190>Rune Mysteries</col>")
     player.refreshQuestJournal()
-    val lines = listOf(
-        "1 Quest Point",
-        "An Air Talisman",
-        "Rune Essence Mine Access"
-    )
-    player.sendQuestComplete("Rune Mysteries", lines, Item("air_talisman"))
+    player.softQueue("quest_complete", 1) {
+        player.sendQuestComplete("Rune Mysteries", listOf(
+            "1 Quest Point",
+            "An Air Talisman",
+            "Rune Essence Mine Access"
+        ), Item("air_talisman"))
+    }
 }

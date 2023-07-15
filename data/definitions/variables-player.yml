@@ -1,3 +1,8 @@
+the_knights_sword:
+  id: 122
+  persist: true
+  format: list
+  values: [ unstarted, started, find_thurgo, happy_thurgo, picture, cupboard, blurite_sword, completed ]
 flour_bin:
   id: 695
   persist: true
@@ -90,7 +95,7 @@ quest_points_total:
   format: map
   default: total
   values:
-    total: 6
+    total: 7
 cooks_assistant:
   id: 29
   persist: true

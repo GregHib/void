@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.world.activity.bank.bank
 
 on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemSlot == 1 }) { player: Player ->
-    val lines = when (player.get("cooks_assistant", "unstarted")) {
+    val lines = when (player["cooks_assistant", "unstarted"]) {
         "completed" -> listOf(
             "<str>It was the Duke of Lumbridge's birthday, but his cook had",
             "<str>forgotten to buy the ingredients he needed to bake a ",

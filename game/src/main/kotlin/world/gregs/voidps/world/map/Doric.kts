@@ -5,15 +5,20 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.activity.quest.sendQuestComplete
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
+
+val floorItems: FloorItems by inject()
 
 on<NPCOption>({ operate && target.id == "doric" && option == "Talk-to" }) { player: Player ->
     when (player["dorics_quest", "unstarted"]) {
@@ -144,7 +149,11 @@ suspend fun CharacterContext.startQuest() {
         option("Yes, I will get you the materials.") {
             player<Cheerful>("Yes, I will get you the materials.")
             player["dorics_quest"] = "started"
-            player.inventory.add("bronze_pickaxe")
+            if (player.inventory.isFull()) {
+                floorItems.add(player.tile, "bronze_pickaxe", disappearTicks = 300, owner = player)
+            } else {
+                player.inventory.add("bronze_pickaxe")
+            }
             npc<Talking>("""
                 Clay is what I use more than anything, to make casts.
                 Could you get me 6 clay, 4 copper ore, and 2 iron ore,
@@ -201,11 +210,12 @@ fun CharacterContext.questComplete() {
     player.inventory.add("coins", 180)
     player.refreshQuestJournal()
     player.inc("quest_points")
-    val lines = listOf(
-        "1 Quest Point",
-        "1300 Mining XP",
-        "180 coins",
-        "Use of Doric's Anvils"
-    )
-    player.sendQuestComplete("Doric's Quest", lines, Item("steel_pickaxe"))
+    player.softQueue("quest_complete", 1) {
+        player.sendQuestComplete("Doric's Quest", listOf(
+            "1 Quest Point",
+            "1300 Mining XP",
+            "180 coins",
+            "Use of Doric's Anvils"
+        ), Item("steel_pickaxe"))
+    }
 }

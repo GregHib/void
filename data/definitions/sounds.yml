@@ -3,6 +3,7 @@ demon_attack: 397
 summon_npc: 188
 chest_open: 52
 casket_open: 50
+cupboard_close: 57
 cupboard_open: 58
 destroy_object: 2381
 coffin_open: 54

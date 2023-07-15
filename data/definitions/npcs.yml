@@ -349,6 +349,21 @@ makeover_mage_male:
   race: human
   wander_radius: 3
   examine: "Master of the mystical make-over."
+thurgo:
+  id: 604
+  race: dwarf
+  wander_radius: 4
+  examine: "Dwarvish."
+sir_vyvin:
+  id: 605
+  race: human
+  wander_radius: 5
+  examine: "An elderly White Knight."
+squire_asrol:
+  id: 606
+  race: human
+  wander_radius: 4
+  examine: "Indentured servant of a Knight."
 charlie_the_tramp:
   id: 641
   race: human
@@ -364,6 +379,12 @@ straven:
   race: human
   wander_radius: 3
   examine: "King of funny looking."
+reldo:
+  &reldo
+  id: 647
+  race: human
+  wander_radius: 4
+  examine: "Reldo the librarian."  
 harlan:
   id: 705
   race: human
@@ -566,11 +587,12 @@ quiz_master:
   id: 2477
   race: human
   examine: "Apparently a master of quizzes!"
-reldo:
+reldo_reading:
+  <<: *reldo
+  id: 2660
+reldo_normal:
+  <<: *reldo
   id: 2661
-  race: human
-  wander_radius: 4
-  examine: "Reldo the librarian."
 makeover_mage_female:
   id: 2676
   race: human
@@ -737,6 +759,18 @@ thakkrad_sigmundson:
   id: 5506
   race: human
   examine: "A young master craftsman."
+surok_magis:
+  &surok_magis
+  id: 5853
+  wander_radius: 4 
+  examine: "A powerful wizard."  
+surok_magis_normal:
+  <<: *surok_magis
+  id: 5834
+surok_magis_dagon_hai:
+  <<: *surok_magis
+  id: 5835
+  examine: "Leader of the Dagon'hai Order."  
 iffie:
   id: 5914
   race: human
