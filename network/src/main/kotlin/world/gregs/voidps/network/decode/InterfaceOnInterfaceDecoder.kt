@@ -12,8 +12,8 @@ import world.gregs.voidps.network.readUnsignedIntInverseMiddle
 class InterfaceOnInterfaceDecoder : Decoder(16) {
 
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
-        val fromPacked = packet.readInt()
-        val toPacked = packet.readUnsignedIntInverseMiddle()
+        val toPacked = packet.readInt()
+        val fromPacked = packet.readUnsignedIntInverseMiddle()
         val fromItem = packet.readShortAdd()
         val from = packet.readShort().toInt()
         val toItem = packet.readShortAdd()
