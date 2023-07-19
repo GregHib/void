@@ -10805,4 +10805,7 @@ demon_slayer_stone_table_shattered:
 demon_slayer_energy_barrier: 14874
 furnace_edgeville:
   id: 26814
+  examine: "A hot furnace."
+anvil_lumbridge:
+  id: 12692
   examine: ""

@@ -14,16 +14,13 @@ data class Smelting(
     val message: String = ""
 ) {
     companion object {
-        operator fun invoke(map: Map<String, Any>): Smelting {
-            println(map)
-            return Smelting(
-                level = map["level"] as Int,
-                xp = map["xp"] as Double,
-                chance = (map["chance"] as? IntRange)?.last ?: EMPTY.chance,
-                items = (map["items"] as List<Map<String, Any>>).map { it["item"] as String to (it["amount"] as? Int ?: 1)  },
-                message = map["message"] as String
-            )
-        }
+        operator fun invoke(map: Map<String, Any>) = Smelting(
+            level = map["level"] as Int,
+            xp = map["xp"] as Double,
+            chance = (map["chance"] as? IntRange)?.last ?: EMPTY.chance,
+            items = (map["items"] as List<Map<String, Any>>).map { it["item"] as String to (it["amount"] as? Int ?: 1) },
+            message = map["message"] as String
+        )
 
         val EMPTY = Smelting()
     }
