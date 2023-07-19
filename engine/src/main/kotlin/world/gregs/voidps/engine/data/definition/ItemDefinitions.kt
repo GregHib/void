@@ -95,6 +95,7 @@ class ItemDefinitions(
                     "slot" -> EquipSlot.valueOf(value as String)
                     "type" -> EquipType.valueOf(value as String)
                     "kept" -> ItemKept.valueOf(value as String)
+                    "smelting" -> Smelting(value as Map<String, Any>)
                     "fishing" -> Catch(value as Map<String, Any>)
                     "firemaking" -> Fire(value as Map<String, Any>)
                     "mining" -> Ore(value as Map<String, Any>)

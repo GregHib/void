@@ -1953,9 +1953,6 @@ skill_creation_amount:
 task_list:
   id: 917
   type: main_screen
-dialogue_smelt_type:
-  id: 941
-  type: dialogue_box
 dialogue_make_amount:
   id: 944
   type: dialogue_box

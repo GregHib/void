@@ -24,10 +24,10 @@ import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.network.encode.clearCamera
 import world.gregs.voidps.network.encode.npcDialogueHead
+import world.gregs.voidps.network.encode.openInterface
 import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
-import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
@@ -38,7 +38,12 @@ val collisions: Collisions by inject()
 val objects: GameObjects by inject()
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    player.refreshQuestJournal()
+        player.client?.openInterface(
+            permanent = true,
+            parent = 548,
+            component = content.toInt(),
+            id = 941
+        )
 }
 
 on<Command>({ prefix == "reset_cam" }) { player: Player ->
