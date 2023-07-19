@@ -287,3 +287,5 @@ heal_group:
   exp: 124.0
 energy_transfer:
   exp: 100.0
+superheat_item:
+  exp: 53.0

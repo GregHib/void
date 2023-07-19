@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
@@ -86,12 +87,9 @@ fun smelt(player: Player, target: GameObject, id: String, amount: Int) {
     player.setAnimation("furnace_smelt")
     player.message(smelting.message, ChatType.Filter)
     player.weakQueue("smelting", 4) {
-        println(definition)
         val success = Random.nextInt(255) < smelting.chance
         player.inventory.transaction {
-            for ((i, a) in smelting.items) {
-                remove(i, a)
-            }
+            remove(smelting.items)
             if (success) {
                 add(id)
             }
@@ -100,7 +98,7 @@ fun smelt(player: Player, target: GameObject, id: String, amount: Int) {
             TransactionError.None -> {
                 var removed = 1
                 if (success) {
-                    player.exp(Skill.Smithing, smelting.xp)
+                    player.exp(Skill.Smithing, smelting.exp(player, id))
                     player.message("You retrieve a bar of ${id.removeSuffix("_bar")}.")
                     if (varrockArmour(player, target, id, smelting)) {
                         removed = 2
@@ -112,7 +110,7 @@ fun smelt(player: Player, target: GameObject, id: String, amount: Int) {
                     smelt(player, target, id, amount - removed)
                 }
             }
-            else -> logger.warn { "Smithing transaction error $player $id $amount ${player.inventory.transaction.error}" }
+            else -> logger.warn { "Smelting transaction error $player $id $amount ${player.inventory.transaction.error}" }
         }
     }
 }
@@ -140,9 +138,7 @@ fun varrockArmour(
             return false
         }
         player.inventory.transaction {
-            for ((i, a) in smelting.items) {
-                remove(i, a)
-            }
+            remove(smelting.items)
             add(id)
         }
         player.exp(Skill.Smithing, smelting.xp)

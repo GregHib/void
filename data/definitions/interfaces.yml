@@ -316,6 +316,9 @@ modern_spellbook:
     wind_blast:
       id: 49
       cast_id: 19
+    superheat_item:
+      id: 50
+      inventory: inventory
     camelot_teleport: 51
     water_blast:
       id: 52

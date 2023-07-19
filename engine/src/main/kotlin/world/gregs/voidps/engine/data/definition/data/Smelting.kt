@@ -14,7 +14,6 @@ data class Smelting(
     val message: String = ""
 ) {
     companion object {
-
         operator fun invoke(map: Map<String, Any>): Smelting {
             println(map)
             return Smelting(
