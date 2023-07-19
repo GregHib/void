@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.arriveDelay
-import world.gregs.voidps.world.activity.quest.started
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
 val itemDefinitions: ItemDefinitions by inject()
@@ -48,7 +48,7 @@ on<InterfaceOpened>({ id == "silver_mould" }) { player: Player ->
         val silver = mould.silver ?: continue
         val item = silver.item
         val quest = silver.quest
-        player.interfaces.sendVisibility(id, mould.id, quest == null || player.started(quest))
+        player.interfaces.sendVisibility(id, mould.id, quest == null || player.quest(quest) != "unstarted")
         val has = player.hasItem(mould.id)
         player.interfaces.sendText(id,
             "${mould.id}_text",

@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.activity.quest.completed
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -33,7 +33,7 @@ on<NPCOption>({ operate && target.id == "zeke" && option == "Talk-to" }) { playe
                 Seriously, you'll be a monkey's uncle before you'll ever
                 hold a dragon scimitar.
             """)
-            if (player.completed("monkey_madness")) {
+            if (player.quest("monkey_madness") == "completed") {
                 player<Uncertain>("Hmmm, funny you should say that...")
             } else {
                 player<Unsure>("Oh well, thanks anyway.")

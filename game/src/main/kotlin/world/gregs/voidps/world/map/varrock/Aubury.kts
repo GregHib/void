@@ -9,12 +9,13 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 
 on<NPCOption>({ operate && target.id == "aubury" && option == "Talk-to" }) { player: Player ->
-    if (player["rune_mysteries", "unstarted"] == "research_notes") {
+    if (player.quest("rune_mysteries") == "research_notes") {
         checkNotes()
         return@on
     }
@@ -25,7 +26,7 @@ on<NPCOption>({ operate && target.id == "aubury" && option == "Talk-to" }) { pla
         packageForYou()
         option<Unsure>(
             "Anything useful in that package I gave you?",
-            { player["rune_mysteries", "unstarted"] == "package_delivered" }
+            { player.quest("rune_mysteries") == "package_delivered" }
         ) {
             npc<Cheerful>("Well, let's have a look...")
             researchPackage()
@@ -48,13 +49,13 @@ suspend fun PlayerChoice.noThanks(message: String = "Oh, it's a rune shop. No th
 
 fun PlayerChoice.teleport(): Unit = option(
     "Can you teleport me to the Rune Essence?",
-    { player["rune_mysteries", "unstarted"] == "completed" }
+    { player.quest("rune_mysteries") == "completed" }
 ) {
 }
 
 suspend fun PlayerChoice.packageForYou(): Unit = option<Talking>(
     "I've been sent here with a package for you.",
-    { player["rune_mysteries", "unstarted"] == "research_package" }
+    { player.quest("rune_mysteries") == "research_package" }
 ) {
     npc<Uncertain>("A package? From who?")
     player<Talking>("From Sedridor at the Wizards' Tower.")

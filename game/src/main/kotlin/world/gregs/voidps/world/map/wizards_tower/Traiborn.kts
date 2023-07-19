@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -31,7 +32,7 @@ var Player.bonesRequired: Int
 
 on<NPCOption>({ operate && target.id == "traiborn" && option == "Talk-to" }) { player: Player ->
     npc<Uncertain>("Ello young thingummywut.")
-    if (player["demon_slayer", "unstarted"] == "key_hunt") {
+    if (player.quest("demon_slayer") == "key_hunt") {
         if (player.inventory.contains("silverlight_key_wizard_traiborn")) {
             somewhereToBe()
         } else {

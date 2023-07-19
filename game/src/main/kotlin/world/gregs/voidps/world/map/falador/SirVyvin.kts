@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Angry
 import world.gregs.voidps.world.interact.dialogue.Talking
 import world.gregs.voidps.world.interact.dialogue.Uncertain
@@ -41,7 +42,7 @@ on<ObjectOption>({ operate && target.id == "cupboard_the_knights_sword_opened" &
 }
 
 on<ObjectOption>({ operate && target.id == "cupboard_the_knights_sword_opened" && option == "Search" }) { player: Player ->
-    when (player["the_knights_sword", "unstarted"]) {
+    when (player.quest("the_knights_sword")) {
         "cupboard", "blurite_sword" -> {
             val sirVyvin = npcs[player.tile.regionLevel].firstOrNull { it.id == "sir_vyvin" }
             if (sirVyvin != null && lineValidator.hasLineOfSight(sirVyvin, player)) {

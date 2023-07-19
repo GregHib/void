@@ -8,13 +8,14 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 
 on<NPCOption>({ operate && target.id == "duke_horacio" && option == "Talk-to" }) { player: Player ->
     npc<Talking>("Greetings. Welcome to my castle.")
-    when (player["rune_mysteries", "unstarted"]) {
+    when (player.quest("rune_mysteries")) {
         "unstarted" -> unstarted()
         "started" -> started()
         else -> completed()

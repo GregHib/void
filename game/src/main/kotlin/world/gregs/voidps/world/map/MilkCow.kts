@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.bank.bank
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Chuckle
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Unsure
@@ -21,13 +22,12 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-
 on<ObjectOption>({ operate && target.id == "prized_dairy_cow" && option == "Milk" }) { player: Player ->
     if (!player.hasItem("bucket")) {
         player.message("You'll need an empty bucket to collect the milk.")
         return@on
     }
-    if (player["cooks_assistant", "unstarted"] != "started") {
+    if (player.quest("cooks_assistant") != "started") {
         statement("If you're after ordinary milk, you should use an ordinary dairy cow.")
     }
     if (player.hasItem("top_quality_milk") || player.bank.contains("top_quality_milk")) {

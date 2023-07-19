@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 
@@ -45,7 +46,7 @@ suspend fun PlayerChoice.whatAboutKing(): Unit = option<Unsure>("What about the 
 
 suspend fun PlayerChoice.itsImportant(): Unit = option<Talk>(
     "Yes, I know, but this is important.",
-    { player["demon_slayer", "unstarted"] != "unstarted" }
+    { player.quest("demon_slayer") != "unstarted" }
 ) {
     npc<Talk>("Ok, I'm listening. Tell me what's so important.")
     choice {
@@ -77,7 +78,7 @@ suspend fun PlayerChoice.plasticSurgery(): Unit = option<Talk>("I've had extensi
 
 suspend fun PlayerChoice.theresADemon(): Unit = option<Talk>(
     "There's a demon who wants to invade the city.",
-    { player["demon_slayer", "unstarted"] != "completed" }
+    { player.quest("demon_slayer") != "completed" }
 ) {
     if (player.hasBanked("silverlight_key_captain_rovin")) {
         haveYouNotKilledIt()

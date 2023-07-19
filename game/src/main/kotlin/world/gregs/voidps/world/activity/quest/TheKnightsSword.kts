@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.world.activity.bank.hasBanked
 
 on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemSlot == 8 }) { player: Player ->
-    val lines = when (player["the_knights_sword", "unstarted"]) {
+    val lines = when (player.quest("the_knights_sword")) {
         "completed" -> listOf(
             "<str>Thurgo needed a picture of the sword before he could",
             "<str>start work on a replacement. I took him a portrait of it.",

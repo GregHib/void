@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.hasItem
 
 on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemSlot == 13 }) { player: Player ->
-    val lines = when (player["rune_mysteries", "unstarted"]) {
+    val lines = when (player.quest("rune_mysteries")) {
         "completed" -> listOf(
             "<str>I spoke to Duke Horacio in Lumbridge Castle. He told me",
             "<str>that he'd found a Strange Talisman in the Castle which",

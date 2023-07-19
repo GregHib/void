@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.activity.bank.bank
+import world.gregs.voidps.world.activity.quest.quest
 import java.util.concurrent.TimeUnit
 
 on<ObjectOption>({ operate && target.id == "hatchet_logs" && option == "Take-hatchet" }, Priority.HIGH) { player: Player ->
@@ -24,7 +25,7 @@ on<ObjectOption>({ operate && target.id == "hatchet_logs" && option == "Take-hat
 }
 
 on<FloorItemOption>({ operate && target.id == "super_large_egg" && option == "Take" }, Priority.HIGH) { player: Player ->
-    if (player["cooks_assistant", "unstarted"] == "completed") {
+    if (player.quest("cooks_assistant") == "completed") {
         player.message("You've no reason to pick that up; eggs of that size are only useful for royal cakes.")
         cancel()
     }
