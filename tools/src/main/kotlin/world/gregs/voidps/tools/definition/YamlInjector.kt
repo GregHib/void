@@ -29,7 +29,7 @@ object YamlInjector {
                     .replace(")", "")
                     .replace("_axe", "_hatchet")
                 map[key] = level to xp
-//                println("$key - $level - $name - ${item} - $xp - $members")
+                println("$key - $level - $name - ${item} - $xp - $members")
             }
         }
         val output = FileWriter("items.yml")

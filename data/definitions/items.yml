@@ -7612,9 +7612,12 @@ bronze_pickaxe:
   crush: 2.0
   magic: -1.0
   slash_def: 1.0
-  slot: "Weapon"
   mining_delay: 8
+  smithing:
+    level: 5
+    xp: 25.0
   aka: [ bronze_pick ]
+  slot: "Weapon"
   examine: "Used for mining."
   kept: "Wilderness"
 bronze_pickaxe_noted: 1266
@@ -7628,9 +7631,12 @@ iron_pickaxe:
   slash: -2.0
   crush: 3.0
   slash_def: 1.0
-  slot: "Weapon"
   mining_delay: 7
+  smithing:
+    level: 35
+    xp: 50.0
   aka: [ iron_pick ]
+  slot: "Weapon"
   examine: "Used for mining."
   kept: "Wilderness"
 iron_pickaxe_noted: 1268
@@ -7644,9 +7650,12 @@ steel_pickaxe:
   slash: -2.0
   crush: 6.0
   slash_def: 2.0
-  slot: "Weapon"
   mining_delay: 6
+  smithing:
+    level: 35
+    xp: 75.0
   aka: [ steel_pick ]
+  slot: "Weapon"
   examine: "Used for mining."
   kept: "Wilderness"
 steel_pickaxe_noted: 1270
@@ -7660,9 +7669,12 @@ adamant_pickaxe:
   slash: -2.0
   crush: 15.0
   slash_def: 1.0
-  slot: "Weapon"
   mining_delay: 4
+  smithing:
+    level: 55
+    xp: 100.0
   aka: [ adamant_pick, addy_pick, addy_pickaxe ]
+  slot: "Weapon"
   examine: "Used for mining."
 adamant_pickaxe_noted: 1272
 mithril_pickaxe:
@@ -7675,9 +7687,12 @@ mithril_pickaxe:
   slash: -2.0
   crush: 10.0
   slash_def: 1.0
-  slot: "Weapon"
   mining_delay: 5
+  smithing:
+    level: 75
+    xp: 125.0
   aka: [ mithril_pick, mith_pick, mith_pickaxe ]
+  slot: "Weapon"
   examine: "Used for mining."
 mithril_pickaxe_noted: 1274
 rune_pickaxe:
@@ -7690,9 +7705,12 @@ rune_pickaxe:
   slash: -2.0
   crush: 24.0
   slash_def: 1.0
-  slot: "Weapon"
   mining_delay: 3
+  smithing:
+    level: 91
+    xp: 150.0
   aka: [ rune_pick ]
+  slot: "Weapon"
   examine: "Used for mining."
 rune_pickaxe_noted: 1276
 bronze_sword:
