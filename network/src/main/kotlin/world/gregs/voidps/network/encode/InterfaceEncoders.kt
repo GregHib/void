@@ -38,6 +38,9 @@ fun Client.closeInterface(
  * Sends a colour to an interface component
  * @param id The id of the parent interface
  * @param component The index of the component
+ * @param red red value out of 32
+ * @param green green value out of 32
+ * @param blue blue value out of 32
  */
 fun Client.colourInterface(
     id: Int,

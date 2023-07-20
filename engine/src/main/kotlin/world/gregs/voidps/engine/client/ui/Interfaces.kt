@@ -174,6 +174,12 @@ class Interfaces(
         return true
     }
 
+    fun sendColour(id: String, component: String, red: Int, green: Int, blue: Int): Boolean {
+        val comp = definitions.getComponent(id, component) ?: return false
+        client?.colourInterface(comp["parent", -1], comp.id, red, green, blue)
+        return true
+    }
+
     fun sendItem(id: String, component: String, item: Item): Boolean {
         return sendItem(id, component, item.def.id, item.amount)
     }
