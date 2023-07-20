@@ -53,6 +53,11 @@ val types = listOf(
 val itemDefinitions: ItemDefinitions by inject()
 val interfaceDefinitions: InterfaceDefinitions by inject()
 
+val white = 32767
+val black = 0
+val orange = 30309
+val green = 992
+
 on<ItemOnObject>({ operate && target.id.startsWith("anvil") && item.id.endsWith("_bar") }) { player: Player ->
     if (!player.inventory.contains("hammer")) {
         statement("You need a hammer to work the metal with.")
@@ -70,19 +75,10 @@ on<ItemOnObject>({ operate && target.id.startsWith("anvil") && item.id.endsWith(
             val amount = componentDefinition?.getOrNull("amount") ?: 1
             player.interfaces.sendItem("smithing", type, id, amount)
             val smithing: Smithing = itemDefinition["smithing"]
-            if (player.has(Skill.Smithing, smithing.level)) {
-                player.interfaces.sendColour("smithing", "${type}_name", 31, 31, 31)
-            } else {
-                player.interfaces.sendColour("smithing", "${type}_name", 0, 0, 0)
-            }
+            player.interfaces.sendColour("smithing", "${type}_name", if (player.has(Skill.Smithing, smithing.level)) white else black)
         }
-
         val required = componentDefinition?.getOrNull("bars") ?: 1
-        if (bars < required) {
-            player.interfaces.sendColour("smithing", "${type}_bar", 29, 19, 5)
-        } else {
-            player.interfaces.sendColour("smithing", "${type}_bar", 0, 31, 0)
-        }
+        player.interfaces.sendColour("smithing", "${type}_bar", if (bars < required) orange else green)
     }
 
     player.interfaces.sendVisibility("smithing", "wire_bronze", metal == "bronze")
@@ -96,7 +92,6 @@ on<ItemOnObject>({ operate && target.id.startsWith("anvil") && item.id.endsWith(
     player.interfaces.sendVisibility("smithing", "pickaxes", player.quest("perils_of_ice_mountain") == "completed")
 
 //    statement("You need a Smithing level of 8 to make a Bronze Sq Shield.")
-//    statement("You need a bronze bar to smith equipment on this anvil.")
 //    player.message("You hammer the bronze and make an axe.")
 //    player.message("You hammer the bronze and make a dagger.")
 //    player.message("You hammer the bronze and make a mace.")

@@ -48,8 +48,19 @@ fun Client.colourInterface(
     red: Int,
     green: Int,
     blue: Int
+) = colourInterface(id, component, (red shl 10) + (green shl 5) + blue)
+
+/**
+ * Sends a colour to an interface component
+ * @param id The id of the parent interface
+ * @param component The index of the component
+ */
+fun Client.colourInterface(
+    id: Int,
+    component: Int,
+    colour: Int
 ) = send(Protocol.INTERFACE_COLOUR) {
-    writeShortAdd((red shl 10) + (green shl 5) + blue)
+    writeShortAdd(colour)
     writeIntLittle(id shl 16 or component)
 }
 
