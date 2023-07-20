@@ -10808,4 +10808,4 @@ furnace_edgeville:
   examine: "A hot furnace."
 anvil_lumbridge:
   id: 12692
-  examine: ""
+  examine: "Used for fashioning metal items."
