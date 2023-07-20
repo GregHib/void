@@ -24,5 +24,7 @@ on<World, Registered> {
         spaces = Int.MAX_VALUE,
         requirements = emptyList()
     )
-//    tasks.register(task, true)
+    if (TaskManager.DEBUG) {
+        tasks.register(task, true)
+    }
 }
