@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.remove
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
+import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val spellDefinitions: SpellDefinitions by inject()
 val itemDefinitions: ItemDefinitions by inject()
@@ -44,8 +45,8 @@ on<ItemOnItem>({ fromInterface == "modern_spellbook" && fromComponent == "superh
     }
     player.inventory.transaction {
         remove(runes)
-        remove(smelting.items.drop(1))
-        replace(toSlot, toItem.id, bar)
+        remove(smelting.items)
+        add(bar)
     }
     when (player.inventory.transaction.error) {
         TransactionError.Invalid -> {}
@@ -53,6 +54,7 @@ on<ItemOnItem>({ fromInterface == "modern_spellbook" && fromComponent == "superh
             for (item in items) {
                 // player.equipment.get(item.id).charge -= item.amount
             }
+            player.playSound("superheat_all")
             player.setAnimation(spell)
             player.setGraphic(spell)
             val definition = spellDefinitions.get(spell)

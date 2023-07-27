@@ -151,3 +151,5 @@ male_hit_3: 521
 female_hit_0: 509
 female_hit_1: 510
 smelt_bar: 2725
+superheat_all: 190
+superheat_fail: 191
