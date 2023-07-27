@@ -174,7 +174,7 @@ suspend fun CharacterContext.smith(
 
     val bar = "${metal}_bar"
     player.setAnimation("smith_item")
-    player.weakQueue("smithing", if (first) 0 else 4) {
+    player.weakQueue("smithing", if (first) 0 else 5) {
         player.inventory.transaction {
             remove(bar, bars)
             add(item, quantity)
