@@ -98,7 +98,7 @@ nodes:
         object: 45476
         tile: [ 3219, 3241 ]
         option: "Open"
-      - &lum-village-trees-west [ 3226, 3245 ]
+      - &lumbridge-village-trees-west [ 3226, 3245 ]
       - &lumbridge-task-building [ 3204, 3247 ]
       - &lumbridge-fishing-shop-entrance [ 3194, 3247 ]
       - &lumbridge-fishing-shop [ 3195, 3251 ]
@@ -110,6 +110,9 @@ nodes:
       - &lumbridge-combat-hall-east-entrance [ 3212, 3247 ]
       - &lumbridge-combat-hall-west [ 3204, 3250 ]
       - &lumbridge-west-crossroad [ 3219, 3247 ]
+      - &lumbridge-smiths-south [ 3225, 3252 ]
+      - &lumbridge-smiths-west [ 3222, 3255 ]
+      - &lumbridge-smiths-crossroad [ 3218, 3255 ]
   draynor:
     - &draynor-east-path [ 3138, 3227 ]
     - &draynor-jail-path-south [ 3119, 3228 ]
@@ -448,8 +451,8 @@ edges:
           - type: "walk"
             tile: *general-store-east
       - from: *general-store-east
-        to: *lum-village-trees-west
-      - from: *lum-village-trees-west
+        to: *lumbridge-village-trees-west
+      - from: *lumbridge-village-trees-west
         to: *lum-bridge-north
       - from: *general-store-east
         to: *lumbridge-task-building
@@ -483,6 +486,16 @@ edges:
         to: *lumbridge-combat-hall-east
       - from: *lumbridge-task-building
         to: *lumbridge-combat-hall-west
+      - from: *lumbridge-village-trees-west
+        to: *lumbridge-smiths-south
+      - from: *lumbridge-smiths-south
+        to: *lumbridge-smiths-west
+      - from: *lumbridge-smiths-west
+        to: *lumbridge-smiths-crossroad
+      - from: *lumbridge-smiths-crossroad
+        to: *lumbridge-west-crossroad
+      - from: *lumbridge-smiths-south
+        to: *lumbridge-west-crossroad
   draynor:
     - from: *draynor-east-path
       to: *draynor-jail-path-south
