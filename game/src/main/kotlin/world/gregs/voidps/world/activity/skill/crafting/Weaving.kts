@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.skill.crafting
 
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.data.definition.data.Weaving
@@ -58,7 +59,8 @@ fun CharacterContext.weave(obj: GameObject, item: Item, amount: Int) {
     val data = item.weaving
     val current = player.inventory.count(item.id)
     if (current < data.amount) {
-        player.message("You need ${data.amount} ${plural(item)} in order to make ${form(data.to)} ${data.to.toLowerSpaceCase()}.")
+        val name = data.to.toLowerSpaceCase()
+        player.message("You need ${data.amount} ${plural(item)} in order to make${name.an()} $name.")
         return
     }
     val actualAmount = if (current < amount * data.amount) current / data.amount else amount
@@ -72,7 +74,8 @@ fun Player.weave(obj: GameObject, item: Item, amount: Int) {
     val data = item.weaving
     val current = inventory.count(item.id)
     if (current < data.amount) {
-        message("You need ${data.amount} ${plural(item)} in order to make ${form(data.to)} ${data.to.toLowerSpaceCase()}.")
+        val name = data.to.toLowerSpaceCase()
+        message("You need ${data.amount} ${plural(item)} in order to make ${name.an()} $name.")
         return
     }
     face(obj)
@@ -87,7 +90,8 @@ fun Player.weave(obj: GameObject, item: Item, amount: Int) {
         }
         when (inventory.transaction.error) {
             is TransactionError.Full, is TransactionError.Deficient -> {
-                message("You need ${data.amount} ${plural(item)} in order to make ${form(data.to)} ${data.to.toLowerSpaceCase()}.")
+                val name = data.to.toLowerSpaceCase()
+                message("You need ${data.amount} ${plural(item)} in order to make ${name.an()} $name.")
                 return@weakQueue
             }
             else -> {}
@@ -104,12 +108,5 @@ fun plural(item: Item): String {
         "flax" -> "flax"
         "ball_of_wool" -> "balls of wool"
         else -> item.id.plural()
-    }
-}
-
-fun form(item: String): String {
-    return when (item) {
-        "basket", "strip_of_cloth" -> "a"
-        else -> "an"
     }
 }

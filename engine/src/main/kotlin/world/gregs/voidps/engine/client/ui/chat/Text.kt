@@ -1,6 +1,8 @@
 package world.gregs.voidps.engine.client.ui.chat
 
 import java.text.DecimalFormat
+import java.util.*
+import java.util.regex.Pattern
 
 fun String.toIntRange(inclusive: Boolean = false, separator: String = "-"): IntRange {
     val split = split(separator)
@@ -68,4 +70,78 @@ fun Int?.toBoolean() = this == 1
 
 fun Int.nearby(size: Int): IntRange {
     return this - size..this + size
+}
+
+private val yRegex = "^y(b[lor]|cl[ea]|fere|gg|p[ios]|rou|tt).*".toRegex()
+private val capitalRegex = "(?!FJO|[HLMNS]Y.|RY[EO]|SQU|(F[LR]?|[HL]|MN?|N|RH?|S[CHKLMNPTVW]?|X(YL)?)[AEIOU])[FHLMNRSX][A-Z]".toRegex()
+private val specialRegex = "^U[NK][AIEO].*".toRegex()
+private val vowelRegex1 = "^e[uw].*".toRegex()
+private val vowelRegex2 = "^onc?e\\b.*".toRegex()
+private val vowelRegex3 = "^uni([^nmd]|mo).*".toRegex()
+private val vowelRegex4 = "^u[bcfhjkqrst][aeiou].*".toRegex()
+private val pattern = Pattern.compile("(\\w+)\\s*.*")
+
+fun String.an(): String {
+    if (isEmpty()) {
+        return " a"
+    }
+    if (endsWith('s')) {
+        return ""
+    }
+
+    // Getting the first word
+    val matcher = pattern.matcher(this)
+    val word = if (matcher.matches()) matcher.group(1) else return " an"
+    val lowercaseWord = word.lowercase(Locale.getDefault())
+
+    // Specific start of words that should be preceded by 'an'
+    val altCases = arrayOf("euler", "heir", "honest", "hono")
+    for (altCase in altCases) {
+        if (lowercaseWord.startsWith(altCase)) {
+            return " an"
+        }
+    }
+    if (lowercaseWord.startsWith("hour") && !lowercaseWord.startsWith("houri")) {
+        return " an"
+    }
+
+
+    // Single letter word which should be preceded by 'an'
+    if (lowercaseWord.length == 1) {
+        return if ("aedhilmnorsx".indexOf(lowercaseWord) >= 0) " an" else " a"
+    }
+
+    // Capital words which should likely be preceded by 'an'
+    if (word.matches(capitalRegex)) {
+        return " an"
+    }
+
+    // Special cases where a word that begins with a vowel should be preceded by 'a'
+    if (lowercaseWord.matches(vowelRegex1)) {
+        return " a"
+    }
+    if (lowercaseWord.matches(vowelRegex2)) {
+        return " a"
+    }
+    if (lowercaseWord.matches(vowelRegex3)) {
+        return " a"
+    }
+    if (lowercaseWord.matches(vowelRegex4)) {
+        return " a"
+    }
+
+    // Special capital words (UK, UN)
+    if (word.matches(specialRegex)) {
+        return " a"
+    } else if (word === word.uppercase(Locale.getDefault())) {
+        return if ("aedhilmnorsx".indexOf(lowercaseWord.substring(0, 1)) >= 0) " an" else " a"
+    }
+
+    // Basic method of words that begin with a vowel being preceded by 'an'
+    if ("aeiou".indexOf(lowercaseWord.substring(0, 1)) >= 0) {
+        return " an"
+    }
+
+    // Instances where y followed by specific letters is preceded by 'an'
+    return if (lowercaseWord.matches(yRegex)) " an" else " a"
 }

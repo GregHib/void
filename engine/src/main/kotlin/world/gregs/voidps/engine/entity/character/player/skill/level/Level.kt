@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.player.skill.level
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation.interpolate
@@ -36,7 +37,7 @@ object Level {
     fun Player.has(skill: Skill, level: Int, message: Boolean = false): Boolean {
         if (levels.get(skill) < level) {
             if (message) {
-                message("You need to have a${if (skill.name.startsWith("A")) "n" else ""} ${skill.name} level of ${if (skill == Skill.Constitution) level / 10 else level}.")
+                message("You need to have${skill.name.an()} ${skill.name} level of ${if (skill == Skill.Constitution) level / 10 else level}.")
             }
             return false
         }
@@ -46,7 +47,7 @@ object Level {
     fun Player.hasMax(skill: Skill, level: Int, message: Boolean = false): Boolean {
         if (levels.getMax(skill) < level) {
             if (message) {
-                message("You need to have a${if (skill.name.startsWith("A")) "n" else ""} ${skill.name} level of ${if (skill == Skill.Constitution) level / 10 else level}.")
+                message("You need to have${skill.name.an()} ${skill.name} level of ${if (skill == Skill.Constitution) level / 10 else level}.")
             }
             return false
         }

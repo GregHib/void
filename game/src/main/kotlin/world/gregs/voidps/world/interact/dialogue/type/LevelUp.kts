@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.dialogue.type
 
 import net.pearx.kasechange.toSnakeCase
+import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
@@ -37,7 +38,7 @@ on<MaxLevelChanged>({ to > from && !it["skip_level_up", false] }) { player: Play
         player.setGraphic("level_up")
         player.addVarbit("skill_stat_flash", skill.name.toSnakeCase())
         levelUp("""
-            Congratulations! You've just advanced a${if (skill.name.startsWith("A")) "n" else ""} ${skill.name} level!
+            Congratulations! You've just advanced${skill.name.an()} ${skill.name} level!
             You have now reached level ${to}!
         """, skill)
     }
