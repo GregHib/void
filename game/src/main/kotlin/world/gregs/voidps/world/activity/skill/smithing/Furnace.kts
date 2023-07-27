@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smelting
 import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -23,7 +24,9 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
+import world.gregs.voidps.world.interact.entity.sound.playSound
 import kotlin.random.Random
 
 val bars = listOf(
@@ -42,21 +45,23 @@ val logger = InlineLogger()
 val itemDefinitions: ItemDefinitions by inject()
 
 on<ObjectOption>({ operate && target.id.startsWith("furnace") && option == "Smelt" }) { player: Player ->
-    smeltingOptions(player, target)
+    smeltingOptions(player, target, bars)
 }
 
-on<ItemOnObject>({ operate && target.id.startsWith("furnace") && item.def.has("smithing") }) { player: Player ->
-    smeltingOptions(player, target)
+on<ItemOnObject>({ operate && target.id.startsWith("furnace") && item.id.endsWith("_ore") }) { player: Player ->
+    smeltingOptions(player, target, listOf(item.id.replace("_ore", "_bar")))
 }
 
 suspend fun CharacterContext.smeltingOptions(
     player: Player,
-    gameObject: GameObject
+    gameObject: GameObject,
+    bars: List<String>
 ) {
+    player["face_entity"] = getSide(player, gameObject)
     val available = mutableListOf<String>()
     var max = 0
     for (bar in bars) {
-        val smelt: Smelting = itemDefinitions.get(bar)["smelting"]
+        val smelt: Smelting = itemDefinitions.getOrNull(bar)?.get("smelting") ?: continue
         val min = smelt.items.minOf { (id, amount) -> player.inventory.count(id, amount) }
         if (min <= 0) {
             continue
@@ -84,7 +89,9 @@ fun smelt(player: Player, target: GameObject, id: String, amount: Int) {
     if (!player.has(Skill.Smithing, smelting.level, message = true)) {
         return
     }
+    player.face(getSide(player, target))
     player.setAnimation("furnace_smelt")
+    player.playSound("smelt_bar")
     player.message(smelting.message, ChatType.Filter)
     player.weakQueue("smelting", 4) {
         val success = Random.nextInt(255) < smelting.chance
@@ -146,4 +153,18 @@ fun varrockArmour(
         return true
     }
     return false
+}
+
+fun getSide(player: Player, target: GameObject): Tile {
+   return if (player.tile.x > target.tile.x + target.width) {
+        target.tile.add(target.width, target.height / 2)
+    } else if (player.tile.y > target.tile.y + target.height) {
+        target.tile.add(target.width / 2, target.height)
+    } else if (player.tile.x < target.tile.x) {
+        target.tile.addY(target.height / 2)
+    } else if (player.tile.y < target.tile.y) {
+        target.tile.addX(target.width / 2)
+    } else {
+        target.tile.add(target.width / 2, target.height / 2)
+    }
 }
