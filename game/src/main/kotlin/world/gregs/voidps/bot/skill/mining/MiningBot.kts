@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.data.Rock
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -32,7 +31,7 @@ onBot<TimerStop>({ timer == "mining" }) { bot: Bot ->
     bot.resume(timer)
 }
 
-on<World, Registered> {
+on<World, StartBot> {
     for (area in areas.getTagged("mine")) {
         val spaces: Int = area["spaces", 1]
         val type = area["rocks", emptyList<String>()].firstOrNull() ?: continue

@@ -6,7 +6,6 @@ import kotlinx.coroutines.launch
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.entity.AiTick
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.Event
@@ -20,15 +19,13 @@ val tasks: TaskManager by inject()
 val scope = CoroutineScope(Contexts.Game)
 val logger = InlineLogger("Bot")
 
-onBot<Registered> { bot: Bot ->
-    if (bot.contains("task") && !bot.contains("task_started")) {
-        val name: String = bot["task"]
-        val task = tasks.get(name)
-        if (task == null) {
-            bot.clear("task")
-        } else {
-            assign(bot, task)
-        }
+onBot<StartBot>({ it.contains("task") && !it.contains("task_started") }) { bot: Bot ->
+    val name: String = bot["task"]
+    val task = tasks.get(name)
+    if (task == null) {
+        bot.clear("task")
+    } else {
+        assign(bot, task)
     }
 }
 

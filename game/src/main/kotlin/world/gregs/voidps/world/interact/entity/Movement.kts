@@ -22,10 +22,9 @@ val players: Players by inject()
 val active = getProperty("characterCollision") == "true"
 
 on<Registered> { player: Player ->
-    if (active) {
+    if (players.add(player) && active) {
         collisions.add(player)
     }
-    players.add(player)
 }
 
 on<Registered>({ active }) { npc: NPC ->

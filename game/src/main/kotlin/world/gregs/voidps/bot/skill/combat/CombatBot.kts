@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -58,7 +57,7 @@ onBot<Death> { bot: Bot ->
     bot.cancel()
 }
 
-on<World, Registered> {
+on<World, StartBot> {
     for (area in areas.getTagged("combat_training")) {
         val spaces: Int = area["spaces", 1]
         val types = area["npcs", emptyList<String>()].toSet()
