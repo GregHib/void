@@ -1,16 +1,20 @@
 package world.gregs.voidps.bot.skill.firemaking
 
 import net.pearx.kasechange.toLowerSpaceCase
-import world.gregs.voidps.bot.*
+import world.gregs.voidps.bot.Bot
+import world.gregs.voidps.bot.Task
+import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
+import world.gregs.voidps.bot.onBot
 import world.gregs.voidps.bot.skill.combat.getGear
 import world.gregs.voidps.bot.skill.combat.getSuitableItem
 import world.gregs.voidps.bot.skill.combat.hasExactGear
 import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -31,7 +35,7 @@ onBot<TimerStop>({ timer == "firemaking" }) { bot: Bot ->
     bot.resume(timer)
 }
 
-on<World, StartBot> {
+on<World, Registered> {
     for (area in areas.getTagged("fire_making")) {
         val spaces: Int = area["spaces", 1]
         val task = Task(

@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.data.Tree
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -30,7 +31,7 @@ onBot<TimerStop>({ timer == "woodcutting" }) { bot: Bot ->
     bot.resume(timer)
 }
 
-on<World, StartBot> {
+on<World, Registered> {
     for (area in areas.getTagged("trees")) {
         val spaces: Int = area["spaces", 1]
         val range: IntRange = area["levels", "1-5"].toIntRange()

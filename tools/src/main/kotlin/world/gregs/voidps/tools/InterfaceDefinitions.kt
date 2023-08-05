@@ -9,15 +9,10 @@ object InterfaceDefinitions {
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val decoder = InterfaceDecoder().loadCache(cache)
-        for (i in listOf(729)) {//decoder.indices) {
+        for (i in listOf(300)) {//decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            println(def.components?.keys)
             for ((id, comp) in def.components ?: continue) {
-//                if(comp.anObjectArray4758 != null) {
                     println("$id - $comp")
-//                if (comp.inventories != null) {
-//                    println("${comp.id} ${def.id} ${Interface.getId(comp.id)} ${Interface.getComponentId(comp.id)} $id ${comp.anObjectArray4758?.toList()}")
-//                }
             }
         }
     }

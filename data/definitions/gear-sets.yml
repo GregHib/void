@@ -1,3 +1,40 @@
+smithing:
+  - levels: 0-5
+    types: [ dagger, hatchet, mace ]
+    inventory:
+      - id: hammer
+      - id: bronze_bar
+        amount: 27
+  - levels: 5-10
+    types: [ scimitar ]
+    inventory:
+      - id: hammer
+      - id: bronze_bar
+        amount: 27
+  - levels: 10-15
+    types: [ battleaxe, full_helm ]
+    inventory:
+      - id: hammer
+      - id: bronze_bar
+        amount: 27
+  - levels: 15-25
+    types: [ platelegs, plateskirt, platebody ]
+    inventory:
+      - id: hammer
+      - id: bronze_bar
+        amount: 27
+  - levels: 15-20
+    types: [ dagger, hatchet, mace ]
+    inventory:
+      - id: hammer
+      - id: iron_bar
+        amount: 27
+  - levels: 20-25
+    types: [ scimitar, pickaxe, longsword, full_helm ]
+    inventory:
+      - id: hammer
+      - id: iron_bar
+        amount: 27
 cooking:
   - levels: 1-15
     inventory:

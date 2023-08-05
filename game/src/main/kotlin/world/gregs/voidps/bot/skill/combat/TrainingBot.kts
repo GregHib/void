@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -36,7 +37,7 @@ import world.gregs.voidps.world.interact.entity.combat.underAttack
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 
-on<World, StartBot> {
+on<World, Registered> {
     val area = areas.getOrNull("lumbridge_combat_tutors") ?: return@on
     val range = 1..5
     val skills = listOf(Skill.Attack, Skill.Magic, Skill.Ranged)

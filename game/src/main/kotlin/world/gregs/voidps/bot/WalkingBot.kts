@@ -1,6 +1,7 @@
 package world.gregs.voidps.bot
 
 import world.gregs.voidps.bot.navigation.await
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -8,7 +9,7 @@ import world.gregs.voidps.network.instruct.Walk
 
 val tasks: TaskManager by inject()
 
-on<World, StartBot> {
+on<World, Registered> {
     val task = Task(
         name = "walk randomly",
         block = {
@@ -24,6 +25,6 @@ on<World, StartBot> {
         requirements = emptyList()
     )
     if (TaskManager.DEBUG) {
-        tasks.register(task, true)
+//        tasks.register(task, true)
     }
 }

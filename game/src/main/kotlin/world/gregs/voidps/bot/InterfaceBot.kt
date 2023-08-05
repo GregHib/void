@@ -8,6 +8,6 @@ suspend fun Bot.closeInterface(id: Int, component: Int) {
     clickInterface(id, component, 0)
 }
 
-suspend fun Bot.clickInterface(id: Int, component: Int, option: Int, itemId: Int = -1, itemSlot: Int = -1) {
-    player.instructions.emit(InteractInterface(interfaceId = id, componentId = component, itemId = -1, itemSlot = itemSlot, option = option))
+suspend fun Bot.clickInterface(id: Int, component: Int, option: Int = 0, itemId: Int = -1, itemSlot: Int = -1) {
+    player.instructions.emit(InteractInterface(interfaceId = id, componentId = component, itemId = itemId, itemSlot = itemSlot, option = option))
 }

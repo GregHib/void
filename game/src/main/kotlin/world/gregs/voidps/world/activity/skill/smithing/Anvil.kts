@@ -141,8 +141,10 @@ suspend fun CharacterContext.smith(player: Player, metal: String, type: String, 
     val bar = "${metal}_bar"
     val actualAmount = amount.coerceAtMost(player.inventory.count(bar) / bars)
     player.closeMenu()
+    player.softTimers.start("smithing")
     if (actualAmount <= 0) {
         statement("You don't have enough $metal bars to make a scimitar.")
+        player.softTimers.stop("smithing")
         return
     }
     smith(smithing, metal, bars, quantity, type, item, actualAmount, true)
@@ -159,16 +161,19 @@ suspend fun CharacterContext.smith(
     first: Boolean
 ) {
     if (count <= 0) {
+        player.softTimers.stop("smithing")
         return
     }
     if (!player.inventory.contains("hammer")) {
         player.message("You need a Hammer to smith items.")
+        player.softTimers.stop("smithing")
         return
     }
 
     if (!player.has(Skill.Smithing, smithing.level, message = false)) {
         val name = item.removeSuffix("_unf")
         statement("You need a Smithing level of ${smithing.level} to make${name.an()} ${name.toTitleCase()}.")
+        player.softTimers.stop("smithing")
         return
     }
 

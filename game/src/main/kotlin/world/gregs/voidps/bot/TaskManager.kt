@@ -17,6 +17,7 @@ class TaskManager {
     }
 
     fun assign(bot: Bot): Task {
+        println(queue)
         return queue
             .filter { !it.full() && it.requirements.all { req -> req(bot) } }
             .minByOrNull { it.distanceTo(bot.tile) } ?: idle
@@ -32,6 +33,6 @@ class TaskManager {
             },
             spaces = Int.MAX_VALUE
         )
-        val DEBUG = false
+        val DEBUG = true
     }
 }
