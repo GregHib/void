@@ -358,7 +358,16 @@ on<Command>({ prefix == "shop" }) { player: Player ->
 }
 
 on<Command>({ prefix == "debug" }) { player: Player ->
-    player["debug"] = !player["debug", false]
+    val target = if (content.isNotEmpty()) {
+        players.get(content)
+    } else {
+        player
+    }
+    if (target == null) {
+        player.message("Unable to find player with name '$content'.")
+        return@on
+    }
+    target["debug"] = !target["debug", false]
 }
 
 val tables: DropTables by inject()

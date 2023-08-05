@@ -50,6 +50,11 @@ on<Command>({ prefix == "show" }) { player: Player ->
     player.client?.interfaceVisibility(parts[0].toInt(), parts[1].toInt(), !parts[2].toBoolean())
 }
 
+on<Command>({ prefix == "colour" }) { player: Player ->
+    val parts = content.split(" ")
+    player.client?.colourInterface(parts[0].toInt(), parts[1].toInt(), parts[2].toInt(), parts[3].toInt(), parts[4].toInt())
+}
+
 on<Command>({ prefix == "sendItem" }) { player: Player ->
     val parts = content.split(" ")
     player.interfaces.sendItem(parts[0], parts[1], parts[2].toInt(), parts.getOrNull(3)?.toInt() ?: 1)

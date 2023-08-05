@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.activity.quest.sendQuestComplete
 import world.gregs.voidps.world.interact.dialogue.*
@@ -18,7 +19,7 @@ import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
 on<NPCOption>({ operate && target.id == "cook_lumbridge" && option == "Talk-to" }) { player: Player ->
-    when (player["cooks_assistant", "unstarted"]) {
+    when (player.quest("cooks_assistant")) {
         "unstarted" -> {
             npc<Sad>("What am I to do?")
             choice {

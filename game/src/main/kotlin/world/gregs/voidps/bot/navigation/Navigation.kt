@@ -4,10 +4,11 @@ import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeoutOrNull
 import world.gregs.voidps.bot.Bot
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.Entity
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.timer.TICKS
-import kotlin.collections.mutableMapOf
 import kotlin.collections.set
 import kotlin.coroutines.resume
 import kotlin.reflect.KClass
@@ -25,6 +26,12 @@ suspend fun Bot.await(type: Any, timeout: Int = -1) {
             player["suspension"] = type
             player["cont"] = cont
         }
+    }
+}
+suspend fun Bot.awaitInteract(timeout: Int = -1) {
+    await("tick", timeout)
+    while (player.mode is Interact || player.hasClock("movement_delay")) {
+        await("tick", timeout)
     }
 }
 

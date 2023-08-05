@@ -55,6 +55,16 @@ class Inventory(
             .toInt()
     }
 
+    /**
+     * Count how many multiples of [amount] this inventory has
+     */
+    fun count(id: String, amount: Int): Int {
+        if (id.isBlank() || amount == 0) {
+            return 0
+        }
+        return count(id) / amount
+    }
+
     fun contains(id: String) = indexOf(id) != -1
 
     fun contains(id: String, amount: Int): Boolean {

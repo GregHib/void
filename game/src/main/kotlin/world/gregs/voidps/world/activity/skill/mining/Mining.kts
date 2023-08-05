@@ -45,9 +45,6 @@ on<ObjectOption>({ operate && option == "Mine" }) { player: Player ->
     }
     arriveDelay()
     player.softTimers.start("mining")
-    onCancel = {
-        player.softTimers.stop("mining")
-    }
     var first = true
     while (true) {
         if (!objects.contains(target)) {
@@ -108,6 +105,7 @@ on<ObjectOption>({ operate && option == "Mine" }) { player: Player ->
         }
         player.stop("skill_delay")
     }
+    player.softTimers.stop("mining")
 }
 
 val gems = setOf(

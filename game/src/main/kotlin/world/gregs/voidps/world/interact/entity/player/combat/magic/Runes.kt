@@ -2,8 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic
 
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -13,6 +11,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.entity.combat.spellBook
@@ -47,29 +47,39 @@ object Runes {
     }
 
     fun hasSpellRequirements(player: Player, spell: String): Boolean {
-        val component = definitions.getComponent(player.spellBook, spell) ?: return false
-        if (!player.has(Skill.Magic, component.magicLevel, message = true)) {
+        val runes = mutableListOf<Item>()
+        val items = mutableListOf<Item>()
+        if (!spellRequirements(player, spell, runes, items)) {
             return false
         }
-        val items = mutableListOf<Item>()
-        for (item in component.spellRequiredItems()) {
-            if (!hasRunes(player, item, items)) {
-                player.message("You do not have the required items to cast this spell.")
-                return false
-            }
+        for (rune in runes) {
+            player.inventory.remove(rune.id, rune.amount)
         }
         for (rune in items) {
 //            if (rune.id.endsWith("_staff")) {
 //                val staff = player.equipped(EquipSlot.Weapon)
 //                staff.charge = (staff.charge - rune.amount).coerceAtLeast(0)
 //            } else {
-                player.inventory.remove(rune.id, rune.amount)
 //            }
         }
         return true
     }
 
-    private fun hasRunes(player: Player, item: Item, items: MutableList<Item>): Boolean {
+    fun spellRequirements(player: Player, spell: String, runes: MutableList<Item>, items: MutableList<Item>): Boolean {
+        val component = definitions.getComponent(player.spellBook, spell) ?: return false
+        if (!player.has(Skill.Magic, component.magicLevel, message = true)) {
+            return false
+        }
+        for (item in component.spellRequiredItems()) {
+            if (!hasRunes(player, item, runes, items)) {
+                player.message("You do not have the required items to cast this spell.")
+                return false
+            }
+        }
+        return true
+    }
+
+    private fun hasRunes(player: Player, item: Item, runes: MutableList<Item>, items: MutableList<Item>): Boolean {
         if (hasInfiniteRunesEquipped(player, item.id, EquipSlot.Weapon)) {
             return true
         }
@@ -84,7 +94,7 @@ object Runes {
         var remaining = item.amount
         var found = player.inventory.count(item.id)
         if (found > 0) {
-            items.add(Item(item.id, remaining.coerceAtMost(found)))
+            runes.add(Item(item.id, remaining.coerceAtMost(found)))
             remaining -= found
             if (remaining <= 0) {
                 return true
@@ -116,7 +126,7 @@ object Runes {
             for (combination in combinations) {
                 found = player.inventory.count(combination)
                 if (found > 0) {
-                    items.add(Item(item.id, remaining.coerceAtMost(found)))
+                    runes.add(Item(item.id, remaining.coerceAtMost(found)))
                     remaining -= found
                 }
                 if (remaining <= 0) {

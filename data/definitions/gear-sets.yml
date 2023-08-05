@@ -1,3 +1,79 @@
+smelting:
+  - levels: 0-20
+    inventory:
+      - id: tin_ore
+        amount: 14
+      - id: copper_ore
+        amount: 14
+  - levels: 15-60
+    inventory:
+      - id: iron_ore
+        amount: 28
+  - levels: 30-60
+    inventory:
+      - id: iron_ore
+        amount: 9
+      - id: coal
+        amount: 18
+  - levels: 40-75
+    inventory:
+      - id: gold_ore
+        amount: 28
+  - levels: 50-85
+    inventory:
+      - id: mithril_ore
+        amount: 5
+      - id: coal
+        amount: 20
+  - levels: 70-99
+    inventory:
+      - id: adamantite_ore
+        amount: 4
+      - id: coal
+        amount: 24
+  - levels: 85-99
+    inventory:
+      - id: runite_ore
+        amount: 3
+      - id: coal
+        amount: 24
+smithing:
+  - levels: 0-5
+    types: [ dagger, hatchet, mace ]
+    inventory:
+      - id: hammer
+      - id: bronze_bar
+        amount: 27
+  - levels: 5-10
+    types: [ scimitar ]
+    inventory:
+      - id: hammer
+      - id: bronze_bar
+        amount: 27
+  - levels: 10-15
+    types: [ battleaxe, full_helm ]
+    inventory:
+      - id: hammer
+      - id: bronze_bar
+        amount: 27
+  - levels: 15-25
+    types: [ platelegs, plateskirt, platebody ]
+    inventory:
+      - id: hammer
+      - id: bronze_bar
+        amount: 27
+  - levels: 15-20
+    types: [ dagger, hatchet, mace ]
+    inventory:
+      - id: hammer
+      - id: iron_bar
+        amount: 27
+  - levels: 20-25
+    types: [ scimitar, pickaxe, longsword, full_helm ]
+    inventory:
+      - id: hammer
+      - id: iron_bar
+        amount: 27
 cooking:
   - levels: 1-15
     inventory:

@@ -43,3 +43,5 @@ fun Inventory.clear(index: Int) = transaction { clear(index) }
 fun Inventory.clear() = transaction { clear() }
 
 fun Inventory.contains(vararg pairs: Pair<String, Int>) = pairs.all { (id, amount) -> contains(id, amount) }
+
+fun Inventory.contains(pairs: List<Pair<String, Int>>) = pairs.all { (id, amount) -> contains(id, amount) }

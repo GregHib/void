@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.activity.quest.sendQuestComplete
 import world.gregs.voidps.world.interact.dialogue.*
@@ -24,7 +25,7 @@ import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 on<NPCOption>({ operate && target.id == "sedridor" && option == "Talk-to" }) { player: Player ->
-    when (player["rune_mysteries", "unstarted"]) {
+    when (player.quest("rune_mysteries")) {
         "unstarted" -> {
             npc<Cheerful>("""
                 Welcome adventurer, to the world renowned Wizards'

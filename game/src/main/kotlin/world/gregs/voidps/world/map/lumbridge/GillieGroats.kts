@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Unsure
@@ -15,7 +16,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 on<NPCOption>({ operate && target.id == "gillie_groats" && option == "Talk-to" }) { player: Player ->
     npc<Cheerful>("Hello, I'm Gillie the Milkmaid. What can I do for you?")
     choice {
-        option("I'm after some Top-quality milk.", { player["cooks_assistant", "unstarted"] == "started" && !player.hasItem("top_quality_milk") }) {
+        option("I'm after some Top-quality milk.", { player.quest("cooks_assistant") == "started" && !player.hasItem("top_quality_milk") }) {
             topQualityMilk()
         }
         option("Who are you?") {

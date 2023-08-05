@@ -17,9 +17,10 @@ suspend fun CharacterContext.makeAmount(
     type: String,
     maximum: Int,
     text: String = DEFAULT_TEXT,
-    allowAll: Boolean = true
+    allowAll: Boolean = true,
+    names: List<String>? = null
 ): Pair<String, Int> {
-    val result = makeAmountIndex(items, type, maximum, text, allowAll)
+    val result = makeAmountIndex(items, type, maximum, text, allowAll, names)
     val id = items.getOrNull(result.first) ?: ""
     return id to result.second
 }

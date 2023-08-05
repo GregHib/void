@@ -46,7 +46,7 @@ class GearDefinitions {
                         val id = value["id"] as String
                         val item = Item(id, value["amount"] as? Int ?: 1, itemDefinitions.get(id))
                         super.add(list, item, parentMap)
-                    } else if(parentMap != "id") {
+                    } else if (parentMap != "id" && value is Map<*, *>) {
                         count++
                         super.add(list, GearDefinition(parentMap!!, value as Map<String, Any>), parentMap)
                     } else {
@@ -54,7 +54,7 @@ class GearDefinitions {
                     }
                 }
 
-                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
+                override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                     super.set(map, key, when (key) {
                         "levels" -> (value as String).toIntRange()
                         else -> value

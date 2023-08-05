@@ -41,7 +41,7 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
         for (i in 0..lastArchive) {
             val data = cache.getFile(index, archiveId, i)
             if (data != null) {
-                val componentDefinition = InterfaceComponentDefinition(id = i + (id shl 16))
+                val componentDefinition = InterfaceComponentDefinition(id = InterfaceDefinition.pack(id, i))
                 if (!componentDefinition.isEmpty(BufferReader(data))) {
                     components[i] = componentDefinition
                 }

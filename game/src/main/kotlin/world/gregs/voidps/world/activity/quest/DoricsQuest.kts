@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.inventory
 
 on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemSlot == 3 }) { player: Player ->
-    val lines = when (player["dorics_quest", "unstarted"]) {
+    val lines = when (player.quest("dorics_quest")) {
         "completed" -> listOf(
             "<str>I have spoken to Doric.",
             "",

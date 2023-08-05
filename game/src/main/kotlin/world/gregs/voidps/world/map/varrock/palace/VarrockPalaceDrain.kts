@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Suspicious
 import world.gregs.voidps.world.interact.dialogue.Talking
@@ -29,7 +30,7 @@ on<ObjectOption>({ operate && target.id == "varrock_palace_drain" && option == "
     player.setAnimation("climb_down")
     if (player["demon_slayer_drain_dislodged", false] || player.hasBanked("silverlight_key_sir_prysin")) {
         player.message("Nothing interesting seems to have been dropped down here today.")
-    } else if (player["demon_slayer", "unstarted"] == "unstarted") {
+    } else if (player.quest("demon_slayer") == "unstarted") {
         player<Suspicious>("""
             This is the drainpipe running from the kitchen sink to
             the sewer. I can see a key just inside the drain.
@@ -68,7 +69,7 @@ on<ItemOnObject>({ operate && target.id == "varrock_palace_drain" && item.id.end
     player.playSound("demon_slayer_drain")
     player.playSound("demon_slayer_key_fall")
     player.weakQueue("demon_slayer_dislodge_key") {
-        if (player["demon_slayer", "unstarted"] == "key_hunt") {
+        if (player.quest("demon_slayer") == "key_hunt") {
             player<Cheerful>("""
                 OK, I think I've washed the key down into the sewer.
                 I'd better go down and get it!

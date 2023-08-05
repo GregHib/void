@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.bank.bank
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -44,7 +45,7 @@ on<ObjectOption>({ operate && target.id == "hopper_controls" && option == "Opera
 
 on<ItemOnObject>({ operate && target.id == "hopper" && item.id == "grain" }) { player: Player ->
     arriveDelay()
-    if (player["cooks_assistant", "unstarted"] != "started") {
+    if (player.quest("cooks_assistant") != "started") {
         player.setAnimation("fill_hopper")
         player.inventory.remove("grain")
         player["hopper_bin"] = 1
@@ -82,7 +83,7 @@ on<ObjectOption>({ operate && target.id == "flour_bin_3" && option == "Take-flou
         return@on
     }
     arriveDelay()
-    if (player["cooks_assistant", "unstarted"] == "started" && player["cooks_assistant_talked_to_millie", 0] == 1) {
+    if (player.quest("cooks_assistant") == "started" && player["cooks_assistant_talked_to_millie", 0] == 1) {
         player.inventory.remove("empty_pot")
         if (player.hasItem("extra_fine_flour") || player.bank.contains("extra_fine_flour")) {
             player.inventory.add("pot_of_flour")

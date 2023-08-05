@@ -5,6 +5,8 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.bot.Bot
+import world.gregs.voidps.bot.StartBot
+import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
@@ -13,7 +15,6 @@ import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -27,6 +28,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.network.DummyClient
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.type.area.Rectangle
@@ -52,11 +54,11 @@ on<Command>({ prefix == "bot" }) { player: Player ->
     if (player.isBot) {
         player.clear("bot")
     } else {
-        player.initBot()
+        val bot = player.initBot()
         if (content.isNotBlank()) {
             player["task"] = content
         }
-        player.events.emit(Registered)
+        bot.events.emit(StartBot)
     }
 }
 
@@ -84,9 +86,10 @@ on<Command>({ prefix == "bots" }) { _: Player ->
                 if (bot.inventory.isEmpty()) {
                     bot.inventory.add("coins", 10000)
                 }
-                val client = null//DummyClient()
+                val client = if (TaskManager.DEBUG) DummyClient() else null
                 bot.initBot()
                 bot.login(client, 0)
+                bot.events.emit(StartBot)
                 bot.viewport?.loaded = true
                 pause(3)
                 bots.add(bot)
@@ -96,7 +99,7 @@ on<Command>({ prefix == "bots" }) { _: Player ->
     }
 }
 
-fun Player.initBot() {
+fun Player.initBot(): Bot {
     val bot = Bot(this)
     get<EventHandlerStore>().populate(Bot::class, bot.botEvents)
     this["bot"] = bot
@@ -106,6 +109,7 @@ fun Player.initBot() {
         e.add(event)
         handleSuspensions(bot.player, event)
     }
+    return bot
 }
 
 fun handleSuspensions(player: Player, event: Event) {

@@ -769,3 +769,8 @@ demon_slayer_stone_circle:
   area:
     x: [ 3221, 3234 ]
     y: [ 3363, 3376 ]
+lumbridge_furnace:
+  area:
+    x: [ 3222, 3229 ]
+    y: [ 3252, 3257 ]
+  tags: [ smithing, smelting, spaces_2 ]

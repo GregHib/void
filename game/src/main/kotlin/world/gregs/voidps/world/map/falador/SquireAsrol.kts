@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.activity.quest.sendQuestComplete
 import world.gregs.voidps.world.interact.dialogue.*
@@ -21,7 +22,7 @@ import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
 on<NPCOption>({ operate && target.id == "squire_asrol" && option == "Talk-to" }) { player: Player ->
-    when (player["the_knights_sword", "unstarted"]) {
+    when (player.quest("the_knights_sword")) {
         "unstarted" -> {
             npc<Talking>("Hello. I am the squire to Sir Vyvin.")
             choice {

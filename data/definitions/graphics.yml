@@ -1412,3 +1412,6 @@ dressing_room:
   id: 1182
 dressing_room_finish:
   id: 1183
+superheat_item:
+  id: 148
+  height: 60

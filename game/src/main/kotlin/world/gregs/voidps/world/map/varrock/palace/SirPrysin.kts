@@ -15,12 +15,13 @@ import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 on<NPCOption>({ operate && target.id == "sir_prysin" && option == "Talk-to" }) { player: Player ->
-    when (player["demon_slayer", "unstarted"]) {
+    when (player.quest("demon_slayer")) {
         "key_hunt" -> {
             if (!player["demon_slayer_silverlight", false]) {
                 keyProgressCheck()
@@ -67,7 +68,7 @@ on<NPCOption>({ operate && target.id == "sir_prysin" && option == "Talk-to" }) {
 
 suspend fun PlayerChoice.arisWantsToTalk(): Unit = option(
     "Aris said I should come and talk to you.",
-    { player["demon_slayer", "unstarted"] == "sir_prysin" }
+    { player.quest("demon_slayer") == "sir_prysin" }
 ) {
     player<Talk>("Aris said I should come and talk to you.")
     npc<Talk>("""

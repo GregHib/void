@@ -7,11 +7,12 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.*
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 
 on<NPCOption>({ operate && target.id == "thurgo" && option == "Talk-to" }) { player: Player ->
-    when (player["the_knights_sword", "unstarted"]) {
+    when (player.quest("the_knights_sword")) {
         "started", "find_thurgo" -> menu()
         "happy_thurgo" -> menuSword()
         "picture", "cupboard" -> menuAboutSword()
@@ -188,7 +189,7 @@ suspend fun PlayerChoice.redberryPie(): Unit = option<Unsure>(
         I'd never say no to a redberry pie!
         We Imcando dwarves love them - they're GREAT!
     """)
-    if (player["the_knights_sword", "unstarted"] == "find_thurgo") {
+    if (player.quest("the_knights_sword") == "find_thurgo") {
         player["the_knights_sword"] = "happy_thurgo"
     }
     player.inventory.remove("redberry_pie")
@@ -219,7 +220,7 @@ suspend fun CharacterContext.thatCape() {
 }
 
 on<ItemOnNPC>({ operate && target.id == "thurgo" && item.id == "redberry_pie" }) { player: Player ->
-    when (player["the_knights_sword", "unstarted"]) {
+    when (player.quest("the_knights_sword")) {
         "find_thurgo" -> menu()
         "happy_thurgo" -> menuSword()
         else -> player<Uncertain>("Why would I give him my pie?")

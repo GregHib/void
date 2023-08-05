@@ -18,6 +18,9 @@ cannonball:
   id: 2
   price: 259
   limit: 10000
+  smithing:
+    level: 35
+    xp: 25.6
   examine: "Ammo for the Dwarf Cannon."
 nulodions_notes:
   id: 3
@@ -225,33 +228,51 @@ bronze_arrowtips:
   id: 39
   price: 10
   limit: 10000
+  smithing:
+    level: 5
+    xp: 12.5
   examine: "I can make an arrow with these."
   kept: "Wilderness"
 iron_arrowtips:
   id: 40
   price: 8
   limit: 10000
+  smithing:
+    level: 20
+    xp: 25.0
   examine: "I can make an arrow with these."
   kept: "Wilderness"
 steel_arrowtips:
   id: 41
   price: 41
   limit: 10000
+  smithing:
+    level: 35
+    xp: 37.5
   examine: "I can make an arrow with these."
 mithril_arrowtips:
   id: 42
   price: 67
   limit: 10000
+  smithing:
+    level: 55
+    xp: 50.0
   examine: "I can make an arrow with these."
 adamant_arrowtips:
   id: 43
   price: 150
   limit: 10000
+  smithing:
+    level: 75
+    xp: 62.5
   examine: "I can make an arrow with these."
 rune_arrowtips:
   id: 44
   price: 844
   limit: 10000
+  smithing:
+    level: 90
+    xp: 75.0
   examine: "I can make an arrow with these."
 opal_bolt_tips:
   id: 45
@@ -2193,6 +2214,7 @@ adamantite_ore:
   mining:
     xp: 95.0
     chance: 5-55
+  aka: [ adamant_ore ]
   examine: "This needs refining."
 adamantite_ore_noted: 450
 runite_ore:
@@ -2203,6 +2225,7 @@ runite_ore:
   mining:
     xp: 125.0
     chance: 1-18
+  aka: [ rune_ore ]
   examine: "This needs refining."
 runite_ore_noted: 452
 coal:
@@ -4347,31 +4370,49 @@ bronze_dart_tip:
   id: 819
   price: 28
   limit: 5000
+  smithing:
+    level: 4
+    xp: 12.5
   examine: "A deadly looking dart tip made of bronze - needs feathers for flight."
 iron_dart_tip:
   id: 820
   price: 17
   limit: 5000
+  smithing:
+    level: 19
+    xp: 25.0
   examine: "A deadly looking dart tip made of iron - needs feathers for flight."
 steel_dart_tip:
   id: 821
   price: 56
   limit: 5000
+  smithing:
+    level: 34
+    xp: 37.5
   examine: "A deadly-looking dart tip made of steel - needs feathers for flight."
 mithril_dart_tip:
   id: 822
   price: 92
   limit: 5000
+  smithing:
+    level: 54
+    xp: 50.0
   examine: "A deadly looking dart tip made of mithril - needs feathers for flight."
 adamant_dart_tip:
   id: 823
   price: 215
   limit: 5000
+  smithing:
+    level: 74
+    xp: 62.5
   examine: "A deadly-looking dart tip made of adamant - needs feathers for flight."
 rune_dart_tip:
   id: 824
   price: 457
   limit: 5000
+  smithing:
+    level: 89
+    xp: 75.0
   examine: "A deadly-looking dart tip made of runite - needs feathers for flight."
 bronze_javelin:
   id: 825
@@ -4838,6 +4879,9 @@ iron_knife:
   range_str: 4.0
   attack_range: 4
   attack_speed: 3
+  smithing:
+    level: 22
+    xp: 25.0
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_knife:
@@ -4848,6 +4892,9 @@ bronze_knife:
   range_str: 3.0
   attack_range: 4
   attack_speed: 3
+  smithing:
+    level: 7
+    xp: 12.5
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife:
@@ -4858,6 +4905,9 @@ steel_knife:
   range_str: 7.0
   attack_range: 4
   attack_speed: 3
+  smithing:
+    level: 37
+    xp: 37.5
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife:
@@ -4868,6 +4918,9 @@ mithril_knife:
   range_str: 10.0
   attack_range: 4
   attack_speed: 3
+  smithing:
+    level: 57
+    xp: 50.0
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife:
@@ -4878,6 +4931,9 @@ adamant_knife:
   range_str: 14.0
   attack_range: 4
   attack_speed: 3
+  smithing:
+    level: 77
+    xp: 62.5
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife:
@@ -4888,6 +4944,9 @@ rune_knife:
   range_str: 24.0
   attack_range: 4
   attack_speed: 3
+  smithing:
+    level: 92
+    xp: 75.0
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife:
@@ -5671,6 +5730,9 @@ iron_platelegs:
   magic_def: -4.0
   range_def: 10.0
   aka: [ iron_legs ]
+  smithing:
+    level: 31
+    xp: 75.0
   slot: "Legs"
   material: "metal"
   examine: "These look pretty heavy."
@@ -5690,6 +5752,9 @@ steel_platelegs:
   range_def: 16.0
   summoning_def: 2.0
   aka: [ steel_legs ]
+  smithing:
+    level: 46
+    xp: 112.5
   slot: "Legs"
   material: "metal"
   examine: "A pair of steel platelegs."
@@ -5711,6 +5776,9 @@ mithril_platelegs:
   range_def: 22.0
   summoning_def: 5.0
   aka: [ mithril_legs, mith_legs ]
+  smithing:
+    level: 66
+    xp: 150.0
   slot: "Legs"
   material: "metal"
   examine: "A pair of mithril platelegs."
@@ -5731,6 +5799,9 @@ adamant_platelegs:
   range_def: 31.0
   summoning_def: 10.0
   aka: [ adamant_legs ]
+  smithing:
+    level: 86
+    xp: 187.5
   slot: "Legs"
   material: "metal"
   examine: "A pair of adamant platelegs."
@@ -5748,6 +5819,9 @@ bronze_platelegs:
   magic_def: -4.0
   range_def: 7.0
   aka: [ bronze_legs ]
+  smithing:
+    level: 16
+    xp: 37.5
   slot: "Legs"
   material: "metal"
   examine: "These look pretty heavy."
@@ -5787,6 +5861,9 @@ rune_platelegs:
   range_def: 49.0
   summoning_def: 15.0
   aka: [ rune_legs ]
+  smithing:
+    level: 99
+    xp: 225.0
   slot: "Legs"
   material: "metal"
   examine: "A pair of rune platelegs."
@@ -5804,6 +5881,9 @@ iron_plateskirt:
   magic_def: -4.0
   range_def: 10.0
   aka: [ iron_skirt ]
+  smithing:
+    level: 31
+    xp: 75.0
   slot: "Legs"
   material: "metal"
   examine: "Designer leg protection."
@@ -5823,6 +5903,9 @@ steel_plateskirt:
   range_def: 16.0
   summoning_def: 2.0
   aka: [ steel_skirt ]
+  smithing:
+    level: 46
+    xp: 112.5
   slot: "Legs"
   material: "metal"
   examine: "A steel plateskirt."
@@ -5844,6 +5927,9 @@ mithril_plateskirt:
   range_def: 22.0
   summoning_def: 5.0
   aka: [ mithril_skirt, mith_skirt ]
+  smithing:
+    level: 66
+    xp: 150.0
   slot: "Legs"
   material: "metal"
   examine: "A mithril plateskirt."
@@ -5861,6 +5947,9 @@ bronze_plateskirt:
   magic_def: -4.0
   range_def: 7.0
   aka: [ bronze_skirt ]
+  smithing:
+    level: 16
+    xp: 37.5
   slot: "Legs"
   material: "metal"
   examine: "Designer leg protection."
@@ -5900,6 +5989,9 @@ adamant_plateskirt:
   range_def: 31.0
   summoning_def: 10.0
   aka: [ adamant_skirt, addy_skirt ]
+  smithing:
+    level: 86
+    xp: 187.5
   slot: "Legs"
   material: "metal"
   examine: "An adamant plateskirt."
@@ -5920,6 +6012,9 @@ rune_plateskirt:
   range_def: 49.0
   summoning_def: 15.0
   aka: [ rune_skirt ]
+  smithing:
+    level: 99
+    xp: 225.0
   slot: "Legs"
   material: "metal"
   examine: "A rune plateskirt."
@@ -5989,6 +6084,9 @@ iron_chainbody:
   magic_def: -3.0
   range_def: 12.0
   summoning_def: 5.0
+  smithing:
+    level: 26
+    xp: 75.0
   slot: "Chest"
   material: "metal"
   type: "Sleeveless"
@@ -6007,6 +6105,9 @@ bronze_chainbody:
   magic_def: -3.0
   range_def: 9.0
   summoning_def: 5.0
+  smithing:
+    level: 11
+    xp: 37.5
   slot: "Chest"
   material: "metal"
   type: "Sleeveless"
@@ -6025,6 +6126,9 @@ steel_chainbody:
   magic_def: -3.0
   range_def: 19.0
   summoning_def: 5.0
+  smithing:
+    level: 41
+    xp: 112.5
   slot: "Chest"
   material: "metal"
   type: "Sleeveless"
@@ -6064,6 +6168,9 @@ mithril_chainbody:
   magic_def: -3.0
   range_def: 27.0
   summoning_def: 20.0
+  smithing:
+    level: 61
+    xp: 150.0
   slot: "Chest"
   material: "metal"
   type: "Sleeveless"
@@ -6083,6 +6190,9 @@ adamant_chainbody:
   magic_def: -3.0
   range_def: 38.0
   summoning_def: 30.0
+  smithing:
+    level: 81
+    xp: 187.5
   slot: "Chest"
   material: "metal"
   type: "Sleeveless"
@@ -6102,6 +6212,9 @@ rune_chainbody:
   magic_def: -3.0
   range_def: 65.0
   summoning_def: 40.0
+  smithing:
+    level: 96
+    xp: 225.0
   slot: "Chest"
   material: "metal"
   type: "Sleeveless"
@@ -6121,6 +6234,9 @@ iron_platebody:
   range_def: 20.0
   summoning_def: 5.0
   aka: [ iron_plate ]
+  smithing:
+    level: 33
+    xp: 125.0
   slot: "Chest"
   material: "metal"
   examine: "Provides excellent protection."
@@ -6140,6 +6256,9 @@ bronze_platebody:
   range_def: 14.0
   summoning_def: 5.0
   aka: [ bronze_plate ]
+  smithing:
+    level: 18
+    xp: 62.5
   slot: "Chest"
   material: "metal"
   examine: "Provides excellent protection."
@@ -6159,6 +6278,9 @@ steel_platebody:
   range_def: 31.0
   summoning_def: 5.0
   aka: [ steel_plate ]
+  smithing:
+    level: 48
+    xp: 187.5
   slot: "Chest"
   material: "metal"
   examine: "A steel platebody."
@@ -6180,6 +6302,9 @@ mithril_platebody:
   range_def: 44.0
   summoning_def: 20.0
   aka: [ mithril_plate, mith_plate ]
+  smithing:
+    level: 68
+    xp: 250.0
   slot: "Chest"
   material: "metal"
   examine: "A mithril platebody."
@@ -6200,6 +6325,9 @@ adamant_platebody:
   range_def: 63.0
   summoning_def: 30.0
   aka: [ adamant_plate, addy_plate ]
+  smithing:
+    level: 88
+    xp: 312.5
   slot: "Chest"
   material: "metal"
   examine: "An adamant platebody."
@@ -6240,6 +6368,9 @@ rune_platebody:
   range_def: 80.0
   summoning_def: 40.0
   aka: [ rune_plate ]
+  smithing:
+    level: 99
+    xp: 375.0
   slot: "Chest"
   material: "metal"
   examine: "A rune platebody."
@@ -6331,6 +6462,9 @@ iron_med_helm:
   price: 12
   limit: 1000
   weight: 1.814
+  smithing:
+    level: 18
+    xp: 25.0
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -6342,6 +6476,9 @@ bronze_med_helm:
   price: 51
   limit: 100
   weight: 1.814
+  smithing:
+    level: 3
+    xp: 12.5
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -6353,6 +6490,9 @@ steel_med_helm:
   price: 75
   limit: 100
   weight: 0.01
+  smithing:
+    level: 33
+    xp: 37.5
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -6371,6 +6511,9 @@ mithril_med_helm:
   magic_def: -1.0
   range_def: 10.0
   summoning_def: 5.0
+  smithing:
+    level: 53
+    xp: 50.0
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -6390,6 +6533,9 @@ adamant_med_helm:
   magic_def: -1.0
   range_def: 14.0
   summoning_def: 6.0
+  smithing:
+    level: 73
+    xp: 62.5
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -6409,6 +6555,9 @@ rune_med_helm:
   magic_def: -1.0
   range_def: 22.0
   summoning_def: 7.0
+  smithing:
+    level: 88
+    xp: 75.0
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -6464,6 +6613,9 @@ iron_full_helm:
   crush_def: 5.0
   magic_def: -1.0
   range_def: 6.0
+  smithing:
+    level: 22
+    xp: 50.0
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -6482,6 +6634,9 @@ bronze_full_helm:
   crush_def: 3.0
   magic_def: -1.0
   range_def: 4.0
+  smithing:
+    level: 7
+    xp: 25.0
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -6501,6 +6656,9 @@ steel_full_helm:
   magic_def: -1.0
   range_def: 9.0
   summoning_def: 3.0
+  smithing:
+    level: 37
+    xp: 75.0
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -6520,6 +6678,9 @@ mithril_full_helm:
   magic_def: -1.0
   range_def: 13.0
   summoning_def: 5.0
+  smithing:
+    level: 57
+    xp: 100.0
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -6540,6 +6701,9 @@ adamant_full_helm:
   magic_def: -1.0
   range_def: 19.0
   summoning_def: 6.0
+  smithing:
+    level: 77
+    xp: 125.0
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -6560,6 +6724,9 @@ rune_full_helm:
   magic_def: -1.0
   range_def: 30.0
   summoning_def: 7.0
+  smithing:
+    level: 92
+    xp: 150.0
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -6645,6 +6812,9 @@ bronze_sq_shield:
   slash_def: 6.0
   crush_def: 4.0
   range_def: 5.0
+  smithing:
+    level: 8
+    xp: 25.0
   slot: "Shield"
   material: "metal"
   examine: "A medium square shield."
@@ -6662,6 +6832,9 @@ iron_sq_shield:
   crush_def: 7.0
   range_def: 8.0
   summoning_def: 1.0
+  smithing:
+    level: 23
+    xp: 50.0
   slot: "Shield"
   material: "metal"
   examine: "An iron square shield."
@@ -6677,6 +6850,9 @@ steel_sq_shield:
   crush_def: 11.0
   range_def: 12.0
   summoning_def: 4.0
+  smithing:
+    level: 38
+    xp: 75.0
   slot: "Shield"
   material: "metal"
   examine: "A medium square shield."
@@ -6711,6 +6887,9 @@ mithril_sq_shield:
   crush_def: 15.0
   range_def: 17.0
   summoning_def: 18.0
+  smithing:
+    level: 58
+    xp: 100.0
   slot: "Shield"
   material: "metal"
   examine: "A medium square shield."
@@ -6727,6 +6906,9 @@ adamant_sq_shield:
   crush_def: 22.0
   range_def: 24.0
   summoning_def: 25.0
+  smithing:
+    level: 78
+    xp: 125.0
   slot: "Shield"
   material: "metal"
   examine: "A medium square shield."
@@ -6743,6 +6925,9 @@ rune_sq_shield:
   crush_def: 36.0
   range_def: 38.0
   summoning_def: 35.0
+  smithing:
+    level: 93
+    xp: 150.0
   slot: "Shield"
   material: "metal"
   examine: "A medium square shield."
@@ -6780,6 +6965,9 @@ bronze_kiteshield:
   range_def: 6.0
   summoning_def: 1.0
   aka: [ bronze_kite ]
+  smithing:
+    level: 12
+    xp: 37.5
   slot: "Shield"
   material: "metal"
   examine: "A large metal shield."
@@ -6799,6 +6987,9 @@ iron_kiteshield:
   range_def: 9.0
   summoning_def: 2.0
   aka: [ iron_kite ]
+  smithing:
+    level: 27
+    xp: 75.0
   slot: "Shield"
   material: "metal"
   examine: "A large metal shield."
@@ -6818,6 +7009,9 @@ steel_kiteshield:
   range_def: 14.0
   summoning_def: 5.0
   aka: [ steel_kite ]
+  smithing:
+    level: 42
+    xp: 112.5
   slot: "Shield"
   material: "metal"
   examine: "A steel kiteshield."
@@ -6859,6 +7053,9 @@ mithril_kiteshield:
   range_def: 20.0
   summoning_def: 20.0
   aka: [ mithril_kite ]
+  smithing:
+    level: 62
+    xp: 150.0
   slot: "Shield"
   material: "metal"
   examine: "A mithril kiteshield."
@@ -6879,6 +7076,9 @@ adamant_kiteshield:
   range_def: 29.0
   summoning_def: 30.0
   aka: [ adamant_kite ]
+  smithing:
+    level: 82
+    xp: 187.5
   slot: "Shield"
   material: "metal"
   examine: "An adamant kiteshield."
@@ -6899,6 +7099,9 @@ rune_kiteshield:
   range_def: 46.0
   summoning_def: 40.0
   aka: [ rune_kite ]
+  smithing:
+    level: 97
+    xp: 225.0
   slot: "Shield"
   material: "metal"
   examine: "A rune kiteshield."
@@ -6914,6 +7117,9 @@ iron_dagger:
   crush: -4.0
   magic: 1.0
   magic_def: 1.0
+  smithing:
+    level: 15
+    xp: 25.0
   slot: "Weapon"
   material: "metal"
   examine: "Short but pointy."
@@ -6930,6 +7136,9 @@ bronze_dagger:
   crush: -4.0
   magic: 1.0
   magic_def: 1.0
+  smithing:
+    level: 1
+    xp: 12.5
   slot: "Weapon"
   material: "metal"
   examine: "Short but pointy."
@@ -6946,6 +7155,9 @@ steel_dagger:
   crush: -4.0
   magic: 1.0
   magic_def: 1.0
+  smithing:
+    level: 30
+    xp: 37.5
   slot: "Weapon"
   material: "metal"
   examine: "A steel dagger."
@@ -6962,6 +7174,9 @@ mithril_dagger:
   crush: -4.0
   magic: 1.0
   magic_def: 1.0
+  smithing:
+    level: 50
+    xp: 50.0
   slot: "Weapon"
   material: "metal"
   examine: "A mithril dagger."
@@ -6977,6 +7192,9 @@ adamant_dagger:
   crush: -4.0
   magic: 1.0
   magic_def: 1.0
+  smithing:
+    level: 70
+    xp: 62.5
   slot: "Weapon"
   material: "metal"
   examine: "An adamant dagger."
@@ -6992,6 +7210,9 @@ rune_dagger:
   crush: -4.0
   magic: 1.0
   magic_def: 1.0
+  smithing:
+    level: 85
+    xp: 75.0
   slot: "Weapon"
   material: "metal"
   examine: "A rune dagger."
@@ -7158,6 +7379,9 @@ bronze_spear:
   slash: 5.0
   crush: 5.0
   slash_def: 1.0
+  smithing:
+    level: 5
+    xp: 25.0
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bronze tipped spear."
@@ -7174,6 +7398,9 @@ iron_spear:
   slash: 8.0
   crush: 8.0
   slash_def: 1.0
+  smithing:
+    level: 20
+    xp: 50.0
   slot: "Weapon"
   type: "TwoHanded"
   examine: "An iron tipped spear."
@@ -7190,6 +7417,9 @@ steel_spear:
   slash: 12.0
   crush: 12.0
   slash_def: 1.0
+  smithing:
+    level: 35
+    xp: 75.0
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A steel tipped spear."
@@ -7206,6 +7436,9 @@ mithril_spear:
   slash: 17.0
   crush: 17.0
   slash_def: 1.0
+  smithing:
+    level: 55
+    xp: 100.0
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A mithril tipped spear."
@@ -7222,6 +7455,9 @@ adamant_spear:
   crush: 24.0
   slash_def: 1.0
   crush_def: 1.0
+  smithing:
+    level: 75
+    xp: 125.0
   slot: "Weapon"
   type: "TwoHanded"
   examine: "An adamantite tipped spear."
@@ -7237,6 +7473,9 @@ rune_spear:
   slash: 36.0
   crush: 36.0
   slash_def: 1.0
+  smithing:
+    level: 90
+    xp: 150.0
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A rune tipped spear."
@@ -7375,9 +7614,12 @@ bronze_pickaxe:
   crush: 2.0
   magic: -1.0
   slash_def: 1.0
-  slot: "Weapon"
   mining_delay: 8
+  smithing:
+    level: 5
+    xp: 25.0
   aka: [ bronze_pick ]
+  slot: "Weapon"
   examine: "Used for mining."
   kept: "Wilderness"
 bronze_pickaxe_noted: 1266
@@ -7391,9 +7633,12 @@ iron_pickaxe:
   slash: -2.0
   crush: 3.0
   slash_def: 1.0
-  slot: "Weapon"
   mining_delay: 7
+  smithing:
+    level: 35
+    xp: 50.0
   aka: [ iron_pick ]
+  slot: "Weapon"
   examine: "Used for mining."
   kept: "Wilderness"
 iron_pickaxe_noted: 1268
@@ -7407,9 +7652,12 @@ steel_pickaxe:
   slash: -2.0
   crush: 6.0
   slash_def: 2.0
-  slot: "Weapon"
   mining_delay: 6
+  smithing:
+    level: 35
+    xp: 75.0
   aka: [ steel_pick ]
+  slot: "Weapon"
   examine: "Used for mining."
   kept: "Wilderness"
 steel_pickaxe_noted: 1270
@@ -7423,9 +7671,12 @@ adamant_pickaxe:
   slash: -2.0
   crush: 15.0
   slash_def: 1.0
-  slot: "Weapon"
   mining_delay: 4
+  smithing:
+    level: 55
+    xp: 100.0
   aka: [ adamant_pick, addy_pick, addy_pickaxe ]
+  slot: "Weapon"
   examine: "Used for mining."
 adamant_pickaxe_noted: 1272
 mithril_pickaxe:
@@ -7438,9 +7689,12 @@ mithril_pickaxe:
   slash: -2.0
   crush: 10.0
   slash_def: 1.0
-  slot: "Weapon"
   mining_delay: 5
+  smithing:
+    level: 75
+    xp: 125.0
   aka: [ mithril_pick, mith_pick, mith_pickaxe ]
+  slot: "Weapon"
   examine: "Used for mining."
 mithril_pickaxe_noted: 1274
 rune_pickaxe:
@@ -7453,9 +7707,12 @@ rune_pickaxe:
   slash: -2.0
   crush: 24.0
   slash_def: 1.0
-  slot: "Weapon"
   mining_delay: 3
+  smithing:
+    level: 91
+    xp: 150.0
   aka: [ rune_pick ]
+  slot: "Weapon"
   examine: "Used for mining."
 rune_pickaxe_noted: 1276
 bronze_sword:
@@ -7469,6 +7726,9 @@ bronze_sword:
   crush: -2.0
   slash_def: 2.0
   crush_def: 1.0
+  smithing:
+    level: 4
+    xp: 12.5
   slot: "Weapon"
   material: "metal"
   examine: "A razor-sharp sword."
@@ -7485,6 +7745,9 @@ iron_sword:
   crush: -2.0
   slash_def: 2.0
   crush_def: 1.0
+  smithing:
+    level: 19
+    xp: 25.0
   slot: "Weapon"
   material: "metal"
   examine: "A razor-sharp sword."
@@ -7501,6 +7764,9 @@ steel_sword:
   crush: -2.0
   slash_def: 2.0
   crush_def: 1.0
+  smithing:
+    level: 34
+    xp: 37.5
   slot: "Weapon"
   material: "metal"
   examine: "A steel sword."
@@ -7532,6 +7798,9 @@ mithril_sword:
   crush: -2.0
   slash_def: 2.0
   crush_def: 1.0
+  smithing:
+    level: 54
+    xp: 50.0
   slot: "Weapon"
   material: "metal"
   examine: "A mithril sword."
@@ -7547,6 +7816,9 @@ adamant_sword:
   crush: -2.0
   slash_def: 2.0
   crush_def: 1.0
+  smithing:
+    level: 74
+    xp: 62.5
   slot: "Weapon"
   material: "metal"
   examine: "An adamant sword."
@@ -7562,6 +7834,9 @@ rune_sword:
   crush: -2.0
   slash_def: 2.0
   crush_def: 1.0
+  smithing:
+    level: 89
+    xp: 75.0
   slot: "Weapon"
   material: "metal"
   examine: "A rune sword."
@@ -7577,6 +7852,9 @@ bronze_longsword:
   crush: -2.0
   slash_def: 3.0
   crush_def: 2.0
+  smithing:
+    level: 6
+    xp: 25.0
   slot: "Weapon"
   material: "metal"
   examine: "A razor-sharp longsword."
@@ -7593,6 +7871,9 @@ iron_longsword:
   crush: -2.0
   slash_def: 3.0
   crush_def: 2.0
+  smithing:
+    level: 21
+    xp: 50.0
   slot: "Weapon"
   material: "metal"
   examine: "A razor-sharp longsword."
@@ -7609,6 +7890,9 @@ steel_longsword:
   crush: -2.0
   slash_def: 3.0
   crush_def: 2.0
+  smithing:
+    level: 36
+    xp: 75.0
   slot: "Weapon"
   material: "metal"
   examine: "A steel longsword."
@@ -7640,6 +7924,9 @@ mithril_longsword:
   crush: -2.0
   slash_def: 3.0
   crush_def: 2.0
+  smithing:
+    level: 56
+    xp: 100.0
   slot: "Weapon"
   material: "metal"
   examine: "A mithril longsword."
@@ -7655,6 +7942,9 @@ adamant_longsword:
   crush: -2.0
   slash_def: 3.0
   crush_def: 2.0
+  smithing:
+    level: 76
+    xp: 125.0
   slot: "Weapon"
   material: "metal"
   examine: "An adamant longsword."
@@ -7670,6 +7960,9 @@ rune_longsword:
   crush: -2.0
   slash_def: 3.0
   crush_def: 2.0
+  smithing:
+    level: 91
+    xp: 150.0
   slot: "Weapon"
   material: "metal"
   examine: "A rune longsword."
@@ -7700,6 +7993,9 @@ bronze_2h_sword:
   crush: 8.0
   magic: -4.0
   range_def: -1.0
+  smithing:
+    level: 14
+    xp: 37.5
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -7717,6 +8013,9 @@ iron_2h_sword:
   crush: 10.0
   magic: -4.0
   range_def: -1.0
+  smithing:
+    level: 29
+    xp: 75.0
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -7734,6 +8033,9 @@ steel_2h_sword:
   crush: 16.0
   magic: -4.0
   range_def: -1.0
+  smithing:
+    level: 44
+    xp: 112.5
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -7767,6 +8069,9 @@ mithril_2h_sword:
   crush: 24.0
   magic: -4.0
   range_def: -1.0
+  smithing:
+    level: 64
+    xp: 150.0
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -7783,6 +8088,9 @@ adamant_2h_sword:
   crush: 30.0
   magic: -4.0
   range_def: -1.0
+  smithing:
+    level: 84
+    xp: 187.5
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -7799,6 +8107,9 @@ rune_2h_sword:
   crush: 50.0
   magic: -4.0
   range_def: -1.0
+  smithing:
+    level: 99
+    xp: 225.0
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -7815,6 +8126,9 @@ bronze_scimitar:
   crush: -2.0
   slash_def: 1.0
   aka: [ bronze_scimmy ]
+  smithing:
+    level: 5
+    xp: 25.0
   slot: "Weapon"
   material: "metal"
   examine: "A vicious, curved sword."
@@ -7831,6 +8145,9 @@ iron_scimitar:
   crush: -2.0
   slash_def: 1.0
   aka: [ iron_scimmy ]
+  smithing:
+    level: 20
+    xp: 50.0
   slot: "Weapon"
   material: "metal"
   examine: "A vicious, curved sword."
@@ -7847,6 +8164,9 @@ steel_scimitar:
   crush: -2.0
   slash_def: 1.0
   aka: [ steel_scimmy ]
+  smithing:
+    level: 35
+    xp: 75.0
   slot: "Weapon"
   material: "metal"
   examine: "A steel scimitar."
@@ -7878,6 +8198,9 @@ mithril_scimitar:
   crush: -2.0
   slash_def: 1.0
   aka: [ mith_scimmy, mithril_scimmy ]
+  smithing:
+    level: 55
+    xp: 100.0
   slot: "Weapon"
   material: "metal"
   examine: "A mithril scimitar."
@@ -7893,6 +8216,9 @@ adamant_scimitar:
   crush: -2.0
   slash_def: 1.0
   aka: [ addy_scimmy, adamant_scimmy ]
+  smithing:
+    level: 75
+    xp: 125.0
   slot: "Weapon"
   material: "metal"
   examine: "An adamant scimitar."
@@ -7908,6 +8234,9 @@ rune_scimitar:
   crush: -2.0
   slash_def: 1.0
   aka: [ rune_scimmy ]
+  smithing:
+    level: 90
+    xp: 150.0
   slot: "Weapon"
   material: "metal"
   examine: "A rune scimitar."
@@ -7922,6 +8251,9 @@ iron_warhammer:
   slash: -4.0
   crush: 11.0
   magic: -4.0
+  smithing:
+    level: 24
+    xp: 75.0
   slot: "Weapon"
   examine: "I don't think it's intended for joinery."
   kept: "Wilderness"
@@ -7936,6 +8268,9 @@ bronze_warhammer:
   slash: -4.0
   crush: 10.0
   magic: -4.0
+  smithing:
+    level: 9
+    xp: 37.5
   slot: "Weapon"
   examine: "I don't think it's intended for joinery."
   kept: "Wilderness"
@@ -7950,6 +8285,9 @@ steel_warhammer:
   slash: -4.0
   crush: 18.0
   magic: -4.0
+  smithing:
+    level: 39
+    xp: 112.5
   slot: "Weapon"
   examine: "A steel warhammer."
   kept: "Wilderness"
@@ -7977,6 +8315,9 @@ mithril_warhammer:
   slash: -4.0
   crush: 25.0
   magic: -4.0
+  smithing:
+    level: 59
+    xp: 150.0
   slot: "Weapon"
   examine: "A mithril warhammer."
 mithril_warhammer_noted: 1344
@@ -7990,6 +8331,9 @@ adamant_warhammer:
   slash: -4.0
   crush: 33.0
   magic: -4.0
+  smithing:
+    level: 79
+    xp: 187.5
   slot: "Weapon"
   examine: "An adamant warhammer."
 adamant_warhammer_noted: 1346
@@ -8003,6 +8347,9 @@ rune_warhammer:
   slash: -4.0
   crush: 53.0
   magic: -4.0
+  smithing:
+    level: 94
+    xp: 225.0
   slot: "Weapon"
   examine: "I don't think it's intended for joinery."
 rune_warhammer_noted: 1348
@@ -8017,6 +8364,9 @@ iron_hatchet:
   slash: 5.0
   crush: 3.0
   rank: 1
+  smithing:
+    level: 16
+    xp: 25.0
   slot: "Weapon"
   examine: "A woodcutter's hatchet."
   kept: "Wilderness"
@@ -8033,6 +8383,9 @@ bronze_hatchet:
   slash_def: 1.0
   rank: 0
   aka: [ bronze_axe ]
+  smithing:
+    level: 1
+    xp: 12.5
   slot: "Weapon"
   examine: "A woodcutter's hatchet."
   kept: "Wilderness"
@@ -8049,6 +8402,9 @@ steel_hatchet:
   crush: 6.0
   rank: 2
   aka: [ steel_axe ]
+  smithing:
+    level: 31
+    xp: 37.5
   slot: "Weapon"
   examine: "A woodcutter's hatchet."
   kept: "Wilderness"
@@ -8065,6 +8421,9 @@ mithril_hatchet:
   slash_def: 1.0
   rank: 4
   aka: [ mith_axe, mithril_axe ]
+  smithing:
+    level: 51
+    xp: 50.0
   slot: "Weapon"
   examine: "A powerful hatchet."
 mithril_hatchet_noted: 1356
@@ -8080,6 +8439,9 @@ adamant_hatchet:
   slash_def: 1.0
   rank: 5
   aka: [ addy_axe, adamant_axe ]
+  smithing:
+    level: 71
+    xp: 62.5
   slot: "Weapon"
   examine: "A powerful hatchet."
 adamant_hatchet_noted: 1358
@@ -8095,6 +8457,9 @@ rune_hatchet:
   slash_def: 1.0
   rank: 6
   aka: [ rune_axe ]
+  smithing:
+    level: 86
+    xp: 75.0
   slot: "Weapon"
   examine: "A powerful hatchet."
 rune_hatchet_noted: 1360
@@ -8123,6 +8488,9 @@ iron_battleaxe:
   slash: 8.0
   crush: 5.0
   range_def: -1.0
+  smithing:
+    level: 25
+    xp: 75.0
   slot: "Weapon"
   examine: "A vicious looking axe."
   kept: "Wilderness"
@@ -8137,6 +8505,9 @@ steel_battleaxe:
   slash: 16.0
   crush: 11.0
   range_def: -1.0
+  smithing:
+    level: 40
+    xp: 112.5
   slot: "Weapon"
   examine: "A steel battleaxe."
   kept: "Wilderness"
@@ -8164,6 +8535,9 @@ mithril_battleaxe:
   slash: 22.0
   crush: 17.0
   range_def: -1.0
+  smithing:
+    level: 60
+    xp: 150.0
   slot: "Weapon"
   examine: "A mithril battleaxe."
 mithril_battleaxe_noted: 1370
@@ -8177,6 +8551,9 @@ adamant_battleaxe:
   slash: 31.0
   crush: 26.0
   range_def: -1.0
+  smithing:
+    level: 80
+    xp: 187.5
   slot: "Weapon"
   examine: "An adamant battleaxe."
 adamant_battleaxe_noted: 1372
@@ -8190,6 +8567,9 @@ rune_battleaxe:
   slash: 48.0
   crush: 43.0
   range_def: -1.0
+  smithing:
+    level: 95
+    xp: 225.0
   slot: "Weapon"
   examine: "A rune battleaxe."
 rune_battleaxe_noted: 1374
@@ -8203,6 +8583,9 @@ bronze_battleaxe:
   slash: 6.0
   crush: 3.0
   range_def: -1.0
+  smithing:
+    level: 10
+    xp: 37.5
   slot: "Weapon"
   examine: "A vicious looking axe."
   kept: "Wilderness"
@@ -8586,6 +8969,9 @@ iron_mace:
   weight: 1.814
   slash: -2.0
   crush: 9.0
+  smithing:
+    level: 17
+    xp: 25.0
   slot: "Weapon"
   examine: "A spiky mace."
   kept: "Wilderness"
@@ -8600,6 +8986,9 @@ bronze_mace:
   weight: 1.814
   slash: -2.0
   crush: 6.0
+  smithing:
+    level: 2
+    xp: 12.5
   slot: "Weapon"
   examine: "A spiky mace."
   kept: "Wilderness"
@@ -8614,6 +9003,9 @@ steel_mace:
   weight: 0.01
   slash: -2.0
   crush: 13.0
+  smithing:
+    level: 32
+    xp: 37.5
   slot: "Weapon"
   examine: "A steel mace."
   kept: "Wilderness"
@@ -8641,6 +9033,9 @@ mithril_mace:
   weight: 0.01
   slash: -2.0
   crush: 18.0
+  smithing:
+    level: 52
+    xp: 50.0
   slot: "Weapon"
   examine: "A mithril mace."
 mithril_mace_noted: 1429
@@ -8654,6 +9049,9 @@ adamant_mace:
   weight: 0.01
   slash: -2.0
   crush: 25.0
+  smithing:
+    level: 72
+    xp: 62.5
   slot: "Weapon"
   examine: "An adamant mace."
 adamant_mace_noted: 1431
@@ -8667,6 +9065,9 @@ rune_mace:
   weight: 0.01
   slash: -2.0
   crush: 39.0
+  smithing:
+    level: 87
+    xp: 75.0
   slot: "Weapon"
   examine: "A rune mace."
 rune_mace_noted: 1433
@@ -9196,6 +9597,9 @@ steel_nails:
   id: 1539
   price: 34
   limit: 10000
+  smithing:
+    level: 34
+    xp: 37.5
   examine: "Keeps things in place fairly permanently."
 anti_dragon_shield:
   id: 1540
@@ -10489,6 +10893,9 @@ bronze_wire:
   price: 100
   limit: 100
   weight: 0.005
+  smithing:
+    level: 4
+    xp: 12.5
   examine: "Useful for crafting items."
 bronze_wire_noted: 1795
 silver_necklace:
@@ -12864,6 +13271,13 @@ bronze_bar:
   price: 74
   limit: 10000
   weight: 1.814
+  smelting:
+    level: 1
+    xp: 6.2
+    items:
+      - item: tin_ore
+      - item: copper_ore
+    message: "You smelt the copper and tin together in the furnace."
   examine: "It's a bar of bronze."
   kept: "Wilderness"
 bronze_bar_noted: 2350
@@ -12872,6 +13286,13 @@ iron_bar:
   price: 147
   limit: 10000
   weight: 1.814
+  smelting:
+    level: 15
+    xp: 12.5
+    items:
+      - item: iron_ore
+    chance: 128
+    message: "You smelt the iron in the furnace."
   examine: "It's a bar of iron."
   kept: "Wilderness"
 iron_bar_noted: 2352
@@ -12880,6 +13301,14 @@ steel_bar:
   price: 728
   limit: 10000
   weight: 1.814
+  smelting:
+    level: 30
+    xp: 17.5
+    items:
+      - item: iron_ore
+      - item: coal
+        amount: 2
+    message: "You place the iron and two heaps of coal into the furnace."
   examine: "It's a bar of steel."
 steel_bar_noted: 2354
 silver_bar:
@@ -12887,6 +13316,12 @@ silver_bar:
   price: 123
   limit: 10000
   weight: 1.814
+  smelting:
+    level: 20
+    xp: 13.7
+    items:
+      - item: silver_ore
+    message: "You place the silver into the furnace."
   examine: "It's a bar of silver."
 silver_bar_noted: 2356
 gold_bar:
@@ -12894,6 +13329,12 @@ gold_bar:
   price: 129
   limit: 10000
   weight: 1.814
+  smelting:
+    level: 40
+    xp: 22.5
+    items:
+      - item: gold_ore
+    message: "You place a lump of gold in the furnace."
   examine: "It's a bar of gold."
 gold_bar_noted: 2358
 mithril_bar:
@@ -12901,6 +13342,14 @@ mithril_bar:
   price: 1323
   limit: 10000
   weight: 1.586
+  smelting:
+    level: 50
+    xp: 30.0
+    items:
+      - item: mithril_ore
+      - item: coal
+        amount: 4
+    message: "You place the mithril and four heaps of coal into the furnace."
   examine: "It's a bar of mithril."
 mithril_bar_noted: 2360
 adamant_bar:
@@ -12908,6 +13357,15 @@ adamant_bar:
   price: 2465
   limit: 10000
   weight: 2.041
+  smelting:
+    level: 70
+    xp: 37.5
+    items:
+      - item: adamantite_ore
+      - item: coal
+        amount: 6
+    message: "You place the adamantite and six heaps of coal into the furnace."
+  aka: [ adamantite_bar ]
   examine: "It's a bar of adamant."
 adamant_bar_noted: 2362
 rune_bar:
@@ -12915,6 +13373,15 @@ rune_bar:
   price: 13000
   limit: 10000
   weight: 1.814
+  smelting:
+    level: 85
+    xp: 50.0
+    items:
+      - item: runite_ore
+      - item: coal
+        amount: 8
+    message: "You place the runite and six heaps of coal into the furnace."
+  aka: [ runite_bar ]
   examine: "It's a bar of rune."
 rune_bar_noted: 2364
 perfect_gold_bar:
@@ -12943,6 +13410,9 @@ steel_studs:
   price: 529
   limit: 5000
   weight: 1.36
+  smithing:
+    level: 36
+    xp: 37.5
   examine: "A set of studs for leather armour."
   kept: "Wilderness"
 steel_studs_noted: 2371
@@ -15557,6 +16027,14 @@ elemental_bar:
   id: 2893
   tradeable: false
   weight: 1.814
+  smelting:
+    level: 20
+    xp: 7.5
+    items:
+      - item: elemental_ore
+      - item: coal
+        amount: 4
+    message: "You place the elemental ore and four heaps of coal into the furnace."
   examine: "It's a bar of refined elemental ore."
   kept: "Wilderness"
 boots_grey:
@@ -16459,6 +16937,9 @@ bronze_claws:
   crush: -4.0
   slash_def: 2.0
   crush_def: 1.0
+  smithing:
+    level: 13
+    xp: 25.0
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A right-hand fighting claw. Melee weapon, requires Attack ."
@@ -16475,6 +16956,9 @@ iron_claws:
   crush: -4.0
   slash_def: 3.0
   crush_def: 1.0
+  smithing:
+    level: 28
+    xp: 50.0
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A right-hand fighting claw."
@@ -16490,6 +16974,9 @@ steel_claws:
   crush: -4.0
   slash_def: 6.0
   crush_def: 2.0
+  smithing:
+    level: 43
+    xp: 75.0
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pair of steel claws."
@@ -16520,6 +17007,9 @@ mithril_claws:
   crush: -4.0
   slash_def: 8.0
   crush_def: 2.0
+  smithing:
+    level: 63
+    xp: 100.0
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pair of mithril claws."
@@ -16528,6 +17018,9 @@ adamant_claws:
   price: 609
   limit: 100
   weight: 0.01
+  smithing:
+    level: 83
+    xp: 125.0
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pair of adamant claws."
@@ -16542,6 +17035,9 @@ rune_claws:
   crush: -4.0
   slash_def: 19.0
   crush_def: 5.0
+  smithing:
+    level: 98
+    xp: 150.0
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pair of rune claws."
@@ -23228,6 +23724,9 @@ oil_lantern_frame:
   price: 17
   limit: 100
   weight: 0.453
+  smithing:
+    level: 26
+    xp: 25.0
   examine: "Add the glass to complete."
 oil_lantern_frame_noted: 4541
 lantern_lens:
@@ -24660,11 +25159,17 @@ bronze_nails:
   id: 4819
   price: 10
   limit: 10000
+  smithing:
+    level: 4
+    xp: 12.5
   examine: "Keeps things in place fairly permanently."
 iron_nails:
   id: 4820
   price: 9
   limit: 10000
+  smithing:
+    level: 19
+    xp: 25.0
   examine: "Keeps things in place fairly permanently."
 black_nails:
   id: 4821
@@ -24675,16 +25180,25 @@ mithril_nails:
   id: 4822
   price: 51
   limit: 10000
+  smithing:
+    level: 54
+    xp: 50.0
   examine: "Keeps things in place fairly permanently."
 adamant_nails:
   id: 4823
   price: 76
   limit: 10000
+  smithing:
+    level: 74
+    xp: 62.5
   examine: "Keeps things in place fairly permanently."
 rune_nails:
   id: 4824
   price: 127
   limit: 10000
+  smithing:
+    level: 89
+    xp: 75.0
   examine: "Keeps things in place fairly permanently."
 unstrung_comp_bow:
   id: 4825
@@ -37142,6 +37656,9 @@ iron_spit:
   price: 13
   limit: 100
   weight: 1.5
+  smithing:
+    level: 17
+    xp: 25.0
   examine: "An easily-smithed iron spit."
   kept: "Wilderness"
 burnt_chompy:
@@ -46576,6 +47093,9 @@ bronze_bolts_unf:
   id: 9375
   price: 3
   limit: 10000
+  smithing:
+    level: 3
+    xp: 12.5
   examine: "Unfeathered bronze crossbow bolts."
 blurite_bolts_unf:
   id: 9376
@@ -46586,26 +47106,41 @@ iron_bolts_unf:
   id: 9377
   price: 12
   limit: 10000
+  smithing:
+    level: 18
+    xp: 25.0
   examine: "Unfeathered iron crossbow bolts."
 steel_bolts_unf:
   id: 9378
   price: 58
   limit: 10000
+  smithing:
+    level: 33
+    xp: 37.5
   examine: "Unfeathered steel crossbow bolts."
 mithril_bolts_unf:
   id: 9379
   price: 107
   limit: 10000
+  smithing:
+    level: 53
+    xp: 50.0
   examine: "Unfeathered mithril crossbow bolts."
 adamant_bolts_unf:
   id: 9380
   price: 223
   limit: 10000
+  smithing:
+    level: 73
+    xp: 62.5
   examine: "Unfeathered adamantite crossbow bolts."
 rune_bolts_unf:
   id: 9381
   price: 1283
   limit: 10000
+  smithing:
+    level: 88
+    xp: 75.0
   examine: "Unfeathered runite crossbow bolts."
 silver_bolts_unf:
   id: 9382
@@ -46621,6 +47156,9 @@ mithril_grapple_tip:
   price: 426
   limit: 100
   weight: 0.001
+  smithing:
+    level: 59
+    xp: 50.0
   examine: "A mithril grapple tip."
 mith_grapple_tip_noted: 9417
 mithril_grapple_unf:
@@ -46641,6 +47179,9 @@ bronze_limbs:
   price: 60
   limit: 5000
   weight: 1.0
+  smithing:
+    level: 6
+    xp: 12.5
   slot: "Shield"
   examine: "A pair of bronze crossbow limbs."
 bronze_limbs_noted: 9421
@@ -46656,6 +47197,9 @@ iron_limbs:
   price: 37
   limit: 5000
   weight: 1.0
+  smithing:
+    level: 23
+    xp: 25.0
   slot: "Shield"
   examine: "A pair of iron crossbow limbs."
 iron_limbs_noted: 9424
@@ -46664,6 +47208,9 @@ steel_limbs:
   price: 100
   limit: 5000
   weight: 2.0
+  smithing:
+    level: 36
+    xp: 37.5
   slot: "Shield"
   examine: "A pair of steel crossbow limbs."
 steel_limbs_noted: 9426
@@ -46672,6 +47219,9 @@ mithril_limbs:
   price: 356
   limit: 5000
   weight: 2.0
+  smithing:
+    level: 56
+    xp: 50.0
   slot: "Shield"
   examine: "A pair of mithril crossbow limbs."
 mithril_limbs_noted: 9428
@@ -46680,6 +47230,9 @@ adamant_limbs:
   price: 1445
   limit: 5000
   weight: 3.0
+  smithing:
+    level: 76
+    xp: 62.5
   slot: "Shield"
   examine: "A pair of adamantite crossbow limbs."
 adamantite_limbs_noted: 9430
@@ -46688,6 +47241,9 @@ rune_limbs:
   price: 9430
   limit: 5000
   weight: 3.0
+  smithing:
+    level: 91
+    xp: 75.0
   slot: "Shield"
   examine: "A pair of rune crossbow limbs."
 runite_limbs_noted: 9432
@@ -46844,6 +47400,12 @@ blurite_bar:
   id: 9467
   tradeable: false
   weight: 1.814
+  smelting:
+    level: 13
+    xp: 8.0
+    items:
+      - item: blurite_ore
+    message: "You place the blurite and four heaps of coal into the furnace."
   examine: "It's a bar of blurite."
   kept: "Wilderness"
 sawdust:
@@ -58291,6 +58853,9 @@ bronze_hasta:
   slash_def: -1.0
   crush_def: -1.0
   range_def: -1.0
+  smithing:
+    level: 5
+    xp: 25.0
   slot: "Weapon"
   examine: "A bronze-tipped, one-handed hasta."
 bronze_hasta_noted: 11368
@@ -58307,6 +58872,9 @@ iron_hasta:
   slash_def: -2.0
   crush_def: -2.0
   range_def: -2.0
+  smithing:
+    level: 20
+    xp: 50.0
   slot: "Weapon"
   examine: "An iron-tipped, one-handed hasta."
 iron_hasta_noted: 11370
@@ -58323,6 +58891,9 @@ steel_hasta:
   slash_def: -3.0
   crush_def: -3.0
   range_def: -3.0
+  smithing:
+    level: 35
+    xp: 75.0
   slot: "Weapon"
   examine: "A steel-tipped, one-handed hasta."
 steel_hasta_noted: 11372
@@ -58339,6 +58910,9 @@ mithril_hasta:
   slash_def: -5.0
   crush_def: -4.0
   range_def: -5.0
+  smithing:
+    level: 55
+    xp: 100.0
   slot: "Weapon"
   examine: "A mithril-tipped, one-handed hasta."
 mithril_hasta_noted: 11374
@@ -58355,6 +58929,9 @@ adamant_hasta:
   slash_def: -7.0
   crush_def: -5.0
   range_def: -6.0
+  smithing:
+    level: 75
+    xp: 125.0
   slot: "Weapon"
   examine: "An adamant-tipped, one-handed hasta."
 adamant_hasta_noted: 11376
@@ -58371,6 +58948,9 @@ rune_hasta:
   slash_def: -10.0
   crush_def: -9.0
   range_def: -10.0
+  smithing:
+    level: 90
+    xp: 150.0
   slot: "Weapon"
   examine: "A rune-tipped, one-handed hasta."
 rune_hasta_noted: 11378

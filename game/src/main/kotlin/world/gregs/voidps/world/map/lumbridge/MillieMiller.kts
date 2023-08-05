@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Unsure
@@ -23,7 +24,7 @@ on<NPCOption>({ operate && target.id == "millie_miller" && option == "Talk-to" }
 
 suspend fun CharacterContext.menu() {
     choice {
-        option("I'm looking for extra fine flour.", { player["cooks_assistant", "unstarted"] == "started" && !player.hasItem("extra_fine_flour") }) {
+        option("I'm looking for extra fine flour.", { player.quest("cooks_assistant") == "started" && !player.hasItem("extra_fine_flour") }) {
             npc<Unsure>("What's wrong with ordinary flour?")
             player<Talk>("""
                     Well, I'm no expert chef, but apparently it makes better

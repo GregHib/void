@@ -32,6 +32,7 @@ import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.activity.quest.DemonSlayerSpell.getWord
 import world.gregs.voidps.world.activity.quest.DemonSlayerSpell.randomiseOrder
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.startCutscene
 import world.gregs.voidps.world.activity.quest.stopCutscene
 import world.gregs.voidps.world.interact.dialogue.*
@@ -44,7 +45,7 @@ import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 on<NPCOption>({ operate && target.id == "gypsy_aris" && option == "Talk-to" }) { player: Player ->
-    when (player["demon_slayer", "unstarted"]) {
+    when (player.quest("demon_slayer")) {
         "unstarted" -> {
             npc<Talk>("Hello, young one.")
             npc<Talk>("""

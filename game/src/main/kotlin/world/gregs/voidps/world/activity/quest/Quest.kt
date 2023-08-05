@@ -5,9 +5,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 
-fun Player.completed(name: String): Boolean = false
-
-fun Player.started(name: String): Boolean = false
+fun Player.quest(name: String): String = this[name, "unstarted"]
 
 fun Player.refreshQuestJournal() {
     sendScript(2165)

@@ -3,6 +3,7 @@ package world.gregs.voidps.world.map.varrock.palace
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Laugh
 import world.gregs.voidps.world.interact.dialogue.Suspicious
 import world.gregs.voidps.world.interact.dialogue.Talking
@@ -46,7 +47,7 @@ suspend fun PlayerChoice.whatDoYouDo() = option<Unsure>("What do you do?") {
 suspend fun PlayerChoice.aboutImcandoDwarves() = option<Unsure>(
     "What do you know about the Imcando dwarves?",
     {
-        val stage = player["the_knights_sword", "unstarted"]
+        val stage = player.quest("the_knights_sword")
         stage == "started" || stage == "find_thurgo"
     }
 ) {
@@ -72,7 +73,7 @@ suspend fun PlayerChoice.aboutImcandoDwarves() = option<Unsure>(
         tell people they're descendants of the Imcando, which is 
         why people think the tribe is extinct. However...
     """)
-    if (player["the_knights_sword", "unstarted"] == "started") {
+    if (player.quest("the_knights_sword") == "started") {
         player["the_knights_sword"] = "find_thurgo"
     }
     npc<Suspicious>("""

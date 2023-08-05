@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.data.Fire
 import world.gregs.voidps.engine.entity.character.CharacterContext
-import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -41,14 +40,6 @@ val objects: GameObjects by inject()
 on<ItemOnItem>({ either { from, to -> from.lighter && to.burnable } }) { player: Player ->
     val log = if (toItem.burnable) toItem else fromItem
     val logSlot = if (toItem.burnable) toSlot else fromSlot
-    if (objects.getLayer(player.tile, ObjectLayer.GROUND) != null) {
-        player.message("You can't light a fire here.")
-        player.clearAnimation()
-        return@on
-    }
-    if (player.remaining("skill_delay") >= 1) {
-        return@on
-    }
     player.closeDialogue()
     player.queue.clearWeak()
     if (player.inventory[logSlot].id == log.id && player.inventory.clear(logSlot)) {
@@ -75,9 +66,6 @@ suspend fun CharacterContext.lightFire(
         return
     }
     player.softTimers.start("firemaking")
-    onCancel = {
-        player.softTimers.stop("firemaking")
-    }
     val log = Item(floorItem.id)
     val fire: Fire = log.def.getOrNull("firemaking") ?: return
     var first = true
@@ -105,6 +93,7 @@ suspend fun CharacterContext.lightFire(
         }
     }
     player.start("skill_delay", 1)
+    player.softTimers.stop("firemaking")
 }
 
 fun Player.canLight(log: String, fire: Fire, item: FloorItem): Boolean {

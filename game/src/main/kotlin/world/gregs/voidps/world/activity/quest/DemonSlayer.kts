@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.inventory
 
 on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemSlot == 2 }) { player: Player ->
-    val lines = when (player["demon_slayer", "unstarted"]) {
+    val lines = when (player.quest("demon_slayer")) {
         "unstarted" -> listOf(
             "<navy>I can start this quest by speaking to the <maroon>Gypsy<navy> in the <maroon>tent",
             "<navy>in <maroon>Varrock's main square.",
@@ -27,7 +27,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             } else {
                 list.add("")
                 list.add("<navy>To defeat the <maroon>demon<navy> I need the magical sword <maroon>Silverlight<navy>.")
-                if (player["demon_slayer", "unstarted"] == "sir_prysin") {
+                if (player.quest("demon_slayer") == "sir_prysin") {
                     list.add("<navy>I should ask <maroon>Sir Prysin<navy> in <maroon>Varrock Palace<navy> where it is.")
                 } else {
                     val prysin = player.inventory.contains("silverlight_key_sir_prysin")
