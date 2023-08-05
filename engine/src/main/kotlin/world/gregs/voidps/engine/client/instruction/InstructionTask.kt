@@ -36,7 +36,9 @@ class InstructionTask(
         players.forEach { player ->
             val instructions = player.instructions
             for (instruction in instructions.replayCache) {
-                logger.debug { "${player.accountName} ${player.tile} - $instruction" }
+                if (player["debug", false]) {
+                    logger.debug { "${player.accountName} ${player.tile} - $instruction" }
+                }
                 try {
                     handlers.handle(player, instruction)
                 } catch (e: Throwable) {
