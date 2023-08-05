@@ -20,6 +20,12 @@ fun oreToBar(ore: String): String {
     if (ore == "copper_ore" || ore == "tin_ore") {
         return "bronze_bar"
     }
+    if (ore == "adamantite_ore") {
+        return "adamant_bar"
+    }
+    if (ore == "runite_ore") {
+        return "rune_bar"
+    }
     return ore.replace("_ore", "_bar")
 }
 
