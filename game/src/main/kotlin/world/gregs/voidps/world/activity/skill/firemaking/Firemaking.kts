@@ -75,9 +75,6 @@ suspend fun CharacterContext.lightFire(
         return
     }
     player.softTimers.start("firemaking")
-    onCancel = {
-        player.softTimers.stop("firemaking")
-    }
     val log = Item(floorItem.id)
     val fire: Fire = log.def.getOrNull("firemaking") ?: return
     var first = true
@@ -105,6 +102,7 @@ suspend fun CharacterContext.lightFire(
         }
     }
     player.start("skill_delay", 1)
+    player.softTimers.stop("firemaking")
 }
 
 fun Player.canLight(log: String, fire: Fire, item: FloorItem): Boolean {

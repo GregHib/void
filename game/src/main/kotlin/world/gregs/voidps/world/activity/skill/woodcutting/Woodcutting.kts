@@ -50,9 +50,6 @@ on<ObjectOption>({ operate && def.has("woodcutting") && (option == "Chop down" |
     arriveDelay()
     player.closeDialogue()
     player.softTimers.start("woodcutting")
-    onCancel = {
-        player.softTimers.stop("woodcutting")
-    }
     val ivy = tree.log.isEmpty()
     var first = true
     while (awaitDialogues()) {
@@ -96,6 +93,7 @@ on<ObjectOption>({ operate && def.has("woodcutting") && (option == "Chop down" |
         }
         player.stop("skill_delay")
     }
+    player.softTimers.stop("woodcutting")
 }
 
 val hatchets = listOf(

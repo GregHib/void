@@ -46,10 +46,6 @@ on<NPCOption>({ operate && def.has("fishing") }) { player: Player ->
     arriveDelay()
     target.getOrPut("fishers") { mutableSetOf<Player>() }.add(player)
     player.softTimers.start("fishing")
-    onCancel = {
-        target.get<MutableSet<Player>>("fishers").remove(player)
-        player.softTimers.stop("fishing")
-    }
     player.closeDialogue()
     var first = true
     fishing@ while (true) {
@@ -104,6 +100,8 @@ on<NPCOption>({ operate && def.has("fishing") }) { player: Player ->
         }
         player.stop("skill_delay")
     }
+    target.get<MutableSet<Player>>("fishers").remove(player)
+    player.softTimers.stop("fishing")
 }
 
 fun addCatch(player: Player, catch: String) {
