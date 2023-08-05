@@ -143,7 +143,7 @@ class Interact(
         return false
     }
 
-    private fun interactionFinished() = character.suspension == null
+    private fun interactionFinished() = character.suspension == null && !character.hasClock("delay")
 
     private fun clear() {
         if (character.suspension != null) {
