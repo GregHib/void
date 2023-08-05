@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import kotlin.random.Random
@@ -49,7 +48,12 @@ on<ObjectOption>({ operate && target.id.startsWith("furnace") && option == "Smel
 }
 
 on<ItemOnObject>({ operate && target.id.startsWith("furnace") && item.id.endsWith("_ore") }) { player: Player ->
-    smeltingOptions(player, target, listOf(item.id.replace("_ore", "_bar")))
+    val list = mutableListOf<String>()
+    list.add(oreToBar(item.id))
+    if (item.id == "iron_ore" && player.inventory.contains("coal")) {
+        list.add("steel_bar")
+    }
+    smeltingOptions(player, target, list)
 }
 
 suspend fun CharacterContext.smeltingOptions(
@@ -57,7 +61,7 @@ suspend fun CharacterContext.smeltingOptions(
     gameObject: GameObject,
     bars: List<String>
 ) {
-    player["face_entity"] = getSide(player, gameObject)
+    player["face_entity"] = furnaceSide(player, gameObject)
     val available = mutableListOf<String>()
     var max = 0
     for (bar in bars) {
@@ -71,7 +75,9 @@ suspend fun CharacterContext.smeltingOptions(
             max = min
         }
     }
+    player.softTimers.start("smelting")
     if (available.isEmpty()) {
+        player.softTimers.stop("smelting")
         player.message("You don't have any ores to smelt.")
         return
     }
@@ -81,15 +87,17 @@ suspend fun CharacterContext.smeltingOptions(
 
 fun smelt(player: Player, target: GameObject, id: String, amount: Int) {
     if (amount <= 0) {
+        player.softTimers.stop("smelting")
         return
     }
 
     val definition = itemDefinitions.get(id)
     val smelting: Smelting = definition["smelting"]
     if (!player.has(Skill.Smithing, smelting.level, message = true)) {
+        player.softTimers.stop("smelting")
         return
     }
-    player.face(getSide(player, target))
+    player.face(furnaceSide(player, target))
     player.setAnimation("furnace_smelt")
     player.playSound("smelt_bar")
     player.message(smelting.message, ChatType.Filter)
@@ -153,18 +161,4 @@ fun varrockArmour(
         return true
     }
     return false
-}
-
-fun getSide(player: Player, target: GameObject): Tile {
-   return if (player.tile.x > target.tile.x + target.width) {
-        target.tile.add(target.width, target.height / 2)
-    } else if (player.tile.y > target.tile.y + target.height) {
-        target.tile.add(target.width / 2, target.height)
-    } else if (player.tile.x < target.tile.x) {
-        target.tile.addY(target.height / 2)
-    } else if (player.tile.y < target.tile.y) {
-        target.tile.addX(target.width / 2)
-    } else {
-        target.tile.add(target.width / 2, target.height / 2)
-    }
 }

@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.arriveDelay
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.dialogue.type.statement
@@ -42,7 +41,7 @@ fun smelt(player: Player, target: GameObject, id: String, amount: Int) {
     if (!player.has(Skill.Smithing, 35, message = true)) {
         return
     }
-    player.face(getSide(player, target))
+    player.face(furnaceSide(player, target))
     player.setAnimation("furnace_smelt")
     player.playSound("smelt_bar")
     player.message("You heat the steel bar into a liquid state.", ChatType.Filter)
@@ -69,19 +68,5 @@ fun smelt(player: Player, target: GameObject, id: String, amount: Int) {
                 else -> logger.warn { "Cannonball transaction error $player $id $amount ${player.inventory.transaction.error}" }
             }
         }
-    }
-}
-
-fun getSide(player: Player, target: GameObject): Tile {
-    return if (player.tile.x > target.tile.x + target.width) {
-        target.tile.add(target.width, target.height / 2)
-    } else if (player.tile.y > target.tile.y + target.height) {
-        target.tile.add(target.width / 2, target.height)
-    } else if (player.tile.x < target.tile.x) {
-        target.tile.addY(target.height / 2)
-    } else if (player.tile.y < target.tile.y) {
-        target.tile.addX(target.width / 2)
-    } else {
-        target.tile.add(target.width / 2, target.height / 2)
     }
 }

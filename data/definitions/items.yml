@@ -2214,6 +2214,7 @@ adamantite_ore:
   mining:
     xp: 95.0
     chance: 5-55
+  aka: [ adamant_ore ]
   examine: "This needs refining."
 adamantite_ore_noted: 450
 runite_ore:
@@ -2224,6 +2225,7 @@ runite_ore:
   mining:
     xp: 125.0
     chance: 1-18
+  aka: [ rune_ore ]
   examine: "This needs refining."
 runite_ore_noted: 452
 coal:

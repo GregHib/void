@@ -37,8 +37,11 @@ fun Bot.getGear(skill: Skill): GearDefinition? {
         Skill.Attack, Skill.Strength, Skill.Defence -> "melee"
         else -> skill.name.lowercase()
     }
+    return getGear(style, skill)
+}
 
-    val setups = get<GearDefinitions>().get(style)
+fun Bot.getGear(type: String, skill: Skill): GearDefinition? {
+    val setups = get<GearDefinitions>().get(type)
     val level = player.levels.getMax(skill)
     return setups
         .filter { it.levels.contains(level) }
@@ -71,6 +74,14 @@ private fun Player.gearScore(definition: GearDefinition): Double {
 
 fun Bot.hasExactGear(skill: Skill): Boolean {
     val gear = getGear(skill)
+    if (gear != null) {
+        return hasExactGear(gear)
+    }
+    return false
+}
+
+fun Bot.hasExactGear(type: String, skill: Skill): Boolean {
+    val gear = getGear(type, skill)
     if (gear != null) {
         return hasExactGear(gear)
     }
