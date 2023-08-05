@@ -1,5 +1,6 @@
 package world.gregs.voidps.bot.navigation
 
+import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.withTimeoutOrNull
 import world.gregs.voidps.bot.Bot
 import world.gregs.voidps.bot.navigation.graph.Edge
@@ -20,6 +21,8 @@ import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.network.instruct.Walk
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.entity.player.energy.energyPercent
+
+private val logger = InlineLogger()
 
 suspend fun Bot.goToNearest(tag: String) = goToNearest { it.tags.contains(tag) }
 
@@ -110,12 +113,15 @@ private suspend fun Bot.navigate() {
             }
             this.step = step
             player.instructions.emit(step)
-            withTimeoutOrNull(TICKS.toMillis(20)) {
+            val timeout = withTimeoutOrNull(TICKS.toMillis(20)) {
                 if (step is InteractObject && get<GameObjects>()[player.tile.copy(step.x, step.y), step.objectId] == null) {
                     await("tick")
                 } else {
                     await("move")
                 }
+            }
+            if (timeout == null && player["debug", false]) {
+                logger.debug { "Bot $player got stuck at $step $waypoint" }
             }
         }
         waypoints.remove()
