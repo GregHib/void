@@ -47,7 +47,7 @@ val types = listOf(
     "knife",
     "full_helm",
     "sq_shield",
-    "grapple_unf",
+    "grapple_tip",
     "warhammer",
     "battleaxe",
     "chainbody",

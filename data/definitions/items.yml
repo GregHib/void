@@ -25188,6 +25188,9 @@ adamant_nails:
   id: 4823
   price: 76
   limit: 10000
+  smithing:
+    level: 74
+    xp: 62.5
   examine: "Keeps things in place fairly permanently."
 rune_nails:
   id: 4824
@@ -47127,11 +47130,17 @@ adamant_bolts_unf:
   id: 9380
   price: 223
   limit: 10000
+  smithing:
+    level: 73
+    xp: 62.5
   examine: "Unfeathered adamantite crossbow bolts."
 rune_bolts_unf:
   id: 9381
   price: 1283
   limit: 10000
+  smithing:
+    level: 88
+    xp: 75.0
   examine: "Unfeathered runite crossbow bolts."
 silver_bolts_unf:
   id: 9382
@@ -47147,6 +47156,9 @@ mithril_grapple_tip:
   price: 426
   limit: 100
   weight: 0.001
+  smithing:
+    level: 59
+    xp: 50.0
   examine: "A mithril grapple tip."
 mith_grapple_tip_noted: 9417
 mithril_grapple_unf:
@@ -47218,6 +47230,9 @@ adamant_limbs:
   price: 1445
   limit: 5000
   weight: 3.0
+  smithing:
+    level: 76
+    xp: 62.5
   slot: "Shield"
   examine: "A pair of adamantite crossbow limbs."
 adamantite_limbs_noted: 9430
@@ -47226,6 +47241,9 @@ rune_limbs:
   price: 9430
   limit: 5000
   weight: 3.0
+  smithing:
+    level: 91
+    xp: 75.0
   slot: "Shield"
   examine: "A pair of rune crossbow limbs."
 runite_limbs_noted: 9432

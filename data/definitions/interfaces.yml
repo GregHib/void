@@ -947,13 +947,13 @@ smithing:
     lantern_5: 167
     lantern_1: 168
     grapple: 169
-    grapple_unf: 170
-    grapple_unf_name: 171
-    grapple_unf_bar: 172
-    grapple_unf_all: 173
-    grapple_unf_x: 174
-    grapple_unf_5: 175
-    grapple_unf_1: 176
+    grapple_tip: 170
+    grapple_tip_name: 171
+    grapple_tip_bar: 172
+    grapple_tip_all: 173
+    grapple_tip_x: 174
+    grapple_tip_5: 175
+    grapple_tip_1: 176
     warhammer:
       id: 178
       bars: 3
