@@ -8,12 +8,12 @@ import world.gregs.voidps.bot.navigation.cancel
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -51,7 +51,7 @@ on<World, Registered> {
                 train(area, skill, range)
             },
             area = area.area,
-            spaces = if (melee) 3 else 1,
+            spaces = if (melee) 3 else 2,
             requirements = listOf(
                 { if (melee) melees.any { player.levels.getMax(it) in range } else player.levels.getMax(skill) in range },
                 { canGetGearAndAmmo(skill) }
@@ -94,7 +94,9 @@ suspend fun Bot.train(map: AreaDefinition, skill: Skill, range: IntRange) {
             await("tick")
         } else if (target is NPC) {
             npcOption(target, "Attack")
-            await<Player, VariableSet> { key == "under_attack" }
+            while (player.mode is CombatMovement) {
+                await("tick")
+            }
             await("tick")
         }
     }
