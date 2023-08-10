@@ -25,11 +25,11 @@ val logger = InlineLogger()
 
 on<InterfaceOption>({ id == "trade_main" && component == "accept" && option == "Accept" }) { player: Player ->
     val partner = getPartner(player) ?: return@on
-    if (player.offer.count - partner.offer.count > partner.inventory.spaces) {
+    if (player.offer.count + player.loan.count > partner.inventory.spaces) {
         player.message("Other player doesn't have enough inventory space to accept this trade.")
         return@on
     }
-    if (partner.offer.count - player.offer.count > player.inventory.spaces) {
+    if (partner.offer.count + partner.loan.count > player.inventory.spaces) {
         player.message("You don't have enough inventory space to accept this trade.")
         return@on
     }
@@ -70,8 +70,8 @@ on<InterfaceOption>({ id == "trade_confirm" && component == "accept" && option =
             requester.closeMenu()
             return@request
         }
-        loanItem(requester, requesterLoan, acceptor)
-        loanItem(acceptor, acceptorLoan, requester)
+        loanItem(requester, acceptorLoan, acceptor)
+        loanItem(acceptor, requesterLoan, requester)
         requester.closeMenu()
     }
 }
@@ -86,14 +86,14 @@ fun loanItem(player: Player, loanItem: Item, other: Player) {
 
 fun sendLoan(player: Player) {
     sendLoan(player, player.loan, "lend_time", "lend")
-    sendLoan(player, player.otherLoan, "other_lend_time", "loan")
+    sendLoan(player, player.otherLoan, "other_lend_time", "other_lend")
 }
 
 fun sendLoan(player: Player, inventory: Inventory, key: String, prefix: String) {
     val lend = inventory.isFull()
     player.interfaces.sendVisibility("trade_confirm", "${prefix}_container", lend)
     if (lend) {
-        val time = if (player[key, -1] == -1) "until logout" else "${player[key, -1]} hours"
+        val time = if (player[key, -1] <= 0) "until logout" else "${player[key, -1]} hours"
         val description = "Lend: ${Colours.white.toTag()} ${inventory[0].def.name}, $time"
         player.interfaces.sendText("trade_confirm", "${prefix}_text", description)
     }

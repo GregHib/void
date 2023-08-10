@@ -1155,8 +1155,8 @@ trade_confirm:
     receive_right: 43
     lend_container: 40
     lend_text: 2
-    loan_container: 44
-    loan_text: 1
+    other_lend_container: 44
+    other_lend_text: 1
 trade_main:
   id: 335
   type: main_screen
