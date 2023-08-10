@@ -49,6 +49,8 @@ on<InterfaceOption>({ id == "trade_confirm" && component == "accept" && option =
     player.interfaces.sendText("trade_confirm", "status", "Waiting for other player...")
     partner.interfaces.sendText("trade_confirm", "status", "Other player has accepted.")
     player.request(partner, "confirm_trade") { requester, acceptor ->
+        val requesterLoan = requester.loan[0]
+        val acceptorLoan = acceptor.loan[0]
         val success = acceptor.offer.transaction {
             moveAll(requester.inventory)
             link(requester.offer).moveAll(acceptor.inventory)
@@ -60,17 +62,16 @@ on<InterfaceOption>({ id == "trade_confirm" && component == "accept" && option =
             requester.closeMenu()
             return@request
         }
-        loanItem(requester, acceptor)
-        loanItem(acceptor, requester)
+        loanItem(requester, requesterLoan, acceptor)
+        loanItem(acceptor, acceptorLoan, requester)
         requester.closeMenu()
     }
 }
 
-fun loanItem(player: Player, other: Player) {
-    val loanItem = other.returnedItems[0].id
+fun loanItem(player: Player, loanItem: Item, other: Player) {
     val duration = other["lend_time", -1]
-    if (loanItem.isBlank() || duration == -1) {
+    if (loanItem.id.isBlank() || duration == -1) {
         return
     }
-    Loan.lendItem(player, other, loanItem, duration)
+    Loan.lendItem(player, other, loanItem.id, duration)
 }
