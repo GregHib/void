@@ -68,6 +68,7 @@ object Loan {
         val def = definitions.get(item)
         val lend = definitions.get(def.lendId).stringId
         if (!borrower.inventory.add(lend)) {
+            logger.error { "Unable to add $lender's loan $item for $duration to $borrower" }
             return
         }
         if (duration > 0) {
