@@ -411,7 +411,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
                             val temp = Inventory.debug(capacity = 40)
                             val list = InventoryDelegate(temp)
                             for (i in 0L until if (it == sections) count.rem(divisor) else divisor) {
-                                table.role(list = list)
+                                table.role(list = list, members = true)
                             }
                             temp
                         }

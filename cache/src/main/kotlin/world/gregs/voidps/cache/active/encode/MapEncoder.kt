@@ -44,7 +44,6 @@ class MapEncoder(
             val regionZoneX = region.tile.zone.x
             val regionZoneY = region.tile.zone.y
             empty = true
-            val emptyLevels = BooleanArray(4) { true }
             for (level in 0 until 4) {
                 for (localX in 0 until 8) {
                     for (localY in 0 until 8) {
@@ -52,6 +51,7 @@ class MapEncoder(
                     }
                 }
             }
+            val emptyLevels = BooleanArray(4) { true }
             for (level in 0 until 4) {
                 for (localX in 0 until 64) {
                     for (localY in 0 until 64) {

@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Catch
 import world.gregs.voidps.engine.data.definition.data.Spot
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -31,6 +32,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
+import kotlin.random.Random
 
 val logger = InlineLogger()
 val itemDefinitions: ItemDefinitions by inject()
@@ -105,12 +107,26 @@ on<NPCOption>({ operate && def.has("fishing") }) { player: Player ->
 }
 
 fun addCatch(player: Player, catch: String) {
-    player.inventory.add(catch)
-    when (player.inventory.transaction.error) {
-        TransactionError.None -> player.message("You catch some ${catch.toLowerSpaceCase()}.", ChatType.Filter)
-        is TransactionError.Full -> player.inventoryFull()
-        else -> logger.warn { "Error adding fish $catch ${player.inventory.transaction.error}" }
+    var fish = catch
+    var message = "You catch some ${fish.toLowerSpaceCase()}."
+    if (bigCatch(fish)) {
+        fish = fish.replace("raw_", "big_")
+        message = "You catch an enormous ${catch.toLowerSpaceCase()}!"
     }
+    player.inventory.add(fish)
+    when (player.inventory.transaction.error) {
+        TransactionError.None -> player.message(message, ChatType.Filter)
+        is TransactionError.Full -> player.inventoryFull()
+        else -> logger.warn { "Error adding fish $fish ${player.inventory.transaction.error}" }
+    }
+}
+
+fun bigCatch(catch: String): Boolean = when {
+    World.members -> false
+    catch == "raw_bass" && Random.nextInt(1000) == 0 -> true
+    catch == "raw_swordfish" && Random.nextInt(2500) == 0 -> true
+    catch == "raw_shark" && Random.nextInt(5000) == 0 -> true
+    else -> false
 }
 
 val NPC.spot: Map<String, Spot>

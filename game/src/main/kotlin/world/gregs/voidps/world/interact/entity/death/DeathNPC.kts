@@ -87,10 +87,13 @@ fun dropLoot(npc: NPC, killer: Character?, name: String, tile: Tile) {
         }
     }
     val combatLevel = if (killer is Player) killer.combatLevel else if (killer is NPC) killer.def.combat else -1
-    val drops = table.role(maximumRoll = if (combatLevel > 0) combatLevel * 10 else -1)
+    val drops = table.role(maximumRoll = if (combatLevel > 0) combatLevel * 10 else -1, members = World.members)
         .filterNot { it.id == "nothing" }
         .reversed()
         .map { it.toItem() }
+        .filter { World.members || !it.def.members }
+        .toMutableList()
+    npc.events.emit(DropItems(killer, drops))
     if (npc.inMultiCombat && killer is Player && killer["loot_share", false]) {
         shareLoot(killer, npc, tile, drops)
     } else {

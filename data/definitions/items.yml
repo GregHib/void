@@ -41676,10 +41676,6 @@ big_bass:
   id: 7989
   tradeable: false
   weight: 0.4
-  fishing:
-    level: 46
-    xp: 100.0
-    chance: 2-3
   examine: "Whopper! I should get this stuffed!"
   kept: "Reclaim"
 big_bass_stuffed:

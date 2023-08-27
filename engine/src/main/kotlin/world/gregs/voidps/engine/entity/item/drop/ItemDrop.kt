@@ -8,6 +8,7 @@ data class ItemDrop(
     val id: String,
     val amount: IntRange,
     val chance: Int = 1,
+    val members: Boolean = false
 ) : Drop {
 
     init {

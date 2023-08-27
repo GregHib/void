@@ -1,11 +1,10 @@
 package world.gregs.voidps.tools.convert
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
-import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.engine.entity.item.drop.DropTable
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
+import world.gregs.yaml.Yaml
+import world.gregs.yaml.write.YamlWriterConfiguration
 
 object DropTableConverter {
 
@@ -35,14 +34,26 @@ object DropTableConverter {
             }
         }
 
-        val mapper = ObjectMapper(YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER).apply {
-            enable(YAMLGenerator.Feature.MINIMIZE_QUOTES)
-            disable(YAMLGenerator.Feature.SPLIT_LINES)
-        })
+        val writer = object : YamlWriterConfiguration() {
+            override fun write(value: Any?, indent: Int, parentMap: String?): Any? {
+                return when (value) {
+                    is ItemDrop -> {
+                        val map = mutableMapOf("id" to value.id, "amount" to value.amount.toString(), "chance" to value.chance)
+                        if (value.members) {
+                            map["members"] = true
+                        }
+                        super.write(map, indent, parentMap)
+                    }
+                    is DropTable -> super.write(mapOf("type" to value.type, "roll" to value.roll, "drops" to value.drops), indent, parentMap)
+                    else -> super.write(value, indent, parentMap)
+                }
+            }
+        }
+        val mapper = Yaml()
 
         val table = builder.build()
 
-        println(mapper.writeValueAsString(mapOf(name to table)))
+        println(mapper.writeToString(mapOf(name to table), writer))
     }
 
     fun process(builder: DropTable.Builder, string: String) {
@@ -50,15 +61,17 @@ object DropTableConverter {
 
         val map = mutableMapOf<String, String>()
         for (i in 0 until parts.lastIndex step 2) {
-            map[parts[i]] = parts[i + 1].removeSuffix("}}")
+            map[parts[i].lowercase()] = parts[i + 1].removeSuffix("}}").removePrefix("{{")
         }
 
-        assert(map.containsKey("Name"))
-        assert(map.containsKey("Rarity"))
+        assert(map.containsKey("name"))
+        assert(map.containsKey("rarity"))
 
-        var id = toIdentifier(map.getValue("Name"))
-        val quantity = map["Quantity"] ?: "0"
-        val rarity = map.getValue("Rarity")
+        println(map)
+        var id = toIdentifier(map.getValue("name"))
+        val members = toIdentifier(map.getOrDefault("namenotes", "")) == "m"
+        val quantity = map["quantity"] ?: "0"
+        val rarity = map.getValue("rarity")
         val (chance, total) = if (rarity.contains("/")) {
             rarity.split("/")
         } else {
@@ -86,6 +99,6 @@ object DropTableConverter {
             listOf(amount, amount)
         }
         builder.withRoll(total.toInt())
-        builder.addDrop(ItemDrop(id, low.toInt()..high.toInt(), chance.toInt()))
+        builder.addDrop(ItemDrop(id, low.toInt()..high.toInt(), chance.toInt(), members))
     }
 }
