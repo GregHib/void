@@ -80,13 +80,13 @@ class MapDefinitions(
     private fun readEmptyTiles(reader: BufferReader) {
         for (i in 0 until reader.readInt()) {
             val regionLevel = RegionLevel(reader.readInt())
-            val regionX = regionLevel.x
-            val regionY = regionLevel.y
+            val regionTileX = regionLevel.tile.x
+            val regionTileY = regionLevel.tile.y
             val level = regionLevel.level
-            for (zoneX in 0 until 64 step 8) {
-                for (zoneY in 0 until 64 step 8) {
-                    val x = regionX + zoneX
-                    val y = regionY + zoneY
+            for (zoneTileX in 0 until 64 step 8) {
+                for (zoneTileY in 0 until 64 step 8) {
+                    val x = regionTileX + zoneTileX
+                    val y = regionTileY + zoneTileY
                     collisions.allocateIfAbsent(x, y, level)
                 }
             }
