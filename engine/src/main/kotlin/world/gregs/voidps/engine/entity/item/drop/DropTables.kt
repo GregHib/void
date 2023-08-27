@@ -29,7 +29,12 @@ class DropTables {
                         val drops = value["drops"] as List<Drop>
                         DropTable(type, roll, drops)
                     } else {
-                        ItemDrop(value["id"] as String, value["amount"] as? IntRange ?: defaultAmount, value["chance"] as? Int ?: 1)
+                        ItemDrop(
+                            id = value["id"] as String,
+                            amount = value["amount"] as? IntRange ?: defaultAmount,
+                            chance = value["chance"] as? Int ?: 1,
+                            members = value["members"] as? Boolean ?: false,
+                        )
                     }, parentMap)
                 }
 

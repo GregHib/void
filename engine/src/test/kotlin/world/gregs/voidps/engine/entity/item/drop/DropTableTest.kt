@@ -27,7 +27,7 @@ internal class DropTableTest {
         val root = DropTable(TableType.All, -1, listOf(item1, item2))
 
         val list = mutableListOf<ItemDrop>()
-        root.collect(list, -1, -1)
+        root.collect(list, -1, false, -1)
 
         assertTrue(list.contains(item1))
         assertTrue(list.contains(item2))
@@ -35,14 +35,14 @@ internal class DropTableTest {
 
     @Test
     fun `Roll first item in table of tables`() {
-        val item1 = drop("1", 1)
-        val item2 = drop("2", 1)
+        val item1 = drop("1", 1, true)
+        val item2 = drop("2", 1, false)
         val subTable1 = DropTable(TableType.All, 1, listOf(item1))
         val subTable2 = DropTable(TableType.All, 1, listOf(item2))
         val root = DropTable(TableType.First, -1, listOf(subTable1, subTable2))
 
         val list = mutableListOf<ItemDrop>()
-        root.collect(list, -1, -1)
+        root.collect(list, -1, true, -1)
 
         assertTrue(list.contains(item1))
         assertFalse(list.contains(item2))
@@ -57,7 +57,7 @@ internal class DropTableTest {
         val root = DropTable(TableType.All, -1, listOf(subTable1, subTable2))
 
         val list = mutableListOf<ItemDrop>()
-        root.collect(list, -1, -1)
+        root.collect(list, -1, false, -1)
 
         assertTrue(list.contains(item1))
         assertTrue(list.contains(item2))
@@ -69,10 +69,23 @@ internal class DropTableTest {
         val table = DropTable(TableType.First, -1, listOf(item1))
 
         val list = mutableListOf<ItemDrop>()
-        table.collect(list, -1, 100)
+        table.collect(list, -1, false, 100)
 
         assertFalse(list.contains(item1))
     }
 
-    private fun drop(id: String, chance: Int): ItemDrop = ItemDrop(id, 1..1, chance)
+    @Test
+    fun `Don't roll members drops in non-members world`() {
+        val item1 = drop("1", 1, members = false)
+        val item2 = drop("2", 1, members = true)
+        val root = DropTable(TableType.All, -1, listOf(item1, item2))
+
+        val list = mutableListOf<ItemDrop>()
+        root.collect(list, -1, false, -1)
+
+        assertTrue(list.contains(item1))
+        assertFalse(list.contains(item2))
+    }
+
+    private fun drop(id: String, chance: Int, members: Boolean = false): ItemDrop = ItemDrop(id, 1..1, chance, members)
 }

@@ -17,8 +17,8 @@ data class DropTable(
     val drops: List<Drop>
 ) : Drop {
 
-    fun role(maximumRoll: Int = -1, list: MutableList<ItemDrop> = mutableListOf()): MutableList<ItemDrop> {
-        collect(list, maximumRoll, random(maximumRoll))
+    fun role(maximumRoll: Int = -1, list: MutableList<ItemDrop> = mutableListOf(), members: Boolean): MutableList<ItemDrop> {
+        collect(list, maximumRoll, members, random(maximumRoll))
         return list
     }
 
@@ -26,14 +26,14 @@ data class DropTable(
         return Random.nextInt(0, if (roll <= 0 && maximum != -1) maximum else roll)
     }
 
-    fun collect(list: MutableList<ItemDrop>, value: Int, roll: Int = random(value)): Boolean {
+    fun collect(list: MutableList<ItemDrop>, value: Int, members: Boolean, roll: Int = random(value)): Boolean {
         var count = 0
         for (drop in drops) {
             if (drop is DropTable) {
-                if (drop.collect(list, value) && type == TableType.First) {
+                if (drop.collect(list, value, members) && type == TableType.First) {
                     return true
                 }
-            } else if (drop is ItemDrop) {
+            } else if (drop is ItemDrop && (members || !drop.members)) {
                 if (type == TableType.All) {
                     list.add(drop)
                 } else {
