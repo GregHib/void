@@ -201,7 +201,6 @@ fishing_spot_big_net_harpoon:
         - seaweed
         - leather_gloves
         - leather_boots
-        - big_bass
     Harpoon:
       items:
       - harpoon
