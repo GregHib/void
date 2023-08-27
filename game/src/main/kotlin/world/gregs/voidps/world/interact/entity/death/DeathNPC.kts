@@ -91,6 +91,8 @@ fun dropLoot(npc: NPC, killer: Character?, name: String, tile: Tile) {
         .filterNot { it.id == "nothing" }
         .reversed()
         .map { it.toItem() }
+        .toMutableList()
+    npc.events.emit(DropItems(killer, drops))
     if (npc.inMultiCombat && killer is Player && killer["loot_share", false]) {
         shareLoot(killer, npc, tile, drops)
     } else {

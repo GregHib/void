@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.get
 data class ItemDrop(
     val id: String,
     val amount: IntRange,
-    val chance: Int = 1,
+    val chance: Int = 1
 ) : Drop {
 
     init {
