@@ -11,16 +11,22 @@ object ObjectDefinitions {
         val cache = CacheDelegate("./data/cache")
 
         val decoder = ObjectDecoderFull(false, true).loadCache(cache)
-        val count = decoder.lastIndex
-        println(count)
-        decoder.findMatchingName("table")
+
+        var all = mutableSetOf<ObjectDefinitionFull>()
+        for(def in decoder.findMatchingName("mysterious ruins")) {
+            all.addAll(decoder.findTransforms(def.id))
+        }
+        println(all.map { it.id })
     }
 
-    fun Array<ObjectDefinitionFull>.findMatchingName(name: String) {
-        for (i in indices) {
-            val def = getOrNull(i) ?: continue
+    fun Array<ObjectDefinitionFull>.findMatchingName(name: String): List<ObjectDefinitionFull> {
+        return indices.mapNotNull {
+            val def = getOrNull(it) ?: return@mapNotNull null
             if (def.modelIds != null && def.name.contains(name, true)) {
-                println("Found $i ${def.options?.get(0)} ${def.modelIds?.contentDeepToString()}")
+                println("Found $it ${def.options?.get(0)} ${def.modelIds?.contentDeepToString()}")
+                return@mapNotNull def
+            } else {
+                return@mapNotNull null
             }
         }
     }
@@ -44,12 +50,25 @@ object ObjectDefinitions {
         }
     }
 
-    fun Array<ObjectDefinitionFull>.findTransforms(id: Int) {
-        for (i in indices) {
-            val def = getOrNull(i) ?: continue
+    fun Array<ObjectDefinitionFull>.findTransforms(id: Int): List<ObjectDefinitionFull> {
+        return indices.mapNotNull {
+            val def = getOrNull(it) ?: return@mapNotNull null
             if (def.transforms?.contains(id) == true) {
-                println("Found $i ${def.transforms?.contentToString()}")
+                println("Found $it ${def.transforms?.contentToString()}")
+                return@mapNotNull def
             }
+            return@mapNotNull null
+        }
+    }
+
+    fun Array<ObjectDefinitionFull>.findVarbit(id: Int): List<ObjectDefinitionFull> {
+        return indices.mapNotNull {
+            val def = getOrNull(it) ?: return@mapNotNull null
+            if (def.varbit == id) {
+                println("Found $it ${def.varbit}")
+                return@mapNotNull def
+            }
+            return@mapNotNull null
         }
     }
 }

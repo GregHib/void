@@ -10812,3 +10812,39 @@ furnace_edgeville:
 anvil_lumbridge:
   id: 12692
   examine: "Used for fashioning metal items."
+air_altar_ruins:
+  id: 2452
+  examine: "There is a powerful presence about these ruins..."
+mind_altar_ruins:
+  id: 2453
+  examine: "There is a powerful presence about these ruins..."
+water_altar_ruins:
+  id: 2454
+  examine: "There is a powerful presence about these ruins..."
+earth_altar_ruins:
+  id: 2455
+  examine: "There is a powerful presence about these ruins..."
+fire_altar_ruins:
+  id: 2456
+  examine: "There is a powerful presence about these ruins..."
+body_altar_ruins:
+  id: 2457
+  examine: "There is a powerful presence about these ruins..."
+cosmic_altar_ruins:
+  id: 2458
+  examine: "There is a powerful presence about these ruins..."
+law_altar_ruins:
+  id: 2459
+  examine: "There is a powerful presence about these ruins..."
+nature_altar_ruins:
+  id: 2460
+  examine: "There is a powerful presence about these ruins..."
+chaos_altar_ruins:
+  id: 2461
+  examine: "There is a powerful presence about these ruins..."
+death_altar_ruins:
+  id: 2462
+  examine: "There is a powerful presence about these ruins..."
+blood_altar_ruins:
+  id: 2464
+  examine: "A pile of stones crafted into skulls, it seems to emanate magical energy."
