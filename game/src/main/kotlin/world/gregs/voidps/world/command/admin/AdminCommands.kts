@@ -368,6 +368,7 @@ on<Command>({ prefix == "debug" }) { player: Player ->
         return@on
     }
     target["debug"] = !target["debug", false]
+    player.message("Debugging ${if (target["debug", false]) "enabled" else "disabled"} for player '${target.name}'.")
 }
 
 val tables: DropTables by inject()
