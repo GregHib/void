@@ -7,9 +7,9 @@ import world.gregs.voidps.bot.navigation.graph.NavigationGraph
 import world.gregs.voidps.bot.path.Dijkstra
 import world.gregs.voidps.bot.path.DijkstraFrontier
 import world.gregs.voidps.world.activity.quest.Books
+import world.gregs.voidps.world.interact.entity.obj.Teleports
 import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
 import world.gregs.voidps.world.interact.world.spawn.ItemSpawns
-import world.gregs.voidps.world.interact.world.spawn.Teleports
 
 val gameModule = module {
     single { ItemSpawns() }

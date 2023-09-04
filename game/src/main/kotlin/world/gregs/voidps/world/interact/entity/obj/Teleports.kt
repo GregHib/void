@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.world.spawn
+package world.gregs.voidps.world.interact.entity.obj
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -51,7 +51,7 @@ class Teleports {
 
     @Suppress("UNCHECKED_CAST")
     fun load(yaml: Yaml = get(), path: String = getProperty("teleportsPath")): Teleports {
-        timedLoad("teleport") {
+        timedLoad("object teleport") {
             val config = object : YamlReaderConfiguration() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
                     val map = value as Map<String, Any>

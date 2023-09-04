@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.world
+package world.gregs.voidps.world.interact.entity.obj
 
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
@@ -8,8 +8,6 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.world.spawn.Teleport
-import world.gregs.voidps.world.interact.world.spawn.Teleports
 
 val teleports: Teleports by inject()
 

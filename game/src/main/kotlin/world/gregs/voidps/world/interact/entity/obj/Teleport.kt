@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.world.spawn
+package world.gregs.voidps.world.interact.entity.obj
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.event.CancellableEvent
