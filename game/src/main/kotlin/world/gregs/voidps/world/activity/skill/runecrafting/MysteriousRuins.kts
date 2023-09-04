@@ -1,10 +1,15 @@
 package world.gregs.voidps.world.activity.skill.runecrafting
 
+import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
@@ -44,4 +49,12 @@ fun toggleAltar(player: Player, item: Item, unlocked: Boolean) {
     } else {
         player["${type}_altar_ruins"] = unlocked
     }
+}
+
+val objectDefinitions: ObjectDefinitions by inject()
+
+on<ItemOnObject>({ item.id.endsWith("_talisman") && target.id == "${item.id.removeSuffix("_talisman")}_altar_ruins" }) { player: Player ->
+    val id = target.def.transforms?.getOrNull(1) ?: return@on
+    val definition = objectDefinitions.get(id)
+    player.mode = Interact(player, target, ObjectOption(player, target, definition, "Enter"), approachRange = -1)
 }
