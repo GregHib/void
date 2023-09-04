@@ -12,6 +12,9 @@ import world.gregs.voidps.type.Tile
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
 
+/**
+ * Object interaction teleports
+ */
 class Teleports {
 
     private lateinit var teleports: Map<Int, Map<String, TeleportDefinition>>
@@ -22,13 +25,17 @@ class Teleports {
         if (definition.id != id) {
             return false
         }
-        val teleport = Teleport.create(objectOption.def, definition)
+        val teleport = Teleport(definition.id, definition.tile, objectOption.def, definition.option)
         val player = objectOption.player
         player.events.emit(teleport)
         if (teleport.cancelled) {
             return false
         }
-        val tile = teleport.apply(player.tile)
+        val tile = when {
+            definition.delta != Delta.EMPTY -> player.tile.add(definition.delta)
+            definition.to != Tile.EMPTY -> definition.to
+            else -> player.tile
+        }
         val delay = teleport.delay
         if (delay != null) {
             objectOption.delay(delay)
@@ -80,7 +87,7 @@ class Teleports {
         return this
     }
 
-    data class TeleportDefinition(
+    private data class TeleportDefinition(
         val id: String,
         val option: String,
         val tile: Tile,

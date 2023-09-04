@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -22,19 +21,15 @@ on<ObjectOption>({ operate && operate && option == "Climb" && (def.options?.coun
     }
 }
 
-on<Teleport>({ obj.name.lowercase().isLadder() }, Priority.LOWISH) { player: Player ->
-    val remaining = player.remaining("climb_delay")
+on<Teleport>({ obj.name.lowercase().isLadder() }) { player: Player ->
+    val remaining = player.remaining("teleport_delay")
     if (remaining > 0) {
         delay = remaining
     } else if (remaining < 0) {
         player.setAnimation(if (option == "Climb-down") "climb_down" else "climb_up")
-        player.start("climb_delay", 2)
+        player.start("teleport_delay", 2)
         delay = 2
     }
-}
-
-on<Teleport>(priority = Priority.LOW) { player: Player ->
-    player.start("climb_delay", 1)
 }
 
 fun String.isLadder() = contains("ladder") || contains("rope") || contains("chain") || contains("vine") || isTrapDoor()
