@@ -9,7 +9,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
 
-class Stairs {
+class Teleports {
 
     private lateinit var teleports: Map<Int, Map<String, Teleport>>
 
@@ -22,8 +22,8 @@ class Stairs {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun load(yaml: Yaml = get(), path: String = getProperty("stairsPath")): Stairs {
-        timedLoad("stair") {
+    fun load(yaml: Yaml = get(), path: String = getProperty("teleportsPath")): Teleports {
+        timedLoad("teleport") {
             val config = object : YamlReaderConfiguration() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
                     val map = value as Map<String, Any>
@@ -59,7 +59,13 @@ class Stairs {
         return this
     }
 
-    data class Teleport(val id: Int, val option: String, val tile: Tile, val delta: Delta = Delta.EMPTY, val to: Tile = Tile.EMPTY) {
+    data class Teleport(
+        val id: Int,
+        val option: String,
+        val tile: Tile,
+        val delta: Delta = Delta.EMPTY,
+        val to: Tile = Tile.EMPTY
+    ) {
         fun apply(tile: Tile): Tile {
             return if (delta != Delta.EMPTY) {
                 tile.add(delta)

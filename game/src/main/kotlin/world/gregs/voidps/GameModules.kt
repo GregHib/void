@@ -9,7 +9,7 @@ import world.gregs.voidps.bot.path.DijkstraFrontier
 import world.gregs.voidps.world.activity.quest.Books
 import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
 import world.gregs.voidps.world.interact.world.spawn.ItemSpawns
-import world.gregs.voidps.world.interact.world.spawn.Stairs
+import world.gregs.voidps.world.interact.world.spawn.Teleports
 
 val gameModule = module {
     single { ItemSpawns() }
@@ -26,5 +26,5 @@ val gameModule = module {
     single(createdAtStart = true) { NavigationGraph(get(), get()).load() }
     single(createdAtStart = true) { Books().load() }
     single(createdAtStart = true) { MusicTracks().load() }
-    single(createdAtStart = true) { Stairs().load() }
+    single(createdAtStart = true) { Teleports().load() }
 }

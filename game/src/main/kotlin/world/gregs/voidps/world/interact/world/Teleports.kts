@@ -11,11 +11,11 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.world.spawn.Stairs
+import world.gregs.voidps.world.interact.world.spawn.Teleports
 
-val stairs: Stairs by inject()
+val teleports: Teleports by inject()
 
-on<ObjectOption>({ operate && stairs.get(def.id, target.tile, option) != null }) { _: Player ->
+on<ObjectOption>({ operate && teleports.get(def.id, target.tile, option) != null }) { _: Player ->
     arriveDelay()
     climb(option)
 }
@@ -29,7 +29,7 @@ on<ObjectOption>({ operate && operate && option == "Climb" && (def.options?.coun
 }
 
 suspend fun ObjectOption.climb(option: String) {
-    val teleport = stairs.get(def.id, target.tile, option) ?: return
+    val teleport = teleports.get(def.id, target.tile, option) ?: return
     val name = def.name.lowercase()
     if (name.isLadder()) {
         val remaining = player.remaining("climb_delay")
