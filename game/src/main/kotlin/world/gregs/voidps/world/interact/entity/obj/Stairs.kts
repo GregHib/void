@@ -19,7 +19,7 @@ on<ObjectOption>({ operate && operate && option == "Climb" && (def.options?.coun
     }
 }
 
-on<Teleport>({ obj.name.lowercase().isLadder() }) { player: Player ->
+on<Teleport>({ obj.name.isLadder() }) { player: Player ->
     val remaining = player.remaining("teleport_delay")
     if (remaining > 0) {
         delay = remaining
@@ -30,9 +30,9 @@ on<Teleport>({ obj.name.lowercase().isLadder() }) { player: Player ->
     }
 }
 
-fun String.isLadder() = contains("ladder") || contains("rope") || contains("chain") || contains("vine") || isTrapDoor()
+fun String.isLadder() = contains("ladder", true) || contains("rope", true) || contains("chain", true) || contains("vine", true) || isTrapDoor()
 
 fun String.isTrapDoor(): Boolean {
-    val name = replace(" ", "").lowercase()
-    return name == "trapdoor" || name == "manhole"
+    val name = replace(" ", "")
+    return name.equals("trapdoor", true) || name.equals("manhole", true)
 }
