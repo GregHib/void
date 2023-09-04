@@ -264,7 +264,7 @@
     x: 2867
     y: 3020
 ######## 11311 ########
-- id: 7120
+- id: nature_altar_ruins_enter
   option: Enter
   tile:
     x: 2868
@@ -315,7 +315,7 @@
     x: 2859
     y: 3379
 ######## 11316 ########
-- id: 7118
+- id: law_altar_ruins_enter
   option: Enter
   tile:
     x: 2857
@@ -1308,7 +1308,7 @@
     x: 2984
     y: 3516
 ######## 11830 ########
-- id: 7106
+- id: mind_altar_ruins_enter
   option: Enter
   tile:
     x: 2981
@@ -1854,7 +1854,7 @@
     y: 3450
   delta:
     y: 6400
-- id: 7114
+- id: body_altar_ruins_enter
   option: Enter
   tile:
     x: 3052
@@ -2613,7 +2613,7 @@
     x: 3129
     y: 3406
 ######## 12341 ########
-- id: 7104
+- id: air_altar_ruins_enter
   option: Enter
   tile:
     x: 3126
@@ -2879,7 +2879,7 @@
     x: 3183
     y: 3163
 ######## 12593 ########
-- id: 7108
+- id: water_altar_ruins_enter
   option: Enter
   tile:
     x: 3184
@@ -4356,7 +4356,7 @@
     x: 3311
     y: 3253
 ######## 13106 ########
-- id: 7112
+- id: fire_altar_ruins_enter
   option: Enter
   tile:
     x: 3312
@@ -4433,7 +4433,7 @@
     x: 3305
     y: 3472
 ######## 13110 ########
-- id: 7110
+- id: earth_altar_ruins_enter
   option: Enter
   tile:
     x: 3305
@@ -4813,7 +4813,7 @@
     x: 5
     level: -1
 ######## 9540 ########
-- id: 7116
+- id: cosmic_altar_ruins_enter
   option: Enter
   tile:
     x: 2407
@@ -4831,7 +4831,7 @@
     x: 2407
     y: 4379
 ######## 7496 ########
-- id: 7124
+- id: death_altar_ruins_enter
   option: Enter
   tile:
     x: 1860
@@ -4849,7 +4849,7 @@
     x: 1863
     y: 4639
 ######## 14232 ########
-- id: 30530
+- id: blood_altar_ruins_enter
   option: Enter
   tile:
     x: 3560

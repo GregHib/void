@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.world.interact.entity.obj.Teleport
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val omni = listOf(
@@ -57,16 +58,25 @@ fun toggleAltar(player: Player, item: Item, unlocked: Boolean) {
     }
 }
 
+on<Teleport>({ obj.stringId.endsWith("_altar_ruins_enter") && option == "Enter" }) { player: Player ->
+    player.clearAnimation()
+    player.playSound("teleport")
+    player.message("You feel a powerful force talk hold of you...")
+}
+
+on<Teleport>({ obj.stringId.endsWith("_altar_portal") && option == "Enter" }) { player: Player ->
+    player.clearAnimation()
+    player.playSound("teleport")
+    player.message("You step through the portal...")
+}
+
 val objectDefinitions: ObjectDefinitions by inject()
 
 on<ItemOnObject>({ item.id.endsWith("_talisman") && target.id == "${item.id.removeSuffix("_talisman")}_altar_ruins" }) { player: Player ->
     val id = target.def.transforms?.getOrNull(1) ?: return@on
     val definition = objectDefinitions.get(id)
     player.message("You hold the ${item.id.toSentenceCase()} towards the mysterious ruins.")
-    player.message("You feel a powerful force talk hold of you...")
     player.setAnimation("bend_down")
     delay(2)
-    player.clearAnimation()
-    player.playSound("teleport")
     player.mode = Interact(player, target, ObjectOption(player, target, definition, "Enter"), approachRange = -1)
 }
