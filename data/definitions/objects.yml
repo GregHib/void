@@ -10848,3 +10848,42 @@ death_altar_ruins:
 blood_altar_ruins:
   id: 2464
   examine: "A pile of stones crafted into skulls, it seems to emanate magical energy."
+air_altar_portal:
+  id: 2465
+  examine: "A portal from this mystical place."
+mind_altar_portal:
+  id: 2466
+  examine: "A portal from this mystical place."
+water_altar_portal:
+  id: 2467
+  examine: "A portal from this mystical place."
+earth_altar_portal:
+  id: 2468
+  examine: "A portal from this mystical place."
+fire_altar_portal:
+  id: 2469
+  examine: "A portal from this mystical place."
+body_altar_portal:
+  id: 2470
+  examine: "A portal from this mystical place."
+cosmic_altar_portal:
+  id: 2471
+  examine: "A portal from this mystical place."
+law_altar_portal:
+  id: 2472
+  examine: "A portal from this mystical place."
+nature_altar_portal:
+  id: 2473
+  examine: "A portal from this mystical place."
+chaos_altar_portal:
+  id: 2474
+  examine: "A portal from this mystical place."
+death_altar_portal:
+  id: 2475
+  examine: "A portal from this mystical place."
+blood_altar_portal:
+  id: 2477
+  examine: "A portal from this mystical place."
+blood_altar:
+  id: 30624
+  examine: "A mysterious power emanates from this shrine."

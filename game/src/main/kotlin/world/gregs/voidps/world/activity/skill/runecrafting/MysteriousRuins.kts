@@ -1,17 +1,23 @@
 package world.gregs.voidps.world.activity.skill.runecrafting
 
+import net.pearx.kasechange.toSentenceCase
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.ItemChanged
+import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val omni = listOf(
     "air",
@@ -56,5 +62,11 @@ val objectDefinitions: ObjectDefinitions by inject()
 on<ItemOnObject>({ item.id.endsWith("_talisman") && target.id == "${item.id.removeSuffix("_talisman")}_altar_ruins" }) { player: Player ->
     val id = target.def.transforms?.getOrNull(1) ?: return@on
     val definition = objectDefinitions.get(id)
+    player.message("You hold the ${item.id.toSentenceCase()} towards the mysterious ruins.")
+    player.message("You feel a powerful force talk hold of you...")
+    player.setAnimation("bend_down")
+    delay(2)
+    player.clearAnimation()
+    player.playSound("teleport")
     player.mode = Interact(player, target, ObjectOption(player, target, definition, "Enter"), approachRange = -1)
 }

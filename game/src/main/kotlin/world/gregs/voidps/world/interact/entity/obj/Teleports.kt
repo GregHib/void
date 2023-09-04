@@ -49,6 +49,10 @@ class Teleports {
         return teleport.id == id
     }
 
+    fun get(id: Int, option: String): List<Teleport> {
+        return teleports.values.mapNotNull { it[option] }.filter { it.id == id }
+    }
+
     @Suppress("UNCHECKED_CAST")
     fun load(yaml: Yaml = get(), path: String = getProperty("teleportsPath")): Teleports {
         timedLoad("object teleport") {
