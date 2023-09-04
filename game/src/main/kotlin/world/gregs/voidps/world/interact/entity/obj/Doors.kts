@@ -63,7 +63,7 @@ on<ObjectOption>({ operate && def.isDoor() && option == "Open" }) { player: Play
 
     if (resetExisting(target, double)) {
         player.playSound(if (def.isGate()) "open_gate" else "open_door")
-        player.events.emit(DoorOpen)
+        player.events.emit(DoorOpened)
         return@on
     }
 
@@ -72,7 +72,7 @@ on<ObjectOption>({ operate && def.isDoor() && option == "Open" }) { player: Play
         replaceDoor(target, def, "_closed", "_opened", 1, 1, doorResetDelay)
         player.playSound("open_door")
         pause(1)
-        player.events.emit(DoorOpen)
+        player.events.emit(DoorOpened)
         return@on
     }
 
@@ -81,7 +81,7 @@ on<ObjectOption>({ operate && def.isDoor() && option == "Open" }) { player: Play
         openDoubleDoors(target, def, double, doorResetDelay)
         player.playSound("open_door")
         pause(1)
-        player.events.emit(DoorOpen)
+        player.events.emit(DoorOpened)
         return@on
     }
     player.message("The ${def.name.lowercase()} won't budge.")
