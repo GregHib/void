@@ -699,7 +699,7 @@
   delta:
     x: -2
     level: -1
-- id: 28676
+- id: trapdoor_83_opened
   option: Climb-down
   tile:
     x: 2927
@@ -954,7 +954,7 @@
     level: 1
   delta:
     level: -1
-- id: 39331
+- id: trapdoor_105_opened
   option: Climb-down
   tile:
     x: 2968
@@ -1290,7 +1290,7 @@
     y: -4
     level: -1
 ######## 11829 ########
-- id: 31010
+- id: trapdoor_91_opened
   option: Climb-down
   tile:
     x: 2998
@@ -1537,7 +1537,7 @@
     level: 1
   delta:
     level: -1
-- id: 39275
+- id: trapdoor_103_opened
   option: Climb-down
   tile:
     x: 3015
@@ -2518,7 +2518,7 @@
   delta:
     x: -4
     level: -1 
-- id: 6435
+- id: trapdoor_draynor_opened
   option: Climb-down
   tile:
     x: 3118
@@ -2527,7 +2527,7 @@
     x: 3118
     y: 9644
 ######## 12339 ########
-- id: 6435
+- id: trapdoor_draynor_opened
   option: Climb-down
   tile:
     x: 3084
@@ -2693,7 +2693,7 @@
   to:
     x: 3082
     y: 4229 
-- id: 26934
+- id: trapdoor_80_opened
   option: Climb-down
   tile:
     x: 3097
@@ -3035,7 +3035,7 @@
   delta:
     y: -4
     level: -1
-- id: 10559
+- id: trapdoor_44_opened
   option: Climb-down
   tile:
     x: 3190
@@ -4171,7 +4171,7 @@
     level: 3
   delta:
     level: -1 
-- id: 882
+- id: varrock_manhole_open
   option: Climb-down
   tile:
     x: 3237
