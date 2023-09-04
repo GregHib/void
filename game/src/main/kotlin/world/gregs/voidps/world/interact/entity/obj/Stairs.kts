@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 
 val teleports: Teleports by inject()
 
-on<ObjectOption>({ operate && operate && option == "Climb" && (def.options?.count { it?.startsWith("Climb") == true } ?: 0) > 1 }) { _: Player ->
+on<ObjectOption>({ operate && operate && option == "Climb" && hasClimbOption(def.options) }) { _: Player ->
     choice("What would you like to do?") {
         option("Go up the stairs.", block = { teleports.teleport(this, "Climb-up") })
         option("Go down the stairs.", block = { teleports.teleport(this, "Climb-down") })
@@ -35,4 +35,9 @@ fun String.isLadder() = contains("ladder", true) || contains("rope", true) || co
 fun String.isTrapDoor(): Boolean {
     val name = replace(" ", "")
     return name.equals("trapdoor", true) || name.equals("manhole", true)
+}
+
+fun hasClimbOption(options: Array<String?>?): Boolean {
+    val count = options?.count { it?.startsWith("Climb") == true } ?: return false
+    return count > 1
 }
