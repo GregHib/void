@@ -1,8 +1,11 @@
 package world.gregs.voidps.world.interact.world.spawn
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
+import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Tile
@@ -11,14 +14,32 @@ import world.gregs.yaml.read.YamlReaderConfiguration
 
 class Teleports {
 
-    private lateinit var teleports: Map<Int, Map<String, Teleport>>
+    private lateinit var teleports: Map<Int, Map<String, TeleportDefinition>>
 
-    fun get(id: Int, tile: Tile, option: String): Teleport? {
-        val teleport = teleports[tile.id]?.get(option) ?: return null
-        if (teleport.id != id) {
-            return null
+    suspend fun teleport(objectOption: ObjectOption, option: String = objectOption.option): Boolean {
+        val id = objectOption.def.stringId.ifEmpty { objectOption.def.id.toString() }
+        val definition = teleports[objectOption.target.tile.id]?.get(option) ?: return false
+        if (definition.id != id) {
+            return false
         }
-        return teleport
+        val teleport = Teleport.create(objectOption.def, definition)
+        val player = objectOption.player
+        player.events.emit(teleport)
+        if (teleport.cancelled) {
+            return false
+        }
+        val tile = teleport.apply(player.tile)
+        val delay = teleport.delay
+        if (delay != null) {
+            objectOption.delay(delay)
+        }
+        player.tele(tile)
+        return true
+    }
+
+    fun contains(id: String, tile: Tile, option: String): Boolean {
+        val teleport = teleports[tile.id]?.get(option) ?: return false
+        return teleport.id == id
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -30,12 +51,12 @@ class Teleports {
                     val tile = map["tile"] as Tile
                     val optionMap = createMap()
                     val option = map["option"] as String
-                    optionMap[option] = Teleport(
-                        id = map["id"] as Int,
+                    optionMap[option] = TeleportDefinition(
+                        id = (map["id"] as? Int)?.toString() ?: map["id"] as String,
                         option = option,
                         tile = tile,
                         delta = map["delta"] as? Delta ?: Delta.EMPTY,
-                        to = map["to"] as? Tile ?: Tile.EMPTY,
+                        to = map["to"] as? Tile ?: Tile.EMPTY
                     )
                     super.add(list, tile.id to optionMap, parentMap)
                 }
@@ -48,8 +69,8 @@ class Teleports {
                     }, indent, parentMap)
                 }
             }
-            val data: List<Pair<Int, MutableMap<String, Teleport>>> = yaml.load(path, config)
-            val teleports = Int2ObjectOpenHashMap<MutableMap<String, Teleport>>()
+            val data: List<Pair<Int, MutableMap<String, TeleportDefinition>>> = yaml.load(path, config)
+            val teleports = Int2ObjectOpenHashMap<MutableMap<String, TeleportDefinition>>()
             for ((tile, map) in data) {
                 teleports[tile] = teleports.get(tile)?.apply { putAll(map) } ?: map
             }
@@ -59,21 +80,11 @@ class Teleports {
         return this
     }
 
-    data class Teleport(
-        val id: Int,
+    data class TeleportDefinition(
+        val id: String,
         val option: String,
         val tile: Tile,
         val delta: Delta = Delta.EMPTY,
         val to: Tile = Tile.EMPTY
-    ) {
-        fun apply(tile: Tile): Tile {
-            return if (delta != Delta.EMPTY) {
-                tile.add(delta)
-            } else if (to != Tile.EMPTY) {
-                to
-            } else {
-                tile
-            }
-        }
-    }
+    )
 }
