@@ -255,7 +255,7 @@
     x: 3081
     y: 3421
 ######## 9547 ########
-- id: 2473
+- id: nature_altar_portal
   option: Enter
   tile:
     x: 2400
@@ -306,7 +306,7 @@
   delta:
     level: -1
 ######## 9803 ########
-- id: 2472
+- id: law_altar_portal
   option: Enter
   tile:
     x: 2464
@@ -1299,7 +1299,7 @@
     y: 6393
     x: -2
 ######## 11083 ########
-- id: 2466
+- id: mind_altar_portal
   option: Enter
   tile:
     x: 2793
@@ -1863,7 +1863,7 @@
     x: 2521
     y: 4834
 ######## 10059 ########
-- id: 2470
+- id: body_altar_portal
   option: Enter
   tile:
     x: 2521
@@ -2604,7 +2604,7 @@
     x: 25 
     y: 6392
 ######## 11339 ########
-- id: 2465
+- id: air_altar_portal
   option: Enter
   tile:
     x: 2841
@@ -2870,7 +2870,7 @@
   delta:
     level: -1
 ######## 13899 ########
-- id: 2467
+- id: water_altar_portal
   option: Enter
   tile:
     x: 3495
@@ -4347,7 +4347,7 @@
     x: 3325
     y: 3143
 ######## 10315 ########
-- id: 2469
+- id: fire_altar_portal
   option: Enter
   tile:
     x: 2576
@@ -4424,7 +4424,7 @@
     x: 2894
     y: 5097 
 ######## 10571 ########
-- id: 2468
+- id: earth_altar_portal
   option: Enter
   tile:
     x: 2655
@@ -4822,16 +4822,7 @@
     x: 2162
     y: 4833
 ######## 8523 ########
-- id: 2471
-  option: Enter
-  tile:
-    x: 2163
-    y: 4833
-  to:
-    x: 2407
-    y: 4379
-######## 8523 ########
-- id: 2471
+- id: cosmic_altar_portal
   option: Enter
   tile:
     x: 2163
@@ -4849,7 +4840,7 @@
     x: 2208
     y: 4830
 ######## 8779 ########
-- id: 2475
+- id: death_altar_portal
   option: Enter
   tile:
     x: 2208
@@ -4868,7 +4859,7 @@
     y: 4889
     level: 1
 ######## 9804 ########
-- id: 2477
+- id: blood_altar_portal
   option: Enter
   tile:
     x: 2468
