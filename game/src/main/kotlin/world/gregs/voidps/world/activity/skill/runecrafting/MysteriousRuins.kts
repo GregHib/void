@@ -20,20 +20,9 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.obj.Teleport
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-val omni = listOf(
-    "air",
-    "mind",
-    "water",
-    "earth",
-    "fire",
-    "body",
-    "cosmic",
-    "law",
-    "nature",
-    "chaos",
-    "death",
-    "blood"
-)
+val objectDefinitions: ObjectDefinitions by inject()
+
+val omni = listOf("air", "mind", "water", "earth", "fire", "body", "cosmic", "law", "nature", "chaos", "death", "blood")
 
 on<Registered>({ it.equipped(EquipSlot.Hat).id.endsWith("_tiara") }) { player: Player ->
     toggleAltar(player, player.equipped(EquipSlot.Hat), true)
@@ -58,6 +47,15 @@ fun toggleAltar(player: Player, item: Item, unlocked: Boolean) {
     }
 }
 
+on<ItemOnObject>({ item.id.endsWith("_talisman") && target.id == "${item.id.removeSuffix("_talisman")}_altar_ruins" }) { player: Player ->
+    val id = target.def.transforms?.getOrNull(1) ?: return@on
+    val definition = objectDefinitions.get(id)
+    player.message("You hold the ${item.id.toSentenceCase()} towards the mysterious ruins.")
+    player.setAnimation("bend_down")
+    delay(2)
+    player.mode = Interact(player, target, ObjectOption(player, target, definition, "Enter"), approachRange = -1)
+}
+
 on<Teleport>({ obj.stringId.endsWith("_altar_ruins_enter") && option == "Enter" }) { player: Player ->
     player.clearAnimation()
     player.playSound("teleport")
@@ -68,15 +66,4 @@ on<Teleport>({ obj.stringId.endsWith("_altar_portal") && option == "Enter" }) { 
     player.clearAnimation()
     player.playSound("teleport")
     player.message("You step through the portal...")
-}
-
-val objectDefinitions: ObjectDefinitions by inject()
-
-on<ItemOnObject>({ item.id.endsWith("_talisman") && target.id == "${item.id.removeSuffix("_talisman")}_altar_ruins" }) { player: Player ->
-    val id = target.def.transforms?.getOrNull(1) ?: return@on
-    val definition = objectDefinitions.get(id)
-    player.message("You hold the ${item.id.toSentenceCase()} towards the mysterious ruins.")
-    player.setAnimation("bend_down")
-    delay(2)
-    player.mode = Interact(player, target, ObjectOption(player, target, definition, "Enter"), approachRange = -1)
 }
