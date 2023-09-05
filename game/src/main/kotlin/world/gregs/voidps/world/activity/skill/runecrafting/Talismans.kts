@@ -6,10 +6,12 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.area.Rectangle
 import world.gregs.voidps.world.interact.entity.obj.Teleports
 import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
+
+val overworld = Rectangle(2048, 2496, 3903, 4159)
 
 val teleports: Teleports by inject()
 
@@ -22,9 +24,9 @@ on<InventoryOption>({ item.id.endsWith("_talisman") && option == "Locate" }) { p
         return@on
     }
     val direction = teleport.to.delta(player.tile).toDirection()
-    if (Instances.isInstance(player.tile.region) || direction == Direction.NONE) {
-        player.message("The talisman is having trouble pin-pointing the location.")
-    } else {
+    if (player.tile in overworld || direction == Direction.NONE) {
         player.message("The talisman is pulling towards the ${direction.name.toKebabCase()}.")
+    } else {
+        player.message("The talisman is having trouble pin-pointing the location.")
     }
 }
