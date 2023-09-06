@@ -192,6 +192,8 @@ nodes:
       - &varrock-west-cat-house [ 3150, 3416 ]
       - &varrock-west-barbarian-village-path [ 3135, 3416 ]
       - &varrock-west-air-altar-ruins [ 3128, 3407 ]
+      - &varrock-west-air-altar [ 2841, 4830 ]
+      - &varrock-west-air-altar-exit [ 2841, 4829 ]
 edges:
   lumbridge:
     south-tower:
@@ -763,3 +765,21 @@ edges:
         to: *varrock-west-barbarian-village-path
       - from: *varrock-west-barbarian-village-path
         to: *varrock-west-air-altar-ruins
+      - from: *varrock-west-air-altar-ruins
+        to: *varrock-west-air-altar
+        cost: 3
+        steps:
+          - type: "object"
+            object: 7104
+            tile: [ 3126, 3404 ]
+            option: "Enter"
+      - from: *varrock-west-air-altar
+        to: *varrock-west-air-altar-exit
+      - from: *varrock-west-air-altar-exit
+        to: *varrock-west-air-altar-ruins
+        cost: 3
+        steps:
+          - type: "object"
+            object: 2465
+            tile: [ 2841, 4828 ]
+            option: "Enter"

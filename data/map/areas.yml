@@ -792,13 +792,23 @@ varrock_west_bank:
     x: [ 3179, 3194 ]
     y: [ 3432, 3446 ]
   tags: [ bank ]
-earth_altar:
+earth_altar_ruins:
   area:
     x: [ 3304, 3308 ]
     y: [ 3472, 3476 ]
-  tags: [ altar, earth ]
-air_altar:
+  tags: [ ruins, earth ]
+air_altar_ruins:
   area:
     x: [ 3125, 3129 ]
     y: [ 3403, 3407 ]
+  tags: [ ruins, earth ]
+air_altar:
+  area:
+    x: [ 2816, 2879 ]
+    y: [ 4800, 4863 ]
+  tags: [ altar, earth ]
+earth_altar:
+  area:
+    x: [ 2624, 2687 ]
+    y: [ 4800, 4863 ]
   tags: [ altar, earth ]
