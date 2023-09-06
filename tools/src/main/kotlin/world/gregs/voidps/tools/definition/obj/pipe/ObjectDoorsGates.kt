@@ -1,6 +1,8 @@
 package world.gregs.voidps.tools.definition.obj.pipe
 
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
+import world.gregs.voidps.cache.definition.decoder.ObjectDecoderFull
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
 import kotlin.math.abs
@@ -16,7 +18,7 @@ class ObjectDoorsGates(private val decoder: Array<ObjectDefinitionFull>) : Pipel
             val (_, extras) = content
             val def = decoder.get(id)
             if (fences.contains(id) || def.isDoor() && def.options?.first().equals("open", true)) {
-                val match = match(decoder, def)
+                val match = match(def)
                 if (match != -1) {
                     extras["open"] = match
                     if (fences.contains(id)) {
@@ -44,7 +46,7 @@ class ObjectDoorsGates(private val decoder: Array<ObjectDefinitionFull>) : Pipel
         34779, 34780, 36913, 36915, 36917, 36919, 37352, 37354, 45206, 45208, 45210, 45212
     )
 
-    private fun match(decoder: Array<ObjectDefinitionFull>, def: ObjectDefinitionFull): Int {
+    private fun match(def: ObjectDefinitionFull): Int {
         var matches = decoder.findMatchingModels(def)
         if (matches.isNotEmpty()) {
             var filtered = matches.filterByAppearance(def)
@@ -100,5 +102,16 @@ class ObjectDoorsGates(private val decoder: Array<ObjectDefinitionFull>) : Pipel
                 it.offsetX == definition.offsetX &&
                 it.offsetZ == definition.offsetZ &&
                 it.offsetY == definition.offsetY
+    }
+
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            val cache = CacheDelegate("./data/cache")
+            val decoder = ObjectDecoderFull(false, true).loadCache(cache)
+            val gates = ObjectDoorsGates(decoder)
+            val match = gates.match(decoder.get(45849))
+            println("Match $match")
+        }
     }
 }
