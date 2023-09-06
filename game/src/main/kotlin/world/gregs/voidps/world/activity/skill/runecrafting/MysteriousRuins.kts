@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.ItemChanged
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.obj.Teleport
@@ -47,7 +48,8 @@ fun toggleAltar(player: Player, item: Item, unlocked: Boolean) {
     }
 }
 
-on<ItemOnObject>({ item.id.endsWith("_talisman") && target.id == "${item.id.removeSuffix("_talisman")}_altar_ruins" }) { player: Player ->
+on<ItemOnObject>({ operate && item.id.endsWith("_talisman") && target.id == "${item.id.removeSuffix("_talisman")}_altar_ruins" }) { player: Player ->
+    arriveDelay()
     val id = target.def.transforms?.getOrNull(1) ?: return@on
     val definition = objectDefinitions.get(id)
     player.message("You hold the ${item.id.toSentenceCase()} towards the mysterious ruins.")

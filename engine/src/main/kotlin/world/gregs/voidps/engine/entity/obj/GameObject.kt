@@ -6,9 +6,9 @@ import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.network.encode.zone.ObjectAnimation
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.network.encode.zone.ObjectAnimation
 
 /**
  * Interactive Object
@@ -53,7 +53,7 @@ value class GameObject(internal val packed: Long) : Entity {
     )
 
     override fun toString(): String {
-        return "GameObject(id=$intId, tile=$tile, shape=$shape, rotation=$rotation)"
+        return "GameObject(id=$id, intId=$intId, tile=$tile, shape=$shape, rotation=$rotation)"
     }
 
     companion object {
