@@ -2229,6 +2229,12 @@ gate_246_opened:
 gate_246_closed:
   id: 45848
   examine: "A gate."
+gate_west_varrock_closed:
+  id: 45849
+  examine: "A wooden gate."
+gate_west_varrock_opened:
+  id: 55443
+  examine: "A wooden gate."
 crate_31:
   id: 3856
   examine: "It's a half buried crate."
@@ -6699,6 +6705,12 @@ gate_173:
 gate_247_opened:
   id: 24373
   examine: "A gate."
+gate_west_varrock_2_closed:
+  id: 45851
+  examine: "A wooden gate."
+gate_west_varrock_2_opened:
+  id: 55443
+  examine: "A wooden gate."
 gate_247_closed:
   id: 45852
   examine: "A wooden gate."
