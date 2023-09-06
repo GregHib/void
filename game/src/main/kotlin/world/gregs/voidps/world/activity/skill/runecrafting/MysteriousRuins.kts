@@ -33,7 +33,7 @@ on<ItemChanged>({ inventory == "worn_equipment" && index == EquipSlot.Hat.index 
     toggleAltar(player, item, true)
 }
 
-on<ItemChanged>({ inventory == "worn_equipment" && index == EquipSlot.Hat.index && oldItem.id.endsWith("_tiara") }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && index == EquipSlot.Hat.index && oldItem.id.endsWith("_tiara") && oldItem.id != item.id }) { player: Player ->
     toggleAltar(player, oldItem, false)
 }
 
