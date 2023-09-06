@@ -194,6 +194,8 @@ nodes:
       - &varrock-west-air-altar-ruins [ 3128, 3407 ]
       - &varrock-west-air-altar [ 2841, 4830 ]
       - &varrock-west-air-altar-exit [ 2841, 4829 ]
+      - &varrock-east-earth-altar [ 2655, 4831 ]
+      - &varrock-east-earth-altar-exit [ 2655, 4830 ]
 edges:
   lumbridge:
     south-tower:
@@ -782,4 +784,22 @@ edges:
           - type: "object"
             object: 2465
             tile: [ 2841, 4828 ]
+            option: "Enter"
+      - from: *varrock-east-earth-altar-ruins
+        to: *varrock-east-earth-altar
+        cost: 3
+        steps:
+          - type: "object"
+            object: 7110
+            tile: [ 3305, 3473 ]
+            option: "Enter"
+      - from: *varrock-east-earth-altar
+        to: *varrock-east-earth-altar-exit
+      - from: *varrock-east-earth-altar-exit
+        to: *varrock-east-earth-altar-ruins
+        cost: 3
+        steps:
+          - type: "object"
+            object: 2468
+            tile: [ 2655, 4829 ]
             option: "Enter"
