@@ -774,3 +774,31 @@ lumbridge_furnace:
     x: [ 3222, 3229 ]
     y: [ 3252, 3257 ]
   tags: [ smithing, smelting, spaces_2 ]
+varrock_south_east_mine:
+  area:
+    x: [ 3281, 3290 ]
+    y: [ 3371, 3360 ]
+  tags: [ mine ]
+  rocks: [ copper, tin, iron ]
+  levels: 1-45
+  spaces: 4
+varrock_east_bank:
+  area:
+    x: [ 3250, 3257 ]
+    y: [ 3416, 3424 ]
+  tags: [ bank ]
+varrock_west_bank:
+  area:
+    x: [ 3179, 3194 ]
+    y: [ 3432, 3446 ]
+  tags: [ bank ]
+earth_altar:
+  area:
+    x: [ 3304, 3308 ]
+    y: [ 3472, 3476 ]
+  tags: [ altar, earth ]
+air_altar:
+  area:
+    x: [ 3125, 3129 ]
+    y: [ 3403, 3407 ]
+  tags: [ altar, earth ]
