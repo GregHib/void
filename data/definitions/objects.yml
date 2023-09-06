@@ -10920,6 +10920,39 @@ death_altar_portal:
 blood_altar_portal:
   id: 2477
   examine: "A portal from this mystical place."
+air_altar:
+  id: 2478
+  examine: "A mysterious power emanates from this shrine."
+mind_altar:
+  id: 2479
+  examine: "A mysterious power emanates from this shrine."
+water_altar:
+  id: 2480
+  examine: "A mysterious power emanates from this shrine."
+earth_altar:
+  id: 2481
+  examine: "A mysterious power emanates from this shrine."
+fire_altar:
+  id: 2482
+  examine: "A mysterious power emanates from this shrine."
+body_altar:
+  id: 2483
+  examine: "A mysterious power emanates from this shrine."
+cosmic_altar:
+  id: 2484
+  examine: "A mysterious power emanates from this shrine."
+law_altar:
+  id: 2485
+  examine: "A mysterious pow`er emanates from this shrine."
+nature_altar:
+  id: 2486
+  examine: "A mysterious power emanates from this shrine."
+chaos_altar:
+  id: 2487
+  examine: "A mysterious power emanates from this shrine."
+death_altar:
+  id: 2488
+  examine: "A mysterious power emanates from this shrine."
 blood_altar:
   id: 30624
   examine: "A mysterious power emanates from this shrine."

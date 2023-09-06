@@ -1415,3 +1415,6 @@ dressing_room_finish:
 superheat_item:
   id: 148
   height: 60
+bind_runes:
+  id: 186
+  height: 92
