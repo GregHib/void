@@ -1555,3 +1555,6 @@ cleaner_sweeping: 5799
 furnace_smelt: 899
 superheat_item: 725
 smith_item: 898
+lumbridge_flag_raise: 9977
+lumbridge_flag_stop_raise: 9978
+lumbridge_flag: 9979

@@ -8651,6 +8651,9 @@ pillar_77:
 dead_tree_24:
   id: 37334
   examine: "It's only useful for firewood now."
+lumbridge_flag:
+  id: 37335
+  examine: "A flag on a pole."  
 chair_137:
   id: 37337
   examine: "The ideal thing to sit on."
