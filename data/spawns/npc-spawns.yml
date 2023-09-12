@@ -1831,6 +1831,7 @@
 - { id: crow_5, x: 3209, y: 3299 }
 - { id: goblin_light_grey_bald, x: 3217, y: 3278 }
 - { id: goblin_turquoise_topless_mohawk, x: 3215, y: 3276 }
+- { id: gillie_groats, x: 3254, y: 3274 }
 # 12852
 - { id: sheep, x: 3238, y: 3349 }
 - { id: sheep_grey, x: 3246, y: 3344 }

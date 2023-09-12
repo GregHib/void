@@ -878,6 +878,11 @@ millie_miller:
   race: human
   wander_radius: 4
   examine: "Miss Millicent Miller, the Miller of Mill Lane Mill."
+gillie_groats:
+  id: 3807
+  wander_radius: 4
+  race: human
+  examine: "Gillie milks cows and she's udderly fantastic at it."  
 fishing_spot_harpoon_small_net_piscatoris:
   id: 3848
   fishing:
