@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.queue.softQueue
 
 
 on<ObjectOption>({ operate && target.id == "lumbridge_flag" && option == "Raise" }) { player: Player ->
+    arriveDelay()
     player.setAnimation("lumbridge_flag_raise")
     target.animate("lumbridge_flag")
     player.softQueue("lumbridge_flag", 8) {
