@@ -37,7 +37,7 @@ on<NPCOption>({ operate && redGoblins(target.id) && option == "Talk-to" }) { pla
 }
 
 
-on<NPCOption>({ operate && greengoblins(target.id) && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && greenGoblins(target.id) && option == "Talk-to" }) { player: Player ->
     when (Random.nextInt(0, 2)) {
         0 -> {
             npc<Talking>("green armour best!", largeHead = true)
