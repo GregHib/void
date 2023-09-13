@@ -11,7 +11,7 @@ import kotlin.random.Random
 
 
 fun redGoblins(id: String) = id.startsWith("goblin_") && id.endsWith("_red")
-fun greengoblins(id: String) = id == "goblin_staff_green" || id == "goblin_mohawk_staff_green" || id == "goblin_shield_battleaxe_green" || id == "goblin_shield_warhammer_green" || id == "goblin_shield_spear_green" || id == "goblin_staff_2_green"
+fun greenGoblins(id: String) = id.startsWith("goblin_") && id.endsWith("_green")
 
 on<NPCOption>({ operate && redgoblins(target.id) && option == "Talk-to" }) { player: Player ->
     when (Random.nextInt(0, 2)) {
