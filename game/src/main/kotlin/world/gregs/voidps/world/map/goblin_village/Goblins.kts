@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import kotlin.random.Random
 
 
-fun redgoblins(id: String) = id == "goblin_staff_red" || id == "goblin_shield_battleaxe_red" || id == "goblin_shield_spear_red" || id == "goblin_mohawk_staff_red" || id == "goblin_battleaxe_red" || id == "goblin_ponytail_staff_red" || id == "goblin_shield_warhammer_red"
+fun redGoblins(id: String) = id.startsWith("goblin_") && id.endsWith("_red")
 fun greengoblins(id: String) = id == "goblin_staff_green" || id == "goblin_mohawk_staff_green" || id == "goblin_shield_battleaxe_green" || id == "goblin_shield_warhammer_green" || id == "goblin_shield_spear_green" || id == "goblin_staff_2_green"
 
 on<NPCOption>({ operate && redgoblins(target.id) && option == "Talk-to" }) { player: Player ->
