@@ -42,7 +42,7 @@ on<World, Registered> {
                 { hasExactGear(Skill.Runecrafting) }
             )
         )
-        tasks.register(task, true)
+        tasks.register(task)
     }
 }
 
