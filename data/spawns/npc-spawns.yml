@@ -914,7 +914,7 @@
 - { id: cow, x: 2664, y: 3348, members: true }
 - { id: cow, x: 2670, y: 3348, members: true }
 - { id: cow, x: 2660, y: 3344, members: true }
-- { id: cow, x: 2666, y: 3344, members: true}
+- { id: cow, x: 2666, y: 3344, members: true }
 - { id: cow, x: 2657, y: 3341, members: true }
 - { id: cow, x: 2664, y: 3341, members: true }
 - { id: cow, x: 2671, y: 3342, members: true }
