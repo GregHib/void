@@ -777,7 +777,7 @@ lumbridge_furnace:
 varrock_south_east_mine:
   area:
     x: [ 3281, 3290 ]
-    y: [ 3371, 3360 ]
+    y: [ 3360, 3371 ]
   tags: [ mine ]
   rocks: [ copper, tin, iron ]
   levels: 1-45
