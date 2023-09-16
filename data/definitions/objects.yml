@@ -8267,7 +8267,7 @@ door_576_closed:
   id: 34807
   examine: "The door is closed."
 door_578_opened:
-  id: 34826
+  id: 34810
   examine: "A heavy wooden door."
 door_578_closed:
   id: 34809
