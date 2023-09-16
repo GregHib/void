@@ -6,6 +6,7 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Rune
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -50,6 +51,7 @@ fun Runecrafting.bindRunes(player: Player, id: String, itemDefinition: ItemDefin
         val count = rune.multiplier(player)
         add(id, essence * count)
     }
+    player.start("movement_delay", 3)
     when (player.inventory.transaction.error) {
         is TransactionError.Deficient, is TransactionError.Invalid -> {
             player.message("You don't have any rune essences to bind.")
