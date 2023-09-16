@@ -791,7 +791,8 @@ edges:
         cost: 3
         steps:
           - type: "object"
-            object: 7110
+            object: 2455
+            transform: 1
             tile: [ 3305, 3473 ]
             option: "Enter"
       - from: *varrock-east-earth-altar
