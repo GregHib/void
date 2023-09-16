@@ -1,3 +1,18 @@
+runecrafting:
+  - levels: 0-9
+    inventory:
+      - id: rune_essence
+        amount: 28
+    equipment:
+      hat:
+        - id: air_tiara
+  - levels: 9-14
+    inventory:
+      - id: rune_essence
+        amount: 28
+    equipment:
+      hat:
+        - id: earth_tiara
 smelting:
   - levels: 0-20
     inventory:

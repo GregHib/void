@@ -772,7 +772,8 @@ edges:
         cost: 3
         steps:
           - type: "object"
-            object: 7104
+            object: 2452
+            transform: 1
             tile: [ 3126, 3404 ]
             option: "Enter"
       - from: *varrock-west-air-altar
