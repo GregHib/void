@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.softQueue
-
+import world.gregs.voidps.engine.suspend.arriveDelay
 
 on<ObjectOption>({ operate && target.id == "lumbridge_flag" && option == "Raise" }) { player: Player ->
     arriveDelay()
