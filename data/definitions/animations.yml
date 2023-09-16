@@ -1488,7 +1488,7 @@ miasmic_burst_cast: 10516
 miasmic_blitz_cast: 10524
 miasmic_barrage_cast: 10518
 charge: 811
-bury_bones: 827
+bend_down: 827
 offer_bones: 3705
 lunar_cast_group: 4409
 vengeance: 4410
@@ -1562,3 +1562,4 @@ lumbridge_flag_stop_raise:
   id: 9978
   ticks: 2
 lumbridge_flag: 9979
+bind_runes: 791

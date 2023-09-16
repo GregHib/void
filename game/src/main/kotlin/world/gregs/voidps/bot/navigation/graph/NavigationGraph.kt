@@ -137,7 +137,11 @@ class NavigationGraph(
                 val objectId = map["object"] as Int
                 val tile = map["tile"] as Tile
                 val option = map["option"] as String
-                val def = definitions.getOrNull(objectId) ?: return null
+                var def = definitions.getOrNull(objectId) ?: return null
+                val transform = map["transform"] as? Int
+                if (transform != null) {
+                    def = definitions.getOrNull(def.transforms!![transform]) ?: return null
+                }
                 val optionIndex = def.optionsIndex(option) + 1
                 return InteractObject(objectId, tile.x, tile.y, optionIndex)
             }

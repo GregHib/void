@@ -31,6 +31,8 @@ object Instances {
         return region
     }
 
+    fun isInstance(region: Region): Boolean = used.contains(region)
+
     fun free(instance: Region) {
         if (!used.remove(instance)) {
             return

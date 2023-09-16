@@ -3,6 +3,7 @@ package world.gregs.voidps.tools.map.obj
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.MapObject
+import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoderFull
 import world.gregs.voidps.engine.map.region.Xteas
@@ -17,26 +18,17 @@ object ObjectUsageFinder {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val xteas: Xteas = Xteas().load(property("xteaPath"), propertyOrNull("xteaJsonKey") ?: Xteas.DEFAULT_KEY, propertyOrNull("xteaJsonValue") ?: Xteas.DEFAULT_VALUE)
         val decoder = ObjectDecoderFull(member = false, lowDetail = false).loadCache(cache)
-        val mapDecoder = MapDecoder(xteas).loadCache(cache)
-        val objects = mutableMapOf<Region, List<MapObject>>()
-        for (regionX in 0 until 256) {
-            for (regionY in 0 until 256) {
-                cache.getFile(5, "m${regionX}_${regionY}") ?: continue
-                val region = Region(regionX, regionY)
-                val def = mapDecoder.getOrNull(region.id) ?: continue
-                objects[region] = def.objects
-            }
-        }
-
-        for ((region, list) in objects) {
-            for (obj in list) {
+        val maps = MapDecoder(xteas).loadCache(cache)
+        for (map in maps) {
+            val region = Region(map.id)
+            for (obj in map.objects) {
                 val def = decoder.getOrNull(obj.id) ?: continue
-                if (obj.shape == 0 && def.solid != 1 && !def.blocksSky && !def.ignoreOnRoute && def.options?.any { it != null && it != "Examine" } == true) {
-                    println("Found ${obj.id} ${obj.shape} - ${region.tile.x + obj.x}, ${region.tile.y + obj.y}, ${obj.level}")
+                if (matches(obj, def)) {
+                    println("Found ${obj.id} - ${region.tile.x + obj.x}, ${region.tile.y + obj.y}, ${obj.level} ${def.varbit}")
                 }
             }
-//            val obj = list.firstOrNull { it.id == objectId } ?: continue
-//            println("Found in region ${region.id} ${region.tile.x + obj.x}, ${region.tile.y + obj.y}, ${obj.level}")
         }
     }
+
+    private fun matches(obj: MapObject, def: ObjectDefinitionFull) = obj.id in 2452..2462
 }

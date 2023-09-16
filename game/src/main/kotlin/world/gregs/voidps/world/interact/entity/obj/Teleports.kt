@@ -49,6 +49,10 @@ class Teleports {
         return teleport.id == id
     }
 
+    fun get(id: String, option: String): List<TeleportDefinition> {
+        return teleports.values.mapNotNull { it[option] }.filter { it.id == id }
+    }
+
     @Suppress("UNCHECKED_CAST")
     fun load(yaml: Yaml = get(), path: String = getProperty("teleportsPath")): Teleports {
         timedLoad("object teleport") {
@@ -58,8 +62,9 @@ class Teleports {
                     val tile = map["tile"] as Tile
                     val optionMap = createMap()
                     val option = map["option"] as String
+                    val id = (map["id"] as? Int)?.toString() ?: map["id"] as String
                     optionMap[option] = TeleportDefinition(
-                        id = (map["id"] as? Int)?.toString() ?: map["id"] as String,
+                        id = id,
                         option = option,
                         tile = tile,
                         delta = map["delta"] as? Delta ?: Delta.EMPTY,
@@ -87,7 +92,7 @@ class Teleports {
         return this
     }
 
-    private data class TeleportDefinition(
+    data class TeleportDefinition(
         val id: String,
         val option: String,
         val tile: Tile,

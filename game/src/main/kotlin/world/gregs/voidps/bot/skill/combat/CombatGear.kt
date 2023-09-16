@@ -93,6 +93,8 @@ fun Bot.hasExactGear(gear: GearDefinition): Boolean {
 }
 
 private suspend fun Bot.setupGearAndInv(gear: GearDefinition, buy: Boolean) {
+    println("Setup $gear")
+    // Pick one of each item to equip for each required slot
     for ((_, equipmentList) in gear.equipment) {
         val items = equipmentList
             .filter { player.hasRequirements(it) || player.hasUseRequirements(it) || player.bank.contains(it.id, it.amount) }
@@ -101,7 +103,11 @@ private suspend fun Bot.setupGearAndInv(gear: GearDefinition, buy: Boolean) {
         }
         withdrawOrBuy(items, buy)
     }
-
+    await("tick")
+    if (!player.interfaces.contains("bank")) {
+        openBank()
+        await("tick")
+    }
     for (items in gear.inventory) {
         withdrawOrBuy(items, buy)
     }

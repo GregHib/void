@@ -172,8 +172,11 @@ on<ObjectOption>({ approach && option == "Prospect" }) { player: Player ->
         player.message("There is currently no ore available in this rock.")
         return@on
     }
+    if (player.queue.contains("prospect")) {
+        return@on
+    }
     player.message("You examine the rock for ores...")
-    player.start("delay", 4)
+    player.start("movement_delay", 4)
     player.softQueue("prospect", 4) {
         val ore = def.getOrNull<Rock>("mining")?.ores?.firstOrNull()
         if (ore == null) {

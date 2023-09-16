@@ -2643,6 +2643,9 @@ fire_rune:
   id: 554
   price: 4
   limit: 25000
+  runecrafting:
+    xp: 7.0
+    levels: [ 14, 35, 70 ]
   aka: [ fires, fire_runes ]
   combination: [ "smoke_rune", "steam_rune", "lava_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
@@ -2651,6 +2654,9 @@ water_rune:
   id: 555
   price: 11
   limit: 25000
+  runecrafting:
+    xp: 6.0
+    levels: [ 5, 19, 38, 57, 76, 95 ]
   aka: [ waters, water_runes ]
   combination: [ "mist_rune", "mud_rune", "steam_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
@@ -2659,6 +2665,9 @@ air_rune:
   id: 556
   price: 5
   limit: 25000
+  runecrafting:
+    xp: 5.0
+    levels: [ 1, 11, 22, 33, 44, 55, 66, 77, 88, 99 ]
   aka: [ airs, air_runes ]
   combination: [ "mist_rune", "dust_rune", "smoke_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
@@ -2667,6 +2676,9 @@ earth_rune:
   id: 557
   price: 10
   limit: 25000
+  runecrafting:
+    xp: 6.5
+    levels: [ 9, 26, 52, 78 ]
   aka: [ earths, earth_runes ]
   combination: [ "dust_rune", "mud_rune", "lava_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
@@ -2675,6 +2687,9 @@ mind_rune:
   id: 558
   price: 4
   limit: 25000
+  runecrafting:
+    xp: 5.5
+    levels: [ 2, 14, 28, 42, 56, 84, 98 ]
   aka: [ minds, mind_runes ]
   combination: [ "catalytic_rune" ]
   examine: "Used for basic level missile spells."
@@ -2683,6 +2698,9 @@ body_rune:
   id: 559
   price: 4
   limit: 25000
+  runecrafting:
+    xp: 7.5
+    levels: [ 20, 46, 92 ]
   aka: [ bodies, bodys, body_runes ]
   combination: [ "catalytic_rune" ]
   examine: "Used for Curse spells"
@@ -2691,6 +2709,10 @@ death_rune:
   id: 560
   price: 256
   limit: 25000
+  runecrafting:
+    xp: 10.0
+    levels: [ 65 ]
+    pure: true
   aka: [ deaths, death_runes ]
   combination: [ "catalytic_rune" ]
   examine: "Used for medium level missile spells."
@@ -2698,6 +2720,10 @@ nature_rune:
   id: 561
   price: 129
   limit: 25000
+  runecrafting:
+    xp: 9.0
+    levels: [ 44, 91 ]
+    pure: true
   aka: [ nat, nats, natures, nature_runes ]
   combination: [ "catalytic_rune" ]
   examine: "Used for alchemy spells."
@@ -2705,6 +2731,10 @@ chaos_rune:
   id: 562
   price: 52
   limit: 25000
+  runecrafting:
+    xp: 8.5
+    levels: [ 35, 74 ]
+    pure: true
   aka: [ chaoss, chaoses, chaos_runes ]
   combination: [ "catalytic_rune" ]
   examine: "Used for low level missile spells."
@@ -2712,6 +2742,10 @@ law_rune:
   id: 563
   price: 214
   limit: 25000
+  runecrafting:
+    xp: 9.5
+    levels: [ 54 ]
+    pure: true
   aka: [ laws, law_runes ]
   combination: [ "catalytic_rune" ]
   examine: "Used for teleport spells."
@@ -2719,6 +2753,10 @@ cosmic_rune:
   id: 564
   price: 131
   limit: 25000
+  runecrafting:
+    xp: 8.0
+    levels: [ 27, 59 ]
+    pure: true
   aka: [ cosmics, cosmic_runes ]
   combination: [ "catalytic_rune" ]
   examine: "Used for enchant spells."
@@ -2726,6 +2764,10 @@ blood_rune:
   id: 565
   price: 272
   limit: 25000
+  runecrafting:
+    xp: 10.5
+    levels: [ 77 ]
+    pure: true
   aka: [ bloods, blood_runes ]
   combination: [ "catalytic_rune" ]
   examine: "Used for high level missile spells."
@@ -2733,6 +2775,10 @@ soul_rune:
   id: 566
   price: 521
   limit: 25000
+  runecrafting:
+    xp: 29.7
+    levels: [ 90 ]
+    pure: true
   aka: [ souls, soul_runes ]
   combination: [ "catalytic_rune" ]
   examine: "Used for high level curse spells."
@@ -9092,6 +9138,7 @@ rune_essence:
   mining:
     xp: 5.0
     chance: 200-400
+  aka: [ rune_ess, rune_esse, essence ]
   examine: "An uncharged Rune Stone."
   kept: "Wilderness"
 rune_essence_noted: 1437
@@ -41415,6 +41462,7 @@ pure_essence:
   mining:
     xp: 5.0
     chance: 150-350
+  aka: [ pure_ess, pure_esse, p_ess, p_esse, p_essence ]
   examine: "An uncharged Rune Stone of extra capability. Used in Runecrafting for training and production."
 pure_essence_noted: 7937
 tortoise_shell:
@@ -46186,6 +46234,10 @@ astral_rune:
   id: 9075
   price: 136
   limit: 25000
+  runecrafting:
+    xp: 8.7
+    levels: [ 40, 82 ]
+    pure: true
   aka: [ astral_runes, astral, astrals ]
   combination: [ "catalytic_rune" ]
   examine: "Used for Lunar Spells"

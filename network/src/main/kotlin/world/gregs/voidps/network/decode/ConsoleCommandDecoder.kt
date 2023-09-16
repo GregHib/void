@@ -15,7 +15,7 @@ class ConsoleCommandDecoder : Decoder(BYTE) {
         val command = packet.readString()
         val parts = command.split(" ")
         val prefix = parts[0]
-        instructions.emit(ExecuteCommand(prefix, command.removePrefix("$prefix ")))
+        instructions.emit(ExecuteCommand(prefix, command.removePrefix(prefix).trim()))
     }
 
 }

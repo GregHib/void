@@ -238,3 +238,6 @@ poison_damage:
 tolerance:
   format: int
   persist: true
+debug:
+  format: boolean
+  persist: true

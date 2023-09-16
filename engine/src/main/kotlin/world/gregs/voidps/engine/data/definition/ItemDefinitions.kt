@@ -107,6 +107,7 @@ class ItemDefinitions(
                     "weaving" -> Weaving(value as Map<String, Any>)
                     "jewellery" -> Jewellery(value as Map<String, Any>)
                     "silver_jewellery" -> Silver(value as Map<String, Any>)
+                    "runecrafting" -> Rune(value as Map<String, Any>)
                     "ammo" -> ObjectOpenHashSet(value as List<String>)
                     else -> value
                 }, indent, parentMap)
