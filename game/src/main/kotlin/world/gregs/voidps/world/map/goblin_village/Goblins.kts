@@ -9,11 +9,10 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import kotlin.random.Random
 
+fun isRedGoblin(id: String) = id.startsWith("goblin_") && id.endsWith("_red")
+fun isGreenGoblin(id: String) = id.startsWith("goblin_") && id.endsWith("_green")
 
-fun redGoblins(id: String) = id.startsWith("goblin_") && id.endsWith("_red")
-fun greenGoblins(id: String) = id.startsWith("goblin_") && id.endsWith("_green")
-
-on<NPCOption>({ operate && redGoblins(target.id) && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && isRedGoblin(target.id) && option == "Talk-to" }) { _: Player ->
     when (Random.nextInt(0, 2)) {
         0 -> {
             npc<Talking>("Red armour best!", largeHead = true)
@@ -21,8 +20,7 @@ on<NPCOption>({ operate && redGoblins(target.id) && option == "Talk-to" }) { pla
                 option<Uncertain>("Why is red best?"){
                     npc<Afraid>("Cos General Bentnoze says so, and he bigger than me.", largeHead = true)
                 }
-                option<Uncertain>("Err, okay."){
-                }
+                option<Uncertain>("Err, okay.")
             }
         }
         1 -> {
@@ -36,8 +34,7 @@ on<NPCOption>({ operate && redGoblins(target.id) && option == "Talk-to" }) { pla
     }
 }
 
-
-on<NPCOption>({ operate && greenGoblins(target.id) && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && isGreenGoblin(target.id) && option == "Talk-to" }) { _: Player ->
     when (Random.nextInt(0, 2)) {
         0 -> {
             npc<Talking>("green armour best!", largeHead = true)
@@ -45,8 +42,7 @@ on<NPCOption>({ operate && greenGoblins(target.id) && option == "Talk-to" }) { p
                 option<Uncertain>("Why is green best?") {
                     npc<Afraid>("Cos General Wartface says so, and he bigger than me.", largeHead = true)
                 }
-                option<Uncertain>("Err, okay.") {
-                }
+                option<Uncertain>("Err, okay.")
             }
         }
 
@@ -61,7 +57,7 @@ on<NPCOption>({ operate && greenGoblins(target.id) && option == "Talk-to" }) { p
     }
 }
 
-on<NPCOption>({ operate && target.id == "grubfoot" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id == "grubfoot" && option == "Talk-to" }) { _: Player ->
     npc<Sad>("""
         Grubfoot wear red armour! Grubfoot wear green
         armour!
