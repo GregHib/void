@@ -347,7 +347,7 @@ var Character.spell: String
     get() = get("spell", get("autocast_spell", ""))
     set(value) = set("spell", value)
 
-var Player.weapon: Item
+var Character.weapon: Item
     get() = get("weapon", Item.EMPTY)
     set(value) = set("weapon", value)
 

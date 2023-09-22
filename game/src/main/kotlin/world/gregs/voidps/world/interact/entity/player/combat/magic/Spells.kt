@@ -7,16 +7,26 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.get
+import kotlin.math.absoluteValue
 
 fun isMultiTargetSpell(spell: String) = spell.endsWith("_burst") || spell.endsWith("_barrage")
 
-fun Player.drainSpell(target: Character, spell: String) {
-    (target as? Player)?.message("You feel slightly weakened.", ChatType.Filter)
+fun canDrain(target: Character, spell: String): Boolean {
+    val def = get<SpellDefinitions>().get(spell)
+    val skill = Skill.valueOf(def["drain_skill"])
+    val multiplier: Double = def["drain_multiplier"]
+    val maxDrain = multiplier * target.levels.getMax(skill)
+    return target.levels.getOffset(skill) > -maxDrain
+}
+
+fun Character.drainSpell(target: Character, spell: String) {
     val def = get<SpellDefinitions>().get(spell)
     val multiplier: Double = def["drain_multiplier"]
     val skill = Skill.valueOf(def["drain_skill"])
     val drained = target.levels.drain(skill, multiplier = multiplier, stack = target is Player)
-    if (target.levels.get(skill) >= multiplier * 100 && drained == 0) {
+    if (target.levels.getOffset(skill).absoluteValue >= multiplier * 100 && drained == 0) {
         message("The spell has no effect because the target has already been weakened.")
+    } else {
+        (target as? Player)?.message("You feel slightly weakened.", ChatType.Filter)
     }
 }

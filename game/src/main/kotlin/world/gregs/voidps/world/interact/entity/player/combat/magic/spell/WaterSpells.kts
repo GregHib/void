@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -13,13 +14,13 @@ import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.magicHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-on<CombatSwing>({ player -> !swung() && player.spell.startsWith("water_") }, Priority.LOW) { player: Player ->
-    val spell = player.spell
-    val staff = if (player.weapon.def["category", ""] == "staff") "_staff" else ""
-    player.setAnimation("water_spell${staff}")
-    player.setGraphic("water_spell${staff}_cast")
-    player.shoot(id = spell, target = target)
-    val distance = player.tile.distanceTo(target)
-    player.hit(target, delay = magicHitDelay(distance))
+on<CombatSwing>({ character -> !swung() && character.spell.startsWith("water_") }, Priority.LOW) { character: Character ->
+    val spell = character.spell
+    val staff = if (character.weapon.def["category", ""] == "staff") "_staff" else ""
+    character.setAnimation("water_spell${staff}")
+    character.setGraphic("water_spell${staff}_cast")
+    character.shoot(id = spell, target = target)
+    val distance = character.tile.distanceTo(target)
+    character.hit(target, delay = magicHitDelay(distance))
     delay = 5
 }
