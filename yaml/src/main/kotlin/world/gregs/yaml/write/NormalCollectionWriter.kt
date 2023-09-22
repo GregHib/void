@@ -27,6 +27,7 @@ class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration
             }
             if (i < list.lastIndex) {
                 writer.appendLine()
+                writer.indent(indent)
             }
         }
     }

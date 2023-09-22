@@ -85,4 +85,21 @@ class NormalCollectionWriterTest {
         """.trimIndent()
         assertEquals(expected, actual)
     }
+
+    @Test
+    fun `Write nested lists and maps`() {
+        val input = mapOf("one" to mapOf("two" to "value", "three" to "value", "four" to listOf(mapOf("five" to 5, "six" to 6), mapOf("seven" to 7, "eight" to 8))))
+        val actual = yaml.writeToString(input)
+        val expected = """
+            one:
+              two: value
+              three: value
+              four:
+                - five: 5
+                  six: 6
+                - seven: 7
+                  eight: 8
+        """.trimIndent()
+        assertEquals(expected, actual)
+    }
 }
