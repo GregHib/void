@@ -7,6 +7,8 @@ import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -36,6 +38,7 @@ val floorItems: FloorItems by inject()
 val tables: DropTables by inject()
 
 on<Death> { npc: NPC ->
+    npc.mode = PauseMode
     npc.dead = true
     npc.steps.clear()
     npc.strongQueue(name = "death", 1) {
@@ -60,6 +63,7 @@ on<Death> { npc: NPC ->
             npc.face(npc["respawn_direction", Direction.NORTH], update = false)
             npcs.index(npc)
             npc.dead = false
+            npc.mode = EmptyMode
         } else {
             World.run("remove_npc", 0) {
                 npcs.remove(npc)
