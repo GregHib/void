@@ -11,7 +11,7 @@ class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration
         for (i in list.indices) {
             writer.append('-')
             writer.append(' ')
-            when (val element = list[i]) {
+            when (val element = config.write(list[i], indent, parentMap) ?: continue) {
                 is List<*> -> explicit.list(element, indent + 1, parentMap = null)
                 is Array<*> -> explicit.list(element.toList(), indent + 1, parentMap = null)
                 is BooleanArray -> explicit.list(element.toList(), indent + 1, parentMap = null)
@@ -33,7 +33,7 @@ class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration
 
     override fun map(map: Map<*, *>, indent: Int, parentMap: String?) {
         var index = 0
-        for ((k, value) in map) {
+        for ((k, v) in map) {
             if (config.quoteKeys) {
                 writer.append('"')
             }
@@ -44,7 +44,7 @@ class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration
             }
             writer.append(':')
             index++
-            when (value) {
+            when (val value = config.write(v, indent, parentMap) ?: continue) {
                 is Map<*, *> -> {
                     writer.appendLine()
                     writer.indent(indent + 1)

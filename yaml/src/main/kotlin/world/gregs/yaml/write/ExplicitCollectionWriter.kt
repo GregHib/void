@@ -16,7 +16,8 @@ class ExplicitCollectionWriter(writer: CharWriter, config: YamlWriterConfigurati
         if (list.isNotEmpty()) {
             writer.append(' ')
             for (i in list.indices) {
-                value(list[i], indent, parentMap)
+                val element = config.write(list[i], indent, parentMap)
+                value(element, indent, parentMap)
                 if (i != list.lastIndex) {
                     writer.append(',')
                     writer.append(' ')
@@ -36,8 +37,9 @@ class ExplicitCollectionWriter(writer: CharWriter, config: YamlWriterConfigurati
         if (map.isNotEmpty()) {
             writer.append(' ')
             var i = 0
-            for ((k, value) in map) {
+            for ((k, v) in map) {
                 val key = writeKey(k)
+                val value = config.write(v, indent, parentMap)
                 value(value, indent, key)
                 if (i++ != map.size - 1) {
                     writer.append(',')
@@ -55,7 +57,8 @@ class ExplicitCollectionWriter(writer: CharWriter, config: YamlWriterConfigurati
             writer.appendLine()
             for (i in list.indices) {
                 writer.indent(indent + 1)
-                value(list[i], indent + 1, parentMap)
+                val element = config.write(list[i], indent + 1, parentMap)
+                value(element, indent + 1, parentMap)
                 if (i != list.lastIndex) {
                     writer.append(',')
                 }
@@ -71,9 +74,10 @@ class ExplicitCollectionWriter(writer: CharWriter, config: YamlWriterConfigurati
         if (map.isNotEmpty()) {
             writer.appendLine()
             var i = 0
-            for ((k, value) in map) {
+            for ((k, v) in map) {
                 writer.indent(indent + 1)
                 val key = writeKey(k)
+                val value = config.write(v, indent + 1, key)
                 value(value, indent + 1, key)
                 if (i++ != map.size - 1) {
                     writer.append(',')

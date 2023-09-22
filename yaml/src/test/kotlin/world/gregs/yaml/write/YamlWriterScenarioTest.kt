@@ -26,7 +26,7 @@ class YamlWriterScenarioTest {
     }
 
     @Test
-    fun `Write object as map`() {
+    fun `Write object as explicit map`() {
         val config = object : YamlWriterConfiguration(forceExplicit = true) {
             override fun write(value: Any?, indent: Int, parentMap: String?): Any? {
                 return if (value is SpawnData) {
@@ -43,6 +43,31 @@ class YamlWriterScenarioTest {
         val actual = yaml.writeToString(input, config)
         val expected = """
             [ { id: prison_pete, x: 2084, y: 4460, direction: NORTH }, { id: balloon_animal, x: 2078, y: 4462 } ]
+        """.trimIndent()
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `Write object as map`() {
+        val config = object : YamlWriterConfiguration() {
+            override fun write(value: Any?, indent: Int, parentMap: String?): Any? {
+                return if (value is SpawnData) {
+                    value.toMap()
+                } else {
+                    super.write(value, indent, parentMap)
+                }
+            }
+        }
+        val input = mapOf(
+            "pete" to SpawnData("prison_pete", 2084, 4460, Direction.NORTH)
+        )
+        val actual = yaml.writeToString(input, config)
+        val expected = """
+            pete:
+              id: prison_pete
+              x: 2084
+              y: 4460
+              direction: NORTH
         """.trimIndent()
         assertEquals(expected, actual)
     }
