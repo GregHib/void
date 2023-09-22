@@ -128,7 +128,7 @@ rat:
   range_def: -42
   attack_speed: 4
   wander_radius: 8
-  attack_radius: 8
+  attack_radius: 18
   slayer_xp: 2.0
   max_hit_melee: 1
   style: crush
@@ -152,7 +152,7 @@ giant_spider:
   magic_def: -10
   range_def: -10
   attack_speed: 4
-  attack_radius: 8
+  attack_radius: 13
   wander_radius: 10
   hunt_mode: cowardly
   hunt_range: 1
