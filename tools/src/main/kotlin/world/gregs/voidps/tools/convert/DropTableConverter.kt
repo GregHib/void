@@ -3,58 +3,105 @@ package world.gregs.voidps.tools.convert
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.engine.entity.item.drop.DropTable
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
+import world.gregs.voidps.engine.entity.item.drop.TableType
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.write.YamlWriterConfiguration
 
 object DropTableConverter {
 
-    @Suppress("USELESS_CAST")
     @JvmStatic
     fun main(args: Array<String>) {
         val string = """
-===Other===
-{{DropsTableHead}}
-{{DropsLine|Name=Nothing|Rarity=38/128}}
-{{DropsLine|Name=Hammer|Quantity=1|Rarity=15/128}}
-{{DropsLine|Name=Goblin book|Namenotes={{(m)}}|Quantity=1|Rarity=2/128|gemw=No}}
-{{DropsLine|Name=Goblin mail|Quantity=1|Rarity=5/128}}
-{{DropsLine|Name=Chef's hat|Quantity=1|Rarity=3/128}}
-{{DropsLine|Name=Beer|Quantity=1|Rarity=2/128}}
-{{DropsLine|Name=Brass necklace|Quantity=1|Rarity=1/128}}
-{{DropsLine|Name=Air talisman|Quantity=1|Rarity=1/128}}
+===Elemental runes===
+{{DropsTableHead|version=Low level}}
+{{DropsLine|name=Nature rune|quantity=4|rarity=7/128}}
+{{DropsLine|name=Chaos rune|quantity=5|rarity=6/128}}
+{{DropsLine|name=Mind rune|quantity=10|rarity=3/128}}
+{{DropsLine|name=Body rune|quantity=10|rarity=3/128}}
+{{DropsLine|name=Mind rune|quantity=18|rarity=2/128}}
+{{DropsLine|name=Body rune|quantity=18|rarity=2/128}}
+{{DropsLine|name=Blood rune|namenotes={{(m)}}|quantity=2|rarity=2/128}}
+{{DropsLine|name=Cosmic rune|quantity=2|rarity=1/128}}
+{{DropsLine|name=Law rune|quantity=3|rarity=1/128}}
 {{DropsTableBottom}}
         """.trimIndent()
-        val builder = DropTable.Builder()
+        val all = mutableListOf<DropTable>()
+        var builder = DropTable.Builder()
         var name = ""
         for (line in string.lines()) {
             if (line.startsWith("=")) {
                 name = toIdentifier(line.replace("=", ""))
             } else if (line.startsWith("{{DropsLine|")) {
                 process(builder, line)
+            } else if (line.startsWith("{{DropsTableBottom")) {
+                val table = builder.build()
+                all.add(table)
+                builder = DropTable.Builder()
             }
         }
-
-        val writer = object : YamlWriterConfiguration() {
-            override fun write(value: Any?, indent: Int, parentMap: String?): Any? {
-                return when (value) {
-                    is ItemDrop -> {
-                        val map = mutableMapOf("id" to value.id, "amount" to value.amount.toString(), "chance" to value.chance)
-                        if (value.members) {
-                            map["members"] = true
-                        }
-                        super.write(map, indent, parentMap)
-                    }
-                    is DropTable -> super.write(mapOf("type" to value.type, "roll" to value.roll, "drops" to value.drops), indent, parentMap)
-                    else -> super.write(value, indent, parentMap)
-                }
-            }
-        }
-        val mapper = Yaml()
-
-        val table = builder.build()
-
-        println(mapper.writeToString(mapOf(name to table), writer))
+        println(mapper.writeToString(mapOf("drop_table" to combine(all)), writer))
     }
+
+    private fun combine(all: MutableList<DropTable>): DropTable {
+        val parent = DropTable.Builder()
+        if (all.size == 1) {
+            return all.first()
+        }
+        val always = all.first { it.roll == 1 }
+        parent.withType(TableType.All)
+        parent.addDrop(always)
+        val table = DropTable.Builder()
+        for (child in all) {
+            if (child.roll == 1) {
+                continue
+            }
+            table.withType(child.type)
+            table.withRoll(child.roll)
+            for (drop in child.drops) {
+                table.addDrop(drop)
+            }
+        }
+        parent.addDrop(table.build())
+        return parent.build()
+    }
+
+    private val writer = object : YamlWriterConfiguration() {
+        override fun write(value: Any?, indent: Int, parentMap: String?): Any? {
+            return when (value) {
+                is ItemDrop -> {
+                    val map = mutableMapOf<String, Any>("id" to value.id)
+                    if (value.chance != 1) {
+                        map["chance"] = value.chance
+                    }
+                    if (value.amount.first == value.amount.last) {
+                        val amount = value.amount.first
+                        if (amount != 1) {
+                            map["amount"] = amount
+                        }
+                    } else {
+                        map["amount"] = value.amount.toString()
+                    }
+                    if (value.members) {
+                        map["members"] = true
+                    }
+                    super.write(map, indent, parentMap)
+                }
+                is DropTable -> {
+                    val map = mutableMapOf<String, Any>()
+                    if (value.type != TableType.First) {
+                        map["type"] = value.type.name.lowercase()
+                    }
+                    if (value.roll != 1) {
+                        map["roll"] = value.roll
+                    }
+                    map["drops"] = value.drops
+                    super.write(map, indent, parentMap)
+                }
+                else -> super.write(value, indent, parentMap)
+            }
+        }
+    }
+    private val mapper = Yaml()
 
     fun process(builder: DropTable.Builder, string: String) {
         val parts = string.split("|", "=").drop(1)
@@ -67,7 +114,6 @@ object DropTableConverter {
         assert(map.containsKey("name"))
         assert(map.containsKey("rarity"))
 
-        println(map)
         var id = toIdentifier(map.getValue("name"))
         val members = toIdentifier(map.getOrDefault("namenotes", "")) == "m"
         val quantity = map["quantity"] ?: "0"

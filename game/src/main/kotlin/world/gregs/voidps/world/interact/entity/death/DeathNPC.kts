@@ -83,7 +83,7 @@ fun deathAnimation(npc: NPC): String {
 }
 
 fun dropLoot(npc: NPC, killer: Character?, name: String, tile: Tile) {
-    var table = tables.get("${name}_drop_table")
+    var table = tables.get("${npc.def["drop_table", name]}_drop_table")
     if (table == null) {
         table = tables.get("${npc.def["race", ""]}_drop_table")
         if (table == null) {
