@@ -87,10 +87,6 @@ fun combat(character: Character, target: Character, attackRange: Int = character
     character.start("hit_delay", nextDelay)
 }
 
-on<CombatSwing>(priority = Priority.HIGHEST) { character: Character ->
-    character.face(target)
-}
-
 on<CombatStop> { character: Character ->
     character.clearWatch()
     character.target = null

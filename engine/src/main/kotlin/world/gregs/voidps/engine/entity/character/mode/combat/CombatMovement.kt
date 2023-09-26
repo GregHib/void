@@ -28,6 +28,7 @@ class CombatMovement(
 
     override fun start() {
         character.watch(target)
+        character.clear("face_entity")
     }
 
     override fun tick() {
