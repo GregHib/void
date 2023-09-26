@@ -20,7 +20,9 @@ import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
+import world.gregs.voidps.engine.client.update.CharacterTask
 import world.gregs.voidps.engine.client.update.iterator.ParallelIterator
+import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
@@ -78,12 +80,21 @@ object Main {
         val objectDefinitions: ObjectDefinitions = get()
 
         val handler = InterfaceHandler(get(), interfaceDefinitions, get())
-        val tickStages = getTickStages(players, npcs, items,
+        val tickStages = getTickStages(
+            players,
+            npcs,
+            items,
             get(),
-            get(), queue,
             get(),
-            get(), objectDefinitions,
-            get(), interfaceDefinitions, get(), handler, ParallelIterator())
+            queue,
+            get(),
+            get(),
+            objectDefinitions,
+            get(),
+            interfaceDefinitions,
+            get(),
+            handler,
+            if (CharacterTask.DEBUG) SequentialIterator() else ParallelIterator())
         val engine = GameLoop(tickStages)
 
         World.start(getProperty("members") == "true")

@@ -20,7 +20,9 @@ class PlayerResetTask(
     override fun run() {
         super.run()
         batches.reset()
-        characters.shuffle()
+        if (!DEBUG) {
+            characters.shuffle()
+        }
     }
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
