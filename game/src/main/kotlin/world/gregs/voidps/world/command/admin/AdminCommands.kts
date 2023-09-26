@@ -100,11 +100,6 @@ on<Command>({ prefix == "teletome" }) { player: Player ->
     other.tele(player.tile)
 }
 
-on<Command>({ prefix == "teleto" }) { player: Player ->
-    val other = players.get(content) ?: return@on
-    player.tele(other.tile)
-}
-
 on<Command>({ prefix == "npc" }) { player: Player ->
     val id = content.toIntOrNull()
     val defs: NPCDefinitions = get()
