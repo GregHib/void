@@ -278,7 +278,7 @@ class PlayerUpdateTask(
     fun calculateRegionUpdate(delta: Delta): RegionChange = when {
         delta.x == 0 && delta.y == 0 && delta.level == 0 -> RegionChange.None
         delta.x == 0 && delta.y == 0 && delta.level != 0 -> RegionChange.Height
-        delta.x == -1 || delta.y == -1 || delta.x == 1 || delta.y == 1 -> RegionChange.Local
+        delta.x >= -1 && delta.x <= 1 && delta.y >= -1 && delta.y <= 1 -> RegionChange.Local
         else -> RegionChange.Global
     }
 
