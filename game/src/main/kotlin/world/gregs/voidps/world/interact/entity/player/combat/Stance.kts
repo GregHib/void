@@ -9,20 +9,20 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelModifier
 import world.gregs.voidps.world.interact.entity.combat.attackStyle
 
-on<HitEffectiveLevelModifier>(priority = Priority.MEDIUM) { character: Character ->
-    if (character is Player) {
-        if ((skill == Skill.Attack || skill == Skill.Ranged) && character.attackStyle == "accurate") {
-            level += 3
-        } else if ((skill == Skill.Attack || skill == Skill.Strength || skill == Skill.Defence) && character.attackStyle == "controlled") {
-            level += 1
-        } else if (skill == Skill.Defence && (character.attackStyle == "defensive" || character.attackStyle == "long_range")) {
-            level += 3
-        } else if (skill == Skill.Strength && character.attackStyle == "aggressive") {
-            level += 3
-        }
+on<HitEffectiveLevelModifier>(priority = Priority.MEDIUM) { player: Player ->
+    level += when {
+        (skill == Skill.Attack || skill == Skill.Ranged) && player.attackStyle == "accurate" -> 3
+        (skill == Skill.Attack || skill == Skill.Strength || skill == Skill.Defence) && player.attackStyle == "controlled" -> 1
+        skill == Skill.Defence && (player.attackStyle == "defensive" || player.attackStyle == "long_range") -> 3
+        skill == Skill.Strength && player.attackStyle == "aggressive" -> 3
+        else -> 0
     }
+}
+
+on<HitEffectiveLevelModifier>(priority = Priority.MEDIUM) { _: Character ->
     level += 8
-    if (character is NPC) {
-        level += 1
-    }
+}
+
+on<HitEffectiveLevelModifier>(priority = Priority.MEDIUM) { _: NPC ->
+    level += 1
 }
