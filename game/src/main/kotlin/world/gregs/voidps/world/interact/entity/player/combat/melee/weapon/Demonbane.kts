@@ -11,7 +11,7 @@ import kotlin.math.floor
 
 fun isDemonbaneWeapon(item: Item?) = item != null && (item.id == "silverlight" || item.id == "darklight" || item.id == "holy_water")
 
-fun isDemon(target: Character?) = target is NPC && target["race", ""] == "demon"
+fun isDemon(target: Character?) = target is NPC && target.def["race", ""] == "demon"
 
 on<HitDamageModifier>({ type == "melee" && isDemonbaneWeapon(weapon) && isDemon(target) }, Priority.LOW) { _: Player ->
     damage = floor(damage * 1.60)

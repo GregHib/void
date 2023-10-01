@@ -1735,3 +1735,25 @@ seal_6:
   id: 13260
   wander_radius: 2
   examine: "Arf arf."
+greater_demon:
+  id: 83
+  att: 76
+  str: 78
+  def: 81
+  mage: 1
+  range: 1
+  magic_def: -10
+  attack_speed: 4
+  attack_range: 5
+  attack_radius: 11
+  hitpoints: 1870
+  hunt_range: 5
+  slayer_xp: 87
+  max_hit_melee: 90
+  style: slash
+  race: demon
+  respawn_delay: 15
+  hunt_mode: aggressive
+  wander_radius: 5
+  height: 60
+  examine: "Big, red, and incredibly evil."
