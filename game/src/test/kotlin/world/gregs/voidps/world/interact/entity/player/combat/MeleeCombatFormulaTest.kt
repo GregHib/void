@@ -196,6 +196,10 @@ internal class MeleeCombatFormulaTest : WorldTest() {
         assertEquals(5760, defensiveRating)
         assertEquals(212, maxHit)
         assertEquals(0.5813, chance, 0.0001)
+
+        val (_, _, specMaxHit, _) = calculate(player, npc, "melee", Item("darklight"), special = true)
+        assertEquals(133, specMaxHit)
+
     }
 
 }
