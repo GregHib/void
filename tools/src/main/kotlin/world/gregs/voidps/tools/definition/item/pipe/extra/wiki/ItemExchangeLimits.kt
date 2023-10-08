@@ -21,8 +21,7 @@ class ItemExchangeLimits : Pipeline.Modifier<Extras> {
             val start = System.currentTimeMillis()
             val pageFile = File("rs3-exchange-list.txt")
             if (!pageFile.exists()) {
-                val list = mutableListOf<String>()
-                getCategoryLinks(list, "/w/Category:Grand_Exchange_items")
+                val list = getCategoryLinks("/w/Category:Grand_Exchange_items")
                 pageFile.writeText(list.joinToString(separator = "\n") { "Module:Exchange/${it.removePrefix("/w/")}" })
                 println("Obtained ${list.size} exchange page names...")
             }

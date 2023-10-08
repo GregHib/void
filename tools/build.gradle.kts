@@ -10,6 +10,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:${findProperty("kotlinIoVersion")}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${findProperty("kotlinCoroutinesVersion")}")
 
+    implementation("org.apache.commons:commons-compress:1.24.0")
     implementation("org.jsoup:jsoup:1.13.1")
     implementation("org.sweble.wikitext:swc-engine:2.0.0")
     implementation("com.github.weisj:darklaf-core:2.7.3")

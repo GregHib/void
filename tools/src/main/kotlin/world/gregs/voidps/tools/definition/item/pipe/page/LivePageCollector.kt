@@ -25,7 +25,7 @@ class LivePageCollector(val type: String, categories: List<String>, infoboxes: L
             if (!pageFile.exists()) {
                 val list = mutableListOf<String>()
                 categories.forEach {
-                    getCategoryLinks(list, "/w/Category:$it", wiki)
+                    getCategoryLinks("/w/Category:$it", wiki, list)
                 }
                 pageFile.writeText(list.joinToString(separator = "\n") { it.removePrefix("/w/") })
                 println("Obtained ${list.size} $type page names...")
