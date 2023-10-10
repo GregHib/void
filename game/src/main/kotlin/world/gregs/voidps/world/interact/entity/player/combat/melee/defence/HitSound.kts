@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.combat.CombatAttack
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import kotlin.random.Random
@@ -21,7 +22,7 @@ on<CombatAttack>({ target is Player }, Priority.LOWER) { character: Character ->
 
 fun calculateHitSound(target: Character): String {
     if (target is NPC) {
-        return "${target.def["race", ""]}_hit"
+        return "${target.race}_hit"
     }
 
     if (target is Player) {

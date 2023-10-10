@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 
@@ -22,17 +23,15 @@ on<CombatSwing>({ it.tile.distanceTo(target) > it.def["attack_radius", 8] }, Pri
 }
 
 fun attackAnimation(npc: NPC): String {
-    val race: String? = npc.def.getOrNull("race")
-    if (race != null) {
-        return "${race}_attack"
+    if (npc.race.isNotEmpty()) {
+        return "${npc.race}_attack"
     }
     return npc.def.getOrNull("hit_anim") ?: ""
 }
 
 fun attackSound(npc: NPC): String {
-    val race: String? = npc.def.getOrNull("race")
-    if (race != null) {
-        return "${race}_attack"
+    if (npc.race.isNotEmpty()) {
+        return "${npc.race}_attack"
     }
     return npc.def.getOrNull("hit_anim") ?: ""
 }

@@ -8,6 +8,8 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.activity.skill.slayer.race
+import world.gregs.voidps.world.activity.skill.slayer.undead
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.spell
@@ -16,10 +18,8 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isCrumbleUndead(spell: String) = spell == "crumble_undead"
 
-fun isUndead(category: String) = category == "shade" || category == "zombie" || category == "skeleton" || category == "ghost" || category == "zogre" || category == "ankou"
-
 on<CombatSwing>({ player -> !swung() && isCrumbleUndead(player.spell) }, Priority.HIGHEST) { player: Player ->
-    if (target is NPC && !isUndead(target.def["race", ""])) {
+    if (target is NPC && !target.undead) {
         player.clear("autocast")
         player.message("This spell only affects skeletons, zombies, ghosts and shades")
         delay = -1

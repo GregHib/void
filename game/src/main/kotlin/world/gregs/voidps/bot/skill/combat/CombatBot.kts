@@ -31,6 +31,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.death.Death
 import world.gregs.voidps.world.interact.entity.death.weightedSample
@@ -152,7 +153,7 @@ fun Bot.isAvailableTarget(map: AreaDefinition, npc: NPC, races: Set<String>): Bo
     if (!npc.def.options.contains("Attack")) {
         return false
     }
-    if (!races.contains(npc.def.name.toSnakeCase()) && !races.contains(npc.def["race", ""])) {
+    if (!races.contains(npc.def.name.toSnakeCase()) && !races.contains(npc.race)) {
         return false
     }
     if (!map.area.contains(npc.tile)) {
