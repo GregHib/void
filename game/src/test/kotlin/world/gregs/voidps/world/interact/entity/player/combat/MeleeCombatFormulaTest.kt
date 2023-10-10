@@ -29,8 +29,8 @@ internal class MeleeCombatFormulaTest : WorldTest() {
     )
 
     private fun calculate(player: Player, target: Character, type: String, weapon: Item? = null, spell: String = "", special: Boolean = false): Results {
-        val offensiveRating = getRating(player, player, type, weapon, special)
-        val defensiveRating = getRating(player, target, type, weapon, special)
+        val offensiveRating = getRating(player, target, type, weapon, special, true)
+        val defensiveRating = getRating(player, target, type, weapon, special, false)
         val maxHit = getMaximumHit(player, target, type, weapon, spell, special)
         val chance = hitChance(player, target, type, weapon, special)
         return Results(offensiveRating, defensiveRating, maxHit, chance)
