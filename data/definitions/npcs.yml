@@ -1757,3 +1757,22 @@ greater_demon:
   wander_radius: 5
   height: 60
   examine: "Big, red, and incredibly evil."
+zombie:
+  &low_level_zombie
+  id: 73
+  att: 8
+  str: 9
+  def: 10
+  mage: 1
+  range: 1
+  att_bonus: 5
+  attack_speed: 5
+  attack_radius: 8
+  wander_radius: 10
+  hitpoints: 220
+  slayer_xp: 22.0
+  max_hit_melee: 20
+  style: slash
+  respawn_delay: 35
+  examine: "Dead man walking."
+  race: zombie

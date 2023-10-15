@@ -23,7 +23,7 @@ fun getSlayerMultiplier(player: Player, target: Character?, type: String, damage
     if (type == "melee" && target is NPC && target.undead) {
         when (player.equipped(EquipSlot.Amulet).id) {
             "salve_amulet_e" -> return 1.2
-            "salve_amulet" -> return 1.15
+            "salve_amulet" -> return 7.0 / 6.0
         }
     }
     if (!player.hasSlayerTask || !player.isTask(target)) {
@@ -31,7 +31,7 @@ fun getSlayerMultiplier(player: Player, target: Character?, type: String, damage
     }
     val helm = player.equipped(EquipSlot.Hat).id
     if (type == "melee" && (helm.startsWith("black_mask") || helm.startsWith("slayer_helmet"))) {
-        return 1.15
+        return 7.0 / 6.0
     }
     if (type == "range" && (helm == "focus_sight" || helm.startsWith("full_slayer_helmet"))) {
         return 1.15
