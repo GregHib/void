@@ -45,15 +45,27 @@ class SlayerCombatFormulaTest : CombatFormulaTest() {
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "magic", spell = "wind_strike")
 
-        assertEquals(4342, offensiveRating)
+        assertEquals(3712, offensiveRating)
         assertEquals(64, defensiveRating)
         assertEquals(20, maxHit)
-        assertEquals(0.9261, chance, 0.0001)
+        assertEquals(0.9911, chance, 0.0001)
     }
 
     @Test
     fun `Salve amulet e overrides slayer helmet boost`() {
+        val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99)
+        player.equipment.set(EquipSlot.Hat.index, "slayer_helmet")
+        player.equipment.set(EquipSlot.Amulet.index, "salve_amulet")
+        player["slayer_task"] = true
+        player["slayer_type"] = "zombie"
+        val npc = createNPC("zombie")
 
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee")
+
+        assertEquals(6421, offensiveRating)
+        assertEquals(1216, defensiveRating)
+        assertEquals(130, maxHit)
+        assertEquals(0.9052, chance, 0.0001)
     }
 
 
@@ -72,6 +84,22 @@ class SlayerCombatFormulaTest : CombatFormulaTest() {
     }
 
     @Test
+    fun `Slayer helmet ranged on slayer task`() {
+        val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99)
+        player.equipment.set(EquipSlot.Hat.index, "slayer_helmet")
+        player["slayer_task"] = true
+        player["slayer_type"] = "demon"
+        val npc = createNPC("greater_demon")
+
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "ranged")
+
+        assertEquals(5504, offensiveRating)
+        assertEquals(5760, defensiveRating)
+        assertEquals(112, maxHit)
+        assertEquals(0.4777, chance, 0.0001)
+    }
+
+    @Test
     fun `Slayer helmet on slayer task`() {
         val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99)
         player.equipment.set(EquipSlot.Hat.index, "slayer_helmet")
@@ -81,9 +109,25 @@ class SlayerCombatFormulaTest : CombatFormulaTest() {
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee")
 
-        assertEquals(5504, offensiveRating)
+        assertEquals(6421, offensiveRating)
         assertEquals(5760, defensiveRating)
-        assertEquals(128, maxHit)
-        assertEquals(0.4777, chance, 0.0001)
+        assertEquals(130, maxHit)
+        assertEquals(0.5513, chance, 0.0001)
+    }
+
+    @Test
+    fun `Full slayer helmet ranged on slayer task`() {
+        val player = createPlayer(Skill.Attack to 75, Skill.Ranged to 99)
+        player.equipment.set(EquipSlot.Hat.index, "full_slayer_helmet")
+        player["slayer_task"] = true
+        player["slayer_type"] = "demon"
+        val npc = createNPC("greater_demon")
+
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "range")
+
+        assertEquals(8475, offensiveRating)
+        assertEquals(5760, defensiveRating)
+        assertEquals(132, maxHit)
+        assertEquals(0.66, chance, 0.0001)
     }
 }
