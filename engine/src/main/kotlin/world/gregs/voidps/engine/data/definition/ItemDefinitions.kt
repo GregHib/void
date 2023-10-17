@@ -66,6 +66,7 @@ class ItemDefinitions(
                 val normal = definitions[def.lendId]
                 if (normal.extras != null) {
                     val lentExtras = Object2ObjectOpenHashMap(normal.extras)
+                    lentExtras.remove("aka")
                     if (extras != null) {
                         lentExtras.putAll(extras)
                     }
