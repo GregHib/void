@@ -214,7 +214,7 @@ fun getRating(source: Character, target: Character?, type: String, weapon: Item?
         val skill = when {
             !offense -> Skill.Defence
             type == "range" -> Skill.Ranged
-            type == "magic" || type == "blaze" -> if (source is Player) Skill.Defence else Skill.Magic
+            type == "magic" || type == "blaze" -> Skill.Magic
             else -> Skill.Attack
         }
         getEffectiveLevel(if (offense) source else target, skill, offense)
