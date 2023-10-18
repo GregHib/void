@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.armour
 
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -11,7 +12,8 @@ import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.random.Random
 
-on<HitDamageModifier>({ it.equipped(EquipSlot.Shield).id == "divine_spirit_shield" }, Priority.HIGHISH) { player: Player ->
+on<HitDamageModifier>({ target is Player && target.equipped(EquipSlot.Shield).id == "divine_spirit_shield" }, Priority.HIGHISH) { _: Character ->
+    val player = target as Player
     val points = player.levels.get(Skill.Prayer)
     val drain = ceil((damage * 0.3) / 20.0).toInt()
     if (points > drain) {
@@ -20,7 +22,7 @@ on<HitDamageModifier>({ it.equipped(EquipSlot.Shield).id == "divine_spirit_shiel
     }
 }
 
-on<HitDamageModifier>({ it.equipped(EquipSlot.Shield).id == "elysian_spirit_shield" }, Priority.HIGHISH) { player: Player ->
+on<HitDamageModifier>({ target is Player && target.equipped(EquipSlot.Shield).id == "elysian_spirit_shield" }, Priority.HIGHISH) { _: Character ->
     if (Random.nextDouble() >= 0.7) {
         return@on
     }

@@ -19,11 +19,11 @@ abstract class CombatFormulaTest : WorldTest() {
         val chance: Double
     )
 
-    internal fun calculate(player: Player, target: Character, type: String, weapon: Item? = null, spell: String = "", special: Boolean = false): Results {
-        val offensiveRating = getRating(player, target, type, weapon, special, true)
-        val defensiveRating = getRating(player, target, type, weapon, special, false)
-        val maxHit = getMaximumHit(player, target, type, weapon, spell, special)
-        val chance = hitChance(player, target, type, weapon, special)
+    internal fun calculate(source: Character, target: Character, type: String, weapon: Item? = null, spell: String = "", special: Boolean = false): Results {
+        val offensiveRating = getRating(source, target, type, weapon, special, true)
+        val defensiveRating = getRating(source, target, type, weapon, special, false)
+        val maxHit = getMaximumHit(source, target, type, weapon, spell, special)
+        val chance = hitChance(source, target, type, weapon, special)
         return Results(offensiveRating, defensiveRating, maxHit, chance)
     }
 
