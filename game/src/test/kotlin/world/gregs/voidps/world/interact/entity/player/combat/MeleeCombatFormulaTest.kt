@@ -137,38 +137,4 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
         assertEquals(0.9911, chance, 0.0001)
     }
 
-    @Test
-    fun `Void boost`() {
-        val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99)
-        player.equipment.set(EquipSlot.Hat.index, "void_melee_helm")
-        player.equipment.set(EquipSlot.Legs.index, "void_knight_robe")
-        player.equipment.set(EquipSlot.Chest.index, "void_knight_top")
-        player.equipment.set(EquipSlot.Hands.index, "void_knight_gloves")
-        val npc = createNPC("giant_rat")
-
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee")
-
-        assertEquals(6016, offensiveRating)
-        assertEquals(704, defensiveRating)
-        assertEquals(122, maxHit)
-        assertEquals(0.9413, chance, 0.0001)
-    }
-
-    @Test
-    fun `Darklight on greater demon`() {
-        val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99)
-        player.equipment.set(EquipSlot.Weapon.index, "darklight")
-        val npc = createNPC("greater_demon")
-
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", Item("darklight"))
-
-        assertEquals(6880, offensiveRating)
-        assertEquals(5760, defensiveRating)
-        assertEquals(212, maxHit)
-        assertEquals(0.5813, chance, 0.0001)
-
-        val (_, _, specMaxHit, _) = calculate(player, npc, "melee", Item("darklight"), special = true)
-        assertEquals(133, specMaxHit)
-    }
-
 }

@@ -3,18 +3,11 @@ package world.gregs.voidps.world.interact.entity.player.combat
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.activity.combat.prayer.PrayerStart
-import world.gregs.voidps.world.interact.entity.combat.combatStyle
-import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
-import kotlin.math.absoluteValue
-import kotlin.math.sqrt
 import kotlin.test.assertEquals
 
-internal class VoidSetCombatFormulaTest : CombatFormulaTest() {
+internal class VoidSetEffectFormulaTest : CombatFormulaTest() {
 
     @Test
     fun `No void set effect with one missing item`() {

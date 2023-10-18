@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import kotlin.test.assertEquals
 
-internal class BerserkerCombatFormulaTest : CombatFormulaTest() {
+internal class BerserkerNecklaceFormulaTest : CombatFormulaTest() {
 
     @Test
     fun `No berserker effect with non-tzhaar weapon`() {
