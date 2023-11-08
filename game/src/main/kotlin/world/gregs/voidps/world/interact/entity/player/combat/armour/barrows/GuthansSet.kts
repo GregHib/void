@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.armour
+package world.gregs.voidps.world.interact.entity.player.combat.armour.barrows
 
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.Character
@@ -17,24 +17,21 @@ on<Registered>({ it.hasFullSet() }) { player: Player ->
     player["guthans_set_effect"] = true
 }
 
-on<ItemChanged>({ inventory == "worn_equipment" && isSetSlot(index) && it.contains("guthans_set_effect") && !isGuthans(item) }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && it.contains("guthans_set_effect") && !isGuthans(item) }) { player: Player ->
     player.clear("guthans_set_effect")
 }
 
-on<ItemChanged>({ inventory == "worn_equipment" && isSetSlot(index) && !it.contains("guthans_set_effect") && isGuthans(item) && it.hasFullSet() }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && !it.contains("guthans_set_effect") && isGuthans(item) && it.hasFullSet() }) { player: Player ->
     player["guthans_set_effect"] = true
 }
 
 fun isGuthans(item: Item) = item.id.startsWith("guthans_")
 
-fun isSetSlot(index: Int) = index == EquipSlot.Hat.index || index == EquipSlot.Chest.index || index == EquipSlot.Legs.index || index == EquipSlot.Weapon.index
-
-fun Player.hasFullSet(): Boolean {
-    return equipped(EquipSlot.Chest).id.startsWith("guthans_platebody") &&
-            equipped(EquipSlot.Legs).id.startsWith("guthans_chainskirt") &&
-            equipped(EquipSlot.Weapon).id.startsWith("guthans_warspear") &&
-            equipped(EquipSlot.Hat).id.startsWith("guthans_helm")
-}
+fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
+    "guthans_warspear",
+    "guthans_helm",
+    "guthans_platebody",
+    "guthans_chainskirt")
 
 on<CombatAttack>({ type == "melee" && it.contains("guthans_set_effect") && random.nextInt(4) == 0 }) { character: Character ->
     character.levels.boost(Skill.Constitution, damage)

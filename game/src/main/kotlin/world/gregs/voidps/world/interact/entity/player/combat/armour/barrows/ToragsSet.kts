@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.armour
+package world.gregs.voidps.world.interact.entity.player.combat.armour.barrows
 
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.Character
@@ -17,24 +17,21 @@ on<Registered>({ it.hasFullSet() }) { player: Player ->
     player["torags_set_effect"] = true
 }
 
-on<ItemChanged>({ inventory == "worn_equipment" && isSetSlot(index) && it.contains("torags_set_effect") && !isTorags(item) }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && it.contains("torags_set_effect") && !isTorags(item) }) { player: Player ->
     player.clear("torags_set_effect")
 }
 
-on<ItemChanged>({ inventory == "worn_equipment" && isSetSlot(index) && !it.contains("torags_set_effect") && isTorags(item) && it.hasFullSet() }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && !it.contains("torags_set_effect") && isTorags(item) && it.hasFullSet() }) { player: Player ->
     player["torags_set_effect"] = true
 }
 
 fun isTorags(item: Item) = item.id.startsWith("torags_")
 
-fun isSetSlot(index: Int) = index == EquipSlot.Hat.index || index == EquipSlot.Chest.index || index == EquipSlot.Legs.index || index == EquipSlot.Weapon.index
-
-fun Player.hasFullSet(): Boolean {
-    return equipped(EquipSlot.Chest).id.startsWith("torags_platebody") &&
-            equipped(EquipSlot.Legs).id.startsWith("torags_platelegs") &&
-            equipped(EquipSlot.Weapon).id.startsWith("torags_hammers") &&
-            equipped(EquipSlot.Hat).id.startsWith("torags_helm")
-}
+fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
+    "torags_hammers",
+    "torags_helm",
+    "torags_platebody",
+    "torags_platelegs")
 
 on<CombatAttack>({ type == "melee" && damage > 0 && target is Player && weapon?.id?.startsWith("torags_hammers") == true && it.contains("torags_set_effect") && random.nextInt(4) == 0 }) { _: Character ->
     val target = target as Player

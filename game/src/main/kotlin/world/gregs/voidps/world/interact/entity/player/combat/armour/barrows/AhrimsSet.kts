@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.armour
+package world.gregs.voidps.world.interact.entity.player.combat.armour.barrows
 
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.Character
@@ -17,24 +17,21 @@ on<Registered>({ it.hasFullSet() }) { player: Player ->
     player["ahrims_set_effect"] = true
 }
 
-on<ItemChanged>({ inventory == "worn_equipment" && isSetSlot(index) && it.contains("ahrims_set_effect") && !isAhrims(item) }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && it.contains("ahrims_set_effect") && !isAhrims(item) }) { player: Player ->
     player.clear("ahrims_set_effect")
 }
 
-on<ItemChanged>({ inventory == "worn_equipment" && isSetSlot(index) && !it.contains("ahrims_set_effect") && isAhrims(item) && it.hasFullSet() }) { player: Player ->
+on<ItemChanged>({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && !it.contains("ahrims_set_effect") && isAhrims(item) && it.hasFullSet() }) { player: Player ->
     player["ahrims_set_effect"] = true
 }
 
 fun isAhrims(item: Item) = item.id.startsWith("ahrims_")
 
-fun isSetSlot(index: Int) = index == EquipSlot.Hat.index || index == EquipSlot.Chest.index || index == EquipSlot.Legs.index || index == EquipSlot.Weapon.index
-
-fun Player.hasFullSet(): Boolean {
-    return equipped(EquipSlot.Chest).id.startsWith("ahrims_robe_top") &&
-            equipped(EquipSlot.Legs).id.startsWith("ahrims_robe_skirt") &&
-            equipped(EquipSlot.Weapon).id.startsWith("ahrims_staff") &&
-            equipped(EquipSlot.Hat).id.startsWith("ahrims_hood")
-}
+fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
+    "ahrims_staff",
+    "ahrims_hood",
+    "ahrims_robe_top",
+    "ahrims_robe_skirt")
 
 on<CombatAttack>({ type == "magic" && it.contains("ahrims_set_effect") && damage > 0 && random.nextInt(4) == 0 }) { _: Character ->
     if (target.levels.drain(Skill.Strength, 5) < 0) {
