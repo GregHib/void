@@ -2,6 +2,7 @@ package world.gregs.voidps.world.interact.entity.combat
 
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.appearance
@@ -15,9 +16,16 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.instruct.InteractPlayer
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.setRandom
 import world.gregs.voidps.world.script.*
+import kotlin.random.Random
 
 internal class CombatTest : WorldTest() {
+
+    @BeforeEach
+    fun setup() {
+        setRandom(Random)
+    }
 
     @Test
     fun `Kill rat with magic`() {

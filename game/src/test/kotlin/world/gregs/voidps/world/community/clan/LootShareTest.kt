@@ -14,12 +14,14 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.ClanChatJoin
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.type.setRandom
 import world.gregs.voidps.world.interact.entity.combat.damageDealers
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.interfaceOption
 import world.gregs.voidps.world.script.npcOption
 import kotlin.collections.set
+import kotlin.random.Random
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -27,6 +29,7 @@ internal class LootShareTest : WorldTest() {
 
     @BeforeEach
     fun start() {
+        setRandom(Random)
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         mockkStatic("world.gregs.voidps.network.encode.ChatEncoderKt")
         mockkStatic("world.gregs.voidps.network.encode.ClanEncoderKt")
