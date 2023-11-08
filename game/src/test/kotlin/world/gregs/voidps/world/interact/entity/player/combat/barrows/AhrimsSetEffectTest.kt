@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat
+package world.gregs.voidps.world.interact.entity.player.combat.barrows
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.player.combat.CombatFormulaTest
 
 internal class AhrimsSetEffectTest : CombatFormulaTest() {
 
@@ -54,9 +55,9 @@ internal class AhrimsSetEffectTest : CombatFormulaTest() {
     }
 
     private fun ahrims(): Inventory.() -> Unit = {
-        set(EquipSlot.Chest.index, "ahrims_robe_top")
-        set(EquipSlot.Legs.index, "ahrims_robe_skirt")
         set(EquipSlot.Weapon.index, "ahrims_staff")
         set(EquipSlot.Hat.index, "ahrims_hood")
+        set(EquipSlot.Chest.index, "ahrims_robe_top")
+        set(EquipSlot.Legs.index, "ahrims_robe_skirt")
     }
 }

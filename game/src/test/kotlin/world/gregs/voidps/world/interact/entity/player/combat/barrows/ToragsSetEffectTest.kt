@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat
+package world.gregs.voidps.world.interact.entity.player.combat.barrows
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.player.combat.CombatFormulaTest
 import world.gregs.voidps.world.interact.entity.player.energy.energyPercent
 
 internal class ToragsSetEffectTest : CombatFormulaTest() {
@@ -54,9 +55,9 @@ internal class ToragsSetEffectTest : CombatFormulaTest() {
     }
 
     private fun torags(): Inventory.() -> Unit = {
-        set(EquipSlot.Chest.index, "torags_platebody")
-        set(EquipSlot.Legs.index, "torags_platelegs")
         set(EquipSlot.Weapon.index, "torags_hammers")
         set(EquipSlot.Hat.index, "torags_helm")
+        set(EquipSlot.Chest.index, "torags_platebody")
+        set(EquipSlot.Legs.index, "torags_platelegs")
     }
 }

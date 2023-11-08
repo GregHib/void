@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat
+package world.gregs.voidps.world.interact.entity.player.combat.barrows
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.hitChance
+import world.gregs.voidps.world.interact.entity.player.combat.CombatFormulaTest
 
 internal class VeracsSetEffectTest : CombatFormulaTest() {
 
@@ -57,9 +58,9 @@ internal class VeracsSetEffectTest : CombatFormulaTest() {
     }
 
     private fun veracs(): Inventory.() -> Unit = {
-        set(EquipSlot.Chest.index, "veracs_brassard")
-        set(EquipSlot.Legs.index, "veracs_plateskirt")
         set(EquipSlot.Weapon.index, "veracs_flail")
         set(EquipSlot.Hat.index, "veracs_helm")
+        set(EquipSlot.Chest.index, "veracs_brassard")
+        set(EquipSlot.Legs.index, "veracs_plateskirt")
     }
 }

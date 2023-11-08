@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat
+package world.gregs.voidps.world.interact.entity.player.combat.barrows
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.player.combat.CombatFormulaTest
 
 internal class GuthansSetEffectTest : CombatFormulaTest() {
 
@@ -56,9 +57,9 @@ internal class GuthansSetEffectTest : CombatFormulaTest() {
     }
 
     private fun guthans(): Inventory.() -> Unit = {
-        set(EquipSlot.Chest.index, "guthans_platebody")
-        set(EquipSlot.Legs.index, "guthans_chainskirt")
         set(EquipSlot.Weapon.index, "guthans_warspear")
         set(EquipSlot.Hat.index, "guthans_helm")
+        set(EquipSlot.Chest.index, "guthans_platebody")
+        set(EquipSlot.Legs.index, "guthans_chainskirt")
     }
 }
