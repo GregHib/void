@@ -1418,6 +1418,9 @@ superheat_item:
 bind_runes:
   id: 186
   height: 92
+guthans_effect:
+  id: 398
+  height: 50
 torags_effect:
   id: 399
   height: 50
