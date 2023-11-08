@@ -1418,9 +1418,12 @@ superheat_item:
 bind_runes:
   id: 186
   height: 92
+torags_effect:
+  id: 399
+  height: 50
 ahrims_effect:
   id: 400
   height: 50
-torags_effect:
-  id: 399
+karils_effect:
+  id: 401
   height: 50
