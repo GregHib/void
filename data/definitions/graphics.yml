@@ -1418,3 +1418,6 @@ superheat_item:
 bind_runes:
   id: 186
   height: 92
+ahrims_effect:
+  id: 400
+  height: 50

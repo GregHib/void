@@ -50,6 +50,8 @@ void_set_effect:
   format: boolean
 elite_void_set_effect:
   format: boolean
+ahrims_set_effect:
+  format: boolean
 charge:
   format: int
   persist: true
