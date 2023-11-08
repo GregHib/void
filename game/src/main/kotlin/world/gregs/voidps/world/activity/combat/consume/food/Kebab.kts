@@ -6,11 +6,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.combat.consume.Consume
-import kotlin.random.Random
 
 on<Consume>({ item.id == "kebab" }) { player: Player ->
-    val random = Random.nextDouble(100.0)
+    val random = random.nextDouble(100.0)
     when {
         random < 66 -> {
             player.levels.restore(Skill.Constitution, multiplier = 0.10)
@@ -33,10 +33,10 @@ on<Consume>({ item.id == "kebab" }) { player: Player ->
 }
 
 on<Consume>({ item.id == "super_kebab" }) { player: Player ->
-    if (Random.nextInt(8) < 5) {
+    if (random.nextInt(8) < 5) {
         player.levels.restore(Skill.Constitution, 30, 0.07)
     }
-    if (Random.nextInt(32) < 1) {
+    if (random.nextInt(32) < 1) {
         val skill = Skill.all.filterNot { it == Skill.Constitution }.random()
         player.levels.drain(skill, multiplier = 0.05)
         player.message("That tasted very dodgy. You feel very ill.", ChatType.Filter)

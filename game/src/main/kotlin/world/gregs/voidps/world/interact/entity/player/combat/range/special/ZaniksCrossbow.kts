@@ -10,12 +10,12 @@ import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.bowHitDelay
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
-import kotlin.random.Random
 import kotlin.random.nextInt
 
 fun isCrossbow(weapon: Item?) = weapon != null && weapon.id == "zaniks_crossbow"
@@ -28,9 +28,9 @@ fun hasGodArmour(player: Player) = false
 
 on<HitDamageModifier>({ type == "range" && special && weapon?.id == "zaniks_crossbow" }, Priority.HIGH) { _: Player ->
     if (target is NPC) {
-        damage += Random.nextInt(30..150)
+        damage += random.nextInt(30..150)
     } else if (target is Player && (hasActivePrayer(target) || hasGodArmour(target))) {
-        damage += Random.nextInt(0..150)
+        damage += random.nextInt(0..150)
     }
 }
 

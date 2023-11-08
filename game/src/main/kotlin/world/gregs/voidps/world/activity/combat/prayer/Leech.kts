@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
@@ -22,7 +23,6 @@ import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnerg
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
-import kotlin.random.Random
 
 on<TimerStart>({ timer == "prayer_bonus_drain" }) { _: Player ->
     interval = 50
@@ -64,7 +64,7 @@ fun getLevel(target: Character, skill: Skill): Int {
 }
 
 on<CombatHit>({ source is Player && source.praying("sap_spirit") }) { target: Player ->
-    if (Random.nextDouble() >= 0.25) {
+    if (random.nextDouble() >= 0.25) {
         return@on
     }
     val player = source as Player
@@ -78,7 +78,7 @@ on<CombatHit>({ source is Player && source.praying("sap_spirit") }) { target: Pl
 }
 
 on<CombatHit>({ source is Player && source.praying("special_attack") }) { target: Player ->
-    if (Random.nextDouble() >= 0.15) {
+    if (random.nextDouble() >= 0.15) {
         return@on
     }
     val player = source as Player
@@ -101,7 +101,7 @@ on<CombatHit>({ source is Player && source.praying("special_attack") }) { target
 }
 
 on<CombatHit>({ source is Player && source.praying("leech_energy") }) { target: Player ->
-    if (Random.nextDouble() >= 0.15) {
+    if (random.nextDouble() >= 0.15) {
         return@on
     }
     val player = source as Player
@@ -150,7 +150,7 @@ fun set(prayer: String, skill: Skill) {
 
     on<CombatHit>({ source is Player && source.praying(prayer) }, Priority.HIGHER) { target: Character ->
         val player = source as Player
-        if (Random.nextDouble() >= if (sap) 0.25 else 0.15) {
+        if (random.nextDouble() >= if (sap) 0.25 else 0.15) {
             return@on
         }
         val name = skill.name.lowercase()

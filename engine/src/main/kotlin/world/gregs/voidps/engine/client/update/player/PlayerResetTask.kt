@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.move.followTile
 import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import kotlin.random.Random
+import world.gregs.voidps.type.random
 
 /**
  * Resets non-persistent changes
@@ -21,7 +21,7 @@ class PlayerResetTask(
     override fun run() {
         super.run()
         batches.reset()
-        if (!DEBUG && pidCounter++ > 100 && Random.nextInt(50) == 0) {
+        if (!DEBUG && pidCounter++ > 100 && random.nextInt(50) == 0) {
             pidCounter = 0
             characters.shuffle()
         }

@@ -3,13 +3,13 @@ package world.gregs.voidps.world.map.al_kharid.duel_arena
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
-import kotlin.random.Random
 
 on<NPCOption>({ operate && target.id == "zahwa" && option == "Talk-to" }) { player: Player ->
-    when (Random.nextInt(0, 6)) {
+    when (random.nextInt(0, 6)) {
         0 -> {
             player<Cheerful>("Hi!")
             player<Cheerful>("Hi!")

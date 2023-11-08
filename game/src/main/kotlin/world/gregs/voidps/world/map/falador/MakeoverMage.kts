@@ -24,6 +24,7 @@ import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.engine.timer.toTicks
@@ -33,7 +34,6 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.effect.transform
 import java.util.concurrent.TimeUnit
-import kotlin.random.Random
 
 val enums: EnumDefinitions by inject()
 val npcs: NPCs by inject()
@@ -207,7 +207,7 @@ on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player:
         """)
         return@on
     }
-    when (Random.nextInt(0, 4)) {
+    when (random.nextInt(0, 4)) {
         0 -> {
             npc<Cheerful>("""
                 Two arms, two legs, one head; it seems that spell finally

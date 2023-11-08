@@ -30,9 +30,9 @@ import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
-import kotlin.random.Random
 
 val logger = InlineLogger()
 val itemDefinitions: ItemDefinitions by inject()
@@ -123,9 +123,9 @@ fun addCatch(player: Player, catch: String) {
 
 fun bigCatch(catch: String): Boolean = when {
     World.members -> false
-    catch == "raw_bass" && Random.nextInt(1000) == 0 -> true
-    catch == "raw_swordfish" && Random.nextInt(2500) == 0 -> true
-    catch == "raw_shark" && Random.nextInt(5000) == 0 -> true
+    catch == "raw_bass" && random.nextInt(1000) == 0 -> true
+    catch == "raw_swordfish" && random.nextInt(2500) == 0 -> true
+    catch == "raw_shark" && random.nextInt(5000) == 0 -> true
     else -> false
 }
 

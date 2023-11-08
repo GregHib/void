@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.suspend.awaitInterfaces
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.world.interact.dialogue.continueDialogue
@@ -20,7 +21,6 @@ import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
 import world.gregs.voidps.world.interact.entity.player.toxin.curePoison
 import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
 import world.gregs.voidps.world.interact.entity.sound.playJingle
-import kotlin.random.Random
 
 on<InventoryOption>({ item.id == "toy_kite" && option == "Fly" }) { player: Player ->
     if (player.hasClock("emote_delay")) {
@@ -77,7 +77,7 @@ on<InventoryOption>({ inventory == "inventory" && item.id == "spinning_plate" &&
         player.message("Please wait till you've finished performing your current emote.")
         return@on
     }
-    val drop = Random.nextBoolean()
+    val drop = random.nextBoolean()
     player.playAnimation("emote_spinning_plate")
     player.playAnimation("emote_spinning_plate_${if (drop) "drop" else "take"}")
     player.playAnimation("emote_${if (drop) "cry" else "cheer"}")

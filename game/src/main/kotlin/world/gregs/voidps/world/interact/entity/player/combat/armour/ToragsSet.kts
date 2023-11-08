@@ -8,10 +8,10 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.ItemChanged
+import world.gregs.voidps.type.random
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.CombatAttack
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
-import kotlin.random.Random
 
 on<Registered>({ it.hasFullSet() }) { player: Player ->
     player["torags_set_effect"] = true
@@ -36,7 +36,7 @@ fun Player.hasFullSet(): Boolean {
             equipped(EquipSlot.Hat).id.startsWith("torags_helm")
 }
 
-on<CombatAttack>({ type == "melee" && damage > 0 && target is Player && weapon?.id?.startsWith("torags_hammers") == true && it.contains("torags_set_effect") && Random.nextInt(4) == 0 }) { _: Character ->
+on<CombatAttack>({ type == "melee" && damage > 0 && target is Player && weapon?.id?.startsWith("torags_hammers") == true && it.contains("torags_set_effect") && random.nextInt(4) == 0 }) { _: Character ->
     val target = target as Player
     if (target.runEnergy > 0) {
         target.runEnergy -= target.runEnergy / 5

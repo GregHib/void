@@ -24,11 +24,11 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
-import kotlin.random.Random
 import kotlin.random.nextInt
 
 val Character.height: Int
@@ -249,31 +249,14 @@ fun hitChance(source: Character, target: Character?, type: String, weapon: Item?
 }
 
 fun successfulHit(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean): Boolean {
-    val verac = if (source is Player) source.hasFullVeracs() else if (source is NPC) source.id == "verac" else false
-    val veracs = verac && Random.nextDouble() < 0.25
-    if (veracs) {
-        return true
-    }
-
-    return Random.nextDouble() < hitChance(source, target, type, weapon, special)
-}
-
-private fun Player.hasFullVeracs(): Boolean {
-    return notBroken(equipped(EquipSlot.Hat).id, "veracs_helm") &&
-            notBroken(equipped(EquipSlot.Hat).id, "veracs_flail") &&
-            notBroken(equipped(EquipSlot.Hat).id, "veracs_brassard") &&
-            notBroken(equipped(EquipSlot.Hat).id, "veracs_plateskirt")
-}
-
-private fun notBroken(id: String, prefix: String): Boolean {
-    return id.startsWith(prefix) && !id.endsWith("broken")
+    return random.nextDouble() < hitChance(source, target, type, weapon, special)
 }
 
 fun hit(source: Character, target: Character?, type: String, weapon: Item?, spell: String = "", special: Boolean = false): Int {
     return if (successfulHit(source, target, type, weapon, special)) {
         val maxHit = getMaximumHit(source, target, type, weapon, spell, special)
         val minHit = getMinimumHit(source, target, type, weapon, spell, special)
-        Random.nextInt(minHit..maxHit)
+        random.nextInt(minHit..maxHit)
     } else {
         -1
     }
@@ -297,7 +280,7 @@ fun removeAmmo(player: Player, target: Character, ammo: String, required: Int) {
 private fun exceptions(ammo: String) = ammo == "silver_bolts" || ammo == "bone_bolts"
 
 private fun remove(player: Player, target: Character, ammo: String, required: Int, recoverChance: Double, dropChance: Double) {
-    val random = Random.nextDouble()
+    val random = random.nextDouble()
     if (random > recoverChance) {
         player.softQueue("remove_ammo") {
             player.equipment.remove(ammo, required)

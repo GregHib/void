@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
@@ -29,7 +30,6 @@ import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import world.gregs.voidps.world.interact.entity.sound.playJingle
-import kotlin.random.Random
 
 val definitions: InterfaceDefinitions by inject()
 
@@ -186,7 +186,7 @@ suspend fun CharacterContext.playSkillCapeEmote(player: Player, skill: String) {
 suspend fun CharacterContext.playDungeoneeringCapeEmote(player: Player) {
     player.setGraphic("emote_dungeoneering_start")
     player.playAnimation("emote_dungeoneering_start")
-    when (Random.nextInt(3)) {
+    when (random.nextInt(3)) {
         0 -> {
             player.transform("primal_warrior")
             player.playAnimation("emote_dungeoneering_melee")

@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.item.drop
 
-import kotlin.random.Random
+import world.gregs.voidps.type.random
 
 /**
  * Distributes a collection of items to award for a monster kill.
@@ -23,7 +23,7 @@ data class DropTable(
     }
 
     fun random(maximum: Int): Int {
-        return Random.nextInt(0, if (roll <= 0 && maximum != -1) maximum else roll)
+        return random.nextInt(0, if (roll <= 0 && maximum != -1) maximum else roll)
     }
 
     fun collect(list: MutableList<ItemDrop>, value: Int, members: Boolean, roll: Int = random(value)): Boolean {

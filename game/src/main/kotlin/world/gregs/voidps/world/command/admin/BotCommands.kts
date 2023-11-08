@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.network.DummyClient
 import world.gregs.voidps.network.visual.update.player.BodyColour
@@ -39,7 +40,6 @@ import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.to
 import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.wristParam
 import java.util.concurrent.ConcurrentLinkedQueue
 import kotlin.coroutines.resume
-import kotlin.random.Random
 import kotlin.reflect.KClass
 
 val bots = mutableListOf<Player>()
@@ -123,10 +123,10 @@ fun handleSuspensions(player: Player, event: Event) {
 }
 
 fun setAppearance(player: Player): Player {
-    val male = Random.nextBoolean()
+    val male = random.nextBoolean()
     player.body.male = male
     val key = "look_hair_${if (male) "male" else "female"}"
-    player.body.setLook(BodyPart.Hair, enums.getStruct(key, Random.nextInt(0, enums.get(key).length), "id"))
+    player.body.setLook(BodyPart.Hair, enums.getStruct(key, random.nextInt(0, enums.get(key).length), "id"))
     player.body.setLook(BodyPart.Beard, if (male) enums.get("look_beard_male").randomInt() else -1)
     val size = enums.get("character_styles").length
     val style = enums.getStruct("character_styles", (0 until size).random(), "sub_style_${player.sex}_0", -1)
@@ -136,7 +136,7 @@ fun setAppearance(player: Player): Player {
     player.body.setLook(BodyPart.Hands, struct.getParam(wristParam))
     player.body.setLook(BodyPart.Legs, struct.getParam(legsParam))
     player.body.setLook(BodyPart.Feet, struct.getParam(shoesParam))
-    val offset = Random.nextInt(0, 8) * 3L
+    val offset = random.nextInt(0, 8) * 3L
     player.body.setColour(BodyColour.Hair, enums.get("colour_hair").randomInt())
     player.body.setColour(BodyColour.Top, struct.getParam(1187 + offset))
     player.body.setColour(BodyColour.Legs, struct.getParam(1188 + offset))

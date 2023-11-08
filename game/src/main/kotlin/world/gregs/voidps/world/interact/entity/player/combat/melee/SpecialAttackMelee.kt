@@ -10,9 +10,9 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import kotlin.math.floor
-import kotlin.random.Random
 import kotlin.random.nextInt
 
 fun specialDamageMultiplier(multiplier: Double, check: (Item) -> Boolean) {
@@ -44,7 +44,7 @@ fun multiTargetHit(check: CombatAttack.() -> Boolean, remaining: (target: Charac
                     return@on
                 }
                 hit++
-                hit(player, char, Random.nextInt(0..damage), type, weapon, spell, special = true)
+                hit(player, char, random.nextInt(0..damage), type, weapon, spell, special = true)
             }
         }
     }

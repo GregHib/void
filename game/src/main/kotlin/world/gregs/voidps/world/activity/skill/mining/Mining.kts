@@ -30,10 +30,10 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import kotlin.random.Random
 
 val objects: GameObjects by inject()
 val itemDefinitions: ItemDefinitions by inject()
@@ -66,7 +66,7 @@ on<ObjectOption>({ operate && option == "Mine" }) { player: Player ->
             break
         }
 
-        val delay = if (pickaxe.id == "dragon_pickaxe" && Random.nextInt(6) == 0) 2 else pickaxe.def["mining_delay", 8]
+        val delay = if (pickaxe.id == "dragon_pickaxe" && random.nextInt(6) == 0) 2 else pickaxe.def["mining_delay", 8]
         if (first) {
             player.message("You swing your pickaxe at the rock.", ChatType.Filter)
             first = false

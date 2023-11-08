@@ -7,13 +7,13 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.type.random
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.combat.consume.drink.antifire
 import world.gregs.voidps.world.activity.combat.consume.drink.superAntifire
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import kotlin.math.floor
-import kotlin.random.Random
 
 on<HitDamageModifier>({ type == "dragonfire" && it.isFamiliar }, Priority.HIGHISH) { _: NPC ->
     damage = floor(damage * 0.7)
@@ -35,7 +35,7 @@ on<HitDamageModifier>({ type == "dragonfire" }, Priority.HIGHISH) { player: Play
 
     if (multiplier > 0.0) {
         val black = target is NPC && target.id.contains("black")
-        if (!metal && !black && Random.nextDouble() <= 0.1) {
+        if (!metal && !black && random.nextDouble() <= 0.1) {
             multiplier -= 0.1
             player.message("You manage to resist some of the dragon fire!", ChatType.Filter)
         } else {

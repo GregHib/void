@@ -26,11 +26,11 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.entity.sound.areaSound
-import kotlin.random.Random
 
 val players: Players by inject()
 val definitions: ObjectDefinitions by inject()
@@ -161,7 +161,7 @@ fun addLog(player: Player, tree: Tree): Boolean {
 }
 
 fun deplete(tree: Tree, obj: GameObject): Boolean {
-    val depleted = Random.nextDouble() <= tree.depleteRate
+    val depleted = random.nextDouble() <= tree.depleteRate
     if (!depleted) {
         return false
     }
@@ -180,7 +180,7 @@ fun deplete(tree: Tree, obj: GameObject): Boolean {
 fun getRegrowTickDelay(tree: Tree): Int {
     val delay = tree.respawnDelay
     return if (tree.level == 1) {
-        Random.nextInt(delay.first, delay.last)// Regular tree's
+        random.nextInt(delay.first, delay.last)// Regular tree's
     } else {
         Interpolation.interpolate(players.size, delay.last, delay.first, minPlayers, maxPlayers)
     }

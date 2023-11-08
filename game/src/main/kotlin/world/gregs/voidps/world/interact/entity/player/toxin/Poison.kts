@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
@@ -17,7 +18,6 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit
 import kotlin.math.sign
-import kotlin.random.Random
 
 on<Registered>({ it.poisonCounter != 0 }) { character: Character ->
     val timers = if (character is Player) character.timers else character.softTimers
@@ -69,9 +69,9 @@ fun poisonous(source: Character, weapon: Item?) = source is Player && isPoisoned
 
 on<CombatHit>({ damage > 0 && poisonous(source, weapon) }) { target: Character ->
     val poison = 20 + weapon!!.id.count { it == '+' } * 10
-    if (type == "range" && Random.nextDouble() < 0.125) {
+    if (type == "range" && random.nextDouble() < 0.125) {
         source.poison(target, if (weapon.id == "emerald_bolts_e") 50 else poison)
-    } else if (type == "melee" && Random.nextDouble() < 0.25) {
+    } else if (type == "melee" && random.nextDouble() < 0.25) {
         source.poison(target, poison + 20)
     }
 }

@@ -9,11 +9,11 @@ import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.bowHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
-import kotlin.random.Random
 
 fun isCrossbow(item: Item) = item.id.endsWith("crossbow")
 
@@ -45,7 +45,7 @@ fun handleCrossbowEffects(player: Player, ammo: String, target: Character) {
 }
 
 fun checkEffect(player: Player, target: Character, effect: String, chance: Double) {
-    if (Random.nextDouble() < chance) {
+    if (random.nextDouble() < chance) {
         target.start(effect, 1)
         target.setGraphic(effect)
         player.playSound(effect, delay = 40)

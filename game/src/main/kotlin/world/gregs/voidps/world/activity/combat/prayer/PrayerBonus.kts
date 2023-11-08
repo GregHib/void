@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.type.random
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
 import world.gregs.voidps.world.interact.entity.combat.CombatAttack
@@ -16,7 +17,6 @@ import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelModifier
 import world.gregs.voidps.world.interact.entity.combat.hit
 import kotlin.math.floor
-import kotlin.random.Random
 
 fun set(name: String, bonus: String, value: Int) {
     on<PrayerStart>({ this.prayer == name }) { player: Player ->
@@ -90,7 +90,7 @@ on<CombatAttack>({ !blocked && target is Player && usingDeflectPrayer(it, target
     if (damage > 0) {
         target.setAnimation("deflect", delay)
         target.setGraphic("deflect_${if (type == "melee") "attack" else type}", delay)
-        if (Random.nextDouble() >= 0.4) {
+        if (random.nextDouble() >= 0.4) {
             target.hit(character, null, "deflect", delay, "", false, damage = (damage * 0.10).toInt())
         }
         blocked = true

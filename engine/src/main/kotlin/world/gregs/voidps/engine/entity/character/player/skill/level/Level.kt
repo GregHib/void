@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation.interpolate
-import kotlin.random.Random
+import world.gregs.voidps.type.random
 
 object Level {
 
@@ -23,7 +23,7 @@ object Level {
      */
     fun success(level: Int, chances: IntRange): Boolean {
         val chance = getChance(level, chances)
-        val random = Random.nextInt(MAX_CHANCE)
+        val random = random.nextInt(MAX_CHANCE)
         return chance > random
     }
 

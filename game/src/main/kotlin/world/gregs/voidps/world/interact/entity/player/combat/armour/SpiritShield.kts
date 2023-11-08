@@ -6,11 +6,11 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.type.random
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import kotlin.math.ceil
 import kotlin.math.floor
-import kotlin.random.Random
 
 on<HitDamageModifier>({ target is Player && target.equipped(EquipSlot.Shield).id == "divine_spirit_shield" }, Priority.HIGHISH) { _: Character ->
     val player = target as Player
@@ -23,7 +23,7 @@ on<HitDamageModifier>({ target is Player && target.equipped(EquipSlot.Shield).id
 }
 
 on<HitDamageModifier>({ target is Player && target.equipped(EquipSlot.Shield).id == "elysian_spirit_shield" }, Priority.HIGHISH) { _: Character ->
-    if (Random.nextDouble() >= 0.7) {
+    if (random.nextDouble() >= 0.7) {
         return@on
     }
     damage = floor(damage * 0.75)

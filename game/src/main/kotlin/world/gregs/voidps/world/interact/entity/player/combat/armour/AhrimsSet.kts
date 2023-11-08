@@ -9,9 +9,9 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.ItemChanged
+import world.gregs.voidps.type.random
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.CombatAttack
-import kotlin.random.Random
 
 on<Registered>({ it.hasFullSet() }) { player: Player ->
     player["ahrims_set_effect"] = true
@@ -36,7 +36,7 @@ fun Player.hasFullSet(): Boolean {
             equipped(EquipSlot.Hat).id.startsWith("ahrims_hood")
 }
 
-on<CombatAttack>({ type == "magic" && it.contains("ahrims_set_effect") && damage > 0 && Random.nextInt(4) == 0 }) { _: Character ->
+on<CombatAttack>({ type == "magic" && it.contains("ahrims_set_effect") && damage > 0 && random.nextInt(4) == 0 }) { _: Character ->
     if (target.levels.drain(Skill.Strength, 5) < 0) {
         target.setGraphic("ahrims_effect")
     }

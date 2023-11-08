@@ -29,6 +29,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.type.random
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.activity.skill.slayer.race
@@ -36,7 +37,6 @@ import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.death.Death
 import world.gregs.voidps.world.interact.entity.death.weightedSample
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
-import kotlin.random.Random
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
@@ -127,7 +127,7 @@ fun Player.isMagicNotOutOfRunes(skill: Skill): Boolean {
 }
 
 suspend fun Bot.pickupItems(tile: Tile, amount: Int) {
-    repeat(Random.nextInt(2, 8)) {
+    repeat(random.nextInt(2, 8)) {
         if (player.inventory.contains("bones")) {
             inventoryOption("bones", "Bury")
             await("tick")

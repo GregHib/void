@@ -2,8 +2,8 @@ package world.gregs.voidps.engine.entity.character.mode
 
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.type.random
 import world.gregs.voidps.type.Tile
-import kotlin.random.Random
 
 class Wander(
     private val npc: NPC,
@@ -11,7 +11,7 @@ class Wander(
 ) : Movement(npc) {
 
     override fun tick() {
-        if (Random.nextInt(8) != 0) {
+        if (random.nextInt(8) != 0) {
             super.tick()
             return
         }

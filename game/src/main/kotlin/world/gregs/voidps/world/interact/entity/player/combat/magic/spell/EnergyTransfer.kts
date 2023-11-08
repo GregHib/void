@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.entity.combat.hit
@@ -19,7 +20,6 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
-import kotlin.random.Random
 
 val definitions: SpellDefinitions by inject()
 
@@ -51,7 +51,7 @@ on<ItemOnPlayer>({ approach && id == "lunar_spellbook" && component == "energy_t
     player.setAnimation("lunar_cast")
     target.setGraphic(spell)
     player.experience.add(Skill.Magic, definition.experience)
-    player.hit(Random.nextInt(95, 100))
+    player.hit(random.nextInt(95, 100))
     player.specialAttackEnergy = 0
     target.specialAttackEnergy = MAX_SPECIAL_ATTACK
     target.runEnergy = MAX_RUN_ENERGY

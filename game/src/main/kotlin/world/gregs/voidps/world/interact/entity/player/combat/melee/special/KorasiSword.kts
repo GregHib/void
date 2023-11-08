@@ -13,10 +13,10 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
-import kotlin.random.Random
 
 fun isKorasisSword(item: Item?) = item != null && item.id == "korasis_sword"
 
@@ -55,7 +55,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isKorasisSword(it.weapon) }) {
     player.setAnimation("disrupt")
     player.setGraphic("disrupt")
     val maxHit = getMaximumHit(player, target, "melee", player.weapon, special = true)
-    val hit = Random.nextInt(maxHit / 2, (maxHit * 1.5).toInt())
+    val hit = random.nextInt(maxHit / 2, (maxHit * 1.5).toInt())
     player.hit(target, damage = hit, type = "magic", delay = 0)
     delay = 5
 }
