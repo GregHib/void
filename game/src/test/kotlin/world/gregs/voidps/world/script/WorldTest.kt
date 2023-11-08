@@ -10,6 +10,7 @@ import org.koin.core.logger.Level
 import org.koin.dsl.module
 import org.koin.fileProperties
 import org.koin.test.KoinTest
+import world.gregs.voidps.FakeRandom
 import world.gregs.voidps.cache.*
 import world.gregs.voidps.cache.active.ActiveCache
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
@@ -47,6 +48,7 @@ import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.NetworkGatekeeper
 import world.gregs.voidps.script.loadScripts
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.setRandom
 import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
 import java.io.File
 import kotlin.system.measureTimeMillis
@@ -198,6 +200,7 @@ abstract class WorldTest : KoinTest {
     @BeforeEach
     fun beforeEach() {
         loadItemSpawns(floorItems, get())
+        setRandom(FakeRandom())
     }
 
     @AfterEach

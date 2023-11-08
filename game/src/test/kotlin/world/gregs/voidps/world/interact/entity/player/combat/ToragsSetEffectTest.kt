@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.combat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.Inventory
@@ -47,13 +46,7 @@ internal class ToragsSetEffectTest : CombatFormulaTest() {
         player.equipment.apply(torags())
         val target = createPlayer(Skill.Constitution to 990)
 
-        var count = 0
-        while (target.energyPercent() == 100) {
-            player.hit(target, Item("torags_hammers"), "melee", damage = 10)
-            if (count++ > 20) {
-                throw IllegalStateException("Random effect not applied within attempt limit.")
-            }
-        }
+        player.hit(target, Item("torags_hammers"), "melee", damage = 10)
         tick()
 
         assertNotEquals(990, target.levels.get(Skill.Constitution))

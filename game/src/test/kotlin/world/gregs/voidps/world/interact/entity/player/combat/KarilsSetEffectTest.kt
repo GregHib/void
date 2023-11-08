@@ -46,13 +46,7 @@ internal class KarilsSetEffectTest : CombatFormulaTest() {
         player.equipment.apply(karils())
         val target = createPlayer(Skill.Agility to 99, Skill.Constitution to 990)
 
-        var count = 0
-        while (target.levels.get(Skill.Agility) == 99) {
-            player.hit(target, Item("karils_crossbow"), "range", damage = 10)
-            if (count++ > 20) {
-                throw IllegalStateException("Random effect not applied within attempt limit.")
-            }
-        }
+        player.hit(target, Item("karils_crossbow"), "range", damage = 10)
         tick(2)
 
         assertNotEquals(990, target.levels.get(Skill.Constitution))

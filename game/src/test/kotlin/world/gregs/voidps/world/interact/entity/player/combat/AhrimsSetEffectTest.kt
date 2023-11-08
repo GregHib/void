@@ -46,13 +46,7 @@ internal class AhrimsSetEffectTest : CombatFormulaTest() {
         player.equipment.apply(ahrims())
         val target = createPlayer(Skill.Strength to 99, Skill.Constitution to 990)
 
-        var count = 0
-        while (target.levels.get(Skill.Strength) == 99) {
-            player.hit(target, Item("ahrims_staff"), "magic", damage = 10)
-            if (count++ > 20) {
-                throw IllegalStateException("Random effect not applied within attempt limit.")
-            }
-        }
+        player.hit(target, Item("ahrims_staff"), "magic", damage = 10)
         tick(2)
 
         assertNotEquals(990, target.levels.get(Skill.Constitution))
