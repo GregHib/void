@@ -390,6 +390,7 @@ private_chat_colour:
 lent_item_id:
   id: 1267
   format: int
+  default: -1
 lent_item_amount:
   id: 1269
   format: int
