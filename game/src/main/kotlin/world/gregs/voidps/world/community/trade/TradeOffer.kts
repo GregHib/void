@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.community.trade.Trade.getPartner
 import world.gregs.voidps.world.community.trade.Trade.isTrading
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
@@ -58,11 +57,6 @@ on<InterfaceOption>({ id == "trade_side" && component == "offer" && option == "V
     player.message("${item.def.name} is priceless!", ChatType.Trade)
 }
 
-on<InterfaceOption>({ id == "trade_side" && component == "offer" && option == "Lend" }) { player: Player ->
-    val partner = getPartner(player) ?: return@on
-    lend(player, partner, item.id, itemSlot)
-}
-
 fun offer(player: Player, id: String, amount: Int) {
     if (!isTrading(player, amount)) {
         return
@@ -75,30 +69,4 @@ fun offer(player: Player, id: String, amount: Int) {
     if (!offered) {
         player.message("That item is not tradeable.")
     }
-}
-
-fun lend(player: Player, other: Player, id: String, slot: Int) {
-    if (!isTrading(player, 1)) {
-        return
-    }
-
-    if (player.returnedItems.isFull()) {
-        player.message("You are already lending an item, you can't lend another.")
-        return
-    }
-
-    if (other.contains("borrowed_item")) {
-        player.message("They are already borrowing an item and can't borrow another.")
-        return
-    }
-
-    val lent = player.inventory.transaction {
-        swap(slot, player.loan, 0)
-    }
-    if (!lent) {
-        player.message("That item cannot be lent.")
-        return
-    }
-    player["lend_time"] = 0
-    other["other_lend_time"] = 0
 }
