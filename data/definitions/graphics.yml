@@ -1421,3 +1421,6 @@ bind_runes:
 ahrims_effect:
   id: 400
   height: 50
+torags_effect:
+  id: 399
+  height: 50
