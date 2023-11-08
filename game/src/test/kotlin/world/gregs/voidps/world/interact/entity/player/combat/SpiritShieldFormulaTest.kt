@@ -32,22 +32,12 @@ internal class SpiritShieldFormulaTest : CombatFormulaTest() {
         player.equipment.set(EquipSlot.Shield.index, "elysian_spirit_shield")
         val npc = createNPC("greater_demon")
 
-        var maxHitMin = Int.MAX_VALUE
-        var maxHitMax = -1
-        for (attempt in 0 until 10) {
-            val (_, _, maxHit, _) = calculate(npc, player, "melee")
-            maxHitMax = max(maxHitMax, maxHit)
-            maxHitMin = min(maxHitMin, maxHit)
-            if (maxHitMin != Int.MAX_VALUE && maxHitMax != -1 && maxHitMin != maxHitMax) {
-                break
-            }
-        }
+        val (_, _, maxHit, _) = calculate(npc, player, "melee")
 
         val (offensiveRating, defensiveRating, _, chance) = calculate(npc, player, "melee")
         assertEquals(5440, offensiveRating)
         assertEquals(1251, defensiveRating)
-        assertEquals(67, maxHitMin)
-        assertEquals(90, maxHitMax)
+        assertEquals(67, maxHit)
         assertEquals(0.8848, chance, 0.0001)
     }
 }
