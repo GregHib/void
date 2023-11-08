@@ -38,7 +38,7 @@ class PlayerTrackingSet {
         add[self.index] = true
         locals[localCount++] = self.index
         for (i in 1 until MAX_PLAYERS) {
-            if (i == self.index) {
+            if (i == self.index || globalCount >= MAX_PLAYERS) {
                 continue
             }
             globals[globalCount++] = i

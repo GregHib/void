@@ -125,6 +125,5 @@ data class NPCs(
             npc.events.emit(Unregistered)
         }
         super.clear()
-        indexer.clear()
     }
 }

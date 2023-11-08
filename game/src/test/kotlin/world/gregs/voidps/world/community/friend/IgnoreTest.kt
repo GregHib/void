@@ -26,7 +26,7 @@ internal class IgnoreTest : WorldTest() {
         mockkStatic("world.gregs.voidps.network.encode.ChatEncoderKt")
         mockkStatic("world.gregs.voidps.network.encode.ClanEncoderKt")
         mockkStatic("world.gregs.voidps.network.encode.FriendsEncoderKt")
-        mockkStatic("world.gregs.voidps.network.encode.EncoderExtensionsKt")
+        mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
     }
 
     @Test
