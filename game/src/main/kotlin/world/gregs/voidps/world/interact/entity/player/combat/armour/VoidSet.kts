@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.armour
 
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -10,6 +11,14 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelModifier
 import kotlin.math.floor
+
+on<Registered>({ it.hasFullSet("") }) { player: Player ->
+    player["void_set_effect"] = true
+}
+
+on<Registered>({ it.hasFullSet("elite_") }) { player: Player ->
+    player["elite_void_set_effect"] = true
+}
 
 on<ItemChanged>({ inventory == "worn_equipment" && isSetSlot(index) && it.contains("void_set_effect") && !isVoid(item) }) { player: Player ->
     player.clear("void_set_effect")

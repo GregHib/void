@@ -3,6 +3,8 @@ package world.gregs.voidps.world.interact.entity.player.combat
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import kotlin.test.assertEquals
@@ -12,9 +14,8 @@ internal class VoidSetEffectFormulaTest : CombatFormulaTest() {
     @Test
     fun `No void set effect with one missing item`() {
         val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99)
-        player.equipment.set(EquipSlot.Chest.index, "void_knight_top")
-        player.equipment.set(EquipSlot.Legs.index, "void_knight_robe")
-        player.equipment.set(EquipSlot.Hands.index, "void_knight_gloves")
+        player.equipment.apply(void("melee"))
+        player.equipment.clear(EquipSlot.Hat.index)
         val npc = createNPC("giant_rat")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee")
@@ -28,10 +29,7 @@ internal class VoidSetEffectFormulaTest : CombatFormulaTest() {
     @Test
     fun `Melee void set effect`() {
         val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99)
-        player.equipment.set(EquipSlot.Chest.index, "void_knight_top")
-        player.equipment.set(EquipSlot.Legs.index, "void_knight_robe")
-        player.equipment.set(EquipSlot.Hands.index, "void_knight_gloves")
-        player.equipment.set(EquipSlot.Hat.index, "void_melee_helm")
+        player.equipment.apply(void("melee"))
         val npc = createNPC("giant_rat")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee")
@@ -45,10 +43,7 @@ internal class VoidSetEffectFormulaTest : CombatFormulaTest() {
     @Test
     fun `Ranged void set effect`() {
         val player = createPlayer(Skill.Ranged to 75)
-        player.equipment.set(EquipSlot.Chest.index, "void_knight_top")
-        player.equipment.set(EquipSlot.Legs.index, "void_knight_robe")
-        player.equipment.set(EquipSlot.Hands.index, "void_knight_gloves")
-        player.equipment.set(EquipSlot.Hat.index, "void_ranger_helm")
+        player.equipment.apply(void("ranger"))
         player.equipment.set(EquipSlot.Weapon.index, "shortbow")
         player.equipment.set(EquipSlot.Ammo.index, "bronze_arrow")
         val npc = createNPC("giant_rat")
@@ -64,10 +59,7 @@ internal class VoidSetEffectFormulaTest : CombatFormulaTest() {
     @Test
     fun `Magic void set effect`() {
         val player = createPlayer(Skill.Magic to 75)
-        player.equipment.set(EquipSlot.Chest.index, "void_knight_top")
-        player.equipment.set(EquipSlot.Legs.index, "void_knight_robe")
-        player.equipment.set(EquipSlot.Hands.index, "void_knight_gloves")
-        player.equipment.set(EquipSlot.Hat.index, "void_mage_helm")
+        player.equipment.apply(void("mage"))
         val npc = createNPC("giant_rat")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "magic", spell = "wind_strike")
@@ -76,5 +68,12 @@ internal class VoidSetEffectFormulaTest : CombatFormulaTest() {
         assertEquals(64, defensiveRating)
         assertEquals(20, maxHit)
         assertEquals(0.9951, chance, 0.0001)
+    }
+
+    private fun void(helmType: String): Inventory.() -> Unit = {
+        set(EquipSlot.Chest.index, "void_knight_top")
+        set(EquipSlot.Legs.index, "void_knight_robe")
+        set(EquipSlot.Hands.index, "void_knight_gloves")
+        set(EquipSlot.Hat.index, "void_${helmType}_helm")
     }
 }
