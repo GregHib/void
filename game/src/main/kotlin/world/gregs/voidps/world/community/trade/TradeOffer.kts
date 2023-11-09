@@ -19,21 +19,15 @@ import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
 val definitions: ItemDefinitions by inject()
 
-val lendRestriction = object : ItemRestrictionRule {
-    override fun restricted(id: String): Boolean {
-        return definitions.get(id).lendId == -1
-    }
-}
-
+// Item must be tradeable and not lent or a dummy item
 val tradeRestriction = object : ItemRestrictionRule {
     override fun restricted(id: String): Boolean {
         val def = definitions.get(id)
-        return def.notedTemplateId != -1 || def.lendTemplateId != -1 || def.singleNoteTemplateId != -1 || def.dummyItem != 0 || !def["tradeable", true]
+        return def.lendTemplateId != -1 || def.singleNoteTemplateId != -1 || def.dummyItem != 0 || !def["tradeable", true]
     }
 }
 
 on<Registered> { player: Player ->
-    player.loan.itemRule = lendRestriction
     player.offer.itemRule = tradeRestriction
 }
 
