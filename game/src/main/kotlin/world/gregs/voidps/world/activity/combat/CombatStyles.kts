@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.data.definition.StyleDefinitions
+import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
 val names = arrayOf("default", "staff", "axe", "sceptre", "pickaxe", "dagger", "sword", "2h", "mace", "claws", "hammer", "whip", "fun", "pie", "spear", "halberd", "bow", "crossbow", "thrown", "chinchompa", "fixed_device", "salamander", "scythe", "flail", "", "trident", "sol")
-val styles: StyleDefinitions by inject()
+val styles: WeaponStyleDefinitions by inject()
 
 on<Registered> { npc: NPC ->
     npc["combat_style"] = npc.def["style", ""]
@@ -60,16 +60,16 @@ on<InterfaceOption>({ id == "combat_styles" && component == "retaliate" }) { pla
 fun refreshStyle(player: Player) {
     val type = getWeaponStyleType(player)
     val index = player["attack_style_${names[type]}", 0]
-    val style = styles.get(type)?.getOrNull(index)
-    player["attack_type"] = style?.first ?: ""
-    player["attack_style"] = style?.second ?: ""
-    player["combat_style"] = style?.third ?: ""
+    val style = styles.get(type)
+    player["attack_type"] = style.attackTypes.getOrNull(index) ?: ""
+    player["attack_style"] = style.attackStyles.getOrNull(index) ?: ""
+    player["combat_style"] = style.combatStyles.getOrNull(index) ?: ""
     player["attack_style_index"] = index
 }
 
 fun getWeaponStyleType(player: Player): Int {
     val key = player.equipped(EquipSlot.Weapon).def.weaponStyle()
-    return if (styles.contains(key)) key else 0
+    return key//if (styles.contains(key)) key else 0
 }
 
 on<InterfaceOption>({ id == "combat_styles" && component == "special_attack_bar" && option == "Use" }) { player: Player ->

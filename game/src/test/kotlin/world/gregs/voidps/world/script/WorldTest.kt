@@ -149,7 +149,7 @@ abstract class WorldTest : KoinTest {
                 single(createdAtStart = true) { inventoryDefinitions }
                 single(createdAtStart = true) { structDefinitions }
                 single(createdAtStart = true) { quickChatPhraseDefinitions }
-                single(createdAtStart = true) { styleDefinitions }
+                single(createdAtStart = true) { weaponStyleDefinitions }
                 single(createdAtStart = true) { enumDefinitions }
                 single { xteas }
                 single { gameObjects }
@@ -234,7 +234,7 @@ abstract class WorldTest : KoinTest {
         private val inventoryDefinitions: InventoryDefinitions by lazy { InventoryDefinitions(InventoryDecoder().load(active)).load() }
         private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder().load(active)).load() }
         private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(active)).load() }
-        private val styleDefinitions: StyleDefinitions by lazy { StyleDefinitions(ClientScriptDecoder(revision634 = true).load(active)) }
+        private val weaponStyleDefinitions: WeaponStyleDefinitions by lazy { WeaponStyleDefinitions().load() }
         private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(active), structDefinitions).load() }
         private val collisions: Collisions by lazy { Collisions() }
         private val objectCollision: GameObjectCollision by lazy { GameObjectCollision(collisions) }

@@ -130,7 +130,7 @@ object Main {
         single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().load(activeDir)).load() }
         single(createdAtStart = true) { StructDefinitions(StructDecoder().load(activeDir)).load() }
         single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(activeDir)).load() }
-        single(createdAtStart = true) { StyleDefinitions(ClientScriptDecoder(revision634 = true).load(activeDir)) }
+        single(createdAtStart = true) { WeaponStyleDefinitions().load() }
     }
 
     private fun cache(cache: Cache) = module {
@@ -146,6 +146,6 @@ object Main {
         single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().loadCache(cache)).load() }
         single(createdAtStart = true) { StructDefinitions(StructDecoder().loadCache(cache)).load() }
         single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().loadCache(cache)).load() }
-        single(createdAtStart = true) { StyleDefinitions(ClientScriptDecoder(revision634 = true).loadCache(cache)) }
+        single(createdAtStart = true) { WeaponStyleDefinitions().load() }
     }
 }
