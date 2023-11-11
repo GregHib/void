@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
-val names = arrayOf("default", "staff", "axe", "sceptre", "pickaxe", "dagger", "sword", "2h", "mace", "claws", "hammer", "whip", "fun", "pie", "spear", "halberd", "bow", "crossbow", "thrown", "chinchompa", "fixed_device", "salamander", "scythe", "flail", "", "trident", "sol")
 val styles: WeaponStyleDefinitions by inject()
 
 on<Registered> { npc: NPC ->
@@ -44,10 +43,11 @@ on<InterfaceOption>({ id == "combat_styles" && component.startsWith("style") }) 
     val index = component.removePrefix("style").toIntOrNull() ?: return@on
     player.closeInterfaces()
     val type = getWeaponStyleType(player)
+    val style = styles.get(type)
     if (index == 1) {
-        player.clear("attack_style_${names[type]}")
+        player.clear("attack_style_${style.stringId}")
     } else {
-        player["attack_style_${names[type]}"] = index - 1
+        player["attack_style_${style.stringId}"] = index - 1
     }
     refreshStyle(player)
 }
@@ -59,8 +59,8 @@ on<InterfaceOption>({ id == "combat_styles" && component == "retaliate" }) { pla
 
 fun refreshStyle(player: Player) {
     val type = getWeaponStyleType(player)
-    val index = player["attack_style_${names[type]}", 0]
     val style = styles.get(type)
+    val index = player["attack_style_${style.stringId}", 0]
     player["attack_type"] = style.attackTypes.getOrNull(index) ?: ""
     player["attack_style"] = style.attackStyles.getOrNull(index) ?: ""
     player["combat_style"] = style.combatStyles.getOrNull(index) ?: ""
@@ -68,8 +68,7 @@ fun refreshStyle(player: Player) {
 }
 
 fun getWeaponStyleType(player: Player): Int {
-    val key = player.equipped(EquipSlot.Weapon).def.weaponStyle()
-    return key//if (styles.contains(key)) key else 0
+    return player.equipped(EquipSlot.Weapon).def.weaponStyle()
 }
 
 on<InterfaceOption>({ id == "combat_styles" && component == "special_attack_bar" && option == "Use" }) { player: Player ->

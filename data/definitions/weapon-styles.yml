@@ -8,7 +8,7 @@ staff:
   attack_types: [ bash, pound, focus ]
   attack_styles: [ accurate, aggressive, defensive ]
   combat_styles: [ crush, crush, crush ]
-flail:
+ivandis_flail:
   id: 23
   attack_types: [ slash, crush, slash ]
   attack_styles: [ accurate, aggressive, defensive ]

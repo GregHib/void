@@ -10,7 +10,7 @@ import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.combat.CombatAttack
 
 on<CombatAttack>({ !blocked && target is Player }, Priority.LOWEST) { _: Character ->
-    target.setAnimation("block")
+    target.setAnimation("player_block")
     blocked = true
 }
 
