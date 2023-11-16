@@ -8,11 +8,6 @@ staff:
   attack_types: [ bash, pound, focus ]
   attack_styles: [ accurate, aggressive, defensive ]
   combat_styles: [ crush, crush, crush ]
-ivandis_flail:
-  id: 23
-  attack_types: [ slash, crush, slash ]
-  attack_styles: [ accurate, aggressive, defensive ]
-  combat_styles: [ slash, crush, slash ]
 axe:
   id: 2
   attack_types: [ chop, hack, smash, block ]
@@ -118,6 +113,11 @@ scythe:
   attack_types: [ reap, chop, jab, block ]
   attack_styles: [ accurate, aggressive, aggressive, defensive ]
   combat_styles: [ slash, stab, crush, slash ]
+ivandis_flail:
+  id: 23
+  attack_types: [ slash, crush, slash ]
+  attack_styles: [ accurate, aggressive, defensive ]
+  combat_styles: [ slash, crush, slash ]
 sling:
   id: 24
   attack_types: [ sling, chuck, lob ]
