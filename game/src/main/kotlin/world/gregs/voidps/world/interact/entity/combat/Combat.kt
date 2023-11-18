@@ -212,7 +212,7 @@ fun getEffectiveLevel(character: Character, skill: Skill, accuracy: Boolean): In
 fun getRating(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean, offense: Boolean): Int {
     var level = if (target == null) 8 else {
         val skill = when {
-            !offense -> Skill.Defence
+            !offense && type != "magic" -> Skill.Defence
             type == "range" -> Skill.Ranged
             type == "magic" || type == "blaze" -> Skill.Magic
             else -> Skill.Attack

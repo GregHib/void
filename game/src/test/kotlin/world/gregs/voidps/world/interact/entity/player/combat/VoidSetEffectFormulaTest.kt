@@ -44,16 +44,16 @@ internal class VoidSetEffectFormulaTest : CombatFormulaTest() {
     fun `Ranged void set effect`() {
         val player = createPlayer(Skill.Ranged to 75)
         player.equipment.apply(void("ranger"))
-        player.equipment.set(EquipSlot.Weapon.index, "shortbow")
-        player.equipment.set(EquipSlot.Ammo.index, "bronze_arrow")
+        player.equipment.set(EquipSlot.Weapon.index, "dark_bow")
+        player.equipment.set(EquipSlot.Ammo.index, "rune_arrow")
         val npc = createNPC("giant_rat")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "range", Item("shortbow"))
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "range", Item("dark_bow"))
 
-        assertEquals(6768, offensiveRating)
+        assertEquals(14946, offensiveRating)
         assertEquals(704, defensiveRating)
-        assertEquals(109, maxHit)
-        assertEquals(0.9479, chance, 0.0001)
+        assertEquals(170, maxHit)
+        assertEquals(0.9764, chance, 0.0001)
     }
 
     @Test
@@ -64,10 +64,10 @@ internal class VoidSetEffectFormulaTest : CombatFormulaTest() {
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "magic", spell = "wind_strike")
 
-        assertEquals(6848, offensiveRating)
-        assertEquals(64, defensiveRating)
+        assertEquals(7488, offensiveRating)
+        assertEquals(640, defensiveRating)
         assertEquals(20, maxHit)
-        assertEquals(0.9951, chance, 0.0001)
+        assertEquals(0.9571, chance, 0.0001)
     }
 
     private fun void(helmType: String): Inventory.() -> Unit = {

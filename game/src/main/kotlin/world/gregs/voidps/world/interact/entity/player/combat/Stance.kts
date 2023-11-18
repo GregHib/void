@@ -15,6 +15,7 @@ on<HitEffectiveLevelModifier>(priority = Priority.MEDIUM) { player: Player ->
         (skill == Skill.Attack || skill == Skill.Strength || skill == Skill.Defence) && player.attackStyle == "controlled" -> 1
         skill == Skill.Defence && (player.attackStyle == "defensive" || player.attackStyle == "long_range") -> 3
         skill == Skill.Strength && player.attackStyle == "aggressive" -> 3
+        skill == Skill.Magic -> 1
         else -> 0
     }
 }

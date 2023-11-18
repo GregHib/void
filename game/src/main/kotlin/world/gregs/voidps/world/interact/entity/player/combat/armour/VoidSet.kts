@@ -54,7 +54,10 @@ fun isHelm(item: Item): Boolean = when (item.id) {
     else -> false
 }
 
-on<HitEffectiveLevelModifier>({ it.contains("void_set_effect") || it.contains("elite_void_set_effect") }, priority = Priority.LOW) { player: Player ->
-    val mage = accuracy && skill == Skill.Magic && player.equipped(EquipSlot.Hat).id == "void_mage_helm"
-    level = floor(level * if (mage) 1.3 else 1.1)
+on<HitEffectiveLevelModifier>({ (it.contains("void_set_effect") || it.contains("elite_void_set_effect")) && skill == Skill.Magic }, priority = Priority.HIGH) { _: Player ->
+    level = floor(level * 1.45)
+}
+
+on<HitEffectiveLevelModifier>({ (it.contains("void_set_effect") || it.contains("elite_void_set_effect")) && skill != Skill.Magic }, priority = Priority.LOW) { _: Player ->
+    level = floor(level * 1.1)
 }

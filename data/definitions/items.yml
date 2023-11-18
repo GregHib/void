@@ -44801,7 +44801,7 @@ void_knight_robe:
   magic_def: 30.0
   range_def: 30.0
   summoning_def: 15.0
-  aka: [ vkr, void_robe, void_robes, void_legs ]
+  aka: [ vkr, void_robe, void_robes, void_legs, void_knight_legs, void_knight_bottom, void_bottom ]
   slot: "Legs"
   examine: "Leg armour of the order of the Void Knights."
   kept: "Reclaim"
@@ -59820,6 +59820,7 @@ void_mage_helm:
   magic_def: 6.0
   range_def: 6.0
   summoning_def: 6.0
+  aka: [ void_helm_mage, void_helm_magic, void_magic_helm ]
   slot: "Hat"
   type: "Hair"
   destroy: "No"
@@ -59835,6 +59836,7 @@ void_ranger_helm:
   magic_def: 6.0
   range_def: 6.0
   summoning_def: 6.0
+  aka: [ void_archer_helm, void_range_helm, void_helm_ranged, void_helm_range ]
   slot: "Hat"
   type: "Hair"
   examine: "A ranger helm from the order of the Void Knights"
@@ -59849,6 +59851,7 @@ void_melee_helm:
   magic_def: 6.0
   range_def: 6.0
   summoning_def: 6.0
+  aka: [ void_helm_melee ]
   slot: "Hat"
   type: "Hair"
   examine: "A melee helm from the order of the Void Knights."
