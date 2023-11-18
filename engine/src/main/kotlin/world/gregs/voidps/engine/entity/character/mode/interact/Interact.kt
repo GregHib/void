@@ -108,7 +108,7 @@ class Interact(
         interacted = true
         var interacted = interact(afterMovement = false)
         if (interacted && !updateRange && arrived(approachRange ?: -1)) {
-            character.steps.clear()
+            clearSteps()
         }
         if (!character.hasMenuOpen()) {
             super.tick()
@@ -156,7 +156,7 @@ class Interact(
 
     private fun clear() {
         if (character.suspension != null) {
-            character.steps.clear()
+            clearSteps()
         }
         approachRange = null
         updateRange = false

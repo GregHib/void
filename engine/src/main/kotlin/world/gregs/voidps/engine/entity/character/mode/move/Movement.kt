@@ -37,7 +37,7 @@ open class Movement(
     private val stepValidator: StepValidator = get()
     private val lineValidator: LineValidator = get()
     private val pathFinder: PathFinder = get()
-    private var needCalculation = true
+    private var needsCalculation = true
 
     private fun calculate() {
         if (strategy == null) {
@@ -62,9 +62,9 @@ open class Movement(
         if (hasDelay() && !character.hasClock("no_clip")) {
             return
         }
-        if (needCalculation) {
+        if (needsCalculation) {
             calculate()
-            needCalculation = false
+            needsCalculation = false
         }
         if (step(runStep = false) && character.running && !character.hasClock("slow_run")) {
             if (character.steps.isNotEmpty()) {
@@ -89,7 +89,7 @@ open class Movement(
         }
         val direction = nextDirection(target)
         if (direction == null) {
-            character.steps.clear()
+            clearSteps()
             return false
         }
         character.clearAnimation()
@@ -103,6 +103,11 @@ open class Movement(
         move(character, direction.delta)
         character.face(direction, false)
         return true
+    }
+
+    internal fun clearSteps() {
+        character.steps.clear()
+        needsCalculation = false
     }
 
     private fun setMovementType(run: Boolean, end: Boolean) {
