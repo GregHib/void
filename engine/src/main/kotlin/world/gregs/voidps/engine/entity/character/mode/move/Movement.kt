@@ -37,6 +37,7 @@ open class Movement(
     private val stepValidator: StepValidator = get()
     private val lineValidator: LineValidator = get()
     private val pathFinder: PathFinder = get()
+    private var needCalculation = true
 
     private fun calculate() {
         if (strategy == null) {
@@ -50,10 +51,6 @@ open class Movement(
         }
     }
 
-    override fun start() {
-        calculate()
-    }
-
     override fun tick() {
         if (character is Player && character.viewport?.loaded == false) {
             if (character.viewport != null && character.inc("fail_load_count") > 10) {
@@ -64,6 +61,10 @@ open class Movement(
         }
         if (hasDelay() && !character.hasClock("no_clip")) {
             return
+        }
+        if (needCalculation) {
+            calculate()
+            needCalculation = false
         }
         if (step(runStep = false) && character.running && !character.hasClock("slow_run")) {
             if (character.steps.isNotEmpty()) {
