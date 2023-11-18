@@ -7,17 +7,21 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.CombatHit
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelOverride
-import world.gregs.voidps.world.interact.entity.combat.spell
+import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.melee.multiTargetHit
+import kotlin.math.ceil
 import kotlin.math.floor
+import kotlin.math.round
 
 on<HitEffectiveLevelOverride>({ defence && type == "magic" && target is Player }, priority = Priority.LOW) { _: Character ->
     target as Player
     val level = floor(target.levels.get(Skill.Magic) * 0.7)
     this.level = (floor(this.level * 0.3) + level).toInt()
+}
+
+on<HitDamageModifier>({ type == "magic" && weapon != null && weapon.def["magic_damage", 0] > 0 }, priority = Priority.HIGHER) { _: Character ->
+    val damageMultiplier = 1.0 + (weapon!!.def["magic_damage", 0] / 100.0)
+    this.damage = round(this.damage * damageMultiplier)
 }
 
 on<CombatHit>({ spell.isNotBlank() }) { character: Character ->
