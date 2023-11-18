@@ -34,8 +34,16 @@ class Interact(
     shape: Int? = null
 ) : Movement(character, strategy, shape) {
 
-    private val approach: Interaction = interaction.copy(true)
-    private val operate: Interaction = interaction.copy(false)
+    private var approach: Interaction = interaction.copy(true)
+    private var operate: Interaction = interaction.copy(false)
+    private var interacted = true
+
+    fun updateInteraction(interaction: Interaction) {
+        approach = interaction.copy(true)
+        operate = interaction.copy(false)
+        interacted = false
+    }
+
     private var updateRange: Boolean = false
 
     fun updateRange(approachRange: Int?, update: Boolean = true) {
@@ -93,10 +101,11 @@ class Interact(
     }
 
     /**
-     * Checks interactions before [Movement] and afterwards when
+     * Checks interactions before [Movement] and afterward when
      * target changed or failed to interact previously.
      */
     private fun processInteraction(): Boolean {
+        interacted = true
         var interacted = interact(afterMovement = false)
         if (interacted && !updateRange && arrived(approachRange ?: -1)) {
             character.steps.clear()
@@ -126,7 +135,7 @@ class Interact(
             }
             else -> return false
         }
-        return true
+        return interacted
     }
 
     /**

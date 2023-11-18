@@ -7,11 +7,11 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearWatch
-import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatReached
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatStop
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
@@ -27,7 +27,7 @@ on<NPCOption>({ approach && option == "Attack" }) { character: Character ->
     } else {
         character.approachRange(null, update = true)
     }
-    combat(character, target)
+    combatInteraction(player, target)
 }
 
 on<PlayerOption>({ approach && option == "Attack" }) { character: Character ->
@@ -36,7 +36,7 @@ on<PlayerOption>({ approach && option == "Attack" }) { character: Character ->
     } else {
         character.approachRange(null, update = true)
     }
-    combat(character, target)
+    combatInteraction(player, target)
 }
 
 on<ItemOnNPC>({ approach && id.endsWith("_spellbook") }, Priority.HIGH) { player: Player ->
@@ -45,46 +45,13 @@ on<ItemOnNPC>({ approach && id.endsWith("_spellbook") }, Priority.HIGH) { player
     player["attack_speed"] = 5
     player["one_time"] = true
     player.attackRange = 8
-    combat(player, target, 8)
+    combatInteraction(player, target)
     cancel()
 }
 
 on<CombatSwing>({ it.contains("one_time") }) { player: Player ->
     player.mode = EmptyMode
     player.clear("one_time")
-}
-
-on<CombatReached> { character: Character ->
-    combat(character, target)
-}
-
-fun combat(character: Character, target: Character, attackRange: Int = character.attackRange) {
-    if (character.mode !is CombatMovement || character.target != target) {
-        character.mode = CombatMovement(character, target)
-        character.target = target
-    }
-    val movement = character.mode as CombatMovement
-    if (character is Player && character.dialogue != null) {
-        return
-    }
-    if (character.target == null || !canAttack(character, target)) {
-        character.mode = EmptyMode
-        return
-    }
-    if (!movement.arrived(if (attackRange == 1) -1 else attackRange)) {
-        return
-    }
-    if (character.hasClock("hit_delay")) {
-        return
-    }
-    val swing = CombatSwing(target)
-    character.events.emit(swing)
-    val nextDelay = swing.delay
-    if (nextDelay == null || nextDelay < 0) {
-        character.mode = EmptyMode
-        return
-    }
-    character.start("hit_delay", nextDelay)
 }
 
 on<CombatStop> { character: Character ->
@@ -113,4 +80,55 @@ on<Death> { character: Character ->
             attacker.stop("under_attack")
         }
     }
+}
+
+/**
+ * When triggered via [Interact] replace the Interaction with [CombatInteraction]
+ * to allow movement & [Interact] to complete and start [combat] on the same tick
+ * After [Interact] is complete switch to using [CombatMovement]
+ */
+fun combatInteraction(character: Character, target: Character) {
+    val interact = character.mode as Interact
+    interact.updateInteraction(CombatInteraction(character, target))
+}
+
+on<CombatInteraction> { character: Character ->
+    combat(character, target)
+}
+
+/**
+ * [CombatReached] is emitted by [CombatMovement] every tick the [Character] is within range of the target
+ */
+on<CombatReached> { character: Character ->
+    combat(character, target)
+}
+
+fun combat(character: Character, target: Character) {
+    if (character.mode !is CombatMovement || character.target != target) {
+        character.mode = CombatMovement(character, target)
+        character.target = target
+    }
+    val movement = character.mode as CombatMovement
+    if (character is Player && character.dialogue != null) {
+        return
+    }
+    if (character.target == null || !canAttack(character, target)) {
+        character.mode = EmptyMode
+        return
+    }
+    val attackRange = character.attackRange
+    if (!movement.arrived(if (attackRange == 1) -1 else attackRange)) {
+        return
+    }
+    if (character.hasClock("hit_delay")) {
+        return
+    }
+    val swing = CombatSwing(target)
+    character.events.emit(swing)
+    val nextDelay = swing.delay
+    if (nextDelay == null || nextDelay < 0) {
+        character.mode = EmptyMode
+        return
+    }
+    character.start("hit_delay", nextDelay)
 }
