@@ -12,17 +12,18 @@ internal class DemonbaneWeaponFormulaTest : CombatFormulaTest() {
     @Test
     fun `Darklight on greater demon`() {
         val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99)
-        player.equipment.set(EquipSlot.Weapon.index, "darklight")
+        val weapon = Item("darklight")
+        player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val npc = createNPC("greater_demon")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", Item("darklight"))
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
         assertEquals(6880, offensiveRating)
         assertEquals(5760, defensiveRating)
         assertEquals(212, maxHit)
         assertEquals(0.5813, chance, 0.0001)
 
-        val (_, _, specMaxHit, _) = calculate(player, npc, "melee", Item("darklight"), special = true)
+        val (_, _, specMaxHit, _) = calculate(player, npc, "melee", weapon, special = true)
         assertEquals(133, specMaxHit)
     }
 

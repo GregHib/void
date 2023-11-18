@@ -43,12 +43,13 @@ internal class VoidSetEffectFormulaTest : CombatFormulaTest() {
     @Test
     fun `Ranged void set effect`() {
         val player = createPlayer(Skill.Ranged to 75)
+        val weapon = Item("dark_bow")
         player.equipment.apply(void("ranger"))
-        player.equipment.set(EquipSlot.Weapon.index, "dark_bow")
+        player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         player.equipment.set(EquipSlot.Ammo.index, "rune_arrow")
         val npc = createNPC("giant_rat")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "range", Item("dark_bow"))
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "range", weapon)
 
         assertEquals(14946, offensiveRating)
         assertEquals(704, defensiveRating)

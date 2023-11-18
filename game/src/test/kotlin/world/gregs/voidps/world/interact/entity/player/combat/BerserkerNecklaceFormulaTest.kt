@@ -12,11 +12,12 @@ internal class BerserkerNecklaceFormulaTest : CombatFormulaTest() {
     @Test
     fun `No berserker effect with non-tzhaar weapon`() {
         val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99)
+        val weapon = Item("bronze_sword")
         player.equipment.set(EquipSlot.Amulet.index, "berserker_necklace")
-        player.equipment.set(EquipSlot.Weapon.index, "bronze_sword")
+        player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val npc = createNPC("giant_rat")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", Item("bronze_sword"))
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
         assertEquals(5848, offensiveRating)
         assertEquals(704, defensiveRating)
@@ -27,11 +28,12 @@ internal class BerserkerNecklaceFormulaTest : CombatFormulaTest() {
     @Test
     fun `Toktz-xil-ak berserker weapon effect`() {
         val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99)
+        val weapon = Item("toktz_xil_ak")
         player.equipment.set(EquipSlot.Amulet.index, "berserker_necklace")
-        player.equipment.set(EquipSlot.Weapon.index, "toktz_xil_ak")
+        player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val npc = createNPC("giant_rat")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", Item("toktz_xil_ak"))
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
         assertEquals(9546, offensiveRating)
         assertEquals(704, defensiveRating)
@@ -42,11 +44,12 @@ internal class BerserkerNecklaceFormulaTest : CombatFormulaTest() {
     @Test
     fun `Tzhaar-ket-om berserker weapon effect`() {
         val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99)
+        val weapon = Item("tzhaar_ket_om")
         player.equipment.set(EquipSlot.Amulet.index, "berserker_necklace")
-        player.equipment.set(EquipSlot.Weapon.index, "tzhaar_ket_om")
+        player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val npc = createNPC("giant_rat")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", Item("tzhaar_ket_om"))
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
         assertEquals(12384, offensiveRating)
         assertEquals(704, defensiveRating)
@@ -57,11 +60,12 @@ internal class BerserkerNecklaceFormulaTest : CombatFormulaTest() {
     @Test
     fun `Tzhaar-ket-em berserker weapon effect`() {
         val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99)
+        val weapon = Item("tzhaar_ket_em")
         player.equipment.set(EquipSlot.Amulet.index, "berserker_necklace")
-        player.equipment.set(EquipSlot.Weapon.index, "tzhaar_ket_em")
+        player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val npc = createNPC("giant_rat")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", Item("tzhaar_ket_em"))
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
         assertEquals(10836, offensiveRating)
         assertEquals(704, defensiveRating)
@@ -72,11 +76,12 @@ internal class BerserkerNecklaceFormulaTest : CombatFormulaTest() {
     @Test
     fun `Toktz-xil-ek berserker weapon effect`() {
         val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99)
+        val weapon = Item("toktz_xil_ek")
         player.equipment.set(EquipSlot.Amulet.index, "berserker_necklace")
-        player.equipment.set(EquipSlot.Weapon.index, "toktz_xil_ek")
+        player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val npc = createNPC("giant_rat")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", Item("toktz_xil_ek"))
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
         assertEquals(9632, offensiveRating)
         assertEquals(704, defensiveRating)

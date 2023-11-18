@@ -75,15 +75,18 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
     fun `Melee super potion boost`() {
         val player = createPlayer(Skill.Attack to 60, Skill.Strength to 40)
         player["attack_style_axe"] = 2
-        player.equipment.set(EquipSlot.Weapon.index, "rune_battleaxe")
-        player.inventory.add("super_attack_4")
-        player.inventory.add("super_strength_4")
-        player.events.emit(InventoryOption(player, "inventory", Item("super_attack_4"), 0, "Drink"))
+        val weapon = Item("rune_battleaxe")
+        player.equipment.set(EquipSlot.Weapon.index, weapon.id)
+        val attackPotion = Item("super_attack_4")
+        val strengthPotion = Item("super_strength_4")
+        player.inventory.add(attackPotion.id)
+        player.inventory.add(strengthPotion.id)
+        player.events.emit(InventoryOption(player, "inventory", attackPotion, 0, "Drink"))
         tick(2)
-        player.events.emit(InventoryOption(player, "inventory", Item("super_strength_4"), 1, "Drink"))
+        player.events.emit(InventoryOption(player, "inventory", strengthPotion, 1, "Drink"))
         val npc = createNPC("giant_rat")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", Item("rune_battleaxe"))
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
         assertEquals(8774, offensiveRating)
         assertEquals(704, defensiveRating)
@@ -94,12 +97,13 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
     @Test
     fun `Low prayer boost`() {
         val player = createPlayer(Skill.Attack to 40, Skill.Strength to 40, Skill.Prayer to 40)
+        val weapon = Item("rune_scimitar")
         player.events.emit(PrayerStart("improved_reflexes"))
         player.events.emit(PrayerStart("superhuman_strength"))
-        player.equipment.set(EquipSlot.Weapon.index, "rune_scimitar")
+        player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val npc = createNPC("giant_rat")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", Item("rune_scimitar"))
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
         assertEquals(5995, offensiveRating)
         assertEquals(704, defensiveRating)
@@ -110,11 +114,12 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
     @Test
     fun `High prayer boost`() {
         val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99, Skill.Prayer to 70)
+        val weapon = Item("armadyl_godsword")
         player.events.emit(PrayerStart("piety"))
-        player.equipment.set(EquipSlot.Weapon.index, "armadyl_godsword")
+        player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val npc = createNPC("giant_rat")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", Item("armadyl_godsword"))
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
         assertEquals(19796, offensiveRating)
         assertEquals(704, defensiveRating)
@@ -125,11 +130,12 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
     @Test
     fun `Special attack boost`() {
         val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99, Skill.Prayer to 70)
+        val weapon = Item("armadyl_godsword")
         player.events.emit(PrayerStart("piety"))
-        player.equipment.set(EquipSlot.Weapon.index, "armadyl_godsword")
+        player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val npc = createNPC("giant_rat")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", Item("armadyl_godsword"), special = true)
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon, special = true)
 
         assertEquals(39592, offensiveRating)
         assertEquals(704, defensiveRating)
