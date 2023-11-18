@@ -64,6 +64,14 @@ on<Consume>({ item.id.startsWith("super_defence") || item.id.startsWith("super_d
     player.levels.boost(Skill.Defence, 5, 0.15)
 }
 
+on<Consume>({ item.id.startsWith("super_magic") || item.id.startsWith("super_magic_mix") }) { player: Player ->
+    player.levels.boost(Skill.Magic, 5, 0.15)
+}
+
+on<Consume>({ item.id.startsWith("super_ranging") || item.id.startsWith("super_ranging_mix") }) { player: Player ->
+    player.levels.boost(Skill.Ranged, 4, 0.10)
+}
+
 on<Consume>({ item.id.startsWith("combat_potion") || item.id.startsWith("combat_mix") }) { player: Player ->
     player.levels.boost(Skill.Attack, 3, 0.1)
     player.levels.boost(Skill.Strength, 3, 0.1)
