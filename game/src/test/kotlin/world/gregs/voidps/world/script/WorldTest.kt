@@ -76,6 +76,7 @@ abstract class WorldTest : KoinTest {
     fun tick(times: Int = 1) = runBlocking(Contexts.Game) {
         repeat(times) {
             engine.tick()
+            logger.info { "Tick ${GameLoop.tick}" }
             GameLoop.tick++
         }
     }

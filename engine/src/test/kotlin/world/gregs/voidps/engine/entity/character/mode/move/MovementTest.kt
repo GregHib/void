@@ -60,7 +60,7 @@ internal class MovementTest : KoinMock() {
     fun `Player queues smart route`() {
         player.tile = Tile(10, 10)
         val movement = Movement(player, TileTargetStrategy(Tile.EMPTY))
-        movement.start()
+        movement.calculate()
         assertTrue(player.steps.isNotEmpty())
     }
 
@@ -68,7 +68,7 @@ internal class MovementTest : KoinMock() {
     fun `Npc queues step`() {
         val npc = NPC(tile = Tile(10, 10))
         val movement = Movement(npc, TileTargetStrategy(Tile.EMPTY))
-        movement.start()
+        movement.calculate()
         assertTrue(npc.steps.isNotEmpty())
         verify(exactly = 0) {
             pathFinder.findPath(any(), any(), any(), any(), any())
@@ -163,7 +163,7 @@ internal class MovementTest : KoinMock() {
             override val exitStrategy: Int = 0
         }
         val movement = Movement(player, strategy)
-        movement.start()
+        movement.calculate()
         target = Tile(1, 1)
         repeat(5) {
             movement.tick()

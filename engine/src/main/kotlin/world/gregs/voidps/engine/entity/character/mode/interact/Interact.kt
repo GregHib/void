@@ -112,12 +112,17 @@ class Interact(
         }
         if (clearInteracted) {
             interacted = false
+            clearInteracted = false
         }
         if (!character.hasMenuOpen()) {
             super.tick()
         }
         if (!interacted || updateRange) {
             interacted = interacted or interact(afterMovement = true)
+            if (clearInteracted) {
+                interacted = false
+                clearInteracted = false
+            }
         }
         return interacted
     }

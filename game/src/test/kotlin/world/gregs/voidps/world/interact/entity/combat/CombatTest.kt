@@ -32,7 +32,7 @@ internal class CombatTest : WorldTest() {
         val player = createPlayer("player", emptyTile)
         val npc = createNPC("rat", emptyTile.addY(4))
         player.equipment.set(EquipSlot.Weapon.index, "staff_of_air")
-        player.experience.set(Skill.Magic, experience)
+        player.experience.set(Skill.Magic, EXPERIENCE)
         player.inventory.add("mind_rune", 100)
 
         player.interfaceOption("modern_spellbook", "wind_strike", option = "Autocast")
@@ -42,7 +42,7 @@ internal class CombatTest : WorldTest() {
         tick(6) // npc death
 
         assertEquals(emptyTile, player.tile)
-        assertTrue(player.experience.get(Skill.Magic) > experience)
+        assertTrue(player.experience.get(Skill.Magic) > EXPERIENCE)
         assertTrue(floorItems[tile].any { it.id == "bones" })
         assertTrue(player.inventory.count("mind_rune") < 100)
     }
@@ -53,9 +53,9 @@ internal class CombatTest : WorldTest() {
         val npc = createNPC("rat", emptyTile.addY(4))
 
         player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
-        player.experience.set(Skill.Attack, experience)
-        player.experience.set(Skill.Strength, experience)
-        player.experience.set(Skill.Defence, experience)
+        player.experience.set(Skill.Attack, EXPERIENCE)
+        player.experience.set(Skill.Strength, EXPERIENCE)
+        player.experience.set(Skill.Defence, EXPERIENCE)
         player.levels.boost(Skill.Attack, 25)
         player.levels.boost(Skill.Strength, 25)
 
@@ -66,9 +66,9 @@ internal class CombatTest : WorldTest() {
         tick(7) // npc death
 
         assertNotEquals(emptyTile, player.tile)
-        assertTrue(player.experience.get(Skill.Attack) > experience)
-        assertTrue(player.experience.get(Skill.Strength) > experience)
-        assertTrue(player.experience.get(Skill.Defence) > experience)
+        assertTrue(player.experience.get(Skill.Attack) > EXPERIENCE)
+        assertTrue(player.experience.get(Skill.Strength) > EXPERIENCE)
+        assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
         assertTrue(floorItems[tile].any { it.id == "bones" })
     }
 
@@ -79,8 +79,8 @@ internal class CombatTest : WorldTest() {
 
         player.equipment.set(EquipSlot.Weapon.index, "magic_shortbow")
         player.equipment.set(EquipSlot.Ammo.index, "rune_arrow", 100)
-        player.experience.set(Skill.Ranged, experience)
-        player.experience.set(Skill.Defence, experience)
+        player.experience.set(Skill.Ranged, EXPERIENCE)
+        player.experience.set(Skill.Defence, EXPERIENCE)
         player.levels.boost(Skill.Ranged, 25)
 
         player.interfaceOption("combat_styles", "style3")
@@ -94,8 +94,8 @@ internal class CombatTest : WorldTest() {
         assertTrue(player.equipment[EquipSlot.Ammo.index].amount < 100)
         assertTrue(drops.any { it.id == "bones" })
         assertTrue(floorItems[emptyTile.addY(4)].any { it.id == "rune_arrow" })
-        assertTrue(player.experience.get(Skill.Ranged) > experience)
-        assertTrue(player.experience.get(Skill.Defence) > experience)
+        assertTrue(player.experience.get(Skill.Ranged) > EXPERIENCE)
+        assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
         assertTrue(player.inventory.count("rune_arrow") < 100)
     }
 
@@ -106,7 +106,7 @@ internal class CombatTest : WorldTest() {
             hits++
         }
         val player = createPlayer("player",emptyTile)
-        player.experience.set(Skill.Attack, experience)
+        player.experience.set(Skill.Attack, EXPERIENCE)
         player.levels.set(Skill.Attack, 99)
         val npc = createNPC("rat", emptyTile.addY(1))
 
@@ -128,7 +128,7 @@ internal class CombatTest : WorldTest() {
             shouldHaveDamaged = true
         }
         val player = createPlayer("player", emptyTile)
-        player.experience.set(Skill.Constitution, experience)
+        player.experience.set(Skill.Constitution, EXPERIENCE)
         player.levels.set(Skill.Constitution, 990)
         val npc = createNPC("rat", emptyTile.addY(1))
         npc.levels.link(npc.events, object : Levels.Level {
@@ -152,7 +152,7 @@ internal class CombatTest : WorldTest() {
 
         player.equipment.set(EquipSlot.Weapon.index, "magic_shortbow")
         player.equipment.set(EquipSlot.Ammo.index, "rune_arrow", 100)
-        player.experience.set(Skill.Ranged, experience)
+        player.experience.set(Skill.Ranged, EXPERIENCE)
         player.levels.boost(Skill.Ranged, 25)
 
         player.interfaceOption("combat_styles", "style1")
@@ -169,9 +169,9 @@ internal class CombatTest : WorldTest() {
         val target = createPlayer("target", emptyTile.addY(4))
 
         player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
-        player.experience.set(Skill.Attack, experience)
-        player.experience.set(Skill.Strength, experience)
-        player.experience.set(Skill.Defence, experience)
+        player.experience.set(Skill.Attack, EXPERIENCE)
+        player.experience.set(Skill.Strength, EXPERIENCE)
+        player.experience.set(Skill.Defence, EXPERIENCE)
         player.levels.boost(Skill.Attack, 25)
         player.levels.boost(Skill.Strength, 25)
         player["in_wilderness"] = true
@@ -188,9 +188,9 @@ internal class CombatTest : WorldTest() {
         tick(6) // player death
 
         assertNotEquals(emptyTile, player.tile)
-        assertTrue(player.experience.get(Skill.Attack) > experience)
-        assertTrue(player.experience.get(Skill.Strength) > experience)
-        assertTrue(player.experience.get(Skill.Defence) > experience)
+        assertTrue(player.experience.get(Skill.Attack) > EXPERIENCE)
+        assertTrue(player.experience.get(Skill.Strength) > EXPERIENCE)
+        assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
         val items = floorItems[emptyTile.addY(4)]
         assertTrue(items.any { it.id == "coins" })
         assertTrue(items.any { it.id == "rune_arrow" && it.amount > 1 })
@@ -203,9 +203,9 @@ internal class CombatTest : WorldTest() {
         val target = createPlayer("target", emptyTile.addY(4))
 
         player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
-        player.experience.set(Skill.Attack, experience)
-        player.experience.set(Skill.Strength, experience)
-        player.experience.set(Skill.Defence, experience)
+        player.experience.set(Skill.Attack, EXPERIENCE)
+        player.experience.set(Skill.Strength, EXPERIENCE)
+        player.experience.set(Skill.Defence, EXPERIENCE)
         player.levels.boost(Skill.Attack, 25)
         player.levels.boost(Skill.Strength, 25)
 
@@ -216,12 +216,12 @@ internal class CombatTest : WorldTest() {
         tick(2)
 
         assertEquals(emptyTile, player.tile)
-        assertEquals(experience, player.experience.get(Skill.Attack))
-        assertEquals(experience, player.experience.get(Skill.Strength))
-        assertEquals(experience, player.experience.get(Skill.Defence))
+        assertEquals(EXPERIENCE, player.experience.get(Skill.Attack))
+        assertEquals(EXPERIENCE, player.experience.get(Skill.Strength))
+        assertEquals(EXPERIENCE, player.experience.get(Skill.Defence))
     }
 
     companion object {
-        private const val experience = 14000000.0
+        private const val EXPERIENCE = 14000000.0
     }
 }

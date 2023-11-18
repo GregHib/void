@@ -28,7 +28,7 @@ on<NPCOption>({ approach && option == "Attack" }) { character: Character ->
     } else {
         character.approachRange(null, update = true)
     }
-    combatInteraction(player, target)
+    combatInteraction(character, target)
 }
 
 on<PlayerOption>({ approach && option == "Attack" }) { character: Character ->
@@ -37,7 +37,7 @@ on<PlayerOption>({ approach && option == "Attack" }) { character: Character ->
     } else {
         character.approachRange(null, update = true)
     }
-    combatInteraction(player, target)
+    combatInteraction(character, target)
 }
 
 on<ItemOnNPC>({ approach && id.endsWith("_spellbook") }, Priority.HIGH) { player: Player ->

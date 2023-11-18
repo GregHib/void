@@ -39,7 +39,7 @@ open class Movement(
     private val pathFinder: PathFinder = get()
     private var needsCalculation = true
 
-    private fun calculate() {
+    internal fun calculate() {
         if (strategy == null) {
             return
         }
@@ -49,6 +49,7 @@ open class Movement(
         } else {
             character.steps.queueStep(strategy.tile)
         }
+        needsCalculation = false
     }
 
     override fun tick() {
@@ -64,7 +65,6 @@ open class Movement(
         }
         if (needsCalculation) {
             calculate()
-            needsCalculation = false
         }
         if (step(runStep = false) && character.running && !character.hasClock("slow_run")) {
             if (character.steps.isNotEmpty()) {
@@ -134,6 +134,7 @@ open class Movement(
     open fun recalculate(): Boolean {
         val strategy = strategy ?: return false
         if (strategy.tile != character.steps.destination) {
+            needsCalculation = true
             calculate()
             return true
         }
