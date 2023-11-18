@@ -77,7 +77,7 @@ on<CombatHit>({ source != it && it.retaliates }) { character: Character ->
     if (character.levels.get(Skill.Constitution) <= 0 || character.underAttack && character.target == source) {
         return@on
     }
-    combat(character, source)
+    setMode(character, source)
 }
 
 on<Death> { character: Character ->
@@ -110,10 +110,7 @@ on<CombatReached> { character: Character ->
 }
 
 fun combat(character: Character, target: Character) {
-    if (character.mode !is CombatMovement || character.target != target) {
-        character.mode = CombatMovement(character, target)
-        character.target = target
-    }
+    setMode(character, target)
     val movement = character.mode as CombatMovement
     if (character is Player && character.dialogue != null) {
         return
@@ -137,4 +134,11 @@ fun combat(character: Character, target: Character) {
         return
     }
     character.start("hit_delay", nextDelay)
+}
+
+fun setMode(character: Character, target: Character) {
+    if (character.mode !is CombatMovement || character.target != target) {
+        character.mode = CombatMovement(character, target)
+        character.target = target
+    }
 }
