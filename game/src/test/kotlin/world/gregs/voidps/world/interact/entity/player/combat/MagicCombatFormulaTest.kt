@@ -40,6 +40,19 @@ internal class MagicCombatFormulaTest : CombatFormulaTest() {
     }
 
     @Test
+    fun `Cast on player`() {
+        val player = createPlayer(Skill.Magic to 99)
+        val target = createPlayer(Skill.Constitution to 990)
+
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, target, "magic", spell = "fire_wave")
+        assertEquals(6912, offensiveRating)
+        assertEquals(192, defensiveRating)
+
+        assertEquals(200, maxHit)
+        assertEquals(0.9859, chance, 0.0001)
+    }
+
+    @Test
     fun `Water staff blast on rat`() {
         val player = createPlayer(Skill.Magic to 50)
         val staff = Item("mystic_steam_staff")
