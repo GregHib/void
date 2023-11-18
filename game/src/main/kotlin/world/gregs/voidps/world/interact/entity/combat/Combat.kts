@@ -55,7 +55,11 @@ on<CombatSwing>({ it.contains("one_time") }) { player: Player ->
 }
 
 on<CombatStop> { character: Character ->
-    character.clearWatch()
+    if (target.dead) {
+        character["face_entity"] = target
+    } else {
+        character.clearWatch()
+    }
     character.target = null
 }
 
