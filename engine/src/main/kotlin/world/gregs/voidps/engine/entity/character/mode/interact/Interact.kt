@@ -36,12 +36,12 @@ class Interact(
 
     private var approach: Interaction = interaction.copy(true)
     private var operate: Interaction = interaction.copy(false)
-    private var interacted = true
+    private var clearInteracted = false
 
     fun updateInteraction(interaction: Interaction) {
         approach = interaction.copy(true)
         operate = interaction.copy(false)
-        interacted = false
+        clearInteracted = true
     }
 
     private var updateRange: Boolean = false
@@ -105,10 +105,13 @@ class Interact(
      * target changed or failed to interact previously.
      */
     private fun processInteraction(): Boolean {
-        interacted = true
+        clearInteracted = false
         var interacted = interact(afterMovement = false)
         if (interacted && !updateRange && arrived(approachRange ?: -1)) {
             clearSteps()
+        }
+        if (clearInteracted) {
+            interacted = false
         }
         if (!character.hasMenuOpen()) {
             super.tick()
@@ -135,7 +138,7 @@ class Interact(
             }
             else -> return false
         }
-        return interacted
+        return true
     }
 
     /**

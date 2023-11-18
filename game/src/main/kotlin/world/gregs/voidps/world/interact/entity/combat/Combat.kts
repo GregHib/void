@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearWatch
+import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatReached
@@ -45,6 +46,7 @@ on<ItemOnNPC>({ approach && id.endsWith("_spellbook") }, Priority.HIGH) { player
     player["attack_speed"] = 5
     player["one_time"] = true
     player.attackRange = 8
+    player.face(target)
     combatInteraction(player, target)
     cancel()
 }

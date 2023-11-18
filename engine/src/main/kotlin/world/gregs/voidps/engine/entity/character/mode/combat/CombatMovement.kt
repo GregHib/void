@@ -64,7 +64,7 @@ class CombatMovement(
     }
 
     private fun stepOut() {
-        character.steps.clear()
+        clearSteps()
         if (target.mode is CombatMovement || target.mode is Interact) {
             return
         }
@@ -74,7 +74,7 @@ class CombatMovement(
     private fun attack(): Boolean {
         val attackRange = attackRange()
         if (arrived(if (attackRange == 1) -1 else attackRange)) {
-            character.steps.clear()
+            clearSteps()
             character.events.emit(CombatReached(target))
             return true
         }
