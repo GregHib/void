@@ -91,6 +91,8 @@ on<Command>({ prefix == "watch" }) { player: Player ->
     val bot = players.get(content)
     if (bot != null) {
         player.watch(bot)
+    } else {
+        player.clearWatch()
     }
 }
 
