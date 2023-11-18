@@ -74696,203 +74696,203 @@ prayer_potion_stealing_creation_5:
   id: 14207
   weight: 0.5
   examine: "Five doses of Prayer restore potion."
-prayer_potion_5_noted: 14208
+prayer_potion_stealing_creation_5_noted: 14208
 prayer_potion_stealing_creation_4:
   id: 14209
   weight: 0.4
   examine: "Four doses of Prayer restore potion."
-prayer_potion_4_noted_2: 14210
+prayer_potion_stealing_creation_4_noted: 14210
 prayer_potion_stealing_creation_3:
   id: 14211
   weight: 0.3
   examine: "Three doses of Prayer restore potion."
-prayer_potion_3_noted_2: 14212
+prayer_potion_stealing_creation_3_noted: 14212
 prayer_potion_stealing_creation_2:
   id: 14213
   weight: 0.2
   examine: "Two doses of Prayer restore potion."
-prayer_potion_2_noted_2: 14214
+prayer_potion_stealing_creation_2_noted: 14214
 prayer_potion_stealing_creation_1:
   id: 14215
   weight: 0.1
   examine: "One dose of Prayer restore potion."
-prayer_potion_1_noted_2: 14216
+prayer_potion_stealing_creation_1_noted: 14216
 energy_potion_stealing_creation_5:
   id: 14217
   bankable: false
   weight: 0.5
   examine: "Five doses of energy potion."
-energy_potion_5_noted: 14218
+energy_potion_stealing_creation_5_noted: 14218
 energy_potion_stealing_creation_4:
   id: 14219
   weight: 0.4
   examine: "Four doses of energy potion."
-energy_potion_4_noted_2: 14220
+energy_potion_stealing_creation_4_noted: 14220
 energy_potion_stealing_creation_3:
   id: 14221
   weight: 0.3
   examine: "Three doses of energy potion."
-energy_potion_3_noted_2: 14222
+energy_potion_stealing_creation_3_noted: 14222
 energy_potion_stealing_creation_2:
   id: 14223
   weight: 0.2
   examine: "Two doses of energy potion."
-energy_potion_2_noted_2: 14224
+energy_potion_stealing_creation_2_noted: 14224
 energy_potion_stealing_creation_1:
   id: 14225
   weight: 0.1
   examine: "One dose of energy potion."
-energy_potion_1_noted_2: 14226
-super_attack_potion_5:
+energy_potion_stealing_creation_1_noted: 14226
+super_attack_potion_stealing_creation_5:
   id: 14227
   weight: 0.5
   examine: "Five doses of super Attack potion."
-super_attack_5_noted: 14228
-super_attack_potion_4:
+super_attack_potion_stealing_creation_5_noted: 14228
+super_attack_potion_stealing_creation_4:
   id: 14229
   weight: 0.4
   examine: "Four doses of super Attack potion."
-super_attack_4_noted_2: 14230
-super_attack_potion_3:
+super_attack_potion_stealing_creation_4_noted: 14230
+super_attack_potion_stealing_creation_3:
   id: 14231
   weight: 0.3
   examine: "Three doses of super Attack potion."
-super_attack_3_noted_2: 14232
-super_attack_potion_2:
+super_attack_potion_stealing_creation_3_noted: 14232
+super_attack_potion_stealing_creation_2:
   id: 14233
   weight: 0.2
   examine: "Two doses of super Attack potion."
-super_attack_2_noted_2: 14234
-super_attack_potion_1:
+super_attack_potion_stealing_creation_2_noted: 14234
+super_attack_potion_stealing_creation_1:
   id: 14235
   weight: 0.1
   examine: "One dose of super Attack potion."
-super_attack_1_noted_2: 14236
-super_strength_potion_5:
+super_attack_potion_stealing_creation_1_noted: 14236
+super_strength_potion_stealing_creation_5:
   id: 14237
   weight: 0.5
   examine: "Five doses of super Strength potion."
-super_strength_5_noted: 14238
-super_strength_potion_4:
+super_strength_potion_stealing_creation_5_noted: 14238
+super_strength_potion_stealing_creation_4:
   id: 14239
   weight: 0.4
   examine: "Four doses of super Strength potion."
-super_strength_4_noted_2: 14240
-super_strength_potion_3:
+super_strength_potion_stealing_creation_4_noted: 14240
+super_strength_potion_stealing_creation_3:
   id: 14241
   weight: 0.3
   examine: "Three doses of super Strength potion."
-super_strength_3_noted_2: 14242
-super_strength_potion_2:
+super_strength_potion_stealing_creation_3_noted: 14242
+super_strength_potion_stealing_creation_2:
   id: 14243
   weight: 0.2
   examine: "Two doses of super Strength potion."
-super_strength_2_noted_2: 14244
-super_strength_potion_1:
+super_strength_potion_stealing_creation_2_noted: 14244
+super_strength_potion_stealing_creation_1:
   id: 14245
   weight: 0.1
   examine: "One dose of super Strength potion."
-super_strength_1_noted_2: 14246
+super_strength_potion_stealing_creation_1_noted: 14246
 ranging_potion_stealing_creation_5:
   id: 14247
   weight: 0.5
   examine: "Five doses of ranging potion."
-ranging_potion_5_noted: 14248
+ranging_potion_stealing_creation_5_noted: 14248
 ranging_potion_stealing_creation_4:
   id: 14249
   weight: 0.4
   examine: "Four doses of ranging potion."
-ranging_potion_4_noted_2: 14250
+ranging_potion_stealing_creation_4_noted: 14250
 ranging_potion_stealing_creation_3:
   id: 14251
   weight: 0.3
   examine: "Three doses of ranging potion."
-ranging_potion_3_noted_2: 14252
+ranging_potion_stealing_creation_3_noted: 14252
 ranging_potion_stealing_creation_2:
   id: 14253
   weight: 0.2
   examine: "Two doses of ranging potion."
-ranging_potion_2_noted_2: 14254
+ranging_potion_stealing_creation_2_noted: 14254
 ranging_potion_stealing_creation_1:
   id: 14255
   weight: 0.1
   examine: "One dose of ranging potion."
-ranging_potion_1_noted_2: 14256
+ranging_potion_stealing_creation_1_noted: 14256
 defence_potion_stealing_creation_5:
   id: 14257
   weight: 0.5
   examine: "Five doses of Defence potion."
-defence_potion_5_noted: 14258
+defence_potion_stealing_creation_5_noted: 14258
 defence_potion_stealing_creation_4:
   id: 14259
   weight: 0.4
   examine: "Four doses of Defence potion."
-defence_potion_4_noted_2: 14260
+defence_potion_stealing_creation_4_noted: 14260
 defence_potion_stealing_creation_3:
   id: 14261
   weight: 0.3
   examine: "Three doses of Defence potion."
-defence_potion_3_noted_2: 14262
+defence_potion_stealing_creation_3_noted: 14262
 defence_potion_stealing_creation_2:
   id: 14263
   weight: 0.2
   examine: "Two doses of Defence potion."
-defence_potion_2_noted_2: 14264
+defence_potion_stealing_creation_2_noted: 14264
 defence_potion_stealing_creation_1:
   id: 14265
   weight: 0.1
   examine: "One dose of Defence potion."
-defence_potion_1_noted_2: 14266
+defence_potion_stealing_creation_1_noted: 14266
 magic_potion_stealing_creation_5:
   id: 14267
   weight: 0.5
   examine: "Five doses of Magic potion."
-magic_potion_5_noted: 14268
+magic_potion_stealing_creation_5_noted: 14268
 magic_potion_stealing_creation_4:
   id: 14269
   weight: 0.4
   examine: "Four doses of Magic potion."
-magic_potion_4_noted_2: 14270
+magic_potion_stealing_creation_4_noted: 14270
 magic_potion_stealing_creation_3:
   id: 14271
   weight: 0.3
   examine: "Three doses of Magic potion."
-magic_potion_3_noted_2: 14272
+magic_potion_stealing_creation_3_noted: 14272
 magic_potion_stealing_creation_2:
   id: 14273
   weight: 0.2
   examine: "Two doses of Magic potion."
-magic_potion_2_noted_2: 14274
+magic_potion_stealing_creation_2_noted: 14274
 magic_potion_stealing_creation_1:
   id: 14275
   weight: 0.1
   examine: "One dose of Magic potion."
-magic_potion_1_noted_2: 14276
+magic_potion_stealing_creation_1_noted: 14276
 summoning_potion_stealing_creation_5:
   id: 14277
   weight: 0.5
   examine: "Five doses of Summoning potion."
-summoning_potion_5_noted: 14278
+summoning_potion_stealing_creation_5_noted: 14278
 summoning_potion_stealing_creation_4:
   id: 14279
   weight: 0.4
   examine: "Four doses of Summoning potion."
-summoning_potion_4_noted_2: 14280
+summoning_potion_stealing_creation_4_noted: 14280
 summoning_potion_stealing_creation_3:
   id: 14281
   weight: 0.3
   examine: "Three doses of Summoning potion."
-summoning_potion_3_noted_2: 14282
+summoning_potion_stealing_creation_3_noted: 14282
 summoning_potion_stealing_creation_2:
   id: 14283
   weight: 0.2
   examine: "Two doses of Summoning potion."
-summoning_potion_2_noted_2: 14284
+summoning_potion_stealing_creation_2_noted: 14284
 summoning_potion_stealing_creation_1:
   id: 14285
   weight: 0.1
   examine: "One dose of Summoning potion."
-summoning_potion_1_noted_2: 14286
+summoning_potion_stealing_creation_1_noted: 14286
 scimitar_class_1:
   id: 14287
   bankable: false
