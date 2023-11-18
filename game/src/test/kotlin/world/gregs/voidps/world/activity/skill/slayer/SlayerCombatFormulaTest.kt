@@ -130,4 +130,18 @@ class SlayerCombatFormulaTest : CombatFormulaTest() {
         assertEquals(132, maxHit)
         assertEquals(0.66, chance, 0.0001)
     }
+
+    @Test
+    fun `Slayer dart max hit`() {
+        val player = createPlayer(Skill.Magic to 75)
+        player.equipment.set(EquipSlot.Weapon.index, "slayers_staff")
+        val npc = createNPC("greater_demon")
+
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "magic", spell = "magic_dart")
+
+        assertEquals(6384, offensiveRating)
+        assertEquals(540, defensiveRating)
+        assertEquals(175, maxHit)
+        assertEquals(0.9576, chance, 0.0001)
+    }
 }
