@@ -8,26 +8,29 @@ import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.ammo
 import world.gregs.voidps.world.interact.entity.combat.hit
 
-on<CombatHit>({ source is Player && source.ammo == "saradomin_arrows" }) { character: Character ->
+on<CombatHit>({ source is Player && type == "range" && source.ammo == "saradomin_arrows" }) { character: Character ->
     val chance = if (weapon?.id == "saradomin_bow") 0.2 else 0.1
     if (random.nextDouble() < chance) {
         // water_strike
-        hit(source, character, hit(source, character, type, weapon), "magic", weapon)
+        val damage = hit(source, character, type, weapon)
+        hit(source, character, damage, "magic", weapon)
     }
 }
 
-on<CombatHit>({ source is Player && source.ammo == "guthix_arrows" }) { character: Character ->
+on<CombatHit>({ source is Player && type == "range" && source.ammo == "guthix_arrows" }) { character: Character ->
     val chance = if (weapon?.id == "guthix_bow") 0.2 else 0.1
     if (random.nextDouble() < chance) {
         // earth_strike
-        hit(source, character, hit(source, character, type, weapon), "magic", weapon)
+        val damage = hit(source, character, type, weapon)
+        hit(source, character, damage, "magic", weapon)
     }
 }
 
-on<CombatHit>({ source is Player && source.ammo == "zamorak_arrows" }) { character: Character ->
+on<CombatHit>({ source is Player && type == "range" && source.ammo == "zamorak_arrows" }) { character: Character ->
     val chance = if (weapon?.id == "zamorak_bow") 0.2 else 0.1
     if (random.nextDouble() < chance) {
         // fire_strike
-        hit(source, character, hit(source, character, type, weapon), "magic", weapon)
+        val damage = hit(source, character, type, weapon)
+        hit(source, character, damage, "magic", weapon)
     }
 }
