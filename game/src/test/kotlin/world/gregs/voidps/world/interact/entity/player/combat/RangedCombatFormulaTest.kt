@@ -113,11 +113,10 @@ internal class RangedCombatFormulaTest : CombatFormulaTest() {
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "range", weapon)
 
-        // Slightly off from osrs because we don't have distinction between 20% ranged attack and 23% ranged strength
-        assertEquals(23532, offensiveRating)
+        assertEquals(23055, offensiveRating)
         assertEquals(704, defensiveRating)
         assertEquals(291, maxHit)
-        assertEquals(0.9849, chance, 0.0001)
+        assertEquals(0.9847, chance, 0.0001)
     }
 
     @Test

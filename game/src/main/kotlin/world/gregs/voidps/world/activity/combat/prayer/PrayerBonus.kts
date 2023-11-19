@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
@@ -36,10 +37,14 @@ set("chivalry", "defence_bonus", 20)
 set("piety", "attack_bonus", 20)
 set("piety", "strength_bonus", 23)
 set("piety", "defence_bonus", 25)
-set("sharp_eye", "ranged_bonus", 5)
-set("hawk_eye", "ranged_bonus", 10)
-set("eagle_eye", "ranged_bonus", 15)
-set("rigour", "ranged_bonus", 23)
+set("sharp_eye", "ranged_attack_bonus", 5)
+set("sharp_eye", "ranged_strength_bonus", 5)
+set("hawk_eye", "ranged_attack_bonus", 10)
+set("hawk_eye", "ranged_strength_bonus", 10)
+set("eagle_eye", "ranged_attack_bonus", 15)
+set("eagle_eye", "ranged_strength_bonus", 15)
+set("rigour", "ranged_attack_bonus", 20)
+set("rigour", "ranged_strength_bonus", 23)
 set("rigour", "defence_bonus", 25)
 set("mystic_will", "magic_bonus", 5)
 set("mystic_lore", "magic_bonus", 10)
@@ -53,7 +58,8 @@ set("burst_of_strength", "strength_bonus", 5)
 set("superhuman_strength", "strength_bonus", 10)
 set("ultimate_strength", "strength_bonus", 15)
 set("leech_attack", "attack_bonus", 5)
-set("leech_ranged", "ranged_bonus", 5)
+set("leech_ranged", "ranged_attack_bonus", 5)
+set("leech_ranged", "ranged_strength_bonus", 5)
 set("leech_magic", "magic_bonus", 5)
 set("leech_defence", "defence_bonus", 5)
 set("leech_strength", "strength_bonus", 5)
@@ -112,7 +118,8 @@ on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) }, priority = Pr
 }
 
 on<HitEffectiveLevelModifier>(priority = Priority.HIGH) { player: Player ->
-    var bonus = player["base_${skill.name.lowercase()}_bonus", 1.0]
+    val style = if (skill == Skill.Ranged) if (accuracy) "_attack" else "_strength" else ""
+    var bonus = player["base_${skill.name.lowercase()}${style}_bonus", 1.0]
     if (player.equipped(EquipSlot.Amulet).id == "amulet_of_zealots") {
         bonus = floor(1.0 + (bonus - 1.0) * 2)
     }
