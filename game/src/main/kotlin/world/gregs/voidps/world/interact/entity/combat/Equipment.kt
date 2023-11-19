@@ -2,6 +2,7 @@ package world.gregs.voidps.world.interact.entity.combat
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.world.interact.entity.combat.combatStyle
 
 object Equipment {
     fun bonus(source: Character, target: Character?, type: String, offense: Boolean): Int {

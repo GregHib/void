@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.attackType
 
 fun isWarSpear(item: Item?) = item != null && item.id.startsWith("guthans_warspear")
 

@@ -15,6 +15,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpeci
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccuracyMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import world.gregs.voidps.world.interact.entity.combat.attackType
 
 fun isDragonDagger(item: Item?) = item != null && (item.id.startsWith("dragon_dagger") || item.id.startsWith("corrupt_dragon_dagger"))
 

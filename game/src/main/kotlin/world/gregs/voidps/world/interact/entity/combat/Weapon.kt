@@ -59,3 +59,4 @@ val Character.attackType: String
 // E.g "crush"
 val Character.combatStyle: String
     get() = get("combat_style", "")
+

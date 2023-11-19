@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.attackType
 
 val definitions: WeaponStyleDefinitions by inject()
 

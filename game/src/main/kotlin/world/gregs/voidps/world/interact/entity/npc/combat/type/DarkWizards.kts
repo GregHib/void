@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.npc.combat
+package world.gregs.voidps.world.interact.entity.npc.combat.type
 
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.event.Priority
