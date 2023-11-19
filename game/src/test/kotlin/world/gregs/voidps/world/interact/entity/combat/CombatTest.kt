@@ -17,6 +17,8 @@ import world.gregs.voidps.network.instruct.InteractPlayer
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 import world.gregs.voidps.world.script.*
 import kotlin.random.Random
 

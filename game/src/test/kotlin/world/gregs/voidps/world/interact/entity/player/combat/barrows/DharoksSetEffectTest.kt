@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.Damage
+import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.player.combat.CombatFormulaTest
 
 internal class DharoksSetEffectTest : CombatFormulaTest() {

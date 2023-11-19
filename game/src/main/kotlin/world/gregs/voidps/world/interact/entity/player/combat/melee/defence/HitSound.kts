@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.skill.slayer.race
-import world.gregs.voidps.world.interact.entity.combat.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 on<CombatAttack>(priority = Priority.LOWER) { player: Player ->

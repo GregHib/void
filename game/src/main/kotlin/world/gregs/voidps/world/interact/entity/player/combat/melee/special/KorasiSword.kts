@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.Target
+import world.gregs.voidps.world.interact.entity.combat.hit.*
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 

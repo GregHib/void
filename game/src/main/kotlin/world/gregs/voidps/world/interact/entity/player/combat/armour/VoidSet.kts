@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelModifier
+import world.gregs.voidps.world.interact.entity.combat.hit.HitEffectiveLevelModifier
 import kotlin.math.floor
 
 on<Registered>({ it.hasFullSet("") }) { player: Player ->

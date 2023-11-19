@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.HitChanceModifier
-import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
+import world.gregs.voidps.world.interact.entity.combat.hit.HitChanceModifier
+import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 
 on<Registered>({ it.hasFullSet() }) { player: Player ->
     player["veracs_set_effect"] = true

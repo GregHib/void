@@ -10,9 +10,9 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.CombatAttack
-import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
-import world.gregs.voidps.world.interact.entity.combat.directHit
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
+import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.player.effect.freeze
 import world.gregs.voidps.world.interact.entity.player.toxin.poison
 import java.util.concurrent.TimeUnit

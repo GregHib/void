@@ -12,7 +12,7 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.combat.consume.drink.antifire
 import world.gregs.voidps.world.activity.combat.consume.drink.superAntifire
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
-import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
+import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 import kotlin.math.floor
 
 on<HitDamageModifier>({ type == "dragonfire" && it.isFamiliar }, Priority.HIGHISH) { _: NPC ->

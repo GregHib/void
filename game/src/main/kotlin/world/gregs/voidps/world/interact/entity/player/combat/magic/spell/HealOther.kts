@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.world.interact.entity.combat.damage
+import world.gregs.voidps.world.interact.entity.combat.hit.damage
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
 
 val definitions: SpellDefinitions by inject()

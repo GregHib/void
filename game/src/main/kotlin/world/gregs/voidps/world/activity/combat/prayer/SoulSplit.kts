@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
-import world.gregs.voidps.world.interact.entity.combat.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.dead
 import world.gregs.voidps.world.interact.entity.player.combat.magicHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot

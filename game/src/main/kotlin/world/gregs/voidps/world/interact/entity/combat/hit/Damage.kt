@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.combat
+package world.gregs.voidps.world.interact.entity.combat.hit
 
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.random
+import world.gregs.voidps.world.interact.entity.combat.Weapon
 
 object Damage {
     /**

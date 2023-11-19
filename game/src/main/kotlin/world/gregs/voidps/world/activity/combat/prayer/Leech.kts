@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
-import world.gregs.voidps.world.interact.entity.combat.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.magicHitDelay
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy

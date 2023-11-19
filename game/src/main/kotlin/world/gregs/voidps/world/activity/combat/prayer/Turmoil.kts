@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelOverride
+import world.gregs.voidps.world.interact.entity.combat.hit.HitEffectiveLevelOverride
 import kotlin.math.floor
 
 on<HitEffectiveLevelOverride>({ defence && it.praying("turmoil") }, Priority.HIGH) { player: Player ->

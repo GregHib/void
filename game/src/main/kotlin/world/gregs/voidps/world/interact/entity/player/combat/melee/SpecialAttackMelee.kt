@@ -12,6 +12,10 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
+import world.gregs.voidps.world.interact.entity.combat.hit.HitRatingModifier
+import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import kotlin.math.floor
 import kotlin.random.nextInt
 

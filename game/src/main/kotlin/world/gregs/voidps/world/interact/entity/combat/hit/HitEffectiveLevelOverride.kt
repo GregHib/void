@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.combat
+package world.gregs.voidps.world.interact.entity.combat.hit
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.Event

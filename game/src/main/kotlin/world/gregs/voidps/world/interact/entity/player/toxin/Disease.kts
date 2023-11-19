@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.directHit
+import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import kotlin.math.sign
 
 on<Registered>({ it.diseaseCounter != 0 }) { character: Character ->

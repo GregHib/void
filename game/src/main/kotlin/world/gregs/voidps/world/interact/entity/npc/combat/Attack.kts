@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.hit.hit
 
 on<CombatSwing>({ !swung() }, Priority.LOWEST) { npc: NPC ->
     npc.setAnimation(attackAnimation(npc))

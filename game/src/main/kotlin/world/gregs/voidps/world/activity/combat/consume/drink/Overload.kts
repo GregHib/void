@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.world.activity.combat.consume.Consumable
 import world.gregs.voidps.world.activity.combat.consume.Consume
-import world.gregs.voidps.world.interact.entity.combat.directHit
+import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 
 fun inWilderness() = false
 

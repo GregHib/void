@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.skill.slayer.race
-import world.gregs.voidps.world.interact.entity.combat.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 
 on<CombatAttack>({ !blocked && target is Player }, Priority.LOWEST) { _: Character ->
     target.setAnimation("player_block")

@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.combat.consume.Consumable
 import world.gregs.voidps.world.activity.combat.consume.Consume
-import world.gregs.voidps.world.interact.entity.combat.directHit
+import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 import world.gregs.voidps.world.interact.entity.player.toxin.antiDisease
 import world.gregs.voidps.world.interact.entity.player.toxin.antiPoison

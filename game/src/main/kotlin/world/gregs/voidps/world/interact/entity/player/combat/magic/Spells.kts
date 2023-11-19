@@ -7,6 +7,9 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
+import world.gregs.voidps.world.interact.entity.combat.hit.HitEffectiveLevelOverride
 import world.gregs.voidps.world.interact.entity.player.combat.melee.multiTargetHit
 import kotlin.math.floor
 import kotlin.math.round

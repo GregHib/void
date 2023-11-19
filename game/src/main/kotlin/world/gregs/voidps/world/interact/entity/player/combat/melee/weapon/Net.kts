@@ -7,6 +7,8 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.hit
 
 fun isNet(item: Item?) = item != null && (item.id.startsWith("butterfly_net") || item.id.endsWith("butterfly_net") || item.id == "noose_wand")
 

@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
+import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 
 fun isWeaponOutlier(special: Boolean, id: String?): Boolean = (special && id?.startsWith("magic") == true || id == "seercull" || id == "rune_thrownaxe") || id == "ogre_bow"
 

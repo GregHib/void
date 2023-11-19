@@ -13,10 +13,10 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.type.random
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
-import world.gregs.voidps.world.interact.entity.combat.CombatAttack
-import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
-import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelModifier
-import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
+import world.gregs.voidps.world.interact.entity.combat.hit.HitEffectiveLevelModifier
+import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import kotlin.math.floor
 
 fun set(name: String, bonus: String, value: Int) {
