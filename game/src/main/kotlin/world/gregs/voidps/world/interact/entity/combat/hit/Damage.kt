@@ -20,6 +20,7 @@ object Damage {
             return -1
         }
         val baseMaxHit = maximum(source, type, weapon, spell)
+        source["max_hit"] = baseMaxHit
         return random.nextInt(baseMaxHit + 1)
     }
 
@@ -50,7 +51,6 @@ object Damage {
     fun modify(source: Character, target: Character, type: String, strengthBonus: Int, baseMaxHit: Int, weapon: Item, spell: String = "", special: Boolean = false): Int {
         val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit.toDouble(), weapon, spell, special)
         source.events.emit(modifier)
-        source["max_hit"] = modifier.damage.toInt()
         return modifier.damage.toInt()
     }
 }

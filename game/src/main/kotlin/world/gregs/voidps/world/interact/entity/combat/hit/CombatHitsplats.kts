@@ -26,6 +26,9 @@ on<CombatHit>({ damage >= 0 && !(type == "magic" && definitions.get(spell).maxHi
     }
     val dealers = character.damageDealers
     dealers[source] = dealers.getOrDefault(source, 0) + damage
+    val maxHit = source["max_hit", 0]
+    val critical = (type == "melee" || type == "magic" || type == "range") && damage > 10 && maxHit > 0 && damage > (maxHit * 0.9)
+    println("Critical? $critical $damage/$maxHit")
     character.hit(
         source = source,
         amount = damage,
@@ -40,7 +43,7 @@ on<CombatHit>({ damage >= 0 && !(type == "magic" && definitions.get(spell).maxHi
             "healed" -> Hit.Mark.Healed
             else -> Hit.Mark.Missed
         },
-        critical = (type == "melee" || type == "magic" || type == "range") && damage > 10 && damage > (source["max_hit", 0] * 0.9),
+        critical = critical,
         soak = soak
     )
     character.levels.drain(Skill.Constitution, damage)
