@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.entity.combat.Weapon
 
 object Damage {
     /**
-     * Rolls a real hit against [target]
+     * Rolls a real hit against [target] without modifiers
      * @return damage or -1 if unsuccessful
      */
     fun roll(source: Character, target: Character? = null, type: String, weapon: Item? = null, spell: String = "", special: Boolean = false): Int {
@@ -21,8 +21,7 @@ object Damage {
         }
         val strengthBonus = Weapon.strengthBonus(source, type, weapon)
         val baseMaxHit = maximum(source, type, spell, strengthBonus)
-        val damage = random.nextInt(baseMaxHit.toInt() + 1).toDouble()
-        return modify(source, target, type, strengthBonus, damage, weapon, spell, special)
+        return random.nextInt(baseMaxHit.toInt() + 1)
     }
 
     /**
@@ -30,8 +29,7 @@ object Damage {
      */
     fun maximum(source: Character, target: Character? = null, type: String, weapon: Item? = null, spell: String = "", special: Boolean = false): Int {
         val strengthBonus = Weapon.strengthBonus(source, type, weapon)
-        val baseMaxHit = maximum(source, type, spell, strengthBonus)
-        return modify(source, target, type, strengthBonus, baseMaxHit, weapon, spell, special)
+        return maximum(source, type, spell, strengthBonus).toInt()
     }
 
     /**
@@ -54,7 +52,10 @@ object Damage {
         return 5.0 + (Hit.effectiveLevel(source, skill, accuracy = false) * strengthBonus) / 64
     }
 
-    private fun modify(source: Character, target: Character?, type: String, strengthBonus: Int, baseMaxHit: Double, weapon: Item?, spell: String, special: Boolean): Int {
+    /**
+     * Applies modifiers to a [baseMaxHit]
+     */
+    fun modify(source: Character, target: Character, type: String, strengthBonus: Int, baseMaxHit: Double, weapon: Item?, spell: String, special: Boolean): Int {
         val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit, weapon, spell, special)
         source.events.emit(modifier)
         source["max_hit"] = modifier.damage.toInt()

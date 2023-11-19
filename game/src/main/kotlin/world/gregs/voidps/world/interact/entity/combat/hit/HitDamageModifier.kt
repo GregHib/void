@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.event.Event
  * @param damage the maximum hit possible on [target] using [weapon]
  */
 data class HitDamageModifier(
-    val target: Character?,
+    val target: Character,
     val type: String,
     val strengthBonus: Int,
     var damage: Double,

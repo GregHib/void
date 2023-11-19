@@ -89,7 +89,9 @@ fun Character.hit(
     special: Boolean = (this as? Player)?.specialAttack ?: false,
     damage: Int = Damage.roll(this, target, type, weapon, spell)
 ): Int {
-    val actualDamage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
+    val strengthBonus = Weapon.strengthBonus(this, type, weapon)
+    val actualDamage = Damage.modify(this, target, type, strengthBonus, damage.toDouble(), weapon, spell, special)
+        .coerceAtMost(target.levels.get(Skill.Constitution))
     events.emit(CombatAttack(target, type, actualDamage, weapon, spell, special, TICKS.toClientTicks(delay)))
     target.strongQueue("hit", delay) {
         target.directHit(this@hit, actualDamage, type, weapon, spell, special)
