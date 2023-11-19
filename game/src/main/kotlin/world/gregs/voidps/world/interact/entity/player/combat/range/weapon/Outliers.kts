@@ -8,9 +8,9 @@ import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 
 fun isWeaponOutlier(special: Boolean, id: String?): Boolean = (special && id?.startsWith("magic") == true || id == "seercull" || id == "rune_thrownaxe") || id == "ogre_bow"
 
-on<HitDamageModifier>({ type == "range" && isWeaponOutlier(special, weapon?.id) }, Priority.HIGH) { player: Player ->
+on<HitDamageModifier>({ type == "range" && isWeaponOutlier(special, weapon.id) }, Priority.HIGH) { player: Player ->
     damage = 0.5 + (player.levels.get(Skill.Ranged) + 10) * strengthBonus / 64
-    if (weapon?.id == "rune_thrownaxe" || (weapon?.id == "magic_shortbow" && target is Player)) {
+    if (weapon.id == "rune_thrownaxe" || (weapon.id == "magic_shortbow" && target is Player)) {
         damage += 1.0
     }
 }

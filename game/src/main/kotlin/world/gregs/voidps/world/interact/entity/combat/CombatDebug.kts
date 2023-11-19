@@ -82,21 +82,23 @@ on<HitRatingModifier>({ debug(it, target) }, Priority.LOWEST) { character: Chara
 
 on<HitChanceModifier>({ debug(it, target) }, Priority.LOWEST) { character: Character ->
     val player = if (character["debug", false] && character is Player) character else target as Player
-    val message = "Hit chance: $chance ($type, ${if (type == "magic") character.spell else weapon?.id ?: "unarmed"}${if (character is Player && character.specialAttack) ", special" else ""})"
+    val message =
+        "Hit chance: $chance ($type, ${if (type == "magic") character.spell else if (weapon.isEmpty()) "unarmed" else weapon.id}${if (character is Player && character.specialAttack) ", special" else ""})"
     player.message(message)
     logger.debug { message }
 }
 
 on<HitDamageModifier>({ debug(it, target) }, Priority.LOWEST) { character: Character ->
     val player = if (character["debug", false] && character is Player) character else target as Player
-    val message = "Max damage: $damage ($type, $strengthBonus str, ${if (type == "magic") character.spell else weapon?.id ?: "unarmed"}${if (player.specialAttack) ", special" else ""})"
+    val message =
+        "Max damage: $damage ($type, $strengthBonus str, ${if (type == "magic") character.spell else if (weapon.isEmpty()) "unarmed" else weapon.id}${if (player.specialAttack) ", special" else ""})"
     player.message(message)
     logger.debug { message }
 }
 
 on<CombatHit>({ debug(source, it) }, Priority.LOWEST) { character: Character ->
     val player = if (character["debug", false] && character is Player) character else source as Player
-    val message = "Damage: $damage ($type, ${weapon?.id ?: "unarmed"})"
+    val message = "Damage: $damage ($type, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
     player.message(message)
     logger.debug { message }
 }

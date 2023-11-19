@@ -16,7 +16,7 @@ data class CombatHit(
     val source: Character,
     val type: String,
     val damage: Int,
-    val weapon: Item?,
+    val weapon: Item,
     val spell: String,
     val special: Boolean
 ) : Event

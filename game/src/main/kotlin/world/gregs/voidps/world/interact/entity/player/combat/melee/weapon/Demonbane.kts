@@ -10,7 +10,7 @@ import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 import kotlin.math.floor
 
-fun isDemonbaneWeapon(item: Item?) = item != null && (item.id == "silverlight" || item.id == "darklight" || item.id == "holy_water")
+fun isDemonbaneWeapon(item: Item) = item.id == "silverlight" || item.id == "darklight" || item.id == "holy_water"
 
 fun isDemon(target: Character) = target is NPC && target.race == "demon"
 

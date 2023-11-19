@@ -16,14 +16,14 @@ object Hit {
     /**
      * @return true if [chance] of hitting was successful
      */
-    fun success(source: Character, target: Character, type: String, weapon: Item?, special: Boolean): Boolean {
+    fun success(source: Character, target: Character, type: String, weapon: Item, special: Boolean): Boolean {
         return random.nextDouble() < chance(source, target, type, weapon, special)
     }
 
     /**
      * @return chance between 0.0 and 1.0 of hitting [target]
      */
-    fun chance(source: Character, target: Character, type: String, weapon: Item? = null, special: Boolean = false): Double {
+    fun chance(source: Character, target: Character, type: String, weapon: Item, special: Boolean = false): Double {
         val offensiveRating = rating(source, target, type, weapon, special, true)
         val defensiveRating = rating(source, target, type, weapon, special, false)
         val chance = if (offensiveRating > defensiveRating) {
@@ -39,7 +39,7 @@ object Hit {
     /**
      * Calculates an offensive or defensive rating for [source] against [target]
      */
-    internal fun rating(source: Character, target: Character, type: String, weapon: Item?, special: Boolean, offense: Boolean): Int {
+    internal fun rating(source: Character, target: Character, type: String, weapon: Item, special: Boolean, offense: Boolean): Int {
         val skill = when {
             !offense && type != "magic" -> Skill.Defence
             type == "range" -> Skill.Ranged
@@ -100,13 +100,13 @@ fun Character.hit(
 /**
  * Hits player without interrupting them
  */
-fun Character.directHit(damage: Int, type: String = "damage", weapon: Item? = null, spell: String = "", special: Boolean = false, source: Character = this) =
+fun Character.directHit(damage: Int, type: String = "damage", weapon: Item = Item.EMPTY, spell: String = "", special: Boolean = false, source: Character = this) =
     directHit(source, damage, type, weapon, spell, special)
 
 /**
  * Hits player without interrupting them
  */
-fun Character.directHit(source: Character, damage: Int, type: String = "damage", weapon: Item? = null, spell: String = "", special: Boolean = false) {
+fun Character.directHit(source: Character, damage: Int, type: String = "damage", weapon: Item = Item.EMPTY, spell: String = "", special: Boolean = false) {
     if (source.dead) {
         return
     }

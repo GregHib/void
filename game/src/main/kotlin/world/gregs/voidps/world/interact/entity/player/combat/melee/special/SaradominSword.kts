@@ -18,7 +18,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccur
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
-fun isSaradominSword(weapon: Item?) = weapon != null && weapon.id.startsWith("saradomin_sword")
+fun isSaradominSword(weapon: Item) = weapon.id.startsWith("saradomin_sword")
 
 specialDamageMultiplier(1.1, ::isSaradominSword)
 specialAccuracyMultiplier(2.0, ::isSaradominSword)

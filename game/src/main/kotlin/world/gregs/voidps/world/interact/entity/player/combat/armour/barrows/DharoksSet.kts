@@ -30,7 +30,7 @@ fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
     "dharoks_platebody",
     "dharoks_platelegs")
 
-on<HitDamageModifier>({ type == "melee" && weapon?.id?.startsWith("dharoks_greataxe") == true && it.contains("dharoks_set_effect") }, Priority.LOW) { player: Player ->
+on<HitDamageModifier>({ type == "melee" && weapon.id.startsWith("dharoks_greataxe") && it.contains("dharoks_set_effect") }, Priority.LOW) { player: Player ->
     val lost = (player.levels.getMax(Skill.Constitution) - player.levels.get(Skill.Constitution)) / 1000.0
     val max = player.levels.getMax(Skill.Constitution) / 1000.0
     damage = floor(damage * (1 + lost * max))

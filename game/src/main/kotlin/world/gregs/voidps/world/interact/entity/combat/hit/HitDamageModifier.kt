@@ -14,7 +14,7 @@ data class HitDamageModifier(
     val type: String,
     val strengthBonus: Int,
     var damage: Double,
-    val weapon: Item?,
+    val weapon: Item,
     val spell: String,
     val special: Boolean
 ) : Event

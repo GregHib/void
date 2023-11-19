@@ -19,7 +19,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.specialAtt
 import world.gregs.voidps.world.interact.entity.player.effect.freeze
 import java.util.concurrent.TimeUnit
 
-fun isZamorakGodsword(weapon: Item?) = weapon != null && weapon.id.startsWith("zamorak_godsword")
+fun isZamorakGodsword(weapon: Item) = weapon.id.startsWith("zamorak_godsword")
 
 specialDamageMultiplier(1.1, ::isZamorakGodsword)
 specialAccuracyMultiplier(2.0, ::isZamorakGodsword)

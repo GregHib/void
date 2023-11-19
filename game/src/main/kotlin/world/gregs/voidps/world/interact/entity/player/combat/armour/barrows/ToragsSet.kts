@@ -31,7 +31,7 @@ fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
     "torags_platebody",
     "torags_platelegs")
 
-on<CombatAttack>({ type == "melee" && damage > 0 && target is Player && weapon?.id?.startsWith("torags_hammers") == true && it.contains("torags_set_effect") && random.nextInt(4) == 0 }) { _: Character ->
+on<CombatAttack>({ type == "melee" && damage > 0 && target is Player && weapon.id.startsWith("torags_hammers") && it.contains("torags_set_effect") && random.nextInt(4) == 0 }) { _: Character ->
     val target = target as Player
     if (target.runEnergy > 0) {
         target.runEnergy -= target.runEnergy / 5

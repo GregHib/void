@@ -64,12 +64,12 @@ fun damage(character: Character) {
     character.directHit(source, damage, "poison")
 }
 
-fun isPoisoned(id: String?) = id != null && (id.endsWith("_p") || id.endsWith("_p+") || id.endsWith("_p++") || id == "emerald_bolts_e")
+fun isPoisoned(id: String) = id.endsWith("_p") || id.endsWith("_p+") || id.endsWith("_p++") || id == "emerald_bolts_e"
 
-fun poisonous(source: Character, weapon: Item?) = source is Player && isPoisoned(weapon?.id)
+fun poisonous(source: Character, weapon: Item) = source is Player && isPoisoned(weapon.id)
 
 on<CombatHit>({ damage > 0 && poisonous(source, weapon) }) { target: Character ->
-    val poison = 20 + weapon!!.id.count { it == '+' } * 10
+    val poison = 20 + weapon.id.count { it == '+' } * 10
     if (type == "range" && random.nextDouble() < 0.125) {
         source.poison(target, if (weapon.id == "emerald_bolts_e") 50 else poison)
     } else if (type == "melee" && random.nextDouble() < 0.25) {

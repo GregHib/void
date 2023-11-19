@@ -27,7 +27,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.math.floor
 import kotlin.random.nextInt
 
-fun isHandCannon(item: Item?) = item != null && item.id == "hand_cannon"
+fun isHandCannon(item: Item) = item.id == "hand_cannon"
 
 on<HitDamageModifier>({ type == "range" && special && isHandCannon(weapon) }, Priority.HIGH) { _: Player ->
     damage = floor(damage * random.nextDouble(0.3, 2.0))

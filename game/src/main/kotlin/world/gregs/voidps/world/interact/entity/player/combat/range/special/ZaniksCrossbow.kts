@@ -21,7 +21,7 @@ import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.random.nextInt
 
-fun isCrossbow(weapon: Item?) = weapon != null && weapon.id == "zaniks_crossbow"
+fun isCrossbow(weapon: Item) = weapon.id == "zaniks_crossbow"
 
 fun hasActivePrayer(player: Player): Boolean {
     return (player.variables as PlayerVariables).temp.any { (key, value) -> key.startsWith("prayer_") && value == true }
@@ -29,7 +29,7 @@ fun hasActivePrayer(player: Player): Boolean {
 
 fun hasGodArmour(player: Player) = false
 
-on<HitDamageModifier>({ type == "range" && special && weapon?.id == "zaniks_crossbow" }, Priority.HIGH) { _: Player ->
+on<HitDamageModifier>({ type == "range" && special && weapon.id == "zaniks_crossbow" }, Priority.HIGH) { _: Player ->
     if (target is NPC) {
         damage += random.nextInt(30..150)
     } else if (target is Player && (hasActivePrayer(target) || hasGodArmour(target))) {

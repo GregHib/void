@@ -22,7 +22,7 @@ import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-fun isChinchompa(item: Item?) = item != null && item.id.endsWith("chinchompa")
+fun isChinchompa(item: Item) = item.id.endsWith("chinchompa")
 
 on<HitChanceModifier>({ player -> player != target && type == "range" && isChinchompa(weapon) }, Priority.HIGHEST) { player: Player ->
     val distance = player.tile.distanceTo(target)

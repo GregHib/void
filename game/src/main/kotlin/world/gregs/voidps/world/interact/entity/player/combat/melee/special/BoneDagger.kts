@@ -14,10 +14,10 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpeci
 import world.gregs.voidps.world.interact.entity.player.combat.melee.drainByDamage
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
-fun isBoneDagger(item: Item?) = item != null && item.id.startsWith("bone_dagger")
+fun isBoneDagger(item: Item) = item.id.startsWith("bone_dagger")
 
 on<HitChanceModifier>({ special && isBoneDagger(weapon) }, Priority.HIGHEST) { player: Player ->
-    val last = target?.attackers?.lastOrNull() ?: return@on
+    val last = target.attackers.lastOrNull() ?: return@on
     if (last != player) {
         chance = 1.0
     }

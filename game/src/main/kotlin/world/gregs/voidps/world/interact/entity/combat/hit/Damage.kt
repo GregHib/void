@@ -15,7 +15,7 @@ object Damage {
      * Rolls a real hit against [target] without modifiers
      * @return damage or -1 if unsuccessful
      */
-    fun roll(source: Character, target: Character, type: String, weapon: Item? = null, spell: String = "", special: Boolean = false): Int {
+    fun roll(source: Character, target: Character, type: String, weapon: Item, spell: String = "", special: Boolean = false): Int {
         if (!Hit.success(source, target, type, weapon, special)) {
             return -1
         }
@@ -26,7 +26,7 @@ object Damage {
     /**
      * Calculates the base maximum damage before modifications are applied
      */
-    fun maximum(source: Character, type: String, weapon: Item? = null, spell: String = ""): Int {
+    fun maximum(source: Character, type: String, weapon: Item, spell: String = ""): Int {
         val strengthBonus = Weapon.strengthBonus(source, type, weapon)
         if (source is NPC) {
             return source.def["max_hit_$type", 0]
@@ -47,7 +47,7 @@ object Damage {
     /**
      * Applies modifiers to a [maximum]
      */
-    fun modify(source: Character, target: Character, type: String, strengthBonus: Int, baseMaxHit: Int, weapon: Item? = null, spell: String = "", special: Boolean = false): Int {
+    fun modify(source: Character, target: Character, type: String, strengthBonus: Int, baseMaxHit: Int, weapon: Item, spell: String = "", special: Boolean = false): Int {
         val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit.toDouble(), weapon, spell, special)
         source.events.emit(modifier)
         source["max_hit"] = modifier.damage.toInt()

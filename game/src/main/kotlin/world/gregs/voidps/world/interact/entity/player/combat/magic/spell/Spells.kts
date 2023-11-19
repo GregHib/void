@@ -20,8 +20,8 @@ on<HitEffectiveLevelOverride>({ defence && type == "magic" && target is Player }
     this.level = (floor(this.level * 0.3) + level).toInt()
 }
 
-on<HitDamageModifier>({ type == "magic" && weapon != null && weapon.def["magic_damage", 0] > 0 }, priority = Priority.HIGHER) { _: Character ->
-    val damageMultiplier = 1.0 + (weapon!!.def["magic_damage", 0] / 100.0)
+on<HitDamageModifier>({ type == "magic" && weapon.def["magic_damage", 0] > 0 }, priority = Priority.HIGHER) { _: Character ->
+    val damageMultiplier = 1.0 + (weapon.def["magic_damage", 0] / 100.0)
     this.damage = round(this.damage * damageMultiplier)
 }
 

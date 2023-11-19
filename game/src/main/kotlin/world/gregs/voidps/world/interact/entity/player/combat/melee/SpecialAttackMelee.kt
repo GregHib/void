@@ -20,13 +20,13 @@ import kotlin.math.floor
 import kotlin.random.nextInt
 
 fun specialDamageMultiplier(multiplier: Double, check: (Item) -> Boolean) {
-    on<HitDamageModifier>({ type == "melee" && special && weapon != null && check(weapon) }, Priority.HIGH) { _: Player ->
+    on<HitDamageModifier>({ type == "melee" && special && check(weapon) }, Priority.HIGH) { _: Player ->
         damage = floor(damage * multiplier)
     }
 }
 
 fun specialAccuracyMultiplier(multiplier: Double, check: (Item) -> Boolean) {
-    on<HitRatingModifier>({ offense && type == "melee" && special && weapon != null && check(weapon) }, Priority.HIGH) { _: Player ->
+    on<HitRatingModifier>({ offense && type == "melee" && special && check(weapon) }, Priority.HIGH) { _: Player ->
         rating = floor(rating * multiplier)
     }
 }

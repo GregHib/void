@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 
 on<CombatHit>({ source is Player && type == "range" && source.ammo == "saradomin_arrows" }) { character: Character ->
-    val chance = if (weapon?.id == "saradomin_bow") 0.2 else 0.1
+    val chance = if (weapon.id == "saradomin_bow") 0.2 else 0.1
     if (random.nextDouble() < chance) {
         // water_strike
         val damage = Damage.roll(source, character, type, weapon)
@@ -19,7 +19,7 @@ on<CombatHit>({ source is Player && type == "range" && source.ammo == "saradomin
 }
 
 on<CombatHit>({ source is Player && type == "range" && source.ammo == "guthix_arrows" }) { character: Character ->
-    val chance = if (weapon?.id == "guthix_bow") 0.2 else 0.1
+    val chance = if (weapon.id == "guthix_bow") 0.2 else 0.1
     if (random.nextDouble() < chance) {
         // earth_strike
         val damage = Damage.roll(source, character, type, weapon)
@@ -28,7 +28,7 @@ on<CombatHit>({ source is Player && type == "range" && source.ammo == "guthix_ar
 }
 
 on<CombatHit>({ source is Player && type == "range" && source.ammo == "zamorak_arrows" }) { character: Character ->
-    val chance = if (weapon?.id == "zamorak_bow") 0.2 else 0.1
+    val chance = if (weapon.id == "zamorak_bow") 0.2 else 0.1
     if (random.nextDouble() < chance) {
         // fire_strike
         val damage = Damage.roll(source, character, type, weapon)

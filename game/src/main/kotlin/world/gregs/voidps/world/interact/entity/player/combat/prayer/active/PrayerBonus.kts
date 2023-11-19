@@ -82,8 +82,8 @@ fun usingDeflectPrayer(source: Character, target: Character, type: String): Bool
             source.isFamiliar && (target.praying("deflect_summoning"))
 }
 
-fun hitThroughProtectionPrayer(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean): Boolean {
-    if (target == null || weapon == null) {
+fun hitThroughProtectionPrayer(source: Character, target: Character?, type: String, weapon: Item, special: Boolean): Boolean {
+    if (target == null) {
         return false
     }
     if (special && weapon.id == "ancient_mace" && type == "melee") {

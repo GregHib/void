@@ -21,7 +21,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import kotlin.math.floor
 
-fun isDarkBow(weapon: Item?) = weapon != null && weapon.id.startsWith("dark_bow")
+fun isDarkBow(weapon: Item) = weapon.id.startsWith("dark_bow")
 
 on<HitDamageModifier>({ type == "range" && special && isDarkBow(weapon) }, Priority.HIGH) { player: Player ->
     val dragon = player.ammo == "dragon_arrow"

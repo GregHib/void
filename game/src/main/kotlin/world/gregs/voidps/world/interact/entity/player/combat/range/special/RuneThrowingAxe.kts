@@ -26,7 +26,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.specialAtt
 import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun isThrowingAxe(weapon: Item?) = weapon != null && (weapon.id == "rune_throwing_axe")
+fun isThrowingAxe(weapon: Item) = weapon.id == "rune_throwing_axe"
 
 val players: Players by inject()
 val npcs: NPCs by inject()
@@ -66,7 +66,7 @@ on<CombatHit>({ target -> source is Player && special && isThrowingAxe(weapon) &
             }
             chain.add(character.index)
             target.shoot(id = "rune_throwing_axe_special", target = character)
-            player.hit(character, weapon!!, type, special = true, delay = 1)
+            player.hit(character, weapon, type, special = true, delay = 1)
             return@on
         }
     }

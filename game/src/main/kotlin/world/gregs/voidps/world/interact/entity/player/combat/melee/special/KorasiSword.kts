@@ -21,7 +21,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpeci
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.combat.attackType
 
-fun isKorasisSword(item: Item?) = item != null && item.id == "korasis_sword"
+fun isKorasisSword(item: Item) = item.id == "korasis_sword"
 
 on<CombatSwing>({ !swung() && isKorasisSword(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("korasis_sword_${
@@ -87,7 +87,7 @@ on<CombatHit>({ target -> special && isKorasisSword(weapon) && target.inMultiCom
                 3 -> 4
                 else -> return@on
             }
-            source.hit(character, damage = hit, weapon = weapon!!, type = type, special = true)
+            source.hit(character, damage = hit, weapon = weapon, type = type, special = true)
             return@on
         }
     }
