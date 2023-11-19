@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.type.random
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.activity.combat.consume.drink.antifire
-import world.gregs.voidps.world.activity.combat.consume.drink.superAntifire
+import world.gregs.voidps.world.interact.entity.player.combat.consume.drink.antifire
+import world.gregs.voidps.world.interact.entity.player.combat.consume.drink.superAntifire
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
 import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 import kotlin.math.floor

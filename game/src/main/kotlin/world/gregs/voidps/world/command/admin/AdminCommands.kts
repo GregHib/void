@@ -46,9 +46,9 @@ import world.gregs.voidps.network.encode.playMIDI
 import world.gregs.voidps.network.encode.playSoundEffect
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
-import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs
-import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.PRAYERS
-import world.gregs.voidps.world.activity.combat.prayer.isCurses
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.PRAYERS
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 import world.gregs.voidps.world.activity.quest.Books
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 import world.gregs.voidps.world.interact.entity.obj.Teleports

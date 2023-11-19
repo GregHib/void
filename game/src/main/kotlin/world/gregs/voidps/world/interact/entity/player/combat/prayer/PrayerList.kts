@@ -4,9 +4,9 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.PRAYERS
-import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS
-import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.USING_QUICK_PRAYERS
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.PRAYERS
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.USING_QUICK_PRAYERS
 
 on<InterfaceOpened>({ id == "prayer_orb" }) { player: Player ->
     player.sendVariable(SELECTING_QUICK_PRAYERS)

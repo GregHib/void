@@ -113,7 +113,7 @@ internal class LootShareTest : WorldTest() {
 
     @Test
     fun `Killing rat with loot share in single combat changes nothing`() = runTest {
-        mockkStatic("world.gregs.voidps.world.interact.entity.combat.CombatKt")
+        mockkStatic("world.gregs.voidps.world.interact.entity.combat.WildernessKt")
         val (player, client) = createClient("player", emptyTile)
         repeat(2) {
             player.instructions.emit(ClanChatJoin("player"))
@@ -140,7 +140,7 @@ internal class LootShareTest : WorldTest() {
 
     @Test
     fun `Killing rat with loot share in multi combat gives messages`() = runTest {
-        mockkStatic("world.gregs.voidps.world.interact.entity.combat.CombatKt")
+        mockkStatic("world.gregs.voidps.world.interact.entity.combat.WildernessKt")
         val (player, client) = createClient("player", emptyTile)
         player["loot_share"] = true
         player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")

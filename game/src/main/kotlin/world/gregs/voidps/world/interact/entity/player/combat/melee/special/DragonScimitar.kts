@@ -10,9 +10,9 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.world.activity.combat.prayer.PrayerStart
-import world.gregs.voidps.world.activity.combat.prayer.getActivePrayerVarKey
-import world.gregs.voidps.world.activity.combat.prayer.isCurses
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerStart
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePrayerVarKey
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon

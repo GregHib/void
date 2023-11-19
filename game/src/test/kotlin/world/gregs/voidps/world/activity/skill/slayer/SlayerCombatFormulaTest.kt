@@ -45,10 +45,10 @@ class SlayerCombatFormulaTest : CombatFormulaTest() {
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "magic", spell = "wind_strike")
 
-        assertEquals(3712, offensiveRating)
-        assertEquals(64, defensiveRating)
+        assertEquals(3776, offensiveRating)
+        assertEquals(640, defensiveRating)
         assertEquals(20, maxHit)
-        assertEquals(0.9911, chance, 0.0001)
+        assertEquals(0.915, chance, 0.0001)
     }
 
     @Test

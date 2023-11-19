@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
-import world.gregs.voidps.world.activity.combat.prayer.isCurses
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.combat.inWilderness
 
 on<VariableSet>({ key == "in_wilderness" && to == true }) { player: Player ->
