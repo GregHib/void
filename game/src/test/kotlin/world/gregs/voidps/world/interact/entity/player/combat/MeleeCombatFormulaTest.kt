@@ -20,9 +20,9 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
         val npc = createNPC("rat")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee")
+
         assertEquals(7040, offensiveRating)
         assertEquals(220, defensiveRating)
-
         assertEquals(112, maxHit)
         assertEquals(0.9842, chance, 0.0001)
     }
@@ -36,7 +36,6 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
 
         assertEquals(768, offensiveRating)
         assertEquals(430, defensiveRating)
-
         assertEquals(93, maxHit)
         assertEquals(0.7191, chance, 0.0001)
     }

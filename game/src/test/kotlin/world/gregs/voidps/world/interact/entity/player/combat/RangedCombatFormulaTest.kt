@@ -39,9 +39,9 @@ internal class RangedCombatFormulaTest : CombatFormulaTest() {
         val npc = createNPC("cow")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "range", weapon)
+
         assertEquals(7533, offensiveRating)
         assertEquals(430, defensiveRating)
-
         assertEquals(113, maxHit)
         assertEquals(0.9713, chance, 0.0001)
     }
@@ -91,9 +91,9 @@ internal class RangedCombatFormulaTest : CombatFormulaTest() {
         val npc = createNPC("giant_rat")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "range", weapon)
+
         assertEquals(2850, offensiveRating)
         assertEquals(704, defensiveRating)
-
         assertEquals(48, maxHit)
         assertEquals(0.8761, chance, 0.0001)
     }

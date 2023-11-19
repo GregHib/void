@@ -19,9 +19,9 @@ internal class MagicCombatFormulaTest : CombatFormulaTest() {
         val npc = createNPC("giant_rat")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "magic", spell = "fire_wave")
+
         assertEquals(6912, offensiveRating)
         assertEquals(640, defensiveRating)
-
         assertEquals(200, maxHit)
         assertEquals(0.9536, chance, 0.0001)
     }
@@ -32,9 +32,9 @@ internal class MagicCombatFormulaTest : CombatFormulaTest() {
         val npc = createNPC("cow")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "magic", spell = "ice_blitz")
+
         assertEquals(5824, offensiveRating)
         assertEquals(430, defensiveRating)
-
         assertEquals(260, maxHit)
         assertEquals(0.9629, chance, 0.0001)
     }
@@ -45,9 +45,9 @@ internal class MagicCombatFormulaTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Constitution to 990)
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, target, "magic", spell = "fire_wave")
+
         assertEquals(6912, offensiveRating)
         assertEquals(192, defensiveRating)
-
         assertEquals(200, maxHit)
         assertEquals(0.9859, chance, 0.0001)
     }
@@ -60,9 +60,9 @@ internal class MagicCombatFormulaTest : CombatFormulaTest() {
         val npc = createNPC("giant_rat")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "magic", staff, "water_blast")
+
         assertEquals(4366, offensiveRating)
         assertEquals(640, defensiveRating)
-
         assertEquals(140, maxHit)
         assertEquals(0.9265, chance, 0.0001)
     }
@@ -78,9 +78,9 @@ internal class MagicCombatFormulaTest : CombatFormulaTest() {
         val npc = createNPC("giant_rat")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "magic", weapon, "water_blast")
+
         assertEquals(9398, offensiveRating)
         assertEquals(640, defensiveRating)
-
         assertEquals(140, maxHit)
         assertEquals(0.9658, chance, 0.0001)
     }
@@ -92,9 +92,9 @@ internal class MagicCombatFormulaTest : CombatFormulaTest() {
         val npc = createNPC("giant_rat")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "magic", spell = "earth_strike")
+
         assertEquals(2304, offensiveRating)
         assertEquals(640, defensiveRating)
-
         assertEquals(60, maxHit)
         assertEquals(0.8607, chance, 0.0001)
     }
@@ -111,9 +111,9 @@ internal class MagicCombatFormulaTest : CombatFormulaTest() {
         val npc = createNPC("giant_rat")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "magic", weapon, "fire_wave")
+
         assertEquals(12636, offensiveRating)
         assertEquals(640, defensiveRating)
-
         assertEquals(230, maxHit)
         assertEquals(0.9746, chance, 0.0001)
     }
