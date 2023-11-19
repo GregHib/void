@@ -2,15 +2,12 @@ package world.gregs.voidps.world.interact.entity.combat
 
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
@@ -25,7 +22,7 @@ fun Character.hit(
     delay: Int = if (type == "melee") 0 else 2,
     spell: String = this.spell,
     special: Boolean = (this as? Player)?.specialAttack ?: false,
-    damage: Int = rollHit(this, target, type, weapon, spell)
+    damage: Int = Damage.roll(this, target, type, weapon, spell)
 ): Int {
     val damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
     events.emit(CombatAttack(target, type, damage, weapon, spell, special, TICKS.toClientTicks(delay)))
@@ -61,66 +58,6 @@ fun splat(source: Character, target: Character, damage: Int, type: String = "dam
     target.events.emit(CombatHit(source, type, damage, weapon, spell, special))
 }
 
-fun rollHit(source: Character, target: Character?, type: String, weapon: Item?, spell: String = "", special: Boolean = false): Int {
-    if (!successfulHit(source, target, type, weapon, special)) {
-        return -1
-    }
-    val strengthBonus = strengthBonus(source, type, weapon)
-    val baseMaxHit = baseHit(source, type, spell, strengthBonus)
-    val hit = random.nextInt(baseMaxHit.toInt() + 1)
-    return modifiers(source, target, type, strengthBonus, hit.toDouble(), weapon, spell, special)
-}
-
-fun maximumHit(source: Character, target: Character? = null, type: String, weapon: Item?, spell: String = "", special: Boolean = false): Int {
-    val strengthBonus = strengthBonus(source, type, weapon)
-    val baseMaxHit = baseHit(source, type, spell, strengthBonus)
-    return modifiers(source, target, type, strengthBonus, baseMaxHit, weapon, spell, special)
-}
-
-private fun strengthBonus(source: Character, type: String, weapon: Item?): Int {
-    return if (type == "blaze") {
-        weapon?.def?.getOrNull("blaze_str") ?: 0
-    } else if (type == "range" && source is Player && weapon != null && (weapon.id == source.ammo || !Ammo.required(weapon))) {
-        weapon.def["range_str", 0]
-    } else {
-        source[if (type == "range") "range_str" else "str", 0]
-    } + 64
-}
-
-private fun baseHit(source: Character, type: String, spell: String, strengthBonus: Int): Double {
-    return if (source is NPC) {
-        source.def["max_hit_$type", 0].toDouble()
-    } else {
-        if (type == "magic") {
-            val damage = get<SpellDefinitions>().get(spell).maxHit
-            if (damage == -1) 0.0 else damage.toDouble()
-        } else {
-            val skill = when (type) {
-                "range" -> Skill.Ranged
-                "blaze" -> Skill.Magic
-                else -> Skill.Strength
-            }
-            5.0 + (getEffectiveLevel(source, skill, accuracy = false) * strengthBonus) / 64
-        }
-    }
-}
-
-private fun modifiers(
-    source: Character,
-    target: Character?,
-    type: String,
-    strengthBonus: Int,
-    baseMaxHit: Double,
-    weapon: Item?,
-    spell: String,
-    special: Boolean
-): Int {
-    val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit, weapon, spell, special)
-    source.events.emit(modifier)
-    source["max_hit"] = modifier.damage.toInt()
-    return modifier.damage.toInt()
-}
-
 fun getEffectiveLevel(character: Character, skill: Skill, accuracy: Boolean): Int {
     val level = character.levels.get(skill).toDouble()
     val mod = HitEffectiveLevelModifier(skill, accuracy, level)
@@ -152,23 +89,6 @@ private fun getEquipmentBonus(source: Character, target: Character?, type: Strin
     val character = if (offense) source else target
     val style = if (source is NPC && offense) "att_bonus" else if (type == "range" || type == "magic") type else character?.combatStyle ?: ""
     return if (character is NPC) character.def[if (offense) style else "${style}_def", 0] else character?.getOrNull(if (offense) style else "${style}_def") ?: 0
-}
-
-fun hitChance(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean = false): Double {
-    val offensiveRating = getRating(source, target, type, weapon, special, true)
-    val defensiveRating = getRating(source, target, type, weapon, special, false)
-    val chance = if (offensiveRating > defensiveRating) {
-        1.0 - (defensiveRating + 2.0) / (2.0 * (offensiveRating + 1.0))
-    } else {
-        offensiveRating / (2.0 * (defensiveRating + 1.0))
-    }
-    val modifier = HitChanceModifier(target, type, chance, weapon, special)
-    source.events.emit(modifier)
-    return modifier.chance
-}
-
-fun successfulHit(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean): Boolean {
-    return random.nextDouble() < hitChance(source, target, type, weapon, special)
 }
 
 var Character.attackers: MutableList<Character>

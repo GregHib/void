@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.maximumHit
+import world.gregs.voidps.world.interact.entity.combat.Damage
 import world.gregs.voidps.world.interact.entity.player.combat.CombatFormulaTest
 
 internal class DharoksSetEffectTest : CombatFormulaTest() {
@@ -21,7 +21,7 @@ internal class DharoksSetEffectTest : CombatFormulaTest() {
         player.equipment.clear(EquipSlot.Weapon.index)
         val target = createPlayer()
 
-        val maxHit = maximumHit(player, target, "melee", Item("dharoks_greataxe"))
+        val maxHit = Damage.maximum(player, target, "melee", Item("dharoks_greataxe"))
 
         assertEquals(112, maxHit)
     }
@@ -33,7 +33,7 @@ internal class DharoksSetEffectTest : CombatFormulaTest() {
         player.equipment.apply(dharoks())
         val target = createPlayer()
 
-        val maxHit = maximumHit(player, target, "magic", Item("dharoks_greataxe"))
+        val maxHit = Damage.maximum(player, target, "magic", Item("dharoks_greataxe"))
 
         assertEquals(0, maxHit)
     }
@@ -45,7 +45,7 @@ internal class DharoksSetEffectTest : CombatFormulaTest() {
         player.equipment.apply(dharoks())
         val target = createPlayer()
 
-        val maxHit = maximumHit(player, target, "melee", Item("dharoks_greataxe"))
+        val maxHit = Damage.maximum(player, target, "melee", Item("dharoks_greataxe"))
 
         assertEquals(287, maxHit)
     }
@@ -57,7 +57,7 @@ internal class DharoksSetEffectTest : CombatFormulaTest() {
         player.equipment.apply(dharoks())
         val target = createPlayer()
 
-        val maxHit = maximumHit(player, target, "melee", Item("dharoks_greataxe"))
+        val maxHit = Damage.maximum(player, target, "melee", Item("dharoks_greataxe"))
 
         assertEquals(565, maxHit)
     }

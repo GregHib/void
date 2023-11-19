@@ -55,7 +55,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isKorasisSword(it.weapon) }) {
     player["korasi_chain"] = mutableSetOf(target.index)
     player.setAnimation("disrupt")
     player.setGraphic("disrupt")
-    val maxHit = maximumHit(player, target, "melee", player.weapon, special = true)
+    val maxHit = Damage.maximum(player, target, "melee", player.weapon, special = true)
     val hit = random.nextInt(maxHit / 2, (maxHit * 1.5).toInt())
     player.hit(target, damage = hit, type = "magic", delay = 0)
     delay = 5

@@ -9,9 +9,8 @@ import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.maximumHit
+import world.gregs.voidps.world.interact.entity.combat.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit
-import world.gregs.voidps.world.interact.entity.combat.hitChance
 import world.gregs.voidps.world.interact.entity.player.combat.CombatFormulaTest
 
 internal class VeracsSetEffectTest : CombatFormulaTest() {
@@ -23,7 +22,7 @@ internal class VeracsSetEffectTest : CombatFormulaTest() {
         player.equipment.clear(EquipSlot.Weapon.index)
         val target = createPlayer(Skill.Constitution to 990)
 
-        val chance = hitChance(player, target, "magic", Item("veracs_flail"), false)
+        val chance = Damage.chance(player, target, "magic", Item("veracs_flail"), false)
         player.hit(target, Item("veracs_flail"), "melee", damage = 10)
 
         assertNotEquals(1.0, chance)
@@ -36,7 +35,7 @@ internal class VeracsSetEffectTest : CombatFormulaTest() {
         player.equipment.apply(veracs())
         val target = createPlayer(Skill.Constitution to 990)
 
-        val chance = hitChance(player, target, "magic", Item("veracs_flail"), false)
+        val chance = Damage.chance(player, target, "magic", Item("veracs_flail"), false)
         player.hit(target, Item("veracs_flail"), "magic", damage = 10)
         tick(2)
 
@@ -50,13 +49,13 @@ internal class VeracsSetEffectTest : CombatFormulaTest() {
         player.equipment.apply(veracs())
         val target = createPlayer(Skill.Constitution to 990)
 
-        val chance = hitChance(player, target, "melee", Item("veracs_flail"), false)
+        val chance = Damage.chance(player, target, "melee", Item("veracs_flail"), false)
         player.hit(target, Item("veracs_flail"), "melee", damage = 0)
-        var maxHit = maximumHit(player, target, "melee", Item("veracs_flail"))
+        var maxHit = Damage.maximum(player, target, "melee", Item("veracs_flail"))
         assertEquals(242, maxHit)
         tick()
 
-        maxHit = maximumHit(player, target, "melee", Item("veracs_flail"))
+        maxHit = Damage.maximum(player, target, "melee", Item("veracs_flail"))
         assertEquals(232, maxHit)
         assertEquals(1.0, chance)
         assertNotEquals(980, target.levels.get(Skill.Constitution))
