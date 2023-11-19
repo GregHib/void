@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.event.Event
  * @param chance chance of hitting 0.0-1.0
  */
 data class HitChanceModifier(
-    val target: Character?,
+    val target: Character,
     val type: String,
     var chance: Double,
     val weapon: Item?,

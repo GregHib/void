@@ -68,11 +68,11 @@ set("turmoil", "attack_bonus", 15)
 set("turmoil", "strength_bonus", 23)
 set("turmoil", "defence_bonus", 15)
 
-fun usingProtectionPrayer(source: Character, target: Character?, type: String): Boolean {
-    return target != null && (type == "melee" && target.protectMelee() ||
+fun usingProtectionPrayer(source: Character, target: Character, type: String): Boolean {
+    return type == "melee" && target.protectMelee() ||
             type == "range" && target.protectRange() ||
             type == "magic" && target.protectMagic() ||
-            source.isFamiliar && target.protectSummoning())
+            source.isFamiliar && target.protectSummoning()
 }
 
 fun usingDeflectPrayer(source: Character, target: Character, type: String): Boolean {
@@ -105,16 +105,16 @@ on<CombatAttack>({ !blocked && target is Player && usingDeflectPrayer(it, target
 }
 
 on<HitDamageModifier>(priority = Priority.HIGH) { _: Character ->
-    target?.clear("protected_damage")
+    target.clear("protected_damage")
 }
 
 on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) && !hitThroughProtectionPrayer(it, target, type, weapon, special) }, priority = Priority.MEDIUM) { _: Player ->
-    target?.set("protected_damage", damage)
+    target["protected_damage"] = damage
     damage = floor(damage * if (target is Player) 0.6 else 0.0)
 }
 
 on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) }, priority = Priority.MEDIUM) { _: NPC ->
-    target?.set("protected_damage", damage)
+    target["protected_damage"] = damage
     damage = 0.0
 }
 

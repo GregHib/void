@@ -25,7 +25,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 fun isChinchompa(item: Item?) = item != null && item.id.endsWith("chinchompa")
 
 on<HitChanceModifier>({ player -> player != target && type == "range" && isChinchompa(weapon) }, Priority.HIGHEST) { player: Player ->
-    val distance = player.tile.distanceTo(target ?: return@on)
+    val distance = player.tile.distanceTo(target)
     chance = when (player.attackType) {
         "short_fuse" -> when {
             distance <= 3 -> 1.0

@@ -19,7 +19,7 @@ on<HitDamageModifier>(priority = Priority.HIGHER) { player: Player ->
     damage = floor(damage * getSlayerMultiplier(player, target, type, true))
 }
 
-fun getSlayerMultiplier(player: Player, target: Character?, type: String, damage: Boolean): Double {
+fun getSlayerMultiplier(player: Player, target: Character, type: String, damage: Boolean): Double {
     if (type == "melee" && target is NPC && target.undead) {
         when (player.equipped(EquipSlot.Amulet).id) {
             "salve_amulet_e" -> return 1.2

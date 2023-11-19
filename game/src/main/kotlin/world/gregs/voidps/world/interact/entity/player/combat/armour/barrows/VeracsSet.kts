@@ -35,7 +35,7 @@ fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
 
 on<HitChanceModifier>({ type == "melee" && it.contains("veracs_set_effect") && random.nextInt(4) == 0 }, Priority.HIGHEST) { _: Character ->
     chance = 1.0
-    target?.start("veracs_effect", 1)
+    target.start("veracs_effect", 1)
 }
 
 on<HitDamageModifier>({ type == "melee" && it.contains("veracs_set_effect") && target.hasClock("veracs_effect") }, Priority.LOW) { player: Player ->

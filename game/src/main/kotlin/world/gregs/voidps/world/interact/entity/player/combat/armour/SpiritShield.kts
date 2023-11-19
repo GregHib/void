@@ -13,11 +13,10 @@ import kotlin.math.ceil
 import kotlin.math.floor
 
 on<HitDamageModifier>({ target is Player && target.equipped(EquipSlot.Shield).id == "divine_spirit_shield" }, Priority.HIGHISH) { _: Character ->
-    val player = target as Player
-    val points = player.levels.get(Skill.Prayer)
+    val points = target.levels.get(Skill.Prayer)
     val drain = ceil((damage * 0.3) / 20.0).toInt()
     if (points > drain) {
-        player.levels.drain(Skill.Prayer, drain)
+        target.levels.drain(Skill.Prayer, drain)
         damage = floor(damage * 0.7)
     }
 }

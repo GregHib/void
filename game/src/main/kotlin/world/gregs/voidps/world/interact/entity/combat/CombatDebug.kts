@@ -1,28 +1,52 @@
 package world.gregs.voidps.world.interact.entity.combat
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.Command
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCLevels
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.event.EventHandler
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.*
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
+val npcDefinitions: NPCDefinitions by inject()
+val eventHandler: EventHandlerStore by inject()
+
 on<Command>({ prefix == "maxhit" }) { player: Player ->
     val debug = player["debug", false]
     player["debug"] = false
+    val parts = content.split(" ")
+    val npcName = if (content.isBlank() || parts.isEmpty()) "rat" else parts.first()
+    val spell = if (parts.size < 2) "wind_rush" else parts[1]
     val weapon = player.equipped(EquipSlot.Weapon)
-    player.message("Max hit")
-    player.message("Ranged: ${Damage.maximum(player, type = "range", weapon = weapon)} Melee: ${Damage.maximum(player, type = "melee", weapon = weapon)} Magic: ${Damage.maximum(player, type = "magic")}")
-    player.message("Hit chance")
-    player.message("Ranged: ${Hit.chance(player, type = "range", weapon = weapon)} Melee: ${Hit.chance(player, type = "melee", weapon = weapon)} Magic: ${Hit.chance(player, type = "magic")}")
+    player.message("Max Hit (target=$npcName, spell=$spell)")
+    val rangeMax = Damage.maximum(player, "range", weapon)
+    val meleeMax = Damage.maximum(player, "melee", weapon)
+    val magicMax = Damage.maximum(player, "magic", weapon, spell)
+    player.message("Ranged: $rangeMax Melee: $meleeMax Magic: $magicMax")
+    player.message("Hit Chance")
+    val target = NPC(npcName).apply {
+        def = npcDefinitions.get(npcName)
+        eventHandler.populate(this)
+        levels.link(events, NPCLevels(def))
+        levels.clear()
+    }
+    val rangeChance = Hit.chance(player, target, "range", weapon)
+    val meleeChance = Hit.chance(player, target, "melee", weapon)
+    val magicChance = Hit.chance(player, target, "magic", weapon)
+    player.message("Ranged: $rangeChance Melee: $meleeChance Magic: $magicChance")
     player["debug"] = debug
 }
 

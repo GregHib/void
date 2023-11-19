@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
@@ -61,8 +62,9 @@ fun swing(player: Player, obj: GameObject, delay: Int) {
             player.face(obj)
             player.setAnimation("bow_shoot")
             player.setGraphic("training_arrows_shoot")
+            // We're going to ignore success check as we have no [Character] to check against
             val maxHit = Damage.maximum(player, type = "range", weapon = weapon)
-            val hit = Damage.roll(player, type = "range", weapon = weapon)
+            val hit = random.nextInt(-1, maxHit + 1)
             val height = Interpolation.lerp(hit, -1..maxHit, 0..20)
             player.shoot(id = player.ammo, obj.tile, endHeight = height)
             if (hit != -1) {

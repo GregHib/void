@@ -27,7 +27,7 @@ fun isVestasSpear(item: Item?) = item != null && (item.id.startsWith("vestas_spe
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-on<HitChanceModifier>({ target != null && type == "melee" && target.hasClock("spear_wall") }, priority = Priority.MEDIUM) { _: Character ->
+on<HitChanceModifier>({ type == "melee" && target.hasClock("spear_wall") }, priority = Priority.MEDIUM) { _: Character ->
     chance = 0.0
 }
 

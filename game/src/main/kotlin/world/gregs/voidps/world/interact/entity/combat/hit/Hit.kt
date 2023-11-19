@@ -16,14 +16,14 @@ object Hit {
     /**
      * @return true if [chance] of hitting was successful
      */
-    fun success(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean): Boolean {
+    fun success(source: Character, target: Character, type: String, weapon: Item?, special: Boolean): Boolean {
         return random.nextDouble() < chance(source, target, type, weapon, special)
     }
 
     /**
      * @return chance between 0.0 and 1.0 of hitting [target]
      */
-    fun chance(source: Character, target: Character? = null, type: String, weapon: Item? = null, special: Boolean = false): Double {
+    fun chance(source: Character, target: Character, type: String, weapon: Item? = null, special: Boolean = false): Double {
         val offensiveRating = rating(source, target, type, weapon, special, true)
         val defensiveRating = rating(source, target, type, weapon, special, false)
         val chance = if (offensiveRating > defensiveRating) {
@@ -39,16 +39,14 @@ object Hit {
     /**
      * Calculates an offensive or defensive rating for [source] against [target]
      */
-    internal fun rating(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean, offense: Boolean): Int {
-        var level = if (target == null) 8 else {
-            val skill = when {
-                !offense && type != "magic" -> Skill.Defence
-                type == "range" -> Skill.Ranged
-                type == "magic" || type == "blaze" -> Skill.Magic
-                else -> Skill.Attack
-            }
-            effectiveLevel(if (offense) source else target, skill, offense)
+    internal fun rating(source: Character, target: Character, type: String, weapon: Item?, special: Boolean, offense: Boolean): Int {
+        val skill = when {
+            !offense && type != "magic" -> Skill.Defence
+            type == "range" -> Skill.Ranged
+            type == "magic" || type == "blaze" -> Skill.Magic
+            else -> Skill.Attack
         }
+        var level = effectiveLevel(if (offense) source else target, skill, offense)
         val override = HitEffectiveLevelOverride(target, type, !offense, level)
         source.events.emit(override)
         level = override.level

@@ -15,7 +15,7 @@ object Damage {
      * Rolls a real hit against [target] without modifiers
      * @return damage or -1 if unsuccessful
      */
-    fun roll(source: Character, target: Character? = null, type: String, weapon: Item? = null, spell: String = "", special: Boolean = false): Int {
+    fun roll(source: Character, target: Character, type: String, weapon: Item? = null, spell: String = "", special: Boolean = false): Int {
         if (!Hit.success(source, target, type, weapon, special)) {
             return -1
         }

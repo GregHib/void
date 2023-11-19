@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.event.Event
  * @param level the current effective level to replace
  */
 data class HitEffectiveLevelOverride(
-    val target: Character?,
+    val target: Character,
     val type: String,
     val defence: Boolean,
     var level: Int

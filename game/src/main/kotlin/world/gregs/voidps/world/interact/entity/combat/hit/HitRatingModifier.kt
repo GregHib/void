@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.event.Event
  * @param rating the rating of the attackers' offense with or the [target]'s defense against [weapon]
  */
 data class HitRatingModifier(
-    val target: Character?,
+    val target: Character,
     val type: String,
     val offense: Boolean,
     var rating: Double,
