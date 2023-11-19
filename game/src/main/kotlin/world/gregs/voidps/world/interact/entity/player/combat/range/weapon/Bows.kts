@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isBow(item: Item) = (item.id.endsWith("bow") && !item.id.endsWith("crossbow")) || item.id == "seercull" || item.id.endsWith("longbow_sighted")

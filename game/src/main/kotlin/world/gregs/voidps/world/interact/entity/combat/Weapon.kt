@@ -6,6 +6,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.weaponStyle
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell
+import world.gregs.voidps.world.interact.entity.player.combat.range.Ammo
+import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 
 object Weapon {
 

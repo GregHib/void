@@ -7,7 +7,8 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.*
-import world.gregs.voidps.world.interact.entity.combat.Ammo
+import world.gregs.voidps.world.interact.entity.player.combat.range.Ammo
+import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 
 on<CombatSwing>({ player -> player.fightStyle == "range" && Weapon.isBowOrCrossbow(player.weapon) && Ammo.required(player.weapon) }, Priority.HIGHEST) { player: Player ->
     player["required_ammo"] = player.weapon.def["ammo_required", 1]

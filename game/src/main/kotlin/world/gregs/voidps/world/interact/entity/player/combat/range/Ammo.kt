@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.combat
+package world.gregs.voidps.world.interact.entity.player.combat.range
 
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.ItemDefinition
