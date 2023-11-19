@@ -67,5 +67,6 @@ internal var Character.target: Character?
             clear("target")
         }
     }
+
 val Character.underAttack: Boolean
     get() = hasClock("under_attack")
