@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.random
 
 object Damage {
@@ -57,5 +58,14 @@ object Damage {
         source.events.emit(modifier)
         source["max_hit"] = modifier.damage.toInt()
         return modifier.damage.toInt()
+    }
+}
+
+/**
+ * Damages player closing any interfaces they have open
+ */
+fun Character.damage(damage: Int, delay: Int = 0, type: String = "damage") {
+    strongQueue("hit", delay) {
+        directHit(damage, type)
     }
 }

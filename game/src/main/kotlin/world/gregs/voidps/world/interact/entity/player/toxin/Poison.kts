@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
-import world.gregs.voidps.world.interact.entity.combat.splat
+import world.gregs.voidps.world.interact.entity.combat.directHit
 import kotlin.math.sign
 
 on<Registered>({ it.poisonCounter != 0 }) { character: Character ->
@@ -60,7 +60,8 @@ fun damage(character: Character) {
         return
     }
     character["poison_damage"] = damage - 2
-    splat(character["poison_source", character], character, damage, "poison")
+    val source = character["poison_source", character]
+    character.directHit(source, damage, "poison")
 }
 
 fun isPoisoned(id: String?) = id != null && (id.endsWith("_p") || id.endsWith("_p+") || id.endsWith("_p++") || id == "emerald_bolts_e")

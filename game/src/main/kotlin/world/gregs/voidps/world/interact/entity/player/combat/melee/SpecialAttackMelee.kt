@@ -39,12 +39,12 @@ fun multiTargetHit(check: CombatAttack.() -> Boolean, remaining: (target: Charac
             if (characters == target) {
                 continue
             }
-            for (char in characters) {
+            for (character in characters) {
                 if (hit >= hits) {
                     return@on
                 }
                 hit++
-                splat(player, char, random.nextInt(0..damage), type, weapon, spell, special = true)
+                character.directHit(player, random.nextInt(0..damage), type, weapon, spell, special = true)
             }
         }
     }

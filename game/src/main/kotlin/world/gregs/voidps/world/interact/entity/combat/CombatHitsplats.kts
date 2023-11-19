@@ -12,7 +12,7 @@ import kotlin.math.floor
 
 val definitions: SpellDefinitions by inject()
 
-on<CombatHit>({ damage >= 0 && !(type == "magic" && definitions.get(spell).maxHit == -1) }) { character: Character ->
+on<CombatHit>({ damage >= 0 && !(type == "magic" && definitions.get(spell).maxHit == -1) && type != "healed" }) { character: Character ->
     var damage = damage
     var soak = 0
     if (damage > 200) {
@@ -36,12 +36,22 @@ on<CombatHit>({ damage >= 0 && !(type == "magic" && definitions.get(spell).maxHi
             "disease" -> Hit.Mark.Diseased
             "dragonfire", "damage" -> Hit.Mark.Regular
             "deflect" -> Hit.Mark.Reflected
+            "healed" -> Hit.Mark.Healed
             else -> Hit.Mark.Missed
         },
         critical = (type == "melee" || type == "magic" || type == "range") && damage > 10 && damage > (source["max_hit", 0] * 0.9),
         soak = soak
     )
     character.levels.drain(Skill.Constitution, damage)
+}
+
+on<CombatHit>({ damage >= 0 && type == "healed" }) { character: Character ->
+    character.hit(
+        source = source,
+        amount = damage,
+        mark = Hit.Mark.Healed
+    )
+    character.levels.restore(Skill.Constitution, damage)
 }
 
 on<CombatHit>({ damage < 0 }) { character: Character ->

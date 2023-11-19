@@ -1,9 +1,13 @@
 package world.gregs.voidps.world.interact.entity.combat
 
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.type.random
+import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 
 object Hit {
 
@@ -59,4 +63,40 @@ object Hit {
         character.events.emit(mod)
         return mod.level.toInt()
     }
+}
+
+/**
+ * Hits player during combat
+ */
+fun Character.hit(
+    target: Character,
+    weapon: Item = this.weapon,
+    type: String = Weapon.type(this, weapon),
+    delay: Int = if (type == "melee") 0 else 2,
+    spell: String = this.spell,
+    special: Boolean = (this as? Player)?.specialAttack ?: false,
+    damage: Int = Damage.roll(this, target, type, weapon, spell)
+): Int {
+    val damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
+    events.emit(CombatAttack(target, type, damage, weapon, spell, special, TICKS.toClientTicks(delay)))
+    target.strongQueue("hit", delay) {
+        target.directHit(this@hit, damage, type, weapon, spell, special)
+    }
+    return damage
+}
+
+/**
+ * Hits player without interrupting them
+ */
+fun Character.directHit(damage: Int, type: String = "damage", weapon: Item? = null, spell: String = "", special: Boolean = false, source: Character = this) =
+    directHit(source, damage, type, weapon, spell, special)
+
+/**
+ * Hits player without interrupting them
+ */
+fun Character.directHit(source: Character, damage: Int, type: String = "damage", weapon: Item? = null, spell: String = "", special: Boolean = false) {
+    if (source.dead) {
+        return
+    }
+    events.emit(CombatHit(source, type, damage, weapon, spell, special))
 }

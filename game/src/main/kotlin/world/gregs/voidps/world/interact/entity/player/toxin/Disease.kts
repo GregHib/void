@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.splat
+import world.gregs.voidps.world.interact.entity.combat.directHit
 import kotlin.math.sign
 
 on<Registered>({ it.diseaseCounter != 0 }) { character: Character ->
@@ -57,7 +57,8 @@ fun damage(character: Character) {
         return
     }
     character["disease_damage"] = damage - 2
-    splat(character["disease_source", character], character, damage, "disease")
+    val source = character["disease_source", character]
+    character.directHit(source, damage, "disease")
 }
 
 on<Command>({ prefix == "disease" }) { player: Player ->

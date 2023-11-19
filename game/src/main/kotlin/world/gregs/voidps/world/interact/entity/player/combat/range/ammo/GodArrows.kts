@@ -11,7 +11,7 @@ on<CombatHit>({ source is Player && type == "range" && source.ammo == "saradomin
     if (random.nextDouble() < chance) {
         // water_strike
         val damage = Damage.roll(source, character, type, weapon)
-        splat(source, character, damage, "magic", weapon)
+        character.directHit(source, damage, "magic", weapon)
     }
 }
 
@@ -20,7 +20,7 @@ on<CombatHit>({ source is Player && type == "range" && source.ammo == "guthix_ar
     if (random.nextDouble() < chance) {
         // earth_strike
         val damage = Damage.roll(source, character, type, weapon)
-        splat(source, character, damage, "magic", weapon)
+        character.directHit(source, damage, "magic", weapon)
     }
 }
 
@@ -29,6 +29,6 @@ on<CombatHit>({ source is Player && type == "range" && source.ammo == "zamorak_a
     if (random.nextDouble() < chance) {
         // fire_strike
         val damage = Damage.roll(source, character, type, weapon)
-        splat(source, character, damage, "magic", weapon)
+        character.directHit(source, damage, "magic", weapon)
     }
 }
