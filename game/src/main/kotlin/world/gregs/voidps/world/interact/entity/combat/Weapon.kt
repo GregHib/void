@@ -29,6 +29,7 @@ object Weapon {
 
     fun strengthBonus(source: Character, type: String, weapon: Item?) = when {
         type == "blaze" -> weapon?.def?.getOrNull("blaze_str") ?: 0
+        // Is thrown or no ammo required
         type == "range" && source is Player && weapon != null && (weapon.id == source.ammo || !Ammo.required(weapon)) -> weapon.def["range_str", 0]
         else -> source[if (type == "range") "range_str" else "str", 0]
     } + 64

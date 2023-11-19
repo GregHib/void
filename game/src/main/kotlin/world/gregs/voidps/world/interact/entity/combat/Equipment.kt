@@ -5,8 +5,16 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 
 object Equipment {
     fun bonus(source: Character, target: Character?, type: String, offense: Boolean): Int {
-        val character = if (offense) source else target
-        val style = if (source is NPC && offense) "att_bonus" else if (type == "range" || type == "magic") type else character?.combatStyle ?: ""
-        return if (character is NPC) character.def[if (offense) style else "${style}_def", 0] else character?.getOrNull(if (offense) style else "${style}_def") ?: 0
+        return if (offense) {
+            style(source, type, if (source is NPC) "att_bonus" else combatStyle(type, source))
+        } else {
+            style(target, type, "${combatStyle(type, target)}_def")
+        }
     }
+
+    private fun style(character: Character?, type: String, style: String = combatStyle(type, character)): Int {
+        return if (character is NPC) character.def[style, 0] else character?.getOrNull(style) ?: 0
+    }
+
+    private fun combatStyle(type: String, character: Character?) = if (type == "range" || type == "magic") type else character?.combatStyle ?: ""
 }

@@ -18,50 +18,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.death.Death
 
-on<CombatSwing>({ it.contains("one_time") }) { player: Player ->
-    player.mode = EmptyMode
-    player.clear("one_time")
-}
-
-on<CombatStop> { character: Character ->
-    if (target.dead) {
-        character["face_entity"] = target
-    } else {
-        character.clearWatch()
-    }
-    character.target = null
-}
-
-on<CombatSwing> { character: Character ->
-    target.start("under_attack", 16)
-    if (target.inSingleCombat) {
-        target.attackers.clear()
-    }
-    target.attackers.add(character)
-}
-
-val Character.retaliates: Boolean
-    get() = if (this is NPC) {
-        def["retaliates", true]
-    } else {
-        this["auto_retaliate", false]
-    }
-
-on<CombatHit>({ source != it && it.retaliates }) { character: Character ->
-    if (character.levels.get(Skill.Constitution) <= 0 || character.underAttack && character.target == source) {
-        return@on
-    }
-    setMode(character, source)
-}
-
-on<Death> { character: Character ->
-    for (attacker in character.attackers) {
-        if (attacker.target == character) {
-            attacker.stop("under_attack")
-        }
-    }
-}
-
 /**
  * When triggered via [Interact] replace the Interaction with [CombatInteraction]
  * to allow movement & [Interact] to complete and start [combat] on the same tick
@@ -79,7 +35,10 @@ on<CombatReached> { character: Character ->
 }
 
 fun combat(character: Character, target: Character) {
-    setMode(character, target)
+    if (character.mode !is CombatMovement || character.target != target) {
+        character.mode = CombatMovement(character, target)
+        character.target = target
+    }
     val movement = character.mode as CombatMovement
     if (character is Player && character.dialogue != null) {
         return
@@ -105,9 +64,27 @@ fun combat(character: Character, target: Character) {
     character.start("hit_delay", nextDelay)
 }
 
-fun setMode(character: Character, target: Character) {
-    if (character.mode !is CombatMovement || character.target != target) {
-        character.mode = CombatMovement(character, target)
-        character.target = target
+on<CombatStop> { character: Character ->
+    if (target.dead) {
+        character["face_entity"] = target
+    } else {
+        character.clearWatch()
+    }
+    character.target = null
+}
+
+on<CombatSwing> { character: Character ->
+    target.start("under_attack", 16)
+    if (target.inSingleCombat) {
+        target.attackers.clear()
+    }
+    target.attackers.add(character)
+}
+
+on<Death> { character: Character ->
+    for (attacker in character.attackers) {
+        if (attacker.target == character) {
+            attacker.stop("under_attack")
+        }
     }
 }

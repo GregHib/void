@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.combat
+package world.gregs.voidps.world.interact.entity.combat
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeInterfaces
