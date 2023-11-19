@@ -5,6 +5,9 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.weaponStyle
 
 object Weapon {
+
+    fun isBowOrCrossbow(item: Item) = item.id.endsWith("bow") || item.id == "seercull" || item.id.endsWith("longbow_sighted")
+
     fun type(character: Character, weapon: Item = character.weapon): String {
         if (character.spell.isNotBlank()) {
             return "magic"

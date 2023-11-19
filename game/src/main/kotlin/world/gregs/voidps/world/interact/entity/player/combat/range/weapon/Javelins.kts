@@ -16,7 +16,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && isJaveli
     val required = player["required_ammo", 1]
     val ammo = player.weapon.id
     player.ammo = ""
-    removeAmmo(player, target, ammo, required)
+    Ammo.remove(player, target, ammo, required)
     player.ammo = ammo
 }
 
