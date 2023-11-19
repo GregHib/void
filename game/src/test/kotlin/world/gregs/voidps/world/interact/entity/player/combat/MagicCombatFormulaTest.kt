@@ -27,7 +27,7 @@ internal class MagicCombatFormulaTest : CombatFormulaTest() {
     }
 
     @Test
-    fun `83 magic ice blitz on rat`() {
+    fun `83 magic ice blitz on cow`() {
         val player = createPlayer(Skill.Magic to 82)
         val npc = createNPC("cow")
 
