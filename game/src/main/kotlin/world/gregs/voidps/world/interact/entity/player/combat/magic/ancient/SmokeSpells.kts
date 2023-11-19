@@ -11,8 +11,8 @@ import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
-import world.gregs.voidps.world.interact.entity.combat.spell
-import world.gregs.voidps.world.interact.entity.player.combat.magic.isMultiTargetSpell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.Spell
 import world.gregs.voidps.world.interact.entity.player.toxin.poison
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
@@ -20,7 +20,7 @@ val definitions: SpellDefinitions by inject()
 
 on<CombatSwing>({ player -> !swung() && player.spell.startsWith("smoke_") }, Priority.LOW) { player: Player ->
     val spell = player.spell
-    player.setAnimation("ancient_spell${if (isMultiTargetSpell(spell)) "_multi" else ""}")
+    player.setAnimation("ancient_spell${if (Spell.isMultiTarget(spell)) "_multi" else ""}")
     player.shoot(spell, target)
     player.hit(target)
     delay = 5

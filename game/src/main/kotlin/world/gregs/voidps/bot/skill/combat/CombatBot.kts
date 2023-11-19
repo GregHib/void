@@ -37,6 +37,7 @@ import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.death.Death
 import world.gregs.voidps.world.interact.entity.death.weightedSample
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()

@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.world.interact.entity.death.Death
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
 on<NPCOption>({ approach && option == "Attack" }) { character: Character ->
     if (character.attackRange != 1) {

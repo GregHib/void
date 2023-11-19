@@ -31,7 +31,7 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.entity.combat.attackRange
 import world.gregs.voidps.world.interact.entity.combat.attackers
-import world.gregs.voidps.world.interact.entity.combat.spellBook
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spellBook
 import world.gregs.voidps.world.interact.entity.combat.underAttack
 
 val areas: AreaDefinitions by inject()

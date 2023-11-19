@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.bank.hasBanked
-import world.gregs.voidps.world.interact.entity.combat.spellBook
 
 object Runes {
     private val definitions: InterfaceDefinitions by inject()

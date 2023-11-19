@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.type.random
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 
 object Hit {

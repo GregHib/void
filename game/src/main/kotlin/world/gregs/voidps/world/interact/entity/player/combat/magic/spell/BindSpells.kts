@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 import world.gregs.voidps.world.interact.entity.player.effect.freeze
 import world.gregs.voidps.world.interact.entity.proj.shoot
 

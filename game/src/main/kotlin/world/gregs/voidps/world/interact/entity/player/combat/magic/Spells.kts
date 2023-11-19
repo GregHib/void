@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic
 
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -9,7 +8,6 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.melee.multiTargetHit
-import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.round
 
@@ -35,4 +33,4 @@ on<CombatSwing>({ (delay ?: -1) >= 0 && it.spell.isNotBlank() }, Priority.LOWEST
     }
 }
 
-multiTargetHit({ isMultiTargetSpell(spell) }, { 9 })
+multiTargetHit({ Spell.isMultiTarget(spell) }, { 9 })

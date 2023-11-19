@@ -1,9 +1,11 @@
 package world.gregs.voidps.world.interact.entity.combat
 
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.weaponStyle
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
 object Weapon {
 
@@ -38,3 +40,19 @@ val Character.fightStyle: String
 var Character.weapon: Item
     get() = get("weapon", Item.EMPTY)
     set(value) = set("weapon", value)
+
+var Character.attackRange: Int
+    get() = get("attack_range", if (this is NPC) def["attack_range", 1] else 1)
+    set(value) = set("attack_range", value)
+
+// E.g "accurate"
+val Character.attackStyle: String
+    get() = get("attack_style", "")
+
+// E.g "flick"
+val Character.attackType: String
+    get() = get("attack_type", "")
+
+// E.g "crush"
+val Character.combatStyle: String
+    get() = get("combat_style", "")
