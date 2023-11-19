@@ -19,10 +19,10 @@ import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isThrowingAxe(weapon: Item?) = weapon != null && (weapon.id == "rune_throwing_axe")

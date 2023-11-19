@@ -9,9 +9,9 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 fun isDragonHatchet(item: Item?) = item != null && item.id == "dragon_hatchet"
 

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.prayer
+package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
 
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.Character
@@ -14,6 +14,7 @@ import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.dead
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun usingSoulSplit(player: Player) = player.praying("soul_split") && !player.hasClock("blood_forfeit") && player.levels.getOffset(Skill.Constitution) < 0

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.prayer
+package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -17,6 +17,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.hit.HitEffectiveLevelModifier
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.*
 import kotlin.math.floor
 
 fun set(name: String, bonus: String, value: Int) {

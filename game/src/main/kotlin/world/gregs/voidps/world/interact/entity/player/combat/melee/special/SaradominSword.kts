@@ -12,11 +12,11 @@ import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccuracyMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 fun isSaradominSword(weapon: Item?) = weapon != null && weapon.id.startsWith("saradomin_sword")
 

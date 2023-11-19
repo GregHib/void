@@ -21,9 +21,9 @@ import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import java.util.concurrent.TimeUnit
 import kotlin.math.floor
 

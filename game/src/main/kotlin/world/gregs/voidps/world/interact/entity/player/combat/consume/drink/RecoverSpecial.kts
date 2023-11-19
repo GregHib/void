@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.interact.entity.player.combat.consume.Consumable
 import world.gregs.voidps.world.interact.entity.player.combat.consume.Consume
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
 import java.util.concurrent.TimeUnit
 
 on<Consumable>({ item.id.startsWith("recover_special") }) { player: Player ->

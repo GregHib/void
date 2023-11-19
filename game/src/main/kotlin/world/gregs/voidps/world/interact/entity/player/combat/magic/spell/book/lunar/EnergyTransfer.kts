@@ -15,9 +15,9 @@ import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 

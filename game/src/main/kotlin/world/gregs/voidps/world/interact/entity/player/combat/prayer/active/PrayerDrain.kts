@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.prayer
+package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -7,6 +7,9 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePrayerVarKey
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 on<TimerStart>({ timer == "prayer_drain" }) { _: Player ->

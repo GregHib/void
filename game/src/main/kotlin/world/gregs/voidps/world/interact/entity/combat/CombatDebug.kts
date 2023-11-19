@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.*
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 on<Command>({ prefix == "maxhit" }) { player: Player ->
     val debug = player["debug", false]

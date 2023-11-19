@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.prayer
+package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
 
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
@@ -18,8 +18,9 @@ import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.*
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot

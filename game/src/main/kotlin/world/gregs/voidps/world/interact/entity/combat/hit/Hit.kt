@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 object Hit {
 

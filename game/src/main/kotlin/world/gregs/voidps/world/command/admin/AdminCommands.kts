@@ -52,8 +52,8 @@ import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 import world.gregs.voidps.world.activity.quest.Books
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 import world.gregs.voidps.world.interact.entity.obj.Teleports
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.effect.skull
 import world.gregs.voidps.world.interact.entity.player.effect.unskull
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY

@@ -11,9 +11,9 @@ import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 fun isDragonClaws(weapon: Item?) = weapon != null && weapon.id == "dragon_claws"
 

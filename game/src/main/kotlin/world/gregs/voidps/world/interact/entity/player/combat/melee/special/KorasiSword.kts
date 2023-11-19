@@ -17,8 +17,8 @@ import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.combat.hit.*
-import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 fun isKorasisSword(item: Item?) = item != null && item.id == "korasis_sword"
 
