@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
@@ -25,7 +25,7 @@ on<ItemOnObject>({ operate && target.id.startsWith("table") }) { player: Player 
         player.message("You cannot put that on a table.")
         return@on
     }
-    if (player.inventory.clear(itemSlot)) {
+    if (player.inventory.remove(itemSlot, item.id, item.amount)) {
         player.setAnimation("take")
         player.playSound("drop_item")
         val tile = target.nearestTo(player.tile)

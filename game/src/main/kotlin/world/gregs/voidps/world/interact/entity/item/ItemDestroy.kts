@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.world.interact.dialogue.type.destroy
 import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
@@ -25,7 +26,7 @@ on<InventoryOption>({ inventory == "inventory" && (option == "Destroy" || option
     if (!destroy) {
         return@on
     }
-    player.inventory.clear(slot)
+    player.inventory.remove(slot, item.id, item.amount)
     when (player.inventory.transaction.error) {
         TransactionError.None -> {
             player.playSound("destroy_object")

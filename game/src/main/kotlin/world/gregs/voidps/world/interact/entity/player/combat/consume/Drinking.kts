@@ -7,16 +7,17 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 
 on<Consume>({ item.id.endsWith("_4") || item.id.endsWith("_3") || item.id.endsWith("_2") || item.id.endsWith("_1") }, Priority.LOWER) { player: Player ->
     val doses = item.id.last().digitToInt()
-    if (doses == 1) {
-        player.message("You have finished your potion.")
-        if (player.contains("smash_vials")) {
-            player.inventory.clear(slot)
-            player.message("You quickly smash the empty vial using the tick a Barbarian taught you.")
-        }
-    } else {
+    if (doses != 1) {
         player.message("You have ${doses - 1} ${"dose".plural(doses - 1)} of the potion left.")
+        return@on
+    }
+    player.message("You have finished your potion.")
+    if (player.contains("smash_vials")) {
+        player.inventory.remove(slot, item.id)
+        player.message("You quickly smash the empty vial using the tick a Barbarian taught you.")
     }
 }

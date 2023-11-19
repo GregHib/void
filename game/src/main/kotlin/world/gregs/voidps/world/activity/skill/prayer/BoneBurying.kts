@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
 
@@ -26,7 +27,7 @@ on<InventoryOption>({ inventory == "inventory" && item.def.has("prayer_xp") && o
         return@on
     }
     player.message("You dig a hole in the ground.", ChatType.Filter)
-    if (!player.inventory.clear(slot)) {
+    if (!player.inventory.remove(slot, item.id)) {
         return@on
     }
     player.start("bone_delay", 1)

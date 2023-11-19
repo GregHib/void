@@ -28,6 +28,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
@@ -42,7 +43,7 @@ on<ItemOnItem>({ either { from, to -> from.lighter && to.burnable } }) { player:
     val logSlot = if (toItem.burnable) toSlot else fromSlot
     player.closeDialogue()
     player.queue.clearWeak()
-    if (player.inventory[logSlot].id == log.id && player.inventory.clear(logSlot)) {
+    if (player.inventory.remove(logSlot, log.id)) {
         val floorItem = floorItems.add(player.tile, log.id, disappearTicks = 300, owner = player)
         player.mode = Interact(player, floorItem, FloorItemOption(player, floorItem, "Light"))
     }

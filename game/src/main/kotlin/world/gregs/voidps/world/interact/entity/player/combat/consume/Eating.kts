@@ -33,7 +33,7 @@ on<InventoryOption>({ (item.def.has("heals") || item.def.has("excess")) && (opti
         return@on
     }
     player.start(delay, ticks)
-    val consumable = world.gregs.voidps.world.interact.entity.player.combat.consume.Consumable(item)
+    val consumable = Consumable(item)
     player.events.emit(consumable)
     if (consumable.cancelled) {
         return@on
@@ -43,11 +43,7 @@ on<InventoryOption>({ (item.def.has("heals") || item.def.has("excess")) && (opti
     if (replacement.isNotEmpty()) {
         player.inventory.replace(slot, item.id, replacement)
     } else {
-        if (player.inventory.stackable(item.id)) {
-            player.inventory.remove(item.id)
-        } else {
-            player.inventory.clear(slot)
-        }
+        player.inventory.remove(slot, item.id)
     }
     player.setAnimation("eat_drink")
     if (message.isNotEmpty()) {
@@ -56,7 +52,7 @@ on<InventoryOption>({ (item.def.has("heals") || item.def.has("excess")) && (opti
         player.message("You ${if (drink) "drink" else "eat"} the ${item.def.name.lowercase()}.")
     }
     player.playSound(if (drink) "pour_tea" else "eat")
-    player.events.emit(world.gregs.voidps.world.interact.entity.player.combat.consume.Consume(item, slot))
+    player.events.emit(Consume(item, slot))
 }
 
 on<Consume>(priority = Priority.LOW) { player: Player ->

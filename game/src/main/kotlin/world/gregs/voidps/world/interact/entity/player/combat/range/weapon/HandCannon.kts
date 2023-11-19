@@ -80,14 +80,11 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
 }
 
 fun explode(player: Player, chance: Double) {
-    if (random.nextDouble() >= chance) {
+    if (random.nextDouble() >= chance || !player.equipment.remove(EquipSlot.Weapon.index, "hand_cannon")) {
         return
     }
     player.setAnimation("hand_cannon_explode")
     player.setGraphic("hand_cannon_explode")
-    if (player.equipment[EquipSlot.Weapon.index].id == "hand_cannon") {
-        player.equipment.clear(EquipSlot.Weapon.index)
-    }
     player.weapon = Item.EMPTY
     player.damage(random.nextInt(10..160))
     player.message("Your hand cannon explodes!")
