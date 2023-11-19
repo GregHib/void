@@ -7,11 +7,11 @@ import world.gregs.voidps.world.interact.entity.player.combat.consume.Consume
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
 
-on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consume>({ item.id == "cup_of_tea" }) { player: Player ->
+on<Consume>({ item.id == "cup_of_tea" }) { player: Player ->
     player.levels.boost(Skill.Attack, 3)
 }
 
-on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consume>({ item.id.startsWith("guthix_rest") }) { player: Player ->
+on<Consume>({ item.id.startsWith("guthix_rest") }) { player: Player ->
     if (player.poisoned) {
         player["poison_damage"] = player["poison_damage", 0] - 10
     }
@@ -22,6 +22,6 @@ on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consume>({ ite
     cancel()
 }
 
-on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consume>({ item.id == "nettle_tea" }) { player: Player ->
+on<Consume>({ item.id == "nettle_tea" }) { player: Player ->
     player.runEnergy = (player.runEnergy / 100) * 5
 }

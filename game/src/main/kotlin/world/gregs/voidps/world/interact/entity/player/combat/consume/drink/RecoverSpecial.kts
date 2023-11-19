@@ -13,14 +13,14 @@ import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
 import java.util.concurrent.TimeUnit
 
-on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consumable>({ item.id.startsWith("recover_special") }) { player: Player ->
+on<Consumable>({ item.id.startsWith("recover_special") }) { player: Player ->
     if (player.softTimers.contains("recover_special_delay")) {
         player.message("You may only use this pot once every 30 seconds.")
         cancel()
     }
 }
 
-on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consume>({ item.id.startsWith("recover_special") }) { player: Player ->
+on<Consume>({ item.id.startsWith("recover_special") }) { player: Player ->
     player.specialAttackEnergy = (MAX_SPECIAL_ATTACK / 100) * 25
     val percentage = (player.specialAttackEnergy / MAX_SPECIAL_ATTACK) * 100
     if (percentage == 0) {

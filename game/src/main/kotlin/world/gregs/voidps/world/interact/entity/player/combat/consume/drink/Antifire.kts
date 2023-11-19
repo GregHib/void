@@ -9,11 +9,11 @@ import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.world.interact.entity.player.combat.consume.Consume
 
-on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consume>({ item.id.startsWith("antifire") || item.id.startsWith("antifire_mix") }) { player: Player ->
+on<Consume>({ item.id.startsWith("antifire") || item.id.startsWith("antifire_mix") }) { player: Player ->
     player.antifire(6)
 }
 
-on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consume>({ item.id.startsWith("super_antifire") }) { player: Player ->
+on<Consume>({ item.id.startsWith("super_antifire") }) { player: Player ->
     player.superAntifire(6)
 }
 

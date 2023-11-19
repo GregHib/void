@@ -5,6 +5,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.player.combat.consume.Consume
 
-on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consume>({ item.id.startsWith("fish_pie") }) { player: Player ->
+on<Consume>({ item.id.startsWith("fish_pie") }) { player: Player ->
     player.levels.boost(Skill.Fishing, 3)
 }

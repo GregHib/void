@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.player.combat.consume.Consume
 
-on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consume>({ item.id == "kebab" }) { player: Player ->
+on<Consume>({ item.id == "kebab" }) { player: Player ->
     val random = random.nextDouble(100.0)
     when {
         random < 66 -> {
@@ -32,7 +32,7 @@ on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consume>({ ite
     cancel()
 }
 
-on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consume>({ item.id == "super_kebab" }) { player: Player ->
+on<Consume>({ item.id == "super_kebab" }) { player: Player ->
     if (random.nextInt(8) < 5) {
         player.levels.restore(Skill.Constitution, 30, 0.07)
     }
@@ -48,7 +48,7 @@ on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consume>({ ite
 
 val phrases = listOf("Lovely!", "Scrummy!", "Delicious!", "Yum!")
 
-on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consume>({ item.id == "ugthanki_kebab" }) { player: Player ->
+on<Consume>({ item.id == "ugthanki_kebab" }) { player: Player ->
     if (player.levels.get(Skill.Constitution) != player.levels.getMax(Skill.Constitution)) {
         player.forceChat = phrases.random()
     }

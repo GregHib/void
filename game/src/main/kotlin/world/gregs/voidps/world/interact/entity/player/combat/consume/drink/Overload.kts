@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 
 fun inWilderness() = false
 
-on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consumable>({ item.id.startsWith("overload") }) { player: Player ->
+on<Consumable>({ item.id.startsWith("overload") }) { player: Player ->
     if (player.timers.contains("overload")) {
         player.message("You may only use this potion every five minutes.")
         cancel()
@@ -27,7 +27,7 @@ on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consumable>({ 
     }
 }
 
-on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consume>({ item.id.startsWith("overload") }) { player: Player ->
+on<Consume>({ item.id.startsWith("overload") }) { player: Player ->
     player["overload_refreshes_remaining"] = 20
     player.timers.start("overload")
 }

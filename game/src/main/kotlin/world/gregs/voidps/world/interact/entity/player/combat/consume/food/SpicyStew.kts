@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.player.combat.consume.Consume
 
-on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consume>({ item.id == "spicy_stew" }) { player: Player ->
+on<Consume>({ item.id == "spicy_stew" }) { player: Player ->
     if (random.nextInt(100) > 5) {
         player.levels.boost(Skill.Cooking, 6)
     } else {

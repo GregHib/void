@@ -5,6 +5,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.player.combat.consume.Consume
 
-on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consume>({ item.id == "jug_of_wine" }) { player: Player ->
+on<Consume>({ item.id == "jug_of_wine" }) { player: Player ->
     player.levels.drain(Skill.Attack, 2)
 }

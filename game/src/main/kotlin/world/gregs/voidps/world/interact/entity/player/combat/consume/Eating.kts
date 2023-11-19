@@ -59,7 +59,7 @@ on<InventoryOption>({ (item.def.has("heals") || item.def.has("excess")) && (opti
     player.events.emit(world.gregs.voidps.world.interact.entity.player.combat.consume.Consume(item, slot))
 }
 
-on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consume>(priority = Priority.LOW) { player: Player ->
+on<Consume>(priority = Priority.LOW) { player: Player ->
     val range: IntRange = item.def.getOrNull("heals") ?: return@on
     val amount = range.random()
     if (amount > 0) {

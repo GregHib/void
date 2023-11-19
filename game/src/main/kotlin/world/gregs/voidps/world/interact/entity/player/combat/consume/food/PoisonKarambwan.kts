@@ -5,6 +5,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.player.combat.consume.Consume
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 
-on<world.gregs.voidps.world.interact.entity.player.combat.consume.Consume>({ item.id == "poison_karambwan" }) { player: Player ->
+on<Consume>({ item.id == "poison_karambwan" }) { player: Player ->
     player.directHit(50, "poison")
 }
