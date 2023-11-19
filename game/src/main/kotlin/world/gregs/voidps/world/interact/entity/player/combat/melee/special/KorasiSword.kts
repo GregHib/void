@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 
@@ -72,7 +73,7 @@ on<CombatHit>({ target -> special && isKorasisSword(weapon) && target.inMultiCom
     val characters = if (target is Player) players else npcs
     for (tile in target.tile.spiral(4)) {
         characters[tile].forEach { character ->
-            if (character == target || chain.contains(character.index) || !canAttack(source, character)) {
+            if (character == target || chain.contains(character.index) || !Target.attackable(source, character)) {
                 return@forEach
             }
             if (!lineOfSight.hasLineOfSight(target, character)) {

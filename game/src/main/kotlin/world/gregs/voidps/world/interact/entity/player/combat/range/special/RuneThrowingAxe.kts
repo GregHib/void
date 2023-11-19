@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
@@ -49,7 +50,7 @@ on<CombatHit>({ target -> source is Player && special && isThrowingAxe(weapon) &
     val characters = if (target is Player) players else npcs
     for (tile in target.tile.spiral(4)) {
         characters[tile].forEach { character ->
-            if (character == target || chain.contains(character.index) || !canAttack(player, character)) {
+            if (character == target || chain.contains(character.index) || !Target.attackable(player, character)) {
                 return@forEach
             }
             if (!lineOfSight.hasLineOfSight(target, character)) {

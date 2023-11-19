@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
@@ -44,7 +45,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isVestasSpear(it.weapon) }) { 
             list.addAll(characters[tile])
         }
         list
-            .filter { it.inMultiCombat && canAttack(player, it) }
+            .filter { it.inMultiCombat && Target.attackable(player, it) }
             .take(16)
             .onEach {
                 player.hit(it)

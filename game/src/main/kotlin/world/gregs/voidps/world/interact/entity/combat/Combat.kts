@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatReached
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatStop
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
@@ -73,6 +74,13 @@ on<CombatSwing> { character: Character ->
     target.attackers.add(character)
 }
 
+val Character.retaliates: Boolean
+    get() = if (this is NPC) {
+        def["retaliates", true]
+    } else {
+        this["auto_retaliate", false]
+    }
+
 on<CombatHit>({ source != it && it.retaliates }) { character: Character ->
     if (character.levels.get(Skill.Constitution) <= 0 || character.underAttack && character.target == source) {
         return@on
@@ -115,7 +123,7 @@ fun combat(character: Character, target: Character) {
     if (character is Player && character.dialogue != null) {
         return
     }
-    if (character.target == null || !canAttack(character, target)) {
+    if (character.target == null || !Target.attackable(character, target)) {
         character.mode = EmptyMode
         return
     }
