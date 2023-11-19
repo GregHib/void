@@ -118,4 +118,18 @@ internal class MagicCombatFormulaTest : CombatFormulaTest() {
         assertEquals(0.9746, chance, 0.0001)
     }
 
+    @Test
+    fun `Chaos gauntlet max hit`() {
+        val player = createPlayer(Skill.Magic to 75)
+        player.equipment.set(EquipSlot.Hands.index, "chaos_gauntlets")
+        val npc = createNPC("greater_demon")
+
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "magic", spell = "earth_bolt")
+
+        assertEquals(5376, offensiveRating)
+        assertEquals(540, defensiveRating)
+        assertEquals(140, maxHit)
+        assertEquals(0.9496, chance, 0.0001)
+    }
+
 }
