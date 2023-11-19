@@ -20,7 +20,7 @@ on<Command>({ prefix == "maxhit" }) { player: Player ->
     player.message("Max hit")
     player.message("Ranged: ${Damage.maximum(player, type = "range", weapon = weapon)} Melee: ${Damage.maximum(player, type = "melee", weapon = weapon)} Magic: ${Damage.maximum(player, type = "magic")}")
     player.message("Hit chance")
-    player.message("Ranged: ${Damage.chance(player, type = "range", weapon = weapon)} Melee: ${Damage.chance(player, type = "melee", weapon = weapon)} Magic: ${Damage.chance(player, type = "magic")}")
+    player.message("Ranged: ${Hit.chance(player, type = "range", weapon = weapon)} Melee: ${Hit.chance(player, type = "melee", weapon = weapon)} Magic: ${Hit.chance(player, type = "magic")}")
     player["debug"] = debug
 }
 

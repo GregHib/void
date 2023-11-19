@@ -1,0 +1,62 @@
+package world.gregs.voidps.world.interact.entity.combat
+
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.type.random
+
+object Hit {
+
+    /**
+     * @return true if [chance] of hitting was successful
+     */
+    fun success(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean): Boolean {
+        return random.nextDouble() < chance(source, target, type, weapon, special)
+    }
+
+    /**
+     * @return chance between 0.0 and 1.0 of hitting [target]
+     */
+    fun chance(source: Character, target: Character? = null, type: String, weapon: Item? = null, special: Boolean = false): Double {
+        val offensiveRating = rating(source, target, type, weapon, special, true)
+        val defensiveRating = rating(source, target, type, weapon, special, false)
+        val chance = if (offensiveRating > defensiveRating) {
+            1.0 - (defensiveRating + 2.0) / (2.0 * (offensiveRating + 1.0))
+        } else {
+            offensiveRating / (2.0 * (defensiveRating + 1.0))
+        }
+        val modifier = HitChanceModifier(target, type, chance, weapon, special)
+        source.events.emit(modifier)
+        return modifier.chance
+    }
+
+    /**
+     * Calculates an offensive or defensive rating for [source] against [target]
+     */
+    internal fun rating(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean, offense: Boolean): Int {
+        var level = if (target == null) 8 else {
+            val skill = when {
+                !offense && type != "magic" -> Skill.Defence
+                type == "range" -> Skill.Ranged
+                type == "magic" || type == "blaze" -> Skill.Magic
+                else -> Skill.Attack
+            }
+            effectiveLevel(if (offense) source else target, skill, offense)
+        }
+        val override = HitEffectiveLevelOverride(target, type, !offense, level)
+        source.events.emit(override)
+        level = override.level
+        val equipmentBonus = Equipment.bonus(source, target, type, offense)
+        val rating = level * (equipmentBonus + 64.0)
+        val modifier = HitRatingModifier(target, type, offense, rating, weapon, special)
+        source.events.emit(modifier)
+        return modifier.rating.toInt()
+    }
+
+    fun effectiveLevel(character: Character, skill: Skill, accuracy: Boolean): Int {
+        val level = character.levels.get(skill).toDouble()
+        val mod = HitEffectiveLevelModifier(skill, accuracy, level)
+        character.events.emit(mod)
+        return mod.level.toInt()
+    }
+}

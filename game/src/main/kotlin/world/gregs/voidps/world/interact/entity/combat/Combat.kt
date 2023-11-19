@@ -58,39 +58,6 @@ fun splat(source: Character, target: Character, damage: Int, type: String = "dam
     target.events.emit(CombatHit(source, type, damage, weapon, spell, special))
 }
 
-fun getEffectiveLevel(character: Character, skill: Skill, accuracy: Boolean): Int {
-    val level = character.levels.get(skill).toDouble()
-    val mod = HitEffectiveLevelModifier(skill, accuracy, level)
-    character.events.emit(mod)
-    return mod.level.toInt()
-}
-
-fun getRating(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean, offense: Boolean): Int {
-    var level = if (target == null) 8 else {
-        val skill = when {
-            !offense && type != "magic" -> Skill.Defence
-            type == "range" -> Skill.Ranged
-            type == "magic" || type == "blaze" -> Skill.Magic
-            else -> Skill.Attack
-        }
-        getEffectiveLevel(if (offense) source else target, skill, offense)
-    }
-    val override = HitEffectiveLevelOverride(target, type, !offense, level)
-    source.events.emit(override)
-    level = override.level
-    val equipmentBonus = getEquipmentBonus(source, target, type, offense)
-    val rating = level * (equipmentBonus + 64.0)
-    val modifier = HitRatingModifier(target, type, offense, rating, weapon, special)
-    source.events.emit(modifier)
-    return modifier.rating.toInt()
-}
-
-private fun getEquipmentBonus(source: Character, target: Character?, type: String, offense: Boolean): Int {
-    val character = if (offense) source else target
-    val style = if (source is NPC && offense) "att_bonus" else if (type == "range" || type == "magic") type else character?.combatStyle ?: ""
-    return if (character is NPC) character.def[if (offense) style else "${style}_def", 0] else character?.getOrNull(if (offense) style else "${style}_def") ?: 0
-}
-
 var Character.attackers: MutableList<Character>
     get() = getOrPut("attackers") { ObjectArrayList() }
     set(value) = set("attackers", value)

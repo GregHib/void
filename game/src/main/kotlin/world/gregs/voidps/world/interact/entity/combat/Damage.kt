@@ -9,42 +9,18 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.random
 
 object Damage {
-
     /**
-     * Rolls a hit against [target]
+     * Rolls a real hit against [target]
      * @return damage or -1 if unsuccessful
      */
     fun roll(source: Character, target: Character? = null, type: String, weapon: Item? = null, spell: String = "", special: Boolean = false): Int {
-        if (!success(source, target, type, weapon, special)) {
+        if (!Hit.success(source, target, type, weapon, special)) {
             return -1
         }
         val strengthBonus = Weapon.strengthBonus(source, type, weapon)
         val baseMaxHit = maximum(source, type, spell, strengthBonus)
         val damage = random.nextInt(baseMaxHit.toInt() + 1).toDouble()
         return modify(source, target, type, strengthBonus, damage, weapon, spell, special)
-    }
-
-    /**
-     * @return true if [chance] of hitting was successful
-     */
-    fun success(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean): Boolean {
-        return random.nextDouble() < chance(source, target, type, weapon, special)
-    }
-
-    /**
-     * @return chance between 0.0 and 1.0 of hitting [target]
-     */
-    fun chance(source: Character, target: Character? = null, type: String, weapon: Item? = null, special: Boolean = false): Double {
-        val offensiveRating = getRating(source, target, type, weapon, special, true)
-        val defensiveRating = getRating(source, target, type, weapon, special, false)
-        val chance = if (offensiveRating > defensiveRating) {
-            1.0 - (defensiveRating + 2.0) / (2.0 * (offensiveRating + 1.0))
-        } else {
-            offensiveRating / (2.0 * (defensiveRating + 1.0))
-        }
-        val modifier = HitChanceModifier(target, type, chance, weapon, special)
-        source.events.emit(modifier)
-        return modifier.chance
     }
 
     /**
@@ -73,7 +49,7 @@ object Damage {
             "blaze" -> Skill.Magic
             else -> Skill.Strength
         }
-        return 5.0 + (getEffectiveLevel(source, skill, accuracy = false) * strengthBonus) / 64
+        return 5.0 + (Hit.effectiveLevel(source, skill, accuracy = false) * strengthBonus) / 64
     }
 
     private fun modify(source: Character, target: Character?, type: String, strengthBonus: Int, baseMaxHit: Double, weapon: Item?, spell: String, special: Boolean): Int {

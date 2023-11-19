@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.world.interact.entity.combat.Damage
-import world.gregs.voidps.world.interact.entity.combat.getRating
+import world.gregs.voidps.world.interact.entity.combat.Hit
 import world.gregs.voidps.world.script.WorldTest
 
 abstract class CombatFormulaTest : WorldTest() {
@@ -19,10 +19,10 @@ abstract class CombatFormulaTest : WorldTest() {
     )
 
     internal fun calculate(source: Character, target: Character, type: String, weapon: Item? = null, spell: String = "", special: Boolean = false): Results {
-        val offensiveRating = getRating(source, target, type, weapon, special, true)
-        val defensiveRating = getRating(source, target, type, weapon, special, false)
+        val offensiveRating = Hit.rating(source, target, type, weapon, special, true)
+        val defensiveRating = Hit.rating(source, target, type, weapon, special, false)
         val maxHit = Damage.maximum(source, target, type, weapon, spell, special)
-        val chance = Damage.chance(source, target, type, weapon, special)
+        val chance = Hit.chance(source, target, type, weapon, special)
         return Results(offensiveRating, defensiveRating, maxHit, chance)
     }
 
