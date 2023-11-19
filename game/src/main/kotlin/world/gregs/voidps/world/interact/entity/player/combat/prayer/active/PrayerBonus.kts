@@ -69,10 +69,10 @@ set("turmoil", "strength_bonus", 23)
 set("turmoil", "defence_bonus", 15)
 
 fun usingProtectionPrayer(source: Character, target: Character?, type: String): Boolean {
-    return target != null && (type == "melee" && (target.praying("protect_from_melee") || target.praying("deflect_melee")) ||
-            type == "range" && (target.praying("protect_from_missiles") || target.praying("deflect_missiles")) ||
-            type == "magic" && (target.praying("protect_from_magic") || target.praying("deflect_magic")) ||
-            source.isFamiliar && (target.praying("protect_from_summoning") || target.praying("deflect_summoning")))
+    return target != null && (type == "melee" && target.protectMelee() ||
+            type == "range" && target.protectRange() ||
+            type == "magic" && target.protectMagic() ||
+            source.isFamiliar && target.protectSummoning())
 }
 
 fun usingDeflectPrayer(source: Character, target: Character, type: String): Boolean {
@@ -87,7 +87,7 @@ fun hitThroughProtectionPrayer(source: Character, target: Character?, type: Stri
         return false
     }
     if (special && weapon.id == "ancient_mace" && type == "melee") {
-        return target.praying("protect_from_melee") || target.praying("deflect_melee")
+        return target.protectMelee()
     }
     return false
 }

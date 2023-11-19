@@ -63,3 +63,8 @@ fun Character.setDrain(skill: Skill, value: Int, base: Int) {
     set("drain_${skill.name.lowercase()}", value)
     set("base_${skill.name.lowercase()}_drain", base)
 }
+
+fun Character.protectMelee() = praying("protect_from_melee") || praying("deflect_melee")
+fun Character.protectMagic() = praying("protect_from_magic") || praying("deflect_magic")
+fun Character.protectRange() = praying("protect_from_missiles") || praying("deflect_missiles")
+fun Character.protectSummoning() = praying("protect_from_summoning") || praying("deflect_summoning")
