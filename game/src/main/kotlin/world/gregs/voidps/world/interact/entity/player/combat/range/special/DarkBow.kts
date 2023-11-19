@@ -10,9 +10,9 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.darkBowHitDelay
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
@@ -69,8 +69,8 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && isDarkBo
     player.shoot(ammo, target, true)
     player.shoot(ammo, target, false)
     val distance = player.tile.distanceTo(target)
-    player.hit(target, delay = darkBowHitDelay(distance))
-    player.hit(target, delay = darkBowHitDelay(distance))
+    player.hit(target, delay = Hit.darkBowDelay(distance))
+    player.hit(target, delay = Hit.darkBowDelay(distance))
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
 }

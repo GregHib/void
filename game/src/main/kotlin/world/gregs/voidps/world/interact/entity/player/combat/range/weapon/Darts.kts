@@ -8,10 +8,10 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.range.Ammo
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
-import world.gregs.voidps.world.interact.entity.player.combat.throwHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 
@@ -31,6 +31,6 @@ on<CombatSwing>({ player -> !swung() && isDart(player.weapon) }, Priority.LOW) {
     player.setGraphic("${ammo}_throw")
     player.shoot(id = ammo, target = target)
     val distance = player.tile.distanceTo(target)
-    player.hit(target, delay = throwHitDelay(distance))
+    player.hit(target, delay = Hit.throwDelay(distance))
     delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0
 }

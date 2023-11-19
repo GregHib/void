@@ -9,14 +9,19 @@ import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.type.area.Cuboid
 import java.util.concurrent.TimeUnit
 
+/**
+ * Certain NPCs stop being aggressive towards the player if they stay inside their tolerance area for [toleranceTime]
+ */
+val toleranceTime = TimeUnit.MINUTES.toSeconds(10)
+
 on<Registered> { player: Player ->
     if (!player.contains("tolerance")) {
-        player.start("tolerance", TimeUnit.MINUTES.toSeconds(10).toInt(), epochSeconds())
+        player.start("tolerance", toleranceTime.toInt(), epochSeconds())
     }
     player["tolerance_area"] = player.tile.toCuboid(10)
 }
 
 on<Moved>({ to !in it.get<Cuboid>("tolerance_area") }) { player: Player ->
     player["tolerance_area"] = player.tile.toCuboid(10)
-    player.start("tolerance", TimeUnit.MINUTES.toSeconds(10).toInt(), epochSeconds())
+    player.start("tolerance", toleranceTime.toInt(), epochSeconds())
 }

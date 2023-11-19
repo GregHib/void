@@ -7,10 +7,10 @@ import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.magicHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 on<CombatSwing>({ character -> !swung() && character.spell.startsWith("earth_") }, Priority.LOW) { character: Character ->
@@ -19,6 +19,6 @@ on<CombatSwing>({ character -> !swung() && character.spell.startsWith("earth_") 
     character.setGraphic("${spell}_cast")
     character.shoot(id = spell, target = target)
     val distance = character.tile.distanceTo(target)
-    character.hit(target, delay = magicHitDelay(distance))
+    character.hit(target, delay = Hit.magicDelay(distance))
     delay = 5
 }

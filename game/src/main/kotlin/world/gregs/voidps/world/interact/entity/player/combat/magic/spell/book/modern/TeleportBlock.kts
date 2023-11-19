@@ -14,9 +14,9 @@ import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
-import world.gregs.voidps.world.interact.entity.player.combat.magicHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.math.sign
 
@@ -33,7 +33,7 @@ on<CombatSwing>({ player -> !swung() && player.spell == "teleport_block" }, Prio
     player.setGraphic("${spell}_cast")
     player.shoot(id = player.spell, target = target)
     val distance = player.tile.distanceTo(target)
-    if (player.hit(target, delay = magicHitDelay(distance)) != -1) {
+    if (player.hit(target, delay = Hit.magicDelay(distance)) != -1) {
         val duration: Int = definitions.get(player.spell)["block_ticks"]
         player.teleBlock(target, duration)
     }

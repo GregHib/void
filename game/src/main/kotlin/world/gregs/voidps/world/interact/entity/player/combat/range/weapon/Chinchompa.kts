@@ -13,11 +13,11 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.HitChanceModifier
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.melee.multiTargetHit
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
-import world.gregs.voidps.world.interact.entity.player.combat.throwHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
@@ -62,7 +62,7 @@ on<CombatSwing>({ player -> !swung() && isChinchompa(player.weapon) }, Priority.
     player.setAnimation("throw_chinchompa")
     player.shoot(id = ammo, target = target)
     val distance = player.tile.distanceTo(target)
-    player.hit(target, delay = throwHitDelay(distance))
+    player.hit(target, delay = Hit.throwDelay(distance))
     delay = player["attack_speed", 4] - if (player.attackType == "medium_fuse") 1 else 0
 }
 

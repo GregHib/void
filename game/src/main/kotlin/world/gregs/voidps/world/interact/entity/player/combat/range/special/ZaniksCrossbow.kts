@@ -12,9 +12,9 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.bowHitDelay
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -45,7 +45,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
     player.setGraphic("zaniks_crossbow_special")
     player.shoot(id = "zaniks_crossbow_bolt", target = target)
     val distance = player.tile.distanceTo(target)
-    val damage = player.hit(target, delay = bowHitDelay(distance))
+    val damage = player.hit(target, delay = Hit.bowDelay(distance))
     if (damage != -1) {
         target.levels.drain(Skill.Defence, damage / 10)
     }

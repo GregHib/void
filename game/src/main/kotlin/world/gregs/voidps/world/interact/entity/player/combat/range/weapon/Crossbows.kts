@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.bowHitDelay
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -26,7 +26,7 @@ on<CombatSwing>({ player -> !swung() && isCrossbow(player.weapon) }, Priority.LO
     val bolt = if (ammo == "barbed_bolts" || ammo == "bone_bolts") ammo else "crossbow_bolt"
     player.shoot(id = bolt, target = target)
     val distance = player.tile.distanceTo(target)
-    player.hit(target, delay = bowHitDelay(distance))
+    player.hit(target, delay = Hit.bowDelay(distance))
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
 }
@@ -53,7 +53,7 @@ fun handleCrossbowEffects(player: Player, ammo: String, target: Character) {
 fun checkEffect(player: Player, target: Character, effect: String, chance: Double) {
     if (random.nextDouble() < chance) {
         val distance = player.tile.distanceTo(target)
-        val delay = bowHitDelay(distance)
+        val delay = Hit.bowDelay(distance)
         target.start(effect, delay)
         target.setGraphic(effect)
         player.playSound(effect, delay = 40)

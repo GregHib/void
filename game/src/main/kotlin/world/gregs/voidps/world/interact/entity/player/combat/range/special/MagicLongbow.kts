@@ -8,9 +8,9 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.HitChanceModifier
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.bowHitDelay
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -34,5 +34,5 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
     player.playSound("magic_longbow_special")
     player.shoot(id = "special_arrow", target = target)
     val distance = player.tile.distanceTo(target)
-    player.hit(target, delay = bowHitDelay(distance))
+    player.hit(target, delay = Hit.bowDelay(distance))
 }

@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.dead
-import world.gregs.voidps.world.interact.entity.player.combat.magicHitDelay
+import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun usingSoulSplit(player: Player) = player.praying("soul_split") && !player.hasClock("blood_forfeit") && player.levels.getOffset(Skill.Constitution) < 0
@@ -21,7 +21,7 @@ fun usingSoulSplit(player: Player) = player.praying("soul_split") && !player.has
 on<CombatAttack>({ source -> source is Player && usingSoulSplit(source) && damage >= 5 && type != "deflect" && type != "cannon" && !target.isFamiliar }) { player: Character ->
     val distance = player.tile.distanceTo(target)
     player.shoot("soul_split", target, height = 10, endHeight = 10)
-    val ticks = magicHitDelay(distance)
+    val ticks = Hit.magicDelay(distance)
     target["soul_split_distance"] = ticks
     target["soul_split_source"] = player
     target["soul_split_damage"] = damage
