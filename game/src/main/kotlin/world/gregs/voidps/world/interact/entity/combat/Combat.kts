@@ -24,35 +24,6 @@ import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.world.interact.entity.death.Death
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
-on<NPCOption>({ approach && option == "Attack" }) { character: Character ->
-    if (character.attackRange != 1) {
-        character.approachRange(character.attackRange, update = false)
-    } else {
-        character.approachRange(null, update = true)
-    }
-    combatInteraction(character, target)
-}
-
-on<PlayerOption>({ approach && option == "Attack" }) { character: Character ->
-    if (character.attackRange != 1) {
-        character.approachRange(character.attackRange, update = false)
-    } else {
-        character.approachRange(null, update = true)
-    }
-    combatInteraction(character, target)
-}
-
-on<ItemOnNPC>({ approach && id.endsWith("_spellbook") }, Priority.HIGH) { player: Player ->
-    player.approachRange(8, update = false)
-    player.spell = component
-    player["attack_speed"] = 5
-    player["one_time"] = true
-    player.attackRange = 8
-    player.face(target)
-    combatInteraction(player, target)
-    cancel()
-}
-
 on<CombatSwing>({ it.contains("one_time") }) { player: Player ->
     player.mode = EmptyMode
     player.clear("one_time")
@@ -102,11 +73,6 @@ on<Death> { character: Character ->
  * to allow movement & [Interact] to complete and start [combat] on the same tick
  * After [Interact] is complete switch to using [CombatMovement]
  */
-fun combatInteraction(character: Character, target: Character) {
-    val interact = character.mode as Interact
-    interact.updateInteraction(CombatInteraction(character, target))
-}
-
 on<CombatInteraction> { character: Character ->
     combat(character, target)
 }
