@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.playAnimation
-import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes.hasSpellRequirements
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
@@ -33,7 +33,7 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport
     }
     player.closeInterfaces()
     player.queue("teleport") {
-        if (!hasSpellRequirements(player, component)) {
+        if (!Spell.removeRequirements(player, component)) {
             cancel()
             return@queue
         }

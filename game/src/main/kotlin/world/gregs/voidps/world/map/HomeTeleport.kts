@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.engine.timer.epochSeconds
-import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes.hasSpellRequirements
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 import java.util.concurrent.TimeUnit
 
 val areas: AreaDefinitions by inject()
@@ -33,7 +33,7 @@ on<InterfaceOption>({ id == "modern_spellbook" && component == "lumbridge_home_t
         return@on
     }
     player.weakQueue("home_teleport") {
-        if (!hasSpellRequirements(player, component)) {
+        if (!Spell.removeRequirements(player, component)) {
             cancel()
             return@weakQueue
         }

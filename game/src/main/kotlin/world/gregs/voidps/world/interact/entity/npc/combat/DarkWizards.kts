@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell
-import world.gregs.voidps.world.interact.entity.player.combat.magic.Spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 
 on<CombatSwing>({ npc -> !swung() && npc.id.startsWith("dark_wizard_water") }, Priority.HIGHEST) { npc: NPC ->
     npc.spell = if (!random.nextBoolean() && Spell.canDrain(target, "confuse")) "confuse" else "water_strike"

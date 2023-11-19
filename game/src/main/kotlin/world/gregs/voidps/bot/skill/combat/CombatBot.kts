@@ -36,8 +36,8 @@ import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.death.Death
 import world.gregs.voidps.world.interact.entity.death.weightedSample
-import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 
 val areas: AreaDefinitions by inject()
@@ -125,7 +125,7 @@ fun Player.isMagicNotOutOfRunes(skill: Skill): Boolean {
         return true
     }
     val spell = spell
-    return Runes.hasSpellRequirements(this, spell)
+    return Spell.removeRequirements(this, spell)
 }
 
 suspend fun Bot.pickupItems(tile: Tile, amount: Int) {

@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.world.interact.entity.combat.CombatInteraction
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.attackRange
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 
 on<NPCOption>({ approach && option == "Attack" }) { character: Character ->
     if (character.attackRange != 1) {

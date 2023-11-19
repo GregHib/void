@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import kotlin.math.floor
 
 on<HitDamageModifier>({ type == "magic" && target is NPC && target.id == "ice_strykewyrm" }, priority = Priority.LOWER) { player: Player ->
