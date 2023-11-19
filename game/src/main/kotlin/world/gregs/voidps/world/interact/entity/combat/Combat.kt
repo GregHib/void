@@ -198,10 +198,6 @@ fun getMaximumHit(source: Character, target: Character? = null, type: String, we
     return modifier.damage.toInt()
 }
 
-fun getMinimumHit(source: Character, target: Character? = null, type: String, weapon: Item?, spell: String, special: Boolean): Int {
-    return 0
-}
-
 fun getEffectiveLevel(character: Character, skill: Skill, accuracy: Boolean): Int {
     val level = character.levels.get(skill).toDouble()
     val mod = HitEffectiveLevelModifier(skill, accuracy, level)
@@ -255,8 +251,7 @@ fun successfulHit(source: Character, target: Character?, type: String, weapon: I
 fun hit(source: Character, target: Character?, type: String, weapon: Item?, spell: String = "", special: Boolean = false): Int {
     return if (successfulHit(source, target, type, weapon, special)) {
         val maxHit = getMaximumHit(source, target, type, weapon, spell, special)
-        val minHit = getMinimumHit(source, target, type, weapon, spell, special)
-        random.nextInt(minHit..maxHit)
+        random.nextInt(maxHit + 1)
     } else {
         -1
     }

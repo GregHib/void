@@ -32,7 +32,7 @@ on<HitDamageModifier>({ player -> type == "magic" && player.hasClock("charge") &
     damage += 100.0
 }
 
-on<InterfaceOption>({ id.endsWith("_spellbook") && component == "charge" }) { player: Player ->
+on<InterfaceOption>({ id == "modern_spellbook" && component == "charge" }) { player: Player ->
     if (player.hasClock("charge_delay")) {
         val remaining = TICKS.toSeconds(player.remaining("charge_delay"))
         player.message("You must wait another $remaining ${"second".plural(remaining)} before casting this spell again.")
