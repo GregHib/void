@@ -55,7 +55,7 @@ on<TimerTick>({ timer == "phantom_strike" }) { character: Character ->
     }
     character["phantom_damage"] = remaining - damage
     val source = character["phantom", character]
-    hit(source, character, damage, "effect")
+    splat(source, character, damage, "effect")
     (character as? Player)?.message("You ${character.remove("phantom_first") ?: "continue"} to bleed as a result of the javelin strike.")
 }
 

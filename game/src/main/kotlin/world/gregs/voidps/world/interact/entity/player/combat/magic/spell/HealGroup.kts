@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.damage
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
 
 val definitions: SpellDefinitions by inject()
@@ -40,6 +40,6 @@ on<InterfaceOption>({ id == "lunar_spellbook" && component == "heal_group" }) { 
         target.message("You have been healed by ${player.name}.")
     }
     if (healed > 0) {
-        player.hit(healed, delay = 2)
+        player.damage(healed, delay = 2)
     }
 }

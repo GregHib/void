@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.world.interact.entity.combat.getMaximumHit
+import world.gregs.voidps.world.interact.entity.combat.maximumHit
 import world.gregs.voidps.world.interact.entity.combat.getRating
 import world.gregs.voidps.world.interact.entity.combat.hitChance
 import world.gregs.voidps.world.script.WorldTest
@@ -22,7 +22,7 @@ abstract class CombatFormulaTest : WorldTest() {
     internal fun calculate(source: Character, target: Character, type: String, weapon: Item? = null, spell: String = "", special: Boolean = false): Results {
         val offensiveRating = getRating(source, target, type, weapon, special, true)
         val defensiveRating = getRating(source, target, type, weapon, special, false)
-        val maxHit = getMaximumHit(source, target, type, weapon, spell, special)
+        val maxHit = maximumHit(source, target, type, weapon, spell, special)
         val chance = hitChance(source, target, type, weapon, special)
         return Results(offensiveRating, defensiveRating, maxHit, chance)
     }

@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.getMaximumHit
+import world.gregs.voidps.world.interact.entity.combat.maximumHit
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.hitChance
 import world.gregs.voidps.world.interact.entity.player.combat.CombatFormulaTest
@@ -52,11 +52,11 @@ internal class VeracsSetEffectTest : CombatFormulaTest() {
 
         val chance = hitChance(player, target, "melee", Item("veracs_flail"), false)
         player.hit(target, Item("veracs_flail"), "melee", damage = 0)
-        var maxHit = getMaximumHit(player, target, "melee", Item("veracs_flail"))
+        var maxHit = maximumHit(player, target, "melee", Item("veracs_flail"))
         assertEquals(242, maxHit)
         tick()
 
-        maxHit = getMaximumHit(player, target, "melee", Item("veracs_flail"))
+        maxHit = maximumHit(player, target, "melee", Item("veracs_flail"))
         assertEquals(232, maxHit)
         assertEquals(1.0, chance)
         assertNotEquals(980, target.levels.get(Skill.Constitution))

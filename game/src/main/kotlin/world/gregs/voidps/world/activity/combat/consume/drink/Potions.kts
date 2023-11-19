@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.combat.consume.Consumable
 import world.gregs.voidps.world.activity.combat.consume.Consume
-import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.splat
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 import world.gregs.voidps.world.interact.entity.player.toxin.antiDisease
 import world.gregs.voidps.world.interact.entity.player.toxin.antiPoison
@@ -109,7 +109,7 @@ on<Consume>({ item.id.startsWith("zamorak_brew") || item.id.startsWith("zamorak_
     player.levels.drain(Skill.Defence, 2, 0.1)
     val health = player.levels.get(Skill.Constitution)
     val damage = ((health / 100) * 10) + 20
-    hit(player, player, damage)
+    splat(player, player, damage)
 }
 
 on<Consume>({ item.id.startsWith("saradomin_brew") }) { player: Player ->

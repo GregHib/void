@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
-import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.splat
 import world.gregs.voidps.world.interact.entity.player.effect.freeze
 import world.gregs.voidps.world.interact.entity.player.toxin.poison
 import java.util.concurrent.TimeUnit
@@ -35,7 +35,7 @@ on<HitDamageModifier>({ target != null && type == "range" && target.hasClock("se
 }
 
 on<CombatAttack>({ char -> type == "range" && char.hasClock("dragons_breath") && !isFirey(char) }) { player: Player ->
-    hit(target, player, player.levels.get(Skill.Ranged) * 2, "dragonfire", weapon)
+    splat(target, player, player.levels.get(Skill.Ranged) * 2, "dragonfire", weapon)
 }
 
 on<HitDamageModifier>({ target != null && type == "range" && target.hasClock("blood_forfeit") }, Priority.LOW) { player: Player ->

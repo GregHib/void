@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.barrows
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -9,9 +8,7 @@ import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.getMaximumHit
-import world.gregs.voidps.world.interact.entity.combat.hit
-import world.gregs.voidps.world.interact.entity.combat.hitChance
+import world.gregs.voidps.world.interact.entity.combat.maximumHit
 import world.gregs.voidps.world.interact.entity.player.combat.CombatFormulaTest
 
 internal class DharoksSetEffectTest : CombatFormulaTest() {
@@ -24,7 +21,7 @@ internal class DharoksSetEffectTest : CombatFormulaTest() {
         player.equipment.clear(EquipSlot.Weapon.index)
         val target = createPlayer()
 
-        val maxHit = getMaximumHit(player, target, "melee", Item("dharoks_greataxe"))
+        val maxHit = maximumHit(player, target, "melee", Item("dharoks_greataxe"))
 
         assertEquals(112, maxHit)
     }
@@ -36,7 +33,7 @@ internal class DharoksSetEffectTest : CombatFormulaTest() {
         player.equipment.apply(dharoks())
         val target = createPlayer()
 
-        val maxHit = getMaximumHit(player, target, "magic", Item("dharoks_greataxe"))
+        val maxHit = maximumHit(player, target, "magic", Item("dharoks_greataxe"))
 
         assertEquals(0, maxHit)
     }
@@ -48,7 +45,7 @@ internal class DharoksSetEffectTest : CombatFormulaTest() {
         player.equipment.apply(dharoks())
         val target = createPlayer()
 
-        val maxHit = getMaximumHit(player, target, "melee", Item("dharoks_greataxe"))
+        val maxHit = maximumHit(player, target, "melee", Item("dharoks_greataxe"))
 
         assertEquals(287, maxHit)
     }
@@ -60,7 +57,7 @@ internal class DharoksSetEffectTest : CombatFormulaTest() {
         player.equipment.apply(dharoks())
         val target = createPlayer()
 
-        val maxHit = getMaximumHit(player, target, "melee", Item("dharoks_greataxe"))
+        val maxHit = maximumHit(player, target, "melee", Item("dharoks_greataxe"))
 
         assertEquals(565, maxHit)
     }

@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.damage
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
@@ -51,7 +51,7 @@ on<ItemOnPlayer>({ approach && id == "lunar_spellbook" && component == "energy_t
     player.setAnimation("lunar_cast")
     target.setGraphic(spell)
     player.experience.add(Skill.Magic, definition.experience)
-    player.hit(random.nextInt(95, 100))
+    player.damage(random.nextInt(95, 100))
     player.specialAttackEnergy = 0
     target.specialAttackEnergy = MAX_SPECIAL_ATTACK
     target.runEnergy = MAX_RUN_ENERGY

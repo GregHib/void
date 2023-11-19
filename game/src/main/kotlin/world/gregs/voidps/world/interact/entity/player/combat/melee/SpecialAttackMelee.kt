@@ -44,7 +44,7 @@ fun multiTargetHit(check: CombatAttack.() -> Boolean, remaining: (target: Charac
                     return@on
                 }
                 hit++
-                hit(player, char, random.nextInt(0..damage), type, weapon, spell, special = true)
+                splat(player, char, random.nextInt(0..damage), type, weapon, spell, special = true)
             }
         }
     }

@@ -84,6 +84,6 @@ fun explode(player: Player, chance: Double) {
         player.equipment.clear(EquipSlot.Weapon.index)
     }
     player.weapon = Item.EMPTY
-    player.hit(random.nextInt(10..160))
+    player.damage(random.nextInt(10..160))
     player.message("Your hand cannon explodes!")
 }

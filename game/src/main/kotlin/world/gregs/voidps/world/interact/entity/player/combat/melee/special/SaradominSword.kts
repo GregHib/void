@@ -26,7 +26,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isSaradominSword(it.weapon) })
     }
     player.setAnimation("saradomins_lightning")
     val weapon = player.weapon
-    val damage = hit(player, target, "melee", weapon)
+    val damage = rollHit(player, target, "melee", weapon)
     player.hit(target, damage = damage)
     if (damage > 0) {
         player.hit(target, type = "magic")

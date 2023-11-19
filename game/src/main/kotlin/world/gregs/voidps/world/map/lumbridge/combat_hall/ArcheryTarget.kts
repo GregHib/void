@@ -59,8 +59,8 @@ fun swing(player: Player, obj: GameObject, delay: Int) {
             player.face(obj)
             player.setAnimation("bow_shoot")
             player.setGraphic("training_arrows_shoot")
-            val maxHit = getMaximumHit(player, null, "range", weapon)
-            val hit = hit(player, null, "range", weapon)
+            val maxHit = maximumHit(player, null, "range", weapon)
+            val hit = rollHit(player, null, "range", weapon)
             val height = Interpolation.lerp(hit, -1..maxHit, 0..20)
             player.shoot(id = player.ammo, obj.tile, endHeight = height)
             if (hit != -1) {

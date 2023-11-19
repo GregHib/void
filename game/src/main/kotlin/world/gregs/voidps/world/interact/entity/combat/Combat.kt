@@ -29,7 +29,6 @@ import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
-import kotlin.random.nextInt
 
 val Character.height: Int
     get() = (this as? NPC)?.def?.getOrNull("height") ?: ShootProjectile.DEFAULT_HEIGHT
@@ -126,36 +125,36 @@ fun Character.hit(
     delay: Int = if (type == "melee") 0 else 2,
     spell: String = (this as? Player)?.spell ?: "",
     special: Boolean = (this as? Player)?.specialAttack ?: false,
-    damage: Int = hit(this, target, type, weapon, spell)
+    damage: Int = rollHit(this, target, type, weapon, spell)
 ): Int {
     val damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
     events.emit(CombatAttack(target, type, damage, weapon, spell, special, TICKS.toClientTicks(delay)))
     val delay = delay
     if (target is Player) {
         target.strongQueue("hit", delay) {
-            hit(this@hit, target, damage, type, weapon, spell, special)
+            splat(this@hit, target, damage, type, weapon, spell, special)
         }
     } else if (target is NPC) {
         target.strongQueue("hit", delay) {
-            hit(this@hit, target, damage, type, weapon, spell, special)
+            splat(this@hit, target, damage, type, weapon, spell, special)
         }
     }
     return damage
 }
 
-fun Character.hit(damage: Int, delay: Int = 0, type: String = "damage") {
+fun Character.damage(damage: Int, delay: Int = 0, type: String = "damage") {
     if (this is Player) {
         strongQueue("hit", delay) {
-            hit(source = this@hit, target = this@hit, damage, type)
+            splat(source = this@damage, target = this@damage, damage, type)
         }
     } else if (this is NPC) {
         strongQueue("hit", delay) {
-            hit(source = this@hit, target = this@hit, damage, type)
+            splat(source = this@damage, target = this@damage, damage, type)
         }
     }
 }
 
-fun hit(source: Character, target: Character, damage: Int, type: String = "damage", weapon: Item? = null, spell: String = "", special: Boolean = false) {
+fun splat(source: Character, target: Character, damage: Int, type: String = "damage", weapon: Item? = null, spell: String = "", special: Boolean = false) {
     if (source.dead) {
         return
     }
@@ -164,19 +163,34 @@ fun hit(source: Character, target: Character, damage: Int, type: String = "damag
 
 fun ammoRequired(item: Item) = !item.id.startsWith("crystal_bow") && item.id != "zaryte_bow" && !item.id.endsWith("sling") && !item.id.endsWith("chinchompa")
 
-fun getStrengthBonus(source: Character, type: String, weapon: Item?): Int {
+fun rollHit(source: Character, target: Character?, type: String, weapon: Item?, spell: String = "", special: Boolean = false): Int {
+    if (!successfulHit(source, target, type, weapon, special)) {
+        return -1
+    }
+    val strengthBonus = strengthBonus(source, type, weapon)
+    val baseMaxHit = baseHit(source, type, spell, strengthBonus)
+    val hit = random.nextInt(baseMaxHit.toInt() + 1)
+    return modifiers(source, target, type, strengthBonus, hit.toDouble(), weapon, spell, special)
+}
+
+fun maximumHit(source: Character, target: Character? = null, type: String, weapon: Item?, spell: String = "", special: Boolean = false): Int {
+    val strengthBonus = strengthBonus(source, type, weapon)
+    val baseMaxHit = baseHit(source, type, spell, strengthBonus)
+    return modifiers(source, target, type, strengthBonus, baseMaxHit, weapon, spell, special)
+}
+
+private fun strengthBonus(source: Character, type: String, weapon: Item?): Int {
     return if (type == "blaze") {
         weapon?.def?.getOrNull("blaze_str") ?: 0
     } else if (type == "range" && source is Player && weapon != null && (weapon.id == source.ammo || !ammoRequired(weapon))) {
         weapon.def["range_str", 0]
     } else {
         source[if (type == "range") "range_str" else "str", 0]
-    }
+    } + 64
 }
 
-fun getMaximumHit(source: Character, target: Character? = null, type: String, weapon: Item?, spell: String = "", special: Boolean = false): Int {
-    val strengthBonus = getStrengthBonus(source, type, weapon) + 64
-    val baseMaxHit = if (source is NPC) {
+private fun baseHit(source: Character, type: String, spell: String, strengthBonus: Int): Double {
+    return if (source is NPC) {
         source.def["max_hit_$type", 0].toDouble()
     } else {
         if (type == "magic") {
@@ -191,7 +205,18 @@ fun getMaximumHit(source: Character, target: Character? = null, type: String, we
             5.0 + (getEffectiveLevel(source, skill, accuracy = false) * strengthBonus) / 64
         }
     }
+}
 
+private fun modifiers(
+    source: Character,
+    target: Character?,
+    type: String,
+    strengthBonus: Int,
+    baseMaxHit: Double,
+    weapon: Item?,
+    spell: String,
+    special: Boolean
+): Int {
     val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit, weapon, spell, special)
     source.events.emit(modifier)
     source["max_hit"] = modifier.damage.toInt()
@@ -246,15 +271,6 @@ fun hitChance(source: Character, target: Character?, type: String, weapon: Item?
 
 fun successfulHit(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean): Boolean {
     return random.nextDouble() < hitChance(source, target, type, weapon, special)
-}
-
-fun hit(source: Character, target: Character?, type: String, weapon: Item?, spell: String = "", special: Boolean = false): Int {
-    return if (successfulHit(source, target, type, weapon, special)) {
-        val maxHit = getMaximumHit(source, target, type, weapon, spell, special)
-        random.nextInt(maxHit + 1)
-    } else {
-        -1
-    }
 }
 
 fun removeAmmo(player: Player, target: Character, ammo: String, required: Int) {

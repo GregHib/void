@@ -24,7 +24,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonClaws(it.weapon) }, Pr
 
     val weapon = player.weapon
     var (hit1, hit2, hit3, hit4) = intArrayOf(0, 0, 0, 0)
-    val maxHit = getMaximumHit(player, target, "melee", weapon)
+    val maxHit = maximumHit(player, target, "melee", weapon)
     if (successfulHit(player, target, "melee", weapon, special = true)) {
         hit1 = random.nextInt(maxHit / 2, maxHit - 10)
         hit2 = hit1 / 2

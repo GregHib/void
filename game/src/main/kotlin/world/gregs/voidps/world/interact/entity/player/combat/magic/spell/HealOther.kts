@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.damage
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
 
 val definitions: SpellDefinitions by inject()
@@ -41,5 +41,5 @@ on<ItemOnPlayer>({ approach && id == "lunar_spellbook" && component == "heal_oth
     player.experience.add(Skill.Magic, definition.experience)
     val restored = target.levels.restore(Skill.Constitution, amount)
     target.message("You have been healed by ${player.name}.")
-    player.hit(restored, delay = 2)
+    player.damage(restored, delay = 2)
 }
