@@ -21,12 +21,15 @@ on<CombatSwing>({ player -> !swung() && isCrossbow(player.weapon) }, Priority.LO
     val ammo = player.ammo
     player.setAnimation(if (player.weapon.id == "karils_crossbow") "karils_crossbow_shoot" else "crossbow_shoot")
     val bolt = if (ammo == "barbed_bolts" || ammo == "bone_bolts") ammo else "crossbow_bolt"
-    handleCrossbowEffects(player, ammo, target)
     player.shoot(id = bolt, target = target)
     val distance = player.tile.distanceTo(target)
     player.hit(target, delay = bowHitDelay(distance))
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
+}
+
+on<CombatAttack>({ type == "range" && damage > 0 && weapon != null && isCrossbow(weapon) }) { player: Player ->
+    handleCrossbowEffects(player, player.ammo, target)
 }
 
 fun handleCrossbowEffects(player: Player, ammo: String, target: Character) {
@@ -46,7 +49,9 @@ fun handleCrossbowEffects(player: Player, ammo: String, target: Character) {
 
 fun checkEffect(player: Player, target: Character, effect: String, chance: Double) {
     if (random.nextDouble() < chance) {
-        target.start(effect, 1)
+        val distance = player.tile.distanceTo(target)
+        val delay = bowHitDelay(distance)
+        target.start(effect, delay)
         target.setGraphic(effect)
         player.playSound(effect, delay = 40)
     }
