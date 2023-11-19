@@ -12,11 +12,11 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.protectMagic
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.math.sign
 
@@ -50,8 +50,6 @@ on<TimerStart>({ timer == "teleport_block" }) { player: Player ->
 on<TimerStart>({ timer == "teleport_block" && it.teleBlockImmune }, Priority.HIGH) { _: Player ->
     cancel()
 }
-
-fun Player.protectMagic() = praying("deflect_magic") || praying("protect_from_magic")
 
 on<TimerStart>({ timer == "teleport_block" && it.protectMagic() }, Priority.HIGH) { player: Player ->
     player.teleBlockCounter /= 2

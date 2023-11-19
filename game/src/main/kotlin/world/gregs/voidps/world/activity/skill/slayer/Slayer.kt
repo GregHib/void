@@ -6,8 +6,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 
 private fun isUndead(category: String) = category == "shade" || category == "zombie" || category == "skeleton" || category == "ghost" || category == "zogre" || category == "ankou"
 
-val NPC.undead: Boolean
-    get() = isUndead(race)
+val Character.undead: Boolean
+    get() = if (this is NPC) isUndead(race) else false
 
 val Player.hasSlayerTask: Boolean
     get() = this["slayer_task", false]

@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.event.Event
  * Emitted on swing, where [CombatHit] is after the attack delay
  * @param type the combat type, typically: melee, range or magic
  * @param damage the damage inflicted upon the [target]
+ * @param delay until hit in client ticks
  */
 data class CombatAttack(
     val target: Character,
