@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.CombatFormulaTest
@@ -50,16 +49,14 @@ internal class VeracsSetEffectTest : CombatFormulaTest() {
         player.equipment.apply(veracs())
         val target = createPlayer(Skill.Constitution to 990)
 
-        val chance = Hit.chance(player, target, "melee", Item("veracs_flail"), false)
-        player.hit(target, Item("veracs_flail"), "melee", damage = 0)
-        var maxHit = Damage.maximum(player, target, "melee", Item("veracs_flail"))
-        assertEquals(242, maxHit)
+        val type = "melee"
+        val weapon = Item("veracs_flail")
+        val chance = Hit.chance(player, target, type, weapon, false)
+        player.hit(target, weapon, type, damage = 0)
         tick()
 
-        maxHit = Damage.maximum(player, target, "melee", Item("veracs_flail"))
-        assertEquals(232, maxHit)
         assertEquals(1.0, chance)
-        assertNotEquals(980, target.levels.get(Skill.Constitution))
+        assertEquals(980, target.levels.get(Skill.Constitution))
     }
 
     private fun veracs(): Inventory.() -> Unit = {

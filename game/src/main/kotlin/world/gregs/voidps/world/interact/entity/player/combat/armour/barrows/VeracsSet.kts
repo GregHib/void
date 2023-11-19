@@ -38,6 +38,6 @@ on<HitChanceModifier>({ type == "melee" && it.contains("veracs_set_effect") && r
     target?.start("veracs_effect", 1)
 }
 
-on<HitDamageModifier>({ type == "melee" && it.contains("veracs_set_effect") && target?.hasClock("veracs_effect") == true }, Priority.LOW) { player: Player ->
+on<HitDamageModifier>({ type == "melee" && it.contains("veracs_set_effect") && target.hasClock("veracs_effect") }, Priority.LOW) { player: Player ->
     damage += 10
 }

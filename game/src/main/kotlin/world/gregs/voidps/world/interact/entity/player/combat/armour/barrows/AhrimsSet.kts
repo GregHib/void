@@ -32,7 +32,8 @@ fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
     "ahrims_robe_skirt")
 
 on<CombatAttack>({ type == "magic" && it.contains("ahrims_set_effect") && damage > 0 && random.nextInt(4) == 0 }) { _: Character ->
-    if (target.levels.drain(Skill.Strength, 5) < 0) {
+    val drain = target.levels.drain(Skill.Strength, 5)
+    if (drain < 0) {
         target.setGraphic("ahrims_effect")
     }
 }

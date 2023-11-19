@@ -19,29 +19,21 @@ object Damage {
         if (!Hit.success(source, target, type, weapon, special)) {
             return -1
         }
-        val strengthBonus = Weapon.strengthBonus(source, type, weapon)
-        val baseMaxHit = maximum(source, type, spell, strengthBonus)
-        return random.nextInt(baseMaxHit.toInt() + 1)
-    }
-
-    /**
-     * The absolute maximum damage [source] can do against [target]
-     */
-    fun maximum(source: Character, target: Character? = null, type: String, weapon: Item? = null, spell: String = "", special: Boolean = false): Int {
-        val strengthBonus = Weapon.strengthBonus(source, type, weapon)
-        return maximum(source, type, spell, strengthBonus).toInt()
+        val baseMaxHit = maximum(source, type, weapon, spell)
+        return random.nextInt(baseMaxHit + 1)
     }
 
     /**
      * Calculates the base maximum damage before modifications are applied
      */
-    private fun maximum(source: Character, type: String, spell: String, strengthBonus: Int): Double {
+    fun maximum(source: Character, type: String, weapon: Item? = null, spell: String = ""): Int {
+        val strengthBonus = Weapon.strengthBonus(source, type, weapon)
         if (source is NPC) {
-            return source.def["max_hit_$type", 0].toDouble()
+            return source.def["max_hit_$type", 0]
         }
         if (type == "magic") {
             val damage = get<SpellDefinitions>().get(spell).maxHit
-            return if (damage == -1) 0.0 else damage.toDouble()
+            return if (damage == -1) 0 else damage
         }
 
         val skill = when (type) {
@@ -49,14 +41,14 @@ object Damage {
             "blaze" -> Skill.Magic
             else -> Skill.Strength
         }
-        return 5.0 + (Hit.effectiveLevel(source, skill, accuracy = false) * strengthBonus) / 64
+        return 5 + (Hit.effectiveLevel(source, skill, accuracy = false) * strengthBonus) / 64
     }
 
     /**
-     * Applies modifiers to a [baseMaxHit]
+     * Applies modifiers to a [maximum]
      */
-    fun modify(source: Character, target: Character, type: String, strengthBonus: Int, baseMaxHit: Double, weapon: Item?, spell: String, special: Boolean): Int {
-        val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit, weapon, spell, special)
+    fun modify(source: Character, target: Character, type: String, strengthBonus: Int, baseMaxHit: Int, weapon: Item? = null, spell: String = "", special: Boolean = false): Int {
+        val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit.toDouble(), weapon, spell, special)
         source.events.emit(modifier)
         source["max_hit"] = modifier.damage.toInt()
         return modifier.damage.toInt()

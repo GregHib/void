@@ -21,10 +21,10 @@ internal class AhrimsSetEffectTest : CombatFormulaTest() {
         player.equipment.clear(EquipSlot.Weapon.index)
         val target = createPlayer(Skill.Strength to 99, Skill.Constitution to 990)
 
-        player.hit(target, Item("ahrims_staff"), "magic", damage = 10)
+        player.hit(target, Item("ahrims_staff"), "magic", damage = 100)
         tick(2)
 
-        assertEquals(980, target.levels.get(Skill.Constitution))
+        assertEquals(880, target.levels.get(Skill.Constitution))
         assertEquals(99, target.levels.get(Skill.Strength))
     }
 
@@ -34,10 +34,10 @@ internal class AhrimsSetEffectTest : CombatFormulaTest() {
         player.equipment.apply(ahrims())
         val target = createPlayer(Skill.Strength to 99, Skill.Constitution to 990)
 
-        player.hit(target, Item("ahrims_staff"), "melee", damage = 10)
+        player.hit(target, Item("ahrims_staff"), "melee", damage = 100)
         tick(2)
 
-        assertEquals(980, target.levels.get(Skill.Constitution))
+        assertEquals(890, target.levels.get(Skill.Constitution))
         assertEquals(99, target.levels.get(Skill.Strength))
     }
 
@@ -47,10 +47,10 @@ internal class AhrimsSetEffectTest : CombatFormulaTest() {
         player.equipment.apply(ahrims())
         val target = createPlayer(Skill.Strength to 99, Skill.Constitution to 990)
 
-        player.hit(target, Item("ahrims_staff"), "magic", damage = 10)
+        player.hit(target, Item("ahrims_staff"), "magic", damage = 100)
         tick(2)
 
-        assertNotEquals(990, target.levels.get(Skill.Constitution))
+        assertEquals(880, target.levels.get(Skill.Constitution))
         assertEquals(94, target.levels.get(Skill.Strength))
     }
 

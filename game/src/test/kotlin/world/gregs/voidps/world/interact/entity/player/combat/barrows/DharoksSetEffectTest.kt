@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.world.interact.entity.combat.Weapon
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.player.combat.CombatFormulaTest
 
@@ -21,7 +22,8 @@ internal class DharoksSetEffectTest : CombatFormulaTest() {
         player.equipment.clear(EquipSlot.Weapon.index)
         val target = createPlayer()
 
-        val maxHit = Damage.maximum(player, target, "melee", Item("dharoks_greataxe"))
+        val weapon = Item("dharoks_greataxe")
+        val (_, _, maxHit, _) = calculate(player, target, "melee", weapon)
 
         assertEquals(112, maxHit)
     }
@@ -33,7 +35,8 @@ internal class DharoksSetEffectTest : CombatFormulaTest() {
         player.equipment.apply(dharoks())
         val target = createPlayer()
 
-        val maxHit = Damage.maximum(player, target, "magic", Item("dharoks_greataxe"))
+        val weapon = Item("dharoks_greataxe")
+        val (_, _, maxHit, _) = calculate(player, target, "magic", weapon)
 
         assertEquals(0, maxHit)
     }
@@ -45,7 +48,8 @@ internal class DharoksSetEffectTest : CombatFormulaTest() {
         player.equipment.apply(dharoks())
         val target = createPlayer()
 
-        val maxHit = Damage.maximum(player, target, "melee", Item("dharoks_greataxe"))
+        val weapon = Item("dharoks_greataxe")
+        val (_, _, maxHit, _) = calculate(player, target, "melee", weapon)
 
         assertEquals(287, maxHit)
     }
@@ -57,7 +61,8 @@ internal class DharoksSetEffectTest : CombatFormulaTest() {
         player.equipment.apply(dharoks())
         val target = createPlayer()
 
-        val maxHit = Damage.maximum(player, target, "melee", Item("dharoks_greataxe"))
+        val weapon = Item("dharoks_greataxe")
+        val (_, _, maxHit, _) = calculate(player, target, "melee", weapon)
 
         assertEquals(565, maxHit)
     }

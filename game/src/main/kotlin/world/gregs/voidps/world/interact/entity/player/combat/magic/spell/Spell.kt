@@ -20,12 +20,11 @@ import kotlin.math.absoluteValue
 
 object Spell {
     private val definitions: InterfaceDefinitions by inject()
-    private val spellDefinitions: SpellDefinitions by inject()
 
     fun isMultiTarget(spell: String) = spell.endsWith("_burst") || spell.endsWith("_barrage")
 
     fun canDrain(target: Character, spell: String): Boolean {
-        val def = spellDefinitions.get(spell)
+        val def = get<SpellDefinitions>().get(spell)
         val skill = Skill.valueOf(def["drain_skill"])
         val multiplier: Double = def["drain_multiplier"]
         val maxDrain = multiplier * target.levels.getMax(skill)
@@ -33,7 +32,7 @@ object Spell {
     }
 
     fun drain(source: Character, target: Character, spell: String) {
-        val def = spellDefinitions.get(spell)
+        val def = get<SpellDefinitions>().get(spell)
         val multiplier: Double = def["drain_multiplier"]
         val skill = Skill.valueOf(def["drain_skill"])
         val drained = target.levels.drain(skill, multiplier = multiplier, stack = target is Player)

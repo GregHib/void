@@ -24722,6 +24722,7 @@ dharoks_helm:
   crush_def: 44.0
   range_def: 51.0
   summoning_def: 15.0
+  aka: [ dh_helm ]
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -24738,6 +24739,7 @@ dharoks_greataxe:
   crush: 95.0
   magic: -4.0
   range_def: -1.0
+  aka: [ dhaxe, dhgaxe, dh_axe, dh_gaxe, dh_g_axe, dharocks_greataxe, dharoks_great_axe ]
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Dharok the Wretched's Greataxe."
@@ -24759,6 +24761,7 @@ dharoks_platebody:
   magic_def: -6.0
   range_def: 132.0
   summoning_def: 60.0
+  aka: [ dh_body, dh_plate, dh_platebody, dh_plate_body, dharoks_plate_body ]
   slot: "Chest"
   material: "metal"
   examine: "Dharok the Wretched's platebody armour."
@@ -24778,6 +24781,7 @@ dharoks_platelegs:
   magic_def: -4.0
   range_def: 92.0
   summoning_def: 30.0
+  aka: [ dh_legs, dh_platelegs, dh_plate_legs, dharoks_plate_legs ]
   slot: "Legs"
   material: "metal"
   examine: "Dharok the wretched's plate leg armour."
