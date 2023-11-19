@@ -61,7 +61,7 @@ on<CombatHit>({ target -> source is Player && special && isThrowingAxe(weapon) &
             }
             chain.add(character.index)
             target.shoot(id = "rune_throwing_axe_special", target = character)
-            player.hit(character, weapon, type, special = true, delay = 1)
+            player.hit(character, weapon!!, type, special = true, delay = 1)
             return@on
         }
     }

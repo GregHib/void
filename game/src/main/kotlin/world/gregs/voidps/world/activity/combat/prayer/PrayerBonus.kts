@@ -97,7 +97,7 @@ on<CombatAttack>({ !blocked && target is Player && usingDeflectPrayer(it, target
         target.setAnimation("deflect", delay)
         target.setGraphic("deflect_${if (type == "melee") "attack" else type}", delay)
         if (random.nextDouble() >= 0.4) {
-            target.hit(character, null, "deflect", delay, "", false, damage = (damage * 0.10).toInt())
+            target.hit(target = character, type = "deflect", delay = delay, damage = (damage * 0.10).toInt())
         }
         blocked = true
     }

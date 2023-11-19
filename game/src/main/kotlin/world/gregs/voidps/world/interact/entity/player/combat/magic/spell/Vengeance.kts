@@ -41,6 +41,6 @@ on<InterfaceOption>({ id == "lunar_spellbook" && component == "vengeance" && opt
 
 on<CombatHit>({ target -> target.contains("vengeance") && type != "damage" && damage >= 4 }) { player: Player ->
     player.forceChat = "Taste vengeance!"
-    player.hit(source, null, "damage", 0, "", false, damage = (damage * 0.75).toInt())
+    player.hit(target = source, type = "damage", delay = 0, damage = (damage * 0.75).toInt())
     player.stop("vengeance")
 }

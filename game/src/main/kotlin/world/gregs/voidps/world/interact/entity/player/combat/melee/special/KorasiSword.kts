@@ -84,7 +84,7 @@ on<CombatHit>({ target -> special && isKorasisSword(weapon) && target.inMultiCom
                 3 -> 4
                 else -> return@on
             }
-            source.hit(character, damage = hit, weapon = weapon, type = type, special = true)
+            source.hit(character, damage = hit, weapon = weapon!!, type = type, special = true)
             return@on
         }
     }

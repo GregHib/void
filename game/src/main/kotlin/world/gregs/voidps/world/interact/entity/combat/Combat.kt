@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.item.weaponStyle
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
@@ -29,9 +28,6 @@ import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
-
-val Character.height: Int
-    get() = (this as? NPC)?.def?.getOrNull("height") ?: ShootProjectile.DEFAULT_HEIGHT
 
 fun canAttack(source: Character, target: Character): Boolean {
     if (target is NPC) {
@@ -57,7 +53,7 @@ fun canAttack(source: Character, target: Character): Boolean {
             source.message("That player is not in the wilderness.")
             return false
         }
-        val range = getCombatRange(source)
+        val range = combatRange(source)
         if (target.combatLevel !in range) {
             source.message("Your level difference is too great!")
             source.message("You need to move deeper into the Wilderness.")
@@ -80,7 +76,7 @@ fun canAttack(source: Character, target: Character): Boolean {
     return true
 }
 
-private fun getCombatRange(player: Player): IntRange {
+private fun combatRange(player: Player): IntRange {
     var diff = 0
     if (player.tile.x in 3008..3135 && player.tile.y in 9920..10367) {
         diff = (player.tile.y - 9920) / 8 + 1
@@ -98,32 +94,15 @@ private fun getCombatRange(player: Player): IntRange {
     return min..max
 }
 
-val Character.fightStyle: String
-    get() = getWeaponType(this, (this as? Player)?.weapon)
-
-fun getWeaponType(source: Character, weapon: Item?): String {
-    if (source.spell.isNotBlank()) {
-        return "magic"
-    }
-    return when (weapon?.def?.weaponStyle()) {
-        13, 16, 17, 18, 19 -> "range"
-        20 -> if (source.attackType == "aim_and_fire") "range" else "melee"
-        21 -> when (source.attackType) {
-            "flare" -> "range"
-            "blaze" -> "blaze"
-            else -> "melee"
-        }
-
-        else -> "melee"
-    }
-}
+val Character.height: Int
+    get() = (this as? NPC)?.def?.getOrNull("height") ?: ShootProjectile.DEFAULT_HEIGHT
 
 fun Character.hit(
     target: Character,
-    weapon: Item? = (this as? Player)?.weapon,
-    type: String = getWeaponType(this, weapon),
+    weapon: Item = this.weapon,
+    type: String = Weapon.type(this, weapon),
     delay: Int = if (type == "melee") 0 else 2,
-    spell: String = (this as? Player)?.spell ?: "",
+    spell: String = this.spell,
     special: Boolean = (this as? Player)?.specialAttack ?: false,
     damage: Int = rollHit(this, target, type, weapon, spell)
 ): Int {
@@ -344,10 +323,6 @@ val Character.combatStyle: String
 var Character.spell: String
     get() = get("spell", get("autocast_spell", ""))
     set(value) = set("spell", value)
-
-var Character.weapon: Item
-    get() = get("weapon", Item.EMPTY)
-    set(value) = set("weapon", value)
 
 var Player.ammo: String
     get() = get("ammo", "")
