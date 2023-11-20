@@ -11,40 +11,19 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.attackType
+import world.gregs.voidps.world.interact.entity.combat.fightStyle
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
-import world.gregs.voidps.world.interact.entity.combat.hit.HitChanceModifier
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.melee.multiTargetHit
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
-import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 fun isChinchompa(item: Item) = item.id.endsWith("chinchompa")
-
-on<HitChanceModifier>({ player -> player != target && type == "range" && isChinchompa(weapon) }, Priority.HIGHEST) { player: Player ->
-    val distance = player.tile.distanceTo(target)
-    chance = when (player.attackType) {
-        "short_fuse" -> when {
-            distance <= 3 -> 1.0
-            distance <= 6 -> 0.75
-            else -> 0.5
-        }
-        "medium_fuse" -> when {
-            distance <= 3 -> 0.75
-            distance <= 6 -> 1.0
-            else -> 0.75
-        }
-        "long_fuse" -> when {
-            distance <= 3 -> 0.5
-            distance <= 6 -> 0.75
-            else -> 1.0
-        }
-        else -> 0.0
-    }
-}
 
 on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && isChinchompa(player.weapon) }, Priority.HIGH) { player: Player ->
     val required = player["required_ammo", 1]

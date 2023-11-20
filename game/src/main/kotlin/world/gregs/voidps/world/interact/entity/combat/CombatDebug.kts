@@ -18,9 +18,6 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
-import world.gregs.voidps.world.interact.entity.combat.hit.HitChanceModifier
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 val npcDefinitions: NPCDefinitions by inject()
 val eventHandler: EventHandlerStore by inject()
@@ -59,14 +56,6 @@ val Character.charName: String
 on<CombatSwing>({ it["debug", false] || target["debug", false] }, Priority.HIGHEST) { character: Character ->
     val player = if (character["debug", false] && character is Player) character else target as Player
     player.message("---- Swing (${character.charName}) -> (${target.charName}) -----")
-}
-
-on<HitChanceModifier>({ debug(it, target) }, Priority.LOWEST) { character: Character ->
-    val player = if (character["debug", false] && character is Player) character else target as Player
-    val message =
-        "Hit chance: $chance ($type, ${if (type == "magic") character.spell else if (weapon.isEmpty()) "unarmed" else weapon.id}${if (character is Player && character.specialAttack) ", special" else ""})"
-    player.message(message)
-    logger.debug { message }
 }
 
 on<CombatHit>({ debug(source, it) }, Priority.LOWEST) { character: Character ->

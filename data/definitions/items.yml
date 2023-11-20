@@ -105965,6 +105965,7 @@ korasis_sword:
   slash: 70.0
   crush: -2.0
   slash_def: 1.0
+  aka: [ korasi, korasi_sword ]
   slot: "Weapon"
   material: "metal"
   examine: "The sword of a Void Knight."

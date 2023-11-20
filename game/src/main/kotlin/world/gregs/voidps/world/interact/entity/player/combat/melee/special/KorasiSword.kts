@@ -16,10 +16,12 @@ import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.Target
-import world.gregs.voidps.world.interact.entity.combat.hit.*
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.hit.Damage
+import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
-import world.gregs.voidps.world.interact.entity.combat.attackType
 
 fun isKorasisSword(item: Item) = item.id == "korasis_sword"
 
@@ -44,10 +46,6 @@ on<CombatAttack>({ !blocked && target is Player && isKorasisSword(target.weapon)
 val players: Players by inject()
 val npcs: NPCs by inject()
 val lineOfSight: LineValidator by inject()
-
-on<HitChanceModifier>({ type == "magic" && special && isKorasisSword(weapon) }, Priority.HIGHEST) { _: Player ->
-    chance = 1.0
-}
 
 on<CombatSwing>({ !swung() && it.specialAttack && isKorasisSword(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, 600)) {
