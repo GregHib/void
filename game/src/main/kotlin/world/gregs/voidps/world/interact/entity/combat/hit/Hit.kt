@@ -13,6 +13,7 @@ import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.Prayer
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import kotlin.math.floor
 
@@ -55,13 +56,36 @@ object Hit {
         }
         val level = effectiveLevel(if (offense) source else target, skill, type, offense)
         val equipmentBonus = Equipment.bonus(source, target, type, offense)
-        val rating = level * (equipmentBonus + 64)
-        val modifier = HitRatingModifier(target, type, offense, rating, weapon, special)
-        source.events.emit(modifier)
-        return modifier.rating
+        var rating = level * (equipmentBonus + 64)
+
+        if (offense && source is Player) {
+            rating = (rating * Bonus.slayer(source, target, type, false)).toInt()
+        }
+        if (offense && type == "melee" && special) {
+            rating = (rating * weapon.def["special_accuracy_mod", 1.0]).toInt()
+        }
+        if (offense && type == "melee" && special && weapon.id == "dragon_halberd" && source["second_hit", false]) {
+            rating = (rating * 0.75).toInt()
+        }
+        if (!offense && source.praying("turmoil")) {
+            if (!source["turmoil", false]) {
+                source.toggle("turmoil")
+            }
+            source["turmoil_attack_bonus"] = floor(target.levels.get(Skill.Attack).coerceAtMost(99) * 0.15).toInt()
+            source["turmoil_strength_bonus"] = floor(target.levels.get(Skill.Strength).coerceAtMost(99) * 0.10).toInt()
+            source["turmoil_defence_bonus"] = floor(target.levels.get(Skill.Defence).coerceAtMost(99) * 0.15).toInt()
+        } else if (!offense && !source.praying("turmoil") && source["turmoil", false]) {
+            source.toggle("turmoil")
+        }
+        if (source["debug", false]) {
+            val message = "${if (offense) "Offensive" else "Defensive"} rating: $rating ($type)"
+            source.message(message)
+            logger.debug { message }
+        }
+        return rating
     }
 
-    fun effectiveLevel(character: Character, skill: Skill, type: String, accuracy: Boolean): Int {
+    private fun effectiveLevel(character: Character, skill: Skill, type: String, accuracy: Boolean): Int {
         var level = character.levels.get(skill)
         if (!accuracy && type == "magic" && character is Player) {
             level = (level * 0.3 + floor(character.levels.get(Skill.Magic) * 0.7)).toInt()
