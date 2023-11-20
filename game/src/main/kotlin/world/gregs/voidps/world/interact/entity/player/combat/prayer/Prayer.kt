@@ -17,6 +17,20 @@ object Prayer {
         return (player.variables as PlayerVariables).temp.any { (key, value) -> key.startsWith("prayer_") && value == true }
     }
 
+
+    fun setTurmoilTarget(source: Character, target: Character) {
+        if (source.praying("turmoil")) {
+            if (!source["turmoil", false]) {
+                source.toggle("turmoil")
+            }
+            source["turmoil_attack_bonus"] = (target.levels.get(Skill.Attack).coerceAtMost(99) * 0.15).toInt()
+            source["turmoil_strength_bonus"] = (target.levels.get(Skill.Strength).coerceAtMost(99) * 0.10).toInt()
+            source["turmoil_defence_bonus"] = (target.levels.get(Skill.Defence).coerceAtMost(99) * 0.15).toInt()
+        } else if (!source.praying("turmoil") && source["turmoil", false]) {
+            source.toggle("turmoil")
+        }
+    }
+
     fun effectiveLevelModifier(character: Character, skill: Skill, accuracy: Boolean, level: Int): Int {
         val multiplier = when (character) {
             is NPC -> 1.0 - ((character.getBaseDrain(skill) + character.getDrain(skill)) / 100.0)

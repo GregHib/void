@@ -97,7 +97,7 @@ object Damage {
 
         damage = Spell.damageModifiers(source, type, weapon, damage)
 
-        damage = Bonus.slayerDamageModifiers(source, target, type, damage)
+        damage = Bonus.slayerModifier(source, target, type, damage, damage = true)
 
         damage = Weapon.weaponDamageModifiers(source, target, type, weapon, special, damage)
 

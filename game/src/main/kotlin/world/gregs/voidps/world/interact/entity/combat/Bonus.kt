@@ -23,31 +23,27 @@ object Bonus {
         }
     }
 
-    fun slayerDamageModifiers(source: Character, target: Character, type: String, damage: Int): Int {
+    fun slayerModifier(source: Character, target: Character, type: String, value: Int, damage: Boolean): Int {
         if (source !is Player) {
-            return damage
+            return value
         }
-        return (damage * slayer(source, target, type, damage = true)).toInt()
-    }
-
-    fun slayer(player: Player, target: Character, type: String, damage: Boolean): Double {
         if (type == "melee" && target is NPC && target.undead) {
-            when (player.equipped(EquipSlot.Amulet).id) {
-                "salve_amulet_e" -> return 1.2
-                "salve_amulet" -> return 7.0 / 6.0
+            when (source.equipped(EquipSlot.Amulet).id) {
+                "salve_amulet_e" -> return (value * 1.2).toInt()
+                "salve_amulet" -> return (value * (7.0 / 6.0)).toInt()
             }
         }
-        if (!player.hasSlayerTask || !player.isTask(target)) {
-            return 1.0
+        if (!source.hasSlayerTask || !source.isTask(target)) {
+            return value
         }
-        val helm = player.equipped(EquipSlot.Hat).id
+        val helm = source.equipped(EquipSlot.Hat).id
         if (type == "melee" && (helm.startsWith("black_mask") || helm.startsWith("slayer_helmet"))) {
-            return 7.0 / 6.0
+            return (value * (7.0 / 6.0)).toInt()
         } else if (type == "range" && (helm == "focus_sight" || helm.startsWith("full_slayer_helmet"))) {
-            return 1.15
+            return (value * 1.15).toInt()
         } else if (damage && type == "magic" && (helm == "hexcrest" || helm.startsWith("full_slayer_helmet"))) {
-            return 1.15
+            return (value * 1.15).toInt()
         }
-        return 1.0
+        return value
     }
 }
