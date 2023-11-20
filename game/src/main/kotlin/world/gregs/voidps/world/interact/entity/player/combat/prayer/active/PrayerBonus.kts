@@ -1,19 +1,17 @@
 package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
 
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
-import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.*
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.Prayer
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerStart
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerStop
 
 fun set(name: String, bonus: String, value: Int) {
     on<PrayerStart>({ this.prayer == name }) { player: Player ->
@@ -63,31 +61,7 @@ set("turmoil", "attack_bonus", 15)
 set("turmoil", "strength_bonus", 23)
 set("turmoil", "defence_bonus", 15)
 
-fun usingProtectionPrayer(source: Character, target: Character, type: String): Boolean {
-    return type == "melee" && target.protectMelee() ||
-            type == "range" && target.protectRange() ||
-            type == "magic" && target.protectMagic() ||
-            source.isFamiliar && target.protectSummoning()
-}
-
-fun usingDeflectPrayer(source: Character, target: Character, type: String): Boolean {
-    return (type == "melee" && target.praying("deflect_melee")) ||
-            (type == "range" && target.praying("deflect_missiles")) ||
-            (type == "magic" && target.praying("deflect_magic")) ||
-            source.isFamiliar && (target.praying("deflect_summoning"))
-}
-
-fun hitThroughProtectionPrayer(source: Character, target: Character?, type: String, weapon: Item, special: Boolean): Boolean {
-    if (target == null) {
-        return false
-    }
-    if (special && weapon.id == "ancient_mace" && type == "melee") {
-        return target.protectMelee()
-    }
-    return false
-}
-
-on<CombatAttack>({ !blocked && target is Player && usingDeflectPrayer(it, target, type) }, Priority.MEDIUM) { character: Character ->
+on<CombatAttack>({ !blocked && target is Player && Prayer.usingDeflectPrayer(it, target, type) }, Priority.MEDIUM) { character: Character ->
     val damage = target["protected_damage", 0]
     if (damage > 0) {
         target.setAnimation("deflect", delay)
@@ -97,18 +71,4 @@ on<CombatAttack>({ !blocked && target is Player && usingDeflectPrayer(it, target
         }
         blocked = true
     }
-}
-
-on<HitDamageModifier>(priority = Priority.HIGH) { _: Character ->
-    target.clear("protected_damage")
-}
-
-on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) && !hitThroughProtectionPrayer(it, target, type, weapon, special) }, priority = Priority.MEDIUM) { _: Player ->
-    target["protected_damage"] = damage
-    damage = (damage * if (target is Player) 0.6 else 0.0).toInt()
-}
-
-on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) }, priority = Priority.MEDIUM) { _: NPC ->
-    target["protected_damage"] = damage
-    damage = 0
 }

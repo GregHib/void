@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.modern
 
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
@@ -9,7 +8,6 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
-import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -23,8 +21,4 @@ on<CombatSwing>({ player -> !swung() && isMagicDart(player.spell) }, Priority.LO
     val distance = player.tile.distanceTo(target)
     player.hit(target, delay = Hit.magicDelay(distance))
     delay = 5
-}
-
-on<HitDamageModifier>({ isMagicDart(spell) }, Priority.LOWER) { player: Player ->
-    damage = player.levels.get(Skill.Magic) + 100
 }

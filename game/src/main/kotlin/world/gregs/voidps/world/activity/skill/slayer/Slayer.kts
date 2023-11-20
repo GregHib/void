@@ -7,16 +7,10 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.hit.HitRatingModifier
-import kotlin.math.floor
 
 on<HitRatingModifier>({ offense }, priority = Priority.HIGH) { player: Player ->
     rating = (rating * getSlayerMultiplier(player, target, type, false)).toInt()
-}
-
-on<HitDamageModifier>(priority = Priority.HIGHER) { player: Player ->
-    damage = (damage * getSlayerMultiplier(player, target, type, true)).toInt()
 }
 
 fun getSlayerMultiplier(player: Player, target: Character, type: String, damage: Boolean): Double {

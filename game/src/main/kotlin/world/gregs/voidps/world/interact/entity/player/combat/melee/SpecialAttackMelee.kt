@@ -11,18 +11,13 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
-import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.hit.HitRatingModifier
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
-import kotlin.math.floor
+import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import kotlin.random.nextInt
 
 fun specialDamageMultiplier(multiplier: Double, check: (Item) -> Boolean) {
-    on<HitDamageModifier>({ type == "melee" && special && check(weapon) }, Priority.HIGH) { _: Player ->
-        damage = (damage * multiplier).toInt()
-    }
 }
 
 fun specialAccuracyMultiplier(multiplier: Double, check: (Item) -> Boolean) {

@@ -8,25 +8,20 @@ import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.attackType
+import world.gregs.voidps.world.interact.entity.combat.fightStyle
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
-import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
+import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
-import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
-import kotlin.math.floor
 
 fun isDarkBow(weapon: Item) = weapon.id.startsWith("dark_bow")
-
-on<HitDamageModifier>({ type == "range" && special && isDarkBow(weapon) }, Priority.HIGH) { player: Player ->
-    val dragon = player.ammo == "dragon_arrow"
-    damage = (damage * if (dragon) 1.5 else 1.3).toInt().coerceAtLeast(if (dragon) 80 else 50)
-}
 
 on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.specialAttack && isDarkBow(player.weapon) }, Priority.HIGHISH) { player: Player ->
     val dragon = player.ammo == "dragon_arrow"

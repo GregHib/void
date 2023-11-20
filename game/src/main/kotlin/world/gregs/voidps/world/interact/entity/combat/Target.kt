@@ -4,14 +4,13 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.world.activity.skill.slayer.race
 
 object Target {
     fun attackable(source: Character, target: Character): Boolean {
@@ -60,6 +59,12 @@ object Target {
         // PVP area, slayer requirements, in combat etc..
         return true
     }
+
+    fun isDemon(target: Character) = target is NPC && target.race == "demon"
+
+    fun isShade(target: Character): Boolean = target is NPC && target.race == "shade"
+
+    fun isKalphite(target: Character): Boolean = target is NPC && target.race == "kalphite"
 }
 
 internal var Character.target: Character?
