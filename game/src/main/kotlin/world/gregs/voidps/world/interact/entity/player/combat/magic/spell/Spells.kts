@@ -9,15 +9,14 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
-import world.gregs.voidps.world.interact.entity.combat.hit.HitEffectiveLevelOverride
+import world.gregs.voidps.world.interact.entity.combat.hit.HitEffectiveLevelModifier
 import world.gregs.voidps.world.interact.entity.player.combat.melee.multiTargetHit
 import kotlin.math.floor
 import kotlin.math.round
 
-on<HitEffectiveLevelOverride>({ defence && type == "magic" && target is Player }, priority = Priority.LOW) { _: Character ->
-    target as Player
+on<HitEffectiveLevelModifier>({ !accuracy && skill == Skill.Magic }, priority = Priority.LOW) { target: Player ->
     val level = floor(target.levels.get(Skill.Magic) * 0.7)
-    this.level = (floor(this.level * 0.3) + level).toInt()
+    this.level = floor(this.level * 0.3) + level
 }
 
 on<HitDamageModifier>({ type == "magic" && weapon.def["magic_damage", 0] > 0 }, priority = Priority.HIGHER) { _: Character ->

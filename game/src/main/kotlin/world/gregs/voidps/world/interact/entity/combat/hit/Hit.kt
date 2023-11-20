@@ -46,10 +46,7 @@ object Hit {
             type == "magic" || type == "blaze" -> Skill.Magic
             else -> Skill.Attack
         }
-        var level = effectiveLevel(if (offense) source else target, skill, offense)
-        val override = HitEffectiveLevelOverride(target, type, !offense, level)
-        source.events.emit(override)
-        level = override.level
+        val level = effectiveLevel(if (offense) source else target, skill, offense)
         val equipmentBonus = Equipment.bonus(source, target, type, offense)
         val rating = level * (equipmentBonus + 64.0)
         val modifier = HitRatingModifier(target, type, offense, rating, weapon, special)

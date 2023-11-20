@@ -66,13 +66,6 @@ on<HitEffectiveLevelModifier>({ player -> player["debug", false] }, Priority.LOW
     logger.debug { message }
 }
 
-on<HitEffectiveLevelOverride>({ debug(it, target) }, Priority.LOWEST) { character: Character ->
-    val player = if (character["debug", false] && character is Player) character else target as Player
-    val message = "${if (defence) "Defender" else "Attacker"} effective level: $level ($type)"
-    player.message(message)
-    logger.debug { message }
-}
-
 on<HitRatingModifier>({ debug(it, target) }, Priority.LOWEST) { character: Character ->
     val player = if (character["debug", false] && character is Player) character else target as Player
     val message = "${if (offense) "Offensive" else "Defensive"} rating: $rating ($type)"
