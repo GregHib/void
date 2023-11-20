@@ -2,6 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -14,9 +15,11 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.world.interact.entity.combat.Equipment
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spellRequiredItems
 import kotlin.math.absoluteValue
+import kotlin.math.roundToInt
 
 object Spell {
     private val definitions: InterfaceDefinitions by inject()
@@ -41,6 +44,27 @@ object Spell {
         } else {
             target.message("You feel slightly weakened.", ChatType.Filter)
         }
+    }
+
+    /**
+     * Applies modifications to spells damage
+     */
+    fun damageModifiers(source: Character, type: String, weapon: Item, baseDamage: Int): Int {
+        if (type != "magic") {
+            return baseDamage
+        }
+        var damage = baseDamage
+        val magicDamage = weapon.def["magic_damage", 0]
+        if (magicDamage > 0 || Equipment.hasEliteVoidEffect(source)) {
+            val equipmentDamage = magicDamage / 100.0
+            val eliteVoidDamage = if (Equipment.hasEliteVoidEffect(source)) 0.025 else 0.0
+            val damageMultiplier = 1.0 + equipmentDamage + eliteVoidDamage
+            damage = (damage * damageMultiplier).roundToInt()
+        }
+        if (source.hasClock("charge") && source is Player && Equipment.wearingMatchingArenaGear(source)) {
+            damage += 100
+        }
+        return damage
     }
 
     fun removeRequirements(player: Player, spell: String): Boolean {

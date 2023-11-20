@@ -4,12 +4,16 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.weaponStyle
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.Prayer
 import world.gregs.voidps.world.interact.entity.player.combat.range.Ammo
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
+import kotlin.random.nextInt
 
 object Weapon {
 
@@ -43,6 +47,67 @@ object Weapon {
         type == "range" && source is Player && weapon != null && (weapon.id == source.ammo || !Ammo.required(weapon)) -> weapon.def["range_str", 0]
         else -> source[if (type == "range") "range_str" else "str", 0]
     } + 64
+
+    fun specialDamageModifiers(weapon: Item, special: Boolean, baseDamage: Int): Int {
+        if (!special) {
+            return baseDamage
+        }
+        var damage = baseDamage
+        val modifier1 = weapon.def["special_damage_mod_1", 0.0]
+        if (modifier1 > 0) {
+            damage = (damage * modifier1).toInt()
+        }
+        val modifier2 = weapon.def["special_damage_mod_2", 0.0]
+        if (modifier2 > 0) {
+            damage = (damage * modifier2).toInt()
+        }
+        return damage
+    }
+
+    fun weaponDamageModifiers(
+        source: Character,
+        target: Character,
+        type: String,
+        weapon: Item,
+        special: Boolean,
+        baseDamage: Int
+    ): Int {
+        var damage = baseDamage
+        if (type == "melee" && source is Player) {
+            if (weapon.id == "keris" && Target.isKalphite(target)) {
+                damage = (damage * (1.0 / 3.0) + if (random.nextDouble() < 0.51) 3.0 else 1.0).toInt()
+            } else if (weapon.id.startsWith("ivandis_flail") && Target.isVampyre(target)) {
+                damage = (damage * 1.2).toInt()
+            } else if (Equipment.isTzhaarWeapon(weapon.id) && source.equipped(EquipSlot.Amulet).id == "berserker_necklace") {
+                damage = (damage * 1.2).toInt()
+            } else if (isDemonbane(weapon) && Target.isDemon(target)) {
+                damage = (damage * 1.6).toInt()
+            } else if (weapon.id == "gadderhammer" && Target.isShade(target)) {
+                damage = (damage * if (random.nextDouble() < 0.05) 2.0 else 1.25).toInt()
+            } else if (weapon.id.startsWith("dragon_claws") && special) {
+                damage -= 10
+            }
+        } else if (type == "range" && source is Player) {
+            damage = Ammo.enchantedBoltEffects(source, target, type, weapon, baseDamage)
+            if (weapon.id == "zaniks_crossbow" && special) {
+                if (target is NPC) {
+                    damage += random.nextInt(30..150)
+                } else if (target is Player && (Prayer.hasActive(target) || Equipment.hasGodArmour(target))) {
+                    damage += random.nextInt(0..150)
+                }
+            } else if (weapon.id.startsWith("dark_bow") && special) {
+                val dragon = source.ammo == "dragon_arrow"
+                damage = (damage * if (dragon) 1.5 else 1.3).toInt().coerceAtLeast(if (dragon) 80 else 50)
+            } else if (isOutlier(special, weapon.id)) {
+                val strengthBonus = strengthBonus(source, type, weapon)
+                damage = (0.5 + (source.levels.get(Skill.Ranged) + 10) * strengthBonus / 64).toInt()
+                if (weapon.id == "rune_thrownaxe" || (weapon.id == "magic_shortbow" && target is Player)) {
+                    damage += 1
+                }
+            }
+        }
+        return damage
+    }
 }
 
 val Character.fightStyle: String

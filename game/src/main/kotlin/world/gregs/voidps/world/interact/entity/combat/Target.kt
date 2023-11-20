@@ -9,7 +9,10 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.skill.slayer.race
 
 object Target {
@@ -62,9 +65,42 @@ object Target {
 
     fun isDemon(target: Character) = target is NPC && target.race == "demon"
 
+    fun isVampyre(target: Character) = target is NPC && target.race == "vampyre"
+
     fun isShade(target: Character): Boolean = target is NPC && target.race == "shade"
 
     fun isKalphite(target: Character): Boolean = target is NPC && target.race == "kalphite"
+
+    // TODO other staves and npcs
+    fun isFirey(target: Character): Boolean {
+        if (target is Player) {
+            return target.equipped(EquipSlot.Weapon).id == "staff_of_fire"
+        } else if (target is NPC) {
+            return target.race == "dragon" || target.id.startsWith("fire_elemental") || target.id.startsWith("fire_giant") || target.id.startsWith("pyrefiend")
+        }
+        return false
+    }
+
+    /**
+     * Damage caps which Guthans doesn't work on
+     * E.g. Kurask & Turoth
+     */
+    fun damageReductionModifiers(source: Character, target: Character, damage: Int): Int {
+        return damage
+    }
+
+    /**
+     * Limits maximum amount of damage on NPCs (while still allowing Guthans to work)
+     */
+    fun damageLimitModifiers(target: Character, damage: Int): Int {
+        return if (target is NPC && target.def.has("damage_cap")) {
+            damage.coerceAtMost(target.def["damage_cap"])
+        } else if (target is NPC && (target.id == "magic_dummy" || target.id == "melee_dummy")) {
+            damage.coerceAtMost(target.levels.get(Skill.Constitution) - 1)
+        } else {
+            damage.coerceAtMost(target.levels.get(Skill.Constitution))
+        }
+    }
 }
 
 internal var Character.target: Character?

@@ -16,9 +16,9 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIA
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
-fun isDemon(target: Character?): Boolean = target is NPC && target.race == "demon"
+fun isDemon(target: Character): Boolean = target is NPC && target.race == "demon"
 
-fun isDarklight(weapon: Item?) = weapon != null && weapon.id == "darklight"
+fun isDarklight(weapon: Item) = weapon.id == "darklight"
 
 on<CombatSwing>({ !swung() && it.specialAttack && isDarklight(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {

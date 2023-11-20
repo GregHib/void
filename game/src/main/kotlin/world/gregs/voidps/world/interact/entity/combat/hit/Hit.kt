@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.Prayer
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import kotlin.math.floor
 
@@ -65,7 +66,7 @@ object Hit {
         if (!accuracy && type == "magic" && character is Player) {
             level = (level * 0.3 + floor(character.levels.get(Skill.Magic) * 0.7)).toInt()
         }
-        level = (level * Bonus.prayer(character, skill, accuracy)).toInt()
+        level = Prayer.effectiveLevelModifier(character, skill, accuracy, level)
         if (skill == Skill.Magic && Equipment.hasVoidEffect(character)) {
             level = (level * 1.45).toInt()
         }
@@ -104,8 +105,7 @@ fun Character.hit(
     special: Boolean = (this as? Player)?.specialAttack ?: false,
     damage: Int = Damage.roll(this, target, type, weapon, spell)
 ): Int {
-    val actualDamage = Damage.modify(this, target, type, damage, weapon, spell, special)
-        .coerceAtMost(target.levels.get(Skill.Constitution))
+    val actualDamage = Damage.modify(this, target, type, damage, weapon, special)
     events.emit(CombatAttack(target, type, actualDamage, weapon, spell, special, TICKS.toClientTicks(delay)))
     target.strongQueue("hit", delay) {
         target.directHit(this@hit, actualDamage, type, weapon, spell, special)

@@ -60070,6 +60070,8 @@ armadyl_godsword:
   weight: 10.0
   slash: 132.0
   crush: 80.0
+  special_damage_mod_1: 1.1
+  special_damage_mod_2: 1.25
   aka: [ ags, arma_gs, arma_sword, armadyl_sword, arma_godsword, armadyl_god_sword ]
   slot: "Weapon"
   material: "metal"
@@ -60085,6 +60087,8 @@ bandos_godsword:
   weight: 10.0
   slash: 132.0
   crush: 80.0
+  special_damage_mod_1: 1.1
+  special_damage_mod_2: 1.1
   aka: [ bgs, bandos_sword, bandos_god_sword ]
   slot: "Weapon"
   material: "metal"
@@ -72474,6 +72478,7 @@ morrigans_throwing_axe:
   range_str: 117.0
   attack_range: 4
   attack_speed: 5
+  special_damage_mod_1: 1.2
   slot: "Weapon"
   examine: "A vicious throwing axe."
 statiuss_platebody:
@@ -102173,6 +102178,7 @@ guthix_bow:
   range: 80.0
   attack_speed: 6
   attack_range: 10
+  special_damage_mod_1: 1.5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Guthix."

@@ -1,10 +1,30 @@
 package world.gregs.voidps.world.interact.entity.player.combat.armour.barrows
 
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
 object BarrowsArmour {
+
+    fun damageModifiers(
+        source: Character,
+        target: Character,
+        weapon: Item,
+        damage: Int
+    ) = when {
+        weapon.id.startsWith("dharoks_greataxe") && source.contains("dharoks_set_effect") -> {
+            val lost = (source.levels.getMax(Skill.Constitution) - source.levels.get(Skill.Constitution)) / 1000.0
+            val max = source.levels.getMax(Skill.Constitution) / 1000.0
+            (damage * (1 + lost * max)).toInt()
+        }
+        source.contains("veracs_set_effect") && target.hasClock("veracs_effect") -> damage + 10
+        else -> damage
+    }
+
     fun isSlot(index: Int) =
         index == EquipSlot.Hat.index ||
                 index == EquipSlot.Chest.index ||
