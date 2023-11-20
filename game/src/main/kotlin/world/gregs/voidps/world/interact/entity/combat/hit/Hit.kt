@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.Prayer
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
@@ -108,6 +109,9 @@ object Hit {
         if (offense) {
             if (source is Player) {
                 rating = (rating * Bonus.slayer(source, target, type, false)).toInt()
+            }
+            if (Weapon.isDemonbane(weapon) && Target.isDemon(target)) {
+                rating = (rating * 1.2).toInt()
             }
             if (type == "melee" && special) {
                 rating = (rating * weapon.def["special_accuracy_mod", 1.0]).toInt()

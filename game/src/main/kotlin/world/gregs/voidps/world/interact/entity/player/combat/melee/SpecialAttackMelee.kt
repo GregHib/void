@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
@@ -14,13 +13,6 @@ import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import kotlin.random.nextInt
-
-fun specialAccuracyMultiplier(multiplier: Double, check: (Item) -> Boolean) {
-    // TODO convert to special_accuracy_mod
-//    on<HitRatingModifier>({ offense && type == "melee" && special && check(weapon) }, Priority.HIGH) { _: Player ->
-//        rating = (rating * multiplier).toInt()
-//    }
-}
 
 fun multiTargetHit(check: CombatAttack.() -> Boolean, remaining: (target: Character) -> Int) {
     val players: Players by inject()

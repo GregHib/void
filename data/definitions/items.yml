@@ -7276,6 +7276,7 @@ dragon_dagger:
   magic_def: 1.0
   aka: [ dd ]
   special_damage_mod_1: 1.15
+  special_accuracy_mod: 1.15
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -7394,6 +7395,7 @@ dragon_dagger_p:
   magic_def: 1.0
   aka: [ ddp ]
   special_damage_mod_1: 1.15
+  special_accuracy_mod: 1.15
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -9131,6 +9133,7 @@ dragon_mace:
   slash: -2.0
   crush: 60.0
   special_damage_mod_1: 1.5
+  special_accuracy_mod: 1.25
   slot: "Weapon"
   examine: "A spiky mace."
 dragon_mace_noted: 1435
@@ -17090,6 +17093,7 @@ rune_claws:
     level: 98
     xp: 150.0
   special_damage_mod_1: 1.1
+  special_accuracy_mod: 1.1
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pair of rune claws."
@@ -21456,6 +21460,7 @@ abyssal_whip:
   weight: 0.453
   slash: 82.0
   aka: [ whip, abby_whip, red_whip, whip_red, red_abyssal_whip, abyssal_whip_red ]
+  special_accuracy_mod: 1.25
   slot: "Weapon"
   examine: "A weapon from the Abyss."
 abyssal_whip_noted: 4152
@@ -24049,6 +24054,7 @@ dragon_scimitar:
   crush: -2.0
   slash_def: 1.0
   aka: [ d_scimmy, dragon_scimmy, d_scimitar ]
+  special_accuracy_mod: 1.15
   slot: "Weapon"
   material: "metal"
   examine: "A vicious, curved sword."
@@ -29975,6 +29981,7 @@ dragon_dagger_p+:
   magic_def: 1.0
   aka: [ ddp, dd+ ]
   special_damage_mod_1: 1.15
+  special_accuracy_mod: 1.15
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -30092,6 +30099,7 @@ dragon_dagger_p++:
   magic_def: 1.0
   aka: [ dds, ddpp, dd++ ]
   special_damage_mod_1: 1.15
+  special_accuracy_mod: 1.15
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -56496,6 +56504,7 @@ barrelchest_anchor:
   slot: "Weapon"
   type: "TwoHanded"
   special_damage_mod_1: 1.1
+  special_accuracy_mod: 2.0
   examine: "This is likely to put my back out..."
   destroy2: "If you drop the Anchor it will be destroyed, and you will need to get a new one from Brother Tranquillity, then pay Smith to re-forge it."
   kept: "Reclaim"
@@ -57371,6 +57380,7 @@ brine_sabre:
   weight: 1.814
   slash: 47.0
   crush: -2.0
+  special_accuracy_mod: 2.0
   slot: "Weapon"
   material: "metal"
   examine: "A salty sword."
@@ -60081,6 +60091,7 @@ armadyl_godsword:
   crush: 80.0
   special_damage_mod_1: 1.1
   special_damage_mod_2: 1.25
+  special_accuracy_mod: 2.0
   aka: [ ags, arma_gs, arma_sword, armadyl_sword, arma_godsword, armadyl_god_sword ]
   slot: "Weapon"
   material: "metal"
@@ -60098,6 +60109,7 @@ bandos_godsword:
   crush: 80.0
   special_damage_mod_1: 1.1
   special_damage_mod_2: 1.1
+  special_accuracy_mod: 2.0
   aka: [ bgs, bandos_sword, bandos_god_sword ]
   slot: "Weapon"
   material: "metal"
@@ -60115,6 +60127,7 @@ saradomin_godsword:
   crush: 80.0
   aka: [ sgs, sara_gs, sara_godsword, saradomin_god_sword ]
   special_damage_mod_1: 1.1
+  special_accuracy_mod: 2.0
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -60131,6 +60144,7 @@ zamorak_godsword:
   crush: 80.0
   aka: [ zgs, zammy_godsword, zammy_gs, zammy_sword, zamorak_god_sword ]
   special_damage_mod_1: 1.1
+  special_accuracy_mod: 2.0
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -60347,6 +60361,7 @@ saradomin_sword:
   crush: 60.0
   aka: [ ss, sara_sword ]
   special_damage_mod_1: 1.1
+  special_accuracy_mod: 2.0
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"

@@ -10,20 +10,17 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerStart
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePrayerVarKey
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerStart
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePrayerVarKey
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccuracyMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import java.util.concurrent.TimeUnit
 
 fun isDragonScimitar(item: Item?) = item != null && item.id.endsWith("dragon_scimitar")
-
-specialAccuracyMultiplier(1.25, ::isDragonScimitar)
 
 on<CombatSwing>({ !swung() && it.specialAttack && isDragonScimitar(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, 550)) {
