@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.combat
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
@@ -11,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCLevels
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
@@ -58,12 +56,6 @@ val Character.charName: String
 on<CombatSwing>({ it["debug", false] || target["debug", false] }, Priority.HIGHEST) { character: Character ->
     val player = if (character["debug", false] && character is Player) character else target as Player
     player.message("---- Swing (${character.charName}) -> (${target.charName}) -----")
-}
-
-on<HitEffectiveLevelModifier>({ player -> player["debug", false] }, Priority.LOWEST) { player: Player ->
-    val message = "${if (accuracy) "Accuracy" else "Damage"} effective level: $level (${skill.name.lowercase()})"
-    player.message(message)
-    logger.debug { message }
 }
 
 on<HitRatingModifier>({ debug(it, target) }, Priority.LOWEST) { character: Character ->

@@ -3,22 +3,17 @@ package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.type.random
-import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
-import world.gregs.voidps.world.interact.entity.combat.hit.HitEffectiveLevelModifier
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.*
-import kotlin.math.floor
 
 fun set(name: String, bonus: String, value: Int) {
     on<PrayerStart>({ this.prayer == name }) { player: Player ->
@@ -116,24 +111,4 @@ on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) && !hitThroughPr
 on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) }, priority = Priority.MEDIUM) { _: NPC ->
     target["protected_damage"] = damage
     damage = 0
-}
-
-on<HitEffectiveLevelModifier>(priority = Priority.HIGH) { player: Player ->
-    val style = if (skill == Skill.Ranged) if (accuracy) "_attack" else "_strength" else ""
-    var bonus = player["base_${skill.name.lowercase()}${style}_bonus", 1.0]
-    if (player.equipped(EquipSlot.Amulet).id == "amulet_of_zealots") {
-        bonus = floor(1.0 + (bonus - 1.0) * 2)
-    }
-    bonus += if (player["turmoil", false]) {
-        player["turmoil_${skill.name.lowercase()}_bonus", 0].toDouble() / 100.0
-    } else {
-        player.getLeech(skill) * 100.0 / player.levels.getMax(skill) / 100.0
-    }
-    bonus -= player.getBaseDrain(skill) + player.getDrain(skill) / 100.0
-    level = (level * bonus).toInt()
-}
-
-on<HitEffectiveLevelModifier>(priority = Priority.HIGH) { npc: NPC ->
-    val drain = 1.0 - ((npc.getBaseDrain(skill) + npc.getDrain(skill)) / 100.0)
-    level = (level * drain).toInt()
 }

@@ -42,7 +42,7 @@ object Damage {
             "blaze" -> Skill.Magic
             else -> Skill.Strength
         }
-        return 5 + (Hit.effectiveLevel(source, skill, accuracy = false) * strengthBonus) / 64
+        return 5 + (Hit.effectiveLevel(source, skill, type, accuracy = false) * strengthBonus) / 64
     }
 
     /**

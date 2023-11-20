@@ -1,16 +1,12 @@
 package world.gregs.voidps.world.interact.entity.player.combat.armour
 
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.hit.HitEffectiveLevelModifier
-import kotlin.math.floor
 
 on<Registered>({ it.hasFullSet("") }) { player: Player ->
     player["void_set_effect"] = true
@@ -52,12 +48,4 @@ fun Player.hasFullSet(prefix: String): Boolean {
 fun isHelm(item: Item): Boolean = when (item.id) {
     "void_ranger_helm", "void_melee_helm", "void_mage_helm" -> true
     else -> false
-}
-
-on<HitEffectiveLevelModifier>({ (it.contains("void_set_effect") || it.contains("elite_void_set_effect")) && skill == Skill.Magic }, priority = Priority.HIGH) { _: Player ->
-    level = (level * 1.45).toInt()
-}
-
-on<HitEffectiveLevelModifier>({ (it.contains("void_set_effect") || it.contains("elite_void_set_effect")) && skill != Skill.Magic }, priority = Priority.LOW) { _: Player ->
-    level = (level * 1.1).toInt()
 }

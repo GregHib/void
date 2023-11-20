@@ -25,7 +25,6 @@ import world.gregs.voidps.world.interact.entity.player.toxin.poison
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 import kotlin.math.floor
-import kotlin.math.roundToInt
 
 on<HitDamageModifier>({ type == "range" && damage > 0 && it.ammo == "opal_bolts_e" && random.nextDouble() < 0.05 }, Priority.LOW) { player: Player ->
     damage += (player.levels.get(Skill.Ranged) * 0.1).toInt()
@@ -97,8 +96,7 @@ on<HitDamageModifier>({ type == "range" && damage > 0 && it.ammo == "dragon_bolt
     player.playSound("dragons_breath", delay = 40)
 }
 
-on<HitDamageModifier>({ type == "range" && damage > 0 && it.ammo == "onyx_bolts_e" && !target.undead && random.nextDouble() < if (target is Player) 0.1 else 0.11 },
-    Priority.HIGH) { player: Player ->
+on<HitDamageModifier>({ type == "range" && damage > 0 && it.ammo == "onyx_bolts_e" && !target.undead && random.nextDouble() < if (target is Player) 0.1 else 0.11 }, Priority.HIGH) { player: Player ->
     damage = (damage * 1.2).toInt()
     target.setGraphic("life_leech")
     player.playSound("life_leech", delay = 40)

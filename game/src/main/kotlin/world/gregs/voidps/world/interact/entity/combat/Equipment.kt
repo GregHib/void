@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 
 object Equipment {
+    fun hasVoidEffect(character: Character) = character.contains("void_set_effect") || character.contains("elite_void_set_effect")
     fun bonus(source: Character, target: Character, type: String, offense: Boolean): Int {
         return if (offense) {
             style(source, type, if (source is NPC) "att_bonus" else combatStyle(type, source))

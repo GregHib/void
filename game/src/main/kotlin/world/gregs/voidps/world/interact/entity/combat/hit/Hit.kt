@@ -1,6 +1,9 @@
 package world.gregs.voidps.world.interact.entity.combat.hit
 
+import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -10,8 +13,10 @@ import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import kotlin.math.floor
 
 object Hit {
+    private val logger = InlineLogger()
 
     /**
      * @return true if [chance] of hitting was successful
@@ -41,12 +46,13 @@ object Hit {
      */
     internal fun rating(source: Character, target: Character, type: String, weapon: Item, special: Boolean, offense: Boolean): Int {
         val skill = when {
-            !offense && type != "magic" -> Skill.Defence
+            !offense && type == "magic" && target is NPC -> Skill.Magic
+            !offense -> Skill.Defence
             type == "range" -> Skill.Ranged
             type == "magic" || type == "blaze" -> Skill.Magic
             else -> Skill.Attack
         }
-        val level = effectiveLevel(if (offense) source else target, skill, offense)
+        val level = effectiveLevel(if (offense) source else target, skill, type, offense)
         val equipmentBonus = Equipment.bonus(source, target, type, offense)
         val rating = level * (equipmentBonus + 64)
         val modifier = HitRatingModifier(target, type, offense, rating, weapon, special)
@@ -54,11 +60,25 @@ object Hit {
         return modifier.rating
     }
 
-    fun effectiveLevel(character: Character, skill: Skill, accuracy: Boolean): Int {
-        val level = character.levels.get(skill)
-        val modifier = HitEffectiveLevelModifier(skill, accuracy, level)
-        character.events.emit(modifier)
-        return modifier.level
+    fun effectiveLevel(character: Character, skill: Skill, type: String, accuracy: Boolean): Int {
+        var level = character.levels.get(skill)
+        if (!accuracy && type == "magic" && character is Player) {
+            level = (level * 0.3 + floor(character.levels.get(Skill.Magic) * 0.7)).toInt()
+        }
+        level = (level * Bonus.prayer(character, skill, accuracy)).toInt()
+        if (skill == Skill.Magic && Equipment.hasVoidEffect(character)) {
+            level = (level * 1.45).toInt()
+        }
+        level += Bonus.stance(character, skill)
+        if (skill != Skill.Magic && Equipment.hasVoidEffect(character)) {
+            level = (level * 1.1).toInt()
+        }
+        if (character["debug", false]) {
+            val message = "${if (accuracy) "Accuracy" else "Damage"} effective level: $level (${skill.name.lowercase()})"
+            character.message(message)
+            logger.debug { message }
+        }
+        return level
     }
 
     fun bowDelay(distance: Int) = 1 + (distance + 3) / 6
