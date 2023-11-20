@@ -130,10 +130,10 @@ on<HitEffectiveLevelModifier>(priority = Priority.HIGH) { player: Player ->
         player.getLeech(skill) * 100.0 / player.levels.getMax(skill) / 100.0
     }
     bonus -= player.getBaseDrain(skill) + player.getDrain(skill) / 100.0
-    level = floor(level * bonus)
+    level = (level * bonus).toInt()
 }
 
 on<HitEffectiveLevelModifier>(priority = Priority.HIGH) { npc: NPC ->
     val drain = 1.0 - ((npc.getBaseDrain(skill) + npc.getDrain(skill)) / 100.0)
-    level = floor(level * drain)
+    level = (level * drain).toInt()
 }

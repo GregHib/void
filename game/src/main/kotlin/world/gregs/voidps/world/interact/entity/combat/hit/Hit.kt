@@ -55,10 +55,10 @@ object Hit {
     }
 
     fun effectiveLevel(character: Character, skill: Skill, accuracy: Boolean): Int {
-        val level = character.levels.get(skill).toDouble()
-        val mod = HitEffectiveLevelModifier(skill, accuracy, level)
-        character.events.emit(mod)
-        return mod.level.toInt()
+        val level = character.levels.get(skill)
+        val modifier = HitEffectiveLevelModifier(skill, accuracy, level)
+        character.events.emit(modifier)
+        return modifier.level
     }
 
     fun bowDelay(distance: Int) = 1 + (distance + 3) / 6

@@ -55,9 +55,9 @@ fun isHelm(item: Item): Boolean = when (item.id) {
 }
 
 on<HitEffectiveLevelModifier>({ (it.contains("void_set_effect") || it.contains("elite_void_set_effect")) && skill == Skill.Magic }, priority = Priority.HIGH) { _: Player ->
-    level = floor(level * 1.45)
+    level = (level * 1.45).toInt()
 }
 
 on<HitEffectiveLevelModifier>({ (it.contains("void_set_effect") || it.contains("elite_void_set_effect")) && skill != Skill.Magic }, priority = Priority.LOW) { _: Player ->
-    level = floor(level * 1.1)
+    level = (level * 1.1).toInt()
 }

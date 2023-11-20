@@ -12,5 +12,5 @@ import world.gregs.voidps.engine.event.Event
 data class HitEffectiveLevelModifier(
     val skill: Skill,
     val accuracy: Boolean,
-    var level: Double
+    var level: Int
 ) : Event

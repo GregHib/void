@@ -16,7 +16,7 @@ import kotlin.math.roundToInt
 
 on<HitEffectiveLevelModifier>({ !accuracy && skill == Skill.Magic }, priority = Priority.LOW) { target: Player ->
     val level = floor(target.levels.get(Skill.Magic) * 0.7)
-    this.level = floor(this.level * 0.3) + level
+    this.level = (this.level * 0.3 + level).toInt()
 }
 
 on<HitDamageModifier>({ type == "magic" && weapon.def["magic_damage", 0] > 0 }, priority = Priority.HIGHER) { _: Character ->
