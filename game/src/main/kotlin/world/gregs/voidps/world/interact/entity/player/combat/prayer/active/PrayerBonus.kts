@@ -110,12 +110,12 @@ on<HitDamageModifier>(priority = Priority.HIGH) { _: Character ->
 
 on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) && !hitThroughProtectionPrayer(it, target, type, weapon, special) }, priority = Priority.MEDIUM) { _: Player ->
     target["protected_damage"] = damage
-    damage = floor(damage * if (target is Player) 0.6 else 0.0)
+    damage = (damage * if (target is Player) 0.6 else 0.0).toInt()
 }
 
 on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) }, priority = Priority.MEDIUM) { _: NPC ->
     target["protected_damage"] = damage
-    damage = 0.0
+    damage = 0
 }
 
 on<HitEffectiveLevelModifier>(priority = Priority.HIGH) { player: Player ->

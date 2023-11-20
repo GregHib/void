@@ -23,8 +23,7 @@ abstract class CombatFormulaTest : WorldTest() {
         val offensiveRating = Hit.rating(source, target, type, weapon, special, true)
         val defensiveRating = Hit.rating(source, target, type, weapon, special, false)
         val maxHit = Damage.maximum(source, type, weapon, spell)
-        val strengthBonus = Weapon.strengthBonus(source, type, weapon)
-        val actualMaxHit = Damage.modify(source, target, type, strengthBonus, maxHit, weapon, spell, special)
+        val actualMaxHit = Damage.modify(source, target, type, maxHit, weapon, spell, special)
         val chance = Hit.chance(source, target, type, weapon, special)
         return Results(offensiveRating, defensiveRating, actualMaxHit, chance)
     }

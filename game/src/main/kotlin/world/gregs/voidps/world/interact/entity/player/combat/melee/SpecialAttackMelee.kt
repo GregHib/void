@@ -21,7 +21,7 @@ import kotlin.random.nextInt
 
 fun specialDamageMultiplier(multiplier: Double, check: (Item) -> Boolean) {
     on<HitDamageModifier>({ type == "melee" && special && check(weapon) }, Priority.HIGH) { _: Player ->
-        damage = floor(damage * multiplier)
+        damage = (damage * multiplier).toInt()
     }
 }
 

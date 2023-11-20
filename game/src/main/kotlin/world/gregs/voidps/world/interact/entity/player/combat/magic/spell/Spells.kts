@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.hit.HitEffectiveLevelModifier
 import world.gregs.voidps.world.interact.entity.player.combat.melee.multiTargetHit
 import kotlin.math.floor
-import kotlin.math.round
+import kotlin.math.roundToInt
 
 on<HitEffectiveLevelModifier>({ !accuracy && skill == Skill.Magic }, priority = Priority.LOW) { target: Player ->
     val level = floor(target.levels.get(Skill.Magic) * 0.7)
@@ -21,7 +21,7 @@ on<HitEffectiveLevelModifier>({ !accuracy && skill == Skill.Magic }, priority = 
 
 on<HitDamageModifier>({ type == "magic" && weapon.def["magic_damage", 0] > 0 }, priority = Priority.HIGHER) { _: Character ->
     val damageMultiplier = 1.0 + (weapon.def["magic_damage", 0] / 100.0)
-    this.damage = round(this.damage * damageMultiplier)
+    damage = (damage * damageMultiplier).roundToInt()
 }
 
 on<CombatHit>({ spell.isNotBlank() }) { character: Character ->

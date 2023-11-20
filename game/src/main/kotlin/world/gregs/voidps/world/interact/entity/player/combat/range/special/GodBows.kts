@@ -42,7 +42,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
 }
 
 on<HitDamageModifier>({ type == "range" && weapon.id == "guthix_bow" && special }, Priority.HIGH) { _: Player ->
-    damage = floor(damage * 1.5)
+    damage = (damage * 1.5).toInt()
 }
 
 var Player.restoration: Int

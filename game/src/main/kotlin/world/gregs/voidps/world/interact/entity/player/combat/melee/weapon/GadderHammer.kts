@@ -13,5 +13,5 @@ import kotlin.math.floor
 fun isShade(target: Character): Boolean = target is NPC && target.race == "shade"
 
 on<HitDamageModifier>({ type == "melee" && weapon.id == "gadderhammer" && isShade(target) }, Priority.LOW) { _: Player ->
-    damage = floor(damage * if (random.nextDouble() < 0.05) 2.0 else 1.25)
+    damage = (damage * if (random.nextDouble() < 0.05) 2.0 else 1.25).toInt()
 }

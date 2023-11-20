@@ -13,5 +13,5 @@ import kotlin.math.floor
 fun isKalphite(target: Character): Boolean = target is NPC && target.race == "kalphite"
 
 on<HitDamageModifier>({ type == "melee" && weapon.id == "keris" && isKalphite(target) }, Priority.LOW) { _: Player ->
-    damage = floor(damage * if (random.nextDouble() < 0.51) 3.0 else 1.0 + 1.0 / 3.0)
+    damage = (damage * if (random.nextDouble() < 0.51) 3.0 else 1.0 + 1.0 / 3.0).toInt()
 }

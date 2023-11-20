@@ -25,9 +25,10 @@ import world.gregs.voidps.world.interact.entity.player.toxin.poison
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 import kotlin.math.floor
+import kotlin.math.roundToInt
 
 on<HitDamageModifier>({ type == "range" && damage > 0 && it.ammo == "opal_bolts_e" && random.nextDouble() < 0.05 }, Priority.LOW) { player: Player ->
-    damage += floor(player.levels.get(Skill.Ranged) * 0.1)
+    damage += (player.levels.get(Skill.Ranged) * 0.1).toInt()
     target.setGraphic("lucky_lightning")
     player.playSound("lucky_lightning", delay = 40)
 }
@@ -45,7 +46,7 @@ fun isFirey(target: Character): Boolean = target is Player && target.equipped(Eq
 fun isWatery(target: Character): Boolean = target is Player && target.equipped(EquipSlot.Weapon).id == "staff_of_water"
 
 on<HitDamageModifier>({ !isWatery(target) && type == "range" && damage > 0 && it.ammo == "pearl_bolts_e" && random.nextDouble() < 0.06 }, Priority.LOW) { player: Player ->
-    damage += floor(player.levels.get(Skill.Ranged) * if (isFirey(target)) 1.0 / 15.0 else 0.05)
+    damage += (player.levels.get(Skill.Ranged) * if (isFirey(target)) 1.0 / 15.0 else 0.05).toInt()
     target.setGraphic("sea_curse")
     player.playSound("sea_curse", delay = 40)
 }
@@ -71,7 +72,7 @@ on<HitDamageModifier>({ type == "range" && damage > 0 && it.ammo == "emerald_bol
 }
 
 on<HitDamageModifier>({ type == "range" && damage > 0 && it.ammo == "ruby_bolts_e" && random.nextDouble() < if (target is Player) 0.11 else 0.06 }, Priority.LOW) { player: Player ->
-    damage = floor(player.levels.get(Skill.Constitution) * 0.2)
+    damage = (player.levels.get(Skill.Constitution) * 0.2).toInt()
     val drain = floor(player.levels.get(Skill.Constitution) * 0.1).toInt()
     player.levels.drain(Skill.Constitution, drain)
     target.setGraphic("blood_forfeit")
@@ -79,7 +80,7 @@ on<HitDamageModifier>({ type == "range" && damage > 0 && it.ammo == "ruby_bolts_
 }
 
 on<HitDamageModifier>({ type == "range" && damage > 0 && it.ammo == "diamond_bolts_e" && random.nextDouble() < 0.1 }, Priority.HIGH) { player: Player ->
-    damage = floor(damage * 1.15)
+    damage = (damage * 1.15).toInt()
     target.setGraphic("armour_piercing")
     player.playSound("armour_piercing", delay = 40)
 }
@@ -98,7 +99,7 @@ on<HitDamageModifier>({ type == "range" && damage > 0 && it.ammo == "dragon_bolt
 
 on<HitDamageModifier>({ type == "range" && damage > 0 && it.ammo == "onyx_bolts_e" && !target.undead && random.nextDouble() < if (target is Player) 0.1 else 0.11 },
     Priority.HIGH) { player: Player ->
-    damage = floor(damage * 1.20)
+    damage = (damage * 1.2).toInt()
     target.setGraphic("life_leech")
     player.playSound("life_leech", delay = 40)
     player.start("life_leech", 1)

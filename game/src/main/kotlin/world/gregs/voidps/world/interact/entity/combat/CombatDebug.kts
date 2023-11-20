@@ -84,7 +84,7 @@ on<HitChanceModifier>({ debug(it, target) }, Priority.LOWEST) { character: Chara
 on<HitDamageModifier>({ debug(it, target) }, Priority.LOWEST) { character: Character ->
     val player = if (character["debug", false] && character is Player) character else target as Player
     val message =
-        "Max damage: $damage ($type, $strengthBonus str, ${if (type == "magic") character.spell else if (weapon.isEmpty()) "unarmed" else weapon.id}${if (player.specialAttack) ", special" else ""})"
+        "Max damage: $damage ($type, ${Weapon.strengthBonus(character, type, weapon)} str, ${if (type == "magic") character.spell else if (weapon.isEmpty()) "unarmed" else weapon.id}${if (player.specialAttack) ", special" else ""})"
     player.message(message)
     logger.debug { message }
 }

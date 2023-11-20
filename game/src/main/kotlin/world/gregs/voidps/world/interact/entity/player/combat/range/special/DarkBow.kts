@@ -25,7 +25,7 @@ fun isDarkBow(weapon: Item) = weapon.id.startsWith("dark_bow")
 
 on<HitDamageModifier>({ type == "range" && special && isDarkBow(weapon) }, Priority.HIGH) { player: Player ->
     val dragon = player.ammo == "dragon_arrow"
-    damage = floor(damage * if (dragon) 1.50 else 1.30).coerceAtLeast(if (dragon) 80.0 else 50.0)
+    damage = (damage * if (dragon) 1.5 else 1.3).toInt().coerceAtLeast(if (dragon) 80 else 50)
 }
 
 on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.specialAttack && isDarkBow(player.weapon) }, Priority.HIGHISH) { player: Player ->

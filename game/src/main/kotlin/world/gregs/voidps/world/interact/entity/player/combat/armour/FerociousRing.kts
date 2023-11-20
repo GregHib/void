@@ -14,5 +14,5 @@ val areas: AreaDefinitions by inject()
 val area = areas["kuradals_dungeon"]
 
 on<HitDamageModifier>({ it.tile in area && it.equipped(EquipSlot.Ring).id.startsWith("ferocious_ring") }, Priority.LOWER) { _: Player ->
-    damage = floor(damage * 1.04)
+    damage = (damage * 1.04).toInt()
 }

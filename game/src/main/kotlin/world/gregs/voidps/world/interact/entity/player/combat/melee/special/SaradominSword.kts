@@ -43,5 +43,5 @@ on<CombatHit>({ isSaradominSword(weapon) && special && type == "melee" }) { char
 }
 
 on<HitDamageModifier>({ type == "magic" && isSaradominSword(weapon) }, Priority.LOWER) { _: Player ->
-    damage = 160.0
+    damage = 160
 }

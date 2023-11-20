@@ -52,7 +52,7 @@ on<CombatHit>({ it.softTimers.contains("power_of_light") }, Priority.LOW) { play
 // Special attack
 
 on<HitDamageModifier>({ type == "melee" && target.softTimers.contains("power_of_light") }, Priority.HIGH) { _: Player ->
-    damage = floor(damage * 0.5)
+    damage = (damage * 0.5).toInt()
 }
 
 on<VariableSet>({ key == "special_attack" && to == true && isStaffOfLight(it.weapon) }) { player: Player ->

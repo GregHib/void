@@ -16,6 +16,6 @@ on<HitDamageModifier>({ type == "magic" && target is NPC && target.id == "ice_st
         damage += 40
     }
     if (player.spell.startsWith("fire_")) {
-        damage = floor(damage * if (fireCape) 2.0 else 1.5)
+        damage = (damage * if (fireCape) 2.0 else 1.5).toInt()
     }
 }

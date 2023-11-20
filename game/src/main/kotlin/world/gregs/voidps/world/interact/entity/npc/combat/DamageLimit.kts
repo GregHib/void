@@ -7,5 +7,5 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 
 on<HitDamageModifier>({ target is NPC && target.def.has("damage_cap") }, priority = Priority.LOWEST) { _: Player ->
-    damage = damage.coerceAtMost((target as NPC).def.get<Int>("damage_cap").toDouble())
+    damage = damage.coerceAtMost((target as NPC).def["damage_cap"])
 }

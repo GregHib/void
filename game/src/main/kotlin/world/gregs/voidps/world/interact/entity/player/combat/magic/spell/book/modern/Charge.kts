@@ -29,7 +29,7 @@ fun isGuthix(spell: String, cape: String): Boolean = spell == "claws_of_guthix" 
 fun isZamorak(spell: String, cape: String): Boolean = spell == "flames_of_zamorak" && cape == "zamorak_cape"
 
 on<HitDamageModifier>({ player -> type == "magic" && player.hasClock("charge") && wearingMatchingArenaGear(player) }, Priority.HIGHEST) { _: Player ->
-    damage += 100.0
+    damage += 100
 }
 
 on<InterfaceOption>({ id == "modern_spellbook" && component == "charge" }) { player: Player ->

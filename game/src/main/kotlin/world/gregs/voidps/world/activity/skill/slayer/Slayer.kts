@@ -16,7 +16,7 @@ on<HitRatingModifier>({ offense }, priority = Priority.HIGH) { player: Player ->
 }
 
 on<HitDamageModifier>(priority = Priority.HIGHER) { player: Player ->
-    damage = floor(damage * getSlayerMultiplier(player, target, type, true))
+    damage = (damage * getSlayerMultiplier(player, target, type, true)).toInt()
 }
 
 fun getSlayerMultiplier(player: Player, target: Character, type: String, damage: Boolean): Double {

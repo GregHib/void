@@ -16,7 +16,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.HitDamageModifier
 import kotlin.math.floor
 
 on<HitDamageModifier>({ type == "dragonfire" && it.isFamiliar }, Priority.HIGHISH) { _: NPC ->
-    damage = floor(damage * 0.7)
+    damage = (damage * 0.7).toInt()
 }
 
 on<HitDamageModifier>({ type == "dragonfire" }, Priority.HIGHISH) { player: Player ->
@@ -43,10 +43,11 @@ on<HitDamageModifier>({ type == "dragonfire" }, Priority.HIGHISH) { player: Play
         }
     }
 
-    damage = floor(damage * multiplier.coerceAtLeast(0.0))
+    damage = (damage * multiplier.coerceAtLeast(0.0)).toInt()
 }
 
-on<HitDamageModifier>({ type == "icy_breath" }, Priority.HIGHISH) { player: Player ->
-    val shield = player.equipped(EquipSlot.Shield).id
-    damage = if (shield == "elemental_shield" || shield == "mind_shield" || shield == "body_shield"|| shield == "dragonfire_shield") 100.0 else damage
+fun fireResistantShield(shield: String) = shield == "elemental_shield" || shield == "mind_shield" || shield == "body_shield" || shield == "dragonfire_shield"
+
+on<HitDamageModifier>({ type == "icy_breath" && fireResistantShield(it.equipped(EquipSlot.Shield).id) }, Priority.HIGHISH) { _: Player ->
+    damage = 100
 }

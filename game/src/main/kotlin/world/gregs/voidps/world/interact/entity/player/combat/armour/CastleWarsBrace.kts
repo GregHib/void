@@ -18,7 +18,7 @@ val area = areas["castle_wars"]
 fun isFlagHolder(target: Character): Boolean = target is Player && (target.equipped(EquipSlot.Weapon).id == "zamorak_flag" || target.equipped(EquipSlot.Weapon).id == "saradomin_flag")
 
 on<HitDamageModifier>({ player -> player["castle_wars_brace", false] && isFlagHolder(target) }, Priority.LOWER) { _: Player ->
-    damage = floor(damage * 1.2)
+    damage = (damage * 1.2).toInt()
 }
 
 // TODO should be activated on game start not equip.

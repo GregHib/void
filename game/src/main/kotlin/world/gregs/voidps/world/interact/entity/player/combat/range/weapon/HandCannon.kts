@@ -30,7 +30,7 @@ import kotlin.random.nextInt
 fun isHandCannon(item: Item) = item.id == "hand_cannon"
 
 on<HitDamageModifier>({ type == "range" && special && isHandCannon(weapon) }, Priority.HIGH) { _: Player ->
-    damage = floor(damage * random.nextDouble(0.3, 2.0))
+    damage = (damage * random.nextDouble(0.3, 2.0)).toInt()
 }
 
 on<CombatSwing>({ player -> player.fightStyle == "range" && isHandCannon(player.weapon) }, Priority.HIGH) { player: Player ->

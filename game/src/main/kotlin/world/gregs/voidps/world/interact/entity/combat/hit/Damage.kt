@@ -48,10 +48,10 @@ object Damage {
     /**
      * Applies modifiers to a [maximum]
      */
-    fun modify(source: Character, target: Character, type: String, strengthBonus: Int, baseMaxHit: Int, weapon: Item, spell: String = "", special: Boolean = false): Int {
-        val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit.toDouble(), weapon, spell, special)
+    fun modify(source: Character, target: Character, type: String, baseMaxHit: Int, weapon: Item, spell: String = "", special: Boolean = false): Int {
+        val modifier = HitDamageModifier(target, type, baseMaxHit, weapon, spell, special)
         source.events.emit(modifier)
-        return modifier.damage.toInt()
+        return modifier.damage
     }
 }
 

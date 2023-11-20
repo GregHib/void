@@ -40,7 +40,7 @@ for (type in listOf("magic", "melee")) {
 
     on<HitDamageModifier>({ target is NPC && target.id == "${type}_dummy" }, Priority.LOWEST) { _: Player ->
         target as NPC
-        damage = damage.coerceAtMost(target.levels.get(Skill.Constitution) - 1.0)
+        damage = damage.coerceAtMost(target.levels.get(Skill.Constitution) - 1)
     }
 
     on<CurrentLevelChanged>({ it.id == "${type}_dummy" && skill == Skill.Constitution && to <= 10 }, Priority.HIGH) { npc: NPC ->

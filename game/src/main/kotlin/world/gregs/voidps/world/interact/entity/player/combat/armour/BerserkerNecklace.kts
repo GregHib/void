@@ -11,5 +11,5 @@ import kotlin.math.floor
 fun isTzhaarWeapon(weapon: String) = weapon == "toktz_xil_ak" || weapon == "tzhaar_ket_om" || weapon == "tzhaar_ket_em" || weapon == "toktz_xil_ek"
 
 on<HitDamageModifier>({ player -> type == "melee" && isTzhaarWeapon(weapon.id) && player.equipped(EquipSlot.Amulet).id == "berserker_necklace" }, Priority.LOW) { _: Player ->
-    damage = floor(damage * 1.20)
+    damage = (damage * 1.2).toInt()
 }

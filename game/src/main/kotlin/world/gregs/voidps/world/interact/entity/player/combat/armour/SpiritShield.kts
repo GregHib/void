@@ -17,7 +17,7 @@ on<HitDamageModifier>({ target is Player && target.equipped(EquipSlot.Shield).id
     val drain = ceil((damage * 0.3) / 20.0).toInt()
     if (points > drain) {
         target.levels.drain(Skill.Prayer, drain)
-        damage = floor(damage * 0.7)
+        damage = (damage * 0.7).toInt()
     }
 }
 
@@ -25,5 +25,5 @@ on<HitDamageModifier>({ target is Player && target.equipped(EquipSlot.Shield).id
     if (random.nextDouble() >= 0.7) {
         return@on
     }
-    damage = floor(damage * 0.75)
+    damage = (damage * 0.75).toInt()
 }

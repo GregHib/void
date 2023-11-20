@@ -26,5 +26,5 @@ on<CombatSwing>({ player -> !swung() && isMagicDart(player.spell) }, Priority.LO
 }
 
 on<HitDamageModifier>({ isMagicDart(spell) }, Priority.LOWER) { player: Player ->
-    damage = player.levels.get(Skill.Magic) + 100.0
+    damage = player.levels.get(Skill.Magic) + 100
 }

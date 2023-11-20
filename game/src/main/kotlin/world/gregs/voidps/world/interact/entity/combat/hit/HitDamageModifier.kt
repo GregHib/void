@@ -12,8 +12,7 @@ import world.gregs.voidps.engine.event.Event
 data class HitDamageModifier(
     val target: Character,
     val type: String,
-    val strengthBonus: Int,
-    var damage: Double,
+    var damage: Int,
     val weapon: Item,
     val spell: String,
     val special: Boolean

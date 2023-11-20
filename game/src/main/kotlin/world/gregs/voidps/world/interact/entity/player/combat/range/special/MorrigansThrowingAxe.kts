@@ -23,7 +23,7 @@ import kotlin.math.floor
 fun isThrowingAxe(weapon: Item) = weapon.id.endsWith("morrigans_throwing_axe")
 
 on<HitDamageModifier>({ type == "range" && special && isThrowingAxe(weapon) }, Priority.HIGH) { _: Player ->
-    damage = floor(damage * 1.2)
+    damage = (damage * 1.2).toInt()
 }
 
 on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.specialAttack && isThrowingAxe(player.weapon) }, Priority.MEDIUM) { player: Player ->

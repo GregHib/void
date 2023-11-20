@@ -15,5 +15,5 @@ fun isDemonbaneWeapon(item: Item) = item.id == "silverlight" || item.id == "dark
 fun isDemon(target: Character) = target is NPC && target.race == "demon"
 
 on<HitDamageModifier>({ type == "melee" && isDemonbaneWeapon(weapon) && isDemon(target) && !special }, Priority.LOW) { _: Player ->
-    damage = floor(damage * 1.60)
+    damage = (damage * 1.6).toInt()
 }

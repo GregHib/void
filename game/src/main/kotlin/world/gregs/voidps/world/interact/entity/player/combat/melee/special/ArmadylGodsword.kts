@@ -20,7 +20,7 @@ import kotlin.math.floor
 fun isArmadylGodsword(weapon: Item) = weapon.id.startsWith("armadyl_godsword")
 
 on<HitDamageModifier>({ type == "melee" && special && isArmadylGodsword(weapon) }, Priority.LOW) { _: Player ->
-    damage = floor(damage * 1.25)
+    damage = (damage * 1.25).toInt()
 }
 
 specialDamageMultiplier(1.1, ::isArmadylGodsword)

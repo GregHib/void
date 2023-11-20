@@ -22,7 +22,7 @@ import kotlin.math.floor
 fun isBandosGodsword(weapon: Item) = weapon.id.startsWith("bandos_godsword")
 
 on<HitDamageModifier>({ type == "melee" && special && isBandosGodsword(weapon) }, Priority.LOW) { _: Player ->
-    damage = floor(damage * 1.1)
+    damage = (damage * 1.1).toInt()
 }
 
 specialDamageMultiplier(1.1, ::isBandosGodsword)
