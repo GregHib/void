@@ -9,14 +9,12 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccuracyMultiplier
-import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 fun isArmadylGodsword(weapon: Item) = weapon.id.startsWith("armadyl_godsword")
 
-specialDamageMultiplier(1.1, ::isArmadylGodsword)
 specialAccuracyMultiplier(2.0, ::isArmadylGodsword)
 
 on<CombatSwing>({ !swung() && it.specialAttack && isArmadylGodsword(it.weapon) }) { player: Player ->

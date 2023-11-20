@@ -10,12 +10,9 @@ import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 fun isDragonLongsword(item: Item?) = item != null && (item.id.startsWith("dragon_longsword") || item.id.startsWith("corrupt_dragon_longsword"))
-
-specialDamageMultiplier(1.25, ::isDragonLongsword)
 
 on<CombatSwing>({ !swung() && it.specialAttack && isDragonLongsword(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 4)) {

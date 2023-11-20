@@ -11,14 +11,12 @@ import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.melee.drainByDamage
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccuracyMultiplier
-import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 fun isBandosGodsword(weapon: Item) = weapon.id.startsWith("bandos_godsword")
 
-specialDamageMultiplier(1.1, ::isBandosGodsword)
 specialAccuracyMultiplier(2.0, ::isBandosGodsword)
 
 on<CombatSwing>({ !swung() && it.specialAttack && isBandosGodsword(it.weapon) }) { player: Player ->

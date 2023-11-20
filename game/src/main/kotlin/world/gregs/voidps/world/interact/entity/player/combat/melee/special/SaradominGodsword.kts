@@ -9,16 +9,14 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccuracyMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccuracyMultiplier
-import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import kotlin.math.max
 
 fun isSaradominGodsword(weapon: Item?) = weapon != null && weapon.id.startsWith("saradomin_godsword")
 
-specialDamageMultiplier(1.1, ::isSaradominGodsword)
 specialAccuracyMultiplier(2.0, ::isSaradominGodsword)
 
 on<CombatSwing>({ !swung() && it.specialAttack && isSaradominGodsword(it.weapon) }) { player: Player ->

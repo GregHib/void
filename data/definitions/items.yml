@@ -7275,6 +7275,7 @@ dragon_dagger:
   magic: 1.0
   magic_def: 1.0
   aka: [ dd ]
+  special_damage_mod_1: 1.15
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -7392,6 +7393,7 @@ dragon_dagger_p:
   magic: 1.0
   magic_def: 1.0
   aka: [ ddp ]
+  special_damage_mod_1: 1.15
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -8024,6 +8026,7 @@ dragon_longsword:
   crush: -2.0
   slash_def: 3.0
   crush_def: 2.0
+  special_damage_mod_1: 1.25
   slot: "Weapon"
   material: "metal"
   examine: "A very powerful sword."
@@ -9127,6 +9130,7 @@ dragon_mace:
   weight: 1.814
   slash: -2.0
   crush: 60.0
+  special_damage_mod_1: 1.5
   slot: "Weapon"
   examine: "A spiky mace."
 dragon_mace_noted: 1435
@@ -17085,6 +17089,7 @@ rune_claws:
   smithing:
     level: 98
     xp: 150.0
+  special_damage_mod_1: 1.1
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pair of rune claws."
@@ -17773,6 +17778,7 @@ dragon_halberd:
   slash_def: 4.0
   crush_def: 5.0
   attack_range: 2
+  special_damage_mod_1: 1.1
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon halberd."
@@ -29968,6 +29974,7 @@ dragon_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   aka: [ ddp, dd+ ]
+  special_damage_mod_1: 1.15
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -30084,6 +30091,7 @@ dragon_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   aka: [ dds, ddpp, dd++ ]
+  special_damage_mod_1: 1.15
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -56487,6 +56495,7 @@ barrelchest_anchor:
   crush: 92.0
   slot: "Weapon"
   type: "TwoHanded"
+  special_damage_mod_1: 1.1
   examine: "This is likely to put my back out..."
   destroy2: "If you drop the Anchor it will be destroyed, and you will need to get a new one from Brother Tranquillity, then pay Smith to re-forge it."
   kept: "Reclaim"
@@ -60105,6 +60114,7 @@ saradomin_godsword:
   slash: 132.0
   crush: 80.0
   aka: [ sgs, sara_gs, sara_godsword, saradomin_god_sword ]
+  special_damage_mod_1: 1.1
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -60120,6 +60130,7 @@ zamorak_godsword:
   slash: 132.0
   crush: 80.0
   aka: [ zgs, zammy_godsword, zammy_gs, zammy_sword, zamorak_god_sword ]
+  special_damage_mod_1: 1.1
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -60335,6 +60346,7 @@ saradomin_sword:
   slash: 82.0
   crush: 60.0
   aka: [ ss, sara_sword ]
+  special_damage_mod_1: 1.1
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -72720,6 +72732,7 @@ vestas_longsword:
   slash_def: 4.0
   crush_def: 3.0
   aka: [ vls, vestas_long_sword ]
+  special_damage_mod_1: 1.2
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -72736,6 +72749,7 @@ vestas_longsword_degraded:
   crush: -2.0
   slash_def: 4.0
   crush_def: 3.0
+  special_damage_mod_1: 1.2
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -72748,7 +72762,8 @@ statiuss_warhammer:
   stab: -4.0
   slash: -4.0
   crush: 123.0
-  aka: [ stat_hammer, statius_hammer, statiuss_hammer ]
+  aka: [ stat_ham, stat_hammer, statius_hammer, statiuss_hammer, statius_warhammer ]
+  special_damage_mod_1: 1.25
   slot: "Weapon"
   examine: "This item degrades in combat, and will turn to dust."
   weight: 1.814
@@ -72761,6 +72776,7 @@ statiuss_warhammer_degraded:
   stab: -4.0
   slash: -4.0
   crush: 123.0
+  special_damage_mod_1: 1.25
   slot: "Weapon"
   examine: "This item degrades in combat, and will turn to dust."
   weight: 1.814

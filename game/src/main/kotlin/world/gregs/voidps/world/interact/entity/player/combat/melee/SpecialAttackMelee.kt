@@ -17,9 +17,6 @@ import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import kotlin.random.nextInt
 
-fun specialDamageMultiplier(multiplier: Double, check: (Item) -> Boolean) {
-}
-
 fun specialAccuracyMultiplier(multiplier: Double, check: (Item) -> Boolean) {
     on<HitRatingModifier>({ offense && type == "melee" && special && check(weapon) }, Priority.HIGH) { _: Player ->
         rating = (rating * multiplier).toInt()

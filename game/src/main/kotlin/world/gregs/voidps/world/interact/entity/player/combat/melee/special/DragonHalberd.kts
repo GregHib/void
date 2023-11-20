@@ -17,22 +17,18 @@ import world.gregs.voidps.world.interact.entity.combat.hit.HitRatingModifier
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
-import kotlin.math.floor
 
-fun isDragonLongsword(item: Item?) = item != null && item.id == "dragon_halberd"
+fun isDragonHalberd(item: Item?) = item != null && item.id == "dragon_halberd"
 
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-specialDamageMultiplier(1.1, ::isDragonLongsword)
-
-on<HitRatingModifier>({ offense && type == "melee" && special && isDragonLongsword(weapon) && it["second_hit", false] }, Priority.HIGH) { _: Player ->
+on<HitRatingModifier>({ offense && type == "melee" && special && isDragonHalberd(weapon) && it["second_hit", false] }, Priority.HIGH) { _: Player ->
     rating = (rating * 0.75).toInt()
 }
 
-on<CombatSwing>({ !swung() && it.specialAttack && isDragonLongsword(it.weapon) }) { player: Player ->
+on<CombatSwing>({ !swung() && it.specialAttack && isDragonHalberd(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, 300)) {
         delay = -1
         return@on
