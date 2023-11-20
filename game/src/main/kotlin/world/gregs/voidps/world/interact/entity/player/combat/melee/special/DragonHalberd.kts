@@ -29,7 +29,7 @@ val npcs: NPCs by inject()
 specialDamageMultiplier(1.1, ::isDragonLongsword)
 
 on<HitRatingModifier>({ offense && type == "melee" && special && isDragonLongsword(weapon) && it["second_hit", false] }, Priority.HIGH) { _: Player ->
-    rating = floor(rating * 0.75)
+    rating = (rating * 0.75).toInt()
 }
 
 on<CombatSwing>({ !swung() && it.specialAttack && isDragonLongsword(it.weapon) }) { player: Player ->

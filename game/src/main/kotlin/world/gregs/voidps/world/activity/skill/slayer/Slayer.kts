@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.HitRatingModifier
 import kotlin.math.floor
 
 on<HitRatingModifier>({ offense }, priority = Priority.HIGH) { player: Player ->
-    rating = floor(rating * getSlayerMultiplier(player, target, type, false))
+    rating = (rating * getSlayerMultiplier(player, target, type, false)).toInt()
 }
 
 on<HitDamageModifier>(priority = Priority.HIGHER) { player: Player ->

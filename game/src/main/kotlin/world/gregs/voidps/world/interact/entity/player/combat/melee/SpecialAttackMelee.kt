@@ -27,7 +27,7 @@ fun specialDamageMultiplier(multiplier: Double, check: (Item) -> Boolean) {
 
 fun specialAccuracyMultiplier(multiplier: Double, check: (Item) -> Boolean) {
     on<HitRatingModifier>({ offense && type == "melee" && special && check(weapon) }, Priority.HIGH) { _: Player ->
-        rating = floor(rating * multiplier)
+        rating = (rating * multiplier).toInt()
     }
 }
 

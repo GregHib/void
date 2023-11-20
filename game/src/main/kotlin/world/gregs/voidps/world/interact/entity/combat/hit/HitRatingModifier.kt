@@ -14,7 +14,7 @@ data class HitRatingModifier(
     val target: Character,
     val type: String,
     val offense: Boolean,
-    var rating: Double,
+    var rating: Int,
     val weapon: Item,
     val special: Boolean
 ) : Event

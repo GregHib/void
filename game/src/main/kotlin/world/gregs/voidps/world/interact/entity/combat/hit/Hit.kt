@@ -48,10 +48,10 @@ object Hit {
         }
         val level = effectiveLevel(if (offense) source else target, skill, offense)
         val equipmentBonus = Equipment.bonus(source, target, type, offense)
-        val rating = level * (equipmentBonus + 64.0)
+        val rating = level * (equipmentBonus + 64)
         val modifier = HitRatingModifier(target, type, offense, rating, weapon, special)
         source.events.emit(modifier)
-        return modifier.rating.toInt()
+        return modifier.rating
     }
 
     fun effectiveLevel(character: Character, skill: Skill, accuracy: Boolean): Int {
