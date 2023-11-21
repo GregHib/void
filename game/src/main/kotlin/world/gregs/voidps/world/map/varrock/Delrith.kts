@@ -115,7 +115,6 @@ suspend fun CharacterContext.cutscene() {
     val region = Region(12852)
     val instance = startCutscene(region)
     val offset = instance.offset(region)
-    println("Instance ${instance.x} ${instance.y} <- ${region.x} ${region.y}")
     player["demon_slayer_instance"] = instance
     player["demon_slayer_offset"] = offset
     player.steps.clear()
