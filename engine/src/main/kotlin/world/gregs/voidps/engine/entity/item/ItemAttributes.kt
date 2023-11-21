@@ -7,125 +7,170 @@ import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
+import world.gregs.voidps.engine.entity.item.ItemAttributes.EQUIP_LEVEL_1
+import world.gregs.voidps.engine.entity.item.ItemAttributes.EQUIP_SKILL_1
+import world.gregs.voidps.engine.entity.item.ItemAttributes.MAXED_SKILL
+import world.gregs.voidps.engine.entity.item.ItemAttributes.QUEST_REQUIREMENT_SLOT_ID
+import world.gregs.voidps.engine.entity.item.ItemAttributes.RENDER_ANIMATION
+import world.gregs.voidps.engine.entity.item.ItemAttributes.REQUIRED_COMBAT
+import world.gregs.voidps.engine.entity.item.ItemAttributes.SKILL_CAPE
+import world.gregs.voidps.engine.entity.item.ItemAttributes.SPECIAL_ATTACK
+import world.gregs.voidps.engine.entity.item.ItemAttributes.TRIMMED_SKILL_CAPE
+import world.gregs.voidps.engine.entity.item.ItemAttributes.USE_LEVEL_1
+import world.gregs.voidps.engine.entity.item.ItemAttributes.USE_SKILL_1
+import world.gregs.voidps.engine.entity.item.ItemAttributes.WEAPON_SPEED
+import world.gregs.voidps.engine.entity.item.ItemAttributes.WEAPON_STYLE
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
-enum class Opcodes(val id: Int) {
-    StabAttack(0), // 606.csv
-    SlashAttack(1),
-    CrushAttack(2),
-    MagicAttack(3),
-    RangeAttack(4),
-    StabDefence(5),
-    SlashDefence(6),
-    CrushDefence(7),
-    MagicDefence(8),
-    RangeDefence(9),
-    PrayerBonus(11),
-    AttackSpeed(14),
-    //    23 - 912.cs2 - alch price?
-    StealingCreation(59),
-    //    211..22 - 1864.cs2
-    SkillCape(258),
-    TrimmedSkillCape(259), // 2720.cs2, 2723.cs2
-    MaxedSkill(277),
-    //    358 - 2472.cs2
-    //    359 - 2472.cs2
-    SummongPouchLevel(394), // 751.cs2
-    SummoningDefence(417),
-    //    457 - 319.cs2, 322.cs2
-    WearOptions(528), // 528-531 1612.cs2
-    SummoningPouchId(538), // 767.cs2
-    SummoningPouchAmount(539), // 766.cs2, 767.cs2
-    SpiritShardId(540), // 767.cs2
-    SpiritShardAmount(541), //759.cs2, 766.cs2, 767.cs2, 793.cs2
-    CharmId(542), // 767.cs2
-    CharmAmount(543), // 766.cs2, 767.cs2
-    //    599 - 1670.cs2, 322.cs2 summoning scrolls
-    //    625 - hats/masks appearance?
-    StrengthBonus(641),
-    RangedStrength(643),
-    RenderAnim(644), // 1608.cs2
-    RangeDamage(643),
-    MagicDamage(685),
-    WeaponStyle(686), // 1142.csv
-    SpecialAttack(687), // 1136.csv
-    HandCannonWarning(690), // 920.cs2
-    // Summoning pouch item creation
-    //    697 - 759.cs2, 766.cs2, 767.cs2
-    //    698 - 759.cs2, 766.cs2, 767.cs2
-    //    699 - 759.cs2, 766.cs2, 767.cs2
-    //    700 - 759.cs2, 766.cs2, 767.cs2
-    //    701 - 759.cs2, 766.cs2, 767.cs2
-    //    702 - 759.cs2, 766.cs2, 767.cs2
-    //    703 - 759.cs2, 766.cs2, 767.cs2
-    //    704 - 759.cs2, 766.cs2, 767.cs2
-    //    705 - 759.cs2, 766.cs2, 767.cs2
-    //    706 - 759.cs2, 766.cs2, 767.cs2
-    //    707 - 759.cs2, 766.cs2, 767.cs2
-    //    708 - 759.cs2, 766.cs2, 767.cs2
-
-    //    740 - 812.cs2, 920.cs2 - unlit bug lantern
-    //    741 - 927.cs2, 933.cs2, 934.cs2 - cooking utensils
-    //    742 - 933.cs2, 934.cs2 - cooking utensil index
-    //    744 - 930.cs2
-    //    743 - quest 927.cs2, 930.cs2
-    //    745 - 930.cs2
-    //    746 - 930.cs2
-    //    747 - 930.cs2
-    //    748 - 930.cs2
-    RequiredCombat(761),
-    //    749..767 - skill 927.cs2, 929.cs2, 925.cs2, 928.cs2, 935.cs2, 936.cs2, 932.cs2
-    //    750..778 - skill level req 929.cs2, 925.cs2, 928.cs2, 935.cs2, 936.cs2, 932.cs2
-    //    770..780 - required use skill 931.cs2
-    //    771..781 required use level 931.cs2
-    //    802 - 2573.cs2
-    //    803 - 2570.cs2, 2573.cs2, 2597.cs2, 2599.cs2
-    //    805 - 2570.cs2, 2588.cs2
-    //    806 - 2570.cs2, 2591.cs2
-    //    823 - 929.cs2
-    QuestId(861),
-    MagicDamage2(965),
-    AbsorbMelee(967),
-    AbsorbMagic(969),
-    AbsorbRange(968),
-    InfiniteAirRunes(972),
-    InfiniteWaterRunes(973),
-    InfiniteEarthRunes(974),
-    InfiniteFireRunes(975),
-    DungeoneeringShopMultiplier(1046), // 2262.cs2
-    DungeoneeringItem(1047), // 2246.cs2, 912.cs2
-    //    1051 - 2246.cs2
-    //    1211 - 1612.cs2 - new equipment option
-    //    1264 - original inventory option
-    //    1265 - 1540.cs2 - replacement inventory option
-    Health(1326),
-    //    1366 - 4227.cs2 - chompy bird hat points
-    //    1367 - chompy bird alternate names
-    //    1368 - 4227.cs2 - Colour and feather requirement string
-    StageOnDeath(1397), // 4592.cs2, 59.cs2
-    //    1429 - 5359.cs2
-    //    1430 - 1612.cs2, 5359.cs2
+object ItemAttributes {
+    const val STAB_ATTACK = 0L // 606.cs2
+    const val SLASH_ATTACK = 1L
+    const val CRUSH_ATTACK = 2L
+    const val MAGIC_ATTACK = 3L
+    const val RANGE_ATTACK = 4L
+    const val STAB_DEFENCE = 5L
+    const val SLASH_DEFENCE = 6L
+    const val CRUSH_DEFENCE = 7L
+    const val MAGIC_DEFENCE = 8L
+    const val RANGE_DEFENCE = 9L
+    const val PRAYER_BONUS = 11L
+    const val WEAPON_SPEED = 14L
+    const val PARAM_21 = 21L // bows and crossbows - projectile?
+    const val SHOP_ITEM_LEVEL = 23L // 912.cs2
+    const val UNBANKABLE = 59L
+    const val CONSTRUCTION_REQUIRED_ITEM_ID_1 = 211L // 1864.cs2
+    const val CONSTRUCTION_REQUIRED_ITEM_AMOUNT_1 = 212L // 1864.cs2
+    const val CONSTRUCTION_REQUIRED_ITEM_ID_2 = 213L // 1864.cs2
+    const val CONSTRUCTION_REQUIRED_ITEM_AMOUNT_2 = 214L // 1864.cs2
+    const val CONSTRUCTION_REQUIRED_ITEM_ID_3 = 215L // 1864.cs2
+    const val CONSTRUCTION_REQUIRED_ITEM_AMOUNT_3 = 216L // 1864.cs2
+    const val CONSTRUCTION_REQUIRED_ITEM_ID_4 = 217L // 1864.cs2
+    const val CONSTRUCTION_REQUIRED_ITEM_AMOUNT_4 = 218L // 1864.cs2
+    const val CONSTRUCTION_REQUIRED_ITEM_ID_5 = 219L // 1864.cs2
+    const val CONSTRUCTION_REQUIRED_ITEM_AMOUNT_5 = 220L // 1864.cs2
+    const val CONSTRUCTION_REQUIRED_ITEM_ID_6 = 221L // 1864.cs2
+    const val CONSTRUCTION_REQUIRED_ITEM_AMOUNT_6 = 222L // 1864.cs2
+    const val CONSTRUCTION_ITEM = 226L
+    const val ELITE_CLUE_SCROLL = 235L
+    const val ELITE_CLUE_SCROLL_NEXT = 236L
+    const val GOD_ARROW = 237L
+    const val SKILL_CAPE = 258L
+    const val TRIMMED_SKILL_CAPE = 259L // 2720.cs2, 2723.cs2
+    const val MAXED_SKILL = 277L
+    const val SUMMONING_POUCH_LEVEL = 394L // 751.cs2
+    const val ABSORB_SUMMONING = 417L
+    const val SUMMONING_ITEM = 457L // 319.cs2, 322.cs2
+    const val WEAR_OPTION_1 = 528L // 1612.cs2
+    const val WEAR_OPTION_2 = 529L // 1612.cs2
+    const val WEAR_OPTION_3 = 530L // 1612.cs2
+    const val WEAR_OPTION_4 = 531L // 1612.cs2
+    const val SUMMONING_POUCH_ID = 538L // 767.cs2
+    const val SUMMONING_POUCH_AMOUNT = 539L // 766.cs2, 767.cs2
+    const val SUMMONING_SHARD_ID = 540L // 767.cs2
+    const val SUMMONING_SHARD_AMOUNT = 541L // 759.cs2, 766.cs2, 767.cs2, 793.cs2
+    const val SUMMONING_CHARM_ID = 542L // 767.cs2
+    const val SUMMONING_CHARM_AMOUNT = 543L // 766.cs2, 767.cs2
+    const val SUMMONING_SCROLL = 599L // 322.cs2, 1670.cs2
+    const val EQUIP_TYPE_HIDE_HAIR = 624L
+    const val EQUIP_TYPE_HAT = 625L
+    const val EQUIP_TYPE_FULL_FACE = 641L
+    const val RANGED_STRENGTH = 643L
+    const val RENDER_ANIMATION = 644L // 1608.cs2
+    const val MAGIC_DAMAGE = 685L
+    const val WEAPON_STYLE = 686L // 1142.cs2
+    const val SPECIAL_ATTACK = 687L // 1136.cs2
+    const val HAND_CANNON_WARNING = 690L // 920.cs2
+    const val SUMMONING_POUCH_REQ_ITEM_ID_1 = 697L // 759.cs2, 766.cs2, 767.cs2
+    const val SUMMONING_POUCH_REQ_ITEM_AMOUNT_1 = 698L // 759.cs2, 766.cs2, 767.cs2
+    const val SUMMONING_POUCH_REQ_ITEM_ID_2 = 699L // 759.cs2, 766.cs2, 767.cs2
+    const val SUMMONING_POUCH_REQ_ITEM_AMOUNT_2 = 700L // 759.cs2, 766.cs2, 767.cs2
+    const val UNLIT_BUG_LANTERN = 740L // 812.cs2, 920.cs2
+    const val PARAM_741 = 741L // 927.cs2, 933.cs2, 934.cs2 cooking utensils, hasta's and dagon'hai items
+    const val RECIPE_FOR_DISASTER_SAVE_COUNT = 742L // 933.cs2, 934.cs2
+    const val QUEST_REQUIREMENT_SLOT_ID = 743L // 927.cs2, 930.cs2
+    const val EQUIP_SKILL_1 = 749L // 927.cs2, 929.cs2
+    const val EQUIP_LEVEL_1 = 750L // 929.cs2
+    const val EQUIP_SKILL_2 = 751L // 929.cs2
+    const val EQUIP_LEVEL_2 = 752L // 929.cs2
+    const val EQUIP_SKILL_3 = 753L // 929.cs2
+    const val EQUIP_LEVEL_3 = 754L // 929.cs2
+    const val EQUIP_SKILL_4 = 755L // 929.cs2
+    const val EQUIP_LEVEL_4 = 756L // 929.cs2
+    const val EQUIP_SKILL_5 = 757L // 929.cs2
+    const val EQUIP_LEVEL_5 = 758L // 929.cs2
+    const val EQUIP_SKILL_6 = 759L // 929.cs2
+    const val EQUIP_LEVEL_6 = 760L // 929.cs2
+    const val REQUIRED_COMBAT = 761L // 925.cs2
+    const val REQUIRED_QUEST_ID_1 = 762L // 928.cs2, 935.cs2, 936.cs2
+    const val REQUIRED_QUEST_ID_2 = 764L // 928.cs2, 932.cs2
+    const val REQUIRED_QUEST_ID_3 = 765L // 932.cs2
+    const val USE_SKILL_1 = 770L // 928.cs2, 931.cs2
+    const val USE_LEVEL_1 = 771L // 931.cs2
+    const val USE_SKILL_2 = 772L // 931.cs2
+    const val USE_LEVEL_2 = 773L // 931.cs2
+    const val USE_SKILL_3 = 774L // 931.cs2
+    const val USE_LEVEL_3 = 775L // 931.cs2
+    const val USE_SKILL_4 = 776L // 931.cs2
+    const val USE_LEVEL_4 = 777L // 931.cs2
+    const val USE_SKILL_5 = 778L // 931.cs2
+    const val USE_LEVEL_5 = 779L // 931.cs2
+    const val USE_SKILL_6 = 780L // 931.cs2
+    const val USE_LEVEL_6 = 781L // 931.cs2
+    const val MOBILISING_ARMIES_SQUAD = 802L // 2573.cs2
+    const val MOBILISING_ARMIES_SQUAD_DEFEATED = 803L // 2570.cs2, 2573.cs2, 2597.cs2, 2599.cs2
+    const val MOBILISING_ARMIES_SQUAD_TYPE = 805L // 2570.cs2, 2588.cs2
+    const val MOBILISING_ARMIES_SQUAD_HEAVY = 806L // 2570.cs2, 2591.cs2
+    const val MOBILISING_ARMIES_SQUAD_DEFEATED_ID = 811L
+    const val MOBILISING_ARMIES_SQUAD_ORIGINAL_ID = 814L
+    const val MOBILISING_ARMIES_REWARD_CREDITS_COST = 821L
+    const val BUG_LANTERN = 823L // 929.cs2
+    const val BARBARIAN_ASSAULT_REWARD = 954L
+    const val BARBARIAN_ASSAULT_TICKET_WAVE = 955L
+    const val SALAMANDER_BLAZE_STRENGTH = 965L
+    const val ABSORB_MELEE = 967L
+    const val ABSORB_RANGE = 968L
+    const val ABSORB_MAGIC = 969L
+    const val INFINITE_AIR_RUNES = 972L
+    const val INFINITE_WATER_RUNES = 973L
+    const val INFINITE_EARTH_RUNES = 974L
+    const val INFINITE_FIRE_RUNES = 975L
+    const val DUNGEONEERING_SHOP_MULTIPLIER = 1046L // 2262.cs2
+    const val DUNGEONEERING_ITEM = 1047L // 912.cs2, 2246.cs2
+    const val DUNGEONEERING_BOUND_ITEM = 1050L
+    const val DUNGEONEERING_BOUND_AMMO = 1051L // 2246.cs2
+    const val GOD_BOW_ID = 1091L
+    const val GOD_BOW_AMOUNT = 1092L
+    const val EXTRA_EQUIPMENT_OPTION = 1211L // 1612.cs2
+    const val VOID_STARES_BACK_KEY_BLOCK_LABEL = 1225L
+    const val VOID_STARES_BACK_KEY_BLOCK_WEIGHT = 1226L
+    const val DYNAMIC_INVENTORY_OPTION_ORIGINAL = 1264L
+    const val DYNAMIC_INVENTORY_OPTION_REPLACEMENT = 1265L // 1540.cs2
+    const val CHOMPY_BIRD_KILLS = 1366L // 4227.cs2
+    const val CHOMPY_BIRD_HAT_NAME = 1367L
+    const val CHOMPY_BIRD_REQUIREMENT_STRING = 1368L // 4227.cs2
+    const val STAGE_ON_DEATH = 1397L // 59.cs2, 4592.cs2
+    const val PARAM_2195 = 2195L
 }
 
 fun ItemDefinition.getInt(key: Long, default: Int): Int = params?.getOrDefault(key, default) as? Int ?: default
 
 fun ItemDefinition.getString(key: Long, default: String): String = params?.getOrDefault(key, default) as? String ?: default
 
-fun ItemDefinition.attackSpeed(): Int = getInt(14, 4)
+fun ItemDefinition.attackSpeed(): Int = getInt(WEAPON_SPEED, 4)
 
 fun ItemDefinition.has(key: Long): Boolean = params != null && params!!.containsKey(key)
 
-fun ItemDefinition.requiredEquipLevel(index: Int = 0): Int = getInt(750L + (index * 2), 1)
+fun ItemDefinition.requiredEquipLevel(index: Int = 0): Int = getInt(EQUIP_LEVEL_1 + (index * 2), 1)
 
-fun ItemDefinition.requiredEquipSkill(index: Int = 0): Skill? = (params?.get(749L + (index * 2)) as? Int)?.let { Skill.all[it] }
+fun ItemDefinition.requiredEquipSkill(index: Int = 0): Skill? = (params?.get(EQUIP_SKILL_1 + (index * 2)) as? Int)?.let { Skill.all[it] }
 
-fun ItemDefinition.requiredUseLevel(index: Int = 0): Int = getInt(771L + (index * 2), 1)
+fun ItemDefinition.requiredUseLevel(index: Int = 0): Int = getInt(USE_LEVEL_1 + (index * 2), 1)
 
-fun ItemDefinition.requiredUseSkill(index: Int = 0): Skill? = (params?.get(770L + (index * 2)) as? Int)?.let { Skill.all[it] }
+fun ItemDefinition.requiredUseSkill(index: Int = 0): Skill? = (params?.get(USE_SKILL_1 + (index * 2)) as? Int)?.let { Skill.all[it] }
 
-fun ItemDefinition.getMaxedSkill(): Skill? = (params?.get(277) as? Int)?.let { Skill.all[it] }
+fun ItemDefinition.getMaxedSkill(): Skill? = (params?.get(MAXED_SKILL) as? Int)?.let { Skill.all[it] }
 
-fun ItemDefinition.hasRequirements(): Boolean = params?.contains(750L) == true || params?.contains(277L) == true
+fun ItemDefinition.hasRequirements(): Boolean = params?.contains(EQUIP_LEVEL_1) == true || params?.contains(MAXED_SKILL) == true
 
 fun Player.hasRequirements(item: Item, message: Boolean = false) = hasRequirements(item.def, message)
 
@@ -142,10 +187,7 @@ fun Player.hasRequirements(item: ItemDefinition, message: Boolean = false): Bool
             return false
         }
     }
-    if (appearance.combatLevel < item.requiredCombat()) {
-        return false
-    }
-    return true
+    return appearance.combatLevel >= item.requiredCombat()
 }
 
 fun Player.hasUseRequirements(item: Item, message: Boolean = false) = hasUseRequirements(item.def, message)
@@ -161,21 +203,21 @@ fun Player.hasUseRequirements(item: ItemDefinition, message: Boolean = false): B
     return true
 }
 
-fun ItemDefinition.specialAttack(): Int = getInt(687, 0)
+fun ItemDefinition.specialAttack(): Int = getInt(SPECIAL_ATTACK, 0)
 
-fun ItemDefinition.hasSpecialAttack(): Boolean = getInt(687, 0) == 1
+fun ItemDefinition.hasSpecialAttack(): Boolean = getInt(SPECIAL_ATTACK, 0) == 1
 
-fun ItemDefinition.renderAnimationId(): Int = getInt(644, 1426)
+fun ItemDefinition.renderAnimationId(): Int = getInt(RENDER_ANIMATION, 1426)
 
-fun ItemDefinition.isSkillCape(): Boolean = getInt(258, -1) == 1
+fun ItemDefinition.isSkillCape(): Boolean = getInt(SKILL_CAPE, -1) == 1
 
-fun ItemDefinition.isTrimmedSkillCape(): Boolean = getInt(259, -1) == 1
+fun ItemDefinition.isTrimmedSkillCape(): Boolean = getInt(TRIMMED_SKILL_CAPE, -1) == 1
 
-fun ItemDefinition.quest(): Int = getInt(743, -1)
+fun ItemDefinition.quest(): Int = getInt(QUEST_REQUIREMENT_SLOT_ID, -1)
 
-fun ItemDefinition.requiredCombat(): Int = getInt(761, 0)
+fun ItemDefinition.requiredCombat(): Int = getInt(REQUIRED_COMBAT, 0)
 
-fun ItemDefinition.weaponStyle(): Int = getInt(686, 0)
+fun ItemDefinition.weaponStyle(): Int = getInt(WEAPON_STYLE, 0)
 
 val ItemDefinition.slot: EquipSlot
     get() = this["slot", EquipSlot.None]
