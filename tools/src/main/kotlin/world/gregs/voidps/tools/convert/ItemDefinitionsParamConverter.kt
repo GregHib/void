@@ -11,14 +11,14 @@ import world.gregs.voidps.cache.definition.decoder.ItemDecoderFull
 import world.gregs.voidps.cache.definition.encoder.ItemEncoder
 
 object ItemDefinitionsParamConverter {
+    @Suppress("USELESS_CAST")
     @JvmStatic
     fun main(args: Array<String>) {
-
         val cache667 = module {
-            single { CacheDelegate("./data/cache/") }
+            single { CacheDelegate("${System.getProperty("user.home")}/Downloads/rs634_cache/") as Cache }
         }
         val cache718 = module {
-            single { CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\") }
+            single { CacheDelegate("${System.getProperty("user.home")}/Downloads/rs718_cache/") as Cache }
         }
 
         val koin = startKoin {
@@ -42,24 +42,22 @@ object ItemDefinitionsParamConverter {
             val def = decoder.getOrNull(id) ?: continue
             val def718 = definitions[id] ?: continue
             val params718 = def718.params ?: continue
-            val params = def.params?.toMutableMap() ?: hashMapOf()
-            if (def.params == null) {
-                def.params = params
-            }
+            val params = def.params?.toMutableMap() ?: mutableMapOf()
+            def.params = params
             var modified = false
             for ((key, value) in params718) {
-                if (!params.containsKey(key) || (params.containsKey(key) && params[key] != value)) {
+                if (!params.containsKey(key)) {
                     params[key] = value
-                    val writer = BufferWriter()
-                    with(encoder) {
-                        writer.encode(def)
-                    }
-                    cache.write(ITEMS, itemDecoder.getArchive(id), itemDecoder.getFile(id), writer.toArray())
                     count++
                     modified = true
                 }
             }
             if (modified) {
+                val writer = BufferWriter(capacity = 512)
+                with(encoder) {
+                    writer.encode(def)
+                }
+                cache.write(ITEMS, itemDecoder.getArchive(id), itemDecoder.getFile(id), writer.toArray())
                 itemCount++
             }
         }
