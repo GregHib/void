@@ -23,8 +23,28 @@ internal class DemonbaneWeaponFormulaTest : CombatFormulaTest() {
         assertEquals(212, maxHit)
         assertEquals(0.5813, chance, 0.0001)
 
-        val (_, _, specMaxHit, _) = calculate(player, npc, "melee", weapon, special = true)
+        val (_, _, specMaxHit, specChance) = calculate(player, npc, "melee", weapon, special = true)
         assertEquals(133, specMaxHit)
+        assertEquals(0.5813, specChance, 0.0001)
+    }
+
+    @Test
+    fun `Darklight on rat`() {
+        val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99)
+        val weapon = Item("darklight")
+        player.equipment.set(EquipSlot.Weapon.index, weapon.id)
+        val npc = createNPC("rat")
+
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
+
+        assertEquals(6880, offensiveRating)
+        assertEquals(220, defensiveRating)
+        assertEquals(133, maxHit)
+        assertEquals(0.9838, chance, 0.0001)
+
+        val (_, _, specMaxHit, specChance) = calculate(player, npc, "melee", weapon, special = true)
+        assertEquals(133, specMaxHit)
+        assertEquals(0.9838, specChance, 0.0001)
     }
 
 }

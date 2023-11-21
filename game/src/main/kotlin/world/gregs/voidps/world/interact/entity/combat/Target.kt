@@ -98,7 +98,7 @@ object Target {
         } else if (target is NPC && (target.id == "magic_dummy" || target.id == "melee_dummy")) {
             damage.coerceAtMost(target.levels.get(Skill.Constitution) - 1)
         } else {
-            damage.coerceAtMost(target.levels.get(Skill.Constitution))
+            damage
         }
     }
 }

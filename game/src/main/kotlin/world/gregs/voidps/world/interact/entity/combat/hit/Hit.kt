@@ -72,7 +72,6 @@ object Hit {
 
         if (offense) {
             rating = Bonus.slayerModifier(source, target, type, rating, damage = false)
-            rating = Weapon.ratingModifiers(source, target, weapon, rating)
             rating = Weapon.specialRatingModifiers(source, type, weapon, special, rating)
         } else {
             Prayer.setTurmoilTarget(source, target)
@@ -130,6 +129,7 @@ fun Character.hit(
     damage: Int = Damage.roll(this, target, type, weapon, spell)
 ): Int {
     val actualDamage = Damage.modify(this, target, type, damage, weapon, special)
+        .coerceAtMost(target.levels.get(Skill.Constitution))
     events.emit(CombatAttack(target, type, actualDamage, weapon, spell, special, TICKS.toClientTicks(delay)))
     target.strongQueue("hit", delay) {
         target.directHit(this@hit, actualDamage, type, weapon, spell, special)

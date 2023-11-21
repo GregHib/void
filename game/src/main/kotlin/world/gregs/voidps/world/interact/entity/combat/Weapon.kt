@@ -19,14 +19,6 @@ import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import kotlin.random.nextInt
 
 object Weapon {
-
-    fun ratingModifiers(source: Character, target: Character, weapon: Item, rating: Int): Int {
-        if (isDemonbane(weapon) && Target.isDemon(target)) {
-            return (rating * 1.2).toInt()
-        }
-        return rating
-    }
-
     fun specialRatingModifiers(source: Character, type: String, weapon: Item, special: Boolean, rating: Int): Int {
         if (type == "melee" && special && weapon.id == "dragon_halberd" && source["second_hit", false]) {
             return (rating * 0.75).toInt()
@@ -146,7 +138,7 @@ object Weapon {
                 damage = (damage * 1.2).toInt()
             } else if (Equipment.isTzhaarWeapon(weapon.id) && source.equipped(EquipSlot.Amulet).id == "berserker_necklace") {
                 damage = (damage * 1.2).toInt()
-            } else if (isDemonbane(weapon) && Target.isDemon(target)) {
+            } else if (isDemonbane(weapon) && Target.isDemon(target) && !special) {
                 damage = (damage * 1.6).toInt()
             } else if (weapon.id == "gadderhammer" && Target.isShade(target)) {
                 damage = (damage * if (random.nextDouble() < 0.05) 2.0 else 1.25).toInt()

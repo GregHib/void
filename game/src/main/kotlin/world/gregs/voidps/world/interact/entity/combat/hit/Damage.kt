@@ -74,7 +74,7 @@ object Damage {
 
     private fun effectiveLevel(character: Character, skill: Skill): Int {
         var level = character.levels.get(skill)
-        if (skill == Skill.Ranged) {
+        if (skill != Skill.Magic) {
             level = Prayer.effectiveLevelModifier(character, skill, false, level)
         }
         if (skill != Skill.Magic) {

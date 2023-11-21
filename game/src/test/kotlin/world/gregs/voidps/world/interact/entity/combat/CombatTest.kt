@@ -3,8 +3,8 @@ package world.gregs.voidps.world.interact.entity.combat
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.FakeRandom
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -106,7 +106,7 @@ internal class CombatTest : WorldTest() {
         on<NPC, CombatHit> {
             hits++
         }
-        val player = createPlayer("player",emptyTile)
+        val player = createPlayer("player", emptyTile)
         player.experience.set(Skill.Attack, EXPERIENCE)
         player.levels.set(Skill.Attack, 99)
         val npc = createNPC("rat", emptyTile.addY(1))
@@ -122,29 +122,30 @@ internal class CombatTest : WorldTest() {
         assertEquals(2, hits)
     }
 
-    @Disabled
     @Test
     fun `Don't take damage with protection prayers`() {
-        var shouldHaveDamaged = false
-//        on<NPC, HitDamageModifier>({ damage > 0 }, Priority.HIGHEST) {
-//            shouldHaveDamaged = true
-//        }
+        setRandom(object : FakeRandom() {
+            override fun nextBits(bitCount: Int) = 100
+        })
         val player = createPlayer("player", emptyTile)
         player.experience.set(Skill.Constitution, EXPERIENCE)
+        player.experience.set(Skill.Prayer, EXPERIENCE)
         player.levels.set(Skill.Constitution, 990)
+        player.levels.set(Skill.Prayer, 99)
         val npc = createNPC("rat", emptyTile.addY(1))
         npc.levels.link(npc.events, object : Levels.Level {
             override fun getMaxLevel(skill: Skill): Int {
-                return if (skill == Skill.Constitution) 10000 else 99
+                return if (skill == Skill.Constitution) 10000 else 1
             }
         })
         npc.levels.clear()
 
-        player.interfaceOption("prayer_list", "regular_prayers", slot = 19, optionIndex = 0)
+        player.interfaceOption("prayer_list", "regular_prayers", "Activate", slot = 19, optionIndex = 0)
         player.npcOption(npc, "Attack")
-        tickIf { !shouldHaveDamaged }
+        tick(2)
 
         assertEquals(990, player.levels.get(Skill.Constitution))
+        assertNotEquals(0, player["protected_damage", 0])
     }
 
     @Test

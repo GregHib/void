@@ -47,9 +47,9 @@ internal class MagicCombatFormulaTest : CombatFormulaTest() {
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, target, "magic", spell = "fire_wave")
 
         assertEquals(6912, offensiveRating)
-        assertEquals(192, defensiveRating)
+        assertEquals(512, defensiveRating)
         assertEquals(200, maxHit)
-        assertEquals(0.9859, chance, 0.0001)
+        assertEquals(0.9628, chance, 0.0001)
     }
 
     @Test
