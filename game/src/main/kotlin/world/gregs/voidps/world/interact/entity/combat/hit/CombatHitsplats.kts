@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.hit
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.network.visual.update.Hit
+import world.gregs.voidps.network.visual.update.Hitsplat
 import world.gregs.voidps.world.interact.entity.combat.damageDealers
 import kotlin.collections.set
 import kotlin.math.floor
@@ -32,15 +32,15 @@ on<CombatHit>({ damage >= 0 && !(type == "magic" && definitions.get(spell).maxHi
         source = source,
         amount = damage,
         mark = when (type) {
-            "range" -> Hit.Mark.Range
-            "melee" -> Hit.Mark.Melee
-            "magic" -> Hit.Mark.Magic
-            "poison" -> Hit.Mark.Poison
-            "disease" -> Hit.Mark.Diseased
-            "dragonfire", "damage" -> Hit.Mark.Regular
-            "deflect" -> Hit.Mark.Reflected
-            "healed" -> Hit.Mark.Healed
-            else -> Hit.Mark.Missed
+            "range" -> Hitsplat.Mark.Range
+            "melee" -> Hitsplat.Mark.Melee
+            "magic" -> Hitsplat.Mark.Magic
+            "poison" -> Hitsplat.Mark.Poison
+            "disease" -> Hitsplat.Mark.Diseased
+            "dragonfire", "damage" -> Hitsplat.Mark.Regular
+            "deflect" -> Hitsplat.Mark.Reflected
+            "healed" -> Hitsplat.Mark.Healed
+            else -> Hitsplat.Mark.Missed
         },
         critical = critical,
         soak = soak
@@ -52,7 +52,7 @@ on<CombatHit>({ damage >= 0 && type == "healed" }) { character: Character ->
     character.hit(
         source = source,
         amount = damage,
-        mark = Hit.Mark.Healed
+        mark = Hitsplat.Mark.Healed
     )
     character.levels.restore(Skill.Constitution, damage)
 }
@@ -61,6 +61,6 @@ on<CombatHit>({ damage < 0 }) { character: Character ->
     character.hit(
         source = source,
         amount = 0,
-        mark = Hit.Mark.Missed
+        mark = Hitsplat.Mark.Missed
     )
 }

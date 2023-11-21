@@ -3,7 +3,7 @@ package world.gregs.voidps.network.visual.update
 import world.gregs.voidps.network.Visual
 
 data class Hits(
-    val hits: MutableList<Hit> = mutableListOf(),
+    val hits: MutableList<Hitsplat> = mutableListOf(),
     var self: Int = 0,
     var target: Int = 0
 ) : Visual {

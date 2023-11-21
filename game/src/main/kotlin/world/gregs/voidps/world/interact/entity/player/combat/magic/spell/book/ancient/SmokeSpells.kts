@@ -8,11 +8,11 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.toxin.poison
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
@@ -26,7 +26,7 @@ on<CombatSwing>({ player -> !swung() && player.spell.startsWith("smoke_") }, Pri
     delay = 5
 }
 
-on<CombatHit>({ spell.startsWith("smoke_") && damage > 0 && random.nextDouble() <= 0.2 }) { target: Character ->
+on<CombatAttack>({ spell.startsWith("smoke_") && damage > 0 && random.nextDouble() <= 0.2 }) { source: Character ->
     val damage: Int = definitions.get(spell)["poison_damage"]
     source.poison(target, damage)
 }

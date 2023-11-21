@@ -2,7 +2,7 @@ package world.gregs.voidps.network.visual.update
 
 import world.gregs.voidps.buffer.write.Writer
 
-data class Hit(
+data class Hitsplat(
     val amount: Int,
     val mark: Mark,
     val percentage: Int,

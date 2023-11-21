@@ -16,9 +16,9 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
-import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
@@ -51,12 +51,9 @@ var Player.restoration: Int
         this["restoration"] = value
     }
 
-on<CombatHit>({ source is Player && isGodBow(weapon) && special }) { character: Character ->
-    source as Player
-    character.setGraphic("${weapon.id}_special_hit")
-    source.playSound("god_bow_special_hit")
+on<CombatAttack>({ isGodBow(weapon) && special }) { source: Player ->
     when (weapon.id) {
-        "zamorak_bow" -> character.directHit(source, damage, type, weapon, spell, special)
+        "zamorak_bow" -> target.hit(source, weapon, type, delay, spell, special, damage)
         "saradomin_bow" -> {
             source.restoration += damage * 2
             source["restoration_amount"] = source.restoration / 10
@@ -68,6 +65,12 @@ on<CombatHit>({ source is Player && isGodBow(weapon) && special }) { character: 
             source.softTimers.start("balanced_shot")
         }
     }
+}
+
+on<CombatHit>({ source is Player && isGodBow(weapon) && special }) { character: Character ->
+    source as Player
+    character.setGraphic("${weapon.id}_special_hit")
+    source.playSound("god_bow_special_hit")
 }
 
 on<TimerStart>({ timer == "restorative_shot" || timer == "balanced_shot" }) { _: Player ->

@@ -11,8 +11,9 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
-import world.gregs.voidps.world.interact.entity.combat.*
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.fightStyle
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -34,7 +35,7 @@ on<CombatSwing>({ delay != null && delay!! > 0 && it.hasClock("miasmic") && mele
     delay = delay!! * 2
 }
 
-on<CombatHit>({ spell.startsWith("miasmic_") && damage > 0 }) { target: Character ->
+on<CombatAttack>({ spell.startsWith("miasmic_") && damage > 0 }) { source: Character ->
     val seconds: Int = definitions.get(spell)["effect_seconds"]
     target.start("miasmic", seconds, epochSeconds())
 }

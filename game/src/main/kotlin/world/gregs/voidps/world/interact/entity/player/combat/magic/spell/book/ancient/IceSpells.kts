@@ -7,11 +7,11 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.effect.freeze
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
@@ -25,7 +25,7 @@ on<CombatSwing>({ player -> !swung() && player.spell.startsWith("ice_") }, Prior
     delay = 5
 }
 
-on<CombatHit>({ spell.startsWith("ice_") && damage > 0 }) { target: Character ->
+on<CombatAttack>({ spell.startsWith("ice_") && damage > 0 }) { source: Character ->
     val ticks: Int = definitions.get(spell)["freeze_ticks"]
     source.freeze(target, ticks)
 }

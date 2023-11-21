@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.event.Event
 
 /**
  * Damage done by [source] to the emitter
+ * Used for hit graphics, for effects use [CombatAttack]
  * @param type the combat type, typically: melee, range or magic
  * @param damage the damage inflicted by the [source]
  * @param weapon weapon used

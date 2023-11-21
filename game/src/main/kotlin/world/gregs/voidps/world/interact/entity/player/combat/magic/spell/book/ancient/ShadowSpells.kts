@@ -5,11 +5,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 on<CombatSwing>({ player -> !swung() && player.spell.startsWith("shadow_") }, Priority.LOW) { player: Player ->
@@ -20,6 +20,6 @@ on<CombatSwing>({ player -> !swung() && player.spell.startsWith("shadow_") }, Pr
     delay = 5
 }
 
-on<CombatHit>({ spell.startsWith("shadow_") && damage > 0 }) { target: Character ->
+on<CombatAttack>({ spell.startsWith("shadow_") && damage > 0 }) { source: Character ->
     Spell.drain(source, target, spell)
 }

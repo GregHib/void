@@ -1,37 +1,36 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
-import world.gregs.voidps.world.interact.entity.combat.hit.directHit
+import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 
-on<CombatHit>({ source is Player && type == "range" && source.ammo == "saradomin_arrows" }) { character: Character ->
+on<CombatAttack>({ type == "range" && it.ammo == "saradomin_arrows" }) { source: Player ->
     val chance = if (weapon.id == "saradomin_bow") 0.2 else 0.1
     if (random.nextDouble() < chance) {
         // water_strike
-        val damage = Damage.roll(source, character, type, weapon)
-        character.directHit(source, damage, "magic", weapon)
+        val damage = Damage.roll(source, target, type, weapon)
+        target.hit(source, weapon, "magic", delay, damage = damage)
     }
 }
 
-on<CombatHit>({ source is Player && type == "range" && source.ammo == "guthix_arrows" }) { character: Character ->
+on<CombatAttack>({ type == "range" && it.ammo == "guthix_arrows" }) { source: Player ->
     val chance = if (weapon.id == "guthix_bow") 0.2 else 0.1
     if (random.nextDouble() < chance) {
         // earth_strike
-        val damage = Damage.roll(source, character, type, weapon)
-        character.directHit(source, damage, "magic", weapon)
+        val damage = Damage.roll(source, target, type, weapon)
+        target.hit(source, weapon, "magic", delay, damage = damage)
     }
 }
 
-on<CombatHit>({ source is Player && type == "range" && source.ammo == "zamorak_arrows" }) { character: Character ->
+on<CombatAttack>({ type == "range" && it.ammo == "zamorak_arrows" }) { source: Player ->
     val chance = if (weapon.id == "zamorak_bow") 0.2 else 0.1
     if (random.nextDouble() < chance) {
         // fire_strike
-        val damage = Damage.roll(source, character, type, weapon)
-        character.directHit(source, damage, "magic", weapon)
+        val damage = Damage.roll(source, target, type, weapon)
+        target.hit(source, weapon, "magic", delay, damage = damage)
     }
 }
