@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
@@ -67,7 +68,7 @@ on<CombatAttack>({ !blocked && target is Player && Prayer.usingDeflectPrayer(it,
         target.setAnimation("deflect", delay)
         target.setGraphic("deflect_${if (type == "melee") "attack" else type}", delay)
         if (random.nextDouble() >= 0.4) {
-            target.hit(target = character, type = "deflect", delay = delay, damage = (damage * 0.10).toInt())
+            target.hit(target = character, type = "deflect", delay = CLIENT_TICKS.toTicks(delay), damage = (damage * 0.10).toInt())
         }
         blocked = true
     }

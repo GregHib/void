@@ -9,10 +9,7 @@ import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerStop
-import world.gregs.voidps.engine.timer.TimerTick
-import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
@@ -53,7 +50,7 @@ var Player.restoration: Int
 
 on<CombatAttack>({ isGodBow(weapon) && special }) { source: Player ->
     when (weapon.id) {
-        "zamorak_bow" -> target.hit(source, weapon, type, delay, spell, special, damage)
+        "zamorak_bow" -> target.hit(source, weapon, type, CLIENT_TICKS.toTicks(delay), spell, special, damage)
         "saradomin_bow" -> {
             source.restoration += damage * 2
             source["restoration_amount"] = source.restoration / 10
