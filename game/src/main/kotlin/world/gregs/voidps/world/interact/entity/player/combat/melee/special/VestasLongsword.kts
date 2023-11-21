@@ -14,7 +14,7 @@ import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
-fun isVestas(item: Item?) = item != null && item.id.endsWith("vestas_longsword")
+fun isVestas(item: Item) = item.id.endsWith("vestas_longsword")
 
 on<CombatSwing>({ !swung() && isVestas(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("vestas_longsword_${

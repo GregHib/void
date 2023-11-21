@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 
-fun isDefender(item: Item?) = item != null && item.id.endsWith("defender")
+fun isDefender(item: Item) = item.id.endsWith("defender")
 
 on<CombatAttack>({ !blocked && target is Player && isDefender(target.equipped(EquipSlot.Shield)) }, Priority.HIGH) { _: Character ->
     target.setAnimation("defender_block", delay)

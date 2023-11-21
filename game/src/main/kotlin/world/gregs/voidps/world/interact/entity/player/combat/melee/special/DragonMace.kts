@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIA
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
-fun isDragonMace(item: Item?) = item != null && (item.id.startsWith("dragon_mace") || item.id.startsWith("corrupt_dragon_mace"))
+fun isDragonMace(item: Item) = item.id.startsWith("dragon_mace") || item.id.startsWith("corrupt_dragon_mace")
 
 on<CombatSwing>({ !swung() && it.specialAttack && isDragonMace(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 4)) {

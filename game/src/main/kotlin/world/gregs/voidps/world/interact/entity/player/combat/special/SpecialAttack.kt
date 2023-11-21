@@ -22,15 +22,15 @@ var Player.specialAttackEnergy: Int
     }
 
 fun drainSpecialEnergy(player: Player, amount: Int): Boolean {
-    var amount = amount
+    var drain = amount
     if (player.equipped(EquipSlot.Ring).id == "ring_of_vigour") {
-        amount = floor(amount * 0.9).toInt()
+        drain = floor(drain * 0.9).toInt()
     }
-    if (player.specialAttackEnergy < amount) {
+    if (player.specialAttackEnergy < drain) {
         player.message("You don't have enough power left.")
         player.specialAttack = false
         return false
     }
-    player.specialAttackEnergy -= amount
+    player.specialAttackEnergy -= drain
     return true
 }

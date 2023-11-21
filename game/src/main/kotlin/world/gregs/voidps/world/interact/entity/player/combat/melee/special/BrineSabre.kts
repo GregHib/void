@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
-fun isBrineSabre(item: Item?) = item != null && item.id == "brine_sabre"
+fun isBrineSabre(item: Item) = item.id == "brine_sabre"
 
 on<VariableSet>({ key == "special_attack" && to == true && isBrineSabre(it.weapon) }) { player: Player ->
     if (player.tile.region.id != 11924) {

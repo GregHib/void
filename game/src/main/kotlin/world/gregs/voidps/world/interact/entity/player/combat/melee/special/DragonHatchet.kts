@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIA
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
-fun isDragonHatchet(item: Item?) = item != null && item.id == "dragon_hatchet"
+fun isDragonHatchet(item: Item) = item.id == "dragon_hatchet"
 
 on<CombatSwing>({ !swung() && it.specialAttack && isDragonHatchet(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {

@@ -18,7 +18,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpeci
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 
-fun isWhip(item: Item?) = item != null && item.id.startsWith("abyssal_whip")
+fun isWhip(item: Item) = item.id.startsWith("abyssal_whip")
 
 on<CombatSwing>({ !swung() && isWhip(it.weapon) }, Priority.LOW) { player: Player ->
     if (player.specialAttack && !drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {

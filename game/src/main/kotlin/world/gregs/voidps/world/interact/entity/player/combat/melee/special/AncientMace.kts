@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIA
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
-fun isAncientMace(item: Item?) = item != null && item.id == "ancient_mace"
+fun isAncientMace(item: Item) = item.id == "ancient_mace"
 
 on<CombatSwing>({ !swung() && it.specialAttack && isAncientMace(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {

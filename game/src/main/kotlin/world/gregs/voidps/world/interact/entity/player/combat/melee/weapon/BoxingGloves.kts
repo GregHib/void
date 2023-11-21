@@ -6,12 +6,12 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
-fun isBoxingGloves(item: Item?) = item != null && item.id.startsWith("boxing_gloves")
+fun isBoxingGloves(item: Item) = item.id.startsWith("boxing_gloves")
 
 on<CombatSwing>({ !swung() && isBoxingGloves(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("boxing_gloves_attack")

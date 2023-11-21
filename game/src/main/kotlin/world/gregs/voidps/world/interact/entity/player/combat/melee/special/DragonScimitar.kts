@@ -20,7 +20,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpeci
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import java.util.concurrent.TimeUnit
 
-fun isDragonScimitar(item: Item?) = item != null && item.id.endsWith("dragon_scimitar")
+fun isDragonScimitar(item: Item) = item.id.endsWith("dragon_scimitar")
 
 on<CombatSwing>({ !swung() && it.specialAttack && isDragonScimitar(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, 550)) {

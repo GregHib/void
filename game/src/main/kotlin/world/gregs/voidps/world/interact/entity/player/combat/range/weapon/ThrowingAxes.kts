@@ -10,14 +10,16 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.attackType
+import world.gregs.voidps.world.interact.entity.combat.fightStyle
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
-import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun isThrowingAxe(item: Item?) = item != null && item.id.contains("_throwing_axe")
+fun isThrowingAxe(item: Item) = item.id.contains("_throwing_axe")
 
 on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && isThrowingAxe(player.weapon) }, Priority.HIGH) { player: Player ->
     val required = player["required_ammo", 1]

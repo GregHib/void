@@ -21,7 +21,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIA
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
-fun isVestasSpear(item: Item?) = item != null && (item.id.startsWith("vestas_spear") || item.id.startsWith("corrupt_vestas_spear"))
+fun isVestasSpear(item: Item) = item.id.startsWith("vestas_spear") || item.id.startsWith("corrupt_vestas_spear")
 
 val players: Players by inject()
 val npcs: NPCs by inject()

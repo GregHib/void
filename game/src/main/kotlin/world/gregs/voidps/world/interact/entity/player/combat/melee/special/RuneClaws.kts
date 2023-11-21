@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIA
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
-fun isRuneClaws(item: Item?) = item != null && item.id.startsWith("rune_claws")
+fun isRuneClaws(item: Item) = item.id.startsWith("rune_claws")
 
 on<CombatSwing>({ !swung() && it.specialAttack && isRuneClaws(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 4)) {

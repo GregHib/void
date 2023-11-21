@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIA
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
-fun isAnchor(item: Item?) = item != null && item.id == "barrelchest_anchor"
+fun isAnchor(item: Item) = item.id == "barrelchest_anchor"
 
 on<CombatSwing>({ !swung() && isAnchor(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("anchor_attack")
