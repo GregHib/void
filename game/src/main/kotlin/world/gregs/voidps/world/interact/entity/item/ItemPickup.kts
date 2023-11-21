@@ -28,7 +28,6 @@ on<FloorItemOption>({ operate && option == "Take" }) { player: Player ->
         return@on
     }
     if (!floorItems.remove(target)) {
-        logger.warn { "$player unable to pick up $target." }
         return@on
     }
     player.inventory.add(target.id, target.amount)
