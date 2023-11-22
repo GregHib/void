@@ -7,22 +7,22 @@ import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
-import world.gregs.voidps.engine.entity.item.ItemAttributes.EQUIP_LEVEL_1
-import world.gregs.voidps.engine.entity.item.ItemAttributes.EQUIP_SKILL_1
-import world.gregs.voidps.engine.entity.item.ItemAttributes.MAXED_SKILL
-import world.gregs.voidps.engine.entity.item.ItemAttributes.QUEST_REQUIREMENT_SLOT_ID
-import world.gregs.voidps.engine.entity.item.ItemAttributes.RENDER_ANIMATION
-import world.gregs.voidps.engine.entity.item.ItemAttributes.REQUIRED_COMBAT
-import world.gregs.voidps.engine.entity.item.ItemAttributes.SKILL_CAPE
-import world.gregs.voidps.engine.entity.item.ItemAttributes.SPECIAL_ATTACK
-import world.gregs.voidps.engine.entity.item.ItemAttributes.TRIMMED_SKILL_CAPE
-import world.gregs.voidps.engine.entity.item.ItemAttributes.USE_LEVEL_1
-import world.gregs.voidps.engine.entity.item.ItemAttributes.USE_SKILL_1
-import world.gregs.voidps.engine.entity.item.ItemAttributes.WEAPON_SPEED
-import world.gregs.voidps.engine.entity.item.ItemAttributes.WEAPON_STYLE
+import world.gregs.voidps.engine.entity.item.ItemParameters.EQUIP_LEVEL_1
+import world.gregs.voidps.engine.entity.item.ItemParameters.EQUIP_SKILL_1
+import world.gregs.voidps.engine.entity.item.ItemParameters.MAXED_SKILL
+import world.gregs.voidps.engine.entity.item.ItemParameters.QUEST_REQUIREMENT_SLOT_ID
+import world.gregs.voidps.engine.entity.item.ItemParameters.RENDER_ANIMATION
+import world.gregs.voidps.engine.entity.item.ItemParameters.REQUIRED_COMBAT
+import world.gregs.voidps.engine.entity.item.ItemParameters.SKILL_CAPE
+import world.gregs.voidps.engine.entity.item.ItemParameters.SPECIAL_ATTACK
+import world.gregs.voidps.engine.entity.item.ItemParameters.TRIMMED_SKILL_CAPE
+import world.gregs.voidps.engine.entity.item.ItemParameters.USE_LEVEL_1
+import world.gregs.voidps.engine.entity.item.ItemParameters.USE_SKILL_1
+import world.gregs.voidps.engine.entity.item.ItemParameters.WEAPON_SPEED
+import world.gregs.voidps.engine.entity.item.ItemParameters.WEAPON_STYLE
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
-object ItemAttributes {
+object ItemParameters {
     const val STAB_ATTACK = 0L // 606.cs2
     const val SLASH_ATTACK = 1L
     const val CRUSH_ATTACK = 2L
