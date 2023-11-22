@@ -58,7 +58,7 @@ object ItemAttributes {
     const val TRIMMED_SKILL_CAPE = 259L // 2720.cs2, 2723.cs2
     const val MAXED_SKILL = 277L
     const val SUMMONING_POUCH_LEVEL = 394L // 751.cs2
-    const val ABSORB_SUMMONING = 417L
+    const val SUMMONING_DEFENCE = 417L
     const val SUMMONING_ITEM = 457L // 319.cs2, 322.cs2
     const val WEAR_OPTION_1 = 528L // 1612.cs2
     const val WEAR_OPTION_2 = 529L // 1612.cs2
@@ -73,7 +73,7 @@ object ItemAttributes {
     const val SUMMONING_SCROLL = 599L // 322.cs2, 1670.cs2
     const val EQUIP_TYPE_HIDE_HAIR = 624L
     const val EQUIP_TYPE_HAT = 625L
-    const val EQUIP_TYPE_FULL_FACE = 641L
+    const val STRENGTH = 641L
     const val RANGED_STRENGTH = 643L
     const val RENDER_ANIMATION = 644L // 1608.cs2
     const val MAGIC_DAMAGE = 685L
@@ -149,7 +149,45 @@ object ItemAttributes {
     const val CHOMPY_BIRD_HAT_NAME = 1367L
     const val CHOMPY_BIRD_REQUIREMENT_STRING = 1368L // 4227.cs2
     const val STAGE_ON_DEATH = 1397L // 59.cs2, 4592.cs2
-    const val PARAM_2195 = 2195L
+    const val CATEGORY = 2195L
+    object Category {
+        const val THROWABLE = 1
+        const val ARROW = 2
+        const val BOLT = 3
+        const val CONSTRUCTION = 4
+        const val FURNITURE = 5
+        const val UNCOOKED_FOOD = 6
+        const val CONSTRUCTION_STORABLE_CLOTHE = 7
+        const val CRAFTING = 8
+        const val SUMMONING_POUCHE = 9
+        const val CONSTRUCTION_PLANT = 10
+        const val FLETCHING = 11
+        const val EDIBLE = 12
+        const val HERBLORE = 13
+        const val HUNTER_REQUIRED_ITEM = 14
+        const val HUNTER_REWARD = 15
+        const val JEWELLERY = 16
+        const val MAGIC_ARMOUR = 17
+        const val MAGIC_WEAPON = 18
+        const val MELEE_ARMOUR_LOW = 19
+        const val MELEE_ARMOUR_MID = 20
+        const val MELEE_ARMOUR_HIGH = 21
+        const val MELEE_WEAPON_LOW = 22
+        const val MELEE_WEAPON_MID = 23
+        const val MELEE_WEAPON_HIGH = 24
+        const val MINING_SMELTING = 25
+        const val POTION = 26
+        const val PRAYER_ARMOUR = 27
+        const val PRAYER_CONSUMABLE = 28
+        const val RANGE_ARMOUR = 29
+        const val RANGE_WEAPON = 30
+        const val RUNECRAFTING = 31
+        const val TELEPORT = 32
+        const val SEED = 33
+        const val SUMMONING_SCROLL = 34
+        const val ITEM_ON_ITEM = 35
+        const val LOG = 36
+    }
 }
 
 fun ItemDefinition.getInt(key: Long, default: Int): Int = params?.getOrDefault(key, default) as? Int ?: default
