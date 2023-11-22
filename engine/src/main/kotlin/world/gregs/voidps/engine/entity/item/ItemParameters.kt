@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
+import world.gregs.voidps.engine.entity.item.ItemParameters.ATTACK_SPEED
 import world.gregs.voidps.engine.entity.item.ItemParameters.EQUIP_LEVEL_1
 import world.gregs.voidps.engine.entity.item.ItemParameters.EQUIP_SKILL_1
 import world.gregs.voidps.engine.entity.item.ItemParameters.MAXED_SKILL
@@ -18,7 +19,6 @@ import world.gregs.voidps.engine.entity.item.ItemParameters.SPECIAL_ATTACK
 import world.gregs.voidps.engine.entity.item.ItemParameters.TRIMMED_SKILL_CAPE
 import world.gregs.voidps.engine.entity.item.ItemParameters.USE_LEVEL_1
 import world.gregs.voidps.engine.entity.item.ItemParameters.USE_SKILL_1
-import world.gregs.voidps.engine.entity.item.ItemParameters.WEAPON_SPEED
 import world.gregs.voidps.engine.entity.item.ItemParameters.WEAPON_STYLE
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
@@ -34,7 +34,7 @@ object ItemParameters {
     const val MAGIC_DEFENCE = 8L
     const val RANGE_DEFENCE = 9L
     const val PRAYER_BONUS = 11L
-    const val WEAPON_SPEED = 14L
+    const val ATTACK_SPEED = 14L
     const val PARAM_21 = 21L // bows and crossbows - projectile?
     const val SHOP_ITEM_LEVEL = 23L // 912.cs2
     const val UNBANKABLE = 59L
@@ -126,7 +126,7 @@ object ItemParameters {
     const val BUG_LANTERN = 823L // 929.cs2
     const val BARBARIAN_ASSAULT_REWARD = 954L
     const val BARBARIAN_ASSAULT_TICKET_WAVE = 955L
-    const val SALAMANDER_BLAZE_STRENGTH = 965L
+    const val MAGIC_STRENGTH = 965L
     const val ABSORB_MELEE = 967L
     const val ABSORB_RANGE = 968L
     const val ABSORB_MAGIC = 969L
@@ -194,7 +194,7 @@ fun ItemDefinition.getInt(key: Long, default: Int): Int = params?.getOrDefault(k
 
 fun ItemDefinition.getString(key: Long, default: String): String = params?.getOrDefault(key, default) as? String ?: default
 
-fun ItemDefinition.attackSpeed(): Int = getInt(WEAPON_SPEED, 4)
+fun ItemDefinition.attackSpeed(): Int = getInt(ATTACK_SPEED, 4)
 
 fun ItemDefinition.has(key: Long): Boolean = params != null && params!!.containsKey(key)
 
