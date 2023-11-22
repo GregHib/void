@@ -1,12 +1,13 @@
-package world.gregs.voidps.cache.definition.decoder
+package world.gregs.voidps.tools.convert
 
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Index.OBJECTS
+import world.gregs.voidps.cache.definition.Transforms
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
 
-open class ObjectDecoderFull(
+open class ObjectDecoder718(
     val member: Boolean = true,
     val lowDetail: Boolean = false
 ) : DefinitionDecoder<ObjectDefinitionFull>(OBJECTS) {
@@ -28,7 +29,7 @@ open class ObjectDecoderFull(
                 this.modelIds = Array(length) { count ->
                     modelTypes!![count] = buffer.readByte().toByte()
                     val size = buffer.readUnsignedByte()
-                    IntArray(size) { buffer.readUnsignedShort() }
+                    IntArray(size) { buffer.readBigSmart() }
                 }
                 if (opcode == 5 && !lowDetail) {
                     skip(buffer)
@@ -51,7 +52,7 @@ open class ObjectDecoderFull(
             22 -> delayShading = true
             23 -> culling = 1
             24 -> {
-                val length = buffer.readShort()
+                val length = buffer.readBigSmart()
                 if (length != 65535) {
                     animations = intArrayOf(length)
                 }
@@ -84,7 +85,7 @@ open class ObjectDecoderFull(
                 block = block and ObjectDefinition.ROUTE.inv()
             }
             75 -> supportItems = buffer.readUnsignedByte()
-            77, 92 -> readTransforms(buffer, opcode == 92)
+            77, 92 -> readTransforms718(buffer, opcode == 92)
             78 -> {
                 anInt3015 = buffer.readShort()
                 anInt3012 = buffer.readUnsignedByte()
@@ -134,7 +135,7 @@ open class ObjectDecoderFull(
                 animations = IntArray(length)
                 percents = IntArray(length)
                 for (count in 0 until length) {
-                    animations!![count] = buffer.readShort()
+                    animations!![count] = buffer.readBigSmart()
                     if (animations!![count] == 65535) {
                         animations!![count] = -1
                     }
@@ -182,6 +183,32 @@ open class ObjectDecoderFull(
             178 -> anInt2975 = buffer.readUnsignedByte()
             249 -> readParameters(buffer)
         }
+    }
+    private fun Transforms.readTransforms718(buffer: Reader, isLast: Boolean) {
+        varbit = buffer.readShort()
+        if (varbit == 65535) {
+            varbit = -1
+        }
+        varp = buffer.readShort()
+        if (varp == 65535) {
+            varp = -1
+        }
+        var last = -1
+        if (isLast) {
+            last = buffer.readBigSmart()
+            if (last == 65535) {
+                last = -1
+            }
+        }
+        val length = buffer.readUnsignedByte()
+        transforms = IntArray(length + 2)
+        for (count in 0..length) {
+            transforms!![count] = buffer.readBigSmart()
+            if (transforms!![count] == 65535) {
+                transforms!![count] = -1
+            }
+        }
+        transforms!![length + 1] = last
     }
 
     companion object {

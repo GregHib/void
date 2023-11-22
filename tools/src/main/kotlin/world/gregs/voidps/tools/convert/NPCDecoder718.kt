@@ -5,7 +5,7 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Index.NPCS
 import world.gregs.voidps.cache.definition.data.NPCDefinitionFull
 
-class NPCDecoder718(val member: Boolean) : DefinitionDecoder<NPCDefinitionFull>(NPCS) {
+class NPCDecoder718(val member: Boolean = true) : DefinitionDecoder<NPCDefinitionFull>(NPCS) {
 
     override fun create(size: Int) = Array(size) { NPCDefinitionFull(it) }
 
