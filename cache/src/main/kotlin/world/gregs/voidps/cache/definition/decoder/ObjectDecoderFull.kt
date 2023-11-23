@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
 
 open class ObjectDecoderFull(
-    val member: Boolean = true,
+    val members: Boolean = true,
     val lowDetail: Boolean = false
 ) : DefinitionDecoder<ObjectDefinitionFull>(OBJECTS) {
 
@@ -133,13 +133,13 @@ open class ObjectDecoderFull(
                 var total = 0
                 animations = IntArray(length)
                 percents = IntArray(length)
-                for (count in 0 until length) {
-                    animations!![count] = buffer.readShort()
-                    if (animations!![count] == 65535) {
-                        animations!![count] = -1
+                for (index in 0 until length) {
+                    animations!![index] = buffer.readShort()
+                    if (animations!![index] == 65535) {
+                        animations!![index] = -1
                     }
-                    percents!![count] = buffer.readUnsignedByte()
-                    total += percents!![count]
+                    percents!![index] = buffer.readUnsignedByte()
+                    total += percents!![index]
                 }
                 for (count in 0 until length) {
                     percents!![count] = 65535 * percents!![count] / total
@@ -151,7 +151,7 @@ open class ObjectDecoderFull(
                     options = arrayOf(null, null, null, null, null, "Examine")
                 }
                 options!![opcode - 150] = buffer.readString()
-                if (!member) {
+                if (!members) {
                     options!![opcode - 150] = null
                 }
             }
