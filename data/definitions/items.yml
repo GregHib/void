@@ -3974,7 +3974,6 @@ phoenix_crossbow:
   weight: 3.628
   range: 6.0
   attack_range: 7
-  attack_speed: 6
   slot: "Weapon"
   destroy: "You can get another from the Phoenix Gang's weapon stash."
   examine: "Second-rate crossbow; former property of the Phoenix Gang."
@@ -4236,7 +4235,6 @@ bronze_throwing_axe:
   range: 4.0
   range_str: 5.0
   attack_range: 4
-  attack_speed: 5
   slot: "Weapon"
   aka: [ bronze_thrownaxe, bronze_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4247,7 +4245,6 @@ iron_throwing_axe:
   range: 5.0
   range_str: 7.0
   attack_range: 4
-  attack_speed: 5
   slot: "Weapon"
   aka: [ iron_thrownaxe, iron_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4258,7 +4255,6 @@ steel_throwing_axe:
   range: 8.0
   range_str: 11.0
   attack_range: 4
-  attack_speed: 5
   slot: "Weapon"
   aka: [ steel_thrownaxe, steel_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4269,7 +4265,6 @@ mithril_throwing_axe:
   range: 12.0
   range_str: 16.0
   attack_range: 4
-  attack_speed: 5
   slot: "Weapon"
   aka: [ mithril_thrownaxe, mithril_thrown_axe, mith_throwing_axe, mith_thrownaxe, mith_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4280,7 +4275,6 @@ adamant_throwing_axe:
   range: 17.0
   range_str: 23.0
   attack_range: 4
-  attack_speed: 5
   slot: "Weapon"
   aka: [ adamant_thrownaxe, adamant_thrown_axe, addy_throwing_axe, addy_thrownaxe, addy_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4291,7 +4285,6 @@ rune_throwing_axe:
   range: 26.0
   range_str: 36.0
   attack_range: 4
-  attack_speed: 5
   slot: "Weapon"
   aka: [ rune_thrownaxe, rune_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4302,7 +4295,6 @@ bronze_dart:
   range: 3.0
   range_str: 1.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart:
@@ -4312,7 +4304,6 @@ iron_dart:
   range: 4.0
   range_str: 3.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart:
@@ -4322,7 +4313,6 @@ steel_dart:
   range: 5.0
   range_str: 4.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 mithril_dart:
@@ -4332,7 +4322,6 @@ mithril_dart:
   range: 8.0
   range_str: 7.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart:
@@ -4342,7 +4331,6 @@ adamant_dart:
   range: 11.0
   range_str: 10.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart:
@@ -4352,7 +4340,6 @@ rune_dart:
   range: 15.0
   range_str: 14.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 bronze_dart_p:
@@ -4361,7 +4348,6 @@ bronze_dart_p:
   range: 3.0
   range_str: 1.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart_p:
@@ -4370,7 +4356,6 @@ iron_dart_p:
   range: 4.0
   range_str: 3.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart_p:
@@ -4379,7 +4364,6 @@ steel_dart_p:
   range: 5.0
   range_str: 4.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 mithril_dart_p:
@@ -4388,7 +4372,6 @@ mithril_dart_p:
   range: 8.0
   range_str: 7.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart_p:
@@ -4397,7 +4380,6 @@ adamant_dart_p:
   range: 11.0
   range_str: 10.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart_p:
@@ -4406,7 +4388,6 @@ rune_dart_p:
   range: 15.0
   range_str: 14.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 poisoned_dart_p:
@@ -4467,7 +4448,6 @@ bronze_javelin:
   range: 5.0
   range_str: 6.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A bronze tipped javelin."
 iron_javelin:
@@ -4477,7 +4457,6 @@ iron_javelin:
   range: 8.0
   range_str: 10.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin:
@@ -4487,7 +4466,6 @@ steel_javelin:
   range: 12.0
   range_str: 12.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin:
@@ -4497,7 +4475,6 @@ mithril_javelin:
   range: 17.0
   range_str: 18.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin:
@@ -4507,7 +4484,6 @@ adamant_javelin:
   range: 24.0
   range_str: 28.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin:
@@ -4517,7 +4493,6 @@ rune_javelin:
   range: 38.0
   range_str: 42.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A rune tipped javelin."
 bronze_javelin_p:
@@ -4526,7 +4501,6 @@ bronze_javelin_p:
   range: 5.0
   range_str: 6.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A bronze tipped javelin."
 iron_javelin_p:
@@ -4535,7 +4509,6 @@ iron_javelin_p:
   range: 8.0
   range_str: 10.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin_p:
@@ -4544,7 +4517,6 @@ steel_javelin_p:
   range: 12.0
   range_str: 12.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin_p:
@@ -4553,7 +4525,6 @@ mithril_javelin_p:
   range: 17.0
   range_str: 18.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin_p:
@@ -4562,7 +4533,6 @@ adamant_javelin_p:
   range: 24.0
   range_str: 28.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin_p:
@@ -4571,7 +4541,6 @@ rune_javelin_p:
   range: 38.0
   range_str: 42.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A rune tipped javelin."
 crossbow:
@@ -4581,7 +4550,6 @@ crossbow:
   weight: 2.0
   range: 6.0
   attack_range: 7
-  attack_speed: 6
   slot: "Weapon"
   examine: "This fires crossbow bolts."
   kept: "Wilderness"
@@ -4593,7 +4561,6 @@ longbow:
   weight: 1.814
   range: 8.0
   attack_range: 10
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy bow."
@@ -4615,7 +4582,6 @@ shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   examine: "Short but effective."
   kept: "Wilderness"
   ammo:
@@ -4635,7 +4601,6 @@ oak_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   examine: "A shortbow made out of oak, still effective."
   kept: "Wilderness"
   ammo:
@@ -4658,7 +4623,6 @@ oak_longbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 10
-  attack_speed: 6
   examine: "A nice sturdy bow made out of oak."
   kept: "Wilderness"
   ammo:
@@ -4681,7 +4645,6 @@ willow_longbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 10
-  attack_speed: 6
   examine: "A nice sturdy bow made out of willow."
   kept: "Wilderness"
   ammo:
@@ -4707,7 +4670,6 @@ willow_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   examine: "A shortbow made out of willow, still effective."
   kept: "Wilderness"
   ammo:
@@ -4731,7 +4693,6 @@ maple_longbow:
   weight: 1.814
   range: 29.0
   attack_range: 10
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy bow made out of maple."
@@ -4761,7 +4722,6 @@ maple_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   examine: "A shortbow made out of Maple, still effective."
   ammo:
     - "bronze_arrow"
@@ -4787,7 +4747,6 @@ yew_longbow:
   weight: 1.814
   range: 47.0
   attack_range: 10
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy bow made out of yew."
@@ -4821,7 +4780,6 @@ yew_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   examine: "A shortbow made out of yew, still effective."
   ammo:
     - "bronze_arrow"
@@ -4851,7 +4809,6 @@ magic_longbow:
   weight: 1.814
   range: 69.0
   attack_range: 10
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -4889,7 +4846,6 @@ magic_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   aka: [ msb, magic_sb ]
   examine: "Short and magical, but still effective."
   ammo:
@@ -4924,7 +4880,6 @@ iron_knife:
   range: 5.0
   range_str: 4.0
   attack_range: 4
-  attack_speed: 3
   smithing:
     level: 22
     xp: 25.0
@@ -4937,7 +4892,6 @@ bronze_knife:
   range: 4.0
   range_str: 3.0
   attack_range: 4
-  attack_speed: 3
   smithing:
     level: 7
     xp: 12.5
@@ -4950,7 +4904,6 @@ steel_knife:
   range: 8.0
   range_str: 7.0
   attack_range: 4
-  attack_speed: 3
   smithing:
     level: 37
     xp: 37.5
@@ -4963,7 +4916,6 @@ mithril_knife:
   range: 11.0
   range_str: 10.0
   attack_range: 4
-  attack_speed: 3
   smithing:
     level: 57
     xp: 50.0
@@ -4976,7 +4928,6 @@ adamant_knife:
   range: 15.0
   range_str: 14.0
   attack_range: 4
-  attack_speed: 3
   smithing:
     level: 77
     xp: 62.5
@@ -4989,7 +4940,6 @@ rune_knife:
   range: 25.0
   range_str: 24.0
   attack_range: 4
-  attack_speed: 3
   smithing:
     level: 92
     xp: 75.0
@@ -5002,7 +4952,6 @@ black_knife:
   range: 10.0
   range_str: 8.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_knife_p:
@@ -5011,7 +4960,6 @@ bronze_knife_p:
   range: 4.0
   range_str: 3.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_knife_p:
@@ -5020,7 +4968,6 @@ iron_knife_p:
   range: 5.0
   range_str: 4.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife_p:
@@ -5029,7 +4976,6 @@ steel_knife_p:
   range: 8.0
   range_str: 7.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife_p:
@@ -5038,7 +4984,6 @@ mithril_knife_p:
   range: 11.0
   range_str: 10.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife_p:
@@ -5047,7 +4992,6 @@ black_knife_p:
   range: 10.0
   range_str: 8.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife_p:
@@ -5056,7 +5000,6 @@ adamant_knife_p:
   range: 15.0
   range_str: 14.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife_p:
@@ -5065,7 +5008,6 @@ rune_knife_p:
   range: 25.0
   range_str: 24.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_bolts:
@@ -16967,7 +16909,6 @@ black_dart:
   range: 7.0
   range_str: 6.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 black_dart_p:
@@ -16976,7 +16917,6 @@ black_dart_p:
   range: 7.0
   range_str: 6.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 bronze_claws:
@@ -21839,7 +21779,6 @@ new_crystal_bow:
   range: 104.0
   range_str: 72.0
   attack_range: 10
-  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -21851,7 +21790,6 @@ crystal_bow:
   range: 100.0
   range_str: 70.0
   attack_range: 10
-  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -21862,7 +21800,6 @@ crystal_bow_9_10:
   range: 96.0
   range_str: 68.0
   attack_range: 10
-  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -21873,7 +21810,6 @@ crystal_bow_8_10:
   range: 92.0
   range_str: 66.0
   attack_range: 10
-  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -21884,7 +21820,6 @@ crystal_bow_7_10:
   range: 88.0
   range_str: 64.0
   attack_range: 10
-  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -21895,7 +21830,6 @@ crystal_bow_6_10:
   range: 84.0
   range_str: 62.0
   attack_range: 10
-  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -21906,7 +21840,6 @@ crystal_bow_5_10:
   range: 80.0
   range_str: 60.0
   attack_range: 10
-  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -21917,7 +21850,6 @@ crystal_bow_4_10:
   range: 76.0
   range_str: 58.0
   attack_range: 10
-  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -21928,7 +21860,6 @@ crystal_bow_3_10:
   range: 72.0
   range_str: 56.0
   attack_range: 10
-  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -21939,7 +21870,6 @@ crystal_bow_2_10:
   range: 68.0
   range_str: 54.0
   attack_range: 10
-  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -21950,7 +21880,6 @@ crystal_bow_1_10:
   range: 64.0
   range_str: 52.0
   attack_range: 10
-  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -24900,7 +24829,6 @@ karils_crossbow:
   limit: 10
   range: 84.0
   attack_range: 8
-  attack_speed: 4
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -25278,7 +25206,6 @@ comp_ogre_bow:
   weight: 1.814
   range: 38.0
   attack_range: 10
-  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A composite ogre bow."
@@ -26519,7 +26446,6 @@ karils_crossbow_100:
   limit: 10
   range: 84.0
   attack_range: 8
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -26529,7 +26455,6 @@ karils_crossbow_75:
   limit: 10
   range: 84.0
   attack_range: 8
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -26539,7 +26464,6 @@ karils_crossbow_50:
   limit: 10
   range: 84.0
   attack_range: 8
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -26549,7 +26473,6 @@ karils_crossbow_25:
   limit: 10
   range: 84.0
   attack_range: 8
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -26560,7 +26483,6 @@ karils_crossbow_broken:
   limit: 10
   range: 84.0
   attack_range: 8
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -29528,7 +29450,6 @@ bronze_dart_p+:
   range: 3.0
   range_str: 1.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart_p+:
@@ -29537,7 +29458,6 @@ iron_dart_p+:
   range: 4.0
   range_str: 3.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart_p+:
@@ -29546,7 +29466,6 @@ steel_dart_p+:
   range: 5.0
   range_str: 4.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 black_dart_p+:
@@ -29555,7 +29474,6 @@ black_dart_p+:
   range: 7.0
   range_str: 6.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 mithril_dart_p+:
@@ -29564,7 +29482,6 @@ mithril_dart_p+:
   range: 8.0
   range_str: 7.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart_p+:
@@ -29573,7 +29490,6 @@ adamant_dart_p+:
   range: 11.0
   range_str: 10.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart_p+:
@@ -29582,7 +29498,6 @@ rune_dart_p+:
   range: 15.0
   range_str: 14.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 bronze_dart_p++:
@@ -29591,7 +29506,6 @@ bronze_dart_p++:
   range: 3.0
   range_str: 1.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart_p++:
@@ -29600,7 +29514,6 @@ iron_dart_p++:
   range: 4.0
   range_str: 3.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart_p++:
@@ -29609,7 +29522,6 @@ steel_dart_p++:
   range: 5.0
   range_str: 4.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 black_dart_p++:
@@ -29618,7 +29530,6 @@ black_dart_p++:
   range: 7.0
   range_str: 6.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 mithril_dart_p++:
@@ -29627,7 +29538,6 @@ mithril_dart_p++:
   range: 8.0
   range_str: 7.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart_p++:
@@ -29636,7 +29546,6 @@ adamant_dart_p++:
   range: 11.0
   range_str: 10.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart_p++:
@@ -29645,7 +29554,6 @@ rune_dart_p++:
   range: 15.0
   range_str: 14.0
   attack_range: 3
-  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 bronze_javelin_p+:
@@ -29654,7 +29562,6 @@ bronze_javelin_p+:
   range: 5.0
   range_str: 6.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A bronze tipped javelin."
 iron_javelin_p+:
@@ -29663,7 +29570,6 @@ iron_javelin_p+:
   range: 8.0
   range_str: 10.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin_p+:
@@ -29672,7 +29578,6 @@ steel_javelin_p+:
   range: 12.0
   range_str: 12.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin_p+:
@@ -29681,7 +29586,6 @@ mithril_javelin_p+:
   range: 17.0
   range_str: 18.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin_p+:
@@ -29690,7 +29594,6 @@ adamant_javelin_p+:
   range: 24.0
   range_str: 28.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin_p+:
@@ -29699,7 +29602,6 @@ rune_javelin_p+:
   range: 38.0
   range_str: 42.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A rune tipped javelin."
 bronze_javelin_p++:
@@ -29708,7 +29610,6 @@ bronze_javelin_p++:
   range: 5.0
   range_str: 6.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A bronze-tipped javelin."
 iron_javelin_p++:
@@ -29717,7 +29618,6 @@ iron_javelin_p++:
   range: 8.0
   range_str: 10.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin_p++:
@@ -29726,7 +29626,6 @@ steel_javelin_p++:
   range: 12.0
   range_str: 12.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin_p++:
@@ -29735,7 +29634,6 @@ mithril_javelin_p++:
   range: 17.0
   range_str: 18.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin_p++:
@@ -29744,7 +29642,6 @@ adamant_javelin_p++:
   range: 24.0
   range_str: 28.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin_p++:
@@ -29753,7 +29650,6 @@ rune_javelin_p++:
   range: 38.0
   range_str: 42.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A rune tipped javelin."
 bronze_knife_p+:
@@ -29762,7 +29658,6 @@ bronze_knife_p+:
   range: 4.0
   range_str: 3.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_knife_p+:
@@ -29771,7 +29666,6 @@ iron_knife_p+:
   range: 5.0
   range_str: 4.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife_p+:
@@ -29780,7 +29674,6 @@ steel_knife_p+:
   range: 8.0
   range_str: 7.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife_p+:
@@ -29789,7 +29682,6 @@ mithril_knife_p+:
   range: 11.0
   range_str: 10.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife_p+:
@@ -29798,7 +29690,6 @@ black_knife_p+:
   range: 10.0
   range_str: 8.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife_p+:
@@ -29807,7 +29698,6 @@ adamant_knife_p+:
   range: 15.0
   range_str: 14.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife_p+:
@@ -29816,7 +29706,6 @@ rune_knife_p+:
   range: 25.0
   range_str: 24.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_knife_p++:
@@ -29825,7 +29714,6 @@ bronze_knife_p++:
   range: 4.0
   range_str: 3.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_knife_p++:
@@ -29834,7 +29722,6 @@ iron_knife_p++:
   range: 5.0
   range_str: 4.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife_p++:
@@ -29843,7 +29730,6 @@ steel_knife_p++:
   range: 8.0
   range_str: 7.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife_p++:
@@ -29852,7 +29738,6 @@ mithril_knife_p++:
   range: 11.0
   range_str: 10.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife_p++:
@@ -29861,7 +29746,6 @@ black_knife_p++:
   range: 10.0
   range_str: 8.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife_p++:
@@ -29870,7 +29754,6 @@ adamant_knife_p++:
   range: 15.0
   range_str: 14.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife_p++:
@@ -29879,7 +29762,6 @@ rune_knife_p++:
   range: 25.0
   range_str: 24.0
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_dagger_p+:
@@ -33818,7 +33700,6 @@ toktz_xil_ul:
   range: 69.0
   range_str: 49.0
   attack_range: 7
-  attack_speed: 4
   aka: [ obsidian_throwing_ring, obby_ring, obby_rings ]
   slot: "Weapon"
   examine: "A razor sharp ring of obsidian."
@@ -35108,7 +34989,6 @@ seercull:
   weight: 1.36
   range: 69.0
   attack_range: 8
-  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "An ancient Fremennik bow that was once used to battle the Moon Clan."
@@ -45169,7 +45049,6 @@ dorgeshuun_crossbow:
   weight: 2.267
   range: 42.0
   attack_range: 6
-  attack_speed: 6
   slot: "Weapon"
   aka: [ dorg_cb, dorg_cbow, dorg_crossbow ]
   examine: "This fires crossbow bolts."
@@ -46642,7 +46521,6 @@ bronze_crossbow:
   weight: 2.0
   range: 18.0
   attack_range: 7
-  attack_speed: 6
   slot: "Weapon"
   examine: "A bronze crossbow."
   kept: "Wilderness"
@@ -46660,7 +46538,6 @@ blurite_crossbow:
   weight: 2.0
   range: 30.0
   attack_range: 7
-  attack_speed: 6
   slot: "Weapon"
   examine: "A blurite crossbow."
   kept: "Wilderness"
@@ -46681,7 +46558,6 @@ iron_crossbow:
   weight: 2.0
   range: 42.0
   attack_range: 7
-  attack_speed: 6
   slot: "Weapon"
   examine: "An iron crossbow."
   ammo:
@@ -46699,7 +46575,6 @@ steel_crossbow:
   weight: 2.0
   range: 54.0
   attack_range: 7
-  attack_speed: 6
   slot: "Weapon"
   examine: "A steel crossbow."
   ammo:
@@ -46729,7 +46604,6 @@ mithril_crossbow:
   weight: 2.0
   range: 66.0
   attack_range: 7
-  attack_speed: 6
   slot: "Weapon"
   examine: "A mithril crossbow."
   ammo:
@@ -46773,7 +46647,6 @@ adamant_crossbow:
   weight: 2.0
   range: 78.0
   attack_range: 7
-  attack_speed: 6
   slot: "Weapon"
   examine: "An adamant crossbow."
   ammo:
@@ -46823,7 +46696,6 @@ rune_crossbow:
   weight: 2.0
   range: 90.0
   attack_range: 7
-  attack_speed: 6
   aka: [ rcb, rune_cb ]
   slot: "Weapon"
   examine: "A rune crossbow."
@@ -48625,7 +48497,6 @@ training_bow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   examine: "Light and flexible; good for a beginner."
   kept: "Reclaim"
   use: "Limited"
@@ -50494,7 +50365,6 @@ chinchompa:
   slot: "Weapon"
   destroy: "Release"
   attack_range: 9
-  attack_speed: 4
   examine: "Handle with care."
   kept: "Wilderness"
 red_chinchompa:
@@ -50507,7 +50377,6 @@ red_chinchompa:
   slot: "Weapon"
   destroy: "Release"
   attack_range: 9
-  attack_speed: 4
   examine: "Even more volatile than its vegetarian counterpart."
   kept: "Wilderness"
 kyatt_legs:
@@ -51213,7 +51082,6 @@ hunters_crossbow:
   weight: 5.0
   range: 55.0
   slot: "Weapon"
-  attack_speed: 4
   attack_range: 8
   ammo:
     - "kebbit_bolts"
@@ -51618,7 +51486,6 @@ willow_composite_bow:
   weight: 1.8
   range: 22.0
   attack_range: 10
-  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow made from willow."
@@ -51643,7 +51510,6 @@ yew_composite_bow:
   weight: 1.8
   range: 49.0
   attack_range: 10
-  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow made from yew."
@@ -51675,7 +51541,6 @@ magic_composite_bow:
   weight: 1.8
   range: 71.0
   attack_range: 10
-  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow made from magic logs."
@@ -58341,7 +58206,6 @@ dark_bow:
   limit: 10
   weight: 1.814
   attack_range: 10
-  attack_speed: 9
   range: 95.0
   aka: [ dbow, d_bow ]
   slot: "Weapon"
@@ -68225,7 +68089,6 @@ black_crossbow:
   weight: 5.0
   range: 60.0
   attack_range: 7
-  attack_speed: 6
   slot: "Weapon"
   examine: "A black crossbow."
   ammo:
@@ -71759,7 +71622,6 @@ performance_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   destroy: "You can get another one from the equipment box for this performance."
   examine: "Short, but effective."
   kept: "Vanish"
@@ -71769,7 +71631,6 @@ performance_knife:
   bankable: false
   tradeable: false
   attack_range: 4
-  attack_speed: 3
   slot: "Weapon"
   destroy: "You can get another one from the equipment box for this performance."
   examine: "A finely balanced throwing knife."
@@ -71780,7 +71641,6 @@ performance_throwing_axe:
   bankable: false
   tradeable: false
   attack_range: 4
-  attack_speed: 5
   slot: "Weapon"
   destroy: "You can get another one from the equipment box for this performance."
   examine: "A finely balanced throwing axe."
@@ -72468,7 +72328,6 @@ morrigans_javelin:
   range: 105.0
   range_str: 145.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p:
@@ -72477,7 +72336,6 @@ morrigans_javelin_p:
   range: 105.0
   range_str: 145.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p+:
@@ -72486,7 +72344,6 @@ morrigans_javelin_p+:
   range: 105.0
   range_str: 145.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p++:
@@ -72495,7 +72352,6 @@ morrigans_javelin_p++:
   range: 105.0
   range_str: 145.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_throwing_axe:
@@ -72505,7 +72361,6 @@ morrigans_throwing_axe:
   range: 93.0
   range_str: 117.0
   attack_range: 4
-  attack_speed: 5
   special_damage_mod_1: 1.2
   slot: "Weapon"
   examine: "A vicious throwing axe."
@@ -73396,7 +73251,6 @@ corrupt_morrigans_javelin:
   range: 105.0
   range_str: 145.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 c_morrigans_javelin_p:
@@ -73405,7 +73259,6 @@ c_morrigans_javelin_p:
   range: 105.0
   range_str: 145.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 c_morrigans_javelin_p+:
@@ -73414,7 +73267,6 @@ c_morrigans_javelin_p+:
   range: 105.0
   range_str: 145.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 c_morrigans_javelin_p++:
@@ -73423,7 +73275,6 @@ c_morrigans_javelin_p++:
   range: 105.0
   range_str: 145.0
   attack_range: 5
-  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 corrupt_morrigans_throwing_axe:
@@ -73433,7 +73284,6 @@ corrupt_morrigans_throwing_axe:
   range: 93.0
   range_str: 117.0
   attack_range: 4
-  attack_speed: 5
   slot: "Weapon"
   examine: "A vicious throwing axe."
 corrupt_dragon_chainbody:
@@ -77074,7 +76924,6 @@ zaniks_crossbow:
   weight: 0.001
   range: 78.0
   attack_range: 6
-  attack_speed: 6
   slot: "Weapon"
   examine: "The crossbow that defeated the avatar of Bandos."
   kept: "Reclaim"
@@ -77133,7 +76982,6 @@ crossbow_the_chosen_commander:
   weight: 2.267
   range: 6.0
   attack_range: 6
-  attack_speed: 6
   examine: "I noticed my crossbow on a high ledge."
   use: "Quest"
   kept: "Reclaim"
@@ -77193,7 +77041,6 @@ zaniks_crossbow_upgraded:
   range: 78.0
   slot: "Weapon"
   attack_range: 7
-  attack_speed: 6
   destroy: "You can get it back from Oldak in Dorgesh-Kaan."
   examine: "Zanik's crossbow has been upgraded."
   use: "Quest"
@@ -80019,7 +79866,6 @@ hand_cannon:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 9
-  attack_speed: 7
   ammo:
     - "hand_cannon_shot"
   examine: "A miniature dwarven cannon."
@@ -82156,7 +82002,6 @@ kayles_sling:
   range: 5.0
   range_str: 6.5
   attack_range: 4
-  attack_speed: 4
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "You can get another from Xenia/Ilona in Lumbridge."
@@ -89993,7 +89838,6 @@ tangle_gum_longbow:
   id: 16317
   range: 26.0
   attack_range: 10
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
@@ -90005,7 +89849,6 @@ seeping_elm_longbow:
   id: 16319
   range: 37.0
   attack_range: 10
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
@@ -90018,7 +89861,6 @@ blood_spindle_longbow:
   id: 16321
   range: 48.0
   attack_range: 10
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
@@ -90032,7 +89874,6 @@ utuku_longbow:
   id: 16323
   range: 59.0
   attack_range: 10
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
@@ -90047,7 +89888,6 @@ spinebeam_longbow:
   id: 16325
   range: 70.0
   attack_range: 10
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
@@ -90063,7 +89903,6 @@ bovistrangler_longbow:
   id: 16327
   range: 81.0
   attack_range: 10
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
@@ -90080,7 +89919,6 @@ thigat_longbow:
   id: 16329
   range: 93.0
   attack_range: 10
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
@@ -90098,7 +89936,6 @@ corpsethorn_longbow:
   id: 16331
   range: 108.0
   attack_range: 10
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
@@ -90117,7 +89954,6 @@ entgallow_longbow:
   id: 16333
   range: 123.0
   attack_range: 10
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
@@ -90137,7 +89973,6 @@ grave_creeper_longbow:
   id: 16335
   range: 138.0
   attack_range: 10
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
@@ -90158,7 +89993,6 @@ sagittarian_longbow:
   id: 16337
   range: 158.0
   attack_range: 10
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
@@ -92519,7 +92353,6 @@ tangle_gum_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -92531,7 +92364,6 @@ seeping_elm_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   examine: "A small bow, only effective at a short distance."
   weight: 1.814
   ammo:
@@ -92544,7 +92376,6 @@ blood_spindle_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -92558,7 +92389,6 @@ utuku_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -92573,7 +92403,6 @@ spinebeam_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   examine: "A small bow, only effective at a short distance."
   weight: 1.814
   ammo:
@@ -92589,7 +92418,6 @@ bovistrangler_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -92606,7 +92434,6 @@ thigat_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -92624,7 +92451,6 @@ corpsethorn_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -92643,7 +92469,6 @@ entgallow_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -92663,7 +92488,6 @@ grave_creeper_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -92684,7 +92508,6 @@ sagittarian_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -99425,7 +99248,6 @@ maple_longbow_sighted:
   weight: 1.814
   range: 110.0
   attack_range: 10
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "It has a sight on it that should improve its performance."
@@ -99452,7 +99274,6 @@ magic_longbow_sighted:
   weight: 1.814
   range: 140.0
   attack_range: 10
-  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "It has a sight on it that should improve its performance."
@@ -99740,7 +99561,6 @@ chaotic_crossbow:
   slot: "Weapon"
   aka: [ ccb ]
   attack_range: 7
-  attack_speed: 6
   examine: "A small crossbow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -100025,7 +99845,6 @@ gravite_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
 gravite_shortbow_broken_broken:
@@ -102179,7 +101998,6 @@ saradomin_bow:
   prayer: 4
   weight: 1.814
   range: 80.0
-  attack_speed: 6
   attack_range: 10
   slot: "Weapon"
   type: "TwoHanded"
@@ -102215,7 +102033,6 @@ guthix_bow:
   prayer: 4
   weight: 1.814
   range: 80.0
-  attack_speed: 6
   attack_range: 10
   special_damage_mod_1: 1.5
   slot: "Weapon"
@@ -102252,7 +102069,6 @@ zamorak_bow:
   prayer: 4
   weight: 1.814
   range: 80.0
-  attack_speed: 6
   attack_range: 10
   slot: "Weapon"
   type: "TwoHanded"
@@ -106241,7 +106057,6 @@ sling:
   range: 4.0
   range_str: 6.0
   attack_range: 4
-  attack_speed: 4
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow to fire magical arrows at your enemies with."
@@ -108160,7 +107975,6 @@ zaryte_bow:
   range: 120.0
   range_str: 115.0
   attack_range: 7
-  attack_speed: 5
   aka: [ zbow, z_bow ]
   slot: "Weapon"
   type: "TwoHanded"
