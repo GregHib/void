@@ -98,7 +98,14 @@ class ItemDefinitions(
                         list[Skill.all[value as Int]] = parameters[key + 1] as Int
                     }
                 }
-                ItemParameters.MAXED_SKILL -> Skill.all[value as Int]
+                ItemParameters.STRENGTH, ItemParameters.RANGED_STRENGTH, ItemParameters.MAGIC_STRENGTH -> {
+                    val name = ItemParameters.parameters.getValue(key)
+                    extras[name] = (value as Int) / 10.0
+                }
+                ItemParameters.MAXED_SKILL -> {
+                    val name = ItemParameters.parameters.getValue(key)
+                    extras[name] = Skill.all[value as Int]
+                }
                 else -> super.setParam(key, value, extras, parameters)
             }
         }

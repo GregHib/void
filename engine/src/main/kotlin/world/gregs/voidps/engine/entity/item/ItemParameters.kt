@@ -195,10 +195,14 @@ object ItemParameters {
         MAGIC_DEFENCE to "magic_def",
         RANGE_DEFENCE to "range_def",
         PRAYER_BONUS to "prayer",
-        ATTACK_SPEED to "attack_speed",
         STRENGTH to "str",
         RANGED_STRENGTH to "range_str",
         MAGIC_DAMAGE to "magic_damage",
+        MAGIC_STRENGTH to "magic_str",
+        ABSORB_MELEE to "absorb_melee",
+        ABSORB_RANGE to "absorb_range",
+        ABSORB_MAGIC to "absorb_magic",
+        ATTACK_SPEED to "attack_speed",
         SPECIAL_ATTACK to "special_attack",
         RENDER_ANIMATION to "render_anim",
         SKILL_CAPE to "skillcape",
@@ -207,7 +211,7 @@ object ItemParameters {
         WEAPON_STYLE to "weapon_style",
         EQUIP_SKILL_1 to "equip_req",
         USE_SKILL_1 to "skill_req",
-        MAXED_SKILL to "max_skill"
+        MAXED_SKILL to "max_skill",
     )
 }
 
