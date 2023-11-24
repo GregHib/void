@@ -71320,10 +71320,11 @@ inferno_adze:
   crush: 7.0
   slash_def: 1.0
   rank: 7
-  wc_level: 61
   mining_delay: 2
-  mining_level: 41
-  fm_level: 92
+  skill_req:
+    mining: 41
+    woodcutting: 61
+    firemaking: 92
   slot: "Weapon"
   destroy: "If you destroy your last one, you can reclaim your Inferno Adze by talking to King Roald."
   examine: "risk of fire."
@@ -74152,7 +74153,8 @@ volatile_clay_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 3
-  mining_level: 50
+  skill_req:
+    mining: 50
   aka: [ volatile_pickaxe, volatile_pick ]
   examine: "Your volatile tool wants to mine some rocks."
   weight: 2.0
@@ -74165,7 +74167,8 @@ volatile_clay_hatchet:
   crush: 24.0
   slash_def: 1.0
   rank: 6
-  wc_level: 50
+  skill_req:
+    woodcutting: 50
   slot: "Weapon"
   examine: "Your volatile tool wants to cut some wood."
   weight: 2.0
@@ -74211,7 +74214,8 @@ sacred_clay_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 3
-  mining_level: 50
+  skill_req:
+    mining: 50
   aka: [ sacred_pickaxe, sacred_pick ]
   examine: "Your sacred clay tool has transformed into a pickaxe."
   weight: 2.0
@@ -74224,7 +74228,8 @@ sacred_clay_hatchet:
   crush: 2.0
   slash_def: 1.0
   rank: 6
-  wc_level: 50
+  skill_req:
+    woodcutting: 50
   slot: "Weapon"
   examine: "Your sacred clay tool has transformed into a hatchet."
   weight: 2.0
@@ -74395,7 +74400,6 @@ pickaxe_class_1:
   weight: 0.1
   slot: "Weapon"
   mining_delay: 6
-  mining_level: 1
   examine: "The sacred clay has become hard enough to chip stone."
 pickaxe_class_1_noted: 14123
 pickaxe_class_2:
@@ -74405,7 +74409,8 @@ pickaxe_class_2:
   weight: 0.2
   slot: "Weapon"
   mining_delay: 5
-  mining_level: 20
+  skill_req:
+    mining: 20
   examine: "The sacred clay has become hard enough to chip stone."
 pickaxe_class_2_noted: 14125
 pickaxe_class_3:
@@ -74415,7 +74420,8 @@ pickaxe_class_3:
   weight: 0.3
   slot: "Weapon"
   mining_delay: 4
-  mining_level: 40
+  skill_req:
+    mining: 40
   examine: "The sacred clay has become hard enough to chip stone."
 pickaxe_class_3_noted: 14127
 pickaxe_class_4:
@@ -74425,7 +74431,8 @@ pickaxe_class_4:
   weight: 0.4
   slot: "Weapon"
   mining_delay: 3
-  mining_level: 60
+  skill_req:
+    mining: 60
   examine: "The sacred clay has become hard enough to chip stone."
 pickaxe_class_4_noted: 14129
 pickaxe_class_5:
@@ -74435,7 +74442,8 @@ pickaxe_class_5:
   weight: 0.5
   slot: "Weapon"
   mining_delay: 2
-  mining_level: 80
+  skill_req:
+    mining: 80
   examine: "The sacred clay has become hard enough to chip stone."
 pickaxe_class_5_noted: 14131
 hatchet_class_1:

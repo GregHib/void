@@ -6,8 +6,12 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.item.*
+import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.getMaxedSkill
+import world.gregs.voidps.engine.entity.item.quest
+import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.ItemChanged
@@ -65,12 +69,11 @@ fun showInfo(player: Player, item: Item, index: Int, sample: Boolean) {
 
 fun setRequirements(player: Player, def: ItemDefinition) {
     val quest = def.quest()
-    if (def.hasRequirements() || quest != -1) {
+    if (def.has("equip_req") || def.has("maxed_skill") || quest != -1) {
         player["item_info_requirement_title"] = enums.get("item_info_requirement_titles").getString(def.slot.index)
         val builder = StringBuilder()
-        for (i in 0 until 10) {
-            val skill = def.requiredEquipSkill(i) ?: break
-            val level = def.requiredEquipLevel(i)
+        val requirements = def.getOrNull<Map<Skill, Int>>("equip_req") ?: emptyMap()
+        for ((skill, level) in requirements) {
             val colour = Colours.bool(player.has(skill, level, false))
             builder.append("<$colour>Level $level ${skill.name.lowercase()}<br>")
         }

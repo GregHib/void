@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.requiredUseLevel
+import world.gregs.voidps.engine.entity.item.hasUseRequirements
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
@@ -26,10 +26,10 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.sound.areaSound
 
 val players: Players by inject()
@@ -118,11 +118,7 @@ fun hasRequirements(player: Player, hatchet: Item, message: Boolean = false): Bo
     if (hatchet.id == "inferno_adze" && !player.has(Skill.Firemaking, hatchet.def["fm_level", 1], message)) {
         return false
     }
-    val level = hatchet.def["wc_level", hatchet.def.requiredUseLevel()]
-    if (!player.has(Skill.Woodcutting, level, message)) {
-        return false
-    }
-    return true
+    return player.hasUseRequirements(hatchet, message, setOf(Skill.Firemaking, Skill.Firemaking))
 }
 
 fun success(level: Int, hatchet: Item, tree: Tree): Boolean {

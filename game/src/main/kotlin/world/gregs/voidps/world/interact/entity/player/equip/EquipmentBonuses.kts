@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.attackSpeed
 import world.gregs.voidps.engine.entity.item.has
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -168,13 +167,14 @@ fun showStats(player: Player, item: ItemDefinition) {
     }
 
     if (item.has(14)) {
-        appendLine("attack rate", when (item.attackSpeed()) {
+        val attackSpeed = item["attack_speed", 4]
+        appendLine("attack rate", when (attackSpeed) {
             2 -> "Very fast"
             3 -> "Fast"
             4 -> "Standard"
             5 -> "Slow"
             6 -> "Very slow"
-            else -> item.attackSpeed().toString()
+            else -> attackSpeed.toString()
         })
     }
     appendLine("Weight", "${df.format(item["weight", 0.0])} kg")

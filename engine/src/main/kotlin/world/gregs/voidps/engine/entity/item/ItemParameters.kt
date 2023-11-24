@@ -7,18 +7,11 @@ import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
-import world.gregs.voidps.engine.entity.item.ItemParameters.ATTACK_SPEED
-import world.gregs.voidps.engine.entity.item.ItemParameters.EQUIP_LEVEL_1
-import world.gregs.voidps.engine.entity.item.ItemParameters.EQUIP_SKILL_1
 import world.gregs.voidps.engine.entity.item.ItemParameters.MAXED_SKILL
 import world.gregs.voidps.engine.entity.item.ItemParameters.QUEST_REQUIREMENT_SLOT_ID
-import world.gregs.voidps.engine.entity.item.ItemParameters.RENDER_ANIMATION
-import world.gregs.voidps.engine.entity.item.ItemParameters.REQUIRED_COMBAT
 import world.gregs.voidps.engine.entity.item.ItemParameters.SKILL_CAPE
 import world.gregs.voidps.engine.entity.item.ItemParameters.SPECIAL_ATTACK
 import world.gregs.voidps.engine.entity.item.ItemParameters.TRIMMED_SKILL_CAPE
-import world.gregs.voidps.engine.entity.item.ItemParameters.USE_LEVEL_1
-import world.gregs.voidps.engine.entity.item.ItemParameters.USE_SKILL_1
 import world.gregs.voidps.engine.entity.item.ItemParameters.WEAPON_STYLE
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
@@ -150,6 +143,7 @@ object ItemParameters {
     const val CHOMPY_BIRD_REQUIREMENT_STRING = 1368L // 4227.cs2
     const val STAGE_ON_DEATH = 1397L // 59.cs2, 4592.cs2
     const val CATEGORY = 2195L
+
     object Category {
         const val THROWABLE = 1
         const val ARROW = 2
@@ -188,53 +182,61 @@ object ItemParameters {
         const val ITEM_ON_ITEM = 35
         const val LOG = 36
     }
+
+    val parameters = mapOf(
+        STAB_ATTACK to "stab",
+        SLASH_ATTACK to "slash",
+        CRUSH_ATTACK to "crush",
+        MAGIC_ATTACK to "magic",
+        RANGE_ATTACK to "range",
+        STAB_DEFENCE to "stab_def",
+        SLASH_DEFENCE to "slash_def",
+        CRUSH_DEFENCE to "crush_def",
+        MAGIC_DEFENCE to "magic_def",
+        RANGE_DEFENCE to "range_def",
+        PRAYER_BONUS to "prayer",
+        ATTACK_SPEED to "attack_speed",
+        STRENGTH to "str",
+        RANGED_STRENGTH to "range_str",
+        MAGIC_DAMAGE to "magic_damage",
+        SPECIAL_ATTACK to "special_attack",
+        RENDER_ANIMATION to "render_anim",
+        SKILL_CAPE to "skillcape",
+        TRIMMED_SKILL_CAPE to "skillcape_t",
+        REQUIRED_COMBAT to "combat_req",
+        WEAPON_STYLE to "weapon_style",
+        EQUIP_SKILL_1 to "equip_req",
+        USE_SKILL_1 to "skill_req",
+        MAXED_SKILL to "max_skill"
+    )
 }
 
 fun ItemDefinition.getInt(key: Long, default: Int): Int = params?.getOrDefault(key, default) as? Int ?: default
 
-fun ItemDefinition.getString(key: Long, default: String): String = params?.getOrDefault(key, default) as? String ?: default
-
-fun ItemDefinition.attackSpeed(): Int = getInt(ATTACK_SPEED, 4)
-
 fun ItemDefinition.has(key: Long): Boolean = params != null && params!!.containsKey(key)
-
-fun ItemDefinition.requiredEquipLevel(index: Int = 0): Int = getInt(EQUIP_LEVEL_1 + (index * 2), 1)
-
-fun ItemDefinition.requiredEquipSkill(index: Int = 0): Skill? = (params?.get(EQUIP_SKILL_1 + (index * 2)) as? Int)?.let { Skill.all[it] }
-
-fun ItemDefinition.requiredUseLevel(index: Int = 0): Int = getInt(USE_LEVEL_1 + (index * 2), 1)
-
-fun ItemDefinition.requiredUseSkill(index: Int = 0): Skill? = (params?.get(USE_SKILL_1 + (index * 2)) as? Int)?.let { Skill.all[it] }
 
 fun ItemDefinition.getMaxedSkill(): Skill? = (params?.get(MAXED_SKILL) as? Int)?.let { Skill.all[it] }
 
-fun ItemDefinition.hasRequirements(): Boolean = params?.contains(EQUIP_LEVEL_1) == true || params?.contains(MAXED_SKILL) == true
-
-fun Player.hasRequirements(item: Item, message: Boolean = false) = hasRequirements(item.def, message)
-
-fun Player.hasRequirements(item: ItemDefinition, message: Boolean = false): Boolean {
-    for (i in 0 until 10) {
-        val skill = item.requiredEquipSkill(i) ?: break
-        val level = item.requiredEquipLevel(i)
-        if (if (skill == Skill.Prayer) !hasMax(skill, level, message) else !has(skill, level, message)) {
-            return false
+fun Player.hasRequirements(item: Item, message: Boolean = false): Boolean {
+    val requirements = item.def.getOrNull<Map<Skill, Int>>("equip_req")
+    if (requirements != null) {
+        for ((skill, level) in requirements) {
+            if (if (skill == Skill.Prayer) !hasMax(skill, level, message) else !has(skill, level, message)) {
+                return false
+            }
         }
     }
-    item.getMaxedSkill()?.let { skill ->
-        if (!has(skill, skill.maximum(), message)) {
-            return false
-        }
+    val skill = item.def.getOrNull<Skill>("max_skill")
+    if (skill != null && !has(skill, skill.maximum(), message)) {
+        return false
     }
-    return appearance.combatLevel >= item.requiredCombat()
+    return appearance.combatLevel >= item.def["combat_req", 0]
 }
 
-fun Player.hasUseRequirements(item: Item, message: Boolean = false) = hasUseRequirements(item.def, message)
-
-fun Player.hasUseRequirements(item: ItemDefinition, message: Boolean = false): Boolean {
-    for (i in 0 until 6) {
-        val skill = item.requiredUseSkill(i) ?: break
-        val level = item.requiredUseLevel(i)
-        if (!has(skill, level, message)) {
+fun Player.hasUseRequirements(item: Item, message: Boolean = false, skills: Set<Skill> = emptySet()): Boolean {
+    val requirements = item.def.getOrNull<Map<Skill, Int>>("skill_req") ?: return true
+    for ((skill, level) in requirements) {
+        if ((skills.isEmpty() || skills.contains(skill)) && !has(skill, level, message)) {
             return false
         }
     }
@@ -243,17 +245,11 @@ fun Player.hasUseRequirements(item: ItemDefinition, message: Boolean = false): B
 
 fun ItemDefinition.specialAttack(): Int = getInt(SPECIAL_ATTACK, 0)
 
-fun ItemDefinition.hasSpecialAttack(): Boolean = getInt(SPECIAL_ATTACK, 0) == 1
-
-fun ItemDefinition.renderAnimationId(): Int = getInt(RENDER_ANIMATION, 1426)
-
 fun ItemDefinition.isSkillCape(): Boolean = getInt(SKILL_CAPE, -1) == 1
 
 fun ItemDefinition.isTrimmedSkillCape(): Boolean = getInt(TRIMMED_SKILL_CAPE, -1) == 1
 
 fun ItemDefinition.quest(): Int = getInt(QUEST_REQUIREMENT_SLOT_ID, -1)
-
-fun ItemDefinition.requiredCombat(): Int = getInt(REQUIRED_COMBAT, 0)
 
 fun ItemDefinition.weaponStyle(): Int = getInt(WEAPON_STYLE, 0)
 

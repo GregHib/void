@@ -3,11 +3,14 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.data.*
 import world.gregs.voidps.engine.data.yaml.DefinitionConfig
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.ItemKept
+import world.gregs.voidps.engine.entity.item.ItemParameters
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
@@ -79,8 +82,29 @@ class ItemDefinitions(
             }
         }
 
+        override fun setParam(key: Long, value: Any, extras: MutableMap<String, Any>, parameters: Map<Long, Any>) {
+            when (key) {
+                in ItemParameters.EQUIP_SKILL_1..ItemParameters.EQUIP_LEVEL_6 -> {
+                    val name = ItemParameters.parameters.getValue(ItemParameters.EQUIP_SKILL_1)
+                    val map = extras.getOrPut(name) { createMap() } as  MutableMap<Skill, Int>
+                    if (key.toInt() % 2 != 0) {
+                        map[Skill.all[value as Int]] = parameters[key + 1] as Int
+                    }
+                }
+                in ItemParameters.USE_SKILL_1..ItemParameters.USE_LEVEL_6 -> {
+                    val name = ItemParameters.parameters.getValue(ItemParameters.USE_SKILL_1)
+                    val list = extras.getOrPut(name) { createMap() } as MutableMap<Skill, Int>
+                    if (key.toInt() % 2 == 0) {
+                        list[Skill.all[value as Int]] = parameters[key + 1] as Int
+                    }
+                }
+                ItemParameters.MAXED_SKILL -> Skill.all[value as Int]
+                else -> super.setParam(key, value, extras, parameters)
+            }
+        }
+
         override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-            if(indent == 1) {
+            if (indent == 1) {
                 super.set(map, key, when (key) {
                     "<<" -> {
                         map.putAll(value as Map<String, Any>)
@@ -110,6 +134,7 @@ class ItemDefinitions(
                     "silver_jewellery" -> Silver(value as Map<String, Any>)
                     "runecrafting" -> Rune(value as Map<String, Any>)
                     "ammo" -> ObjectOpenHashSet(value as List<String>)
+                    "skill_req" -> (value as MutableMap<String, Any>).mapKeys { Skill.valueOf(it.key.toSentenceCase()) }
                     else -> value
                 }, indent, parentMap)
             } else {

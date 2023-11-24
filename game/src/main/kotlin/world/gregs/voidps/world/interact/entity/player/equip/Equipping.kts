@@ -23,7 +23,7 @@ fun canWear(option: String) = option == "Wield" || option == "Wear" || option ==
 on<InventoryOption>({ inventory == "inventory" && canWear(option) }) { player: Player ->
     val def = item.def
 
-    if (!player.hasRequirements(def, true)) {
+    if (!player.hasRequirements(item, true)) {
         return@on
     }
     if (replaceWeaponShieldWith2h(player, def) && !player.equipment.move(EquipSlot.Shield.index, player.inventory)) {
