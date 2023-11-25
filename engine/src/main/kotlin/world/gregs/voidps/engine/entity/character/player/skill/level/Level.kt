@@ -82,4 +82,9 @@ object Level {
         return appearance.combatLevel >= item.def["combat_req", 0]
     }
 
+    fun Player.hasUseLevel(skill: Skill, item: Item, message: Boolean = false): Boolean {
+        val level: Int = item.def.getOrNull("secondary_use_level") ?: return true
+        return has(skill, level, message)
+    }
+
 }

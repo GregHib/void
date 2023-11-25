@@ -32,7 +32,7 @@ open class DefinitionConfig<T : Extra>(
             setParam(pair.key, pair.value, params, parameters)
         }
         definition.extras = params
-//        definition.params = null
+        definition.params = null
     }
 
     open fun setParam(key: Long, value: Any, extras: MutableMap<String, Any>, parameters: Map<Long, Any>) {

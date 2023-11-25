@@ -164,6 +164,41 @@ object Parameter {
     const val SHADOW = 1912L
     const val LINKED_SHADOW_NPC = 2098L
     const val CATEGORY = 2195L
+    val names = mapOf(
+        STAB_ATTACK to "stab",
+        SLASH_ATTACK to "slash",
+        CRUSH_ATTACK to "crush",
+        MAGIC_ATTACK to "magic",
+        RANGE_ATTACK to "range",
+        STAB_DEFENCE to "stab_def",
+        SLASH_DEFENCE to "slash_def",
+        CRUSH_DEFENCE to "crush_def",
+        MAGIC_DEFENCE to "magic_def",
+        RANGE_DEFENCE to "range_def",
+        PRAYER_BONUS to "prayer",
+        STRENGTH to "str",
+        RANGED_STRENGTH to "range_str",
+        MAGIC_DAMAGE to "magic_damage",
+        MAGIC_STRENGTH to "magic_str",
+        ABSORB_MELEE to "absorb_melee",
+        ABSORB_RANGE to "absorb_range",
+        ABSORB_MAGIC to "absorb_magic",
+        ATTACK_SPEED to "attack_speed",
+        SPECIAL_ATTACK to "special_attack",
+        RENDER_ANIMATION to "render_anim",
+        SKILL_CAPE to "skillcape",
+        TRIMMED_SKILL_CAPE to "skillcape_t",
+        REQUIRED_COMBAT to "combat_req",
+        WEAPON_STYLE to "weapon_style",
+        EQUIP_SKILL_1 to "equip_req",
+        USE_SKILL_1 to "skill_req",
+        MAXED_SKILL to "max_skill",
+        QUEST_REQUIREMENT_SLOT_ID to "quest_info",
+        CATEGORY to "category",
+        WEAR_OPTION_1 to "wear_options",
+        REQUIRED_LEVEL to "secondary_use_level",
+        UNBANKABLE to "unbankable",
+    )
 
     object Category {
         const val THROWABLE = 1
@@ -242,38 +277,5 @@ object Parameter {
             LOG to "log"
         )
     }
-
-    val names = mapOf(
-        STAB_ATTACK to "stab",
-        SLASH_ATTACK to "slash",
-        CRUSH_ATTACK to "crush",
-        MAGIC_ATTACK to "magic",
-        RANGE_ATTACK to "range",
-        STAB_DEFENCE to "stab_def",
-        SLASH_DEFENCE to "slash_def",
-        CRUSH_DEFENCE to "crush_def",
-        MAGIC_DEFENCE to "magic_def",
-        RANGE_DEFENCE to "range_def",
-        PRAYER_BONUS to "prayer",
-        STRENGTH to "str",
-        RANGED_STRENGTH to "range_str",
-        MAGIC_DAMAGE to "magic_damage",
-        MAGIC_STRENGTH to "magic_str",
-        ABSORB_MELEE to "absorb_melee",
-        ABSORB_RANGE to "absorb_range",
-        ABSORB_MAGIC to "absorb_magic",
-        ATTACK_SPEED to "attack_speed",
-        SPECIAL_ATTACK to "special_attack",
-        RENDER_ANIMATION to "render_anim",
-        SKILL_CAPE to "skillcape",
-        TRIMMED_SKILL_CAPE to "skillcape_t",
-        REQUIRED_COMBAT to "combat_req",
-        WEAPON_STYLE to "weapon_style",
-        EQUIP_SKILL_1 to "equip_req",
-        USE_SKILL_1 to "skill_req",
-        MAXED_SKILL to "max_skill",
-        QUEST_REQUIREMENT_SLOT_ID to "quest_info",
-        CATEGORY to "category"
-    )
 
 }
