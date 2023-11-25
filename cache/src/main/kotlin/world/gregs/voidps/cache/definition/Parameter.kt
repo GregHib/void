@@ -1,5 +1,6 @@
 package world.gregs.voidps.cache.definition
 
+@Suppress("MemberVisibilityCanBePrivate")
 object Parameter {
     const val STAB_ATTACK = 0L // 606.cs2
     const val SLASH_ATTACK = 1L
@@ -171,9 +172,9 @@ object Parameter {
         const val CONSTRUCTION = 4
         const val FURNITURE = 5
         const val UNCOOKED_FOOD = 6
-        const val CONSTRUCTION_STORABLE_CLOTHE = 7
+        const val CONSTRUCTION_STORABLE_CLOTHES = 7
         const val CRAFTING = 8
-        const val SUMMONING_POUCHE = 9
+        const val SUMMONING_POUCHES = 9
         const val CONSTRUCTION_PLANT = 10
         const val FLETCHING = 11
         const val EDIBLE = 12
@@ -201,5 +202,78 @@ object Parameter {
         const val SUMMONING_SCROLL = 34
         const val ITEM_ON_ITEM = 35
         const val LOG = 36
+
+        val names = mapOf(
+            THROWABLE to "throwable",
+            ARROW to "arrow",
+            BOLT to "bolt",
+            CONSTRUCTION to "construction",
+            FURNITURE to "furniture",
+            UNCOOKED_FOOD to "uncooked_food",
+            CONSTRUCTION_STORABLE_CLOTHES to "construction_storable_clothes",
+            CRAFTING to "crafting",
+            SUMMONING_POUCHES to "summoning_pouch",
+            CONSTRUCTION_PLANT to "construction_plant",
+            FLETCHING to "fletching",
+            EDIBLE to "edible",
+            HERBLORE to "herblore",
+            HUNTER_REQUIRED_ITEM to "hunter_required_item",
+            HUNTER_REWARD to "hunter_reward",
+            JEWELLERY to "jewellery",
+            MAGIC_ARMOUR to "magic_armour",
+            MAGIC_WEAPON to "magic_weapon",
+            MELEE_ARMOUR_LOW to "melee_armour_low",
+            MELEE_ARMOUR_MID to "melee_armour_mid",
+            MELEE_ARMOUR_HIGH to "melee_armour_high",
+            MELEE_WEAPON_LOW to "melee_weapon_low",
+            MELEE_WEAPON_MID to "melee_weapon_mid",
+            MELEE_WEAPON_HIGH to "melee_weapon_high",
+            MINING_SMELTING to "mining_smelting",
+            POTION to "potion",
+            PRAYER_ARMOUR to "prayer_armour",
+            PRAYER_CONSUMABLE to "prayer_consumable",
+            RANGE_ARMOUR to "range_armour",
+            RANGE_WEAPON to "range_weapon",
+            RUNECRAFTING to "runecrafting",
+            TELEPORT to "teleport",
+            SEED to "seed",
+            SUMMONING_SCROLL to "summoning_scroll",
+            ITEM_ON_ITEM to "item_on_item",
+            LOG to "log"
+        )
     }
+
+    val names = mapOf(
+        STAB_ATTACK to "stab",
+        SLASH_ATTACK to "slash",
+        CRUSH_ATTACK to "crush",
+        MAGIC_ATTACK to "magic",
+        RANGE_ATTACK to "range",
+        STAB_DEFENCE to "stab_def",
+        SLASH_DEFENCE to "slash_def",
+        CRUSH_DEFENCE to "crush_def",
+        MAGIC_DEFENCE to "magic_def",
+        RANGE_DEFENCE to "range_def",
+        PRAYER_BONUS to "prayer",
+        STRENGTH to "str",
+        RANGED_STRENGTH to "range_str",
+        MAGIC_DAMAGE to "magic_damage",
+        MAGIC_STRENGTH to "magic_str",
+        ABSORB_MELEE to "absorb_melee",
+        ABSORB_RANGE to "absorb_range",
+        ABSORB_MAGIC to "absorb_magic",
+        ATTACK_SPEED to "attack_speed",
+        SPECIAL_ATTACK to "special_attack",
+        RENDER_ANIMATION to "render_anim",
+        SKILL_CAPE to "skillcape",
+        TRIMMED_SKILL_CAPE to "skillcape_t",
+        REQUIRED_COMBAT to "combat_req",
+        WEAPON_STYLE to "weapon_style",
+        EQUIP_SKILL_1 to "equip_req",
+        USE_SKILL_1 to "skill_req",
+        MAXED_SKILL to "max_skill",
+        QUEST_REQUIREMENT_SLOT_ID to "quest_info",
+        CATEGORY to "category"
+    )
+
 }

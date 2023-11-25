@@ -85,26 +85,31 @@ class ItemDefinitions(
         override fun setParam(key: Long, value: Any, extras: MutableMap<String, Any>, parameters: Map<Long, Any>) {
             when (key) {
                 in Parameter.EQUIP_SKILL_1..Parameter.EQUIP_LEVEL_6 -> {
-                    val name = parameterNames.getValue(Parameter.EQUIP_SKILL_1)
+                    val name = Parameter.names.getValue(Parameter.EQUIP_SKILL_1)
                     val map = extras.getOrPut(name) { createMap() } as  MutableMap<Skill, Int>
                     if (key.toInt() % 2 != 0) {
                         map[Skill.all[value as Int]] = parameters[key + 1] as Int
                     }
                 }
                 in Parameter.USE_SKILL_1..Parameter.USE_LEVEL_6 -> {
-                    val name = parameterNames.getValue(Parameter.USE_SKILL_1)
+                    val name = Parameter.names.getValue(Parameter.USE_SKILL_1)
                     val list = extras.getOrPut(name) { createMap() } as MutableMap<Skill, Int>
                     if (key.toInt() % 2 == 0) {
                         list[Skill.all[value as Int]] = parameters[key + 1] as Int
                     }
                 }
                 Parameter.STRENGTH, Parameter.RANGED_STRENGTH, Parameter.MAGIC_STRENGTH -> {
-                    val name = parameterNames.getValue(key)
+                    val name = Parameter.names.getValue(key)
                     extras[name] = (value as Int) / 10.0
                 }
                 Parameter.MAXED_SKILL -> {
-                    val name = parameterNames.getValue(key)
+                    val name = Parameter.names.getValue(key)
                     extras[name] = Skill.all[value as Int]
+                }
+                Parameter.CATEGORY -> {
+                    val name = Parameter.names.getValue(key)
+                    val int = value as Int
+                    extras[name] = Parameter.Category.names.getOrDefault(int, (int).toString())
                 }
                 else -> super.setParam(key, value, extras, parameters)
             }

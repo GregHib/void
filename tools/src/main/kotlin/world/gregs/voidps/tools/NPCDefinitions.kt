@@ -2,9 +2,9 @@ package world.gregs.voidps.tools
 
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.definition.Parameter
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.data.definition.parameterNames
 import world.gregs.yaml.Yaml
 
 object NPCDefinitions {
@@ -18,7 +18,7 @@ object NPCDefinitions {
             val def = decoder.getOrNull(i) ?: continue
 //            if (def.name.contains("sir prysin", true)) {
             for((key, value) in def.params ?: continue) {
-                if(!parameterNames.containsKey(key)) {
+                if(!Parameter.names.containsKey(key)) {
                     set.add(key.toInt())
                     println("Unknown param $i ${def.name} $key=$value ${def.params}")
                 }
