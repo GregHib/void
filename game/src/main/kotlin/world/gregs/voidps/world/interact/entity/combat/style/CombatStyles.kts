@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.entity.item.weaponStyle
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.ItemChanged
@@ -68,7 +67,7 @@ fun refreshStyle(player: Player) {
 }
 
 fun getWeaponStyleType(player: Player): Int {
-    return player.equipped(EquipSlot.Weapon).def.weaponStyle()
+    return player.equipped(EquipSlot.Weapon).def["weapon_style", 0]
 }
 
 on<InterfaceOption>({ id == "combat_styles" && component == "special_attack_bar" && option == "Use" }) { player: Player ->

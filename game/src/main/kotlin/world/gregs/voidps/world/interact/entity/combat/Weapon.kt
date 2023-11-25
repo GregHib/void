@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.weaponStyle
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
@@ -87,7 +86,7 @@ object Weapon {
         if (character.spell.isNotBlank()) {
             return "magic"
         }
-        return when (weapon.def.weaponStyle()) {
+        return when (weapon.def["weapon_style", 0]) {
             13, 16, 17, 18, 19 -> "range"
             20 -> if (character.attackType == "aim_and_fire") "range" else "melee"
             21 -> when (character.attackType) {

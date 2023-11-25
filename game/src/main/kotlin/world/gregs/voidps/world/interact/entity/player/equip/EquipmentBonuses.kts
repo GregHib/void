@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.has
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.ItemChanged
@@ -166,7 +165,7 @@ fun showStats(player: Player, item: ItemDefinition) {
         addValue(i)
     }
 
-    if (item.has(14)) {
+    if (item.has("attack_speed")) {
         val attackSpeed = item["attack_speed", 4]
         appendLine("attack rate", when (attackSpeed) {
             2 -> "Very fast"

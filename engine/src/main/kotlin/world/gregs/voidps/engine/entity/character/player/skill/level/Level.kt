@@ -2,10 +2,11 @@ package world.gregs.voidps.engine.entity.character.player.skill.level
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.an
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation.interpolate
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.type.random
 
 object Level {
@@ -53,6 +54,32 @@ object Level {
             return false
         }
         return true
+    }
+
+    fun Player.hasRequirementsToUse(item: Item, message: Boolean = false, skills: Set<Skill> = emptySet()): Boolean {
+        val requirements: Map<Skill, Int> = item.def.getOrNull("skill_req") ?: return true
+        for ((skill, level) in requirements) {
+            if ((skills.isEmpty() || skills.contains(skill)) && !has(skill, level, message)) {
+                return false
+            }
+        }
+        return true
+    }
+
+    fun Player.hasRequirements(item: Item, message: Boolean = false): Boolean {
+        val requirements: Map<Skill, Int>? = item.def.getOrNull("equip_req")
+        if (requirements != null) {
+            for ((skill, level) in requirements) {
+                if (if (skill == Skill.Prayer) !hasMax(skill, level, message) else !has(skill, level, message)) {
+                    return false
+                }
+            }
+        }
+        val skill = item.def.getOrNull<Skill>("max_skill")
+        if (skill != null && !has(skill, skill.maximum(), message)) {
+            return false
+        }
+        return appearance.combatLevel >= item.def["combat_req", 0]
     }
 
 }

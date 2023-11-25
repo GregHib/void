@@ -14,18 +14,15 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.item.getMaxedSkill
-import world.gregs.voidps.engine.entity.item.isSkillCape
-import world.gregs.voidps.engine.entity.item.isTrimmedSkillCape
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
@@ -58,7 +55,7 @@ on<InterfaceOption>({ id == "emotes" }) { player: Player ->
         when {
             id == "skillcape" -> {
                 val cape = player.equipped(EquipSlot.Cape)
-                val skill = cape.def.getMaxedSkill()
+                val skill: Skill? = cape.def.getOrNull("max_skill")
                 when {
                     cape.id == "quest_point_cape" -> playSkillCapeEmote(player, "quest_point")
                     cape.id == "dungeoneering_master_cape" -> playDungeoneeringMasterCapeEmote(player)
@@ -145,7 +142,7 @@ fun areaClear(player: Player): Boolean {
 }
 
 on<ItemChanged>({ inventory == "worn_equipment" && index == EquipSlot.Cape.index }) { player: Player ->
-    player["unlocked_emote_skillcape"] = item.def.isSkillCape() || item.def.isTrimmedSkillCape() || item.id == "quest_point_cape"
+    player["unlocked_emote_skillcape"] = item.def.has("skillcape") || item.def.has("skillcape_t") || item.id == "quest_point_cape"
 }
 
 suspend fun CharacterContext.playEnhancedEmote(player: Player, type: String) {

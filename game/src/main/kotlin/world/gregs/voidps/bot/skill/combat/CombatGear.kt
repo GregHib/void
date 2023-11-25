@@ -10,9 +10,9 @@ import world.gregs.voidps.engine.data.config.GearDefinition
 import world.gregs.voidps.engine.data.definition.GearDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirementsToUse
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.hasRequirements
-import world.gregs.voidps.engine.entity.item.hasUseRequirements
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.world.activity.bank.bank
@@ -97,7 +97,7 @@ private suspend fun Bot.setupGearAndInv(gear: GearDefinition, buy: Boolean) {
     // Pick one of each item to equip for each required slot
     for ((_, equipmentList) in gear.equipment) {
         val items = equipmentList
-            .filter { player.hasRequirements(it) || player.hasUseRequirements(it) || player.bank.contains(it.id, it.amount) }
+            .filter { player.hasRequirements(it) || player.hasRequirementsToUse(it) || player.bank.contains(it.id, it.amount) }
         if (items.isEmpty()) {
             continue
         }

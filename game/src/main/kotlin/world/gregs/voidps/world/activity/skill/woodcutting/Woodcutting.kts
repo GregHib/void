@@ -15,9 +15,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirementsToUse
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.hasUseRequirements
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
@@ -118,7 +118,7 @@ fun hasRequirements(player: Player, hatchet: Item, message: Boolean = false): Bo
     if (hatchet.id == "inferno_adze" && !player.has(Skill.Firemaking, hatchet.def["fm_level", 1], message)) {
         return false
     }
-    return player.hasUseRequirements(hatchet, message, setOf(Skill.Firemaking, Skill.Firemaking))
+    return player.hasRequirementsToUse(hatchet, message, setOf(Skill.Firemaking, Skill.Firemaking))
 }
 
 fun success(level: Int, hatchet: Item, tree: Tree): Boolean {

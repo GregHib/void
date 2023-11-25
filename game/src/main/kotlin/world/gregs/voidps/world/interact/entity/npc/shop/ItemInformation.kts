@@ -9,8 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.getMaxedSkill
-import world.gregs.voidps.engine.entity.item.quest
 import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -68,7 +66,7 @@ fun showInfo(player: Player, item: Item, index: Int, sample: Boolean) {
 }
 
 fun setRequirements(player: Player, def: ItemDefinition) {
-    val quest = def.quest()
+    val quest = def["quest_info", -1]
     if (def.has("equip_req") || def.has("maxed_skill") || quest != -1) {
         player["item_info_requirement_title"] = enums.get("item_info_requirement_titles").getString(def.slot.index)
         val builder = StringBuilder()
@@ -77,7 +75,7 @@ fun setRequirements(player: Player, def: ItemDefinition) {
             val colour = Colours.bool(player.has(skill, level, false))
             builder.append("<$colour>Level $level ${skill.name.lowercase()}<br>")
         }
-        val maxed = def.getMaxedSkill()
+        val maxed: Skill? = def.getOrNull("max_skill")
         if (maxed != null) {
             val colour = Colours.bool(player.has(maxed, maxed.maximum(), false))
             builder.append("<$colour>Level ${maxed.maximum()} ${maxed.name.lowercase()}<br>")

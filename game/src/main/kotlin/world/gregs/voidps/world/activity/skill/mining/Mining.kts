@@ -17,10 +17,10 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirementsToUse
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.hasUseRequirements
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
@@ -140,7 +140,7 @@ fun hasRequirements(player: Player, pickaxe: Item?, message: Boolean = false): B
         }
         return false
     }
-    return player.hasUseRequirements(pickaxe, message, setOf(Skill.Mining, Skill.Firemaking))
+    return player.hasRequirementsToUse(pickaxe, message, setOf(Skill.Mining, Skill.Firemaking))
 }
 
 fun addOre(player: Player, ore: String): Boolean {

@@ -31,4 +31,5 @@ val parameterNames = mapOf(
     Parameter.EQUIP_SKILL_1 to "equip_req",
     Parameter.USE_SKILL_1 to "skill_req",
     Parameter.MAXED_SKILL to "max_skill",
+    Parameter.QUEST_REQUIREMENT_SLOT_ID to "quest_info"
 )
