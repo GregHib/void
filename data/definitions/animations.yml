@@ -1511,11 +1511,11 @@ sword_slash: 390
 sword_lunge: 386
 sword_block: 390
 sword_hit: 388
-2h_chop: 407
-2h_slash: 407
-2h_smash: 406
-2h_block: 407
-2h_hit: 410
+2h_chop: 7041
+2h_slash: 7041
+2h_smash: 7042
+2h_block: 7041
+2h_hit: 7050
 mace_pound: 401
 mace_pummel: 401
 mace_spike: 400
