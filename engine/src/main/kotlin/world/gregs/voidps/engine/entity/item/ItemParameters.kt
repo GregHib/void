@@ -29,7 +29,7 @@ object ItemParameters {
     const val PRAYER_BONUS = 11L
     const val ATTACK_SPEED = 14L
     const val PARAM_21 = 21L // bows and crossbows - projectile?
-    const val SHOP_ITEM_LEVEL = 23L // 912.cs2
+    const val REQUIRED_LEVEL = 23L // 912.cs2
     const val UNBANKABLE = 59L
     const val CONSTRUCTION_REQUIRED_ITEM_ID_1 = 211L // 1864.cs2
     const val CONSTRUCTION_REQUIRED_ITEM_AMOUNT_1 = 212L // 1864.cs2
@@ -50,12 +50,15 @@ object ItemParameters {
     const val SKILL_CAPE = 258L
     const val TRIMMED_SKILL_CAPE = 259L // 2720.cs2, 2723.cs2
     const val MAXED_SKILL = 277L
+    const val MOBILISING_ARMIES_ATTACKABLE_OBJ = 351L
+    const val MOBILISING_ARMIES_COLLECTABLE_OBJ = 352L
     const val GRAVESTONE_TIME = 356L // 687.cs2
     const val SUMMONING_BEAST_OF_BURDEN_CAPACITY = 379L
     const val SUMMONING_POUCH_LEVEL = 394L // 751.cs2
     const val SUMMONING_DEFENCE = 417L
     const val SUMMONING_TIME_MINUTES = 424L
     const val SUMMONING_ITEM = 457L // 319.cs2, 322.cs2
+    const val SIGNPOST = 457L
     const val WEAR_OPTION_1 = 528L // 1612.cs2
     const val WEAR_OPTION_2 = 529L // 1612.cs2
     const val WEAR_OPTION_3 = 530L // 1612.cs2
@@ -66,6 +69,7 @@ object ItemParameters {
     const val SUMMONING_SHARD_AMOUNT = 541L // 759.cs2, 766.cs2, 767.cs2, 793.cs2
     const val SUMMONING_CHARM_ID = 542L // 767.cs2
     const val SUMMONING_CHARM_AMOUNT = 543L // 766.cs2, 767.cs2
+    const val VIEWING_ORB_REPLACEMENT_OBJ = 580L
     const val SUMMONING_SCROLL = 599L // 322.cs2, 1670.cs2
     const val EQUIP_TYPE_HIDE_HAIR = 624L
     const val EQUIP_TYPE_HAT = 625L
@@ -112,6 +116,9 @@ object ItemParameters {
     const val USE_LEVEL_5 = 779L // 931.cs2
     const val USE_SKILL_6 = 780L // 931.cs2
     const val USE_LEVEL_6 = 781L // 931.cs2
+    const val MOBILISING_ARMIES_CAVE = 799L
+    const val MOBILISING_ARMIES_FISSURE = 800L
+    const val MOBILISING_ARMIES_RESCUED = 801L
     const val MOBILISING_ARMIES_SQUAD = 802L // 2573.cs2
     const val MOBILISING_ARMIES_SQUAD_DEFEATED = 803L // 2570.cs2, 2573.cs2, 2597.cs2, 2599.cs2
     const val MOBILISING_ARMIES_SQUAD_TYPE = 805L // 2570.cs2, 2588.cs2
@@ -159,6 +166,8 @@ object ItemParameters {
     const val CONQUEST_PARAM_12 = 1146L
     const val CONQUEST_PARAM_13 = 1147L
     const val CONQUEST_PARAM_14 = 1148L // 484.cs2, 485.cs2
+    const val CONSTRUCTION_FLOOR_1 = 1158L
+    const val CONSTRUCTION_FLOOR_2 = 1159L
     const val CONQUEST_UNIT_PARAM_15 = 1229L
     const val CONQUEST_UNIT_PARAM_16 = 1230L
     const val SUMMONING_BEAST_OF_BURDEN = 1323L
