@@ -65,7 +65,7 @@ object Prayer {
         if (source is NPC && usingProtectionPrayer(source, target, type)) {
             target["protected_damage"] = damage
             return 0
-        } else if (source is Player && usingProtectionPrayer(source, target, type) && !hitThroughProtectionPrayer(source, target, type, weapon, special)) {
+         } else if (source is Player && usingProtectionPrayer(source, target, type) && !hitThroughProtectionPrayer(source, target, type, weapon, special)) {
             target["protected_damage"] = damage
             return (damage * if (target is Player) 0.6 else 0.0).toInt()
         } else {

@@ -27,7 +27,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
         delay = -1
         return@on
     }
-    player.setAnimation("bow_shoot")
+    player.setAnimation("bow_accurate")
     player.setGraphic("special_arrow_shoot")
     player.playSound("magic_longbow_special")
     player.shoot(id = "special_arrow", target = target)

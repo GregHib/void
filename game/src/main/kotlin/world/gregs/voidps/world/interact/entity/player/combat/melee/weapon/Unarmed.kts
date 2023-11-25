@@ -20,7 +20,7 @@ on<CombatSwing>({ !swung() }, Priority.LOWEST) { player: Player ->
     val style = definitions.get(id)
     player.setAnimation("${style.stringId}_${player.attackType}")
     player.hit(target)
-    delay = 4//style.attackSpeed
+    delay = player.weapon.def["attack_speed", 4]
 }
 
 on<CombatAttack>({ !blocked && target is Player }, Priority.LOW) { _: Character ->

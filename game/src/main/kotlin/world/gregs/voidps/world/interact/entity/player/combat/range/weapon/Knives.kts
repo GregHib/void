@@ -29,7 +29,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && isKnife(
 
 on<CombatSwing>({ player -> !swung() && isKnife(player.weapon) }, Priority.LOW) { player: Player ->
     val ammo = player.ammo.removeSuffix("_p++").removeSuffix("_p+").removeSuffix("_p")
-    player.setAnimation("throw_projectile")
+    player.setAnimation("thrown_accurate")
     player.setGraphic("${ammo}_throw")
     player.shoot(id = ammo, target = target)
     val distance = player.tile.distanceTo(target)

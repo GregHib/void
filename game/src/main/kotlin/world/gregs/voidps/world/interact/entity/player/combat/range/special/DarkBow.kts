@@ -31,7 +31,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
         delay = -1
         return@on
     }
-    player.setAnimation("bow_shoot")
+    player.setAnimation("bow_accurate")
     player.setGraphic("${player.ammo}_double_shot")
     player.playSound("dark_bow_special")
     player.playSound("descent_of_${if (dragon) "dragons" else "darkness"}")
@@ -59,7 +59,7 @@ on<CombatHit>({ source is Player && source.fightStyle == "range" && isDarkBow(we
 }
 
 on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && isDarkBow(player.weapon) }, Priority.MEDIUM) { player: Player ->
-    player.setAnimation("bow_shoot")
+    player.setAnimation("bow_accurate")
     val ammo = player.ammo
     player.setGraphic("${ammo}_double_shot")
     player.shoot(ammo, target, true)

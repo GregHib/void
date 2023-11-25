@@ -1272,8 +1272,6 @@ teleport_tablet:
 teleport_land_tablet:
   id: 9598
   ticks: 1
-bow_shoot: 426
-crossbow_shoot: 4230
 cow_hit: 5850
 cow_death: 5851
 cow_attack: 5849
@@ -1295,28 +1293,13 @@ rat_hit: 2706
 giant_rat_attack: 14859
 giant_rat_death: 14860
 giant_rat_hit: 14861
-player_punch: 422
-player_kick: 423
 player_death: 836
-player_block: 424
 sap: 12569
 leech: 12575
 deflect: 12573
-magic_shortbow_special: 1074
-zaniks_crossbow_special: 11359
-throw_dart: 582
-throw_javelin: 10501
-throw_morrigans_throwing_axe: 10501
-throw_morrigans_throwing_axe_special: 10504
-throw_projectile: 929
 hand_cannon_shoot: 12152
 hand_cannon_special: 12174
 hand_cannon_explode: 12175
-karils_crossbow_shoot: 2075
-sling_rock: 14867
-toktz_xil_ul: 3353
-throw_chinchompa: 2779
-rune_throwing_axe_special: 1068
 guthans_spear_attack: 2080
 guthans_spear_swipe: 2081
 guthans_spear_block: 12008
@@ -1328,11 +1311,6 @@ dharoks_greataxe_smash: 2067
 dharoks_greataxe_block: 2063
 boxing_gloves_attack: 3678
 boxing_gloves_block: 3679
-whip_flick: 11968
-whip_lash: 11969
-whip_deflect: 11970
-whip_special: 11971
-whip_block: 11974
 anchor_attack: 5865
 anchor_block: 5866
 granite_maul_attack: 1665
@@ -1354,8 +1332,6 @@ vestas_longsword_block: 388
 korasis_sword_chop: 12028
 korasis_sword_slash: 12029
 korasis_sword_block: 12030
-staff_attack: 419
-staff_block: 420
 dragon_dagger_attack: 376
 dragon_dagger_slash: 377
 dragon_dagger_block: 403
@@ -1392,13 +1368,6 @@ spear_wall: 10499
 easter_carrot_whack: 11547
 banner_attack: 1428
 banner_hit: 1429
-mjolnir_attack: 414
-mjolnir_hit: 415
-net_lunge: 428
-net_swipe: 440
-net_pound: 429
-net_block: 428
-net_hit: 430
 mouse_toy_attack: 1658
 power_of_light: 12804
 wind_spell: 10546
@@ -1510,14 +1479,6 @@ lumbridge_flag_stop_raise:
   ticks: 2
 lumbridge_flag: 9979
 bind_runes: 791
-
-
-
-
-
-
-
-
 unarmed_punch: 422
 unarmed_kick: 423
 unarmed_block: 422
@@ -1569,6 +1530,11 @@ hammer_pound: 401
 hammer_pummel: 401
 hammer_block: 401
 hammer_hit: 403
+whip_flick: 11968 # needs verification
+whip_lash: 11969 # needs verification
+whip_deflect: 11970 # needs verification
+whip_special: 11971 # needs verification
+whip_block: 11974 # needs verification
 fun_pound: 400
 fun_pummel: 400
 fun_block: 400
@@ -1579,7 +1545,8 @@ pie_long_range: 2779
 pie_hit: 3176
 spear_lunge: 428
 spear_swipe: 440
-spear_fend: 428
+spear_pound: 428
+spear_block: 429
 spear_hit: 430
 halberd_jab: 428
 halberd_swipe: 440
@@ -1589,19 +1556,27 @@ bow_accurate: 426
 bow_rapid: 426
 bow_long_range: 426
 bow_hit: 424
-crossbow_accurate: 7552
-crossbow_rapid: 7552
-crossbow_long_range: 7552
+crossbow_accurate: 4230
+crossbow_rapid: 4230
+crossbow_long_range: 4230
 crossbow_hit: 424
-thrown_accurate: 7617
-thrown_rapid: 7617
-thrown_long_range: 7617
+karils_crossbow_shoot: 2075
+zaniks_crossbow_special: 11359
+thrown_accurate: 929
+thrown_rapid: 929
+thrown_long_range: 929
 thrown_hit: 424
-chinchompa_short_fuse: 7618
-chinchompa_medium_fuse: 7618
-chinchompa_long_fuse: 7618
+throw_dart: 582
+toktz_xil_ul: 3353
+throw_javelin: 10501
+rune_throwing_axe_special: 1068
+throw_morrigans_throwing_axe: 10501
+throw_morrigans_throwing_axe_special: 10504
+chinchompa_short_fuse: 2779
+chinchompa_medium_fuse: 2779
+chinchompa_long_fuse: 2779
 chinchompa_hit: 3176
-fixed_device_aim_and_fire: -1
+fixed_device_aim_and_fire: -1 # needs verification
 salamander_scorch: 5247
 salamander_hit: 388
 scythe_reap: 440
@@ -1609,18 +1584,19 @@ scythe_chop: 440
 scythe_jab: 438
 scythe_block: 440
 scythe_hit: 435
-ivandis_flail_slash: 9047
-ivandis_flail_crush: 9047
-ivandis_flail_hit: 9048
-sling_sling: -1
-sling_chuck: -1
-sling_lob: -1
-sling_hit: -1
-trident_jab: -1
-trident_swipe: -1
-trident_fend: -1
-trident_hit: -1
-staff_of_light_jab: 13040
-staff_of_light_swipe: 15071
-staff_of_light_fend: 15072
-staff_of_light_hit: 13043
+ivandis_flail_slash: 9047 # needs verification
+ivandis_flail_crush: 9047 # needs verification
+ivandis_flail_hit: 9048 # needs verification
+sling_rock: 14867 # needs verification
+sling_sling: 14867 # needs verification
+sling_chuck: 14867 # needs verification
+sling_lob: 14867 # needs verification
+#sling_hit: -1
+trident_jab: -1 # needs verification
+trident_swipe: -1 # needs verification
+trident_fend: -1 # needs verification
+trident_hit: -1 # needs verification
+staff_of_light_jab: 13040 # needs verification
+staff_of_light_swipe: 15071 # needs verification
+staff_of_light_fend: 15072 # needs verification
+staff_of_light_hit: 13043 # needs verification

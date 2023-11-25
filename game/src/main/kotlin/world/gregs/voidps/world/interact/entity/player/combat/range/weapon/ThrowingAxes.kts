@@ -35,7 +35,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && isThrowi
 
 on<CombatSwing>({ player -> !swung() && isThrowingAxe(player.weapon) }, Priority.LOW) { player: Player ->
     val ammo = player.ammo.removePrefix("corrupt_")
-    player.setAnimation(if (ammo.contains("morrigans")) "throw_javelin" else "throw_projectile")
+    player.setAnimation(if (ammo.contains("morrigans")) "throw_javelin" else "thrown_accurate")
     player.setGraphic("${ammo}_throw")
     player.shoot(id = ammo, target = target)
     val distance = player.tile.distanceTo(target)

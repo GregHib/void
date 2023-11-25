@@ -15,10 +15,11 @@ object ItemDefinitions {
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val decoder = ItemDefinitions(ItemDecoder().loadCache(cache)).load(Yaml(), "./data/definitions/items.yml")
-
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            println("$i ${def.name} ${def.params}")
+            if (def.has("weapon_style")) {
+                println("$i ${def.name} ${def.extras}")
+            }
         }
     }
 }

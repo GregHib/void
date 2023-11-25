@@ -39,7 +39,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && isChinch
 
 on<CombatSwing>({ player -> !swung() && isChinchompa(player.weapon) }, Priority.LOW) { player: Player ->
     val ammo = player.ammo
-    player.setAnimation("throw_chinchompa")
+    player.setAnimation("chinchompa_short_fuse")
     player.shoot(id = ammo, target = target)
     val distance = player.tile.distanceTo(target)
     player.hit(target, delay = Hit.throwDelay(distance))

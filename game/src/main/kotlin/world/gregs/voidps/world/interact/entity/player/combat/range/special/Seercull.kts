@@ -33,7 +33,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
         delay = -1
         return@on
     }
-    player.setAnimation("bow_shoot")
+    player.setAnimation("bow_accurate")
     player.setGraphic("seercull_special_shoot")
     player.playSound("seercull_special")
     player.shoot(id = "seercull_special_arrow", target = target)

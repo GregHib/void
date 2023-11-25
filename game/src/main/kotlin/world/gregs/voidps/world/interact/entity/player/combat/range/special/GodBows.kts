@@ -34,7 +34,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
         delay = -1
         return@on
     }
-    player.setAnimation("bow_shoot")
+    player.setAnimation("bow_accurate")
     val ammo = player.ammo
     player.setGraphic("${ammo}_shoot")
     player.shoot(id = ammo, target = target)
