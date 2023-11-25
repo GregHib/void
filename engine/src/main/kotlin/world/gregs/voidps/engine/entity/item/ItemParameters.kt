@@ -50,8 +50,11 @@ object ItemParameters {
     const val SKILL_CAPE = 258L
     const val TRIMMED_SKILL_CAPE = 259L // 2720.cs2, 2723.cs2
     const val MAXED_SKILL = 277L
+    const val GRAVESTONE_TIME = 356L // 687.cs2
+    const val SUMMONING_BEAST_OF_BURDEN_CAPACITY = 379L
     const val SUMMONING_POUCH_LEVEL = 394L // 751.cs2
     const val SUMMONING_DEFENCE = 417L
+    const val SUMMONING_TIME_MINUTES = 424L
     const val SUMMONING_ITEM = 457L // 319.cs2, 322.cs2
     const val WEAR_OPTION_1 = 528L // 1612.cs2
     const val WEAR_OPTION_2 = 529L // 1612.cs2
@@ -119,6 +122,9 @@ object ItemParameters {
     const val BUG_LANTERN = 823L // 929.cs2
     const val BARBARIAN_ASSAULT_REWARD = 954L
     const val BARBARIAN_ASSAULT_TICKET_WAVE = 955L
+    const val FAMILIARISATION_FAMILIAR_1 = 956L // 2889.cs2
+    const val FAMILIARISATION_FAMILIAR_2 = 957L // 2889.cs2
+    const val FAMILIARISATION_TYPE = 958L
     const val MAGIC_STRENGTH = 965L
     const val ABSORB_MELEE = 967L
     const val ABSORB_RANGE = 968L
@@ -138,10 +144,30 @@ object ItemParameters {
     const val VOID_STARES_BACK_KEY_BLOCK_WEIGHT = 1226L
     const val DYNAMIC_INVENTORY_OPTION_ORIGINAL = 1264L
     const val DYNAMIC_INVENTORY_OPTION_REPLACEMENT = 1265L // 1540.cs2
+    const val CONQUEST_UNIT_MOVEMENT = 1134L // 484.cs2, 485.cs2, 497.cs2
+    const val CONQUEST_PARAM_2 = 1135L // 484.cs2, 485.cs2, 497.cs2
+    const val CONQUEST_PARAM_3 = 1136L // 484.cs2, 485.cs2, 497.cs2
+    const val CONQUEST_UNIT_RANGE = 1137L // 484.cs2, 485.cs2, 497.cs2
+    const val CONQUEST_UNIT_COST = 1138L // 484.cs2, 485.cs2
+    const val CONQUEST_UNIT_NAME = 1139L // 1417.cs2, 1139.cs2, 484.cs2, 485.cs2
+    const val CONQUEST_UNIT_CHARACTER = 1140L // 1377.cs2
+    const val CONQUEST_PARAM_8 = 1141L
+    const val CONQUEST_SHADOW_NPC = 1142L
+    const val CONQUEST_PARAM_9 = 1143L
+    const val CONQUEST_PARAM_10 = 1144L
+    const val CONQUEST_PARAM_11 = 1145L
+    const val CONQUEST_PARAM_12 = 1146L
+    const val CONQUEST_PARAM_13 = 1147L
+    const val CONQUEST_PARAM_14 = 1148L // 484.cs2, 485.cs2
+    const val CONQUEST_UNIT_PARAM_15 = 1229L
+    const val CONQUEST_UNIT_PARAM_16 = 1230L
+    const val SUMMONING_BEAST_OF_BURDEN = 1323L
     const val CHOMPY_BIRD_KILLS = 1366L // 4227.cs2
     const val CHOMPY_BIRD_HAT_NAME = 1367L
     const val CHOMPY_BIRD_REQUIREMENT_STRING = 1368L // 4227.cs2
     const val STAGE_ON_DEATH = 1397L // 59.cs2, 4592.cs2
+    const val SHADOW = 1912L
+    const val LINKED_SHADOW_NPC = 2098L
     const val CATEGORY = 2195L
 
     object Category {
@@ -189,7 +215,7 @@ object ItemParameters {
         CRUSH_ATTACK to "crush",
         MAGIC_ATTACK to "magic",
         RANGE_ATTACK to "range",
-        STAB_DEFENCE to "stab_def",
+        STAB_DEFENCE to "stab_def_2",
         SLASH_DEFENCE to "slash_def",
         CRUSH_DEFENCE to "crush_def",
         MAGIC_DEFENCE to "magic_def",

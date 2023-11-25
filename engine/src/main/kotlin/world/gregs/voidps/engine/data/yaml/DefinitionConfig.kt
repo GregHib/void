@@ -21,8 +21,8 @@ open class DefinitionConfig<T : Extra>(
     }
 
     private fun setExtras(definition: Extra, extras: Map<String, Any>?) {
+        definition.extras = extras
         if (definition !is Parameterized) {
-            definition.extras = extras
             return
         }
         val parameters = definition.params ?: return
