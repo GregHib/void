@@ -128,7 +128,7 @@ class BufferReader(
         val sb = StringBuilder()
         var b: Int
         while (buffer.hasRemaining()) {
-            b = readByte()
+            b = readUnsignedByte()
             if (b == 0) {
                 break
             }

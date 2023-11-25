@@ -215,4 +215,13 @@ internal class BufferReaderTest {
         buffer.startBitAccess()
         assertEquals(511, buffer.readBits(9))
     }
+
+    @Test
+    fun `Read special char`() {
+        packet(-32)
+        // When
+        val string = buffer.readString()
+        // Then
+        assertEquals("\u00E0", string)
+    }
 }
