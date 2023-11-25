@@ -4,13 +4,13 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import net.pearx.kasechange.toSentenceCase
+import world.gregs.voidps.cache.definition.Parameter
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.data.*
 import world.gregs.voidps.engine.data.yaml.DefinitionConfig
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.ItemKept
-import world.gregs.voidps.engine.entity.item.ItemParameters
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
@@ -84,26 +84,26 @@ class ItemDefinitions(
 
         override fun setParam(key: Long, value: Any, extras: MutableMap<String, Any>, parameters: Map<Long, Any>) {
             when (key) {
-                in ItemParameters.EQUIP_SKILL_1..ItemParameters.EQUIP_LEVEL_6 -> {
-                    val name = ItemParameters.parameters.getValue(ItemParameters.EQUIP_SKILL_1)
+                in Parameter.EQUIP_SKILL_1..Parameter.EQUIP_LEVEL_6 -> {
+                    val name = parameterNames.getValue(Parameter.EQUIP_SKILL_1)
                     val map = extras.getOrPut(name) { createMap() } as  MutableMap<Skill, Int>
                     if (key.toInt() % 2 != 0) {
                         map[Skill.all[value as Int]] = parameters[key + 1] as Int
                     }
                 }
-                in ItemParameters.USE_SKILL_1..ItemParameters.USE_LEVEL_6 -> {
-                    val name = ItemParameters.parameters.getValue(ItemParameters.USE_SKILL_1)
+                in Parameter.USE_SKILL_1..Parameter.USE_LEVEL_6 -> {
+                    val name = parameterNames.getValue(Parameter.USE_SKILL_1)
                     val list = extras.getOrPut(name) { createMap() } as MutableMap<Skill, Int>
                     if (key.toInt() % 2 == 0) {
                         list[Skill.all[value as Int]] = parameters[key + 1] as Int
                     }
                 }
-                ItemParameters.STRENGTH, ItemParameters.RANGED_STRENGTH, ItemParameters.MAGIC_STRENGTH -> {
-                    val name = ItemParameters.parameters.getValue(key)
+                Parameter.STRENGTH, Parameter.RANGED_STRENGTH, Parameter.MAGIC_STRENGTH -> {
+                    val name = parameterNames.getValue(key)
                     extras[name] = (value as Int) / 10.0
                 }
-                ItemParameters.MAXED_SKILL -> {
-                    val name = ItemParameters.parameters.getValue(key)
+                Parameter.MAXED_SKILL -> {
+                    val name = parameterNames.getValue(key)
                     extras[name] = Skill.all[value as Int]
                 }
                 else -> super.setParam(key, value, extras, parameters)

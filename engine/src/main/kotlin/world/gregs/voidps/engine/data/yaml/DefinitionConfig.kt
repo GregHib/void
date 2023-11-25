@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.data.yaml
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.cache.definition.Parameterized
-import world.gregs.voidps.engine.entity.item.ItemParameters
+import world.gregs.voidps.engine.data.definition.parameterNames
 
 open class DefinitionConfig<T : Extra>(
     val ids: MutableMap<String, Int>,
@@ -32,11 +32,11 @@ open class DefinitionConfig<T : Extra>(
             setParam(pair.key, pair.value, params, parameters)
         }
         definition.extras = params
-        definition.params = null
+//        definition.params = null
     }
 
     open fun setParam(key: Long, value: Any, extras: MutableMap<String, Any>, parameters: Map<Long, Any>) {
-        val name = ItemParameters.parameters.getOrDefault(key, key.toString())
+        val name = parameterNames.getOrDefault(key, key.toString())
         extras[name] = value
     }
 
