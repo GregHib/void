@@ -6,6 +6,8 @@ import org.koin.fileProperties
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.*
 import world.gregs.voidps.cache.Index.ITEMS
+import world.gregs.voidps.cache.Index.NPCS
+import world.gregs.voidps.cache.Index.OBJECTS
 import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.decoder.ItemDecoderFull
 import world.gregs.voidps.cache.definition.decoder.NPCDecoderFull
@@ -42,7 +44,7 @@ object DefinitionsParameterConverter {
         val itemDecoder = ItemDecoderFull()
         val itemDefinitions = itemDecoder.loadCache(koin.get())
         val itemEncoder = ItemEncoder()
-        val itemCount = definition(itemDecoder, itemEncoder, itemDefinitions, itemDefinitions, itemDefinitions718, cache)
+        val itemCount = definition(itemDecoder, itemEncoder, itemDefinitions, itemDefinitions, itemDefinitions718, cache, ITEMS)
         println("Parameters transferred from $itemCount item definitions.")
 
         val npcDecoder = NPCDecoderFull(members = false)
@@ -50,7 +52,7 @@ object DefinitionsParameterConverter {
         val npcDecoderMembers = NPCDecoderFull(members = true)
         val npcDefinitionsMembers = npcDecoderMembers.loadCache(koin.get())
         val npcEncoder = NPCEncoder()
-        val npcCount = definition(npcDecoder, npcEncoder, npcDefinitions, npcDefinitionsMembers, npcDefinitions718, cache)
+        val npcCount = definition(npcDecoder, npcEncoder, npcDefinitions, npcDefinitionsMembers, npcDefinitions718, cache, NPCS)
         println("Parameters transferred from $npcCount npc definitions.")
 
         val objectDecoder = ObjectDecoderFull()
@@ -58,7 +60,7 @@ object DefinitionsParameterConverter {
         val objectDecoderMembers = ObjectDecoderFull()
         val objectDefinitionsMembers = objectDecoderMembers.loadCache(koin.get())
         val objectEncoder = ObjectEncoder()
-        val objectCount = definition(objectDecoder, objectEncoder, objectDefinitions, objectDefinitionsMembers, objectDefinitions718, cache)
+        val objectCount = definition(objectDecoder, objectEncoder, objectDefinitions, objectDefinitionsMembers, objectDefinitions718, cache, OBJECTS)
         println("Parameters transferred from $objectCount object definitions.")
 
         println("Writing changes to cache...")
@@ -71,7 +73,8 @@ object DefinitionsParameterConverter {
         definitions: Array<T>,
         members: Array<T>,
         definitions718: Array<T>,
-        cache: Cache
+        cache: Cache,
+        index: Int
     ): Int where T : Definition, T : Parameterized {
         var count = 0
         for (id in definitions.indices) {
@@ -93,7 +96,7 @@ object DefinitionsParameterConverter {
                 with(encoder) {
                     writer.encode(def, membersDef)
                 }
-                cache.write(ITEMS, decoder.getArchive(id), decoder.getFile(id), writer.toArray())
+                cache.write(index, decoder.getArchive(id), decoder.getFile(id), writer.toArray())
                 count++
             }
         }

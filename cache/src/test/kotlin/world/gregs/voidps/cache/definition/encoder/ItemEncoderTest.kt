@@ -1,9 +1,12 @@
 package world.gregs.voidps.cache.definition.encoder
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.ItemDefinitionFull
 import world.gregs.voidps.cache.definition.decoder.ItemDecoderFull
 import java.nio.ByteBuffer
@@ -92,5 +95,27 @@ internal class ItemEncoderTest {
         decoder.readLoop(decodedDefinition, reader)
 
         assertEquals(definition, decodedDefinition)
+    }
+
+    @Disabled
+    @Test
+    fun `Encode everything`() {
+        val cache: Cache = CacheDelegate("../data/cache/")
+        val decoder = ItemDecoderFull()
+        val full = decoder.loadCache(cache)
+        val encoder = ItemEncoder()
+        val writer = BufferWriter(1024)
+
+        for (definition in full) {
+            with(encoder) {
+                writer.clear()
+                writer.encode(definition)
+            }
+            val data = writer.array()
+            val decodedDefinition = ItemDefinitionFull(id = definition.id)
+            val reader = BufferReader(ByteBuffer.wrap(data))
+            decoder.readLoop(decodedDefinition, reader)
+            assertEquals(definition, decodedDefinition)
+        }
     }
 }
