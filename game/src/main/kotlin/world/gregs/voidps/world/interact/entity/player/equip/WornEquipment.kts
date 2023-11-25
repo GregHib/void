@@ -6,9 +6,9 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
 
@@ -43,7 +43,7 @@ on<InterfaceOption>({ id == "worn_equipment" && option == "*" }) { player: Playe
 }
 
 fun getEquipmentOption(itemDef: ItemDefinition, optionId: Int): String? {
-    val equipOption: String? = itemDef.getParamOrNull(527L + optionId)
+    val equipOption: String? = itemDef.getOrNull<Map<Int, String>>("equipped_options")?.get(optionId - 1)
     if (equipOption != null) {
         return equipOption
     }

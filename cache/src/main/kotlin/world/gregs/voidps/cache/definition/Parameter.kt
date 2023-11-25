@@ -45,10 +45,10 @@ object Parameter {
     const val SUMMONING_TIME_MINUTES = 424L
     const val SUMMONING_ITEM = 457L // 319.cs2, 322.cs2
     const val SIGNPOST = 457L
-    const val WEAR_OPTION_1 = 528L // 1612.cs2
-    const val WEAR_OPTION_2 = 529L // 1612.cs2
-    const val WEAR_OPTION_3 = 530L // 1612.cs2
-    const val WEAR_OPTION_4 = 531L // 1612.cs2
+    const val EQUIPPED_OPTION_1 = 528L // 1612.cs2
+    const val EQUIPPED_OPTION_2 = 529L // 1612.cs2
+    const val EQUIPPED_OPTION_3 = 530L // 1612.cs2
+    const val EQUIPPED_OPTION_4 = 531L // 1612.cs2
     const val SUMMONING_POUCH_ID = 538L // 767.cs2
     const val SUMMONING_POUCH_AMOUNT = 539L // 766.cs2, 767.cs2
     const val SUMMONING_SHARD_ID = 540L // 767.cs2
@@ -195,7 +195,7 @@ object Parameter {
         MAXED_SKILL to "max_skill",
         QUEST_REQUIREMENT_SLOT_ID to "quest_info",
         CATEGORY to "category",
-        WEAR_OPTION_1 to "wear_options",
+        EQUIPPED_OPTION_1 to "equipped_options",
         REQUIRED_LEVEL to "secondary_use_level",
         UNBANKABLE to "unbankable",
     )

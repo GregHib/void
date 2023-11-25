@@ -86,16 +86,16 @@ class ItemDefinitions(
             when (key) {
                 in Parameter.EQUIP_SKILL_1..Parameter.EQUIP_LEVEL_6 -> {
                     val name = Parameter.names.getValue(Parameter.EQUIP_SKILL_1)
-                    val map = extras.getOrPut(name) { createMap() } as  MutableMap<Skill, Int>
+                    val map = extras.getOrPut(name) { createMap() } as MutableMap<Skill, Int>
                     if (key.toInt() % 2 != 0) {
                         map[Skill.all[value as Int]] = parameters[key + 1] as Int
                     }
                 }
                 in Parameter.USE_SKILL_1..Parameter.USE_LEVEL_6 -> {
                     val name = Parameter.names.getValue(Parameter.USE_SKILL_1)
-                    val list = extras.getOrPut(name) { createMap() } as MutableMap<Skill, Int>
+                    val map = extras.getOrPut(name) { createMap() } as MutableMap<Skill, Int>
                     if (key.toInt() % 2 == 0) {
-                        list[Skill.all[value as Int]] = parameters[key + 1] as Int
+                        map[Skill.all[value as Int]] = parameters[key + 1] as Int
                     }
                 }
                 Parameter.STRENGTH, Parameter.RANGED_STRENGTH, Parameter.MAGIC_STRENGTH -> {
@@ -110,6 +110,11 @@ class ItemDefinitions(
                     val name = Parameter.names.getValue(key)
                     val int = value as Int
                     extras[name] = Parameter.Category.names.getOrDefault(int, (int).toString())
+                }
+                in Parameter.EQUIPPED_OPTION_1..Parameter.EQUIPPED_OPTION_4 -> {
+                    val name = Parameter.names.getValue(Parameter.EQUIPPED_OPTION_1)
+                    val list = extras.getOrPut(name) { createMap() } as MutableMap<Int, String>
+                    list[(key - Parameter.EQUIPPED_OPTION_1).toInt()] = value as String
                 }
                 else -> super.setParam(key, value, extras, parameters)
             }
