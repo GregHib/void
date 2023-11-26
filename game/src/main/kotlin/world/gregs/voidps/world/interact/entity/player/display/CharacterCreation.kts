@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.display
 
 import world.gregs.voidps.cache.config.data.StructDefinition
+import world.gregs.voidps.cache.definition.Parameter
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
@@ -14,9 +15,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
-import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.armParam
 import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.onStyle
-import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.wristParam
 
 val enums: EnumDefinitions by inject()
 val structs: StructDefinitions by inject()
@@ -72,11 +71,11 @@ fun updateStyle(
     player["character_creation_style"] = styleIndex + 1
     player["character_creation_sub_style"] = subIndex + 1
     val struct = getStyleStruct(player, styleIndex, subIndex)
-    player["makeover_top"] = struct.getParam(1182)
-    player["makeover_arms"] = struct.getParam(1183)
-    player["makeover_wrists"] = struct.getParam(1184)
-    player["makeover_legs"] = struct.getParam(1185)
-    player["makeover_shoes"] = struct.getParam(1186)
+    player["makeover_top"] = struct.getParam(Parameter.CHARACTER_STYLE_TOP)
+    player["makeover_arms"] = struct.getParam(Parameter.CHARACTER_STYLE_ARMS)
+    player["makeover_wrists"] = struct.getParam(Parameter.CHARACTER_STYLE_WRISTS)
+    player["makeover_legs"] = struct.getParam(Parameter.CHARACTER_STYLE_LEGS)
+    player["makeover_shoes"] = struct.getParam(Parameter.CHARACTER_STYLE_SHOES)
     updateColours(player, styleIndex, subIndex)
 }
 
@@ -88,9 +87,9 @@ fun updateColours(
 ) {
     val struct = getStyleStruct(player, styleIndex, subIndex)
     val colour = hairStyle.rem(8) * 3L
-    player["makeover_colour_top"] = struct.getParam(1187 + colour)
-    player["makeover_colour_legs"] = struct.getParam(1188 + colour)
-    player["makeover_colour_shoes"] = struct.getParam(1189 + colour)
+    player["makeover_colour_top"] = struct.getParam(Parameter.CHARACTER_STYLE_TOP_COLOUR + colour)
+    player["makeover_colour_legs"] = struct.getParam(Parameter.CHARACTER_STYLE_LEGS_COLOUR + colour)
+    player["makeover_colour_shoes"] = struct.getParam(Parameter.CHARACTER_STYLE_SHOES_COLOUR + colour)
 }
 
 on<InterfaceOption>({ id == "character_creation" && component.startsWith("part_") }) { player: Player ->
@@ -123,8 +122,8 @@ on<InterfaceOption>({ id == "character_creation" && component == "styles" }) { p
     if (part == "top") {
         onStyle(value) {
             setStyle(player, it.id)
-            player["makeover_arms"] = it.getParam<Int>(armParam)
-            player["makeover_wrists"] = it.getParam<Int>(wristParam)
+            player["makeover_arms"] = it.getParam<Int>(Parameter.CHARACTER_STYLE_ARMS)
+            player["makeover_wrists"] = it.getParam<Int>(Parameter.CHARACTER_STYLE_WRISTS)
         }
         player["character_creation_sub_style"] = 1
     }

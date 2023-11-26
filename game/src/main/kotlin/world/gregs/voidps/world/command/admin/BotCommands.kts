@@ -8,6 +8,7 @@ import world.gregs.voidps.bot.Bot
 import world.gregs.voidps.bot.StartBot
 import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.isBot
+import world.gregs.voidps.cache.definition.Parameter
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
@@ -27,17 +28,12 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.network.DummyClient
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.type.area.Rectangle
-import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.armParam
-import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.legsParam
-import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.shoesParam
-import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.topParam
-import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.wristParam
+import world.gregs.voidps.type.random
 import java.util.concurrent.ConcurrentLinkedQueue
 import kotlin.coroutines.resume
 import kotlin.reflect.KClass
@@ -131,16 +127,16 @@ fun setAppearance(player: Player): Player {
     val size = enums.get("character_styles").length
     val style = enums.getStruct("character_styles", (0 until size).random(), "sub_style_${player.sex}_0", -1)
     val struct = structs.get(style)
-    player.body.setLook(BodyPart.Chest, struct.getParam(topParam))
-    player.body.setLook(BodyPart.Arms, struct.getParam(armParam))
-    player.body.setLook(BodyPart.Hands, struct.getParam(wristParam))
-    player.body.setLook(BodyPart.Legs, struct.getParam(legsParam))
-    player.body.setLook(BodyPart.Feet, struct.getParam(shoesParam))
+    player.body.setLook(BodyPart.Chest, struct.getParam(Parameter.CHARACTER_STYLE_TOP))
+    player.body.setLook(BodyPart.Arms, struct.getParam(Parameter.CHARACTER_STYLE_ARMS))
+    player.body.setLook(BodyPart.Hands, struct.getParam(Parameter.CHARACTER_STYLE_WRISTS))
+    player.body.setLook(BodyPart.Legs, struct.getParam(Parameter.CHARACTER_STYLE_LEGS))
+    player.body.setLook(BodyPart.Feet, struct.getParam(Parameter.CHARACTER_STYLE_SHOES))
     val offset = random.nextInt(0, 8) * 3L
     player.body.setColour(BodyColour.Hair, enums.get("colour_hair").randomInt())
-    player.body.setColour(BodyColour.Top, struct.getParam(1187 + offset))
-    player.body.setColour(BodyColour.Legs, struct.getParam(1188 + offset))
-    player.body.setColour(BodyColour.Feet, struct.getParam(1189 + offset))
+    player.body.setColour(BodyColour.Top, struct.getParam(Parameter.CHARACTER_STYLE_TOP_COLOUR + offset))
+    player.body.setColour(BodyColour.Legs, struct.getParam(Parameter.CHARACTER_STYLE_LEGS_COLOUR + offset))
+    player.body.setColour(BodyColour.Feet, struct.getParam(Parameter.CHARACTER_STYLE_SHOES_COLOUR + offset))
     player.body.setColour(BodyColour.Skin, enums.get("character_skin").randomInt())
     player.appearance.emote = 1426
     return player
