@@ -6,6 +6,9 @@ import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 
+/**
+ * Also known as DataMap in cs2
+ */
 class EnumDefinitions(
     override var definitions: Array<EnumDefinition>,
     private val structs: StructDefinitions

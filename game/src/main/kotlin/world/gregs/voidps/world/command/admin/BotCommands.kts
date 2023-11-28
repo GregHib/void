@@ -134,9 +134,9 @@ fun setAppearance(player: Player): Player {
     player.body.setLook(BodyPart.Feet, struct.getParam(Parameter.CHARACTER_STYLE_SHOES))
     val offset = random.nextInt(0, 8) * 3L
     player.body.setColour(BodyColour.Hair, enums.get("colour_hair").randomInt())
-    player.body.setColour(BodyColour.Top, struct.getParam(Parameter.CHARACTER_STYLE_TOP_COLOUR + offset))
-    player.body.setColour(BodyColour.Legs, struct.getParam(Parameter.CHARACTER_STYLE_LEGS_COLOUR + offset))
-    player.body.setColour(BodyColour.Feet, struct.getParam(Parameter.CHARACTER_STYLE_SHOES_COLOUR + offset))
+    player.body.setColour(BodyColour.Top, struct.getParam(Parameter.CHARACTER_STYLE_TOP_COLOUR_0 + offset))
+    player.body.setColour(BodyColour.Legs, struct.getParam(Parameter.CHARACTER_STYLE_LEGS_COLOUR_0 + offset))
+    player.body.setColour(BodyColour.Feet, struct.getParam(Parameter.CHARACTER_STYLE_SHOES_COLOUR_0 + offset))
     player.body.setColour(BodyColour.Skin, enums.get("character_skin").randomInt())
     player.appearance.emote = 1426
     return player

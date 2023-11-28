@@ -17,8 +17,8 @@ object ItemDefinitions {
         val decoder = ItemDefinitions(ItemDecoder().loadCache(cache)).load(Yaml(), "./data/definitions/items.yml")
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.has("weapon_style")) {
-                println("$i ${def.name} ${def.extras}")
+            if (def.params?.containsKey(key = 741) == true) {
+                println("$i ${def.name} ${def.params}")
             }
         }
     }

@@ -122,3 +122,12 @@ character_styles:
   struct: style
 character_style_names: 3279
 character_style_interfaces: 3280
+graphics_option_structs: 201
+quest_list_structs: 2252
+npc_contact_structs: 869
+dungeoneering_rewards: 3016
+dungeoneering_rewards_members: 3015
+ring_of_kingship_classes: 3088
+achievements_structs: 3483
+achievement_sprites: 3492
+clan_wars_arenas: 1604

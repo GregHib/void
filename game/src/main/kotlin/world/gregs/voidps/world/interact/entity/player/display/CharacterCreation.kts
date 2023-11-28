@@ -87,9 +87,9 @@ fun updateColours(
 ) {
     val struct = getStyleStruct(player, styleIndex, subIndex)
     val colour = hairStyle.rem(8) * 3L
-    player["makeover_colour_top"] = struct.getParam(Parameter.CHARACTER_STYLE_TOP_COLOUR + colour)
-    player["makeover_colour_legs"] = struct.getParam(Parameter.CHARACTER_STYLE_LEGS_COLOUR + colour)
-    player["makeover_colour_shoes"] = struct.getParam(Parameter.CHARACTER_STYLE_SHOES_COLOUR + colour)
+    player["makeover_colour_top"] = struct.getParam(Parameter.CHARACTER_STYLE_TOP_COLOUR_0 + colour)
+    player["makeover_colour_legs"] = struct.getParam(Parameter.CHARACTER_STYLE_LEGS_COLOUR_0 + colour)
+    player["makeover_colour_shoes"] = struct.getParam(Parameter.CHARACTER_STYLE_SHOES_COLOUR_0 + colour)
 }
 
 on<InterfaceOption>({ id == "character_creation" && component.startsWith("part_") }) { player: Player ->
