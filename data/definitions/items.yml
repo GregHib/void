@@ -40629,6 +40629,7 @@ constitution_cape:
   id: 9768
   tradeable: false
   weight: 0.453
+  aka: [ hitpoints_cape ]
   slot: "Cape"
   examine: "The cape worn by well-constituted adventurers."
   kept: "Reclaim"
@@ -40636,6 +40637,7 @@ constitution_cape_t:
   id: 9769
   tradeable: false
   weight: 0.453
+  aka: [ hitpoints_cape_t ]
   slot: "Cape"
   examine: "The cape worn by well-constituted adventurers."
   kept: "Reclaim"
@@ -40643,6 +40645,7 @@ constitution_hood:
   id: 9770
   tradeable: false
   weight: 0.453
+  aka: [ hitpoints_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Constitution skillcape hood."

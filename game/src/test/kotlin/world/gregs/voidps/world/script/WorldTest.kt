@@ -111,6 +111,8 @@ abstract class WorldTest : KoinTest {
         player["creation"] = -1
         player["skip_level_up"] = true
         player.login(null, 0)
+        player.softTimers.clear("restore_stats")
+        player.softTimers.clear("restore_hitpoints")
         tick()
         player.viewport = Viewport()
         player.viewport?.loaded = true
