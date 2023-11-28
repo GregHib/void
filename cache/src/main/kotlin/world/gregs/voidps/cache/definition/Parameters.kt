@@ -3,8 +3,7 @@ package world.gregs.voidps.cache.definition
 interface Parameters {
     val parameters: Map<Int, String>
 
-    fun set(extras: MutableMap<String, Any>, key: Int, value: Any) {
-        val name = parameters.getOrDefault(key, key.toString())
+    fun set(extras: MutableMap<String, Any>, name: String, value: Any) {
         extras[name] = value
     }
 

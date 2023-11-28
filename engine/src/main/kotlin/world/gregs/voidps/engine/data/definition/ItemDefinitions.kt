@@ -4,7 +4,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import net.pearx.kasechange.toSentenceCase
-import world.gregs.voidps.cache.definition.Parameter
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.data.*
 import world.gregs.voidps.engine.data.yaml.DefinitionConfig
@@ -79,44 +78,6 @@ class ItemDefinitions(
                 }
             } else {
                 super.set(map, key, id, extras)
-            }
-        }
-
-        override fun setParam(key: Long, value: Any, extras: MutableMap<String, Any>, parameters: Map<Long, Any>) {
-            when (key) {
-                in Parameter.EQUIP_SKILL_1..Parameter.EQUIP_LEVEL_6 -> {
-                    val name = Parameter.names.getValue(Parameter.EQUIP_SKILL_1)
-                    val map = extras.getOrPut(name) { createMap() } as MutableMap<Skill, Int>
-                    if (key.toInt() % 2 != 0) {
-                        map[Skill.all[value as Int]] = parameters[key + 1] as Int
-                    }
-                }
-                in Parameter.USE_SKILL_1..Parameter.USE_LEVEL_6 -> {
-                    val name = Parameter.names.getValue(Parameter.USE_SKILL_1)
-                    val map = extras.getOrPut(name) { createMap() } as MutableMap<Skill, Int>
-                    if (key.toInt() % 2 == 0) {
-                        map[Skill.all[value as Int]] = parameters[key + 1] as Int
-                    }
-                }
-                Parameter.STRENGTH, Parameter.RANGED_STRENGTH, Parameter.MAGIC_STRENGTH -> {
-                    val name = Parameter.names.getValue(key)
-                    extras[name] = (value as Int) / 10.0
-                }
-                Parameter.MAXED_SKILL -> {
-                    val name = Parameter.names.getValue(key)
-                    extras[name] = Skill.all[value as Int]
-                }
-                Parameter.CATEGORY -> {
-                    val name = Parameter.names.getValue(key)
-                    val int = value as Int
-                    extras[name] = Parameter.Category.names.getOrDefault(int, (int).toString())
-                }
-                in Parameter.EQUIPPED_OPTION_1..Parameter.EQUIPPED_OPTION_4 -> {
-                    val name = Parameter.names.getValue(Parameter.EQUIPPED_OPTION_1)
-                    val list = extras.getOrPut(name) { createMap() } as MutableMap<Int, String>
-                    list[(key - Parameter.EQUIPPED_OPTION_1).toInt()] = value as String
-                }
-                else -> super.setParam(key, value, extras, parameters)
             }
         }
 

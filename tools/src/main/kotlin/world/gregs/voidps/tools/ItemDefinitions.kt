@@ -18,15 +18,15 @@ object ItemDefinitions {
         val groups = mutableMapOf<Int, MutableList<ItemDefinition>>()
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.extras?.containsKey(key = "2195") == true) {
-                val cat = def.extras!!.get("2195") as Int
+            if (def.has(key = "2195")) {
+                val cat: Int = def["2195"]
                 if(cat == 1 || cat == 2 || cat == 3) {
                     println(def)
                 }
             }
-            if (def.extras?.containsKey(key = "21") == true) {
-                val cat = def.extras!!.get("21") as Int
-                groups.getOrPut(cat as Int) { mutableListOf() }.add(def)
+            if (def.has(key = "21")) {
+                val cat: Int = def["21"]
+                groups.getOrPut(cat) { mutableListOf() }.add(def)
             }
         }
         for((value, list) in groups) {

@@ -5,7 +5,6 @@ import world.gregs.voidps.buffer.read.Reader
 
 @Suppress("UNCHECKED_CAST")
 interface Extra {
-
     var stringId: String
     var extras: Map<String, Any>?
 
@@ -26,7 +25,8 @@ interface Extra {
         for (i in 0 until length) {
             val string = buffer.readUnsignedBoolean()
             val id = buffer.readUnsignedMedium()
-            parameters.set(extras, id, if (string) buffer.readString() else buffer.readInt())
+            val name = parameters.parameters.getOrDefault(id, id.toString())
+            parameters.set(extras, name, if (string) buffer.readString() else buffer.readInt())
         }
         this.extras = extras
     }

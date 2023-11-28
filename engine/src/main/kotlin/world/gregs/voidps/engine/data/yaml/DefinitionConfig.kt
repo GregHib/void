@@ -1,9 +1,6 @@
 package world.gregs.voidps.engine.data.yaml
 
-import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
-import world.gregs.voidps.cache.definition.Parameter
-import world.gregs.voidps.cache.definition.Parameterized
 
 open class DefinitionConfig<T : Extra>(
     val ids: MutableMap<String, Int>,
@@ -16,28 +13,7 @@ open class DefinitionConfig<T : Extra>(
         ids[key] = id
         val def = definitions[id]
         def.stringId = key
-        setExtras(def, extras)
+        def.extras = extras
         super.set(map, key, id, extras)
     }
-
-    private fun setExtras(definition: Extra, extras: Map<String, Any>?) {
-        definition.extras = extras
-        if (definition !is Parameterized) {
-            return
-        }
-        val parameters = definition.params ?: return
-        val params = extras as? MutableMap<String, Any> ?: createMap()
-        definition as Definition
-        for (pair in parameters) {
-            setParam(pair.key, pair.value, params, parameters)
-        }
-        definition.extras = params
-        definition.params = null
-    }
-
-    open fun setParam(key: Long, value: Any, extras: MutableMap<String, Any>, parameters: Map<Long, Any>) {
-        val name = Parameter.names.getOrDefault(key, key.toString())
-        extras[name] = value
-    }
-
 }

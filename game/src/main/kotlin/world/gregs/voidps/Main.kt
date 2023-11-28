@@ -131,7 +131,7 @@ object Main {
         single(createdAtStart = true) { StructDefinitions(StructDecoder(get<ParameterDefinitions>()).load(activeDir)).load() }
         single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(activeDir)).load() }
         single(createdAtStart = true) { WeaponStyleDefinitions().load() }
-        single(createdAtStart = true) { ParameterDefinitions().load() }
+        single(createdAtStart = true) { ParameterDefinitions(CategoryDefinitions().load()).load() }
     }
 
     private fun cache(cache: Cache) = module {
@@ -148,5 +148,6 @@ object Main {
         single(createdAtStart = true) { StructDefinitions(StructDecoder(get<ParameterDefinitions>()).loadCache(cache)).load() }
         single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().loadCache(cache)).load() }
         single(createdAtStart = true) { WeaponStyleDefinitions().load() }
+        single(createdAtStart = true) { ParameterDefinitions(CategoryDefinitions().load()).load() }
     }
 }
