@@ -7,6 +7,9 @@ import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 
+/**
+ * Categories used in [ParameterDefinitions]
+ */
 class CategoryDefinitions : DefinitionsDecoder<CategoryDefinition> {
 
     override lateinit var definitions: Array<CategoryDefinition>

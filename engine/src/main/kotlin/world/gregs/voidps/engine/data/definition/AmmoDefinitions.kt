@@ -8,6 +8,10 @@ import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 
+/**
+ * List of [AmmoDefinition.items] each weapons ammo_group can use ignoring
+ * skill requirements and whether inside dungeoneering.
+ */
 class AmmoDefinitions : DefinitionsDecoder<AmmoDefinition> {
 
     override lateinit var definitions: Array<AmmoDefinition>

@@ -1,5 +1,8 @@
 package world.gregs.voidps.cache.definition
 
+/**
+ * Interface for overriding adding [Parameterized] values into [Extra]
+ */
 interface Parameters {
     val parameters: Map<Int, String>
 

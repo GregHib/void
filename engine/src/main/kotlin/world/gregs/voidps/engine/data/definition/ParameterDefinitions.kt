@@ -12,6 +12,9 @@ import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 
+/**
+ * Parameters mainly for [ItemDefinitions], [NPCDefinitions], [ObjectDefinitions] and [StructDefinitions]
+ */
 class ParameterDefinitions(
     private val categoryDefinitions: CategoryDefinitions,
     private val ammoDefinitions: AmmoDefinitions
