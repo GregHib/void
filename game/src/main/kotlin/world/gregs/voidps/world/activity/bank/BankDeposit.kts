@@ -39,7 +39,7 @@ fun deposit(player: Player, inventory: world.gregs.voidps.engine.inv.Inventory, 
         return true
     }
 
-    if (!item.def["bankable", true]) {
+    if (item.def["unbankable", 0] == 1) {
         player.message("This item cannot be banked.")
         return true
     }

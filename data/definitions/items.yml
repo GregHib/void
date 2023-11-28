@@ -2273,7 +2273,6 @@ strange_fruit:
 strange_fruit_noted: 465
 pickaxe_handle:
   id: 466
-  bankable: false
   weight: 0.1
   slot: "Weapon"
   examine: "Useless without the head."
@@ -2281,7 +2280,6 @@ pickaxe_handle:
 pickaxe_handle_noted: 467
 broken_pickaxe_bronze:
   id: 468
-  bankable: false
   weight: 1.814
   slot: "Weapon"
   examine: "Useless."
@@ -2289,7 +2287,6 @@ broken_pickaxe_bronze:
 broken_pickaxe_noted: 469
 broken_pickaxe_iron:
   id: 470
-  bankable: false
   weight: 1.814
   slot: "Weapon"
   examine: "Useless."
@@ -2297,7 +2294,6 @@ broken_pickaxe_iron:
 broken_pickaxe_noted_2: 471
 broken_pickaxe_steel:
   id: 472
-  bankable: false
   weight: 1.814
   slot: "Weapon"
   examine: "Useless."
@@ -2305,7 +2301,6 @@ broken_pickaxe_steel:
 broken_pickaxe_noted_3: 473
 broken_pickaxe_mithril:
   id: 474
-  bankable: false
   weight: 1.814
   slot: "Weapon"
   examine: "Useless."
@@ -2313,7 +2308,6 @@ broken_pickaxe_mithril:
 broken_pickaxe_noted_4: 475
 broken_pickaxe_adamant:
   id: 476
-  bankable: false
   weight: 1.814
   slot: "Weapon"
   examine: "Useless."
@@ -2321,7 +2315,6 @@ broken_pickaxe_adamant:
 broken_pickaxe_noted_5: 477
 broken_pickaxe_rune:
   id: 478
-  bankable: false
   weight: 1.814
   slot: "Weapon"
   examine: "Useless."
@@ -2330,7 +2323,6 @@ broken_pickaxe_noted_6: 479
 pickaxe_head_bronze:
   &pickaxe_head_bronze
   id: 480
-  bankable: false
   weight: 1.814
   examine: "Useless."
   use: "Removed"
@@ -2357,7 +2349,6 @@ pickaxe_head_rune:
 pickaxe_head_noted_6: 491
 hatchet_handle:
   id: 492
-  bankable: false
   weight: 0.1
   slot: "Weapon"
   examine: "Useless."
@@ -2365,7 +2356,6 @@ hatchet_handle:
 hatchet_handle_noted: 493
 broken_hatchet_bronze:
   id: 494
-  bankable: false
   weight: 0.907
   slot: "Weapon"
   examine: "Useless."
@@ -2373,7 +2363,6 @@ broken_hatchet_bronze:
 broken_hatchet_noted: 495
 broken_hatchet_iron:
   id: 496
-  bankable: false
   weight: 0.907
   slot: "Weapon"
   examine: "Useless."
@@ -2381,7 +2370,6 @@ broken_hatchet_iron:
 broken_hatchet_noted_2: 497
 broken_hatchet_steel:
   id: 498
-  bankable: false
   weight: 0.907
   slot: "Weapon"
   examine: "Useless."
@@ -2389,7 +2377,6 @@ broken_hatchet_steel:
 broken_hatchet_noted_3: 499
 broken_hatchet_black:
   id: 500
-  bankable: false
   weight: 0.907
   slot: "Weapon"
   examine: "Useless."
@@ -2397,7 +2384,6 @@ broken_hatchet_black:
 broken_hatchet_noted_4: 501
 broken_hatchet_mithril:
   id: 502
-  bankable: false
   weight: 0.907
   slot: "Weapon"
   examine: "Useless."
@@ -2405,7 +2391,6 @@ broken_hatchet_mithril:
 broken_hatchet_noted_5: 503
 broken_hatchet_adamant:
   id: 504
-  bankable: false
   weight: 0.907
   slot: "Weapon"
   examine: "Useless."
@@ -2413,7 +2398,6 @@ broken_hatchet_adamant:
 broken_hatchet_noted_6: 505
 broken_hatchet_rune:
   id: 506
-  bankable: false
   weight: 0.907
   slot: "Weapon"
   examine: "Useless."
@@ -2422,7 +2406,6 @@ broken_hatchet_noted_7: 507
 hatchet_head_bronze:
   &hatchet_head_bronze
   id: 508
-  bankable: false
   weight: 0.1
   examine: "Useless."
   use: "Removed"
@@ -12384,7 +12367,6 @@ toy_horsey_grey:
 toy_horsey_noted_4: 2527
 lamp:
   id: 2528
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "Wonder what happens if I rub it..."
@@ -13625,7 +13607,6 @@ ogre_bellows_1:
   weight: 0.51
 bloated_toad:
   id: 2875
-  bankable: false
   tradeable: false
   weight: 0.75
   destroy: "Release"
@@ -16846,7 +16827,6 @@ picture_35:
   id: 3716
 magnet_the_fremennik_trials:
   id: 3718
-  bankable: false
   tradeable: false
   weight: 0.02
   destroy: "You'll have to find another from within the building."
@@ -16856,7 +16836,6 @@ magnet_the_fremennik_trials:
 thread_dungeoneering:
   id: 3719
   limit: 10000
-  bankable: false
   tradeable: false
   weight: 0.002
   examine: "Some blue thread."
@@ -16864,7 +16843,6 @@ thread_dungeoneering:
   kept: "Vanish"
 pick:
   id: 3720
-  bankable: false
   tradeable: false
   weight: 0.056
   destroy: "You'll have to find another from within the building."
@@ -16873,7 +16851,6 @@ pick:
   kept: "Vanish"
 ship_toy:
   id: 3721
-  bankable: false
   tradeable: false
   weight: 0.4
   destroy: "You'll have to find another from within the building."
@@ -16882,7 +16859,6 @@ ship_toy:
   kept: "Vanish"
 full_bucket_the_fremennik_trials:
   id: 3722
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You'll have to find another from within the building."
@@ -16891,7 +16867,6 @@ full_bucket_the_fremennik_trials:
   kept: "Vanish"
 "4_5ths_full_bucket":
   id: 3723
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You'll have to find another from within the building."
@@ -16900,7 +16875,6 @@ full_bucket_the_fremennik_trials:
   kept: "Vanish"
 "3_5ths_full_bucket":
   id: 3724
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You'll have to find another from within the building."
@@ -16909,7 +16883,6 @@ full_bucket_the_fremennik_trials:
   kept: "Vanish"
 "2_5ths_full_bucket":
   id: 3725
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You'll have to find another from within the building."
@@ -16918,7 +16891,6 @@ full_bucket_the_fremennik_trials:
   kept: "Vanish"
 "1_5ths_full_bucket":
   id: 3726
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You'll have to find another from within the building."
@@ -16927,7 +16899,6 @@ full_bucket_the_fremennik_trials:
   kept: "Vanish"
 empty_bucket:
   id: 3727
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You'll have to find another from within the building."
@@ -16936,7 +16907,6 @@ empty_bucket:
   kept: "Vanish"
 frozen_bucket:
   id: 3728
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You'll have to find another from within the building."
@@ -16945,7 +16915,6 @@ frozen_bucket:
   kept: "Vanish"
 full_jug:
   id: 3729
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You'll have to find another from within the building."
@@ -16954,7 +16923,6 @@ full_jug:
   kept: "Vanish"
 "2_3rds_full_jug":
   id: 3730
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You'll have to find another from within the building."
@@ -16963,7 +16931,6 @@ full_jug:
   kept: "Vanish"
 "1_3rds_full_jug":
   id: 3731
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You'll have to find another from within the building."
@@ -16973,7 +16940,6 @@ full_jug:
 empty_jug:
   id: 3732
   limit: 10000
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You'll have to find another from within the building."
@@ -16982,7 +16948,6 @@ empty_jug:
   kept: "Vanish"
 frozen_jug:
   id: 3733
-  bankable: false
   tradeable: false
   weight: 0.453
   destroy: "You'll have to find another from within the building."
@@ -16991,7 +16956,6 @@ frozen_jug:
   kept: "Vanish"
 vase:
   id: 3734
-  bankable: false
   tradeable: false
   weight: 0.001
   full: vase_of_water
@@ -17000,7 +16964,6 @@ vase:
   kept: "Vanish"
 vase_of_water:
   id: 3735
-  bankable: false
   tradeable: false
   weight: 0.001
   examine: "An unusually shaped vase full of water. You can see something glinting inside."
@@ -17008,7 +16971,6 @@ vase_of_water:
   kept: "Vanish"
 frozen_vase:
   id: 3736
-  bankable: false
   tradeable: false
   weight: 0.001
   examine: "An unusually shaped vase full of ice. You can see something glinting inside."
@@ -17016,7 +16978,6 @@ frozen_vase:
   kept: "Vanish"
 vase_lid:
   id: 3737
-  bankable: false
   tradeable: false
   weight: 0.001
   examine: "This looks like a lid to some kind of container..."
@@ -17024,7 +16985,6 @@ vase_lid:
   kept: "Vanish"
 sealed_vase_empty:
   id: 3738
-  bankable: false
   tradeable: false
   weight: 0.001
   examine: "The lid is screwed on tightly."
@@ -17032,7 +16992,6 @@ sealed_vase_empty:
   kept: "Vanish"
 sealed_vase_frozen:
   id: 3739
-  bankable: false
   tradeable: false
   weight: 0.001
   examine: "The lid is screwed on tightly. It is very cold."
@@ -17040,7 +16999,6 @@ sealed_vase_frozen:
   kept: "Vanish"
 sealed_vase_water:
   id: 3740
-  bankable: false
   tradeable: false
   weight: 0.001
   examine: "The lid is screwed on tightly. It is full of water."
@@ -17048,7 +17006,6 @@ sealed_vase_water:
   kept: "Vanish"
 frozen_key_the_fremennik_trials:
   id: 3741
-  bankable: false
   tradeable: false
   weight: 0.001
   examine: "A key encased in ice."
@@ -17056,7 +17013,6 @@ frozen_key_the_fremennik_trials:
   kept: "Vanish"
 red_herring:
   id: 3742
-  bankable: false
   tradeable: false
   weight: 0.5
   examine: "The colouring on it seems to be some kind of sticky goop..."
@@ -17064,7 +17020,6 @@ red_herring:
   kept: "Vanish"
 red_disk:
   id: 3743
-  bankable: false
   tradeable: false
   weight: 0.002
   examine: "A red coloured disk, apparently made of wood."
@@ -17072,7 +17027,6 @@ red_disk:
   kept: "Vanish"
 wooden_disk:
   id: 3744
-  bankable: false
   tradeable: false
   weight: 0.002
   examine: "A simple looking disk made of wood."
@@ -17080,7 +17034,6 @@ wooden_disk:
   kept: "Vanish"
 seers_key:
   id: 3745
-  bankable: false
   tradeable: false
   weight: 0.01
   examine: "The key to leave the Seer's house."
@@ -17088,7 +17041,6 @@ seers_key:
   kept: "Vanish"
 sticky_red_goop:
   id: 3746
-  bankable: false
   weight: 0.001
   examine: "Yup, it's sticky, it's red and it's goop."
   use: "Quest"
@@ -17648,7 +17600,6 @@ picture_39:
   id: 4000
 hardy_gout_tuber:
   id: 4001
-  bankable: false
   tradeable: false
   weight: 0.1
   destroy: "Murcaily will probably give me some more."
@@ -17844,7 +17795,6 @@ dummy:
 monkey:
   &monkey
   id: 4033
-  bankable: false
   tradeable: false
   weight: 15.0
   examine: "It's a monkey in your backpack. As you look it pokes you."
@@ -17898,39 +17848,33 @@ zamorak_cloak_castle_wars:
 rock_castle_wars:
   &rock_castle_wars
   id: 4043
-  bankable: false
   weight: 5.0
   examine: "I can use this with the catapult."
 rock_noted: 4044
 explosive_potion:
   id: 4045
-  bankable: false
   weight: 0.035
   examine: "I can use this to destroy catapults, ballistas and barricades."
 explosive_potion_noted: 4046
 climbing_rope:
   id: 4047
-  bankable: false
   weight: 1.36
   examine: "I can use this to scale castle walls."
 climbing_rope_noted: 4048
 bandages_castle_wars:
   id: 4049
   heals: 0
-  bankable: false
   weight: 0.001
   examine: "I can use these to heal myself and others."
 bandages_noted: 4050
 toolkit_castle_wars:
   id: 4051
-  bankable: false
   weight: 0.001
   examine: "I can use this to repair catapults and doors."
 toolkit_noted: 4052
 barricade_castle_wars:
   &barricade_castle_wars
   id: 4053
-  bankable: false
   weight: 5.0
   examine: "Handy for hindering the enemy team's movement."
 barricade_noted: 4054
@@ -19879,7 +19823,6 @@ steel_key_ring:
   kept: "Wilderness"
 antique_lamp_one_small_favour:
   id: 4447
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "I wonder what happens if I rub it..."
@@ -20956,7 +20899,6 @@ catspeak_amulet:
   kept: "Wilderness"
 canopic_jar_het:
   id: 4678
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "Has a lid shaped like a man. I think it contains someone's liver. Yuck."
@@ -20964,7 +20906,6 @@ canopic_jar_het:
   kept: "Vanish"
 canopic_jar_apmeken:
   id: 4679
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "Has a lid shaped like an ape. Eeew! I think it contains someone's intestines."
@@ -20972,7 +20913,6 @@ canopic_jar_apmeken:
   kept: "Vanish"
 canopic_jar_scabaras:
   id: 4680
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "Has a lid shaped like a bug. Disgusting! I think there's a stomach inside."
@@ -20980,7 +20920,6 @@ canopic_jar_scabaras:
   kept: "Vanish"
 canopic_jar_crondis:
   id: 4681
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "Has a lid shaped like a crocodile. Yuck, I think there are lungs inside."
@@ -20988,7 +20927,6 @@ canopic_jar_crondis:
   kept: "Vanish"
 holy_symbol_icthlarins_little_helper:
   id: 4682
-  bankable: false
   tradeable: false
   weight: 2.267
   examine: "Menaphite lucky charm."
@@ -20996,7 +20934,6 @@ holy_symbol_icthlarins_little_helper:
   kept: "Reclaim"
 unholy_symbol_icthlarins_little_helper:
   id: 4683
-  bankable: false
   tradeable: false
   weight: 2.267
   aka: [ amascuts_symbol ]
@@ -24422,7 +24359,6 @@ initiate_cuisse:
   kept: "Wilderness"
 cupric_sulphate:
   id: 5577
-  bankable: false
   tradeable: false
   weight: 0.056
   examine: "A vial of something labelled 'Cupric Sulphate'."
@@ -24430,7 +24366,6 @@ cupric_sulphate:
   kept: "Vanish"
 acetic_acid:
   id: 5578
-  bankable: false
   tradeable: false
   weight: 0.056
   examine: "A vial of something labelled 'Acetic Acid'."
@@ -24438,7 +24373,6 @@ acetic_acid:
   kept: "Vanish"
 gypsum:
   id: 5579
-  bankable: false
   tradeable: false
   weight: 0.056
   examine: "A vial of something labelled 'Gypsum'."
@@ -24446,7 +24380,6 @@ gypsum:
   kept: "Vanish"
 sodium_chloride:
   id: 5580
-  bankable: false
   tradeable: false
   weight: 0.056
   examine: "A vial of something labelled 'Sodium Chloride'."
@@ -24454,7 +24387,6 @@ sodium_chloride:
   kept: "Vanish"
 nitrous_oxide:
   id: 5581
-  bankable: false
   tradeable: false
   weight: 0.056
   examine: "A vial of something labelled 'Nitrous Oxide'."
@@ -24462,7 +24394,6 @@ nitrous_oxide:
   kept: "Vanish"
 vial_of_liquid:
   id: 5582
-  bankable: false
   tradeable: false
   weight: 0.056
   aka: [ dihydrogen_monoxide ]
@@ -24471,7 +24402,6 @@ vial_of_liquid:
   kept: "Vanish"
 tin_ore_powder:
   id: 5583
-  bankable: false
   tradeable: false
   weight: 0.056
   examine: "A vial of something labelled 'Powdered Tin Ore'."
@@ -24479,7 +24409,6 @@ tin_ore_powder:
   kept: "Vanish"
 cupric_ore_powder:
   id: 5584
-  bankable: false
   tradeable: false
   weight: 0.056
   examine: "A vial of something labelled 'Powdered Cupric Ore'."
@@ -24487,7 +24416,6 @@ cupric_ore_powder:
   kept: "Vanish"
 bronze_key_recruitment_drive:
   id: 5585
-  bankable: false
   tradeable: false
   weight: 0.01
   examine: "I hope the mould was accurate enough..."
@@ -24495,7 +24423,6 @@ bronze_key_recruitment_drive:
   kept: "Vanish"
 metal_spade:
   id: 5586
-  bankable: false
   tradeable: false
   weight: 1.814
   examine: "It's a metal spade with a wooden handle."
@@ -24503,7 +24430,6 @@ metal_spade:
   kept: "Vanish"
 metal_spade_head:
   id: 5587
-  bankable: false
   tradeable: false
   weight: 1.814
   examine: "It's a metal spade without a handle."
@@ -24511,7 +24437,6 @@ metal_spade_head:
   kept: "Vanish"
 alchemical_notes:
   id: 5588
-  bankable: false
   tradeable: false
   weight: 0.51
   examine: "Looks like a pretty boring read."
@@ -24519,7 +24444,6 @@ alchemical_notes:
   kept: "Vanish"
 mixture_hot:
   id: 5589
-  bankable: false
   tradeable: false
   weight: 0.056
   examine: "A very hot vial of something or other. The label says 'Cupric Sulphate'."
@@ -24527,7 +24451,6 @@ mixture_hot:
   kept: "Vanish"
 mixture_warm:
   id: 5590
-  bankable: false
   tradeable: false
   weight: 0.056
   examine: "A very warm vial of something or other. It's a bit lumpy."
@@ -24535,7 +24458,6 @@ mixture_warm:
   kept: "Vanish"
 mixture_horrible:
   id: 5591
-  bankable: false
   tradeable: false
   weight: 0.056
   examine: "It looks horrible. I think I messed something up."
@@ -24543,7 +24465,6 @@ mixture_horrible:
   kept: "Vanish"
 tin_empty:
   id: 5592
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "I could probably pour something into this."
@@ -24551,7 +24472,6 @@ tin_empty:
   kept: "Vanish"
 tin_hardening:
   id: 5593
-  bankable: false
   tradeable: false
   weight: 0.101
   examine: "It's full of a white lumpy mixture that seems to be hardening."
@@ -24559,7 +24479,6 @@ tin_hardening:
   kept: "Vanish"
 tin_impression:
   id: 5594
-  bankable: false
   tradeable: false
   weight: 0.101
   examine: "There is an impression of a key embedded in it."
@@ -24567,7 +24486,6 @@ tin_impression:
   kept: "Vanish"
 tin_tin:
   id: 5595
-  bankable: false
   tradeable: false
   weight: 0.101
   examine: "There is an impression of a key, filled with tin ore."
@@ -24575,7 +24493,6 @@ tin_tin:
   kept: "Vanish"
 tin_copper:
   id: 5596
-  bankable: false
   tradeable: false
   weight: 0.101
   examine: "There is an impression of a key, filled with copper ore."
@@ -24583,7 +24500,6 @@ tin_copper:
   kept: "Vanish"
 tin_tin_and_copper:
   id: 5597
-  bankable: false
   tradeable: false
   weight: 0.101
   examine: "There is an impression of a key, filled with tin and copper ore."
@@ -24591,7 +24507,6 @@ tin_tin_and_copper:
   kept: "Vanish"
 tin_key:
   id: 5598
-  bankable: false
   tradeable: false
   weight: 0.101
   examine: "There is a bronze key surrounded by plaster in this tin."
@@ -24599,7 +24514,6 @@ tin_key:
   kept: "Vanish"
 tin_strange:
   id: 5599
-  bankable: false
   tradeable: false
   weight: 0.101
   examine: "There is a strange concoction filling this tin."
@@ -24607,7 +24521,6 @@ tin_strange:
   kept: "Vanish"
 tin_gypsum:
   id: 5600
-  bankable: false
   tradeable: false
   weight: 0.101
   examine: "A tin layered with some stuff from a vial."
@@ -24616,7 +24529,6 @@ tin_gypsum:
 chisel_recruitment_drive:
   id: 5601
   limit: 100
-  bankable: false
   tradeable: false
   weight: 0.453
   examine: "Good for detailed crafting."
@@ -24625,7 +24537,6 @@ chisel_recruitment_drive:
 bronze_wire_recruitment_drive:
   id: 5602
   limit: 100
-  bankable: false
   tradeable: false
   weight: 0.005
   examine: "Useful for crafting items."
@@ -24634,7 +24545,6 @@ bronze_wire_recruitment_drive:
 shears_recruitment_drive:
   id: 5603
   limit: 100
-  bankable: false
   tradeable: false
   weight: 0.113
   examine: "For shearing sheep."
@@ -24642,7 +24552,6 @@ shears_recruitment_drive:
   kept: "Vanish"
 magnet_recruitment_drive:
   id: 5604
-  bankable: false
   tradeable: false
   weight: 0.02
   examine: "A very attractive magnet."
@@ -24651,7 +24560,6 @@ magnet_recruitment_drive:
 knife_recruitment_drive:
   id: 5605
   limit: 100
-  bankable: false
   tradeable: false
   weight: 0.02
   examine: "A dangerous looking knife."
@@ -24666,7 +24574,6 @@ makeover_voucher:
   use: "Limited"
 grain_recruitment_drive:
   id: 5607
-  bankable: false
   tradeable: false
   weight: 5.0
   slot: "Cape"
@@ -24675,7 +24582,6 @@ grain_recruitment_drive:
   kept: "Vanish"
 fox_recruitment_drive:
   id: 5608
-  bankable: false
   tradeable: false
   weight: 5.0
   slot: "Weapon"
@@ -24684,7 +24590,6 @@ fox_recruitment_drive:
   kept: "Vanish"
 chicken_recruitment_drive:
   id: 5609
-  bankable: false
   tradeable: false
   weight: 5.0
   slot: "Shield"
@@ -24693,7 +24598,6 @@ chicken_recruitment_drive:
   kept: "Vanish"
 hourglass:
   id: 5610
-  bankable: false
   tradeable: false
   weight: 0.1
   destroy: "You'll have to find another from the Grim Reaper's house."
@@ -27050,7 +26954,6 @@ rock_shell_legs_noted: 6177
 raw_pheasant:
   &raw_pheasant
   id: 6178
-  bankable: false
   tradeable: false
   weight: 10.0
   examine: "I need to cook this first."
@@ -28809,7 +28712,6 @@ colour_wheel:
   kept: "Wilderness"
 hand_mirror:
   id: 6639
-  bankable: false
   tradeable: false
   weight: 0.01
   destroy: "Resetting the light maze will generate a new mirror."
@@ -28819,7 +28721,6 @@ hand_mirror:
 red_crystal:
   &red_crystal
   id: 6640
-  bankable: false
   tradeable: false
   weight: 5.0
   destroy: "If you destroy this, you'll have to transmute some more."
@@ -28827,7 +28728,6 @@ red_crystal:
   kept: "Vanish"
 yellow_crystal:
   id: 6641
-  bankable: false
   tradeable: false
   weight: 0.015
   destroy: "Resetting the light maze will generate a new crystal."
@@ -28839,7 +28739,6 @@ green_crystal:
   id: 6642
 cyan_crystal:
   id: 6643
-  bankable: false
   tradeable: false
   weight: 0.015
   destroy: "Resetting the light maze will generate a new crystal."
@@ -28848,7 +28747,6 @@ cyan_crystal:
   kept: "Wilderness"
 blue_crystal:
   id: 6644
-  bankable: false
   tradeable: false
   weight: 0.015
   destroy: "Resetting the light maze will generate a new crystal."
@@ -28858,7 +28756,6 @@ blue_crystal:
 fractured_crystal_horizontal:
   &fractured_crystal_horizontal
   id: 6646
-  bankable: false
   tradeable: false
   weight: 0.015
   destroy: "Resetting the light maze will generate a new crystal."
@@ -29335,7 +29232,6 @@ dragon_hatchet:
 dragon_hatchet_noted: 6740
 broken_hatchet_dragon:
   id: 6741
-  bankable: false
   weight: 0.907
   slot: "Weapon"
   examine: "Useless."
@@ -30619,7 +30515,6 @@ square_sandwich:
   examine: "A freshly made square sandwich."
 prison_key_prison_pete:
   id: 6966
-  bankable: false
   tradeable: false
   weight: 0.01
   examine: "A key to the prison."
@@ -31076,7 +30971,6 @@ burnt_mushroom:
 burnt_mushroom_noted: 7095
 gunpowder_cabin_fever:
   id: 7108
-  bankable: false
   tradeable: false
   weight: 0.001
   examine: "Best keep this away from naked flames."
@@ -31084,7 +30978,6 @@ gunpowder_cabin_fever:
   kept: "Reclaim"
 fuse_cabin_fever:
   id: 7109
-  bankable: false
   tradeable: false
   weight: 0.007
   examine: "Burns very well."
@@ -31125,7 +31018,6 @@ pirate_leggings_white:
 pirate_leggings_noted: 7117
 canister_2:
   id: 7118
-  bankable: false
   tradeable: false
   weight: 0.005
   examine: "A canister holding shrapnel."
@@ -31133,7 +31025,6 @@ canister_2:
   kept: "Wilderness"
 cannon_ball_cabin_fever:
   id: 7119
-  bankable: false
   tradeable: false
   weight: 20.0
   examine: "A heavy metal ball."
@@ -31141,7 +31032,6 @@ cannon_ball_cabin_fever:
   kept: "Wilderness"
 ramrod:
   id: 7120
-  bankable: false
   tradeable: false
   weight: 2.0
   examine: "For cleaning and packing the cannon."
@@ -31149,7 +31039,6 @@ ramrod:
   kept: "Wilderness"
 repair_plank_2:
   id: 7121
-  bankable: false
   tradeable: false
   weight: 0.005
   examine: "A plank of wood to repair the hull with."
@@ -31254,7 +31143,6 @@ rapier:
   kept: "Reclaim"
 plunder:
   id: 7143
-  bankable: false
   tradeable: false
   weight: 0.005
   examine: "Looks valuable."
@@ -31269,7 +31157,6 @@ little_book_o_piracy:
   kept: "Wilderness"
 cannon_barrel:
   id: 7145
-  bankable: false
   tradeable: false
   weight: 32.0
   examine: "A working cannon barrel."
@@ -31277,7 +31164,6 @@ cannon_barrel:
   kept: "Wilderness"
 broken_cannon:
   id: 7146
-  bankable: false
   tradeable: false
   weight: 32.0
   examine: "Not likely to work again."
@@ -31289,7 +31175,6 @@ cannon_balls:
   examine: "Ammo for the Dwarf Cannon."
 repair_plank:
   id: 7148
-  bankable: false
   tradeable: false
   weight: 0.005
   examine: "A plank of wood to repair the hull with."
@@ -31297,7 +31182,6 @@ repair_plank:
   kept: "Wilderness"
 canister:
   id: 7149
-  bankable: false
   tradeable: false
   weight: 0.005
   examine: "A canister holding shrapnel."
@@ -31305,7 +31189,6 @@ canister:
   kept: "Wilderness"
 tacks:
   id: 7150
-  bankable: false
   tradeable: false
   examine: "Useful for pinning up paintings."
   use: "Quest"
@@ -33074,7 +32957,6 @@ mudskipper_hide:
   kept: "Wilderness"
 rock_mogre_camp:
   id: 7533
-  bankable: false
   tradeable: false
   weight: 1.0
   examine: "A rock."
@@ -33225,7 +33107,6 @@ tomato_seed_noted: 7563
 balloon_toad:
   &balloon_toad
   id: 7564
-  bankable: false
   tradeable: false
   weight: 4.0
   destroy: "Release"
@@ -33693,7 +33574,6 @@ gadderhammer:
 gadderhammer_noted: 7669
 boxing_gloves_red:
   id: 7671
-  bankable: false
   tradeable: false
   weight: 0.453
   slot: "Weapon"
@@ -33705,7 +33585,6 @@ picture_67:
   id: 7672
 boxing_gloves_blue:
   id: 7673
-  bankable: false
   tradeable: false
   weight: 0.453
   slot: "Weapon"
@@ -33714,7 +33593,6 @@ boxing_gloves_blue:
   kept: "Reclaim"
 wooden_sword:
   id: 7675
-  bankable: false
   tradeable: false
   weight: 1.814
   slot: "Weapon"
@@ -33723,7 +33601,6 @@ wooden_sword:
   kept: "Reclaim"
 wooden_shield_weapons_rack:
   id: 7676
-  bankable: false
   tradeable: false
   weight: 1.814
   slot: "Shield"
@@ -33731,21 +33608,18 @@ wooden_shield_weapons_rack:
   kept: "Reclaim"
 treasure_stone:
   id: 7677
-  bankable: false
   tradeable: false
   weight: 1.814
   examine: "It knows where the treasure is."
   kept: "Reclaim"
 prize_key:
   id: 7678
-  bankable: false
   tradeable: false
   weight: 0.01
   examine: "You can use this to open the prize chest!"
   kept: "Reclaim"
 pugel:
   id: 7679
-  bankable: false
   weight: 1.36
   slot: "Weapon"
   type: "TwoHanded"
@@ -33760,14 +33634,12 @@ game_book:
   kept: "Reclaim"
 hoop:
   id: 7682
-  bankable: false
   weight: 1.36
   slot: "Weapon"
   examine: "Try to throw it over the stick."
 hoop_noted: 7683
 dart:
   id: 7684
-  bankable: false
   weight: 1.36
   slot: "Weapon"
   examine: "Not much good in combat, but perfect for the dart board!"
@@ -33775,7 +33647,6 @@ dart:
 dart_noted: 7685
 bow_and_arrow:
   id: 7686
-  bankable: false
   weight: 1.36
   slot: "Weapon"
   examine: "A safe arrow for indoor ranging games."
@@ -33783,20 +33654,17 @@ bow_and_arrow:
 bow_and_arrow_noted: 7687
 kettle:
   id: 7688
-  bankable: false
   weight: 0.001
   examine: "The kettle is empty."
 kettle_noted: 7689
 full_kettle:
   id: 7690
-  bankable: false
   tradeable: false
   weight: 0.001
   examine: "It's full of cold water."
   kept: "Reclaim"
 hot_kettle:
   id: 7691
-  bankable: false
   tradeable: false
   weight: 0.001
   examine: "It's full of boiling water."
@@ -33822,14 +33690,12 @@ pot_of_tea_1_noted: 7699
 teapot_with_leaves_clay:
   &teapot_with_leaves_clay
   id: 7700
-  bankable: false
   weight: 1.5
   examine: "Add boiling water to make a tea."
 teapot_with_leaves_noted: 7701
 teapot_clay:
   &teapot_clay
   id: 7702
-  bankable: false
   weight: 0.453
   examine: "This teapot is empty."
 teapot_noted: 7703
@@ -33883,14 +33749,12 @@ teapot_gold:
 teapot_noted_3: 7727
 empty_cup_player_owned_house:
   id: 7728
-  bankable: false
   weight: 0.05
   examine: "An empty cup."
 empty_cup_noted_2: 7729
 cup_of_tea_clay:
   id: 7730
   limit: 1000
-  bankable: false
   tradeable: false
   weight: 0.15
   examine: "A nice cup of nettle tea."
@@ -33898,14 +33762,12 @@ cup_of_tea_clay:
 cup_of_tea_clay_milky:
   id: 7731
   limit: 1000
-  bankable: false
   tradeable: false
   weight: 0.15
   examine: "A milky cup of nettle tea."
   kept: "Reclaim"
 porcelain_cup_white:
   id: 7732
-  bankable: false
   tradeable: false
   weight: 0.05
   examine: "A porcelain cup."
@@ -33913,7 +33775,6 @@ porcelain_cup_white:
 cup_of_tea_white:
   id: 7733
   limit: 1000
-  bankable: false
   tradeable: false
   weight: 0.15
   examine: "Some nettle tea in a porcelain cup."
@@ -33921,14 +33782,12 @@ cup_of_tea_white:
 cup_of_tea_white_milky:
   id: 7734
   limit: 1000
-  bankable: false
   tradeable: false
   weight: 0.15
   examine: "Some milky nettle tea in a porcelain cup."
   kept: "Reclaim"
 porcelain_cup_gold:
   id: 7735
-  bankable: false
   tradeable: false
   weight: 0.05
   examine: "A porcelain cup."
@@ -33936,7 +33795,6 @@ porcelain_cup_gold:
 cup_of_tea_gold:
   id: 7736
   limit: 1000
-  bankable: false
   tradeable: false
   weight: 0.15
   examine: "Some nettle tea in a porcelain cup."
@@ -33944,14 +33802,12 @@ cup_of_tea_gold:
 cup_of_tea_gold_milky:
   id: 7737
   limit: 1000
-  bankable: false
   tradeable: false
   weight: 0.15
   examine: "Some milky nettle tea in a porcelain cup."
   kept: "Reclaim"
 tea_leaves:
   id: 7738
-  bankable: false
   weight: 0.01
   examine: "Mmm, how about a nice cup of tea?"
 tea_leaves_noted: 7739
@@ -33960,14 +33816,12 @@ beer_player_owned_house:
   limit: 100
   heals: 10
   excess: beer_glass_player_owned_house
-  bankable: false
   weight: 0.55
   examine: "A glass of frothy ale."
 beer_player_owned_house_noted: 7741
 beer_glass_player_owned_house:
   id: 7742
   limit: 100
-  bankable: false
   weight: 0.05
   examine: "I need to fill this with beer."
 beer_glass_player_owned_house_noted: 7743
@@ -33976,7 +33830,6 @@ asgarnian_ale_player_owned_house:
   limit: 100
   heals: 20
   excess: beer_glass_player_owned_house
-  bankable: false
   weight: 0.55
   examine: "Probably the finest ale in Asgarnia."
 asgarnian_ale_player_owned_house_noted: 7745
@@ -33985,7 +33838,6 @@ greenmans_ale_player_owned_house:
   limit: 100
   heals: 10
   excess: beer_glass_player_owned_house
-  bankable: false
   weight: 0.55
   examine: "A glass of frothy ale."
 greenmans_ale_player_owned_house_noted: 7747
@@ -33994,7 +33846,6 @@ dragon_bitter_player_owned_house:
   limit: 100
   heals: 10
   excess: beer_glass_player_owned_house
-  bankable: false
   weight: 0.55
   examine: "A glass of bitter."
 dragon_bitter_player_owned_house_noted: 7749
@@ -34012,7 +33863,6 @@ cider_player_owned_house:
   limit: 100
   heals: 20
   excess: beer_glass_player_owned_house
-  bankable: false
   weight: 0.55
   examine: "A glass of cider."
 cider_player_owned_house_noted: 7753
@@ -34021,7 +33871,6 @@ chefs_delight_player_owned_house:
   limit: 100
   heals: 10
   excess: beer_glass_player_owned_house
-  bankable: false
   weight: 0.55
   examine: "A fruity, full-bodied ale."
 chefs_delight_player_owned_house_noted: 7755
@@ -34245,7 +34094,6 @@ picture_68:
 picture_noted_45: 7805
 anger_sword:
   id: 7806
-  bankable: false
   tradeable: false
   weight: 1.814
   slot: "Weapon"
@@ -34254,7 +34102,6 @@ anger_sword:
   kept: "Vanish"
 anger_battleaxe:
   id: 7807
-  bankable: false
   tradeable: false
   weight: 2.721
   slot: "Weapon"
@@ -34263,7 +34110,6 @@ anger_battleaxe:
   kept: "Vanish"
 anger_maul:
   id: 7808
-  bankable: false
   tradeable: false
   weight: 1.814
   slot: "Weapon"
@@ -34272,7 +34118,6 @@ anger_maul:
   kept: "Vanish"
 anger_spear:
   id: 7809
-  bankable: false
   tradeable: false
   weight: 0.003
   slot: "Weapon"
@@ -34939,7 +34784,6 @@ hermans_book:
   kept: "Wilderness"
 hatchet_handle_2:
   id: 7952
-  bankable: false
   weight: 0.1
   slot: "Weapon"
   examine: "Useless."
@@ -36143,7 +35987,6 @@ bone_cage:
 spikes:
   &spikes
   id: 8302
-  bankable: false
   tradeable: false
   weight: 0.001
   examine: "I can attach these to poisoned yellow eggs."
@@ -38238,35 +38081,30 @@ crabclaw_and_hook:
   kept: "Reclaim"
 pipe_section:
   id: 8930
-  bankable: false
   weight: 0.003
   examine: "Crude wooden pipe section."
   kept: "Vanish"
 pipe_section_noted: 8931
 lumber_patch:
   id: 8932
-  bankable: false
   weight: 0.003
   examine: "Repairs made with this will be patchy at best."
   kept: "Vanish"
 lumber_patch_noted: 8933
 scrapey_tree_logs:
   id: 8934
-  bankable: false
   weight: 0.003
   examine: "Slimy logs from the Scrapey tree."
   kept: "Vanish"
 scrapey_tree_logs_noted: 8935
 blue_flowers_trouble_brewing:
   id: 8936
-  bankable: false
   weight: 0.003
   examine: "Very blue."
   kept: "Vanish"
 blue_flowers_noted_2: 8937
 red_flowers_trouble_brewing:
   id: 8938
-  bankable: false
   weight: 0.003
   examine: "Very red."
   kept: "Vanish"
@@ -38285,7 +38123,6 @@ rum_blue:
   kept: "Reclaim"
 monkey_trouble_brewing:
   id: 8942
-  bankable: false
   tradeable: false
   weight: 0.003
   examine: "A confused looking monkey."
@@ -38316,7 +38153,6 @@ red_monkey_3:
   id: 8948
 pirate_bandana_trouble_brewing:
   id: 8949
-  bankable: false
   tradeable: false
   weight: 0.003
   slot: "Hat"
@@ -38326,7 +38162,6 @@ pirate_bandana_trouble_brewing:
 pirate_hat:
   id: 8950
   limit: 2
-  bankable: false
   tradeable: false
   weight: 0.003
   slot: "Hat"
@@ -38494,42 +38329,36 @@ phasmatys_flag:
   kept: "Reclaim"
 bowl_of_red_water:
   id: 8972
-  bankable: false
   weight: 0.003
   examine: "A bowl of red water."
   kept: "Vanish"
 bowl_of_red_water_noted: 8973
 bowl_of_blue_water:
   id: 8974
-  bankable: false
   weight: 0.003
   examine: "A bowl of blue water."
   kept: "Vanish"
 bowl_of_blue_water_noted: 8975
 bitternut:
   id: 8976
-  bankable: false
   tradeable: false
   weight: 0.003
   examine: "Monkeys seem to like throwing these."
   kept: "Vanish"
 scrapey_bark:
   id: 8977
-  bankable: false
   weight: 0.003
   examine: "Greasy bark from the Scrapey Tree."
   kept: "Vanish"
 scrapey_bark_noted: 8978
 bridge_section:
   id: 8979
-  bankable: false
   weight: 0.003
   examine: "Caution; not for use over troubled water."
   kept: "Vanish"
 bridge_section_noted: 8980
 sweetgrubs:
   id: 8981
-  bankable: false
   weight: 0.003
   examine: "Well, at least they aren't trying mind-control."
   kept: "Vanish"
@@ -38552,7 +38381,6 @@ the_stuff:
 brewin_guide:
   &brewin_guide
   id: 8989
-  bankable: false
   tradeable: false
   weight: 0.001
   examine: "A how-to of brewing and arson."
@@ -40703,7 +40531,6 @@ tome_of_xp_1:
 bucket_of_water_meiyerditch:
   id: 9659
   limit: 100
-  bankable: false
   tradeable: false
   weight: 3.0
   examine: "It's a bucket of water."
@@ -40711,7 +40538,6 @@ bucket_of_water_meiyerditch:
 bucket_meiyerditch:
   id: 9660
   limit: 100
-  bankable: false
   tradeable: false
   weight: 1.0
   examine: "It's a wooden bucket."
@@ -41999,7 +41825,6 @@ sailing_book:
   kept: "Reclaim"
 ghost_buster_500_white:
   id: 9906
-  bankable: false
   tradeable: false
   weight: 0.003
   slot: "Weapon"
@@ -42009,7 +41834,6 @@ ghost_buster_500_white:
   use: "Removed"
 ghost_buster_500_red:
   id: 9907
-  bankable: false
   tradeable: false
   weight: 0.003
   slot: "Weapon"
@@ -42019,7 +41843,6 @@ ghost_buster_500_red:
   use: "Removed"
 ghost_buster_500_blue:
   id: 9908
-  bankable: false
   tradeable: false
   weight: 0.003
   slot: "Weapon"
@@ -42029,7 +41852,6 @@ ghost_buster_500_blue:
   use: "Removed"
 ghost_buster_500_green:
   id: 9909
-  bankable: false
   tradeable: false
   weight: 0.003
   slot: "Weapon"
@@ -42039,7 +41861,6 @@ ghost_buster_500_green:
   use: "Removed"
 ghost_buster_500_yellow:
   id: 9910
-  bankable: false
   tradeable: false
   weight: 0.003
   slot: "Weapon"
@@ -42049,7 +41870,6 @@ ghost_buster_500_yellow:
   use: "Removed"
 ghost_buster_500_black:
   id: 9911
-  bankable: false
   tradeable: false
   weight: 0.003
   slot: "Weapon"
@@ -42059,7 +41879,6 @@ ghost_buster_500_black:
   use: "Removed"
 ghost_buster_500:
   id: 9912
-  bankable: false
   tradeable: false
   weight: 0.003
   slot: "Weapon"
@@ -42069,7 +41888,6 @@ ghost_buster_500:
   use: "Removed"
 white_destabiliser:
   id: 9913
-  bankable: false
   tradeable: false
   slot: "Shield"
   destroy: "The destabiliser will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
@@ -42078,7 +41896,6 @@ white_destabiliser:
   use: "Removed"
 red_destabiliser:
   id: 9914
-  bankable: false
   tradeable: false
   slot: "Shield"
   destroy: "The destabiliser will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
@@ -42087,7 +41904,6 @@ red_destabiliser:
   use: "Removed"
 blue_destabiliser:
   id: 9915
-  bankable: false
   tradeable: false
   slot: "Shield"
   destroy: "The destabiliser will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
@@ -42096,7 +41912,6 @@ blue_destabiliser:
   use: "Removed"
 green_destabiliser:
   id: 9916
-  bankable: false
   tradeable: false
   slot: "Shield"
   destroy: "The destabiliser will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
@@ -42105,7 +41920,6 @@ green_destabiliser:
   use: "Removed"
 yellow_destabiliser:
   id: 9917
-  bankable: false
   tradeable: false
   slot: "Shield"
   destroy: "The destabiliser will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
@@ -42114,7 +41928,6 @@ yellow_destabiliser:
   use: "Removed"
 black_destabiliser:
   id: 9918
-  bankable: false
   tradeable: false
   slot: "Shield"
   destroy: "The destabiliser will be destroyed if you put it here, and you will have to get another from Diango when it is gone."
@@ -42123,7 +41936,6 @@ black_destabiliser:
   use: "Removed"
 evil_root:
   id: 9919
-  bankable: false
   tradeable: false
   weight: 0.003
   examine: "A freshly cut root of all evil."
@@ -42268,7 +42080,6 @@ cap_and_goggles:
   kept: "Vanish"
 old_red_disk:
   id: 9947
-  bankable: false
   tradeable: false
   weight: 0.002
   destroy: "Another could perhaps be found in the room..."
@@ -44473,7 +44284,6 @@ purple_sweets:
   examine: "Remember to brush after eating this Treasure Trail treat!"
 scroll:
   id: 10485
-  bankable: false
   tradeable: false
   weight: 0.005
   slot: "Weapon"
@@ -44640,7 +44450,6 @@ zanaris_choir: 10511
 scroll_barbarian_assault:
   &scroll_barbarian_assault
   id: 10512
-  bankable: false
   tradeable: false
   weight: 0.005
   destroy: "You can get another scroll from a table in any of the Barbarian Assault recruitment rooms."
@@ -44648,19 +44457,16 @@ scroll_barbarian_assault:
   kept: "Reclaim"
 crackers:
   id: 10513
-  bankable: false
   tradeable: false
   examine: "Some dry crackers."
   kept: "Reclaim"
 tofu:
   id: 10514
-  bankable: false
   tradeable: false
   examine: "A block of tofu."
   kept: "Reclaim"
 worms:
   id: 10515
-  bankable: false
   tradeable: false
   examine: "Some meaty worms."
   kept: "Reclaim"
@@ -44725,49 +44531,42 @@ healer_horn_5:
   id: 10530
 green_egg:
   id: 10531
-  bankable: false
   tradeable: false
   weight: 0.02
   examine: "Used to poison your enemies!"
   kept: "Vanish"
 red_egg:
   id: 10532
-  bankable: false
   tradeable: false
   weight: 0.02
   examine: "Will explode when fired!"
   kept: "Vanish"
 blue_egg:
   id: 10533
-  bankable: false
   tradeable: false
   weight: 0.02
   examine: "These will mess up the Penance in various ways!"
   kept: "Vanish"
 yellow_egg:
   id: 10534
-  bankable: false
   tradeable: false
   weight: 0.02
   examine: "A yellow egg. It needs passing to a Healer to be poisoned."
   kept: "Reclaim"
 poisoned_egg:
   id: 10535
-  bankable: false
   tradeable: false
   weight: 0.02
   examine: "A poisoned yellow egg. Pass to the Attacker for spikes to be added."
   kept: "Reclaim"
 spiked_and_poisoned_egg:
   id: 10536
-  bankable: false
   tradeable: false
   weight: 0.02
   examine: "A spiky, poisoned egg. Pass to the Defender for heating."
   kept: "Reclaim"
 omega_egg:
   id: 10537
-  bankable: false
   tradeable: false
   weight: 0.02
   destroy: "You wouldn't do this!"
@@ -44775,26 +44574,22 @@ omega_egg:
   kept: "Reclaim"
 defender_horn:
   id: 10538
-  bankable: false
   tradeable: false
   weight: 0.001
   examine: "A horn for communicating with your team members."
   kept: "Reclaim"
 poisoned_tofu:
   id: 10539
-  bankable: false
   tradeable: false
   examine: "Tasteless and harmful."
   kept: "Reclaim"
 poisoned_worms:
   id: 10540
-  bankable: false
   tradeable: false
   examine: "They are wriggling and spluttering."
   kept: "Reclaim"
 poisoned_meat:
   id: 10541
-  bankable: false
   tradeable: false
   examine: "A poisoned leg of meat."
   kept: "Reclaim"
@@ -44924,7 +44719,6 @@ picture_76:
   kept: "Wilderness"
 collector_horn:
   id: 10560
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "None"
@@ -46596,14 +46390,12 @@ helm_of_neitiznot:
   examine: "A gift from Neitiznot's Burgher."
 documents:
   id: 10829
-  bankable: false
   tradeable: false
   weight: 0.453
   examine: "To Ali Morrisane of Al Kharid"
   kept: "Wilderness"
 royal_decree:
   id: 10830
-  bankable: false
   tradeable: false
   weight: 0.453
   destroy: "King Sorvott of Jatizso will give you another one, grudgingly."
@@ -46612,7 +46404,6 @@ royal_decree:
   kept: "Wilderness"
 empty_tax_bag:
   id: 10831
-  bankable: false
   tradeable: false
   weight: 0.453
   destroy: "Are you sure? You can replace it by talking to King Sorvott."
@@ -46621,7 +46412,6 @@ empty_tax_bag:
   kept: "Wilderness"
 light_tax_bag:
   id: 10832
-  bankable: false
   tradeable: false
   weight: 1.814
   destroy: "Are you sure? You can replace it by talking to King Sorvott."
@@ -46630,7 +46420,6 @@ light_tax_bag:
   kept: "Wilderness"
 normal_tax_bag:
   id: 10833
-  bankable: false
   tradeable: false
   weight: 3.628
   destroy: "Are you sure? You can replace it by talking to King Sorvott."
@@ -46639,7 +46428,6 @@ normal_tax_bag:
   kept: "Wilderness"
 hefty_tax_bag:
   id: 10834
-  bankable: false
   tradeable: false
   weight: 5.443
   destroy: "Are you sure? You can replace it by talking to King Sorvott."
@@ -46648,7 +46436,6 @@ hefty_tax_bag:
   kept: "Wilderness"
 bulging_taxbag:
   id: 10835
-  bankable: false
   tradeable: false
   weight: 7.257
   examine: "A bulging taxbag."
@@ -46702,7 +46489,6 @@ apricot_cream_pie:
   kept: "Reclaim"
 decapitated_head_the_fremennik_isles:
   id: 10842
-  bankable: false
   tradeable: false
   weight: 3.628
   destroy: "You'll have to go back to the troll caves to get another one."
@@ -47399,7 +47185,6 @@ cave_goblin_wire:
 cave_goblin_wire_noted: 10982
 cog:
   id: 10983
-  bankable: false
   tradeable: false
   bank_stacks: false
   weight: 3.0
@@ -47408,7 +47193,6 @@ cog:
   kept: "Vanish"
 cog_broken:
   id: 10984
-  bankable: false
   tradeable: false
   weight: 3.0
   destroy: "You destroy it."
@@ -47416,7 +47200,6 @@ cog_broken:
   kept: "Vanish"
 fuse_dorgesh_kaan_agility_course:
   id: 10985
-  bankable: false
   tradeable: false
   bank_stacks: false
   weight: 1.0
@@ -47425,7 +47208,6 @@ fuse_dorgesh_kaan_agility_course:
   kept: "Vanish"
 fuse_broken:
   id: 10986
-  bankable: false
   tradeable: false
   weight: 1.0
   destroy: "You destroy it."
@@ -47433,7 +47215,6 @@ fuse_broken:
   kept: "Vanish"
 meter:
   id: 10987
-  bankable: false
   tradeable: false
   bank_stacks: false
   weight: 1.0
@@ -47442,7 +47223,6 @@ meter:
   kept: "Vanish"
 meter_broken:
   id: 10988
-  bankable: false
   tradeable: false
   weight: 1.0
   destroy: "You destroy it."
@@ -47450,7 +47230,6 @@ meter_broken:
   kept: "Vanish"
 capacitor:
   id: 10989
-  bankable: false
   tradeable: false
   bank_stacks: false
   weight: 1.0
@@ -47459,7 +47238,6 @@ capacitor:
   kept: "Vanish"
 capacitor_broken:
   id: 10990
-  bankable: false
   tradeable: false
   weight: 1.0
   destroy: "You destroy it."
@@ -47467,7 +47245,6 @@ capacitor_broken:
   kept: "Vanish"
 lever_dorgesh_kaan_agility_course:
   id: 10991
-  bankable: false
   tradeable: false
   bank_stacks: false
   weight: 3.0
@@ -47476,7 +47253,6 @@ lever_dorgesh_kaan_agility_course:
   kept: "Vanish"
 lever_broken:
   id: 10992
-  bankable: false
   tradeable: false
   weight: 3.0
   destroy: "You destroy it."
@@ -47484,7 +47260,6 @@ lever_broken:
   kept: "Vanish"
 power_box:
   id: 10993
-  bankable: false
   tradeable: false
   bank_stacks: false
   weight: 3.0
@@ -47493,7 +47268,6 @@ power_box:
   kept: "Vanish"
 powerbox:
   id: 10994
-  bankable: false
   tradeable: false
   weight: 3.0
   destroy: "You destroy it."
@@ -47700,7 +47474,6 @@ chicken_legs:
   use: "Limited"
 magic_egg:
   id: 11023
-  bankable: false
   tradeable: false
   weight: 0.01
   examine: "Let's see how far the rabbit hole goes."
@@ -47708,7 +47481,6 @@ magic_egg:
   use: "Removed"
 rabbit_mould:
   id: 11024
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "Used for making chocolate rabbits."
@@ -47716,14 +47488,12 @@ rabbit_mould:
   use: "Removed"
 chocolate_chunks:
   id: 11025
-  bankable: false
   tradeable: false
   examine: "Chocolate kebbit chunks."
   kept: "Reclaim"
   use: "Removed"
 chocolate_kebbit:
   id: 11026
-  bankable: false
   tradeable: false
   examine: "Chocolatey kebbit goodness."
   kept: "Reclaim"
@@ -47731,7 +47501,6 @@ chocolate_kebbit:
 easter_egg_2007_easter_event_blue:
   id: 11027
   limit: 2
-  bankable: false
   tradeable: false
   weight: 0.15
   slot: "Weapon"
@@ -47741,7 +47510,6 @@ easter_egg_2007_easter_event_blue:
 easter_egg_2007_easter_event_yellow:
   id: 11028
   limit: 2
-  bankable: false
   tradeable: false
   weight: 0.15
   slot: "Weapon"
@@ -47751,7 +47519,6 @@ easter_egg_2007_easter_event_yellow:
 easter_egg_2007_easter_event_green:
   id: 11029
   limit: 2
-  bankable: false
   tradeable: false
   weight: 0.15
   slot: "Weapon"
@@ -47761,7 +47528,6 @@ easter_egg_2007_easter_event_green:
 easter_egg_2007_easter_event_red:
   id: 11030
   limit: 2
-  bankable: false
   tradeable: false
   weight: 0.15
   slot: "Weapon"
@@ -48226,7 +47992,6 @@ karamja_gloves_1:
 antique_lamp_easy_karamja_tasks:
   &antique_lamp_easy_karamja_tasks
   id: 11137
-  bankable: false
   tradeable: false
   weight: 0.1
   destroy: "Are you sure you want to destroy the lamp? You won't be able to get another one."
@@ -48439,7 +48204,6 @@ museum_map:
 antique_lamp_varrock_museum:
   &antique_lamp_varrock_museum
   id: 11185
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "I wonder what happens if I rub it..."
@@ -49828,7 +49592,6 @@ wimpy_feather:
   examine: "More fluff than feather."
 book_of_knowledge:
   id: 11640
-  bankable: false
   tradeable: false
   weight: 1.0
   aka: [ tome_of_experience ]
@@ -49958,7 +49721,6 @@ black_knight_helm:
   kept: "Wilderness"
 antique_lamp_kings_ransom:
   id: 11679
-  bankable: false
   tradeable: false
   weight: 0.1
   destroy: "If you drop this lamp it will be destroyed. Rub the lamp to gain the XP reward - the lamp will be destroyed in the process."
@@ -50452,7 +50214,6 @@ jade_vine_seed:
   kept: "Wilderness"
 the_grim_reapers_diary:
   id: 11780
-  bankable: false
   tradeable: false
   weight: 0.51
   aka: [ diary_of_death_my_diary_by_grim ]
@@ -50462,7 +50223,6 @@ the_grim_reapers_diary:
   use: "Removed"
 grims_robe:
   id: 11781
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "Another can be found in the Grim Reaper's house."
@@ -50471,7 +50231,6 @@ grims_robe:
   use: "Removed"
 last_will_and_testament:
   id: 11782
-  bankable: false
   tradeable: false
   weight: 0.005
   destroy: "You'll have to find another from the Grim Reaper's house."
@@ -50480,7 +50239,6 @@ last_will_and_testament:
   use: "Removed"
 human_bones:
   id: 11783
-  bankable: false
   tradeable: false
   weight: 0.5
   destroy: "You'll have to find another from the Grim Reaper's house."
@@ -50489,7 +50247,6 @@ human_bones:
   use: "Removed"
 servants_skull:
   id: 11784
-  bankable: false
   tradeable: false
   weight: 0.08
   destroy: "You'll have to find another from the Grim Reaper's house."
@@ -50498,7 +50255,6 @@ servants_skull:
   use: "Removed"
 hourglass_2:
   id: 11785
-  bankable: false
   tradeable: false
   weight: 0.5
   destroy: "You'll have to find another from the Grim Reaper's house."
@@ -50507,7 +50263,6 @@ hourglass_2:
   use: "Removed"
 scythe_sharpener:
   id: 11786
-  bankable: false
   tradeable: false
   weight: 0.075
   destroy: "Another can be found in the Grim Reaper's house."
@@ -50516,7 +50271,6 @@ scythe_sharpener:
   use: "Removed"
 human_eye:
   id: 11787
-  bankable: false
   tradeable: false
   weight: 0.003
   destroy: "You'll have to find another from the Grim Reaper's house."
@@ -50525,7 +50279,6 @@ human_eye:
   use: "Removed"
 voice_of_doom_potion:
   id: 11788
-  bankable: false
   tradeable: false
   weight: 0.003
   destroy: "You'll have to find another from the Grim Reaper's house."
@@ -51131,7 +50884,6 @@ snowball_2007_christmas_event:
   kept: "Vanish"
 ice_sword_2007_christmas_event:
   id: 11952
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You can claim another from the Queen of Snow."
@@ -51140,7 +50892,6 @@ ice_sword_2007_christmas_event:
   use: "Removed"
 winter_staff:
   id: 11953
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You can claim another from the Queen of Snow."
@@ -51149,7 +50900,6 @@ winter_staff:
   use: "Removed"
 holly_bow:
   id: 11954
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You can claim another from the Queen of Snow."
@@ -51158,7 +50908,6 @@ holly_bow:
   use: "Removed"
 barbarian_snowman_hat:
   id: 11955
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You can claim another from the Queen of Snow."
@@ -51167,7 +50916,6 @@ barbarian_snowman_hat:
   use: "Removed"
 dragon_snowman_hat:
   id: 11956
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You can claim another from the Queen of Snow."
@@ -51176,7 +50924,6 @@ dragon_snowman_hat:
   use: "Removed"
 dwarf_snowman_hat:
   id: 11957
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You can claim another from the Queen of Snow."
@@ -51185,7 +50932,6 @@ dwarf_snowman_hat:
   use: "Removed"
 pirate_snowman_hat:
   id: 11958
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You can claim another from the Queen of Snow."
@@ -51194,7 +50940,6 @@ pirate_snowman_hat:
   use: "Removed"
 snowman_top_hat:
   id: 11959
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You can claim another from the Queen of Snow."
@@ -53928,12 +53673,10 @@ amulet_of_farming_8:
 amulet_of_farming_8_noted: 12623
 ogleroot:
   id: 12624
-  bankable: false
   examine: "An ogleroot. How odd."
   kept: "Vanish"
 flag:
   id: 12625
-  bankable: false
   tradeable: false
   destroy: "You will need to obtain more flags from Mrs. Winkin or Farmer Blinkin if you have lost all of the flags you have."
   examine: "A flag to put in the ground."
@@ -54101,7 +53844,6 @@ bucket_of_coal_2:
 cockatrice_egg_easter:
   id: 12654
   limit: 10000
-  bankable: false
   tradeable: false
   weight: 0.02
   destroy: "Are you sure you want to destroy this object? You can get another in the Easter Bunny's warren."
@@ -54110,7 +53852,6 @@ cockatrice_egg_easter:
   use: "Removed"
 chocatrice_egg:
   id: 12655
-  bankable: false
   tradeable: false
   weight: 0.03
   slot: "Weapon"
@@ -54121,7 +53862,6 @@ chocatrice_egg:
   use: "Removed"
 chocolate_chunks_2008_easter_event:
   id: 12657
-  bankable: false
   tradeable: false
   examine: "A victim of the chocatrice."
   kept: "Vanish"
@@ -55397,14 +55137,12 @@ stone_of_power_5:
   examine: "A stone used to gather energy."
 elemental_rune:
   id: 12850
-  bankable: false
   aka: [ elementals, elemental_runes ]
   destroy: "You will be supplied with more elemental runes when you enter the game again."
   examine: "A generic elemental rune."
   destroy2: "Drop"
 catalytic_rune:
   id: 12851
-  bankable: false
   aka: [ catalytics, catalytic_runes ]
   examine: "A generic non-elemental rune."
 fist_of_guthix_token:
@@ -55416,7 +55154,6 @@ bandages_fist_of_guthix:
   id: 12853
   heals: 0
   eat_message: "You feel a bit better."
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You will be supplied with more bandages when you enter the game again."
@@ -55424,7 +55161,6 @@ bandages_fist_of_guthix:
   kept: "Vanish"
 tele_orb:
   id: 12855
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You will be supplied with another tele-orb when you enter the game again."
@@ -57315,7 +57051,6 @@ grey_tricorn_hat_2:
   kept: "Reclaim"
 mysterious_lamp:
   id: 13227
-  bankable: false
   tradeable: false
   weight: 0.1
   destroy: "If you drop this lamp, it will be destroyed. You can obtain another from Dunstan."
@@ -57626,7 +57361,6 @@ izzys_mark:
   kept: "Wilderness"
 key_rocking_out:
   id: 13304
-  bankable: false
   tradeable: false
   weight: 0.05
   destroy: "If you drop this key, you will need to catch the wild karamthulhu for a replacement."
@@ -57635,7 +57369,6 @@ key_rocking_out:
   kept: "Vanish"
 crowbar:
   id: 13305
-  bankable: false
   tradeable: false
   weight: 3.0
   destroy: "If you drop this crowbar, you will need to get another from the chest on the sunken ship."
@@ -58348,7 +58081,6 @@ burnt_crayfish_noted: 13438
 antique_lamp_learning_the_ropes:
   &antique_lamp_learning_the_ropes
   id: 13439
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "I wonder what happens if I rub it."
@@ -58546,7 +58278,6 @@ jennicas_ring:
   kept: "Wilderness"
 cursed_magic_logs:
   id: 13567
-  bankable: false
   weight: 2.0
   firemaking:
     level: 82
@@ -58774,7 +58505,6 @@ astral_altar_teleport:
   id: 13611
 runecrafter_hat_the_great_orb_project_yellow:
   id: 13612
-  bankable: false
   tradeable: false
   weight: 0.453
   slot: "Hat"
@@ -58783,7 +58513,6 @@ runecrafter_hat_the_great_orb_project_yellow:
   kept: "Vanish"
 runecrafter_hat_the_great_orb_project_green:
   id: 13613
-  bankable: false
   tradeable: false
   weight: 0.453
   slot: "Hat"
@@ -59016,7 +58745,6 @@ omni_talisman_staff:
   kept: "Vanish"
 yellow_attractor:
   id: 13643
-  bankable: false
   tradeable: false
   weight: 0.283
   slot: "Weapon"
@@ -59025,7 +58753,6 @@ yellow_attractor:
   kept: "Vanish"
 yellow_repeller:
   id: 13644
-  bankable: false
   tradeable: false
   weight: 0.255
   slot: "Weapon"
@@ -59034,7 +58761,6 @@ yellow_repeller:
   kept: "Vanish"
 green_attractor:
   id: 13645
-  bankable: false
   tradeable: false
   weight: 0.226
   slot: "Weapon"
@@ -59043,7 +58769,6 @@ green_attractor:
   kept: "Vanish"
 green_repeller:
   id: 13646
-  bankable: false
   tradeable: false
   weight: 0.198
   slot: "Weapon"
@@ -59052,7 +58777,6 @@ green_repeller:
   kept: "Vanish"
 green_barrier_generator:
   id: 13647
-  bankable: false
   tradeable: false
   weight: 0.198
   slot: "Weapon"
@@ -59061,7 +58785,6 @@ green_barrier_generator:
   kept: "Vanish"
 yellow_barrier_generator:
   id: 13648
-  bankable: false
   tradeable: false
   weight: 0.198
   slot: "Weapon"
@@ -59579,7 +59302,6 @@ chinchompas_level_99_approx:
   use: "Removed"
 performance_shortbow:
   id: 13719
-  bankable: false
   tradeable: false
   weight: 1.36
   slot: "Weapon"
@@ -59591,7 +59313,6 @@ performance_shortbow:
   use: "Removed"
 performance_knife:
   id: 13720
-  bankable: false
   tradeable: false
   attack_range: 4
   slot: "Weapon"
@@ -59601,7 +59322,6 @@ performance_knife:
   use: "Removed"
 performance_throwing_axe:
   id: 13721
-  bankable: false
   tradeable: false
   attack_range: 4
   slot: "Weapon"
@@ -59611,7 +59331,6 @@ performance_throwing_axe:
   use: "Removed"
 performance_arrow:
   id: 13722
-  bankable: false
   tradeable: false
   slot: "Ammo"
   destroy: "You can get another one from the equipment box for this performance."
@@ -59621,7 +59340,6 @@ performance_arrow:
 teleport_spell:
   &teleport_spell
   id: 13723
-  bankable: false
   tradeable: false
   destroy: "You can get another one from the equipment box for this performance."
   examine: "A tablet containing a Magic spell."
@@ -59632,7 +59350,6 @@ levitation_spell:
   id: 13724
 alchemy_spell:
   id: 13725
-  bankable: false
   tradeable: false
   aka: [ alchemy_tablet ]
   destroy: "You can get another one from the equipment box for this performance."
@@ -59756,7 +59473,6 @@ holy_elixir:
 holy_elixir_noted: 13755
 cursed_willow_logs:
   id: 13756
-  bankable: false
   tradeable: false
   weight: 2.0
   examine: "Logs cut from cursed willow roots."
@@ -60836,7 +60552,6 @@ broomstick:
   kept: "Wilderness"
 goulash:
   id: 14058
-  bankable: false
   tradeable: false
   weight: 0.453
   slot: "Weapon"
@@ -60870,7 +60585,6 @@ newt:
   kept: "Vanish"
 newt_label:
   id: 14065
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You can get another newt label from Gus in Hetty's basement in Rimmington."
@@ -60879,7 +60593,6 @@ newt_label:
   kept: "Vanish"
 toad_label:
   id: 14066
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You can get another toad label from Gus in Hetty's basement in Rimmington."
@@ -60888,7 +60601,6 @@ toad_label:
   kept: "Vanish"
 newts_and_toads_label:
   id: 14067
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You can get another newt-and-toad label from Gus in Hetty's basement in Rimmington."
@@ -60905,7 +60617,6 @@ bettys_wand:
   kept: "Wilderness"
 magic_slate:
   id: 14069
-  bankable: false
   tradeable: false
   weight: 0.453
   destroy: "If you destroy this item, you can get another from Lottie in Betty's basement."
@@ -60914,7 +60625,6 @@ magic_slate:
   kept: "Wilderness"
 reptile:
   id: 14070
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "If you release this creature, you will have to restart the puzzle in Betty's basement."
@@ -60922,7 +60632,6 @@ reptile:
   kept: "Vanish"
 blackbird:
   id: 14071
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "If you release this creature, you will have to restart the puzzle in Betty's basement."
@@ -60931,7 +60640,6 @@ blackbird:
   kept: "Vanish"
 bat_swept_away:
   id: 14072
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "If you release this creature, you will have to restart the puzzle in Betty's basement."
@@ -60940,7 +60648,6 @@ bat_swept_away:
   kept: "Vanish"
 spider_swept_away:
   id: 14073
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "If you release this creature, you will have to restart the puzzle in Betty's basement."
@@ -60949,7 +60656,6 @@ spider_swept_away:
   kept: "Vanish"
 rat_swept_away:
   id: 14074
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "If you release this creature, you will have to restart the puzzle in Betty's basement."
@@ -60958,7 +60664,6 @@ rat_swept_away:
   kept: "Vanish"
 snail:
   id: 14075
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "If you release this creature, you will have to restart the puzzle in Betty's basement."
@@ -61292,7 +60997,6 @@ sacred_clay_bow:
   weight: 2.0
 pickaxe_class_1:
   id: 14122
-  bankable: false
   weight: 0.1
   slot: "Weapon"
   mining_delay: 6
@@ -61300,7 +61004,6 @@ pickaxe_class_1:
 pickaxe_class_1_noted: 14123
 pickaxe_class_2:
   id: 14124
-  bankable: false
   weight: 0.2
   slot: "Weapon"
   mining_delay: 5
@@ -61310,7 +61013,6 @@ pickaxe_class_2:
 pickaxe_class_2_noted: 14125
 pickaxe_class_3:
   id: 14126
-  bankable: false
   weight: 0.3
   slot: "Weapon"
   mining_delay: 4
@@ -61320,7 +61022,6 @@ pickaxe_class_3:
 pickaxe_class_3_noted: 14127
 pickaxe_class_4:
   id: 14128
-  bankable: false
   weight: 0.4
   slot: "Weapon"
   mining_delay: 3
@@ -61330,7 +61031,6 @@ pickaxe_class_4:
 pickaxe_class_4_noted: 14129
 pickaxe_class_5:
   id: 14130
-  bankable: false
   weight: 0.5
   slot: "Weapon"
   mining_delay: 2
@@ -61340,7 +61040,6 @@ pickaxe_class_5:
 pickaxe_class_5_noted: 14131
 hatchet_class_1:
   id: 14132
-  bankable: false
   weight: 0.1
   rank: 0
   slot: "Weapon"
@@ -61348,7 +61047,6 @@ hatchet_class_1:
 hatchet_class_1_noted: 14133
 hatchet_class_2:
   id: 14134
-  bankable: false
   weight: 0.2
   rank: 1
   slot: "Weapon"
@@ -61356,7 +61054,6 @@ hatchet_class_2:
 hatchet_class_2_noted: 14135
 hatchet_class_3:
   id: 14136
-  bankable: false
   weight: 0.3
   rank: 2
   slot: "Weapon"
@@ -61364,7 +61061,6 @@ hatchet_class_3:
 hatchet_class_3_noted: 14137
 hatchet_class_4:
   id: 14138
-  bankable: false
   weight: 0.4
   rank: 3
   slot: "Weapon"
@@ -61372,7 +61068,6 @@ hatchet_class_4:
 hatchet_class_4_noted: 14139
 hatchet_class_5:
   id: 14140
-  bankable: false
   weight: 0.5
   rank: 4
   slot: "Weapon"
@@ -61380,70 +61075,60 @@ hatchet_class_5:
 hatchet_class_5_noted: 14141
 harpoon_class_1:
   id: 14142
-  bankable: false
   weight: 0.1
   slot: "Weapon"
   examine: "The sacred clay has become long enough to reach into the depths of pools."
 harpoon_class_1_noted: 14143
 harpoon_class_2:
   id: 14144
-  bankable: false
   weight: 0.2
   slot: "Weapon"
   examine: "The sacred clay has become long enough to reach into the depths of pools."
 harpoon_class_2_noted: 14145
 harpoon_class_3:
   id: 14146
-  bankable: false
   weight: 0.3
   slot: "Weapon"
   examine: "The sacred clay has become long enough to reach into the depths of pools."
 harpoon_class_3_noted: 14147
 harpoon_class_4:
   id: 14148
-  bankable: false
   weight: 0.4
   slot: "Weapon"
   examine: "The sacred clay has become long enough to reach into the depths of pools."
 harpoon_class_4_noted: 14149
 harpoon_class_5:
   id: 14150
-  bankable: false
   weight: 0.5
   slot: "Weapon"
   examine: "The sacred clay has become long enough to reach into the depths of pools."
 harpoon_class_5_noted: 14151
 butterfly_net_class_1:
   id: 14152
-  bankable: false
   weight: 0.1
   slot: "Weapon"
   examine: "The sacred clay has become light enough to swing at floating shards."
 butterfly_net_class_1_noted: 14153
 butterfly_net_class_2:
   id: 14154
-  bankable: false
   weight: 0.2
   slot: "Weapon"
   examine: "The sacred clay has become light enough to swing at floating shards."
 butterfly_net_class_2_noted: 14155
 butterfly_net_class_3:
   id: 14156
-  bankable: false
   weight: 0.3
   slot: "Weapon"
   examine: "The sacred clay has become light enough to swing at floating shards."
 butterfly_net_class_3_noted: 14157
 butterfly_net_class_4:
   id: 14158
-  bankable: false
   weight: 0.4
   slot: "Weapon"
   examine: "The sacred clay has become light enough to swing at floating shards."
 butterfly_net_class_4_noted: 14159
 butterfly_net_class_5:
   id: 14160
-  bankable: false
   weight: 0.5
   slot: "Weapon"
   examine: "The sacred clay has become light enough to swing at floating shards."
@@ -61451,101 +61136,85 @@ butterfly_net_class_5_noted: 14161
 food_class_1:
   id: 14162
   heals: 40
-  bankable: false
   weight: 0.1
   examine: "The sacred clay has transformed into something bland, but edible."
 food_class_1_noted: 14163
 food_class_2:
   id: 14164
   heals: 80
-  bankable: false
   weight: 0.2
   examine: "The sacred clay has transformed into something bland, but edible."
 food_class_2_noted: 14165
 food_class_3:
   id: 14166
   heals: 120
-  bankable: false
   weight: 0.3
   examine: "The sacred clay has transformed into something bland, but edible."
 food_class_3_noted: 14167
 food_class_4:
   id: 14168
   heals: 160
-  bankable: false
   weight: 0.4
   examine: "The sacred clay has transformed into something bland, but edible."
 food_class_4_noted: 14169
 food_class_5:
   id: 14170
   heals: 200
-  bankable: false
   weight: 0.5
   examine: "The sacred clay has transformed into something bland, but edible."
 food_class_5_noted: 14171
 barrier_class_1:
   id: 14172
-  bankable: false
   weight: 0.1
   examine: "The clay has transformed into an expandable wall."
 barrier_class_1_noted: 14173
 barrier_class_2:
   id: 14174
-  bankable: false
   weight: 0.2
   examine: "The clay has transformed into an expandable wall."
 barrier_class_2_noted: 14175
 barrier_class_3:
   id: 14176
-  bankable: false
   weight: 0.3
   examine: "The clay has transformed into an expandable wall."
 barrier_class_3_noted: 14177
 barrier_class_4:
   id: 14178
-  bankable: false
   weight: 0.4
   examine: "The clay has transformed into an expandable wall."
 barrier_class_4_noted: 14179
 barrier_class_5:
   id: 14180
-  bankable: false
   weight: 0.5
   examine: "The clay has transformed into an expandable wall."
 barrier_class_5_noted: 14181
 sacred_clay_class_1:
   id: 14182
-  bankable: false
   weight: 0.1
   examine: "Very low quality sacred clay."
 sacred_clay_class_1_noted: 14183
 sacred_clay_class_2:
   id: 14184
-  bankable: false
   weight: 0.2
   examine: "Low quality sacred clay."
 sacred_clay_class_2_noted: 14185
 sacred_clay_class_3:
   id: 14186
-  bankable: false
   weight: 0.3
   examine: "Medium quality sacred clay."
 sacred_clay_class_3_noted: 14187
 sacred_clay_class_4:
   id: 14188
-  bankable: false
   weight: 0.4
   examine: "High quality sacred clay."
 sacred_clay_class_4_noted: 14189
 sacred_clay_class_5:
   id: 14190
-  bankable: false
   weight: 0.5
   examine: "Very high quality sacred clay."
 sacred_clay_class_5_noted: 14191
 bow_class_1:
   id: 14192
-  bankable: false
   weight: 0.1
   slot: "Weapon"
   type: "TwoHanded"
@@ -61553,7 +61222,6 @@ bow_class_1:
 bow_class_1_noted: 14193
 bow_class_2:
   id: 14194
-  bankable: false
   weight: 0.2
   slot: "Weapon"
   type: "TwoHanded"
@@ -61561,7 +61229,6 @@ bow_class_2:
 bow_class_2_noted: 14195
 bow_class_3:
   id: 14196
-  bankable: false
   weight: 0.3
   slot: "Weapon"
   type: "TwoHanded"
@@ -61569,7 +61236,6 @@ bow_class_3:
 bow_class_3_noted: 14197
 bow_class_4:
   id: 14198
-  bankable: false
   weight: 0.4
   slot: "Weapon"
   type: "TwoHanded"
@@ -61577,7 +61243,6 @@ bow_class_4:
 bow_class_4_noted: 14199
 bow_class_5:
   id: 14200
-  bankable: false
   weight: 0.5
   slot: "Weapon"
   type: "TwoHanded"
@@ -61585,27 +61250,22 @@ bow_class_5:
 bow_class_5_noted: 14201
 arrows_class_1:
   id: 14202
-  bankable: false
   slot: "Ammo"
   examine: "The sacred clay has transformed into a wood-like substance."
 arrows_class_2:
   id: 14203
-  bankable: false
   slot: "Ammo"
   examine: "The sacred clay has transformed into a wood-like substance."
 arrows_class_3:
   id: 14204
-  bankable: false
   slot: "Ammo"
   examine: "The sacred clay has transformed into a wood-like substance."
 arrows_class_4:
   id: 14205
-  bankable: false
   slot: "Ammo"
   examine: "The sacred clay has transformed into a wood-like substance."
 arrows_class_5:
   id: 14206
-  bankable: false
   slot: "Ammo"
   examine: "The sacred clay has transformed into a wood-like substance."
 prayer_potion_stealing_creation_5:
@@ -61635,7 +61295,6 @@ prayer_potion_stealing_creation_1:
 prayer_potion_stealing_creation_1_noted: 14216
 energy_potion_stealing_creation_5:
   id: 14217
-  bankable: false
   weight: 0.5
   examine: "Five doses of energy potion."
 energy_potion_stealing_creation_5_noted: 14218
@@ -61811,7 +61470,6 @@ summoning_potion_stealing_creation_1:
 summoning_potion_stealing_creation_1_noted: 14286
 scimitar_class_1:
   id: 14287
-  bankable: false
   weight: 0.05
   slot: "Weapon"
   material: "metal"
@@ -61819,7 +61477,6 @@ scimitar_class_1:
 scimitar_class_1_noted: 14288
 scimitar_class_2:
   id: 14289
-  bankable: false
   weight: 0.1
   slot: "Weapon"
   material: "metal"
@@ -61827,7 +61484,6 @@ scimitar_class_2:
 scimitar_class_2_noted: 14290
 scimitar_class_3:
   id: 14291
-  bankable: false
   weight: 0.15
   slot: "Weapon"
   material: "metal"
@@ -61835,7 +61491,6 @@ scimitar_class_3:
 scimitar_class_3_noted: 14292
 scimitar_class_4:
   id: 14293
-  bankable: false
   weight: 0.2
   slot: "Weapon"
   material: "metal"
@@ -61843,7 +61498,6 @@ scimitar_class_4:
 scimitar_class_4_noted: 14294
 scimitar_class_5:
   id: 14295
-  bankable: false
   weight: 0.25
   slot: "Weapon"
   material: "metal"
@@ -61851,7 +61505,6 @@ scimitar_class_5:
 scimitar_class_5_noted: 14296
 dagger_class_1:
   id: 14297
-  bankable: false
   weight: 0.05
   slot: "Weapon"
   material: "metal"
@@ -61859,7 +61512,6 @@ dagger_class_1:
 dagger_class_1_noted: 14298
 dagger_class_2:
   id: 14299
-  bankable: false
   weight: 0.1
   slot: "Weapon"
   material: "metal"
@@ -61867,7 +61519,6 @@ dagger_class_2:
 dagger_class_2_noted: 14300
 dagger_class_3:
   id: 14301
-  bankable: false
   weight: 0.15
   slot: "Weapon"
   material: "metal"
@@ -61875,7 +61526,6 @@ dagger_class_3:
 dagger_class_3_noted: 14302
 dagger_class_4:
   id: 14303
-  bankable: false
   weight: 0.2
   slot: "Weapon"
   material: "metal"
@@ -61883,7 +61533,6 @@ dagger_class_4:
 dagger_class_4_noted: 14304
 dagger_class_5:
   id: 14305
-  bankable: false
   weight: 0.25
   slot: "Weapon"
   material: "metal"
@@ -61891,42 +61540,36 @@ dagger_class_5:
 dagger_class_5_noted: 14306
 warhammer_class_1:
   id: 14307
-  bankable: false
   weight: 0.05
   slot: "Weapon"
   examine: "The sacred clay has transformed into a heavy warhammer."
 warhammer_class_1_noted: 14308
 warhammer_class_2:
   id: 14309
-  bankable: false
   weight: 0.1
   slot: "Weapon"
   examine: "The sacred clay has transformed into a heavy warhammer."
 warhammer_class_2_noted: 14310
 warhammer_class_3:
   id: 14311
-  bankable: false
   weight: 0.15
   slot: "Weapon"
   examine: "The sacred clay has transformed into a heavy warhammer."
 warhammer_class_3_noted: 14312
 warhammer_class_4:
   id: 14313
-  bankable: false
   weight: 0.2
   slot: "Weapon"
   examine: "The sacred clay has transformed into a heavy warhammer."
 warhammer_class_4_noted: 14314
 warhammer_class_5:
   id: 14315
-  bankable: false
   weight: 0.25
   slot: "Weapon"
   examine: "The sacred clay has transformed into a heavy warhammer."
 warhammer_class_5_noted: 14316
 robe_top_class_1:
   id: 14317
-  bankable: false
   weight: 0.1
   summoning_def: 20.0
   slot: "Chest"
@@ -61934,7 +61577,6 @@ robe_top_class_1:
 robe_top_class_1_noted: 14318
 robe_top_class_2:
   id: 14319
-  bankable: false
   weight: 0.2
   summoning_def: 40.0
   slot: "Chest"
@@ -61942,7 +61584,6 @@ robe_top_class_2:
 robe_top_class_2_noted: 14320
 robe_top_class_3:
   id: 14321
-  bankable: false
   weight: 0.3
   summoning_def: 60.0
   slot: "Chest"
@@ -61950,7 +61591,6 @@ robe_top_class_3:
 robe_top_class_3_noted: 14322
 robe_top_class_4:
   id: 14323
-  bankable: false
   weight: 0.4
   summoning_def: 80.0
   slot: "Chest"
@@ -61958,7 +61598,6 @@ robe_top_class_4:
 robe_top_class_4_noted: 14324
 robe_top_class_5:
   id: 14325
-  bankable: false
   weight: 0.5
   summoning_def: 100.0
   slot: "Chest"
@@ -61966,7 +61605,6 @@ robe_top_class_5:
 robe_top_class_5_noted: 14326
 robe_bottom_class_1:
   id: 14327
-  bankable: false
   weight: 0.1
   summoning_def: 15.0
   slot: "Legs"
@@ -61974,7 +61612,6 @@ robe_bottom_class_1:
 robe_bottom_class_1_noted: 14328
 robe_bottom_class_2:
   id: 14329
-  bankable: false
   weight: 0.2
   summoning_def: 30.0
   slot: "Legs"
@@ -61982,7 +61619,6 @@ robe_bottom_class_2:
 robe_bottom_class_2_noted: 14330
 robe_bottom_class_3:
   id: 14331
-  bankable: false
   weight: 0.3
   summoning_def: 45.0
   slot: "Legs"
@@ -61990,7 +61626,6 @@ robe_bottom_class_3:
 robe_bottom_class_3_noted: 14332
 robe_bottom_class_4:
   id: 14333
-  bankable: false
   weight: 0.4
   summoning_def: 60.0
   slot: "Legs"
@@ -61998,7 +61633,6 @@ robe_bottom_class_4:
 robe_bottom_class_4_noted: 14334
 robe_bottom_class_5:
   id: 14335
-  bankable: false
   weight: 0.5
   summoning_def: 75.0
   slot: "Legs"
@@ -62006,7 +61640,6 @@ robe_bottom_class_5:
 robe_bottom_class_5_noted: 14336
 hat_class_1:
   id: 14337
-  bankable: false
   weight: 0.1
   summoning_def: 10.0
   slot: "Hat"
@@ -62014,7 +61647,6 @@ hat_class_1:
 hat_class_1_noted: 14338
 hat_class_2:
   id: 14339
-  bankable: false
   weight: 0.2
   summoning_def: 20.0
   slot: "Hat"
@@ -62022,7 +61654,6 @@ hat_class_2:
 hat_class_2_noted: 14340
 hat_class_3:
   id: 14341
-  bankable: false
   weight: 0.3
   summoning_def: 30.0
   slot: "Hat"
@@ -62030,7 +61661,6 @@ hat_class_3:
 hat_class_3_noted: 14342
 hat_class_4:
   id: 14343
-  bankable: false
   weight: 0.4
   summoning_def: 40.0
   slot: "Hat"
@@ -62038,7 +61668,6 @@ hat_class_4:
 hat_class_4_noted: 14344
 hat_class_5:
   id: 14345
-  bankable: false
   weight: 0.5
   summoning_def: 50.0
   slot: "Hat"
@@ -62046,7 +61675,6 @@ hat_class_5:
 hat_class_5_noted: 14346
 platebody_class_1:
   id: 14347
-  bankable: false
   weight: 0.1
   summoning_def: 20.0
   slot: "Chest"
@@ -62055,7 +61683,6 @@ platebody_class_1:
 platebody_class_1_noted: 14348
 platebody_class_2:
   id: 14349
-  bankable: false
   weight: 0.2
   summoning_def: 40.0
   slot: "Chest"
@@ -62064,7 +61691,6 @@ platebody_class_2:
 platebody_class_2_noted: 14350
 platebody_class_3:
   id: 14351
-  bankable: false
   weight: 0.3
   summoning_def: 60.0
   slot: "Chest"
@@ -62073,7 +61699,6 @@ platebody_class_3:
 platebody_class_3_noted: 14352
 platebody_class_4:
   id: 14353
-  bankable: false
   weight: 0.4
   summoning_def: 80.0
   slot: "Chest"
@@ -62082,7 +61707,6 @@ platebody_class_4:
 platebody_class_4_noted: 14354
 platebody_class_5:
   id: 14355
-  bankable: false
   weight: 0.5
   summoning_def: 100.0
   slot: "Chest"
@@ -62091,7 +61715,6 @@ platebody_class_5:
 platebody_class_5_noted: 14356
 platelegs_class_1:
   id: 14357
-  bankable: false
   weight: 0.1
   summoning_def: 15.0
   slot: "Legs"
@@ -62100,7 +61723,6 @@ platelegs_class_1:
 platelegs_class_1_noted: 14358
 platelegs_class_2:
   id: 14359
-  bankable: false
   weight: 0.2
   summoning_def: 30.0
   slot: "Legs"
@@ -62109,7 +61731,6 @@ platelegs_class_2:
 platelegs_class_2_noted: 14360
 platelegs_class_3:
   id: 14361
-  bankable: false
   weight: 0.3
   summoning_def: 45.0
   slot: "Legs"
@@ -62118,7 +61739,6 @@ platelegs_class_3:
 platelegs_class_3_noted: 14362
 platelegs_class_4:
   id: 14363
-  bankable: false
   weight: 0.4
   summoning_def: 60.0
   slot: "Legs"
@@ -62127,7 +61747,6 @@ platelegs_class_4:
 platelegs_class_4_noted: 14364
 platelegs_class_5:
   id: 14365
-  bankable: false
   weight: 0.5
   summoning_def: 75.0
   slot: "Legs"
@@ -62136,7 +61755,6 @@ platelegs_class_5:
 platelegs_class_5_noted: 14366
 helm_class_1:
   id: 14367
-  bankable: false
   weight: 0.1
   summoning_def: 10.0
   slot: "Hat"
@@ -62146,7 +61764,6 @@ helm_class_1:
 helm_class_1_noted: 14368
 helm_class_2:
   id: 14369
-  bankable: false
   weight: 0.2
   summoning_def: 20.0
   slot: "Hat"
@@ -62156,7 +61773,6 @@ helm_class_2:
 helm_class_2_noted: 14370
 helm_class_3:
   id: 14371
-  bankable: false
   weight: 0.3
   summoning_def: 30.0
   slot: "Hat"
@@ -62166,7 +61782,6 @@ helm_class_3:
 helm_class_3_noted: 14372
 helm_class_4:
   id: 14373
-  bankable: false
   weight: 0.4
   summoning_def: 40.0
   slot: "Hat"
@@ -62176,7 +61791,6 @@ helm_class_4:
 helm_class_4_noted: 14374
 helm_class_5:
   id: 14375
-  bankable: false
   weight: 0.5
   summoning_def: 50.0
   slot: "Hat"
@@ -62186,7 +61800,6 @@ helm_class_5:
 helm_class_5_noted: 14376
 staff_class_1:
   id: 14377
-  bankable: false
   weight: 0.1
   category: "staff"
   slot: "Weapon"
@@ -62194,7 +61807,6 @@ staff_class_1:
 staff_class_1_noted: 14378
 staff_class_2:
   id: 14379
-  bankable: false
   weight: 0.2
   category: "staff"
   slot: "Weapon"
@@ -62202,7 +61814,6 @@ staff_class_2:
 staff_class_2_noted: 14380
 staff_class_3:
   id: 14381
-  bankable: false
   weight: 0.3
   category: "staff"
   slot: "Weapon"
@@ -62210,7 +61821,6 @@ staff_class_3:
 staff_class_3_noted: 14382
 staff_class_4:
   id: 14383
-  bankable: false
   weight: 0.4
   category: "staff"
   slot: "Weapon"
@@ -62218,7 +61828,6 @@ staff_class_4:
 staff_class_4_noted: 14384
 staff_class_5:
   id: 14385
-  bankable: false
   weight: 0.5
   category: "staff"
   slot: "Weapon"
@@ -62226,7 +61835,6 @@ staff_class_5:
 staff_class_5_noted: 14386
 cape_stealing_creation_blue:
   id: 14387
-  bankable: false
   tradeable: false
   weight: 0.02
   slot: "Cape"
@@ -62234,7 +61842,6 @@ cape_stealing_creation_blue:
   kept: "Vanish"
 cape_stealing_creation_red:
   id: 14389
-  bankable: false
   tradeable: false
   weight: 0.02
   slot: "Cape"
@@ -62242,7 +61849,6 @@ cape_stealing_creation_red:
   kept: "Vanish"
 leather_body_class_1:
   id: 14391
-  bankable: false
   weight: 0.1
   summoning_def: 20.0
   slot: "Chest"
@@ -62252,7 +61858,6 @@ leather_body_class_1:
 leather_body_class_1_noted: 14392
 leather_body_class_2:
   id: 14393
-  bankable: false
   weight: 0.2
   summoning_def: 40.0
   slot: "Chest"
@@ -62262,7 +61867,6 @@ leather_body_class_2:
 leather_body_class_2_noted: 14394
 leather_body_class_3:
   id: 14395
-  bankable: false
   weight: 0.3
   summoning_def: 60.0
   slot: "Chest"
@@ -62272,7 +61876,6 @@ leather_body_class_3:
 leather_body_class_3_noted: 14396
 leather_body_class_4:
   id: 14397
-  bankable: false
   weight: 0.4
   summoning_def: 80.0
   slot: "Chest"
@@ -62282,7 +61885,6 @@ leather_body_class_4:
 leather_body_class_4_noted: 14398
 leather_body_class_5:
   id: 14399
-  bankable: false
   weight: 0.5
   summoning_def: 100.0
   slot: "Chest"
@@ -62292,7 +61894,6 @@ leather_body_class_5:
 leather_body_class_5_noted: 14400
 chaps_class_1:
   id: 14401
-  bankable: false
   weight: 0.1
   summoning_def: 15.0
   slot: "Legs"
@@ -62301,7 +61902,6 @@ chaps_class_1:
 chaps_class_1_noted: 14402
 chaps_class_2:
   id: 14403
-  bankable: false
   weight: 0.2
   summoning_def: 30.0
   slot: "Legs"
@@ -62310,7 +61910,6 @@ chaps_class_2:
 chaps_class_2_noted: 14404
 chaps_class_3:
   id: 14405
-  bankable: false
   weight: 0.3
   summoning_def: 45.0
   slot: "Legs"
@@ -62319,7 +61918,6 @@ chaps_class_3:
 chaps_class_3_noted: 14406
 chaps_class_4:
   id: 14407
-  bankable: false
   weight: 0.4
   summoning_def: 60.0
   slot: "Legs"
@@ -62328,7 +61926,6 @@ chaps_class_4:
 chaps_class_4_noted: 14408
 chaps_class_5:
   id: 14409
-  bankable: false
   weight: 0.5
   summoning_def: 75.0
   slot: "Legs"
@@ -62337,7 +61934,6 @@ chaps_class_5:
 chaps_class_5_noted: 14410
 coif_class_1:
   id: 14411
-  bankable: false
   weight: 0.1
   summoning_def: 10.0
   slot: "Hat"
@@ -62347,7 +61943,6 @@ coif_class_1:
 coif_class_1_noted: 14412
 coif_class_2:
   id: 14413
-  bankable: false
   weight: 0.2
   summoning_def: 20.0
   slot: "Hat"
@@ -62357,7 +61952,6 @@ coif_class_2:
 coif_class_2_noted: 14414
 coif_class_3:
   id: 14415
-  bankable: false
   weight: 0.3
   summoning_def: 30.0
   slot: "Hat"
@@ -62367,7 +61961,6 @@ coif_class_3:
 coif_class_3_noted: 14416
 coif_class_4:
   id: 14417
-  bankable: false
   weight: 0.4
   summoning_def: 40.0
   slot: "Hat"
@@ -62377,7 +61970,6 @@ coif_class_4:
 coif_class_4_noted: 14418
 coif_class_5:
   id: 14419
-  bankable: false
   weight: 0.5
   summoning_def: 50.0
   slot: "Hat"
@@ -62387,35 +61979,29 @@ coif_class_5:
 coif_class_5_noted: 14420
 clay_deposit_scroll:
   id: 14421
-  bankable: false
   examine: "This scroll will make your familiar deposit its items at your base."
 sacred_clay_pouch_class_1:
   id: 14422
-  bankable: false
   weight: 0.1
   examine: "I can summon a very low quality clay familiar with this."
 sacred_clay_pouch_class_1_noted: 14423
 sacred_clay_pouch_class_2:
   id: 14424
-  bankable: false
   weight: 0.2
   examine: "I can summon a low quality clay familiar with this."
 sacred_clay_pouch_class_2_noted: 14425
 sacred_clay_pouch_class_3:
   id: 14426
-  bankable: false
   weight: 0.3
   examine: "I can summon a medium quality clay familiar with this."
 sacred_clay_pouch_class_3_noted: 14427
 sacred_clay_pouch_class_4:
   id: 14428
-  bankable: false
   weight: 0.4
   examine: "I can summon a high quality clay familiar with this."
 sacred_clay_pouch_class_4_noted: 14429
 sacred_clay_pouch_class_5:
   id: 14430
-  bankable: false
   weight: 0.5
   examine: "I can summon a very high quality clay familiar with this."
 sacred_clay_pouch_class_5_noted: 14431
@@ -63251,7 +62837,6 @@ slayer_helmet_c:
   kept: "Reclaim"
 bones_soul_wars:
   id: 14638
-  bankable: false
   tradeable: false
   weight: 0.05
   destroy: "You can kill an opposing player to get some more."
@@ -63259,14 +62844,12 @@ bones_soul_wars:
   kept: "Reclaim"
 soul_fragment:
   id: 14639
-  bankable: false
   tradeable: false
   destroy: "You can find more by slaying the creatures in the ruins."
   examine: "Lightly pulsing with energy."
   kept: "Reclaim"
 bandages_soul_wars:
   id: 14640
-  bankable: false
   tradeable: false
   heals: 120
   eat_message: "You use a bandage."
@@ -63297,7 +62880,6 @@ barricade_soul_wars:
   id: 14643
 explosive_potion_soul_wars:
   id: 14644
-  bankable: false
   tradeable: false
   weight: 0.05
   destroy: "You can get another explosive potion from the supply areas."
@@ -63306,7 +62888,6 @@ explosive_potion_soul_wars:
 blue_cape_tutorial:
   id: 14645
   limit: 100
-  bankable: false
   tradeable: false
   weight: 0.453
   slot: "Cape"
@@ -63314,7 +62895,6 @@ blue_cape_tutorial:
   kept: "Reclaim"
 soul_fragment_tutorial:
   id: 14646
-  bankable: false
   tradeable: false
   destroy: "You can find another in the western ruins."
   examine: "Pulses with energy."
@@ -63328,7 +62908,6 @@ soul_wars_guide:
   kept: "Vanish"
 bandages_tutorial:
   id: 14648
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You can collect more from the supply area."
@@ -63336,7 +62915,6 @@ bandages_tutorial:
   kept: "Always"
 barricade_tutorial:
   id: 14649
-  bankable: false
   tradeable: false
   weight: 5.0
   destroy: "You can get another barricade from the supply areas."
@@ -63344,7 +62922,6 @@ barricade_tutorial:
   kept: "Always"
 explosive_potion_tutorial:
   id: 14650
-  bankable: false
   tradeable: false
   weight: 0.035
   destroy: "You can get another explosive potion from the supply areas."
@@ -63413,7 +62990,6 @@ baby_kurask:
 abyssal_whip_fake:
   id: 14661
   limit: 10
-  bankable: false
   tradeable: false
   weight: 0.453
   destroy: "You'll need to speak to an abyssal minion if you want another."
@@ -63745,7 +63321,6 @@ tome_of_glorious_deeds:
   kept: "Wilderness"
 antique_lamp_glorious_memories:
   id: 14711
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "I wonder what happens if I rub it."
@@ -63769,7 +63344,6 @@ easter_carrot_2:
   use: "Limited"
 sunflower_seeds:
   id: 14714
-  bankable: false
   tradeable: false
   weight: 0.085
   destroy: "I can get another one of these by searching the sacks near the Easter Bird."
@@ -63778,7 +63352,6 @@ sunflower_seeds:
   use: "Removed"
 cracker_bits:
   id: 14715
-  bankable: false
   tradeable: false
   weight: 0.085
   destroy: "I can get another one of these by searching the sacks near the Easter Bird."
@@ -63787,7 +63360,6 @@ cracker_bits:
   use: "Removed"
 worm_bits:
   id: 14716
-  bankable: false
   tradeable: false
   weight: 0.085
   destroy: "I can get another one of these by searching the sacks near the Easter Bird."
@@ -63796,7 +63368,6 @@ worm_bits:
   use: "Removed"
 poppy_seeds:
   id: 14717
-  bankable: false
   tradeable: false
   weight: 0.085
   destroy: "I can get another one of these by searching the sacks near the Easter Bird."
@@ -63805,7 +63376,6 @@ poppy_seeds:
   use: "Removed"
 chimney:
   id: 14718
-  bankable: false
   tradeable: false
   weight: 0.085
   examine: "A chimney that looks like it will fit on the incubator."
@@ -63813,7 +63383,6 @@ chimney:
   use: "Removed"
 cog_2009_easter_event:
   id: 14719
-  bankable: false
   tradeable: false
   weight: 0.085
   destroy: "You can get another cog from the old power station."
@@ -63822,7 +63391,6 @@ cog_2009_easter_event:
   use: "Removed"
 pistons:
   id: 14720
-  bankable: false
   tradeable: false
   weight: 0.085
   examine: "Looks like these might fit onto the incubator."
@@ -63831,7 +63399,6 @@ pistons:
 wet_pipe:
   &wet_pipe
   id: 14721
-  bankable: false
   tradeable: false
   weight: 0.085
   examine: "Looks like this might fit onto the incubator."
@@ -63839,7 +63406,6 @@ wet_pipe:
   use: "Removed"
 clean_pipe_2009_easter_event:
   id: 14722
-  bankable: false
   tradeable: false
   weight: 0.085
   destroy: "You can reclaim this item from the place you found it."
@@ -63851,7 +63417,6 @@ sooty_pipe:
   id: 14723
 incubator_blueprint:
   id: 14724
-  bankable: false
   tradeable: false
   weight: 0.015
   destroy: "I can get another one of these from the Easter Bunny's son's bedroom."
@@ -63861,7 +63426,6 @@ incubator_blueprint:
   use: "Removed"
 impling_net:
   id: 14725
-  bankable: false
   tradeable: false
   weight: 0.226
   slot: "Weapon"
@@ -63871,7 +63435,6 @@ impling_net:
 impling_jar_2009_easter_event:
   id: 14726
   limit: 1000
-  bankable: false
   tradeable: false
   weight: 0.02
   examine: "It's got little holes in the top."
@@ -63879,7 +63442,6 @@ impling_jar_2009_easter_event:
   use: "Removed"
 easter_impling_jar:
   id: 14727
-  bankable: false
   tradeable: false
   weight: 2.267
   examine: "An Easter impling in a jar. That's a bit cruel."
@@ -63971,7 +63533,6 @@ muspah_tail:
   kept: "Wilderness"
 antique_lamp_the_tale_of_the_muspah:
   id: 14740
-  bankable: false
   tradeable: false
   weight: 0.1
   destroy: "If you destroy this item, you cannot reclaim it."
@@ -65347,28 +64908,24 @@ magic_skullball:
 magic_skullball_noted: 15047
 magic_skullball_long:
   id: 15048
-  bankable: false
   weight: 0.2
   slot: "Weapon"
   examine: "A magic skull, mostly able to answer yes or no questions."
 magic_skullball_long_noted: 15049
 magic_skullball_yes_no:
   id: 15050
-  bankable: false
   weight: 0.2
   slot: "Weapon"
   examine: "A magic skull, able to give yes or no answers."
 magic_skullball_yes_no_noted: 15051
 magic_skullball_activities:
   id: 15052
-  bankable: false
   weight: 0.2
   slot: "Weapon"
   examine: "A magic skull, able to suggest what you could do today."
 magic_skullball_activities_noted: 15053
 magic_skullball_colours:
   id: 15054
-  bankable: false
   weight: 0.2
   slot: "Weapon"
   examine: "A magic skull, able to choose random colours."
@@ -65380,7 +64937,6 @@ ticker:
 ticker_noted: 15057
 ticker_a:
   id: 15058
-  bankable: false
   bank_stacks: false
   weight: 0.05
   examine: "It's storing a number for you."
@@ -65397,14 +64953,12 @@ timepiece_stopped:
 timepiece_stopped_noted: 15062
 timepiece_running:
   id: 15063
-  bankable: false
   bank_stacks: false
   weight: 0.001
   slot: "Weapon"
   examine: "I have hands but no arms."
 timepiece_paused:
   id: 15064
-  bankable: false
   bank_stacks: false
   weight: 0.001
   slot: "Weapon"
@@ -65468,7 +65022,6 @@ ring_of_seeking_both:
 ring_of_seeking_both_noted: 15083
 dice_bag:
   id: 15084
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "It's a bag of dice."
@@ -65476,7 +65029,6 @@ dice_bag:
 dice_bag_noted: 15085
 die_6_sides:
   id: 15086
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "A six-sided die."
@@ -65484,7 +65036,6 @@ die_6_sides:
 die_6_sides_noted: 15087
 dice_2_6_sides:
   id: 15088
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "A pair of six-sided dice."
@@ -65492,7 +65043,6 @@ dice_2_6_sides:
 dice_2_6_sides_noted: 15089
 die_8_sides:
   id: 15090
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "An eight-sided die."
@@ -65500,7 +65050,6 @@ die_8_sides:
 die_8_sides_noted: 15091
 die_10_sides:
   id: 15092
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "A ten-sided die."
@@ -65508,7 +65057,6 @@ die_10_sides:
 die_10_sides_noted: 15093
 die_12_sides:
   id: 15094
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "A twelve-sided die."
@@ -65516,7 +65064,6 @@ die_12_sides:
 die_12_sides_noted: 15095
 die_20_sides:
   id: 15096
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "A twenty-sided die."
@@ -65524,7 +65071,6 @@ die_20_sides:
 die_20_sides_noted: 15097
 dice_up_to_100:
   id: 15098
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "A pair of ten-sided dice, for results between 1 and 100."
@@ -65532,7 +65078,6 @@ dice_up_to_100:
 dice_up_to_100_noted: 15099
 die_4_sides:
   id: 15100
-  bankable: false
   tradeable: false
   weight: 0.1
   examine: "A four-sided die."
@@ -66122,21 +65667,18 @@ old_diary:
   kept: "Wilderness"
 arm_right:
   id: 15217
-  bankable: false
   tradeable: false
   weight: 1.0
   examine: "It has a manacle on it. And it's wriggling."
   kept: "Vanish"
 arm_left:
   id: 15218
-  bankable: false
   tradeable: false
   weight: 1.0
   examine: "What is it with me and picking up severed hands?"
   kept: "Vanish"
 tail:
   id: 15219
-  bankable: false
   tradeable: false
   weight: 1.0
   examine: "A sad, sorry but fairly restless tail."
@@ -66383,7 +65925,6 @@ burnt_rocktail:
 burnt_rocktail_noted: 15275
 plank_unstable_foundations:
   id: 15276
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Weapon"
@@ -66392,7 +65933,6 @@ plank_unstable_foundations:
   use: "Limited"
 drugged_meat:
   id: 15277
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Weapon"
@@ -66401,7 +65941,6 @@ drugged_meat:
   use: "Limited"
 cloth_unstable_foundations:
   id: 15278
-  bankable: false
   tradeable: false
   weight: 0.001
   examine: "A tatty old bit of cloth."
@@ -66409,7 +65948,6 @@ cloth_unstable_foundations:
   use: "Removed"
 oily_cloth:
   id: 15279
-  bankable: false
   tradeable: false
   weight: 0.5
   examine: "A tatty old bit of cloth, now soaked in oil."
@@ -66417,7 +65955,6 @@ oily_cloth:
   use: "Limited"
 rag:
   id: 15280
-  bankable: false
   tradeable: false
   weight: 0.25
   examine: "A tatty old rag of cloth."
@@ -66425,7 +65962,6 @@ rag:
   use: "Limited"
 oily_rag:
   id: 15281
-  bankable: false
   tradeable: false
   weight: 0.25
   slot: "Weapon"
@@ -66441,7 +65977,6 @@ fuse_2:
   id: 15283
 sir_vants_oil_can:
   id: 15284
-  bankable: false
   tradeable: false
   weight: 0.028
   examine: "A can of oil belonging to Sir Vant."
@@ -66449,14 +65984,12 @@ sir_vants_oil_can:
   use: "Limited"
 root_chippings:
   id: 15285
-  bankable: false
   tradeable: false
   examine: "Some root chippings."
   kept: "Reclaim"
   use: "Limited"
 stone_clippings:
   id: 15286
-  bankable: false
   tradeable: false
   examine: "Fragments of stone."
   kept: "Reclaim"
@@ -66485,42 +66018,36 @@ plank_2:
   examine: "A plank of wood!"
 short_plank:
   id: 15292
-  bankable: false
   tradeable: false
   weight: 0.8
   examine: "A short plank."
   kept: "Reclaim"
 long_plank:
   id: 15293
-  bankable: false
   tradeable: false
   weight: 0.8
   examine: "A long plank."
   kept: "Reclaim"
 diagonal_cut_plank:
   id: 15294
-  bankable: false
   tradeable: false
   weight: 0.8
   examine: "A diagonally-cut plank."
   kept: "Reclaim"
 tooth_plank:
   id: 15295
-  bankable: false
   tradeable: false
   weight: 0.8
   examine: "A plank with a tooth."
   kept: "Reclaim"
 groove_plank:
   id: 15296
-  bankable: false
   tradeable: false
   weight: 0.8
   examine: "Groovy!"
   kept: "Reclaim"
 curved_plank:
   id: 15297
-  bankable: false
   tradeable: false
   weight: 0.8
   examine: "A long plank with a curved end."
@@ -66790,7 +66317,6 @@ ardougne_cloak_1:
 antique_lamp_easy_ardougne_tasks:
   &antique_lamp_easy_ardougne_tasks
   id: 15346
-  bankable: false
   tradeable: false
   weight: 0.1
   destroy: "Are you sure you want to destroy the lamp? You won't be able to get another one."
@@ -66974,7 +66500,6 @@ heat_globe_4:
   id: 15382
 imperfect_heat_globe:
   id: 15383
-  bankable: false
   tradeable: false
   weight: 0.5
   destroy: "I can find more heat globes in the frozen fortress, on the coast west of the Wilderness."
@@ -67018,7 +66543,6 @@ battered_letter:
   kept: "Wilderness"
 experience_lamp:
   id: 15389
-  bankable: false
   tradeable: false
   weight: 0.02
   examine: "A mystical lamp engraved with scenes of city life."
@@ -67026,7 +66550,6 @@ experience_lamp:
   kept: "Vanish"
 combat_lamp_the_temple_at_senntisten:
   id: 15390
-  bankable: false
   tradeable: false
   weight: 0.02
   destroy: "I can get it back from Azzanadra at the temple under the Digsite."
@@ -67129,7 +66652,6 @@ prophecy_tablet_caves:
   id: 15407
 letter_blood_runs_deep:
   id: 15408
-  bankable: false
   tradeable: false
   weight: 0.03
   aka: [ letter_of_life ]
@@ -67406,7 +66928,6 @@ abyssal_whip_green:
   kept: "Reclaim"
 attacker_lvl_1:
   id: 15445
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67414,7 +66935,6 @@ attacker_lvl_1:
   kept: "Vanish"
 attacker_lvl_2:
   id: 15446
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67422,7 +66942,6 @@ attacker_lvl_2:
   kept: "Vanish"
 attacker_lvl_3:
   id: 15447
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67430,7 +66949,6 @@ attacker_lvl_3:
   kept: "Vanish"
 attacker_lvl_4:
   id: 15448
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67438,7 +66956,6 @@ attacker_lvl_4:
   kept: "Vanish"
 attacker_lvl_5:
   id: 15449
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67446,7 +66963,6 @@ attacker_lvl_5:
   kept: "Vanish"
 collector_lvl_1:
   id: 15450
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67454,7 +66970,6 @@ collector_lvl_1:
   kept: "Vanish"
 collector_lvl_2:
   id: 15451
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67462,7 +66977,6 @@ collector_lvl_2:
   kept: "Vanish"
 collector_lvl_3:
   id: 15452
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67470,7 +66984,6 @@ collector_lvl_3:
   kept: "Vanish"
 collector_lvl_4:
   id: 15453
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67478,7 +66991,6 @@ collector_lvl_4:
   kept: "Vanish"
 collector_lvl_5:
   id: 15454
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67486,7 +66998,6 @@ collector_lvl_5:
   kept: "Vanish"
 defender_lvl_1:
   id: 15455
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67494,7 +67005,6 @@ defender_lvl_1:
   kept: "Vanish"
 defender_lvl_2:
   id: 15456
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67502,7 +67012,6 @@ defender_lvl_2:
   kept: "Vanish"
 defender_lvl_3:
   id: 15457
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67510,7 +67019,6 @@ defender_lvl_3:
   kept: "Vanish"
 defender_lvl_4:
   id: 15458
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67518,7 +67026,6 @@ defender_lvl_4:
   kept: "Vanish"
 defender_lvl_5:
   id: 15459
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67526,7 +67033,6 @@ defender_lvl_5:
   kept: "Vanish"
 healer_lvl_1:
   id: 15460
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67534,7 +67040,6 @@ healer_lvl_1:
   kept: "Vanish"
 healer_lvl_2:
   id: 15461
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67542,7 +67047,6 @@ healer_lvl_2:
   kept: "Vanish"
 healer_lvl_3:
   id: 15462
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67550,7 +67054,6 @@ healer_lvl_3:
   kept: "Vanish"
 healer_lvl_4:
   id: 15463
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67558,7 +67061,6 @@ healer_lvl_4:
   kept: "Vanish"
 healer_lvl_5:
   id: 15464
-  bankable: false
   tradeable: false
   weight: 0.001
   slot: "Cape"
@@ -67777,7 +67279,6 @@ ice_strykewyrm:
   examine: "Now that's just cold."
 box_of_summoning_ingredients:
   id: 15501
-  bankable: false
   tradeable: false
   bank_stacks: false
   weight: 2.0
@@ -68502,7 +68003,6 @@ squirrel_ears:
   use: "Limited"
 delivery_box_2010_easter_event:
   id: 15674
-  bankable: false
   tradeable: false
   weight: 2.0
   destroy: "You can replace this by speaking to the Easter Bunny."
@@ -68511,7 +68011,6 @@ delivery_box_2010_easter_event:
   use: "Removed"
 delivery_map:
   id: 15675
-  bankable: false
   tradeable: false
   weight: 0.01
   destroy: "You can replace this by speaking to the Easter Bunny."
@@ -68521,7 +68020,6 @@ delivery_map:
 clean_cog:
   &clean_cog
   id: 15676
-  bankable: false
   tradeable: false
   weight: 0.085
   destroy: "You can reclaim this item from the place you found it."
@@ -68533,7 +68031,6 @@ clean_pipe_2010_easter_event:
   id: 15677
 clean_pistons:
   id: 15678
-  bankable: false
   tradeable: false
   weight: 0.085
   destroy: "You can reclaim this item from the place you found it."
@@ -68543,7 +68040,6 @@ clean_pistons:
 dirty_cog:
   &dirty_cog
   id: 15679
-  bankable: false
   tradeable: false
   weight: 0.085
   examine: "Looks like this might fit onto the oven."
@@ -68554,7 +68050,6 @@ dirty_pipe:
   id: 15680
 dirty_pistons:
   id: 15681
-  bankable: false
   tradeable: false
   weight: 0.085
   examine: "Looks like these might fit onto the oven."
@@ -68562,7 +68057,6 @@ dirty_pistons:
   use: "Removed"
 glaze_crate:
   id: 15682
-  bankable: false
   tradeable: false
   weight: 2.0
   destroy: "You can replace this by speaking to the Impling manager"
@@ -68571,7 +68065,6 @@ glaze_crate:
   use: "Removed"
 glaze_colour_wheel:
   id: 15683
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You can replace this by speaking to the impling manager"
@@ -68580,7 +68073,6 @@ glaze_colour_wheel:
   use: "Removed"
 vial_of_red_glaze:
   id: 15684
-  bankable: false
   tradeable: false
   weight: 0.056
   destroy: "You can replace this by speaking to the impling manager."
@@ -68589,7 +68081,6 @@ vial_of_red_glaze:
   use: "Removed"
 vial_of_yellow_glaze:
   id: 15685
-  bankable: false
   tradeable: false
   weight: 0.056
   destroy: "You can replace this by speaking to the impling manager."
@@ -68598,7 +68089,6 @@ vial_of_yellow_glaze:
   use: "Removed"
 vial_of_blue_glaze:
   id: 15686
-  bankable: false
   tradeable: false
   weight: 0.056
   destroy: "You can replace this by speaking to the impling manager."
@@ -68608,7 +68098,6 @@ vial_of_blue_glaze:
 bowl_2010_easter_event:
   id: 15687
   limit: 100
-  bankable: false
   tradeable: false
   weight: 0.453
   destroy: "You can replace this by speaking to the impling manager."
@@ -68617,7 +68106,6 @@ bowl_2010_easter_event:
   use: "Removed"
 bowl_of_black_mess:
   id: 15688
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "You can replace this by speaking to the impling manager."
@@ -68626,7 +68114,6 @@ bowl_of_black_mess:
   use: "Removed"
 bowl_of_blue_glaze:
   id: 15689
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "You can replace this by speaking to the impling manager."
@@ -68635,7 +68122,6 @@ bowl_of_blue_glaze:
   use: "Removed"
 bowl_of_red_glaze:
   id: 15690
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "You can replace this by speaking to the impling manager."
@@ -68644,7 +68130,6 @@ bowl_of_red_glaze:
   use: "Removed"
 bowl_of_yellow_glaze:
   id: 15691
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "You can replace this by speaking to the impling manager."
@@ -68653,7 +68138,6 @@ bowl_of_yellow_glaze:
   use: "Removed"
 bowl_of_orange_glaze:
   id: 15692
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "You can replace this by speaking to the impling manager."
@@ -68662,7 +68146,6 @@ bowl_of_orange_glaze:
   use: "Removed"
 bowl_of_green_glaze:
   id: 15693
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "You can replace this by speaking to the impling manager."
@@ -68671,7 +68154,6 @@ bowl_of_green_glaze:
   use: "Removed"
 bowl_of_purple_glaze:
   id: 15694
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "You can replace this by speaking to the impling manager."
@@ -68680,7 +68162,6 @@ bowl_of_purple_glaze:
   use: "Removed"
 bowl_of_vermillion_glaze:
   id: 15695
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "You can replace this by speaking to the impling manager."
@@ -68689,7 +68170,6 @@ bowl_of_vermillion_glaze:
   use: "Removed"
 bowl_of_amber_glaze:
   id: 15696
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "You can replace this by speaking to the impling manager."
@@ -68698,7 +68178,6 @@ bowl_of_amber_glaze:
   use: "Removed"
 bowl_of_chartreuse_glaze:
   id: 15697
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "You can replace this by speaking to the impling manager."
@@ -68707,7 +68186,6 @@ bowl_of_chartreuse_glaze:
   use: "Removed"
 bowl_of_aquamarine_glaze:
   id: 15698
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "You can replace this by speaking to the impling manager."
@@ -68716,7 +68194,6 @@ bowl_of_aquamarine_glaze:
   use: "Removed"
 bowl_of_indigo_glaze:
   id: 15699
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "You can replace this by speaking to the impling manager"
@@ -68725,7 +68202,6 @@ bowl_of_indigo_glaze:
   use: "Removed"
 bowl_of_magenta_glaze:
   id: 15700
-  bankable: false
   tradeable: false
   weight: 0.907
   destroy: "You can replace this by speaking to the impling manager."
@@ -80044,7 +79520,6 @@ diagram:
   kept: "Wilderness"
 book_of_knowledge_elemental_workshop_iii:
   id: 18702
-  bankable: false
   tradeable: false
   weight: 1.0
   destroy: "This book is irreplaceable"
@@ -80053,7 +79528,6 @@ book_of_knowledge_elemental_workshop_iii:
   kept: "Wilderness"
 flare:
   id: 18704
-  bankable: false
   tradeable: false
   weight: 0.028
   examine: "I can use this to signal to a catapult operator."
@@ -80328,7 +79802,6 @@ case_report_3:
   kept: "Vanish"
 crime_scene_viewing_orb:
   id: 18761
-  bankable: false
   tradeable: false
   weight: 0.05
   destroy: "You can get another from the filing cabinet in Seer's Village courthouse."
@@ -80336,7 +79809,6 @@ crime_scene_viewing_orb:
   kept: "Vanish"
 magnifying_glass_court_cases:
   id: 18762
-  bankable: false
   tradeable: false
   weight: 0.002
   destroy: "If you destroy this you will leave the crime scene."
@@ -80350,7 +79822,6 @@ mission_machine:
   kept: "Reclaim"
 bat_in_a_box:
   id: 18765
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "If you destroy this you will leave the crime scene."
@@ -80364,7 +79835,6 @@ nightstick:
   kept: "Reclaim"
 humble_pie:
   id: 18767
-  bankable: false
   tradeable: false
   weight: 0.45
   destroy: "If you destroy this, you will not be able to get another one."
@@ -80428,7 +79898,6 @@ gorged_ancient_effigy:
   kept: "Reclaim"
 dragonkin_lamp:
   id: 18782
-  bankable: false
   tradeable: false
   weight: 0.3
   destroy: "Rub this lamp to claim your reward - it will be destroyed in the process. If you choose to destroy it now, you cannot replace it."
@@ -80436,7 +79905,6 @@ dragonkin_lamp:
   kept: "Reclaim"
 antique_lamp_ancient_effigies:
   id: 18783
-  bankable: false
   tradeable: false
   weight: 0.1
   destroy: "Are you sure you want to destroy this item? If you destroy this item, you cannot reclaim it."
@@ -80444,7 +79912,6 @@ antique_lamp_ancient_effigies:
   kept: "Vanish"
 korasis_sword_quiet_before_the_swarm:
   id: 18786
-  bankable: false
   tradeable: false
   weight: 1.814
   slot: "Weapon"
@@ -83168,7 +82635,6 @@ mysterious_clue_scroll:
 blocks_iron_oxide:
   &blocks_iron_oxide
   id: 19627
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "No"
@@ -83258,7 +82724,6 @@ wood_shards:
   kept: "Vanish"
 commorb_tyr:
   id: 19640
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "Your CommOrb will automatically self destruct when dropped. Please speak to your Temple Knight superior to receive another."
@@ -83715,7 +83180,6 @@ antique_lamp_hard_lumbridge_tasks:
   id: 19761
 hamper:
   id: 19762
-  bankable: false
   tradeable: false
   bank_stacks: false
   weight: 2.267
@@ -83797,7 +83261,6 @@ love_poem:
   kept: "Wilderness"
 antique_lamp_gunnars_ground:
   id: 19775
-  bankable: false
   tradeable: false
   weight: 0.1
   destroy: "You can not get a replacement for the ancient lamp."
@@ -84025,7 +83488,6 @@ sprite_lure:
   kept: "Vanish"
 sprite_lure_bag:
   id: 19806
-  bankable: false
   tradeable: false
   weight: 1.0
   destroy: "The sprite lure bag is not much use on its own. You will have to talk to Yaktwee to gain another sprite lure."
@@ -84083,7 +83545,6 @@ bone_brooch:
   use: "Limited"
 empty_moonshine_vial:
   id: 19833
-  bankable: false
   tradeable: false
   weight: 0.015
   destroy: "You can get more from the buffet table."
@@ -84092,7 +83553,6 @@ empty_moonshine_vial:
   use: "Removed"
 strained_moonshine_vial:
   id: 19834
-  bankable: false
   tradeable: false
   weight: 0.015
   destroy: "You'll need to remake this using ingredients from the buffet table."
@@ -84101,7 +83561,6 @@ strained_moonshine_vial:
   use: "Removed"
 unfinished_moonshine_blood:
   id: 19835
-  bankable: false
   tradeable: false
   weight: 0.056
   destroy: "You'll need to remake this using ingredients from the buffet table."
@@ -84110,7 +83569,6 @@ unfinished_moonshine_blood:
   use: "Removed"
 unfinished_moonshine_blood_and_fear:
   id: 19836
-  bankable: false
   tradeable: false
   weight: 0.056
   destroy: "You'll need to remake this using ingredients from the buffet table."
@@ -84119,7 +83577,6 @@ unfinished_moonshine_blood_and_fear:
   use: "Removed"
 pile_of_ground_bones:
   id: 19837
-  bankable: false
   tradeable: false
   weight: 0.056
   destroy: "You can get more from the buffet table."
@@ -84128,7 +83585,6 @@ pile_of_ground_bones:
   use: "Removed"
 big_bottle_of_blood:
   id: 19838
-  bankable: false
   tradeable: false
   weight: 0.035
   destroy: "You can get more from the buffet table."
@@ -84137,14 +83593,12 @@ big_bottle_of_blood:
   use: "Removed"
 failed_moonshine:
   id: 19839
-  bankable: false
   tradeable: false
   weight: 0.035
   examine: "It does not smell pleasant."
   kept: "Vanish"
 pile_of_evil_leaves:
   id: 19840
-  bankable: false
   tradeable: false
   weight: 0.028
   destroy: "You can get more from the buffet table."
@@ -84153,7 +83607,6 @@ pile_of_evil_leaves:
   use: "Removed"
 big_bottle_of_fear:
   id: 19841
-  bankable: false
   tradeable: false
   weight: 0.056
   destroy: "You can get more from the buffet table."
@@ -84162,7 +83615,6 @@ big_bottle_of_fear:
   use: "Removed"
 moonshine:
   id: 19842
-  bankable: false
   tradeable: false
   weight: 0.025
   destroy: "You'll need to remake the moonshine using ingredients from the buffet table."
@@ -84181,7 +83633,6 @@ picture_219:
   id: 19844
 zabeths_autograph:
   id: 19845
-  bankable: false
   tradeable: false
   weight: 0.005
   destroy: "You can get this back by speaking to Zabeth Corvid."
@@ -84945,7 +84396,6 @@ clay_ring_unfired_noted: 20055
 clay_ring_noted: 20056
 chimp_ice:
   id: 20057
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You can commission another from Rokuh, the choc ice seller, for 1000 coins."
@@ -85128,7 +84578,6 @@ golden_hammer:
 miner_1:
   &miner_1
   id: 20085
-  bankable: false
   tradeable: false
   weight: 0.001
   destroy: "You should take that miner to Foreman Jaak."
