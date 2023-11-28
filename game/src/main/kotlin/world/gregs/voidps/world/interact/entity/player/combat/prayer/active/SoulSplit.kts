@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
 
-import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -11,15 +10,15 @@ import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.dead
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun usingSoulSplit(player: Player) = player.praying("soul_split") && !player.hasClock("blood_forfeit") && player.levels.getOffset(Skill.Constitution) < 0
+fun usingSoulSplit(player: Player) = player.praying("soul_split") && player.levels.getOffset(Skill.Constitution) < 0
 
-on<CombatAttack>({ source -> source is Player && usingSoulSplit(source) && damage >= 5 && type != "deflect" && type != "cannon" && !target.isFamiliar }) { player: Character ->
+on<CombatAttack>({ usingSoulSplit(it) && damage >= 5 && type != "deflect" && type != "cannon" && !target.isFamiliar }) { player: Player ->
     val distance = player.tile.distanceTo(target)
     player.shoot("soul_split", target, height = 10, endHeight = 10)
     val ticks = Hit.magicDelay(distance)
