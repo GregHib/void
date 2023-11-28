@@ -78,6 +78,7 @@ internal class CombatTest : WorldTest() {
         val player = createPlayer("player", emptyTile)
         val npc = createNPC("rat", emptyTile.addY(4))
 
+        player.levels.set(Skill.Ranged, 50)
         player.equipment.set(EquipSlot.Weapon.index, "magic_shortbow")
         player.equipment.set(EquipSlot.Ammo.index, "rune_arrow", 100)
         player.experience.set(Skill.Ranged, EXPERIENCE)
@@ -156,6 +157,7 @@ internal class CombatTest : WorldTest() {
         player.equipment.set(EquipSlot.Weapon.index, "magic_shortbow")
         player.equipment.set(EquipSlot.Ammo.index, "rune_arrow", 100)
         player.experience.set(Skill.Ranged, EXPERIENCE)
+        player.levels.set(Skill.Ranged, 50)
         player.levels.boost(Skill.Ranged, 25)
 
         player.interfaceOption("combat_styles", "style1")

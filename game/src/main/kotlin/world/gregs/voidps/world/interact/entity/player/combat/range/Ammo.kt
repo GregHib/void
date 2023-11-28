@@ -90,7 +90,7 @@ object Ammo {
                 target.levels.drain(Skill.Magic, 1)
             }
             source.ammo == "sapphire_bolts_e" && chance(source, target, "clear_mind", 0.05) -> {
-                val amount = (source["range", 0] * 0.05).toInt()
+                val amount = (source["range_attack", 0] * 0.05).toInt()
                 target.levels.drain(Skill.Prayer, amount)
                 source.levels.restore(Skill.Prayer, amount / 2)
             }
