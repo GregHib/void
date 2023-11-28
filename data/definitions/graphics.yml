@@ -1444,3 +1444,4 @@ wrath_shoot:
   id: 2261
   curve: 20
   flight_time: [ 25, 25, 25 ]
+redemption: 436

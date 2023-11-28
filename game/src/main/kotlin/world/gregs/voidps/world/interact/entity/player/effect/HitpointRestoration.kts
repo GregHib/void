@@ -13,7 +13,6 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
 import java.util.concurrent.TimeUnit
 
-
 on<Registered>({ player -> player.levels.getOffset(Skill.Constitution) < 0 }) { player: Player ->
     player.softTimers.start("restore_hitpoints")
 }
