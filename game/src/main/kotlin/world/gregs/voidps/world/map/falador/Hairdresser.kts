@@ -85,7 +85,7 @@ on<InterfaceOption>({ id == "hairdressers_salon" && component == "styles" }) { p
     val value = if (beard) {
         enums.get(key).getInt(itemSlot / 2)
     } else {
-        enums.getStruct(key, itemSlot / 2, "id")
+        enums.getStruct(key, itemSlot / 2, "body_look_id")
     }
     player["makeover_$type"] = value
 }

@@ -114,7 +114,7 @@ on<InterfaceOption>({ id == "character_creation" && component == "styles" }) { p
     val sex = if (player["makeover_female", false]) "female" else "male"
     val part = player["character_part", "skin"]
     val value = if (part == "hair") {
-        enums.getStruct("character_${part}_styles_$sex", itemSlot, "id")
+        enums.getStruct("character_${part}_styles_$sex", itemSlot, "body_look_id")
     } else {
         enums.get("character_${part}_styles_$sex").getInt(itemSlot)
     }
@@ -170,7 +170,7 @@ fun setStyle(player: Player, id: Int) {
     val sex = if (player["makeover_female", false]) "female" else "male"
     for (index in 0 until size) {
         for (subIndex in 0..5) {
-            val value = enums.getStruct("character_styles", index, "sub_style_${sex}_$subIndex", -1)
+            val value = enums.getStruct("character_styles", index, "character_creation_sub_style_${sex}_$subIndex", -1)
             if (value == id) {
                 player["character_creation_style"] = index + 1
                 player["character_creation_sub_style"] = subIndex + 1
@@ -184,7 +184,7 @@ fun swapSex(player: Player, female: Boolean) {
     player["makeover_female"] = female
     player["character_creation_female"] = female
     val hairStyle = player.get<Int>("character_creation_hair_style")
-    val hair: Int = enums.getStruct("character_hair_styles_${if (female) "female" else "male"}", hairStyle, "id")
+    val hair: Int = enums.getStruct("character_hair_styles_${if (female) "female" else "male"}", hairStyle, "body_look_id")
     val beard: Int = if (female) -1 else enums.get("character_beard_styles_male").getInt(hairStyle / 2)
     player["makeover_hair"] = hair
     player["makeover_beard"] = beard
@@ -195,6 +195,6 @@ fun swapSex(player: Player, female: Boolean) {
 fun getStyleStruct(player: Player, styleIndex: Int, subIndex: Int): StructDefinition {
     val female = player["makeover_female", false]
     val sex = if (female) "female" else "male"
-    val value: Int = enums.getStruct("character_styles", styleIndex, "sub_style_${sex}_${subIndex}")
+    val value: Int = enums.getStruct("character_styles", styleIndex, "character_creation_sub_style_${sex}_${subIndex}")
     return structs.get(value)
 }

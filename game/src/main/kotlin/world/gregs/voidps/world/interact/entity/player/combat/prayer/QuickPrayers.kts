@@ -12,12 +12,12 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.world.interact.entity.death.Death
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.QUICK_CURSES
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.QUICK_PRAYERS
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.TEMP_QUICK_PRAYERS
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.USING_QUICK_PRAYERS
-import world.gregs.voidps.world.interact.entity.death.Death
 import world.gregs.voidps.world.interact.entity.player.display.Tab
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
@@ -65,7 +65,7 @@ on<InterfaceOption>({ id == "prayer_list" && component == "quick_prayers" }) { p
 fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
     val curses = isCurses()
     val enum = if (curses) "curses" else "prayers"
-    val description = enums.getStruct(enum, index, "description", "")
+    val description = enums.getStruct(enum, index, "prayer_description", "")
     val name = getPrayerName(description)?.toSnakeCase() ?: return logger.warn { "Unable to find prayer button $index $listKey $description" }
     val activated = containsVarbit(listKey, name)
     if (activated) {
@@ -75,9 +75,9 @@ fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
             message("You need to recharge your Prayer at an altar.")
             return
         }
-        val requiredLevel = enums.getStruct(enum, index, "required_level", 0)
+        val requiredLevel = enums.getStruct(enum, index, "prayer_required_level", 0)
         if (!hasMax(Skill.Prayer, requiredLevel)) {
-            val message = enums.getStruct(enum, index, "message", "You need a prayer level of $requiredLevel to use $name.")
+            val message = enums.getStruct(enum, index, "prayer_requirement_text", "You need a prayer level of $requiredLevel to use $name.")
             message(message)
             return
         }

@@ -121,10 +121,10 @@ fun setAppearance(player: Player): Player {
     val male = random.nextBoolean()
     player.body.male = male
     val key = "look_hair_${if (male) "male" else "female"}"
-    player.body.setLook(BodyPart.Hair, enums.getStruct(key, random.nextInt(0, enums.get(key).length), "id"))
+    player.body.setLook(BodyPart.Hair, enums.getStruct(key, random.nextInt(0, enums.get(key).length), "body_look_id"))
     player.body.setLook(BodyPart.Beard, if (male) enums.get("look_beard_male").randomInt() else -1)
     val size = enums.get("character_styles").length
-    val style = enums.getStruct("character_styles", (0 until size).random(), "sub_style_${player.sex}_0", -1)
+    val style = enums.getStruct("character_styles", (0 until size).random(), "character_creation_sub_style_${player.sex}_0", -1)
     val struct = structs.get(style)
     player.body.setLook(BodyPart.Chest, struct["character_style_top"])
     player.body.setLook(BodyPart.Arms, struct["character_style_arms"])

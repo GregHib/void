@@ -24,12 +24,12 @@ import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.effect.transform
@@ -239,7 +239,7 @@ on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player:
 fun swapSex(player: Player, male: Boolean) {
     player.body.male = male
     val key = "look_hair_${if (male) "male" else "female"}"
-    player.body.setLook(BodyPart.Hair, enums.getStruct(key, enums.get(key).randomInt(), "id"))
+    player.body.setLook(BodyPart.Hair, enums.getStruct(key, enums.get(key).randomInt(), "body_look_id"))
     player.body.setLook(BodyPart.Beard, if (male) enums.get("look_beard_male").randomInt() else -1)
     swapLook(player, male, BodyPart.Arms, "arms")
     swapLook(player, male, BodyPart.Hands, "wrists")

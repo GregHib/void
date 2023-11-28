@@ -117,10 +117,10 @@ summoning_pouch_req_item_id_1: 697
 summoning_pouch_req_item_amount_1: 698
 summoning_pouch_req_item_id_2: 699
 summoning_pouch_req_item_amount_2: 700
-prayer_tooltip_text: 734
+prayer_description: 734
 prayer_sprite_active: 735
 prayer_sprite_inactive: 736
-prayer_index: 737
+prayer_required_level: 737
 prayer_requirement_text: 738
 prayer_is_members: 739
 unlit_bug_lantern: 740

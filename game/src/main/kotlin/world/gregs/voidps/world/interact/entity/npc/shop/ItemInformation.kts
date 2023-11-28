@@ -82,7 +82,7 @@ fun setRequirements(player: Player, def: ItemDefinition) {
         }
         if (quest != -1) {
             val colour = Colours.bool(false)
-            val name: String = enums.getStruct("item_info_quests", quest, "quest_name")
+            val name: String = enums.getStruct("item_info_quests", quest, "interface_text")
             builder.append("<$colour>Quest complete: $name<br>")
         }
         player["item_info_requirement"] = builder.toString()
