@@ -128,13 +128,13 @@ object Equipment {
 
     fun bonus(source: Character, target: Character, type: String, offense: Boolean): Int {
         return if (offense) {
-            style(source, type, if (source is NPC) "att_bonus" else combatStyle(type, source))
+            style(source, if (source is NPC) "att_bonus" else "${combatStyle(type, source)}_attack")
         } else {
-            style(target, type, "${combatStyle(type, target)}_def")
+            style(target, "${combatStyle(type, target)}_defence")
         }
     }
 
-    private fun style(character: Character, type: String, style: String = combatStyle(type, character)): Int {
+    private fun style(character: Character, style: String): Int {
         return if (character is NPC) character.def[style, 0] else character.getOrNull(style) ?: 0
     }
 

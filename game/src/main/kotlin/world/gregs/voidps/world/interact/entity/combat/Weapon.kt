@@ -99,10 +99,10 @@ object Weapon {
     }
 
     fun strengthBonus(source: Character, type: String, weapon: Item?) = when {
-        type == "blaze" -> weapon?.def?.getOrNull("magic_str") ?: 0
+        type == "blaze" -> weapon?.def?.getOrNull("magic_strength") ?: 0
         // Is thrown or no ammo required
-        type == "range" && source is Player && weapon != null && (weapon.id == source.ammo || !Ammo.required(weapon)) -> weapon.def["range_str", 0]
-        else -> source[if (type == "range") "range_str" else "str", 0]
+        type == "range" && source is Player && weapon != null && (weapon.id == source.ammo || !Ammo.required(weapon)) -> weapon.def["ranged_strength", 0]
+        else -> source[if (type == "range") "ranged_strength" else "strength", 0]
     } + 64
 
     fun specialDamageModifiers(weapon: Item, special: Boolean, baseDamage: Int): Int {

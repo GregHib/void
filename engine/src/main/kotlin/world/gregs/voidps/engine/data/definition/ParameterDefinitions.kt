@@ -36,7 +36,7 @@ class ParameterDefinitions(
     override fun set(extras: MutableMap<String, Any>, name: String, value: Any) {
         when {
             name.startsWith("equip_skill_") || name.startsWith("equip_level_") -> {
-                val map = extras.getOrPut("equip_skill_1") { Object2IntOpenHashMap<Skill>(6) } as MutableMap<Skill, Int>
+                val map = extras.getOrPut("equip_req") { Object2IntOpenHashMap<Skill>(6) } as MutableMap<Skill, Int>
                 if (name.startsWith("equip_skill_")) {
                     val skill = Skill.all[value as Int]
                     map[skill] = -1
@@ -46,7 +46,7 @@ class ParameterDefinitions(
                 }
             }
             name.startsWith("use_skill_") || name.startsWith("use_level_") -> {
-                val map = extras.getOrPut("use_skill_1") { Object2IntOpenHashMap<Skill>(6) } as MutableMap<Skill, Int>
+                val map = extras.getOrPut("skill_req") { Object2IntOpenHashMap<Skill>(6) } as MutableMap<Skill, Int>
                 if (name.startsWith("use_skill_")) {
                     val skill = Skill.all[value as Int]
                     map[skill] = -1
@@ -66,7 +66,7 @@ class ParameterDefinitions(
                 extras[name] = categoryDefinitions.get(int).stringId
             }
             name.startsWith("equipped_option_") -> {
-                val list = extras.getOrPut("equipped_option_1") { Int2ObjectOpenHashMap<String>(4) } as MutableMap<Int, String>
+                val list = extras.getOrPut("equipped_options") { Int2ObjectOpenHashMap<String>(4) } as MutableMap<Int, String>
                 list[name.removePrefix("equipped_option_").toInt() - 1] = value as String
             }
             else -> super.set(extras, name, value)

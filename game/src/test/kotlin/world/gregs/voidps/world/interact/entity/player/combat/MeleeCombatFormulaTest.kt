@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerStart
-import world.gregs.voidps.world.interact.entity.combat.combatStyle
 import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
 import kotlin.test.assertEquals
 
@@ -45,7 +44,6 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
         val player = createPlayer(Skill.Attack to 20, Skill.Strength to 20)
         player.equipment.set(EquipSlot.Weapon.index, "bronze_scimitar")
         val npc = createNPC("giant_rat")
-        println(player.combatStyle)
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", Item("bronze_scimitar"))
 

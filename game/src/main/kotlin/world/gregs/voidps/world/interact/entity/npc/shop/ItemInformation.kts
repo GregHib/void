@@ -99,11 +99,11 @@ fun getStat(definitions: ItemDefinition, key: String): String {
 
 fun attackStatsColumn(def: ItemDefinition): String = """
         Attack
-        ${getStat(def, "stab")}
-        ${getStat(def, "slash")}
-        ${getStat(def, "crush")}
-        ${getStat(def, "magic")}
-        ${getStat(def, "range")}
+        ${getStat(def, "stab_attack")}
+        ${getStat(def, "slash_attack")}
+        ${getStat(def, "crush_attack")}
+        ${getStat(def, "magic_attack")}
+        ${getStat(def, "range_attack")}
         <yellow>---
         Strength
         Ranged Strength
@@ -116,19 +116,19 @@ fun attackStatsColumn(def: ItemDefinition): String = """
 
 fun defenceStatsColumn(def: ItemDefinition): String = """
         Defence
-        ${getStat(def, "stab_def")}
-        ${getStat(def, "slash_def")}
-        ${getStat(def, "crush_def")}
-        ${getStat(def, "magic_def")}
-        ${getStat(def, "range_def")}
-        ${getStat(def, "summoning_def")}
-        ${getStat(def, "str")}
-        ${getStat(def, "range_str")}
+        ${getStat(def, "stab_defence")}
+        ${getStat(def, "slash_defence")}
+        ${getStat(def, "crush_defence")}
+        ${getStat(def, "magic_defence")}
+        ${getStat(def, "range_defence")}
+        ${getStat(def, "summoning_defence")}
+        ${getStat(def, "strength")}
+        ${getStat(def, "ranged_strength")}
         ${getStat(def, "magic_damage")}
         ${getStat(def, "absorb_melee")}
         ${getStat(def, "absorb_magic")}
         ${getStat(def, "absorb_range")}
-        ${getStat(def, "prayer")}
+        ${getStat(def, "prayer_bonus")}
     """.trimIndent().replace("\n", "<br>")
 
 val middleColumn = """
