@@ -50,7 +50,7 @@ internal class BodyPartsTest {
         val item = item("123")
         every { equipment[1] } returns item
         every { item.def.type } returns EquipType.None
-        every { item.def.has("equip") } returns true
+        every { item.def.contains("equip") } returns true
         every { item.def["equip", -1] } returns 2
         body.update(BodyPart.Back, false)
         assertEquals(2 or 0x8000, body.get(1))
@@ -71,7 +71,7 @@ internal class BodyPartsTest {
     fun `Update missing item and look sets to zero`() {
         // Given
         val item = item("123")
-        every { item.def.has("equip") } returns false
+        every { item.def.contains("equip") } returns false
         every { item.def["equip", -1] } returns -1
         every { item.def.type } returns EquipType.None
         every { equipment[10] } returns item

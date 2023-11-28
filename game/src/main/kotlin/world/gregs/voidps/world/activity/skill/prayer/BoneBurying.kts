@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.weakQueue
@@ -17,7 +16,7 @@ import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
 
 val logger = InlineLogger()
 
-on<InventoryOption>({ inventory == "inventory" && item.def.has("prayer_xp") && option == "Bury" }) { player: Player ->
+on<InventoryOption>({ inventory == "inventory" && item.def.contains("prayer_xp") && option == "Bury" }) { player: Player ->
     if (player.hasClock("bone_delay")) {
         return@on
     }

@@ -165,7 +165,7 @@ fun showStats(player: Player, item: ItemDefinition) {
         addValue(i)
     }
 
-    if (item.has("attack_speed")) {
+    if (item.contains("attack_speed")) {
         val attackSpeed = item["attack_speed", 4]
         appendLine("attack rate", when (attackSpeed) {
             2 -> "Very fast"

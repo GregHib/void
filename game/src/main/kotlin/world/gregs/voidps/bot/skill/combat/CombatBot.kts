@@ -53,7 +53,7 @@ onBot<VariableSet>({ key == "under_attack" && to == 0 }) { bot: Bot ->
 onBot<CombatSwing> { bot: Bot ->
     val player = bot.player
     if (player.levels.getPercent(Skill.Constitution) < 50.0) {
-        val food = player.inventory.items.firstOrNull { it.def.has("heals") } ?: return@onBot
+        val food = player.inventory.items.firstOrNull { it.def.contains("heals") } ?: return@onBot
         bot.inventoryOption(food.id, "Eat")
     }
 }

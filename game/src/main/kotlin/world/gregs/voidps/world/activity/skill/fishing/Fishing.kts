@@ -30,21 +30,21 @@ import world.gregs.voidps.engine.inv.hasItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.type.random
 
 val logger = InlineLogger()
 val itemDefinitions: ItemDefinitions by inject()
 
-on<Moved>({ it.contains("fishers") && it.def.has("fishing") }) { npc: NPC ->
+on<Moved>({ it.contains("fishers") && it.def.contains("fishing") }) { npc: NPC ->
     val fishers: Set<Player> = npc.remove("fishers") ?: return@on
     for (fisher in fishers) {
         fisher.queue.clearWeak()
     }
 }
 
-on<NPCOption>({ operate && def.has("fishing") }) { player: Player ->
+on<NPCOption>({ operate && def.contains("fishing") }) { player: Player ->
     arriveDelay()
     target.getOrPut("fishers") { mutableSetOf<Player>() }.add(player)
     player.softTimers.start("fishing")

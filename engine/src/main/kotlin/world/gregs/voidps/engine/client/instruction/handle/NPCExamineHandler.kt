@@ -13,7 +13,7 @@ class NPCExamineHandler(
 
     override fun validate(player: Player, instruction: ExamineNpc) {
         val definition = definitions.get(instruction.npcId)
-        if (definition.has("examine")) {
+        if (definition.contains("examine")) {
             player.message(definition["examine"], ChatType.Game)
         }
     }

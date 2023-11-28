@@ -36,7 +36,7 @@ val GameObject.cookingRange: Boolean get() = id.startsWith("cooking_range")
 
 val GameObject.heatSource: Boolean get() = id.startsWith("fire_") || cookingRange
 
-on<ItemOnObject>({ operate && target.heatSource && item.def.has("cooking") }) { player: Player ->
+on<ItemOnObject>({ operate && target.heatSource && item.def.contains("cooking") }) { player: Player ->
     arriveDelay()
     val definition = if (player["sinew", false]) definitions.get("sinew") else if (item.id == "sinew") return@on else item.def
     player["sinew"] = false

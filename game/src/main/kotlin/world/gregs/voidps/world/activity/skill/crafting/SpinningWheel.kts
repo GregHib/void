@@ -67,7 +67,7 @@ on<ObjectOption>({ operate && target.id.startsWith("spinning_wheel") && option =
     start(player, target, fibre, amount)
 }
 
-on<ItemOnObject>({ operate && target.id.startsWith("spinning_wheel") && item.def.has("spinning") }) { player: Player ->
+on<ItemOnObject>({ operate && target.id.startsWith("spinning_wheel") && item.def.contains("spinning") }) { player: Player ->
     val (_, amount) = makeAmount(
         items = listOf(item.spinning.to),
         type = "Make",

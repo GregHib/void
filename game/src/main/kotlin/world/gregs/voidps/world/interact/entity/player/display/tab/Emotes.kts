@@ -142,7 +142,7 @@ fun areaClear(player: Player): Boolean {
 }
 
 on<ItemChanged>({ inventory == "worn_equipment" && index == EquipSlot.Cape.index }) { player: Player ->
-    player["unlocked_emote_skillcape"] = item.def.has("skillcape") || item.def.has("skillcape_t") || item.id == "quest_point_cape"
+    player["unlocked_emote_skillcape"] = item.def.contains("skillcape") || item.def.contains("skillcape_t") || item.id == "quest_point_cape"
 }
 
 suspend fun CharacterContext.playEnhancedEmote(player: Player, type: String) {

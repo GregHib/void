@@ -30,7 +30,7 @@ object Price {
             return price
         }
         val def = itemDefs.get(itemId)
-        if (def.has("skillcape") || def.has("skillcape_t")) {
+        if (def.contains("skillcape") || def.contains("skillcape_t")) {
             return 99000
         }
         val count = player["amount_$index", -1]

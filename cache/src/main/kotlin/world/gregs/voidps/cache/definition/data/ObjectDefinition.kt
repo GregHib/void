@@ -29,13 +29,13 @@ data class ObjectDefinition(
         -1
     }
 
-    fun contains(option: String): Boolean = if (options != null) {
+    fun containsOption(option: String): Boolean = if (options != null) {
         options!!.contains(option)
     } else {
         false
     }
 
-    fun contains(index: Int, option: String): Boolean = if (options != null) {
+    fun containsOption(index: Int, option: String): Boolean = if (options != null) {
         options!![index] == option
     } else {
         false

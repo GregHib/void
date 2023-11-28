@@ -19,7 +19,7 @@ object ItemDefinitionPatcher {
         for (id in decoder.indices) {
             val def = current.getOrNull(id) ?: continue
             val def2 = newer.getOrNull(id) ?: continue
-            if (!def.has("weight") && def2.has("weight")) {
+            if (!def.contains("weight") && def2.contains("weight")) {
                 map[id] = def2.getOrNull("weight") ?: continue
             }
         }

@@ -67,7 +67,7 @@ fun showInfo(player: Player, item: Item, index: Int, sample: Boolean) {
 
 fun setRequirements(player: Player, def: ItemDefinition) {
     val quest = def["quest_info", -1]
-    if (def.has("equip_req") || def.has("maxed_skill") || quest != -1) {
+    if (def.contains("equip_req") || def.contains("maxed_skill") || quest != -1) {
         player["item_info_requirement_title"] = enums.get("item_info_requirement_titles").getString(def.slot.index)
         val builder = StringBuilder()
         val requirements = def.getOrNull<Map<Skill, Int>>("equip_req") ?: emptyMap()
