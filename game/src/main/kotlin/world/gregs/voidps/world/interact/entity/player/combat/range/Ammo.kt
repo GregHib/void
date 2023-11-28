@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range
 
 import org.rsmod.game.pathfinder.flag.CollisionFlag
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
@@ -30,7 +29,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
 object Ammo {
-    fun required(item: Item) = item.def["ammo_group", -1] == 106 && !item.id.endsWith("chinchompa")
+    fun required(item: Item) = item.def["ammo_group", "none"] != "none" && !item.id.endsWith("chinchompa")
 
     fun remove(player: Player, target: Character, ammo: String, required: Int) {
         if (ammo == "bolt_rack") {
@@ -130,6 +129,3 @@ object Ammo {
 var Player.ammo: String
     get() = get("ammo", "")
     set(value) = set("ammo", value)
-
-val ItemDefinition.ammo: Set<String>
-    get() = getOrNull("ammo") ?: emptySet()

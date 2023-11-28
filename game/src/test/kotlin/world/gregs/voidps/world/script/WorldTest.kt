@@ -154,6 +154,8 @@ abstract class WorldTest : KoinTest {
                 single(createdAtStart = true) { quickChatPhraseDefinitions }
                 single(createdAtStart = true) { weaponStyleDefinitions }
                 single(createdAtStart = true) { enumDefinitions }
+                single { ammoDefinitions }
+                single { parameterDefinitions }
                 single { xteas }
                 single { gameObjects }
                 single { mapDefinitions }
@@ -228,7 +230,8 @@ abstract class WorldTest : KoinTest {
         private val active = File("../data/cache/active/")
         private val cache: Cache by lazy { CacheDelegate(getProperty("cachePath")) }
         private val huffman: Huffman by lazy { Huffman().load(active.resolve(ActiveCache.indexFile(Index.HUFFMAN)).readBytes()) }
-        private val parameterDefinitions: ParameterDefinitions by lazy { ParameterDefinitions(CategoryDefinitions().load()).load() }
+        private val ammoDefinitions: AmmoDefinitions by lazy { AmmoDefinitions().load() }
+        private val parameterDefinitions: ParameterDefinitions by lazy { ParameterDefinitions(CategoryDefinitions().load(), ammoDefinitions).load() }
         private val objectDefinitions: ObjectDefinitions by lazy { ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false, parameterDefinitions).load(active)).load() }
         private val npcDefinitions: NPCDefinitions by lazy { NPCDefinitions(NPCDecoder(member = true, parameterDefinitions).load(active)).load() }
         private val itemDefinitions: ItemDefinitions by lazy { ItemDefinitions(ItemDecoder(parameterDefinitions).load(active)).load() }

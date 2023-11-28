@@ -13,7 +13,8 @@ import world.gregs.voidps.engine.timedLoad
 import world.gregs.yaml.Yaml
 
 class ParameterDefinitions(
-    private val categoryDefinitions: CategoryDefinitions
+    private val categoryDefinitions: CategoryDefinitions,
+    private val ammoDefinitions: AmmoDefinitions
 ) : DefinitionsDecoder<ParameterDefinition>, Parameters {
 
     override lateinit var definitions: Array<ParameterDefinition>
@@ -64,6 +65,10 @@ class ParameterDefinitions(
             name == "category" -> {
                 val int = value as Int
                 extras[name] = categoryDefinitions.get(int).stringId
+            }
+            name == "ammo_group" -> {
+                val int = value as Int
+                extras[name] = ammoDefinitions.get(int).stringId
             }
             name.startsWith("equipped_option_") -> {
                 val list = extras.getOrPut("equipped_options") { Int2ObjectOpenHashMap<String>(4) } as MutableMap<Int, String>

@@ -11,6 +11,7 @@ import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.VariableSet
+import world.gregs.voidps.engine.data.definition.AmmoDefinitions
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Registered
@@ -40,7 +41,6 @@ import world.gregs.voidps.world.interact.entity.death.Death
 import world.gregs.voidps.world.interact.entity.death.weightedSample
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
-import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
@@ -172,8 +172,9 @@ fun Bot.equipAmmo(skill: Skill) {
         val ammo = player.equipped(EquipSlot.Ammo)
         if (ammo.isEmpty()) {
             val weapon = player.equipped(EquipSlot.Weapon)
+            val ammoDefinitions: AmmoDefinitions = get()
             player.inventory.items
-                .firstOrNull { player.hasRequirements(it) && weapon.def.ammo.contains(it.id) }
+                .firstOrNull { player.hasRequirements(it) && ammoDefinitions.get(weapon.def["ammo_group", ""]).items.contains(it.id) }
                 ?.let {
                     equip(it.id)
                 }
