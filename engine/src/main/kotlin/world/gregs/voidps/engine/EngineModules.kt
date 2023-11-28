@@ -74,4 +74,7 @@ val engineModule = module {
     single(createdAtStart = true) { ItemOnItemDefinitions().load() }
     single(createdAtStart = true) { AccountDefinitions().load() }
     single(createdAtStart = true) { HuntModeDefinitions().load() }
+    single(createdAtStart = true) { AmmoDefinitions().load() }
+    single(createdAtStart = true) { CategoryDefinitions().load() }
+    single(createdAtStart = true) { ParameterDefinitions().load() }
 }
