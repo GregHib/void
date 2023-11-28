@@ -12,7 +12,7 @@ internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, Item
     override val intId: Int = 34
 
     override fun expected(): ItemDefinition {
-        return ItemDefinition(intId, stringId = id, extras = mapOf(
+        return ItemDefinition(intId, stringId = id, extras = mutableMapOf(
             "examine" to "A candle."
         ))
     }
