@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache.config.data
 
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Parameterized
+import world.gregs.voidps.cache.definition.Extra
 
 @Suppress("ArrayInDataClass")
 data class WorldMapInfoDefinition(
@@ -39,9 +39,10 @@ data class WorldMapInfoDefinition(
     var anInt1080: Int = -1,
     var anInt1071: Int = 0,
     var anInt1092: Int = 0,
-    override var params: Map<Long, Any>? = null,
     var anInt1068: Int = 2147483647,
     var anInt1089: Int = -2147483648,
     var anInt1051: Int = 2147483647,
-    var anInt1060: Int = -2147483648
-) : Definition, Parameterized
+    var anInt1060: Int = -2147483648,
+    override var stringId: String = "",
+    override var extras: Map<String, Any>? = null
+) : Definition, Extra

@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache.config.data
 
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Parameterized
+import world.gregs.voidps.cache.definition.Extra
 
 @Suppress("ArrayInDataClass")
 data class QuestDefinition(
@@ -22,5 +22,6 @@ data class QuestDefinition(
     var anIntArray2195: IntArray? = null,
     var anIntArray2190: IntArray? = null,
     var aStringArray2198: Array<String?>? = null,
-    override var params: Map<Long, Any>? = null
-) : Definition, Parameterized
+    override var stringId: String = "",
+    override var extras: Map<String, Any>? = null,
+) : Definition, Extra

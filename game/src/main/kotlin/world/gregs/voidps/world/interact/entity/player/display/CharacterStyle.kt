@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.display
 
 import world.gregs.voidps.cache.config.data.StructDefinition
-import world.gregs.voidps.cache.definition.Parameter
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.get
 
@@ -12,7 +11,7 @@ object CharacterStyle {
         val structs: StructDefinitions = get()
         for (i in 0 until 64) {
             val style = structs.get(STRUCT + i)
-            if (style.getParam<Int>(Parameter.CHARACTER_STYLE_TOP) == top) {
+            if (style.get<Int>("character_style_top") == top) {
                 block.invoke(style)
                 break
             }

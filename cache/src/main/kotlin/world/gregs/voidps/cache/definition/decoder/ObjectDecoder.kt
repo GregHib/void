@@ -3,11 +3,13 @@ package world.gregs.voidps.cache.definition.decoder
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Index.OBJECTS
+import world.gregs.voidps.cache.definition.Parameters
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 
 open class ObjectDecoder(
     val member: Boolean,
-    val lowDetail: Boolean
+    val lowDetail: Boolean,
+    private val parameters: Parameters = Parameters.EMPTY
 ) : DefinitionDecoder<ObjectDefinition>(OBJECTS) {
 
     override fun create(size: Int) = Array(size) { ObjectDefinition(it) }
@@ -68,7 +70,7 @@ open class ObjectDecoder(
             160 -> buffer.skip(buffer.readUnsignedByte() * 2)
             162, 163, 173 -> buffer.skip(4)
             170, 171 -> buffer.readSmart()
-            249 -> readParameters(buffer)
+            249 -> readParameters(buffer, parameters)
         }
     }
 

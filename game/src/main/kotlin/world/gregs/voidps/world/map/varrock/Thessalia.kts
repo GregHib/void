@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.map.varrock
 
-import world.gregs.voidps.cache.definition.Parameter
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
@@ -136,8 +135,8 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component == "styles" }) {
             setDefaultArms(player)
         } else if (current) {
             onStyle(value) {
-                player["makeover_arms"] = it.getParam<Int>(Parameter.CHARACTER_STYLE_ARMS)
-                player["makeover_wrists"] = it.getParam<Int>(Parameter.CHARACTER_STYLE_WRISTS)
+                player["makeover_arms"] = it.get<Int>("character_style_arms")
+                player["makeover_wrists"] = it.get<Int>("character_style_wrists")
             }
         }
     }

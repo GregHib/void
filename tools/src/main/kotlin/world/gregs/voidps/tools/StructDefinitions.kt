@@ -14,10 +14,10 @@ object StructDefinitions {
         val set = mutableSetOf<Long>()
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.params != null) {
-                set.addAll(def.params!!.keys)
-                println("$i ${def}")
-            }
+//            if (def.params != null) {
+//                set.addAll(def.params!!.keys)
+//            }
+            println("$i ${def}")
         }
 
         val folder = File("C:\\Users\\Greg\\Documents\\Void\\decompiled-cs2-667\\")

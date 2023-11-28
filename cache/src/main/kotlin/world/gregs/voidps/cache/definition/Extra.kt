@@ -1,5 +1,8 @@
 package world.gregs.voidps.cache.definition
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
+import world.gregs.voidps.buffer.read.Reader
+
 @Suppress("UNCHECKED_CAST")
 interface Extra {
 
@@ -14,4 +17,17 @@ interface Extra {
 
     operator fun <T : Any> get(key: String, defaultValue: T) = getOrNull(key) as? T ?: defaultValue
 
+    fun readParameters(buffer: Reader, parameters: Parameters) {
+        val length = buffer.readUnsignedByte()
+        if (length == 0) {
+            return
+        }
+        val extras = Object2ObjectArrayMap<String, Any>()
+        for (i in 0 until length) {
+            val string = buffer.readUnsignedBoolean()
+            val id = buffer.readUnsignedMedium()
+            parameters.set(extras, id, if (string) buffer.readString() else buffer.readInt())
+        }
+        this.extras = extras
+    }
 }

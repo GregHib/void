@@ -324,9 +324,9 @@ character_style_arms: 1183
 character_style_wrists: 1184
 character_style_legs: 1185
 character_style_shoes: 1186
-character_style_top_colour_0: 1187
-character_style_legs_colour_0: 1188
-character_style_shoes_colour_0: 1189
+character_style_colour_top_0: 1187
+character_style_colour_legs_0: 1188
+character_style_colour_shoes_0: 1189
 character_style_colour_top_1: 1190
 character_style_colour_legs_1: 1191
 character_style_colour_shoes_1: 1192

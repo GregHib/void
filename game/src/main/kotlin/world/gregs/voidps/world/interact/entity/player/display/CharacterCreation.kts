@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.display
 
 import world.gregs.voidps.cache.config.data.StructDefinition
-import world.gregs.voidps.cache.definition.Parameter
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
@@ -71,11 +70,11 @@ fun updateStyle(
     player["character_creation_style"] = styleIndex + 1
     player["character_creation_sub_style"] = subIndex + 1
     val struct = getStyleStruct(player, styleIndex, subIndex)
-    player["makeover_top"] = struct.getParam(Parameter.CHARACTER_STYLE_TOP)
-    player["makeover_arms"] = struct.getParam(Parameter.CHARACTER_STYLE_ARMS)
-    player["makeover_wrists"] = struct.getParam(Parameter.CHARACTER_STYLE_WRISTS)
-    player["makeover_legs"] = struct.getParam(Parameter.CHARACTER_STYLE_LEGS)
-    player["makeover_shoes"] = struct.getParam(Parameter.CHARACTER_STYLE_SHOES)
+    player["makeover_top"] = struct["character_style_top"]
+    player["makeover_arms"] = struct["character_style_arms"]
+    player["makeover_wrists"] = struct["character_style_wrists"]
+    player["makeover_legs"] = struct["character_style_legs"]
+    player["makeover_shoes"] = struct["character_style_shoes"]
     updateColours(player, styleIndex, subIndex)
 }
 
@@ -86,10 +85,10 @@ fun updateColours(
     hairStyle: Int = player["character_creation_hair_style"]
 ) {
     val struct = getStyleStruct(player, styleIndex, subIndex)
-    val colour = hairStyle.rem(8) * 3L
-    player["makeover_colour_top"] = struct.getParam(Parameter.CHARACTER_STYLE_TOP_COLOUR_0 + colour)
-    player["makeover_colour_legs"] = struct.getParam(Parameter.CHARACTER_STYLE_LEGS_COLOUR_0 + colour)
-    player["makeover_colour_shoes"] = struct.getParam(Parameter.CHARACTER_STYLE_SHOES_COLOUR_0 + colour)
+    val colour = hairStyle.rem(8)
+    player["makeover_colour_top"] = struct["character_style_top_colour_$colour"]
+    player["makeover_colour_legs"] = struct["character_style_legs_colour_$colour"]
+    player["makeover_colour_shoes"] = struct["character_style_shoes_colour_$colour"]
 }
 
 on<InterfaceOption>({ id == "character_creation" && component.startsWith("part_") }) { player: Player ->
@@ -122,8 +121,8 @@ on<InterfaceOption>({ id == "character_creation" && component == "styles" }) { p
     if (part == "top") {
         onStyle(value) {
             setStyle(player, it.id)
-            player["makeover_arms"] = it.getParam<Int>(Parameter.CHARACTER_STYLE_ARMS)
-            player["makeover_wrists"] = it.getParam<Int>(Parameter.CHARACTER_STYLE_WRISTS)
+            player["makeover_arms"] = it.get<Int>("character_style_arms")
+            player["makeover_wrists"] = it.get<Int>("character_style_wrists")
         }
         player["character_creation_sub_style"] = 1
     }

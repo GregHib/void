@@ -2,7 +2,6 @@ package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
-import world.gregs.voidps.cache.definition.Parameterized
 
 data class ItemDefinition(
     override var id: Int = -1,
@@ -21,10 +20,9 @@ data class ItemDefinition(
     var lendTemplateId: Int = -1,
     var singleNoteId: Int = -1,
     var singleNoteTemplateId: Int = -1,
-    override var params: Map<Long, Any>? = null,
     override var stringId: String = "",
     override var extras: Map<String, Any>? = null
-) : Definition, Parameterized, Extra {
+) : Definition, Extra {
 
     val noted: Boolean
         get() = notedTemplateId != -1
@@ -57,7 +55,6 @@ data class ItemDefinition(
         if (lendTemplateId != other.lendTemplateId) return false
         if (singleNoteId != other.singleNoteId) return false
         if (singleNoteTemplateId != other.singleNoteTemplateId) return false
-        if (params != other.params) return false
         if (stringId != other.stringId) return false
         return extras == other.extras
     }
@@ -79,7 +76,6 @@ data class ItemDefinition(
         result = 31 * result + lendTemplateId
         result = 31 * result + singleNoteId
         result = 31 * result + singleNoteTemplateId
-        result = 31 * result + (params?.hashCode() ?: 0)
         result = 31 * result + stringId.hashCode()
         result = 31 * result + (extras?.hashCode() ?: 0)
         return result
@@ -89,7 +85,7 @@ data class ItemDefinition(
         if (item == null || template == null) {
             return
         }
-        params = item.params
+        extras = item.extras
         members = item.members
         floorOptions = item.floorOptions
         primaryFemaleModel = item.primaryFemaleModel
@@ -121,7 +117,7 @@ data class ItemDefinition(
         options = arrayOfNulls(5)
         floorOptions = item.floorOptions
         name = item.name
-        params = item.params
+        extras = item.extras
         primaryFemaleModel = item.primaryFemaleModel
         primaryMaleModel = item.primaryMaleModel
         System.arraycopy(item.options, 0, options, 0, 4)

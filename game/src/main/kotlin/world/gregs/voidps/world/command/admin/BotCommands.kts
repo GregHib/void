@@ -8,7 +8,6 @@ import world.gregs.voidps.bot.Bot
 import world.gregs.voidps.bot.StartBot
 import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.isBot
-import world.gregs.voidps.cache.definition.Parameter
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
@@ -127,16 +126,16 @@ fun setAppearance(player: Player): Player {
     val size = enums.get("character_styles").length
     val style = enums.getStruct("character_styles", (0 until size).random(), "sub_style_${player.sex}_0", -1)
     val struct = structs.get(style)
-    player.body.setLook(BodyPart.Chest, struct.getParam(Parameter.CHARACTER_STYLE_TOP))
-    player.body.setLook(BodyPart.Arms, struct.getParam(Parameter.CHARACTER_STYLE_ARMS))
-    player.body.setLook(BodyPart.Hands, struct.getParam(Parameter.CHARACTER_STYLE_WRISTS))
-    player.body.setLook(BodyPart.Legs, struct.getParam(Parameter.CHARACTER_STYLE_LEGS))
-    player.body.setLook(BodyPart.Feet, struct.getParam(Parameter.CHARACTER_STYLE_SHOES))
-    val offset = random.nextInt(0, 8) * 3L
+    player.body.setLook(BodyPart.Chest, struct["character_style_top"])
+    player.body.setLook(BodyPart.Arms, struct["character_style_arms"])
+    player.body.setLook(BodyPart.Hands, struct["character_style_wrists"])
+    player.body.setLook(BodyPart.Legs, struct["character_style_legs"])
+    player.body.setLook(BodyPart.Feet, struct["character_style_shoes"])
+    val offset = random.nextInt(0, 8)
     player.body.setColour(BodyColour.Hair, enums.get("colour_hair").randomInt())
-    player.body.setColour(BodyColour.Top, struct.getParam(Parameter.CHARACTER_STYLE_TOP_COLOUR_0 + offset))
-    player.body.setColour(BodyColour.Legs, struct.getParam(Parameter.CHARACTER_STYLE_LEGS_COLOUR_0 + offset))
-    player.body.setColour(BodyColour.Feet, struct.getParam(Parameter.CHARACTER_STYLE_SHOES_COLOUR_0 + offset))
+    player.body.setColour(BodyColour.Top, struct["character_style_top_colour_$offset"])
+    player.body.setColour(BodyColour.Legs, struct["character_style_legs_colour_$offset"])
+    player.body.setColour(BodyColour.Feet, struct["character_style_shoes_colour_$offset"])
     player.body.setColour(BodyColour.Skin, enums.get("character_skin").randomInt())
     player.appearance.emote = 1426
     return player

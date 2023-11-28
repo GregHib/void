@@ -3,9 +3,13 @@ package world.gregs.voidps.cache.definition.decoder
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Index.NPCS
+import world.gregs.voidps.cache.definition.Parameters
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 
-class NPCDecoder(val member: Boolean) : DefinitionDecoder<NPCDefinition>(NPCS) {
+class NPCDecoder(
+    val member: Boolean,
+    private val parameters: Parameters = Parameters.EMPTY
+) : DefinitionDecoder<NPCDefinition>(NPCS) {
 
     override fun create(size: Int) = Array(size) { NPCDefinition(it, stringId = it.toString()) }
 
@@ -55,7 +59,7 @@ class NPCDecoder(val member: Boolean) : DefinitionDecoder<NPCDefinition>(NPCS) {
                     options[opcode - 150] = null
                 }
             }
-            249 -> readParameters(buffer)
+            249 -> readParameters(buffer, parameters)
         }
     }
 

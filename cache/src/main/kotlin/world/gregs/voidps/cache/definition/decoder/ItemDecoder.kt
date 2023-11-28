@@ -3,9 +3,12 @@ package world.gregs.voidps.cache.definition.decoder
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Index.ITEMS
+import world.gregs.voidps.cache.definition.Parameters
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 
-class ItemDecoder : DefinitionDecoder<ItemDefinition>(ITEMS) {
+class ItemDecoder(
+    private val parameters: Parameters = Parameters.EMPTY
+) : DefinitionDecoder<ItemDefinition>(ITEMS) {
 
     override fun create(size: Int) = Array(size) { ItemDefinition(it) }
 
@@ -38,7 +41,7 @@ class ItemDecoder : DefinitionDecoder<ItemDefinition>(ITEMS) {
             132 -> buffer.skip(buffer.readUnsignedByte() * 2)
             139 -> singleNoteId = buffer.readShort()
             140 -> singleNoteTemplateId = buffer.readShort()
-            249 -> readParameters(buffer)
+            249 -> readParameters(buffer, parameters)
         }
     }
 

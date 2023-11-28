@@ -15,11 +15,22 @@ object ItemDefinitions {
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val decoder = ItemDefinitions(ItemDecoder().loadCache(cache)).load(Yaml(), "./data/definitions/items.yml")
+        val groups = mutableMapOf<Int, MutableList<ItemDefinition>>()
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.params?.containsKey(key = 741) == true) {
-                println("$i ${def.name} ${def.params}")
+            if (def.extras?.containsKey(key = "2195") == true) {
+                val cat = def.extras!!.get("2195") as Int
+                if(cat == 1 || cat == 2 || cat == 3) {
+                    println(def)
+                }
             }
+            if (def.extras?.containsKey(key = "21") == true) {
+                val cat = def.extras!!.get("21") as Int
+                groups.getOrPut(cat as Int) { mutableListOf() }.add(def)
+            }
+        }
+        for((value, list) in groups) {
+            println("$value - ${list.map { it.name }}")
         }
     }
 }

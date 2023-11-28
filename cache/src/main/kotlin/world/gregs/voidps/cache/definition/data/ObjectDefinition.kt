@@ -2,7 +2,6 @@ package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
-import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.Transforms
 
 data class ObjectDefinition(
@@ -18,10 +17,9 @@ data class ObjectDefinition(
     override var varbit: Int = -1,
     override var varp: Int = -1,
     override var transforms: IntArray? = null,
-    override var params: Map<Long, Any>? = null,
     override var stringId: String = "",
     override var extras: Map<String, Any>? = null
-) : Definition, Transforms, Parameterized, Extra {
+) : Definition, Transforms, Extra {
 
     var block: Int = PROJECTILE or ROUTE
 
@@ -67,7 +65,6 @@ data class ObjectDefinition(
             if (other.transforms == null) return false
             if (!transforms.contentEquals(other.transforms)) return false
         } else if (other.transforms != null) return false
-        if (params != other.params) return false
         if (stringId != other.stringId) return false
         if (extras != other.extras) return false
         return block == other.block
@@ -86,7 +83,6 @@ data class ObjectDefinition(
         result = 31 * result + varbit
         result = 31 * result + varp
         result = 31 * result + (transforms?.contentHashCode() ?: 0)
-        result = 31 * result + (params?.hashCode() ?: 0)
         result = 31 * result + stringId.hashCode()
         result = 31 * result + (extras?.hashCode() ?: 0)
         result = 31 * result + block
