@@ -1433,3 +1433,14 @@ karils_effect:
 salamander_scorch: 953
 salamander_flare: 953
 salamander_blaze: 953
+retribution: 437
+retribution_splash:
+  id: 438
+  flight_time: [ 10 ]
+  delay: 10
+wrath: 2259
+wrath_splash: 2260
+wrath_shoot:
+  id: 2261
+  curve: 20
+  flight_time: [ 25, 25, 25 ]

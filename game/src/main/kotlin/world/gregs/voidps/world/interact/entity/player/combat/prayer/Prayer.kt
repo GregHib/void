@@ -17,7 +17,6 @@ object Prayer {
         return (player.variables as PlayerVariables).temp.any { (key, value) -> key.startsWith("prayer_") && value == true }
     }
 
-
     fun setTurmoilTarget(source: Character, target: Character) {
         if (source.praying("turmoil")) {
             if (!source["turmoil", false]) {
