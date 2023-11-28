@@ -4,7 +4,9 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
+import world.gregs.voidps.engine.data.definition.CategoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.ParameterDefinitions
 import world.gregs.yaml.Yaml
 
 object ItemDefinitions {
@@ -14,23 +16,15 @@ object ItemDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = ItemDefinitions(ItemDecoder().loadCache(cache)).load(Yaml(), "./data/definitions/items.yml")
-        val groups = mutableMapOf<Int, MutableList<ItemDefinition>>()
+        val yaml = Yaml()
+        val categories = CategoryDefinitions().load(yaml, property("categoryDefinitionsPath"))
+        val parameters = ParameterDefinitions(categories).load(yaml, property("parameterDefinitionsPath"))
+        val decoder = ItemDefinitions(ItemDecoder(parameters).loadCache(cache)).load(yaml, property("itemDefinitionsPath"))
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.has(key = "2195")) {
-                val cat: Int = def["2195"]
-                if(cat == 1 || cat == 2 || cat == 3) {
-                    println(def)
-                }
+            if (def.extras != null) {
+                println(def)
             }
-            if (def.has(key = "21")) {
-                val cat: Int = def["21"]
-                groups.getOrPut(cat) { mutableListOf() }.add(def)
-            }
-        }
-        for((value, list) in groups) {
-            println("$value - ${list.map { it.name }}")
         }
     }
 }

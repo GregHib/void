@@ -1,6 +1,6 @@
 package world.gregs.voidps.cache.definition
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.buffer.read.Reader
 
 @Suppress("UNCHECKED_CAST")
@@ -21,7 +21,7 @@ interface Extra {
         if (length == 0) {
             return
         }
-        val extras = Object2ObjectArrayMap<String, Any>()
+        val extras = Object2ObjectOpenHashMap<String, Any>()
         for (i in 0 until length) {
             val string = buffer.readUnsignedBoolean()
             val id = buffer.readUnsignedMedium()
