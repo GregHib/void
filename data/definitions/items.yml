@@ -4353,13 +4353,6 @@ longbow:
   type: "TwoHanded"
   examine: "A nice sturdy bow."
   kept: "Wilderness"
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
 longbow_noted: 840
 shortbow:
   id: 841
@@ -4371,13 +4364,6 @@ shortbow:
   attack_range: 7
   examine: "Short but effective."
   kept: "Wilderness"
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
 shortbow_noted: 842
 oak_shortbow:
   id: 843
@@ -4389,16 +4375,6 @@ oak_shortbow:
   attack_range: 7
   examine: "A shortbow made out of oak, still effective."
   kept: "Wilderness"
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
 oak_shortbow_noted: 844
 oak_longbow:
   id: 845
@@ -4410,16 +4386,6 @@ oak_longbow:
   attack_range: 10
   examine: "A nice sturdy bow made out of oak."
   kept: "Wilderness"
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
 oak_longbow_noted: 846
 willow_longbow:
   id: 847
@@ -4431,19 +4397,6 @@ willow_longbow:
   attack_range: 10
   examine: "A nice sturdy bow made out of willow."
   kept: "Wilderness"
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
 willow_longbow_noted: 848
 willow_shortbow:
   id: 849
@@ -4455,19 +4408,6 @@ willow_shortbow:
   attack_range: 7
   examine: "A shortbow made out of willow, still effective."
   kept: "Wilderness"
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
 willow_shortbow_noted: 850
 maple_longbow:
   id: 851
@@ -4478,22 +4418,6 @@ maple_longbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy bow made out of maple."
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
-    - "adamant_arrow"
-    - "adamant_fire_arrows_lit"
-    - "adamant_fire_arrows_unlit"
 maple_longbow_noted: 852
 maple_shortbow:
   id: 853
@@ -4504,22 +4428,6 @@ maple_shortbow:
   type: "TwoHanded"
   attack_range: 7
   examine: "A shortbow made out of Maple, still effective."
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
-    - "adamant_arrow"
-    - "adamant_fire_arrows_lit"
-    - "adamant_fire_arrows_unlit"
 maple_shortbow_noted: 854
 yew_longbow:
   id: 855
@@ -4530,26 +4438,6 @@ yew_longbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy bow made out of yew."
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
-    - "adamant_arrow"
-    - "adamant_fire_arrows_lit"
-    - "adamant_fire_arrows_unlit"
-    - "rune_arrow"
-    - "rune_fire_arrows_lit"
-    - "rune_fire_arrows_unlit"
-    - "ice_arrows"
 yew_longbow_noted: 856
 yew_shortbow:
   id: 857
@@ -4560,26 +4448,6 @@ yew_shortbow:
   type: "TwoHanded"
   attack_range: 7
   examine: "A shortbow made out of yew, still effective."
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
-    - "adamant_arrow"
-    - "adamant_fire_arrows_lit"
-    - "adamant_fire_arrows_unlit"
-    - "rune_arrow"
-    - "rune_fire_arrows_lit"
-    - "rune_fire_arrows_unlit"
-    - "ice_arrows"
 yew_shortbow_noted: 858
 magic_longbow:
   id: 859
@@ -4590,30 +4458,6 @@ magic_longbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
-    - "adamant_arrow"
-    - "adamant_fire_arrows_lit"
-    - "adamant_fire_arrows_unlit"
-    - "rune_arrow"
-    - "rune_fire_arrows_lit"
-    - "rune_fire_arrows_unlit"
-    - "ice_arrows"
-    - "broad_arrow"
-    - "saradomin_arrows"
-    - "guthix_arrows"
-    - "zamorak_arrows"
 magic_longbow_noted: 860
 magic_shortbow:
   id: 861
@@ -4625,30 +4469,6 @@ magic_shortbow:
   attack_range: 7
   aka: [ msb, magic_sb ]
   examine: "Short and magical, but still effective."
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
-    - "adamant_arrow"
-    - "adamant_fire_arrows_lit"
-    - "adamant_fire_arrows_unlit"
-    - "rune_arrow"
-    - "rune_fire_arrows_lit"
-    - "rune_fire_arrows_unlit"
-    - "ice_arrows"
-    - "broad_arrow"
-    - "saradomin_arrows"
-    - "guthix_arrows"
-    - "zamorak_arrows"
 magic_shortbow_noted: 862
 iron_knife:
   id: 863
@@ -8889,7 +8709,7 @@ amulet_of_glory_4:
   price: 35400
   limit: 100
   summoning_def: 3.0
-  aka: [ glory ]
+  aka: [ glory, glory_4 ]
   slot: "Amulet"
   examine: "A dragonstone amulet with 4 magic charges."
   weight: 0.01
@@ -13846,8 +13666,6 @@ ogre_bow:
   attack_range: 10
   examine: "More powerful than a normal bow, useful against large game birds."
   kept: "Reclaim"
-  ammo:
-    - "ogre_arrow"
 battered_book:
   id: 2886
   tradeable: false
@@ -21464,8 +21282,6 @@ karils_crossbow:
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
   weight: 3.628
-  ammo:
-    - "bolt_rack"
 karils_crossbow_noted: 4735
 karils_top:
   id: 4736
@@ -21749,15 +21565,6 @@ comp_ogre_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A composite ogre bow."
-  ammo:
-    - "bronze_brutal"
-    - "iron_brutal"
-    - "steel_brutal"
-    - "black_brutal"
-    - "mithril_brutal"
-    - "adamant_brutal"
-    - "rune_brutal"
-    - "ogre_arrow"
 comp_ogre_bow_noted: 4828
 book_of_ham:
   id: 4829
@@ -29466,30 +29273,6 @@ seercull:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "An ancient Fremennik bow that was once used to battle the Moon Clan."
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
-    - "adamant_arrow"
-    - "adamant_fire_arrows_lit"
-    - "adamant_fire_arrows_unlit"
-    - "rune_arrow"
-    - "rune_fire_arrows_lit"
-    - "rune_fire_arrows_unlit"
-    - "ice_arrows"
-    - "broad_arrow"
-    - "saradomin_arrows"
-    - "guthix_arrows"
-    - "zamorak_arrows"
 seercull_noted: 6725
 mud_battlestaff_noted: 6726
 mystic_mud_staff_noted: 6727
@@ -38295,14 +38078,6 @@ dorgeshuun_crossbow:
   slot: "Weapon"
   aka: [ dorg_cb, dorg_cbow, dorg_crossbow ]
   examine: "This fires crossbow bolts."
-  ammo:
-    - "bronze_bolts"
-    - "opal_bolts"
-    - "opal_bolts_e"
-    - "iron_bolts"
-    - "pearl_bolts"
-    - "pearl_bolts_e"
-    - "bone_bolts"
 dorgeshuun_cbow_noted: 8881
 bone_bolts:
   id: 8882
@@ -39492,13 +39267,6 @@ bronze_crossbow:
   slot: "Weapon"
   examine: "A bronze crossbow."
   kept: "Wilderness"
-  ammo:
-    - "bronze_bolts"
-    - "opal_bolts"
-    - "opal_bolts_e"
-    - "iron_bolts"
-    - "pearl_bolts"
-    - "pearl_bolts_e"
 bronze_crossbow_noted: 9175
 blurite_crossbow:
   id: 9176
@@ -39508,16 +39276,6 @@ blurite_crossbow:
   slot: "Weapon"
   examine: "A blurite crossbow."
   kept: "Wilderness"
-  ammo:
-    - "bronze_bolts"
-    - "opal_bolts"
-    - "opal_bolts_e"
-    - "iron_bolts"
-    - "pearl_bolts"
-    - "pearl_bolts_e"
-    - "blurite_bolts"
-    - "jade_bolts"
-    - "jade_bolts_e"
 iron_crossbow:
   id: 9177
   price: 38
@@ -39526,13 +39284,6 @@ iron_crossbow:
   attack_range: 7
   slot: "Weapon"
   examine: "An iron crossbow."
-  ammo:
-    - "bronze_bolts"
-    - "opal_bolts"
-    - "opal_bolts_e"
-    - "iron_bolts"
-    - "pearl_bolts"
-    - "pearl_bolts_e"
 iron_crossbow_noted: 9178
 steel_crossbow:
   id: 9179
@@ -39542,25 +39293,6 @@ steel_crossbow:
   attack_range: 7
   slot: "Weapon"
   examine: "A steel crossbow."
-  ammo:
-    - "bronze_bolts"
-    - "opal_bolts"
-    - "opal_bolts_e"
-    - "iron_bolts"
-    - "iron_bolts_p"
-    - "iron_bolts_p+"
-    - "iron_bolts_p++"
-    - "pearl_bolts"
-    - "pearl_bolts_e"
-    - "blurite_bolts"
-    - "jade_bolts"
-    - "jade_bolts_e"
-    - "steel_bolts"
-    - "steel_bolts_p"
-    - "steel_bolts_p+"
-    - "steel_bolts_p++"
-    - "topaz_bolts"
-    - "topaz_bolts_e"
 steel_crossbow_noted: 9180
 mithril_crossbow:
   id: 9181
@@ -39570,39 +39302,6 @@ mithril_crossbow:
   attack_range: 7
   slot: "Weapon"
   examine: "A mithril crossbow."
-  ammo:
-    - "bronze_bolts"
-    - "bronze_bolts_p"
-    - "bronze_bolts_p+"
-    - "bronze_bolts_p++"
-    - "opal_bolts"
-    - "opal_bolts_e"
-    - "iron_bolts"
-    - "iron_bolts_p"
-    - "iron_bolts_p+"
-    - "iron_bolts_p++"
-    - "pearl_bolts"
-    - "pearl_bolts_e"
-    - "blurite_bolts"
-    - "jade_bolts"
-    - "jade_bolts_e"
-    - "steel_bolts"
-    - "steel_bolts_p"
-    - "steel_bolts_p+"
-    - "steel_bolts_p++"
-    - "topaz_bolts"
-    - "topaz_bolts_e"
-    - "black_bolts"
-    - "mithril_bolts"
-    - "mithril_bolts_p"
-    - "mithril_bolts_p+"
-    - "mithril_bolts_p++"
-    - "sapphire_bolts"
-    - "sapphire_bolts_e"
-    - "emerald_bolts"
-    - "emerald_bolts_e"
-    - "ruby_bolts"
-    - "ruby_bolts_e"
 mith_crossbow_noted: 9182
 adamant_crossbow:
   id: 9183
@@ -39612,45 +39311,6 @@ adamant_crossbow:
   attack_range: 7
   slot: "Weapon"
   examine: "An adamant crossbow."
-  ammo:
-    - "bronze_bolts"
-    - "bronze_bolts_p"
-    - "bronze_bolts_p+"
-    - "bronze_bolts_p++"
-    - "opal_bolts"
-    - "opal_bolts_e"
-    - "iron_bolts"
-    - "iron_bolts_p"
-    - "iron_bolts_p+"
-    - "iron_bolts_p++"
-    - "pearl_bolts"
-    - "pearl_bolts_e"
-    - "blurite_bolts"
-    - "jade_bolts"
-    - "jade_bolts_e"
-    - "steel_bolts"
-    - "steel_bolts_p"
-    - "steel_bolts_p+"
-    - "steel_bolts_p++"
-    - "topaz_bolts"
-    - "topaz_bolts_e"
-    - "black_bolts"
-    - "mithril_bolts"
-    - "mithril_bolts_p"
-    - "mithril_bolts_p+"
-    - "mithril_bolts_p++"
-    - "sapphire_bolts"
-    - "sapphire_bolts_e"
-    - "emerald_bolts_e"
-    - "emerald_bolts"
-    - "ruby_bolts_e"
-    - "ruby_bolts"
-    - "adamant_bolts"
-    - "adamant_bolts_p"
-    - "adamant_bolts_p+"
-    - "adamant_bolts_p++"
-    - "diamond_bolts"
-    - "diamond_bolts_e"
 adamant_crossbow_noted: 9184
 rune_crossbow:
   id: 9185
@@ -39661,54 +39321,6 @@ rune_crossbow:
   aka: [ rcb, rune_cb ]
   slot: "Weapon"
   examine: "A rune crossbow."
-  ammo:
-    - "bronze_bolts"
-    - "bronze_bolts_p"
-    - "bronze_bolts_p+"
-    - "bronze_bolts_p++"
-    - "opal_bolts"
-    - "opal_bolts_e"
-    - "iron_bolts"
-    - "iron_bolts_p"
-    - "iron_bolts_p+"
-    - "iron_bolts_p++"
-    - "pearl_bolts"
-    - "pearl_bolts_e"
-    - "blurite_bolts"
-    - "jade_bolts"
-    - "jade_bolts_e"
-    - "steel_bolts"
-    - "steel_bolts_p"
-    - "steel_bolts_p+"
-    - "steel_bolts_p++"
-    - "topaz_bolts"
-    - "topaz_bolts_e"
-    - "black_bolts"
-    - "mithril_bolts"
-    - "mithril_bolts_p"
-    - "mithril_bolts_p+"
-    - "mithril_bolts_p++"
-    - "sapphire_bolts"
-    - "sapphire_bolts_e"
-    - "emerald_bolts"
-    - "emerald_bolts_e"
-    - "ruby_bolts"
-    - "ruby_bolts_e"
-    - "adamant_bolts"
-    - "adamant_bolts_p"
-    - "adamant_bolts_p+"
-    - "adamant_bolts_p++"
-    - "diamond_bolts"
-    - "diamond_bolts_e"
-    - "runite_bolts"
-    - "runite_bolts_p"
-    - "runite_bolts_p+"
-    - "runite_bolts_p++"
-    - "dragon_bolts"
-    - "dragon_bolts_e"
-    - "onyx_bolts"
-    - "onyx_bolts_e"
-    - "broad-tipped_bolts"
 rune_crossbow_noted: 9186
 jade_bolt_tips:
   id: 9187
@@ -41366,8 +40978,6 @@ training_bow:
   examine: "Light and flexible; good for a beginner."
   kept: "Reclaim"
   use: "Limited"
-  ammo:
-    - "training_arrows"
 training_arrows:
   id: 9706
   tradeable: false
@@ -43520,6 +43130,7 @@ green_salamander:
   price: 957
   limit: 2000
   weight: 4.0
+  aka: [ swamp_lizard ]
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "Release"
@@ -43541,9 +43152,6 @@ hunters_crossbow:
   weight: 5.0
   slot: "Weapon"
   attack_range: 8
-  ammo:
-    - "kebbit_bolts"
-    - "long_kebbit_bolts"
   examine: "A weapon made of bone and wood."
 hunters_crossbow_noted: 10157
 kebbit_bolts:
@@ -43561,7 +43169,7 @@ long_kebbit_bolts:
 orange_salamander_noted: 10160
 red_salamander_noted: 10161
 black_salamander_noted: 10162
-swamp_lizard_noted: 10163
+green_salamander_noted: 10163
 eagle_feather:
   id: 10167
   tradeable: false
@@ -43944,19 +43552,6 @@ willow_composite_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow made from willow."
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
 willow_composite_bow_noted: 10281
 yew_composite_bow:
   id: 10282
@@ -43967,26 +43562,6 @@ yew_composite_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow made from yew."
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
-    - "adamant_arrow"
-    - "adamant_fire_arrows_lit"
-    - "adamant_fire_arrows_unlit"
-    - "rune_arrow"
-    - "rune_fire_arrows_lit"
-    - "rune_fire_arrows_unlit"
-    - "ice_arrows"
 yew_composite_bow_noted: 10283
 magic_composite_bow:
   id: 10284
@@ -43997,30 +43572,6 @@ magic_composite_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow made from magic logs."
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
-    - "adamant_arrow"
-    - "adamant_fire_arrows_lit"
-    - "adamant_fire_arrows_unlit"
-    - "rune_arrow"
-    - "rune_fire_arrows_lit"
-    - "rune_fire_arrows_unlit"
-    - "ice_arrows"
-    - "broad_arrow"
-    - "saradomin_arrows"
-    - "guthix_arrows"
-    - "zamorak_arrows"
 magic_composite_bow_noted: 10285
 rune_helm_h1:
   id: 10286
@@ -49099,33 +48650,6 @@ dark_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow from a darker dimension."
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
-    - "adamant_arrow"
-    - "adamant_fire_arrows_lit"
-    - "adamant_fire_arrows_unlit"
-    - "rune_arrow"
-    - "rune_fire_arrows_lit"
-    - "rune_fire_arrows_unlit"
-    - "dragon_arrow"
-    - "dragon_fire_arrows_lit"
-    - "dragon_fire_arrows_unlit"
-    - "ice_arrows"
-    - "broad_arrow"
-    - "saradomin_arrows"
-    - "guthix_arrows"
-    - "zamorak_arrows"
   ammo_required: 2
 dark_bow_noted: 11236
 dragon_arrowtips:
@@ -57102,25 +56626,6 @@ black_crossbow:
   attack_range: 7
   slot: "Weapon"
   examine: "A black crossbow."
-  ammo:
-    - "bronze_bolts"
-    - "bronze_bolts_p"
-    - "bronze_bolts_p+"
-    - "bronze_bolts_p++"
-    - "opal_bolts"
-    - "iron_bolts"
-    - "iron_bolts_p"
-    - "iron_bolts_p+"
-    - "iron_bolts_p++"
-    - "pearl_bolts"
-    - "blurite_bolts"
-    - "jade_bolts"
-    - "steel_bolts"
-    - "steel_bolts_p"
-    - "steel_bolts_p+"
-    - "steel_bolts_p++"
-    - "topaz_bolts"
-    - "black_bolts"
 black_crossbow_noted: 13082
 black_bolts:
   id: 13083
@@ -61784,27 +61289,6 @@ sacred_clay_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The sacred clay weapon has transformed into a bow."
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
-    - "adamant_arrow"
-    - "adamant_fire_arrows_lit"
-    - "adamant_fire_arrows_unlit"
-    - "rune_arrow"
-    - "rune_fire_arrows_lit"
-    - "rune_fire_arrows_unlit"
-    - "ice_arrows"
-    - "broad_arrow"
   weight: 2.0
 pickaxe_class_1:
   id: 14122
@@ -64075,54 +63559,6 @@ zaniks_crossbow:
   slot: "Weapon"
   examine: "The crossbow that defeated the avatar of Bandos."
   kept: "Reclaim"
-  ammo:
-    - "bronze_bolts"
-    - "bronze_bolts_p"
-    - "bronze_bolts_p+"
-    - "bronze_bolts_p++"
-    - "opal_bolts"
-    - "opal_bolts_e"
-    - "iron_bolts"
-    - "iron_bolts_p"
-    - "iron_bolts_p+"
-    - "iron_bolts_p++"
-    - "pearl_bolts"
-    - "pearl_bolts_e"
-    - "blurite_bolts"
-    - "jade_bolts"
-    - "jade_bolts_e"
-    - "steel_bolts"
-    - "steel_bolts_p"
-    - "steel_bolts_p+"
-    - "steel_bolts_p++"
-    - "topaz_bolts"
-    - "topaz_bolts_e"
-    - "black_bolts"
-    - "mithril_bolts"
-    - "mithril_bolts_p"
-    - "mithril_bolts_p+"
-    - "mithril_bolts_p++"
-    - "sapphire_bolts"
-    - "sapphire_bolts_e"
-    - "emerald_bolts"
-    - "emerald_bolts_e"
-    - "ruby_bolts"
-    - "ruby_bolts_e"
-    - "adamant_bolts"
-    - "adamant_bolts_p"
-    - "adamant_bolts_p+"
-    - "adamant_bolts_p++"
-    - "diamond_bolts"
-    - "diamond_bolts_e"
-    - "runite_bolts"
-    - "runite_bolts_p"
-    - "runite_bolts_p+"
-    - "runite_bolts_p++"
-    - "dragon_bolts"
-    - "dragon_bolts_e"
-    - "onyx_bolts"
-    - "onyx_bolts_e"
-    - "bone_bolts"
 crossbow_the_chosen_commander:
   id: 14685
   limit: 100
@@ -64132,54 +63568,6 @@ crossbow_the_chosen_commander:
   examine: "I noticed my crossbow on a high ledge."
   use: "Quest"
   kept: "Reclaim"
-  ammo:
-    - "bronze_bolts"
-    - "bronze_bolts_p"
-    - "bronze_bolts_p+"
-    - "bronze_bolts_p++"
-    - "opal_bolts"
-    - "opal_bolts_e"
-    - "iron_bolts"
-    - "iron_bolts_p"
-    - "iron_bolts_p+"
-    - "iron_bolts_p++"
-    - "pearl_bolts"
-    - "pearl_bolts_e"
-    - "blurite_bolts"
-    - "jade_bolts"
-    - "jade_bolts_e"
-    - "steel_bolts"
-    - "steel_bolts_p"
-    - "steel_bolts_p+"
-    - "steel_bolts_p++"
-    - "topaz_bolts"
-    - "topaz_bolts_e"
-    - "black_bolts"
-    - "mithril_bolts"
-    - "mithril_bolts_p"
-    - "mithril_bolts_p+"
-    - "mithril_bolts_p++"
-    - "sapphire_bolts"
-    - "sapphire_bolts_e"
-    - "emerald_bolts"
-    - "emerald_bolts_e"
-    - "ruby_bolts"
-    - "ruby_bolts_e"
-    - "adamant_bolts"
-    - "adamant_bolts_p"
-    - "adamant_bolts_p+"
-    - "adamant_bolts_p++"
-    - "diamond_bolts"
-    - "diamond_bolts_e"
-    - "runite_bolts"
-    - "runite_bolts_p"
-    - "runite_bolts_p+"
-    - "runite_bolts_p++"
-    - "dragon_bolts"
-    - "dragon_bolts_e"
-    - "onyx_bolts"
-    - "onyx_bolts_e"
-    - "bone_bolts"
 zaniks_crossbow_upgraded:
   id: 14686
   tradeable: false
@@ -64190,54 +63578,6 @@ zaniks_crossbow_upgraded:
   examine: "Zanik's crossbow has been upgraded."
   use: "Quest"
   kept: "Vanish"
-  ammo:
-    - "bronze_bolts"
-    - "bronze_bolts_p"
-    - "bronze_bolts_p+"
-    - "bronze_bolts_p++"
-    - "opal_bolts"
-    - "opal_bolts_e"
-    - "iron_bolts"
-    - "iron_bolts_p"
-    - "iron_bolts_p+"
-    - "iron_bolts_p++"
-    - "pearl_bolts"
-    - "pearl_bolts_e"
-    - "blurite_bolts"
-    - "jade_bolts"
-    - "jade_bolts_e"
-    - "steel_bolts"
-    - "steel_bolts_p"
-    - "steel_bolts_p+"
-    - "steel_bolts_p++"
-    - "topaz_bolts"
-    - "topaz_bolts_e"
-    - "black_bolts"
-    - "mithril_bolts"
-    - "mithril_bolts_p"
-    - "mithril_bolts_p+"
-    - "mithril_bolts_p++"
-    - "sapphire_bolts"
-    - "sapphire_bolts_e"
-    - "emerald_bolts"
-    - "emerald_bolts_e"
-    - "ruby_bolts"
-    - "ruby_bolts_e"
-    - "adamant_bolts"
-    - "adamant_bolts_p"
-    - "adamant_bolts_p+"
-    - "adamant_bolts_p++"
-    - "diamond_bolts"
-    - "diamond_bolts_e"
-    - "runite_bolts"
-    - "runite_bolts_p"
-    - "runite_bolts_p+"
-    - "runite_bolts_p++"
-    - "dragon_bolts"
-    - "dragon_bolts_e"
-    - "onyx_bolts"
-    - "onyx_bolts_e"
-    - "bone_bolts"
 energy_projectors:
   &energy_projectors
   id: 14687
@@ -66870,8 +66210,6 @@ hand_cannon:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 9
-  ammo:
-    - "hand_cannon_shot"
   examine: "A miniature dwarven cannon."
 hand_cannon_noted: 15242
 hand_cannon_shot:
@@ -69732,8 +69070,6 @@ tangle_gum_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
 seeping_elm_shortbow_bound:
   id: 15776
   tradeable: false
@@ -69741,9 +69077,6 @@ seeping_elm_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at a short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
 blood_spindle_shortbow_bound:
   id: 15777
   tradeable: false
@@ -69751,10 +69084,6 @@ blood_spindle_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
 utuku_shortbow_bound:
   id: 15778
   tradeable: false
@@ -69762,11 +69091,6 @@ utuku_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
 spinebeam_shortbow_bound:
   id: 15779
   tradeable: false
@@ -69774,12 +69098,6 @@ spinebeam_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at a short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
 bovistrangler_shortbow_bound:
   id: 15780
   tradeable: false
@@ -69787,13 +69105,6 @@ bovistrangler_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
 thigat_shortbow_bound:
   id: 15781
   tradeable: false
@@ -69801,14 +69112,6 @@ thigat_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
 corpsethorn_shortbow_bound:
   id: 15782
   tradeable: false
@@ -69816,15 +69119,6 @@ corpsethorn_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
-    - "katagon_arrows"
 entgallow_shortbow_bound:
   id: 15783
   tradeable: false
@@ -69832,16 +69126,6 @@ entgallow_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distances."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
-    - "katagon_arrows"
-    - "gorgonite_arrows"
 grave_creeper_shortbow_bound:
   id: 15784
   tradeable: false
@@ -69849,17 +69133,6 @@ grave_creeper_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
-    - "katagon_arrows"
-    - "gorgonite_arrows"
-    - "promethium_arrows"
 sagittarian_shortbow_bound:
   id: 15785
   tradeable: false
@@ -69867,18 +69140,6 @@ sagittarian_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
-    - "katagon_arrows"
-    - "gorgonite_arrows"
-    - "promethium_arrows"
-    - "sagittarian_arrows"
 salve_shoes_bound:
   id: 15786
   tradeable: false
@@ -70209,18 +69470,6 @@ hexhunter_bow_dungeoneering_bound:
   type: "TwoHanded"
   examine: "It is stronger against targets with magical powers."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
-    - "katagon_arrows"
-    - "gorgonite_arrows"
-    - "promethium_arrows"
-    - "sagittarian_arrows"
 salve_robe_top_bound:
   id: 15837
   tradeable: false
@@ -70294,7 +69543,7 @@ novite_dagger_bound:
   material: "metal"
   examine: "Short but pointy."
   weight: 0.453
-novite_dagger_p_b:
+novite_dagger_p_bound:
   id: 15849
   weight: 0.453
   slot: "Weapon"
@@ -70302,7 +69551,7 @@ novite_dagger_p_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-novite_dagger_p+_b:
+novite_dagger_p+_bound:
   id: 15850
   weight: 0.453
   slot: "Weapon"
@@ -70310,7 +69559,7 @@ novite_dagger_p+_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-novite_dagger_p++_b:
+novite_dagger_p++_bound:
   id: 15851
   weight: 0.453
   slot: "Weapon"
@@ -70325,7 +69574,7 @@ bathus_dagger_bound:
   material: "metal"
   examine: "Short but pointy."
   weight: 0.453
-bathus_dagger_p_b:
+bathus_dagger_p_bound:
   id: 15853
   weight: 0.453
   slot: "Weapon"
@@ -70333,7 +69582,7 @@ bathus_dagger_p_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-bathus_dagger_p+_b:
+bathus_dagger_p+_bound:
   id: 15854
   weight: 0.453
   slot: "Weapon"
@@ -70341,7 +69590,7 @@ bathus_dagger_p+_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-bathus_dagger_p++_b:
+bathus_dagger_p++_bound:
   id: 15855
   weight: 0.453
   slot: "Weapon"
@@ -70356,7 +69605,7 @@ marmaros_dagger_bound:
   material: "metal"
   examine: "Short but pointy."
   weight: 0.453
-marmaros_dagger_p_b:
+marmaros_dagger_p_bound:
   id: 15857
   weight: 0.453
   slot: "Weapon"
@@ -70364,7 +69613,7 @@ marmaros_dagger_p_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-marmaros_dagger_p+_b:
+marmaros_dagger_p+_bound:
   id: 15858
   weight: 0.453
   slot: "Weapon"
@@ -70372,7 +69621,7 @@ marmaros_dagger_p+_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-marmaros_dagger_p++_b:
+marmaros_dagger_p++_bound:
   id: 15859
   weight: 0.453
   slot: "Weapon"
@@ -70387,7 +69636,7 @@ kratonite_dagger_bound:
   material: "metal"
   examine: "Short but pointy."
   weight: 0.453
-kratonite_dagger_p_b:
+kratonite_dagger_p_bound:
   id: 15861
   weight: 0.453
   slot: "Weapon"
@@ -70395,7 +69644,7 @@ kratonite_dagger_p_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-kratonite_dagger_p+_b:
+kratonite_dagger_p+_bound:
   id: 15862
   weight: 0.453
   slot: "Weapon"
@@ -70403,7 +69652,7 @@ kratonite_dagger_p+_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-kratonite_dagger_p++_b:
+kratonite_dagger_p++_bound:
   id: 15863
   weight: 0.453
   slot: "Weapon"
@@ -70418,7 +69667,7 @@ fractite_dagger_bound:
   material: "metal"
   examine: "Short but pointy."
   weight: 0.453
-fractite_dagger_p_b:
+fractite_dagger_p_bound:
   id: 15865
   weight: 0.453
   slot: "Weapon"
@@ -70426,7 +69675,7 @@ fractite_dagger_p_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-fractite_dagger_p+_b:
+fractite_dagger_p+_bound:
   id: 15866
   weight: 0.453
   slot: "Weapon"
@@ -70434,7 +69683,7 @@ fractite_dagger_p+_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-fractite_dagger_p++_b:
+fractite_dagger_p++_bound:
   id: 15867
   weight: 0.453
   slot: "Weapon"
@@ -70449,7 +69698,7 @@ zephyrium_dagger_bound:
   material: "metal"
   examine: "Short but pointy."
   weight: 0.453
-zephyrium_dagger_p_b:
+zephyrium_dagger_p_bound:
   id: 15869
   weight: 0.453
   slot: "Weapon"
@@ -70457,7 +69706,7 @@ zephyrium_dagger_p_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-zephyrium_dagger_p+_b:
+zephyrium_dagger_p+_bound:
   id: 15870
   weight: 0.453
   slot: "Weapon"
@@ -70465,7 +69714,7 @@ zephyrium_dagger_p+_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-zephyrium_dagger_p++_b:
+zephyrium_dagger_p++_bound:
   id: 15871
   weight: 0.453
   slot: "Weapon"
@@ -70480,7 +69729,7 @@ argonite_dagger_bound:
   material: "metal"
   examine: "Short but pointy."
   weight: 0.453
-argonite_dagger_p_b:
+argonite_dagger_p_bound:
   id: 15873
   weight: 0.453
   slot: "Weapon"
@@ -70488,7 +69737,7 @@ argonite_dagger_p_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-argonite_dagger_p+_b:
+argonite_dagger_p+_bound:
   id: 15874
   weight: 0.453
   slot: "Weapon"
@@ -70496,7 +69745,7 @@ argonite_dagger_p+_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-argonite_dagger_p++_b:
+argonite_dagger_p++_bound:
   id: 15875
   weight: 0.453
   slot: "Weapon"
@@ -70511,7 +69760,7 @@ katagon_dagger_bound:
   material: "metal"
   examine: "Sharp but pointy."
   weight: 0.453
-katagon_dagger_p_b:
+katagon_dagger_p_bound:
   id: 15877
   weight: 0.453
   slot: "Weapon"
@@ -70519,7 +69768,7 @@ katagon_dagger_p_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-katagon_dagger_p+_b:
+katagon_dagger_p+_bound:
   id: 15878
   weight: 0.453
   slot: "Weapon"
@@ -70527,7 +69776,7 @@ katagon_dagger_p+_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-katagon_dagger_p++_b:
+katagon_dagger_p++_bound:
   id: 15879
   weight: 0.453
   slot: "Weapon"
@@ -70542,7 +69791,7 @@ gorgonite_dagger_bound:
   material: "metal"
   examine: "Short but pointy."
   weight: 0.453
-gorgonite_dagger_p_b:
+gorgonite_dagger_p_bound:
   id: 15881
   weight: 0.453
   slot: "Weapon"
@@ -70550,7 +69799,7 @@ gorgonite_dagger_p_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-gorgonite_dagger_p+_b:
+gorgonite_dagger_p+_bound:
   id: 15882
   weight: 0.453
   slot: "Weapon"
@@ -70558,7 +69807,7 @@ gorgonite_dagger_p+_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-gorgonite_dagger_p++_b:
+gorgonite_dagger_p++_bound:
   id: 15883
   weight: 0.453
   slot: "Weapon"
@@ -70573,7 +69822,7 @@ promethium_dagger_bound:
   material: "metal"
   examine: "Short but pointy."
   weight: 0.453
-promethium_dagger_p_b:
+promethium_dagger_p_bound:
   id: 15885
   weight: 0.453
   slot: "Weapon"
@@ -70581,7 +69830,7 @@ promethium_dagger_p_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-promethium_dagger_p+_b:
+promethium_dagger_p+_bound:
   id: 15886
   weight: 0.453
   slot: "Weapon"
@@ -70589,7 +69838,7 @@ promethium_dagger_p+_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-promethium_dagger_p++_b:
+promethium_dagger_p++_bound:
   id: 15887
   weight: 0.453
   slot: "Weapon"
@@ -70604,7 +69853,7 @@ primal_dagger_bound:
   material: "metal"
   examine: "Short but pointy."
   weight: 0.453
-primal_dagger_p_b:
+primal_dagger_p_bound:
   id: 15889
   weight: 0.453
   slot: "Weapon"
@@ -70612,7 +69861,7 @@ primal_dagger_p_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-primal_dagger_p+_b:
+primal_dagger_p+_bound:
   id: 15890
   weight: 0.453
   slot: "Weapon"
@@ -70620,7 +69869,7 @@ primal_dagger_p+_b:
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
-primal_dagger_p++_b:
+primal_dagger_p++_bound:
   id: 15891
   weight: 0.453
   slot: "Weapon"
@@ -70712,8 +69961,6 @@ tangle_gum_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
 seeping_elm_longbow_bound:
   id: 15904
   tradeable: false
@@ -70721,9 +69968,6 @@ seeping_elm_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
 blood_spindle_longbow_bound:
   id: 15905
   tradeable: false
@@ -70731,10 +69975,6 @@ blood_spindle_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
 utuku_longbow_bound:
   id: 15906
   tradeable: false
@@ -70742,11 +69982,6 @@ utuku_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
 spinebeam_longbow_bound:
   id: 15907
   tradeable: false
@@ -70754,12 +69989,6 @@ spinebeam_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
 bovistrangler_longbow_bound:
   id: 15908
   tradeable: false
@@ -70767,13 +69996,6 @@ bovistrangler_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
 thigat_longbow_bound:
   id: 15909
   tradeable: false
@@ -70781,14 +70003,6 @@ thigat_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
 corpsethorn_longbow_bound:
   id: 15910
   tradeable: false
@@ -70796,15 +70010,6 @@ corpsethorn_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
-    - "katagon_arrows"
 entgallow_longbow_bound:
   id: 15911
   tradeable: false
@@ -70812,16 +70017,6 @@ entgallow_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
-    - "katagon_arrows"
-    - "gorgonite_arrows"
 grave_creeper_longbow_bound:
   id: 15912
   tradeable: false
@@ -70829,17 +70024,6 @@ grave_creeper_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
-    - "katagon_arrows"
-    - "gorgonite_arrows"
-    - "promethium_arrows"
 sagittarian_longbow_bound:
   id: 15913
   tradeable: false
@@ -70847,18 +70031,6 @@ sagittarian_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
-    - "katagon_arrows"
-    - "gorgonite_arrows"
-    - "promethium_arrows"
-    - "sagittarian_arrows"
 novite_full_helm_bound:
   id: 15914
   tradeable: false
@@ -71155,148 +70327,148 @@ sagittarian_arrows_bound:
   tradeable: false
   slot: "Ammo"
   examine: "Bow ammunition."
-novite_arrows_p_b:
-  &novite_arrows_p_b
+novite_arrows_p_bound:
+  &novite_arrows_p_bound
   id: 15958
   slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
-bathus_arrows_p_b:
-  &bathus_arrows_p_b
+bathus_arrows_p_bound:
+  &bathus_arrows_p_bound
   id: 15959
   slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
-marmaros_arrows_p_b:
-  &marmaros_arrows_p_b
+marmaros_arrows_p_bound:
+  &marmaros_arrows_p_bound
   id: 15960
   slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
-kratonite_arrows_p_b:
-  &kratonite_arrows_p_b
+kratonite_arrows_p_bound:
+  &kratonite_arrows_p_bound
   id: 15961
   slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
-fractite_arrows_p_b:
-  &fractite_arrows_p_b
+fractite_arrows_p_bound:
+  &fractite_arrows_p_bound
   id: 15962
   slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
-zephyrium_arrows_p_b:
-  &zephyrium_arrows_p_b
+zephyrium_arrows_p_bound:
+  &zephyrium_arrows_p_bound
   id: 15963
   slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
-argonite_arrows_p_b:
-  &argonite_arrows_p_b
+argonite_arrows_p_bound:
+  &argonite_arrows_p_bound
   id: 15964
   slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
-katagon_arrows_p_b:
-  &katagon_arrows_p_b
+katagon_arrows_p_bound:
+  &katagon_arrows_p_bound
   id: 15965
   slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
-gorgonite_arrows_p_b:
-  &gorgonite_arrows_p_b
+gorgonite_arrows_p_bound:
+  &gorgonite_arrows_p_bound
   id: 15966
   slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
-promethium_arrows_p_b:
-  &promethium_arrows_p_b
+promethium_arrows_p_bound:
+  &promethium_arrows_p_bound
   id: 15967
   slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
-sagittarian_arrows_p_b:
-  &sagittarian_arrows_p_b
+sagittarian_arrows_p_bound:
+  &sagittarian_arrows_p_bound
   id: 15968
   slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
-novite_arrows_p+_b:
-  <<: *novite_arrows_p_b
+novite_arrows_p+_bound:
+  <<: *novite_arrows_p_bound
   id: 15969
-bathus_arrows_p+_b:
-  <<: *bathus_arrows_p_b
+bathus_arrows_p+_bound:
+  <<: *bathus_arrows_p_bound
   id: 15970
-marmaros_arrows_p+_b:
-  <<: *marmaros_arrows_p_b
+marmaros_arrows_p+_bound:
+  <<: *marmaros_arrows_p_bound
   id: 15971
-kratonite_arrows_p+_b:
-  <<: *kratonite_arrows_p_b
+kratonite_arrows_p+_bound:
+  <<: *kratonite_arrows_p_bound
   id: 15972
-fractite_arrows_p+_b:
-  <<: *fractite_arrows_p_b
+fractite_arrows_p+_bound:
+  <<: *fractite_arrows_p_bound
   id: 15973
-zephyrium_arrows_p+_b:
-  <<: *zephyrium_arrows_p_b
+zephyrium_arrows_p+_bound:
+  <<: *zephyrium_arrows_p_bound
   id: 15974
-argonite_arrows_p+_b:
-  <<: *argonite_arrows_p_b
+argonite_arrows_p+_bound:
+  <<: *argonite_arrows_p_bound
   id: 15975
-katagon_arrows_p+_b:
-  <<: *katagon_arrows_p_b
+katagon_arrows_p+_bound:
+  <<: *katagon_arrows_p_bound
   id: 15976
-gorgonite_arrows_p+_b:
-  <<: *gorgonite_arrows_p_b
+gorgonite_arrows_p+_bound:
+  <<: *gorgonite_arrows_p_bound
   id: 15977
-promethium_arrows_p+_b:
-  <<: *promethium_arrows_p_b
+promethium_arrows_p+_bound:
+  <<: *promethium_arrows_p_bound
   id: 15978
-sagittarian_arrows_p+_b:
-  <<: *sagittarian_arrows_p_b
+sagittarian_arrows_p+_bound:
+  <<: *sagittarian_arrows_p_bound
   id: 15979
-novite_arrows_p++_b:
-  <<: *novite_arrows_p_b
+novite_arrows_p++_bound:
+  <<: *novite_arrows_p_bound
   id: 15980
-bathus_arrows_p++_b:
-  <<: *bathus_arrows_p_b
+bathus_arrows_p++_bound:
+  <<: *bathus_arrows_p_bound
   id: 15981
-marmaros_arrows_p++_b:
-  <<: *marmaros_arrows_p_b
+marmaros_arrows_p++_bound:
+  <<: *marmaros_arrows_p_bound
   id: 15982
-kratonite_arrows_p++_b:
-  <<: *kratonite_arrows_p_b
+kratonite_arrows_p++_bound:
+  <<: *kratonite_arrows_p_bound
   id: 15983
-fractite_arrows_p++_b:
-  <<: *fractite_arrows_p_b
+fractite_arrows_p++_bound:
+  <<: *fractite_arrows_p_bound
   id: 15984
-zephyrium_arrows_p++_b:
-  <<: *zephyrium_arrows_p_b
+zephyrium_arrows_p++_bound:
+  <<: *zephyrium_arrows_p_bound
   id: 15985
-argonite_arrows_p++_b:
-  <<: *argonite_arrows_p_b
+argonite_arrows_p++_bound:
+  <<: *argonite_arrows_p_bound
   id: 15986
-katagon_arrows_p++_b:
-  <<: *katagon_arrows_p_b
+katagon_arrows_p++_bound:
+  <<: *katagon_arrows_p_bound
   id: 15987
-gorgonite_arrows_p++_b:
-  <<: *gorgonite_arrows_p_b
+gorgonite_arrows_p++_bound:
+  <<: *gorgonite_arrows_p_bound
   id: 15988
-promethium_arrows_p++_b:
-  <<: *promethium_arrows_p_b
+promethium_arrows_p++_bound:
+  <<: *promethium_arrows_p_bound
   id: 15989
-sagittarian_arrows_p++_b:
-  <<: *sagittarian_arrows_p_b
+sagittarian_arrows_p++_bound:
+  <<: *sagittarian_arrows_p_bound
   id: 15990
 novite_hatchet_bound:
   id: 15991
@@ -72836,7 +72008,7 @@ novite_spear_bound:
   type: "TwoHanded"
   examine: "A stick made for poking - violent poking."
   weight: 2.267
-novite_spear_p_b:
+novite_spear_p_bound:
   id: 16219
   weight: 2.267
   slot: "Weapon"
@@ -72844,7 +72016,7 @@ novite_spear_p_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-novite_spear_p+_b:
+novite_spear_p+_bound:
   id: 16220
   weight: 2.267
   slot: "Weapon"
@@ -72852,7 +72024,7 @@ novite_spear_p+_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-novite_spear_p++_b:
+novite_spear_p++_bound:
   id: 16221
   weight: 2.267
   slot: "Weapon"
@@ -72867,7 +72039,7 @@ bathus_spear_bound:
   type: "TwoHanded"
   examine: "A stick made for poking - violent poking."
   weight: 2.267
-bathus_spear_p_b:
+bathus_spear_p_bound:
   id: 16223
   weight: 2.267
   slot: "Weapon"
@@ -72875,7 +72047,7 @@ bathus_spear_p_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-bathus_spear_p+_b:
+bathus_spear_p+_bound:
   id: 16224
   weight: 2.267
   slot: "Weapon"
@@ -72883,7 +72055,7 @@ bathus_spear_p+_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-bathus_spear_p++_b:
+bathus_spear_p++_bound:
   id: 16225
   weight: 2.267
   slot: "Weapon"
@@ -72898,7 +72070,7 @@ marmaros_spear_bound:
   type: "TwoHanded"
   examine: "A stick made for poking - violent poking."
   weight: 2.267
-marmaros_spear_p_b:
+marmaros_spear_p_bound:
   id: 16227
   weight: 2.267
   slot: "Weapon"
@@ -72906,7 +72078,7 @@ marmaros_spear_p_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-marmaros_spear_p+_b:
+marmaros_spear_p+_bound:
   id: 16228
   weight: 2.267
   slot: "Weapon"
@@ -72914,7 +72086,7 @@ marmaros_spear_p+_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-marmaros_spear_p++_b:
+marmaros_spear_p++_bound:
   id: 16229
   weight: 2.267
   slot: "Weapon"
@@ -72929,7 +72101,7 @@ kratonite_spear_bound:
   type: "TwoHanded"
   examine: "A stick made for poking - violent poking."
   weight: 2.267
-kratonite_spear_p_b:
+kratonite_spear_p_bound:
   id: 16231
   weight: 2.267
   slot: "Weapon"
@@ -72937,7 +72109,7 @@ kratonite_spear_p_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-kratonite_spear_p+_b:
+kratonite_spear_p+_bound:
   id: 16232
   weight: 2.267
   slot: "Weapon"
@@ -72945,7 +72117,7 @@ kratonite_spear_p+_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-kratonite_spear_p++_b:
+kratonite_spear_p++_bound:
   id: 16233
   weight: 2.267
   slot: "Weapon"
@@ -72960,7 +72132,7 @@ fractite_spear_bound:
   type: "TwoHanded"
   examine: "A stick made for poking - violent poking."
   weight: 2.267
-fractite_spear_p_b:
+fractite_spear_p_bound:
   id: 16235
   weight: 2.267
   slot: "Weapon"
@@ -72968,7 +72140,7 @@ fractite_spear_p_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-fractite_spear_p+_b:
+fractite_spear_p+_bound:
   id: 16236
   weight: 2.267
   slot: "Weapon"
@@ -72976,7 +72148,7 @@ fractite_spear_p+_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-fractite_spear_p++_b:
+fractite_spear_p++_bound:
   id: 16237
   weight: 2.267
   slot: "Weapon"
@@ -72991,7 +72163,7 @@ zephyrium_spear_bound:
   type: "TwoHanded"
   examine: "A stick made for poking - violent poking."
   weight: 2.267
-zephyrium_spear_p_b:
+zephyrium_spear_p_bound:
   id: 16239
   weight: 2.267
   slot: "Weapon"
@@ -72999,7 +72171,7 @@ zephyrium_spear_p_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-zephyrium_spear_p+_b:
+zephyrium_spear_p+_bound:
   id: 16240
   weight: 2.267
   slot: "Weapon"
@@ -73007,7 +72179,7 @@ zephyrium_spear_p+_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-zephyrium_spear_p++_b:
+zephyrium_spear_p++_bound:
   id: 16241
   weight: 2.267
   slot: "Weapon"
@@ -73022,7 +72194,7 @@ argonite_spear_bound:
   type: "TwoHanded"
   examine: "A stick made for poking - violent poking."
   weight: 2.267
-argonite_spear_p_b:
+argonite_spear_p_bound:
   id: 16243
   weight: 2.267
   slot: "Weapon"
@@ -73030,7 +72202,7 @@ argonite_spear_p_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-argonite_spear_p+_b:
+argonite_spear_p+_bound:
   id: 16244
   weight: 2.267
   slot: "Weapon"
@@ -73038,7 +72210,7 @@ argonite_spear_p+_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-argonite_spear_p++_b:
+argonite_spear_p++_bound:
   id: 16245
   weight: 2.267
   slot: "Weapon"
@@ -73053,7 +72225,7 @@ katagon_spear_bound:
   type: "TwoHanded"
   examine: "A stick made for poking - violent poking."
   weight: 2.267
-katagon_spear_p_b:
+katagon_spear_p_bound:
   id: 16247
   weight: 2.267
   slot: "Weapon"
@@ -73061,7 +72233,7 @@ katagon_spear_p_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-katagon_spear_p+_b:
+katagon_spear_p+_bound:
   id: 16248
   weight: 2.267
   slot: "Weapon"
@@ -73069,7 +72241,7 @@ katagon_spear_p+_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-katagon_spear_p++_b:
+katagon_spear_p++_bound:
   id: 16249
   weight: 2.267
   slot: "Weapon"
@@ -73084,7 +72256,7 @@ gorgonite_spear_bound:
   type: "TwoHanded"
   examine: "A stick made for poking - violent poking."
   weight: 2.267
-gorgonite_spear_p_b:
+gorgonite_spear_p_bound:
   id: 16251
   weight: 2.267
   slot: "Weapon"
@@ -73092,7 +72264,7 @@ gorgonite_spear_p_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-gorgonite_spear_p+_b:
+gorgonite_spear_p+_bound:
   id: 16252
   weight: 2.267
   slot: "Weapon"
@@ -73100,7 +72272,7 @@ gorgonite_spear_p+_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-gorgonite_spear_p++_b:
+gorgonite_spear_p++_bound:
   id: 16253
   weight: 2.267
   slot: "Weapon"
@@ -73115,7 +72287,7 @@ promethium_spear_bound:
   type: "TwoHanded"
   examine: "A stick made for poking - violent poking."
   weight: 2.267
-promethium_spear_p_b:
+promethium_spear_p_bound:
   id: 16255
   weight: 2.267
   slot: "Weapon"
@@ -73123,7 +72295,7 @@ promethium_spear_p_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-promethium_spear_p+_b:
+promethium_spear_p+_bound:
   id: 16256
   weight: 2.267
   slot: "Weapon"
@@ -73131,7 +72303,7 @@ promethium_spear_p+_b:
   examine: "A stick made for poking - violent poking."
   use: "Dungeoneering"
   kept: "Always"
-promethium_spear_p++_b:
+promethium_spear_p++_bound:
   id: 16257
   weight: 2.267
   slot: "Weapon"
@@ -73146,7 +72318,7 @@ primal_spear_bound:
   type: "TwoHanded"
   examine: "A stick made for poking - violent poking."
   weight: 2.267
-primal_spear_p_b:
+primal_spear_p_bound:
   id: 16259
   weight: 2.267
   slot: "Weapon"
@@ -73154,7 +72326,7 @@ primal_spear_p_b:
   examine: "A stick made for poking - violent poking."
   kept: "Always"
   use: "Dungeoneering"
-primal_spear_p+_b:
+primal_spear_p+_bound:
   id: 16260
   weight: 2.267
   slot: "Weapon"
@@ -73162,7 +72334,7 @@ primal_spear_p+_b:
   examine: "A stick made for poking - violent poking."
   kept: "Always"
   use: "Dungeoneering"
-primal_spear_p++_b:
+primal_spear_p++_bound:
   id: 16261
   weight: 2.267
   slot: "Weapon"
@@ -73419,8 +72591,6 @@ tangle_gum_longbow:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
 tangle_gum_longbow_noted: 16318
 seeping_elm_longbow:
   id: 16319
@@ -73429,9 +72599,6 @@ seeping_elm_longbow:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
 seeping_elm_longbow_noted: 16320
 blood_spindle_longbow:
   id: 16321
@@ -73440,10 +72607,6 @@ blood_spindle_longbow:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
 blood_spindle_longbow_noted: 16322
 utuku_longbow:
   id: 16323
@@ -73452,11 +72615,6 @@ utuku_longbow:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
 utuku_longbow_noted: 16324
 spinebeam_longbow:
   id: 16325
@@ -73465,12 +72623,6 @@ spinebeam_longbow:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
 spinebeam_longbow_noted: 16326
 bovistrangler_longbow:
   id: 16327
@@ -73479,13 +72631,6 @@ bovistrangler_longbow:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
 bovistrangler_longbow_noted: 16328
 thigat_longbow:
   id: 16329
@@ -73494,14 +72639,6 @@ thigat_longbow:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
 thigat_longbow_noted: 16330
 corpsethorn_longbow:
   id: 16331
@@ -73509,15 +72646,6 @@ corpsethorn_longbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
-    - "katagon_arrows"
   weight: 2.267
 corpsethorn_longbow_noted: 16332
 entgallow_longbow:
@@ -73527,16 +72655,6 @@ entgallow_longbow:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
-    - "katagon_arrows"
-    - "gorgonite_arrows"
 entgallow_longbow_noted: 16334
 grave_creeper_longbow:
   id: 16335
@@ -73545,17 +72663,6 @@ grave_creeper_longbow:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
-    - "katagon_arrows"
-    - "gorgonite_arrows"
-    - "promethium_arrows"
 grave_creeper_longbow_noted: 16336
 sagittarian_longbow:
   id: 16337
@@ -73564,18 +72671,6 @@ sagittarian_longbow:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
-    - "katagon_arrows"
-    - "gorgonite_arrows"
-    - "promethium_arrows"
-    - "sagittarian_arrows"
 sagittarian_longbow_noted: 16338
 novite_boots:
   id: 16339
@@ -73905,7 +73000,7 @@ fractite_arrows:
   slot: "Ammo"
   examine: "Bow ammunition."
 zephyrium_arrows_2:
-  <<: *zephyrium_arrows_p_b
+  <<: *zephyrium_arrows_p_bound
   id: 16452
 argonite_arrows:
   id: 16457
@@ -73928,103 +73023,103 @@ sagittarian_arrows:
   slot: "Ammo"
   examine: "Bow ammunition."
 novite_arrows_p:
-  <<: *novite_arrows_p_b
+  <<: *novite_arrows_p_bound
   id: 16482
 bathus_arrows_p:
-  <<: *bathus_arrows_p_b
+  <<: *bathus_arrows_p_bound
   id: 16487
 marmaros_arrows_p:
-  <<: *marmaros_arrows_p_b
+  <<: *marmaros_arrows_p_bound
   id: 16492
 kratonite_arrows_p:
-  <<: *kratonite_arrows_p_b
+  <<: *kratonite_arrows_p_bound
   id: 16497
 fractite_arrows_p:
-  <<: *fractite_arrows_p_b
+  <<: *fractite_arrows_p_bound
   id: 16502
 zephyrium_arrows:
-  <<: *zephyrium_arrows_p_b
+  <<: *zephyrium_arrows_p_bound
   id: 16507
 argonite_arrows_p:
-  <<: *argonite_arrows_p_b
+  <<: *argonite_arrows_p_bound
   id: 16512
 katagon_arrows_p:
-  <<: *katagon_arrows_p_b
+  <<: *katagon_arrows_p_bound
   id: 16517
 gorgonite_arrows_p:
-  <<: *gorgonite_arrows_p_b
+  <<: *gorgonite_arrows_p_bound
   id: 16522
 promethium_arrows_p:
-  <<: *promethium_arrows_p_b
+  <<: *promethium_arrows_p_bound
   id: 16527
 sagittarian_arrows_p:
-  <<: *sagittarian_arrows_p_b
+  <<: *sagittarian_arrows_p_bound
   id: 16532
 novite_arrows_p+:
-  <<: *novite_arrows_p_b
+  <<: *novite_arrows_p_bound
   id: 16537
 bathus_arrows_p+:
-  <<: *bathus_arrows_p_b
+  <<: *bathus_arrows_p_bound
   id: 16542
 marmaros_arrows_p+:
-  <<: *marmaros_arrows_p_b
+  <<: *marmaros_arrows_p_bound
   id: 16547
 kratonite_arrows_p+:
-  <<: *kratonite_arrows_p_b
+  <<: *kratonite_arrows_p_bound
   id: 16552
 fractite_arrows_p+:
-  <<: *fractite_arrows_p_b
+  <<: *fractite_arrows_p_bound
   id: 16557
 zephyrium_arrows_p+:
-  <<: *zephyrium_arrows_p_b
+  <<: *zephyrium_arrows_p_bound
   id: 16562
 argonite_arrows_p+:
-  <<: *argonite_arrows_p_b
+  <<: *argonite_arrows_p_bound
   id: 16567
 katagon_arrows_p+:
-  <<: *katagon_arrows_p_b
+  <<: *katagon_arrows_p_bound
   id: 16572
 gorgonite_arrows_p+:
-  <<: *gorgonite_arrows_p_b
+  <<: *gorgonite_arrows_p_bound
   id: 16577
 promethium_arrows_p+:
-  <<: *promethium_arrows_p_b
+  <<: *promethium_arrows_p_bound
   id: 16582
 sagittarian_arrows_p+:
-  <<: *sagittarian_arrows_p_b
+  <<: *sagittarian_arrows_p_bound
   id: 16587
 novite_arrows_p++:
-  <<: *novite_arrows_p_b
+  <<: *novite_arrows_p_bound
   id: 16592
 bathus_arrows_p++:
-  <<: *bathus_arrows_p_b
+  <<: *bathus_arrows_p_bound
   id: 16597
 marmaros_arrows_p++:
-  <<: *marmaros_arrows_p_b
+  <<: *marmaros_arrows_p_bound
   id: 16602
 kratonite_arrows_p++:
-  <<: *kratonite_arrows_p_b
+  <<: *kratonite_arrows_p_bound
   id: 16607
 fractite_arrows_p++:
-  <<: *fractite_arrows_p_b
+  <<: *fractite_arrows_p_bound
   id: 16612
 zephyrium_arrows_p++:
-  <<: *zephyrium_arrows_p_b
+  <<: *zephyrium_arrows_p_bound
   id: 16617
 argonite_arrows_p++:
-  <<: *argonite_arrows_p_b
+  <<: *argonite_arrows_p_bound
   id: 16622
 katagon_arrows_p++:
-  <<: *katagon_arrows_p_b
+  <<: *katagon_arrows_p_bound
   id: 16627
 gorgonite_arrows_p++:
-  <<: *gorgonite_arrows_p_b
+  <<: *gorgonite_arrows_p_bound
   id: 16632
 promethium_arrows_p++:
-  <<: *promethium_arrows_p_b
+  <<: *promethium_arrows_p_bound
   id: 16637
 sagittarian_arrows_p++:
-  <<: *sagittarian_arrows_p_b
+  <<: *sagittarian_arrows_p_bound
   id: 16642
 novite_plateskirt:
   id: 16647
@@ -74870,8 +73965,6 @@ tangle_gum_shortbow:
   attack_range: 7
   examine: "A small bow, only effective at short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
 tangle_gum_shortbow_noted: 16868
 seeping_elm_shortbow:
   id: 16869
@@ -74880,9 +73973,6 @@ seeping_elm_shortbow:
   attack_range: 7
   examine: "A small bow, only effective at a short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
 seeping_elm_shortbow_noted: 16870
 blood_spindle_shortbow:
   id: 16871
@@ -74891,10 +73981,6 @@ blood_spindle_shortbow:
   attack_range: 7
   examine: "A small bow, only effective at short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
 blood_spindle_shortbow_noted: 16872
 utuku_shortbow:
   id: 16873
@@ -74903,11 +73989,6 @@ utuku_shortbow:
   attack_range: 7
   examine: "A small bow, only effective at short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
 utuku_shortbow_noted: 16874
 spinebeam_shortbow:
   id: 16875
@@ -74916,12 +73997,6 @@ spinebeam_shortbow:
   attack_range: 7
   examine: "A small bow, only effective at a short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
 spinebeam_shortbow_noted: 16876
 bovistrangler_shortbow:
   id: 16877
@@ -74930,13 +74005,6 @@ bovistrangler_shortbow:
   attack_range: 7
   examine: "A small bow, only effective at short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
 bovistrangler_shortbow_noted: 16878
 thigat_shortbow:
   id: 16879
@@ -74945,14 +74013,6 @@ thigat_shortbow:
   attack_range: 7
   examine: "A small bow, only effective at short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
 thigat_shortbow_noted: 16880
 corpsethorn_shortbow:
   id: 16881
@@ -74961,15 +74021,6 @@ corpsethorn_shortbow:
   attack_range: 7
   examine: "A small bow, only effective at short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
-    - "katagon_arrows"
 corpsethorn_shortbow_noted: 16882
 entgallow_shortbow:
   id: 16883
@@ -74978,16 +74029,6 @@ entgallow_shortbow:
   attack_range: 7
   examine: "A small bow, only effective at short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
-    - "katagon_arrows"
-    - "gorgonite_arrows"
 entgallow_shortbow_noted: 16884
 grave_creeper_shortbow:
   id: 16885
@@ -74996,17 +74037,6 @@ grave_creeper_shortbow:
   attack_range: 7
   examine: "A small bow, only effective at short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
-    - "katagon_arrows"
-    - "gorgonite_arrows"
-    - "promethium_arrows"
 grave_creeper_shortbow_noted: 16886
 sagittarian_shortbow:
   id: 16887
@@ -75015,18 +74045,6 @@ sagittarian_shortbow:
   attack_range: 7
   examine: "A small bow, only effective at short distance."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
-    - "katagon_arrows"
-    - "gorgonite_arrows"
-    - "promethium_arrows"
-    - "sagittarian_arrows"
 sagittarian_shortbow_noted: 16888
 novite_2h_sword:
   id: 16889
@@ -75338,12 +74356,6 @@ spinebeam_shortbow_2:
   examine: "A small bow, only effective at short distance."
   use: "Dungeoneering"
   kept: "Always"
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
 spinebeam_shortbow_noted_2: 16976
 tangle_gum_staff:
   id: 16977
@@ -76516,18 +75528,6 @@ hexhunter_bow:
   type: "TwoHanded"
   examine: "It is stronger against targets with magical powers."
   weight: 1.814
-  ammo:
-    - "notive_arrows"
-    - "bathus_arrows"
-    - "marmaros_arrows"
-    - "kratonite_arrows"
-    - "fractite_arrows"
-    - "zephyrium_arrows"
-    - "argonite_arrows"
-    - "katagon_arrows"
-    - "gorgonite_arrows"
-    - "promethium_arrows"
-    - "sagittarian_arrows"
 hexhunter_bow_noted: 17296
 protoleather_boots:
   id: 17297
@@ -79952,22 +78952,6 @@ maple_longbow_sighted:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "It has a sight on it that should improve its performance."
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
-    - "adamant_arrow"
-    - "adamant_fire_arrows_lit"
-    - "adamant_fire_arrows_unlit"
   kept: "Reclaim"
 magic_longbow_sighted:
   id: 18332
@@ -79977,30 +78961,6 @@ magic_longbow_sighted:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "It has a sight on it that should improve its performance."
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
-    - "adamant_arrow"
-    - "adamant_fire_arrows_lit"
-    - "adamant_fire_arrows_unlit"
-    - "rune_arrow"
-    - "rune_fire_arrows_lit"
-    - "rune_fire_arrows_unlit"
-    - "ice_arrows"
-    - "broad_arrow"
-    - "saradomin_arrows"
-    - "guthix_arrows"
-    - "zamorak_arrows"
   kept: "Reclaim"
 arcane_pulse_necklace:
   id: 18333
@@ -80175,54 +79135,6 @@ chaotic_crossbow:
   attack_range: 7
   examine: "A small crossbow, only effective at short distance."
   weight: 1.814
-  ammo:
-    - "bronze_bolts"
-    - "bronze_bolts_p"
-    - "bronze_bolts_p+"
-    - "bronze_bolts_p++"
-    - "opal_bolts"
-    - "opal_bolts_e"
-    - "iron_bolts"
-    - "iron_bolts_p"
-    - "iron_bolts_p+"
-    - "iron_bolts_p++"
-    - "pearl_bolts"
-    - "pearl_bolts_e"
-    - "blurite_bolts"
-    - "jade_bolts"
-    - "jade_bolts_e"
-    - "steel_bolts"
-    - "steel_bolts_p"
-    - "steel_bolts_p+"
-    - "steel_bolts_p++"
-    - "topaz_bolts"
-    - "topaz_bolts_e"
-    - "black_bolts"
-    - "mithril_bolts"
-    - "mithril_bolts_p"
-    - "mithril_bolts_p+"
-    - "mithril_bolts_p++"
-    - "sapphire_bolts"
-    - "sapphire_bolts_e"
-    - "emerald_bolts"
-    - "emerald_bolts_e"
-    - "ruby_bolts"
-    - "ruby_bolts_e"
-    - "adamant_bolts"
-    - "adamant_bolts_p"
-    - "adamant_bolts_p+"
-    - "adamant_bolts_p++"
-    - "diamond_bolts"
-    - "diamond_bolts_e"
-    - "runite_bolts"
-    - "runite_bolts_p"
-    - "runite_bolts_p+"
-    - "runite_bolts_p++"
-    - "dragon_bolts"
-    - "dragon_bolts_e"
-    - "onyx_bolts"
-    - "onyx_bolts_e"
-    - "broad-tipped_bolts"
 chaotic_crossbow_broken:
   id: 18358
   tradeable: false
@@ -82369,28 +81281,6 @@ saradomin_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Saradomin."
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
-    - "adamant_arrow"
-    - "adamant_fire_arrows_lit"
-    - "adamant_fire_arrows_unlit"
-    - "rune_arrow"
-    - "rune_fire_arrows_lit"
-    - "rune_fire_arrows_unlit"
-    - "saradomin_arrows"
-    - "guthix_arrows"
-    - "zamorak_arrows"
 saradomin_bow_noted: 19144
 saradomin_bow_lent: 19145
 guthix_bow:
@@ -82403,28 +81293,6 @@ guthix_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Guthix."
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
-    - "adamant_arrow"
-    - "adamant_fire_arrows_lit"
-    - "adamant_fire_arrows_unlit"
-    - "rune_arrow"
-    - "rune_fire_arrows_lit"
-    - "rune_fire_arrows_unlit"
-    - "saradomin_arrows"
-    - "guthix_arrows"
-    - "zamorak_arrows"
 guthix_bow_noted: 19147
 guthix_bow_lent: 19148
 zamorak_bow:
@@ -82436,28 +81304,6 @@ zamorak_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Zamorak."
-  ammo:
-    - "bronze_arrow"
-    - "bronze_fire_arrows_lit"
-    - "bronze_fire_arrows_unlit"
-    - "iron_arrow"
-    - "iron_fire_arrows_lit"
-    - "iron_fire_arrows_unlit"
-    - "steel_arrow"
-    - "steel_fire_arrows_lit"
-    - "steel_fire_arrows_unlit"
-    - "mithril_arrow"
-    - "mithril_fire_arrows_lit"
-    - "mithril_fire_arrows_unlit"
-    - "adamant_arrow"
-    - "adamant_fire_arrows_lit"
-    - "adamant_fire_arrows_unlit"
-    - "rune_arrow"
-    - "rune_fire_arrows_lit"
-    - "rune_fire_arrows_unlit"
-    - "saradomin_arrows"
-    - "guthix_arrows"
-    - "zamorak_arrows"
 zamorak_bow_noted: 19150
 zamorak_bow_lent: 19151
 saradomin_arrows:

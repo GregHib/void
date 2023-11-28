@@ -30,10 +30,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
 object Ammo {
-    fun required(item: Item) = !item.id.startsWith("crystal_bow") &&
-            item.id != "zaryte_bow" &&
-            !item.id.endsWith("sling") &&
-            !item.id.endsWith("chinchompa")
+    fun required(item: Item) = item.def["ammo_group", -1] == 106 && !item.id.endsWith("chinchompa")
 
     fun remove(player: Player, target: Character, ammo: String, required: Int) {
         if (ammo == "bolt_rack") {
