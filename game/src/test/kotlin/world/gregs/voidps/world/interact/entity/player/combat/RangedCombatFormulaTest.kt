@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerStart
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
 import kotlin.test.assertEquals
@@ -87,7 +87,7 @@ internal class RangedCombatFormulaTest : CombatFormulaTest() {
         val player = createPlayer(Skill.Ranged to 25, Skill.Prayer to 26)
         val weapon = Item("mithril_knife")
         player.equipment.set(EquipSlot.Weapon.index, weapon.id)
-        player.events.emit(PrayerStart("hawk_eye"))
+        player.addVarbit(PrayerConfigs.ACTIVE_PRAYERS, "hawk_eye")
         val npc = createNPC("giant_rat")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "range", weapon)
@@ -101,7 +101,7 @@ internal class RangedCombatFormulaTest : CombatFormulaTest() {
     @Test
     fun `High prayer and potion boost`() {
         val player = createPlayer(Skill.Ranged to 99, Skill.Prayer to 99)
-        player.events.emit(PrayerStart("rigour"))
+        player.addVarbit(PrayerConfigs.ACTIVE_PRAYERS, "rigour")
         val weapon = Item("dark_bow")
         player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         player.equipment.set(EquipSlot.Ammo.index, "dragon_arrow", 2)

@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerStart
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs
 import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
 import kotlin.test.assertEquals
 
@@ -88,7 +88,7 @@ internal class MagicCombatFormulaTest : CombatFormulaTest() {
     @Test
     fun `Low prayer boost`() {
         val player = createPlayer(Skill.Magic to 25, Skill.Prayer to 27)
-        player.events.emit(PrayerStart("mystic_lore"))
+        player.addVarbit(PrayerConfigs.ACTIVE_PRAYERS, "mystic_lore")
         val npc = createNPC("giant_rat")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "magic", spell = "earth_strike")
@@ -102,7 +102,7 @@ internal class MagicCombatFormulaTest : CombatFormulaTest() {
     @Test
     fun `High prayer and potion boost`() {
         val player = createPlayer(Skill.Magic to 99, Skill.Prayer to 99)
-        player.events.emit(PrayerStart("augury"))
+        player.addVarbit(PrayerConfigs.ACTIVE_PRAYERS, "augury")
         val weapon = Item("staff_of_light")
         player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val potion = Item("super_magic_potion_4")

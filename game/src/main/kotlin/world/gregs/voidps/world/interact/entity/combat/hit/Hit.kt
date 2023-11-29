@@ -66,6 +66,7 @@ object Hit {
             type == "magic" || type == "blaze" -> Skill.Magic
             else -> Skill.Attack
         }
+        Prayer.setTurmoilTarget(source, target)
         val level = effectiveLevel(if (offense) source else target, skill, type, offense)
         val equipmentBonus = Equipment.bonus(source, target, type, offense)
         var rating = level * (equipmentBonus + 64)
@@ -73,8 +74,6 @@ object Hit {
         if (offense) {
             rating = Bonus.slayerModifier(source, target, type, rating, damage = false)
             rating = Weapon.specialRatingModifiers(source, type, weapon, special, rating)
-        } else {
-            Prayer.setTurmoilTarget(source, target)
         }
         if (source["debug", false]) {
             val message = "${if (offense) "Offensive" else "Defensive"} rating: $rating ($type)"

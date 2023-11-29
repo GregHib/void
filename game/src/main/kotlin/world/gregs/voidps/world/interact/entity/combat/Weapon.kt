@@ -149,7 +149,7 @@ object Weapon {
             if (weapon.id == "zaniks_crossbow" && special) {
                 if (target is NPC) {
                     damage += random.nextInt(30..150)
-                } else if (target is Player && (Prayer.hasActive(target) || Equipment.hasGodArmour(target))) {
+                } else if (target is Player && (Prayer.hasAnyActive(target) || Equipment.hasGodArmour(target))) {
                     damage += random.nextInt(0..150)
                 }
             } else if (weapon.id.startsWith("dark_bow") && special) {

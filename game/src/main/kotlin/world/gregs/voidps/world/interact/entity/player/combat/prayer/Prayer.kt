@@ -13,20 +13,21 @@ import kotlin.math.floor
 
 object Prayer {
 
-    fun hasActive(player: Player): Boolean {
+    fun hasAnyActive(player: Player): Boolean {
         return (player.variables as PlayerVariables).temp.any { (key, value) -> key.startsWith("prayer_") && value == true }
     }
 
     fun setTurmoilTarget(source: Character, target: Character) {
-        if (source.praying("turmoil")) {
-            if (!source["turmoil", false]) {
-                source.toggle("turmoil")
-            }
-            source["turmoil_attack_bonus"] = (target.levels.get(Skill.Attack).coerceAtMost(99) * 0.15).toInt()
-            source["turmoil_strength_bonus"] = (target.levels.get(Skill.Strength).coerceAtMost(99) * 0.10).toInt()
-            source["turmoil_defence_bonus"] = (target.levels.get(Skill.Defence).coerceAtMost(99) * 0.15).toInt()
+        if (source.praying("turmoil") && !source["turmoil", false]) {
+            source["turmoil_attack_bonus"] = target.levels.get(Skill.Attack).coerceAtMost(99) * 0.15
+            source["turmoil_strength_bonus"] = target.levels.get(Skill.Strength).coerceAtMost(99) * 0.10
+            source["turmoil_defence_bonus"] = target.levels.get(Skill.Defence).coerceAtMost(99) * 0.15
+            source["turmoil"] = true
         } else if (!source.praying("turmoil") && source["turmoil", false]) {
-            source.toggle("turmoil")
+            source.clear("turmoil")
+            source.clear("turmoil_attack_bonus")
+            source.clear("turmoil_strength_bonus")
+            source.clear("turmoil_defence_bonus")
         }
     }
 
@@ -39,17 +40,16 @@ object Prayer {
                 if (character.equipped(EquipSlot.Amulet).id == "amulet_of_zealots") {
                     bonus = floor(1.0 + (bonus - 1.0) * 2)
                 }
-                bonus += if (character["turmoil", false]) {
-                    character["turmoil_${skill.name.lowercase()}_bonus", 0].toDouble() / 100.0
-                } else {
-                    character.getLeech(skill) * 100.0 / character.levels.getMax(skill) / 100.0
+                if (!character["turmoil", false]) {
+                    bonus += character.getLeech(skill) * 100.0 / character.levels.getMax(skill) / 100.0
                 }
                 bonus -= character.getBaseDrain(skill) + character.getDrain(skill) / 100.0
                 bonus
             }
             else -> 1.0
         }
-        return (level * multiplier).toInt()
+        val turmoil = if (character["turmoil", false]) character["turmoil_${skill.name.lowercase()}_bonus", 0.0] else 0.0
+        return ((level * multiplier) + turmoil).toInt()
     }
 
     fun damageModifiers(

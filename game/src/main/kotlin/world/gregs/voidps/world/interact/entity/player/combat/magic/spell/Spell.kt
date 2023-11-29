@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.world.interact.entity.combat.Equipment
@@ -22,7 +21,6 @@ import kotlin.math.absoluteValue
 import kotlin.math.roundToInt
 
 object Spell {
-    private val definitions: InterfaceDefinitions by inject()
 
     fun isMultiTarget(spell: String) = spell.endsWith("_burst") || spell.endsWith("_barrage")
 
@@ -87,7 +85,7 @@ object Spell {
     }
 
     fun hasRequirements(player: Player, spell: String, runes: MutableList<Item>, items: MutableList<Item>): Boolean {
-        val component = definitions.getComponent(player.spellBook, spell) ?: return false
+        val component = get<InterfaceDefinitions>().getComponent(player.spellBook, spell) ?: return false
         if (!player.has(Skill.Magic, component.magicLevel, message = true)) {
             return false
         }

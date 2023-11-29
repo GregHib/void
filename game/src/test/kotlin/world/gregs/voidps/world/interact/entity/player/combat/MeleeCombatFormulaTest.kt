@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerStart
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs
 import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
 import kotlin.test.assertEquals
 
@@ -95,8 +95,8 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
     fun `Low prayer boost`() {
         val player = createPlayer(Skill.Attack to 40, Skill.Strength to 40, Skill.Prayer to 40)
         val weapon = Item("rune_scimitar")
-        player.events.emit(PrayerStart("improved_reflexes"))
-        player.events.emit(PrayerStart("superhuman_strength"))
+        player.addVarbit(PrayerConfigs.ACTIVE_PRAYERS, "improved_reflexes")
+        player.addVarbit(PrayerConfigs.ACTIVE_PRAYERS, "superhuman_strength")
         player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val npc = createNPC("giant_rat")
 
@@ -112,7 +112,7 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
     fun `High prayer boost`() {
         val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99, Skill.Prayer to 70)
         val weapon = Item("armadyl_godsword")
-        player.events.emit(PrayerStart("piety"))
+        player.addVarbit(PrayerConfigs.ACTIVE_PRAYERS, "piety")
         player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val npc = createNPC("giant_rat")
 
@@ -125,10 +125,27 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
     }
 
     @Test
+    fun `Turmoil prayer boost`() {
+        val player = createPlayer(Skill.Attack to 99, Skill.Strength to 99, Skill.Prayer to 99)
+        val weapon = Item("armadyl_godsword")
+        player[PrayerConfigs.PRAYERS] = "curses"
+        player.addVarbit(PrayerConfigs.ACTIVE_CURSES, "turmoil")
+        player.equipment.set(EquipSlot.Weapon.index, weapon.id)
+        val npc = createNPC("greater_demon")
+
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
+
+        assertEquals(26656, offensiveRating)
+        assertEquals(5760, defensiveRating)
+        assertEquals(424, maxHit)
+        assertEquals(0.8919, chance, 0.0001)
+    }
+
+    @Test
     fun `Special attack boost`() {
         val player = createPlayer(Skill.Attack to 75, Skill.Strength to 99, Skill.Prayer to 70)
         val weapon = Item("armadyl_godsword")
-        player.events.emit(PrayerStart("piety"))
+        player.addVarbit(PrayerConfigs.ACTIVE_PRAYERS, "piety")
         player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val npc = createNPC("giant_rat")
 
