@@ -34687,7 +34687,7 @@ bones_to_peaches:
   id: 8015
   price: 700
   limit: 200
-  aka: [ btp, btp_tab, btp_tabs, peach_tab, peaches_tab, peach_tabs, peaches_tabs, peach_tablet, peaches_tablet, bones_to_peaches_tab, bones_to_peaches_tabs, bones_to_peaches_tablet  ]
+  aka: [ btp, btp_tab, btp_tabs, peach_tab, peaches_tab, peach_tabs, peaches_tabs, peach_tablet, peaches_tablet, bones_to_peaches_tab, bones_to_peaches_tabs, bones_to_peaches_tablet ]
   examine: "A tablet containing a magic spell."
 enchant_sapphire:
   id: 8016
@@ -40475,6 +40475,7 @@ attack_cape:
   id: 9747
   tradeable: false
   weight: 0.453
+  aka: [ att_cape, attack_skillcape, attack_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by masters of Attack."
   kept: "Reclaim"
@@ -40482,6 +40483,7 @@ attack_cape_t:
   id: 9748
   tradeable: false
   weight: 0.453
+  aka: [ att_cape_t, attack_skillcape_t, attack_skill_cape_t, attack_cape_trimmed, attack_skillcape_trimmed, attack_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by masters of Attack."
   kept: "Reclaim"
@@ -40489,6 +40491,7 @@ attack_hood:
   id: 9749
   tradeable: false
   weight: 0.453
+  aka: [ att_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Attack skillcape hood."
@@ -40497,6 +40500,7 @@ strength_cape:
   id: 9750
   tradeable: false
   weight: 0.453
+  aka: [ str_cape, strength_skillcape, strength_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by only the strongest people."
   kept: "Reclaim"
@@ -40504,6 +40508,7 @@ strength_cape_t:
   id: 9751
   tradeable: false
   weight: 0.453
+  aka: [ str_cape_t, strength_skillcape_t, strength_skill_cape_t, strength_cape_trimmed, strength_skillcape_trimmed, strength_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by only the strongest people."
   kept: "Reclaim"
@@ -40511,6 +40516,7 @@ strength_hood:
   id: 9752
   tradeable: false
   weight: 0.453
+  aka: [ str_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Strength skillcape hood."
@@ -40519,6 +40525,7 @@ defence_cape:
   id: 9753
   tradeable: false
   weight: 0.453
+  aka: [ def_cape, defence_skillcape, defence_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by masters of the art of Defence."
   kept: "Reclaim"
@@ -40526,6 +40533,7 @@ defence_cape_t:
   id: 9754
   tradeable: false
   weight: 0.453
+  aka: [ def_cape_t, defence_skillcape_t, defence_skill_cape_t, defence_cape_trimmed, defence_skillcape_trimmed, defence_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by masters of the art of Defence."
   kept: "Reclaim"
@@ -40533,6 +40541,7 @@ defence_hood:
   id: 9755
   tradeable: false
   weight: 0.453
+  aka: [ def_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Defence skillcape hood."
@@ -40541,6 +40550,7 @@ ranged_cape:
   id: 9756
   tradeable: false
   weight: 0.453
+  aka: [ range_cape, range_skillcape, range_skill_cape, ranged_skillcape, ranged_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by master archers."
   kept: "Reclaim"
@@ -40548,6 +40558,7 @@ ranged_cape_t:
   id: 9757
   tradeable: false
   weight: 0.453
+  aka: [ range_cape_t, range_skillcape_t, range_skill_cape_t, range_cape_trimmed, range_skillcape_trimmed, range_skill_cape_trimmed, ranged_skillcape_t, ranged_skill_cape_t, ranged_cape_trimmed, ranged_skillcape_trimmed, ranged_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by master archers."
   kept: "Reclaim"
@@ -40555,6 +40566,7 @@ ranged_hood:
   id: 9758
   tradeable: false
   weight: 0.453
+  aka: [ range_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Range skillcape hood."
@@ -40563,6 +40575,7 @@ prayer_cape:
   id: 9759
   tradeable: false
   weight: 0.453
+  aka: [ pray_cape, prayer_skillcape, prayer_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by the most pious of heroes."
   kept: "Reclaim"
@@ -40570,6 +40583,7 @@ prayer_cape_t:
   id: 9760
   tradeable: false
   weight: 0.453
+  aka: [ pray_cape_t, prayer_skillcape_t, prayer_skill_cape_t, prayer_cape_trimmed, prayer_skillcape_trimmed, prayer_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by the most pious of heroes."
   kept: "Reclaim"
@@ -40577,6 +40591,7 @@ prayer_hood:
   id: 9761
   tradeable: false
   weight: 0.453
+  aka: [ pray_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Prayer skillcape hood."
@@ -40585,6 +40600,7 @@ magic_cape:
   id: 9762
   tradeable: false
   weight: 0.453
+  aka: [ magic_skillcape, magic_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by the most powerful mages."
   kept: "Reclaim"
@@ -40592,6 +40608,7 @@ magic_cape_t:
   id: 9763
   tradeable: false
   weight: 0.453
+  aka: [ magic_skillcape_t, magic_skill_cape_t, magic_cape_trimmed, magic_skillcape_trimmed, magic_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by the most powerful mages."
   kept: "Reclaim"
@@ -40607,6 +40624,7 @@ runecrafting_cape:
   id: 9765
   tradeable: false
   weight: 0.453
+  aka: [ rc_cape, runecrafting_skillcape, runecrafting_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by master runecrafters."
   kept: "Reclaim"
@@ -40614,6 +40632,7 @@ runecrafting_cape_t:
   id: 9766
   tradeable: false
   weight: 0.453
+  aka: [ runecrafting_skillcape_t, runecrafting_skill_cape_t, runecrafting_cape_trimmed, runecrafting_skillcape_trimmed, runecrafting_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by master runecrafters."
   kept: "Reclaim"
@@ -40621,6 +40640,7 @@ runecrafting_hood:
   id: 9767
   tradeable: false
   weight: 0.453
+  aka: [ rc_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Runecrafting skillcape hood."
@@ -40629,7 +40649,7 @@ constitution_cape:
   id: 9768
   tradeable: false
   weight: 0.453
-  aka: [ hitpoints_cape ]
+  aka: [ hp_cape, constitution_skillcape, constitution_skill_cape, hitpoints_skillcape, hitpoints_skill_cape, hitpoints_cape, hitpoint_skillcape, hitpoint_skill_cape, hitpoint_cape ]
   slot: "Cape"
   examine: "The cape worn by well-constituted adventurers."
   kept: "Reclaim"
@@ -40637,7 +40657,7 @@ constitution_cape_t:
   id: 9769
   tradeable: false
   weight: 0.453
-  aka: [ hitpoints_cape_t ]
+  aka: [ hp_cape_t, constitution_skillcape_t, constitution_skill_cape_t, constitution_skillcape_trimmed, constitution_skill_cape_trimmed, hitpoints_skillcape_t, hitpoints_skill_cape_t, hitpoints_cape_t, hitpoint_skillcape_t, hitpoint_skill_cape_t, hitpoint_cape_t, hitpoints_skillcape_trimmed, hitpoints_skill_cape_trimmed, hitpoints_cape_trimmed, hitpoint_skillcape_trimmed, hitpoint_skill_cape_trimmed, hitpoint_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by well-constituted adventurers."
   kept: "Reclaim"
@@ -40645,7 +40665,7 @@ constitution_hood:
   id: 9770
   tradeable: false
   weight: 0.453
-  aka: [ hitpoints_hood ]
+  aka: [ hp_hood, hitpoints_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Constitution skillcape hood."
@@ -40654,6 +40674,7 @@ agility_cape:
   id: 9771
   tradeable: false
   weight: 0.453
+  aka: [ agility_skillcape, agility_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by the most agile of heroes."
   kept: "Reclaim"
@@ -40661,6 +40682,7 @@ agility_cape_t:
   id: 9772
   tradeable: false
   weight: 0.453
+  aka: [ agility_skillcape_t, agility_skill_cape_t, agility_cape_trimmed, agility_skillcape_trimmed, agility_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by the most agile of heroes."
   kept: "Reclaim"
@@ -40676,6 +40698,7 @@ herblore_cape:
   id: 9774
   tradeable: false
   weight: 0.453
+  aka: [ herb_cape, herblore_skillcape, herblore_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by the most skilled at the art of Herblore."
   kept: "Reclaim"
@@ -40683,6 +40706,7 @@ herblore_cape_t:
   id: 9775
   tradeable: false
   weight: 0.453
+  aka: [ herb_cape_t, herblore_skillcape_t, herblore_skill_cape_t, herblore_cape_trimmed, herblore_skillcape_trimmed, herblore_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by the most skilled at the art of Herblore."
   kept: "Reclaim"
@@ -40690,6 +40714,7 @@ herblore_hood:
   id: 9776
   tradeable: false
   weight: 0.453
+  aka: [ herb_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Herblore skillcape hood."
@@ -40698,6 +40723,7 @@ thieving_cape:
   id: 9777
   tradeable: false
   weight: 0.453
+  aka: [ thief_cape, thieve_cape, thieving_skillcape, thieving_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by master thieves."
   kept: "Reclaim"
@@ -40705,6 +40731,7 @@ thieving_cape_t:
   id: 9778
   tradeable: false
   weight: 0.453
+  aka: [ thief_cape_t, thieve_cape_t, thieving_skillcape_t, thieving_skill_cape_t, thieving_cape_trimmed, thieving_skillcape_trimmed, thieving_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by master thieves."
   kept: "Reclaim"
@@ -40712,6 +40739,7 @@ thieving_hood:
   id: 9779
   tradeable: false
   weight: 0.453
+  aka: [ theif_hood, thieve_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Thieving skillcape hood."
@@ -40720,6 +40748,7 @@ crafting_cape:
   id: 9780
   tradeable: false
   weight: 0.453
+  aka: [ craft_cape, crafting_skillcape, crafting_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by master craftworkers."
   kept: "Reclaim"
@@ -40727,6 +40756,7 @@ crafting_cape_t:
   id: 9781
   tradeable: false
   weight: 0.453
+  aka: [ craft_cape_t, crafting_skillcape_t, crafting_skill_cape_t, crafting_cape_trimmed, crafting_skillcape_trimmed, crafting_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by master craftworkers."
   kept: "Reclaim"
@@ -40734,6 +40764,7 @@ crafting_hood:
   id: 9782
   tradeable: false
   weight: 0.453
+  aka: [ craft_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Crafting skillcape hood."
@@ -40742,6 +40773,7 @@ fletching_cape:
   id: 9783
   tradeable: false
   weight: 0.453
+  aka: [ fletch_cape, fletching_skillcape, fletching_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by the best of fletchers."
   kept: "Reclaim"
@@ -40749,6 +40781,7 @@ fletching_cape_t:
   id: 9784
   tradeable: false
   weight: 0.453
+  aka: [ fletch_cape_t, fletching_skillcape_t, fletching_skill_cape_t, fletching_cape_trimmed, fletching_skillcape_trimmed, fletching_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by the best of fletchers."
   kept: "Reclaim"
@@ -40756,6 +40789,7 @@ fletching_hood:
   id: 9785
   tradeable: false
   weight: 0.453
+  aka: [ fletch_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Fletching skillcape hood."
@@ -40764,6 +40798,7 @@ slayer_cape:
   id: 9786
   tradeable: false
   weight: 0.453
+  aka: [ slay_cape, slayer_skillcape, slayer_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by Slayer masters."
   kept: "Reclaim"
@@ -40771,6 +40806,7 @@ slayer_cape_t:
   id: 9787
   tradeable: false
   weight: 0.453
+  aka: [ slay_cape_t, slayer_skillcape_t, slayer_skill_cape_t, slayer_cape_trimmed, slayer_skillcape_trimmed, slayer_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by Slayer masters."
   kept: "Reclaim"
@@ -40778,6 +40814,7 @@ slayer_hood:
   id: 9788
   tradeable: false
   weight: 0.453
+  aka: [ slay_hood ]
   slot: "Hat"
   type: "FullFace"
   examine: "Slayer skillcape hood."
@@ -40786,6 +40823,7 @@ construction_cape:
   id: 9789
   tradeable: false
   weight: 0.453
+  aka: [ con_cape, const_cape, construction_skillcape, construction_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by master builders."
   kept: "Reclaim"
@@ -40793,6 +40831,7 @@ construction_cape_t:
   id: 9790
   tradeable: false
   weight: 0.453
+  aka: [ con_cape_t, const_cape_t, construction_skillcape_t, construction_skill_cape_t, construction_cape_trimmed, construction_skillcape_trimmed, construction_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by master builders."
   kept: "Reclaim"
@@ -40800,6 +40839,7 @@ construction_hood:
   id: 9791
   tradeable: false
   weight: 0.453
+  aka: [ con_hood, const_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Construction skillcape hood."
@@ -40808,6 +40848,7 @@ mining_cape:
   id: 9792
   tradeable: false
   weight: 0.453
+  aka: [ mine_cape, mining_skillcape, mining_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by the most skilled miners."
   kept: "Reclaim"
@@ -40815,6 +40856,7 @@ mining_cape_t:
   id: 9793
   tradeable: false
   weight: 0.453
+  aka: [ mine_cape_t, mining_skillcape_t, mining_skill_cape_t, mining_cape_trimmed, mining_skillcape_trimmed, mining_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by the most skilled miners."
   kept: "Reclaim"
@@ -40822,6 +40864,7 @@ mining_hood:
   id: 9794
   tradeable: false
   weight: 0.453
+  aka: [ mine_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Mining skillcape hood."
@@ -40830,6 +40873,7 @@ smithing_cape:
   id: 9795
   tradeable: false
   weight: 0.453
+  aka: [ smith_cape, smithing_skillcape, smithing_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by master smiths."
   kept: "Reclaim"
@@ -40837,6 +40881,7 @@ smithing_cape_t:
   id: 9796
   tradeable: false
   weight: 0.453
+  aka: [ smith_cape_t, smithing_skillcape_t, smithing_skill_cape_t, smithing_cape_trimmed, smithing_skillcape_trimmed, smithing_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by master smiths."
   kept: "Reclaim"
@@ -40844,6 +40889,7 @@ smithing_hood:
   id: 9797
   tradeable: false
   weight: 0.453
+  aka: [ smith_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Smithing skillcape hood."
@@ -40852,6 +40898,7 @@ fishing_cape:
   id: 9798
   tradeable: false
   weight: 0.453
+  aka: [ fish_cape, fishing_skillcape, fishing_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by the best fishermen."
   kept: "Reclaim"
@@ -40859,6 +40906,7 @@ fishing_cape_t:
   id: 9799
   tradeable: false
   weight: 0.453
+  aka: [ fish_cape_t, fishing_skillcape_t, fishing_skill_cape_t, fishing_cape_trimmed, fishing_skillcape_trimmed, fishing_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by the best fishermen."
   kept: "Reclaim"
@@ -40866,6 +40914,7 @@ fishing_hood:
   id: 9800
   tradeable: false
   weight: 0.453
+  aka: [ fish_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Fishing skillcape hood."
@@ -40874,6 +40923,7 @@ cooking_cape:
   id: 9801
   tradeable: false
   weight: 0.453
+  aka: [ cook_cape, cooking_skillcape, cooking_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by the world's best chefs."
   kept: "Reclaim"
@@ -40881,6 +40931,7 @@ cooking_cape_t:
   id: 9802
   tradeable: false
   weight: 0.453
+  aka: [ cook_cape_t, cooking_skillcape_t, cooking_skill_cape_t, cooking_cape_trimmed, cooking_skillcape_trimmed, cooking_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by the world's best chefs."
   kept: "Reclaim"
@@ -40888,6 +40939,7 @@ cooking_hood:
   id: 9803
   tradeable: false
   weight: 0.453
+  aka: [ cook_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Cooking skillcape hood."
@@ -40896,6 +40948,7 @@ firemaking_cape:
   id: 9804
   tradeable: false
   weight: 0.453
+  aka: [ fm_cape, firemaking_skillcape, firemaking_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by master firelighters."
   kept: "Reclaim"
@@ -40903,6 +40956,7 @@ firemaking_cape_t:
   id: 9805
   tradeable: false
   weight: 0.453
+  aka: [ fm_cape_t, firemaking_skillcape_t, firemaking_skill_cape_t, firemaking_cape_trimmed, firemaking_skillcape_trimmed, firemaking_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by master firelighters."
   kept: "Reclaim"
@@ -40910,6 +40964,7 @@ firemaking_hood:
   id: 9806
   tradeable: false
   weight: 0.453
+  aka: [ fm_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Firemaking skillcape hood."
@@ -40918,6 +40973,7 @@ woodcutting_cape:
   id: 9807
   tradeable: false
   weight: 0.453
+  aka: [ wc_cape, woodcutting_skillcape, woodcutting_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by master woodcutters."
   kept: "Reclaim"
@@ -40925,6 +40981,7 @@ woodcutting_cape_t:
   id: 9808
   tradeable: false
   weight: 0.453
+  aka: [ wc_cape_t, woodcutting_skillcape_t, woodcutting_skill_cape_t, woodcutting_cape_trimmed, woodcutting_skillcape_trimmed, woodcutting_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by master woodcutters."
   kept: "Reclaim"
@@ -40932,6 +40989,7 @@ woodcutting_hood:
   id: 9809
   tradeable: false
   weight: 0.453
+  aka: [ wc_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Woodcutting skillcape hood."
@@ -40940,6 +40998,7 @@ farming_cape:
   id: 9810
   tradeable: false
   weight: 0.453
+  aka: [ farm_cape, farming_skillcape, farming_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by master farmers."
   kept: "Reclaim"
@@ -40947,6 +41006,7 @@ farming_cape_t:
   id: 9811
   tradeable: false
   weight: 0.453
+  aka: [ farm_cape_t, farming_skillcape_t, farming_skill_cape_t, farming_cape_trimmed, farming_skillcape_trimmed, farming_skill_cape_trimmed ]
   slot: "Cape"
   examine: "The cape worn by master farmers."
   kept: "Reclaim"
@@ -40954,6 +41014,7 @@ farming_hood:
   id: 9812
   tradeable: false
   weight: 0.453
+  aka: [ farm_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Farming skillcape hood."
@@ -40962,6 +41023,7 @@ quest_point_cape:
   id: 9813
   tradeable: false
   weight: 0.453
+  aka: [ quest_cape, quest_skillcape, quest_skill_cape ]
   slot: "Cape"
   examine: "The cape worn by only the most experienced adventurers."
   kept: "Reclaim"
@@ -40969,6 +41031,7 @@ quest_point_hood:
   id: 9814
   tradeable: false
   weight: 0.453
+  aka: [ quest_hood ]
   slot: "Hat"
   type: "Hair"
   examine: "Quest point cape hood."
