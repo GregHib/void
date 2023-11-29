@@ -39,11 +39,13 @@ class TimerQueue(
             timer.reset()
             val tick = TimerTick(timer.name)
             events.emit(tick)
-
             if (tick.cancelled) {
                 names.remove(timer.name)
                 events.emit(TimerStop(timer.name, logout = false))
             } else {
+                if (tick.nextInterval != -1) {
+                    timer.next(tick.nextInterval)
+                }
                 changes.add(timer)
             }
         }

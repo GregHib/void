@@ -36,6 +36,8 @@ class TimerSlot(
         if (tick.cancelled) {
             events.emit(TimerStop(timer.name, logout = false))
             this.timer = null
+        } else if (tick.nextInterval != -1) {
+            timer.next(tick.nextInterval)
         }
     }
 

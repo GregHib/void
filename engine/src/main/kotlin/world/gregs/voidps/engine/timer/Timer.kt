@@ -16,6 +16,10 @@ data class Timer(
     fun ready() = GameLoop.tick >= nextTick
 
     fun reset() {
+        next(interval)
+    }
+
+    fun next(interval: Int = this.interval) {
         nextTick = GameLoop.tick + interval
     }
 
