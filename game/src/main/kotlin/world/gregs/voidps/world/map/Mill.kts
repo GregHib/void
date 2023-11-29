@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.arriveDelay
@@ -59,7 +59,7 @@ on<ItemOnObject>({ operate && target.id == "hopper" && item.id == "grain" }) { p
         """)
         return@on
     }
-    if (player.hasItem("extra_fine_flour")) {
+    if (player.holdsItem("extra_fine_flour")) {
         player.message("It'd be best to take the extra fine flour you already have to the cook first.")
         return@on
     }
@@ -78,14 +78,14 @@ on<ItemOnObject>({ operate && target.id == "hopper" && item.id == "grain" }) { p
 }
 
 on<ObjectOption>({ operate && target.id == "flour_bin_3" && option == "Take-flour" }) { player: Player ->
-    if (!player.hasItem("empty_pot")) {
+    if (!player.holdsItem("empty_pot")) {
         player.message("You need an empty pot to hold the flour in.")
         return@on
     }
     arriveDelay()
     if (player.quest("cooks_assistant") == "started" && player["cooks_assistant_talked_to_millie", 0] == 1) {
         player.inventory.remove("empty_pot")
-        if (player.hasItem("extra_fine_flour") || player.bank.contains("extra_fine_flour")) {
+        if (player.holdsItem("extra_fine_flour") || player.bank.contains("extra_fine_flour")) {
             player.inventory.add("pot_of_flour")
             player.message("You fill a pot with flour from the bin.")
         } else {

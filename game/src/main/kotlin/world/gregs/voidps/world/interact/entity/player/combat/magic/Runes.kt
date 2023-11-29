@@ -1,23 +1,21 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic
 
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
-import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.bank.ownsItem
 
 object Runes {
     fun castCount(player: Player, definition: InterfaceComponentDefinition): Int {
         var min = Int.MAX_VALUE
         for (item in definition.spellRequiredItems()) {
             if (item.id.endsWith("_staff")) {
-                if (!player.hasBanked(item.id)) {
+                if (!player.ownsItem(item.id)) {
                     return 0
                 }
                 continue

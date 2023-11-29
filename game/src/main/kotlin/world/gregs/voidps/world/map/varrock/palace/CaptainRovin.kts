@@ -5,9 +5,9 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
@@ -80,7 +80,7 @@ suspend fun PlayerChoice.theresADemon(): Unit = option<Talk>(
     "There's a demon who wants to invade the city.",
     { player.quest("demon_slayer") != "completed" }
 ) {
-    if (player.hasBanked("silverlight_key_captain_rovin")) {
+    if (player.ownsItem("silverlight_key_captain_rovin")) {
         haveYouNotKilledIt()
     } else {
         isItPowerful()
@@ -106,7 +106,7 @@ suspend fun CharacterContext.haveYouNotKilledIt() {
         I'm going to use the powerful sword Silverlight, which I
         believe you have one of the keys for?
     """)
-    if (player.hasItem("silverlight_key_captain_rovin")) {
+    if (player.holdsItem("silverlight_key_captain_rovin")) {
         npc<Furious>("I already gave you my key. Check your pockets.")
     } else {
         npc<Talk>("""

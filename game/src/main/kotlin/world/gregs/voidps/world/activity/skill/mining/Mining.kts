@@ -27,7 +27,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.arriveDelay
@@ -129,7 +129,7 @@ val pickaxes = listOf(
 )
 
 fun getBestPickaxe(player: Player): Item? {
-    return pickaxes.firstOrNull { pickaxe -> hasRequirements(player, pickaxe, false) && player.hasItem(pickaxe.id) }
+    return pickaxes.firstOrNull { pickaxe -> hasRequirements(player, pickaxe, false) && player.holdsItem(pickaxe.id) }
 }
 
 fun hasRequirements(player: Player, pickaxe: Item?, message: Boolean = false): Boolean {

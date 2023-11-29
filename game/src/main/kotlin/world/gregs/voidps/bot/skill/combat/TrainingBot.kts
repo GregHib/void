@@ -28,7 +28,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.interact.entity.combat.attackRange
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spellBook
@@ -175,8 +175,8 @@ fun Bot.isAvailableTarget(map: AreaDefinition, npc: NPC, skill: Skill): Boolean 
 
 fun Bot.canGetGearAndAmmo(skill: Skill): Boolean {
     return when (skill) {
-        Skill.Magic -> (player.hasBanked("air_rune") && player.hasBanked("mind_rune")) || player.remaining("claimed_tutor_consumables", epochSeconds()) <= 0 && player.spellBook == "modern_spellbook"
-        Skill.Ranged -> (player.hasBanked("training_bow") && (player.hasBanked("training_arrows")) || player.remaining("claimed_tutor_consumables", epochSeconds()) <= 0)
+        Skill.Magic -> (player.ownsItem("air_rune") && player.ownsItem("mind_rune")) || player.remaining("claimed_tutor_consumables", epochSeconds()) <= 0 && player.spellBook == "modern_spellbook"
+        Skill.Ranged -> (player.ownsItem("training_bow") && (player.ownsItem("training_arrows")) || player.remaining("claimed_tutor_consumables", epochSeconds()) <= 0)
         else -> true
     }
 }

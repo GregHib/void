@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -62,13 +62,13 @@ on<NPCOption>({ operate && def.contains("fishing") }) { player: Player ->
             break
         }
 
-        val tackle = data.tackle.firstOrNull { tackle -> player.hasItem(tackle) }
+        val tackle = data.tackle.firstOrNull { tackle -> player.holdsItem(tackle) }
         if (tackle == null) {
             player.message("You need a ${data.tackle.first().toTitleCase()} to catch these fish.")
             break@fishing
         }
 
-        val bait = data.bait.keys.firstOrNull { bait -> bait == "none" || player.hasItem(bait) }
+        val bait = data.bait.keys.firstOrNull { bait -> bait == "none" || player.holdsItem(bait) }
         val catches = data.bait[bait]
         if (bait == null || catches == null) {
             player.message("You don't have any ${data.bait.keys.first().toTitleCase().plural(2)}.")

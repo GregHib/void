@@ -9,11 +9,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.activity.quest.sendQuestComplete
@@ -68,7 +68,7 @@ suspend fun CharacterContext.askAboutPicture() {
 
 suspend fun CharacterContext.checkPicture() {
     npc<Unsure>("So how are you doing getting a sword?")
-    if (player.hasItem("portrait")) {
+    if (player.holdsItem("portrait")) {
         player<Cheerful>("""
             I have the picture.
             I'll just take it to the dwarf now!
@@ -92,7 +92,7 @@ suspend fun CharacterContext.bluriteSword() {
         """)
         return
     }
-    if (player.hasItem("blurite_sword")) {
+    if (player.holdsItem("blurite_sword")) {
         player<Cheerful>("I have retrieved your sword for you.")
         npc<Cheerful>("""
             Thank you, thank you, thank you! I was seriously
@@ -103,7 +103,7 @@ suspend fun CharacterContext.bluriteSword() {
         questComplete()
         return
     }
-    if (player.hasBanked("blurite_sword")) {
+    if (player.ownsItem("blurite_sword")) {
         player<Talking>("I got a replacement sword made.")
         npc<Cheerful>("Thank you! Can I have it?")
         player<Talking>("I've got it stored safely.")

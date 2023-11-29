@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.consume.drink
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -121,7 +121,7 @@ on<Consume>({ item.id.startsWith("saradomin_brew") }) { player: Player ->
     player.levels.drain(Skill.Ranged, 2, 0.1)
 }
 
-fun hasHolyItem(player: Player) = player.equipped(EquipSlot.Cape).id.startsWith("prayer_cape") || player.hasItem("holy_wrench")
+fun hasHolyItem(player: Player) = player.equipped(EquipSlot.Cape).id.startsWith("prayer_cape") || player.holdsItem("holy_wrench")
 
 on<Consume>({ item.id.startsWith("prayer_potion") || item.id.startsWith("prayer_mix") }) { player: Player ->
     player.levels.restore(Skill.Prayer, 7, if (hasHolyItem(player)) 0.27 else 0.25)

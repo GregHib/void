@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.activity.bank.bank
-import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -145,7 +145,7 @@ suspend fun PlayerChoice.claimRunes(): Unit = option("I'd like some air and mind
         """)
         return@option
     }
-    if (player.hasBanked("mind_rune") || player.hasBanked("air_rune")) {
+    if (player.ownsItem("mind_rune") || player.ownsItem("air_rune")) {
         hasRunes()
         return@option
     }

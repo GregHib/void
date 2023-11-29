@@ -24,7 +24,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.awaitDialogues
@@ -111,7 +111,7 @@ val hatchets = listOf(
 )
 
 fun getBestHatchet(player: Player): Item? {
-    return hatchets.firstOrNull { hasRequirements(player, it, false) && player.hasItem(it.id) }
+    return hatchets.firstOrNull { hasRequirements(player, it, false) && player.holdsItem(it.id) }
 }
 
 fun hasRequirements(player: Player, hatchet: Item, message: Boolean = false): Boolean {

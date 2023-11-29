@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.activity.bank.bank
-import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import java.util.concurrent.TimeUnit
@@ -158,13 +158,13 @@ suspend fun CharacterContext.claimBow() {
         """)
         return
     }
-    if (player.hasBanked("training_bow") || player.hasBanked("training_arrows")) {
+    if (player.ownsItem("training_bow") || player.ownsItem("training_arrows")) {
         hasEquipment()
-        if (player.hasBanked("training_arrows")) {
+        if (player.ownsItem("training_arrows")) {
             return
         }
     }
-    if (!player.hasBanked("training_bow")) {
+    if (!player.ownsItem("training_bow")) {
         if (player.inventory.isFull()) {
             npc<Upset>("""
             If you had enough space in your inventory I'd give
@@ -182,7 +182,7 @@ suspend fun CharacterContext.claimBow() {
         player.inventoryFull()
         return
     }
-    if (!player.hasBanked("training_bow")) {
+    if (!player.ownsItem("training_bow")) {
         item("Nemarti gives you a Training shortbow.", "training_bow", 400)
         player.inventory.add("training_bow")
     }

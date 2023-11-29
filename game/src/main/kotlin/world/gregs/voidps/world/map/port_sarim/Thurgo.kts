@@ -32,14 +32,14 @@ suspend fun Interaction.menuReplacementSword() {
 
 suspend fun PlayerChoice.madeSword() = option<Cheerful>(
     "Thanks for making that sword for me!",
-    { player.hasItem("blurite_sword") }
+    { player.holdsItem("blurite_sword") }
 ) {
     npc<CheerfulOld>("You're welcome - thanks for the pie!")
 }
 
 suspend fun PlayerChoice.replacementSword() = option<Cheerful>(
     "Can you make that replacement sword now?",
-    { !player.hasItem("blurite_sword") }
+    { !player.holdsItem("blurite_sword") }
 ) {
     npc<UnsureOld>("How are you doing finding those sword materials?")
     if (player.inventory.contains("blurite_ore" to 1, "iron_bar" to 2)) {
@@ -128,7 +128,7 @@ suspend fun PlayerChoice.specialSword() = option<Cheerful>("Can you make a speci
 
 suspend fun PlayerChoice.aboutSword() = option<Cheerful>("About that sword...") {
     npc<UnsureOld>("Have you got a picture of the sword for me yet?")
-    if (!player.hasItem("portrait")) {
+    if (!player.holdsItem("portrait")) {
         player<Sad>("Sorry, not yet.")
         npc<TalkingOld>("Well, come back when you do.")
         return@option
@@ -182,7 +182,7 @@ suspend fun PlayerChoice.imcandoDwarf() = option<Cheerful>("Are you an Imcando d
 
 suspend fun PlayerChoice.redberryPie(): Unit = option<Unsure>(
     "Would you like a redberry pie?",
-    { player.hasItem("redberry_pie") }
+    { player.holdsItem("redberry_pie") }
 ) {
     statement("You see Thurgo's eyes light up.")
     npc<CheerfulOld>("""

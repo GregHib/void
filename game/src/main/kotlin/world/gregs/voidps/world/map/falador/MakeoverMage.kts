@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.queue.softQueue
@@ -108,7 +108,7 @@ suspend fun PlayerChoice.amulet(): Unit = option<Happy>("Cool amulet! Can I have
         sell you is only a copy of my own. It contains no magical
         powers and, as such, will only cost you $cost coins.
     """)
-    if (!player.hasItem("coins", cost)) {
+    if (!player.holdsItem("coins", cost)) {
         player<Upset>("Oh, I don't have enough money for that.")
         return@option
     }

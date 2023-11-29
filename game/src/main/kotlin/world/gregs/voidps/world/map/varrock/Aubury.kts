@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.world.activity.bank.bank
-import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
@@ -64,7 +64,7 @@ suspend fun PlayerChoice.packageForYou(): Unit = option<Talking>(
         me have it. It must be extremely important for him to
         have sent a stranger.
     """)
-    if (player.hasBanked("research_package_rune_mysteries")) {
+    if (player.ownsItem("research_package_rune_mysteries")) {
         player["rune_mysteries"] = "package_delivered"
         player.inventory.remove("research_package_rune_mysteries")
         item("You hand the package to Aubury.", "research_package_rune_mysteries", 600)

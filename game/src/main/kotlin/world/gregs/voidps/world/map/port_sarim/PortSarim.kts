@@ -10,14 +10,14 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val items: FloorItems by inject()
 
 on<FloorItemOption>({ target.id == "white_apron_port_sarim" && option == "Take" }, Priority.HIGH) { player: Player ->
-    if (player.hasItem("white_apron")) {
+    if (player.holdsItem("white_apron")) {
         player.message("You already have one of those.")
         cancel()
     } else if (player.inventory.isFull() && (!player.inventory.stackable(target.id) || !player.inventory.contains(target.id))) {

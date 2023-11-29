@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.activity.bank.bank
@@ -29,7 +29,7 @@ on<FloorItemOption>({ operate && target.id == "super_large_egg" && option == "Ta
         player.message("You've no reason to pick that up; eggs of that size are only useful for royal cakes.")
         cancel()
     }
-    if (player.hasItem("super_large_egg") || player.bank.contains("super_large_egg")) {
+    if (player.holdsItem("super_large_egg") || player.bank.contains("super_large_egg")) {
         player.message("You've already got one of those eggs and one's enough.")
         cancel()
     }

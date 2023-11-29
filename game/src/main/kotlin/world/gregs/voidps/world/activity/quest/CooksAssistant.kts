@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.quest
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.world.activity.bank.bank
 
 on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemSlot == 1 }) { player: Player ->
@@ -29,7 +29,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             )
             if (player["cooks_assistant_milk", 0] == 1) {
                 list.add("<str>I have given the cook a bucket of top-quality milk.")
-            } else if (player.hasItem("top_quality_milk")) {
+            } else if (player.holdsItem("top_quality_milk")) {
                 list.add("<navy>I have found a <maroon>bucket of top-quality milk <navy>to give to the cook.")
             } else if (player.bank.contains("top_quality_milk")) {
                 list.add("<navy>I have a <maroon>bucket of top-quality milk <navy>to give to the cook. it's in my <maroon>bank.")
@@ -40,7 +40,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
 
             if (player["cooks_assistant_flour", 0] == 1) {
                 list.add("<str>I have given the cook a pot of extra fine flour.")
-            } else if (player.hasItem("extra_fine_flour")) {
+            } else if (player.holdsItem("extra_fine_flour")) {
                 list.add("<navy>I have found a <maroon>pot of extra fine flour <navy>to give to the cook.")
             } else if (player.bank.contains("extra_fine_flour")) {
                 list.add("<navy>I have a <maroon>pot of extra fine flour <navy>to give to the cook. it's in my <maroon>bank.")
@@ -51,7 +51,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
 
             if (player["cooks_assistant_egg", 0] == 1) {
                 list.add("<str>I have given the cook a super large egg.")
-            } else if (player.hasItem("super_large_egg")) {
+            } else if (player.holdsItem("super_large_egg")) {
                 list.add("<navy>I have found a <maroon>super large egg <navy>to give to the cook.")
             } else if (player.bank.contains("super_large_egg")) {
                 list.add("<navy>I have a <maroon>super large egg <navy>to give to the cook. it's in my <maroon>bank.")
