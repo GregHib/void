@@ -26,6 +26,10 @@ on<TimerStart>({ timer == "restore_hitpoints" }) { _: Player ->
 }
 
 on<TimerTick>({ timer == "restore_hitpoints" }) { player: Player ->
+    if (player.levels.get(Skill.Constitution) == 0) {
+        cancel()
+        return@on
+    }
     val total = player.levels.restore(Skill.Constitution, healAmount(player))
     if (total == 0) {
         cancel()
@@ -51,7 +55,7 @@ fun healAmount(player: Player): Int {
         heal += 1
     }
     if (player.equipped(EquipSlot.Hands).id == "regen_bracelet") {
-        heal += 1
+        heal *= 2
     }
     return heal
 }

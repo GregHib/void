@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation.interpolate
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.type.random
+import kotlin.math.pow
 
 object Level {
 
@@ -35,6 +36,14 @@ object Level {
     private fun chance(level: Int, chances: IntRange): Int {
         return interpolate(level.coerceIn(MIN_LEVEL, MAX_LEVEL), chances.first, chances.last, MIN_LEVEL, MAX_LEVEL)
     }
+
+
+    fun experience(skill: Skill, level: Int) = experience(if (skill == Skill.Constitution) level / 10 else level)
+
+    fun experience(level: Int): Double = (1 until level)
+        .sumOf(::experienceAt) / 4.0
+
+    fun experienceAt(level: Int) = (level + 300.0 * 2.0.pow(level / 7.0)).toInt()
 
     fun Player.has(skill: Skill, level: Int, message: Boolean = false): Boolean {
         if (levels.get(skill) < level) {

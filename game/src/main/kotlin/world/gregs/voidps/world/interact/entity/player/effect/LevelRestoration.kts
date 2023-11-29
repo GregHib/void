@@ -32,7 +32,7 @@ on<TimerTick>({ timer == "restore_stats" }) { player: Player ->
     val skip = player.praying("berserker") && !player.hasClock("berserker_cooldown")
     if (skip) {
         nextInterval = TimeUnit.SECONDS.toTicks(9)
-        player.start("berserker_cooldown", nextInterval)
+        player.start("berserker_cooldown", nextInterval + 1)
     }
     var fullyRestored = true
     for (skill in skills) {

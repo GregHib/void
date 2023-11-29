@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.player.combat
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
@@ -31,7 +31,7 @@ abstract class CombatFormulaTest : WorldTest() {
         val player = createPlayer("player")
         for ((skill, level) in pairs) {
             player.levels.set(skill, level)
-            player.experience.set(skill, PlayerLevels.getExperience(level, skill))
+            player.experience.set(skill, Level.experience(skill, level))
         }
         return player
     }

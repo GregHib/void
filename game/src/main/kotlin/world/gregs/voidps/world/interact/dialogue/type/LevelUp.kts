@@ -7,9 +7,9 @@ import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
+import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.exp.GrantExp
 import world.gregs.voidps.engine.entity.character.player.skill.level.MaxLevelChanged
-import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.weakQueue
@@ -17,8 +17,8 @@ import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
 on<GrantExp> { player: Player ->
-    val previousLevel = PlayerLevels.getLevel(from, skill)
-    val currentLevel = PlayerLevels.getLevel(to, skill)
+    val previousLevel = Experience.level(skill, from)
+    val currentLevel = Experience.level(skill, to)
     if (currentLevel != previousLevel) {
         player.levels.restore(skill, 1)
         player.events.emit(MaxLevelChanged(skill, previousLevel, currentLevel))

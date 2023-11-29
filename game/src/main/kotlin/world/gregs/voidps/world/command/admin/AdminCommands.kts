@@ -28,8 +28,8 @@ import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
-import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
@@ -46,12 +46,12 @@ import world.gregs.voidps.network.encode.playMIDI
 import world.gregs.voidps.network.encode.playSoundEffect
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.PRAYERS
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 import world.gregs.voidps.world.activity.quest.Books
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 import world.gregs.voidps.world.interact.entity.obj.Teleports
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.PRAYERS
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.effect.skull
@@ -208,7 +208,7 @@ on<Command>({ prefix == "setlevel" }) { player: Player ->
     if (target == null) {
         println("Unable to find target.")
     } else {
-        target.experience.set(skill, PlayerLevels.getExperience(level, skill))
+        target.experience.set(skill, Level.experience(skill, level))
         player.levels.set(skill, level)
         player.softQueue("", 1) {
             target.removeVarbit("skill_stat_flash", skill.name.toSnakeCase())
