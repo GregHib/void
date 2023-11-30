@@ -10984,3 +10984,12 @@ lever_kbd_lair:
   id: 1817
   land_message: "... and teleport out of the dragon's lair."
   examine: "I wonder what this does."
+web:
+  id: 733
+  examine: "This huge web blocks your path."
+web_slashed:
+  id: 734
+  examine: "This huge web blocks your path."
+web_spider:
+  id: 29354
+  examine: "This huge web blocks your path."
