@@ -58,13 +58,13 @@ on<ItemOnObject>({ operate && item.id.endsWith("_talisman") && target.id == "${i
     player.mode = Interact(player, target, ObjectOption(player, target, definition, "Enter"), approachRange = -1)
 }
 
-on<Teleport>({ obj.stringId.endsWith("_altar_ruins_enter") && option == "Enter" }) { player: Player ->
+on<Teleport>({ takeoff && obj.stringId.endsWith("_altar_ruins_enter") && option == "Enter" }) { player: Player ->
     player.clearAnimation()
     player.playSound("teleport")
     player.message("You feel a powerful force talk hold of you...")
 }
 
-on<Teleport>({ obj.stringId.endsWith("_altar_portal") && option == "Enter" }) { player: Player ->
+on<Teleport>({ takeoff && obj.stringId.endsWith("_altar_portal") && option == "Enter" }) { player: Player ->
     player.clearAnimation()
     player.playSound("teleport")
     player.message("You step through the portal...")

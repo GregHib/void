@@ -318,7 +318,7 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "book", "books" -> get<Books>().load()
         "stairs", "tele", "teles", "teleports" -> get<Teleports>().load()
         "tracks", "songs" -> get<MusicTracks>().load()
-        "objects" -> {
+        "objects", "objs" -> {
             val defs: ObjectDefinitions = get()
             val custom: GameObjects = get()
             defs.load()

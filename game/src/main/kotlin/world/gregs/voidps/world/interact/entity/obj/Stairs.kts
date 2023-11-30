@@ -19,7 +19,7 @@ on<ObjectOption>({ operate && operate && option == "Climb" && hasClimbOption(def
     }
 }
 
-on<Teleport>({ obj.name.isLadder() }) { player: Player ->
+on<Teleport>({ takeoff && obj.name.isLadder() }) { player: Player ->
     val remaining = player.remaining("teleport_delay")
     if (remaining > 0) {
         delay = remaining

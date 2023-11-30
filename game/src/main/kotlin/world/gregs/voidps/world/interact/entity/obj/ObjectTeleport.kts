@@ -15,6 +15,6 @@ on<ObjectOption>({ operate && teleports.contains(def.stringId.ifEmpty { def.id.t
     teleports.teleport(this)
 }
 
-on<Teleport>({ delay != null }, Priority.LOWEST) { player: Player ->
+on<Teleport>({ takeoff && delay != null }, Priority.LOWEST) { player: Player ->
     player.start("teleport_delay", 1)
 }
