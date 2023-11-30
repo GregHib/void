@@ -316,7 +316,7 @@ on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->
 on<Command>({ prefix == "reload" }) { player: Player ->
     when (content) {
         "book", "books" -> get<Books>().load()
-        "stairs" -> get<Teleports>().load()
+        "stairs", "tele", "teles", "teleports" -> get<Teleports>().load()
         "tracks", "songs" -> get<MusicTracks>().load()
         "objects" -> {
             val defs: ObjectDefinitions = get()

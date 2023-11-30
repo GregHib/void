@@ -2273,14 +2273,16 @@
     x: 3017
     y: 3849
   delta:
-    y: 6400
+    x: 52
+    y: 6407
 - id: 1767
   option: Climb-down
   tile:
     x: 3069
     y: 3857
   delta:
-    y: 6399
+    x: -52
+    y: 6392
 ######## 12093 ########
 - id: 1733
   option: Climb-down
@@ -2349,14 +2351,16 @@
     x: 3017
     y: 10249
   delta:
-    y: -6400
+    x: 52
+    y: -6392
 - id: 32015
   option: Climb-up
   tile:
     x: 3069
     y: 10256
   delta:
-    y: -6399
+    x: -52
+    y: -6407
 ######## 12193 ########
 - id: 32048
   option: Climb-up
