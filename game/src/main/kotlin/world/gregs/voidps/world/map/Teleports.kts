@@ -3,8 +3,6 @@ package world.gregs.voidps.world.map
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.clearAnimation
@@ -16,6 +14,8 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
@@ -32,7 +32,7 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport
         return@on
     }
     player.closeInterfaces()
-    player.queue("teleport") {
+    player.queue("teleport", onCancel = null) {
         if (!Spell.removeRequirements(player, component)) {
             cancel()
             return@queue
@@ -61,7 +61,7 @@ on<InventoryOption>({ item.id.endsWith("_teleport") }) { player: Player ->
         return@on
     }
     player.closeInterfaces()
-    player.queue("teleport") {
+    player.queue("teleport", onCancel = null) {
         if (player.inventory.remove(item.id)) {
             player.playSound("teleport_tablet")
             player.setGraphic("teleport_tablet")
