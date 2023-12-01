@@ -43,12 +43,12 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport
         player.playSound("teleport")
         player.setGraphic("teleport_$book")
         player.start("movement_delay", 2)
-        player.playAnimation("teleport_$book")
+        player.playAnimation("teleport_$book", canInterrupt = false)
         player.tele(areas[component].random(player)!!)
         pause(1)
         player.playSound("teleport_land")
         player.setGraphic("teleport_land_$book")
-        player.playAnimation("teleport_land_$book")
+        player.playAnimation("teleport_land_$book", canInterrupt = false)
         if (book == "ancient") {
             pause(1)
             player.clearAnimation()
@@ -70,7 +70,7 @@ on<InventoryOption>({ item.id.endsWith("_teleport") }) { player: Player ->
             pause(3)
             val map = areas[item.id]
             player.tele(map.random(player)!!)
-            player.playAnimation("teleport_land_tablet")
+            player.playAnimation("teleport_land_tablet", canInterrupt = false)
         }
     }
 }

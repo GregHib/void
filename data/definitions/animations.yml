@@ -1202,7 +1202,7 @@ barehand_tuna_2: 6711
 fish_crayfish_cage: 10009
 home_tele_1:
   id: 1722
-  ticks: 1
+  ticks: 2
 home_tele_2:
   id: 1723
   ticks: 1
