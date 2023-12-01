@@ -8,12 +8,10 @@ man:
   id: 1
   max_hit_melee: 10
   hitpoints: 70
-  attack_speed: 4
   wander_radius: 4
   respawn_delay: 25
   style: crush
   race: human
-  height: 40
   examine: "One of Gielinor's many citizens."
 man_2:
   <<: *man
@@ -36,7 +34,6 @@ chicken:
   hitpoints: 30
   attack_bonus: -47
   height: 15
-  attack_speed: 4
   wander_radius: 8
   attack_radius: 6
   slayer_xp: 3.0
@@ -66,9 +63,7 @@ duck_swim:
   &duck_swim
   id: 46
   attack_bonus: -47
-  attack_speed: 4
   wander_radius: 8
-  attack_radius: 8
   hitpoints: 30
   slayer_xp: 3.0
   max_hit_melee: 1
@@ -83,7 +78,6 @@ rat:
   id: 47
   hitpoints: 20
   attack_bonus: -47
-  attack_speed: 4
   wander_radius: 8
   attack_radius: 18
   slayer_xp: 2.0
@@ -97,7 +91,6 @@ giant_spider:
   id: 59
   hitpoints: 50
   attack_bonus: -10
-  attack_speed: 4
   attack_radius: 13
   wander_radius: 10
   hunt_mode: cowardly
@@ -115,8 +108,6 @@ giant_spider_2:
   att: 20
   str: 24
   def: 21
-  attack_speed: 4
-  attack_radius: 8
   wander_radius: 6
   respawn_delay: 30
   hunt_mode: cowardly
@@ -132,9 +123,7 @@ cow:
   id: 81
   hitpoints: 80
   attack_bonus: -15
-  attack_speed: 4
   wander_radius: 12
-  attack_radius: 8
   immune_poison: true
   slayer_xp: 8.0
   max_hit_melee: 10
@@ -149,8 +138,6 @@ giant_rat:
   att: 2
   str: 3
   def: 2
-  attack_speed: 4
-  attack_radius: 8
   wander_radius: 10
   hitpoints: 50
   slayer_xp: 5.0
@@ -488,8 +475,6 @@ giant_rat_tutorial_island:
   id: 950
   race: giant_rat
   style: stab
-  attack_speed: 4
-  attack_radius: 8
   hitpoints: 30
   wander_radius: 2
   respawn_delay: 30
@@ -637,10 +622,8 @@ cow_calf:
   &cow_calf
   id: 2310
   hitpoints: 60
-  attack_speed: 4
   attack_bonus: -20
   wander_radius: 10
-  attack_radius: 8
   slayer_xp: 6.0
   max_hit_melee: 10
   style: crush
@@ -812,8 +795,6 @@ goblin_mohawk_blue:
   &goblin_mohawk_blue
   id: 4262
   attack_bonus: -21
-  attack_speed: 4
-  attack_radius: 8
   wander_radius: 10
   hitpoints: 50
   slayer_xp: 5.0
@@ -859,8 +840,6 @@ giant_spider_3:
   str: 51
   def: 31
   attack_bonus: 10
-  attack_speed: 4
-  attack_radius: 8
   wander_radius: 6
   respawn_delay: 25
   hunt_mode: cowardly
@@ -1454,16 +1433,12 @@ dark_wizard_water:
   str: 2
   def: 5
   mage: 6
-  attack_speed: 4
   attack_range: 5
   attack_radius: 11
   hitpoints: 120
   max_hit_magic: 60
   respawn_delay: 50
   hunt_mode: cowardly
-  hunt_range: 5
-  wander_radius: 5
-  height: 40
   examine: "He works evil magic."
 dark_wizard_water_2:
   <<: *dark_wizard_water
@@ -1625,18 +1600,15 @@ greater_demon:
   att: 76
   str: 78
   def: 81
-  attack_speed: 4
   attack_range: 5
   attack_radius: 11
   hitpoints: 1870
-  hunt_range: 5
   slayer_xp: 87
   max_hit_melee: 90
   style: slash
   race: demon
   respawn_delay: 15
   hunt_mode: aggressive
-  wander_radius: 5
   height: 60
   examine: "Big, red, and incredibly evil."
 zombie:
@@ -1647,7 +1619,6 @@ zombie:
   def: 10
   attack_bonus: 5
   attack_speed: 5
-  attack_radius: 8
   wander_radius: 10
   hitpoints: 220
   slayer_xp: 22.0
