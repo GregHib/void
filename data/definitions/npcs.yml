@@ -8,11 +8,6 @@ man:
   id: 1
   max_hit_melee: 10
   hitpoints: 70
-  att: 1
-  str: 1
-  def: 1
-  mage: 1
-  range: 1
   attack_speed: 4
   wander_radius: 4
   respawn_delay: 25
@@ -39,11 +34,6 @@ musician_draynor_village:
 chicken:
   id: 41
   hitpoints: 30
-  att: 1
-  str: 1
-  def: 1
-  mage: 1
-  range: 1
   attack_bonus: -47
   height: 15
   attack_speed: 4
@@ -75,11 +65,6 @@ banker_2:
 duck_swim:
   &duck_swim
   id: 46
-  att: 1
-  str: 1
-  def: 1
-  mage: 1
-  range: 1
   attack_bonus: -47
   attack_speed: 4
   wander_radius: 8
@@ -97,11 +82,6 @@ rat:
   &rat
   id: 47
   hitpoints: 20
-  att: 1
-  str: 1
-  def: 1
-  mage: 1
-  range: 1
   attack_bonus: -47
   attack_speed: 4
   wander_radius: 8
@@ -116,11 +96,6 @@ rat:
 giant_spider:
   id: 59
   hitpoints: 50
-  att: 1
-  str: 1
-  def: 1
-  mage: 1
-  range: 1
   attack_bonus: -10
   attack_speed: 4
   attack_radius: 13
@@ -140,8 +115,6 @@ giant_spider_2:
   att: 20
   str: 24
   def: 21
-  mage: 1
-  range: 1
   attack_speed: 4
   attack_radius: 8
   wander_radius: 6
@@ -158,11 +131,6 @@ cow:
   &cow
   id: 81
   hitpoints: 80
-  att: 1
-  str: 1
-  def: 1
-  mage: 1
-  range: 1
   attack_bonus: -15
   attack_speed: 4
   wander_radius: 12
@@ -181,8 +149,6 @@ giant_rat:
   att: 2
   str: 3
   def: 2
-  mage: 1
-  range: 1
   attack_speed: 4
   attack_radius: 8
   wander_radius: 10
@@ -451,7 +417,6 @@ delrith:
   str: 10
   def: 5
   magic: 1
-  range: 1
   attack_speed: 6
   race: demon
   examine: "A freshly summoned demon."
@@ -522,11 +487,6 @@ quest_guide:
 giant_rat_tutorial_island:
   id: 950
   race: giant_rat
-  att: 1
-  str: 1
-  def: 1
-  mage: 1
-  range: 1
   style: stab
   attack_speed: 4
   attack_radius: 8
@@ -678,11 +638,6 @@ cow_calf:
   id: 2310
   hitpoints: 60
   attack_speed: 4
-  att: 1
-  str: 1
-  def: 1
-  mage: 1
-  range: 1
   attack_bonus: -20
   wander_radius: 10
   attack_radius: 8
@@ -785,10 +740,7 @@ goblin_orange_hat_spear:
   &goblin_orange_hat_spear
   id: 3264
   att: 3
-  str: 1
   def: 4
-  mage: 1
-  range: 1
   attack_bonus: 12
   attack_speed: 6
   style: crush
@@ -859,11 +811,6 @@ fishing_spot_harpoon_small_net_piscatoris:
 goblin_mohawk_blue:
   &goblin_mohawk_blue
   id: 4262
-  att: 1
-  str: 1
-  def: 1
-  mage: 1
-  range: 1
   attack_bonus: -21
   attack_speed: 4
   attack_radius: 8
@@ -911,8 +858,6 @@ giant_spider_3:
   att: 41
   str: 51
   def: 31
-  mage: 1
-  range: 1
   attack_bonus: 10
   attack_speed: 4
   attack_radius: 8
@@ -1509,7 +1454,6 @@ dark_wizard_water:
   str: 2
   def: 5
   mage: 6
-  range: 1
   attack_speed: 4
   attack_range: 5
   attack_radius: 11
@@ -1681,8 +1625,6 @@ greater_demon:
   att: 76
   str: 78
   def: 81
-  mage: 1
-  range: 1
   attack_speed: 4
   attack_range: 5
   attack_radius: 11
@@ -1703,8 +1645,6 @@ zombie:
   att: 8
   str: 9
   def: 10
-  mage: 1
-  range: 1
   attack_bonus: 5
   attack_speed: 5
   attack_radius: 8
