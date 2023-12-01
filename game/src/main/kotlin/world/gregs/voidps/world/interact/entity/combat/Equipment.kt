@@ -12,10 +12,10 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
-import world.gregs.voidps.world.interact.entity.player.combat.consume.drink.antifire
-import world.gregs.voidps.world.interact.entity.player.combat.consume.drink.superAntifire
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.protectMagic
+import world.gregs.voidps.world.interact.entity.player.effect.antifire
+import world.gregs.voidps.world.interact.entity.player.effect.superAntifire
 import kotlin.math.ceil
 
 object Equipment {
@@ -106,11 +106,15 @@ object Equipment {
 
     fun isTzhaarWeapon(weapon: String) = weapon == "toktz_xil_ak" || weapon == "tzhaar_ket_om" || weapon == "tzhaar_ket_em" || weapon == "toktz_xil_ek"
 
-    fun dragonFireImmune(target: Character) = target.protectMagic() ||
-            (target is Player && (target.equipped(EquipSlot.Shield).id.startsWith("dragonfire_shield") ||
-                    target.equipped(EquipSlot.Shield).id.startsWith("anti_dragon_shield") ||
-                    target.antifire ||
-                    target.superAntifire))
+    fun dragonFireImmune(target: Character) = target.protectMagic() || antiDragonShield(target) || target.antifire || target.superAntifire
+
+    fun antiDragonShield(target: Character): Boolean {
+        if (target !is Player) {
+            return false
+        }
+        val shield = target.equipped(EquipSlot.Shield).id
+        return shield.startsWith("dragonfire_shield") || shield.startsWith("anti_dragon_shield")
+    }
 
     fun hasGodArmour(player: Player) = false
 

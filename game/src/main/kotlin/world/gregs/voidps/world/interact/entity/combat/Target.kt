@@ -71,6 +71,10 @@ object Target {
 
     fun isKalphite(target: Character): Boolean = target is NPC && target.race == "kalphite"
 
+    fun isDragon(target: Character): Boolean = target is NPC && target.race == "dragon"
+
+    fun isMetalDragon(target: Character): Boolean = target is NPC && (target.id == "bronze_dragon" || target.id == "iron_dragon" || target.id == "steel_dragon")
+
     // TODO other staves and npcs
     fun isFirey(target: Character): Boolean {
         if (target is Player) {

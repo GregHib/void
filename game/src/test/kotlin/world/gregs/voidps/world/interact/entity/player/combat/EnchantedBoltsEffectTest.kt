@@ -1,20 +1,16 @@
 package world.gregs.voidps.world.interact.entity.player.combat
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.consume.drink.antifire
+import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
+import world.gregs.voidps.world.interact.entity.player.effect.antifire
 import world.gregs.voidps.world.interact.entity.player.effect.frozen
 import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
-import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 
 internal class EnchantedBoltsEffectTest : CombatFormulaTest() {

@@ -7,10 +7,11 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
@@ -27,7 +28,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonClaws(it.weapon) }, Pr
 
     val weapon = player.weapon
     var (hit1, hit2, hit3, hit4) = intArrayOf(0, 0, 0, 0)
-    val maxHit = Damage.maximum(player, "melee", weapon)
+    val maxHit = Damage.maximum(player, target, "melee", weapon)
     if (Hit.success(player, target, "melee", weapon, special = true)) {
         hit1 = random.nextInt(maxHit / 2, maxHit - 10)
         hit2 = hit1 / 2

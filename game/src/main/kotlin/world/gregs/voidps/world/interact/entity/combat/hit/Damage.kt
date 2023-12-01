@@ -22,6 +22,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.Prayer
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import world.gregs.voidps.world.interact.entity.player.effect.Antifire
 
 object Damage {
     private val logger = InlineLogger()
@@ -34,26 +35,21 @@ object Damage {
         if (!Hit.success(source, target, type, weapon, special)) {
             return -1
         }
-        val baseMaxHit = maximum(source, type, weapon, spell)
+        val baseMaxHit = maximum(source, target, type, weapon, spell)
         source["max_hit"] = baseMaxHit
         return random.nextInt(baseMaxHit + 1)
     }
 
     /**
      * Calculates the base maximum damage before modifications are applied
+     * @param target only applicable for "dragonfire" [type]
      */
-    fun maximum(source: Character, type: String, weapon: Item, spell: String = ""): Int {
-        val strengthBonus = Weapon.strengthBonus(source, type, weapon)
-        if (source is NPC) {
-            return source.def["max_hit_$type", 0]
-        }
-        if (type == "magic") {
-            if (weapon.id.startsWith("saradomin_sword")) {
-                return 160
-            }
-            if (spell == "magic_dart") {
-                return effectiveLevel(source, Skill.Magic) + 100
-            }
+    fun maximum(source: Character, target: Character, type: String, weapon: Item, spell: String = ""): Int = when {
+        type == "dragonfire" -> Antifire.maxHit(source, target, source is NPC && spell != "")
+        source is NPC -> source.def["max_hit_$type", 0]
+        type == "magic" && weapon.id.startsWith("saradomin_sword") -> 160
+        type == "magic" && spell == "magic_dart" -> effectiveLevel(source, Skill.Magic) + 100
+        type == "magic" -> {
             var damage = get<SpellDefinitions>().get(spell).maxHit
             if (damage == -1) {
                 damage = 0
@@ -61,15 +57,17 @@ object Damage {
             if (source is Player && spell.endsWith("_bolt") && source.equipped(EquipSlot.Hands).id == "chaos_gauntlets") {
                 damage += 30
             }
-            return damage
+            damage
         }
-
-        val skill = when (type) {
-            "range" -> Skill.Ranged
-            "blaze" -> Skill.Magic
-            else -> Skill.Strength
+        else -> {
+            val skill = when (type) {
+                "range" -> Skill.Ranged
+                "blaze" -> Skill.Magic
+                else -> Skill.Strength
+            }
+            val strengthBonus = Weapon.strengthBonus(source, type, weapon)
+            5 + (effectiveLevel(source, skill) * strengthBonus) / 64
         }
-        return 5 + (effectiveLevel(source, skill) * strengthBonus) / 64
     }
 
     private fun effectiveLevel(character: Character, skill: Skill): Int {

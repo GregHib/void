@@ -30,9 +30,9 @@ on<Command>({ prefix == "maxhit" }) { player: Player ->
     val spell = if (parts.size < 2) "wind_rush" else parts[1]
     val weapon = player.equipped(EquipSlot.Weapon)
     player.message("Max Hit (target=$npcName, spell=$spell)")
-    val rangeMax = Damage.maximum(player, "range", weapon)
-    val meleeMax = Damage.maximum(player, "melee", weapon)
-    val magicMax = Damage.maximum(player, "magic", weapon, spell)
+    val rangeMax = Damage.maximum(player, player, "range", weapon)
+    val meleeMax = Damage.maximum(player, player, "melee", weapon)
+    val magicMax = Damage.maximum(player, player, "magic", weapon, spell)
     player.message("Ranged: $rangeMax Melee: $meleeMax Magic: $magicMax")
     player.message("Hit Chance")
     val target = NPC(npcName).apply {

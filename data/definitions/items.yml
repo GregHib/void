@@ -35490,7 +35490,7 @@ darklight_2:
   destroy: "You can reclaim it from Gideon Bede in the Saradomin churchist"
   examine: "The magical sword 'Silverlight', enhanced with the blood of Agrith Naar."
   kept: "Reclaim"
-anti_dragon_shield_2:
+anti_dragon_shield_mounted:
   id: 8282
   limit: 100
   weight: 5.443
@@ -72636,7 +72636,7 @@ anti_dragon_shield_dungeoneering:
   material: "metal"
   examine: "This provides partial protection from dragonbreath attacks."
   weight: 5.443
-anti_dragon_shield_noted_2: 16934
+anti_dragon_shield_dungeoneering_noted: 16934
 novite_rapier:
   id: 16935
   slot: "Weapon"
