@@ -10,9 +10,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.activity.skill.slayer.isTask
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.attackStyle
 import world.gregs.voidps.world.interact.entity.combat.attackType
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import kotlin.math.floor
 
 val definitions: SpellDefinitions by inject()
@@ -63,9 +63,9 @@ fun calcBonus(target: Character): Double {
                     target.levels.get(Skill.Defence) +
                     target.levels.get(Skill.Constitution) / 10
             val combinedAverage = floor(combinedLevels / 4.0)
-            val defenceLevels = target["stab_def", 1] + target["slash_def", 1] + target["crush_def", 1]
+            val defenceLevels = target["stab_defence", 1] + target["slash_defence", 1] + target["crush_defence", 1]
             val defenceAverage = floor(defenceLevels / 3.0)
-            val bonus = defenceAverage + target["str_bonus", 0] + target["att_bonus", 0]
+            val bonus = defenceAverage + target["strength", 0] + target["attack_bonus", 0]
             1 + 0.025 * floor((combinedAverage * bonus) / 5120)
         }
         is Player -> (1 + 0.025 * floor(target.combatLevel / 20.0)).coerceAtMost(1.125)

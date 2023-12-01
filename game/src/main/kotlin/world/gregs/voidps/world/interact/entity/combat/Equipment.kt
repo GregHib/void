@@ -128,7 +128,7 @@ object Equipment {
 
     fun bonus(source: Character, target: Character, type: String, offense: Boolean): Int {
         return if (offense) {
-            style(source, if (source is NPC) "att_bonus" else "${combatStyle(type, source)}_attack")
+            style(source, if (source is NPC) "attack_bonus" else "${combatStyle(type, source)}_attack")
         } else {
             style(target, "${combatStyle(type, target)}_defence")
         }
