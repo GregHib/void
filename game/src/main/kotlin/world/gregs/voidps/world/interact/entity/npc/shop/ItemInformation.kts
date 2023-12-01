@@ -75,7 +75,7 @@ fun setRequirements(player: Player, def: ItemDefinition) {
             val colour = Colours.bool(player.has(skill, level, false))
             builder.append("<$colour>Level $level ${skill.name.lowercase()}<br>")
         }
-        val maxed: Skill? = def.getOrNull("max_skill")
+        val maxed: Skill? = def.getOrNull("maxed_skill")
         if (maxed != null) {
             val colour = Colours.bool(player.has(maxed, maxed.maximum(), false))
             builder.append("<$colour>Level ${maxed.maximum()} ${maxed.name.lowercase()}<br>")

@@ -17796,6 +17796,7 @@ yo_yo:
   id: 4079
   tradeable: false
   weight: 0.01
+  aka: [ yoyo ]
   examine: "A gift from Santa."
   kept: "Wilderness"
   use: "Limited"
@@ -54324,7 +54325,7 @@ toy_kite:
   id: 12844
   tradeable: false
   weight: 0.05
-  aka: [ dragon_kite ]
+  aka: [ dragon_kite, kite ]
   slot: "Weapon"
   examine: "A kite with a dragon on it."
   kept: "Wilderness"
