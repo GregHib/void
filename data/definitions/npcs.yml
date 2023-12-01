@@ -87,6 +87,25 @@ rat:
   race: rat
   height: 5
   examine: "A popular dwarven delicacy."
+king_black_dragon:
+  id: 50
+  hitpoints: 2400
+  att: 240
+  str: 240
+  def: 240
+  mage: 240
+  style: stab
+  attack_range: 12
+  attack_radius: 12
+  max_hit_melee: 25
+  max_hit_dragonfire: 65
+  hunt_mode: aggressive
+  slayer_xp: 258.0
+  race: dragon
+  categories: [ black_dragons, bosses ]
+  aka: [ kbd ]
+  respawn_delay: 16
+  examine: "One of the biggest, meanest dragons around."
 giant_spider:
   id: 59
   hitpoints: 50
