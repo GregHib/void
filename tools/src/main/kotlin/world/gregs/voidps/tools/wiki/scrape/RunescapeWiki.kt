@@ -15,7 +15,9 @@ import java.nio.charset.StandardCharsets
 object RunescapeWiki {
 
     fun export(pages: String, wiki: String = "runescape.wiki", currentOnly: Boolean = true, includeTemplates: Boolean = false): BufferedInputStream {
-        val doc = Jsoup.connect("https://$wiki/w/Special:Export").get()
+        val doc = Jsoup.connect("https://$wiki/w/Special:Export")
+            .userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36")
+            .get()
         val form: FormElement = doc.select("form").first { it.attr("action") == "/w/Special:Export" } as FormElement
         val text = form.select("textarea").first { it.attr("name") == "pages" }
         text.`val`(pages)

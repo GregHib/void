@@ -557,3 +557,8 @@ goblin_drop_table:
         - id: air_talisman
           amount: 1
           chance: 1
+dragon_drop_table:
+  type: all
+  drops:
+    - drops:
+        - id: dragon_bones

@@ -8,9 +8,9 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.network.encode.zone.ProjectileAddition
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.network.encode.zone.ProjectileAddition
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.DEFAULT_CURVE
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.DEFAULT_DELAY
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.DEFAULT_OFFSET
@@ -32,6 +32,7 @@ fun Tile.shoot(
     endHeight: Int? = null,
     curve: Int? = null,
     offset: Int? = null,
+    width: Int = 1
 ) = projectile(id = id,
     target = target,
     flightTime = flightTime,
@@ -42,7 +43,8 @@ fun Tile.shoot(
     offset = offset,
     targetHeight = target.height,
     targetTile = target.tile,
-    sourceTile = this)
+    sourceTile = this,
+    width = width)
 
 fun Tile.shoot(
     id: String,
@@ -72,6 +74,7 @@ fun Character.shoot(
     endHeight: Int? = null,
     curve: Int? = null,
     offset: Int? = null,
+    width: Int = size
 ) = projectile(id = id,
     target = target,
     flightTime = flightTime,
@@ -80,7 +83,7 @@ fun Character.shoot(
     endHeight = endHeight,
     curve = curve,
     offset = offset,
-    width = size,
+    width = width,
     sourceHeight = this.height,
     targetHeight = target.height,
     targetTile = target.tile,

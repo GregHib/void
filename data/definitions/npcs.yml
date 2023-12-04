@@ -95,10 +95,10 @@ king_black_dragon:
   def: 240
   mage: 240
   style: stab
-  attack_range: 12
-  attack_radius: 12
-  max_hit_melee: 25
-  max_hit_dragonfire: 65
+  attack_range: 8
+  attack_radius: 8
+  max_hit_melee: 250
+  max_hit_dragonfire: 650
   hunt_mode: aggressive
   slayer_xp: 258.0
   race: dragon
