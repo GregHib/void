@@ -12,17 +12,12 @@ object DropTableConverter {
     @JvmStatic
     fun main(args: Array<String>) {
         val string = """
-===Elemental runes===
-{{DropsTableHead|version=Low level}}
-{{DropsLine|name=Nature rune|quantity=4|rarity=7/128}}
-{{DropsLine|name=Chaos rune|quantity=5|rarity=6/128}}
-{{DropsLine|name=Mind rune|quantity=10|rarity=3/128}}
-{{DropsLine|name=Body rune|quantity=10|rarity=3/128}}
-{{DropsLine|name=Mind rune|quantity=18|rarity=2/128}}
-{{DropsLine|name=Body rune|quantity=18|rarity=2/128}}
-{{DropsLine|name=Blood rune|namenotes={{(m)}}|quantity=2|rarity=2/128}}
-{{DropsLine|name=Cosmic rune|quantity=2|rarity=1/128}}
-{{DropsLine|name=Law rune|quantity=3|rarity=1/128}}
+{{DropsTableHead}}
+{{DropsLine|name=Key (elite)|quantity=1|rarity=Always|raritynotes=<ref group=d>The key is only dropped when completing an elite clue scroll asking you to kill the King Black Dragon.</ref>|gemw=No}}
+{{DropsLine|name=Kbd heads|quantity=1|rarity=1/128|gemw=No}}
+{{DropsLineClue|type=elite|rarity=1/450}}
+{{DropsLine|name=Prince black dragon|quantity=1|rarity=1/3000|gemw=No}}
+{{DropsLine|name=Draconic visage|quantity=1|rarity=1/5000}}
 {{DropsTableBottom}}
         """.trimIndent()
         val all = mutableListOf<DropTable>()
@@ -47,9 +42,11 @@ object DropTableConverter {
         if (all.size == 1) {
             return all.first()
         }
-        val always = all.first { it.roll == 1 }
+        val always = all.firstOrNull { it.roll == 1 }
         parent.withType(TableType.All)
-        parent.addDrop(always)
+        if (always != null) {
+            parent.addDrop(always)
+        }
         val table = DropTable.Builder()
         for (child in all) {
             if (child.roll == 1) {

@@ -49,7 +49,7 @@ on<CombatSwing>({ npc -> !swung() && npc.id == "king_black_dragon" }, Priority.H
 
 /**
  * Tile the dragon breath originates from.
- * Looks weird imo, but it's the same as on osrs.
+ * Looks weird imo, but it's the same as OSRS.
  */
 fun nearestTile(source: Character, target: Character): Tile {
     val half = source.size / 2

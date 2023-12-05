@@ -1,6 +1,8 @@
 package world.gregs.voidps.engine.entity.item.drop
 
+import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
@@ -10,6 +12,7 @@ import world.gregs.yaml.read.YamlReaderConfiguration
 @Suppress("UNCHECKED_CAST")
 class DropTables {
 
+    private val logger = InlineLogger()
     private lateinit var tables: Map<String, DropTable>
 
     fun get(key: String) = tables[key]
@@ -18,7 +21,7 @@ class DropTables {
 
     private val defaultAmount = 1..1
 
-    fun load(yaml: Yaml = get(), path: String = getProperty("dropsPath")): DropTables {
+    fun load(yaml: Yaml = get(), path: String = getProperty("dropsPath"), itemDefinitions: ItemDefinitions? = null): DropTables {
         timedLoad("drop table") {
             val config = object : YamlReaderConfiguration() {
                 override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
@@ -27,10 +30,17 @@ class DropTables {
                         val type = value["type"] as? TableType ?: TableType.First
                         val roll = value["roll"] as? Int ?: 1
                         val drops = value["drops"] as List<Drop>
-                        DropTable(type, roll, drops)
+                        val chance = value["chance"] as? Int ?: -1
+                        DropTable(type, roll, drops, chance)
                     } else {
+                        val id = value["id"] as String
+                        if (itemDefinitions != null) {
+                            if (itemDefinitions.getOrNull(id) == null) {
+                                logger.warn { "Invalid item id $id" }
+                            }
+                        }
                         ItemDrop(
-                            id = value["id"] as String,
+                            id = id,
                             amount = value["amount"] as? IntRange ?: defaultAmount,
                             chance = value["chance"] as? Int ?: 1,
                             members = value["members"] as? Boolean ?: false,
@@ -48,7 +58,8 @@ class DropTables {
                         super.set(map, key, DropTable(
                             value["type"] as? TableType ?: TableType.First,
                             value["roll"] as? Int ?: 1,
-                            value["drops"] as List<Drop>
+                            value["drops"] as List<Drop>,
+                            value["chance"] as? Int ?: -1,
                         ), indent, parentMap)
                     } else {
                         super.set(map, key, when (key) {
@@ -64,6 +75,7 @@ class DropTables {
                 }
             }
             tables = yaml.load(path, config)
+            println(tables.get("king_black_dragon_drop_table"))
             tables.size
         }
         return this

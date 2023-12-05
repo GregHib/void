@@ -436,6 +436,8 @@ on<Command>({ prefix == "sim" }) { player: Player ->
                 if (item.isNotEmpty()) {
                     alchValue += alch(item)
                     exchangeValue += exchange(item)
+                    val (d, chance) = table.chance(item.id) ?: continue
+                    player.message("Item ${item.id} ${item.amount} expected: 1/${chance} actual: 1/${count / (item.amount / d.amount.first)}")
                 }
             }
             player.message("Alch price: ${alchValue.toDigitGroupString()}gp (${alchValue.toSIPrefix()})")

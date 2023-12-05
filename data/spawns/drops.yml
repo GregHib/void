@@ -557,8 +557,85 @@ goblin_drop_table:
         - id: air_talisman
           amount: 1
           chance: 1
-dragon_drop_table:
+king_black_dragon_drop_table:
   type: all
   drops:
-    - drops:
+    - type: all
+      drops:
         - id: dragon_bones
+        - id: black_dragonhide
+          amount: 2
+    - roll: 128
+      drops:
+        - id: rune_longsword
+          chance: 10
+        - id: adamant_platebody
+          chance: 9
+        - id: adamant_kiteshield
+          chance: 3
+        - id: dragon_med_helm
+        - id: fire_rune
+          chance: 5
+          amount: 300
+        - id: air_rune
+          amount: 300
+          chance: 10
+        - id: iron_arrow
+          amount: 690
+          chance: 10
+        - id: runite_bolts
+          amount: 10-20
+          chance: 10
+        - id: law_rune
+          amount: 30
+          chance: 5
+        - id: blood_rune
+          amount: 30
+          chance: 5
+        - id: yew_logs_noted
+          amount: 150
+          chance: 10
+        - id: adamant_bar
+          amount: 3
+          chance: 5
+        - id: rune_bar
+          chance: 3
+        - id: gold_ore_noted
+          amount: 100
+          chance: 2
+        - id: amulet_of_power
+          chance: 7
+        - id: dragon_arrowtips
+          amount: 5-14
+          chance: 5
+        - id: dragon_dart_tip
+          amount: 5-14
+          chance: 5
+        - id: rune_limbs
+          chance: 4
+        - id: shark
+          amount: 4
+          chance: 4
+        - <<: *gem_table
+          chance: 2
+        - <<: *rare_table
+          chance: 8
+    - roll: 5120
+      drops:
+        - id: black_dragon_tail_bone
+          chance: 80
+        - id: kbd_heads
+          chance: 40
+        - id: starved_ancient_effigy
+          chance: 20
+        - id: court_summons
+          chance: 20
+        - id: draconic_visage
+        - chance: 40
+          roll: 1280
+          drops:
+          - id: clue_scroll_elite
+            chance: 4
+          - type: all
+            drops:
+            - id: clue_scroll_hard

@@ -14,7 +14,8 @@ import world.gregs.voidps.type.random
 data class DropTable(
     val type: TableType,
     val roll: Int,
-    val drops: List<Drop>
+    val drops: List<Drop>,
+    override val chance: Int
 ) : Drop {
 
     fun role(maximumRoll: Int = -1, list: MutableList<ItemDrop> = mutableListOf(), members: Boolean): MutableList<ItemDrop> {
@@ -29,7 +30,16 @@ data class DropTable(
     fun collect(list: MutableList<ItemDrop>, value: Int, members: Boolean, roll: Int = random(value)): Boolean {
         var count = 0
         for (drop in drops) {
+            if (drop.chance == 0) {
+                continue
+            }
             if (drop is DropTable) {
+                if (drop.chance != -1) {
+                    count += drop.chance
+                    if (roll >= count) {
+                        continue
+                    }
+                }
                 if (drop.collect(list, value, members) && type == TableType.First) {
                     return true
                 }
@@ -46,6 +56,19 @@ data class DropTable(
             }
         }
         return type == TableType.All
+    }
+
+    fun chance(id: String, roll: Int = this.roll, chance: Int = 1): Pair<ItemDrop, Double>? {
+        for (drop in drops) {
+            if (drop is DropTable) {
+                return drop.chance(id, roll * drop.roll, chance * this.chance) ?: continue
+            } else if (drop is ItemDrop) {
+                if (drop.id == id) {
+                    return drop to roll / (drop.chance * chance.toDouble())
+                }
+            }
+        }
+        return null
     }
 
     class Builder {
@@ -79,7 +102,7 @@ data class DropTable(
                 val total = drops.sumOf { if (it is ItemDrop) it.chance else 0 }
                 check(total <= roll!!) { "Chances $total cannot exceed roll $roll." }
             }
-            return DropTable(type, roll ?: 1, drops)
+            return DropTable(type, roll ?: 1, drops, chance)
         }
     }
 }
