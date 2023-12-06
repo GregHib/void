@@ -58,14 +58,17 @@ data class DropTable(
         return type == TableType.All
     }
 
-    fun chance(id: String, roll: Int = this.roll, chance: Int = 1): Pair<ItemDrop, Double>? {
+    /**
+     * Approximate chance of getting an item
+     * Used for debugging
+     */
+    fun chance(id: String, total: Double = 1.0): Pair<ItemDrop, Double>? {
         for (drop in drops) {
             if (drop is DropTable) {
-                return drop.chance(id, roll * drop.roll, chance * this.chance) ?: continue
-            } else if (drop is ItemDrop) {
-                if (drop.id == id) {
-                    return drop to roll / (drop.chance * chance.toDouble())
-                }
+                val tableChance = if (drop.type == TableType.All) total else if (drop.chance != -1) (roll / drop.chance.toDouble()) * total else total
+                return drop.chance(id, tableChance) ?: continue
+            } else if (drop is ItemDrop && drop.id == id) {
+                return drop to (roll / drop.chance.toDouble()) * total
             }
         }
         return null

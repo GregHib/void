@@ -392,16 +392,17 @@ on<Command>({ prefix == "sim" }) { player: Player ->
         player.message("Simulation count has to be more than 0.")
         return@on
     }
+    player.message("Simulating $title")
     if (count > 100_000) {
         player.message("Calculating...")
     }
     GlobalScope.launch {
-        val inventory = Inventory.debug(capacity = 40, id = "")
+        val inventory = Inventory.debug(capacity = 100, id = "")
         coroutineScope {
             val time = measureTimeMillis {
                 (0 until count).chunked(1_000_000).map { numbers ->
                     async {
-                        val temp = Inventory.debug(capacity = 40)
+                        val temp = Inventory.debug(capacity = 100)
                         val list = InventoryDelegate(temp)
                         for (i in numbers) {
                             table.role(list = list, members = true)
@@ -436,20 +437,20 @@ on<Command>({ prefix == "sim" }) { player: Player ->
                 if (item.isNotEmpty()) {
                     alchValue += alch(item)
                     exchangeValue += exchange(item)
-                    val (d, chance) = table.chance(item.id) ?: continue
-                    player.message("Item ${item.id} ${item.amount} expected: 1/${chance} actual: 1/${count / (item.amount / d.amount.first)}")
+                    val (drop, chance) = table.chance(item.id) ?: continue
+                    player.message("${item.id} 1/${count / (item.amount / drop.amount.first)} (1/${chance.toInt()} real)")
                 }
             }
             player.message("Alch price: ${alchValue.toDigitGroupString()}gp (${alchValue.toSIPrefix()})")
             player.message("Exchange price: ${exchangeValue.toDigitGroupString()}gp (${exchangeValue.toSIPrefix()})")
             player.interfaces.open("shop")
             player["free_inventory"] = -1
-            player["main_inventory"] = 0
+            player["main_inventory"] = 510
             player.interfaceOptions.unlock("shop", "stock", 0 until inventory.size * 6, "Info")
             for ((index, item) in inventory.items.withIndex()) {
                 player["amount_$index"] = item.amount
             }
-            player.sendInventory(inventory, id = 0)
+            player.sendInventory(inventory, id = 510)
             player.interfaces.sendVisibility("shop", "store", false)
             player.interfaces.sendText("shop", "title", "$title - ${alchValue.toDigitGroupString()}gp (${alchValue.toSIPrefix()})")
         } catch (e: Exception) {

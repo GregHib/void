@@ -39076,9 +39076,10 @@ rune_limbs:
   smithing:
     level: 91
     xp: 75.0
+  aka: [ runite_limbs ]
   slot: "Shield"
   examine: "A pair of rune crossbow limbs."
-runite_limbs_noted: 9432
+rune_limbs_noted: 9432
 bolt_pouch:
   id: 9433
   tradeable: false

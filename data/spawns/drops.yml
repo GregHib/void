@@ -20,8 +20,6 @@ allotment_seed_drop_table:
       chance: 2
     - id: watermelon_seed
       chance: 1
-    - id: snape_grass_seed
-      chance: 1
 allotment_seed_sub_table:
   &allotment_seed_table
   roll: 1008
@@ -47,9 +45,6 @@ allotment_seed_sub_table:
     - id: watermelon_seed
       amount: 2
       chance: 11
-    - id: snape_grass_seed
-      amount: 2
-      chance: 8
 hops_seed_sub_table:
   &hops_seed_table
   roll: 1000
@@ -140,14 +135,12 @@ special_seed_sub_table:
   &special_seed_table
   roll: 1100
   drops:
-    - id: mushroom_spore
+    - id: bittercap_mushroom_spore
       chance: 500
     - id: belladonna_seed
       chance: 300
     - id: cactus_seed
       chance: 200
-    - id: potato_cactus_seed
-      chance: 100
 general_seeds:
   roll: 0
   drops:
@@ -180,17 +173,12 @@ rare_seed_drop_table:
       chance: 21
     - id: kwuarm_seed
       chance: 15
-    - id: potato_cactus_seed
-      chance: 15
     - id: snapdragon_seed
       chance: 10
     - id: cadantine_seed
       chance: 7
     - id: lantadyme_seed
       chance: 5
-    - id: snape_grass_seed
-      amount: 3
-      chance: 4
     - id: dwarf_weed_seed
       chance: 3
     - id: torstol_seed
@@ -209,11 +197,7 @@ tree_herb_seed_drop_table:
       chance: 21
     - id: willow_seed
       chance: 20
-    - id: mahogany_seed
-      chance: 18
     - id: maple_seed
-      chance: 18
-    - id: teak_seed
       chance: 18
     - id: yew_seed
       chance: 18
@@ -224,12 +208,6 @@ tree_herb_seed_drop_table:
     - id: palm_tree_seed
       chance: 10
     - id: spirit_seed
-      chance: 4
-    - id: dragonfruit_tree_seed
-      chance: 6
-    - id: celastrus_seed
-      chance: 4
-    - id: redwood_tree_seed
       chance: 4
 uncommon_seed_drop_table:
   roll: 1048
@@ -250,13 +228,11 @@ uncommon_seed_drop_table:
       chance: 63
     - id: harralander_seed
       chance: 56
-    - id: snape_grass_seed
-      chance: 40
     - id: ranarr_seed
       chance: 39
     - id: whiteberry_seed
       chance: 34
-    - id: mushroom_spore
+    - id: bittercap_mushroom_spore
       chance: 29
     - id: toadflax_seed
       chance: 27
@@ -272,8 +248,6 @@ uncommon_seed_drop_table:
       chance: 12
     - id: kwuarm_seed
       chance: 9
-    - id: potato_cactus_seed
-      chance: 8
     - id: snapdragon_seed
       chance: 5
     - id: cadantine_seed
@@ -287,7 +261,7 @@ uncommon_seed_drop_table:
 herb_drop_table:
   roll: 128
   drops:
-    - id: grimy_guam_leaf
+    - id: grimy_guam
       chance: 32
     - id: grimy_marrentill
       chance: 24
@@ -295,9 +269,9 @@ herb_drop_table:
       chance: 18
     - id: grimy_harralander
       chance: 14
-    - id: grimy_ranarr_weed
+    - id: grimy_ranarr
       chance: 11
-    - id: grimy_irit_leaf
+    - id: grimy_irit
       chance: 8
     - id: grimy_avantoe
       chance: 6
@@ -316,7 +290,7 @@ useful_herb_drop_table:
       chance: 5
     - id: grimy_snapdragon_noted
       chance: 4
-    - id: grimy_ranarr_weed_noted
+    - id: grimy_ranarr_noted
       chance: 4
     - id: grimy_torstol_noted
       chance: 3
@@ -360,43 +334,17 @@ other:
     - id: coins
       amount: 3000
       chance: 21
-    - id: loop_half_of_key
+    - id: loop_half_of_a_key
       chance: 20
-    - id: tooth_half_of_key
+    - id: tooth_half_of_a_key
       chance: 20
-    - id: runite_bar
+    - id: rune_bar
       chance: 5
     - id: dragonstone
       chance: 2
     - id: silver_ore_noted
       amount: 100
       chance: 2
-gem_drop_table:
-  &gem_table
-  roll: 128
-  drops:
-    - id: nothing
-      amount: 0
-      chance: 63
-    - id: uncut_sapphire
-      chance: 32
-    - id: uncut_emerald
-      chance: 16
-    - id: uncut_ruby
-      chance: 8
-    - id: talisman
-      chance: 3
-    - id: uncut_diamond
-      chance: 2
-    - id: rune_javelin
-      amount: 5
-      chance: 1
-    - id: loop_half_of_key
-      chance: 1
-    - id: tooth_half_of_key
-      chance: 1
-    - id: mega_rare_drop_table
-      chance: 1
 mega_rare_drop_table:
   &mega_rare_table
   roll: 128
@@ -410,13 +358,80 @@ mega_rare_drop_table:
       chance: 4
     - id: dragon_spear
       chance: 3
-sub_tables:
+gem_drop_table:
+  &gem_table
   roll: 128
   drops:
+    - id: nothing
+      amount: 0
+      chance: 63
+    - id: uncut_sapphire
+      chance: 32
+    - id: uncut_emerald
+      chance: 16
+    - id: uncut_ruby
+      chance: 8
+    - id: chaos_talisman
+      chance: 3
+    - id: nature_talisman
+      chance: 3
+    - id: uncut_diamond
+      chance: 2
+    - id: rune_javelin
+      amount: 5
+      chance: 1
+    - id: loop_half_of_a_key
+      chance: 1
+    - id: tooth_half_of_a_key
+      chance: 1
+    - <<: *mega_rare_table
+      chance: 1
+rare_drop_table:
+  &rare_table
+  roll: 128
+  drops:
+    - id: nature_rune
+      chance: 3
+      amount: 67
+    - id: adamant_javelin
+      chance: 2
+      amount: 20
+    - id: death_rune
+      chance: 2
+      amount: 45
+    - id: law_rune
+      chance: 2
+      amount: 45
+    - id: rune_arrow
+      chance: 2
+      amount: 42
+    - id: steel_arrow
+      chance: 2
+      amount: 150
+    - id: rune_2h_sword
+      chance: 3
+    - id: rune_battleaxe
+      chance: 3
+    - id: rune_sq_shield
+      chance: 2
+    - id: dragon_med_helm
+    - id: rune_kiteshield
+    - id: coins
+      chance: 21
+      amount: 3000
+    - id: loop_half_of_a_key
+      chance: 20
+    - id: tooth_half_of_a_key
+      chance: 20
+    - id: rune_bar
+      chance: 5
+    - id: dragonstone
+      chance: 2
+    - id: silver_ore_noted
+      chance: 2
+      amount: 100
     - <<: *gem_table
       chance: 20
-    - <<: *mega_rare_table
-      chance: 15
 talisman_drop_table:
   roll: 70
   drops:
@@ -438,13 +453,6 @@ talisman_drop_table:
       chance: 3
     - id: nature_talisman
       chance: 3
-superior_drop_table:
-  roll: 8
-  drops:
-    - id: dust_battlestaff
-      chance: 3
-    - id: mist_battlestaff
-      chance: 3
 cow_drop_table:
   type: all
   drops:
@@ -455,7 +463,7 @@ cow_drop_table:
         - id: bones
     - roll: 128
       drops:
-        - id: easy_clue_scroll
+        - id: clue_scroll_easy
           chance: 1
 chicken_drop_table:
   type: all
@@ -474,7 +482,7 @@ chicken_drop_table:
           chance: 32
     - roll: 300
       drops:
-        - id: easy_clue_scroll
+        - id: clue_scroll_easy
           chance: 1
 rat_drop_table:
   type: all
@@ -616,8 +624,6 @@ king_black_dragon_drop_table:
         - id: shark
           amount: 4
           chance: 4
-        - <<: *gem_table
-          chance: 2
         - <<: *rare_table
           chance: 8
     - roll: 5120
@@ -632,7 +638,7 @@ king_black_dragon_drop_table:
           chance: 20
         - id: draconic_visage
         - chance: 40
-          roll: 1280
+          roll: 10
           drops:
           - id: clue_scroll_elite
             chance: 4

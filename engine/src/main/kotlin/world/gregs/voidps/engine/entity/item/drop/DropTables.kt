@@ -34,7 +34,7 @@ class DropTables {
                         DropTable(type, roll, drops, chance)
                     } else {
                         val id = value["id"] as String
-                        if (itemDefinitions != null) {
+                        if (itemDefinitions != null && id != "nothing") {
                             if (itemDefinitions.getOrNull(id) == null) {
                                 logger.warn { "Invalid item id $id" }
                             }
@@ -75,7 +75,6 @@ class DropTables {
                 }
             }
             tables = yaml.load(path, config)
-            println(tables.get("king_black_dragon_drop_table"))
             tables.size
         }
         return this
