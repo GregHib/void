@@ -54,6 +54,6 @@ on<CombatSwing>({ it.contains("one_time") }) { player: Player ->
  * Switch out the current Interaction with [CombatInteraction] to allow hits this tick
  */
 fun combatInteraction(character: Character, target: Character) {
-    val interact = character.mode as Interact
+    val interact = character.mode as? Interact ?: return
     interact.updateInteraction(CombatInteraction(character, target))
 }
