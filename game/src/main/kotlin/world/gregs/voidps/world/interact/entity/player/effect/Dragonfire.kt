@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.effect
 
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -9,7 +10,8 @@ import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.protectMagic
 import java.util.concurrent.TimeUnit
 
-object Antifire {
+object Dragonfire {
+
     /**
      * Calculate the dragonfire max hit
      * @param special for hitting extra damage if accuracy roll was low or is kbd special dragon breath
@@ -26,6 +28,8 @@ object Antifire {
             return if (target.antifire) 200 else if (target.superAntifire) 0 else 250
         } else if (source is Player) {
             type = "chromatic"
+        } else if (target is Player) {
+            target.message(if (special) "You're horribly burnt by the dragon fire!" else "You manage to resist some of the dragon fire!")
         }
         return maxHit(
             type = type,

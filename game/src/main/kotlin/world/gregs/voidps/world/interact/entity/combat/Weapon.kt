@@ -43,10 +43,7 @@ object Weapon {
     }
 
     fun invalidateChance(source: Character, target: Character, type: String, weapon: Item, special: Boolean): Boolean {
-        if (type == "melee" && target.hasClock("spear_wall")) {
-            return true
-        }
-        return false
+        return type == "melee" && target.hasClock("spear_wall")
     }
 
     fun chinchompaChance(source: Character, target: Character, type: String, weapon: Item, chance: Double): Double {

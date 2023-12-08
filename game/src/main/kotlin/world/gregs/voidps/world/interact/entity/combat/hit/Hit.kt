@@ -63,7 +63,7 @@ object Hit {
             !offense && type == "magic" && target is NPC -> Skill.Magic
             !offense -> Skill.Defence
             type == "range" -> Skill.Ranged
-            type == "magic" || type == "blaze" -> Skill.Magic
+            type == "magic" || type == "blaze" || type == "dragonfire" -> Skill.Magic
             else -> Skill.Attack
         }
         Prayer.setTurmoilTarget(source, target)

@@ -22,7 +22,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.Prayer
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
-import world.gregs.voidps.world.interact.entity.player.effect.Antifire
+import world.gregs.voidps.world.interact.entity.player.effect.Dragonfire
 
 object Damage {
     private val logger = InlineLogger()
@@ -32,10 +32,11 @@ object Damage {
      * @return damage or -1 if unsuccessful
      */
     fun roll(source: Character, target: Character, type: String, weapon: Item, spell: String = "", special: Boolean = false): Int {
-        if (!Hit.success(source, target, type, weapon, special)) {
+        val success = Hit.success(source, target, type, weapon, special)
+        if (type != "dragonfire" && !success) {
             return -1
         }
-        val baseMaxHit = maximum(source, target, type, weapon, spell)
+        val baseMaxHit = maximum(source, target, type, weapon, spell, success)
         source["max_hit"] = baseMaxHit
         return random.nextInt(baseMaxHit + 1)
     }
@@ -43,9 +44,10 @@ object Damage {
     /**
      * Calculates the base maximum damage before modifications are applied
      * @param target only applicable for "dragonfire" [type]
+     * @param special only applicable for "dragonfire" type
      */
-    fun maximum(source: Character, target: Character, type: String, weapon: Item, spell: String = ""): Int = when {
-        type == "dragonfire" -> Antifire.maxHit(source, target, source is NPC && spell != "")
+    fun maximum(source: Character, target: Character, type: String, weapon: Item, spell: String = "", special: Boolean = false): Int = when {
+        type == "dragonfire" -> Dragonfire.maxHit(source, target, special || source is NPC && spell != "")
         source is NPC -> source.def["max_hit_$type", 0]
         type == "magic" && weapon.id.startsWith("saradomin_sword") -> 160
         type == "magic" && spell == "magic_dart" -> effectiveLevel(source, Skill.Magic) + 100
