@@ -18,13 +18,15 @@ object Prayer {
     }
 
     fun setTurmoilTarget(source: Character, target: Character) {
-        if (source.praying("turmoil") && !source["turmoil", false]) {
-            source["turmoil_attack_bonus"] = target.levels.get(Skill.Attack).coerceAtMost(99) * 0.15
-            source["turmoil_strength_bonus"] = target.levels.get(Skill.Strength).coerceAtMost(99) * 0.10
-            source["turmoil_defence_bonus"] = target.levels.get(Skill.Defence).coerceAtMost(99) * 0.15
+        if (source.praying("turmoil") && source.getOrNull<Int>("turmoil_target") != if (target is NPC) -target.index else target.index) {
+            source["turmoil_attack_bonus"] = (target.levels.get(Skill.Attack).coerceAtMost(99) * 0.15).toInt()
+            source["turmoil_strength_bonus"] = (target.levels.get(Skill.Strength).coerceAtMost(99) * 0.1).toInt()
+            source["turmoil_defence_bonus"] = (target.levels.get(Skill.Defence).coerceAtMost(99) * 0.15).toInt()
             source["turmoil"] = true
-        } else if (!source.praying("turmoil") && source["turmoil", false]) {
+            source["turmoil_target"] = if (target is NPC) -target.index else target.index
+        } else if (!source.praying("turmoil") && source.contains("turmoil")) {
             source.clear("turmoil")
+            source.clear("turmoil_target")
             source.clear("turmoil_attack_bonus")
             source.clear("turmoil_strength_bonus")
             source.clear("turmoil_defence_bonus")
@@ -40,7 +42,7 @@ object Prayer {
                 if (character.equipped(EquipSlot.Amulet).id == "amulet_of_zealots") {
                     bonus = floor(1.0 + (bonus - 1.0) * 2)
                 }
-                if (!character["turmoil", false]) {
+                if (!character.contains("turmoil")) {
                     bonus += character.getLeech(skill) * 100.0 / character.levels.getMax(skill) / 100.0
                 }
                 bonus -= character.getBaseDrain(skill) + character.getDrain(skill) / 100.0
@@ -48,7 +50,7 @@ object Prayer {
             }
             else -> 1.0
         }
-        val turmoil = if (character["turmoil", false]) character["turmoil_${skill.name.lowercase()}_bonus", 0.0] else 0.0
+        val turmoil = if (character.contains("turmoil")) character["turmoil_${skill.name.lowercase()}_bonus", 0].toDouble() else 0.0
         return ((level * multiplier) + turmoil).toInt()
     }
 
@@ -64,7 +66,7 @@ object Prayer {
         if (source is NPC && usingProtectionPrayer(source, target, type)) {
             target["protected_damage"] = damage
             return 0
-         } else if (source is Player && usingProtectionPrayer(source, target, type) && !hitThroughProtectionPrayer(source, target, type, weapon, special)) {
+        } else if (source is Player && usingProtectionPrayer(source, target, type) && !hitThroughProtectionPrayer(source, target, type, weapon, special)) {
             target["protected_damage"] = damage
             return (damage * if (target is Player) 0.6 else 0.0).toInt()
         } else {
