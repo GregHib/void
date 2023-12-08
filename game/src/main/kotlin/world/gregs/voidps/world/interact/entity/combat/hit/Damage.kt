@@ -38,6 +38,12 @@ object Damage {
         }
         val baseMaxHit = maximum(source, target, type, weapon, spell, success)
         source["max_hit"] = baseMaxHit
+        val player = if (source is Player && source["debug", false]) source else if (target is Player && target["debug", false]) target else null
+        if (player != null) {
+            val message = "Base maximum hit: $baseMaxHit ($type, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
+            player.message(message)
+            logger.debug { message }
+        }
         return random.nextInt(baseMaxHit + 1)
     }
 
