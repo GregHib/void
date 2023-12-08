@@ -45,11 +45,12 @@ object Hit {
         if (Weapon.invalidateChance(source, target, type, weapon, special)) {
             chance = 0.0
         }
-        if (source["debug", false]) {
+        val player = if (source is Player && source["debug", false]) source else if (target is Player && target["debug", false]) target else null
+        if (player != null) {
             val style = if (type == "magic") source.spell else if (weapon.isEmpty()) "unarmed" else weapon.id
             val spec = if (source is Player && source.specialAttack) ", special" else ""
             val message = "Hit chance: $chance ($type, $style$spec)"
-            source.message(message)
+            player.message(message)
             logger.debug { message }
         }
         return chance
