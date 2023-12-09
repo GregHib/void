@@ -35,12 +35,15 @@ val playerRegions = IntArray(MAX_PLAYERS - 1)
 
 private val blankXtea = IntArray(4)
 
-on<Registered>({ it.networked }, Priority.HIGHEST) { player: Player ->
+on<Registered>(priority = Priority.HIGHEST) { player: Player ->
+    player.viewport?.seen(player)
+    playerRegions[player.index - 1] = player.tile.regionLevel.id
     val viewport = player.viewport ?: return@on
     players.forEach { other ->
         viewport.seen(other)
     }
     updateRegion(player, true, crossedDynamicBoarder(player))
+    viewport.players.addSelf(player)
 }
 
 on<RegionRetry>({ it.networked }) { player: Player ->
@@ -51,10 +54,6 @@ on<RegionRetry>({ it.networked }) { player: Player ->
 /*
     Player regions
  */
-on<Registered> { player: Player ->
-    player.viewport?.seen(player)
-    playerRegions[player.index - 1] = player.tile.regionLevel.id
-}
 
 on<Unregistered> { player: Player ->
     playerRegions[player.index - 1] = 0
@@ -126,6 +125,7 @@ fun update(player: Player, initial: Boolean, force: Boolean) {
     }
 
     viewport.dynamic = false
+
     player.client?.mapRegion(
         zoneX = zoneX,
         zoneY = zoneY,

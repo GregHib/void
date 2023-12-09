@@ -34,6 +34,6 @@ inline fun <reified T> DefinitionsDecoder<T>.decode(yaml: Yaml, path: String, no
     val config = MapDefinitionConfig(producer)
     yaml.load<Any>(path, config)
     ids = config.ids
-    this.definitions = Array(config.definitions.keys.max()) { config.definitions.get(it) ?: producer(it, it.toString(), null) }
+    this.definitions = Array(config.definitions.keys.max() + 1) { config.definitions.get(it) ?: producer(it, it.toString(), null) }
     return ids.size
 }

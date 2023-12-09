@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
@@ -23,14 +23,14 @@ import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 on<ObjectOption>({ operate && target.id == "prized_dairy_cow" && option == "Milk" }) { player: Player ->
-    if (!player.hasItem("bucket")) {
+    if (!player.holdsItem("bucket")) {
         player.message("You'll need an empty bucket to collect the milk.")
         return@on
     }
     if (player.quest("cooks_assistant") != "started") {
         statement("If you're after ordinary milk, you should use an ordinary dairy cow.")
     }
-    if (player.hasItem("top_quality_milk") || player.bank.contains("top_quality_milk")) {
+    if (player.holdsItem("top_quality_milk") || player.bank.contains("top_quality_milk")) {
         player.message("You've already got some top-quality milk; you should take it to the cook.")
         return@on
     }
@@ -46,7 +46,7 @@ on<ObjectOption>({ operate && target.id == "prized_dairy_cow" && option == "Milk
 }
 
 on<ObjectOption>({ operate && target.id == "dairy_cow" && option == "Milk" }) { player: Player ->
-    if (player.hasItem("bucket")) {
+    if (player.holdsItem("bucket")) {
         arriveDelay()
         player.setAnimation("milk_cow")
         player.playSound("milk_cow")

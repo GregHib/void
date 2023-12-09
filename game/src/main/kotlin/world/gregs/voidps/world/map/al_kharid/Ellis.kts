@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Sad
@@ -101,7 +101,7 @@ on<InterfaceOption>({ id == "tanner" && option.startsWith("Tan") && !option.ends
 
 fun tan(player: Player, type: String, amount: Int) {
     val item = type.removeSuffix("_1")
-    if (!player.hasItem(item)) {
+    if (!player.holdsItem(item)) {
         player.message("You don't have any ${item.toLowerSpaceCase()} to tan.")
         return
     }

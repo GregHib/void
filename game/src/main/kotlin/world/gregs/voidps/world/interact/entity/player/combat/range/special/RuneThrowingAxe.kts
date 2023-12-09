@@ -15,13 +15,18 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.world.interact.entity.combat.*
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
-import world.gregs.voidps.world.interact.entity.player.combat.throwHitDelay
+import world.gregs.voidps.world.interact.entity.combat.Target
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.hit.Hit
+import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun isThrowingAxe(weapon: Item?) = weapon != null && (weapon.id == "rune_throwing_axe")
+fun isThrowingAxe(weapon: Item) = weapon.id == "rune_throwing_axe"
 
 val players: Players by inject()
 val npcs: NPCs by inject()
@@ -40,7 +45,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
     player.setGraphic("${ammo}_special_throw")
     player.shoot(id = "${ammo}_special", target = target)
     val distance = player.tile.distanceTo(target)
-    player.hit(target, delay = throwHitDelay(distance))
+    player.hit(target, delay = Hit.throwDelay(distance))
 }
 
 on<CombatHit>({ target -> source is Player && special && isThrowingAxe(weapon) && target.inMultiCombat }) { target: Character ->
@@ -49,7 +54,7 @@ on<CombatHit>({ target -> source is Player && special && isThrowingAxe(weapon) &
     val characters = if (target is Player) players else npcs
     for (tile in target.tile.spiral(4)) {
         characters[tile].forEach { character ->
-            if (character == target || chain.contains(character.index) || !canAttack(player, character)) {
+            if (character == target || chain.contains(character.index) || !Target.attackable(player, character)) {
                 return@forEach
             }
             if (!lineOfSight.hasLineOfSight(target, character)) {

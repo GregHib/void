@@ -14,10 +14,14 @@ import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.world.interact.entity.combat.*
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
-import world.gregs.voidps.world.interact.entity.player.combat.throwHitDelay
+import world.gregs.voidps.world.interact.entity.combat.hit.Hit
+import world.gregs.voidps.world.interact.entity.combat.hit.directHit
+import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isJavelin(weapon: Item?) = weapon != null && (weapon.id.startsWith("morrigans_javelin"))
@@ -34,7 +38,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
     player.setGraphic("${ammo}_special")
     player.shoot(id = ammo, target = target)
     val distance = player.tile.distanceTo(target)
-    val damage = player.hit(target, delay = throwHitDelay(distance))
+    val damage = player.hit(target, delay = Hit.throwDelay(distance))
     if (damage != -1) {
         target["phantom_damage"] = damage
         target["phantom"] = player
@@ -55,7 +59,7 @@ on<TimerTick>({ timer == "phantom_strike" }) { character: Character ->
     }
     character["phantom_damage"] = remaining - damage
     val source = character["phantom", character]
-    hit(source, character, damage, "effect")
+    character.directHit(source, damage, "effect")
     (character as? Player)?.message("You ${character.remove("phantom_first") ?: "continue"} to bleed as a result of the javelin strike.")
 }
 

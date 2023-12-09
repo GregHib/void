@@ -212,47 +212,47 @@ climb_up: 828
 assist: 7299
 emote_yes:
   id: 855
-  ticks: 3
+  ticks: 4
   walk: false
   run: false
 emote_no:
   id: 856
-  ticks: 3
+  ticks: 4
   walk: false
   run: false
 emote_bow:
   id: 858
-  ticks: 3
+  ticks: 4
   walk: false
   run: false
 emote_enhanced_bow:
   id: 5312
-  ticks: 5
+  ticks: 6
   walk: false
   run: false
 emote_angry:
   id: 859
-  ticks: 3
+  ticks: 4
   walk: false
   run: false
 emote_enhanced_angry:
   id: 5315
-  ticks: 6
+  ticks: 7
   walk: false
   run: false
 emote_think:
   id: 857
-  ticks: 3
+  ticks: 4
   walk: false
   run: false
 emote_wave:
   id: 863
-  ticks: 3
+  ticks: 4
   walk: false
   run: false
 emote_shrug:
   id: 2113
-  ticks: 2
+  ticks: 3
   walk: false
   run: false
 emote_cheer:
@@ -262,187 +262,187 @@ emote_cheer:
   run: false
 emote_beckon:
   id: 864
-  ticks: 3
+  ticks: 4
   walk: false
   run: false
 emote_laugh:
   id: 861
-  ticks: 3
+  ticks: 4
   walk: false
   run: false
 emote_jump_for_joy:
   id: 2109
-  ticks: 2
+  ticks: 3
   walk: false
   run: false
 emote_yawn:
   id: 2111
-  ticks: 4
+  ticks: 5
   walk: false
   run: false
 emote_enhanced_yawn:
   id: 5313
-  ticks: 11
+  ticks: 12
   walk: false
   run: false
 emote_dance:
   id: 866
-  ticks: 7
+  ticks: 8
   walk: false
   run: false
 emote_enhanced_dance:
   id: 5316
-  ticks: 7
+  ticks: 8
   walk: false
   run: false
 emote_jig:
   id: 2106
-  ticks: 6
+  ticks: 7
   walk: false
   run: false
 emote_twirl:
   id: 2107
-  ticks: 2
+  ticks: 3
   walk: false
   run: false
 emote_headbang:
   id: 2108
-  ticks: 5
+  ticks: 6
   walk: false
   run: false
 emote_cry:
   id: 860
-  ticks: 3
+  ticks: 4
   walk: false
   run: false
 emote_blow_kiss:
   id: 1374
-  ticks: 3
+  ticks: 4
   walk: false
   run: false
 emote_panic:
   id: 2105
-  ticks: 3
+  ticks: 4
   walk: false
   run: false
 emote_raspberry:
   id: 2110
-  ticks: 3
+  ticks: 4
   walk: false
   run: false
 emote_clap:
   id: 865
-  ticks: 5
+  ticks: 6
   walk: false
   run: false
 emote_salute:
   id: 2112
-  ticks: 2
+  ticks: 3
   walk: false
   run: false
 emote_goblin_bow:
   id: 2127
-  ticks: 2
+  ticks: 3
   walk: false
   run: false
 emote_goblin_salute:
   id: 2128
-  ticks: 4
+  ticks: 5
   walk: false
   run: false
 emote_glass_box:
   id: 1131
-  ticks: 4
+  ticks: 5
   walk: false
   run: false
 emote_climb_rope:
   id: 1130
-  ticks: 6
+  ticks: 7
   walk: false
   run: false
 emote_lean:
   id: 1129
-  ticks: 5
+  ticks: 6
   walk: false
   run: false
 emote_glass_wall:
   id: 1128
-  ticks: 7
+  ticks: 8
   walk: false
   run: false
 emote_idea:
   id: 4276
-  ticks: 2
+  ticks: 3
   walk: false
   run: false
 emote_stomp:
   id: 4278
-  ticks: 2
+  ticks: 3
   walk: false
   run: false
 emote_flap:
   id: 4280
-  ticks: 2
+  ticks: 3
   walk: false
   run: false
 emote_slap_head:
   id: 4275
-  ticks: 2
+  ticks: 3
   walk: false
   run: false
 emote_zombie_walk:
   id: 3544
-  ticks: 11
+  ticks: 12
   walk: false
   run: false
 emote_zombie_dance:
   id: 3543
-  ticks: 6
+  ticks: 7
   walk: false
   run: false
 emote_zombie_hand:
   id: 7272
-  ticks: 3
+  ticks: 4
   walk: false
   run: false
 emote_scared:
   id: 2836
-  ticks: 4
+  ticks: 5
   walk: false
   run: false
 emote_bunny_hop:
   id: 6111
-  ticks: 7
+  ticks: 8
   walk: false
   run: false
 emote_snowman_dance:
   id: 7531
-  ticks: 5
+  ticks: 6
   walk: false
   run: false
 emote_air_guitar:
   id: 2414
-  ticks: 6
+  ticks: 7
   walk: false
   run: false
 emote_safety_first:
   id: 8770
-  ticks: 4
+  ticks: 5
   walk: false
   run: false
 emote_explore:
   id: 9990
-  ticks: 9
+  ticks: 10
   walk: false
   run: false
 emote_trick:
   id: 10530
-  ticks: 5
+  ticks: 6
   walk: false
   run: false
 emote_freeze:
   id: 11044
-  ticks: 7
+  ticks: 8
   walk: false
   run: false
 emote_turkey_transform:
@@ -457,27 +457,27 @@ emote_turkey_return:
   run: false
 emote_turkey_dance:
   id: 10996
-  ticks: 12
+  ticks: 13
   walk: false
   run: false
 emote_around_the_world_in_eggty_days:
   id: 11542
-  ticks: 10
+  ticks: 11
   walk: false
   run: false
 emote_dramatic_point:
   id: 12658
-  ticks: 4
+  ticks: 5
   walk: false
   run: false
 emote_faint:
   id: 14165
-  ticks: 8
+  ticks: 9
   walk: false
   run: false
 emote_puppet_master:
   id: 14869
-  ticks: 7
+  ticks: 8
   walk: false
   run: false
 emote_seal_of_approval:
@@ -507,12 +507,12 @@ emote_seal_return:
   run: false
 emote_taskmaster:
   id: 15033
-  ticks: 15
+  ticks: 16
   walk: false
   run: false
 emote_dungeoneering_start:
   id: 13190
-  ticks: 1
+  ticks: 2
   walk: false
   run: false
 emote_dungeoneering_melee:
@@ -532,122 +532,122 @@ emote_dungeoneering_range:
   run: false
 emote_attack:
   id: 4959
-  ticks: 6
+  ticks: 7
   walk: false
   run: false
 emote_defence:
   id: 4961
-  ticks: 6
+  ticks: 7
   walk: false
   run: false
 emote_strength:
   id: 4981
-  ticks: 17
+  ticks: 18
   walk: false
   run: false
 emote_constitution:
   id: 14242
-  ticks: 9
+  ticks: 10
   walk: false
   run: false
 emote_range:
   id: 4973
-  ticks: 9
+  ticks: 10
   walk: false
   run: false
 emote_prayer:
   id: 4979
-  ticks: 10
+  ticks: 11
   walk: false
   run: false
 emote_magic:
   id: 4939
-  ticks: 5
+  ticks: 6
   walk: false
   run: false
 emote_cooking:
   id: 4955
-  ticks: 25
+  ticks: 26
   walk: false
   run: false
 emote_woodcutting:
   id: 4957
-  ticks: 21
+  ticks: 22
   walk: false
   run: false
 emote_fletching:
   id: 4937
-  ticks: 14
+  ticks: 15
   walk: false
   run: false
 emote_fishing:
   id: 4951
-  ticks: 12
+  ticks: 13
   walk: false
   run: false
 emote_firemaking:
   id: 4975
-  ticks: 8
+  ticks: 9
   walk: false
   run: false
 emote_crafting:
   id: 4949
-  ticks: 12
+  ticks: 13
   walk: false
   run: false
 emote_smithing:
   id: 4943
-  ticks: 18
+  ticks: 19
   walk: false
   run: false
 emote_mining:
   id: 4941
-  ticks: 6
+  ticks: 7
   walk: false
   run: false
 emote_herblore:
   id: 4969
-  ticks: 14
+  ticks: 15
   walk: false
   run: false
 emote_agility:
   id: 4977
-  ticks: 7
+  ticks: 8
   walk: false
   run: false
 emote_thieving:
   id: 4965
-  ticks: 13
+  ticks: 14
   walk: false
   run: false
 emote_slayer:
   id: 4967
-  ticks: 7
+  ticks: 8
   walk: false
   run: false
 emote_farming:
   id: 4963
-  ticks: 11
+  ticks: 12
   walk: false
   run: false
 emote_runecrafting:
   id: 4947
-  ticks: 9
+  ticks: 10
   walk: false
   run: false
 emote_hunter:
   id: 5158
-  ticks: 12
+  ticks: 13
   walk: false
   run: false
 emote_construction:
   id: 4953
-  ticks: 10
+  ticks: 11
   walk: false
   run: false
 emote_summoning:
   id: 8525
-  ticks: 8
+  ticks: 9
   walk: false
   run: false
 emote_quest_point:
@@ -657,7 +657,7 @@ emote_quest_point:
   run: false
 emote_dung_master_bow:
   id: 14588
-  ticks: 2
+  ticks: 3
   walk: false
   run: false
 emote_dung_master_spell:
@@ -1202,7 +1202,7 @@ barehand_tuna_2: 6711
 fish_crayfish_cage: 10009
 home_tele_1:
   id: 1722
-  ticks: 1
+  ticks: 2
 home_tele_2:
   id: 1723
   ticks: 1
@@ -1272,8 +1272,6 @@ teleport_tablet:
 teleport_land_tablet:
   id: 9598
   ticks: 1
-bow_shoot: 426
-crossbow_shoot: 4230
 cow_hit: 5850
 cow_death: 5851
 cow_attack: 5849
@@ -1295,70 +1293,13 @@ rat_hit: 2706
 giant_rat_attack: 14859
 giant_rat_death: 14860
 giant_rat_hit: 14861
-player_punch: 422
-player_kick: 423
 player_death: 836
 sap: 12569
 leech: 12575
 deflect: 12573
-magic_shortbow_special: 1074
-zaniks_crossbow_special: 11359
-throw_dart: 582
-throw_javelin: 10501
-throw_morrigans_throwing_axe: 10501
-throw_morrigans_throwing_axe_special: 10504
-throw_projectile: 929
 hand_cannon_shoot: 12152
 hand_cannon_special: 12174
 hand_cannon_explode: 12175
-karils_crossbow_shoot: 2075
-sling_rock: 14867
-toktz_xil_ul: 3353
-throw_chinchompa: 2779
-rune_throwing_axe_special: 1068
-dagger_stab: 13049
-dagger_slash: 395
-dagger_block: 403
-longsword_chop: 12311
-longsword_slash: 15071
-longsword_lunge: 12310
-longsword_block: 15074
-sword_stab: 13049
-sword_slash: 13048
-block: 424
-2h_sword_chop: 7042
-2h_sword_slash: 7041
-2h_sword_smash: 7048
-2h_sword_block: 7049
-2h_sword_hit: 7050
-scimitar_slash: 15071
-scimitar_lunge: 15072
-scimitar_block: 15074
-spear_block: 430
-spear_swipe: 440
-spear_pound: 429
-spear_lunge: 428
-halberd_jab: 428
-halberd_fend: 429
-halberd_swipe: 440
-mace_block: 403
-mace_pound: 401
-mace_spike: 400
-claw_chop: 393
-claw_slash: 395
-claw_lunge: 396
-claw_block: 397
-pickaxe_spike: 400
-pickaxe_smash: 401
-pickaxe_impale: 402
-pickaxe_block: 403
-warhammer_block: 397
-warhammer_pound: 393
-warhammer_pummel: 395
-hatchet_block: 397
-hatchet_chop: 393
-hatchet_hack: 395
-hatchet_smash: 401
 guthans_spear_attack: 2080
 guthans_spear_swipe: 2081
 guthans_spear_block: 12008
@@ -1370,11 +1311,6 @@ dharoks_greataxe_smash: 2067
 dharoks_greataxe_block: 2063
 boxing_gloves_attack: 3678
 boxing_gloves_block: 3679
-whip_flick: 11968
-whip_lash: 11969
-whip_deflect: 11970
-whip_special: 11971
-whip_block: 11974
 anchor_attack: 5865
 anchor_block: 5866
 granite_maul_attack: 1665
@@ -1396,12 +1332,6 @@ vestas_longsword_block: 388
 korasis_sword_chop: 12028
 korasis_sword_slash: 12029
 korasis_sword_block: 12030
-staff_attack: 419
-staff_block: 420
-staff_of_light_jab: 13040
-staff_of_light_swipe: 15071
-staff_of_light_fend: 15072
-staff_of_light_block: 13043
 dragon_dagger_attack: 376
 dragon_dagger_slash: 377
 dragon_dagger_block: 403
@@ -1435,23 +1365,9 @@ disrupt: 14788
 darklight_weaken: 2890
 impale: 923
 spear_wall: 10499
-scythe_reap: 437
-scythe_chop: 440
-scythe_jab: 438
-scythe_block: 440
-scythe_hit: 436
 easter_carrot_whack: 11547
-flail_whack: 9047
-flail_hit: 9048
 banner_attack: 1428
 banner_hit: 1429
-mjolnir_attack: 414
-mjolnir_hit: 415
-net_lunge: 428
-net_swipe: 440
-net_pound: 429
-net_block: 428
-net_hit: 430
 mouse_toy_attack: 1658
 power_of_light: 12804
 wind_spell: 10546
@@ -1563,3 +1479,130 @@ lumbridge_flag_stop_raise:
   ticks: 2
 lumbridge_flag: 9979
 bind_runes: 791
+unarmed_punch: 422
+unarmed_kick: 423
+unarmed_block: 422
+unarmed_hit: 424
+staff_bash: 419
+staff_pound: 419
+staff_focus: 419
+staff_hit: 420
+axe_chop: 395
+axe_hack: 395
+axe_smash: 401
+axe_block: 395
+axe_hit: 397
+sceptre_bash: 414
+sceptre_pound: 414
+sceptre_block: 414
+sceptre_hit: 430
+pickaxe_spike: 401
+pickaxe_impale: 401
+pickaxe_smash: 400
+pickaxe_block: 401
+pickaxe_hit: 397
+dagger_stab: 386
+dagger_lunge: 386
+dagger_slash: 390
+dagger_block: 386
+dagger_hit: 388
+sword_chop: 390
+sword_slash: 390
+sword_lunge: 386
+sword_block: 390
+sword_hit: 388
+2h_chop: 7041
+2h_slash: 7041
+2h_smash: 7042
+2h_block: 7041
+2h_hit: 7050
+mace_pound: 401
+mace_pummel: 401
+mace_spike: 400
+mace_block: 401
+mace_hit: 403
+claws_chop: 393
+claws_slash: 393
+claws_lunge: 1067
+claws_block: 393
+claws_hit: 397
+hammer_pound: 401
+hammer_pummel: 401
+hammer_block: 401
+hammer_hit: 403
+whip_flick: 11968 # needs verification
+whip_lash: 11969 # needs verification
+whip_deflect: 11970 # needs verification
+whip_special: 11971 # needs verification
+whip_block: 11974 # needs verification
+fun_pound: 400
+fun_pummel: 400
+fun_block: 400
+fun_hit: 424
+pie_accurate: 2779
+pie_rapid: 2779
+pie_long_range: 2779
+pie_hit: 3176
+spear_lunge: 428
+spear_swipe: 440
+spear_pound: 428
+spear_block: 429
+spear_hit: 430
+halberd_jab: 428
+halberd_swipe: 440
+halberd_fend: 428
+halberd_hit: 430
+bow_accurate: 426
+bow_rapid: 426
+bow_long_range: 426
+bow_hit: 424
+magic_shortbow_special: 1074
+crossbow_accurate: 4230
+crossbow_rapid: 4230
+crossbow_long_range: 4230
+crossbow_hit: 424
+karils_crossbow_shoot: 2075
+zaniks_crossbow_special: 11359
+thrown_accurate: 929
+thrown_rapid: 929
+thrown_long_range: 929
+thrown_hit: 424
+throw_dart: 582
+toktz_xil_ul: 3353
+throw_javelin: 10501
+rune_throwing_axe_special: 1068
+throw_morrigans_throwing_axe: 10501
+throw_morrigans_throwing_axe_special: 10504
+chinchompa_short_fuse: 2779
+chinchompa_medium_fuse: 2779
+chinchompa_long_fuse: 2779
+chinchompa_hit: 3176
+fixed_device_aim_and_fire: -1 # needs verification
+salamander_scorch: 5247
+salamander_hit: 388
+scythe_reap: 440
+scythe_chop: 440
+scythe_jab: 438
+scythe_block: 440
+scythe_hit: 435
+ivandis_flail_slash: 9047 # needs verification
+ivandis_flail_crush: 9047 # needs verification
+ivandis_flail_hit: 9048 # needs verification
+sling_rock: 14867 # needs verification
+sling_sling: 14867 # needs verification
+sling_chuck: 14867 # needs verification
+sling_lob: 14867 # needs verification
+#sling_hit: -1
+trident_jab: -1 # needs verification
+trident_swipe: -1 # needs verification
+trident_fend: -1 # needs verification
+trident_hit: -1 # needs verification
+staff_of_light_jab: 13040 # needs verification
+staff_of_light_swipe: 15071 # needs verification
+staff_of_light_fend: 15072 # needs verification
+staff_of_light_hit: 13043 # needs verification
+pull_lever: 2140
+dragon_breath: 81
+dragon_attack: 91
+dragon_hit: 89
+dragon_death: 92

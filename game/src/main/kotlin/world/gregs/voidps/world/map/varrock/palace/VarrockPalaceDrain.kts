@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.arriveDelay
-import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Suspicious
@@ -28,7 +28,7 @@ val logger = InlineLogger()
 on<ObjectOption>({ operate && target.id == "varrock_palace_drain" && option == "Search" }) { player: Player ->
     arriveDelay()
     player.setAnimation("climb_down")
-    if (player["demon_slayer_drain_dislodged", false] || player.hasBanked("silverlight_key_sir_prysin")) {
+    if (player["demon_slayer_drain_dislodged", false] || player.ownsItem("silverlight_key_sir_prysin")) {
         player.message("Nothing interesting seems to have been dropped down here today.")
     } else if (player.quest("demon_slayer") == "unstarted") {
         player<Suspicious>("""

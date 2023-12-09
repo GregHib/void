@@ -1418,3 +1418,54 @@ superheat_item:
 bind_runes:
   id: 186
   height: 92
+guthans_effect:
+  id: 398
+  height: 50
+torags_effect:
+  id: 399
+  height: 50
+ahrims_effect:
+  id: 400
+  height: 50
+karils_effect:
+  id: 401
+  height: 50
+salamander_scorch: 953
+salamander_flare: 953
+salamander_blaze: 953
+retribution: 437
+retribution_splash:
+  id: 438
+  flight_time: [ 10 ]
+  delay: 10
+wrath: 2259
+wrath_splash: 2260
+wrath_shoot:
+  id: 2261
+  curve: 20
+  flight_time: [ 25, 25, 25 ]
+redemption: 436
+dragon_breath:
+  id: 393
+  height: 43
+  curve: 15
+  delay: 51
+  flight_time: [ 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 ]
+dragon_breath_toxic:
+  id: 394
+  height: 43
+  curve: 15
+  delay: 51
+  flight_time: [ 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 ]
+dragon_breath_ice:
+  id: 395
+  height: 43
+  curve: 15
+  delay: 51
+  flight_time: [ 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 ]
+dragon_breath_shock:
+  id: 396
+  height: 43
+  curve: 15
+  delay: 51
+  flight_time: [ 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 ]

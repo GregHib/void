@@ -58,6 +58,14 @@ internal class LendTest : WorldTest() {
     }
 
     @Test
+    fun `Can't lend item without a lend id`() {
+        val (lender, _) = setupTradeWithLend()
+        lender.interfaceOption("trade_side", "offer", "Lend", item = Item("tzhaar_ket_om"), slot = 0)
+        tick()
+        assertEquals(Item.EMPTY, lender.loan[0])
+    }
+
+    @Test
     fun `Lent item is returned if lender logs out`() {
         val (lender, borrower) = setupTradeWithLend()
         lender.interfaceOption("trade_side", "offer", "Lend", item = Item("abyssal_whip"), slot = 0)

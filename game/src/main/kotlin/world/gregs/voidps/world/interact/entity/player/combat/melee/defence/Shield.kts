@@ -8,11 +8,11 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 
-fun isShield(item: Item?) = item != null && item.id.endsWith("shield")
+fun isShield(item: Item) = item.id.endsWith("shield")
 
-on<CombatAttack>({ !blocked && target is Player && isShield(target.equipped(EquipSlot.Shield)) }, Priority.HIGH) {_: Character ->
+on<CombatAttack>({ !blocked && target is Player && isShield(target.equipped(EquipSlot.Shield)) }, Priority.HIGH) { _: Character ->
     target.setAnimation("shield_block", delay)
     blocked = true
 }

@@ -6,12 +6,12 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
-fun isBanner(item: Item?) = item != null && (item.id.startsWith("banner") || item.id.startsWith("rat_pole") || item.id.endsWith("flag"))
+fun isBanner(item: Item) = item.id.startsWith("banner") || item.id.startsWith("rat_pole") || item.id.endsWith("flag")
 
 on<CombatSwing>({ !swung() && isBanner(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("banner_attack")

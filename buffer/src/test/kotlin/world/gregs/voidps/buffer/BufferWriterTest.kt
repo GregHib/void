@@ -267,6 +267,15 @@ internal class BufferWriterTest {
         assertByte(-128)
     }
 
+    @Test
+    fun `Write special char`() {
+        val string = "\u00E0"
+        // When
+        buffer.writeString(string)
+        // Then
+        assertByte(-32)
+    }
+
     private fun assertByte(value: Int) {
         if(reader == null) {
             reader = BufferReader(buffer.toArray())

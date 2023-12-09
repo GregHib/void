@@ -1,7 +1,6 @@
 package world.gregs.voidps.type.area
 
 import world.gregs.voidps.type.*
-import kotlin.random.Random
 
 data class Cuboid(
     val minX: Int,
@@ -68,14 +67,14 @@ data class Cuboid(
 
     fun toRectangles(): List<Rectangle> = (minLevel..maxLevel).map { Rectangle(minX, minY, maxX, maxY) }
 
-    override fun contains(x: Int, y: Int, levels: Int): Boolean {
-        return levels in minLevel..maxLevel && x in minX..maxX && y in minY..maxY
+    override fun contains(x: Int, y: Int, level: Int): Boolean {
+        return level in minLevel..maxLevel && x in minX..maxX && y in minY..maxY
     }
 
     override fun random() = Tile(random(minX, maxX), random(minY, maxY), random(minLevel, maxLevel))
 
     companion object {
-        fun random(first: Int, second: Int) = if (first == second) first else Random.nextInt(first, second + 1)
+        fun random(first: Int, second: Int) = if (first == second) first else random.nextInt(first, second + 1)
     }
 
     override fun toString(): String {

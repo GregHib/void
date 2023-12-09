@@ -3,10 +3,12 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.data.*
 import world.gregs.voidps.engine.data.yaml.DefinitionConfig
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
@@ -66,6 +68,7 @@ class ItemDefinitions(
                 val normal = definitions[def.lendId]
                 if (normal.extras != null) {
                     val lentExtras = Object2ObjectOpenHashMap(normal.extras)
+                    lentExtras.remove("aka")
                     if (extras != null) {
                         lentExtras.putAll(extras)
                     }
@@ -79,7 +82,7 @@ class ItemDefinitions(
         }
 
         override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-            if(indent == 1) {
+            if (indent == 1) {
                 super.set(map, key, when (key) {
                     "<<" -> {
                         map.putAll(value as Map<String, Any>)
@@ -109,6 +112,7 @@ class ItemDefinitions(
                     "silver_jewellery" -> Silver(value as Map<String, Any>)
                     "runecrafting" -> Rune(value as Map<String, Any>)
                     "ammo" -> ObjectOpenHashSet(value as List<String>)
+                    "skill_req" -> (value as MutableMap<String, Any>).mapKeys { Skill.valueOf(it.key.toSentenceCase()) }
                     else -> value
                 }, indent, parentMap)
             } else {

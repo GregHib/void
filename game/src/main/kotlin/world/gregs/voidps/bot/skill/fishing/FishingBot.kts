@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.network.instruct.InteractNPC
@@ -70,7 +70,7 @@ on<World, Registered> {
 suspend fun Bot.fish(map: AreaDefinition, option: String, bait: String, set: GearDefinition) {
     setupGear(set)
     goToArea(map)
-    while (player.inventory.spaces > 0 && (bait == "none" || player.hasItem(bait))) {
+    while (player.inventory.spaces > 0 && (bait == "none" || player.holdsItem(bait))) {
         val spots = get<NPCs>()
             .filter { isAvailableSpot(map, it, option, bait) }
             .map { it to tile.distanceTo(it) }

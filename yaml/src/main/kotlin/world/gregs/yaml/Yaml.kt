@@ -63,10 +63,11 @@ class Yaml(
         explicitWriter.config = config
         normalWriter.config = config
         writer.clear()
+        val v = config.write(value, 0, null)
         if (config.forceExplicit) {
-            explicitWriter.value(value, 0, null)
+            explicitWriter.value(v, 0, null)
         } else {
-            normalWriter.value(value, 0, null)
+            normalWriter.value(v, 0, null)
         }
         return writer.toCharArray()
     }

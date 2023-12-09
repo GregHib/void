@@ -14,9 +14,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.item.getMaxedSkill
-import world.gregs.voidps.engine.entity.item.isSkillCape
-import world.gregs.voidps.engine.entity.item.isTrimmedSkillCape
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.ItemChanged
@@ -25,18 +22,17 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import world.gregs.voidps.world.interact.entity.sound.playJingle
-import kotlin.random.Random
 
 val definitions: InterfaceDefinitions by inject()
 
 val unlockableRange = 26..52
 
 on<InterfaceOpened>({ id == "emotes" }) { player: Player ->
-    val definition = definitions.get(id)
     for (compId in unlockableRange) {
         val component = definitions.getComponent(id, compId) ?: continue
         player.sendVariable("unlocked_emote_${component.stringId}")
@@ -55,10 +51,11 @@ on<InterfaceOption>({ id == "emotes" }) { player: Player ->
         return@on
     }
     player.strongQueue("emote") {
+        println(id)
         when {
             id == "skillcape" -> {
                 val cape = player.equipped(EquipSlot.Cape)
-                val skill = cape.def.getMaxedSkill()
+                val skill: Skill? = cape.def.getOrNull("maxed_skill")
                 when {
                     cape.id == "quest_point_cape" -> playSkillCapeEmote(player, "quest_point")
                     cape.id == "dungeoneering_master_cape" -> playDungeoneeringMasterCapeEmote(player)
@@ -98,7 +95,7 @@ suspend fun CharacterContext.unlocked(id: String, emote: String): Boolean {
             "Zombie Dance", "Zombie Walk" -> statement("This emote can be unlocked during the gravedigger random event.")
             "Scared", "Trick", "Puppet master", "Zombie Hand" -> statement("This emote can be unlocked by playing a Halloween seasonal quest.")
             "Bunny Hop", "Around the World in Eggty Days" -> statement("This emote can be unlocked by playing an Easter seasonal event.")
-            "Skillcape" -> player.message("You need to wearing a skillcape in order to perform that emote.")
+            "Skillcape" -> player.message("You need to be wearing a skillcape in order to perform that emote.")
             "Air Guitar" -> player.message("You need to have 500 music tracks unlocked to perform that emote.")
             "Safety First" -> {
                 statement("""
@@ -145,7 +142,7 @@ fun areaClear(player: Player): Boolean {
 }
 
 on<ItemChanged>({ inventory == "worn_equipment" && index == EquipSlot.Cape.index }) { player: Player ->
-    player["unlocked_emote_skillcape"] = item.def.isSkillCape() || item.def.isTrimmedSkillCape() || item.id == "quest_point_cape"
+    player["unlocked_emote_skillcape"] = item.def.contains("skill_cape") || item.def.contains("skill_cape_t") || item.id == "quest_point_cape"
 }
 
 suspend fun CharacterContext.playEnhancedEmote(player: Player, type: String) {
@@ -186,7 +183,7 @@ suspend fun CharacterContext.playSkillCapeEmote(player: Player, skill: String) {
 suspend fun CharacterContext.playDungeoneeringCapeEmote(player: Player) {
     player.setGraphic("emote_dungeoneering_start")
     player.playAnimation("emote_dungeoneering_start")
-    when (Random.nextInt(3)) {
+    when (random.nextInt(3)) {
         0 -> {
             player.transform("primal_warrior")
             player.playAnimation("emote_dungeoneering_melee")

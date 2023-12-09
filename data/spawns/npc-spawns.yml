@@ -252,6 +252,8 @@
 - { id: butterfly_1, x: 2269, y: 3224, members: true }
 - { id: butterfly_1, x: 2270, y: 3223, members: true }
 - { id: butterfly_1, x: 2269, y: 3222, members: true }
+# 9033
+- { id: king_black_dragon, x: 2272, y: 4698, members: true }
 # 9265
 - { id: butterfly_1, x: 2323, y: 3175, members: true }
 - { id: butterfly_1, x: 2323, y: 3175, members: true }

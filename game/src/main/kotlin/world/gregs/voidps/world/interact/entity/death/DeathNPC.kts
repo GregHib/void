@@ -7,6 +7,8 @@ import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -23,6 +25,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.community.clan.clan
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.damageDealers
@@ -36,6 +39,7 @@ val floorItems: FloorItems by inject()
 val tables: DropTables by inject()
 
 on<Death> { npc: NPC ->
+    npc.mode = PauseMode
     npc.dead = true
     npc.steps.clear()
     npc.strongQueue(name = "death", 1) {
@@ -60,6 +64,7 @@ on<Death> { npc: NPC ->
             npc.face(npc["respawn_direction", Direction.NORTH], update = false)
             npcs.index(npc)
             npc.dead = false
+            npc.mode = EmptyMode
         } else {
             World.run("remove_npc", 0) {
                 npcs.remove(npc)
@@ -71,17 +76,16 @@ on<Death> { npc: NPC ->
 }
 
 fun deathAnimation(npc: NPC): String {
-    val race: String? = npc.def.getOrNull("race")
-    if (race != null) {
-        return "${race}_death"
+    if (npc.race.isNotEmpty()) {
+        return "${npc.race}_death"
     }
     return npc.def.getOrNull("death_anim") ?: ""
 }
 
 fun dropLoot(npc: NPC, killer: Character?, name: String, tile: Tile) {
-    var table = tables.get("${name}_drop_table")
+    var table = tables.get("${npc.def["drop_table", name]}_drop_table")
     if (table == null) {
-        table = tables.get("${npc.def["race", ""]}_drop_table")
+        table = tables.get("${npc.race}_drop_table")
         if (table == null) {
             return
         }

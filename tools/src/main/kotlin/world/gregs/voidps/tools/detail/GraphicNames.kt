@@ -57,7 +57,7 @@ object GraphicNames {
     }
 
     private fun addNPCModels(cache: Cache, models: MutableMap<Int, MutableList<String>>) {
-        val decoder = NPCDecoderFull(member = true).loadCache(cache)
+        val decoder = NPCDecoderFull(members = true).loadCache(cache)
         for (id in decoder.indices) {
             val def = decoder.getOrNull(id) ?: continue
             def.modelIds?.forEach { model ->
@@ -67,7 +67,7 @@ object GraphicNames {
     }
 
     private fun addObjectModels(cache: Cache, models: MutableMap<Int, MutableList<String>>) {
-        val decoder = ObjectDecoderFull(member = true, lowDetail = false).loadCache(cache)
+        val decoder = ObjectDecoderFull(members = true, lowDetail = false).loadCache(cache)
         for (id in decoder.indices) {
             val def = decoder.getOrNull(id) ?: continue
             def.modelIds?.forEach { array ->

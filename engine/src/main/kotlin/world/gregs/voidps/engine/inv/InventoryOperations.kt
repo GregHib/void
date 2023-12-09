@@ -30,6 +30,8 @@ fun Inventory.add(id: String, amount: Int = 1) = transaction { add(id, amount) }
 
 fun Inventory.remove(id: String, amount: Int = 1) = transaction { remove(id, amount) }
 
+fun Inventory.remove(index: Int, id: String, amount: Int = 1) = transaction { remove(index, id, amount) }
+
 fun Inventory.removeToLimit(id: String, amount: Int = 1): Int {
     var removed = 0
     transaction {

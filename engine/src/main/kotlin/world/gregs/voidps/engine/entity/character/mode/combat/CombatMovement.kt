@@ -28,6 +28,7 @@ class CombatMovement(
 
     override fun start() {
         character.watch(target)
+        character.clear("face_entity")
     }
 
     override fun tick() {
@@ -63,7 +64,7 @@ class CombatMovement(
     }
 
     private fun stepOut() {
-        character.steps.clear()
+        clearSteps()
         if (target.mode is CombatMovement || target.mode is Interact) {
             return
         }
@@ -73,7 +74,7 @@ class CombatMovement(
     private fun attack(): Boolean {
         val attackRange = attackRange()
         if (arrived(if (attackRange == 1) -1 else attackRange)) {
-            character.steps.clear()
+            clearSteps()
             character.events.emit(CombatReached(target))
             return true
         }
@@ -81,7 +82,7 @@ class CombatMovement(
     }
 
     private fun retreat(character: NPC): Boolean {
-        val wanderRadius = character.def["wander_radius", 8]
+        val wanderRadius = character.def["wander_radius", 5]
         val spawn: Tile = character.getOrNull("respawn_tile") ?: return false
         if (!character.tile.within(spawn, wanderRadius)) {
             character.walkTo(spawn)

@@ -7,13 +7,16 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.type.setRandom
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.objectOption
+import kotlin.random.Random
 
 internal class MiningTest : WorldTest() {
 
     @Test
     fun `Mining gives ore and depletes`() {
+        setRandom(Random)
         val player = createPlayer("miner", emptyTile)
         player.levels.set(Skill.Mining, 100)
         val tile = emptyTile.addY(1)

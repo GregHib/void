@@ -6,8 +6,10 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.item.*
+import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.ItemChanged
@@ -64,24 +66,23 @@ fun showInfo(player: Player, item: Item, index: Int, sample: Boolean) {
 }
 
 fun setRequirements(player: Player, def: ItemDefinition) {
-    val quest = def.quest()
-    if (def.hasRequirements() || quest != -1) {
+    val quest = def["quest_info", -1]
+    if (def.contains("equip_req") || def.contains("maxed_skill") || quest != -1) {
         player["item_info_requirement_title"] = enums.get("item_info_requirement_titles").getString(def.slot.index)
         val builder = StringBuilder()
-        for (i in 0 until 10) {
-            val skill = def.requiredEquipSkill(i) ?: break
-            val level = def.requiredEquipLevel(i)
+        val requirements = def.getOrNull<Map<Skill, Int>>("equip_req") ?: emptyMap()
+        for ((skill, level) in requirements) {
             val colour = Colours.bool(player.has(skill, level, false))
             builder.append("<$colour>Level $level ${skill.name.lowercase()}<br>")
         }
-        val maxed = def.getMaxedSkill()
+        val maxed: Skill? = def.getOrNull("maxed_skill")
         if (maxed != null) {
             val colour = Colours.bool(player.has(maxed, maxed.maximum(), false))
             builder.append("<$colour>Level ${maxed.maximum()} ${maxed.name.lowercase()}<br>")
         }
         if (quest != -1) {
             val colour = Colours.bool(false)
-            val name: String = enums.getStruct("item_info_quests", quest, "quest_name")
+            val name: String = enums.getStruct("item_info_quests", quest, "interface_text")
             builder.append("<$colour>Quest complete: $name<br>")
         }
         player["item_info_requirement"] = builder.toString()
@@ -98,11 +99,11 @@ fun getStat(definitions: ItemDefinition, key: String): String {
 
 fun attackStatsColumn(def: ItemDefinition): String = """
         Attack
-        ${getStat(def, "stab")}
-        ${getStat(def, "slash")}
-        ${getStat(def, "crush")}
-        ${getStat(def, "magic")}
-        ${getStat(def, "range")}
+        ${getStat(def, "stab_attack")}
+        ${getStat(def, "slash_attack")}
+        ${getStat(def, "crush_attack")}
+        ${getStat(def, "magic_attack")}
+        ${getStat(def, "range_attack")}
         <yellow>---
         Strength
         Ranged Strength
@@ -115,19 +116,19 @@ fun attackStatsColumn(def: ItemDefinition): String = """
 
 fun defenceStatsColumn(def: ItemDefinition): String = """
         Defence
-        ${getStat(def, "stab_def")}
-        ${getStat(def, "slash_def")}
-        ${getStat(def, "crush_def")}
-        ${getStat(def, "magic_def")}
-        ${getStat(def, "range_def")}
-        ${getStat(def, "summoning_def")}
-        ${getStat(def, "str")}
-        ${getStat(def, "range_str")}
+        ${getStat(def, "stab_defence")}
+        ${getStat(def, "slash_defence")}
+        ${getStat(def, "crush_defence")}
+        ${getStat(def, "magic_defence")}
+        ${getStat(def, "range_defence")}
+        ${getStat(def, "summoning_defence")}
+        ${getStat(def, "strength")}
+        ${getStat(def, "ranged_strength")}
         ${getStat(def, "magic_damage")}
         ${getStat(def, "absorb_melee")}
         ${getStat(def, "absorb_magic")}
         ${getStat(def, "absorb_range")}
-        ${getStat(def, "prayer")}
+        ${getStat(def, "prayer_bonus")}
     """.trimIndent().replace("\n", "<br>")
 
 val middleColumn = """

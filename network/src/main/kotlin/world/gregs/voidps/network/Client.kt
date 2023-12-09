@@ -15,7 +15,7 @@ open class Client(
 ) {
 
     private val logger = InlineLogger()
-    private val handler = Dispatchers.IO + CoroutineExceptionHandler { _, throwable ->
+    private val handler = context + CoroutineExceptionHandler { _, throwable ->
         logger.warn { "Client error: ${throwable.message}" }
         disconnect()
     }
@@ -96,6 +96,8 @@ open class Client(
     }
 
     companion object {
+        val context = newSingleThreadContext("Networking")
+
         const val FIXED = 0
         const val BYTE = -1
         const val SHORT = -2

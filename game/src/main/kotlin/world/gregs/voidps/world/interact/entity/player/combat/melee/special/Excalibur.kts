@@ -13,9 +13,9 @@ import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import java.util.concurrent.TimeUnit
 
 fun isExcalibur(weapon: Item?) = weapon != null && (weapon.id.startsWith("excalibur") || weapon.id.startsWith("enhanced_excalibur"))

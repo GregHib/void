@@ -1,64 +1,40 @@
 package world.gregs.voidps.world.interact.entity.combat
 
 import world.gregs.voidps.engine.client.ui.dialogue
-import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearWatch
-import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatReached
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatStop
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.suspend.approachRange
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.death.Death
 
-on<NPCOption>({ approach && option == "Attack" }) { character: Character ->
-    if (character.attackRange != 1) {
-        character.approachRange(character.attackRange, update = false)
-    } else {
-        character.approachRange(null, update = true)
-    }
+/**
+ * When triggered via [Interact] replace the Interaction with [CombatInteraction]
+ * to allow movement & [Interact] to complete and start [combat] on the same tick
+ * After [Interact] is complete switch to using [CombatMovement]
+ */
+on<CombatInteraction> { character: Character ->
     combat(character, target)
 }
 
-on<PlayerOption>({ approach && option == "Attack" }) { character: Character ->
-    if (character.attackRange != 1) {
-        character.approachRange(character.attackRange, update = false)
-    } else {
-        character.approachRange(null, update = true)
-    }
-    combat(character, target)
-}
-
-on<ItemOnNPC>({ approach && id.endsWith("_spellbook") }, Priority.HIGH) { player: Player ->
-    player.approachRange(8, update = false)
-    player.spell = component
-    player["attack_speed"] = 5
-    player["one_time"] = true
-    player.attackRange = 8
-    combat(player, target, 8)
-    cancel()
-}
-
-on<CombatSwing>({ it.contains("one_time") }) { player: Player ->
-    player.mode = EmptyMode
-    player.clear("one_time")
-}
-
+/**
+ * [CombatReached] is emitted by [CombatMovement] every tick the [Character] is within range of the target
+ */
 on<CombatReached> { character: Character ->
     combat(character, target)
 }
 
-fun combat(character: Character, target: Character, attackRange: Int = character.attackRange) {
+fun combat(character: Character, target: Character) {
     if (character.mode !is CombatMovement || character.target != target) {
         character.mode = CombatMovement(character, target)
         character.target = target
@@ -67,10 +43,11 @@ fun combat(character: Character, target: Character, attackRange: Int = character
     if (character is Player && character.dialogue != null) {
         return
     }
-    if (character.target == null || !canAttack(character, target)) {
+    if (character.target == null || !Target.attackable(character, target)) {
         character.mode = EmptyMode
         return
     }
+    val attackRange = character.attackRange
     if (!movement.arrived(if (attackRange == 1) -1 else attackRange)) {
         return
     }
@@ -87,12 +64,12 @@ fun combat(character: Character, target: Character, attackRange: Int = character
     character.start("hit_delay", nextDelay)
 }
 
-on<CombatSwing>(priority = Priority.HIGHEST) { character: Character ->
-    character.face(target)
-}
-
 on<CombatStop> { character: Character ->
-    character.clearWatch()
+    if (target.dead) {
+        character["face_entity"] = target
+    } else {
+        character.clearWatch()
+    }
     character.target = null
 }
 
@@ -102,13 +79,6 @@ on<CombatSwing> { character: Character ->
         target.attackers.clear()
     }
     target.attackers.add(character)
-}
-
-on<CombatHit>({ source != it && it.retaliates }) { character: Character ->
-    if (character.levels.get(Skill.Constitution) <= 0 || character.underAttack && character.target == source) {
-        return@on
-    }
-    combat(character, source)
 }
 
 on<Death> { character: Character ->

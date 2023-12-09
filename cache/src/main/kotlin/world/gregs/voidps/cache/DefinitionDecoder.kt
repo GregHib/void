@@ -5,6 +5,7 @@ import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.active.ActiveCache
 import java.io.File
+import java.nio.BufferUnderflowException
 
 abstract class DefinitionDecoder<T : Definition>(val index: Int) {
 
@@ -46,7 +47,12 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
         val size = size(cache)
         val definitions = create(size)
         for (id in 0 until size) {
-            load(definitions, cache, id)
+            try {
+                load(definitions, cache, id)
+            } catch (e: BufferUnderflowException) {
+                logger.error(e) { "Error reading definition $id" }
+                throw e
+            }
         }
         logger.info { "$size ${this::class.simpleName} definitions loaded in ${System.currentTimeMillis() - start}ms" }
         return definitions

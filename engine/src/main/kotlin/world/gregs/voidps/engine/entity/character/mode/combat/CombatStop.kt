@@ -6,4 +6,4 @@ import world.gregs.voidps.engine.event.Event
 /**
  * Combat movement has stopped
  */
-class CombatStop(val target: Character) : Event
+data class CombatStop(val target: Character) : Event

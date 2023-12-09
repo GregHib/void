@@ -14,10 +14,10 @@ import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.CombatHit
-import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.type.random
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import kotlin.math.sign
-import kotlin.random.Random
 
 on<Registered>({ it.poisonCounter != 0 }) { character: Character ->
     val timers = if (character is Player) character.timers else character.softTimers
@@ -60,18 +60,19 @@ fun damage(character: Character) {
         return
     }
     character["poison_damage"] = damage - 2
-    hit(character["poison_source", character], character, damage, "poison")
+    val source = character["poison_source", character]
+    character.directHit(source, damage, "poison")
 }
 
-fun isPoisoned(id: String?) = id != null && (id.endsWith("_p") || id.endsWith("_p+") || id.endsWith("_p++") || id == "emerald_bolts_e")
+fun isPoisoned(id: String) = id.endsWith("_p") || id.endsWith("_p+") || id.endsWith("_p++") || id == "emerald_bolts_e"
 
-fun poisonous(source: Character, weapon: Item?) = source is Player && isPoisoned(weapon?.id)
+fun poisonous(source: Character, weapon: Item) = source is Player && isPoisoned(weapon.id)
 
-on<CombatHit>({ damage > 0 && poisonous(source, weapon) }) { target: Character ->
-    val poison = 20 + weapon!!.id.count { it == '+' } * 10
-    if (type == "range" && Random.nextDouble() < 0.125) {
+on<CombatAttack>({ damage > 0 && poisonous(it, weapon) }) { source: Character ->
+    val poison = 20 + weapon.id.count { it == '+' } * 10
+    if (type == "range" && random.nextDouble() < 0.125) {
         source.poison(target, if (weapon.id == "emerald_bolts_e") 50 else poison)
-    } else if (type == "melee" && Random.nextDouble() < 0.25) {
+    } else if (type == "melee" && random.nextDouble() < 0.25) {
         source.poison(target, poison + 20)
     }
 }

@@ -3,8 +3,6 @@ package world.gregs.voidps.world.interact.entity.npc.shop
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.isSkillCape
-import world.gregs.voidps.engine.entity.item.isTrimmedSkillCape
 import world.gregs.voidps.engine.inject
 import kotlin.math.max
 import kotlin.math.min
@@ -32,7 +30,7 @@ object Price {
             return price
         }
         val def = itemDefs.get(itemId)
-        if (def.isSkillCape() || def.isTrimmedSkillCape()) {
+        if (def.contains("skill_cape") || def.contains("skill_cape_t")) {
             return 99000
         }
         val count = player["amount_$index", -1]

@@ -68,7 +68,7 @@ data class NPCDefinitionFull(
     var anInt2852: Int = 256,
     var anInt2831: Int = 0,
     var anInt2862: Int = 0,
-    override var params: Map<Long, Any>? = null,
+    override var params: Map<Int, Any>? = null,
     override var stringId: String = "",
     override var extras: Map<String, Any>? = null
 ) : Definition, Transforms, Recolourable, ColourPalette, Parameterized, Extra {

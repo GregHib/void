@@ -8,20 +8,20 @@ import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.*
-import world.gregs.voidps.world.interact.entity.player.combat.darkBowHitDelay
-import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.attackType
+import world.gregs.voidps.world.interact.entity.combat.fightStyle
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.hit.Hit
+import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
+import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
-import kotlin.math.floor
 
-fun isDarkBow(weapon: Item?) = weapon != null && weapon.id.startsWith("dark_bow")
-
-on<HitDamageModifier>({ type == "range" && special && isDarkBow(weapon) }, Priority.HIGH) { player: Player ->
-    val dragon = player.ammo == "dragon_arrow"
-    damage = floor(damage * if (dragon) 1.50 else 1.30).coerceAtLeast(if (dragon) 80.0 else 50.0)
-}
+fun isDarkBow(weapon: Item) = weapon.id.startsWith("dark_bow")
 
 on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.specialAttack && isDarkBow(player.weapon) }, Priority.HIGHISH) { player: Player ->
     val dragon = player.ammo == "dragon_arrow"
@@ -31,7 +31,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
         delay = -1
         return@on
     }
-    player.setAnimation("bow_shoot")
+    player.setAnimation("bow_accurate")
     player.setGraphic("${player.ammo}_double_shot")
     player.playSound("dark_bow_special")
     player.playSound("descent_of_${if (dragon) "dragons" else "darkness"}")
@@ -59,14 +59,14 @@ on<CombatHit>({ source is Player && source.fightStyle == "range" && isDarkBow(we
 }
 
 on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && isDarkBow(player.weapon) }, Priority.MEDIUM) { player: Player ->
-    player.setAnimation("bow_shoot")
+    player.setAnimation("bow_accurate")
     val ammo = player.ammo
     player.setGraphic("${ammo}_double_shot")
     player.shoot(ammo, target, true)
     player.shoot(ammo, target, false)
     val distance = player.tile.distanceTo(target)
-    player.hit(target, delay = darkBowHitDelay(distance))
-    player.hit(target, delay = darkBowHitDelay(distance))
+    player.hit(target, delay = Hit.darkBowDelay(distance))
+    player.hit(target, delay = Hit.darkBowDelay(distance))
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
 }

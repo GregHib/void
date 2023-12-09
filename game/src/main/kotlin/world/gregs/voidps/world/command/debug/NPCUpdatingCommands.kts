@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.network.visual.update.Hit
+import world.gregs.voidps.network.visual.update.Hitsplat
 import world.gregs.voidps.world.interact.entity.effect.transform
 
 val npcs: NPCs by inject()
@@ -56,7 +56,7 @@ on<Command>({ prefix == "npcgfx" }) { player: Player ->
 
 on<Command>({ prefix == "npchit" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)].first()
-    npc.hit(player, 10, Hit.Mark.Healed)
+    npc.hit(player, 10, Hitsplat.Mark.Healed)
 }
 
 on<Command>({ prefix == "npctime" }) { player: Player ->

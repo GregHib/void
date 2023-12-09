@@ -6,9 +6,13 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.attackType
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.weapon
 
-fun isWarSpear(item: Item?) = item != null && item.id.startsWith("guthans_warspear")
+fun isWarSpear(item: Item) = item.id.startsWith("guthans_warspear")
 
 on<CombatSwing>({ !swung() && isWarSpear(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("guthans_spear_${

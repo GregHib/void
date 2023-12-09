@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.death
 
+import world.gregs.voidps.type.random
 import kotlin.random.Random
 
 /**
@@ -10,13 +11,13 @@ import kotlin.random.Random
 class Distribution<T : Any>(
     list: List<Pair<T, Double>>,
     invert: Boolean = false,
-    private val random: Random = Random
+    private val random: Random
 ) {
 
     /**
      * @param array collection of values to be weighted by occurrence
      */
-    constructor(array: Array<T>, invert: Boolean = false, random: Random = Random) : this(
+    constructor(array: Array<T>, invert: Boolean = false, random: Random) : this(
         array
             .groupBy { it }
             .map { it.key to it.value.size.toDouble() },
@@ -70,14 +71,14 @@ class Distribution<T : Any>(
 
 @JvmName("weightedIntSample")
 fun <T : Any> weightedSample(list: List<Pair<T, Int>>, invert: Boolean = false): T? =
-    Distribution(list.map { it.first to it.second.toDouble() }, invert).sample()
+    Distribution(list.map { it.first to it.second.toDouble() }, invert, random).sample()
 
 @JvmName("weightedDoubleSample")
 fun <T : Any> weightedSample(list: List<Pair<T, Double>>, invert: Boolean = false): T? =
-    Distribution(list, invert).sample()
+    Distribution(list, invert, random).sample()
 
 inline fun <reified T : Any> weightedSample(list: List<T>, invert: Boolean = false): T? =
-    Distribution(list.toTypedArray(), invert).sample()
+    Distribution(list.toTypedArray(), invert, random).sample()
 
 inline fun <reified T : Any> weightedSample(array: Array<T>, invert: Boolean = false): T? =
-    Distribution(array, invert).sample()
+    Distribution(array, invert, random).sample()

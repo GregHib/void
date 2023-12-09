@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.world.community.trade.lend.Loan.getExpiry
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.item
@@ -24,7 +25,7 @@ val itemDefinitions: ItemDefinitions by inject()
 
 on<InventoryOption>({ inventory == "inventory" && option == "Discard" }) { player: Player ->
     if (!player.contains("borrowed_item")) {
-        if (player.inventory.clear(slot)) {
+        if (player.inventory.remove(slot, item.id)) {
             logger.info { "$player discarded un-borrowed item $item" }
         }
         return@on
@@ -38,7 +39,7 @@ on<InventoryOption>({ inventory == "inventory" && option == "Discard" }) { playe
     choice("Really discard item?") {
         option("Yes, discard it. I won't need it again.") {
             player.message("The item has been returned to it's owner.")
-            player.inventory.clear(slot)
+            player.inventory.remove(slot, item.id)
             player.clear("borrowed_item")
             player.clear("borrow_timeout")
             player.softTimers.clear("borrow_message")

@@ -140,11 +140,11 @@ class Levels(
         return final - current
     }
 
-    private fun multiply(level: Int, multiplier: Double) = if (multiplier > 0.0) (level * multiplier).toInt() else 0
-
-    private fun calculateAmount(amount: Int, offset: Int) = max(0, amount) + offset
-
     companion object {
+        private fun multiply(level: Int, multiplier: Double) = if (multiplier > 0.0) (level * multiplier).toInt() else 0
+
+        private fun calculateAmount(amount: Int, offset: Int) = max(0, amount) + offset
+
         val defaultLevels = IntArray(Skill.count) {
             if (it == Skill.Constitution.ordinal) 100 else 1
         }

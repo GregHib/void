@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.move.followTile
 import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.type.random
 
 /**
  * Resets non-persistent changes
@@ -20,13 +21,20 @@ class PlayerResetTask(
     override fun run() {
         super.run()
         batches.reset()
-        characters.shuffle()
+        if (!DEBUG && pidCounter++ > 100 && random.nextInt(50) == 0) {
+            pidCounter = 0
+            characters.shuffle()
+        }
     }
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun run(player: Player) {
         player.visuals.reset()
         player.followTile = player.previousTile
+    }
+
+    companion object {
+        private var pidCounter = 0
     }
 
 }

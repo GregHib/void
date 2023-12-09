@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.activity.quest.quest
@@ -53,7 +53,7 @@ on<ObjectOption>({ operate && target.id == "cupboard_the_knights_sword_opened" &
                 """)
                 return@on
             }
-            if (player.hasItem("portrait")) {
+            if (player.holdsItem("portrait")) {
                 statement("There is just a load of junk in here.")
             } else {
                 statement("You find a small portrait in here which you take.")

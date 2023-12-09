@@ -1,10 +1,6 @@
 package world.gregs.voidps.type.area
 
-import world.gregs.voidps.type.Area
-import world.gregs.voidps.type.Region
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.Zone
-import kotlin.random.Random
+import world.gregs.voidps.type.*
 
 data class Rectangle(
     val minX: Int,
@@ -72,7 +68,7 @@ data class Rectangle(
         return x in minX..maxX && y in minY..maxY
     }
 
-    override fun random() = Tile(if (minX == maxX) minX else Random.nextInt(minX, maxX + 1), if (minY == maxY) minY else Random.nextInt(minY, maxY + 1), 0)
+    override fun random() = Tile(if (minX == maxX) minX else random.nextInt(minX, maxX + 1), if (minY == maxY) minY else random.nextInt(minY, maxY + 1), 0)
 
 
     override fun toString(): String {

@@ -8,14 +8,14 @@ internal class DropTableTest {
 
     @Test
     fun `Roll number from 0 until drop table roll value`() {
-        val drops = DropTable(TableType.First, 100, listOf())
+        val drops = DropTable(TableType.First, 100, listOf(), 1)
         val roll: Int = drops.random(maximum = Int.MAX_VALUE)
         assertTrue(roll in 0 until 100)
     }
 
     @Test
     fun `Roll number from 0 until value passed in`() {
-        val drops = DropTable(TableType.First, 0, listOf())
+        val drops = DropTable(TableType.First, 0, listOf(), 1)
         val roll: Int = drops.random(maximum = 100)
         assertTrue(roll in 0 until 100)
     }
@@ -24,7 +24,7 @@ internal class DropTableTest {
     fun `Roll every item in all type table`() {
         val item1 = drop("1", 1)
         val item2 = drop("2", 1)
-        val root = DropTable(TableType.All, -1, listOf(item1, item2))
+        val root = DropTable(TableType.All, -1, listOf(item1, item2), 1)
 
         val list = mutableListOf<ItemDrop>()
         root.collect(list, -1, false, -1)
@@ -37,9 +37,9 @@ internal class DropTableTest {
     fun `Roll first item in table of tables`() {
         val item1 = drop("1", 1, true)
         val item2 = drop("2", 1, false)
-        val subTable1 = DropTable(TableType.All, 1, listOf(item1))
-        val subTable2 = DropTable(TableType.All, 1, listOf(item2))
-        val root = DropTable(TableType.First, -1, listOf(subTable1, subTable2))
+        val subTable1 = DropTable(TableType.All, 1, listOf(item1), 1)
+        val subTable2 = DropTable(TableType.All, 1, listOf(item2), 1)
+        val root = DropTable(TableType.First, -1, listOf(subTable1, subTable2), 1)
 
         val list = mutableListOf<ItemDrop>()
         root.collect(list, -1, true, -1)
@@ -52,9 +52,9 @@ internal class DropTableTest {
     fun `Roll all tables of tables`() {
         val item1 = drop("1", 1)
         val item2 = drop("2", 1)
-        val subTable1 = DropTable(TableType.First, 1, listOf(item1))
-        val subTable2 = DropTable(TableType.First, 1, listOf(item2))
-        val root = DropTable(TableType.All, -1, listOf(subTable1, subTable2))
+        val subTable1 = DropTable(TableType.First, 1, listOf(item1), 1)
+        val subTable2 = DropTable(TableType.First, 1, listOf(item2), 1)
+        val root = DropTable(TableType.All, -1, listOf(subTable1, subTable2), 1)
 
         val list = mutableListOf<ItemDrop>()
         root.collect(list, -1, false, -1)
@@ -66,7 +66,7 @@ internal class DropTableTest {
     @Test
     fun `Don't collect drop with chance lower than roll`() {
         val item1 = drop("1", 10)
-        val table = DropTable(TableType.First, -1, listOf(item1))
+        val table = DropTable(TableType.First, -1, listOf(item1), 1)
 
         val list = mutableListOf<ItemDrop>()
         table.collect(list, -1, false, 100)
@@ -78,7 +78,7 @@ internal class DropTableTest {
     fun `Don't roll members drops in non-members world`() {
         val item1 = drop("1", 1, members = false)
         val item2 = drop("2", 1, members = true)
-        val root = DropTable(TableType.All, -1, listOf(item1, item2))
+        val root = DropTable(TableType.All, -1, listOf(item1, item2), 1)
 
         val list = mutableListOf<ItemDrop>()
         root.collect(list, -1, false, -1)

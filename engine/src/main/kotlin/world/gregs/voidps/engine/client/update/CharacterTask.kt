@@ -33,4 +33,8 @@ abstract class CharacterTask<C : Character>(
             }
         }
     }
+
+    companion object {
+        const val DEBUG = false
+    }
 }

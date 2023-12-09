@@ -80,7 +80,7 @@ data class ObjectDefinitionFull(
     var anInt3020: Int = 256,
     var aBoolean2992: Boolean = false,
     var anInt2975: Int = 0,
-    override var params: Map<Long, Any>? = null,
+    override var params: Map<Int, Any>? = null,
     override var stringId: String = "",
     override var extras: Map<String, Any>? = null
 ) : Definition, Transforms, Recolourable, ColourPalette, Parameterized, Extra {
@@ -93,13 +93,13 @@ data class ObjectDefinitionFull(
         -1
     }
 
-    fun contains(option: String): Boolean = if (options != null) {
+    fun containsOption(option: String): Boolean = if (options != null) {
         options!!.contains(option)
     } else {
         false
     }
 
-    fun contains(index: Int, option: String): Boolean = if (options != null) {
+    fun containsOption(index: Int, option: String): Boolean = if (options != null) {
         options!![index] == option
     } else {
         false

@@ -34,7 +34,7 @@ interface Recolourable {
         writeArray(writer, 41, originalTextureColours, modifiedTextureColours)
     }
 
-    fun writeArray(writer: Writer, opcode: Int, original: ShortArray?, modified: ShortArray?) {
+    private fun writeArray(writer: Writer, opcode: Int, original: ShortArray?, modified: ShortArray?) {
         if (original != null && modified != null) {
             writer.writeByte(opcode)
             writer.writeByte(original.size)

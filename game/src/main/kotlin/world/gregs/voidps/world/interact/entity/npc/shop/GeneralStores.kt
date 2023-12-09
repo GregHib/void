@@ -22,7 +22,7 @@ object GeneralStores {
         val minimumQuantities = IntArray(definition.length) {
             if (definition.getOrNull<List<Map<String, Int>>>("defaults")?.getOrNull(it) != null) -1 else 0
         }
-        val checker = ItemIndexRemovalChecker(minimumQuantities)
+        val checker = ItemIndexRemovalChecker(minimumQuantities, 0)
         Inventory(
             data = Array(definition.length) {
                 val map = definition.getOrNull<List<Map<String, Int>>>("defaults")?.getOrNull(it)

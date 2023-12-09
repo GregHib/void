@@ -54,14 +54,18 @@ interface Writer {
 
     fun writeString(value: String?) {
         if (value != null) {
-            writeBytes(value.toByteArray())
+            for (char in value) {
+                writeByte(char.code)
+            }
         }
         writeByte(0)
     }
 
     fun writePrefixedString(value: String) {
         writeByte(0)
-        writeBytes(value.toByteArray())
+        for (char in value) {
+            writeByte(char.code)
+        }
         writeByte(0)
     }
 

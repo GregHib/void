@@ -1,43 +1,31 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.*
-import world.gregs.voidps.engine.inv.ItemChanged
+import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.*
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import java.util.concurrent.TimeUnit
-import kotlin.math.floor
 
-fun isStaffOfLight(item: Item?) = item != null && item.id.startsWith("staff_of_light")
+fun isStaffOfLight(item: Item) = item.id.startsWith("staff_of_light")
 
 on<ItemChanged>({ inventory == "worn_equipment" && index == EquipSlot.Weapon.index && isStaffOfLight(oldItem) }) { player: Player ->
     player.softTimers.stop("power_of_light")
-}
-
-on<CombatSwing>({ !swung() && isStaffOfLight(it.weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("staff_of_light_${player.attackType}")
-    player.hit(target)
-    delay = 6
-}
-
-on<CombatAttack>({ !blocked && target is Player && isStaffOfLight(target.weapon) }) { _: Character ->
-    target.setAnimation("staff_of_light_block", delay)
-    blocked = true
 }
 
 on<CombatHit>({ it.softTimers.contains("power_of_light") }, Priority.LOW) { player: Player ->
@@ -45,10 +33,6 @@ on<CombatHit>({ it.softTimers.contains("power_of_light") }, Priority.LOW) { play
 }
 
 // Special attack
-
-on<HitDamageModifier>({ type == "melee" && target != null && target.softTimers.contains("power_of_light") }, Priority.HIGH) { _: Player ->
-    damage = floor(damage * 0.5)
-}
 
 on<VariableSet>({ key == "special_attack" && to == true && isStaffOfLight(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {

@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
 
 val books: Books by inject()
 
-on<InventoryOption>({ item.def.has("book") && option == "Read" }) { player: Player ->
+on<InventoryOption>({ item.def.contains("book") && option == "Read" }) { player: Player ->
     player.openBook(item.def["book"])
 }
 

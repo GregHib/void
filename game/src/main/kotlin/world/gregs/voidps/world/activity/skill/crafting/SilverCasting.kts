@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
@@ -49,11 +49,11 @@ on<InterfaceOpened>({ id == "silver_mould" }) { player: Player ->
         val item = silver.item
         val quest = silver.quest
         player.interfaces.sendVisibility(id, mould.id, quest == null || player.quest(quest) != "unstarted")
-        val has = player.hasItem(mould.id)
+        val has = player.holdsItem(mould.id)
         player.interfaces.sendText(id,
             "${mould.id}_text",
             if (has) {
-                val colour = if (has && player.hasItem("silver_bar")) "green" else "orange"
+                val colour = if (has && player.holdsItem("silver_bar")) "green" else "orange"
                 "<$colour>Make ${itemDefinitions.get(item).name.toTitleCase()}"
             } else {
                 "<orange>You need a ${silver.name ?: mould.def.name.lowercase()} to make this item."

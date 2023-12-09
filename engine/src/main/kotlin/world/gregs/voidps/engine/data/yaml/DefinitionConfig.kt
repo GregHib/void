@@ -11,8 +11,14 @@ open class DefinitionConfig<T : Extra>(
             return
         }
         ids[key] = id
-        definitions[id].stringId = key
-        definitions[id].extras = extras
-        super.set(map, key, id, extras)
+        val def = definitions[id]
+        def.stringId = key
+        val existing = def.extras
+        if (existing != null && extras != null) {
+            existing as MutableMap<String, Any>
+            existing.putAll(extras)
+        } else if (extras != null) {
+            def.extras = extras
+        }
     }
 }

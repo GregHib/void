@@ -24,30 +24,34 @@ on<InterfaceOpened>({ id == "returned_items" }) { player: Player ->
 }
 
 on<InterfaceOption>({ id == "returned_items" && component == "item" && option == "Reclaim" }) { player: Player ->
-    if (player.contains("lent_item_id")) {
-        if (player.contains("lend_timeout")) {
-            player.message("Your item will be returned to you ${getExpiry(player, "lend_timeout")}.") // TODO real message
-        } else if(player.contains("lent_to")) {
-            player.message("Demanding return of item.")
-            val name = player.get<String>("lent_to")
-            val borrower = players.get(name)
-            if (borrower != null) {
-                player.softTimers.clear("loan_message")
-                player.clear("lent_item_id")
-                player.clear("lent_item_amount")
-                returnLoan(borrower)
-                returnItem(player)
-                player.message("Your item has been returned.")
-            } else {
-                player.message("There was an issue returning your item.")
-                logger.warn { "Unable to find lent item borrower '$name'." }
-            }
-        } else {
-            logger.warn { "Invalid item lending state; can't force claim an item when target has already logged out." }
-        }
-    } else {
+    if (!player.contains("lent_item_id")) {
         returnItem(player)
+        return@on
     }
+    if (player.contains("lend_timeout")) {
+        player.message("Your item will be returned to you ${getExpiry(player, "lend_timeout")}.") // TODO real message
+        return@on
+    }
+    if (!player.contains("lent_to")) {
+        logger.warn { "Invalid item lending state; can't force claim an item when target has already logged out." }
+        return@on
+    }
+
+    player.message("Demanding return of item.")
+    val name: String = player["lent_to"]
+    val borrower = players.get(name)
+    if (borrower == null) {
+        player.message("There was an issue returning your item.")
+        logger.warn { "Unable to find lent item borrower '$name'." }
+        return@on
+    }
+
+    player.softTimers.clear("loan_message")
+    player.clear("lent_item_id")
+    player.clear("lent_item_amount")
+    returnLoan(borrower)
+    returnItem(player)
+    player.message("Your item has been returned.")
 }
 
 fun returnItem(player: Player) {

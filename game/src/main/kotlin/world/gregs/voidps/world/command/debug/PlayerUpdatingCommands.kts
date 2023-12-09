@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.engine.map.zone.DynamicZones
-import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.hit.damage
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
@@ -80,7 +80,7 @@ on<Command>({ prefix == "move" }) { player: Player ->
 }
 
 on<Command>({ prefix == "hit" }) { player: Player ->
-    player.hit(content.toIntOrNull() ?: 10)
+    player.damage(content.toIntOrNull() ?: 10)
 }
 
 on<Command>({ prefix == "time" }) { player: Player ->
@@ -91,6 +91,8 @@ on<Command>({ prefix == "watch" }) { player: Player ->
     val bot = players.get(content)
     if (bot != null) {
         player.watch(bot)
+    } else {
+        player.clearWatch()
     }
 }
 

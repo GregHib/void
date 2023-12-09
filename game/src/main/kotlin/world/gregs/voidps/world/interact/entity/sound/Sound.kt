@@ -3,19 +3,23 @@ package world.gregs.voidps.world.interact.entity.sound
 import world.gregs.voidps.engine.data.definition.JingleDefinitions
 import world.gregs.voidps.engine.data.definition.MidiDefinitions
 import world.gregs.voidps.engine.data.definition.SoundDefinitions
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.encode.playJingle
 import world.gregs.voidps.network.encode.playMIDI
 import world.gregs.voidps.network.encode.playSoundEffect
 
-fun Player.playSound(
+fun Character.playSound(
     id: String,
     delay: Int = 0,
     volume: Int = 255,
     speed: Int = 255,
     repeat: Int = 1
 ) {
+    if (this !is Player) {
+        return
+    }
     client?.playSoundEffect(get<SoundDefinitions>().getOrNull(id)?.id ?: return, delay, volume, speed, repeat)
 }
 

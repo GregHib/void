@@ -15,22 +15,22 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirementsToUse
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.requiredUseLevel
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.sound.areaSound
-import kotlin.random.Random
 
 val players: Players by inject()
 val definitions: ObjectDefinitions by inject()
@@ -39,7 +39,7 @@ val objects: GameObjects by inject()
 val minPlayers = 0
 val maxPlayers = 2000
 
-on<ObjectOption>({ operate && def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
+on<ObjectOption>({ operate && def.contains("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
     val tree: Tree = def.getOrNull("woodcutting") ?: return@on
     val hatchet = getBestHatchet(player)
     if (hatchet == null) {
@@ -111,18 +111,14 @@ val hatchets = listOf(
 )
 
 fun getBestHatchet(player: Player): Item? {
-    return hatchets.firstOrNull { hasRequirements(player, it, false) && player.hasItem(it.id) }
+    return hatchets.firstOrNull { hasRequirements(player, it, false) && player.holdsItem(it.id) }
 }
 
 fun hasRequirements(player: Player, hatchet: Item, message: Boolean = false): Boolean {
     if (hatchet.id == "inferno_adze" && !player.has(Skill.Firemaking, hatchet.def["fm_level", 1], message)) {
         return false
     }
-    val level = hatchet.def["wc_level", hatchet.def.requiredUseLevel()]
-    if (!player.has(Skill.Woodcutting, level, message)) {
-        return false
-    }
-    return true
+    return player.hasRequirementsToUse(hatchet, message, setOf(Skill.Firemaking, Skill.Firemaking))
 }
 
 fun success(level: Int, hatchet: Item, tree: Tree): Boolean {
@@ -161,7 +157,7 @@ fun addLog(player: Player, tree: Tree): Boolean {
 }
 
 fun deplete(tree: Tree, obj: GameObject): Boolean {
-    val depleted = Random.nextDouble() <= tree.depleteRate
+    val depleted = random.nextDouble() <= tree.depleteRate
     if (!depleted) {
         return false
     }
@@ -180,7 +176,7 @@ fun deplete(tree: Tree, obj: GameObject): Boolean {
 fun getRegrowTickDelay(tree: Tree): Int {
     val delay = tree.respawnDelay
     return if (tree.level == 1) {
-        Random.nextInt(delay.first, delay.last)// Regular tree's
+        random.nextInt(delay.first, delay.last)// Regular tree's
     } else {
         Interpolation.interpolate(players.size, delay.last, delay.first, minPlayers, maxPlayers)
     }

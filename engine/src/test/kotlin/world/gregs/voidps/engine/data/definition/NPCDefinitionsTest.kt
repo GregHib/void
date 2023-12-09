@@ -17,6 +17,7 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
     override fun expected(): NPCDefinition {
         return NPCDefinition(intId, stringId = id, extras = mapOf(
             "race" to "human",
+            "wander_radius" to 4,
             "examine" to "Servant of the Duke of Lumbridge."
         ))
     }

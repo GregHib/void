@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.inv.sendInventory
 val inventoryDefinitions: InventoryDefinitions by inject()
 val logger = InlineLogger()
 
-on<NPCOption>({ operate && def.has("shop") && option == "Trade" }) { player: Player ->
+on<NPCOption>({ operate && def.contains("shop") && option == "Trade" }) { player: Player ->
     target.face(player)
     player.openShop(def["shop"])
 }
@@ -77,7 +77,7 @@ fun openShopInventory(player: Player, id: String): Inventory {
 
 fun fillShop(inventory: Inventory, shopId: String) {
     val def = inventoryDefinitions.get(shopId)
-    if (!def.has("shop")) {
+    if (!def.contains("shop")) {
         logger.warn { "Invalid shop definition $shopId" }
     }
     val list = def.getOrNull<List<Map<String, Int>>>("defaults") ?: return

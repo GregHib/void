@@ -20,7 +20,9 @@ import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
+import world.gregs.voidps.engine.client.update.CharacterTask
 import world.gregs.voidps.engine.client.update.iterator.ParallelIterator
+import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
@@ -78,12 +80,21 @@ object Main {
         val objectDefinitions: ObjectDefinitions = get()
 
         val handler = InterfaceHandler(get(), interfaceDefinitions, get())
-        val tickStages = getTickStages(players, npcs, items,
+        val tickStages = getTickStages(
+            players,
+            npcs,
+            items,
             get(),
-            get(), queue,
             get(),
-            get(), objectDefinitions,
-            get(), interfaceDefinitions, get(), handler, ParallelIterator())
+            queue,
+            get(),
+            get(),
+            objectDefinitions,
+            get(),
+            interfaceDefinitions,
+            get(),
+            handler,
+            if (CharacterTask.DEBUG) SequentialIterator() else ParallelIterator())
         val engine = GameLoop(tickStages)
 
         World.start(getProperty("members") == "true")
@@ -109,32 +120,36 @@ object Main {
     private fun active(activeDir: File) = module {
         single(createdAtStart = true) { MapDefinitions(get(), get(), get()).load(activeDir) }
         single(createdAtStart = true) { Huffman().load(activeDir.resolve(ActiveCache.indexFile(Index.HUFFMAN)).readBytes()) }
-        single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = getProperty<String>("members") == "true", lowDetail = false).load(activeDir)).load() }
-        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = getProperty<String>("members") == "true").load(activeDir)).load() }
-        single(createdAtStart = true) { ItemDefinitions(ItemDecoder().load(activeDir)).load() }
+        single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = getProperty<String>("members") == "true", lowDetail = false, get<ParameterDefinitions>()).load(activeDir)).load() }
+        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = getProperty<String>("members") == "true", get<ParameterDefinitions>()).load(activeDir)).load() }
+        single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get<ParameterDefinitions>()).load(activeDir)).load() }
         single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(activeDir)).load() }
         single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(activeDir), get()).load() }
         single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(activeDir)).load() }
         single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(activeDir)).load() }
         single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().load(activeDir)).load() }
-        single(createdAtStart = true) { StructDefinitions(StructDecoder().load(activeDir)).load() }
+        single(createdAtStart = true) { StructDefinitions(StructDecoder(get<ParameterDefinitions>()).load(activeDir)).load() }
         single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(activeDir)).load() }
-        single(createdAtStart = true) { StyleDefinitions(ClientScriptDecoder(revision634 = true).load(activeDir)) }
+        single(createdAtStart = true) { WeaponStyleDefinitions().load() }
+        single(createdAtStart = true) { AmmoDefinitions().load() }
+        single(createdAtStart = true) { ParameterDefinitions(CategoryDefinitions().load(), get()).load() }
     }
 
     private fun cache(cache: Cache) = module {
         single(createdAtStart = true) { MapDefinitions(get(), get(), get()).loadCache(cache, get<Xteas>()) }
         single(createdAtStart = true) { Huffman().load(cache.getFile(Index.HUFFMAN, 1)!!) }
-        single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = getProperty<String>("members") == "true", lowDetail = false).loadCache(cache)).load() }
-        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = getProperty<String>("members") == "true").loadCache(cache)).load() }
-        single(createdAtStart = true) { ItemDefinitions(ItemDecoder().loadCache(cache)).load() }
+        single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = getProperty<String>("members") == "true", lowDetail = false, get<ParameterDefinitions>()).loadCache(cache)).load() }
+        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = getProperty<String>("members") == "true", get<ParameterDefinitions>()).loadCache(cache)).load() }
+        single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get<ParameterDefinitions>()).loadCache(cache)).load() }
         single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().loadCache(cache)).load() }
         single(createdAtStart = true) { EnumDefinitions(EnumDecoder().loadCache(cache), get()).load() }
         single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().loadCache(cache)).load() }
         single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().loadCache(cache)).load() }
         single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().loadCache(cache)).load() }
-        single(createdAtStart = true) { StructDefinitions(StructDecoder().loadCache(cache)).load() }
+        single(createdAtStart = true) { StructDefinitions(StructDecoder(get<ParameterDefinitions>()).loadCache(cache)).load() }
         single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().loadCache(cache)).load() }
-        single(createdAtStart = true) { StyleDefinitions(ClientScriptDecoder(revision634 = true).loadCache(cache)) }
+        single(createdAtStart = true) { WeaponStyleDefinitions().load() }
+        single(createdAtStart = true) { AmmoDefinitions().load() }
+        single(createdAtStart = true) { ParameterDefinitions(CategoryDefinitions().load(), get()).load() }
     }
 }

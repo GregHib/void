@@ -25,8 +25,8 @@ class Teleports {
         if (definition.id != id) {
             return false
         }
-        val teleport = Teleport(definition.id, definition.tile, objectOption.def, definition.option)
         val player = objectOption.player
+        val teleport = Teleport(player, definition.id, definition.tile, objectOption.def, definition.option)
         player.events.emit(teleport)
         if (teleport.cancelled) {
             return false
@@ -41,6 +41,8 @@ class Teleports {
             objectOption.delay(delay)
         }
         player.tele(tile)
+        teleport.land = true
+        player.events.emit(teleport)
         return true
     }
 

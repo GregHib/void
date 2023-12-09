@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.player.skill.exp
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.event.Events
 
 class Experience(
@@ -55,6 +56,17 @@ class Experience(
         const val MAXIMUM_EXPERIENCE = 200000000.0
         val defaultExperience = DoubleArray(Skill.count) {
             if (it == Skill.Constitution.ordinal) 1154.0 else 0.0
+        }
+
+        fun level(skill: Skill, experience: Double): Int {
+            var total = 0
+            for (level in 1..if (skill == Skill.Dungeoneering) 120 else 99) {
+                total += Level.experienceAt(level)
+                if (experience < total / 4) {
+                    return if (skill == Skill.Constitution) level * 10 else level
+                }
+            }
+            return if (skill == Skill.Constitution) 990 else 99
         }
     }
 }

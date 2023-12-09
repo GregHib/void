@@ -23,10 +23,10 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.remove
 import world.gregs.voidps.engine.queue.weakQueue
+import world.gregs.voidps.type.random
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.sound.playSound
-import kotlin.random.Random
 
 val bars = listOf(
     "bronze_bar",
@@ -102,7 +102,7 @@ fun smelt(player: Player, target: GameObject, id: String, amount: Int) {
     player.playSound("smelt_bar")
     player.message(smelting.message, ChatType.Filter)
     player.weakQueue("smelting", 4) {
-        val success = Random.nextInt(255) < smelting.chance
+        val success = random.nextInt(255) < smelting.chance
         player.inventory.transaction {
             remove(smelting.items)
             if (success) {
@@ -149,7 +149,7 @@ fun varrockArmour(
     val armour4 = id == "rune_bar" && chest == "varrock_armour_4"
     if (armour1 || armour2 || armour3 || armour4) {
         // 10% chance
-        if (Random.nextInt(10) != 0) {
+        if (random.nextInt(10) != 0) {
             return false
         }
         player.inventory.transaction {

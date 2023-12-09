@@ -13,15 +13,15 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.player.effect.freeze
 import java.util.concurrent.TimeUnit
 
-fun isDragonSpear(item: Item?) = item != null && (item.id.startsWith("dragon_spear") || item.id.startsWith("zamorakian_spear"))
+fun isDragonSpear(item: Item) = item.id.startsWith("dragon_spear") || item.id.startsWith("zamorakian_spear")
 
 on<CombatSwing>({ !swung() && it.specialAttack && isDragonSpear(it.weapon) }) { player: Player ->
     if (target.size > 1) {

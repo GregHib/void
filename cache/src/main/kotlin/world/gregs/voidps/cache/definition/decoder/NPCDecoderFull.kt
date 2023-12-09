@@ -5,7 +5,7 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Index.NPCS
 import world.gregs.voidps.cache.definition.data.NPCDefinitionFull
 
-class NPCDecoderFull(val member: Boolean) : DefinitionDecoder<NPCDefinitionFull>(NPCS) {
+class NPCDecoderFull(val members: Boolean = true) : DefinitionDecoder<NPCDefinitionFull>(NPCS) {
 
     override fun create(size: Int) = Array(size) { NPCDefinitionFull(it) }
 
@@ -27,7 +27,7 @@ class NPCDecoderFull(val member: Boolean) : DefinitionDecoder<NPCDefinitionFull>
             }
             2 -> name = buffer.readString()
             12 -> size = buffer.readUnsignedByte()
-            in 30..34 -> options[-30 + opcode] = buffer.readString()
+            in 30..34 -> options[opcode - 30] = buffer.readString()
             40 -> readColours(buffer)
             41 -> readTextures(buffer)
             42 -> readColourPalette(buffer)
@@ -107,7 +107,7 @@ class NPCDecoderFull(val member: Boolean) : DefinitionDecoder<NPCDefinitionFull>
             143 -> invisiblePriority = true
             in 150..154 -> {
                 options[opcode - 150] = buffer.readString()
-                if (!member) {
+                if (!members) {
                     options[opcode - 150] = null
                 }
             }

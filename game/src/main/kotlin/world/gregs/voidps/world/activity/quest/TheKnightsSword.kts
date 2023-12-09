@@ -3,8 +3,8 @@ package world.gregs.voidps.world.activity.quest
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.inv.hasItem
-import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.world.activity.bank.ownsItem
 
 on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemSlot == 8 }) { player: Player ->
     val lines = when (player.quest("the_knights_sword")) {
@@ -56,7 +56,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
                 "<str>until I gave him a Redberry pie, which he gobbled up.",
                 "<str>Thurgo needed a picture of the sword to replace.",
             )
-            if (player.hasItem("portrait") || player.hasBanked("portrait")) {
+            if (player.holdsItem("portrait") || player.ownsItem("portrait")) {
                 list.add("<navy>I now have a picture of the <maroon>Knight's Sword <navy>- I should take it")
                 list.add("<navy>to <maroon>Thurgo <navy>so that he can duplicate it.")
             } else {
@@ -76,7 +76,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
                 "<str>start work on a replacement. I took him a portrait of it.",
 
                 )
-            if (player.hasItem("blurite_sword") || player.hasBanked("blurite_sword")) {
+            if (player.holdsItem("blurite_sword") || player.ownsItem("blurite_sword")) {
                 list.add("<str>Thurgo has now smithed me a replica of Sir Vyvin's sword.")
                 list.add("")
                 list.add("<navy>I should return it to the <maroon>Squire <navy>for my <maroon>reward.")

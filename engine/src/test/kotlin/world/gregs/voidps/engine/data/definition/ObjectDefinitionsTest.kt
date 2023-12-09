@@ -15,7 +15,7 @@ internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, 
     override val intId: Int = 3
 
     override fun expected(): ObjectDefinition {
-        return ObjectDefinition(intId, stringId = id, extras = mapOf("examine" to "The door is closed."))
+        return ObjectDefinition(intId, stringId = id, extras = mutableMapOf("examine" to "The door is closed."))
     }
 
     override fun empty(): ObjectDefinition {

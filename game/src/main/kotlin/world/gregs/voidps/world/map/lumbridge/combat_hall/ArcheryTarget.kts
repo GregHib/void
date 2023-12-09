@@ -21,7 +21,12 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.type.random
+import world.gregs.voidps.world.interact.entity.combat.fightStyle
+import world.gregs.voidps.world.interact.entity.combat.hit.Damage
+import world.gregs.voidps.world.interact.entity.combat.underAttack
+import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 on<ObjectOption>({ operate && target.id == "archery_target" && option == "Shoot-at" }, Priority.HIGH) { player: Player ->
@@ -57,10 +62,11 @@ fun swing(player: Player, obj: GameObject, delay: Int) {
             player.ammo = "training_arrows"
             player.equipment.remove(player.ammo)
             player.face(obj)
-            player.setAnimation("bow_shoot")
+            player.setAnimation("bow_accurate")
             player.setGraphic("training_arrows_shoot")
-            val maxHit = getMaximumHit(player, null, "range", weapon)
-            val hit = hit(player, null, "range", weapon)
+            // We're going to ignore success check as we have no [Character] to check against
+            val maxHit = Damage.maximum(player, player, "range", weapon)
+            val hit = random.nextInt(-1, maxHit + 1)
             val height = Interpolation.lerp(hit, -1..maxHit, 0..20)
             player.shoot(id = player.ammo, obj.tile, endHeight = height)
             if (hit != -1) {
@@ -69,9 +75,9 @@ fun swing(player: Player, obj: GameObject, delay: Int) {
             if (ammo.amount == 1) {
                 player.message("That was your last one!")
             }
-            val delay = weapon.def["attack_speed", 4]
-            player.start("hit_delay", delay)
-            swing(player, obj, delay)
+            val attackDelay = weapon.def["attack_speed", 4]
+            player.start("hit_delay", attackDelay)
+            swing(player, obj, attackDelay)
         } else {
             swing(player, obj, remaining)
         }

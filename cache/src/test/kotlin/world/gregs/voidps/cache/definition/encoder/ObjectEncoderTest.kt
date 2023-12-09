@@ -1,31 +1,36 @@
 package world.gregs.voidps.cache.definition.encoder
 
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
-import java.io.File
+import world.gregs.voidps.cache.definition.decoder.ObjectDecoderFull
+import java.nio.ByteBuffer
 
 internal class ObjectEncoderTest {
 
     @Test
     fun `Encode full test`() {
         val definition = ObjectDefinitionFull(
-            0,
+            0, // TODO support low detail
             modelIds = arrayOf(intArrayOf(1, 2, 35000), intArrayOf(60000, 1, 2)),
-            modelTypes = byteArrayOf(1, 2, 3),
+            modelTypes = byteArrayOf(1, 2),
             name = "Test Object",
             sizeX = 2,
             sizeY = 2,
             blocksSky = false,
             solid = 1,
             interactive = 0,
-            contouredGround = 1,
+            contouredGround = 2,
             delayShading = true,
             offsetMultiplier = 128,
             brightness = 1,
-            options = arrayOf("Take", "Eat", "Stop", "Kick", "Speak"),
-            contrast = 1,
+            options = arrayOf("Take", "Eat", null, "Kick", "Speak", "Examine"),
+            contrast = 5,
             originalColours = shortArrayOf(14000, 15000, 16000),
             modifiedColours = shortArrayOf(14000, 15000, 16000),
             originalTextureColours = shortArrayOf(14000, 15000, 16000),
@@ -37,7 +42,7 @@ internal class ObjectEncoderTest {
             modelSizeZ = 82,
             modelSizeY = 32,
             blockFlag = 1,
-            offsetX = 10,
+            offsetX = 8,
             offsetZ = 32,
             offsetY = 100,
             blocksLand = true,
@@ -51,7 +56,7 @@ internal class ObjectEncoderTest {
             anInt2989 = 1,
             anInt2971 = 1,
             anIntArray3036 = intArrayOf(1, 2, 3),
-            anInt3023 = 1,
+            anInt3023 = 256,
             hideMinimap = true,
             aBoolean2972 = false,
             animateImmediately = false,
@@ -68,7 +73,7 @@ internal class ObjectEncoderTest {
             anInt3024 = 0,
             invertMapScene = true,
             animations = intArrayOf(1, 1000, 10000),
-            percents = intArrayOf(22938, 16384, 26213),
+            percents = intArrayOf(13107, 13107, 39321),
             mapDefinitionId = 0,
             anIntArray2981 = intArrayOf(1, 2, 3),
             aByte2974 = 0,
@@ -87,22 +92,49 @@ internal class ObjectEncoderTest {
             anInt3020 = 512,
             aBoolean2992 = true,
             anInt2975 = 10,
-            params = hashMapOf(1L to "string", 2L to 100000)
+            params = hashMapOf(1 to "string", 2 to 100000)
         )
+        val members = definition.copy(options = arrayOf("Take", "Eat", "Members", "Kick", "Speak", "Examine"))
 
         val encoder = ObjectEncoder()
 
         val writer = BufferWriter(1024)
         with(encoder) {
-            writer.encode(definition)
+            writer.encode(definition, members)
         }
 
-        val data = writer.array()
-        val file = File("object-definition.dat")
-        file.writeBytes(data)
-        val stream = file.inputStream()
-        val expected = stream.readAllBytes()
-        assertArrayEquals(expected, data)
+        val decoder = ObjectDecoderFull(members = false)
+        val loadedDefinition = ObjectDefinitionFull(id = definition.id)
+        val reader = BufferReader(ByteBuffer.wrap(writer.toArray()))
+        decoder.readLoop(loadedDefinition, reader)
+
+        assertEquals(definition, loadedDefinition)
+
+        val decoderMembers = ObjectDecoderFull(members = true)
+        val loadedDefinitionMembers = ObjectDefinitionFull(id = definition.id)
+        val readerMembers = BufferReader(ByteBuffer.wrap(writer.toArray()))
+        decoderMembers.readLoop(loadedDefinitionMembers, readerMembers)
+
+        assertEquals(members, loadedDefinitionMembers)
     }
 
+    @Disabled
+    @Test
+    fun `Encode everything`() {
+        val cache: Cache = CacheDelegate("../data/cache/")
+        val decoder = ObjectDecoderFull()
+        val full = decoder.loadCache(cache)
+        val encoder = ObjectEncoder()
+        val writer = BufferWriter(1024)
+        for (definition in full) {
+            with(encoder) {
+                writer.clear()
+                writer.encode(definition)
+            }
+            val loadedDefinition = ObjectDefinitionFull(id = definition.id)
+            val reader = BufferReader(ByteBuffer.wrap(writer.toArray()))
+            decoder.readLoop(loadedDefinition, reader)
+            assertEquals(definition, loadedDefinition)
+        }
+    }
 }

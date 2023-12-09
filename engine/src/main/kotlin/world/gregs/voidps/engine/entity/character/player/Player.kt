@@ -122,7 +122,6 @@ class Player(
             client.on(Contexts.Game, ClientState.Disconnecting) {
                 logout(false)
             }
-            viewport?.players?.addSelf(this)
         }
         events.emit(Registered)
         val definitions = get<AreaDefinitions>()

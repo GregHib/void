@@ -10,12 +10,12 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.world.activity.bank.bank
-import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.activity.quest.sendQuestComplete
@@ -277,7 +277,7 @@ suspend fun CharacterContext.checkPackageDelivered() {
         Hello again, adventurer. Did you take that package to
         Aubury?
     """)
-    if (player.hasBanked("research_package_rune_mysteries")) {
+    if (player.ownsItem("research_package_rune_mysteries")) {
         player<Talking>("Not yet.")
         npc<Talking>("""
             He runs a rune shop in the south east of Varrock.
@@ -309,7 +309,7 @@ suspend fun CharacterContext.checkResearchDelivered() {
     """)
     player<Talking>("Yes, I have. He gave me some notes to give to you.")
     npc<Cheerful>("Wonderful! Let's have a look then.")
-    if (player.hasItem("research_notes_rune_mysteries")) {
+    if (player.holdsItem("research_notes_rune_mysteries")) {
         item("You hand the notes to Sedridor.", "research_notes_rune_mysteries", 600)
         npc<Cheerful>("Alright, let's see what Aubury has for us...")
         npc<Surprised>("Yes, this is it! The lost incantation!")

@@ -26,25 +26,25 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
-import kotlin.random.Random
+import world.gregs.voidps.type.random
 
 val logger = InlineLogger()
 val itemDefinitions: ItemDefinitions by inject()
 
-on<Moved>({ it.contains("fishers") && it.def.has("fishing") }) { npc: NPC ->
+on<Moved>({ it.contains("fishers") && it.def.contains("fishing") }) { npc: NPC ->
     val fishers: Set<Player> = npc.remove("fishers") ?: return@on
     for (fisher in fishers) {
         fisher.queue.clearWeak()
     }
 }
 
-on<NPCOption>({ operate && def.has("fishing") }) { player: Player ->
+on<NPCOption>({ operate && def.contains("fishing") }) { player: Player ->
     arriveDelay()
     target.getOrPut("fishers") { mutableSetOf<Player>() }.add(player)
     player.softTimers.start("fishing")
@@ -62,13 +62,13 @@ on<NPCOption>({ operate && def.has("fishing") }) { player: Player ->
             break
         }
 
-        val tackle = data.tackle.firstOrNull { tackle -> player.hasItem(tackle) }
+        val tackle = data.tackle.firstOrNull { tackle -> player.holdsItem(tackle) }
         if (tackle == null) {
             player.message("You need a ${data.tackle.first().toTitleCase()} to catch these fish.")
             break@fishing
         }
 
-        val bait = data.bait.keys.firstOrNull { bait -> bait == "none" || player.hasItem(bait) }
+        val bait = data.bait.keys.firstOrNull { bait -> bait == "none" || player.holdsItem(bait) }
         val catches = data.bait[bait]
         if (bait == null || catches == null) {
             player.message("You don't have any ${data.bait.keys.first().toTitleCase().plural(2)}.")
@@ -123,9 +123,9 @@ fun addCatch(player: Player, catch: String) {
 
 fun bigCatch(catch: String): Boolean = when {
     World.members -> false
-    catch == "raw_bass" && Random.nextInt(1000) == 0 -> true
-    catch == "raw_swordfish" && Random.nextInt(2500) == 0 -> true
-    catch == "raw_shark" && Random.nextInt(5000) == 0 -> true
+    catch == "raw_bass" && random.nextInt(1000) == 0 -> true
+    catch == "raw_swordfish" && random.nextInt(2500) == 0 -> true
+    catch == "raw_shark" && random.nextInt(5000) == 0 -> true
     else -> false
 }
 

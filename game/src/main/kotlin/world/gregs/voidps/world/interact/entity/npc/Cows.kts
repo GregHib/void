@@ -9,9 +9,9 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
-import kotlin.random.Random
 
 on<Registered>({ it.def.name == "cow" }) { npc: NPC ->
     npc.softTimers.start("eat_grass")
@@ -19,7 +19,7 @@ on<Registered>({ it.def.name == "cow" }) { npc: NPC ->
 
 on<TimerStart>({ timer == "eat_grass" }) { npc: NPC ->
     npc.mode = EmptyMode
-    interval = Random.nextInt(50, 200)
+    interval = random.nextInt(50, 200)
 }
 
 on<TimerTick>({ timer == "eat_grass" }) { npc: NPC ->

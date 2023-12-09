@@ -10,11 +10,11 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.world.interact.entity.death.Death
-import kotlin.random.Random
 
 val npcs: NPCs by inject()
 
@@ -38,10 +38,10 @@ on<TimerTick>({ timer == "follow_parent" && it.mode == EmptyMode || it.mode is W
     val parent = findParent(npc) ?: return@on
     npc.mode = Follow(npc, parent)
     parent["ducklings"] = npc
-    if (Random.nextInt(300) < 1) {
+    if (random.nextInt(300) < 1) {
         parent.forceChat = "Quack?"
         npc.softQueue("quack", 1) {
-            npc.forceChat = if (Random.nextBoolean()) "Cheep Cheep!" else "Eep!"
+            npc.forceChat = if (random.nextBoolean()) "Cheep Cheep!" else "Eep!"
         }
     }
     cancel()

@@ -262,23 +262,23 @@ class PlayerUpdateTask(
         val delta = player.tile.regionLevel.delta(viewport.lastSeen(player).regionLevel)
         val change = calculateRegionUpdate(delta)
         sync.writeBits(1, change != RegionChange.None)
-        if (change != RegionChange.None) {
-            sync.writeBits(2, change.id)
-            when (change) {
-                RegionChange.Height -> sync.writeBits(2, delta.level)
-                RegionChange.Local -> sync.writeBits(5, (getWalkIndex(delta) and 0x7) or (delta.level shl 3))
-                RegionChange.Global -> sync.writeBits(18, (delta.y and 0xff) or (delta.x and 0xff shl 8) or (delta.level shl 16))
-                else -> return false
-            }
-            return true
+        if (change == RegionChange.None) {
+            return false
         }
-        return false
+        sync.writeBits(2, change.id)
+        when (change) {
+            RegionChange.Height -> sync.writeBits(2, delta.level)
+            RegionChange.Local -> sync.writeBits(5, (getWalkIndex(delta) and 0x7) or (delta.level shl 3))
+            RegionChange.Global -> sync.writeBits(18, (delta.y and 0xff) or (delta.x and 0xff shl 8) or (delta.level shl 16))
+            else -> return false
+        }
+        return true
     }
 
     fun calculateRegionUpdate(delta: Delta): RegionChange = when {
         delta.x == 0 && delta.y == 0 && delta.level == 0 -> RegionChange.None
         delta.x == 0 && delta.y == 0 && delta.level != 0 -> RegionChange.Height
-        delta.x == -1 || delta.y == -1 || delta.x == 1 || delta.y == 1 -> RegionChange.Local
+        delta.x >= -1 && delta.x <= 1 && delta.y >= -1 && delta.y <= 1 -> RegionChange.Local
         else -> RegionChange.Global
     }
 

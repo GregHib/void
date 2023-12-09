@@ -7,14 +7,16 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.*
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccuracyMultiplier
-import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.attackType
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
-fun isDragonDagger(item: Item?) = item != null && (item.id.startsWith("dragon_dagger") || item.id.startsWith("corrupt_dragon_dagger"))
+fun isDragonDagger(item: Item) = item.id.startsWith("dragon_dagger") || item.id.startsWith("corrupt_dragon_dagger")
 
 on<CombatSwing>({ !swung() && !it.specialAttack && isDragonDagger(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("dragon_dagger_${
@@ -31,12 +33,6 @@ on<CombatAttack>({ !blocked && target is Player && isDragonDagger(target.weapon)
     target.setAnimation("dragon_dagger_block", delay)
     blocked = true
 }
-
-// Special attack
-
-specialAccuracyMultiplier(1.15, ::isDragonDagger)
-
-specialDamageMultiplier(1.15, ::isDragonDagger)
 
 on<CombatSwing>({ !swung() && it.specialAttack && isDragonDagger(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 4)) {

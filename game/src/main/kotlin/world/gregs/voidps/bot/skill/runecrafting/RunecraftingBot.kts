@@ -60,5 +60,5 @@ fun isAltar(map: AreaDefinition, obj: GameObject): Boolean {
     if (!map.area.contains(obj.tile)) {
         return false
     }
-    return obj.def.contains("Craft-rune")
+    return obj.def.containsOption("Craft-rune")
 }

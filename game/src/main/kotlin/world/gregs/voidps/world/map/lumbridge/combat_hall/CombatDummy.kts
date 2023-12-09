@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
 
@@ -36,11 +35,6 @@ for (type in listOf("magic", "melee")) {
         player.message("You can only use ${type.toTitleCase()} against this dummy.")
         player.mode = EmptyMode
         delay = -1
-    }
-
-    on<HitDamageModifier>({ target is NPC && target.id == "${type}_dummy" }, Priority.LOWEST) { _: Player ->
-        target as NPC
-        damage = damage.coerceAtMost(target.levels.get(Skill.Constitution) - 1.0)
     }
 
     on<CurrentLevelChanged>({ it.id == "${type}_dummy" && skill == Skill.Constitution && to <= 10 }, Priority.HIGH) { npc: NPC ->

@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.visual.VisualMask
 import world.gregs.voidps.network.visual.Visuals
-import world.gregs.voidps.network.visual.update.Hit
+import world.gregs.voidps.network.visual.update.Hitsplat
 import world.gregs.voidps.network.visual.update.Turn
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
@@ -135,10 +135,10 @@ fun Character.clearGraphic() {
     flagGraphic(index)
 }
 
-fun Character.hit(source: Character, amount: Int, mark: Hit.Mark, delay: Int = 0, critical: Boolean = false, soak: Int = -1) {
+fun Character.hit(source: Character, amount: Int, mark: Hitsplat.Mark, delay: Int = 0, critical: Boolean = false, soak: Int = -1) {
     val after = (levels.get(Skill.Constitution) - amount).coerceAtLeast(0)
     val percentage = levels.getPercent(Skill.Constitution, after, 255.0).toInt()
-    visuals.hits.hits.add(Hit(amount, mark, percentage, delay, critical, if (source is NPC) -source.index else source.index, soak))
+    visuals.hits.hits.add(Hitsplat(amount, mark, percentage, delay, critical, if (source is NPC) -source.index else source.index, soak))
     flagHits()
 }
 

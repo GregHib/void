@@ -7,7 +7,7 @@ import kotlin.math.roundToInt
 
 class ObjectEncoder : DefinitionEncoder<ObjectDefinitionFull> {
 
-    override fun Writer.encode(definition: ObjectDefinitionFull) {
+    override fun Writer.encode(definition: ObjectDefinitionFull, members: ObjectDefinitionFull) {
         if (definition.id == -1) {
             return
         }
@@ -92,10 +92,7 @@ class ObjectEncoder : DefinitionEncoder<ObjectDefinitionFull> {
         val options = definition.options
         if (options != null) {
             for (index in 0 until 5) {
-                val option = options[index]
-                if (index == 5 && option == "Examine" || option == null) {
-                    continue
-                }
+                val option = options[index] ?: continue
                 writeByte(30 + index)
                 writeString(option)
             }
@@ -166,22 +163,7 @@ class ObjectEncoder : DefinitionEncoder<ObjectDefinitionFull> {
             writeByte(definition.supportItems)
         }
 
-        val configIds = definition.transforms
-        if (configIds != null && (definition.varbit != -1 || definition.varp != -1)) {
-            val last = configIds.last()
-            val ninetyTwo = last != -1
-            writeByte(if (ninetyTwo) 92 else 77)
-            writeShort(definition.varbit)
-            writeShort(definition.varp)
-
-            if (ninetyTwo) {
-                writeShort(last)
-            }
-            writeByte(configIds.size - 2)
-            for (i in 0 until configIds.size - 1) {
-                writeShort(configIds[i])
-            }
-        }
+        definition.writeTransforms(this, 77, 92)
 
         if (definition.anInt3015 != -1 || definition.anInt3012 != 0) {
             writeByte(78)
@@ -282,9 +264,10 @@ class ObjectEncoder : DefinitionEncoder<ObjectDefinitionFull> {
         if (percents != null && animations != null) {
             writeByte(106)
             writeByte(animations.size)
+            val total = percents.sum().toDouble()
             for (i in animations.indices) {
                 writeShort(animations[i])
-                writeByte(((percents[i] / 65535.0) * 100).roundToInt())
+                writeByte(((percents[i] / total) * 100).roundToInt())
             }
         }
 
@@ -293,7 +276,18 @@ class ObjectEncoder : DefinitionEncoder<ObjectDefinitionFull> {
             writeShort(definition.mapDefinitionId)
         }
 
-        // 150 options are the same? Check when they're used compared to 30
+        val membersOptions = members.options
+        if (membersOptions != null) {
+            for (index in 0 until 5) {
+                val option = options?.get(index)
+                if (option != null) {
+                    continue
+                }
+                val membersOption = membersOptions[index] ?: continue
+                writeByte(150 + index)
+                writeString(membersOption)
+            }
+        }
 
         val anIntArray2981 = definition.anIntArray2981
         if (anIntArray2981 != null) {

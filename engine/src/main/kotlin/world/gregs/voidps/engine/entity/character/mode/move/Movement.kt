@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.move.running
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
@@ -37,8 +38,9 @@ open class Movement(
     private val stepValidator: StepValidator = get()
     private val lineValidator: LineValidator = get()
     private val pathFinder: PathFinder = get()
+    private var needsCalculation = true
 
-    private fun calculate() {
+    internal fun calculate() {
         if (strategy == null) {
             return
         }
@@ -48,10 +50,7 @@ open class Movement(
         } else {
             character.steps.queueStep(strategy.tile)
         }
-    }
-
-    override fun start() {
-        calculate()
+        needsCalculation = false
     }
 
     override fun tick() {
@@ -64,6 +63,9 @@ open class Movement(
         }
         if (hasDelay() && !character.hasClock("no_clip")) {
             return
+        }
+        if (needsCalculation) {
+            calculate()
         }
         if (step(runStep = false) && character.running && !character.hasClock("slow_run")) {
             if (character.steps.isNotEmpty()) {
@@ -88,7 +90,7 @@ open class Movement(
         }
         val direction = nextDirection(target)
         if (direction == null) {
-            character.steps.clear()
+            clearSteps()
             return false
         }
         character.clearAnimation()
@@ -102,6 +104,11 @@ open class Movement(
         move(character, direction.delta)
         character.face(direction, false)
         return true
+    }
+
+    internal fun clearSteps() {
+        character.steps.clear()
+        needsCalculation = false
     }
 
     private fun setMovementType(run: Boolean, end: Boolean) {
@@ -128,6 +135,7 @@ open class Movement(
     open fun recalculate(): Boolean {
         val strategy = strategy ?: return false
         if (strategy.tile != character.steps.destination) {
+            needsCalculation = true
             calculate()
             return true
         }
@@ -169,7 +177,7 @@ open class Movement(
         if (distance == -1) {
             return strategy.reached(character)
         }
-        if (Overlap.isUnder(character.tile, character.size, character.size, strategy.tile, strategy.width, strategy.height)) {
+        if ((character !is NPC || !character.def["allowed_under", false]) && Overlap.isUnder(character.tile, character.size, character.size, strategy.tile, strategy.width, strategy.height)) {
             return false
         }
         if (!character.tile.within(strategy.tile, distance)) {

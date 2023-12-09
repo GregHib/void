@@ -25,7 +25,7 @@ on<ItemOnObject>({ operate && target.id.startsWith("potters_wheel") && item.id =
     make("spinning")
 }
 
-on<ItemOnObject>({ operate && target.id.startsWith("potters_oven") && item.id != "soft_clay" && item.def.has("pottery") }) { player: Player ->
+on<ItemOnObject>({ operate && target.id.startsWith("potters_oven") && item.id != "soft_clay" && item.def.contains("pottery") }) { player: Player ->
     make("cook_range")
 }
 

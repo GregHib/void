@@ -81,9 +81,9 @@ fun Player.sendInventory(id: String, secondary: Boolean = false) {
     sendInventory(inventory)
 }
 
-fun Player.sendInventory(inventory: Inventory, secondary: Boolean = false) {
+fun Player.sendInventory(inventory: Inventory, secondary: Boolean = false, id: Int? = null) {
     sendInventoryItems(
-        inventory = get<InventoryDefinitions>().get(inventory.id).id,
+        inventory = id ?: get<InventoryDefinitions>().get(inventory.id).id,
         size = inventory.size,
         items = IntArray(inventory.size * 2) { index ->
             val item = inventory[index.rem(inventory.size)]
@@ -106,6 +106,6 @@ val Player.equipment: Inventory
 val Player.beastOfBurden: Inventory
     get() = inventories.inventory("beast_of_burden")
 
-fun Player.hasItem(id: String) = inventory.contains(id) || equipment.contains(id)
+fun Player.holdsItem(id: String) = inventory.contains(id) || equipment.contains(id)
 
-fun Player.hasItem(id: String, amount: Int) = inventory.contains(id, amount) || equipment.contains(id, amount)
+fun Player.holdsItem(id: String, amount: Int) = inventory.contains(id, amount) || equipment.contains(id, amount)

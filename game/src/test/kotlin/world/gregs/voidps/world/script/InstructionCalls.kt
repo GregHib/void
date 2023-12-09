@@ -38,6 +38,7 @@ fun Player.interfaceOption(
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
     events.emit(InterfaceOption(this, id = id, component = component, optionIndex = optionIndex, option = option, item = item, itemSlot = slot, inventory = inventory))
 }
+
 fun Player.interfaceUse(
     id: String,
     component: String,

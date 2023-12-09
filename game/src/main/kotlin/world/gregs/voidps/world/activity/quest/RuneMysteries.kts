@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.quest
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 
 on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemSlot == 13 }) { player: Player ->
     val lines = when (player.quest("rune_mysteries")) {
@@ -38,7 +38,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
                 "<maroon>Lumbridge, across the bridge from <maroon>Draynor Village."
             )
 
-            if (!player.hasItem("air_talisman")) {
+            if (!player.holdsItem("air_talisman")) {
                 list.add("<navy>If I lose the <maroon>Strange Talisman<navy> , I'll need to ask <maroon>Duke Horacio<navy> for")
                 list.add("<navy>another.")
             }
@@ -69,7 +69,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
                 "<maroon>Runecrafting.<navy> I can find him in his <maroon>Rune Shop<navy> in south east",
                 "<maroon>Varrock."
             )
-            if (!player.hasItem("research_package_rune_mysteries")) {
+            if (!player.holdsItem("research_package_rune_mysteries")) {
                 list.add("<navy>If I lose the <maroon>Package<navy> , I'll need to ask <maroon>Sedridor<navy> for")
                 list.add("<navy>another.")
             }
@@ -107,7 +107,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
                 "<navy>and asked me to take some <maroon>Research Notes<navy> . back to him. I",
                 "<navy>can find <maroon>Sedridor<navy> in the basement of the <maroon>Wizards' Tower<navy>."
             )
-            if (!player.hasItem("research_notes_rune_mysteries")) {
+            if (!player.holdsItem("research_notes_rune_mysteries")) {
                 list.add("<navy>If I lose the <maroon>Research Notes<navy> I'll need to ask <maroon>Aubury<navy> for")
                 list.add("<navy>some more.")
             }

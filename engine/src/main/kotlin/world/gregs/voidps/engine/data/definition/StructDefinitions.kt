@@ -2,6 +2,9 @@ package world.gregs.voidps.engine.data.definition
 
 import world.gregs.voidps.cache.config.data.StructDefinition
 
+/**
+ * Also known as attribute maps in cs2
+ */
 class StructDefinitions(
     override var definitions: Array<StructDefinition>
 ) : DefinitionsDecoder<StructDefinition> {

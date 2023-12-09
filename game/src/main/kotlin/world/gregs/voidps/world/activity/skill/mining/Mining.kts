@@ -17,23 +17,23 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirementsToUse
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.requiredEquipLevel
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import kotlin.random.Random
+import world.gregs.voidps.type.random
 
 val objects: GameObjects by inject()
 val itemDefinitions: ItemDefinitions by inject()
@@ -66,7 +66,7 @@ on<ObjectOption>({ operate && option == "Mine" }) { player: Player ->
             break
         }
 
-        val delay = if (pickaxe.id == "dragon_pickaxe" && Random.nextInt(6) == 0) 2 else pickaxe.def["mining_delay", 8]
+        val delay = if (pickaxe.id == "dragon_pickaxe" && random.nextInt(6) == 0) 2 else pickaxe.def["mining_delay", 8]
         if (first) {
             player.message("You swing your pickaxe at the rock.", ChatType.Filter)
             first = false
@@ -129,7 +129,7 @@ val pickaxes = listOf(
 )
 
 fun getBestPickaxe(player: Player): Item? {
-    return pickaxes.firstOrNull { pickaxe -> hasRequirements(player, pickaxe, false) && player.hasItem(pickaxe.id) }
+    return pickaxes.firstOrNull { pickaxe -> hasRequirements(player, pickaxe, false) && player.holdsItem(pickaxe.id) }
 }
 
 fun hasRequirements(player: Player, pickaxe: Item?, message: Boolean = false): Boolean {
@@ -140,13 +140,7 @@ fun hasRequirements(player: Player, pickaxe: Item?, message: Boolean = false): B
         }
         return false
     }
-    if (pickaxe.id == "inferno_adze" && !player.has(Skill.Firemaking, pickaxe.def["fm_level", 1], message)) {
-        return false
-    }
-    if (!player.has(Skill.Mining, pickaxe.def["mining_level", pickaxe.def.requiredEquipLevel()], message)) {
-        return false
-    }
-    return true
+    return player.hasRequirementsToUse(pickaxe, message, setOf(Skill.Mining, Skill.Firemaking))
 }
 
 fun addOre(player: Player, ore: String): Boolean {

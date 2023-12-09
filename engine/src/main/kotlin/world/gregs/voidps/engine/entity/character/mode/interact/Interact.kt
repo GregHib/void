@@ -34,8 +34,16 @@ class Interact(
     shape: Int? = null
 ) : Movement(character, strategy, shape) {
 
-    private val approach: Interaction = interaction.copy(true)
-    private val operate: Interaction = interaction.copy(false)
+    private var approach: Interaction = interaction.copy(true)
+    private var operate: Interaction = interaction.copy(false)
+    private var clearInteracted = false
+
+    fun updateInteraction(interaction: Interaction) {
+        approach = interaction.copy(true)
+        operate = interaction.copy(false)
+        clearInteracted = true
+    }
+
     private var updateRange: Boolean = false
 
     fun updateRange(approachRange: Int?, update: Boolean = true) {
@@ -93,19 +101,28 @@ class Interact(
     }
 
     /**
-     * Checks interactions before [Movement] and afterwards when
+     * Checks interactions before [Movement] and afterward when
      * target changed or failed to interact previously.
      */
     private fun processInteraction(): Boolean {
+        clearInteracted = false
         var interacted = interact(afterMovement = false)
         if (interacted && !updateRange && arrived(approachRange ?: -1)) {
-            character.steps.clear()
+            clearSteps()
+        }
+        if (clearInteracted) {
+            interacted = false
+            clearInteracted = false
         }
         if (!character.hasMenuOpen()) {
             super.tick()
         }
         if (!interacted || updateRange) {
             interacted = interacted or interact(afterMovement = true)
+            if (clearInteracted) {
+                interacted = false
+                clearInteracted = false
+            }
         }
         return interacted
     }
@@ -147,7 +164,7 @@ class Interact(
 
     private fun clear() {
         if (character.suspension != null) {
-            character.steps.clear()
+            clearSteps()
         }
         approachRange = null
         updateRange = false

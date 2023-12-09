@@ -8,7 +8,7 @@ import world.gregs.yaml.CharWriter
 abstract class YamlWriter(val writer: CharWriter, var config: YamlWriterConfiguration) {
 
     fun value(value: Any?, indent: Int, parentMap: String?) {
-        when (val v = config.write(value, indent, parentMap) ?: return) {
+        when (val v = value ?: return) {
             is String -> string(v)
             is List<*> -> list(v, indent, parentMap)
             is Map<*, *> -> map(v, indent, parentMap)

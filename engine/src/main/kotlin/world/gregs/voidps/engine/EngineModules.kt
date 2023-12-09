@@ -62,7 +62,7 @@ val engineModule = module {
     single { PathFinder(flags = get<Collisions>(), useRouteBlockerFlags = true) }
     single { LineValidator(flags = get<Collisions>()) }
     // Misc
-    single(createdAtStart = true) { DropTables().load() }
+    single(createdAtStart = true) { DropTables().load(itemDefinitions = get()) }
     // Definitions
     single(createdAtStart = true) { SoundDefinitions().load() }
     single(createdAtStart = true) { RenderEmoteDefinitions().load() }
@@ -74,4 +74,5 @@ val engineModule = module {
     single(createdAtStart = true) { ItemOnItemDefinitions().load() }
     single(createdAtStart = true) { AccountDefinitions().load() }
     single(createdAtStart = true) { HuntModeDefinitions().load() }
+    single(createdAtStart = true) { CategoryDefinitions().load() }
 }

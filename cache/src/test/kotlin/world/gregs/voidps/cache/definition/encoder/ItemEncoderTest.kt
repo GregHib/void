@@ -1,10 +1,15 @@
 package world.gregs.voidps.cache.definition.encoder
 
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.ItemDefinitionFull
-import java.io.File
+import world.gregs.voidps.cache.definition.decoder.ItemDecoderFull
+import java.nio.ByteBuffer
 
 internal class ItemEncoderTest {
 
@@ -55,12 +60,12 @@ internal class ItemEncoderTest {
             team = 2,
             lendId = 150,
             lendTemplateId = 72,
-            maleWieldX = 12,
-            maleWieldZ = 13,
-            maleWieldY = 17,
-            femaleWieldX = 11,
-            femaleWieldZ = 13,
-            femaleWieldY = 21,
+            maleWieldX = 8,
+            maleWieldZ = 12,
+            maleWieldY = 16,
+            femaleWieldX = 8,
+            femaleWieldZ = 12,
+            femaleWieldY = 20,
             primaryCursorOpcode = 10,
             primaryCursor = 5,
             secondaryCursorOpcode = 7,
@@ -73,7 +78,7 @@ internal class ItemEncoderTest {
             pickSizeShift = 2,
             singleNoteId = 159,
             singleNoteTemplateId = 179,
-            params = hashMapOf(1L to "string", 2L to 100000)
+            params = hashMapOf(1 to "string", 2 to 100000)
         )
         val encoder = ItemEncoder()
 
@@ -84,10 +89,33 @@ internal class ItemEncoderTest {
 
         val data = writer.array()
 
-        val file = File("item-definition.dat")
-        file.writeBytes(data)
-        val stream = file.inputStream()
-        val expected = stream.readAllBytes()
-        assertArrayEquals(expected, data)
+        val decoder = ItemDecoderFull()
+        val decodedDefinition = ItemDefinitionFull(id = definition.id)
+        val reader = BufferReader(ByteBuffer.wrap(data))
+        decoder.readLoop(decodedDefinition, reader)
+
+        assertEquals(definition, decodedDefinition)
+    }
+
+    @Disabled
+    @Test
+    fun `Encode everything`() {
+        val cache: Cache = CacheDelegate("../data/cache/")
+        val decoder = ItemDecoderFull()
+        val full = decoder.loadCache(cache)
+        val encoder = ItemEncoder()
+        val writer = BufferWriter(1024)
+
+        for (definition in full) {
+            with(encoder) {
+                writer.clear()
+                writer.encode(definition)
+            }
+            val data = writer.array()
+            val decodedDefinition = ItemDefinitionFull(id = definition.id)
+            val reader = BufferReader(ByteBuffer.wrap(data))
+            decoder.readLoop(decodedDefinition, reader)
+            assertEquals(definition, decodedDefinition)
+        }
     }
 }

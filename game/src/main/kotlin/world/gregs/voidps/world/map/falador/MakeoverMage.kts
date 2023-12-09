@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.queue.softQueue
@@ -29,11 +29,11 @@ import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.effect.transform
 import java.util.concurrent.TimeUnit
-import kotlin.random.Random
 
 val enums: EnumDefinitions by inject()
 val npcs: NPCs by inject()
@@ -108,7 +108,7 @@ suspend fun PlayerChoice.amulet(): Unit = option<Happy>("Cool amulet! Can I have
         sell you is only a copy of my own. It contains no magical
         powers and, as such, will only cost you $cost coins.
     """)
-    if (!player.hasItem("coins", cost)) {
+    if (!player.holdsItem("coins", cost)) {
         player<Upset>("Oh, I don't have enough money for that.")
         return@option
     }
@@ -207,7 +207,7 @@ on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player:
         """)
         return@on
     }
-    when (Random.nextInt(0, 4)) {
+    when (random.nextInt(0, 4)) {
         0 -> {
             npc<Cheerful>("""
                 Two arms, two legs, one head; it seems that spell finally
@@ -239,7 +239,7 @@ on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player:
 fun swapSex(player: Player, male: Boolean) {
     player.body.male = male
     val key = "look_hair_${if (male) "male" else "female"}"
-    player.body.setLook(BodyPart.Hair, enums.getStruct(key, enums.get(key).randomInt(), "id"))
+    player.body.setLook(BodyPart.Hair, enums.getStruct(key, enums.get(key).randomInt(), "body_look_id"))
     player.body.setLook(BodyPart.Beard, if (male) enums.get("look_beard_male").randomInt() else -1)
     swapLook(player, male, BodyPart.Arms, "arms")
     swapLook(player, male, BodyPart.Hands, "wrists")

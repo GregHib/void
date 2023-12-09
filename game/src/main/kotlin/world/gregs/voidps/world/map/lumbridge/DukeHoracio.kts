@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.interact.dialogue.*
@@ -25,7 +25,7 @@ on<NPCOption>({ operate && target.id == "duke_horacio" && option == "Talk-to" })
 suspend fun CharacterContext.started() {
     choice {
         option<Unsure>("What did you want me to do again?") {
-            if (player.hasBanked("air_talisman")) {
+            if (player.ownsItem("air_talisman")) {
                 npc<Talking>("""
                     Take that talisman I gave you to Sedridor at the
                     Wizards' Tower. You'll find it south west of here,

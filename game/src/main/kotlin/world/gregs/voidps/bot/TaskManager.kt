@@ -1,8 +1,8 @@
 package world.gregs.voidps.bot
 
 import world.gregs.voidps.bot.navigation.await
+import world.gregs.voidps.type.random
 import java.util.*
-import kotlin.random.Random
 
 class TaskManager {
     private val queue = LinkedList<Task>()
@@ -28,7 +28,7 @@ class TaskManager {
         val idle = Task(
             name = "do nothing",
             block = {
-                repeat(Random.nextInt(10, 100)) {
+                repeat(random.nextInt(10, 100)) {
                     await("tick")
                 }
             },

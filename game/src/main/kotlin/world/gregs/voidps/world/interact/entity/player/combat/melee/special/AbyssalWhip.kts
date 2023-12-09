@@ -8,14 +8,17 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.*
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccuracyMultiplier
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.attackType
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 
-fun isWhip(item: Item?) = item != null && item.id.startsWith("abyssal_whip")
+fun isWhip(item: Item) = item.id.startsWith("abyssal_whip")
 
 on<CombatSwing>({ !swung() && isWhip(it.weapon) }, Priority.LOW) { player: Player ->
     if (player.specialAttack && !drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
@@ -41,7 +44,3 @@ on<CombatAttack>({ !blocked && target is Player && isWhip(target.weapon) }) { _:
     target.setAnimation("whip_block", delay)
     blocked = true
 }
-
-// Special attack
-
-specialAccuracyMultiplier(1.25, ::isWhip)

@@ -113,7 +113,7 @@ class GameObjects(
      * Decide to store [GameObject]s which don't have options or configs
      * Skipping unused objects uses less ram but makes content creation harder.
      */
-    private fun interactive(definition: ObjectDefinition) = storeUnused || definition.options != null || definition.has("id")
+    private fun interactive(definition: ObjectDefinition) = storeUnused || definition.options != null || definition.contains("id")
 
     /**
      * Removes an object, optionally reverting after [ticks]

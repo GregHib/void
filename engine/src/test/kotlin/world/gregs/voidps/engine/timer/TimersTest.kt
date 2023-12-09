@@ -73,6 +73,28 @@ abstract class TimersTest {
     }
 
     @Test
+    fun `Timer can temp modify interval`() {
+        block = {
+            if (it is TimerStart) {
+                it.interval = 2
+            } else if (it is TimerTick) {
+                it.nextInterval = 1
+            }
+        }
+        assertTrue(timers.start("timer"))
+        repeat(4) {
+            timers.run()
+            GameLoop.tick++
+        }
+        assertTrue(timers.contains("timer"))
+        assertEquals(TimerStart("timer"), emitted.pop())
+        repeat(2) {
+            assertEquals(TimerTick("timer").apply { nextInterval = 1 }, emitted.pop())
+        }
+        assertTrue(emitted.isEmpty())
+    }
+
+    @Test
     fun `Timers with 0 delay repeats every tick`() {
         block = {
             if (it is TimerStart) {

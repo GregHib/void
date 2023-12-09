@@ -13,12 +13,17 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
-import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
-import kotlin.random.Random
+import world.gregs.voidps.world.interact.entity.combat.Target
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.hit.Damage
+import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
-fun isKorasisSword(item: Item?) = item != null && item.id == "korasis_sword"
+fun isKorasisSword(item: Item) = item.id == "korasis_sword"
 
 on<CombatSwing>({ !swung() && isKorasisSword(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("korasis_sword_${
@@ -42,10 +47,6 @@ val players: Players by inject()
 val npcs: NPCs by inject()
 val lineOfSight: LineValidator by inject()
 
-on<HitChanceModifier>({ type == "magic" && special && isKorasisSword(weapon) }, Priority.HIGHEST) { _: Player ->
-    chance = 1.0
-}
-
 on<CombatSwing>({ !swung() && it.specialAttack && isKorasisSword(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, 600)) {
         delay = -1
@@ -54,8 +55,8 @@ on<CombatSwing>({ !swung() && it.specialAttack && isKorasisSword(it.weapon) }) {
     player["korasi_chain"] = mutableSetOf(target.index)
     player.setAnimation("disrupt")
     player.setGraphic("disrupt")
-    val maxHit = getMaximumHit(player, target, "melee", player.weapon, special = true)
-    val hit = Random.nextInt(maxHit / 2, (maxHit * 1.5).toInt())
+    val maxHit = Damage.maximum(player, target, "melee", player.weapon)
+    val hit = random.nextInt(maxHit / 2, (maxHit * 1.5).toInt())
     player.hit(target, damage = hit, type = "magic", delay = 0)
     delay = 5
 }
@@ -72,7 +73,7 @@ on<CombatHit>({ target -> special && isKorasisSword(weapon) && target.inMultiCom
     val characters = if (target is Player) players else npcs
     for (tile in target.tile.spiral(4)) {
         characters[tile].forEach { character ->
-            if (character == target || chain.contains(character.index) || !canAttack(source, character)) {
+            if (character == target || chain.contains(character.index) || !Target.attackable(source, character)) {
                 return@forEach
             }
             if (!lineOfSight.hasLineOfSight(target, character)) {

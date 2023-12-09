@@ -10,13 +10,13 @@ import world.gregs.voidps.engine.data.config.GearDefinition
 import world.gregs.voidps.engine.data.definition.GearDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirementsToUse
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.hasRequirements
-import world.gregs.voidps.engine.entity.item.hasUseRequirements
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.world.activity.bank.bank
-import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.bank.ownsItem
 
 suspend fun Bot.setupGear(gear: GearDefinition, buy: Boolean = true) {
     openBank()
@@ -50,7 +50,7 @@ fun Bot.getGear(type: String, skill: Skill): GearDefinition? {
 }
 
 fun Bot.getSuitableItem(items: List<Item>): Item {
-    return items.first { item -> player.hasRequirements(item) && player.hasBanked(item.id, item.amount) }
+    return items.first { item -> player.hasRequirements(item) && player.ownsItem(item.id, item.amount) }
 }
 
 private fun Player.gearScore(definition: GearDefinition): Double {
@@ -60,12 +60,12 @@ private fun Player.gearScore(definition: GearDefinition): Double {
     }
     var count = 0
     for (items in definition.inventory) {
-        if (items.any { item -> hasRequirements(item) && hasBanked(item.id, item.amount) }) {
+        if (items.any { item -> hasRequirements(item) && ownsItem(item.id, item.amount) }) {
             count++
         }
     }
     for ((_, equipment) in definition.equipment) {
-        if (equipment.any { item -> hasRequirements(item) && hasBanked(item.id, item.amount) }) {
+        if (equipment.any { item -> hasRequirements(item) && ownsItem(item.id, item.amount) }) {
             count++
         }
     }
@@ -97,7 +97,7 @@ private suspend fun Bot.setupGearAndInv(gear: GearDefinition, buy: Boolean) {
     // Pick one of each item to equip for each required slot
     for ((_, equipmentList) in gear.equipment) {
         val items = equipmentList
-            .filter { player.hasRequirements(it) || player.hasUseRequirements(it) || player.bank.contains(it.id, it.amount) }
+            .filter { player.hasRequirements(it) || player.hasRequirementsToUse(it) || player.bank.contains(it.id, it.amount) }
         if (items.isEmpty()) {
             continue
         }

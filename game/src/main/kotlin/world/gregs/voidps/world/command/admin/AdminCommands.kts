@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import net.pearx.kasechange.toSentenceCase
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.bot.navigation.graph.NavigationGraph
@@ -28,8 +29,8 @@ import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
-import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
@@ -38,22 +39,20 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.suspend.pauseForever
 import world.gregs.voidps.network.encode.playJingle
 import world.gregs.voidps.network.encode.playMIDI
 import world.gregs.voidps.network.encode.playSoundEffect
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
-import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs
-import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.PRAYERS
-import world.gregs.voidps.world.activity.combat.prayer.isCurses
 import world.gregs.voidps.world.activity.quest.Books
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 import world.gregs.voidps.world.interact.entity.obj.Teleports
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.PRAYERS
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.effect.skull
 import world.gregs.voidps.world.interact.entity.player.effect.unskull
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
@@ -98,11 +97,6 @@ on<Command>({ prefix == "teleto" }) { player: Player ->
 on<Command>({ prefix == "teletome" }) { player: Player ->
     val other = players.get(content) ?: return@on
     other.tele(player.tile)
-}
-
-on<Command>({ prefix == "teleto" }) { player: Player ->
-    val other = players.get(content) ?: return@on
-    player.tele(other.tile)
 }
 
 on<Command>({ prefix == "npc" }) { player: Player ->
@@ -213,7 +207,7 @@ on<Command>({ prefix == "setlevel" }) { player: Player ->
     if (target == null) {
         println("Unable to find target.")
     } else {
-        target.experience.set(skill, PlayerLevels.getExperience(level, skill))
+        target.experience.set(skill, Level.experience(skill, level))
         player.levels.set(skill, level)
         player.softQueue("", 1) {
             target.removeVarbit("skill_stat_flash", skill.name.toSnakeCase())
@@ -321,9 +315,9 @@ on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->
 on<Command>({ prefix == "reload" }) { player: Player ->
     when (content) {
         "book", "books" -> get<Books>().load()
-        "stairs" -> get<Teleports>().load()
+        "stairs", "tele", "teles", "teleports" -> get<Teleports>().load()
         "tracks", "songs" -> get<MusicTracks>().load()
-        "objects" -> {
+        "objects", "objs" -> {
             val defs: ObjectDefinitions = get()
             val custom: GameObjects = get()
             defs.load()
@@ -350,6 +344,7 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "music", "music effects", "jingles" -> get<JingleDefinitions>().load()
         "interfaces" -> get<InterfaceDefinitions>().load()
         "spells" -> get<SpellDefinitions>().load()
+        "drops" -> get<DropTables>().load()
     }
 }
 
@@ -388,7 +383,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
     val name = parts.first()
     val count = parts.last().toSIInt()
     val table = tables.get(name) ?: tables.get("${name}_drop_table")
-    val title = "${count.toSIPrefix()} '${name.removeSuffix("_drop_table")}' drop table rolls"
+    val title = "${count.toSIPrefix()} '${name.removeSuffix("_drop_table")}' drops"
     if (table == null) {
         player.message("No drop table found for '$name'")
         return@on
@@ -397,65 +392,76 @@ on<Command>({ prefix == "sim" }) { player: Player ->
         player.message("Simulation count has to be more than 0.")
         return@on
     }
-    if (count > 100000) {
+    player.message("Simulating $title")
+    if (count > 100_000) {
         player.message("Calculating...")
     }
-    val job = GlobalScope.async {
-        val inventory = Inventory.debug(capacity = 40, id = "al_kharid_general_store")
+    GlobalScope.launch {
+        val inventory = Inventory.debug(capacity = 100, id = "")
         coroutineScope {
             val time = measureTimeMillis {
-                val divisor = 1000000
-                val sections = count / divisor
-                (0..sections)
-                    .map {
-                        async {
-                            val temp = Inventory.debug(capacity = 40)
-                            val list = InventoryDelegate(temp)
-                            for (i in 0L until if (it == sections) count.rem(divisor) else divisor) {
-                                table.role(list = list, members = true)
-                            }
-                            temp
+                (0 until count).chunked(1_000_000).map { numbers ->
+                    async {
+                        val temp = Inventory.debug(capacity = 100)
+                        val list = InventoryDelegate(temp)
+                        for (i in numbers) {
+                            table.role(list = list, members = true)
                         }
-                    }.forEach {
-                        it.await().moveAll(inventory)
+                        temp
                     }
+                }.forEach {
+                    it.await().moveAll(inventory)
+                }
             }
             if (time > 0) {
                 val seconds = TimeUnit.MILLISECONDS.toSeconds(time)
                 player.message("Simulation took ${if (seconds > 1) "${seconds}s" else "${time}ms"}")
             }
         }
-        inventory.sortedByDescending { it.amount }
-        inventory
-    }
-    player.queue(name = "simulate drops") {
+        val alch: (Item) -> Long = {
+            it.amount * it.def.cost.toLong()
+        }
+        val exchange: (Item) -> Long = {
+            it.amount * it.def["price", it.def.cost].toLong()
+        }
+        val sortByPrice = false
         try {
-            val inventory = job.await()
-            var value = 0L
+            if (sortByPrice) {
+                inventory.sortedByDescending { exchange(it) }
+            } else {
+                inventory.sortedByDescending { it.amount.toLong() }
+            }
+            var alchValue = 0L
+            var exchangeValue = 0L
             for (item in inventory.items) {
                 if (item.isNotEmpty()) {
-                    value += item.amount * item.def.cost.toLong()
+                    alchValue += alch(item)
+                    exchangeValue += exchange(item)
+                    val (drop, chance) = table.chance(item.id) ?: continue
+                    player.message("${item.id} 1/${count / (item.amount / drop.amount.first)} (1/${chance.toInt()} real)")
                 }
             }
+            player.message("Alch price: ${alchValue.toDigitGroupString()}gp (${alchValue.toSIPrefix()})")
+            player.message("Exchange price: ${exchangeValue.toDigitGroupString()}gp (${exchangeValue.toSIPrefix()})")
             player.interfaces.open("shop")
             player["free_inventory"] = -1
-            player["main_inventory"] = 3
+            player["main_inventory"] = 510
             player.interfaceOptions.unlock("shop", "stock", 0 until inventory.size * 6, "Info")
             for ((index, item) in inventory.items.withIndex()) {
                 player["amount_$index"] = item.amount
             }
-            player.sendInventory(inventory)
+            player.sendInventory(inventory, id = 510)
             player.interfaces.sendVisibility("shop", "store", false)
-            player.interfaces.sendText("shop", "title", "$title - ${value.toDigitGroupString()}gp (${value.toSIPrefix()})")
-            pauseForever()
-        } finally {
+            player.interfaces.sendText("shop", "title", "$title - ${alchValue.toDigitGroupString()}gp (${alchValue.toSIPrefix()})")
+        } catch (e: Exception) {
             player.close("shop")
         }
     }
 }
 
-fun Inventory.sortedByDescending(block: (Item) -> Int) {
+fun Inventory.sortedByDescending(block: (Item) -> Long) {
     transaction {
+        val items = items.clone()
         clear()
         items.sortedByDescending(block).forEachIndexed { index, item ->
             set(index, item)

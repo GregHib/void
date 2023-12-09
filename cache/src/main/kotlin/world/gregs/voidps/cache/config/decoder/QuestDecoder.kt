@@ -4,8 +4,11 @@ import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Config.QUESTS
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.QuestDefinition
+import world.gregs.voidps.cache.definition.Parameters
 
-class QuestDecoder : ConfigDecoder<QuestDefinition>(QUESTS) {
+class QuestDecoder(
+    private val parameters: Parameters = Parameters.EMPTY
+) : ConfigDecoder<QuestDefinition>(QUESTS) {
 
     override fun create(size: Int) = Array(size) { QuestDefinition(it) }
 
@@ -60,7 +63,7 @@ class QuestDecoder : ConfigDecoder<QuestDefinition>(QUESTS) {
                     aStringArray2198!![count] = buffer.readString()
                 }
             }
-            249 -> readParameters(buffer)
+            249 -> readParameters(buffer, parameters)
         }
     }
 

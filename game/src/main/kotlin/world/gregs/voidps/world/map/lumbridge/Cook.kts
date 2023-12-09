@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.world.activity.quest.quest
@@ -45,39 +45,39 @@ on<NPCOption>({ operate && target.id == "cook_lumbridge" && option == "Talk-to" 
 
 suspend fun CharacterContext.started() {
     npc<Upset>("how are you getting on with finding the ingredients?")
-    if (player.hasItem("top_quality_milk")) {
+    if (player.holdsItem("top_quality_milk")) {
         item("You give the top-quality milk to the cook.", "top_quality_milk", 500)
         player.inventory.remove("top_quality_milk")
         player["cooks_assistant_milk"] = 1
         player<Cheerful>("Here's some top-quality milk.")
     }
-    if (player.hasItem("extra_fine_flour")) {
+    if (player.holdsItem("extra_fine_flour")) {
         item("You give the extra fine flour to the cook.", "extra_fine_flour", 500)
         player.inventory.remove("extra_fine_flour")
         player["cooks_assistant_flour"] = 1
         player<Cheerful>("Here's the extra fine flour.")
     }
-    if (player.hasItem("super_large_egg")) {
+    if (player.holdsItem("super_large_egg")) {
         item("You give the super large egg to the cook.", "super_large_egg", 500)
         player.inventory.remove("super_large_egg")
         player["cooks_assistant_egg"] = 1
         player<Cheerful>("Here's a super large egg.")
     }
-    if (player.hasItem("egg") && (player["cooks_assistant_egg", 0] == 0)) {
+    if (player.holdsItem("egg") && (player["cooks_assistant_egg", 0] == 0)) {
         player<Talk>("I've this egg.")
         npc<Talk>("""
             No, I need a super large egg. You'll probably find one near
             the local chickens.
         """)
     }
-    if (player.hasItem("pot_of_flour") && (player["cooks_assistant_flour", 0] == 0)) {
+    if (player.holdsItem("pot_of_flour") && (player["cooks_assistant_flour", 0] == 0)) {
         player<Talk>("I've this flour.")
         npc<Talk>("""
             That's not fine enough. I imagine if you speak with Millie at
             the mill to the north she'll help you out.
         """)
     }
-    if (player.hasItem("bucket_of_milk") && (player["cooks_assistant_milk", 0] == 0)) {
+    if (player.holdsItem("bucket_of_milk") && (player["cooks_assistant_milk", 0] == 0)) {
         player<Talk>("I've this milk.")
         npc<Talk>("""
             Not bad, but not good enough. There's a milk maid that
@@ -248,7 +248,7 @@ suspend fun CharacterContext.canIUseRange() {
     """)
     player<Talk>("Will it mean my food will burn less often?")
     npc<Cheerful>("As long as the food is fairly easy to cook in the first place!")
-    if (player.hasItem("cook_o_matic_manual")) {
+    if (player.holdsItem("cook_o_matic_manual")) {
         npc<Cheerful>("""
             The manual you have in your inventory should tell you
             more.

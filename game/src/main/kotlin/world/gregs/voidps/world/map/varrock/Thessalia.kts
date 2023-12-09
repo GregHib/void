@@ -26,9 +26,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
-import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.armParam
 import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.onStyle
-import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.wristParam
 import world.gregs.voidps.world.map.falador.openDressingRoom
 
 val enums: EnumDefinitions by inject()
@@ -137,8 +135,8 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component == "styles" }) {
             setDefaultArms(player)
         } else if (current) {
             onStyle(value) {
-                player["makeover_arms"] = it.getParam<Int>(armParam)
-                player["makeover_wrists"] = it.getParam<Int>(wristParam)
+                player["makeover_arms"] = it.get<Int>("character_style_arms")
+                player["makeover_wrists"] = it.get<Int>("character_style_wrists")
             }
         }
     }

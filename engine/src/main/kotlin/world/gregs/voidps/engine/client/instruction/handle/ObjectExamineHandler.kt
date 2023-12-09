@@ -13,7 +13,7 @@ class ObjectExamineHandler(
 
     override fun validate(player: Player, instruction: ExamineObject) {
         val definition = definitions.get(instruction.objectId)
-        if (definition.has("examine")) {
+        if (definition.contains("examine")) {
             player.message(definition["examine"], ChatType.Game)
         }
     }

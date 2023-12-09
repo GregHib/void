@@ -9,12 +9,12 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
@@ -28,7 +28,7 @@ on<NPCOption>({ operate && target.id == "sir_prysin" && option == "Talk-to" }) {
                 return@on
             }
             npc<Talk>("Have you sorted that demon out yet?")
-            if (player.hasBanked("silverlight")) {
+            if (player.ownsItem("silverlight")) {
                 player<Upset>("No, not yet.")
                 npc<Talk>("""
                     Well get on with it. He'll be pretty powerful when he
@@ -184,9 +184,9 @@ suspend fun PlayerChoice.wheresCaptainRovin(): Unit = option("Where can I find C
 
 suspend fun NPCOption.keyProgressCheck() {
     npc<Talk>("So how are you doing with getting the keys?")
-    val rovin = player.hasItem("silverlight_key_captain_rovin")
-    val prysin = player.hasItem("silverlight_key_sir_prysin")
-    val traiborn = player.hasItem("silverlight_key_wizard_traiborn")
+    val rovin = player.holdsItem("silverlight_key_captain_rovin")
+    val prysin = player.holdsItem("silverlight_key_sir_prysin")
+    val traiborn = player.holdsItem("silverlight_key_wizard_traiborn")
     when {
         rovin && prysin && traiborn -> {
             giveSilverlight()

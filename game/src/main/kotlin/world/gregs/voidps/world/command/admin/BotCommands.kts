@@ -32,14 +32,9 @@ import world.gregs.voidps.network.DummyClient
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.type.area.Rectangle
-import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.armParam
-import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.legsParam
-import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.shoesParam
-import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.topParam
-import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.wristParam
+import world.gregs.voidps.type.random
 import java.util.concurrent.ConcurrentLinkedQueue
 import kotlin.coroutines.resume
-import kotlin.random.Random
 import kotlin.reflect.KClass
 
 val bots = mutableListOf<Player>()
@@ -123,24 +118,24 @@ fun handleSuspensions(player: Player, event: Event) {
 }
 
 fun setAppearance(player: Player): Player {
-    val male = Random.nextBoolean()
+    val male = random.nextBoolean()
     player.body.male = male
     val key = "look_hair_${if (male) "male" else "female"}"
-    player.body.setLook(BodyPart.Hair, enums.getStruct(key, Random.nextInt(0, enums.get(key).length), "id"))
+    player.body.setLook(BodyPart.Hair, enums.getStruct(key, random.nextInt(0, enums.get(key).length), "body_look_id"))
     player.body.setLook(BodyPart.Beard, if (male) enums.get("look_beard_male").randomInt() else -1)
     val size = enums.get("character_styles").length
-    val style = enums.getStruct("character_styles", (0 until size).random(), "sub_style_${player.sex}_0", -1)
+    val style = enums.getStruct("character_styles", (0 until size).random(), "character_creation_sub_style_${player.sex}_0", -1)
     val struct = structs.get(style)
-    player.body.setLook(BodyPart.Chest, struct.getParam(topParam))
-    player.body.setLook(BodyPart.Arms, struct.getParam(armParam))
-    player.body.setLook(BodyPart.Hands, struct.getParam(wristParam))
-    player.body.setLook(BodyPart.Legs, struct.getParam(legsParam))
-    player.body.setLook(BodyPart.Feet, struct.getParam(shoesParam))
-    val offset = Random.nextInt(0, 8) * 3L
+    player.body.setLook(BodyPart.Chest, struct["character_style_top"])
+    player.body.setLook(BodyPart.Arms, struct["character_style_arms"])
+    player.body.setLook(BodyPart.Hands, struct["character_style_wrists"])
+    player.body.setLook(BodyPart.Legs, struct["character_style_legs"])
+    player.body.setLook(BodyPart.Feet, struct["character_style_shoes"])
+    val offset = random.nextInt(0, 8)
     player.body.setColour(BodyColour.Hair, enums.get("colour_hair").randomInt())
-    player.body.setColour(BodyColour.Top, struct.getParam(1187 + offset))
-    player.body.setColour(BodyColour.Legs, struct.getParam(1188 + offset))
-    player.body.setColour(BodyColour.Feet, struct.getParam(1189 + offset))
+    player.body.setColour(BodyColour.Top, struct["character_style_top_colour_$offset"])
+    player.body.setColour(BodyColour.Legs, struct["character_style_legs_colour_$offset"])
+    player.body.setColour(BodyColour.Feet, struct["character_style_shoes_colour_$offset"])
     player.body.setColour(BodyColour.Skin, enums.get("character_skin").randomInt())
     player.appearance.emote = 1426
     return player

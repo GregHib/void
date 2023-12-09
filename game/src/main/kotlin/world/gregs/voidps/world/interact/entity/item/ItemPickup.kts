@@ -13,29 +13,34 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.suspend.approachRange
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val floorItems: FloorItems by inject()
 val logger = InlineLogger()
 
 on<FloorItemOption>({ operate && option == "Take" }) { player: Player ->
+    arriveDelay()
+    player.approachRange(-1)
     if (player.inventory.isFull() && (!player.inventory.stackable(target.id) || !player.inventory.contains(target.id))) {
         player.inventoryFull()
-    } else if (floorItems.remove(target)) {
-        player.inventory.add(target.id, target.amount)
-        when (player.inventory.transaction.error) {
-            TransactionError.None -> {
-                if (!player.visuals.moved && player.tile != target.tile) {
-                    player.turn(target.tile.delta(player.tile))
-                    player.setAnimation("take")
-                }
-                player.playSound("pickup_item")
+        return@on
+    }
+    if (!floorItems.remove(target)) {
+        return@on
+    }
+    player.inventory.add(target.id, target.amount)
+    when (player.inventory.transaction.error) {
+        TransactionError.None -> {
+            if (player.tile != target.tile) {
+                player.turn(target.tile.delta(player.tile))
+                player.setAnimation("take")
             }
-            is TransactionError.Full -> player.inventoryFull()
-            else -> logger.warn { "Error picking up item $target ${player.inventory.transaction.error}" }
+            player.playSound("pickup_item")
         }
-    } else {
-        logger.warn { "$player unable to pick up $target." }
+        is TransactionError.Full -> player.inventoryFull()
+        else -> logger.warn { "Error picking up item $target ${player.inventory.transaction.error}" }
     }
 }
 

@@ -5,27 +5,14 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
-import world.gregs.voidps.world.interact.entity.combat.*
-import kotlin.math.floor
-import kotlin.random.Random
+import world.gregs.voidps.type.random
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.directHit
+import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import kotlin.random.nextInt
-
-fun specialDamageMultiplier(multiplier: Double, check: (Item) -> Boolean) {
-    on<HitDamageModifier>({ type == "melee" && special && weapon != null && check(weapon) }, Priority.HIGH) { _: Player ->
-        damage = floor(damage * multiplier)
-    }
-}
-
-fun specialAccuracyMultiplier(multiplier: Double, check: (Item) -> Boolean) {
-    on<HitRatingModifier>({ offense && type == "melee" && special && weapon != null && check(weapon) }, Priority.HIGH) { _: Player ->
-        rating = floor(rating * multiplier)
-    }
-}
 
 fun multiTargetHit(check: CombatAttack.() -> Boolean, remaining: (target: Character) -> Int) {
     val players: Players by inject()
@@ -39,12 +26,12 @@ fun multiTargetHit(check: CombatAttack.() -> Boolean, remaining: (target: Charac
             if (characters == target) {
                 continue
             }
-            for (char in characters) {
+            for (character in characters) {
                 if (hit >= hits) {
                     return@on
                 }
                 hit++
-                hit(player, char, Random.nextInt(0..damage), type, weapon, spell, special = true)
+                character.directHit(player, random.nextInt(0..damage), type, weapon, spell, special = true)
             }
         }
     }

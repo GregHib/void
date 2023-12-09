@@ -818,3 +818,7 @@ earth_altar:
   type: earth
   spaces: 3
   levels: 9-14
+kuradals_dungeon:
+  area:
+    x: [ 1600, 1663 ]
+    y: [ 5248, 5311 ]

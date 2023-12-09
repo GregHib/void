@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.world.activity.bank.hasBanked
+import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.player.display.Tab
@@ -278,7 +278,7 @@ suspend fun CharacterContext.buySkillcape() {
 }
 
 suspend fun PlayerChoice.training(): Unit = option<Talking>("I'd like a training sword and shield.") {
-    if (player.hasBanked("training_sword") || player.hasBanked("training_shield")) {
+    if (player.ownsItem("training_sword") || player.ownsItem("training_shield")) {
         npc<Unsure>("""
             You already have a training sword and shield. Save
             some for the other adventurers.
