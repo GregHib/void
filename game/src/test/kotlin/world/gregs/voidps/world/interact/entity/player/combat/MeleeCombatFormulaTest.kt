@@ -135,10 +135,10 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
-        assertEquals(26656, offensiveRating)
+        assertEquals(26460, offensiveRating)
         assertEquals(5760, defensiveRating)
-        assertEquals(424, maxHit)
-        assertEquals(0.8919, chance, 0.0001)
+        assertEquals(421, maxHit)
+        assertEquals(0.8911, chance, 0.0001)
     }
 
     @Test
