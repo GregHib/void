@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.size
@@ -13,7 +12,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.effect.freeze
 import world.gregs.voidps.world.interact.entity.player.toxin.poison
@@ -58,14 +57,14 @@ fun nearestTile(source: Character, target: Character): Tile {
     return centre.add(direction).add(direction)
 }
 
-on<CombatHit>({ source is NPC && source.id == "king_black_dragon" }) { player: Player ->
+on<CombatAttack>({ it.id == "king_black_dragon" }) { npc: NPC ->
     when (spell) {
-        "toxic" -> source.poison(player, 80)
-        "ice" -> source.freeze(player, 10)
+        "toxic" -> npc.poison(target, 80)
+        "ice" -> npc.freeze(target, 10)
         "shock" -> {
-            player.message("You're shocked and weakened!")
+            target.message("You're shocked and weakened!")
             for (skill in Skill.all) {
-                player.levels.drain(skill, 2)
+                target.levels.drain(skill, 2)
             }
         }
     }
