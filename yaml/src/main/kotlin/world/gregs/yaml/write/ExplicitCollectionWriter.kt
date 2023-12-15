@@ -89,17 +89,10 @@ class ExplicitCollectionWriter(writer: CharWriter, config: YamlWriterConfigurati
         writer.append('}')
     }
 
-    private fun writeKey(k: Any?): String {
-        if (config.quoteKeys) {
-            writer.append('"')
-        }
-        val key = k.toString()
-        write(key)
-        if (config.quoteKeys) {
-            writer.append('"')
-        }
+
+    override fun writeKey(k: Any?): String {
+        val key = super.writeKey(k)
         if (key != "&") {
-            writer.append(':')
             writer.append(' ')
         }
         return key

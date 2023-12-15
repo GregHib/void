@@ -39,17 +39,7 @@ class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration
     override fun map(map: Map<*, *>, indent: Int, parentMap: String?) {
         var index = 0
         for ((k, v) in map) {
-            if (config.quoteKeys) {
-                writer.append('"')
-            }
-            val key = k.toString()
-            write(key)
-            if (config.quoteKeys) {
-                writer.append('"')
-            }
-            if (key != "&") {
-                writer.append(':')
-            }
+            val key = writeKey(k)
             index++
             when (val value = config.write(v, indent, parentMap) ?: continue) {
                 is Map<*, *> -> {

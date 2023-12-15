@@ -30,14 +30,18 @@ abstract class YamlWriter(val writer: CharWriter, var config: YamlWriterConfigur
     abstract fun map(map: Map<*, *>, indent: Int, parentMap: String?)
 
     fun string(value: String, parentMap: String?) {
-        val anchor = anchor(value, parentMap)
-        if (config.quoteStrings && !anchor) {
+        val quote = quoteString(value, parentMap)
+        if (quote) {
             writer.append('"')
         }
         write(value)
-        if (config.quoteStrings && !anchor) {
+        if (quote) {
             writer.append('"')
         }
+    }
+
+    private fun quoteString(value: String, parentMap: String?): Boolean {
+        return !anchor(value, parentMap) && (config.forceQuoteStrings || config.quoteStrings && value.contains(' '))
     }
 
     private fun anchor(value: String, parentMap: String?) = parentMap == "&" || parentMap == "<<" || value.startsWith('&') || value.startsWith('*')
@@ -47,4 +51,22 @@ abstract class YamlWriter(val writer: CharWriter, var config: YamlWriterConfigur
             writer.append(char)
         }
     }
+
+    open fun writeKey(k: Any?): String {
+        val key = k.toString()
+        val quote = quoteKey(key)
+        if (quote) {
+            writer.append('"')
+        }
+        write(key)
+        if (quote) {
+            writer.append('"')
+        }
+        if (key != "&") {
+            writer.append(':')
+        }
+        return key
+    }
+
+    private fun quoteKey(key: String) = config.forceQuoteKeys || config.quoteKeys && key.contains(' ')
 }

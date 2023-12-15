@@ -75,9 +75,9 @@ class YamlWriterScenarioTest {
     @Test
     fun `Write json`() {
         val config = YamlWriterConfiguration(
-            quoteStrings = true,
+            forceQuoteStrings = true,
             forceExplicit = true,
-            quoteKeys = true,
+            forceQuoteKeys = true,
             formatExplicitMap = true,
             formatExplicitListSizeLimit = 0
         )
@@ -144,7 +144,7 @@ class YamlWriterScenarioTest {
     @Test
     fun `Write yaml`() {
         val config = YamlWriterConfiguration(
-            quoteStrings = true,
+            forceQuoteStrings = true,
             forceExplicitLists = true
         )
         val input = mapOf(

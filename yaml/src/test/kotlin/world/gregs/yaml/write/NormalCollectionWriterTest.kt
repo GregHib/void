@@ -22,7 +22,7 @@ class NormalCollectionWriterTest {
     @Test
     fun `Write map with quoted keys`() {
         val config = YamlWriterConfiguration(
-            quoteKeys = true
+            forceQuoteKeys = true
         )
         val input = mapOf("one" to "value", "two" to "value")
         val actual = yaml.writeToString(input, config)

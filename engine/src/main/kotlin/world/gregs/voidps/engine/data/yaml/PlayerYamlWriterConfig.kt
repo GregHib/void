@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.yaml.write.YamlWriterConfiguration
 
-internal class PlayerYamlWriterConfig : YamlWriterConfiguration(quoteStrings = true, forceExplicit = true, quoteKeys = true, formatExplicitMap = true) {
+internal class PlayerYamlWriterConfig : YamlWriterConfiguration(forceQuoteStrings = true, forceExplicit = true, forceQuoteKeys = true, formatExplicitMap = true) {
     override fun write(value: Any?, indent: Int, parentMap: String?): Any? {
         return if (value is Item) {
             if (value.isEmpty()) {

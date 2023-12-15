@@ -37,7 +37,7 @@ object NPCDefinitionPipeline {
         val output = buildNPCExtras(decoder, pages)
         val map = convertToYaml(output)
         val yaml = Yaml()
-        val config = YamlWriterConfiguration(quoteStrings = true)
+        val config = YamlWriterConfiguration(forceQuoteStrings = true)
         val file = File("npcs.yml")
         yaml.save(file.path, map, config)
         val contents = "# Don't edit; apply changes to the NPCDefinitionPipeline tool's NPCManualChanges class instead.\n${file.readText()}"
