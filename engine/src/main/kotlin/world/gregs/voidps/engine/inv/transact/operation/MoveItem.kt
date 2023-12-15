@@ -53,11 +53,11 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
                 transaction.error = TransactionError.Full()
                 return
             }
-            transaction.set(freeIndex, fromItem, from = inventory.id)
+            transaction.set(freeIndex, fromItem, from = inventory.id, fromIndex = fromIndex)
         } else {
             transaction.add(fromItem.id, fromItem.amount)
         }
-        set(fromIndex, item = null, to = target.id)
+        set(fromIndex, item = null)
     }
 
     /**
@@ -91,11 +91,11 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
         val transaction = link(target)
         val toItem = target[toIndex]
         if (toItem.isEmpty()) {
-            transaction.set(toIndex, fromItem, from = inventory.id)
+            transaction.set(toIndex, fromItem, from = inventory.id, fromIndex = fromIndex)
         } else if (!mergeStacks(transaction, fromItem.id, fromItem.amount, target, toItem, toIndex)) {
             return
         }
-        set(fromIndex, item = null, to = target.id)
+        set(fromIndex, item = null, from = target.id, fromIndex = toIndex)
     }
 
     /**
@@ -139,7 +139,7 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
         val toItem = target[toIndex]
         if (toItem.isEmpty()) {
             if (target.stackable(id)) {
-                transaction.set(toIndex, Item(id, amount), from = inventory.id)
+                transaction.set(toIndex, Item(id, amount))
             } else {
                 transaction.add(id, amount)
             }

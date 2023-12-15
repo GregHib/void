@@ -32,8 +32,8 @@ interface SwapItem : TransactionOperation {
         }
         val item = inventory[fromIndex]
         val transaction = link(target)
-        set(fromIndex, target[toIndex], to = target.id)
-        transaction.set(toIndex, item, from = inventory.id)
+        set(fromIndex, target[toIndex], from = target.id, fromIndex = toIndex)
+        transaction.set(toIndex, item, from = inventory.id, fromIndex = fromIndex)
     }
 
 }

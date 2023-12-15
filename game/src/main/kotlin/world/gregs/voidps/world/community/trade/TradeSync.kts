@@ -1,9 +1,6 @@
 package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.inv.Inventory
-import world.gregs.voidps.engine.inv.ItemChanged
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -11,6 +8,9 @@ import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.removeRequest
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.ItemChanged
+import world.gregs.voidps.engine.inv.inventory
 
 /**
  * Persist updates on an offer to the other player
@@ -63,7 +63,7 @@ on<ItemChanged>({ inventory == "item_loan" && it.contains("trade_partner") }) { 
 }
 
 fun applyUpdates(inventory: Inventory, update: ItemChanged) {
-    inventory.transaction { set(update.index, update.item, update.from, update.to) }
+    inventory.transaction { set(update.index, update.item, update.from, update.fromIndex) }
 }
 
 fun removedAnyItems(change: ItemChanged) = change.item.amount < change.oldItem.amount

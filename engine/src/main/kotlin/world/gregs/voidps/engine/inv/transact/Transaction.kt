@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.inv.transact
 
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.transact.operation.*
-import world.gregs.voidps.engine.entity.item.Item
 
 /**
  * Class for performing modification operations on a [inventory].
@@ -28,14 +28,13 @@ class Transaction(
     override val state = StateManager(inventory)
     override val changes = ChangeManager(inventory)
 
-    override fun set(index: Int, item: Item?, from: String?, to: String?) {
+    override fun set(index: Int, item: Item?, from: String?, fromIndex: Int?) {
         if (failed) {
             return
         }
         val previous = inventory[index]
         val fromId = from ?: inventory.id
-        val toId = to ?: inventory.id
-        changes.track(fromId, index, previous, toId, item ?: Item.EMPTY)
+        changes.track(fromId, index, previous, fromIndex ?: index, item ?: Item.EMPTY)
         inventory.items[index] = item ?: Item.EMPTY
     }
 

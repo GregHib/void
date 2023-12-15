@@ -1,9 +1,9 @@
 package world.gregs.voidps.engine.inv.transact.operation
 
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.transact.Transaction
 import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.entity.item.Item
 
 /**
  * Operations that can be performed on a [Inventory] as part of a [Transaction].
@@ -24,9 +24,9 @@ interface TransactionOperation {
      * @param index The index at which to set the item.
      * @param item The item to set.
      * @param from Which inventory the item was moved from
-     * @param to Which inventory the item was moved to
+     * @param fromIndex The index from which the item originated
      */
-    fun set(index: Int, item: Item?, from: String? = null, to: String? = null)
+    fun set(index: Int, item: Item?, from: String? = null, fromIndex: Int? = null)
 
     /**
      * Starts a new transaction for the provided [inventory] and links it to the current transaction.
