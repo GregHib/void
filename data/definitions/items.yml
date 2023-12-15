@@ -83678,262 +83678,302 @@ torva_full_helm:
   price: 204000000
   limit: 2
   bank_stacks: false
+  weight: 2.721
+  charges: 1
+  degrade: torva_full_helm_used
   aka: [ torva_helm ]
   slot: "Hat"
   material: "metal"
   type: "FullFace"
   examine: "An ancient warrior's full helm."
-  weight: 2.721
 torva_full_helm_noted: 20136
 torva_full_helm_used:
   id: 20137
   limit: 2
   tradeable: false
+  weight: 2.721
+  charges: 60000
+  degrade: torva_full_helm_broken
   slot: "Hat"
   material: "metal"
   type: "FullFace"
   examine: "An ancient warrior's full helm."
-  weight: 2.721
 torva_full_helm_broken:
   id: 20138
   limit: 2
+  weight: 2.721
   slot: "Hat"
   material: "metal"
   type: "FullFace"
   examine: "A broken ancient warrior's full helm."
-  weight: 2.721
 torva_platebody:
   id: 20139
   price: 366000000
   limit: 2
   bank_stacks: false
+  weight: 9.979
+  charges: 1
+  degrade: torva_platebody_used
   aka: [ torva_plate ]
   slot: "Chest"
   material: "metal"
   examine: "An Ancient warrior's Platebody."
-  weight: 9.979
 torva_platebody_noted: 20140
 torva_platebody_used:
   id: 20141
   limit: 2
   tradeable: false
+  weight: 9.979
+  charges: 60000
+  degrade: torva_platebody_broken
   slot: "Chest"
   material: "metal"
   examine: "An Ancient warrior's Platebody."
-  weight: 9.979
 torva_platebody_broken:
   id: 20142
   limit: 2
+  weight: 9.979
   slot: "Chest"
   material: "metal"
   examine: "A broken ancient warrior's platebody."
-  weight: 9.979
 torva_platelegs:
   id: 20143
   price: 378300000
   limit: 2
   bank_stacks: false
+  weight: 9.071
+  charges: 1
+  degrade: torva_platelegs_used
   aka: [ torva_legs ]
   slot: "Legs"
   material: "metal"
   examine: "An ancient warrior's platelegs."
-  weight: 9.071
 torva_platelegs_noted: 20144
 torva_platelegs_used:
   id: 20145
   limit: 2
   tradeable: false
+  weight: 9.071
+  charges: 60000
+  degrade: torva_platelegs_broken
   slot: "Legs"
   material: "metal"
   examine: "An ancient warrior's platelegs."
-  weight: 9.071
 torva_platelegs_broken:
   id: 20146
   limit: 2
+  weight: 9.071
   slot: "Legs"
   material: "metal"
   examine: "A broken ancient warrior's platelegs."
-  weight: 9.071
 pernix_cowl:
   id: 20147
   price: 108200000
   limit: 2
   bank_stacks: false
+  weight: 2.721
+  charges: 1
+  degrade: pernix_cowl_used
   aka: [ pernix_helm, pernix_coif ]
   slot: "Hat"
   material: "leather"
   type: "FullFace"
   examine: "An ancient ranger's cowl."
-  weight: 2.721
 pernix_cowl_noted: 20148
 pernix_cowl_used:
   id: 20149
   limit: 2
   tradeable: false
+  weight: 2.721
+  charges: 60000
+  degrade: pernix_cowl_broken
   slot: "Hat"
   material: "leather"
   type: "FullFace"
   examine: "An ancient ranger's cowl."
-  weight: 2.721
 pernix_cowl_broken:
   id: 20150
   limit: 2
+  weight: 2.721
   slot: "Hat"
   material: "leather"
   type: "FullFace"
   examine: "A broken ancient ranger's cowl."
-  weight: 2.721
 pernix_body:
   id: 20151
   price: 566700000
   limit: 2
   bank_stacks: false
+  weight: 9.979
+  charges: 1
+  degrade: pernix_body_used
   aka: [ pernix_top ]
   slot: "Chest"
   material: "leather"
   examine: "An ancient ranger's body armour."
-  weight: 9.979
 pernix_body_noted: 20152
 pernix_body_used:
   id: 20153
   limit: 2
   tradeable: false
+  weight: 9.979
+  charges: 60000
+  degrade: pernix_body_broken
   slot: "Chest"
   material: "leather"
   examine: "An ancient ranger's body armour."
-  weight: 9.979
 pernix_body_broken:
   id: 20154
   limit: 2
+  weight: 9.979
   slot: "Chest"
   material: "leather"
   examine: "A broken ancient ranger's body armour."
-  weight: 9.979
 pernix_chaps:
   id: 20155
   price: 317100000
   limit: 2
   bank_stacks: false
+  weight: 9.071
+  charges: 1
+  degrade: pernix_chaps_used
   aka: [ pernix_legs ]
   slot: "Legs"
   material: "leather"
   examine: "An ancient ranger's chaps."
-  weight: 9.071
 pernix_chaps_noted: 20156
 pernix_chaps_used:
   id: 20157
   limit: 2
   tradeable: false
+  weight: 9.071
+  charges: 60000
+  degrade: pernix_chaps_broken
   slot: "Legs"
   material: "leather"
   examine: "An ancient ranger's chaps."
-  weight: 9.071
 pernix_chaps_broken:
   id: 20158
   limit: 2
+  weight: 9.071
   slot: "Legs"
   material: "leather"
   examine: "A broken ancient ranger's chaps."
-  weight: 9.071
 virtus_mask:
   id: 20159
   price: 50400000
   limit: 2
   bank_stacks: false
+  weight: 2.721
+  charges: 1
+  degrade: virtus_mask_used
   aka: [ virtus_hood, virtus_helm ]
   slot: "Hat"
   type: "FullFace"
   examine: "An ancient mage's mask."
-  weight: 2.721
 virtus_mask_noted: 20160
 virtus_mask_used:
   id: 20161
   limit: 2
   tradeable: false
+  weight: 2.721
+  charges: 60000
+  degrade: virtus_mask_broken
   slot: "Hat"
   type: "FullFace"
   examine: "An ancient mage's mask."
-  weight: 2.721
 virtus_mask_broken:
   id: 20162
   limit: 2
+  weight: 2.721
   slot: "Hat"
   type: "FullFace"
   examine: "A broken ancient mage's mask."
-  weight: 2.721
 virtus_robe_top:
   id: 20163
   price: 190200000
   limit: 2
   bank_stacks: false
+  weight: 9.979
+  charges: 1
+  degrade: virtus_robe_top_used
   aka: [ virtus_top ]
   slot: "Chest"
   examine: "An ancient mage's robe top."
-  weight: 9.979
 virtus_robe_top_noted: 20164
 virtus_robe_top_used:
   id: 20165
   limit: 2
   tradeable: false
+  weight: 9.979
+  charges: 60000
+  degrade: virtus_robe_top_broken
   slot: "Chest"
   examine: "An ancient mage's robe top."
-  weight: 9.979
 virtus_robe_top_broken:
   id: 20166
   limit: 2
+  weight: 9.979
   slot: "Chest"
   examine: "A broken ancient mage's robe top."
-  weight: 9.979
 virtus_robe_legs:
   id: 20167
   price: 116200000
   limit: 2
   bank_stacks: false
+  weight: 9.071
+  charges: 1
+  degrade: virtus_robe_legs_used
   aka: [ virtus_legs, virtus_robes ]
   slot: "Legs"
   examine: "An ancient mage's robe legs."
-  weight: 9.071
 virtus_robe_legs_noted: 20168
 virtus_robe_legs_used:
   id: 20169
   limit: 2
   tradeable: false
+  weight: 9.071
+  charges: 60000
+  degrade: virtus_robe_top_broken
   slot: "Legs"
   examine: "An ancient mage's robe legs."
-  weight: 9.071
 virtus_robe_legs_broken:
   id: 20170
   limit: 2
+  weight: 9.071
   slot: "Legs"
   examine: "A broken ancient mage's robe legs."
-  weight: 9.071
 zaryte_bow:
   id: 20171
   price: 108200000
   limit: 2
   bank_stacks: false
   attack_range: 7
+  weight: 1.814
+  charges: 1
+  degrade: zaryte_bow_used
   aka: [ zbow, z_bow ]
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow imbued with the fury of Zaros."
-  weight: 1.814
 zaryte_bow_noted: 20172
 zaryte_bow_used:
   id: 20173
   limit: 2
   tradeable: false
+  weight: 1.814
+  charges: 60000
+  degrade: zaryte_bow_broken
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow imbued with the fury of Zaros."
-  weight: 1.814
 zaryte_bow_broken:
   id: 20174
   limit: 2
+  weight: 1.814
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A broken bow imbued with the fury of Zaros."
-  weight: 1.814
 trollheim_tablet:
   id: 20175
   tradeable: false
