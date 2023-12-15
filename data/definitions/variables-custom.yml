@@ -246,3 +246,6 @@ wilderness_lever_warning:
   format: boolean
   persist: true
   default: true
+binding_necklace_charges:
+  format: int
+  persist: true

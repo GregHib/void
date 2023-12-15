@@ -23784,6 +23784,8 @@ binding_necklace:
   price: 759
   limit: 100
   weight: 0.01
+  charges: 16
+  player_charge: true
   slot: "Amulet"
   examine: "A necklace embedded with mystical power."
 binding_necklace_noted: 5522
@@ -37469,6 +37471,8 @@ black_mask_10:
   id: 8901
   price: 357400
   limit: 10
+  charges: 1
+  degrade: black_mask_9
   slot: "Hat"
   material: "metal"
   examine: "A magic cave horror mask."
@@ -37477,6 +37481,8 @@ black_mask_10_noted: 8902
 black_mask_9:
   id: 8903
   limit: 10
+  charges: 1
+  degrade: black_mask_8
   slot: "Hat"
   material: "metal"
   examine: "A magic cave horror mask."
@@ -37485,6 +37491,8 @@ black_mask_9_noted: 8904
 black_mask_8:
   id: 8905
   limit: 10
+  charges: 1
+  degrade: black_mask_7
   slot: "Hat"
   material: "metal"
   examine: "A magic cave horror mask."
@@ -37493,6 +37501,8 @@ black_mask_8_noted: 8906
 black_mask_7:
   id: 8907
   limit: 10
+  charges: 1
+  degrade: black_mask_6
   slot: "Hat"
   material: "metal"
   examine: "A magic cave horror mask."
@@ -37501,6 +37511,8 @@ black_mask_7_noted: 8908
 black_mask_6:
   id: 8909
   limit: 10
+  charges: 1
+  degrade: black_mask_5
   slot: "Hat"
   material: "metal"
   examine: "A magic cave horror mask."
@@ -37509,6 +37521,8 @@ black_mask_6_noted: 8910
 black_mask_5:
   id: 8911
   limit: 10
+  charges: 1
+  degrade: black_mask_4
   slot: "Hat"
   material: "metal"
   examine: "A magic cave horror mask."
@@ -37517,6 +37531,8 @@ black_mask_5_noted: 8912
 black_mask_4:
   id: 8913
   limit: 10
+  charges: 1
+  degrade: black_mask_3
   slot: "Hat"
   material: "metal"
   examine: "A magic cave horror mask."
@@ -37525,6 +37541,8 @@ black_mask_4_noted: 8914
 black_mask_3:
   id: 8915
   limit: 10
+  charges: 1
+  degrade: black_mask_2
   slot: "Hat"
   material: "metal"
   examine: "A magic cave horror mask."
@@ -37533,6 +37551,8 @@ black_mask_3_noted: 8916
 black_mask_2:
   id: 8917
   limit: 10
+  charges: 1
+  degrade: black_mask_1
   slot: "Hat"
   material: "metal"
   examine: "A magic cave horror mask."
@@ -37541,6 +37561,8 @@ black_mask_2_noted: 8918
 black_mask_1:
   id: 8919
   limit: 10
+  charges: 1
+  degrade: black_mask
   slot: "Hat"
   material: "metal"
   examine: "A magic cave horror mask."
@@ -77498,6 +77520,7 @@ chaotic_rapier:
   id: 18349
   tradeable: false
   bank_stacks: false
+  charges: 30000
   aka: [ c_rapier, rapier ]
   slot: "Weapon"
   examine: "A razor-sharp rapier."
