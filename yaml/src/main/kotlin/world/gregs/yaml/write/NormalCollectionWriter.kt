@@ -8,6 +8,10 @@ import world.gregs.yaml.CharWriter
 class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration, val explicit: ExplicitCollectionWriter) : YamlWriter(writer, config) {
 
     override fun list(list: List<*>, indent: Int, parentMap: String?) {
+        if (config.forceExplicitLists) {
+            explicit.list(list, indent, parentMap)
+            return
+        }
         for (i in list.indices) {
             writer.append('-')
             writer.append(' ')
@@ -78,8 +82,12 @@ class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration
     }
 
     private fun setList(indent: Int, value: List<Any?>, key: String) {
-        writer.appendLine()
-        writer.indent(indent + 1)
+        if (!config.forceExplicitLists) {
+            writer.appendLine()
+            writer.indent(indent + 1)
+        } else {
+            writer.append(' ')
+        }
         list(value, indent + 1, key)
     }
 }

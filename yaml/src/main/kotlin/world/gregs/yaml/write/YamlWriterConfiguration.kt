@@ -7,6 +7,7 @@ open class YamlWriterConfiguration(
     val quoteStrings: Boolean = false,
     val forceExplicit: Boolean = false,
     val quoteKeys: Boolean = false,
+    val forceExplicitLists: Boolean = false,
     val formatExplicitMap: Boolean = false,
     val formatExplicitListSizeLimit: Int = 25
 ) {

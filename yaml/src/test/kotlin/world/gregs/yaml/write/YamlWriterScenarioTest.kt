@@ -140,4 +140,56 @@ class YamlWriterScenarioTest {
         """.trimIndent()
         assertEquals(expected, actual)
     }
+
+    @Test
+    fun `Write yaml`() {
+        val config = YamlWriterConfiguration(
+            quoteStrings = true,
+            forceExplicitLists = true
+        )
+        val input = mapOf(
+            "John Doe" to mapOf(
+                "age" to 30,
+                "address" to "123 Street",
+                "info" to mapOf(
+                    "height" to 180,
+                    "employed" to true
+                ),
+                "favourite_fruits" to listOf(
+                    "apple",
+                    "banana"
+                )
+            ),
+            "Jane Doe" to mapOf(
+                "age" to 28,
+                "address" to "123 Street",
+                "info" to mapOf(
+                    "height" to 164,
+                    "employed" to true
+                ),
+                "favourite_fruits" to listOf(
+                    "grapes",
+                    "pear"
+                )
+            )
+        )
+        val actual = yaml.writeToString(input, config)
+        val expected = """
+            "John Doe":
+              age: 30
+              address: "123 Street"
+              info:
+                height: 180
+                employed: true
+              favourite_fruits: [ "apple", "banana" ]
+            "Jane Doe":
+              age: 28
+              address: "123 Street"
+              info:
+                height: 164
+                employed: true
+              favourite_fruits: [ "grapes", "pear" ]
+        """.trimIndent()
+        assertEquals(expected, actual)
+    }
 }
