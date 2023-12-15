@@ -12366,6 +12366,8 @@ ring_of_recoil_noted: 2551
 ring_of_duelling_8:
   id: 2552
   price: 1100
+  charges: 1
+  degrade: ring_of_duelling_7
   aka: [ ring_of_duelling, duelling_ring ]
   slot: "Ring"
   examine: "An enchanted ring."
@@ -12374,36 +12376,45 @@ ring_of_duelling_8_noted: 2553
 ring_of_duelling_7:
   &ring_of_duelling_7
   id: 2554
+  charges: 1
+  degrade: ring_of_duelling_6
+  weight: 0.006
   slot: "Ring"
   examine: "An enchanted ring."
-  weight: 0.006
 ring_of_duelling_7_noted: 2555
 ring_of_duelling_6:
   <<: *ring_of_duelling_7
   id: 2556
+  degrade: ring_of_duelling_5
 ring_of_duelling_6_noted: 2557
 ring_of_duelling_5:
   <<: *ring_of_duelling_7
   id: 2558
+  degrade: ring_of_duelling_4
 ring_of_duelling_5_noted: 2559
 ring_of_duelling_4:
   <<: *ring_of_duelling_7
   id: 2560
+  degrade: ring_of_duelling_3
 ring_of_duelling_4_noted: 2561
 ring_of_duelling_3:
   <<: *ring_of_duelling_7
   id: 2562
+  degrade: ring_of_duelling_2
 ring_of_duelling_3_noted: 2563
 ring_of_duelling_2:
   <<: *ring_of_duelling_7
   id: 2564
+  degrade: ring_of_duelling_1
 ring_of_duelling_2_noted: 2565
 ring_of_duelling_1:
   id: 2566
   price: 626
+  weight: 0.006
+  charges: 1
+  degrade: destroy
   slot: "Ring"
   examine: "An enchanted ring."
-  weight: 0.006
 ring_of_duelling_1_noted: 2567
 ring_of_forging:
   id: 2568
@@ -16501,6 +16512,8 @@ enchanted_lyre:
   weight: 1.814
 enchanted_lyre_1:
   id: 3691
+  charges: 1
+  degrade: enchanted_lyre
   slot: "Weapon"
   examine: "This will teleport me to Rellekka when I play it."
   weight: 1.814
@@ -26287,21 +26300,26 @@ toxic_powder:
 crystal_teleport_seed_4:
   &crystal_teleport_seed_4
   id: 6099
-  examine: "A tiny crystal enchanted to return the user to Lletya."
   weight: 0.001
+  charges: 1
+  degrade: crystal_teleport_seed_3
+  examine: "A tiny crystal enchanted to return the user to Lletya."
 crystal_teleport_seed_3:
   <<: *crystal_teleport_seed_4
   id: 6100
+  degrade: crystal_teleport_seed_2
 crystal_teleport_seed_2:
   <<: *crystal_teleport_seed_4
   id: 6101
+  degrade: crystal_teleport_seed_1
 crystal_teleport_seed_1:
   <<: *crystal_teleport_seed_4
   id: 6102
+  degrade: crystal_teleport_seed_uncharged
 crystal_teleport_seed_uncharged:
   id: 6103
-  examine: "This teleport seed needs to be re-enchanted."
   weight: 0.001
+  examine: "This teleport seed needs to be re-enchanted."
 new_key:
   id: 6104
   tradeable: false
@@ -26414,16 +26432,22 @@ beer_glass_forgettable_tale_of_a_drunken_dwarf:
 coconut_milk_noted: 6124
 enchanted_lyre_2:
   id: 6125
+  charges: 1
+  degrade: enchanted_lyre_1
   slot: "Weapon"
   examine: "This will teleport me to Rellekka when I play it."
   weight: 1.814
 enchanted_lyre_3:
   id: 6126
+  charges: 1
+  degrade: enchanted_lyre_2
   slot: "Weapon"
   examine: "This will teleport me to Rellekka when I play it."
   weight: 1.814
 enchanted_lyre_4:
   id: 6127
+  charges: 1
+  degrade: enchanted_lyre_3
   slot: "Weapon"
   examine: "This will teleport me to Rellekka when I play it."
   weight: 1.814
@@ -26806,60 +26830,79 @@ mahogany_pyre_logs_noted: 6214
 broodoo_shield_green_10:
   id: 6215
   price: 1940
+  charges: 1
+  degrade: broodoo_shield_green_9
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_10_noted: 6216
 broodoo_shield_green_9:
   id: 6217
+  charges: 1
+  degrade: broodoo_shield_green_8
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_9_noted: 6218
 broodoo_shield_green_8:
   id: 6219
+  charges: 1
+  degrade: broodoo_shield_green_7
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_8_noted: 6220
 broodoo_shield_green_7:
   id: 6221
+  charges: 1
+  degrade: broodoo_shield_green_6
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_7_noted: 6222
 broodoo_shield_green_6:
   id: 6223
+  charges: 1
+  degrade: broodoo_shield_green_5
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_6_noted: 6224
 broodoo_shield_green_5:
   id: 6225
+  charges: 1
+  degrade: broodoo_shield_green_4
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_5_noted: 6226
 broodoo_shield_green_4:
   id: 6227
+  charges: 1
+  degrade: broodoo_shield_green_3
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_4_noted: 6228
 broodoo_shield_green_3:
   id: 6229
+  charges: 1
+  degrade: broodoo_shield_green_2
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_3_noted: 6230
 broodoo_shield_green_2:
   id: 6231
+  charges: 1
+  degrade: broodoo_shield_green_1
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_2_noted: 6232
 broodoo_shield_green_1:
   id: 6233
+  charges: 1
   degrade: broodoo_shield_green
   slot: "Shield"
   examine: "A scary broodoo shield."
@@ -26876,60 +26919,79 @@ broodoo_shield_noted: 6236
 broodoo_shield_orange_10:
   id: 6237
   price: 2727
+  charges: 1
+  degrade: broodoo_shield_orange_9
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_10_noted_2: 6238
 broodoo_shield_orange_9:
   id: 6239
+  charges: 1
+  degrade: broodoo_shield_orange_8
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_9_noted_2: 6240
 broodoo_shield_orange_8:
   id: 6241
+  charges: 1
+  degrade: broodoo_shield_orange_7
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_8_noted_2: 6242
 broodoo_shield_orange_7:
   id: 6243
+  charges: 1
+  degrade: broodoo_shield_orange_6
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_7_noted_2: 6244
 broodoo_shield_orange_6:
   id: 6245
+  charges: 1
+  degrade: broodoo_shield_orange_5
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_6_noted_2: 6246
 broodoo_shield_orange_5:
   id: 6247
+  charges: 1
+  degrade: broodoo_shield_orange_4
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_5_noted_2: 6248
 broodoo_shield_orange_4:
   id: 6249
+  charges: 1
+  degrade: broodoo_shield_orange_3
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_4_noted_2: 6250
 broodoo_shield_orange_3:
   id: 6251
+  charges: 1
+  degrade: broodoo_shield_orange_2
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_3_noted_2: 6252
 broodoo_shield_orange_2:
   id: 6253
+  charges: 1
+  degrade: broodoo_shield_orange_1
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_2_noted_2: 6254
 broodoo_shield_orange_1:
   id: 6255
+  charges: 1
   degrade: broodoo_shield_orange
   slot: "Shield"
   examine: "A scary broodoo shield."
@@ -26946,60 +27008,79 @@ broodoo_shield_noted_2: 6258
 broodoo_shield_blue_10:
   id: 6259
   price: 1656
+  charges: 1
+  degrade: broodoo_shield_blue_9
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_10_noted_3: 6260
 broodoo_shield_blue_9:
   id: 6261
+  charges: 1
+  degrade: broodoo_shield_blue_8
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_9_noted_3: 6262
 broodoo_shield_blue_8:
   id: 6263
+  charges: 1
+  degrade: broodoo_shield_blue_7
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_8_noted_3: 6264
 broodoo_shield_blue_7:
   id: 6265
+  charges: 1
+  degrade: broodoo_shield_blue_6
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_7_noted_3: 6266
 broodoo_shield_blue_6:
   id: 6267
+  charges: 1
+  degrade: broodoo_shield_blue_5
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_6_noted_3: 6268
 broodoo_shield_blue_5:
   id: 6269
+  charges: 1
+  degrade: broodoo_shield_blue_4
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_5_noted_3: 6270
 broodoo_shield_blue_4:
   id: 6271
+  charges: 1
+  degrade: broodoo_shield_blue_3
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_4_noted_3: 6272
 broodoo_shield_blue_3:
   id: 6273
+  charges: 1
+  degrade: broodoo_shield_blue_2
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_3_noted_3: 6274
 broodoo_shield_blue_2:
   id: 6275
+  charges: 1
+  degrade: broodoo_shield_blue_1
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
 broodoo_shield_2_noted_3: 6276
 broodoo_shield_blue_1:
   id: 6277
+  charges: 1
   degrade: broodoo_shield_blue
   slot: "Shield"
   examine: "A scary broodoo shield."
@@ -31945,51 +32026,71 @@ mutated_zygomite:
   examine: "A fun guy. No wait, that's awful. Plus it doesn't even make sense."
 fungicide_spray_10:
   id: 7421
+  charges: 1
+  degrade: fungicide_spray_9
   slot: "Weapon"
   examine: "Pumps fungicide."
   weight: 2.0
 fungicide_spray_9:
   id: 7422
+  charges: 1
+  degrade: fungicide_spray_8
   slot: "Weapon"
   examine: "Pumps fungicide."
   weight: 2.0
 fungicide_spray_8:
   id: 7423
+  charges: 1
+  degrade: fungicide_spray_7
   slot: "Weapon"
   examine: "Pumps fungicide."
   weight: 2.0
 fungicide_spray_7:
   id: 7424
+  charges: 1
+  degrade: fungicide_spray_6
   slot: "Weapon"
   examine: "Pumps fungicide."
   weight: 2.0
 fungicide_spray_6:
   id: 7425
+  charges: 1
+  degrade: fungicide_spray_5
   slot: "Weapon"
   examine: "Pumps fungicide."
   weight: 2.0
 fungicide_spray_5:
   id: 7426
+  charges: 1
+  degrade: fungicide_spray_4
   slot: "Weapon"
   examine: "Pumps fungicide."
   weight: 2.0
 fungicide_spray_4:
   id: 7427
+  charges: 1
+  degrade: fungicide_spray_3
   slot: "Weapon"
   examine: "Pumps fungicide."
   weight: 2.0
 fungicide_spray_3:
   id: 7428
+  charges: 1
+  degrade: fungicide_spray_2
   slot: "Weapon"
   examine: "Pumps fungicide."
   weight: 2.0
 fungicide_spray_2:
   id: 7429
+  charges: 1
+  degrade: fungicide_spray_1
   slot: "Weapon"
   examine: "Pumps fungicide."
   weight: 2.0
 fungicide_spray_1:
   id: 7430
+  charges: 1
+  degrade: fungicide_spray_0
   slot: "Weapon"
   examine: "Pumps fungicide."
   weight: 2.0
@@ -33011,71 +33112,51 @@ rod_of_ivandis:
   tradeable: false
   weight: 2.0
   slot: "Weapon"
-  examine: "A fully charged rod."
   kept: "Reclaim"
+  examine: "A fully charged rod."
 rod_of_ivandis_2:
+  &rod_of_ivandis_2
   id: 7640
   tradeable: false
   weight: 2.0
+  charges: 1
+  degrade: rod_of_ivandis
   slot: "Weapon"
-  examine: "A fully charged rod."
   kept: "Reclaim"
+  examine: "A partially charged rod."
 rod_of_ivandis_3:
+  <<: *rod_of_ivandis_2
   id: 7641
-  tradeable: false
-  weight: 2.0
-  slot: "Weapon"
-  examine: "A fully charged rod."
-  kept: "Reclaim"
+  degrade: rod_of_ivandis_2
 rod_of_ivandis_4:
+  <<: *rod_of_ivandis_2
   id: 7642
-  tradeable: false
-  weight: 2.0
-  slot: "Weapon"
-  examine: "A fully charged rod."
-  kept: "Reclaim"
+  degrade: rod_of_ivandis_3
 rod_of_ivandis_5:
+  <<: *rod_of_ivandis_2
   id: 7643
-  tradeable: false
-  weight: 2.0
-  slot: "Weapon"
-  examine: "A fully charged rod."
-  kept: "Reclaim"
+  degrade: rod_of_ivandis_4
 rod_of_ivandis_6:
+  <<: *rod_of_ivandis_2
   id: 7644
-  tradeable: false
-  weight: 2.0
-  slot: "Weapon"
-  examine: "A fully charged rod."
-  kept: "Reclaim"
+  degrade: rod_of_ivandis_5
 rod_of_ivandis_7:
+  <<: *rod_of_ivandis_2
   id: 7645
-  tradeable: false
-  weight: 2.0
-  slot: "Weapon"
-  examine: "A fully charged rod."
-  kept: "Reclaim"
+  degrade: rod_of_ivandis_6
 rod_of_ivandis_8:
+  <<: *rod_of_ivandis_2
   id: 7646
-  tradeable: false
-  weight: 2.0
-  slot: "Weapon"
-  examine: "A fully charged rod."
-  kept: "Reclaim"
+  degrade: rod_of_ivandis_7
 rod_of_ivandis_9:
+  <<: *rod_of_ivandis_2
   id: 7647
-  tradeable: false
-  weight: 2.0
-  slot: "Weapon"
-  examine: "A fully charged rod."
-  kept: "Reclaim"
+  degrade: rod_of_ivandis_8
 rod_of_ivandis_10:
+  <<: *rod_of_ivandis_2
   id: 7648
-  tradeable: false
-  weight: 2.0
-  slot: "Weapon"
+  degrade: rod_of_ivandis_9
   examine: "A fully charged rod."
-  kept: "Reclaim"
 rod_clay_mould:
   id: 7649
   tradeable: false
@@ -38201,6 +38282,8 @@ pharaohs_sceptre_3:
   id: 9044
   price: 1000000
   limit: 10
+  charges: 1
+  degrade: pharaohs_sceptre_2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "This sceptre is fully charged."
@@ -38210,6 +38293,8 @@ pharaohs_sceptre_3_noted: 9045
 pharaohs_sceptre_2:
   id: 9046
   limit: 10
+  charges: 1
+  degrade: pharaohs_sceptre_1
   slot: "Weapon"
   type: "TwoHanded"
   examine: "This sceptre has two remaining charges."
@@ -38219,6 +38304,8 @@ pharaohs_sceptre_2_noted: 9047
 pharaohs_sceptre_1:
   id: 9048
   limit: 10
+  charges: 1
+  degrade: pharaohs_sceptre
   slot: "Weapon"
   type: "TwoHanded"
   examine: "This sceptre has one remaining charge."
@@ -47145,12 +47232,16 @@ emerald_bracelet_noted: 11077
 castle_wars_brace_3:
   id: 11079
   price: 989
+  charges: 1
+  degrade: castle_wars_brace_2
   slot: "Hands"
   examine: "Must be worn as you enter the game to receive the bonus for that game."
   weight: 0.25
 castle_wars_brace_3_noted: 11080
 castle_wars_brace_2:
   id: 11081
+  charges: 1
+  degrade: castle_wars_brace_1
   slot: "Hands"
   examine: "Must be worn as you enter the game to receive the bonus for that game."
   weight: 0.25
@@ -47158,6 +47249,8 @@ castle_wars_brace_2_noted: 11082
 castle_wars_brace_1:
   id: 11083
   price: 2873
+  charges: 1
+  degrade: destroy
   slot: "Hands"
   examine: "Must be worn as you enter the game to receive the bonus for that game."
   weight: 0.25
@@ -47236,30 +47329,38 @@ skills_necklace_4:
   id: 11105
   price: 22000
   limit: 500
+  weight: 0.01
+  charges: 1
+  degrade: skills_necklace_3
   slot: "Amulet"
   examine: "This will help me travel."
-  weight: 0.01
 skills_necklace_4_noted: 11106
 skills_necklace_3:
   id: 11107
   limit: 500
+  weight: 0.01
+  charges: 1
+  degrade: skills_necklace_2
   slot: "Amulet"
   examine: "This will help me travel."
-  weight: 0.01
 skills_necklace_3_noted: 11108
 skills_necklace_2:
   id: 11109
   limit: 500
+  weight: 0.01
+  charges: 1
+  degrade: skills_necklace_1
   slot: "Amulet"
   examine: "This will help me travel."
-  weight: 0.01
 skills_necklace_2_noted: 11110
 skills_necklace_1:
   id: 11111
   limit: 500
+  weight: 0.01
+  charges: 1
+  degrade: skills_necklace
   slot: "Amulet"
   examine: "This will help me travel."
-  weight: 0.01
 skills_necklace_1_noted: 11112
 skills_necklace:
   id: 11113
@@ -47284,6 +47385,8 @@ combat_bracelet_4:
   id: 11118
   price: 32400
   limit: 500
+  charges: 1
+  degrade: combat_bracelet_3
   slot: "Hands"
   examine: "A handy way to get around."
   weight: 0.25
@@ -47291,6 +47394,8 @@ combat_bracelet_4_noted: 11119
 combat_bracelet_3:
   id: 11120
   limit: 500
+  charges: 1
+  degrade: combat_bracelet_2
   slot: "Hands"
   examine: "A handy way to get around."
   weight: 0.25
@@ -47298,6 +47403,8 @@ combat_bracelet_3_noted: 11121
 combat_bracelet_2:
   id: 11122
   limit: 500
+  charges: 1
+  degrade: combat_bracelet_1
   slot: "Hands"
   examine: "A handy way to get around."
   weight: 0.25
@@ -47305,6 +47412,8 @@ combat_bracelet_2_noted: 11123
 combat_bracelet_1:
   id: 11124
   limit: 500
+  charges: 1
+  degrade: combat_bracelet
   slot: "Hands"
   examine: "A handy way to get around."
   weight: 0.25
@@ -47597,26 +47706,36 @@ antique_lamp_historian_minas:
   id: 11189
 dig_site_pendant_1:
   id: 11190
+  charges: 1
+  degrade: destroy
   slot: "Amulet"
   examine: "An enchanted necklace."
   weight: 0.01
 dig_site_pendant_2:
   id: 11191
+  charges: 1
+  degrade: dig_site_pendant_1
   slot: "Amulet"
   examine: "An enchanted necklace."
   weight: 0.01
 dig_site_pendant_3:
   id: 11192
+  charges: 1
+  degrade: dig_site_pendant_2
   slot: "Amulet"
   examine: "An enchanted necklace."
   weight: 0.01
 dig_site_pendant_4:
   id: 11193
+  charges: 1
+  degrade: dig_site_pendant_3
   slot: "Amulet"
   examine: "An enchanted necklace."
   weight: 0.01
 dig_site_pendant_5:
   id: 11194
+  charges: 1
+  degrade: dig_site_pendant_4
   slot: "Amulet"
   examine: "An enchanted necklace."
   weight: 0.01
@@ -56382,32 +56501,47 @@ broad_tipped_bolts:
   material: "metal"
   examine: "For use against turoth and kurasks."
 ring_of_slaying_8:
-  <<: *ring_of_duelling_7
   id: 13281
+  charges: 1
+  degrade: ring_of_slaying_7
   jewellery:
     level: 75
     xp: 15.0
+  weight: 0.006
+  slot: "Ring"
+  examine: "An enchanted ring."
 ring_of_slaying_7:
-  <<: *ring_of_duelling_7
+  &ring_of_slaying_7
   id: 13282
+  charges: 1
+  degrade: ring_of_slaying_6
+  weight: 0.006
+  slot: "Ring"
+  examine: "An enchanted ring."
 ring_of_slaying_6:
-  <<: *ring_of_duelling_7
+  <<: *ring_of_slaying_7
   id: 13283
+  degrade: ring_of_slaying_5
 ring_of_slaying_5:
-  <<: *ring_of_duelling_7
+  <<: *ring_of_slaying_7
   id: 13284
+  degrade: ring_of_slaying_4
 ring_of_slaying_4:
-  <<: *ring_of_duelling_7
+  <<: *ring_of_slaying_7
   id: 13285
+  degrade: ring_of_slaying_3
 ring_of_slaying_3:
-  <<: *ring_of_duelling_7
+  <<: *ring_of_slaying_7
   id: 13286
+  degrade: ring_of_slaying_2
 ring_of_slaying_2:
-  <<: *ring_of_duelling_7
+  <<: *ring_of_slaying_7
   id: 13287
+  degrade: ring_of_slaying_1
 ring_of_slaying_1:
-  <<: *ring_of_duelling_7
+  <<: *ring_of_slaying_7
   id: 13288
+  degrade: destroy
 leaf_bladed_sword:
   id: 13290
   price: 40200
@@ -61608,11 +61742,15 @@ white_lily_seed:
   kept: "Reclaim"
 enchanted_lyre_5:
   id: 14590
+  charges: 1
+  degrade: enchanted_lyre_4
   slot: "Weapon"
   examine: "This will teleport me to Rellekka when I play it."
   weight: 1.814
 enchanted_lyre_6:
   id: 14591
+  charges: 1
+  degrade: enchanted_lyre_5
   slot: "Weapon"
   examine: "This will teleport me to Rellekka when I play it."
   weight: 1.814
