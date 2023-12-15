@@ -18,13 +18,28 @@ class DegradeTest : WorldTest() {
         val inventoryId = player.equipment.id
         player.equipment.set(slot, "binding_necklace")
         assertEquals(16, Degrade.charges(player, inventoryId, slot))
-        for (remaining in 15 downTo 10) {
-            Degrade.discharge(player, inventoryId, slot)
-            assertEquals(remaining, Degrade.charges(player, inventoryId, slot))
-            assertFalse(player.equipment[slot].isEmpty())
-        }
+        Degrade.discharge(player, inventoryId, slot, amount = 6)
+        assertEquals(10, Degrade.charges(player, inventoryId, slot))
+        assertFalse(player.equipment[slot].isEmpty())
+
         Degrade.degrade(player, inventoryId, slot)
         assertTrue(player.equipment[slot].isEmpty())
+        assertEquals(0, Degrade.charges(player, inventoryId, slot))
+    }
+
+    @Test
+    fun `Do nothing on item degrade`() {
+        val player = createPlayer("player")
+        val slot = EquipSlot.Amulet.index
+        val inventoryId = player.equipment.id
+        player.equipment.set(slot, "camulet")
+        assertEquals(4, Degrade.charges(player, inventoryId, slot))
+        Degrade.discharge(player, inventoryId, slot, amount = 3)
+        assertEquals(1, Degrade.charges(player, inventoryId, slot))
+        assertFalse(player.equipment[slot].isEmpty())
+
+        Degrade.degrade(player, inventoryId, slot)
+        assertEquals("camulet", player.equipment[slot].id)
         assertEquals(0, Degrade.charges(player, inventoryId, slot))
     }
 

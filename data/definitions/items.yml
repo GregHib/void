@@ -7172,6 +7172,9 @@ mystic_earth_staff_noted: 1408
 ibans_staff:
   id: 1409
   weight: 2.267
+  charges: 120
+  player_charge: true
+  degrade: ibans_staff_broken
   category: "staff"
   slot: "Weapon"
   examine: "An ancient staff, formerly the property of Iban."
@@ -12353,6 +12356,9 @@ ring_of_recoil:
   price: 841
   limit: 5000
   weight: 0.006
+  charges: 400
+  player_charge: true
+  degrade: destroy
   aka: [ ror, recoil, recoil_ring ]
   slot: "Ring"
   examine: "An enchanted ring."
@@ -18509,6 +18515,7 @@ crystal_bow_2_10:
 crystal_bow_1_10:
   id: 4223
   limit: 2
+  degrade: crystal_seed
   attack_range: 10
   slot: "Weapon"
   type: "TwoHanded"
@@ -23786,6 +23793,7 @@ binding_necklace:
   weight: 0.01
   charges: 16
   player_charge: true
+  degrade: destroy
   slot: "Amulet"
   examine: "A necklace embedded with mystical power."
 binding_necklace_noted: 5522
@@ -26276,19 +26284,19 @@ toxic_powder:
   examine: "A pile of toxic powder."
   use: "Quest"
   kept: "Wilderness"
-crystal_teleport_seed_4_charges:
-  &crystal_teleport_seed_4_charges
+crystal_teleport_seed_4:
+  &crystal_teleport_seed_4
   id: 6099
   examine: "A tiny crystal enchanted to return the user to Lletya."
   weight: 0.001
-crystal_teleport_seed_3_charges:
-  <<: *crystal_teleport_seed_4_charges
+crystal_teleport_seed_3:
+  <<: *crystal_teleport_seed_4
   id: 6100
-crystal_teleport_seed_2_charges:
-  <<: *crystal_teleport_seed_4_charges
+crystal_teleport_seed_2:
+  <<: *crystal_teleport_seed_4
   id: 6101
-crystal_teleport_seed_1_charge:
-  <<: *crystal_teleport_seed_4_charges
+crystal_teleport_seed_1:
+  <<: *crystal_teleport_seed_4
   id: 6102
 crystal_teleport_seed_uncharged:
   id: 6103
@@ -26852,6 +26860,7 @@ broodoo_shield_green_2:
 broodoo_shield_2_noted: 6232
 broodoo_shield_green_1:
   id: 6233
+  degrade: broodoo_shield_green
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
@@ -26921,6 +26930,7 @@ broodoo_shield_orange_2:
 broodoo_shield_2_noted_2: 6254
 broodoo_shield_orange_1:
   id: 6255
+  degrade: broodoo_shield_orange
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
@@ -26990,6 +27000,7 @@ broodoo_shield_blue_2:
 broodoo_shield_2_noted_3: 6276
 broodoo_shield_blue_1:
   id: 6277
+  degrade: broodoo_shield_blue
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
@@ -28678,6 +28689,8 @@ potato_with_cheese:
 potato_with_cheese_noted: 6706
 camulet:
   id: 6707
+  charges: 4
+  player_charge: true
   tradeable: false
   weight: 0.007
   slot: "Amulet"
@@ -38052,6 +38065,9 @@ skull_sceptre:
   id: 9013
   tradeable: false
   weight: 1.814
+  charges: 10
+  player_charge: true
+  degrade: destroy
   slot: "Weapon"
   destroy: "You can obtain another Sceptre by collecting all four pieces from the Stronghold of Security."
   examine: "A fragile magical Sceptre."
@@ -39885,6 +39901,9 @@ crystal_saw:
   id: 9625
   tradeable: false
   weight: 1.0
+  charges: 28
+  player_charge: true
+  degrade: small_crystal_seed
   slot: "Weapon"
   destroy: "Maybe Brimstail will have another..."
   examine: "A magical saw."
@@ -57367,6 +57386,9 @@ explorers_ring_1:
   id: 13560
   tradeable: false
   weight: 0.004
+  charges: 1
+  charge: explorers_ring_charges
+  player_charge: true
   aka: [ lumbridge_ring_1 ]
   slot: "Ring"
   destroy: "You will have talk to Explorer Jack in Lumbridge if you destroy this one."
@@ -57376,6 +57398,9 @@ explorers_ring_2:
   id: 13561
   tradeable: false
   weight: 0.004
+  charges: 2
+  charge: explorers_ring_charges
+  player_charge: true
   aka: [ lumbridge_ring_2 ]
   slot: "Ring"
   destroy: "You will have talk to Bob in Lumbridge if you destroy this one."
@@ -57385,6 +57410,9 @@ explorers_ring_3:
   id: 13562
   tradeable: false
   weight: 0.004
+  charges: 3
+  charge: explorers_ring_charges
+  player_charge: true
   aka: [ explorers_ring, lumbridge_ring, lumbridge_ring_3 ]
   slot: "Ring"
   destroy: "You will need to obtain a new ring from Ned in Draynor if you destroy this one."
@@ -61518,6 +61546,9 @@ falador_shield_1:
   id: 14577
   tradeable: false
   weight: 3.628
+  charges: 1
+  charge: falador_shield_charges
+  player_charge: true
   slot: "Shield"
   material: "metal"
   destroy: "You will be able to get a replacement shield from Redbeard Frank in Port Sarim."
@@ -61527,6 +61558,9 @@ falador_shield_2:
   id: 14578
   tradeable: false
   weight: 5.443
+  charges: 1
+  charge: falador_shield_charges
+  player_charge: true
   slot: "Shield"
   material: "metal"
   destroy: "You will be able to get replacement shield from the chemist in Rimmington."
@@ -61536,6 +61570,9 @@ falador_shield_3:
   id: 14579
   tradeable: false
   weight: 7.257
+  charges: 1
+  charge: falador_shield_charges
+  player_charge: true
   slot: "Shield"
   material: "metal"
   destroy: "You will be able to get a replacement shield from Sir Vyvin's squire in the White Knights' Castle."
@@ -81958,6 +81995,9 @@ falador_shield_4:
   id: 19749
   tradeable: false
   weight: 7.257
+  charges: 1
+  charge: falador_shield_charges
+  player_charge: true
   slot: "Shield"
   material: "metal"
   destroy: "You will be able to get a replacement shield from Sir Vyvin's squire in the White Knights' Castle."
@@ -82005,6 +82045,9 @@ explorers_ring_4:
   id: 19760
   tradeable: false
   weight: 0.004
+  charges: 3
+  charge: explorers_ring_charges
+  player_charge: true
   slot: "Ring"
   destroy: "You will need to obtain a new ring from Ned in Draynor if you destroy this one."
   examine: "A Lumbridge explorer's ring."

@@ -60,21 +60,18 @@ object Degrade {
         val inv = player.inventories.inventory(inventory)
         val item = inv.getOrNull(slot) ?: return
 
-        // Determine tracking variable to use
-        val playerCharge = item.def["player_charge", false]
-        val variable = if (playerCharge) item.def["charge", "${item.id}_charges"] else variable(inventory, slot)
+        val variable = variable(item, inventory, slot)
         val charge = player.getOrNull(variable) ?: item.def["charges", 0]
 
         // Calculated reduced charge
         val reduced = charge - amount
+        player[variable] = reduced
         if (reduced > 0) {
-            player[variable] = reduced
             return
         }
 
         // Clear charges and degrade item
-        player.clear(variable)
-        degrade(inv, item, slot)
+        degrade(player, inv, item, slot, variable)
     }
 
     /**
@@ -84,23 +81,35 @@ object Degrade {
         val inv = player.inventories.inventory(inventory)
         val item = inv.getOrNull(slot) ?: return
 
+        val variable = variable(item, inventory, slot)
+
         // Clear charges and degrade item
-        player.clear(variable(inventory, slot))
-        player.clear(item.def["charge", "${item.id}_charges"])
-        degrade(inv, item, slot)
+        degrade(player, inv, item, slot, variable)
+    }
+
+    /**
+     * Determine tracking variable to use
+     */
+    private fun variable(item: Item, inventory: String, slot: Int): String {
+        val playerCharge = item.def["player_charge", false]
+        return if (playerCharge) item.def["charge", "${item.id}_charges"] else variable(inventory, slot)
     }
 
     /**
      * Replace or remove the item after it's charges have been depleted
      */
-    private fun degrade(inventory: Inventory, item: Item, slot: Int) {
+    private fun degrade(player: Player, inventory: Inventory, item: Item, slot: Int, variable: String) {
         val replacement: String? = item.def.getOrNull("degrade")
-        if (replacement != null) {
-            inventory.replace(slot, item.id, replacement)
+        if (replacement == null) {
+            player[variable] = 0
             return
         }
-
-        inventory.remove(slot, item.id, item.amount)
+        player.clear(variable)
         // TODO message
+        if (replacement == "destroy") {
+            inventory.remove(slot, item.id, item.amount)
+        } else {
+            inventory.replace(slot, item.id, replacement)
+        }
     }
 }
