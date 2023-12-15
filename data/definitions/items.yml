@@ -77573,153 +77573,174 @@ mercenarys_gloves:
   tradeable: false
   weight: 0.283
   slot: "Hands"
-  examine: "The gloves of a mercenary."
   kept: "Reclaim"
+  examine: "The gloves of a mercenary."
 dungeoneering_experience: 18348
 chaotic_rapier:
   id: 18349
   tradeable: false
   bank_stacks: false
-  charges: 30000
   aka: [ c_rapier, rapier ]
+  weight: 1.814
+  charges: 30000
+  degrade: chaotic_rapier_broken
   slot: "Weapon"
   examine: "A razor-sharp rapier."
-  weight: 1.814
 chaotic_rapier_broken:
   id: 18350
   tradeable: false
+  weight: 1.814
   slot: "Weapon"
   examine: "A razor-sharp rapier. It doesn't look in good condition."
-  weight: 1.814
 chaotic_longsword:
   id: 18351
   tradeable: false
   bank_stacks: false
+  weight: 2.721
+  charges: 30000
+  degrade: chaotic_longsword_broken
   aka: [ cls ]
   slot: "Weapon"
   material: "metal"
   examine: "A razor-sharp longsword."
-  weight: 2.721
 chaotic_longsword_broken:
   id: 18352
   tradeable: false
+  weight: 2.721
   slot: "Weapon"
   material: "metal"
   examine: "A razor-sharp longsword. It doesn't look in good condition."
-  weight: 2.721
 chaotic_maul:
   id: 18353
   tradeable: false
   bank_stacks: false
+  weight: 4.989
   aka: [ cmaul, c_maul ]
+  charges: 30000
+  degrade: chaotic_maul_broken
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A maul used to claim life from those who don't deserve it."
-  weight: 4.989
 chaotic_maul_broken:
   id: 18354
   tradeable: false
+  weight: 4.989
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A massive maul. It doesn't look in good condition."
-  weight: 4.989
 chaotic_staff:
   id: 18355
   tradeable: false
   bank_stacks: false
+  weight: 1.814
   aka: [ cstaff, c_staff ]
+  charges: 30000
+  degrade: chaotic_staff_broken
   category: "staff"
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful."
-  weight: 1.814
 chaotic_staff_broken:
   id: 18356
   tradeable: false
+  weight: 1.814
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful. It doesn't look in good condition."
-  weight: 1.814
 chaotic_crossbow:
   id: 18357
   tradeable: false
   bank_stacks: false
-  slot: "Weapon"
-  aka: [ ccb ]
-  attack_range: 7
-  examine: "A small crossbow, only effective at short distance."
   weight: 1.814
+  attack_range: 7
+  aka: [ ccb ]
+  charges: 30000
+  degrade: chaotic_crossbow_broken
+  slot: "Weapon"
+  examine: "A small crossbow, only effective at short distance."
 chaotic_crossbow_broken:
   id: 18358
   tradeable: false
+  weight: 1.814
   slot: "Weapon"
   examine: "A small crossbow, only effective at short distance. It doesn't look in good condition."
-  weight: 1.814
 chaotic_kiteshield:
   id: 18359
   tradeable: false
   bank_stacks: false
-  aka: [ chaotic_kite ]
+  weight: 5.443
+  aka: [ chaotic_kite, chaotic_shield, dung_shield_melee ]
+  charges: 30000
+  degrade: chaotic_kiteshield_broken
   slot: "Shield"
   material: "metal"
   examine: "A large metal shield."
-  weight: 5.443
 chaotic_kiteshield_broken:
   id: 18360
   tradeable: false
+  weight: 5.443
   slot: "Shield"
   material: "metal"
   examine: "A large metal shield. It doesn't look in good condition."
-  weight: 5.443
 eagle_eye_kiteshield:
   id: 18361
   tradeable: false
   bank_stacks: false
+  weight: 5.443
+  aka: [ eagle_eye_kite, eagle_eye_shield, eagel_eye_kiteshield, eagel_eye_kite, eagel_eye_shield, dung_shield_range, dung_shield_ranged ]
+  charges: 30000
+  degrade: eagle_eye_kiteshield_broken
   slot: "Shield"
   material: "metal"
   examine: "A large metal shield."
-  weight: 5.443
 eagle_eye_kiteshield_broken:
   id: 18362
   tradeable: false
+  weight: 5.443
   slot: "Shield"
   material: "metal"
   examine: "A large metal shield. It doesn't look in good condition."
-  weight: 5.443
 farseer_kiteshield:
   id: 18363
   tradeable: false
   bank_stacks: false
+  weight: 5.443
+  charges: 30000
+  degrade: farseer_kiteshield_broken
+  aka: [ farsear_kiteshield, farseer_kite, farseer_shield, dung_shield_magic, dung_shield_mage ]
   slot: "Shield"
   material: "metal"
   examine: "A large metal shield."
-  weight: 5.443
 farseer_kiteshield_broken:
   id: 18364
   tradeable: false
+  weight: 5.443
   slot: "Shield"
   material: "metal"
   examine: "A large metal shield. It doesn't look in good condition."
-  weight: 5.443
 gravite_rapier:
   id: 18365
   tradeable: false
   bank_stacks: false
+  weight: 1.814
+  charges: 30000
+  degrade: gravite_rapier_broken
   slot: "Weapon"
   examine: "A razor-sharp rapier."
-  weight: 1.814
 gravite_rapier_broken:
   id: 18366
   tradeable: false
+  weight: 1.814
   slot: "Weapon"
   examine: "A razor-sharp rapier. It doesn't look in good condition."
-  weight: 1.814
 gravite_longsword:
   id: 18367
   tradeable: false
   bank_stacks: false
+  weight: 2.721
+  charges: 30000
+  degrade: gravite_longsword_broken
   slot: "Weapon"
   material: "metal"
   examine: "A razor-sharp longsword."
-  weight: 2.721
 gravite_longsword_broken:
   id: 18368
   tradeable: false
@@ -77731,49 +77752,55 @@ gravite_2h_sword:
   id: 18369
   tradeable: false
   bank_stacks: false
+  weight: 3.628
+  charges: 30000
+  degrade: gravite_2h_sword_broken
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
-  weight: 3.628
 gravite_2h_sword_broken:
   id: 18370
   tradeable: false
+  weight: 3.628
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword, it doesn't look in good condition."
-  weight: 3.628
 gravite_staff:
   id: 18371
   tradeable: false
   bank_stacks: false
+  weight: 1.814
+  charges: 30000
+  degrade: gravite_staff_broken
   category: "staff"
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful."
-  weight: 1.814
 gravite_staff_broken:
   id: 18372
   tradeable: false
+  weight: 1.814
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful. It doesn't look in good condition."
-  weight: 1.814
 gravite_shortbow:
   id: 18373
   tradeable: false
   bank_stacks: false
+  attack_range: 7
+  weight: 1.814
+  charges: 30000
+  degrade: gravite_shortbow_broken
   slot: "Weapon"
   type: "TwoHanded"
-  attack_range: 7
   examine: "A small bow, only effective at short distance."
-  weight: 1.814
 gravite_shortbow_broken_broken:
   id: 18374
   tradeable: false
+  weight: 1.814
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
-  weight: 1.814
 picture_152:
   <<: *picture_6
   id: 18376
