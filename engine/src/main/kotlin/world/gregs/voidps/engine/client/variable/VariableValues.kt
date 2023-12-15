@@ -14,7 +14,7 @@ sealed class VariableValues {
     companion object {
         @Suppress("UNCHECKED_CAST")
         operator fun invoke(values: Any?, format: String?, default: Any?): VariableValues {
-            return when (format ?: default!!::class.java.simpleName.lowercase()) {
+            return when (format ?: default?.apply { this::class.java.simpleName.lowercase() }) {
                 "int", "integer" -> IntValues
                 "string" -> StringValues
                 "double" -> DoubleValues

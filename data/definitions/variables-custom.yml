@@ -77,7 +77,6 @@ thread_used:
   format: int
   persist: true
 name_history:
-  format: int
   persist: true
 creation:
   format: int
