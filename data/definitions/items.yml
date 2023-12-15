@@ -20896,6 +20896,8 @@ ahrims_hood:
   id: 4708
   price: 73000
   limit: 10
+  charges: 1
+  degrade: ahrims_hood_100
   slot: "Hat"
   type: "Hair"
   examine: "Ahrim The Blighted's Hood."
@@ -20905,6 +20907,8 @@ ahrims_staff:
   id: 4710
   price: 131900
   limit: 10
+  charges: 1
+  degrade: ahrims_staff_100
   category: "staff"
   slot: "Weapon"
   type: "TwoHanded"
@@ -20915,6 +20919,8 @@ ahrims_robe_top:
   id: 4712
   price: 1300000
   limit: 10
+  charges: 1
+  degrade: ahrims_robe_top_100
   aka: [ ahrims_top ]
   slot: "Chest"
   examine: "Ahrim the Blighted's armoured robe top."
@@ -20924,6 +20930,8 @@ ahrims_robe_skirt:
   id: 4714
   price: 2200000
   limit: 10
+  charges: 1
+  degrade: ahrims_robe_skirt_100
   aka: [ ahrims_skirt, ahrims_legs, ahrims_robes ]
   slot: "Legs"
   examine: "Ahrim the Blighted's armoured robe skirt."
@@ -20933,6 +20941,8 @@ dharoks_helm:
   id: 4716
   price: 3000000
   limit: 10
+  charges: 1
+  degrade: dharoks_helm_100
   aka: [ dh_helm ]
   slot: "Hat"
   material: "metal"
@@ -20944,6 +20954,8 @@ dharoks_greataxe:
   id: 4718
   price: 711400
   limit: 10
+  charges: 1
+  degrade: dharoks_greataxe_100
   aka: [ dhaxe, dhgaxe, dh_axe, dh_gaxe, dh_g_axe, dharocks_greataxe, dharoks_great_axe ]
   slot: "Weapon"
   type: "TwoHanded"
@@ -20956,6 +20968,8 @@ dharoks_platebody:
   limit: 10
   tradeable: false
   weight: 9.979
+  charges: 1
+  degrade: dharoks_platebody_100
   aka: [ dh_body, dh_plate, dh_platebody, dh_plate_body, dharoks_plate_body ]
   slot: "Chest"
   material: "metal"
@@ -20966,6 +20980,8 @@ dharoks_platelegs:
   id: 4722
   price: 1100000
   limit: 10
+  charges: 1
+  degrade: dharoks_platelegs_100
   aka: [ dh_legs, dh_platelegs, dh_plate_legs, dharoks_plate_legs ]
   slot: "Legs"
   material: "metal"
@@ -20976,6 +20992,8 @@ guthans_helm:
   id: 4724
   price: 714000
   limit: 10
+  charges: 1
+  degrade: guthans_helm_100
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -20986,6 +21004,8 @@ guthans_warspear:
   id: 4726
   price: 646600
   limit: 10
+  charges: 1
+  degrade: guthans_warspear_100
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Guthan The Infested's Warspear."
@@ -20995,6 +21015,8 @@ guthans_platebody:
   id: 4728
   price: 440600
   limit: 10
+  charges: 1
+  degrade: guthans_platebody_100
   slot: "Chest"
   material: "metal"
   destroy: "If you drop this item it will break, are you sure you want to drop it?"
@@ -21005,6 +21027,8 @@ guthans_chainskirt:
   id: 4730
   price: 269100
   limit: 10
+  charges: 1
+  degrade: guthans_chainskirt_100
   slot: "Legs"
   material: "metal"
   examine: "Guthan the Infested's chainskirt."
@@ -21014,6 +21038,8 @@ karils_coif:
   id: 4732
   price: 33600
   limit: 10
+  charges: 1
+  degrade: karils_coif_100
   slot: "Hat"
   material: "leather"
   type: "Hair"
@@ -21025,6 +21051,8 @@ karils_crossbow:
   price: 179700
   limit: 10
   attack_range: 8
+  charges: 1
+  degrade: karils_crossbow_100
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -21034,6 +21062,8 @@ karils_top:
   id: 4736
   price: 3900000
   limit: 10
+  charges: 1
+  degrade: karils_top_100
   slot: "Chest"
   material: "leather"
   examine: "Karil the Tainted's leatherbody."
@@ -21043,6 +21073,8 @@ karils_skirt:
   id: 4738
   price: 428700
   limit: 10
+  charges: 1
+  degrade: karils_skirt_100
   slot: "Legs"
   material: "leather"
   examine: "Karil the Tainted's leather skirt."
@@ -21059,6 +21091,8 @@ torags_helm:
   id: 4745
   price: 217684
   limit: 10
+  charges: 1
+  degrade: torags_helm_100
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -21069,6 +21103,8 @@ torags_hammers:
   id: 4747
   price: 99900
   limit: 10
+  charges: 1
+  degrade: torags_hammers_100
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Torag the Corrupted's twin hammers."
@@ -21078,6 +21114,8 @@ torags_platebody:
   id: 4749
   price: 524300
   limit: 10
+  charges: 1
+  degrade: torags_platebody_100
   slot: "Chest"
   material: "metal"
   examine: "Torag the Corrupted's plate body armour."
@@ -21087,6 +21125,8 @@ torags_platelegs:
   id: 4751
   price: 640500
   limit: 10
+  charges: 1
+  degrade: torags_platelegs_100
   slot: "Legs"
   material: "metal"
   examine: "Torag the Corrupted's plate leg armour."
@@ -21096,6 +21136,8 @@ veracs_helm:
   id: 4753
   price: 1800000
   limit: 10
+  charges: 1
+  degrade: veracs_helm_100
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -21106,6 +21148,8 @@ veracs_flail:
   id: 4755
   price: 161600
   limit: 10
+  charges: 1
+  degrade: veracs_flail_100
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Verac the Defiled's Flail."
@@ -21115,6 +21159,8 @@ veracs_brassard:
   id: 4757
   price: 286600
   limit: 10
+  charges: 1
+  degrade: veracs_brassard_100
   slot: "Chest"
   material: "metal"
   examine: "Verac The Defiled's Brassard."
@@ -21124,6 +21170,8 @@ veracs_plateskirt:
   id: 4759
   price: 679400
   limit: 10
+  charges: 1
+  degrade: veracs_plateskirt_100
   aka: [ veracs_skirt ]
   slot: "Legs"
   material: "metal"
@@ -21435,33 +21483,28 @@ ourg_bonemeal:
   examine: "A pot of crushed ourg bones."
   kept: "Reclaim"
 ahrims_hood_100:
+  &ahrims_hood_100
   id: 4856
   limit: 10
+  weight: 0.907
+  charges: 22500
+  degrade: ahrims_hood_75
   slot: "Hat"
   type: "Hair"
   examine: "Ahrim The Blighted's Hood."
-  weight: 0.907
 ahrims_hood_75:
+  <<: *ahrims_hood_100
   id: 4857
-  limit: 10
-  slot: "Hat"
-  type: "Hair"
-  examine: "Ahrim The Blighted's Hood."
-  weight: 0.907
+  degrade: ahrims_hood_50
 ahrims_hood_50:
+  <<: *ahrims_hood_100
   id: 4858
-  limit: 10
-  slot: "Hat"
-  type: "Hair"
-  examine: "Ahrim The Blighted's Hood."
-  weight: 0.907
+  degrade: ahrims_hood_25
 ahrims_hood_25:
+  <<: *ahrims_hood_100
   id: 4859
-  limit: 10
-  slot: "Hat"
-  type: "Hair"
-  examine: "Ahrim The Blighted's Hood."
-  weight: 0.907
+  charges: 22500
+  degrade: ahrims_hood_broken
 ahrims_hood_broken:
   id: 4860
   price: 45100
@@ -21470,39 +21513,30 @@ ahrims_hood_broken:
   type: "Hair"
   examine: "Ahrim The Blighted's Hood."
   weight: 0.907
-ahrims_hood_0_noted: 4861
+ahrims_hood_broken_noted: 4861
 ahrims_staff_100:
+  &ahrims_staff_100
   id: 4862
   limit: 10
-  category: "staff"
+  weight: 2.267
+  charges: 22500
+  degrade: ahrims_staff_75
   slot: "Weapon"
   type: "TwoHanded"
+  category: "staff"
   examine: "Ahrim the Blighted's quarterstaff."
-  weight: 2.267
 ahrims_staff_75:
+  <<: *ahrims_staff_100
   id: 4863
-  limit: 10
-  category: "staff"
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "Ahrim the Blighted's quarterstaff."
-  weight: 2.267
+  degrade: ahrims_staff_50
 ahrims_staff_50:
+  <<: *ahrims_staff_100
   id: 4864
-  limit: 10
-  category: "staff"
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "Ahrim the Blighted's quarterstaff."
-  weight: 2.267
+  degrade: ahrims_staff_25
 ahrims_staff_25:
+  <<: *ahrims_staff_100
   id: 4865
-  limit: 10
-  category: "staff"
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "Ahrim the Blighted's quarterstaff."
-  weight: 2.267
+  degrade: ahrims_staff_broken
 ahrims_staff_broken:
   id: 4866
   price: 50900
@@ -21511,297 +21545,249 @@ ahrims_staff_broken:
   type: "TwoHanded"
   examine: "Ahrim the Blighted's quarterstaff."
   weight: 2.267
-ahrims_staff_0_noted: 4867
+ahrims_staff_broken_noted: 4867
 ahrims_robe_top_100:
+  &ahrims_robe_top_100
   id: 4868
   limit: 10
+  weight: 4.535
+  charges: 22500
+  degrade: ahrims_robe_top_75
   slot: "Chest"
   examine: "Ahrim the Blighted's armoured robe top."
-  weight: 4.535
 ahrims_robe_top_75:
+  <<: *ahrims_robe_top_100
   id: 4869
-  limit: 10
-  slot: "Chest"
-  examine: "Ahrim the Blighted's armoured robe top."
-  weight: 4.535
+  degrade: ahrims_robe_top_50
 ahrims_robe_top_50:
+  <<: *ahrims_robe_top_100
   id: 4870
-  limit: 10
-  slot: "Chest"
-  examine: "Ahrim the Blighted's armoured robe top."
-  weight: 4.535
+  degrade: ahrims_robe_top_25
 ahrims_robe_top_25:
+  <<: *ahrims_robe_top_100
   id: 4871
-  limit: 10
-  slot: "Chest"
-  examine: "Ahrim the Blighted's armoured robe top."
-  weight: 4.535
+  degrade: ahrims_robe_top_broken
 ahrims_robe_top_broken:
   id: 4872
   price: 1300000
   limit: 10
+  weight: 4.535
   slot: "Chest"
   examine: "Ahrim the Blighted's armoured robe top."
-  weight: 4.535
-ahrims_robe_top_0_noted: 4873
+ahrims_robe_top_broken_noted: 4873
 ahrims_robe_skirt_100:
+  &ahrims_robe_skirt_100
   id: 4874
   limit: 10
+  weight: 11.339
+  charges: 22500
+  degrade: ahrims_robe_skirt_75
   slot: "Legs"
   examine: "Ahrim the Blighted's armoured robe skirt."
-  weight: 11.339
 ahrims_robe_skirt_75:
+  <<: *ahrims_robe_skirt_100
   id: 4875
-  limit: 10
-  slot: "Legs"
-  examine: "Ahrim the Blighted's armoured robe skirt."
-  weight: 11.339
+  degrade: ahrims_robe_skirt_50
 ahrims_robe_skirt_50:
+  <<: *ahrims_robe_skirt_100
   id: 4876
-  limit: 10
-  slot: "Legs"
-  examine: "Ahrim the Blighted's armoured robe skirt."
-  weight: 11.339
+  degrade: ahrims_robe_skirt_25
 ahrims_robe_skirt_25:
+  <<: *ahrims_robe_skirt_100
   id: 4877
-  limit: 10
-  slot: "Legs"
-  examine: "Ahrim the Blighted's armoured robe skirt."
-  weight: 11.339
+  degrade: ahrims_robe_skirt_broken
 ahrims_robe_skirt_broken:
   id: 4878
   price: 2100000
   limit: 10
+  weight: 11.339
   slot: "Legs"
   examine: "Ahrim the Blighted's armoured robe skirt."
-  weight: 11.339
-ahrims_robe_skirt_0_noted: 4879
+ahrims_robe_skirt_broken_noted: 4879
 dharoks_helm_100:
+  &dharoks_helm_100
   id: 4880
   limit: 10
+  weight: 1.814
+  charges: 22500
+  degrade: dharoks_helm_75
   slot: "Hat"
   material: "metal"
   type: "Hair"
   examine: "Dharok The Wretched's Helmet"
-  weight: 1.814
 dharoks_helm_75:
+  <<: *dharoks_helm_100
   id: 4881
-  limit: 10
-  slot: "Hat"
-  material: "metal"
-  type: "Hair"
-  examine: "Dharok The Wretched's Helmet"
-  weight: 1.814
+  degrade: dharoks_helm_50
 dharoks_helm_50:
+  <<: *dharoks_helm_100
   id: 4882
-  limit: 10
-  slot: "Hat"
-  material: "metal"
-  type: "Hair"
-  examine: "Dharok The Wretched's Helmet"
-  weight: 1.814
+  degrade: dharoks_helm_25
 dharoks_helm_25:
+  <<: *dharoks_helm_100
   id: 4883
-  limit: 10
-  slot: "Hat"
-  material: "metal"
-  type: "Hair"
-  examine: "Dharok The Wretched's Helmet"
-  weight: 1.814
+  degrade: dharoks_helm_broken
 dharoks_helm_broken:
   id: 4884
   price: 3000000
   limit: 10
+  weight: 1.814
   slot: "Hat"
   material: "metal"
   type: "Hair"
   examine: "Dharok The Wretched's Helmet"
-  weight: 1.814
-dharoks_helm_0_noted: 4885
+dharoks_helm_broken_noted: 4885
 dharoks_greataxe_100:
+  &dharoks_greataxe_100
   id: 4886
   limit: 10
+  weight: 3.175
+  charges: 22500
+  degrade: dharoks_greataxe_75
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Dharok the Wretched's Greataxe."
-  weight: 3.175
 dharoks_greataxe_75:
+  <<: *dharoks_greataxe_100
   id: 4887
-  limit: 10
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "Dharok the Wretched's Greataxe."
-  weight: 3.175
+  degrade: dharoks_greataxe_50
 dharoks_greataxe_50:
+  <<: *dharoks_greataxe_100
   id: 4888
-  limit: 10
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "Dharok the Wretched's Greataxe."
-  weight: 3.175
+  degrade: dharoks_greataxe_25
 dharoks_greataxe_25:
+  <<: *dharoks_greataxe_100
   id: 4889
-  limit: 10
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "Dharok the Wretched's Greataxe."
-  weight: 3.175
-dharoks_greataxe_0:
+  degrade: dharoks_greataxe_broken
+dharoks_greataxe_broken:
   id: 4890
   price: 629200
   limit: 10
   tradeable: false
   weight: 3.175
   slot: "Weapon"
+  kept: "Reclaim"
   type: "TwoHanded"
   examine: "Dharok the Wretched's greataxe."
-  kept: "Reclaim"
-dharoks_greataxe_0_noted: 4891
+dharoks_greataxe_broken_noted: 4891
 dharoks_platebody_100:
+  &dharoks_platebody_100
   id: 4892
   limit: 10
+  weight: 9.979
+  charges: 22500
+  degrade: dharoks_greataxe_75
   slot: "Chest"
   material: "metal"
   examine: "Dharok the Wretched's platebody."
-  weight: 9.979
 dharoks_platebody_75:
+  <<: *dharoks_platebody_100
   id: 4893
-  limit: 10
-  slot: "Chest"
-  material: "metal"
-  examine: "Dharok the Wretched's platebody."
-  weight: 9.979
+  degrade: dharoks_greataxe_50
 dharoks_platebody_50:
+  <<: *dharoks_platebody_100
   id: 4894
-  limit: 10
-  slot: "Chest"
-  material: "metal"
-  examine: "Dharok the Wretched's platebody."
-  weight: 9.979
+  degrade: dharoks_greataxe_25
 dharoks_platebody_25:
+  <<: *dharoks_platebody_100
   id: 4895
-  limit: 10
-  slot: "Chest"
-  material: "metal"
-  examine: "Dharok the Wretched's platebody."
-  weight: 9.979
+  degrade: dharoks_greataxe_broken
 dharoks_platebody_broken:
   id: 4896
   price: 596700
   limit: 10
   bank_stacks: false
+  weight: 9.979
   slot: "Chest"
   material: "metal"
   examine: "Dharok the Wretched's platebody."
-  weight: 9.979
-dharoks_platebody_0_noted: 4897
+dharoks_platebody_broken_noted: 4897
 dharoks_platelegs_100:
+  &dharoks_platelegs_100
   id: 4898
   limit: 10
+  weight: 9.071
+  charges: 22500
+  degrade: dharoks_platelegs_75
   slot: "Legs"
   material: "metal"
   examine: "Dharok the wretched's plate leg armour."
-  weight: 9.071
 dharoks_platelegs_75:
+  <<: *dharoks_platelegs_100
   id: 4899
-  limit: 10
-  slot: "Legs"
-  material: "metal"
-  examine: "Dharok the wretched's plate leg armour."
-  weight: 9.071
+  degrade: dharoks_platelegs_50
 dharoks_platelegs_50:
+  <<: *dharoks_platelegs_100
   id: 4900
-  limit: 10
-  slot: "Legs"
-  material: "metal"
-  examine: "Dharok the wretched's plate leg armour."
-  weight: 9.071
+  degrade: dharoks_platelegs_25
 dharoks_platelegs_25:
+  <<: *dharoks_platelegs_100
   id: 4901
-  limit: 10
-  slot: "Legs"
-  material: "metal"
-  examine: "Dharok the wretched's plate leg armour."
-  weight: 9.071
+  degrade: dharoks_platelegs_broken
 dharoks_platelegs_broken:
   id: 4902
   price: 1000000
   limit: 10
+  weight: 9.071
   slot: "Legs"
   material: "metal"
   examine: "Dharok the wretched's plate leg armour."
-  weight: 9.071
-dharoks_platelegs_0_noted: 4903
+dharoks_platelegs_broken_noted: 4903
 guthans_helm_100:
+  &guthans_helm_100
   id: 4904
   limit: 10
+  weight: 2.721
+  charges: 22500
+  degrade: guthans_helm_75
   slot: "Hat"
   material: "metal"
   type: "FullFace"
   examine: "Guthan the Infested's helm."
-  weight: 2.721
 guthans_helm_75:
+  <<: *guthans_helm_100
   id: 4905
-  limit: 10
-  slot: "Hat"
-  material: "metal"
-  type: "FullFace"
-  examine: "Guthan the Infested's helm."
-  weight: 2.721
+  degrade: guthans_helm_50
 guthans_helm_50:
+  <<: *guthans_helm_100
   id: 4906
-  limit: 10
-  slot: "Hat"
-  material: "metal"
-  type: "FullFace"
-  examine: "Guthan the Infested's helm."
-  weight: 2.721
+  degrade: guthans_helm_25
 guthans_helm_25:
+  <<: *guthans_helm_100
   id: 4907
-  limit: 10
-  slot: "Hat"
-  material: "metal"
-  type: "FullFace"
-  examine: "Guthan the Infested's helm."
-  weight: 2.721
+  degrade: guthans_helm_broken
 guthans_helm_broken:
   id: 4908
   price: 730200
   limit: 10
+  weight: 2.721
   slot: "Hat"
   material: "metal"
   type: "FullFace"
   examine: "Guthan the Infested's helm."
-  weight: 2.721
-guthans_helm_0_noted: 4909
+guthans_helm_broken_noted: 4909
 guthans_warspear_100:
+  &guthans_warspear_100
   id: 4910
   limit: 10
+  weight: 2.267
+  charges: 22500
+  degrade: guthans_warspear_75
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Guthan The Infested's Warspear."
-  weight: 2.267
 guthans_warspear_75:
+  <<: *guthans_warspear_100
   id: 4911
-  limit: 10
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "Guthan The Infested's Warspear."
-  weight: 2.267
+  degrade: guthans_warspear_50
 guthans_warspear_50:
+  <<: *guthans_warspear_100
   id: 4912
-  limit: 10
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "Guthan The Infested's Warspear."
-  weight: 2.267
+  degrade: guthans_warspear_25
 guthans_warspear_25:
+  <<: *guthans_warspear_100
   id: 4913
-  limit: 10
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "Guthan The Infested's Warspear."
-  weight: 2.267
+  degrade: guthans_warspear_broken
 guthans_warspear_broken:
   id: 4914
   price: 590200
@@ -21810,160 +21796,127 @@ guthans_warspear_broken:
   type: "TwoHanded"
   examine: "Guthan The Infested's Warspear."
   weight: 2.267
-guthans_warspear_0_noted: 4915
+guthans_warspear_broken_noted: 4915
 guthans_platebody_100:
+  &guthans_platebody_100
   id: 4916
   limit: 10
+  weight: 9.979
+  charges: 22500
+  degrade: guthans_platebody_75
   slot: "Chest"
   material: "metal"
   destroy: "If you drop this item it will break, are you sure you want to drop it?"
   examine: "Guthan the Infested's platebody armour."
-  weight: 9.979
 guthans_platebody_75:
+  <<: *guthans_platebody_100
   id: 4917
-  limit: 10
-  slot: "Chest"
-  material: "metal"
-  destroy: "If you drop this item it will break, are you sure you want to drop it?"
-  examine: "Guthan the Infested's platebody armour."
-  weight: 9.979
+  degrade: guthans_platebody_50
 guthans_platebody_50:
+  <<: *guthans_platebody_100
   id: 4918
-  limit: 10
-  slot: "Chest"
-  material: "metal"
-  destroy: "If you drop this item it will break, are you sure you want to drop it?"
-  examine: "Guthan the Infested's platebody armour."
-  weight: 9.979
+  degrade: guthans_platebody_25
 guthans_platebody_25:
+  <<: *guthans_platebody_100
   id: 4919
-  limit: 10
-  slot: "Chest"
-  material: "metal"
-  destroy: "If you drop this item it will break, are you sure you want to drop it?"
-  examine: "Guthan the Infested's platebody armour."
-  weight: 9.979
+  degrade: guthans_platebody_broken
 guthans_platebody_broken:
   id: 4920
   price: 363200
   limit: 10
+  weight: 9.979
   slot: "Chest"
   material: "metal"
   destroy: "If you drop this item it will break, are you sure you want to drop it?"
   examine: "Guthan the Infested's platebody armour."
-  weight: 9.979
-guthans_platebody_0_noted: 4921
+guthans_platebody_broken_noted: 4921
 guthans_chainskirt_100:
+  &guthans_chainskirt_100
   id: 4922
   limit: 10
+  weight: 8.164
+  charges: 22500
+  degrade: guthans_chainskirt_75
   slot: "Legs"
   material: "metal"
   examine: "Guthan the Infested's chainskirt."
-  weight: 8.164
 guthans_chainskirt_75:
+  <<: *guthans_chainskirt_100
   id: 4923
-  limit: 10
-  slot: "Legs"
-  material: "metal"
-  examine: "Guthan the Infested's chainskirt."
-  weight: 8.164
+  degrade: guthans_chainskirt_50
 guthans_chainskirt_50:
+  <<: *guthans_chainskirt_100
   id: 4924
-  limit: 10
-  slot: "Legs"
-  material: "metal"
-  examine: "Guthan the Infested's chainskirt."
-  weight: 8.164
+  degrade: guthans_chainskirt_25
 guthans_chainskirt_25:
+  <<: *guthans_chainskirt_100
   id: 4925
-  limit: 10
-  slot: "Legs"
-  material: "metal"
-  examine: "Guthan the Infested's chainskirt."
-  weight: 8.164
+  degrade: guthans_chainskirt_broken
 guthans_chainskirt_broken:
   id: 4926
   price: 179900
   limit: 10
+  weight: 8.164
   slot: "Legs"
   material: "metal"
   examine: "Guthan the Infested's chainskirt."
-  weight: 8.164
-guthans_chainskirt_0_noted: 4927
+guthans_chainskirt_broken_noted: 4927
 karils_coif_100:
+  &karils_coif_100
   id: 4928
   limit: 10
+  weight: 0.907
+  charges: 22500
+  degrade: karils_coif_75
   slot: "Hat"
   type: "Hair"
   material: "leather"
   examine: "Karil the Tainted's coif."
-  weight: 0.907
 karils_coif_75:
+  <<: *karils_coif_100
   id: 4929
-  limit: 10
-  slot: "Hat"
-  type: "Hair"
-  material: "leather"
-  examine: "Karil the Tainted's coif."
-  weight: 0.907
+  degrade: karils_coif_50
 karils_coif_50:
+  <<: *karils_coif_100
   id: 4930
-  limit: 10
-  slot: "Hat"
-  type: "Hair"
-  material: "leather"
-  examine: "Karil the Tainted's coif."
-  weight: 0.907
+  degrade: karils_coif_25
 karils_coif_25:
+  <<: *karils_coif_100
   id: 4931
-  limit: 10
-  slot: "Hat"
-  type: "Hair"
-  material: "leather"
-  examine: "Karil the Tainted's coif."
-  weight: 0.907
+  degrade: karils_coif_broken
 karils_coif_broken:
   id: 4932
   price: 8114
   limit: 10
+  weight: 0.907
   slot: "Hat"
   type: "Hair"
   material: "leather"
   examine: "Karil the Tainted's coif."
-  weight: 0.907
-karils_coif_0_noted: 4933
+karils_coif_broken_noted: 4933
 karils_crossbow_100:
+  &karils_crossbow_100
   id: 4934
   limit: 10
   attack_range: 8
+  weight: 3.628
+  charges: 22500
+  degrade: karils_crossbow_75
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
-  weight: 3.628
 karils_crossbow_75:
+  <<: *karils_crossbow_100
   id: 4935
-  limit: 10
-  attack_range: 8
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "Karil the Tainted's repeating crossbow."
-  weight: 3.628
+  degrade: karils_crossbow_50
 karils_crossbow_50:
+  <<: *karils_crossbow_100
   id: 4936
-  limit: 10
-  attack_range: 8
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "Karil the Tainted's repeating crossbow."
-  weight: 3.628
+  degrade: karils_crossbow_25
 karils_crossbow_25:
+  <<: *karils_crossbow_100
   id: 4937
-  limit: 10
-  attack_range: 8
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "Karil the Tainted's repeating crossbow."
-  weight: 3.628
+  degrade: karils_crossbow_broken
 karils_crossbow_broken:
   id: 4938
   price: 102400
@@ -21973,387 +21926,319 @@ karils_crossbow_broken:
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
   weight: 3.628
-karils_crossbow_0_noted: 4939
+karils_crossbow_broken_noted: 4939
 karils_top_100:
+  &karils_top_100
   id: 4940
   limit: 10
+  weight: 6.803
+  charges: 22500
+  degrade: karils_top_75
   slot: "Chest"
   material: "leather"
   examine: "Karil the Tainted's leatherbody."
-  weight: 6.803
 karils_top_75:
+  <<: *karils_top_100
   id: 4941
-  limit: 10
-  slot: "Chest"
-  material: "leather"
-  examine: "Karil the Tainted's leatherbody."
-  weight: 6.803
+  degrade: karils_top_50
 karils_top_50:
+  <<: *karils_top_100
   id: 4942
-  limit: 10
-  slot: "Chest"
-  material: "leather"
-  examine: "Karil the Tainted's leatherbody."
-  weight: 6.803
+  degrade: karils_top_25
 karils_top_25:
+  <<: *karils_top_100
   id: 4943
-  limit: 10
-  slot: "Chest"
-  material: "leather"
-  examine: "Karil the Tainted's leatherbody."
-  weight: 6.803
+  degrade: karils_top_broken
 karils_top_broken:
   id: 4944
   price: 3900000
   limit: 10
+  weight: 6.803
   slot: "Chest"
   material: "leather"
   examine: "Karil the Tainted's leatherbody."
-  weight: 6.803
-karils_top_0_noted: 4945
+karils_top_broken_noted: 4945
 karils_skirt_100:
+  &karils_skirt_100
   id: 4946
   limit: 10
+  weight: 5.443
+  charges: 22500
+  degrade: karils_skirt_75
   slot: "Legs"
   material: "leather"
   examine: "Karil the Tainted's leather skirt."
-  weight: 5.443
 karils_skirt_75:
+  <<: *karils_skirt_100
   id: 4947
-  limit: 10
-  slot: "Legs"
-  material: "leather"
-  examine: "Karil the Tainted's leather skirt."
-  weight: 5.443
+  degrade: karils_skirt_50
 karils_skirt_50:
+  <<: *karils_skirt_100
   id: 4948
-  limit: 10
-  slot: "Legs"
-  material: "leather"
-  examine: "Karil the Tainted's leather skirt."
-  weight: 5.443
+  degrade: karils_skirt_25
 karils_skirt_25:
+  <<: *karils_skirt_100
   id: 4949
-  limit: 10
-  slot: "Legs"
-  material: "leather"
-  examine: "Karil the Tainted's leather skirt."
-  weight: 5.443
+  degrade: karils_skirt_broken
 karils_skirt_broken:
   id: 4950
   price: 376900
   limit: 10
+  weight: 5.443
   slot: "Legs"
   material: "leather"
   examine: "Karil the Tainted's leather skirt."
-  weight: 5.443
-karils_skirt_0_noted: 4951
+karils_skirt_broken_noted: 4951
 torags_helm_100:
+  &torags_helm_100
   id: 4952
   limit: 10
+  weight: 2.721
+  charges: 22500
+  degrade: torags_helm_75
   slot: "Hat"
   material: "metal"
   type: "FullFace"
   examine: "Torag the Corrupted's helm."
-  weight: 2.721
 torags_helm_75:
+  <<: *torags_helm_100
   id: 4953
-  limit: 10
-  slot: "Hat"
-  material: "metal"
-  type: "FullFace"
-  examine: "Torag the Corrupted's helm."
-  weight: 2.721
+  degrade: torags_helm_50
 torags_helm_50:
   id: 4954
-  limit: 10
-  slot: "Hat"
-  material: "metal"
-  type: "FullFace"
-  examine: "Torag the Corrupted's helm."
-  weight: 2.721
+  degrade: torags_helm_25
 torags_helm_25:
   id: 4955
-  limit: 10
-  slot: "Hat"
-  material: "metal"
-  type: "FullFace"
-  examine: "Torag the Corrupted's helm."
-  weight: 2.721
+  degrade: torags_helm_broken
 torags_helm_broken:
   id: 4956
   price: 165500
   limit: 10
+  weight: 2.721
   slot: "Hat"
   material: "metal"
   type: "FullFace"
   examine: "Torag the Corrupted's helm."
-  weight: 2.721
-torags_helm_0_noted: 4957
+torags_helm_broken_noted: 4957
 torags_hammers_100:
+  &torags_hammers_100
   id: 4958
   limit: 10
+  weight: 3.628
+  charges: 22500
+  degrade: torags_hammers_75
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Torag the Corrupted's twin hammers."
-  weight: 3.628
 torags_hammers_75:
+  <<: *torags_hammers_100
   id: 4959
-  limit: 10
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "Torag the Corrupted's twin hammers."
-  weight: 3.628
+  degrade: torags_hammers_50
 torags_hammers_50:
+  <<: *torags_hammers_100
   id: 4960
-  limit: 10
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "Torag the Corrupted's twin hammers."
-  weight: 3.628
+  degrade: torags_hammers_25
 torags_hammers_25:
+  <<: *torags_hammers_100
   id: 4961
-  limit: 10
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "Torag the Corrupted's twin hammers."
-  weight: 3.628
-torags_hammers_0_broken:
+  degrade: torags_hammers_broken
+torags_hammers_broken:
   id: 4962
   price: 95000
   limit: 10
+  weight: 3.628
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Torag the Corrupted's twin hammers."
-  weight: 3.628
-torags_hammers_0_noted: 4963
+torags_hammers_broken_noted: 4963
 torags_platebody_100:
+  &torags_platebody_100
   id: 4964
   limit: 10
+  weight: 9.979
+  charges: 22500
+  degrade: torags_platebody_75
   slot: "Chest"
   material: "metal"
   examine: "Torag the Corrupted's plate body armour."
-  weight: 9.979
 torags_platebody_75:
+  <<: *torags_platebody_100
   id: 4965
-  limit: 10
-  slot: "Chest"
-  material: "metal"
-  examine: "Torag the Corrupted's plate body armour."
-  weight: 9.979
+  degrade: torags_platebody_50
 torags_platebody_50:
+  <<: *torags_platebody_100
   id: 4966
-  limit: 10
-  slot: "Chest"
-  material: "metal"
-  examine: "Torag the Corrupted's plate body armour."
-  weight: 9.979
+  degrade: torags_platebody_25
 torags_platebody_25:
+  <<: *torags_platebody_100
   id: 4967
-  limit: 10
-  slot: "Chest"
-  material: "metal"
-  examine: "Torag the Corrupted's plate body armour."
-  weight: 9.979
+  degrade: torags_platebody_broken
 torags_platebody_broken:
   id: 4968
   price: 426933
   limit: 10
+  weight: 9.979
   slot: "Chest"
   material: "metal"
   examine: "Torag the Corrupted's plate body armour."
-  weight: 9.979
-torags_platebody_0_noted: 4969
+torags_platebody_broken_noted: 4969
 torags_platelegs_100:
+  &torags_platelegs_100
   id: 4970
   limit: 10
+  charges: 22500
+  degrade: torags_platelegs_75
   slot: "Legs"
   material: "metal"
   examine: "Torag the Corrupted's plate leg armour."
   weight: 9.071
 torags_platelegs_75:
+  <<: *torags_platelegs_100
   id: 4971
-  limit: 10
-  slot: "Legs"
-  material: "metal"
-  examine: "Torag the Corrupted's plate leg armour."
-  weight: 9.071
+  degrade: torags_platelegs_50
 torags_platelegs_50:
+  <<: *torags_platelegs_100
   id: 4972
-  limit: 10
-  slot: "Legs"
-  material: "metal"
-  examine: "Torag the Corrupted's plate leg armour."
-  weight: 9.071
+  degrade: torags_platelegs_25
 torags_platelegs_25:
+  <<: *torags_platelegs_100
   id: 4973
-  limit: 10
-  slot: "Legs"
-  material: "metal"
-  examine: "Torag the Corrupted's plate leg armour."
-  weight: 9.071
+  degrade: torags_platelegs_broken
 torags_platelegs_broken:
   id: 4974
   price: 575800
   limit: 10
+  weight: 9.071
   slot: "Legs"
   material: "metal"
   examine: "Torag the Corrupted's plate leg armour."
-  weight: 9.071
-torags_platelegs_0_noted: 4975
+torags_platelegs_broken_noted: 4975
 veracs_helm_100:
+  &veracs_helm_100
   id: 4976
   limit: 10
+  weight: 1.36
+  charges: 22500
+  degrade: veracs_helm_75
   slot: "Hat"
   material: "metal"
   type: "FullFace"
   examine: "Verac the Defiled's helm."
-  weight: 1.36
 veracs_helm_75:
+  <<: *veracs_helm_100
   id: 4977
-  limit: 10
-  slot: "Hat"
-  material: "metal"
-  type: "FullFace"
-  examine: "Verac the Defiled's helm."
-  weight: 1.36
+  degrade: veracs_helm_50
 veracs_helm_50:
+  <<: *veracs_helm_100
   id: 4978
-  limit: 10
-  slot: "Hat"
-  material: "metal"
-  type: "FullFace"
-  examine: "Verac the Defiled's helm."
-  weight: 1.36
+  degrade: veracs_helm_25
 veracs_helm_25:
+  <<: *veracs_helm_100
   id: 4979
-  limit: 10
-  slot: "Hat"
-  material: "metal"
-  type: "FullFace"
-  examine: "Verac the Defiled's helm."
-  weight: 1.36
+  degrade: veracs_helm_broken
 veracs_helm_broken:
   id: 4980
   price: 1700000
   limit: 10
+  weight: 1.36
   slot: "Hat"
   material: "metal"
   type: "FullFace"
   examine: "Verac the Defiled's helm."
-  weight: 1.36
-veracs_helm_0_noted: 4981
+veracs_helm_broken_noted: 4981
 veracs_flail_100:
+  &veracs_flail_100
   id: 4982
   limit: 10
+  weight: 2.267
+  charges: 22500
+  degrade: veracs_flail_75
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Verac the Defiled's Flail."
-  weight: 2.267
 veracs_flail_75:
+  <<: *veracs_flail_100
   id: 4983
-  limit: 10
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "Verac the Defiled's Flail."
-  weight: 2.267
+  degrade: veracs_flail_50
 veracs_flail_50:
+  <<: *veracs_flail_100
   id: 4984
-  limit: 10
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "Verac the Defiled's Flail."
-  weight: 2.267
+  degrade: veracs_flail_25
 veracs_flail_25:
+  <<: *veracs_flail_100
   id: 4985
-  limit: 10
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "Verac the Defiled's Flail."
-  weight: 2.267
+  degrade: veracs_flail_broken
 veracs_flail_broken:
   id: 4986
   price: 97900
   limit: 10
+  weight: 2.267
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Verac the Defiled's Flail."
-  weight: 2.267
 veracs_flail_0_noted: 4987
 veracs_brassard_100:
+  &veracs_brassard_100
   id: 4988
   limit: 10
+  weight: 4.989
+  charges: 22500
+  degrade: veracs_brassard_75
   slot: "Chest"
   material: "metal"
   examine: "Verac The Defiled's Brassard."
-  weight: 4.989
 veracs_brassard_75:
+  <<: *veracs_brassard_100
   id: 4989
-  limit: 10
-  slot: "Chest"
-  material: "metal"
-  examine: "Verac The Defiled's Brassard."
-  weight: 4.989
+  degrade: veracs_brassard_50
 veracs_brassard_50:
+  <<: *veracs_brassard_100
   id: 4990
-  limit: 10
-  slot: "Chest"
-  material: "metal"
-  examine: "Verac The Defiled's Brassard."
-  weight: 4.989
+  degrade: veracs_brassard_25
 veracs_brassard_25:
+  <<: *veracs_brassard_100
   id: 4991
-  limit: 10
-  slot: "Chest"
-  material: "metal"
-  examine: "Verac The Defiled's Brassard."
-  weight: 4.989
+  degrade: veracs_brassard_broken
 veracs_brassard_broken:
   id: 4992
   price: 221900
   limit: 10
+  weight: 4.989
   slot: "Chest"
   material: "metal"
   examine: "Verac The Defiled's Brassard."
-  weight: 4.989
-veracs_brassard_0_noted: 4993
+veracs_brassard_broken_noted: 4993
 veracs_plateskirt_100:
+  &veracs_plateskirt_100
   id: 4994
   limit: 10
+  weight: 4.535
+  charges: 22500
+  degrade: veracs_plateskirt_75
   slot: "Legs"
   material: "metal"
   examine: "Verac the Defiled's plate skirt."
-  weight: 4.535
 veracs_plateskirt_75:
+  <<: *veracs_plateskirt_100
   id: 4995
-  limit: 10
-  slot: "Legs"
-  material: "metal"
-  examine: "Verac the Defiled's plate skirt."
-  weight: 4.535
+  degrade: veracs_plateskirt_50
 veracs_plateskirt_50:
+  <<: *veracs_plateskirt_100
   id: 4996
-  limit: 10
-  slot: "Legs"
-  material: "metal"
-  examine: "Verac the Defiled's plate skirt."
-  weight: 4.535
+  degrade: veracs_plateskirt_25
 veracs_plateskirt_25:
+  <<: *veracs_plateskirt_100
   id: 4997
-  limit: 10
-  slot: "Legs"
-  material: "metal"
-  examine: "Verac the Defiled's plate skirt."
-  weight: 4.535
+  degrade: veracs_plateskirt_broken
 veracs_plateskirt_broken:
   id: 4998
   price: 620200
   limit: 10
+  weight: 4.535
   slot: "Legs"
   material: "metal"
   examine: "Verac the Defiled's plate skirt."
-  weight: 4.535
-veracs_plateskirt_0_noted: 4999
+veracs_plateskirt_broken_noted: 4999
 raw_cave_eel:
   id: 5001
   price: 333
