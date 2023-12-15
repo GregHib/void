@@ -11,7 +11,8 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 open class YamlReaderConfiguration(
     private val expectedListSize: Int = 10,
     private val expectedMapSize: Int = DEFAULT_INITIAL_SIZE,
-    private val mapLoadFactor: Float = DEFAULT_LOAD_FACTOR
+    private val mapLoadFactor: Float = DEFAULT_LOAD_FACTOR,
+    val ignoreAnchors: Boolean = false
 ) {
 
     open fun createList(): MutableList<Any> = ObjectArrayList(expectedListSize)

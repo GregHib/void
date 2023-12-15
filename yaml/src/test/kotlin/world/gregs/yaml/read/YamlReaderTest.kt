@@ -49,13 +49,25 @@ class YamlReaderTest {
     }
 
     @Test
-    fun `Parse anchor`() {
+    fun `Parse anchor alias at end`() {
         val output = yaml.read("""
             - &anchor-name one
             - two  
             - *anchor-name
         """.trimIndent())
         val expected = listOf("one", "two", "one")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse anchor alias middle`() {
+        val output = yaml.read("""
+            - &anchor-name one
+            - two  
+            - *anchor-name
+            - three
+        """.trimIndent())
+        val expected = listOf("one", "two", "one", "three")
         assertEquals(expected, output)
     }
 
@@ -83,7 +95,75 @@ class YamlReaderTest {
     }
 
     @Test
-    fun `Parse merge key list anchor`() {
+    fun `Parse merge key anchor map`() {
+        val config = object : YamlReaderConfiguration() {
+            override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+                when (key) {
+                    "<<" -> map.putAll(value as Map<String, Any>)
+                    else -> super.set(map, key, value, indent, parentMap)
+                }
+            }
+        }
+        val output = yaml.read("""
+            key: &anchor-name
+              - one
+              - two
+            key2: three
+            key3:
+              *anchor-name
+              - four
+        """.trimIndent(), config)
+        val expected = mapOf("key" to listOf("one", "two"), "key2" to "three", "key3" to listOf("one", "two", "four"))
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse list anchor`() {
+        val config = object : YamlReaderConfiguration() {
+            override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+                when (key) {
+                    "<<" -> map.putAll(value as Map<String, Any>)
+                    else -> super.set(map, key, value, indent, parentMap)
+                }
+            }
+        }
+        val output = yaml.read("""
+            - &anchor-name
+              - one
+              - two
+            - three
+            - *anchor-name
+              - three
+        """.trimIndent(), config)
+        val expected = listOf(listOf("one", "two"), "three", listOf("one", "two", "three"))
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse merge key list anchor list`() {
+        val config = object : YamlReaderConfiguration() {
+            override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
+                when (key) {
+                    "<<" -> map.putAll(value as Map<String, Any>)
+                    else -> super.set(map, key, value, indent, parentMap)
+                }
+            }
+        }
+        val output = yaml.read("""
+            - &anchor-name
+              one: value
+              two: value
+            - three  
+            - <<: *anchor-name
+              two: 2
+              three: 3
+        """.trimIndent(), config)
+        val expected = listOf(mapOf("one" to "value", "two" to "value"), "three", mapOf("one" to "value", "two" to 2, "three" to 3))
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse merge key list anchor map`() {
         val config = object : YamlReaderConfiguration() {
             override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                 when (key) {
@@ -103,6 +183,111 @@ class YamlReaderTest {
                 four: 4
         """.trimIndent(), config)
         val expected = mapOf("one" to mapOf("two" to "value", "three" to "value"), "four" to listOf(mapOf("two" to "value", "three" to 3, "four" to 4)))
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Ignore anchor alias at end`() {
+        val config = YamlReaderConfiguration(ignoreAnchors = true)
+        val output = yaml.read("""
+            - &anchor-name one
+            - two  
+            - *anchor-name
+        """.trimIndent(), config)
+        val expected = listOf("&anchor-name one", "two", "*anchor-name")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Ignore anchor alias middle`() {
+        val config = YamlReaderConfiguration(ignoreAnchors = true)
+        val output = yaml.read("""
+            - &anchor-name one
+            - two  
+            - *anchor-name
+            - three
+        """.trimIndent(), config)
+        val expected = listOf("&anchor-name one", "two", "*anchor-name", "three")
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Ignore merge key anchor`() {
+        val config = YamlReaderConfiguration(ignoreAnchors = true)
+        val output = yaml.read("""
+            - &anchor-name
+              one: value
+              two: value
+            - three  
+            - <<: *anchor-name
+              two: 2
+              three: 3
+        """.trimIndent(), config)
+        val expected = listOf(mapOf("&" to "anchor-name", "one" to "value", "two" to "value"), "three", mapOf("<<" to "*anchor-name", "two" to 2, "three" to 3))
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Ignore merge key anchor map`() {
+        val config = YamlReaderConfiguration(ignoreAnchors = true)
+        val output = yaml.read("""
+            key: &anchor-name
+              - one
+              - two
+            key2: three
+            key3:
+              *anchor-name
+              - four
+        """.trimIndent(), config)
+        val expected = mapOf("key" to listOf("&anchor-name", "one", "two"), "key2" to "three", "key3" to listOf("*anchor-name", "four"))
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Ignore list anchor`() {
+        val config = YamlReaderConfiguration(ignoreAnchors = true)
+        val output = yaml.read("""
+            - &anchor-name
+              - one
+              - two
+            - three
+            - *anchor-name
+              - four
+        """.trimIndent(), config)
+        val expected = listOf(listOf("&anchor-name", "one", "two"), "three", listOf("*anchor-name", "four"))
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Ignore merge key list anchor list`() {
+        val config = YamlReaderConfiguration(ignoreAnchors = true)
+        val output = yaml.read("""
+            - &anchor-name
+              one: value
+              two: value
+            - three  
+            - <<: *anchor-name
+              two: 2
+              three: 3
+        """.trimIndent(), config)
+        val expected = listOf(mapOf("&" to "anchor-name", "one" to "value", "two" to "value"), "three", mapOf("<<" to "*anchor-name", "two" to 2, "three" to 3))
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Ignore merge key list anchor map`() {
+        val config = YamlReaderConfiguration(ignoreAnchors = true)
+        val output = yaml.read("""
+            one:
+              &anchor-name
+              two: value
+              three: value
+            four:
+              - <<: *anchor-name
+                three: 3
+                four: 4
+        """.trimIndent(), config)
+        val expected = mapOf("one" to mapOf("&" to "anchor-name", "two" to "value", "three" to "value"), "four" to listOf(mapOf("<<" to "*anchor-name", "three" to 3, "four" to 4)))
         assertEquals(expected, output)
     }
 

@@ -7,9 +7,9 @@ import world.gregs.yaml.CharReader
  */
 class NormalCollectionReader(
     reader: CharReader,
-    var config: YamlReaderConfiguration,
+    config: YamlReaderConfiguration,
     private val explicit: ExplicitCollectionReader
-) : YamlReader(reader) {
+) : YamlReader(reader, config) {
 
     override fun explicitList(withinMap: String?) = explicit.explicitList(withinMap)
 
