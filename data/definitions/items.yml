@@ -54557,7 +54557,7 @@ earth_runecrafting_gloves:
 battle_hood_100:
   &battle_hood_100
   id: 12866
-  charges: 6000
+  charges: 30000
   degrade: battle_hood_80
   slot: "Hat"
   type: "Hair"
@@ -54590,7 +54590,7 @@ battle_hood_0_noted: 12872
 battle_robe_top_100:
   &battle_robe_top_100
   id: 12873
-  charges: 6000
+  charges: 30000
   degrade: battle_robe_top_80
   slot: "Chest"
   examine: "Charged - A robe top infused with arcane power, especially created for combat spells. Uncharged - Its arcane power is waning"
@@ -54621,7 +54621,7 @@ battle_robe_top_0_noted: 12879
 battle_robe_bottom_100:
   &battle_robe_bottom_100
   id: 12880
-  charges: 6000
+  charges: 30000
   degrade: battle_robe_bottom_80
   slot: "Legs"
   examine: "A robe bottom infused with arcane power, especially created for combat spells."
@@ -54652,7 +54652,7 @@ battle_robe_bottom_0_noted: 12886
 druidic_mage_hood_100:
   &druidic_mage_hood_100
   id: 12887
-  charges: 6000
+  charges: 30000
   degrade: druidic_mage_hood_80
   slot: "Hat"
   type: "Hair"
@@ -54685,7 +54685,7 @@ druidic_mage_hood_0_noted: 12893
 druidic_mage_top_100:
   &druidic_mage_top_100
   id: 12894
-  charges: 6000
+  charges: 30000
   degrade: druidic_mage_top_80
   slot: "Chest"
   examine: "A magical robe top worn by followers of Guthix."
@@ -54716,7 +54716,7 @@ druidic_mage_top_0_noted: 12900
 druidic_mage_bottom_100:
   &druidic_mage_bottom_100
   id: 12901
-  charges: 6000
+  charges: 30000
   degrade: druidic_mage_bottom_80
   slot: "Legs"
   examine: "A magical robe bottom worn by a person who follows Guthix."
@@ -54747,7 +54747,7 @@ druidic_mage_bottom_0_noted: 12907
 adamant_spikeshield_100:
   &adamant_spikeshield_100
   id: 12908
-  charges: 6000
+  charges: 30000
   degrade: adamant_spikeshield_80
   slot: "Shield"
   material: "metal"
@@ -54780,7 +54780,7 @@ adamant_spikeshield_0_noted: 12914
 adamant_berserker_shield_100:
   &adamant_berserker_shield_100
   id: 12915
-  charges: 6000
+  charges: 30000
   degrade: adamant_berserker_shield_80
   slot: "Shield"
   material: "metal"
@@ -54813,7 +54813,7 @@ adamant_berserker_shield_0_noted: 12921
 rune_spikeshield_100:
   &rune_spikeshield_100
   id: 12922
-  charges: 6000
+  charges: 30000
   degrade: rune_spikeshield_80
   slot: "Shield"
   material: "metal"
@@ -54846,7 +54846,7 @@ rune_spikeshield_0_noted: 12928
 rune_berserker_shield_100:
   &rune_berserker_shield_100
   id: 12929
-  charges: 6000
+  charges: 30000
   degrade: rune_berserker_shield_80
   slot: "Shield"
   material: "metal"
@@ -54880,7 +54880,7 @@ green_dragonhide_coif_normal:
   &green_dragonhide_coif_normal
   id: 12936
   limit: 100
-  charges: 6000
+  charges: 30000
   degrade: green_dragonhide_coif_80
   slot: "Hat"
   material: "leather"
@@ -54916,7 +54916,7 @@ blue_dragonhide_coif_normal:
   &blue_dragonhide_coif_normal
   id: 12943
   limit: 100
-  charges: 6000
+  charges: 30000
   degrade: blue_dragonhide_coif_80
   slot: "Hat"
   material: "leather"
@@ -54952,7 +54952,7 @@ red_dragonhide_coif_normal:
   &red_dragonhide_coif_normal
   id: 12950
   limit: 100
-  charges: 6000
+  charges: 30000
   degrade: red_dragonhide_coif_80
   slot: "Hat"
   material: "leather"
@@ -54988,7 +54988,7 @@ black_dragonhide_coif_normal:
   &black_dragonhide_coif_normal
   id: 12957
   limit: 100
-  charges: 6000
+  charges: 30000
   degrade: black_dragonhide_coif_80
   slot: "Hat"
   material: "leather"
@@ -55024,7 +55024,7 @@ combat_hood_100:
   &combat_hood_100
   id: 12964
   weight: 0.8
-  charges: 6000
+  charges: 30000
   degrade: combat_hood_80
   slot: "Hat"
   type: "Hair"
@@ -55057,7 +55057,7 @@ combat_robe_top_100:
   &combat_robe_top_100
   id: 12971
   weight: 4.0
-  charges: 6000
+  charges: 30000
   degrade: combat_robe_top_80
   slot: "Chest"
   examine: "A magical robe top, especially made for combat spells."
@@ -55088,7 +55088,7 @@ combat_robe_bottom_100:
   &combat_robe_bottom_100
   id: 12978
   weight: 3.0
-  charges: 6000
+  charges: 30000
   degrade: combat_robe_bottom_80
   slot: "Legs"
   examine: "A magical robe bottom, especially created for combat spells."
@@ -58978,6 +58978,8 @@ statiuss_platebody:
   id: 13884
   price: 6000000
   limit: 10
+  charges: 1
+  degrade: statiuss_platebody_degraded
   slot: "Chest"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -58987,6 +58989,8 @@ statiuss_platebody_degraded:
   id: 13886
   limit: 10
   tradeable: false
+  charges: 6000
+  degrade: destroy
   slot: "Chest"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -58995,6 +58999,8 @@ vestas_chainbody:
   id: 13887
   price: 9600000
   limit: 10
+  charges: 1
+  degrade: vestas_chainbody_degraded
   slot: "Chest"
   material: "metal"
   type: "Sleeveless"
@@ -59005,6 +59011,8 @@ vestas_chainbody_degraded:
   id: 13889
   limit: 10
   tradeable: false
+  charges: 6000
+  degrade: destroy
   slot: "Chest"
   material: "metal"
   type: "Sleeveless"
@@ -59014,6 +59022,8 @@ statiuss_platelegs:
   id: 13890
   price: 5400000
   limit: 10
+  charges: 1
+  degrade: statiuss_platelegs_degraded
   slot: "Legs"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -59023,6 +59033,8 @@ statiuss_platelegs_degraded:
   id: 13892
   limit: 10
   tradeable: false
+  charges: 6000
+  degrade: destroy
   slot: "Legs"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -59031,6 +59043,8 @@ vestas_plateskirt:
   id: 13893
   price: 6200000
   limit: 10
+  charges: 1
+  degrade: vestas_plateskirt_degraded
   slot: "Legs"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -59040,6 +59054,8 @@ vestas_plateskirt_degraded:
   id: 13895
   limit: 10
   tradeable: false
+  charges: 6000
+  degrade: destroy
   slot: "Legs"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -59048,6 +59064,8 @@ statiuss_full_helm:
   id: 13896
   price: 2200000
   limit: 10
+  charges: 1
+  degrade: statiuss_full_helm_degraded
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -59058,6 +59076,8 @@ statiuss_full_helm_degraded:
   id: 13898
   limit: 10
   tradeable: false
+  charges: 6000
+  degrade: destroy
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -59069,6 +59089,8 @@ vestas_longsword:
   limit: 10
   aka: [ vls, vestas_long_sword ]
   special_damage_mod_1: 1.2
+  charges: 1
+  degrade: vestas_longsword_degraded
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -59079,6 +59101,8 @@ vestas_longsword_degraded:
   limit: 10
   tradeable: false
   special_damage_mod_1: 1.2
+  charges: 6000
+  degrade: destroy
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -59089,6 +59113,8 @@ statiuss_warhammer:
   limit: 10
   aka: [ stat_ham, stat_hammer, statius_hammer, statiuss_hammer, statius_warhammer ]
   special_damage_mod_1: 1.25
+  charges: 1
+  degrade: statiuss_warhammer_degraded
   slot: "Weapon"
   examine: "This item degrades in combat, and will turn to dust."
   weight: 1.814
@@ -59098,6 +59124,8 @@ statiuss_warhammer_degraded:
   limit: 10
   tradeable: false
   special_damage_mod_1: 1.25
+  charges: 6000
+  degrade: destroy
   slot: "Weapon"
   examine: "This item degrades in combat, and will turn to dust."
   weight: 1.814
@@ -59105,6 +59133,8 @@ vestas_spear:
   id: 13905
   price: 4100000
   limit: 10
+  charges: 1
+  degrade: vestas_spear_degraded
   slot: "Weapon"
   type: "TwoHanded"
   examine: "This item degrades in combat, and will turn to dust."
@@ -59114,6 +59144,8 @@ vestas_spear_degraded:
   id: 13907
   limit: 10
   tradeable: false
+  charges: 6000
+  degrade: destroy
   slot: "Weapon"
   type: "TwoHanded"
   examine: "This item degrades in combat, and will turn to dust."
@@ -59122,6 +59154,8 @@ corrupt_statiuss_platebody:
   id: 13908
   price: 5200000
   limit: 10
+  charges: 1
+  degrade: corrupt_statiuss_platebody_degraded
   slot: "Chest"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59131,6 +59165,8 @@ corrupt_statiuss_platebody_degraded:
   id: 13910
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Chest"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59139,6 +59175,8 @@ corrupt_vestas_chainbody:
   id: 13911
   price: 7600000
   limit: 10
+  charges: 1
+  degrade: corrupt_vestas_chainbody_degraded
   slot: "Chest"
   material: "metal"
   type: "Sleeveless"
@@ -59149,6 +59187,8 @@ corrupt_vestas_chainbody_degraded:
   id: 13913
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Chest"
   material: "metal"
   type: "Sleeveless"
@@ -59158,6 +59198,8 @@ corrupt_statiuss_platelegs:
   id: 13914
   price: 5200000
   limit: 10
+  charges: 1
+  degrade: corrupt_statiuss_platelegs_degraded
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59167,6 +59209,8 @@ corrupt_statiuss_platelegs_degraded:
   id: 13916
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59175,6 +59219,8 @@ corrupt_vestas_plateskirt:
   id: 13917
   price: 5500000
   limit: 10
+  charges: 1
+  degrade: corrupt_vestas_plateskirt_degraded
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59184,6 +59230,8 @@ corrupt_vestas_plateskirt_degraded:
   id: 13919
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59192,6 +59240,8 @@ corrupt_statiuss_full_helm:
   id: 13920
   price: 1700000
   limit: 10
+  charges: 1
+  degrade: corrupt_statiuss_full_helm_degraded
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -59202,6 +59252,8 @@ corrupt_statiuss_full_helm_degraded:
   id: 13922
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -59211,6 +59263,8 @@ corrupt_vestas_longsword:
   id: 13923
   price: 9500000
   limit: 10
+  charges: 1
+  degrade: corrupt_vestas_longsword_degraded
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59220,6 +59274,8 @@ corrupt_vestas_longsword_degraded:
   id: 13925
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59228,6 +59284,8 @@ corrupt_statiuss_warhammer:
   id: 13926
   price: 6100000
   limit: 10
+  charges: 1
+  degrade: corrupt_statiuss_warhammer_degraded
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
@@ -59236,6 +59294,8 @@ corrupt_statiuss_warhammer_degraded:
   id: 13928
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
@@ -59243,6 +59303,8 @@ corrupt_vestas_spear:
   id: 13929
   price: 1100000
   limit: 10
+  charges: 1
+  degrade: corrupt_vestas_spear_degraded
   slot: "Weapon"
   type: "TwoHanded"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59260,6 +59322,8 @@ corrupt_zuriels_robe_top:
   id: 13932
   price: 467200
   limit: 10
+  charges: 1
+  degrade: corrupt_zuriels_robe_top_degraded
   slot: "Chest"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 4.535
@@ -59268,6 +59332,8 @@ corrupt_zuriels_robe_top_degraded:
   id: 13934
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Chest"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 4.535
@@ -59275,6 +59341,8 @@ corrupt_zuriels_robe_bottom:
   id: 13935
   price: 370700
   limit: 10
+  charges: 1
+  degrade: corrupt_zuriels_robe_bottom_degraded
   slot: "Legs"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 5.443
@@ -59283,6 +59351,8 @@ corrupt_zuriels_robe_bottom_degraded:
   id: 13937
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Legs"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 5.443
@@ -59290,6 +59360,8 @@ corrupt_zuriels_hood:
   id: 13938
   price: 137400
   limit: 10
+  charges: 1
+  degrade: corrupt_zuriels_hood_degraded
   slot: "Hat"
   type: "Hair"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59299,6 +59371,8 @@ corrupt_zuriels_hood_degraded:
   id: 13940
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Hat"
   type: "Hair"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59307,6 +59381,8 @@ corrupt_zuriels_staff:
   id: 13941
   price: 1400000
   limit: 10
+  charges: 1
+  degrade: corrupt_zuriels_staff_degraded
   category: "staff"
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59316,6 +59392,8 @@ corrupt_zuriels_staff_degraded:
   id: 13943
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 2.267
@@ -59323,6 +59401,8 @@ corrupt_morrigans_leather_body:
   id: 13944
   price: 1000000
   limit: 10
+  charges: 1
+  degrade: corrupt_morrigans_leather_body_degraded
   slot: "Chest"
   material: "leather"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59332,6 +59412,8 @@ corrupt_morrigans_leather_body_degraded:
   id: 13946
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Chest"
   material: "leather"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59340,6 +59422,8 @@ corrupt_morrigans_leather_chaps:
   id: 13947
   price: 203000
   limit: 10
+  charges: 1
+  degrade: corrupt_morrigans_leather_chaps_degraded
   slot: "Legs"
   material: "leather"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59349,6 +59433,8 @@ corrupt_morrigans_leather_chaps_degraded:
   id: 13949
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Legs"
   material: "leather"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59357,6 +59443,8 @@ corrupt_morrigans_coif:
   id: 13950
   price: 121300
   limit: 10
+  charges: 1
+  degrade: corrupt_morrigans_coif_degraded
   slot: "Hat"
   material: "leather"
   type: "Hair"
@@ -59367,6 +59455,8 @@ corrupt_morrigans_coif_degraded:
   id: 13952
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Hat"
   material: "leather"
   type: "Hair"
