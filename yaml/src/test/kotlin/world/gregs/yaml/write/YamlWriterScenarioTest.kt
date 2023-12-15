@@ -145,7 +145,7 @@ class YamlWriterScenarioTest {
     fun `Write yaml`() {
         val config = YamlWriterConfiguration(
             forceQuoteStrings = true,
-            forceExplicitLists = true
+            formatExplicitListSizeLimit = 0
         )
         val input = mapOf(
             "John Doe" to mapOf(

@@ -8,7 +8,7 @@ import world.gregs.yaml.CharWriter
 class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration, val explicit: ExplicitCollectionWriter) : YamlWriter(writer, config) {
 
     override fun list(list: List<*>, indent: Int, parentMap: String?) {
-        if (config.forceExplicitLists) {
+        if (config.explicit(list, indent, parentMap)) {
             explicit.list(list, indent, parentMap)
             return
         }
@@ -72,11 +72,11 @@ class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration
     }
 
     private fun setList(indent: Int, value: List<Any?>, key: String) {
-        if (!config.forceExplicitLists) {
+        if (config.explicit(value, indent, key)) {
+            writer.append(' ')
+        } else {
             writer.appendLine()
             writer.indent(indent + 1)
-        } else {
-            writer.append(' ')
         }
         list(value, indent + 1, key)
     }
