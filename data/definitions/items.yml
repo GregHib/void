@@ -54451,6 +54451,8 @@ irit_gloves:
   tradeable: false
   bank_stacks: false
   weight: 0.226
+  charges: 100
+  degrade: destroy
   slot: "Hands"
   destroy: "You can buy a new pair from the druids at the Fist of Guthix minigame."
   examine: "A pair of mystical gloves."
@@ -54460,6 +54462,8 @@ avantoe_gloves:
   tradeable: false
   bank_stacks: false
   weight: 0.226
+  charges: 100
+  degrade: destroy
   slot: "Hands"
   destroy: "You can buy a new pair from the druids at Fist of Guthix."
   examine: "A pair of mystical gloves."
@@ -54469,6 +54473,8 @@ kwuarm_gloves:
   tradeable: false
   bank_stacks: false
   weight: 0.226
+  charges: 100
+  degrade: destroy
   slot: "Hands"
   destroy: "You can buy a new pair from the druids at the Fist of Guthix minigame."
   examine: "A pair of mystical gloves."
@@ -54478,6 +54484,8 @@ cadantine_gloves:
   tradeable: false
   bank_stacks: false
   weight: 0.226
+  charges: 100
+  degrade: destroy
   slot: "Hands"
   examine: "A pair of mystical gloves."
   kept: "Reclaim"
@@ -54486,6 +54494,8 @@ swordfish_gloves:
   tradeable: false
   bank_stacks: false
   weight: 0.226
+  charges: 1000
+  degrade: destroy
   slot: "Hands"
   destroy: "You can buy a new pair from the druids at the Fist of Guthix minigame."
   examine: "A pair of mystical gloves."
@@ -54495,6 +54505,8 @@ shark_gloves:
   tradeable: false
   bank_stacks: false
   weight: 0.226
+  charges: 1000
+  degrade: destroy
   slot: "Hands"
   destroy: "You can buy a new pair from the druids at the Fist of Guthix minigame."
   examine: "A pair of mystical gloves."
@@ -54504,6 +54516,8 @@ dragon_slayer_gloves:
   tradeable: false
   bank_stacks: false
   weight: 0.226
+  charges: 1000
+  degrade: destroy
   slot: "Hands"
   examine: "A pair of mystical gloves."
   kept: "Reclaim"
@@ -54512,6 +54526,8 @@ air_runecrafting_gloves:
   tradeable: false
   bank_stacks: false
   weight: 0.226
+  charges: 1000
+  degrade: destroy
   slot: "Hands"
   destroy: "You can buy a new pair from the druids at the Fist of Guthix minigame."
   examine: "A pair of mystical gloves."
@@ -54521,6 +54537,8 @@ water_runecrafting_gloves:
   tradeable: false
   bank_stacks: false
   weight: 0.226
+  charges: 1000
+  degrade: destroy
   slot: "Hands"
   destroy: "You can buy a new pair from the druids at the Fist of Guthix activity."
   examine: "A pair of mystical gloves."
@@ -54530,40 +54548,37 @@ earth_runecrafting_gloves:
   tradeable: false
   bank_stacks: false
   weight: 0.226
+  charges: 1000
+  degrade: destroy
   slot: "Hands"
   destroy: "You can buy a new pair from the druids at the Fist of Guthix minigame."
   examine: "A pair of mystical gloves."
   kept: "Reclaim"
 battle_hood_100:
+  &battle_hood_100
   id: 12866
+  charges: 6000
+  degrade: battle_hood_80
   slot: "Hat"
   type: "Hair"
   examine: "Its arcane power is waning."
   weight: 0.8
 battle_hood_80:
+  <<: *battle_hood_100
   id: 12867
-  slot: "Hat"
-  type: "Hair"
-  examine: "Its arcane power is waning."
-  weight: 0.8
+  degrade: battle_hood_60
 battle_hood_60:
+  <<: *battle_hood_100
   id: 12868
-  slot: "Hat"
-  type: "Hair"
-  examine: "Its arcane power is waning."
-  weight: 0.8
+  degrade: battle_hood_40
 battle_hood_40:
+  <<: *battle_hood_100
   id: 12869
-  slot: "Hat"
-  type: "Hair"
-  examine: "Its arcane power is waning."
-  weight: 0.8
+  degrade: battle_hood_20
 battle_hood_20:
+  <<: *battle_hood_100
   id: 12870
-  slot: "Hat"
-  type: "Hair"
-  examine: "Its arcane power is waning."
-  weight: 0.8
+  degrade: battle_hood_0
 battle_hood_0:
   id: 12871
   price: 76100
@@ -54573,30 +54588,29 @@ battle_hood_0:
   weight: 0.8
 battle_hood_0_noted: 12872
 battle_robe_top_100:
+  &battle_robe_top_100
   id: 12873
+  charges: 6000
+  degrade: battle_robe_top_80
   slot: "Chest"
   examine: "Charged - A robe top infused with arcane power, especially created for combat spells. Uncharged - Its arcane power is waning"
   weight: 4.0
 battle_robe_top_80:
+  <<: *battle_robe_top_100
   id: 12874
-  slot: "Chest"
-  examine: "Charged - A robe top infused with arcane power, especially created for combat spells. Uncharged - Its arcane power is waning"
-  weight: 4.0
+  degrade: battle_robe_top_60
 battle_robe_top_60:
+  <<: *battle_robe_top_100
   id: 12875
-  slot: "Chest"
-  examine: "Charged - A robe top infused with arcane power, especially created for combat spells. Uncharged - Its arcane power is waning"
-  weight: 4.0
+  degrade: battle_robe_top_40
 battle_robe_top_40:
+  <<: *battle_robe_top_100
   id: 12876
-  slot: "Chest"
-  examine: "Charged - A robe top infused with arcane power, especially created for combat spells. Uncharged - Its arcane power is waning"
-  weight: 4.0
+  degrade: battle_robe_top_20
 battle_robe_top_20:
+  <<: *battle_robe_top_100
   id: 12877
-  slot: "Chest"
-  examine: "Charged - A robe top infused with arcane power, especially created for combat spells. Uncharged - Its arcane power is waning"
-  weight: 4.0
+  degrade: battle_robe_top_0
 battle_robe_top_0:
   id: 12878
   price: 715100
@@ -54605,30 +54619,29 @@ battle_robe_top_0:
   weight: 4.0
 battle_robe_top_0_noted: 12879
 battle_robe_bottom_100:
+  &battle_robe_bottom_100
   id: 12880
+  charges: 6000
+  degrade: battle_robe_bottom_80
   slot: "Legs"
   examine: "A robe bottom infused with arcane power, especially created for combat spells."
   weight: 3.0
 battle_robe_bottom_80:
+  <<: *battle_robe_bottom_100
   id: 12881
-  slot: "Legs"
-  examine: "A robe bottom infused with arcane power, especially created for combat spells."
-  weight: 3.0
+  degrade: battle_robe_bottom_60
 battle_robe_bottom_60:
+  <<: *battle_robe_bottom_100
   id: 12882
-  slot: "Legs"
-  examine: "A robe bottom infused with arcane power, especially created for combat spells."
-  weight: 3.0
+  degrade: battle_robe_bottom_40
 battle_robe_bottom_40:
+  <<: *battle_robe_bottom_100
   id: 12883
-  slot: "Legs"
-  examine: "A robe bottom infused with arcane power, especially created for combat spells."
-  weight: 3.0
+  degrade: battle_robe_bottom_20
 battle_robe_bottom_20:
+  <<: *battle_robe_bottom_100
   id: 12884
-  slot: "Legs"
-  examine: "A robe bottom infused with arcane power, especially created for combat spells."
-  weight: 3.0
+  degrade: battle_robe_bottom_0
 battle_robe_bottom_0:
   id: 12885
   price: 247500
@@ -54637,35 +54650,30 @@ battle_robe_bottom_0:
   weight: 3.0
 battle_robe_bottom_0_noted: 12886
 druidic_mage_hood_100:
+  &druidic_mage_hood_100
   id: 12887
+  charges: 6000
+  degrade: druidic_mage_hood_80
   slot: "Hat"
   type: "Hair"
   examine: "A worn-out hood, formerly worn by the followers of Guthix."
   weight: 0.8
 druidic_mage_hood_80:
+  <<: *druidic_mage_hood_100
   id: 12888
-  slot: "Hat"
-  type: "Hair"
-  examine: "A worn-out hood, formerly worn by the followers of Guthix."
-  weight: 0.8
+  degrade: druidic_mage_hood_60
 druidic_mage_hood_60:
+  <<: *druidic_mage_hood_100
   id: 12889
-  slot: "Hat"
-  type: "Hair"
-  examine: "A worn-out hood, formerly worn by the followers of Guthix."
-  weight: 0.8
+  degrade: druidic_mage_hood_40
 druidic_mage_hood_40:
+  <<: *druidic_mage_hood_100
   id: 12890
-  slot: "Hat"
-  type: "Hair"
-  examine: "A worn-out hood, formerly worn by the followers of Guthix."
-  weight: 0.8
+  degrade: druidic_mage_hood_20
 druidic_mage_hood_20:
+  <<: *druidic_mage_hood_100
   id: 12891
-  slot: "Hat"
-  type: "Hair"
-  examine: "A worn-out hood, formerly worn by the followers of Guthix."
-  weight: 0.8
+  degrade: druidic_mage_hood_0
 druidic_mage_hood_0:
   id: 12892
   price: 8990
@@ -54675,30 +54683,29 @@ druidic_mage_hood_0:
   weight: 0.8
 druidic_mage_hood_0_noted: 12893
 druidic_mage_top_100:
+  &druidic_mage_top_100
   id: 12894
+  charges: 6000
+  degrade: druidic_mage_top_80
   slot: "Chest"
   examine: "A magical robe top worn by followers of Guthix."
   weight: 4.0
 druidic_mage_top_80:
+  <<: *druidic_mage_top_100
   id: 12895
-  slot: "Chest"
-  examine: "A magical robe top worn by followers of Guthix."
-  weight: 4.0
+  degrade: druidic_mage_top_60
 druidic_mage_top_60:
+  <<: *druidic_mage_top_100
   id: 12896
-  slot: "Chest"
-  examine: "A magical robe top worn by followers of Guthix."
-  weight: 4.0
+  degrade: druidic_mage_top_40
 druidic_mage_top_40:
+  <<: *druidic_mage_top_100
   id: 12897
-  slot: "Chest"
-  examine: "A magical robe top worn by followers of Guthix."
-  weight: 4.0
+  degrade: druidic_mage_top_20
 druidic_mage_top_20:
+  <<: *druidic_mage_top_100
   id: 12898
-  slot: "Chest"
-  examine: "A magical robe top worn by followers of Guthix."
-  weight: 4.0
+  degrade: druidic_mage_top_0
 druidic_mage_top_0:
   id: 12899
   price: 88000
@@ -54707,30 +54714,29 @@ druidic_mage_top_0:
   weight: 4.0
 druidic_mage_top_0_noted: 12900
 druidic_mage_bottom_100:
+  &druidic_mage_bottom_100
   id: 12901
+  charges: 6000
+  degrade: druidic_mage_bottom_80
   slot: "Legs"
   examine: "A magical robe bottom worn by a person who follows Guthix."
   weight: 3.0
 druidic_mage_bottom_80:
+  <<: *druidic_mage_bottom_100
   id: 12902
-  slot: "Legs"
-  examine: "A magical robe bottom worn by a person who follows Guthix."
-  weight: 3.0
+  degrade: druidic_mage_bottom_60
 druidic_mage_bottom_60:
+  <<: *druidic_mage_bottom_100
   id: 12903
-  slot: "Legs"
-  examine: "A magical robe bottom worn by a person who follows Guthix."
-  weight: 3.0
+  degrade: druidic_mage_bottom_40
 druidic_mage_bottom_40:
+  <<: *druidic_mage_bottom_100
   id: 12904
-  slot: "Legs"
-  examine: "A magical robe bottom worn by a person who follows Guthix."
-  weight: 3.0
+  degrade: druidic_mage_bottom_20
 druidic_mage_bottom_20:
+  <<: *druidic_mage_bottom_100
   id: 12905
-  slot: "Legs"
-  examine: "A magical robe bottom worn by a person who follows Guthix."
-  weight: 3.0
+  degrade: druidic_mage_bottom_0
 druidic_mage_bottom_0:
   id: 12906
   price: 77300
@@ -54739,73 +54745,63 @@ druidic_mage_bottom_0:
   weight: 3.0
 druidic_mage_bottom_0_noted: 12907
 adamant_spikeshield_100:
+  &adamant_spikeshield_100
   id: 12908
+  charges: 6000
+  degrade: adamant_spikeshield_80
   slot: "Shield"
   material: "metal"
   examine: "Not so spiky anymore."
   weight: 5.0
 adamant_spikeshield_80:
+  <<: *adamant_spikeshield_100
   id: 12909
-  slot: "Shield"
-  material: "metal"
-  examine: "Not so spiky anymore."
-  weight: 5.0
+  degrade: adamant_spikeshield_60
 adamant_spikeshield_60:
+  <<: *adamant_spikeshield_100
   id: 12910
-  slot: "Shield"
-  material: "metal"
-  examine: "Not so spiky anymore."
-  weight: 5.0
+  degrade: adamant_spikeshield_40
 adamant_spikeshield_40:
+  <<: *adamant_spikeshield_100
   id: 12911
-  slot: "Shield"
-  material: "metal"
-  examine: "Not so spiky anymore."
-  weight: 5.0
+  degrade: adamant_spikeshield_20
 adamant_spikeshield_20:
+  <<: *adamant_spikeshield_100
   id: 12912
-  slot: "Shield"
-  material: "metal"
-  examine: "Not so spiky anymore."
-  weight: 5.0
+  degrade: adamant_spikeshield_0
 adamant_spikeshield_0:
   id: 12913
   price: 2257
+  weight: 5.0
   slot: "Shield"
   material: "metal"
   examine: "Not so spiky anymore."
-  weight: 5.0
 adamant_spikeshield_0_noted: 12914
 adamant_berserker_shield_100:
+  &adamant_berserker_shield_100
   id: 12915
+  charges: 6000
+  degrade: adamant_berserker_shield_80
   slot: "Shield"
   material: "metal"
   examine: "Not so spiky anymore!"
   weight: 7.0
 adamant_berserker_shield_80:
+  <<: *adamant_berserker_shield_100
   id: 12916
-  slot: "Shield"
-  material: "metal"
-  examine: "Not so spiky anymore!"
-  weight: 7.0
+  degrade: adamant_berserker_shield_60
 adamant_berserker_shield_60:
+  <<: *adamant_berserker_shield_100
   id: 12917
-  slot: "Shield"
-  material: "metal"
-  examine: "Not so spiky anymore!"
-  weight: 7.0
+  degrade: adamant_berserker_shield_40
 adamant_berserker_shield_40:
+  <<: *adamant_berserker_shield_100
   id: 12918
-  slot: "Shield"
-  material: "metal"
-  examine: "Not so spiky anymore!"
-  weight: 7.0
+  degrade: adamant_berserker_shield_20
 adamant_berserker_shield_20:
+  <<: *adamant_berserker_shield_100
   id: 12919
-  slot: "Shield"
-  material: "metal"
-  examine: "Not so spiky anymore!"
-  weight: 7.0
+  degrade: adamant_berserker_shield_0
 adamant_berserker_shield_0:
   id: 12920
   price: 24800
@@ -54815,35 +54811,30 @@ adamant_berserker_shield_0:
   weight: 7.0
 adamant_berserker_shield_0_noted: 12921
 rune_spikeshield_100:
+  &rune_spikeshield_100
   id: 12922
+  charges: 6000
+  degrade: rune_spikeshield_80
   slot: "Shield"
   material: "metal"
   examine: "A spiked, medium square shield."
   weight: 4.0
 rune_spikeshield_80:
+  <<: *rune_spikeshield_100
   id: 12923
-  slot: "Shield"
-  material: "metal"
-  examine: "A spiked, medium square shield."
-  weight: 4.0
+  degrade: rune_spikeshield_60
 rune_spikeshield_60:
+  <<: *rune_spikeshield_100
   id: 12924
-  slot: "Shield"
-  material: "metal"
-  examine: "A spiked, medium square shield."
-  weight: 4.0
+  degrade: rune_spikeshield_40
 rune_spikeshield_40:
+  <<: *rune_spikeshield_100
   id: 12925
-  slot: "Shield"
-  material: "metal"
-  examine: "A spiked, medium square shield."
-  weight: 4.0
+  degrade: rune_spikeshield_20
 rune_spikeshield_20:
+  <<: *rune_spikeshield_100
   id: 12926
-  slot: "Shield"
-  material: "metal"
-  examine: "A spiked, medium square shield."
-  weight: 4.0
+  degrade: rune_spikeshield_0
 rune_spikeshield_0:
   id: 12927
   price: 36400
@@ -54853,35 +54844,30 @@ rune_spikeshield_0:
   weight: 4.0
 rune_spikeshield_0_noted: 12928
 rune_berserker_shield_100:
+  &rune_berserker_shield_100
   id: 12929
+  charges: 6000
+  degrade: rune_berserker_shield_80
   slot: "Shield"
   material: "metal"
   examine: "Not so spiky anymore."
   weight: 6.0
 rune_berserker_shield_80:
+  <<: *rune_berserker_shield_100
   id: 12930
-  slot: "Shield"
-  material: "metal"
-  examine: "Not so spiky anymore."
-  weight: 6.0
+  degrade: rune_berserker_shield_60
 rune_berserker_shield_60:
+  <<: *rune_berserker_shield_100
   id: 12931
-  slot: "Shield"
-  material: "metal"
-  examine: "Not so spiky anymore."
-  weight: 6.0
+  degrade: rune_berserker_shield_40
 rune_berserker_shield_40:
+  <<: *rune_berserker_shield_100
   id: 12932
-  slot: "Shield"
-  material: "metal"
-  examine: "Not so spiky anymore."
-  weight: 6.0
+  degrade: rune_berserker_shield_20
 rune_berserker_shield_20:
+  <<: *rune_berserker_shield_100
   id: 12933
-  slot: "Shield"
-  material: "metal"
-  examine: "Not so spiky anymore."
-  weight: 6.0
+  degrade: rune_berserker_shield_0
 rune_berserker_shield_0:
   id: 12934
   price: 83300
@@ -54891,45 +54877,32 @@ rune_berserker_shield_0:
   weight: 6.0
 rune_berserker_shield_0_noted: 12935
 green_dragonhide_coif_normal:
+  &green_dragonhide_coif_normal
   id: 12936
   limit: 100
+  charges: 6000
+  degrade: green_dragonhide_coif_80
   slot: "Hat"
   material: "leather"
   type: "Hair"
   examine: "A coif made of green dragonhide."
   weight: 0.9
 green_dragonhide_coif_80:
+  <<: *green_dragonhide_coif_normal
   id: 12937
-  limit: 100
-  slot: "Hat"
-  material: "leather"
-  type: "Hair"
-  examine: "A coif made of green dragonhide."
-  weight: 0.9
+  degrade: green_dragonhide_coif_60
 green_dragonhide_coif_60:
+  <<: *green_dragonhide_coif_normal
   id: 12938
-  limit: 100
-  slot: "Hat"
-  material: "leather"
-  type: "Hair"
-  examine: "A coif made of green dragonhide."
-  weight: 0.9
+  degrade: green_dragonhide_coif_40
 green_dragonhide_coif_40:
+  <<: *green_dragonhide_coif_normal
   id: 12939
-  limit: 100
-  slot: "Hat"
-  material: "leather"
-  type: "Hair"
-  examine: "A coif made of green dragonhide."
-  weight: 0.9
+  degrade: green_dragonhide_coif_20
 green_dragonhide_coif_20:
+  <<: *green_dragonhide_coif_normal
   id: 12940
-  limit: 100
-  slot: "Hat"
-  material: "leather"
-  type: "Hair"
-  examine: "A coif made of green dragonhide."
-  weight: 0.9
+  degrade: green_dragonhide_coif_0
 green_dragonhide_coif_0:
   id: 12941
   limit: 100
@@ -54940,45 +54913,32 @@ green_dragonhide_coif_0:
   weight: 0.9
 green_dhide_coif_0_noted: 12942
 blue_dragonhide_coif_normal:
+  &blue_dragonhide_coif_normal
   id: 12943
   limit: 100
+  charges: 6000
+  degrade: blue_dragonhide_coif_80
   slot: "Hat"
   material: "leather"
   type: "Hair"
   examine: "A coif made of blue dragonhide."
   weight: 0.9
 blue_dragonhide_coif_80:
+  <<: *blue_dragonhide_coif_normal
   id: 12944
-  limit: 100
-  slot: "Hat"
-  material: "leather"
-  type: "Hair"
-  examine: "A coif made of blue dragonhide."
-  weight: 0.9
+  degrade: blue_dragonhide_coif_60
 blue_dragonhide_coif_60:
+  <<: *blue_dragonhide_coif_normal
   id: 12945
-  limit: 100
-  slot: "Hat"
-  material: "leather"
-  type: "Hair"
-  examine: "A coif made of blue dragonhide."
-  weight: 0.9
+  degrade: blue_dragonhide_coif_40
 blue_dragonhide_coif_40:
+  <<: *blue_dragonhide_coif_normal
   id: 12946
-  limit: 100
-  slot: "Hat"
-  material: "leather"
-  type: "Hair"
-  examine: "A coif made of blue dragonhide."
-  weight: 0.9
+  degrade: blue_dragonhide_coif_20
 blue_dragonhide_coif_20:
+  <<: *blue_dragonhide_coif_normal
   id: 12947
-  limit: 100
-  slot: "Hat"
-  material: "leather"
-  type: "Hair"
-  examine: "A coif made of blue dragonhide."
-  weight: 0.9
+  degrade: blue_dragonhide_coif_0
 blue_dragonhide_coif_0:
   id: 12948
   limit: 100
@@ -54989,45 +54949,32 @@ blue_dragonhide_coif_0:
   weight: 0.9
 blue_dhide_coif_0_noted: 12949
 red_dragonhide_coif_normal:
+  &red_dragonhide_coif_normal
   id: 12950
   limit: 100
+  charges: 6000
+  degrade: red_dragonhide_coif_80
   slot: "Hat"
   material: "leather"
   type: "Hair"
   examine: "A coif made of red dragonhide."
   weight: 0.9
 red_dragonhide_coif_80:
+  <<: *red_dragonhide_coif_normal
   id: 12951
-  limit: 100
-  slot: "Hat"
-  material: "leather"
-  type: "Hair"
-  examine: "A coif made of red dragonhide."
-  weight: 0.9
+  degrade: red_dragonhide_coif_60
 red_dragonhide_coif_60:
+  <<: *red_dragonhide_coif_normal
   id: 12952
-  limit: 100
-  slot: "Hat"
-  material: "leather"
-  type: "Hair"
-  examine: "A coif made of red dragonhide."
-  weight: 0.9
+  degrade: red_dragonhide_coif_40
 red_dragonhide_coif_40:
+  <<: *red_dragonhide_coif_normal
   id: 12953
-  limit: 100
-  slot: "Hat"
-  material: "leather"
-  type: "Hair"
-  examine: "A coif made of red dragonhide."
-  weight: 0.9
+  degrade: red_dragonhide_coif_20
 red_dragonhide_coif_20:
+  <<: *red_dragonhide_coif_normal
   id: 12954
-  limit: 100
-  slot: "Hat"
-  material: "leather"
-  type: "Hair"
-  examine: "A coif made of red dragonhide."
-  weight: 0.9
+  degrade: red_dragonhide_coif_0
 red_dragonhide_coif_0:
   id: 12955
   limit: 100
@@ -55038,45 +54985,32 @@ red_dragonhide_coif_0:
   weight: 0.9
 red_dhide_coif_0_noted: 12956
 black_dragonhide_coif_normal:
+  &black_dragonhide_coif_normal
   id: 12957
   limit: 100
+  charges: 6000
+  degrade: black_dragonhide_coif_80
   slot: "Hat"
   material: "leather"
   type: "Hair"
   examine: "A coif made of black dragonhide."
   weight: 0.9
 black_dragonhide_coif_80:
+  <<: *black_dragonhide_coif_normal
   id: 12958
-  limit: 100
-  slot: "Hat"
-  material: "leather"
-  type: "Hair"
-  examine: "A coif made of black dragonhide."
-  weight: 0.9
+  degrade: black_dragonhide_coif_60
 black_dragonhide_coif_60:
+  <<: *black_dragonhide_coif_normal
   id: 12959
-  limit: 100
-  slot: "Hat"
-  material: "leather"
-  type: "Hair"
-  examine: "A coif made of black dragonhide."
-  weight: 0.9
+  degrade: black_dragonhide_coif_40
 black_dragonhide_coif_40:
+  <<: *black_dragonhide_coif_normal
   id: 12960
-  limit: 100
-  slot: "Hat"
-  material: "leather"
-  type: "Hair"
-  examine: "A coif made of black dragonhide."
-  weight: 0.9
+  degrade: black_dragonhide_coif_20
 black_dragonhide_coif_20:
+  <<: *black_dragonhide_coif_normal
   id: 12961
-  limit: 100
-  slot: "Hat"
-  material: "leather"
-  type: "Hair"
-  examine: "A coif made of black dragonhide."
-  weight: 0.9
+  degrade: black_dragonhide_coif_0
 black_dragonhide_coif_0:
   id: 12962
   limit: 100
@@ -55087,115 +55021,109 @@ black_dragonhide_coif_0:
   weight: 0.9
 black_dhide_coif_0_noted: 12963
 combat_hood_100:
+  &combat_hood_100
   id: 12964
+  weight: 0.8
+  charges: 6000
+  degrade: combat_hood_80
   slot: "Hat"
   type: "Hair"
   examine: "A magical hood, especially created for combat spells."
-  weight: 0.8
 combat_hood_80:
+  <<: *combat_hood_100
   id: 12965
-  slot: "Hat"
-  type: "Hair"
-  examine: "A magical hood, especially created for combat spells."
-  weight: 0.8
+  degrade: combat_hood_60
 combat_hood_60:
+  <<: *combat_hood_100
   id: 12966
-  slot: "Hat"
-  type: "Hair"
-  examine: "A magical hood, especially created for combat spells."
-  weight: 0.8
+  degrade: combat_hood_40
 combat_hood_40:
+  <<: *combat_hood_100
   id: 12967
-  slot: "Hat"
-  type: "Hair"
-  examine: "A magical hood, especially created for combat spells."
-  weight: 0.8
+  degrade: combat_hood_20
 combat_hood_20:
+  <<: *combat_hood_100
   id: 12968
-  slot: "Hat"
-  type: "Hair"
-  examine: "A magical hood, especially created for combat spells."
-  weight: 0.8
+  degrade: combat_hood_0
 combat_hood_0:
   id: 12969
   price: 7206
+  weight: 0.8
   slot: "Hat"
   type: "Hair"
   examine: "A worn-out magical hood, especially created for combat spells."
-  weight: 0.8
 combat_hood_0_noted: 12970
 combat_robe_top_100:
+  &combat_robe_top_100
   id: 12971
+  weight: 4.0
+  charges: 6000
+  degrade: combat_robe_top_80
   slot: "Chest"
   examine: "A magical robe top, especially made for combat spells."
-  weight: 4.0
 combat_robe_top_80:
+  <<: *combat_robe_top_100
   id: 12972
-  slot: "Chest"
-  examine: "A magical robe top, especially made for combat spells."
-  weight: 4.0
+  degrade: combat_robe_top_60
 combat_robe_top_60:
+  <<: *combat_robe_top_100
   id: 12973
-  slot: "Chest"
-  examine: "A magical robe top, especially made for combat spells."
-  weight: 4.0
+  degrade: combat_robe_top_40
 combat_robe_top_40:
+  <<: *combat_robe_top_100
   id: 12974
-  slot: "Chest"
-  examine: "A magical robe top, especially made for combat spells."
-  weight: 4.0
+  degrade: combat_robe_top_20
 combat_robe_top_20:
+  <<: *combat_robe_top_100
   id: 12975
-  slot: "Chest"
-  examine: "A magical robe top, especially made for combat spells."
-  weight: 4.0
+  degrade: combat_robe_top_0
 combat_robe_top_0:
   id: 12976
   price: 58600
+  weight: 4.0
   slot: "Chest"
   examine: "A worn-out magical robe top, especially created for combat spells."
-  weight: 4.0
 combat_robe_top_0_noted: 12977
 combat_robe_bottom_100:
+  &combat_robe_bottom_100
   id: 12978
+  weight: 3.0
+  charges: 6000
+  degrade: combat_robe_bottom_80
   slot: "Legs"
   examine: "A magical robe bottom, especially created for combat spells."
-  weight: 3.0
 combat_robe_bottom_80:
+  <<: *combat_robe_bottom_100
   id: 12979
-  slot: "Legs"
-  examine: "A magical robe bottom, especially created for combat spells."
-  weight: 3.0
+  degrade: combat_robe_bottom_60
 combat_robe_bottom_60:
+  <<: *combat_robe_bottom_100
   id: 12980
-  slot: "Legs"
-  examine: "A magical robe bottom, especially created for combat spells."
-  weight: 3.0
+  degrade: combat_robe_bottom_40
 combat_robe_bottom_40:
+  <<: *combat_robe_bottom_100
   id: 12981
-  slot: "Legs"
-  examine: "A magical robe bottom, especially created for combat spells."
-  weight: 3.0
+  degrade: combat_robe_bottom_20
 combat_robe_bottom_20:
+  <<: *combat_robe_bottom_100
   id: 12982
-  slot: "Legs"
-  examine: "A magical robe bottom, especially created for combat spells."
-  weight: 3.0
+  degrade: combat_robe_bottom_0
 combat_robe_bottom_0:
   id: 12983
   price: 45100
+  weight: 3.0
   slot: "Legs"
   examine: "A worn-out magical robe bottom, especially created for combat spells."
-  weight: 3.0
 combat_robe_bottom_0_noted: 12984
 bronze_gauntlets:
   id: 12985
   limit: 100
   weight: 0.005
+  degrade: worn_out_bronze_gauntlets
   slot: "Hands"
   material: "metal"
-  examine: "A pair of bronze gauntlets."
   kept: "Wilderness"
+  examine: "A pair of bronze gauntlets."
 worn_out_bronze_gauntlets:
   id: 12986
   limit: 100
@@ -55206,6 +55134,7 @@ worn_out_bronze_gauntlets_noted: 12987
 iron_gauntlets:
   id: 12988
   weight: 0.005
+  degrade: worn_out_iron_gauntlets
   slot: "Hands"
   material: "metal"
   examine: "A pair of iron gauntlets."
@@ -55219,6 +55148,7 @@ worn_out_iron_gauntlets_noted: 12990
 steel_gauntlets:
   id: 12991
   weight: 0.005
+  degrade: worn_out_steel_gauntlets
   slot: "Hands"
   material: "metal"
   examine: "A pair of steel gauntlets."
@@ -55232,6 +55162,7 @@ worn_out_steel_gauntlets_noted: 12993
 black_gauntlets:
   id: 12994
   limit: 10
+  degrade: black_gauntlets_worn_out
   slot: "Hands"
   material: "metal"
   examine: "I have to keep my hands safe!"
@@ -55249,6 +55180,7 @@ mithril_gauntlets:
   id: 12997
   limit: 100
   weight: 0.005
+  degrade: worn_out_mithril_gauntlets
   slot: "Hands"
   material: "metal"
   examine: "A pair of mithril gauntlets."
@@ -55263,6 +55195,7 @@ adamant_gauntlets:
   id: 13000
   limit: 100
   weight: 0.005
+  degrade: worn_out_adamant_gauntlets
   slot: "Hands"
   material: "metal"
   examine: "A pair of adamant gauntlets."
@@ -55277,6 +55210,7 @@ rune_gauntlets:
   id: 13003
   limit: 100
   weight: 0.005
+  degrade: worn_out_rune_gauntlets
   slot: "Hands"
   material: "metal"
   examine: "A pair of rune gauntlets."
@@ -55290,6 +55224,7 @@ worn_out_rune_gauntlets_noted: 13005
 dragon_gauntlets:
   id: 13006
   limit: 10
+  degrade: dragon_gauntlets_worn_out
   slot: "Hands"
   material: "metal"
   examine: "I have to keep my hands safe!"
