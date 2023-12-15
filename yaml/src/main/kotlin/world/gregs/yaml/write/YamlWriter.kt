@@ -9,7 +9,7 @@ abstract class YamlWriter(val writer: CharWriter, var config: YamlWriterConfigur
 
     fun value(value: Any?, indent: Int, parentMap: String?) {
         when (val v = value ?: return) {
-            is String -> string(v)
+            is String -> string(v, parentMap)
             is List<*> -> list(v, indent, parentMap)
             is Map<*, *> -> map(v, indent, parentMap)
             is Array<*> -> list(v.toList(), indent, parentMap)
@@ -29,15 +29,18 @@ abstract class YamlWriter(val writer: CharWriter, var config: YamlWriterConfigur
 
     abstract fun map(map: Map<*, *>, indent: Int, parentMap: String?)
 
-    fun string(value: String) {
-        if (config.quoteStrings) {
+    fun string(value: String, parentMap: String?) {
+        val anchor = anchor(value, parentMap)
+        if (config.quoteStrings && !anchor) {
             writer.append('"')
         }
         write(value)
-        if (config.quoteStrings) {
+        if (config.quoteStrings && !anchor) {
             writer.append('"')
         }
     }
+
+    private fun anchor(value: String, parentMap: String?) = parentMap == "&" || parentMap == "<<" || value.startsWith('&') || value.startsWith('*')
 
     fun write(value: String) {
         for (char in value) {

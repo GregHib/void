@@ -98,8 +98,10 @@ class ExplicitCollectionWriter(writer: CharWriter, config: YamlWriterConfigurati
         if (config.quoteKeys) {
             writer.append('"')
         }
-        writer.append(':')
-        writer.append(' ')
+        if (key != "&") {
+            writer.append(':')
+            writer.append(' ')
+        }
         return key
     }
 }

@@ -43,7 +43,9 @@ class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration
             if (config.quoteKeys) {
                 writer.append('"')
             }
-            writer.append(':')
+            if (key != "&") {
+                writer.append(':')
+            }
             index++
             when (val value = config.write(v, indent, parentMap) ?: continue) {
                 is Map<*, *> -> {
@@ -62,7 +64,9 @@ class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration
                 is DoubleArray -> setList(indent, value.toList(), key)
                 is LongArray -> setList(indent, value.toList(), key)
                 else -> {
-                    writer.append(' ')
+                    if (key != "&") {
+                        writer.append(' ')
+                    }
                     value(value, indent, key)
                 }
             }

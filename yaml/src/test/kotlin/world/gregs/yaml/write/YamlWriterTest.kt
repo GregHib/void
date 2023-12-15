@@ -50,4 +50,38 @@ class YamlWriterTest {
         """.trimIndent()
         assertEquals(expected, actual)
     }
+
+    @Test
+    fun `Write merge key map anchor`() {
+        val config = YamlWriterConfiguration(
+            quoteStrings = true
+        )
+        val input = mapOf("one" to mapOf("&" to "anchor-name", "two" to "value"), "three" to 3, "four" to mapOf("<<" to "*anchor-name", "five" to 5))
+        val actual = yaml.writeToString(input, config)
+        val expected = """
+            one:
+              &anchor-name
+              two: "value"
+            three: 3
+            four:
+              <<: *anchor-name
+              five: 5
+        """.trimIndent()
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `Write list anchor`() {
+        val config = YamlWriterConfiguration(
+            quoteStrings = true
+        )
+        val input = listOf(listOf("&anchor-name", "one", "two"), "three", listOf("*anchor-name", "four"))
+        val actual = yaml.writeToString(input, config)
+        val expected = """
+            - [ &anchor-name, "one", "two" ]
+            - "three"
+            - [ *anchor-name, "four" ]
+        """.trimIndent()
+        assertEquals(expected, actual)
+    }
 }
