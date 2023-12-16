@@ -59945,6 +59945,7 @@ volatile_clay_pickaxe:
   mining_delay: 3
   skill_req:
     mining: 50
+  charges: 29340
   aka: [ volatile_pickaxe, volatile_pick ]
   examine: "Your volatile tool wants to mine some rocks."
   weight: 2.0
@@ -59954,36 +59955,42 @@ volatile_clay_hatchet:
   rank: 6
   skill_req:
     woodcutting: 50
+  charges: 29340
   slot: "Weapon"
   examine: "Your volatile tool wants to cut some wood."
   weight: 2.0
 volatile_clay_harpoon:
   id: 14101
   bank_stacks: false
+  charges: 29340
   slot: "Weapon"
   examine: "Your volatile tool wants to spear some big fish."
   weight: 2.0
 volatile_clay_butterfly_net:
   id: 14102
   bank_stacks: false
+  charges: 29340
   slot: "Weapon"
   examine: "Your volatile tool wants to catch some butterflies."
   weight: 2.0
 volatile_clay_fletching_knife:
   id: 14103
   bank_stacks: false
+  charges: 29340
   slot: "Weapon"
   examine: "Your volatile tool wants to make some bows or arrows."
   weight: 2.0
 volatile_clay_hammer:
   id: 14104
   bank_stacks: false
+  charges: 29340
   slot: "Weapon"
   examine: "Your volatile tool wants to work metal or build furniture."
   weight: 2.0
 volatile_clay_needle:
   id: 14105
   bank_stacks: false
+  charges: 29340
   examine: "Your volatile tool wants to make some leather armour."
   weight: 2.0
 proto_tool:
@@ -59996,6 +60003,7 @@ sacred_clay_pickaxe:
   mining_delay: 3
   skill_req:
     mining: 50
+  charges: 24450
   aka: [ sacred_pickaxe, sacred_pick ]
   examine: "Your sacred clay tool has transformed into a pickaxe."
   weight: 2.0
@@ -60005,59 +60013,69 @@ sacred_clay_hatchet:
   rank: 6
   skill_req:
     woodcutting: 50
+  charges: 24450
   slot: "Weapon"
   examine: "Your sacred clay tool has transformed into a hatchet."
   weight: 2.0
 sacred_clay_harpoon:
   id: 14109
   bank_stacks: false
+  charges: 24450
   slot: "Weapon"
   examine: "Your sacred clay tool has transformed into a harpoon."
   weight: 2.0
 sacred_clay_butterfly_net:
   id: 14110
   bank_stacks: false
+  charges: 24450
   slot: "Weapon"
   examine: "Your sacred clay tool has transformed into a butterfly net."
   weight: 2.0
 sacred_clay_fletching_knife:
   id: 14111
   bank_stacks: false
+  charges: 24450
   slot: "Weapon"
   examine: "The sacred clay has transformed into a knife."
   weight: 2.0
 sacred_clay_hammer:
   id: 14112
   bank_stacks: false
+  charges: 24450
   slot: "Weapon"
   examine: "Your sacred clay tool has transformed into a hammer."
   weight: 2.0
 sacred_clay_needle:
   id: 14113
   bank_stacks: false
+  charges: 24450
   examine: "The sacred clay has transformed into a needle."
   weight: 2.0
 sacred_clay_robe_top:
   id: 14114
   bank_stacks: false
+  charges: 24450
   slot: "Chest"
   examine: "The sacred clay top has transformed into a heavy, magical robe."
   weight: 2.0
 sacred_clay_robe_bottom:
   id: 14115
   bank_stacks: false
+  charges: 24450
   slot: "Legs"
   examine: "The sacred clay bottom has transformed into a heavy, magical robe."
   weight: 2.0
 sacred_clay_hat:
   id: 14116
   bank_stacks: false
+  charges: 24450
   slot: "Hat"
   examine: "The sacred clay hat has transformed into a wizard hat."
   weight: 2.0
 sacred_clay_staff:
   id: 14117
   bank_stacks: false
+  charges: 24450
   category: "staff"
   slot: "Weapon"
   examine: "The sacred clay weapon has transformed into a magical staff."
@@ -60065,6 +60083,7 @@ sacred_clay_staff:
 sacred_clay_body:
   id: 14118
   bank_stacks: false
+  charges: 24450
   slot: "Chest"
   material: "leather"
   examine: "The sacred clay top has transformed into a leather body."
@@ -60072,6 +60091,7 @@ sacred_clay_body:
 sacred_clay_chaps:
   id: 14119
   bank_stacks: false
+  charges: 24450
   slot: "Legs"
   material: "leather"
   examine: "The sacred clay bottom has been transformed into a set of chaps."
@@ -60079,6 +60099,7 @@ sacred_clay_chaps:
 sacred_clay_coif:
   id: 14120
   bank_stacks: false
+  charges: 24450
   slot: "Hat"
   material: "leather"
   type: "Hair"
@@ -60087,6 +60108,7 @@ sacred_clay_coif:
 sacred_clay_bow:
   id: 14121
   bank_stacks: false
+  charges: 24450
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The sacred clay weapon has transformed into a bow."
