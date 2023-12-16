@@ -59455,6 +59455,8 @@ corrupt_dragon_chainbody:
   id: 13958
   price: 355300
   limit: 10
+  charges: 1
+  degrade: corrupt_dragon_chainbody_degraded
   slot: "Chest"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59464,6 +59466,8 @@ corrupt_dragon_chainbody_degraded:
   id: 13960
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Chest"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59472,6 +59476,8 @@ corrupt_dragon_helm:
   id: 13961
   price: 103800
   limit: 10
+  charges: 1
+  degrade: corrupt_dragon_helm_degraded
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -59482,6 +59488,8 @@ corrupt_dragon_helm_degraded:
   id: 13963
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -59491,6 +59499,8 @@ corrupt_dragon_sq_shield:
   id: 13964
   price: 210600
   limit: 10
+  charges: 1
+  degrade: corrupt_dragon_sq_shield_degraded
   slot: "Shield"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59500,6 +59510,8 @@ corrupt_dragon_sq_shield_degraded:
   id: 13966
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Shield"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59508,6 +59520,8 @@ corrupt_dragon_plateskirt:
   id: 13967
   price: 91900
   limit: 10
+  charges: 1
+  degrade: corrupt_dragon_plateskirt_degraded
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59517,6 +59531,8 @@ corrupt_dragon_plateskirt_degraded:
   id: 13969
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59525,6 +59541,8 @@ corrupt_dragon_platelegs:
   id: 13970
   price: 120500
   limit: 10
+  charges: 1
+  degrade: corrupt_dragon_platelegs_degraded
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59534,6 +59552,8 @@ corrupt_dragon_platelegs_degraded:
   id: 13972
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59542,6 +59562,8 @@ corrupt_dragon_battleaxe:
   id: 13973
   price: 2600000
   limit: 10
+  charges: 1
+  degrade: corrupt_dragon_battleaxe_degraded
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 2.721
@@ -59550,6 +59572,8 @@ corrupt_dragon_battleaxe_degraded:
   id: 13975
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 2.721
@@ -59557,6 +59581,8 @@ corrupt_dragon_dagger:
   id: 13976
   price: 66700
   limit: 10
+  charges: 1
+  degrade: corrupt_dragon_dagger_degraded
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59566,6 +59592,8 @@ corrupt_dragon_dagger_degraded:
   id: 13978
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Weapon"
   material: "metal"
   destroy: "Your dagger is fragile and will disappear if you drop it. Are you sure you want to drop it?"
@@ -59575,6 +59603,8 @@ corrupt_dragon_scimitar:
   id: 13979
   price: 2899454
   limit: 10
+  charges: 1
+  degrade: corrupt_dragon_scimitar_degraded
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59584,6 +59614,8 @@ corrupt_dragon_scimitar_degraded:
   id: 13981
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Weapon"
   material: "metal"
   destroy: "Your scimitar is fragile and will disappear if you drop it. Are you sure you want to drop it?"
@@ -59593,6 +59625,8 @@ corrupt_dragon_longsword:
   id: 13982
   price: 979900
   limit: 10
+  charges: 1
+  degrade: corrupt_dragon_longsword_degraded
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59602,6 +59636,8 @@ corrupt_dragon_longsword_degraded:
   id: 13984
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59610,6 +59646,8 @@ corrupt_dragon_mace:
   id: 13985
   price: 150300
   limit: 10
+  charges: 1
+  degrade: corrupt_dragon_mace_degraded
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
@@ -59618,6 +59656,8 @@ corrupt_dragon_mace_degraded:
   id: 13987
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
@@ -59625,6 +59665,8 @@ corrupt_dragon_spear:
   id: 13988
   price: 104600
   limit: 10
+  charges: 1
+  degrade: corrupt_dragon_spear_degraded
   slot: "Weapon"
   type: "TwoHanded"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59634,6 +59676,8 @@ corrupt_dragon_spear_degraded:
   id: 13990
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "Your spear is fragile and will disappear if you drop it. Are you sure you want to drop it?"
