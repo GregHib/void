@@ -143,7 +143,7 @@ suspend fun CharacterContext.smith(player: Player, metal: String, type: String, 
     player.closeMenu()
     player.softTimers.start("smithing")
     if (actualAmount <= 0) {
-        statement("You don't have enough $metal bars to make a scimitar.")
+        statement("You don't have enough $metal bars to make a $type.")
         player.softTimers.stop("smithing")
         return
     }

@@ -1192,6 +1192,7 @@
 - { id: duck_grey_swim, x: 2978, y: 3356 }
 - { id: duck_grey_swim, x: 3982, y: 3357 }
 - { id: chicken, x: 2966, y: 3346 }
+- { id: sir_vyvin, x: 2983, y: 3335, level: 2 }
 # 11829
 - { id: doric, x: 2952, y: 3451 }
 - { id: musician_falador, x: 2967, y: 3412, direction: SOUTH }
@@ -1323,6 +1324,7 @@
 - { id: crow_4, x: 3100, y: 3239 }
 - { id: crow_4, x: 3131, y: 3251 }
 - { id: crow_6, x: 3113, y: 3242 }
+- { id: leela, x: 3113, y: 3263 }
 # 12339
 - { id: rat, x: 3100, y: 3277 }
 - { id: rat, x: 3100, y: 3273 }

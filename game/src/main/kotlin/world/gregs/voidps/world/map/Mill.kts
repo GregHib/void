@@ -94,8 +94,7 @@ on<ObjectOption>({ operate && target.id == "flour_bin_3" && option == "Take-flou
         }
         player.dec("flour_bin")
     } else {
-        player.inventory.remove("empty_pot")
-        player.inventory.add("pot_of_flour")
+        player.inventory.replace("empty_pot", "pot_of_flour")
         player.dec("flour_bin")
         player.message("You fill a pot with flour from the bin.")
     }
