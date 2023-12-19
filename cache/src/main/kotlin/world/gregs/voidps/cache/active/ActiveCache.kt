@@ -17,7 +17,7 @@ import java.security.MessageDigest
  * Stores all the actively used data from the main cache into a small and fast to load format
  */
 class ActiveCache(
-    private val encoders: () -> List<ActiveIndexEncoder> = Companion::load
+    private val encoders: () -> List<ActiveIndexEncoder> = { load() }
 ) {
 
     private val logger = InlineLogger()
@@ -162,7 +162,7 @@ class ActiveCache(
             return BigInteger(1, hash).toString(16)
         }
 
-        private fun load(): List<ActiveIndexEncoder> {
+        fun load(xteaPath: String = "./data/xteas.dat"): List<ActiveIndexEncoder> {
             return listOf(
                 ConfigEncoder(Config.IDENTITY_KIT),
                 ConfigEncoder(Config.INVENTORIES),
@@ -171,7 +171,7 @@ class ActiveCache(
                 ConfigEncoder(Config.STRUCTS),
                 ConfigEncoder(Config.RENDER_ANIMATIONS),
                 InterfaceEncoder(),
-                MapEncoder("./data/xteas.dat"),
+                MapEncoder(xteaPath),
                 HuffmanEncoder(),
                 ClientScriptEncoder(),
                 ShiftEncoder(Index.OBJECTS, 8),

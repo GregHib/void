@@ -229,7 +229,11 @@ abstract class WorldTest : KoinTest {
     }
 
     companion object {
-        private val active = File("../data/cache/active/")
+        private val active: File by lazy {
+            ActiveCache { ActiveCache.load(getProperty("xteaPath")) }
+                .checkChanges(getProperty("cachePath"), "active")
+            File("../data/cache/active/")
+        }
         private val cache: Cache by lazy { CacheDelegate(getProperty("cachePath")) }
         private val huffman: Huffman by lazy { Huffman().load(active.resolve(ActiveCache.indexFile(Index.HUFFMAN)).readBytes()) }
         private val ammoDefinitions: AmmoDefinitions by lazy { AmmoDefinitions().load() }
