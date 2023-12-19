@@ -25,6 +25,7 @@ import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.network.visual.update.player.MoveType
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 import kotlin.math.sign
 
@@ -45,9 +46,9 @@ open class Movement(
         }
         if (character is Player && !strategy.tile.noCollision) {
             val route = pathFinder.findPath(character, strategy, shape)
-            character.steps.queueRoute(route, strategy.tile)
+            character.steps.queueRoute(route, strategy.tile, strategy.tile.noCollision, strategy.tile.slowRun)
         } else {
-            character.steps.queueStep(strategy.tile)
+            character.steps.queueStep(strategy.tile, strategy.tile.noCollision, strategy.tile.slowRun)
         }
         needsCalculation = false
     }
@@ -134,7 +135,7 @@ open class Movement(
 
     open fun recalculate(): Boolean {
         val strategy = strategy ?: return false
-        if (strategy.tile != character.steps.destination) {
+        if (!equals(strategy.tile, character.steps.destination)) {
             needsCalculation = true
             calculate()
             return true
@@ -187,6 +188,12 @@ open class Movement(
     }
 
     companion object {
+
+        /**
+         * Alternative comparator as an updated Step with no collision won't match a regular tile if using Tile.equals()
+         */
+        fun equals(one: Tile, two: Tile) = one.level == two.level && one.x == two.x && one.y == two.y
+
         fun move(character: Character, delta: Delta) {
             val from = character.tile
             character.tile = character.tile.add(delta)

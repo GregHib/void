@@ -7,7 +7,7 @@ import java.util.*
 
 class Steps(
     internal val character: Character,
-    val steps: LinkedList<Step> = LinkedList<Step>()
+    private val steps: LinkedList<Step> = LinkedList<Step>()
 ) : List<Step> by steps {
     var destination: Tile = Tile.EMPTY
         private set
@@ -31,6 +31,18 @@ class Steps(
         clear()
         steps.addAll(tiles.map { it.step(noCollision, slowRun) })
         destination = steps.lastOrNull() ?: character.tile.step(noCollision, slowRun)
+    }
+
+    /**
+     * Updates all steps to have [noCollision] or [slowRun]
+     * Used for modifying existing paths, for creating new paths e.g.
+     * to walk through doors use [queueSteps]
+     */
+    fun update(noCollision: Boolean = false, slowRun: Boolean = false) {
+        for (i in steps.indices) {
+            steps[i] = steps[i].step(noCollision, slowRun)
+        }
+        destination = destination.step(noCollision, slowRun)
     }
 
     fun clearDestination() {

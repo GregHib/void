@@ -11,11 +11,8 @@ private fun id(tile: Int, noCollision: Boolean = false, slowRun: Boolean = false
 private fun noCollision(id: Int) = id shr 30 and 0x1 == 1
 private fun slowRun(id: Int) = id shr 31 and 0x1 == 1
 
-internal fun Tile.step(noCollision: Boolean, slowRun: Boolean): Step {
-    if (!noCollision && !slowRun) {
-        return this
-    }
-    return Tile(id(id, noCollision, slowRun))
+fun Tile.step(noCollision: Boolean, slowRun: Boolean): Step {
+    return Tile(id(id and 0x3FFFFFFF, noCollision, slowRun))
 }
 
 val Step.noCollision: Boolean

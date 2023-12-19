@@ -43,6 +43,8 @@ on<AreaEntered>({ name.startsWith("border_guard") && area is Rectangle }) { play
         val tile = border.nearestTo(player.tile)
         val endSide = getOppositeSide(border, tile)
         player.walkTo(endSide, noCollision = true, slowRun = true)
+    } else {
+        player.steps.update(noCollision = true, slowRun = true)
     }
     val guards = guards[border] ?: return@on
     changeGuardState(guards, true)
@@ -51,6 +53,7 @@ on<AreaEntered>({ name.startsWith("border_guard") && area is Rectangle }) { play
 on<AreaExited>({ name.startsWith("border_guard") && area is Rectangle }) { player: Player ->
     val border = area as Rectangle
     val guards = guards[border] ?: return@on
+    player.steps.update(noCollision = false, slowRun = false)
     changeGuardState(guards, false)
 }
 
