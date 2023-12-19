@@ -44,7 +44,7 @@ class DegradeTest : WorldTest() {
     }
 
     @Test
-    fun `Degrade item with without variable`() {
+    fun `Degrade item without variable`() {
         val player = createPlayer("player")
         val slot = EquipSlot.Amulet.index
         player.equipment.set(slot, "black_mask_8")

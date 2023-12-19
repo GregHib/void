@@ -12368,6 +12368,7 @@ ring_of_duelling_8:
   price: 1100
   charges: 1
   degrade: ring_of_duelling_7
+  deplete: teleport
   aka: [ ring_of_duelling, duelling_ring ]
   slot: "Ring"
   examine: "An enchanted ring."
@@ -12378,6 +12379,7 @@ ring_of_duelling_7:
   id: 2554
   charges: 1
   degrade: ring_of_duelling_6
+  deplete: teleport
   weight: 0.006
   slot: "Ring"
   examine: "An enchanted ring."
@@ -12413,6 +12415,7 @@ ring_of_duelling_1:
   weight: 0.006
   charges: 1
   degrade: destroy
+  deplete: teleport
   slot: "Ring"
   examine: "An enchanted ring."
 ring_of_duelling_1_noted: 2567
@@ -16511,12 +16514,14 @@ enchanted_lyre:
   examine: "A musical instrument that I can magically play."
   weight: 1.814
 enchanted_lyre_1:
+  &enchanted_lyre_1
   id: 3691
+  weight: 1.814
   charges: 1
   degrade: enchanted_lyre
+  deplete: teleport
   slot: "Weapon"
   examine: "This will teleport me to Rellekka when I play it."
-  weight: 1.814
 branch:
   id: 3692
   tradeable: false
@@ -18450,6 +18455,7 @@ new_crystal_bow:
   attack_range: 10
   charges: 1
   degrade: crystal_bow_full
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -18462,6 +18468,7 @@ crystal_bow_full:
   attack_range: 10
   charges: 250
   degrade: crystal_bow_9_10
+  deplete: combat
   aka: [ crystal_bow ]
   slot: "Weapon"
   type: "TwoHanded"
@@ -20827,6 +20834,7 @@ ahrims_hood:
   limit: 10
   charges: 1
   degrade: ahrims_hood_100
+  deplete: combat
   slot: "Hat"
   type: "Hair"
   examine: "Ahrim The Blighted's Hood."
@@ -20838,6 +20846,7 @@ ahrims_staff:
   limit: 10
   charges: 1
   degrade: ahrims_staff_100
+  deplete: combat
   category: "staff"
   slot: "Weapon"
   type: "TwoHanded"
@@ -20850,6 +20859,7 @@ ahrims_robe_top:
   limit: 10
   charges: 1
   degrade: ahrims_robe_top_100
+  deplete: combat
   aka: [ ahrims_top ]
   slot: "Chest"
   examine: "Ahrim the Blighted's armoured robe top."
@@ -20861,6 +20871,7 @@ ahrims_robe_skirt:
   limit: 10
   charges: 1
   degrade: ahrims_robe_skirt_100
+  deplete: combat
   aka: [ ahrims_skirt, ahrims_legs, ahrims_robes ]
   slot: "Legs"
   examine: "Ahrim the Blighted's armoured robe skirt."
@@ -20872,6 +20883,7 @@ dharoks_helm:
   limit: 10
   charges: 1
   degrade: dharoks_helm_100
+  deplete: combat
   aka: [ dh_helm ]
   slot: "Hat"
   material: "metal"
@@ -20885,6 +20897,7 @@ dharoks_greataxe:
   limit: 10
   charges: 1
   degrade: dharoks_greataxe_100
+  deplete: combat
   aka: [ dhaxe, dhgaxe, dh_axe, dh_gaxe, dh_g_axe, dharocks_greataxe, dharoks_great_axe ]
   slot: "Weapon"
   type: "TwoHanded"
@@ -20899,6 +20912,7 @@ dharoks_platebody:
   weight: 9.979
   charges: 1
   degrade: dharoks_platebody_100
+  deplete: combat
   aka: [ dh_body, dh_plate, dh_platebody, dh_plate_body, dharoks_plate_body ]
   slot: "Chest"
   material: "metal"
@@ -20911,6 +20925,7 @@ dharoks_platelegs:
   limit: 10
   charges: 1
   degrade: dharoks_platelegs_100
+  deplete: combat
   aka: [ dh_legs, dh_platelegs, dh_plate_legs, dharoks_plate_legs ]
   slot: "Legs"
   material: "metal"
@@ -20923,6 +20938,7 @@ guthans_helm:
   limit: 10
   charges: 1
   degrade: guthans_helm_100
+  deplete: combat
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -20935,6 +20951,7 @@ guthans_warspear:
   limit: 10
   charges: 1
   degrade: guthans_warspear_100
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Guthan The Infested's Warspear."
@@ -20946,6 +20963,7 @@ guthans_platebody:
   limit: 10
   charges: 1
   degrade: guthans_platebody_100
+  deplete: combat
   slot: "Chest"
   material: "metal"
   destroy: "If you drop this item it will break, are you sure you want to drop it?"
@@ -20958,6 +20976,7 @@ guthans_chainskirt:
   limit: 10
   charges: 1
   degrade: guthans_chainskirt_100
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "Guthan the Infested's chainskirt."
@@ -20969,6 +20988,7 @@ karils_coif:
   limit: 10
   charges: 1
   degrade: karils_coif_100
+  deplete: combat
   slot: "Hat"
   material: "leather"
   type: "Hair"
@@ -20982,6 +21002,7 @@ karils_crossbow:
   attack_range: 8
   charges: 1
   degrade: karils_crossbow_100
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -20993,6 +21014,7 @@ karils_top:
   limit: 10
   charges: 1
   degrade: karils_top_100
+  deplete: combat
   slot: "Chest"
   material: "leather"
   examine: "Karil the Tainted's leatherbody."
@@ -21004,6 +21026,7 @@ karils_skirt:
   limit: 10
   charges: 1
   degrade: karils_skirt_100
+  deplete: combat
   slot: "Legs"
   material: "leather"
   examine: "Karil the Tainted's leather skirt."
@@ -21022,6 +21045,7 @@ torags_helm:
   limit: 10
   charges: 1
   degrade: torags_helm_100
+  deplete: combat
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -21034,6 +21058,7 @@ torags_hammers:
   limit: 10
   charges: 1
   degrade: torags_hammers_100
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Torag the Corrupted's twin hammers."
@@ -21045,6 +21070,7 @@ torags_platebody:
   limit: 10
   charges: 1
   degrade: torags_platebody_100
+  deplete: combat
   slot: "Chest"
   material: "metal"
   examine: "Torag the Corrupted's plate body armour."
@@ -21056,6 +21082,7 @@ torags_platelegs:
   limit: 10
   charges: 1
   degrade: torags_platelegs_100
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "Torag the Corrupted's plate leg armour."
@@ -21067,6 +21094,7 @@ veracs_helm:
   limit: 10
   charges: 1
   degrade: veracs_helm_100
+  deplete: combat
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -21079,6 +21107,7 @@ veracs_flail:
   limit: 10
   charges: 1
   degrade: veracs_flail_100
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Verac the Defiled's Flail."
@@ -21090,6 +21119,7 @@ veracs_brassard:
   limit: 10
   charges: 1
   degrade: veracs_brassard_100
+  deplete: combat
   slot: "Chest"
   material: "metal"
   examine: "Verac The Defiled's Brassard."
@@ -21101,6 +21131,7 @@ veracs_plateskirt:
   limit: 10
   charges: 1
   degrade: veracs_plateskirt_100
+  deplete: combat
   aka: [ veracs_skirt ]
   slot: "Legs"
   material: "metal"
@@ -21418,6 +21449,7 @@ ahrims_hood_100:
   weight: 0.907
   charges: 22500
   degrade: ahrims_hood_75
+  deplete: combat
   slot: "Hat"
   type: "Hair"
   examine: "Ahrim The Blighted's Hood."
@@ -21432,7 +21464,6 @@ ahrims_hood_50:
 ahrims_hood_25:
   <<: *ahrims_hood_100
   id: 4859
-  charges: 22500
   degrade: ahrims_hood_broken
 ahrims_hood_broken:
   id: 4860
@@ -21450,6 +21481,7 @@ ahrims_staff_100:
   weight: 2.267
   charges: 22500
   degrade: ahrims_staff_75
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   category: "staff"
@@ -21482,6 +21514,7 @@ ahrims_robe_top_100:
   weight: 4.535
   charges: 22500
   degrade: ahrims_robe_top_75
+  deplete: combat
   slot: "Chest"
   examine: "Ahrim the Blighted's armoured robe top."
 ahrims_robe_top_75:
@@ -21511,6 +21544,7 @@ ahrims_robe_skirt_100:
   weight: 11.339
   charges: 22500
   degrade: ahrims_robe_skirt_75
+  deplete: combat
   slot: "Legs"
   examine: "Ahrim the Blighted's armoured robe skirt."
 ahrims_robe_skirt_75:
@@ -21540,6 +21574,7 @@ dharoks_helm_100:
   weight: 1.814
   charges: 22500
   degrade: dharoks_helm_75
+  deplete: combat
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -21573,6 +21608,7 @@ dharoks_greataxe_100:
   weight: 3.175
   charges: 22500
   degrade: dharoks_greataxe_75
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Dharok the Wretched's Greataxe."
@@ -21605,22 +21641,23 @@ dharoks_platebody_100:
   limit: 10
   weight: 9.979
   charges: 22500
-  degrade: dharoks_greataxe_75
+  degrade: dharoks_platebody_75
+  deplete: combat
   slot: "Chest"
   material: "metal"
   examine: "Dharok the Wretched's platebody."
 dharoks_platebody_75:
   <<: *dharoks_platebody_100
   id: 4893
-  degrade: dharoks_greataxe_50
+  degrade: dharoks_platebody_50
 dharoks_platebody_50:
   <<: *dharoks_platebody_100
   id: 4894
-  degrade: dharoks_greataxe_25
+  degrade: dharoks_platebody_25
 dharoks_platebody_25:
   <<: *dharoks_platebody_100
   id: 4895
-  degrade: dharoks_greataxe_broken
+  degrade: dharoks_platebody_broken
 dharoks_platebody_broken:
   id: 4896
   price: 596700
@@ -21638,6 +21675,7 @@ dharoks_platelegs_100:
   weight: 9.071
   charges: 22500
   degrade: dharoks_platelegs_75
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "Dharok the wretched's plate leg armour."
@@ -21669,6 +21707,7 @@ guthans_helm_100:
   weight: 2.721
   charges: 22500
   degrade: guthans_helm_75
+  deplete: combat
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -21702,6 +21741,7 @@ guthans_warspear_100:
   weight: 2.267
   charges: 22500
   degrade: guthans_warspear_75
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Guthan The Infested's Warspear."
@@ -21733,6 +21773,7 @@ guthans_platebody_100:
   weight: 9.979
   charges: 22500
   degrade: guthans_platebody_75
+  deplete: combat
   slot: "Chest"
   material: "metal"
   destroy: "If you drop this item it will break, are you sure you want to drop it?"
@@ -21766,6 +21807,7 @@ guthans_chainskirt_100:
   weight: 8.164
   charges: 22500
   degrade: guthans_chainskirt_75
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "Guthan the Infested's chainskirt."
@@ -21797,6 +21839,7 @@ karils_coif_100:
   weight: 0.907
   charges: 22500
   degrade: karils_coif_75
+  deplete: combat
   slot: "Hat"
   type: "Hair"
   material: "leather"
@@ -21831,6 +21874,7 @@ karils_crossbow_100:
   weight: 3.628
   charges: 22500
   degrade: karils_crossbow_75
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -21863,6 +21907,7 @@ karils_top_100:
   weight: 6.803
   charges: 22500
   degrade: karils_top_75
+  deplete: combat
   slot: "Chest"
   material: "leather"
   examine: "Karil the Tainted's leatherbody."
@@ -21894,6 +21939,7 @@ karils_skirt_100:
   weight: 5.443
   charges: 22500
   degrade: karils_skirt_75
+  deplete: combat
   slot: "Legs"
   material: "leather"
   examine: "Karil the Tainted's leather skirt."
@@ -21925,6 +21971,7 @@ torags_helm_100:
   weight: 2.721
   charges: 22500
   degrade: torags_helm_75
+  deplete: combat
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -21956,6 +22003,7 @@ torags_hammers_100:
   weight: 3.628
   charges: 22500
   degrade: torags_hammers_75
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Torag the Corrupted's twin hammers."
@@ -21987,6 +22035,7 @@ torags_platebody_100:
   weight: 9.979
   charges: 22500
   degrade: torags_platebody_75
+  deplete: combat
   slot: "Chest"
   material: "metal"
   examine: "Torag the Corrupted's plate body armour."
@@ -22017,6 +22066,7 @@ torags_platelegs_100:
   limit: 10
   charges: 22500
   degrade: torags_platelegs_75
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "Torag the Corrupted's plate leg armour."
@@ -22049,6 +22099,7 @@ veracs_helm_100:
   weight: 1.36
   charges: 22500
   degrade: veracs_helm_75
+  deplete: combat
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -22082,6 +22133,7 @@ veracs_flail_100:
   weight: 2.267
   charges: 22500
   degrade: veracs_flail_75
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Verac the Defiled's Flail."
@@ -22113,6 +22165,7 @@ veracs_brassard_100:
   weight: 4.989
   charges: 22500
   degrade: veracs_brassard_75
+  deplete: combat
   slot: "Chest"
   material: "metal"
   examine: "Verac The Defiled's Brassard."
@@ -22144,6 +22197,7 @@ veracs_plateskirt_100:
   weight: 4.535
   charges: 22500
   degrade: veracs_plateskirt_75
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "Verac the Defiled's plate skirt."
@@ -23620,6 +23674,7 @@ binding_necklace:
   weight: 0.01
   charges: 16
   player_charge: true
+  deplete: teleport
   degrade: destroy
   slot: "Amulet"
   examine: "A necklace embedded with mystical power."
@@ -26117,6 +26172,7 @@ crystal_teleport_seed_4:
   weight: 0.001
   charges: 1
   degrade: crystal_teleport_seed_3
+  deplete: teleport
   examine: "A tiny crystal enchanted to return the user to Lletya."
 crystal_teleport_seed_3:
   <<: *crystal_teleport_seed_4
@@ -26245,26 +26301,17 @@ beer_glass_forgettable_tale_of_a_drunken_dwarf:
   kept: "Reclaim"
 coconut_milk_noted: 6124
 enchanted_lyre_2:
+  <<: *enchanted_lyre_1
   id: 6125
-  charges: 1
   degrade: enchanted_lyre_1
-  slot: "Weapon"
-  examine: "This will teleport me to Rellekka when I play it."
-  weight: 1.814
 enchanted_lyre_3:
+  <<: *enchanted_lyre_1
   id: 6126
-  charges: 1
   degrade: enchanted_lyre_2
-  slot: "Weapon"
-  examine: "This will teleport me to Rellekka when I play it."
-  weight: 1.814
 enchanted_lyre_4:
+  <<: *enchanted_lyre_1
   id: 6127
-  charges: 1
   degrade: enchanted_lyre_3
-  slot: "Weapon"
-  examine: "This will teleport me to Rellekka when I play it."
-  weight: 1.814
 rock_shell_helm:
   id: 6128
   price: 23200
@@ -26642,85 +26689,59 @@ mahogany_pyre_logs:
   examine: "Mahogany logs prepared with sacred oil for a funeral pyre."
 mahogany_pyre_logs_noted: 6214
 broodoo_shield_green_10:
+  &broodoo_shield_green_10
   id: 6215
   price: 1940
   charges: 1
+  weight: 5.443
   degrade: broodoo_shield_green_9
   slot: "Shield"
   examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_10_noted: 6216
 broodoo_shield_green_9:
+  <<: *broodoo_shield_green_10
   id: 6217
-  charges: 1
   degrade: broodoo_shield_green_8
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_9_noted: 6218
 broodoo_shield_green_8:
+  <<: *broodoo_shield_green_10
   id: 6219
-  charges: 1
   degrade: broodoo_shield_green_7
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_8_noted: 6220
 broodoo_shield_green_7:
+  <<: *broodoo_shield_green_10
   id: 6221
-  charges: 1
   degrade: broodoo_shield_green_6
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_7_noted: 6222
 broodoo_shield_green_6:
+  <<: *broodoo_shield_green_10
   id: 6223
-  charges: 1
   degrade: broodoo_shield_green_5
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_6_noted: 6224
 broodoo_shield_green_5:
+  <<: *broodoo_shield_green_10
   id: 6225
-  charges: 1
   degrade: broodoo_shield_green_4
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_5_noted: 6226
 broodoo_shield_green_4:
+  <<: *broodoo_shield_green_10
   id: 6227
-  charges: 1
   degrade: broodoo_shield_green_3
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_4_noted: 6228
 broodoo_shield_green_3:
+  <<: *broodoo_shield_green_10
   id: 6229
-  charges: 1
   degrade: broodoo_shield_green_2
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_3_noted: 6230
 broodoo_shield_green_2:
+  <<: *broodoo_shield_green_10
   id: 6231
-  charges: 1
   degrade: broodoo_shield_green_1
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_2_noted: 6232
 broodoo_shield_green_1:
+  <<: *broodoo_shield_green_10
   id: 6233
-  charges: 1
   degrade: broodoo_shield_green
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_1_noted: 6234
 broodoo_shield_green:
   id: 6235
@@ -26731,174 +26752,122 @@ broodoo_shield_green:
   weight: 5.443
 broodoo_shield_noted: 6236
 broodoo_shield_orange_10:
+  &broodoo_shield_orange_10
   id: 6237
   price: 2727
+  weight: 5.443
   charges: 1
   degrade: broodoo_shield_orange_9
   slot: "Shield"
   examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_10_noted_2: 6238
 broodoo_shield_orange_9:
+  <<: *broodoo_shield_orange_10
   id: 6239
-  charges: 1
   degrade: broodoo_shield_orange_8
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_9_noted_2: 6240
 broodoo_shield_orange_8:
+  <<: *broodoo_shield_orange_10
   id: 6241
-  charges: 1
   degrade: broodoo_shield_orange_7
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_8_noted_2: 6242
 broodoo_shield_orange_7:
+  <<: *broodoo_shield_orange_10
   id: 6243
-  charges: 1
   degrade: broodoo_shield_orange_6
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_7_noted_2: 6244
 broodoo_shield_orange_6:
+  <<: *broodoo_shield_orange_10
   id: 6245
-  charges: 1
   degrade: broodoo_shield_orange_5
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_6_noted_2: 6246
 broodoo_shield_orange_5:
+  <<: *broodoo_shield_orange_10
   id: 6247
-  charges: 1
   degrade: broodoo_shield_orange_4
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_5_noted_2: 6248
 broodoo_shield_orange_4:
+  <<: *broodoo_shield_orange_10
   id: 6249
-  charges: 1
   degrade: broodoo_shield_orange_3
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_4_noted_2: 6250
 broodoo_shield_orange_3:
+  <<: *broodoo_shield_orange_10
   id: 6251
-  charges: 1
   degrade: broodoo_shield_orange_2
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_3_noted_2: 6252
 broodoo_shield_orange_2:
+  <<: *broodoo_shield_orange_10
   id: 6253
-  charges: 1
   degrade: broodoo_shield_orange_1
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_2_noted_2: 6254
 broodoo_shield_orange_1:
+  <<: *broodoo_shield_orange_10
   id: 6255
-  charges: 1
   degrade: broodoo_shield_orange
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_1_noted_2: 6256
 broodoo_shield_orange:
   id: 6257
   price: 3396
   limit: 100
+  weight: 5.443
   slot: "Shield"
   examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_noted_2: 6258
 broodoo_shield_blue_10:
+  &broodoo_shield_blue_10
   id: 6259
   price: 1656
+  weight: 5.443
   charges: 1
   degrade: broodoo_shield_blue_9
   slot: "Shield"
   examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_10_noted_3: 6260
 broodoo_shield_blue_9:
+  <<: *broodoo_shield_blue_10
   id: 6261
-  charges: 1
   degrade: broodoo_shield_blue_8
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_9_noted_3: 6262
 broodoo_shield_blue_8:
+  <<: *broodoo_shield_blue_10
   id: 6263
-  charges: 1
   degrade: broodoo_shield_blue_7
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_8_noted_3: 6264
 broodoo_shield_blue_7:
+  <<: *broodoo_shield_blue_10
   id: 6265
-  charges: 1
   degrade: broodoo_shield_blue_6
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_7_noted_3: 6266
 broodoo_shield_blue_6:
+  <<: *broodoo_shield_blue_10
   id: 6267
-  charges: 1
   degrade: broodoo_shield_blue_5
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_6_noted_3: 6268
 broodoo_shield_blue_5:
+  <<: *broodoo_shield_blue_10
   id: 6269
-  charges: 1
   degrade: broodoo_shield_blue_4
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_5_noted_3: 6270
 broodoo_shield_blue_4:
+  <<: *broodoo_shield_blue_10
   id: 6271
-  charges: 1
   degrade: broodoo_shield_blue_3
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_4_noted_3: 6272
 broodoo_shield_blue_3:
+  <<: *broodoo_shield_blue_10
   id: 6273
-  charges: 1
   degrade: broodoo_shield_blue_2
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_3_noted_3: 6274
 broodoo_shield_blue_2:
+  <<: *broodoo_shield_blue_10
   id: 6275
-  charges: 1
   degrade: broodoo_shield_blue_1
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_2_noted_3: 6276
 broodoo_shield_blue_1:
+  <<: *broodoo_shield_blue_10
   id: 6277
-  charges: 1
   degrade: broodoo_shield_blue
-  slot: "Shield"
-  examine: "A scary broodoo shield."
-  weight: 5.443
 broodoo_shield_1_noted_3: 6278
 broodoo_shield_blue:
   id: 6279
@@ -28586,6 +28555,7 @@ camulet:
   id: 6707
   charges: 4
   player_charge: true
+  deplete: teleport
   tradeable: false
   weight: 0.007
   slot: "Amulet"
@@ -31839,75 +31809,49 @@ mutated_zygomite:
   id: 7420
   examine: "A fun guy. No wait, that's awful. Plus it doesn't even make sense."
 fungicide_spray_10:
+  &fungicide_spray_10
   id: 7421
+  weight: 2.0
   charges: 1
   degrade: fungicide_spray_9
   slot: "Weapon"
   examine: "Pumps fungicide."
-  weight: 2.0
 fungicide_spray_9:
+  <<: *fungicide_spray_10
   id: 7422
-  charges: 1
   degrade: fungicide_spray_8
-  slot: "Weapon"
-  examine: "Pumps fungicide."
-  weight: 2.0
 fungicide_spray_8:
+  <<: *fungicide_spray_10
   id: 7423
-  charges: 1
   degrade: fungicide_spray_7
-  slot: "Weapon"
-  examine: "Pumps fungicide."
-  weight: 2.0
 fungicide_spray_7:
+  <<: *fungicide_spray_10
   id: 7424
-  charges: 1
   degrade: fungicide_spray_6
-  slot: "Weapon"
-  examine: "Pumps fungicide."
-  weight: 2.0
 fungicide_spray_6:
+  <<: *fungicide_spray_10
   id: 7425
-  charges: 1
   degrade: fungicide_spray_5
-  slot: "Weapon"
-  examine: "Pumps fungicide."
-  weight: 2.0
 fungicide_spray_5:
+  <<: *fungicide_spray_10
   id: 7426
-  charges: 1
   degrade: fungicide_spray_4
-  slot: "Weapon"
-  examine: "Pumps fungicide."
-  weight: 2.0
 fungicide_spray_4:
+  <<: *fungicide_spray_10
   id: 7427
-  charges: 1
   degrade: fungicide_spray_3
-  slot: "Weapon"
-  examine: "Pumps fungicide."
-  weight: 2.0
 fungicide_spray_3:
+  <<: *fungicide_spray_10
   id: 7428
-  charges: 1
   degrade: fungicide_spray_2
-  slot: "Weapon"
-  examine: "Pumps fungicide."
-  weight: 2.0
 fungicide_spray_2:
+  <<: *fungicide_spray_10
   id: 7429
-  charges: 1
   degrade: fungicide_spray_1
-  slot: "Weapon"
-  examine: "Pumps fungicide."
-  weight: 2.0
 fungicide_spray_1:
+  <<: *fungicide_spray_10
   id: 7430
-  charges: 1
   degrade: fungicide_spray_0
-  slot: "Weapon"
-  examine: "Pumps fungicide."
-  weight: 2.0
 fungicide_spray_0:
   id: 7431
   slot: "Weapon"
@@ -37376,6 +37320,7 @@ cave_horror:
   id: 8900
   examine: "A horrible, emaciated ape like creature with beady red eyes."
 black_mask_10:
+  &black_mask_10
   id: 8901
   price: 357400
   limit: 10
@@ -37387,94 +37332,49 @@ black_mask_10:
   weight: 10.0
 black_mask_10_noted: 8902
 black_mask_9:
+  <<: *black_mask_10
   id: 8903
-  limit: 10
-  charges: 1
   degrade: black_mask_8
-  slot: "Hat"
-  material: "metal"
-  examine: "A magic cave horror mask."
-  weight: 10.0
 black_mask_9_noted: 8904
 black_mask_8:
+  <<: *black_mask_10
   id: 8905
-  limit: 10
-  charges: 1
   degrade: black_mask_7
-  slot: "Hat"
-  material: "metal"
-  examine: "A magic cave horror mask."
-  weight: 10.0
 black_mask_8_noted: 8906
 black_mask_7:
+  <<: *black_mask_10
   id: 8907
-  limit: 10
-  charges: 1
   degrade: black_mask_6
-  slot: "Hat"
-  material: "metal"
-  examine: "A magic cave horror mask."
-  weight: 10.0
 black_mask_7_noted: 8908
 black_mask_6:
+  <<: *black_mask_10
   id: 8909
-  limit: 10
-  charges: 1
   degrade: black_mask_5
-  slot: "Hat"
-  material: "metal"
-  examine: "A magic cave horror mask."
-  weight: 10.0
 black_mask_6_noted: 8910
 black_mask_5:
+  <<: *black_mask_10
   id: 8911
-  limit: 10
-  charges: 1
   degrade: black_mask_4
-  slot: "Hat"
-  material: "metal"
-  examine: "A magic cave horror mask."
-  weight: 10.0
 black_mask_5_noted: 8912
 black_mask_4:
+  <<: *black_mask_10
   id: 8913
-  limit: 10
-  charges: 1
   degrade: black_mask_3
-  slot: "Hat"
-  material: "metal"
-  examine: "A magic cave horror mask."
-  weight: 10.0
 black_mask_4_noted: 8914
 black_mask_3:
+  <<: *black_mask_10
   id: 8915
-  limit: 10
-  charges: 1
   degrade: black_mask_2
-  slot: "Hat"
-  material: "metal"
-  examine: "A magic cave horror mask."
-  weight: 10.0
 black_mask_3_noted: 8916
 black_mask_2:
+  <<: *black_mask_10
   id: 8917
-  limit: 10
-  charges: 1
   degrade: black_mask_1
-  slot: "Hat"
-  material: "metal"
-  examine: "A magic cave horror mask."
-  weight: 10.0
 black_mask_2_noted: 8918
 black_mask_1:
+  <<: *black_mask_10
   id: 8919
-  limit: 10
-  charges: 1
   degrade: black_mask
-  slot: "Hat"
-  material: "metal"
-  examine: "A magic cave horror mask."
-  weight: 10.0
 black_mask_1_noted: 8920
 black_mask:
   id: 8921
@@ -37962,6 +37862,7 @@ skull_sceptre:
   weight: 1.814
   charges: 10
   player_charge: true
+  deplete: teleport
   degrade: destroy
   slot: "Weapon"
   destroy: "You can obtain another Sceptre by collecting all four pieces from the Stronghold of Security."
@@ -38093,38 +37994,28 @@ stone_seal:
   examine: "Simon Templeton at the Agility Pyramid will give me 150 coins for this."
 stone_seal_noted: 9043
 pharaohs_sceptre_3:
+  &pharaohs_sceptre_3
   id: 9044
   price: 1000000
   limit: 10
+  weight: 2.0
   charges: 1
   degrade: pharaohs_sceptre_2
+  deplete: teleport
   slot: "Weapon"
   type: "TwoHanded"
-  examine: "This sceptre is fully charged."
   destroy: "No"
-  weight: 2.0
+  examine: "This sceptre is fully charged."
 pharaohs_sceptre_3_noted: 9045
 pharaohs_sceptre_2:
+  <<: *pharaohs_sceptre_3
   id: 9046
-  limit: 10
-  charges: 1
   degrade: pharaohs_sceptre_1
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "This sceptre has two remaining charges."
-  destroy: "No"
-  weight: 2.0
 pharaohs_sceptre_2_noted: 9047
 pharaohs_sceptre_1:
+  <<: *pharaohs_sceptre_3
   id: 9048
-  limit: 10
-  charges: 1
   degrade: pharaohs_sceptre
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "This sceptre has one remaining charge."
-  destroy: "No"
-  weight: 2.0
 pharaohs_sceptre_1_noted: 9049
 pharaohs_sceptre:
   id: 9050
@@ -47044,30 +46935,26 @@ emerald_bracelet:
   examine: "I wonder if this is valuable."
 emerald_bracelet_noted: 11077
 castle_wars_brace_3:
+  &castle_wars_brace_3
   id: 11079
   price: 989
+  weight: 0.25
   charges: 1
   degrade: castle_wars_brace_2
+  deplete: teleport
   slot: "Hands"
   examine: "Must be worn as you enter the game to receive the bonus for that game."
-  weight: 0.25
 castle_wars_brace_3_noted: 11080
 castle_wars_brace_2:
+  <<: *castle_wars_brace_3
   id: 11081
-  charges: 1
   degrade: castle_wars_brace_1
-  slot: "Hands"
-  examine: "Must be worn as you enter the game to receive the bonus for that game."
-  weight: 0.25
 castle_wars_brace_2_noted: 11082
 castle_wars_brace_1:
+  <<: *castle_wars_brace_3
   id: 11083
   price: 2873
-  charges: 1
   degrade: destroy
-  slot: "Hands"
-  examine: "Must be worn as you enter the game to receive the bonus for that game."
-  weight: 0.25
 castle_wars_brace_1_noted: 11084
 ruby_bracelet:
   id: 11085
@@ -47140,41 +47027,31 @@ forinthry_bracelet_1:
   weight: 0.25
 forinthry_brace_1_noted: 11104
 skills_necklace_4:
+  &skills_necklace_4
   id: 11105
   price: 22000
   limit: 500
   weight: 0.01
   charges: 1
   degrade: skills_necklace_3
+  deplete: teleport
   slot: "Amulet"
   examine: "This will help me travel."
 skills_necklace_4_noted: 11106
 skills_necklace_3:
+  <<: *skills_necklace_4
   id: 11107
-  limit: 500
-  weight: 0.01
-  charges: 1
   degrade: skills_necklace_2
-  slot: "Amulet"
-  examine: "This will help me travel."
 skills_necklace_3_noted: 11108
 skills_necklace_2:
+  <<: *skills_necklace_4
   id: 11109
-  limit: 500
-  weight: 0.01
-  charges: 1
   degrade: skills_necklace_1
-  slot: "Amulet"
-  examine: "This will help me travel."
 skills_necklace_2_noted: 11110
 skills_necklace_1:
+  <<: *skills_necklace_4
   id: 11111
-  limit: 500
-  weight: 0.01
-  charges: 1
   degrade: skills_necklace
-  slot: "Amulet"
-  examine: "This will help me travel."
 skills_necklace_1_noted: 11112
 skills_necklace:
   id: 11113
@@ -47196,41 +47073,31 @@ dragonstone_bracelet:
   examine: "I wonder if this is valuable."
 dragon_bracelet_noted: 11116
 combat_bracelet_4:
+  &combat_bracelet_4
   id: 11118
   price: 32400
   limit: 500
   charges: 1
   degrade: combat_bracelet_3
+  deplete: teleport
   slot: "Hands"
   examine: "A handy way to get around."
   weight: 0.25
 combat_bracelet_4_noted: 11119
 combat_bracelet_3:
+  <<: *combat_bracelet_4
   id: 11120
-  limit: 500
-  charges: 1
   degrade: combat_bracelet_2
-  slot: "Hands"
-  examine: "A handy way to get around."
-  weight: 0.25
 combat_bracelet_3_noted: 11121
 combat_bracelet_2:
+  <<: *combat_bracelet_4
   id: 11122
-  limit: 500
-  charges: 1
   degrade: combat_bracelet_1
-  slot: "Hands"
-  examine: "A handy way to get around."
-  weight: 0.25
 combat_bracelet_2_noted: 11123
 combat_bracelet_1:
+  <<: *combat_bracelet_4
   id: 11124
-  limit: 500
-  charges: 1
   degrade: combat_bracelet
-  slot: "Hands"
-  examine: "A handy way to get around."
-  weight: 0.25
 combat_bracelet_1_noted: 11125
 combat_bracelet:
   id: 11126
@@ -47519,40 +47386,30 @@ antique_lamp_historian_minas:
   <<: *antique_lamp_varrock_museum
   id: 11189
 dig_site_pendant_1:
+  &dig_site_pendant_1
   id: 11190
   charges: 1
   degrade: destroy
+  deplete: teleport
   slot: "Amulet"
   examine: "An enchanted necklace."
   weight: 0.01
 dig_site_pendant_2:
+  <<: *dig_site_pendant_1
   id: 11191
-  charges: 1
   degrade: dig_site_pendant_1
-  slot: "Amulet"
-  examine: "An enchanted necklace."
-  weight: 0.01
 dig_site_pendant_3:
+  <<: *dig_site_pendant_1
   id: 11192
-  charges: 1
   degrade: dig_site_pendant_2
-  slot: "Amulet"
-  examine: "An enchanted necklace."
-  weight: 0.01
 dig_site_pendant_4:
+  <<: *dig_site_pendant_1
   id: 11193
-  charges: 1
   degrade: dig_site_pendant_3
-  slot: "Amulet"
-  examine: "An enchanted necklace."
-  weight: 0.01
 dig_site_pendant_5:
+  <<: *dig_site_pendant_1
   id: 11194
-  charges: 1
   degrade: dig_site_pendant_4
-  slot: "Amulet"
-  examine: "An enchanted necklace."
-  weight: 0.01
 clean_necklace:
   id: 11195
   tradeable: false
@@ -54490,6 +54347,7 @@ battle_hood_100:
   id: 12866
   charges: 30000
   degrade: battle_hood_80
+  deplete: combat
   slot: "Hat"
   type: "Hair"
   examine: "Its arcane power is waning."
@@ -54523,6 +54381,7 @@ battle_robe_top_100:
   id: 12873
   charges: 30000
   degrade: battle_robe_top_80
+  deplete: combat
   slot: "Chest"
   examine: "Charged - A robe top infused with arcane power, especially created for combat spells. Uncharged - Its arcane power is waning"
   weight: 4.0
@@ -54554,6 +54413,7 @@ battle_robe_bottom_100:
   id: 12880
   charges: 30000
   degrade: battle_robe_bottom_80
+  deplete: combat
   slot: "Legs"
   examine: "A robe bottom infused with arcane power, especially created for combat spells."
   weight: 3.0
@@ -54585,6 +54445,7 @@ druidic_mage_hood_100:
   id: 12887
   charges: 30000
   degrade: druidic_mage_hood_80
+  deplete: combat
   slot: "Hat"
   type: "Hair"
   examine: "A worn-out hood, formerly worn by the followers of Guthix."
@@ -54618,6 +54479,7 @@ druidic_mage_top_100:
   id: 12894
   charges: 30000
   degrade: druidic_mage_top_80
+  deplete: combat
   slot: "Chest"
   examine: "A magical robe top worn by followers of Guthix."
   weight: 4.0
@@ -54649,6 +54511,7 @@ druidic_mage_bottom_100:
   id: 12901
   charges: 30000
   degrade: druidic_mage_bottom_80
+  deplete: combat
   slot: "Legs"
   examine: "A magical robe bottom worn by a person who follows Guthix."
   weight: 3.0
@@ -54680,6 +54543,7 @@ adamant_spikeshield_100:
   id: 12908
   charges: 30000
   degrade: adamant_spikeshield_80
+  deplete: combat
   slot: "Shield"
   material: "metal"
   examine: "Not so spiky anymore."
@@ -54713,6 +54577,7 @@ adamant_berserker_shield_100:
   id: 12915
   charges: 30000
   degrade: adamant_berserker_shield_80
+  deplete: combat
   slot: "Shield"
   material: "metal"
   examine: "Not so spiky anymore!"
@@ -54746,6 +54611,7 @@ rune_spikeshield_100:
   id: 12922
   charges: 30000
   degrade: rune_spikeshield_80
+  deplete: combat
   slot: "Shield"
   material: "metal"
   examine: "A spiked, medium square shield."
@@ -54779,6 +54645,7 @@ rune_berserker_shield_100:
   id: 12929
   charges: 30000
   degrade: rune_berserker_shield_80
+  deplete: combat
   slot: "Shield"
   material: "metal"
   examine: "Not so spiky anymore."
@@ -54813,6 +54680,7 @@ green_dragonhide_coif_normal:
   limit: 100
   charges: 30000
   degrade: green_dragonhide_coif_80
+  deplete: combat
   slot: "Hat"
   material: "leather"
   type: "Hair"
@@ -54849,6 +54717,7 @@ blue_dragonhide_coif_normal:
   limit: 100
   charges: 30000
   degrade: blue_dragonhide_coif_80
+  deplete: combat
   slot: "Hat"
   material: "leather"
   type: "Hair"
@@ -54885,6 +54754,7 @@ red_dragonhide_coif_normal:
   limit: 100
   charges: 30000
   degrade: red_dragonhide_coif_80
+  deplete: combat
   slot: "Hat"
   material: "leather"
   type: "Hair"
@@ -54921,6 +54791,7 @@ black_dragonhide_coif_normal:
   limit: 100
   charges: 30000
   degrade: black_dragonhide_coif_80
+  deplete: combat
   slot: "Hat"
   material: "leather"
   type: "Hair"
@@ -54957,6 +54828,7 @@ combat_hood_100:
   weight: 0.8
   charges: 30000
   degrade: combat_hood_80
+  deplete: combat
   slot: "Hat"
   type: "Hair"
   examine: "A magical hood, especially created for combat spells."
@@ -54990,6 +54862,7 @@ combat_robe_top_100:
   weight: 4.0
   charges: 30000
   degrade: combat_robe_top_80
+  deplete: combat
   slot: "Chest"
   examine: "A magical robe top, especially made for combat spells."
 combat_robe_top_80:
@@ -55021,6 +54894,7 @@ combat_robe_bottom_100:
   weight: 3.0
   charges: 30000
   degrade: combat_robe_bottom_80
+  deplete: combat
   slot: "Legs"
   examine: "A magical robe bottom, especially created for combat spells."
 combat_robe_bottom_80:
@@ -56255,6 +56129,7 @@ ring_of_slaying_8:
   id: 13281
   charges: 1
   degrade: ring_of_slaying_7
+  deplete: teleport
   jewellery:
     level: 75
     xp: 15.0
@@ -56266,6 +56141,7 @@ ring_of_slaying_7:
   id: 13282
   charges: 1
   degrade: ring_of_slaying_6
+  deplete: teleport
   weight: 0.006
   slot: "Ring"
   examine: "An enchanted ring."
@@ -58937,6 +58813,7 @@ statiuss_platebody:
   limit: 10
   charges: 1
   degrade: statiuss_platebody_degraded
+  deplete: combat
   slot: "Chest"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -58948,6 +58825,7 @@ statiuss_platebody_degraded:
   tradeable: false
   charges: 6000
   degrade: destroy
+  deplete: combat
   slot: "Chest"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -58958,6 +58836,7 @@ vestas_chainbody:
   limit: 10
   charges: 1
   degrade: vestas_chainbody_degraded
+  deplete: combat
   slot: "Chest"
   material: "metal"
   type: "Sleeveless"
@@ -58970,6 +58849,7 @@ vestas_chainbody_degraded:
   tradeable: false
   charges: 6000
   degrade: destroy
+  deplete: combat
   slot: "Chest"
   material: "metal"
   type: "Sleeveless"
@@ -58981,6 +58861,7 @@ statiuss_platelegs:
   limit: 10
   charges: 1
   degrade: statiuss_platelegs_degraded
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -58992,6 +58873,7 @@ statiuss_platelegs_degraded:
   tradeable: false
   charges: 6000
   degrade: destroy
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -59002,6 +58884,7 @@ vestas_plateskirt:
   limit: 10
   charges: 1
   degrade: vestas_plateskirt_degraded
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -59013,6 +58896,7 @@ vestas_plateskirt_degraded:
   tradeable: false
   charges: 6000
   degrade: destroy
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -59023,6 +58907,7 @@ statiuss_full_helm:
   limit: 10
   charges: 1
   degrade: statiuss_full_helm_degraded
+  deplete: combat
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -59035,6 +58920,7 @@ statiuss_full_helm_degraded:
   tradeable: false
   charges: 6000
   degrade: destroy
+  deplete: combat
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -59048,6 +58934,7 @@ vestas_longsword:
   special_damage_mod_1: 1.2
   charges: 1
   degrade: vestas_longsword_degraded
+  deplete: combat
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -59060,6 +58947,7 @@ vestas_longsword_degraded:
   special_damage_mod_1: 1.2
   charges: 6000
   degrade: destroy
+  deplete: combat
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -59072,6 +58960,7 @@ statiuss_warhammer:
   special_damage_mod_1: 1.25
   charges: 1
   degrade: statiuss_warhammer_degraded
+  deplete: combat
   slot: "Weapon"
   examine: "This item degrades in combat, and will turn to dust."
   weight: 1.814
@@ -59083,6 +58972,7 @@ statiuss_warhammer_degraded:
   special_damage_mod_1: 1.25
   charges: 6000
   degrade: destroy
+  deplete: combat
   slot: "Weapon"
   examine: "This item degrades in combat, and will turn to dust."
   weight: 1.814
@@ -59092,6 +58982,7 @@ vestas_spear:
   limit: 10
   charges: 1
   degrade: vestas_spear_degraded
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   examine: "This item degrades in combat, and will turn to dust."
@@ -59103,6 +58994,7 @@ vestas_spear_degraded:
   tradeable: false
   charges: 6000
   degrade: destroy
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   examine: "This item degrades in combat, and will turn to dust."
@@ -59113,6 +59005,7 @@ corrupt_statiuss_platebody:
   limit: 10
   charges: 1
   degrade: corrupt_statiuss_platebody_degraded
+  deplete: combat
   slot: "Chest"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59124,6 +59017,7 @@ corrupt_statiuss_platebody_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Chest"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59134,6 +59028,7 @@ corrupt_vestas_chainbody:
   limit: 10
   charges: 1
   degrade: corrupt_vestas_chainbody_degraded
+  deplete: combat
   slot: "Chest"
   material: "metal"
   type: "Sleeveless"
@@ -59146,6 +59041,7 @@ corrupt_vestas_chainbody_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Chest"
   material: "metal"
   type: "Sleeveless"
@@ -59157,6 +59053,7 @@ corrupt_statiuss_platelegs:
   limit: 10
   charges: 1
   degrade: corrupt_statiuss_platelegs_degraded
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59168,6 +59065,7 @@ corrupt_statiuss_platelegs_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59178,6 +59076,7 @@ corrupt_vestas_plateskirt:
   limit: 10
   charges: 1
   degrade: corrupt_vestas_plateskirt_degraded
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59189,6 +59088,7 @@ corrupt_vestas_plateskirt_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59199,6 +59099,7 @@ corrupt_statiuss_full_helm:
   limit: 10
   charges: 1
   degrade: corrupt_statiuss_full_helm_degraded
+  deplete: combat
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -59211,6 +59112,7 @@ corrupt_statiuss_full_helm_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -59222,6 +59124,7 @@ corrupt_vestas_longsword:
   limit: 10
   charges: 1
   degrade: corrupt_vestas_longsword_degraded
+  deplete: combat
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59233,6 +59136,7 @@ corrupt_vestas_longsword_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59243,6 +59147,7 @@ corrupt_statiuss_warhammer:
   limit: 10
   charges: 1
   degrade: corrupt_statiuss_warhammer_degraded
+  deplete: combat
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
@@ -59253,6 +59158,7 @@ corrupt_statiuss_warhammer_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
@@ -59262,6 +59168,7 @@ corrupt_vestas_spear:
   limit: 10
   charges: 1
   degrade: corrupt_vestas_spear_degraded
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59271,6 +59178,9 @@ corrupt_vestas_spear_degraded:
   id: 13931
   limit: 10
   tradeable: false
+  charges: 1500
+  degrade: destroy
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59281,6 +59191,7 @@ corrupt_zuriels_robe_top:
   limit: 10
   charges: 1
   degrade: corrupt_zuriels_robe_top_degraded
+  deplete: combat
   slot: "Chest"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 4.535
@@ -59291,6 +59202,7 @@ corrupt_zuriels_robe_top_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Chest"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 4.535
@@ -59300,6 +59212,7 @@ corrupt_zuriels_robe_bottom:
   limit: 10
   charges: 1
   degrade: corrupt_zuriels_robe_bottom_degraded
+  deplete: combat
   slot: "Legs"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 5.443
@@ -59310,6 +59223,7 @@ corrupt_zuriels_robe_bottom_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Legs"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 5.443
@@ -59319,6 +59233,7 @@ corrupt_zuriels_hood:
   limit: 10
   charges: 1
   degrade: corrupt_zuriels_hood_degraded
+  deplete: combat
   slot: "Hat"
   type: "Hair"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59330,6 +59245,7 @@ corrupt_zuriels_hood_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Hat"
   type: "Hair"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59340,6 +59256,7 @@ corrupt_zuriels_staff:
   limit: 10
   charges: 1
   degrade: corrupt_zuriels_staff_degraded
+  deplete: combat
   category: "staff"
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59351,6 +59268,7 @@ corrupt_zuriels_staff_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 2.267
@@ -59360,6 +59278,7 @@ corrupt_morrigans_leather_body:
   limit: 10
   charges: 1
   degrade: corrupt_morrigans_leather_body_degraded
+  deplete: combat
   slot: "Chest"
   material: "leather"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59371,6 +59290,7 @@ corrupt_morrigans_leather_body_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Chest"
   material: "leather"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59381,6 +59301,7 @@ corrupt_morrigans_leather_chaps:
   limit: 10
   charges: 1
   degrade: corrupt_morrigans_leather_chaps_degraded
+  deplete: combat
   slot: "Legs"
   material: "leather"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59392,6 +59313,7 @@ corrupt_morrigans_leather_chaps_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Legs"
   material: "leather"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59402,6 +59324,7 @@ corrupt_morrigans_coif:
   limit: 10
   charges: 1
   degrade: corrupt_morrigans_coif_degraded
+  deplete: combat
   slot: "Hat"
   material: "leather"
   type: "Hair"
@@ -59414,6 +59337,7 @@ corrupt_morrigans_coif_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Hat"
   material: "leather"
   type: "Hair"
@@ -59457,6 +59381,7 @@ corrupt_dragon_chainbody:
   limit: 10
   charges: 1
   degrade: corrupt_dragon_chainbody_degraded
+  deplete: combat
   slot: "Chest"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59468,6 +59393,7 @@ corrupt_dragon_chainbody_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Chest"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59478,6 +59404,7 @@ corrupt_dragon_helm:
   limit: 10
   charges: 1
   degrade: corrupt_dragon_helm_degraded
+  deplete: combat
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -59490,6 +59417,7 @@ corrupt_dragon_helm_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -59501,6 +59429,7 @@ corrupt_dragon_sq_shield:
   limit: 10
   charges: 1
   degrade: corrupt_dragon_sq_shield_degraded
+  deplete: combat
   slot: "Shield"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59512,6 +59441,7 @@ corrupt_dragon_sq_shield_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Shield"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59522,6 +59452,7 @@ corrupt_dragon_plateskirt:
   limit: 10
   charges: 1
   degrade: corrupt_dragon_plateskirt_degraded
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59533,6 +59464,7 @@ corrupt_dragon_plateskirt_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59543,6 +59475,7 @@ corrupt_dragon_platelegs:
   limit: 10
   charges: 1
   degrade: corrupt_dragon_platelegs_degraded
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59554,6 +59487,7 @@ corrupt_dragon_platelegs_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59564,6 +59498,7 @@ corrupt_dragon_battleaxe:
   limit: 10
   charges: 1
   degrade: corrupt_dragon_battleaxe_degraded
+  deplete: combat
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 2.721
@@ -59574,6 +59509,7 @@ corrupt_dragon_battleaxe_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 2.721
@@ -59583,6 +59519,7 @@ corrupt_dragon_dagger:
   limit: 10
   charges: 1
   degrade: corrupt_dragon_dagger_degraded
+  deplete: combat
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59594,6 +59531,7 @@ corrupt_dragon_dagger_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Weapon"
   material: "metal"
   destroy: "Your dagger is fragile and will disappear if you drop it. Are you sure you want to drop it?"
@@ -59605,6 +59543,7 @@ corrupt_dragon_scimitar:
   limit: 10
   charges: 1
   degrade: corrupt_dragon_scimitar_degraded
+  deplete: combat
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59616,6 +59555,7 @@ corrupt_dragon_scimitar_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Weapon"
   material: "metal"
   destroy: "Your scimitar is fragile and will disappear if you drop it. Are you sure you want to drop it?"
@@ -59627,6 +59567,7 @@ corrupt_dragon_longsword:
   limit: 10
   charges: 1
   degrade: corrupt_dragon_longsword_degraded
+  deplete: combat
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59638,6 +59579,7 @@ corrupt_dragon_longsword_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59648,6 +59590,7 @@ corrupt_dragon_mace:
   limit: 10
   charges: 1
   degrade: corrupt_dragon_mace_degraded
+  deplete: combat
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
@@ -59658,6 +59601,7 @@ corrupt_dragon_mace_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
@@ -59667,6 +59611,7 @@ corrupt_dragon_spear:
   limit: 10
   charges: 1
   degrade: corrupt_dragon_spear_degraded
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59678,6 +59623,7 @@ corrupt_dragon_spear_degraded:
   tradeable: false
   charges: 1500
   degrade: destroy
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "Your spear is fragile and will disappear if you drop it. Are you sure you want to drop it?"
@@ -61674,19 +61620,13 @@ white_lily_seed:
   examine: "A white lily seed - plant in a flower patch."
   kept: "Reclaim"
 enchanted_lyre_5:
+  <<: *enchanted_lyre_1
   id: 14590
-  charges: 1
   degrade: enchanted_lyre_4
-  slot: "Weapon"
-  examine: "This will teleport me to Rellekka when I play it."
-  weight: 1.814
 enchanted_lyre_6:
+  <<: *enchanted_lyre_1
   id: 14591
-  charges: 1
   degrade: enchanted_lyre_5
-  slot: "Weapon"
-  examine: "This will teleport me to Rellekka when I play it."
-  weight: 1.814
 elite_black_platelegs_lent: 14592
 elite_black_platebody_lent: 14593
 elite_black_full_helm_lent: 14594
@@ -77632,6 +77572,7 @@ chaotic_rapier:
   weight: 1.814
   charges: 30000
   degrade: chaotic_rapier_broken
+  deplete: combat
   slot: "Weapon"
   examine: "A razor-sharp rapier."
 chaotic_rapier_broken:
@@ -77647,6 +77588,7 @@ chaotic_longsword:
   weight: 2.721
   charges: 30000
   degrade: chaotic_longsword_broken
+  deplete: combat
   aka: [ cls ]
   slot: "Weapon"
   material: "metal"
@@ -77666,6 +77608,7 @@ chaotic_maul:
   aka: [ cmaul, c_maul ]
   charges: 30000
   degrade: chaotic_maul_broken
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A maul used to claim life from those who don't deserve it."
@@ -77684,6 +77627,7 @@ chaotic_staff:
   aka: [ cstaff, c_staff ]
   charges: 30000
   degrade: chaotic_staff_broken
+  deplete: combat
   category: "staff"
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful."
@@ -77702,6 +77646,7 @@ chaotic_crossbow:
   aka: [ ccb ]
   charges: 30000
   degrade: chaotic_crossbow_broken
+  deplete: combat
   slot: "Weapon"
   examine: "A small crossbow, only effective at short distance."
 chaotic_crossbow_broken:
@@ -77718,6 +77663,7 @@ chaotic_kiteshield:
   aka: [ chaotic_kite, chaotic_shield, dung_shield_melee ]
   charges: 30000
   degrade: chaotic_kiteshield_broken
+  deplete: combat
   slot: "Shield"
   material: "metal"
   examine: "A large metal shield."
@@ -77736,6 +77682,7 @@ eagle_eye_kiteshield:
   aka: [ eagle_eye_kite, eagle_eye_shield, eagel_eye_kiteshield, eagel_eye_kite, eagel_eye_shield, dung_shield_range, dung_shield_ranged ]
   charges: 30000
   degrade: eagle_eye_kiteshield_broken
+  deplete: combat
   slot: "Shield"
   material: "metal"
   examine: "A large metal shield."
@@ -77753,6 +77700,7 @@ farseer_kiteshield:
   weight: 5.443
   charges: 30000
   degrade: farseer_kiteshield_broken
+  deplete: combat
   aka: [ farsear_kiteshield, farseer_kite, farseer_shield, dung_shield_magic, dung_shield_mage ]
   slot: "Shield"
   material: "metal"
@@ -77771,6 +77719,7 @@ gravite_rapier:
   weight: 1.814
   charges: 30000
   degrade: gravite_rapier_broken
+  deplete: combat
   slot: "Weapon"
   examine: "A razor-sharp rapier."
 gravite_rapier_broken:
@@ -77786,6 +77735,7 @@ gravite_longsword:
   weight: 2.721
   charges: 30000
   degrade: gravite_longsword_broken
+  deplete: combat
   slot: "Weapon"
   material: "metal"
   examine: "A razor-sharp longsword."
@@ -77803,6 +77753,7 @@ gravite_2h_sword:
   weight: 3.628
   charges: 30000
   degrade: gravite_2h_sword_broken
+  deplete: combat
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -77822,6 +77773,7 @@ gravite_staff:
   weight: 1.814
   charges: 30000
   degrade: gravite_staff_broken
+  deplete: combat
   category: "staff"
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful."
@@ -77839,6 +77791,7 @@ gravite_shortbow:
   weight: 1.814
   charges: 30000
   degrade: gravite_shortbow_broken
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
@@ -83757,6 +83710,7 @@ torva_full_helm:
   weight: 2.721
   charges: 1
   degrade: torva_full_helm_used
+  deplete: combat
   aka: [ torva_helm ]
   slot: "Hat"
   material: "metal"
@@ -83770,6 +83724,7 @@ torva_full_helm_used:
   weight: 2.721
   charges: 60000
   degrade: torva_full_helm_broken
+  deplete: combat
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -83790,6 +83745,7 @@ torva_platebody:
   weight: 9.979
   charges: 1
   degrade: torva_platebody_used
+  deplete: combat
   aka: [ torva_plate ]
   slot: "Chest"
   material: "metal"
@@ -83802,6 +83758,7 @@ torva_platebody_used:
   weight: 9.979
   charges: 60000
   degrade: torva_platebody_broken
+  deplete: combat
   slot: "Chest"
   material: "metal"
   examine: "An Ancient warrior's Platebody."
@@ -83820,6 +83777,7 @@ torva_platelegs:
   weight: 9.071
   charges: 1
   degrade: torva_platelegs_used
+  deplete: combat
   aka: [ torva_legs ]
   slot: "Legs"
   material: "metal"
@@ -83832,6 +83790,7 @@ torva_platelegs_used:
   weight: 9.071
   charges: 60000
   degrade: torva_platelegs_broken
+  deplete: combat
   slot: "Legs"
   material: "metal"
   examine: "An ancient warrior's platelegs."
@@ -83850,6 +83809,7 @@ pernix_cowl:
   weight: 2.721
   charges: 1
   degrade: pernix_cowl_used
+  deplete: combat
   aka: [ pernix_helm, pernix_coif ]
   slot: "Hat"
   material: "leather"
@@ -83863,6 +83823,7 @@ pernix_cowl_used:
   weight: 2.721
   charges: 60000
   degrade: pernix_cowl_broken
+  deplete: combat
   slot: "Hat"
   material: "leather"
   type: "FullFace"
@@ -83883,6 +83844,7 @@ pernix_body:
   weight: 9.979
   charges: 1
   degrade: pernix_body_used
+  deplete: combat
   aka: [ pernix_top ]
   slot: "Chest"
   material: "leather"
@@ -83895,6 +83857,7 @@ pernix_body_used:
   weight: 9.979
   charges: 60000
   degrade: pernix_body_broken
+  deplete: combat
   slot: "Chest"
   material: "leather"
   examine: "An ancient ranger's body armour."
@@ -83913,6 +83876,7 @@ pernix_chaps:
   weight: 9.071
   charges: 1
   degrade: pernix_chaps_used
+  deplete: combat
   aka: [ pernix_legs ]
   slot: "Legs"
   material: "leather"
@@ -83925,6 +83889,7 @@ pernix_chaps_used:
   weight: 9.071
   charges: 60000
   degrade: pernix_chaps_broken
+  deplete: combat
   slot: "Legs"
   material: "leather"
   examine: "An ancient ranger's chaps."
@@ -83943,6 +83908,7 @@ virtus_mask:
   weight: 2.721
   charges: 1
   degrade: virtus_mask_used
+  deplete: combat
   aka: [ virtus_hood, virtus_helm ]
   slot: "Hat"
   type: "FullFace"
@@ -83955,6 +83921,7 @@ virtus_mask_used:
   weight: 2.721
   charges: 60000
   degrade: virtus_mask_broken
+  deplete: combat
   slot: "Hat"
   type: "FullFace"
   examine: "An ancient mage's mask."
@@ -83973,6 +83940,7 @@ virtus_robe_top:
   weight: 9.979
   charges: 1
   degrade: virtus_robe_top_used
+  deplete: combat
   aka: [ virtus_top ]
   slot: "Chest"
   examine: "An ancient mage's robe top."
@@ -83984,6 +83952,7 @@ virtus_robe_top_used:
   weight: 9.979
   charges: 60000
   degrade: virtus_robe_top_broken
+  deplete: combat
   slot: "Chest"
   examine: "An ancient mage's robe top."
 virtus_robe_top_broken:
@@ -84000,6 +83969,7 @@ virtus_robe_legs:
   weight: 9.071
   charges: 1
   degrade: virtus_robe_legs_used
+  deplete: combat
   aka: [ virtus_legs, virtus_robes ]
   slot: "Legs"
   examine: "An ancient mage's robe legs."
@@ -84011,6 +83981,7 @@ virtus_robe_legs_used:
   weight: 9.071
   charges: 60000
   degrade: virtus_robe_top_broken
+  deplete: combat
   slot: "Legs"
   examine: "An ancient mage's robe legs."
 virtus_robe_legs_broken:
@@ -84028,6 +83999,7 @@ zaryte_bow:
   weight: 1.814
   charges: 1
   degrade: zaryte_bow_used
+  deplete: combat
   aka: [ zbow, z_bow ]
   slot: "Weapon"
   type: "TwoHanded"
@@ -84040,6 +84012,7 @@ zaryte_bow_used:
   weight: 1.814
   charges: 60000
   degrade: zaryte_bow_broken
+  deplete: combat
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow imbued with the fury of Zaros."
