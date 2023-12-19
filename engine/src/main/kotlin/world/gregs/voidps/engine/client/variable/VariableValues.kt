@@ -30,7 +30,7 @@ sealed class VariableValues {
 
 object NoValues : VariableValues() {
     override fun default() = 0
-    override fun toInt(value: Any) = -1
+    override fun toInt(value: Any) = value as? Int ?: -1
 }
 
 object IntValues : VariableValues() {
