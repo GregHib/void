@@ -46,9 +46,9 @@ open class Movement(
         }
         if (character is Player && !strategy.tile.noCollision) {
             val route = pathFinder.findPath(character, strategy, shape)
-            character.steps.queueRoute(route, strategy.tile, strategy.tile.noCollision, strategy.tile.slowRun)
+            character.steps.queueRoute(route, strategy.tile, strategy.tile.noCollision, strategy.tile.noRun)
         } else {
-            character.steps.queueStep(strategy.tile, strategy.tile.noCollision, strategy.tile.slowRun)
+            character.steps.queueStep(strategy.tile, strategy.tile.noCollision, strategy.tile.noRun)
         }
         needsCalculation = false
     }
@@ -86,7 +86,7 @@ open class Movement(
             onCompletion()
             return false
         }
-        if (runStep && target.slowRun) {
+        if (runStep && target.noRun) {
             return false
         }
         val direction = nextDirection(target)

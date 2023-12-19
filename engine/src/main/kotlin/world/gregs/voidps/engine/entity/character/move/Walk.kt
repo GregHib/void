@@ -8,8 +8,8 @@ import world.gregs.voidps.type.Tile
 /**
  * Walks player to [target]
  * Specify [noCollision] to walk through [GameObject]s and
- * [slowRun] to force walking even if the player has running active
+ * [noRun] to force walking even if the player has running active
  */
-fun Character.walkTo(target: Tile, noCollision: Boolean = false, slowRun: Boolean = false) {
-    mode = Movement(this, TileTargetStrategy(target, noCollision, slowRun))
+fun Character.walkTo(target: Tile, noCollision: Boolean = false, noRun: Boolean = false) {
+    mode = Movement(this, TileTargetStrategy(target, noCollision, noRun))
 }

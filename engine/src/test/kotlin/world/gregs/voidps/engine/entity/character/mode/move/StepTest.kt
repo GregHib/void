@@ -15,29 +15,29 @@ class StepTest {
         assertEquals(0, tile.y)
         assertEquals(0, tile.level)
         assertFalse(tile.noCollision)
-        assertFalse(tile.slowRun)
+        assertFalse(tile.noRun)
     }
 
     @Test
     fun `Negative values safe`() {
-        val tile = Tile(-10, -50, -2).step(noCollision = false, slowRun = true)
+        val tile = Tile(-10, -50, -2).step(noCollision = false, noRun = true)
 
         assertEquals(16374, tile.x)
         assertEquals(16334, tile.y)
         assertEquals(2, tile.level)
         assertFalse(tile.noCollision)
-        assertTrue(tile.slowRun)
+        assertTrue(tile.noRun)
     }
 
     @Test
     fun `Maximum values`() {
-        val tile = Tile(16320, 16320, 3).step(noCollision = true, slowRun = true)
+        val tile = Tile(16320, 16320, 3).step(noCollision = true, noRun = true)
 
         assertEquals(16320, tile.x)
         assertEquals(16320, tile.y)
         assertEquals(3, tile.level)
         assertTrue(tile.noCollision)
-        assertTrue(tile.slowRun)
+        assertTrue(tile.noRun)
     }
 
 }

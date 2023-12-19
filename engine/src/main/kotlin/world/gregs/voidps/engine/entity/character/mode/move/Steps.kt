@@ -16,33 +16,33 @@ class Steps(
 
     fun poll(): Step = steps.poll()
 
-    fun queueRoute(route: Route, target: Tile? = null, noCollision: Boolean = false, slowRun: Boolean = false) {
-        queueSteps(route.waypoints.map { character.tile.copy(it.x, it.z) }, noCollision, slowRun)
-        destination = (target ?: steps.lastOrNull() ?: character.tile).step(noCollision, slowRun)
+    fun queueRoute(route: Route, target: Tile? = null, noCollision: Boolean = false, noRun: Boolean = false) {
+        queueSteps(route.waypoints.map { character.tile.copy(it.x, it.z) }, noCollision, noRun)
+        destination = (target ?: steps.lastOrNull() ?: character.tile).step(noCollision, noRun)
     }
 
-    fun queueStep(tile: Tile, noCollision: Boolean = false, slowRun: Boolean = false) {
+    fun queueStep(tile: Tile, noCollision: Boolean = false, noRun: Boolean = false) {
         clear()
-        steps.add(tile.step(noCollision, slowRun))
-        destination = tile.step(noCollision, slowRun)
+        steps.add(tile.step(noCollision, noRun))
+        destination = tile.step(noCollision, noRun)
     }
 
-    fun queueSteps(tiles: List<Tile>, noCollision: Boolean = false, slowRun: Boolean = false) {
+    fun queueSteps(tiles: List<Tile>, noCollision: Boolean = false, noRun: Boolean = false) {
         clear()
-        steps.addAll(tiles.map { it.step(noCollision, slowRun) })
-        destination = steps.lastOrNull() ?: character.tile.step(noCollision, slowRun)
+        steps.addAll(tiles.map { it.step(noCollision, noRun) })
+        destination = steps.lastOrNull() ?: character.tile.step(noCollision, noRun)
     }
 
     /**
-     * Updates all steps to have [noCollision] or [slowRun]
+     * Updates all steps to have [noCollision] or [noRun]
      * Used for modifying existing paths, for creating new paths e.g.
      * to walk through doors use [queueSteps]
      */
-    fun update(noCollision: Boolean = false, slowRun: Boolean = false) {
+    fun update(noCollision: Boolean = false, noRun: Boolean = false) {
         for (i in steps.indices) {
-            steps[i] = steps[i].step(noCollision, slowRun)
+            steps[i] = steps[i].step(noCollision, noRun)
         }
-        destination = destination.step(noCollision, slowRun)
+        destination = destination.step(noCollision, noRun)
     }
 
     fun clearDestination() {

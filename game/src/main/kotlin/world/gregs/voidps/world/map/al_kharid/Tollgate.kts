@@ -99,7 +99,7 @@ suspend fun CharacterContext.payToll(player: Player): Boolean {
     val left = closest.x <= rect.minX
     player.approachRange(10, true)
     val target = closest.add(if (left) Direction.EAST else Direction.WEST)
-    player.steps.queueStep(target, noCollision = true, slowRun = true)
+    player.steps.queueStep(target, noCollision = true, noRun = true)
     pause(1)
     return true
 }
