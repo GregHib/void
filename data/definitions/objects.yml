@@ -2284,13 +2284,13 @@ corpse_14:
 corpse_15:
   id: 3974
   examine: "He hasn't eaten in a long time."
-rock_rocks_arandar_1:
+limestone_rocks_1:
   id: 4027
-rock_rocks_arandar_2:
+limestone_rocks_2:
   id: 4028
-rock_rocks_arandar_3:
+limestone_rocks_3:
   id: 4029
-depleted_rocks_arandar_3:
+depleted_limestone_rocks:
   id: 4030
 balancing_rope_4:
   id: 4059
@@ -3498,6 +3498,15 @@ gold_rocks_rimmington_2:
 gold_rocks_rimmington_3:
   <<: *gold_rocks_old_1
   id: 9722
+  examine: "A rocky outcrop"
+depleted_rocks_rimmington_1:
+  id: 9723
+  examine: "A rocky outcrop"
+depleted_rocks_rimmington_2:
+  id: 9724
+  examine: "A rocky outcrop"
+depleted_rocks_rimmington_3:
+  id: 9725
   examine: "A rocky outcrop"
 tin_rocks_lava_maze_dungeon_1:
   <<: *tin_rocks_old_1
@@ -6748,7 +6757,7 @@ door_446_closed:
   id: 24378
   examine: "The door is closed."
 door_448_opened:
-  id: 24380
+  id: 24379
 door_448_closed:
   id: 24381
   examine: "The door is closed."
@@ -8865,6 +8874,15 @@ coal_rocks_lava_maze_dungeon_2:
 coal_rocks_lava_maze_dungeon_3:
   <<: *coal_rocks_old_1
   id: 37699
+  examine: "A rocky outcrop."
+depleted_rocks_lava_maze_dungeon_1:
+  id: 37700
+  examine: "A rocky outcrop."
+depleted_rocks_lava_maze_dungeon_2:
+  id: 37701
+  examine: "A rocky outcrop."
+depleted_rocks_lava_maze_dungeon_3:
+  id: 37702
   examine: "A rocky outcrop."
 crate_293:
   id: 37809

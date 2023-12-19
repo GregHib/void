@@ -399,6 +399,11 @@ thurgo:
   race: dwarf
   wander_radius: 4
   examine: "Dwarvish."
+sir_vyvin:
+  id: 605
+  race: human
+  wander_radius: 4
+  examine: "A White Knight officer with an injured eye."
 squire_asrol:
   id: 606
   race: human
@@ -1591,6 +1596,11 @@ cow_light_spots_2:
 cow_calf_3:
   <<: *cow_calf
   id: 12366
+leela:
+  id: 13172
+  race: human
+  wander_radius: 4
+  examine: "She comes from Al Kharid."  
 seal:
   id: 13255
   wander_radius: 2
@@ -1622,7 +1632,7 @@ greater_demon:
   def: 81
   attack_range: 5
   attack_radius: 11
-  hitpoints: 1870
+  hitpoints: 870
   slayer_xp: 87
   max_hit_melee: 90
   style: slash
