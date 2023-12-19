@@ -25,7 +25,6 @@ import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.network.visual.update.player.MoveType
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 import kotlin.math.sign
 
