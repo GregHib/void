@@ -46,7 +46,7 @@ class Follow(
         if (character.steps.isEmpty()) {
             smart = false
         }
-        if (strategy.tile != character.steps.destination) {
+        if (!equals(strategy.tile, character.steps.destination)) {
             character.steps.queueStep(strategy.tile)
             return true
         }

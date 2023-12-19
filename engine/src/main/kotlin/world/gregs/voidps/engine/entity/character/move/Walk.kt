@@ -5,6 +5,11 @@ import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.mode.move.target.TileTargetStrategy
 import world.gregs.voidps.type.Tile
 
-fun Character.walkTo(target: Tile) {
-    mode = Movement(this, TileTargetStrategy(target))
+/**
+ * Walks player to [target]
+ * Specify [noCollision] to walk through [GameObject]s and
+ * [noRun] to force walking even if the player has running active
+ */
+fun Character.walkTo(target: Tile, noCollision: Boolean = false, noRun: Boolean = false) {
+    mode = Movement(this, TileTargetStrategy(target, noCollision, noRun))
 }

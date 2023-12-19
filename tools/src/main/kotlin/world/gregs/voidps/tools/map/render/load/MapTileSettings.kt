@@ -4,7 +4,6 @@ import world.gregs.voidps.cache.config.data.OverlayDefinition
 import world.gregs.voidps.cache.config.data.UnderlayDefinition
 import world.gregs.voidps.cache.definition.data.MapTile
 import world.gregs.voidps.cache.definition.data.TextureDefinition
-import world.gregs.voidps.type.Region
 import world.gregs.voidps.tools.map.render.draw.TileLevel
 import world.gregs.voidps.tools.map.render.load.MapConstants.TILE_TYPE_HEIGHT_OVERRIDE
 import world.gregs.voidps.tools.map.render.load.MapConstants.firstTileTypeVertices
@@ -17,6 +16,7 @@ import world.gregs.voidps.tools.map.render.load.MapConstants.tileYOffsets
 import world.gregs.voidps.tools.map.render.load.MapConstants.underlaySizes
 import world.gregs.voidps.tools.map.render.load.MapConstants.waterMovement
 import world.gregs.voidps.tools.map.render.raster.ColourPalette
+import world.gregs.voidps.type.Region
 
 class MapTileSettings(
     private val levelCount: Int,
@@ -43,7 +43,7 @@ class MapTileSettings(
         val regionX = this.regionX + (localX / 64)
         val regionY = this.regionY + (localY / 64)
         val regionId = Region.id(regionX, regionY)
-        return manager.tiles.getOrNull(regionId)?.getTile(localX.rem(64), localY.rem(64), level) ?: MapTile.EMPTY
+        return manager.tiles[regionId]?.getTile(localX.rem(64), localY.rem(64), level) ?: MapTile.EMPTY
     }
 
     fun set(regionX: Int, regionY: Int) {
@@ -103,8 +103,8 @@ class MapTileSettings(
                     val maxX = dx + samplingX
                     if (maxX < width) {
                         val underlay = tile(level, maxX, y).underlayId
-                        if (underlay > 0) {
-                            val underlayDefinition = underlayDecoder.get(underlay - 1)
+                        val underlayDefinition = underlayDecoder.getOrNull(underlay - 1)
+                        if (underlayDefinition != null) {
                             underlayHue[y] += underlayDefinition.hue
                             underlaySaturation[y] += underlayDefinition.saturation
                             underlayLightness[y] += underlayDefinition.lightness
@@ -115,8 +115,8 @@ class MapTileSettings(
                     val minX = dx - samplingX
                     if (minX >= 0) {
                         val underlay = tile(level, minX, y).underlayId
-                        if (underlay > 0) {
-                            val underlayDefinition = underlayDecoder.get(underlay - 1)
+                        val underlayDefinition = underlayDecoder.getOrNull(underlay - 1)
+                        if (underlayDefinition != null) {
                             underlayHue[y] -= underlayDefinition.hue
                             underlaySaturation[y] -= underlayDefinition.saturation
                             underlayLightness[y] -= underlayDefinition.lightness
@@ -167,11 +167,11 @@ class MapTileSettings(
                     val tileDirection = tile.overlayRotation
                     val overlay = tile.overlayId
                     val underlay = tile.underlayId
-                    var overlayDefinition = if (overlay != 0) overlayDecoder.get(overlay - 1) else null
+                    var overlayDefinition = if (overlay != 0) overlayDecoder.getOrNull(overlay - 1) else null
                     if (tileType == 0 && overlayDefinition == null) {
                         tileType = 12
                     }
-                    val underlayDefinition = if (underlay != 0) underlayDecoder.get(underlay - 1) else null
+                    val underlayDefinition = if (underlay != 0) underlayDecoder.getOrNull(underlay - 1) else null
                     if (overlayDefinition != null && overlayDefinition.colour == -1 && overlayDefinition.blendColour == -1) {
                         overlayDefinition = null
                     }

@@ -1,7 +1,5 @@
 package world.gregs.voidps.world.map
 
-import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
@@ -40,13 +38,13 @@ on<World, Registered> {
 }
 
 on<AreaEntered>({ name.startsWith("border_guard") && area is Rectangle }) { player: Player ->
-    player.start("no_clip", 3)
-    player.start("slow_run", 3)
     val border = area as Rectangle
     if (player.steps.destination in border) {
         val tile = border.nearestTo(player.tile)
         val endSide = getOppositeSide(border, tile)
-        player.walkTo(endSide)
+        player.walkTo(endSide, noCollision = true, noRun = true)
+    } else {
+        player.steps.update(noCollision = true, noRun = true)
     }
     val guards = guards[border] ?: return@on
     changeGuardState(guards, true)
@@ -54,9 +52,8 @@ on<AreaEntered>({ name.startsWith("border_guard") && area is Rectangle }) { play
 
 on<AreaExited>({ name.startsWith("border_guard") && area is Rectangle }) { player: Player ->
     val border = area as Rectangle
-    player.stop("no_clip")
-    player.stop("slow_run")
     val guards = guards[border] ?: return@on
+    player.steps.update(noCollision = false, noRun = false)
     changeGuardState(guards, false)
 }
 

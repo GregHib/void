@@ -41,7 +41,7 @@ object WorldMapDumper {
         }.koin
 
         val cache: Cache = koin.get()
-        val mapDecoder = MapDecoder(koin.get<Xteas>()).loadCache(cache)
+        val mapDefinitions = MapDecoder(koin.get<Xteas>()).loadCache(cache).associateBy { it.id }
         val objectDecoder = ObjectDecoderFull(members = true, lowDetail = false).loadCache(cache)
         val overlayDefinitions = OverlayDecoder().loadCache(cache)
         val underlayDefinitions = UnderlayDecoder().loadCache(cache)
@@ -58,7 +58,7 @@ object WorldMapDumper {
 
         val loader = MinimapIconPainter(objectDecoder, worldMapDecoder, worldMapInfoDecoder, spriteDecoder)
         loader.startup(cache)
-        val manager = RegionManager(mapDecoder, 3)
+        val manager = RegionManager(mapDefinitions, 3)
         val settings = MapTileSettings(4, underlayDefinitions, overlayDefinitions, textureDefinitions, manager = manager)
 
         val pipeline = Pipeline<Region>()

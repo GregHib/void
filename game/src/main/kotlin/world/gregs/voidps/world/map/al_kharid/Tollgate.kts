@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.approachRange
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance.nearestTo
@@ -37,6 +38,7 @@ val objects: GameObjects by inject()
 val southGate = Tile(3268, 3227)
 
 on<ObjectOption>({ operate && target.id.startsWith("toll_gate_al_kharid") && option == "Pay-toll(10gp)" }) { player: Player ->
+    arriveDelay()
     if (!payToll(player)) {
         dialogue(player)
     }
@@ -46,11 +48,11 @@ on<ObjectOption>({ operate && target.id.startsWith("toll_gate_al_kharid") && opt
     dialogue(player)
 }
 
-on<NPCOption>({ operate && target.id == "border_guard_al_kharid" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id.startsWith("border_guard_al_kharid") && option == "Talk-to" }) { player: Player ->
     dialogue(player, target)
 }
 
-fun getGuard(player: Player) = get<NPCs>()[player.tile.regionLevel].firstOrNull { it.id == "border_guard_al_kharid" }
+fun getGuard(player: Player) = get<NPCs>()[player.tile.regionLevel].firstOrNull { it.id.startsWith("border_guard_al_kharid") }
 
 suspend fun CharacterContext.dialogue(player: Player, npc: NPC? = getGuard(player)) {
     if (npc == null) {
@@ -79,7 +81,7 @@ suspend fun CharacterContext.dialogue(player: Player, npc: NPC? = getGuard(playe
 
 fun getGate(player: Player): GameObject {
     val tile = gates.nearestTo(player.tile)
-    return objects[tile, "toll_gate_al_kharid"]!!
+    return objects[tile].first { it.id.startsWith("toll_gate_al_kharid") }
 }
 
 val rect = Rectangle(Tile(3267, 3227), 2, 2)
@@ -94,12 +96,10 @@ suspend fun CharacterContext.payToll(player: Player): Boolean {
     openGate()
     val closest = rect.nearestTo(player.tile)
     player.start("delay", 1)
-    player.start("slow_run", 1)
-    player.start("no_clip", 1)
     val left = closest.x <= rect.minX
     player.approachRange(10, true)
     val target = closest.add(if (left) Direction.EAST else Direction.WEST)
-    player.steps.queueStep(target)
+    player.steps.queueStep(target, noCollision = true, noRun = true)
     pause(1)
     return true
 }
@@ -107,5 +107,5 @@ suspend fun CharacterContext.payToll(player: Player): Boolean {
 fun openGate() {
     val obj = objects[southGate, "toll_gate_al_kharid"] ?: return
     val double = objects[southGate.addY(1), "toll_gate_al_kharid_north"] ?: return
-    Door.openDoubleDoors(obj, obj.def, double, 2, false)
+    Door.openDoubleDoors(obj, obj.def, double, 3, false)
 }

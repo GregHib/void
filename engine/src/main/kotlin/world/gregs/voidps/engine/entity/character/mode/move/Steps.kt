@@ -7,30 +7,42 @@ import java.util.*
 
 class Steps(
     internal val character: Character,
-    val steps: LinkedList<Tile> = LinkedList<Tile>()
-) : List<Tile> by steps {
+    private val steps: LinkedList<Step> = LinkedList<Step>()
+) : List<Step> by steps {
     var destination: Tile = Tile.EMPTY
         private set
 
-    fun peek(): Tile? = steps.peek()
+    fun peek(): Step? = steps.peek()
 
-    fun poll(): Tile = steps.poll()
+    fun poll(): Step = steps.poll()
 
-    fun queueRoute(route: Route, target: Tile? = null) {
-        queueSteps(route.waypoints.map { character.tile.copy(it.x, it.z) })
-        destination = target ?: steps.lastOrNull() ?: character.tile
+    fun queueRoute(route: Route, target: Tile? = null, noCollision: Boolean = false, noRun: Boolean = false) {
+        queueSteps(route.waypoints.map { character.tile.copy(it.x, it.z) }, noCollision, noRun)
+        destination = (target ?: steps.lastOrNull() ?: character.tile).step(noCollision, noRun)
     }
 
-    fun queueStep(tile: Tile) {
+    fun queueStep(tile: Tile, noCollision: Boolean = false, noRun: Boolean = false) {
         clear()
-        steps.add(tile)
-        destination = tile
+        steps.add(tile.step(noCollision, noRun))
+        destination = tile.step(noCollision, noRun)
     }
 
-    fun queueSteps(tiles: List<Tile>) {
+    fun queueSteps(tiles: List<Tile>, noCollision: Boolean = false, noRun: Boolean = false) {
         clear()
-        steps.addAll(tiles)
-        destination = tiles.lastOrNull() ?: character.tile
+        steps.addAll(tiles.map { it.step(noCollision, noRun) })
+        destination = steps.lastOrNull() ?: character.tile.step(noCollision, noRun)
+    }
+
+    /**
+     * Updates all steps to have [noCollision] or [noRun]
+     * Used for modifying existing paths, for creating new paths e.g.
+     * to walk through doors use [queueSteps]
+     */
+    fun update(noCollision: Boolean = false, noRun: Boolean = false) {
+        for (i in steps.indices) {
+            steps[i] = steps[i].step(noCollision, noRun)
+        }
+        destination = destination.step(noCollision, noRun)
     }
 
     fun clearDestination() {

@@ -2,12 +2,12 @@ package world.gregs.voidps.tools.map.render.load
 
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapObject
-import world.gregs.voidps.type.Region
 import world.gregs.voidps.tools.map.render.raster.Raster
+import world.gregs.voidps.type.Region
 import java.awt.image.BufferedImage
 
 class RegionManager(
-    val tiles: Array<MapDefinition>,
+    val tiles: Map<Int, MapDefinition>,
     private val regionRenderSize: Int = 3
 ) {
     val width = regionRenderSize * 64
@@ -38,7 +38,7 @@ class RegionManager(
     }
 
     private fun setOrLoadTiles(regionId: Int): MapDefinition? {
-        return tiles.getOrNull(regionId)
+        return tiles[regionId]
     }
 
     fun loadObjects(region: Region): MutableList<MapObject>? {
