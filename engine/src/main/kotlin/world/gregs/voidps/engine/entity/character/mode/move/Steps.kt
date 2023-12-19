@@ -30,7 +30,7 @@ class Steps(
     fun queueSteps(tiles: List<Tile>, noCollision: Boolean = false, slowRun: Boolean = false) {
         clear()
         steps.addAll(tiles.map { it.step(noCollision, slowRun) })
-        destination = (tiles.lastOrNull() ?: character.tile).step(noCollision, slowRun)
+        destination = steps.lastOrNull() ?: character.tile.step(noCollision, slowRun)
     }
 
     fun clearDestination() {
