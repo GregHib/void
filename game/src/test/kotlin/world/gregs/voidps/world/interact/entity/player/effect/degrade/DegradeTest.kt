@@ -22,7 +22,7 @@ class DegradeTest : WorldTest() {
         assertEquals(10, Degrade.charges(player, inventoryId, slot))
         assertFalse(player.equipment[slot].isEmpty())
 
-        Degrade.degrade(player, inventoryId, slot)
+        Degrade.clear(player, inventoryId, slot)
         assertTrue(player.equipment[slot].isEmpty())
         assertEquals(0, Degrade.charges(player, inventoryId, slot))
     }
@@ -38,7 +38,7 @@ class DegradeTest : WorldTest() {
         assertEquals(1, Degrade.charges(player, inventoryId, slot))
         assertFalse(player.equipment[slot].isEmpty())
 
-        Degrade.degrade(player, inventoryId, slot)
+        Degrade.clear(player, inventoryId, slot)
         assertEquals("camulet", player.equipment[slot].id)
         assertEquals(0, Degrade.charges(player, inventoryId, slot))
     }
