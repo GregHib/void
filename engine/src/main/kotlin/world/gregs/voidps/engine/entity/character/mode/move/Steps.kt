@@ -7,30 +7,30 @@ import java.util.*
 
 class Steps(
     internal val character: Character,
-    val steps: LinkedList<Tile> = LinkedList<Tile>()
-) : List<Tile> by steps {
+    val steps: LinkedList<Step> = LinkedList<Step>()
+) : List<Step> by steps {
     var destination: Tile = Tile.EMPTY
         private set
 
-    fun peek(): Tile? = steps.peek()
+    fun peek(): Step? = steps.peek()
 
-    fun poll(): Tile = steps.poll()
+    fun poll(): Step = steps.poll()
 
-    fun queueRoute(route: Route, target: Tile? = null) {
-        queueSteps(route.waypoints.map { character.tile.copy(it.x, it.z) })
-        destination = target ?: steps.lastOrNull() ?: character.tile
+    fun queueRoute(route: Route, target: Tile? = null, noCollision: Boolean = false, slowRun: Boolean = false) {
+        queueSteps(route.waypoints.map { character.tile.copy(it.x, it.z) }, noCollision, slowRun)
+        destination = (target ?: steps.lastOrNull() ?: character.tile).step(noCollision, slowRun)
     }
 
-    fun queueStep(tile: Tile) {
+    fun queueStep(tile: Tile, noCollision: Boolean = false, slowRun: Boolean = false) {
         clear()
-        steps.add(tile)
-        destination = tile
+        steps.add(tile.step(noCollision, slowRun))
+        destination = tile.step(noCollision, slowRun)
     }
 
-    fun queueSteps(tiles: List<Tile>) {
+    fun queueSteps(tiles: List<Tile>, noCollision: Boolean = false, slowRun: Boolean = false) {
         clear()
-        steps.addAll(tiles)
-        destination = tiles.lastOrNull() ?: character.tile
+        steps.addAll(tiles.map { it.step(noCollision, slowRun) })
+        destination = (tiles.lastOrNull() ?: character.tile).step(noCollision, slowRun)
     }
 
     fun clearDestination() {

@@ -51,7 +51,7 @@ value class Tile(val id: Int) : Coordinate3D<Tile> {
         fun id(x: Int, y: Int, level: Int = 0) = (y and 0x3fff) + ((x and 0x3fff) shl 14) + ((level and 0x3) shl 28)
         fun x(id: Int) = id shr 14 and 0x3fff
         fun y(id: Int) = id and 0x3fff
-        fun level(id: Int) = id shr 28
+        fun level(id: Int) = id shr 28 and 0x3
 
         val EMPTY = Tile(0)
 

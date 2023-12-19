@@ -94,12 +94,10 @@ suspend fun CharacterContext.payToll(player: Player): Boolean {
     openGate()
     val closest = rect.nearestTo(player.tile)
     player.start("delay", 1)
-    player.start("slow_run", 1)
-    player.start("no_clip", 1)
     val left = closest.x <= rect.minX
     player.approachRange(10, true)
     val target = closest.add(if (left) Direction.EAST else Direction.WEST)
-    player.steps.queueStep(target)
+    player.steps.queueStep(target, noCollision = true, slowRun = true)
     pause(1)
     return true
 }

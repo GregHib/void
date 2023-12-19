@@ -16,7 +16,6 @@ internal class NPCTest : WorldTest() {
         val spawn = emptyTile
         val npc = createNPC("chicken", spawn) { npc ->
             npc["area"] = Rectangle(spawn.minus(25, 25), 50, 50)
-            npc.softTimers.start("no_clip")
         }
         tickIf { npc.tile == spawn }
 

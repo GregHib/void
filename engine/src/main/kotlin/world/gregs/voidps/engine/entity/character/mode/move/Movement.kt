@@ -44,7 +44,7 @@ open class Movement(
         if (strategy == null) {
             return
         }
-        if (character is Player) {
+        if (character is Player && !strategy.tile.noCollision) {
             val route = pathFinder.findPath(character, strategy, shape)
             character.steps.queueRoute(route, strategy.tile)
         } else {
@@ -61,13 +61,13 @@ open class Movement(
             }
             return
         }
-        if (hasDelay() && !character.hasClock("no_clip")) {
+        if (hasDelay() && !character.steps.destination.noCollision) {
             return
         }
         if (needsCalculation) {
             calculate()
         }
-        if (step(runStep = false) && character.running && !character.hasClock("slow_run")) {
+        if (step(runStep = false) && character.running) {
             if (character.steps.isNotEmpty()) {
                 step(runStep = true)
             } else {
@@ -86,6 +86,9 @@ open class Movement(
         val target = getTarget()
         if (target == null) {
             onCompletion()
+            return false
+        }
+        if (runStep && target.slowRun) {
             return false
         }
         val direction = nextDirection(target)
@@ -122,7 +125,7 @@ open class Movement(
     /**
      * @return the first unreached step from [Character.steps]
      */
-    protected open fun getTarget(): Tile? {
+    protected open fun getTarget(): Step? {
         val target = character.steps.peek() ?: return null
         if (character.tile.equals(target.x, target.y)) {
             character.steps.poll()
@@ -148,7 +151,7 @@ open class Movement(
         }
     }
 
-    protected fun nextDirection(target: Tile?): Direction? {
+    protected fun nextDirection(target: Step?): Direction? {
         target ?: return null
         val dx = (target.x - character.tile.x).sign
         val dy = (target.y - character.tile.y).sign
@@ -156,7 +159,7 @@ open class Movement(
         if (direction == Direction.NONE) {
             return null
         }
-        if (character.hasClock("no_clip") || canStep(dx, dy)) {
+        if (target.noCollision || canStep(dx, dy)) {
             return direction
         }
         if (dx != 0 && canStep(dx, 0)) {

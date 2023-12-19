@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Face
@@ -303,8 +302,7 @@ suspend fun CharacterContext.cutscene() {
     player.tele(Tile(3225, 3363).add(offset), clearInterfaces = false)
 
     delay(2)
-    player.start("no_clip", 3)
-    player.walkTo(Tile(3227, 3367).add(offset))
+    player.walkTo(Tile(3227, 3367).add(offset), noCollision = true)
     player.running = true
     delay(3)
     player.face(Direction.NORTH)

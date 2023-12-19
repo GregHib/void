@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.mode.move.target
 
+import world.gregs.voidps.engine.entity.character.mode.move.step
 import world.gregs.voidps.type.Tile
 
 data class TileTargetStrategy(
@@ -12,4 +13,10 @@ data class TileTargetStrategy(
     override val exitStrategy = -1
     override val sizeX: Int = 1
     override val sizeY: Int = 1
+
+    companion object {
+        operator fun invoke(tile: Tile, noCollision: Boolean, forceWalk: Boolean = false): TileTargetStrategy {
+            return TileTargetStrategy(tile.step(noCollision, forceWalk))
+        }
+    }
 }
