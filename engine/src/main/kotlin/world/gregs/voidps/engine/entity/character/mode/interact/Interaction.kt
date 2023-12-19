@@ -9,6 +9,7 @@ abstract class Interaction : CancellableEvent(), SuspendableEvent, CharacterCont
     val operate: Boolean
         get() = !approach
     override var onCancel: (() -> Unit)? = null
+    var launched = false
 
     abstract fun copy(approach: Boolean): Interaction
 }

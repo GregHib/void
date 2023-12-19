@@ -77,6 +77,7 @@ class Interact(
             return
         }
         updateRange = false
+        calculate()
         val interacted = processInteraction()
         if (interacted && interactionFinished()) {
             clear()
@@ -154,7 +155,8 @@ class Interact(
             character.resumeSuspension()
             return true
         }
-        if (character.events.emit(event)) {
+        if (!event.launched && character.events.emit(event)) {
+            event.launched = true
             return true
         }
         return false

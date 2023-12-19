@@ -25,7 +25,6 @@ import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.network.visual.update.player.MoveType
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 import kotlin.math.sign
 
@@ -41,7 +40,7 @@ open class Movement(
     private var needsCalculation = true
 
     internal fun calculate() {
-        if (strategy == null) {
+        if (!needsCalculation || strategy == null) {
             return
         }
         if (character is Player && !strategy.tile.noCollision) {
@@ -64,9 +63,7 @@ open class Movement(
         if (hasDelay() && !character.steps.destination.noCollision) {
             return
         }
-        if (needsCalculation) {
-            calculate()
-        }
+        calculate()
         if (step(runStep = false) && character.running) {
             if (character.steps.isNotEmpty()) {
                 step(runStep = true)
