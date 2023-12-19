@@ -114,8 +114,8 @@ class ObjectPainter(
             return
         }
         var settings = settings
-        val mapSceneDefinition = mapSceneDefinitions.get(objectdefinition.mapscene)
-        if (mapSceneDefinition.sprite != -1) {
+        val mapSceneDefinition = mapSceneDefinitions.getOrNull(objectdefinition.mapscene)
+        if (mapSceneDefinition != null && mapSceneDefinition.sprite != -1) {
             if (objectdefinition.aBoolean3056) {
                 settings += objectdefinition.anInt2958
                 settings = settings and 0x3
@@ -221,8 +221,10 @@ class ObjectPainter(
     fun paint(g: Graphics2D, region: Region, objects: Map<Int, List<MapObject>?>) {
         objects.forEach { (regionId, list) ->
             list?.forEach { obj ->
-                val definition = objectDefinitions.get(obj.id)
-                drawObject(g, region, regionId, obj, definition)
+                val definition = objectDefinitions.getOrNull(obj.id)
+                if (definition != null) {
+                    drawObject(g, region, regionId, obj, definition)
+                }
             }
         }
     }

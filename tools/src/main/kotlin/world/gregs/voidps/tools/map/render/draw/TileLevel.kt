@@ -3,12 +3,12 @@ package world.gregs.voidps.tools.map.render.draw
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapTile
 import world.gregs.voidps.cache.definition.data.TextureDefinition
-import world.gregs.voidps.type.Region
 import world.gregs.voidps.tools.map.render.load.MapConstants.size
 import world.gregs.voidps.tools.map.render.load.MapTileSettings
 import world.gregs.voidps.tools.map.render.model.TextureColours
 import world.gregs.voidps.tools.map.render.model.TileColours
 import world.gregs.voidps.tools.map.render.raster.Raster
+import world.gregs.voidps.type.Region
 import kotlin.math.sqrt
 
 class TileLevel(
@@ -16,7 +16,7 @@ class TileLevel(
     private val width: Int,
     private val height: Int,
     val level: Int,
-    private val tiles: Array<MapDefinition>
+    private val tiles: Map<Int, MapDefinition>
 ) {
 
     private val tileBrightness = Array(width + 1) { ByteArray(height + 1) }
@@ -77,7 +77,7 @@ class TileLevel(
         val regionX = x / 64
         val regionY = y / 64
         val regionId = Region.id(regionX, regionY)
-        return tiles[regionId].getTile(x.rem(64), y.rem(64), level)
+        return tiles[regionId]?.getTile(x.rem(64), y.rem(64), level) ?: MapTile.EMPTY
     }
 
     fun averageHeight(worldY: Int, worldX: Int): Int {

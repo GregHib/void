@@ -59,12 +59,12 @@ class RegionRenderer(
                 val image = img.getSubimage(256, 257, 256, 256)
                 if (isNotBlank(image)) {
                     ImageIO.write(image, "png", File("./images/$level/${content.id}.png"))
+                    println("Written ${content.id} in ${System.currentTimeMillis() - start}ms")
                 }
             } catch (e: IOException) {
                 e.printStackTrace()
             }
         }
-        println("Written ${content.id} in ${System.currentTimeMillis() - start}ms")
     }
 
     companion object {
