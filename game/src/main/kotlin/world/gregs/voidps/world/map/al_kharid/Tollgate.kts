@@ -48,11 +48,11 @@ on<ObjectOption>({ operate && target.id.startsWith("toll_gate_al_kharid") && opt
     dialogue(player)
 }
 
-on<NPCOption>({ operate && target.id == "border_guard_al_kharid" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && target.id.startsWith("border_guard_al_kharid") && option == "Talk-to" }) { player: Player ->
     dialogue(player, target)
 }
 
-fun getGuard(player: Player) = get<NPCs>()[player.tile.regionLevel].firstOrNull { it.id == "border_guard_al_kharid" }
+fun getGuard(player: Player) = get<NPCs>()[player.tile.regionLevel].firstOrNull { it.id.startsWith("border_guard_al_kharid") }
 
 suspend fun CharacterContext.dialogue(player: Player, npc: NPC? = getGuard(player)) {
     if (npc == null) {
@@ -81,7 +81,7 @@ suspend fun CharacterContext.dialogue(player: Player, npc: NPC? = getGuard(playe
 
 fun getGate(player: Player): GameObject {
     val tile = gates.nearestTo(player.tile)
-    return objects[tile, "toll_gate_al_kharid"]!!
+    return objects[tile].first { it.id.startsWith("toll_gate_al_kharid") }
 }
 
 val rect = Rectangle(Tile(3267, 3227), 2, 2)

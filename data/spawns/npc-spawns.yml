@@ -1946,9 +1946,9 @@
 - { id: ellis, x: 3276, y: 3193 }
 # 13106
 - { id: mubariz, x: 3314, y: 3240 }
-- { id: border_guard_al_kharid, x: 3267, y: 3229, direction: SOUTH }
+- { id: border_guard_al_kharid, x: 3266, y: 3229, direction: SOUTH }
 - { id: border_guard_al_kharid, x: 3267, y: 3226, direction: NORTH }
-- { id: border_guard_al_kharid_2, x: 3268, y: 3229, direction: SOUTH }
+- { id: border_guard_al_kharid_2, x: 3269, y: 3229, direction: SOUTH }
 - { id: border_guard_al_kharid_2, x: 3268, y: 3226, direction: NORTH }
 - { id: musician_al_kharid, x: 3292, y: 3212, direction: NORTH }
 - { id: man_3, x: 3298, y: 3206 }
