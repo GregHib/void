@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.approachRange
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance.nearestTo
@@ -37,6 +38,7 @@ val objects: GameObjects by inject()
 val southGate = Tile(3268, 3227)
 
 on<ObjectOption>({ operate && target.id.startsWith("toll_gate_al_kharid") && option == "Pay-toll(10gp)" }) { player: Player ->
+    arriveDelay()
     if (!payToll(player)) {
         dialogue(player)
     }
@@ -105,5 +107,5 @@ suspend fun CharacterContext.payToll(player: Player): Boolean {
 fun openGate() {
     val obj = objects[southGate, "toll_gate_al_kharid"] ?: return
     val double = objects[southGate.addY(1), "toll_gate_al_kharid_north"] ?: return
-    Door.openDoubleDoors(obj, obj.def, double, 2, false)
+    Door.openDoubleDoors(obj, obj.def, double, 3, false)
 }
