@@ -9,15 +9,12 @@ object ObjectDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache = CacheDelegate("./data/cache")
-
         val decoder = ObjectDecoderFull(false, true).loadCache(cache)
-
-        decoder.findMatchingModels(24368)
-//        for (def in decoder) {
-//            if(def.params != null) {
-//                println("${def.id} ${def.name} ${def.params}")
-//            }
-//        }
+        for (def in decoder) {
+            if(def.params?.containsKey(599) == true) {
+                println("${def.id} ${def.name} ${def.params}")
+            }
+        }
     }
 
     fun Array<ObjectDefinitionFull>.findMatchingName(name: String): List<ObjectDefinitionFull> {

@@ -62,7 +62,7 @@ class ParameterDefinitions(
             name.endsWith("strength") -> {
                 extras[name] = (value as Int) / 10.0
             }
-            name == "maxed_skill" -> {
+            name == "skillcape_skill" -> {
                 extras[name] = Skill.all[value as Int]
             }
             name == "category" -> {
@@ -73,9 +73,9 @@ class ParameterDefinitions(
                 val int = value as Int
                 extras[name] = ammoDefinitions.get(int).stringId
             }
-            name.startsWith("equipped_option_") -> {
-                val list = extras.getOrPut("equipped_options") { Int2ObjectOpenHashMap<String>(4) } as MutableMap<Int, String>
-                list[name.removePrefix("equipped_option_").toInt() - 1] = value as String
+            name.startsWith("worn_option_") -> {
+                val list = extras.getOrPut("worn_options") { Int2ObjectOpenHashMap<String>(4) } as MutableMap<Int, String>
+                list[name.removePrefix("worn_option_").toInt() - 1] = value as String
             }
             else -> super.set(extras, name, value)
         }
