@@ -56,6 +56,17 @@ class DegradeTest : WorldTest() {
     }
 
     @Test
+    fun `Can't discharge item without charges`() {
+        val player = createPlayer("player")
+        val slot = EquipSlot.Amulet.index
+        player.equipment.set(slot, "black_mask")
+        val inventoryId = player.equipment.id
+        assertFalse(Degrade.discharge(player, inventoryId, -1)) // Invalid
+        assertFalse(Degrade.discharge(player, inventoryId, 0)) // Empty
+        assertFalse(Degrade.discharge(player, inventoryId, slot)) // No charges
+    }
+
+    @Test
     fun `Degrade per item`() {
         val player = createPlayer("player")
         val equipSlot = EquipSlot.Weapon.index

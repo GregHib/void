@@ -57,22 +57,29 @@ object Degrade {
     /**
      * Reduce the item at [slot] in [inventory]'s charges by [amount] and [clear] if charge <= 0
      */
-    fun discharge(player: Player, inventory: String, slot: Int, amount: Int = 1) {
+    fun discharge(player: Player, inventory: String, slot: Int, amount: Int = 1): Boolean {
         val inv = player.inventories.inventory(inventory)
-        val item = inv.getOrNull(slot) ?: return
+        val item = inv.getOrNull(slot) ?: return false
+        if (item.isEmpty()) {
+            return false
+        }
 
         val variable = variable(item, inventory, slot)
         val charge = player.getOrNull(variable) ?: item.def["charges", 0]
+        if (charge <= 0) {
+            return false
+        }
 
         // Calculated reduced charge
         val reduced = charge - amount
-        player[variable] = reduced
         if (reduced > 0) {
-            return
+            player[variable] = reduced
+            return true
         }
 
         // Clear charges and degrade item
         degrade(player, inv, item, slot, variable)
+        return true
     }
 
     /**
