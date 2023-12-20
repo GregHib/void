@@ -913,12 +913,14 @@ gate_22_opened:
   examine: "A wrought iron gate."
 gate_22_closed:
   id: 1557
+  gate: false
   examine: "A wrought iron gate."
 gate_23_opened:
   id: 1561
   examine: "A wrought iron gate."
 gate_23_closed:
   id: 1558
+  gate: false
   examine: "A wrought iron gate."
 gate_25:
   id: 1560
@@ -935,6 +937,7 @@ gate_29_opened:
   id: 1562
 gate_29_closed:
   id: 1596
+  gate: false
   examine: "A wrought-iron gate."
 gate_28_opened:
   id: 1563
@@ -945,6 +948,7 @@ gate_30_opened:
   id: 1563
 gate_30_closed:
   id: 1597
+  gate: false
   examine: "A wrought-iron gate."
 doors_opened:
   id: 1574
@@ -1483,11 +1487,13 @@ gate_50_opened:
   id: 41504
 gate_50_closed:
   id: 2391
+  gate: false
   examine: "A very solid looking gate."
 gate_51_opened:
   id: 41505
 gate_51_closed:
   id: 2392
+  gate: false
   examine: "A very solid looking gate."
 gate_52_opened:
   id: 2395
@@ -3677,11 +3683,13 @@ toll_gate_al_kharid_opened:
   id: 35550
 toll_gate_al_kharid_closed:
   id: 10565
+  gate: false
   examine: "Marks the border between Al Kharid and the Kingdom of Misthalin."
 toll_gate_al_kharid_north_opened:
   id: 35552
 toll_gate_al_kharid_north_closed:
   id: 10566
+  gate: false
   examine: "Marks the border between Al Kharid and the Kingdom of Misthalin."
 gate_107_opened:
   id: 35550
@@ -7370,12 +7378,14 @@ gate_197_opened:
   examine: "A thick wooden gate."
 gate_197_closed:
   id: 28690
+  gate: false
   examine: "A thick wooden gate."
 gate_198_opened:
   id: 28693
   examine: "A thick wooden gate."
 gate_198_closed:
   id: 28691
+  gate: false
   examine: "A thick wooden gate."
 gate_199:
   id: 28692
