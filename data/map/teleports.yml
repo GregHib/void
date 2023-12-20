@@ -4916,7 +4916,7 @@
     x: 3560
     y: 9779
 ######## 11575 ########
-- id: games_room_stairs_up
+- id: games_room_stairs_up_2
   option: Climb-up
   tile:
     x: 2897
@@ -4933,4 +4933,41 @@
     level: 1
   delta:
     y: -4
+    level: -1
+- id: games_room_stairs_down_2
+  option: Climb-down
+  tile:
+    x: 2899
+    y: 3566
+  delta:
+    x: -694
+    y: 1369
+    level: 1
+######## 8781 ########
+- id: games_room_basement_stairs_up
+  option: Climb-up
+  tile:
+    x: 2207
+    y: 4935
+  delta:
+    y: -4
+    level: 1
+- id: games_room_basement_stairs_down
+  option: Climb-down
+  tile:
+    x: 2207
+    y: 4935
+    level: 1
+  delta:
+    y: 4
+    level: -1
+- id: games_room_stairs_up
+  option: Climb-up
+  tile:
+    x: 2205
+    y: 4935
+    level: 1
+  delta:
+    x: 694
+    y: -1369
     level: -1
