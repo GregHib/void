@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
@@ -27,11 +26,14 @@ import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.network.encode.clearCamera
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
+import world.gregs.voidps.world.interact.entity.obj.door.Door
+import world.gregs.voidps.world.interact.entity.obj.door.Door.isDoor
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 
@@ -40,8 +42,12 @@ val objects: GameObjects by inject()
 val npcs: NPCs by inject()
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    val obj = objects.getLayer(player.tile, ObjectLayer.WALL)!!
-//    Door.enter(player, obj)
+    val obj = objects[player.tile].firstOrNull { it.def.isDoor() }
+        ?: objects[player.tile.add(Direction.NORTH)].firstOrNull { it.def.isDoor() }
+        ?: objects[player.tile.add(Direction.SOUTH)].firstOrNull { it.def.isDoor() }
+        ?: objects[player.tile.add(Direction.EAST)].firstOrNull { it.def.isDoor() }
+        ?: objects[player.tile.add(Direction.WEST)].firstOrNull { it.def.isDoor() }
+    Door.enter(player, obj!!)
 }
 
 on<Command>({ prefix == "reset_cam" }) { player: Player ->

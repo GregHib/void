@@ -2,6 +2,8 @@ package world.gregs.voidps.world.interact.entity.obj.door
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -18,6 +20,24 @@ object Door {
 
     // Delay in ticks before a door closes itself
     private val doorResetDelay = TimeUnit.MINUTES.toTicks(5)
+
+    /**
+     * Walks a player through a door which other players can't walk through
+     */
+    fun enter(player: Player, door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3) {
+        if (door.id.endsWith("_opened")) {
+            return
+        }
+        val direction = door.tile.delta(player.tile).toDirection()
+        val target = if (direction == Direction.NONE) {
+            tile(door, 1)
+        } else {
+            door.tile
+        }
+        player.start("input_delay", ticks)
+        player.walkTo(target, noCollision = true, noRun = true)
+        openDoor(player, door, def, ticks, collision = false)
+    }
 
     /**
      * Closes if [door] is open and opens [door] is closed

@@ -11,7 +11,8 @@ import world.gregs.voidps.network.instruct.Walk
 class WalkHandler : InstructionHandler<Walk>() {
 
     override fun validate(player: Player, instruction: Walk) {
-        if (player.hasClock("delay")) {
+        if (player.hasClock("delay") || player.hasClock("input_delay")) {
+            println("Ignored")
             return
         }
         player.closeInterfaces()
