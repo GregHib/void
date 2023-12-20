@@ -4,10 +4,7 @@ import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.hasItem
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.item
@@ -16,7 +13,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 
 
 on<NPCOption>({ operate && target.id == "baraek" && option == "Talk-to" }) { player: Player ->
-    if (player.hasItem("bear_fur")) {
+    if (player.holdsItem("bear_fur")) {
         choice {
             option<Unsure>("Can you sell me some furs?") {
                 sellFur()
