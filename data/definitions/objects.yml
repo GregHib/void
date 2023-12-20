@@ -11023,10 +11023,9 @@ web:
   examine: "This huge web blocks your path."
 web_slashed:
   id: 734
-  examine: "This huge web blocks your path."
 web_spider:
   id: 29354
-  examine: "This huge web blocks your path."
+  examine: "It's no common house spider that spun that."
 games_room_stairs_up:
   id: 4627
 games_room_stairs_up_2:
@@ -11045,3 +11044,18 @@ fist_of_guthix_cave:
 fist_of_guthix_stairs:
   id: 30203
   examine: "Warning: leads into the wilderness."
+jalsavrah_door_north:
+  id: 16484
+  examine: "I wonder where this leads."
+jalsavrah_door_east:
+  id: 16487
+  examine: "I wonder where this leads."
+jalsavrah_door_south:
+  id: 16490
+  examine: "I wonder where this leads."
+jalsavrah_door_west:
+  id: 16493
+  examine: "I wonder where this leads."
+jalsavrah_tomb_door:
+  id: 16459
+  examine: "Ooh. It glows. Looks like an exit."

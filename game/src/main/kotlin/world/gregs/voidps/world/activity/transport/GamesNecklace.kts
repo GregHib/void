@@ -49,7 +49,7 @@ on<InventoryOption>({ inventory == "worn_equipment" && item.id.startsWith("games
                 statement("""
                     You need to have completed The Darkness of Hallowvale quest
                     to teleport to this location.
-                """.trimIndent())
+                """)
                 return@on
             }
             burghDeRott

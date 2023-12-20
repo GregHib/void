@@ -4988,3 +4988,42 @@
     x: 694
     y: -1369
     level: -1
+######## 7749 ########
+- id: jalsavrah_tomb_door
+  option: Leave Tomb
+  tile:
+    x: 1934
+    y: 4419
+    level: 3
+  to:
+    x: 3288
+    y: 2801
+######## 13099 ########
+- id: jalsavrah_door_north
+  option: Search
+  tile:
+    x: 3288
+    y: 2799
+  to:
+    &guardian_mummy_room
+    x: 1934
+    y: 4420
+    level: 3
+- id: jalsavrah_door_east
+  option: Search
+  tile:
+    x: 3293
+    y: 2794
+  to: *guardian_mummy_room
+- id: jalsavrah_door_south
+  option: Search
+  tile:
+    x: 3288
+    y: 2789
+  to: *guardian_mummy_room
+- id: jalsavrah_door_west
+  option: Search
+  tile:
+    x: 3283
+    y: 2794
+  to: *guardian_mummy_room

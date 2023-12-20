@@ -41,6 +41,8 @@
 - { id: rat, x: 1945, y: 4686, members: true }
 # 7754
 - { id: quiz_master, x: 1952, y: 4768, level: 1, direction: SOUTH }
+# 7749
+- { id: guardian_mummy, x: 1934, y: 4427, level: 3, direction: SOUTH }
 # 8261
 - { id: prison_pete, x: 2084, y: 4460, direction: NORTH }
 - { id: balloon_animal_dog, x: 2078, y: 4462 }

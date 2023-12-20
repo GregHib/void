@@ -1657,3 +1657,7 @@ zombie:
   respawn_delay: 35
   examine: "Dead man walking."
   race: zombie
+guardian_mummy:
+  id: 4476
+  race: mummy
+  examine: "WHo's your mummy?"
