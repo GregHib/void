@@ -8,6 +8,10 @@ import world.gregs.yaml.CharWriter
 class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration, val explicit: ExplicitCollectionWriter) : YamlWriter(writer, config) {
 
     override fun list(list: List<*>, indent: Int, parentMap: String?) {
+        if (config.explicit(list, indent, parentMap)) {
+            explicit.list(list, indent, parentMap)
+            return
+        }
         for (i in list.indices) {
             writer.append('-')
             writer.append(' ')
@@ -35,15 +39,7 @@ class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration
     override fun map(map: Map<*, *>, indent: Int, parentMap: String?) {
         var index = 0
         for ((k, v) in map) {
-            if (config.quoteKeys) {
-                writer.append('"')
-            }
-            val key = k.toString()
-            write(key)
-            if (config.quoteKeys) {
-                writer.append('"')
-            }
-            writer.append(':')
+            val key = writeKey(k)
             index++
             when (val value = config.write(v, indent, parentMap) ?: continue) {
                 is Map<*, *> -> {
@@ -62,7 +58,9 @@ class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration
                 is DoubleArray -> setList(indent, value.toList(), key)
                 is LongArray -> setList(indent, value.toList(), key)
                 else -> {
-                    writer.append(' ')
+                    if (key != "&") {
+                        writer.append(' ')
+                    }
                     value(value, indent, key)
                 }
             }
@@ -74,8 +72,12 @@ class NormalCollectionWriter(writer: CharWriter, config: YamlWriterConfiguration
     }
 
     private fun setList(indent: Int, value: List<Any?>, key: String) {
-        writer.appendLine()
-        writer.indent(indent + 1)
+        if (config.explicit(value, indent, key)) {
+            writer.append(' ')
+        } else {
+            writer.appendLine()
+            writer.indent(indent + 1)
+        }
         list(value, indent + 1, key)
     }
 }

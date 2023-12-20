@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.queue
 
 import kotlinx.coroutines.*
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
@@ -25,7 +26,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
     private var action: Action? = null
 
     fun add(action: Action): Boolean {
-        if (action.delay <= 0 && processed(action)) {
+        if (action.tick <= GameLoop.tick && processed(action)) {
             return true
         }
         return queue.add(action)

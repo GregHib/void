@@ -47,7 +47,7 @@ object YamlPairObjectNames {
 
         }
         list.forEach(::println)
-        val config = YamlWriterConfiguration(quoteStrings = true)
+        val config = YamlWriterConfiguration(forceQuoteStrings = true)
         yaml.save("./paired-objects.yaml", list.toMap(), config)
     }
 }

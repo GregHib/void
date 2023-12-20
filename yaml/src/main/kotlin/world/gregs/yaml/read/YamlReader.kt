@@ -13,7 +13,7 @@ import world.gregs.yaml.CharReader
  * - Map (explicit or normal)
  * - List (explicit or normal)
  */
-abstract class YamlReader(val reader: CharReader) {
+abstract class YamlReader(val reader: CharReader, var config: YamlReaderConfiguration) {
 
     abstract fun explicitList(withinMap: String?): Any
 
@@ -23,17 +23,54 @@ abstract class YamlReader(val reader: CharReader) {
         return when (reader.char) {
             '[' -> explicitList(withinMap)
             '{' -> explicitMap()
-            '&' -> {
-                val alias = alias()
-                val value = value(indentOffset = 0, withinMap = null)
-                reader.anchors[alias] = value
-                value
-            }
-            '*' -> {
-                val alias = alias()
-                reader.anchors[alias] ?: throw IllegalArgumentException("Unable to find anchor for alias '$alias'")
-            }
+            '&' -> anchor()
+            '*' -> inlineAnchor(withinMap)
             else -> collection(indentOffset, withinMap)
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun anchor(): Any {
+        val alias = alias()
+        val value = value(indentOffset = 0, withinMap = null)
+        reader.anchors[alias] = value
+        if (!config.ignoreAnchors) {
+            return value
+        }
+        return when (value) {
+            is Map<*, *> -> (value as MutableMap<String, Any>).apply { put("&", alias) }
+            is List<*> -> (value as MutableList<Any>).apply { add(0, "&$alias") }
+            else -> "&${alias} $value"
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun inlineAnchor(withinMap: String?): Any {
+        val alias = alias()
+        val anchor = reader.anchors[alias] ?: throw IllegalArgumentException("Unable to find anchor for alias '$alias'")
+        return if (config.ignoreAnchors) {
+            if (reader.outBounds || withinMap == "<<" || anchor !is List<*>) {
+                return "*$alias"
+            }
+            reader.nextLine()
+            when (val value = value(indentOffset = 0, withinMap = null)) {
+                is Map<*, *> -> (value as MutableMap<String, Any>).apply { put("<<", "*$alias") }
+                is List<*> -> (value as MutableList<Any>).apply { add(0, "*$alias") }
+                else -> "*$alias $value"
+            }
+        } else {
+            if (reader.outBounds) {
+                return anchor
+            }
+            when (anchor) {
+                is List<*> -> config.createList().apply {
+                    addAll(anchor as List<Any>)
+                }
+                is Map<*, *> -> config.createMap().apply {
+                    putAll(anchor as Map<String, Any>)
+                }
+                else -> anchor
+            }
         }
     }
 
@@ -42,7 +79,7 @@ abstract class YamlReader(val reader: CharReader) {
         val start = reader.index
         while (reader.inBounds) {
             val char = reader.char
-            if (char == ' ' || char == '\r' || char == '\n') {
+            if (char == ' ' || char == '\r' || char == '\n' || char == ',') {
                 val alias = reader.substring(start, reader.index)
                 reader.nextLine()
                 return alias

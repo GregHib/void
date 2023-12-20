@@ -7,9 +7,9 @@ import world.gregs.yaml.CharReader
  */
 class NormalCollectionReader(
     reader: CharReader,
-    var config: YamlReaderConfiguration,
+    config: YamlReaderConfiguration,
     private val explicit: ExplicitCollectionReader
-) : YamlReader(reader) {
+) : YamlReader(reader, config) {
 
     override fun explicitList(withinMap: String?) = explicit.explicitList(withinMap)
 
@@ -71,7 +71,7 @@ class NormalCollectionReader(
                 if (reader.indentation < currentIndent || reader.indentation == currentIndent && reader.char != '-') {
                     config.setEmpty(map, key)
                 } else {
-                    openEnded = true
+                    openEnded = false
                     config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = key, parentMap = withinMap)
                 }
             } else {

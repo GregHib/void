@@ -7,8 +7,8 @@ import world.gregs.yaml.CharReader
  */
 class ExplicitCollectionReader(
     reader: CharReader,
-    var config: YamlReaderConfiguration
-) : YamlReader(reader) {
+    config: YamlReaderConfiguration
+) : YamlReader(reader, config) {
 
     override fun isClosingTerminator(char: Char) = super.isClosingTerminator(char) || char == '}' || char == ']' || char == ','
 

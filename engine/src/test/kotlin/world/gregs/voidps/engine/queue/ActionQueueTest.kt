@@ -5,6 +5,7 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import kotlin.test.assertEquals
@@ -19,6 +20,7 @@ internal class ActionQueueTest {
 
     @BeforeEach
     fun setup() {
+        GameLoop.tick = 0
         player = Player()
         queue = ActionQueue(player)
         player.queue = queue
@@ -30,7 +32,7 @@ internal class ActionQueueTest {
     fun `Queue an action for immediate use`() {
         val action = action(delay = 0)
         queue.add(action)
-        assertEquals(-1, action.delay)
+        assertEquals(-1, action.tick)
         assertTrue(action.removed)
     }
 
@@ -41,7 +43,7 @@ internal class ActionQueueTest {
         val strong = action(ActionPriority.Strong, 5)
         queue.add(strong)
         assertFalse(weak.removed)
-        queue.tick()
+        tick()
         assertTrue(weak.removed)
     }
 
@@ -50,7 +52,7 @@ internal class ActionQueueTest {
         every { player.interfaces.get("main_screen") } returns "open_id"
         val action = action(ActionPriority.Strong, 5)
         queue.add(action)
-        queue.tick()
+        tick()
         verify {
             player.interfaces.close("open_id")
         }
@@ -61,7 +63,7 @@ internal class ActionQueueTest {
         val action = action(ActionPriority.Soft)
         queue.add(action)
         player["delay"] = 10
-        queue.tick()
+        tick()
         assertTrue(action.removed)
     }
 
@@ -70,10 +72,10 @@ internal class ActionQueueTest {
         every { player.interfaces.get("main_screen") } returns "open_id"
         val normal = action(ActionPriority.Normal)
         queue.add(normal)
-        queue.tick()
+        tick()
         assertFalse(normal.removed)
         every { player.interfaces.get("main_screen") } returns null
-        queue.tick()
+        tick()
         assertTrue(normal.removed)
     }
 
@@ -82,23 +84,24 @@ internal class ActionQueueTest {
         val action = action(ActionPriority.Strong, delay = 1)
         queue.add(action)
         player.start("delay", 10)
-        queue.tick()
+        tick()
         assertFalse(action.removed)
     }
 
     @Test
     fun `Queues can be suspended and resume`() {
+        GameLoop.tick = 10
         var resumed = false
         val action = action {
             pause(4)
             resumed = true
         }
         queue.add(action)
-        queue.tick()
-        assertEquals(3, action.delay)
+        tick()
+        assertEquals(14, action.tick)
         assertNotNull(action.suspension)
         repeat(4) {
-            queue.tick()
+            tick()
         }
         assertTrue(resumed)
     }
@@ -112,6 +115,11 @@ internal class ActionQueueTest {
         queue.add(action)
         queue.logout()
         assertTrue(resumed)
+    }
+
+    private fun tick() {
+        queue.tick()
+        GameLoop.tick++
     }
 
     private fun action(priority: ActionPriority = ActionPriority.Normal, delay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, action: suspend Action.() -> Unit = {}): Action {

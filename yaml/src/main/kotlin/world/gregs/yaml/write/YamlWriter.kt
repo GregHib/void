@@ -9,7 +9,7 @@ abstract class YamlWriter(val writer: CharWriter, var config: YamlWriterConfigur
 
     fun value(value: Any?, indent: Int, parentMap: String?) {
         when (val v = value ?: return) {
-            is String -> string(v)
+            is String -> string(v, parentMap)
             is List<*> -> list(v, indent, parentMap)
             is Map<*, *> -> map(v, indent, parentMap)
             is Array<*> -> list(v.toList(), indent, parentMap)
@@ -29,19 +29,44 @@ abstract class YamlWriter(val writer: CharWriter, var config: YamlWriterConfigur
 
     abstract fun map(map: Map<*, *>, indent: Int, parentMap: String?)
 
-    fun string(value: String) {
-        if (config.quoteStrings) {
+    fun string(value: String, parentMap: String?) {
+        val quote = quoteString(value, parentMap)
+        if (quote) {
             writer.append('"')
         }
         write(value)
-        if (config.quoteStrings) {
+        if (quote) {
             writer.append('"')
         }
     }
+
+    private fun quoteString(value: String, parentMap: String?): Boolean {
+        return !anchor(value, parentMap) && (config.forceQuoteStrings || config.quoteStrings && value.contains(' '))
+    }
+
+    private fun anchor(value: String, parentMap: String?) = parentMap == "&" || parentMap == "<<" || value.startsWith('&') || value.startsWith('*')
 
     fun write(value: String) {
         for (char in value) {
             writer.append(char)
         }
     }
+
+    open fun writeKey(k: Any?): String {
+        val key = k.toString()
+        val quote = quoteKey(key)
+        if (quote) {
+            writer.append('"')
+        }
+        write(key)
+        if (quote) {
+            writer.append('"')
+        }
+        if (key != "&") {
+            writer.append(':')
+        }
+        return key
+    }
+
+    private fun quoteKey(key: String) = config.forceQuoteKeys || config.quoteKeys && key.contains(' ')
 }
