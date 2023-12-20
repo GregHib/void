@@ -1470,3 +1470,4 @@ dragon_breath_shock:
   delay: 51
   flight_time: [ 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 ]
 teleport_jewellery: 1684
+teleport_pharaohs_sceptre: 715

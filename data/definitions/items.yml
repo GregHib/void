@@ -38006,6 +38006,7 @@ pharaohs_sceptre_3:
   weight: 2.0
   charges: 1
   degrade: pharaohs_sceptre_2
+  degrade_message: "The sceptre has two charges left."
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "No"
@@ -38015,11 +38016,13 @@ pharaohs_sceptre_2:
   <<: *pharaohs_sceptre_3
   id: 9046
   degrade: pharaohs_sceptre_1
+  degrade_message: "The sceptre has one charge left."
 pharaohs_sceptre_2_noted: 9047
 pharaohs_sceptre_1:
   <<: *pharaohs_sceptre_3
   id: 9048
   degrade: pharaohs_sceptre
+  degrade_message: "The sceptre has run out of charges."
 pharaohs_sceptre_1_noted: 9049
 pharaohs_sceptre:
   id: 9050

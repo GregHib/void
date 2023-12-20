@@ -1609,3 +1609,6 @@ dragon_death: 92
 teleport_jewellery:
   id: 9603
   ticks: 4
+teleport_pharaohs_sceptre:
+  id: 9596
+  ticks: 3
