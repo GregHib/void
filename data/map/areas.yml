@@ -824,41 +824,56 @@ kuradals_dungeon:
     y: [ 5248, 5311 ]
 burthorpe_teleport:
   area:
-    x: [ 2205 ]
-    y: [ 4937 ]
+    x: [ 2205, 2206 ]
+    y: [ 4937, 4938 ]
   tags: [ teleport ]
 barbarian_outpost_teleport:
   area:
-    x: [ 2520 ]
-    y: [ 3573 ]
+    x: [ 2519, 2521 ]
+    y: [ 3572, 3574 ]
   tags: [ teleport ]
 clan_wars_teleport:
   area:
-    x: [ 3268 ]
-    y: [ 3680 ]
+    x: [ 3266, 3270 ]
+    y: [ 3679, 3682 ]
   tags: [ teleport ]
 wilderness_volcano_teleport:
   area:
-    x: [ 3185 ]
-    y: [ 3698 ]
+    x: [ 3168, 3172 ]
+    y: [ 3675, 3678 ]
   tags: [ teleport ]
 burgh_de_rott_teleport:
   area:
-    x: [ 3487 ]
-    y: [ 3237 ]
+    x: [ 3485, 3489 ]
+    y: [ 3235, 3239 ]
   tags: [ teleport ]
 duel_arena_teleport:
   area:
-    x: [ 3315 ]
-    y: [ 3235 ]
+    x: [ 3313, 3317 ]
+    y: [ 3233, 3237 ]
   tags: [ teleport ]
 castle_wars_teleport:
   area:
-    x: [ 2442 ]
-    y: [ 3089 ]
+    x: [ 2440, 2444 ]
+    y: [ 3087, 3091 ]
   tags: [ teleport ]
 fist_of_guthix_teleport:
   area:
-    x: [ 1694 ]
-    y: [ 5601 ]
+    x: [ 1692, 1696 ]
+    y: [ 5599, 5603 ]
+  tags: [ teleport ]
+mining_guild_teleport:
+  area:
+    x: [ 3014, 3017 ]
+    y: [ 3336, 3339 ]
+  tags: [ teleport ]
+crafting_guild_teleport:
+  area:
+    x: [ 2931, 2933 ]
+    y: [ 3296, 3299 ]
+  tags: [ teleport ]
+cooking_guild_teleport:
+  area:
+    x: [ 3140, 3143 ]
+    y: [ 3440, 3443 ]
   tags: [ teleport ]

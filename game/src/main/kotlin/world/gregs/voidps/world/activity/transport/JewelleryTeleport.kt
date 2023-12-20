@@ -11,10 +11,11 @@ import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.type.Area
+import world.gregs.voidps.world.interact.entity.player.effect.degrade.Degrade
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-fun jewelleryTeleport(player: Player, area: Area) {
-    if (player.queue.contains(ActionPriority.Normal)) {
+fun jewelleryTeleport(player: Player, inventory: String, slot: Int, area: Area) {
+    if (player.queue.contains(ActionPriority.Normal) || !Degrade.discharge(player, inventory, slot)) {
         return
     }
     player.closeInterfaces()

@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.activity.quest.questComplete
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.statement
-import world.gregs.voidps.world.interact.entity.player.effect.degrade.Degrade
 import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
 
 val areas: AreaDefinitions by inject()
@@ -21,29 +20,19 @@ val burghDeRott = areas["burgh_de_rott_teleport"]
 on<InventoryOption>({ inventory == "inventory" && item.id.startsWith("games_necklace_") && option == "Rub" }) { player: Player ->
     choice("Where would you like to teleport to?") {
         option("Burthorpe Games Rooms.") {
-            if (Degrade.discharge(player, inventory, slot)) {
-                jewelleryTeleport(player, burthorpe)
-            }
+            jewelleryTeleport(player, inventory, slot, burthorpe)
         }
         option("Barbarian Outpost.") {
-            if (Degrade.discharge(player, inventory, slot)) {
-                jewelleryTeleport(player, barbarianOutput)
-            }
+            jewelleryTeleport(player, inventory, slot, barbarianOutput)
         }
         option("Clan Wars.") {
-            if (Degrade.discharge(player, inventory, slot)) {
-                jewelleryTeleport(player, clanWars)
-            }
+            jewelleryTeleport(player, inventory, slot, clanWars)
         }
         option("Wilderness Volcano.") {
-            if (Degrade.discharge(player, inventory, slot)) {
-                jewelleryTeleport(player, wildernessVolcano)
-            }
+            jewelleryTeleport(player, inventory, slot, wildernessVolcano)
         }
         option("Burgh De Rott.", { player.questComplete("darkness_of_hallowvale") }) {
-            if (Degrade.discharge(player, inventory, slot)) {
-                jewelleryTeleport(player, burghDeRott)
-            }
+            jewelleryTeleport(player, inventory, slot, burghDeRott)
         }
         option("Nowhere.", { !player.questComplete("darkness_of_hallowvale") })
     }
@@ -67,7 +56,5 @@ on<InventoryOption>({ inventory == "worn_equipment" && item.id.startsWith("games
         }
         else -> return@on
     }
-    if (Degrade.discharge(player, inventory, slot)) {
-        jewelleryTeleport(player, area)
-    }
+    jewelleryTeleport(player, inventory, slot, area)
 }

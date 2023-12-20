@@ -12364,50 +12364,53 @@ ring_of_recoil:
   examine: "An enchanted ring."
 ring_of_recoil_noted: 2551
 ring_of_duelling_8:
+  &ring_of_duelling_8
   id: 2552
   price: 1100
+  weight: 0.006
   charges: 1
   degrade: ring_of_duelling_7
   deplete: teleport
+  destroy_message: "Your ring of duelling has seven uses left."
   aka: [ ring_of_duelling, duelling_ring ]
   slot: "Ring"
   examine: "An enchanted ring."
-  weight: 0.006
 ring_of_duelling_8_noted: 2553
 ring_of_duelling_7:
-  &ring_of_duelling_7
+  <<: *ring_of_duelling_8
   id: 2554
-  charges: 1
   degrade: ring_of_duelling_6
-  deplete: teleport
-  weight: 0.006
-  slot: "Ring"
-  examine: "An enchanted ring."
+  destroy_message: "Your ring of duelling has six uses left."
 ring_of_duelling_7_noted: 2555
 ring_of_duelling_6:
-  <<: *ring_of_duelling_7
+  <<: *ring_of_duelling_8
   id: 2556
   degrade: ring_of_duelling_5
+  destroy_message: "Your ring of duelling has five uses left."
 ring_of_duelling_6_noted: 2557
 ring_of_duelling_5:
-  <<: *ring_of_duelling_7
+  <<: *ring_of_duelling_8
   id: 2558
   degrade: ring_of_duelling_4
+  destroy_message: "Your ring of duelling has four uses left."
 ring_of_duelling_5_noted: 2559
 ring_of_duelling_4:
-  <<: *ring_of_duelling_7
+  <<: *ring_of_duelling_8
   id: 2560
   degrade: ring_of_duelling_3
+  destroy_message: "Your ring of duelling has three uses left."
 ring_of_duelling_4_noted: 2561
 ring_of_duelling_3:
-  <<: *ring_of_duelling_7
+  <<: *ring_of_duelling_8
   id: 2562
   degrade: ring_of_duelling_2
+  destroy_message: "Your ring of duelling has two uses left."
 ring_of_duelling_3_noted: 2563
 ring_of_duelling_2:
-  <<: *ring_of_duelling_7
+  <<: *ring_of_duelling_8
   id: 2564
   degrade: ring_of_duelling_1
+  destroy_message: "Your ring of duelling has one use left."
 ring_of_duelling_2_noted: 2565
 ring_of_duelling_1:
   id: 2566
@@ -12416,6 +12419,7 @@ ring_of_duelling_1:
   charges: 1
   degrade: destroy
   deplete: teleport
+  destroy_message: "Your ring of duelling crumbles to dust."
   slot: "Ring"
   examine: "An enchanted ring."
 ring_of_duelling_1_noted: 2567
@@ -47039,6 +47043,7 @@ skills_necklace_4:
   weight: 0.01
   charges: 1
   degrade: skills_necklace_3
+  destroy_message: "Your games necklace has three charges left."
   deplete: teleport
   slot: "Amulet"
   examine: "This will help me travel."
@@ -47047,16 +47052,19 @@ skills_necklace_3:
   <<: *skills_necklace_4
   id: 11107
   degrade: skills_necklace_2
+  destroy_message: "Your games necklace has two charges left."
 skills_necklace_3_noted: 11108
 skills_necklace_2:
   <<: *skills_necklace_4
   id: 11109
   degrade: skills_necklace_1
+  destroy_message: "Your games necklace has one charges left."
 skills_necklace_2_noted: 11110
 skills_necklace_1:
   <<: *skills_necklace_4
   id: 11111
   degrade: skills_necklace
+  destroy_message: "You use your skills necklace's last charge."
 skills_necklace_1_noted: 11112
 skills_necklace:
   id: 11113
