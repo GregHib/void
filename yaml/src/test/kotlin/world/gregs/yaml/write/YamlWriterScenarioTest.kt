@@ -143,10 +143,13 @@ class YamlWriterScenarioTest {
 
     @Test
     fun `Write yaml`() {
-        val config = YamlWriterConfiguration(
-            forceQuoteStrings = true,
-            formatExplicitListSizeLimit = 0
-        )
+        val config = object : YamlWriterConfiguration(
+            formatExplicitListSizeLimit = 10
+        ) {
+            override fun explicit(list: List<*>, indent: Int, parentMap: String?): Boolean {
+                return indent != 0
+            }
+        }
         val input = mapOf(
             "John Doe" to mapOf(
                 "age" to 30,
@@ -157,7 +160,8 @@ class YamlWriterScenarioTest {
                 ),
                 "favourite_fruits" to listOf(
                     "apple",
-                    "banana"
+                    "banana",
+                    "star fruit"
                 )
             ),
             "Jane Doe" to mapOf(
@@ -181,14 +185,14 @@ class YamlWriterScenarioTest {
               info:
                 height: 180
                 employed: true
-              favourite_fruits: [ "apple", "banana" ]
+              favourite_fruits: [ apple, banana, "star fruit" ]
             "Jane Doe":
               age: 28
               address: "123 Street"
               info:
                 height: 164
                 employed: true
-              favourite_fruits: [ "grapes", "pear" ]
+              favourite_fruits: [ grapes, pear ]
         """.trimIndent()
         assertEquals(expected, actual)
     }

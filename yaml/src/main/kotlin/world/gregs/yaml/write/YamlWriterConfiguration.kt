@@ -8,7 +8,6 @@ package world.gregs.yaml.write
  * @param quoteKeys Double quote only keys with spaces
  * @param forceQuoteKeys Double quote around all keys
  * @param formatExplicitMap Write all nested maps explicitly (in explicit writer)
- * @param explicitListSizeLimit Size limit before lists are written explicitly
  * @param formatExplicitListSizeLimit Size limit before explicit list are written line by line
  */
 open class YamlWriterConfiguration(
@@ -18,12 +17,11 @@ open class YamlWriterConfiguration(
     val quoteKeys: Boolean = true,
     val forceQuoteKeys: Boolean = false,
     val formatExplicitMap: Boolean = false,
-    val explicitListSizeLimit: Int = -1,
     val formatExplicitListSizeLimit: Int = 25
 ) {
 
     open fun explicit(list: List<*>, indent: Int, parentMap: String?): Boolean {
-        return list.size > explicitListSizeLimit
+        return list.firstOrNull() !is Map<*, *> && indent != 0
     }
 
     open fun write(value: Any?, indent: Int, parentMap: String?): Any? {
@@ -42,6 +40,9 @@ open class YamlWriterConfiguration(
     }
 
     companion object {
+        val yaml = YamlWriterConfiguration(
+
+        )
         val json = YamlWriterConfiguration(
             forceQuoteStrings = true,
             forceExplicit = true,

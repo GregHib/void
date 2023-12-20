@@ -118,15 +118,7 @@ class YamlReaderTest {
     }
 
     @Test
-    fun `Parse list anchor`() {
-        val config = object : YamlReaderConfiguration() {
-            override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-                when (key) {
-                    "<<" -> map.putAll(value as Map<String, Any>)
-                    else -> super.set(map, key, value, indent, parentMap)
-                }
-            }
-        }
+    fun `Parse list combine anchor start`() {
         val output = yaml.read("""
             - &anchor-name
               - one
@@ -134,7 +126,7 @@ class YamlReaderTest {
             - three
             - *anchor-name
               - three
-        """.trimIndent(), config)
+        """.trimIndent())
         val expected = listOf(listOf("one", "two"), "three", listOf("one", "two", "three"))
         assertEquals(expected, output)
     }
@@ -183,6 +175,34 @@ class YamlReaderTest {
                 four: 4
         """.trimIndent(), config)
         val expected = mapOf("one" to mapOf("two" to "value", "three" to "value"), "four" to listOf(mapOf("two" to "value", "three" to 3, "four" to 4)))
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse merge map alias middle`() {
+        val output = yaml.read("""
+          anchors:
+            &anchor-name [ 123, 456 ]
+          steps:
+            one: 1
+            two: "two"
+            tile: *anchor-name
+            three: value
+        """.trimIndent())
+        val expected = mapOf("anchors" to listOf(123, 456), "steps" to mapOf("one" to 1, "two" to "two", "tile" to listOf(123, 456), "three" to "value"))
+        assertEquals(expected, output)
+    }
+
+    @Test
+    fun `Parse list map alias middle`() {
+        val output = yaml.read("""
+          - &anchor-name [ 123, 456 ]
+          - one: 1
+            tile: *anchor-name
+          - two: 2
+            tile: [ 654, 321 ]
+        """.trimIndent())
+        val expected = listOf(listOf(123, 456), mapOf("one" to 1, "tile" to listOf(123, 456)), mapOf("two" to 2, "tile" to listOf(654, 321)))
         assertEquals(expected, output)
     }
 
