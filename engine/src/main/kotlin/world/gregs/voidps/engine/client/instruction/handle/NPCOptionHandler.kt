@@ -22,7 +22,7 @@ class NPCOptionHandler(
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractNPC) {
-        if (player.hasClock("delay")) {
+        if (player.hasClock("delay") || player.hasClock("input_delay")) {
             return
         }
         val npc = npcs.indexed(instruction.npcIndex) ?: return

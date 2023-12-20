@@ -55,7 +55,7 @@ on<InterfaceOption>({ id == "emotes" }) { player: Player ->
         when {
             id == "skillcape" -> {
                 val cape = player.equipped(EquipSlot.Cape)
-                val skill: Skill? = cape.def.getOrNull("maxed_skill")
+                val skill: Skill? = cape.def.getOrNull("skillcape_skill")
                 when {
                     cape.id == "quest_point_cape" -> playSkillCapeEmote(player, "quest_point")
                     cape.id == "dungeoneering_master_cape" -> playDungeoneeringMasterCapeEmote(player)

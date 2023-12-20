@@ -84,7 +84,7 @@ object Level {
                 }
             }
         }
-        val skill = item.def.getOrNull<Skill>("maxed_skill")
+        val skill = item.def.getOrNull<Skill>("skillcape_skill")
         if (skill != null && !has(skill, skill.maximum(), message)) {
             return false
         }

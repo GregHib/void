@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.obj
+package world.gregs.voidps.world.interact.entity.obj.door
 
 import world.gregs.voidps.engine.event.Event
 

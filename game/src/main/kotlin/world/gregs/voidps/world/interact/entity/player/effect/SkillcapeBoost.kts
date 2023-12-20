@@ -20,7 +20,7 @@ on<InventoryOption>({ inventory == "worn_equipment" && slot == EquipSlot.Cape.in
         return@on
     }
 
-    val skill: Skill = item.def["maxed_skill"]
+    val skill: Skill = item.def["skillcape_skill"]
     if (player.levels.getOffset(skill) > 0) {
         player.message("You already have a boost active.") // TODO proper message
         return@on
