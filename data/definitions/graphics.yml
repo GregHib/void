@@ -1469,3 +1469,4 @@ dragon_breath_shock:
   curve: 15
   delay: 51
   flight_time: [ 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 ]
+teleport_jewellery: 1684

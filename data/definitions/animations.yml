@@ -1606,3 +1606,6 @@ dragon_breath: 81
 dragon_attack: 91
 dragon_hit: 89
 dragon_death: 92
+teleport_jewellery:
+  id: 9603
+  ticks: 4
