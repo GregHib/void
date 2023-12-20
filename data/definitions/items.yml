@@ -8597,7 +8597,7 @@ amulet_of_glory_1:
   weight: 0.01
   charges: 1
   degrade: amulet_of_glory
-  destroy_message: "You use your amulet's last charge."
+  degrade_message: "You use your amulet's last charge."
   slot: "Amulet"
   examine: "A dragonstone amulet with 1 magic charge."
 amulet_of_glory_1_noted: 1707
@@ -8605,14 +8605,14 @@ amulet_of_glory_2:
   <<: *amulet_of_glory_1
   id: 1708
   degrade: amulet_of_glory_1
-  destroy_message: "Your amulet has one charge left."
+  degrade_message: "Your amulet has one charge left."
   examine: "A dragonstone amulet with 2 magic charges."
 amulet_of_glory_2_noted: 1709
 amulet_of_glory_3:
   <<: *amulet_of_glory_1
   id: 1710
   degrade: amulet_of_glory_2
-  destroy_message: "Your amulet has two charges left."
+  degrade_message: "Your amulet has two charges left."
   examine: "A dragonstone amulet with 3 magic charges."
 amulet_of_glory_3_noted: 1711
 amulet_of_glory_4:
@@ -8621,7 +8621,7 @@ amulet_of_glory_4:
   price: 35400
   aka: [ glory, glory_4 ]
   degrade: amulet_of_glory_3
-  destroy_message: "Your amulet has three charges left."
+  degrade_message: "Your amulet has three charges left."
   examine: "A dragonstone amulet with 4 magic charges."
 amulet_of_glory_4_noted: 1713
 unstrung_symbol:
@@ -12374,7 +12374,7 @@ ring_of_duelling_8:
   weight: 0.006
   charges: 1
   degrade: ring_of_duelling_7
-  destroy_message: "Your ring of duelling has seven uses left."
+  degrade_message: "Your ring of duelling has seven uses left."
   aka: [ ring_of_duelling, duelling_ring ]
   slot: "Ring"
   examine: "An enchanted ring."
@@ -12383,37 +12383,37 @@ ring_of_duelling_7:
   <<: *ring_of_duelling_8
   id: 2554
   degrade: ring_of_duelling_6
-  destroy_message: "Your ring of duelling has six uses left."
+  degrade_message: "Your ring of duelling has six uses left."
 ring_of_duelling_7_noted: 2555
 ring_of_duelling_6:
   <<: *ring_of_duelling_8
   id: 2556
   degrade: ring_of_duelling_5
-  destroy_message: "Your ring of duelling has five uses left."
+  degrade_message: "Your ring of duelling has five uses left."
 ring_of_duelling_6_noted: 2557
 ring_of_duelling_5:
   <<: *ring_of_duelling_8
   id: 2558
   degrade: ring_of_duelling_4
-  destroy_message: "Your ring of duelling has four uses left."
+  degrade_message: "Your ring of duelling has four uses left."
 ring_of_duelling_5_noted: 2559
 ring_of_duelling_4:
   <<: *ring_of_duelling_8
   id: 2560
   degrade: ring_of_duelling_3
-  destroy_message: "Your ring of duelling has three uses left."
+  degrade_message: "Your ring of duelling has three uses left."
 ring_of_duelling_4_noted: 2561
 ring_of_duelling_3:
   <<: *ring_of_duelling_8
   id: 2562
   degrade: ring_of_duelling_2
-  destroy_message: "Your ring of duelling has two uses left."
+  degrade_message: "Your ring of duelling has two uses left."
 ring_of_duelling_3_noted: 2563
 ring_of_duelling_2:
   <<: *ring_of_duelling_8
   id: 2564
   degrade: ring_of_duelling_1
-  destroy_message: "Your ring of duelling has one use left."
+  degrade_message: "Your ring of duelling has one use left."
 ring_of_duelling_2_noted: 2565
 ring_of_duelling_1:
   id: 2566
@@ -12421,7 +12421,7 @@ ring_of_duelling_1:
   weight: 0.006
   charges: 1
   degrade: destroy
-  destroy_message: "Your ring of duelling crumbles to dust."
+  degrade_message: "Your ring of duelling crumbles to dust."
   slot: "Ring"
   examine: "An enchanted ring."
 ring_of_duelling_1_noted: 2567
@@ -17327,7 +17327,7 @@ games_necklace_8:
   weight: 0.01
   charges: 1
   degrade: games_necklace_7
-  destroy_message: "Your games necklace has seven uses left."
+  degrade_message: "Your games necklace has seven uses left."
   slot: "Amulet"
   examine: "An enchanted necklace."
 games_necklace_8_noted: 3854
@@ -17335,44 +17335,44 @@ games_necklace_7:
   <<: *games_necklace_8
   id: 3855
   degrade: games_necklace_6
-  destroy_message: "Your games necklace has six uses left."
+  degrade_message: "Your games necklace has six uses left."
 games_necklace_7_noted: 3856
 games_necklace_6:
   <<: *games_necklace_8
   id: 3857
   degrade: games_necklace_5
-  destroy_message: "Your games necklace has five uses left."
+  degrade_message: "Your games necklace has five uses left."
 games_necklace_6_noted: 3858
 games_necklace_5:
   <<: *games_necklace_8
   id: 3859
   degrade: games_necklace_4
-  destroy_message: "Your games necklace has four uses left."
+  degrade_message: "Your games necklace has four uses left."
 games_necklace_5_noted: 3860
 games_necklace_4:
   <<: *games_necklace_8
   id: 3861
   degrade: games_necklace_3
-  destroy_message: "Your games necklace has three uses left."
+  degrade_message: "Your games necklace has three uses left."
 games_necklace_4_noted: 3862
 games_necklace_3:
   <<: *games_necklace_8
   id: 3863
   degrade: games_necklace_2
-  destroy_message: "Your games necklace has two uses left."
+  degrade_message: "Your games necklace has two uses left."
 games_necklace_3_noted: 3864
 games_necklace_2:
   <<: *games_necklace_8
   id: 3865
   degrade: games_necklace_1
-  destroy_message: "Your games necklace has one use left."
+  degrade_message: "Your games necklace has one use left."
 games_necklace_2_noted: 3866
 games_necklace_1:
   <<: *games_necklace_8
   id: 3867
   price: 1798
   degrade: destroy
-  destroy_message: "Your games necklace crumbles to dust."
+  degrade_message: "Your games necklace crumbles to dust."
 games_necklace_1_noted: 3868
 awful_anthem:
   id: 3894
@@ -47037,7 +47037,7 @@ skills_necklace_4:
   weight: 0.01
   charges: 1
   degrade: skills_necklace_3
-  destroy_message: "Your games necklace has three charges left."
+  degrade_message: "Your games necklace has three charges left."
   slot: "Amulet"
   examine: "This will help me travel."
 skills_necklace_4_noted: 11106
@@ -47045,19 +47045,19 @@ skills_necklace_3:
   <<: *skills_necklace_4
   id: 11107
   degrade: skills_necklace_2
-  destroy_message: "Your games necklace has two charges left."
+  degrade_message: "Your games necklace has two charges left."
 skills_necklace_3_noted: 11108
 skills_necklace_2:
   <<: *skills_necklace_4
   id: 11109
   degrade: skills_necklace_1
-  destroy_message: "Your games necklace has one charge left."
+  degrade_message: "Your games necklace has one charge left."
 skills_necklace_2_noted: 11110
 skills_necklace_1:
   <<: *skills_necklace_4
   id: 11111
   degrade: skills_necklace
-  destroy_message: "You use your skills necklace's last charge."
+  degrade_message: "You use your skills necklace's last charge."
 skills_necklace_1_noted: 11112
 skills_necklace:
   id: 11113
@@ -47085,7 +47085,7 @@ combat_bracelet_4:
   limit: 500
   charges: 1
   degrade: combat_bracelet_3
-  destroy_message: "Your combat bracelet has three charges left."
+  degrade_message: "Your combat bracelet has three charges left."
   slot: "Hands"
   examine: "A handy way to get around."
   weight: 0.25
@@ -47094,19 +47094,19 @@ combat_bracelet_3:
   <<: *combat_bracelet_4
   id: 11120
   degrade: combat_bracelet_2
-  destroy_message: "Your combat bracelet has two charges left."
+  degrade_message: "Your combat bracelet has two charges left."
 combat_bracelet_3_noted: 11121
 combat_bracelet_2:
   <<: *combat_bracelet_4
   id: 11122
   degrade: combat_bracelet_1
-  destroy_message: "Your combat bracelet has one charge left."
+  degrade_message: "Your combat bracelet has one charge left."
 combat_bracelet_2_noted: 11123
 combat_bracelet_1:
   <<: *combat_bracelet_4
   id: 11124
   degrade: combat_bracelet
-  destroy_message: "You use your combat bracelet's last charge."
+  degrade_message: "You use your combat bracelet's last charge."
 combat_bracelet_1_noted: 11125
 combat_bracelet:
   id: 11126
@@ -47401,7 +47401,7 @@ dig_site_pendant_1:
   charges: 1
   degrade: destroy
   slot: "Amulet"
-  destroy_message: "Your Dig Site pendant crumbles to dust."
+  degrade_message: "Your Dig Site pendant crumbles to dust."
   examine: "An enchanted necklace."
 dig_site_pendant_2:
   <<: *dig_site_pendant_1

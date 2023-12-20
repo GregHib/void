@@ -118,7 +118,7 @@ object Degrade {
         } else {
             inventory.replace(slot, item.id, replacement)
         }
-        val message: String = item.def.getOrNull("destroy_message") ?: return
+        val message: String = item.def.getOrNull("degrade_message") ?: return
         player.message(message)
     }
 }
