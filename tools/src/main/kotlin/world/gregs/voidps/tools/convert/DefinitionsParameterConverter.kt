@@ -89,6 +89,8 @@ object DefinitionsParameterConverter {
                 if (!params.containsKey(key)) {
                     params[key] = value
                     modified = true
+                } else if (params[key] != value) {
+//                    println("Override $key = ${params[key]} $value")
                 }
             }
             if (modified) {

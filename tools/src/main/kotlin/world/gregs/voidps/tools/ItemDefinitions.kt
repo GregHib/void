@@ -21,7 +21,7 @@ object ItemDefinitions {
         val decoder = ItemDefinitions(ItemDecoder(parameters).loadCache(cache)).load(yaml, property("itemDefinitionsPath"))
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.contains("ammo_group")) {
+            if (def.contains("extra_equipment_option")) {
                 println(def)
             }
         }

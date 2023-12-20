@@ -42,3 +42,16 @@ on<InventoryOption>({ inventory == "inventory" && item.id.startsWith("games_neck
         option("Nowhere.", { !player.questComplete("darkness_of_hallowvale") })
     }
 }
+
+on<InventoryOption>({ inventory == "worn_equipment" && item.id.startsWith("games_necklace_") }) { player: Player ->
+    val area = when (option) {
+        "Burthorpe" -> burthorpe
+        "Barbarian Outpost" -> barbarianOutput
+        "Clan Wars" -> clanWars
+        "Wilderness Volcano" -> wildernessVolcano
+        "Burgh De Rott" -> burghDeRott
+        else -> return@on
+    }
+    teleport(player, "games_necklace", area)
+    Degrade.discharge(player, inventory, slot)
+}

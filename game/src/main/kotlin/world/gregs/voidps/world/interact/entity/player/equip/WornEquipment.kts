@@ -49,6 +49,7 @@ fun getEquipmentOption(itemDef: ItemDefinition, optionId: Int): String? {
     }
     return when (optionId) {
         0 -> "Remove"
+        5 -> itemDef.getOrNull("extra_equipment_option")
         9 -> "Examine"
         else -> null
     }
