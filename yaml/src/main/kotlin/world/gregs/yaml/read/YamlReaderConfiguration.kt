@@ -7,6 +7,7 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 
 /**
  * Handles creation and modification of collections to allow custom changes during reading
+ * @param ignoreAnchors don't resolve anchors and leave them and aliases as strings
  */
 open class YamlReaderConfiguration(
     private val expectedListSize: Int = 10,
