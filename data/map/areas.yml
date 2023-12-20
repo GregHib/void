@@ -824,8 +824,8 @@ kuradals_dungeon:
     y: [ 5248, 5311 ]
 burthorpe_teleport:
   area:
-    x: [ 2898 ]
-    y: [ 3562 ]
+    x: [ 2205 ]
+    y: [ 4937 ]
   tags: [ teleport ]
 barbarian_outpost_teleport:
   area:
@@ -841,4 +841,9 @@ wilderness_volcano_teleport:
   area:
     x: [ 3185 ]
     y: [ 3698 ]
+  tags: [ teleport ]
+burgh_de_rott_teleport:
+  area:
+    x: [ 3487 ]
+    y: [ 3237 ]
   tags: [ teleport ]
