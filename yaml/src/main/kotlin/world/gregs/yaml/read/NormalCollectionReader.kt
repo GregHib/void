@@ -71,7 +71,7 @@ class NormalCollectionReader(
                 if (reader.indentation < currentIndent || reader.indentation == currentIndent && reader.char != '-') {
                     config.setEmpty(map, key)
                 } else {
-                    openEnded = true
+                    openEnded = false
                     config.setMapValue(this, map, key, currentIndent, indentOffset = 0, withinMap = key, parentMap = withinMap)
                 }
             } else {

@@ -46,7 +46,6 @@ abstract class YamlReader(val reader: CharReader, var config: YamlReaderConfigur
 
     @Suppress("UNCHECKED_CAST")
     private fun inlineAnchor(withinMap: String?): Any {
-        val indent = reader.indentation
         val alias = alias()
         val anchor = reader.anchors[alias] ?: throw IllegalArgumentException("Unable to find anchor for alias '$alias'")
         return if (config.ignoreAnchors) {
@@ -66,24 +65,9 @@ abstract class YamlReader(val reader: CharReader, var config: YamlReaderConfigur
             when (anchor) {
                 is List<*> -> config.createList().apply {
                     addAll(anchor as List<Any>)
-                    if (reader.char != '-' || reader.indentation < indent) {
-                        return@apply
-                    }
-                    println(reader.indentation)
-                    println(indent)
-                    val value = value(indentOffset = 0, withinMap = null)
-                    if (value is List<*>) {
-                        addAll(value as List<Any>)
-                    } else {
-                        add(value)
-                    }
                 }
                 is Map<*, *> -> config.createMap().apply {
                     putAll(anchor as Map<String, Any>)
-                    val value = value(indentOffset = 0, withinMap = null)
-                    if (value is Map<*, *>) {
-                        putAll(value as Map<String, Any>)
-                    }
                 }
                 else -> anchor
             }
@@ -95,7 +79,7 @@ abstract class YamlReader(val reader: CharReader, var config: YamlReaderConfigur
         val start = reader.index
         while (reader.inBounds) {
             val char = reader.char
-            if (char == ' ' || char == '\r' || char == '\n') {
+            if (char == ' ' || char == '\r' || char == '\n' || char == ',') {
                 val alias = reader.substring(start, reader.index)
                 reader.nextLine()
                 return alias
