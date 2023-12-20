@@ -882,3 +882,23 @@ dig_site_teleport:
     x: [ 3338, 3342 ]
     y: [ 3444, 3447 ]
   tags: [ teleport ]
+warriors_guild_teleport:
+  area:
+    x: [ 2879, 2882 ]
+    y: [ 3544, 3548 ]
+  tags: [ teleport ]
+champions_guild_teleport:
+  area:
+    x: [ 3189, 3193 ]
+    y: [ 3363, 3367 ]
+  tags: [ teleport ]
+monastery_teleport:
+  area:
+    x: [ 3050, 3053 ]
+    y: [ 3486, 3489 ]
+  tags: [ teleport ]
+ranging_guild_teleport:
+  area:
+    x: [ 2653, 2656 ]
+    y: [ 3439, 3443 ]
+  tags: [ teleport ]

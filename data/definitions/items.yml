@@ -47058,7 +47058,7 @@ skills_necklace_2:
   <<: *skills_necklace_4
   id: 11109
   degrade: skills_necklace_1
-  destroy_message: "Your games necklace has one charges left."
+  destroy_message: "Your games necklace has one charge left."
 skills_necklace_2_noted: 11110
 skills_necklace_1:
   <<: *skills_necklace_4
@@ -47093,6 +47093,7 @@ combat_bracelet_4:
   charges: 1
   degrade: combat_bracelet_3
   deplete: teleport
+  destroy_message: "Your combat bracelet has three charges left."
   slot: "Hands"
   examine: "A handy way to get around."
   weight: 0.25
@@ -47101,16 +47102,19 @@ combat_bracelet_3:
   <<: *combat_bracelet_4
   id: 11120
   degrade: combat_bracelet_2
+  destroy_message: "Your combat bracelet has two charges left."
 combat_bracelet_3_noted: 11121
 combat_bracelet_2:
   <<: *combat_bracelet_4
   id: 11122
   degrade: combat_bracelet_1
+  destroy_message: "Your combat bracelet has one charge left."
 combat_bracelet_2_noted: 11123
 combat_bracelet_1:
   <<: *combat_bracelet_4
   id: 11124
   degrade: combat_bracelet
+  destroy_message: "You use your combat bracelet's last charge."
 combat_bracelet_1_noted: 11125
 combat_bracelet:
   id: 11126
