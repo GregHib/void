@@ -9,10 +9,10 @@ import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
 
 val areas: AreaDefinitions by inject()
 
-val burthorpe = areas["burthorpe_games_necklace_teleport"]
-val barbarianOutput = areas["barbarian_outpost_games_necklace_teleport"]
-val clanWars = areas["clan_wars_games_necklace_teleport"]
-val wildernessVolcano = areas["wilderness_volcano_games_necklace_teleport"]
+val burthorpe = areas["burthorpe_teleport"]
+val barbarianOutput = areas["barbarian_outpost_teleport"]
+val clanWars = areas["clan_wars_teleport"]
+val wildernessVolcano = areas["wilderness_volcano_teleport"]
 
 on<InventoryOption>({ inventory == "inventory" && item.id.startsWith("games_necklace_") && option == "Rub" }) { player: Player ->
     choice("Where would you like to teleport to?") {
