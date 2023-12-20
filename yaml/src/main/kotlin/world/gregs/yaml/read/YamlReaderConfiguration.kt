@@ -39,4 +39,16 @@ open class YamlReaderConfiguration(
     open fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
         map[key] = value
     }
+
+    open fun anchor(anchor: Any): Any {
+        return when (anchor) {
+            is List<*> -> createList().apply {
+                addAll(anchor as List<Any>)
+            }
+            is Map<*, *> -> createMap().apply {
+                putAll(anchor as Map<String, Any>)
+            }
+            else -> anchor
+        }
+    }
 }

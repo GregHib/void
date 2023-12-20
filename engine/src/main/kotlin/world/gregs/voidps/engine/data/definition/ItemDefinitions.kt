@@ -120,6 +120,14 @@ class ItemDefinitions(
             }
         }
 
+        override fun anchor(anchor: Any): Any {
+            val value = super.anchor(anchor)
+            if (value is MutableMap<*, *>) {
+                value.remove("aka")
+            }
+            return value
+        }
+
         private fun YamlReader.readIntRange(): IntRange {
             val start = reader.index
             val number = number(start)

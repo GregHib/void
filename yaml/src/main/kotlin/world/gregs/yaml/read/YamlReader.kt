@@ -62,15 +62,7 @@ abstract class YamlReader(val reader: CharReader, var config: YamlReaderConfigur
             if (reader.outBounds) {
                 return anchor
             }
-            when (anchor) {
-                is List<*> -> config.createList().apply {
-                    addAll(anchor as List<Any>)
-                }
-                is Map<*, *> -> config.createMap().apply {
-                    putAll(anchor as Map<String, Any>)
-                }
-                else -> anchor
-            }
+            return config.anchor(anchor)
         }
     }
 
