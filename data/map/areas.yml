@@ -877,3 +877,8 @@ cooking_guild_teleport:
     x: [ 3140, 3143 ]
     y: [ 3440, 3443 ]
   tags: [ teleport ]
+dig_site_teleport:
+  area:
+    x: [ 3338, 3342 ]
+    y: [ 3444, 3447 ]
+  tags: [ teleport ]

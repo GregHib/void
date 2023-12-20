@@ -47401,12 +47401,13 @@ antique_lamp_historian_minas:
 dig_site_pendant_1:
   &dig_site_pendant_1
   id: 11190
+  weight: 0.01
   charges: 1
   degrade: destroy
   deplete: teleport
   slot: "Amulet"
+  destroy_message: "Your Dig Site pendant crumbles to dust."
   examine: "An enchanted necklace."
-  weight: 0.01
 dig_site_pendant_2:
   <<: *dig_site_pendant_1
   id: 11191
@@ -47423,6 +47424,7 @@ dig_site_pendant_5:
   <<: *dig_site_pendant_1
   id: 11194
   degrade: dig_site_pendant_4
+  aka: [ digsite_pendant, digsite_necklace, dig_site_necklace ]
 clean_necklace:
   id: 11195
   tradeable: false
