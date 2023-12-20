@@ -40,9 +40,6 @@ open class YamlWriterConfiguration(
     }
 
     companion object {
-        val yaml = YamlWriterConfiguration(
-
-        )
         val json = YamlWriterConfiguration(
             forceQuoteStrings = true,
             forceExplicit = true,
