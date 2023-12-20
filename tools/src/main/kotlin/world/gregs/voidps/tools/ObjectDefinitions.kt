@@ -12,11 +12,12 @@ object ObjectDefinitions {
 
         val decoder = ObjectDecoderFull(false, true).loadCache(cache)
 
-        for (def in decoder) {
-            if(def.params != null) {
-                println("${def.id} ${def.name} ${def.params}")
-            }
-        }
+        decoder.findMatchingModels(24368)
+//        for (def in decoder) {
+//            if(def.params != null) {
+//                println("${def.id} ${def.name} ${def.params}")
+//            }
+//        }
     }
 
     fun Array<ObjectDefinitionFull>.findMatchingName(name: String): List<ObjectDefinitionFull> {

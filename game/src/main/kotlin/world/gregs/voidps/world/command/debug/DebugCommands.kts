@@ -1,7 +1,5 @@
 package world.gregs.voidps.world.command.debug
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import net.pearx.kasechange.toSentenceCase
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.flag.CollisionFlag
@@ -13,21 +11,16 @@ import world.gregs.voidps.engine.client.*
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.PlayerVariables
-import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.move.walkTo
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.TimerTick
@@ -47,15 +40,8 @@ val objects: GameObjects by inject()
 val npcs: NPCs by inject()
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    player.tele(3259, 3241)
-    val npc = npcs.add("goblin_staff_red", player.tile.add(1, 0))!!
-    npc.clear("respawn_tile")
-    World.run("", 2) {
-        npc.walkTo(player.tile.add(1, -5))
-    }
-    World.run("test", 3) {
-        player.mode = Interact(player, npc, NPCOption(player, npc, npc.def, "Attack"))
-    }
+    val obj = objects.getLayer(player.tile, ObjectLayer.WALL)!!
+//    Door.enter(player, obj)
 }
 
 on<Command>({ prefix == "reset_cam" }) { player: Player ->

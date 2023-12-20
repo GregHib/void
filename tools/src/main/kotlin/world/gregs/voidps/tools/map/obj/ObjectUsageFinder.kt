@@ -30,5 +30,5 @@ object ObjectUsageFinder {
         }
     }
 
-    private fun matches(obj: MapObject, def: ObjectDefinitionFull) = obj.id in 2452..2462
+    private fun matches(obj: MapObject, def: ObjectDefinitionFull) = obj.id == 24368 || obj.id == 2397
 }

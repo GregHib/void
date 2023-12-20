@@ -32,7 +32,7 @@ import world.gregs.voidps.world.interact.dialogue.Upset
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.obj.Door
+import world.gregs.voidps.world.interact.entity.obj.door.DoubleDoor
 
 val objects: GameObjects by inject()
 val southGate = Tile(3268, 3227)
@@ -107,5 +107,5 @@ suspend fun CharacterContext.payToll(player: Player): Boolean {
 fun openGate() {
     val obj = objects[southGate, "toll_gate_al_kharid"] ?: return
     val double = objects[southGate.addY(1), "toll_gate_al_kharid_north"] ?: return
-    Door.openDoubleDoors(obj, obj.def, double, 3, false)
+    DoubleDoor.open(obj, obj.def, double, 3, false)
 }

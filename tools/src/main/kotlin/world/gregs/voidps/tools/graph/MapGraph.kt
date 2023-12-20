@@ -2,16 +2,16 @@ package world.gregs.voidps.tools.graph
 
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Cuboid
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.type.Region
-import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.world.interact.entity.obj.isDoor
+import world.gregs.voidps.world.interact.entity.obj.door.Door.isDoor
 import java.io.DataOutputStream
 import java.io.File
 import java.util.*

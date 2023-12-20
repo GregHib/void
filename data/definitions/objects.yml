@@ -1494,18 +1494,24 @@ gate_52_opened:
 gate_52_closed:
   id: 2394
   examine: "A gate to the Gnomeball pitch."
-door_46_opened:
+door_46_closed:
   id: 24368
   examine: "This door is locked."
-door_46_closed:
+door_46_opened:
+  id: 24380
+  examine: "A solid looking door."
+door_46_2_closed:
   id: 2397
+  examine: "This door is locked."
+door_46_2_opened:
+  id: 24379
   examine: "A solid looking door."
 door_47_opened:
-  id: 24368
-  examine: "This door is locked."
+  id: 46305
+  examine: "A solid looking door."
 door_47_closed:
   id: 2398
-  examine: "A solid looking door."
+  examine: "This door is locked."
 door_48_opened:
   id: 15502
 door_48_closed:
