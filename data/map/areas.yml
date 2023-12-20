@@ -847,3 +847,18 @@ burgh_de_rott_teleport:
     x: [ 3487 ]
     y: [ 3237 ]
   tags: [ teleport ]
+duel_arena_teleport:
+  area:
+    x: [ 3315 ]
+    y: [ 3235 ]
+  tags: [ teleport ]
+castle_wars_teleport:
+  area:
+    x: [ 2442 ]
+    y: [ 3089 ]
+  tags: [ teleport ]
+fist_of_guthix_teleport:
+  area:
+    x: [ 1694 ]
+    y: [ 5601 ]
+  tags: [ teleport ]
