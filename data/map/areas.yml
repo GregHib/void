@@ -822,3 +822,23 @@ kuradals_dungeon:
   area:
     x: [ 1600, 1663 ]
     y: [ 5248, 5311 ]
+burthorpe_games_necklace_teleport:
+  area:
+    x: [ 2898 ]
+    y: [ 3562 ]
+  tags: [ teleport ]
+barbarian_outpost_games_necklace_teleport:
+  area:
+    x: [ 2520 ]
+    y: [ 3573 ]
+  tags: [ teleport ]
+clan_wars_games_necklace_teleport:
+  area:
+    x: [ 3268 ]
+    y: [ 3680 ]
+  tags: [ teleport ]
+wilderness_volcano_games_necklace_teleport:
+  area:
+    x: [ 3185 ]
+    y: [ 3698 ]
+  tags: [ teleport ]

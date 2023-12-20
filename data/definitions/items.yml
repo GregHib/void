@@ -17316,54 +17316,59 @@ rusty_casket:
   kept: "Wilderness"
 unholy_symbol_noted: 3852
 games_necklace_8:
+  &games_necklace_8
   id: 3853
   price: 817
+  weight: 0.01
+  charges: 1
+  degrade: games_necklace_7
+  destroy_message: "Your games necklace has seven uses left."
+  deplete: teleport
   slot: "Amulet"
   examine: "An enchanted necklace."
-  weight: 0.01
 games_necklace_8_noted: 3854
 games_necklace_7:
+  <<: *games_necklace_8
   id: 3855
-  slot: "Amulet"
-  examine: "An enchanted necklace."
-  weight: 0.01
+  degrade: games_necklace_6
+  destroy_message: "Your games necklace has six uses left."
 games_necklace_7_noted: 3856
 games_necklace_6:
+  <<: *games_necklace_8
   id: 3857
-  slot: "Amulet"
-  examine: "An enchanted necklace."
-  weight: 0.01
+  degrade: games_necklace_5
+  destroy_message: "Your games necklace has five uses left."
 games_necklace_6_noted: 3858
 games_necklace_5:
+  <<: *games_necklace_8
   id: 3859
-  slot: "Amulet"
-  examine: "An enchanted necklace."
-  weight: 0.01
+  degrade: games_necklace_4
+  destroy_message: "Your games necklace has four uses left."
 games_necklace_5_noted: 3860
 games_necklace_4:
+  <<: *games_necklace_8
   id: 3861
-  slot: "Amulet"
-  examine: "An enchanted necklace."
-  weight: 0.01
+  degrade: games_necklace_3
+  destroy_message: "Your games necklace has three uses left."
 games_necklace_4_noted: 3862
 games_necklace_3:
+  <<: *games_necklace_8
   id: 3863
-  slot: "Amulet"
-  examine: "An enchanted necklace."
-  weight: 0.01
+  degrade: games_necklace_2
+  destroy_message: "Your games necklace has two uses left."
 games_necklace_3_noted: 3864
 games_necklace_2:
+  <<: *games_necklace_8
   id: 3865
-  slot: "Amulet"
-  examine: "An enchanted necklace."
-  weight: 0.01
+  degrade: games_necklace_1
+  destroy_message: "Your games necklace has one use left."
 games_necklace_2_noted: 3866
 games_necklace_1:
+  <<: *games_necklace_8
   id: 3867
   price: 1798
-  slot: "Amulet"
-  examine: "An enchanted necklace."
-  weight: 0.01
+  degrade: destroy
+  destroy_message: "Your games necklace crumbles to dust."
 games_necklace_1_noted: 3868
 awful_anthem:
   id: 3894

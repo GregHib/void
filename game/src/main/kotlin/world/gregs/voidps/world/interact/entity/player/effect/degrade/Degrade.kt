@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.effect.degrade
 
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.Inventory
@@ -105,11 +106,12 @@ object Degrade {
             return
         }
         player.clear(variable)
-        // TODO message
         if (replacement == "destroy") {
             inventory.remove(slot, item.id, item.amount)
         } else {
             inventory.replace(slot, item.id, replacement)
         }
+        val message: String = item.def.getOrNull("destroy_message") ?: return
+        player.message(message)
     }
 }

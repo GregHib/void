@@ -11017,3 +11017,11 @@ web_slashed:
 web_spider:
   id: 29354
   examine: "This huge web blocks your path."
+games_room_stairs_up:
+  id: 4626
+games_room_stairs_down:
+  id: 4625
+games_room_stairs_down_2:
+  id: 4624
+games_room_basement_stairs_up:
+  id: 4622
