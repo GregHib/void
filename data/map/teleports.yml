@@ -4225,7 +4225,24 @@
     y: 3458
   delta:
     x: -1
-    y: 6400 
+    y: 6400
+######## 12855 ########
+- id: fist_of_guthix_cave
+  option: Enter
+  tile:
+    x: 3240
+    y: 3575
+  to:
+    x: 1675
+    y: 5599
+- id: fist_of_guthix_stairs
+  option: Exit
+  tile:
+    x: 1673
+    y: 5598
+  to:
+    x: 3242
+    y: 3574
 ######## 12870 ########
 - id: 39273
   option: Climb-up
