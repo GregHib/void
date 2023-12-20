@@ -16,19 +16,19 @@ val rangingGuild = areas["ranging_guild_teleport"]
 
 on<InventoryOption>({ inventory == "inventory" && item.id.startsWith("combat_bracelet_") && option == "Rub" }) { player: Player ->
     choice("Where would you like to teleport to?") {
-        option("Warriors' Guild.") {
+        option("Warriors' Guild") {
             jewelleryTeleport(player, inventory, slot, warriorsGuild)
         }
-        option("Champions' Guild.") {
+        option("Champions' Guild") {
             jewelleryTeleport(player, inventory, slot, championsGuild)
         }
-        option("Monastery.") {
+        option("Monastery") {
             jewelleryTeleport(player, inventory, slot, monastery)
         }
-        option("Ranging Guild.") {
+        option("Ranging Guild") {
             jewelleryTeleport(player, inventory, slot, rangingGuild)
         }
-        option("Nowhere.")
+        option("Nowhere")
     }
 }
 

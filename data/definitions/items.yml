@@ -8591,34 +8591,38 @@ amulet_of_glory:
   weight: 0.01
 amulet_of_glory_noted: 1705
 amulet_of_glory_1:
+  &amulet_of_glory_1
   id: 1706
   limit: 100
+  weight: 0.01
+  charges: 1
+  degrade: amulet_of_glory
+  destroy_message: "You use your amulet's last charge."
   slot: "Amulet"
   examine: "A dragonstone amulet with 1 magic charge."
-  weight: 0.01
 amulet_of_glory_1_noted: 1707
 amulet_of_glory_2:
+  <<: *amulet_of_glory_1
   id: 1708
-  limit: 100
-  slot: "Amulet"
+  degrade: amulet_of_glory_1
+  destroy_message: "Your amulet has one charge left."
   examine: "A dragonstone amulet with 2 magic charges."
-  weight: 0.01
 amulet_of_glory_2_noted: 1709
 amulet_of_glory_3:
+  <<: *amulet_of_glory_1
   id: 1710
-  limit: 100
-  slot: "Amulet"
+  degrade: amulet_of_glory_2
+  destroy_message: "Your amulet has two charges left."
   examine: "A dragonstone amulet with 3 magic charges."
-  weight: 0.01
 amulet_of_glory_3_noted: 1711
 amulet_of_glory_4:
+  <<: *amulet_of_glory_1
   id: 1712
   price: 35400
-  limit: 100
   aka: [ glory, glory_4 ]
-  slot: "Amulet"
+  degrade: amulet_of_glory_3
+  destroy_message: "Your amulet has three charges left."
   examine: "A dragonstone amulet with 4 magic charges."
-  weight: 0.01
 amulet_of_glory_4_noted: 1713
 unstrung_symbol:
   id: 1714
@@ -12370,7 +12374,6 @@ ring_of_duelling_8:
   weight: 0.006
   charges: 1
   degrade: ring_of_duelling_7
-  deplete: teleport
   destroy_message: "Your ring of duelling has seven uses left."
   aka: [ ring_of_duelling, duelling_ring ]
   slot: "Ring"
@@ -12418,7 +12421,6 @@ ring_of_duelling_1:
   weight: 0.006
   charges: 1
   degrade: destroy
-  deplete: teleport
   destroy_message: "Your ring of duelling crumbles to dust."
   slot: "Ring"
   examine: "An enchanted ring."
@@ -16523,7 +16525,6 @@ enchanted_lyre_1:
   weight: 1.814
   charges: 1
   degrade: enchanted_lyre
-  deplete: teleport
   slot: "Weapon"
   examine: "This will teleport me to Rellekka when I play it."
 branch:
@@ -17327,7 +17328,6 @@ games_necklace_8:
   charges: 1
   degrade: games_necklace_7
   destroy_message: "Your games necklace has seven uses left."
-  deplete: teleport
   slot: "Amulet"
   examine: "An enchanted necklace."
 games_necklace_8_noted: 3854
@@ -23683,7 +23683,6 @@ binding_necklace:
   weight: 0.01
   charges: 16
   player_charge: true
-  deplete: teleport
   degrade: destroy
   slot: "Amulet"
   examine: "A necklace embedded with mystical power."
@@ -26181,7 +26180,6 @@ crystal_teleport_seed_4:
   weight: 0.001
   charges: 1
   degrade: crystal_teleport_seed_3
-  deplete: teleport
   examine: "A tiny crystal enchanted to return the user to Lletya."
 crystal_teleport_seed_3:
   <<: *crystal_teleport_seed_4
@@ -28564,7 +28562,6 @@ camulet:
   id: 6707
   charges: 4
   player_charge: true
-  deplete: teleport
   tradeable: false
   weight: 0.007
   slot: "Amulet"
@@ -37871,7 +37868,6 @@ skull_sceptre:
   weight: 1.814
   charges: 10
   player_charge: true
-  deplete: teleport
   degrade: destroy
   slot: "Weapon"
   destroy: "You can obtain another Sceptre by collecting all four pieces from the Stronghold of Security."
@@ -38010,7 +38006,6 @@ pharaohs_sceptre_3:
   weight: 2.0
   charges: 1
   degrade: pharaohs_sceptre_2
-  deplete: teleport
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "No"
@@ -46950,7 +46945,6 @@ castle_wars_brace_3:
   weight: 0.25
   charges: 1
   degrade: castle_wars_brace_2
-  deplete: teleport
   slot: "Hands"
   examine: "Must be worn as you enter the game to receive the bonus for that game."
 castle_wars_brace_3_noted: 11080
@@ -47044,7 +47038,6 @@ skills_necklace_4:
   charges: 1
   degrade: skills_necklace_3
   destroy_message: "Your games necklace has three charges left."
-  deplete: teleport
   slot: "Amulet"
   examine: "This will help me travel."
 skills_necklace_4_noted: 11106
@@ -47092,7 +47085,6 @@ combat_bracelet_4:
   limit: 500
   charges: 1
   degrade: combat_bracelet_3
-  deplete: teleport
   destroy_message: "Your combat bracelet has three charges left."
   slot: "Hands"
   examine: "A handy way to get around."
@@ -47408,7 +47400,6 @@ dig_site_pendant_1:
   weight: 0.01
   charges: 1
   degrade: destroy
-  deplete: teleport
   slot: "Amulet"
   destroy_message: "Your Dig Site pendant crumbles to dust."
   examine: "An enchanted necklace."

@@ -902,3 +902,23 @@ ranging_guild_teleport:
     x: [ 2653, 2656 ]
     y: [ 3439, 3443 ]
   tags: [ teleport ]
+edgeville_teleport:
+  area:
+    x: [ 3085, 3089 ]
+    y: [ 3494, 3498 ]
+  tags: [ teleport ]
+karamja_teleport:
+  area:
+    x: [ 2916, 2920 ]
+    y: [ 3175, 3177 ]
+  tags: [ teleport ]
+draynor_village_teleport:
+  area:
+    x: [ 3078, 3082 ]
+    y: [ 3248, 3252 ]
+  tags: [ teleport ]
+al_kharid_teleport:
+  area:
+    x: [ 3292, 3295 ]
+    y: [ 3162, 3163 ]
+  tags: [ teleport ]
