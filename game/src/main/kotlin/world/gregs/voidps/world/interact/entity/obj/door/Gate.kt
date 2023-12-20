@@ -6,6 +6,9 @@ import world.gregs.voidps.world.interact.entity.obj.Replace
 import world.gregs.voidps.world.interact.entity.obj.door.Door.rotation
 
 object Gate {
+    /**
+     * Replace an open or closed gate with the alternative
+     */
     fun replace(
         obj: GameObject,
         double: GameObject,

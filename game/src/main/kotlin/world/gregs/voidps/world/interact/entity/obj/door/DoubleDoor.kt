@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.obj.door
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.equals
 import world.gregs.voidps.world.interact.entity.obj.Replace
@@ -10,7 +11,11 @@ import world.gregs.voidps.world.interact.entity.obj.door.Door.isDoor
 import world.gregs.voidps.world.interact.entity.obj.door.Gate.isGate
 
 object DoubleDoor {
-    fun get(objects: GameObjects, gameObject: GameObject, def: ObjectDefinition, clockwise: Int): GameObject? {
+    /**
+     * Get the neighbouring door given either one of the door [gameObject]'s
+     */
+    fun get(gameObject: GameObject, def: ObjectDefinition, clockwise: Int): GameObject? {
+        val objects: GameObjects = get()
         var orientation = Direction.cardinal[gameObject.rotation(clockwise)]
         var door = objects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
         if (door != null && door.def.isDoor()) {
@@ -36,7 +41,9 @@ object DoubleDoor {
         return null
     }
 
-
+    /**
+     * Open a pair of double doors [obj] and [double]
+     */
     fun open(obj: GameObject, def: ObjectDefinition, double: GameObject, ticks: Int, collision: Boolean = true) {
         val delta = obj.tile.delta(double.tile)
         val dir = Direction.cardinal[obj.rotation]
@@ -53,6 +60,9 @@ object DoubleDoor {
         }
     }
 
+    /**
+     * Close a pair of double doors [obj] and [double]
+     */
     fun close(obj: GameObject, def: ObjectDefinition, double: GameObject, ticks: Int, collision: Boolean = true) {
         val delta = obj.tile.delta(double.tile)
         val dir = Direction.cardinal[obj.rotation]
