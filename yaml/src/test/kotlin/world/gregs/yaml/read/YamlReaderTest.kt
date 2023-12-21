@@ -95,4 +95,11 @@ class YamlReaderTest {
         val expected = "- key: &anchor *alias #comment"
         assertEquals(expected, output)
     }
+
+    @Test
+    fun `Parse escaped quotes`() {
+        val output = yaml.read("\"- key: \\\"escaped &anchor *alias #comment\"")
+        val expected = "- key: \\\"escaped &anchor *alias #comment"
+        assertEquals(expected, output)
+    }
 }

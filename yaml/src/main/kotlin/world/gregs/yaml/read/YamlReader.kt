@@ -100,11 +100,13 @@ abstract class YamlReader(val reader: CharReader, var config: YamlReaderConfigur
     private fun quote(): String {
         reader.skip() // skip opening quote
         val start = reader.index
+        var prev = ' '
         while (reader.inBounds) {
-            if (reader.char == '"') {
+            if (reader.char == '"' && prev != '\\') {
                 reader.skip() // skip closing quote
                 break
             }
+            prev = reader.char
             reader.skip()
         }
         val quoted = reader.substring(start, reader.index - 1)
