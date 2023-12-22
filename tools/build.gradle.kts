@@ -7,6 +7,8 @@ dependencies {
     implementation(project(":yaml"))
     implementation(project(":types"))
 
+    implementation("org.seleniumhq.selenium:selenium-java:4.16.1")
+
     implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:${findProperty("kotlinIoVersion")}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${findProperty("kotlinCoroutinesVersion")}")
 
