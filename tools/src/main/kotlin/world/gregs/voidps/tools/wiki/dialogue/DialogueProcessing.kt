@@ -33,9 +33,16 @@ object DialogueProcessing {
             val nextRows = tables.first().select("a").map {
                 it.attr("href").removeSuffix(".html").toIntOrNull() ?: -1
             }
+            val nextCountRows = tables.first().select("a").map {
+                it.text().toInt()
+            }
 
             val previousRows = tables.last().select("a").map {
                 it.attr("href").removeSuffix(".html").toIntOrNull() ?: -1
+            }
+
+            val previousCountRows = tables.last().select("a").map {
+                it.text().toInt()
             }
 
             when (type) {
@@ -43,14 +50,14 @@ object DialogueProcessing {
                     val list = doc.select("ol").first().select("li")
                     val options = list.mapNotNull { if (it.hasText()) it.text() else null }
                     val id = file.nameWithoutExtension
-                    contents[id] = Dialogue(id.toInt(), type, nextRows, previousRows, options)
+                    contents[id] = Dialogue(id.toInt(), type, nextRows, nextCountRows, previousRows, previousCountRows, options)
                 }
                 "DIALOGUE_PLAYER", "DIALOGUE_NPC" -> {
                     val text = doc.select("p").first()
                     val name = text.select("b").text()
                     val dialogue = text.text().removePrefix("$name:").trim()
                     val id = file.nameWithoutExtension
-                    contents[id] = Dialogue(id.toInt(), type, nextRows, previousRows, text = dialogue, name = name)
+                    contents[id] = Dialogue(id.toInt(), type, nextRows, nextCountRows, previousRows, previousCountRows, text = dialogue, name = name)
                 }
                 else -> println("Unknown type $type")
             }
