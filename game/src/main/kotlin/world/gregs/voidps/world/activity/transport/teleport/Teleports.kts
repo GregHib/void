@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map
+package world.gregs.voidps.world.activity.transport.teleport
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeInterfaces

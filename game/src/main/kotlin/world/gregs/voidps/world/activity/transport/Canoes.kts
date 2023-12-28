@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map
+package world.gregs.voidps.world.activity.transport
 
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened

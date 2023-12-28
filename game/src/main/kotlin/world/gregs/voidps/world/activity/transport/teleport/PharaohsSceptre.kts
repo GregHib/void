@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.transport
+package world.gregs.voidps.world.activity.transport.teleport
 
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
