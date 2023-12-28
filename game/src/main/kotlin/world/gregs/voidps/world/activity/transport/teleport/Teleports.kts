@@ -61,16 +61,19 @@ on<InventoryOption>({ item.id.endsWith("_teleport") }) { player: Player ->
         return@on
     }
     player.closeInterfaces()
+    val definition = areas.getOrNull(item.id) ?: return@on
+    val scrolls = areas.getTagged("scroll")
+    val type = if (scrolls.contains(definition)) "scroll" else "tablet"
+    val map = definition.area
     player.queue("teleport", onCancel = null) {
         if (player.inventory.remove(item.id)) {
-            player.playSound("teleport_tablet")
-            player.setGraphic("teleport_tablet")
+            player.playSound("teleport_$type")
+            player.setGraphic("teleport_$type")
             player.start("movement_delay", 2)
-            player.setAnimation("teleport_tablet")
+            player.setAnimation("teleport_$type")
             pause(3)
-            val map = areas[item.id]
             player.tele(map.random(player)!!)
-            player.playAnimation("teleport_land_tablet", canInterrupt = false)
+            player.playAnimation("teleport_land", canInterrupt = false)
         }
     }
 }

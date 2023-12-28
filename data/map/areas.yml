@@ -938,3 +938,33 @@ jaldraocht_teleport:
     x: [ 3232 ]
     y: [ 2897 ]
   tags: [ teleport ]
+pollnivneach_teleport:
+  area:
+    x: [ 3359, 3363 ]
+    y: [ 2968, 2972 ]
+  tags: [ teleport, scroll ]
+bandit_camp_teleport:
+  area:
+    x: [ 3170, 3174 ]
+    y: [ 2981, 2985 ]
+  tags: [ teleport, scroll ]
+miscellania_teleport:
+  area:
+    x: [ 2511, 2515 ]
+    y: [ 3856, 3860 ]
+  tags: [ teleport, scroll ]
+phoenix_lair_teleport:
+  area:
+    x: [ 2290, 2294 ]
+    y: [ 3618, 3622 ]
+  tags: [ teleport, scroll ]
+tai_bwo_wannai_teleport:
+  area:
+    x: [ 2803, 2807 ]
+    y: [ 3084, 3088 ]
+  tags: [ teleport, scroll ]
+lumber_yard_teleport:
+  area:
+    x: [ 3300, 3302 ]
+    y: [ 3485, 3487 ]
+  tags: [ teleport, scroll ]

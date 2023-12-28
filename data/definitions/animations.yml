@@ -1269,9 +1269,12 @@ teleport_land_lunar:
 teleport_tablet:
   id: 9597
   ticks: 2
-teleport_land_tablet:
+teleport_land:
   id: 9598
   ticks: 1
+teleport_scroll:
+  id: 14293
+  ticks: 2
 cow_hit: 5850
 cow_death: 5851
 cow_attack: 5849

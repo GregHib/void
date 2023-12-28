@@ -201,6 +201,7 @@ teleport_land_modern: 1577
 teleport_ancient: 1681
 teleport_lunar: 1685
 teleport_tablet: 1680
+teleport_scroll: 94
 bronze_arrow_shoot:
   id: 19
   height: 60
