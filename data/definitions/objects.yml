@@ -10080,11 +10080,13 @@ gate_253_opened:
   id: 49015
 gate_253_closed:
   id: 49014
+  gate: false
   examine: "A gate."
 gate_254_opened:
   id: 49017
 gate_254_closed:
   id: 49016
+  gate: false
   examine: "A gate."
 chair_186:
   id: 49061
