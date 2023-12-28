@@ -1932,6 +1932,9 @@ legends_guild_door_2_opened:
 legends_guild_door_2_closed:
   id: 2897
   examine: "A door to the Legends Guild."
+legends_guild_totem_pole:
+  id: 2938
+  examine: "A sculpted trunk of wood."
 crate_21:
   id: 2905
   examine: "An old crate for storage."
