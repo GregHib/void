@@ -759,7 +759,8 @@ goblin_orange_hat_spear:
   slayer_xp: 12
   race: goblin_spear
   height: 30
-  examine: "An ugly, green creature."
+  large_head: true
+  examine: "An ugly, orange creature."
 frog_9_frogland:
   <<: *frog_frogland
   id: 3300
@@ -778,11 +779,25 @@ hari:
 barfy_bill:
   id: 3331
   examine: "Looks a little green around the gills."
+grubfoot_brown:
+  id: 4496
+  large_head: true
+  examine: "Smaller than the average goblin."
+grubfoot_orange:
+  id: 4497
+  large_head: true
+  examine: "Smaller than the average goblin."
+grubfoot_blue:
+  id: 4498
+  large_head: true
+  examine: "Smaller than the average goblin."
 general_wartface_rfd:
   id: 3391
+  large_head: true
   examine: "An ugly green creature."
 general_bentnoze_rfd:
   id: 3392
+  large_head: true
   examine: "An ugly green creature."
 sheep_penguin:
   <<: *sheep
@@ -828,7 +843,7 @@ goblin_mohawk_blue:
   master2: turael
   master3: spria
   respawn_delay: 35
-  examine: "An ugly, green creature."
+  examine: "An ugly, blue creature."
   race: goblin
   height: 30
 goblin_mohawk_grey:
@@ -885,54 +900,58 @@ magic_dummy:
   retaliates: false
   examine: "This is ready for you to cast magic at it."
 goblin_shield_battleaxe_red:
+  &goblin_shield_battleaxe_red
   id: 4479
   <<: *goblin_orange_hat_spear
   race: goblin_battleaxe
+  examine: "An ugly, red creature."
 goblin_staff_red:
   id: 4480
-  <<: *goblin_orange_hat_spear
+  <<: *goblin_shield_battleaxe_red
   race: goblin_staff
 goblin_shield_warhammer_red:
   id: 4481
-  <<: *goblin_orange_hat_spear
+  <<: *goblin_shield_battleaxe_red
   race: goblin_battleaxe
 goblin_shield_spear_red:
   id: 4482
-  <<: *goblin_orange_hat_spear
+  <<: *goblin_shield_battleaxe_red
 goblin_battleaxe_red:
   id: 4483
-  <<: *goblin_orange_hat_spear
+  <<: *goblin_shield_battleaxe_red
   race: goblin_battleaxe
 goblin_mohawk_staff_red:
   id: 4484
-  <<: *goblin_orange_hat_spear
+  <<: *goblin_shield_battleaxe_red
   race: goblin_staff
 goblin_ponytail_staff_red:
   id: 4485
-  <<: *goblin_orange_hat_spear
+  <<: *goblin_shield_battleaxe_red
   race: goblin_staff
 goblin_shield_battleaxe_green:
+  &goblin_shield_battleaxe_green
   id: 4486
   <<: *goblin_orange_hat_spear
   race: goblin_battleaxe
+  examine: "An ugly, green creature."
 goblin_staff_green:
   id: 4487
-  <<: *goblin_orange_hat_spear
+  <<: *goblin_shield_battleaxe_green
   race: goblin_staff
 goblin_shield_warhammer_green:
   id: 4488
-  <<: *goblin_orange_hat_spear
+  <<: *goblin_shield_battleaxe_green
   race: goblin_battleaxe
 goblin_shield_spear_green:
   id: 4489
-  <<: *goblin_orange_hat_spear
+  <<: *goblin_shield_battleaxe_green
 goblin_staff_2_green:
   id: 4491
-  <<: *goblin_orange_hat_spear
+  <<: *goblin_shield_battleaxe_green
   race: goblin_staff
 goblin_mohawk_staff_green:
   id: 4492
-  <<: *goblin_orange_hat_spear
+  <<: *goblin_shield_battleaxe_green
   race: goblin_staff
 crow_5:
   <<: *crow
@@ -1657,3 +1676,14 @@ zombie:
   respawn_delay: 35
   examine: "Dead man walking."
   race: zombie
+guardian_mummy:
+  id: 4476
+  race: mummy
+  large_head: true
+  examine: "Who's your mummy?"
+al_the_camel:
+  id: 2809
+  race: camel
+  large_head: true
+  wander_radius: 4
+  examine: "A camel who has the soul of a poet."

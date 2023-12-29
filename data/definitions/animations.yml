@@ -1269,9 +1269,21 @@ teleport_land_lunar:
 teleport_tablet:
   id: 9597
   ticks: 2
-teleport_land_tablet:
+teleport_land:
   id: 9598
   ticks: 1
+teleport_scroll:
+  id: 14293
+  ticks: 2
+teleport_ectophial:
+  id: 8939
+  ticks: 2
+teleport_land_ectophial:
+  id: 8941
+  ticks: 2
+empty_ectophial:
+  id: 9609
+  ticks: 4
 cow_hit: 5850
 cow_death: 5851
 cow_attack: 5849
@@ -1606,3 +1618,10 @@ dragon_breath: 81
 dragon_attack: 91
 dragon_hit: 89
 dragon_death: 92
+teleport_jewellery:
+  id: 9603
+  ticks: 4
+teleport_pharaohs_sceptre:
+  id: 9596
+  ticks: 3
+fill_bucket: 895

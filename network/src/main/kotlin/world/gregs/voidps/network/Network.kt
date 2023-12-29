@@ -171,7 +171,7 @@ class Network(
     }
 
     private suspend fun readPackets(client: Client, instructions: MutableSharedFlow<Instruction>, read: ByteReadChannel) {
-        while (true) {
+        while (!client.disconnected) {
             val cipher = client.cipherIn.nextInt()
             val opcode = (read.readUByte() - cipher) and 0xff
             val decoder = protocol[opcode]

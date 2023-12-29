@@ -77,7 +77,6 @@ thread_used:
   format: int
   persist: true
 name_history:
-  format: int
   persist: true
 creation:
   format: int
@@ -247,3 +246,40 @@ wilderness_lever_warning:
   format: boolean
   persist: true
   default: true
+binding_necklace_charges:
+  format: int
+  default: 16
+  persist: true
+camulet_charges:
+  format: int
+  default: 4
+  persist: true
+crystal_saw_charges:
+  format: int
+  default: 28
+  persist: true
+explorers_ring_last_use:
+  format: long
+  persist: true
+explorers_ring_charges:
+  format: int
+  persist: true
+falador_shield_charges:
+  format: int
+  default: 1
+  persist: true
+ibans_staff_charges:
+  format: int
+  default: 120
+  persist: true
+ring_of_recoil_charges:
+  format: int
+  default: 400
+  persist: true
+skull_sceptre_charges:
+  format: int
+  default: 10
+  persist: true
+al_the_camel:
+  format: boolean
+  persist: true

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map
+package world.gregs.voidps.world.activity.transport.teleport
 
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext

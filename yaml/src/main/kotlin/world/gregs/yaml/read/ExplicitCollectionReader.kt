@@ -98,7 +98,7 @@ class ExplicitCollectionReader(
             if (char == ']') {
                 return list
             } else if (char != ',') {
-                throw IllegalArgumentException("Expecting item or end of list ${reader.exception}")
+                throw IllegalArgumentException("Expecting item or end of list '${char}' ${reader.exception}")
             }
         }
         return list

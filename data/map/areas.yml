@@ -822,3 +822,159 @@ kuradals_dungeon:
   area:
     x: [ 1600, 1663 ]
     y: [ 5248, 5311 ]
+burthorpe_teleport:
+  area:
+    x: [ 2205, 2206 ]
+    y: [ 4937, 4938 ]
+  tags: [ teleport ]
+barbarian_outpost_teleport:
+  area:
+    x: [ 2519, 2521 ]
+    y: [ 3572, 3574 ]
+  tags: [ teleport ]
+clan_wars_teleport:
+  area:
+    x: [ 3266, 3270 ]
+    y: [ 3679, 3682 ]
+  tags: [ teleport ]
+wilderness_volcano_teleport:
+  area:
+    x: [ 3168, 3172 ]
+    y: [ 3675, 3678 ]
+  tags: [ teleport ]
+burgh_de_rott_teleport:
+  area:
+    x: [ 3485, 3489 ]
+    y: [ 3235, 3239 ]
+  tags: [ teleport ]
+duel_arena_teleport:
+  area:
+    x: [ 3313, 3317 ]
+    y: [ 3233, 3237 ]
+  tags: [ teleport ]
+castle_wars_teleport:
+  area:
+    x: [ 2440, 2444 ]
+    y: [ 3087, 3091 ]
+  tags: [ teleport ]
+fist_of_guthix_teleport:
+  area:
+    x: [ 1692, 1696 ]
+    y: [ 5599, 5603 ]
+  tags: [ teleport ]
+mining_guild_teleport:
+  area:
+    x: [ 3014, 3017 ]
+    y: [ 3336, 3339 ]
+  tags: [ teleport ]
+crafting_guild_teleport:
+  area:
+    x: [ 2931, 2933 ]
+    y: [ 3296, 3299 ]
+  tags: [ teleport ]
+cooking_guild_teleport:
+  area:
+    x: [ 3140, 3143 ]
+    y: [ 3440, 3443 ]
+  tags: [ teleport ]
+dig_site_teleport:
+  area:
+    x: [ 3338, 3342 ]
+    y: [ 3444, 3447 ]
+  tags: [ teleport ]
+warriors_guild_teleport:
+  area:
+    x: [ 2879, 2882 ]
+    y: [ 3544, 3548 ]
+  tags: [ teleport ]
+champions_guild_teleport:
+  area:
+    x: [ 3189, 3193 ]
+    y: [ 3363, 3367 ]
+  tags: [ teleport ]
+monastery_teleport:
+  area:
+    x: [ 3050, 3053 ]
+    y: [ 3486, 3489 ]
+  tags: [ teleport ]
+ranging_guild_teleport:
+  area:
+    x: [ 2653, 2656 ]
+    y: [ 3439, 3443 ]
+  tags: [ teleport ]
+edgeville_teleport:
+  area:
+    x: [ 3085, 3089 ]
+    y: [ 3494, 3498 ]
+  tags: [ teleport ]
+karamja_teleport:
+  area:
+    x: [ 2916, 2920 ]
+    y: [ 3175, 3177 ]
+  tags: [ teleport ]
+draynor_village_teleport:
+  area:
+    x: [ 3078, 3082 ]
+    y: [ 3248, 3252 ]
+  tags: [ teleport ]
+al_kharid_teleport:
+  area:
+    x: [ 3292, 3295 ]
+    y: [ 3162, 3163 ]
+  tags: [ teleport ]
+jalsavrah_teleport:
+  area:
+    x: [ 1934 ]
+    y: [ 4428 ]
+    level: 3
+  tags: [ teleport ]
+jaleustrophos_teleport:
+  area:
+    x: [ 3341 ]
+    y: [ 2827 ]
+  tags: [ teleport ]
+jaldraocht_teleport:
+  area:
+    x: [ 3232 ]
+    y: [ 2897 ]
+  tags: [ teleport ]
+pollnivneach_teleport:
+  area:
+    x: [ 3359, 3363 ]
+    y: [ 2968, 2972 ]
+  tags: [ teleport, scroll ]
+bandit_camp_teleport:
+  area:
+    x: [ 3170, 3174 ]
+    y: [ 2981, 2985 ]
+  tags: [ teleport, scroll ]
+miscellania_teleport:
+  area:
+    x: [ 2511, 2515 ]
+    y: [ 3856, 3860 ]
+  tags: [ teleport, scroll ]
+phoenix_lair_teleport:
+  area:
+    x: [ 2290, 2294 ]
+    y: [ 3618, 3622 ]
+  tags: [ teleport, scroll ]
+tai_bwo_wannai_teleport:
+  area:
+    x: [ 2803, 2807 ]
+    y: [ 3084, 3088 ]
+  tags: [ teleport, scroll ]
+lumber_yard_teleport:
+  area:
+    x: [ 3300, 3302 ]
+    y: [ 3485, 3487 ]
+  tags: [ teleport, scroll ]
+ectophial_teleport:
+  area:
+    x: [ 3654, 3665 ]
+    y: [ 3521, 3524 ]
+  tags: [ teleport ]
+camulet_teleport:
+  area:
+    x: [ 3192, 3194 ]
+    y: [ 2924, 2926 ]
+  tags: [ teleport ]

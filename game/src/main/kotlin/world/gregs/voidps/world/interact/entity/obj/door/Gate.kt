@@ -38,5 +38,5 @@ object Gate {
         )
     }
 
-    fun ObjectDefinition.isGate() = name.contains("gate", true) && id != 10565 && id != 10566 && id != 28690 && id != 28691 && id != 1557 && id != 1558 && id != 1596 && id != 1597
+    fun ObjectDefinition.isGate() = name.contains("gate", true) && this["gate", true]
 }

@@ -913,12 +913,14 @@ gate_22_opened:
   examine: "A wrought iron gate."
 gate_22_closed:
   id: 1557
+  gate: false
   examine: "A wrought iron gate."
 gate_23_opened:
   id: 1561
   examine: "A wrought iron gate."
 gate_23_closed:
   id: 1558
+  gate: false
   examine: "A wrought iron gate."
 gate_25:
   id: 1560
@@ -935,6 +937,7 @@ gate_29_opened:
   id: 1562
 gate_29_closed:
   id: 1596
+  gate: false
   examine: "A wrought-iron gate."
 gate_28_opened:
   id: 1563
@@ -945,6 +948,7 @@ gate_30_opened:
   id: 1563
 gate_30_closed:
   id: 1597
+  gate: false
   examine: "A wrought-iron gate."
 doors_opened:
   id: 1574
@@ -1483,11 +1487,13 @@ gate_50_opened:
   id: 41504
 gate_50_closed:
   id: 2391
+  gate: false
   examine: "A very solid looking gate."
 gate_51_opened:
   id: 41505
 gate_51_closed:
   id: 2392
+  gate: false
   examine: "A very solid looking gate."
 gate_52_opened:
   id: 2395
@@ -1926,6 +1932,9 @@ legends_guild_door_2_opened:
 legends_guild_door_2_closed:
   id: 2897
   examine: "A door to the Legends Guild."
+legends_guild_totem_pole:
+  id: 2938
+  examine: "A sculpted trunk of wood."
 crate_21:
   id: 2905
   examine: "An old crate for storage."
@@ -2585,6 +2594,9 @@ coffin_11:
 coffin_12:
   id: 5279
   examine: "The resting place of Necrovarus' mortal body."
+ectofuntus:
+  id: 5282
+  examine: "A ghastly fountain filled with slime and bones, the source of Necrovarus' power."
 chair_18:
   id: 5345
   examine: "The ideal thing to sit on."
@@ -3677,11 +3689,13 @@ toll_gate_al_kharid_opened:
   id: 35550
 toll_gate_al_kharid_closed:
   id: 10565
+  gate: false
   examine: "Marks the border between Al Kharid and the Kingdom of Misthalin."
 toll_gate_al_kharid_north_opened:
   id: 35552
 toll_gate_al_kharid_north_closed:
   id: 10566
+  gate: false
   examine: "Marks the border between Al Kharid and the Kingdom of Misthalin."
 gate_107_opened:
   id: 35550
@@ -7370,12 +7384,14 @@ gate_197_opened:
   examine: "A thick wooden gate."
 gate_197_closed:
   id: 28690
+  gate: false
   examine: "A thick wooden gate."
 gate_198_opened:
   id: 28693
   examine: "A thick wooden gate."
 gate_198_closed:
   id: 28691
+  gate: false
   examine: "A thick wooden gate."
 gate_199:
   id: 28692
@@ -10070,11 +10086,13 @@ gate_253_opened:
   id: 49015
 gate_253_closed:
   id: 49014
+  gate: false
   examine: "A gate."
 gate_254_opened:
   id: 49017
 gate_254_closed:
   id: 49016
+  gate: false
   examine: "A gate."
 chair_186:
   id: 49061
@@ -11013,7 +11031,42 @@ web:
   examine: "This huge web blocks your path."
 web_slashed:
   id: 734
-  examine: "This huge web blocks your path."
 web_spider:
   id: 29354
-  examine: "This huge web blocks your path."
+  examine: "It's no common house spider that spun that."
+games_room_stairs_up:
+  id: 4627
+games_room_stairs_up_2:
+  id: 4626
+games_room_stairs_down:
+  id: 4625
+games_room_stairs_down_2:
+  id: 4624
+games_room_basement_stairs_up:
+  id: 4622
+games_room_basement_stairs_down:
+  id: 4620
+fist_of_guthix_cave:
+  id: 30204
+  examine: "Step inside for violent fun."
+fist_of_guthix_stairs:
+  id: 30203
+  examine: "Warning: leads into the wilderness."
+jalsavrah_door_north:
+  id: 16484
+  examine: "I wonder where this leads."
+jalsavrah_door_east:
+  id: 16487
+  examine: "I wonder where this leads."
+jalsavrah_door_south:
+  id: 16490
+  examine: "I wonder where this leads."
+jalsavrah_door_west:
+  id: 16493
+  examine: "I wonder where this leads."
+jalsavrah_tomb_door:
+  id: 16459
+  examine: "Ooh. It glows. Looks like an exit."
+dung:
+  id: 6257
+  examine: "Lovely... Fresh."

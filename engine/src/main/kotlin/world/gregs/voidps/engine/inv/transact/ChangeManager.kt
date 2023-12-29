@@ -21,11 +21,11 @@ class ChangeManager(
      * @param from the inventory id the item is from
      * @param index the index of the item in the inventory
      * @param previous the previous state of the item
-     * @param to the inventory id the item going to
+     * @param fromIndex the index in the inventory the item was from
      * @param item the current state of the item
      */
-    fun track(from: String, index: Int, previous: Item, to: String, item: Item) {
-        changes.add(ItemChanged(inventory.id, index, previous, item, from, to))
+    fun track(from: String, index: Int, previous: Item, fromIndex: Int, item: Item) {
+        changes.add(ItemChanged(inventory.id, index, item, from, fromIndex, previous))
     }
 
     /**

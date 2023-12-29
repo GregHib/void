@@ -4225,7 +4225,24 @@
     y: 3458
   delta:
     x: -1
-    y: 6400 
+    y: 6400
+######## 12855 ########
+- id: fist_of_guthix_cave
+  option: Enter
+  tile:
+    x: 3240
+    y: 3575
+  to:
+    x: 1675
+    y: 5599
+- id: fist_of_guthix_stairs
+  option: Exit
+  tile:
+    x: 1673
+    y: 5598
+  to:
+    x: 3242
+    y: 3574
 ######## 12870 ########
 - id: 39273
   option: Climb-up
@@ -4915,3 +4932,98 @@
   to:
     x: 3560
     y: 9779
+######## 11575 ########
+- id: games_room_stairs_up_2
+  option: Climb-up
+  tile:
+    x: 2897
+    y: 3566
+    level: 0
+  delta:
+    y: 4
+    level: 1
+- id: games_room_stairs_down
+  option: Climb-down
+  tile:
+    x: 2897
+    y: 3567
+    level: 1
+  delta:
+    y: -4
+    level: -1
+- id: games_room_stairs_down_2
+  option: Climb-down
+  tile:
+    x: 2899
+    y: 3566
+  delta:
+    x: -694
+    y: 1369
+    level: 1
+######## 8781 ########
+- id: games_room_basement_stairs_up
+  option: Climb-up
+  tile:
+    x: 2207
+    y: 4935
+  delta:
+    y: -4
+    level: 1
+- id: games_room_basement_stairs_down
+  option: Climb-down
+  tile:
+    x: 2207
+    y: 4935
+    level: 1
+  delta:
+    y: 4
+    level: -1
+- id: games_room_stairs_up
+  option: Climb-up
+  tile:
+    x: 2205
+    y: 4935
+    level: 1
+  delta:
+    x: 694
+    y: -1369
+    level: -1
+######## 7749 ########
+- id: jalsavrah_tomb_door
+  option: Leave Tomb
+  tile:
+    x: 1934
+    y: 4419
+    level: 3
+  to:
+    x: 3288
+    y: 2801
+######## 13099 ########
+- id: jalsavrah_door_north
+  option: Search
+  tile:
+    x: 3288
+    y: 2799
+  to:
+    &guardian_mummy_room
+    x: 1934
+    y: 4420
+    level: 3
+- id: jalsavrah_door_east
+  option: Search
+  tile:
+    x: 3293
+    y: 2794
+  to: *guardian_mummy_room
+- id: jalsavrah_door_south
+  option: Search
+  tile:
+    x: 3288
+    y: 2789
+  to: *guardian_mummy_room
+- id: jalsavrah_door_west
+  option: Search
+  tile:
+    x: 3283
+    y: 2794
+  to: *guardian_mummy_room

@@ -1836,23 +1836,23 @@ equipment_bonuses:
         Remove: 0
         Stats: 8
         Examine: 9
-    stab: 30
-    slash: 31
-    crush: 32
-    magic: 33
-    range: 34
-    stab_def: 35
-    slash_def: 36
-    crush_def: 37
-    magic_def: 38
-    range_def: 39
-    summoning_def: 40
+    stab_attack: 30
+    slash_attack: 31
+    crush_attack: 32
+    magic_attack: 33
+    range_attack: 34
+    stab_defence: 35
+    slash_defence: 36
+    crush_defence: 37
+    magic_defence: 38
+    range_defence: 39
+    summoning_defence: 40
     absorb_melee: 41
     absorb_magic: 42
     absorb_range: 43
-    str: 44
-    range_str: 45
-    prayer: 46
+    strength: 44
+    ranged_strength: 45
+    prayer_bonus: 46
     magic_damage: 47
     bank: 49
     stats: 52
@@ -2468,6 +2468,8 @@ warriors_guild: 1057
 fade_out:
   id: 120
   type: overlay
+  components:
+    text: 1
 fade_in:
   id: 170
   type: overlay

@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.effect
+package world.gregs.voidps.world.interact.entity.effect
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
