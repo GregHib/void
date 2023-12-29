@@ -11067,3 +11067,6 @@ jalsavrah_door_west:
 jalsavrah_tomb_door:
   id: 16459
   examine: "Ooh. It glows. Looks like an exit."
+dung:
+  id: 6257
+  examine: "Lovely... Fresh."

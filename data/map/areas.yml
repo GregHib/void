@@ -973,3 +973,8 @@ ectophial_teleport:
     x: [ 3654, 3665 ]
     y: [ 3521, 3524 ]
   tags: [ teleport ]
+camulet_teleport:
+  area:
+    x: [ 3192, 3194 ]
+    y: [ 2924, 2926 ]
+  tags: [ teleport ]

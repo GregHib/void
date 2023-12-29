@@ -9917,7 +9917,7 @@ chocolate_dust_noted: 1976
 chocolatey_milk:
   id: 1977
   heals: 40
-  excess: empty_bucket
+  excess: bucket
   tradeable: false
   weight: 2.0
   examine: "Milk with chocolate in it."

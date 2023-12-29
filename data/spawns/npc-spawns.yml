@@ -1948,6 +1948,7 @@
 - { id: man_2, x: 3294, y: 3196 }
 - { id: man_3, x: 3303, y: 3199 }
 - { id: ellis, x: 3276, y: 3193 }
+- { id: al_the_camel, x: 3274, y: 3168 }
 # 13106
 - { id: mubariz, x: 3314, y: 3240 }
 - { id: border_guard_al_kharid, x: 3266, y: 3229, direction: SOUTH }
