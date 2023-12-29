@@ -15,13 +15,13 @@ import world.gregs.voidps.type.Area
 import world.gregs.voidps.world.interact.entity.player.effect.degrade.Degrade
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-fun jewelleryTeleport(player: Player, inventory: String, slot: Int, area: Area) {
-    itemTeleport(player, inventory, slot, area, "jewellery")
+fun jewelleryTeleport(player: Player, inventory: String, slot: Int, area: Area): Boolean {
+    return itemTeleport(player, inventory, slot, area, "jewellery")
 }
 
-fun itemTeleport(player: Player, inventory: String, slot: Int, area: Area, type: String) {
+fun itemTeleport(player: Player, inventory: String, slot: Int, area: Area, type: String): Boolean {
     if (player.queue.contains(ActionPriority.Normal) || !Degrade.discharge(player, inventory, slot)) {
-        return
+        return false
     }
     player.closeInterfaces()
     player.queue("teleport_$type", onCancel = null) {
@@ -33,6 +33,9 @@ fun itemTeleport(player: Player, inventory: String, slot: Int, area: Area, type:
         val int = player.setAnimation("teleport_land_$type")
         if (int == -1) {
             player.clearAnimation()
+        } else {
+            player.setGraphic("teleport_land_$type")
         }
     }
+    return true
 }

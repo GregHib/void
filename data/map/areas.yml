@@ -968,3 +968,8 @@ lumber_yard_teleport:
     x: [ 3300, 3302 ]
     y: [ 3485, 3487 ]
   tags: [ teleport, scroll ]
+ectophial_teleport:
+  area:
+    x: [ 3654, 3665 ]
+    y: [ 3521, 3524 ]
+  tags: [ teleport ]

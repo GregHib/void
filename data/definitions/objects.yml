@@ -2594,6 +2594,9 @@ coffin_11:
 coffin_12:
   id: 5279
   examine: "The resting place of Necrovarus' mortal body."
+ectofuntus:
+  id: 5282
+  examine: "A ghastly fountain filled with slime and bones, the source of Necrovarus' power."
 chair_18:
   id: 5345
   examine: "The ideal thing to sit on."

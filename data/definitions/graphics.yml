@@ -202,6 +202,9 @@ teleport_ancient: 1681
 teleport_lunar: 1685
 teleport_tablet: 1680
 teleport_scroll: 94
+teleport_ectophial: 1678
+teleport_land_ectophial: 1679
+empty_ectophial: 1688
 bronze_arrow_shoot:
   id: 19
   height: 60

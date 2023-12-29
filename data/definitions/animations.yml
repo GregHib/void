@@ -1275,6 +1275,15 @@ teleport_land:
 teleport_scroll:
   id: 14293
   ticks: 2
+teleport_ectophial:
+  id: 8939
+  ticks: 2
+teleport_land_ectophial:
+  id: 8941
+  ticks: 2
+empty_ectophial:
+  id: 9609
+  ticks: 4
 cow_hit: 5850
 cow_death: 5851
 cow_attack: 5849
