@@ -39,13 +39,7 @@ on<InterfaceClosed>({ id == "character_creation" }) { player: Player ->
 
 fun setup(player: Player) {
     player.queue("welcome") {
-        statement("""
-            Welcome to Lumbridge! To get more help, simply click on the
-            Lumbridge Guide or one of the Tutors - these can be found by
-            looking for the question mark icon on your minimap. If you find you
-            are lost at any time, look for a signpost or use the Lumbridge Home
-            Teleport spell.
-        """)
+        statement("Welcome to Lumbridge! To get more help, simply click on the Lumbridge Guide or one of the Tutors - these can be found by looking for the question mark icon on your minimap. If you find you are lost at any time, look for a signpost or use the Lumbridge Home Teleport spell.")
     }
     player.stop("delay")
     player["creation"] = System.currentTimeMillis()

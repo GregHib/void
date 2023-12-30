@@ -26,10 +26,7 @@ import world.gregs.voidps.world.map.falador.openDressingRoom
 val enums: EnumDefinitions by inject()
 
 on<NPCOption>({ operate && target.id == "yrsa" && option == "Talk-to" }) { player: Player ->
-    npc<Happy>("""
-        Hi. You wanted to buy some clothes? Or
-        did you want to makeover your shoes?
-    """)
+    npc<Happy>("Hi. You wanted to buy some clothes? Or did you want to makeover your shoes?")
     choice {
         option<Happy>("I'd like to buy some clothes.") {
             player.openShop("yrsas_shoe_store")
@@ -50,11 +47,7 @@ on<NPCOption>({ operate && target.id == "yrsa" && option == "Change-shoes" }) { 
 suspend fun CharacterContext.startShoeShopping() {
     player.closeDialogue()
     if (player.equipped(EquipSlot.Weapon).isNotEmpty() || player.equipped(EquipSlot.Shield).isNotEmpty()) {
-        npc<Afraid>("""
-            I don't feel comfortable showing you shoes when you are
-            wielding something. Please remove what you are holding
-            first.
-        """)
+        npc<Afraid>("I don't feel comfortable showing you shoes when you are wielding something. Please remove what you are holding first.")
         return
     }
     if (player.equipped(EquipSlot.Feet).isNotEmpty()) {

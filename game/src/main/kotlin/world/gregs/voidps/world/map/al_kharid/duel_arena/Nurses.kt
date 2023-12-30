@@ -15,15 +15,8 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 internal suspend fun PlayerChoice.fighters(): Unit = option<Uncertain>("Do you see a lot of injured fighters?") {
-    npc<Talking>("""
-        Yes I do. Thankfully we can cope with almost anything.
-	    Jaraah really is a wonderful surgeon, his methods are a
-	    little unorthodox but he gets the job done.
-    """)
-    npc<Talking>("""
-	    I shouldn't tell you this but his nickname is 'The
-	    Butcher'.
-	""")
+    npc<Talking>("Yes I do. Thankfully we can cope with almost anything. Jaraah really is a wonderful surgeon, his methods are a little unorthodox but he gets the job done.")
+    npc<Talking>("I shouldn't tell you this but his nickname is 'The Butcher'.")
     player<Uncertain>("That's reassuring.")
 }
 

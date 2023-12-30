@@ -20,10 +20,7 @@ on<InventoryOption>({ item.id == "camulet" && option == "Rub" }) { player: Playe
     if (jewelleryTeleport(player, inventory, slot, areas["camulet_teleport"])) {
         player.message("You rub the amulet...")
     } else {
-        statement("""
-            Your Camulet has run out of teleport charges. You can renew them
-            by applying camel dung.
-        """)
+        statement("Your Camulet has run out of teleport charges. You can renew them by applying camel dung.")
     }
 }
 

@@ -17,28 +17,8 @@ on<NPCOption>({ operate && target.id == "bill_blakey" && option == "Talk-to" }) 
         player.message("but you sense that resting here might recharge you for battle!")
         return@on
     }
-    npc<Talk>("""
-        How sweet I roamed from fen to fen,
-        And tasted all the Myre's pride,
-        'Till I the queen of love did ken,
-        Who in the spirit beams did glide! 
-    """)
-    npc<Talking>("""
-        She shew'd me lilies in her hair,
-        And blushing roses for her brow;
-        She led me through her gardens fair,
-        Where all her silver blooms do grow. 
-    """)
-    npc<Talking>("""
-        With sweet Myre dews my wings were wet,
-        And Phoebus' kiss did slowly fade;
-        She'd caught me in her silken net,
-        And trap'd me as this silver shade. 
-    """)
-    npc<Talking>("""
-        She loves to sit and hear me sing,
-        Then laughing, sports and plays with me;
-        Then stretches out her silver wing,
-        And mocks my loss of liberty. 
-    """)
+    npc<Talk>("How sweet I roamed from fen to fen, And tasted all the Myre's pride, 'Till I the queen of love did ken, Who in the spirit beams did glide!")
+    npc<Talking>("She shew'd me lilies in her hair, And blushing roses for her brow; She led me through her gardens fair, Where all her silver blooms do grow.")
+    npc<Talking>("With sweet Myre dews my wings were wet, And Phoebus' kiss did slowly fade; She'd caught me in her silken net, And trap'd me as this silver shade.")
+    npc<Talking>("She loves to sit and hear me sing, Then laughing, sports and plays with me; Then stretches out her silver wing, And mocks my loss of liberty.")
 }

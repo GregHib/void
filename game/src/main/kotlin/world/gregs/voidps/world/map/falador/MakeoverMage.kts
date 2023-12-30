@@ -39,15 +39,8 @@ val enums: EnumDefinitions by inject()
 val npcs: NPCs by inject()
 
 on<NPCOption>({ operate && target.id.startsWith("makeover_mage") && option == "Talk-to" }) { player: Player ->
-    npc<Happy>("""
-        Hello there! I am known as the Makeover Mage! I have
-        spent many years researching magicks that can change
-        your physical appearance.
-    """)
-    npc<Happy>("""
-        I call it a 'makeover'.
-        Would you like me to perform my magicks on you?
-    """)
+    npc<Happy>("Hello there! I am known as the Makeover Mage! I have spent many years researching magicks that can change your physical appearance.")
+    npc<Happy>("I call it a 'makeover'. Would you like me to perform my magicks on you?")
     choice {
         more()
         start()
@@ -58,24 +51,12 @@ on<NPCOption>({ operate && target.id.startsWith("makeover_mage") && option == "T
 }
 
 suspend fun PlayerChoice.more(): Unit = option<Unsure>("Tell me more about this 'makeover'.") {
-    npc<Cheerful>("""
-        Why, of course! Basically, and I will explain this so that
-        you understand it correctly,
-    """)
-    npc<Cheerful>("""
-        I use my secret magical technique to melt your body down
-        into a puddle of its elements.
-    """)
-    npc<Cheerful>("""
-        When I have broken down all components of your body, I
-        then rebuild it into the form I am thinking of.
-    """)
+    npc<Cheerful>("Why, of course! Basically, and I will explain this so that you understand it correctly,")
+    npc<Cheerful>("I use my secret magical technique to melt your body down into a puddle of its elements.")
+    npc<Cheerful>("When I have broken down all components of your body, I then rebuild it into the form I am thinking of.")
     npc<Uncertain>("Or, you know, something vaguely close enough, anyway.")
     player<Unsure>("Uh... that doesn't sound particularly safe to me.")
-    npc<Cheerful>("""
-        It's as safe as houses! Why, I have only had thirty-six
-        major accidents this month!
-    """)
+    npc<Cheerful>("It's as safe as houses! Why, I have only had thirty-six major accidents this month!")
     whatDoYouSay()
 }
 
@@ -88,11 +69,7 @@ suspend fun CharacterContext.whatDoYouSay() {
 }
 
 suspend fun PlayerChoice.start(): Unit = option<Talk>("Sure, do it.") {
-    npc<Cheerful>("""
-        You, of course, agree that if by some accident you are
-        turned into a frog you have no rights for compensation or
-        refund.
-    """)
+    npc<Cheerful>("You, of course, agree that if by some accident you are turned into a frog you have no rights for compensation or refund.")
     openDressingRoom("skin_colour")
 }
 
@@ -103,11 +80,7 @@ suspend fun PlayerChoice.exit(): Unit = option("No, thanks.") {
 
 suspend fun PlayerChoice.amulet(): Unit = option<Happy>("Cool amulet! Can I have one?") {
     val cost = 100
-    npc<Talk>("""
-        No problem, but please remember that the amulet I will
-        sell you is only a copy of my own. It contains no magical
-        powers and, as such, will only cost you $cost coins.
-    """)
+    npc<Talk>("No problem, but please remember that the amulet I will sell you is only a copy of my own. It contains no magical powers and, as such, will only cost you $cost coins.")
     if (!player.holdsItem("coins", cost)) {
         player<Upset>("Oh, I don't have enough money for that.")
         return@option
@@ -122,10 +95,7 @@ suspend fun PlayerChoice.amulet(): Unit = option<Happy>("Cool amulet! Can I have
                 TransactionError.None -> item("You receive an amulet in exchange for $cost coins", "yin_yang_amulet", 300)
                 is TransactionError.Deficient -> player.notEnough("coins")
                 is TransactionError.Full -> {
-                    npc<Unsure>("""
-                    Um...you don't seem to have room to take the amulet.
-                    Maybe you should buy it some other time.
-                """)
+                    npc<Unsure>("Um...you don't seem to have room to take the amulet. Maybe you should buy it some other time.")
                     player<Talk>("Oh yeah, that's true.")
                 }
                 else -> {}
@@ -133,19 +103,13 @@ suspend fun PlayerChoice.amulet(): Unit = option<Happy>("Cool amulet! Can I have
             explain()
         }
         option<Surprised>("No way! That's too expensive.") {
-            npc<Talk>("""
-                That's fair enough, my jewellery is not to everyone's
-                taste. Now, would you like a makeover?
-            """)
+            npc<Talk>("That's fair enough, my jewellery is not to everyone's taste. Now, would you like a makeover?")
         }
     }
 }
 
 suspend fun CharacterContext.explain() {
-    npc<Happy>("""
-        I can alter your physical form if you wish. Would you like
-        me to perform my magicks on you?
-    """)
+    npc<Happy>("I can alter your physical form if you wish. Would you like me to perform my magicks on you?")
     choice {
         more()
         start()
@@ -154,10 +118,7 @@ suspend fun CharacterContext.explain() {
 }
 
 suspend fun PlayerChoice.colour(): Unit = option<Happy>("Can you make me a different colour?") {
-    npc<Cheerful>("""
-        Why, of course! I have a wide array of colours for you to
-        choose from.
-    """)
+    npc<Cheerful>("Why, of course! I have a wide array of colours for you to choose from.")
     whatDoYouSay()
 }
 
@@ -201,18 +162,12 @@ on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player:
     val mage = npcs[player.tile.regionLevel].first { it.id.startsWith("makeover_mage") }
     player.talkWith(mage)
     if (!changed) {
-        npc<Unsure>("""
-            That is no different from what you already have. I guess I
-            shouldn't charge you if I'm not changing anything.
-        """)
+        npc<Unsure>("That is no different from what you already have. I guess I shouldn't charge you if I'm not changing anything.")
         return@on
     }
     when (random.nextInt(0, 4)) {
         0 -> {
-            npc<Cheerful>("""
-                Two arms, two legs, one head; it seems that spell finally
-                worked okay.
-            """)
+            npc<Cheerful>("Two arms, two legs, one head; it seems that spell finally worked okay.")
         }
         1 -> {
             npc<Amazed>("Whew! That was lucky.")
@@ -220,10 +175,7 @@ on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player:
             npc<Cheerful>("Nothing! It's all fine! You seem alive anyway.")
         }
         2 -> {
-            npc<Unsure>("""
-                Hmm, you didn't feel any unexpected growths on your
-                head just then, did you?
-            """)
+            npc<Unsure>("Hmm, you didn't feel any unexpected growths on your head just then, did you?")
             player<Unsure>("Er, no?")
             npc<Cheerful>("Good, good! I was worried for a second there.")
         }

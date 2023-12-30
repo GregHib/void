@@ -25,10 +25,7 @@ on<NPCOption>({ operate && isRedGoblin(target.id) && option == "Talk-to" }) { _:
         }
         1 -> {
             player<Unsure>("Why are you fighting?")
-            npc<Angry>("""
-                He wearing green armour! General Bentnoze tell us
-                wear red!
-             """)
+            npc<Angry>("He wearing green armour! General Bentnoze tell us wear red!")
             npc<Angry>(npcId = "goblin_staff_green", "But General Wartface say we must wear green!")
         }
     }
@@ -48,20 +45,14 @@ on<NPCOption>({ operate && isGreenGoblin(target.id) && option == "Talk-to" }) { 
 
         1 -> {
             player<Unsure>("Why are you fighting?")
-            npc<Angry>("""
-                He wearing red armour! General Wartface tell us wear
-                green!
-            """)
+            npc<Angry>("He wearing red armour! General Wartface tell us wear green!")
             npc<Angry>(npcId = "goblin_shield_battleaxe_red", "But General Bentnoze say we must wear red!")
         }
     }
 }
 
 on<NPCOption>({ operate && target.id.startsWith("grubfoot") && option == "Talk-to" }) { _: Player ->
-    npc<Sad>("""
-        Grubfoot wear red armour! Grubfoot wear green
-        armour!
-    """)
+    npc<Sad>("Grubfoot wear red armour! Grubfoot wear green armour!")
     npc<Unsure>("Why they not make up their minds?")
     npc<Angry>(npcId = "general_bentnoze_rfd", "Shut up Grubfoot!")
 }

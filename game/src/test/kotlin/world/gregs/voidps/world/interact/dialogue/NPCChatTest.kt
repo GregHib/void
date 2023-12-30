@@ -53,7 +53,7 @@ internal class NPCChatTest : DialogueTest() {
     }
 
     @TestFactory
-    fun `Send lines player chat`() = arrayOf(
+    fun `Send lines npc chat`() = arrayOf(
         "One line" to "dialogue_npc_chat1",
         """
             One
@@ -75,8 +75,21 @@ internal class NPCChatTest : DialogueTest() {
         }
     }
 
+    @Test
+    fun `Long line wraps npc chat`() {
+        val text = "This is one long dialogue text line which should be wrapped into two lines."
+        dialogue {
+            npc<Talk>(text = text, clickToContinue = true)
+        }
+        verify {
+            player.open("dialogue_npc_chat2")
+            interfaces.sendText("dialogue_npc_chat2", "line1", "This is one long dialogue text line which should be")
+            interfaces.sendText("dialogue_npc_chat2", "line2", "wrapped into two lines.")
+        }
+    }
+
     @TestFactory
-    fun `Send click to continue player chat`() = arrayOf(
+    fun `Send click to continue npc chat`() = arrayOf(
         "One line" to "dialogue_npc_chat_np1",
         """
             One
@@ -112,11 +125,11 @@ internal class NPCChatTest : DialogueTest() {
 
     @ParameterizedTest
     @ValueSource(booleans = [true, false])
-    fun `Send player chat head size and animation`(large: Boolean) {
+    fun `Send npc chat head size and animation`(large: Boolean) {
         mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
         val client: Client = mockk(relaxed = true)
         player.client = client
-        every { definitions.getComponent("dialogue_npc_chat1", any<String>()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
+        every { interfaceDefinitions.getComponent("dialogue_npc_chat1", any<String>()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
         npc = NPC(id = "john")
         dialogue {
             npc<Talk>(text = "Text", largeHead = large)
@@ -128,7 +141,7 @@ internal class NPCChatTest : DialogueTest() {
     }
 
     @Test
-    fun `Send custom player chat title`() {
+    fun `Send custom npc chat title`() {
         dialogue {
             npc<Talk>(text = "text", title = "Bob")
         }
@@ -138,7 +151,7 @@ internal class NPCChatTest : DialogueTest() {
     }
 
     @Test
-    fun `Send player chat`() {
+    fun `Send npc chat`() {
         var resumed = false
         dialogue {
             npc<Laugh>(text = "text", largeHead = true)
@@ -171,7 +184,7 @@ internal class NPCChatTest : DialogueTest() {
         mockkStatic("world.gregs.voidps.engine.data.definition.InterfaceDefinitionsKt")
         val client: Client = mockk(relaxed = true)
         player.client = client
-        every { definitions.getComponent("dialogue_npc_chat1", any<String>()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
+        every { interfaceDefinitions.getComponent("dialogue_npc_chat1", any<String>()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
         npc = NPC("bill")
         dialogue {
             npc<Talk>(npcId = "jim", title = "Bill", text = "text")

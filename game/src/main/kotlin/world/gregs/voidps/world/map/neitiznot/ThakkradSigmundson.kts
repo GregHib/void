@@ -15,15 +15,8 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 on<NPCOption>({ operate && target.id == "thakkrad_sigmundson" && option == "Talk-to" }) { player: Player ->
-    npc<Talk>("""
-        Thank you for leading the Burgher's militia against the
-        Troll King. Now that the trolls are leaderless I have
-        repaired the bridge to the central isle for you as best I can.
-    """)
-    player<Unsure>("""
-        Thanks Thakkrad. Does that mean I have
-        access to the runite ores on that island?
-    """)
+    npc<Talk>("Thank you for leading the Burgher's militia against the Troll King. Now that the trolls are leaderless I have repaired the bridge to the central isle for you as best I can.")
+    player<Unsure>("Thanks Thakkrad. Does that mean I have access to the runite ores on that island?")
     npc<Talk>("Yes, you should be able to mine runite there if you wish.")
 }
 
@@ -33,10 +26,7 @@ on<NPCOption>({ operate && target.id == "thakkrad_sigmundson" && option == "Craf
             cureHide()
         }
         option<Talk>("Nothing, thanks.") {
-            npc<Talk>("""
-                See you later. You won't find anyone else
-                who can cure yak-hide.
-            """)
+            npc<Talk>("See you later. You won't find anyone else who can cure yak-hide.")
         }
     }
 }
@@ -59,10 +49,7 @@ suspend fun CharacterContext.cureHide() {
             npc<Talk>("Bye.")
         }
         option<Unsure>("Can you cure any type of leather?") {
-            npc<Uncertain>("""
-                Other types of leather?
-                Why would you need any other type of leather?
-            """)
+            npc<Uncertain>("Other types of leather? Why would you need any other type of leather?")
             player<Talk>("I'll take that as a no then.")
         }
     }

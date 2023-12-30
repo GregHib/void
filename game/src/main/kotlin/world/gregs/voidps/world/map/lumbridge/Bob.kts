@@ -22,18 +22,11 @@ on<NPCOption>({ operate && target.id == "bob" && option == "Talk-to" }) { player
             npc<Talk>("Sorry I don't have any quests for you at the moment.")
         }
         option<Unsure>("I'd like to trade.") {
-            npc<Cheerful>("""
-                Great! I buy and sell pickaxes and hatchets. There are
-                plenty to choose from, and I've some free samples too.
-                Take your pick... or hatchet.
-            """)
+            npc<Cheerful>("Great! I buy and sell pickaxes and hatchets. There are plenty to choose from, and I've some free samples too. Take your pick... or hatchet.")
             player.openShop("bobs_brilliant_axes")
         }
         option<Upset>("Can you repair my items for me?") {
-            npc<Unsure>("""
-                Of course I can, though the material may cost you. Just
-                hand me the item and I'll have a look.
-            """)
+            npc<Unsure>("Of course I can, though the material may cost you. Just hand me the item and I'll have a look.")
         }
     }
 }

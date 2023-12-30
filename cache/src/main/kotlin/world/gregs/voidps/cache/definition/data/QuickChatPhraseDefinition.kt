@@ -4,7 +4,6 @@ import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 
-@Suppress("ArrayInDataClass")
 data class QuickChatPhraseDefinition(
     override var id: Int = -1,
     var stringParts: Array<String>? = null,
@@ -43,6 +42,46 @@ data class QuickChatPhraseDefinition(
 
     override fun toString(): String {
         return "QuickChatOptionDefinition(id=$id, stringParts=${stringParts?.contentToString()}, options=${responses?.contentToString()}, ids=${ids?.contentDeepToString()}, types=${types?.contentToString()})"
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as QuickChatPhraseDefinition
+
+        if (id != other.id) return false
+        if (stringParts != null) {
+            if (other.stringParts == null) return false
+            if (!stringParts.contentEquals(other.stringParts)) return false
+        } else if (other.stringParts != null) return false
+        if (responses != null) {
+            if (other.responses == null) return false
+            if (!responses.contentEquals(other.responses)) return false
+        } else if (other.responses != null) return false
+        if (ids != null) {
+            if (other.ids == null) return false
+            if (!ids.contentDeepEquals(other.ids)) return false
+        } else if (other.ids != null) return false
+        if (types != null) {
+            if (other.types == null) return false
+            if (!types.contentEquals(other.types)) return false
+        } else if (other.types != null) return false
+        if (stringId != other.stringId) return false
+        if (extras != other.extras) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id
+        result = 31 * result + (stringParts?.contentHashCode() ?: 0)
+        result = 31 * result + (responses?.contentHashCode() ?: 0)
+        result = 31 * result + (ids?.contentDeepHashCode() ?: 0)
+        result = 31 * result + (types?.contentHashCode() ?: 0)
+        result = 31 * result + stringId.hashCode()
+        result = 31 * result + (extras?.hashCode() ?: 0)
+        return result
     }
 
     companion object {

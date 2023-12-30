@@ -2,14 +2,16 @@ package world.gregs.voidps.world.interact.dialogue.type
 
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
 import world.gregs.voidps.world.interact.dialogue.sendLines
 
 private const val MAXIMUM_STATEMENT_SIZE = 5
 
 suspend fun CharacterContext.statement(text: String, clickToContinue: Boolean = true) {
-    val lines = text.trimIndent().lines()
+    val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("497").splitLines(text, 380)
     check(lines.size <= MAXIMUM_STATEMENT_SIZE) { "Maximum statement lines exceeded ${lines.size} for $player" }
     val id = getInterfaceId(lines.size, clickToContinue)
     check(player.open(id)) { "Unable to open statement dialogue $id for $player" }

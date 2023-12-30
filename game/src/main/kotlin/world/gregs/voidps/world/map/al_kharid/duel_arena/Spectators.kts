@@ -21,10 +21,7 @@ on<NPCOption>({ operate && isSpectator(target.id) && option == "Talk-to" }) { pl
             npc<Laugh>("Don't cry, it's just me!")
         }
         1 -> {
-            npc<Sad>("""
-                I wouldn't want to be the poor guy that has to clean up
-                after the duels.
-            """)
+            npc<Sad>("I wouldn't want to be the poor guy that has to clean up after the duels.")
             player<Surprised>("Me neither.")
         }
         2 -> npc<Sad>("Hmph.")
@@ -46,10 +43,7 @@ on<NPCOption>({ operate && isSpectator(target.id) && option == "Talk-to" }) { pl
             npc<Laugh>("'Cause it didn't have the guts to fart!")
         }
         6 -> {
-            npc<Talking>("""
-                Did you know they think this place dates back to the
-                second age?!
-            """)
+            npc<Talking>("Did you know they think this place dates back to the second age?!")
             player<Talking>("Really?")
             npc<Talking>("Yeah. The guy at the information kiosk was telling me.")
         }

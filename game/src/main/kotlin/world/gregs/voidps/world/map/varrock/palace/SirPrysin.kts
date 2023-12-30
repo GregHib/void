@@ -30,23 +30,14 @@ on<NPCOption>({ operate && target.id == "sir_prysin" && option == "Talk-to" }) {
             npc<Talk>("Have you sorted that demon out yet?")
             if (player.ownsItem("silverlight")) {
                 player<Upset>("No, not yet.")
-                npc<Talk>("""
-                    Well get on with it. He'll be pretty powerful when he
-                    gets to full strength.
-                """)
+                npc<Talk>("Well get on with it. He'll be pretty powerful when he gets to full strength.")
                 return@on
             }
             player<Upset>("Not yet. And I, um, lost Silverlight.")
             if (player.inventory.add("silverlight")) {
-                npc<Furious>("""
-                    Yes, I know, someone returned it to me. Take better
-                    care of it this time.
-                """)
+                npc<Furious>("Yes, I know, someone returned it to me. Take better care of it this time.")
             } else {
-                npc<Furious>("""
-                    Yes, I know, someone returned it to me. I'll keep it
-                    until you have free inventory space.
-                """)
+                npc<Furious>("Yes, I know, someone returned it to me. I'll keep it until you have free inventory space.")
             }
         }
         "completed" -> {
@@ -71,22 +62,14 @@ suspend fun PlayerChoice.arisWantsToTalk(): Unit = option(
     { player.quest("demon_slayer") == "sir_prysin" }
 ) {
     player<Talk>("Aris said I should come and talk to you.")
-    npc<Talk>("""
-        Aris? Is she still alive? I remember her from when I
-        was pretty young. Well what do you need to talk to me
-        about?
-    """)
+    npc<Talk>("Aris? Is she still alive? I remember her from when I was pretty young. Well what do you need to talk to me about?")
     choice {
         option("I need to find Silverlight.") {
             findSilverlight()
         }
         option("Yes, she is still alive.") {
             player<Cheerful>("Yes she is still alive. She lives right outside the castle!")
-            npc<Talk>("""
-                Oh, is that the same Aris? I would have thought she
-                would have died by now. She was pretty old when I
-                was a lad.
-            """)
+            npc<Talk>("Oh, is that the same Aris? I would have thought she would have died by now. She was pretty old when I was a lad.")
             npc<Talk>("Anyway, what can I do for you?")
             findSilverlight()
         }
@@ -97,10 +80,7 @@ suspend fun CharacterContext.findSilverlight() {
     player<Talk>("I need to find Silverlight.")
     npc<Talk>("What do you need to find that for?")
     player<Talk>("I need it to fight Delrith.")
-    npc<Talk>("""
-        Delrith? I thought the world was rid of him, thanks to
-        my great-grandfather.
-    """)
+    npc<Talk>("Delrith? I thought the world was rid of him, thanks to my great-grandfather.")
     choice {
         option("Well, Aris' crystal ball seems to think otherwise.") {
             player<Talk>("Well Aris' crystal ball seems to think otherwise.")
@@ -109,10 +89,7 @@ suspend fun CharacterContext.findSilverlight() {
         }
         option("He's back and unfortunately I've got to deal with him.") {
             player<Upset>("He's back and unfortunately I've got to deal with him.")
-            npc<Talk>("""
-                You don't look up to much. I suppose Silverlight may be
-                good enough to carry you through though.
-            """)
+            npc<Talk>("You don't look up to much. I suppose Silverlight may be good enough to carry you through though.")
             problemIs()
         }
     }
@@ -121,12 +98,7 @@ suspend fun CharacterContext.findSilverlight() {
 suspend fun CharacterContext.problemIs() {
     npc<Talk>("The problem is getting Silverlight.")
     player<Upset>("You mean you don't have it?")
-    npc<Talk>("""
-        Oh I do have it, but it is so powerful that the king
-        made me put it in a special box which needs three
-        different keys to open it. That way it won't fall into the
-        wrong hands.
-    """)
+    npc<Talk>("Oh I do have it, but it is so powerful that the king made me put it in a special box which needs three different keys to open it. That way it won't fall into the wrong hands.")
     choice {
         option("So give me the keys!") {
             player<Furious>("So give me the keys!")
@@ -141,10 +113,7 @@ suspend fun CharacterContext.problemIs() {
 }
 
 suspend fun CharacterContext.theKeys() {
-    npc<Talk>("""
-        I kept one of the keys. I gave the other two to other
-        people for safe keeping.
-    """)
+    npc<Talk>("I kept one of the keys. I gave the other two to other people for safe keeping.")
     npc<Talk>("One I gave to Rovin, the captain of the palace guard.")
     npc<Talk>("I gave the other to the wizard Traiborn.")
     player["demon_slayer"] = "key_hunt"
@@ -157,11 +126,7 @@ suspend fun CharacterContext.theKeys() {
 
 suspend fun PlayerChoice.wheresWizard(): Unit = option("Where does the wizard live?") {
     player<Talk>("Where does the wizard live?")
-    npc<Talk>("""
-        He is one of the wizards who lives in the tower on the
-        little island just off the south coast. I believe his
-        quarters are on the first floor of the tower.
-    """)
+    npc<Talk>("He is one of the wizards who lives in the tower on the little island just off the south coast. I believe his quarters are on the first floor of the tower.")
     choice {
         giveYourKey()
         wheresCaptainRovin()
@@ -171,10 +136,7 @@ suspend fun PlayerChoice.wheresWizard(): Unit = option("Where does the wizard li
 
 suspend fun PlayerChoice.wheresCaptainRovin(): Unit = option("Where can I find Captain Rovin?") {
     player<Talk>("Where can I find Captain Rovin?")
-    npc<Talk>("""
-        Captain Rovin lives at the top of the guards' quarters in
-        the north-west wing of this palace.
-    """)
+    npc<Talk>("Captain Rovin lives at the top of the guards' quarters in the north-west wing of this palace.")
     choice {
         giveYourKey()
         wheresWizard()
@@ -193,15 +155,9 @@ suspend fun NPCOption.keyProgressCheck() {
             return
         }
         prysin && (rovin || traiborn) -> {
-            player<Talk>("""
-                I've got the key from ${if (traiborn) "Wizard Traiborn" else "Captain Rovin"} and the one that
-                you dropped down the drain.
-            """)
+            player<Talk>("I've got the key from ${if (traiborn) "Wizard Traiborn" else "Captain Rovin"} and the one that you dropped down the drain.")
         }
-        traiborn && rovin -> player<Talk>("""
-            I've got the keys from Wizard Traiborn and Captain
-            Rovin.
-        """)
+        traiborn && rovin -> player<Talk>("I've got the keys from Wizard Traiborn and Captain Rovin.")
         rovin -> player<Talk>("I've got the key from Captain Rovin.")
         traiborn -> player<Talk>("I've got the key from Wizard Traiborn.")
         prysin -> player<Talk>("I've got the key which you dropped down the drain.")
@@ -217,10 +173,7 @@ suspend fun PlayerChoice.giveYourKey(): Unit = option("Can you give me your key?
     player<Talk>("Can you give me your key?")
     npc<Upset>("Um.... ah....")
     npc<Upset>("Well there's a problem there as well.")
-    npc<Upset>("""
-        I managed to drop the key in the drain just outside the
-        palace kitchen. It is just inside and I can't reach it.
-    """)
+    npc<Upset>("I managed to drop the key in the drain just outside the palace kitchen. It is just inside and I can't reach it.")
     choice {
         drain()
         wheresCaptainRovin()
@@ -230,10 +183,7 @@ suspend fun PlayerChoice.giveYourKey(): Unit = option("Can you give me your key?
 
 suspend fun PlayerChoice.drain(): Unit = option("So what does the drain lead to?") {
     player<Talk>("So what does the drain connect to?")
-    npc<Talk>("""
-        It is the drain for the drainpipe running from the sink
-        in the kitchen down to the palace sewers.
-    """)
+    npc<Talk>("It is the drain for the drainpipe running from the sink in the kitchen down to the palace sewers.")
     choice {
         wheresCaptainRovin()
         wheresWizard()
@@ -248,10 +198,7 @@ suspend fun PlayerChoice.huntingTime(): Unit = option("Well I'd better go key hu
 
 suspend fun PlayerChoice.mightyAdventurer(): Unit = option("I am a mighty adventurer. Who are you?") {
     player<Talk>("I am a mighty adventurer, who are you?")
-    npc<Talk>("""
-        I am Sir Prysin. A bold and famous knight of the
-        realm.
-    """)
+    npc<Talk>("I am Sir Prysin. A bold and famous knight of the realm.")
 }
 
 suspend fun PlayerChoice.youTellMe(): Unit = option("I'm not sure, I was hoping you could tell me.") {
@@ -326,9 +273,6 @@ suspend fun NPCOption.giveSilverlight() {
     delay()
     target.face(Direction.NONE)
     delay()
-    npc<Talk>("""
-        That sword belonged to my great-grandfather. Make
-        sure you treat it with respect!
-    """)
+    npc<Talk>("That sword belonged to my great-grandfather. Make sure you treat it with respect!")
     npc<Talking>("Now go kill that demon!")
 }

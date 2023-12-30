@@ -65,6 +65,19 @@ internal class PlayerChatTest : DialogueTest() {
         }
     }
 
+    @Test
+    fun `Long line wraps player chat`() {
+        val text = "This is one long dialogue text line which should be wrapped into two lines."
+        dialogue {
+            player<Talk>(text = text, clickToContinue = true)
+        }
+        verify {
+            player.open("dialogue_chat2")
+            interfaces.sendText("dialogue_chat2", "line1", "This is one long dialogue text line which should be")
+            interfaces.sendText("dialogue_chat2", "line2", "wrapped into two lines.")
+        }
+    }
+
     @TestFactory
     fun `Send click to continue player chat`() = arrayOf(
         "One line" to "dialogue_chat_np1",
@@ -107,7 +120,7 @@ internal class PlayerChatTest : DialogueTest() {
         mockkStatic("world.gregs.voidps.engine.data.definition.InterfaceDefinitionsKt")
         val client: Client = mockk(relaxed = true)
         player.client = client
-        every { definitions.getComponent("dialogue_chat1", any<String>()) } returns InterfaceComponentDefinition(id = 123, extras = mapOf("parent" to 4))
+        every { interfaceDefinitions.getComponent("dialogue_chat1", any<String>()) } returns InterfaceComponentDefinition(id = 123, extras = mapOf("parent" to 4))
         dialogue {
             player<Talk>(text = "Text", largeHead = large)
         }
@@ -146,7 +159,7 @@ internal class PlayerChatTest : DialogueTest() {
     }
 
     @Test
-    fun `NPC chat not sent if interface not opened`() {
+    fun `Player chat not sent if interface not opened`() {
         every { player.open("dialogue_chat1") } returns false
         assertThrows<IllegalStateException> {
             dialogueBlocking {

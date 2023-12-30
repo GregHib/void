@@ -4,6 +4,7 @@ import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.CharacterContext
@@ -35,7 +36,7 @@ suspend fun CharacterContext.npc(expression: String, text: String, largeHead: Bo
 }
 
 suspend fun CharacterContext.npc(npcId: String, expression: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
-    val lines = text.trimIndent().lines()
+    val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("497").splitLines(text, 380)
     check(lines.size <= 4) { "Maximum npc chat lines exceeded ${lines.size} for $player" }
     val id = getInterfaceId(lines.size, clickToContinue)
     check(player.open(id)) { "Unable to open npc dialogue $id for $player" }

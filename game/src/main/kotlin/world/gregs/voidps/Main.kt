@@ -133,6 +133,7 @@ object Main {
         single(createdAtStart = true) { WeaponStyleDefinitions().load() }
         single(createdAtStart = true) { AmmoDefinitions().load() }
         single(createdAtStart = true) { ParameterDefinitions(CategoryDefinitions().load(), get()).load() }
+        single(createdAtStart = true) { FontDefinitions(FontDecoder().load(activeDir)).load() }
     }
 
     private fun cache(cache: Cache) = module {
@@ -151,5 +152,6 @@ object Main {
         single(createdAtStart = true) { WeaponStyleDefinitions().load() }
         single(createdAtStart = true) { AmmoDefinitions().load() }
         single(createdAtStart = true) { ParameterDefinitions(CategoryDefinitions().load(), get()).load() }
+        single(createdAtStart = true) { FontDefinitions(FontDecoder().loadCache(cache)).load() }
     }
 }
