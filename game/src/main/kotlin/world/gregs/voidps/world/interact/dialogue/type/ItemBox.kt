@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.dialogue.type
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.get
@@ -17,7 +18,8 @@ suspend fun CharacterContext.item(text: String, item: String, zoom: Int, sprite:
     if (sprite != null) {
         player.interfaces.sendSprite(ITEM_INTERFACE_ID, "sprite", sprite)
     }
-    player.interfaces.sendText(ITEM_INTERFACE_ID, "line1", text.trimIndent().replace("\n", "<br>"))
+    val lines = if (text.contains("\n")) text.trimIndent().replace("\n", "<br>") else get<FontDefinitions>().get("497").splitLines(text, 380).joinToString("<br>")
+    player.interfaces.sendText(ITEM_INTERFACE_ID, "line1", lines)
     ContinueSuspension()
     player.close(ITEM_INTERFACE_ID)
 }

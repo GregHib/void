@@ -156,6 +156,7 @@ abstract class WorldTest : KoinTest {
                 single(createdAtStart = true) { quickChatPhraseDefinitions }
                 single(createdAtStart = true) { weaponStyleDefinitions }
                 single(createdAtStart = true) { enumDefinitions }
+                single(createdAtStart = true) { fontDefinitions }
                 single { ammoDefinitions }
                 single { parameterDefinitions }
                 single { xteas }
@@ -254,6 +255,7 @@ abstract class WorldTest : KoinTest {
         private val xteas: Xteas by lazy { Xteas().load() }
         private val gameObjects: GameObjects by lazy { GameObjects(objectCollision, ZoneBatchUpdates(), objectDefinitions, storeUnused = true) }
         private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(collisions, objectDefinitions, gameObjects).load(active) }
+        private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(active)).load() }
         val emptyTile = Tile(2655, 4640)
     }
 }

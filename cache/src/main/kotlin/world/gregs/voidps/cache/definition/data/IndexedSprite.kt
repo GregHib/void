@@ -14,6 +14,8 @@ data class IndexedSprite(
     lateinit var raster: ByteArray
     lateinit var palette: IntArray
 
+    fun scaleWidth() = offsetX + width + deltaWidth
+
     fun toBufferedImage(): BufferedImage {
         val bi = BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB)
         for (x in 0 until width) {

@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.dialogue.type
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -19,7 +20,7 @@ suspend inline fun <reified E : Expression> CharacterContext.player(text: String
 }
 
 suspend fun CharacterContext.player(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
-    val lines = text.trimIndent().lines()
+    val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("497").splitLines(text, 380)
     check(lines.size <= 4) { "Maximum player chat lines exceeded ${lines.size} for $player" }
     val id = getInterfaceId(lines.size, clickToContinue)
     check(player.open(id)) { "Unable to open player dialogue for $player" }

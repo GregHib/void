@@ -11,10 +11,12 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.koin.test.mock.declareMock
+import world.gregs.voidps.cache.definition.data.FontDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterContext
@@ -29,7 +31,8 @@ abstract class DialogueTest : KoinMock() {
     lateinit var player: Player
     lateinit var context: CharacterContext
     lateinit var continuation: Continuation<Any>
-    lateinit var definitions: InterfaceDefinitions
+    lateinit var interfaceDefinitions: InterfaceDefinitions
+    lateinit var fontDefinitions: FontDefinitions
 
     fun dialogueBlocking(block: suspend CharacterContext.() -> Unit) {
         runTest {
@@ -49,7 +52,8 @@ abstract class DialogueTest : KoinMock() {
         player = spyk(Player())
         interfaces = mockk(relaxed = true)
         player.interfaces = interfaces
-        definitions = declareMock()
+        interfaceDefinitions = declareMock()
+        fontDefinitions = declareMock()
         continuation = object : Continuation<Any> {
             override val context: CoroutineContext
                 get() = UnconfinedTestDispatcher()
@@ -62,8 +66,10 @@ abstract class DialogueTest : KoinMock() {
             override var onCancel: (() -> Unit)? = null
         })
         every { player.open(any()) } returns true
-        every { definitions.get(any<String>()) } returns InterfaceDefinition()
-        every { definitions.getComponent(any<String>(), any<String>()) } returns InterfaceComponentDefinition()
+        every { interfaceDefinitions.get(any<String>()) } returns InterfaceDefinition()
+        every { interfaceDefinitions.getComponent(any<String>(), any<String>()) } returns InterfaceComponentDefinition()
+        val glyphWidths = DialogueTest::class.java.getResourceAsStream("glyph-widths-497.dat")!!.readAllBytes()
+        every { fontDefinitions.get(any<String>()) } returns FontDefinition(id = 497, verticalSpacing = 15, topPadding = 15, bottomPadding = 15, glyphWidths = glyphWidths)
     }
 
 }

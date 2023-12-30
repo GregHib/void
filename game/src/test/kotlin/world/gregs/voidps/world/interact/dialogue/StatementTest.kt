@@ -39,6 +39,20 @@ internal class StatementTest : DialogueTest() {
         }
     }
 
+    @Test
+    fun `Long line wraps statement`() {
+        val text = "This is one very long statement dialogue text line which should be wrapped into at least three lines ideally more than even that."
+        dialogue {
+            statement(text = text, clickToContinue = true)
+        }
+        verify {
+            player.open("dialogue_message3")
+            interfaces.sendText("dialogue_message3", "line1", "This is one very long statement dialogue text line which")
+            interfaces.sendText("dialogue_message3", "line2", "should be wrapped into at least three lines ideally more")
+            interfaces.sendText("dialogue_message3", "line3", "than even that.")
+        }
+    }
+
     @TestFactory
     fun `Send click to continue statement lines`() = arrayOf(
         "One line" to "dialogue_message_np1",
