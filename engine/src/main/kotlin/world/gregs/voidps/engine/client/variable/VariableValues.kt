@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.data.config.VariableDefinition
  */
 sealed class VariableValues {
 
-    abstract fun default(): Any
+    abstract fun default(): Any?
     abstract fun toInt(value: Any): Int
 
     companion object {
@@ -29,7 +29,7 @@ sealed class VariableValues {
 }
 
 object NoValues : VariableValues() {
-    override fun default() = 0
+    override fun default() = null
     override fun toInt(value: Any) = value as? Int ?: -1
 }
 

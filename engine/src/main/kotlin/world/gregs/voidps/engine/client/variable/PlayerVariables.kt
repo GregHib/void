@@ -14,12 +14,6 @@ class PlayerVariables(
 
     var client: Client? = null
 
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : Any> get(key: String): T {
-        val variable = definitions.get(key)
-        return (super.getOrNull(key) ?: variable?.defaultValue) as T
-    }
-
     override fun set(key: String, value: Any, refresh: Boolean) {
         val variable = definitions.get(key)
         if (value == variable?.defaultValue) {
