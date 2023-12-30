@@ -16,10 +16,7 @@ on<NPCOption>({ operate && target.id == "jaraah" && option == "Talk-to" }) { pla
             heal()
         }
         option<Uncertain>("You must see some gruesome things?") {
-            npc<Angry>("""
-                It's a gruesome business and with the tools they give
-                me it gets more gruesome before it gets better!
-            """)
+            npc<Angry>("It's a gruesome business and with the tools they give me it gets more gruesome before it gets better!")
             player<Laugh>("Really?")
             npc<Laugh>("It beats being stuck in the monastery!")
         }

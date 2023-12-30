@@ -47,19 +47,13 @@ on<NPCOption>({ operate && target.id == "gypsy_aris" && option == "Talk-to" }) {
     when (player.quest("demon_slayer")) {
         "unstarted" -> {
             npc<Talk>("Hello, young one.")
-            npc<Talk>("""
-                Cross my palm with silver and the future will be
-                revealed to you.
-            """)
+            npc<Talk>("Cross my palm with silver and the future will be revealed to you.")
             if (!player.inventory.contains("coins")) {
                 player<Upset>("Oh dear. I don't have any money.")
                 return@on
             }
             if (player.combatLevel < 15) {
-                statement("""
-                    Before starting this quest, be aware that your combat level is lower
-                    than the recommended level of 15.
-                """)
+                statement("Before starting this quest, be aware that your combat level is lower than the recommended level of 15.")
             }
             choice {
                 hereYouGo()
@@ -139,40 +133,21 @@ suspend fun CharacterContext.otherQuestions() {
     }
 }
 
-suspend fun PlayerChoice.cityDestroyer(end: suspend CharacterContext.() -> Unit): Unit = option<Afraid>("""
-        How am I meant to fight a demon who can destroy
-        cities?
-    """) {
-    npc<Talk>("""
-        If you face Delrith while he is still weak from being
-        summoned, and use the correct weapon, you will not
-        find the task too arduous.
-    """)
-    npc<Talk>("""
-        Do not fear. If you follow the path of the great hero
-        Wally, then you are sure to defeat the demon.
-    """)
+suspend fun PlayerChoice.cityDestroyer(end: suspend CharacterContext.() -> Unit): Unit = option<Afraid>("How am I meant to fight a demon who can destroy cities?") {
+    npc<Talk>("If you face Delrith while he is still weak from being summoned, and use the correct weapon, you will not find the task too arduous.")
+    npc<Talk>("Do not fear. If you follow the path of the great hero Wally, then you are sure to defeat the demon.")
     end.invoke(this)
 }
 
 suspend fun PlayerChoice.whereIsHe(): Unit = option<Cheerful>("Okay, where is he? I'll kill him for you.") {
     npc<Chuckle>("Ah, the overconfidence of the young!")
-    npc<Talk>("""
-        Delrith can't be harmed by ordinary weapons. You
-        must face him using the same weapon that Wally used.
-    """)
+    npc<Talk>("Delrith can't be harmed by ordinary weapons. You must face him using the same weapon that Wally used.")
     howToDo()
 }
 
 suspend fun PlayerChoice.notVeryHeroicName(): Unit = option<Cheerful>("Wally doesn't sound like a very heroic name.") {
-    npc<Talk>("""
-       Yes, I know. Maybe that is why history doesn't
-       remember him. However, he was a great hero.
-    """)
-    npc<Talk>("""
-       Who knows how much pain and suffering Delrith would
-       have brought forth without Wally to stop him!
-    """)
+    npc<Talk>("Yes, I know. Maybe that is why history doesn't remember him. However, he was a great hero.")
+    npc<Talk>("Who knows how much pain and suffering Delrith would have brought forth without Wally to stop him!")
     npc<Talk>("It looks like you are needed to perform similar heroics.")
     howToDo()
 }
@@ -180,11 +155,7 @@ suspend fun PlayerChoice.notVeryHeroicName(): Unit = option<Cheerful>("Wally doe
 suspend fun CharacterContext.incantation() {
     player<Talk>("What is the magical incantation?")
     npc<Talk>("Oh yes, let me think a second.")
-    npc<Talking>("""
-        Aright, I think I've got it now, it goes... ${getWord(player, 1)}...
-        ${getWord(player, 2)}... ${getWord(player, 3)}.,. ${getWord(player, 4)}.,. ${getWord(player, 5)}.
-        Have you got that?
-    """)
+    npc<Talking>("Aright, I think I've got it now, it goes... ${getWord(player, 1)}... ${getWord(player, 2)}... ${getWord(player, 3)}.,. ${getWord(player, 4)}.,. ${getWord(player, 5)}. Have you got that?")
     player<Talking>("I think so, yes.")
 }
 
@@ -206,18 +177,11 @@ on<TimerTick>({ timer == "demon_slayer_crystal_ball" }) { npc: NPC ->
 
 suspend fun ChoiceBuilder<NPCOption>.hereYouGo(): Unit = option<Talk>("Okay, here you go.") {
     player.inventory.remove("coins", 1)
-    npc<Cheerful>("""
-        Come closer and listen carefully to what the future
-        holds, as I peer into the swirling mists o the crystal
-        ball.
-    """)
+    npc<Cheerful>("Come closer and listen carefully to what the future holds, as I peer into the swirling mists o the crystal ball.")
     player.playSound("demon_slayer_crystal_ball_start")
     target.softTimers.start("demon_slayer_crystal_ball")
     npc<Talk>("I can see images forming. I can see you.")
-    npc<Uncertain>("""
-        You are holding a very impressive-looking sword. I'm
-        sure I recognise it...
-    """)
+    npc<Uncertain>("You are holding a very impressive-looking sword. I'm sure I recognise it...")
     npc<Uncertain>("There is a big, dark shadow appearing now.")
     target.softTimers.stop("demon_slayer_crystal_ball")
     player.playSound("demon_slayer_crystal_ball_end")
@@ -227,41 +191,21 @@ suspend fun ChoiceBuilder<NPCOption>.hereYouGo(): Unit = option<Talk>("Okay, her
     player<Afraid>("Who's Delrith?")
     npc<Upset>("Delrith...")
     npc<Talk>("Delrith is a powerful demon.")
-    npc<Afraid>("""
-        Oh! I really hope he didn't see me looking at him
-        through my crystal ball!
-    """)
-    npc<Upset>("""
-        He tried to destroy this city 150 years ago. He was
-        stopped just in time by the great hero Wally.
-    """)
-    npc<Upset>("""
-        Using his magic sword Silverlight, Wally managed to
-        trap the demon in the stone circle just south
-        of this city.
-    """)
-    npc<Surprised>("""
-        Ye gods! Silverlight was the sword you were holding in
-        my vision! You are the one destined to stop the demon
-        this time.
-    """)
+    npc<Afraid>("Oh! I really hope he didn't see me looking at him through my crystal ball!")
+    npc<Upset>("He tried to destroy this city 150 years ago. He was stopped just in time by the great hero Wally.")
+    npc<Upset>("Using his magic sword Silverlight, Wally managed to trap the demon in the stone circle just south of this city.")
+    npc<Surprised>("Ye gods! Silverlight was the sword you were holding in my vision! You are the one destined to stop the demon this time.")
     whatToDo()
 }
 
 suspend fun ChoiceBuilder<NPCOption>.whoYouCallingYoung(): Unit = option<Angry>("Who are you called 'young one'?") {
-    npc<Talk>("""
-        You have been on this world a relatively short time. At
-        least compared to me.
-    """)
+    npc<Talk>("You have been on this world a relatively short time. At least compared to me.")
     npc<Talk>("So, do you want your fortune told or not?")
     choice {
         hereYouGo()
         notBeliever()
         option("Ooh, how old are you then?") {
-            npc<Talking>("""
-                Count the number of legs on the stools in the Blue
-                Moon inn, and multiply that number by seven.
-            """)
+            npc<Talking>("Count the number of legs on the stools in the Blue Moon inn, and multiply that number by seven.")
             player<Unsure>("Er, yeah, whatever.")
         }
     }
@@ -287,10 +231,7 @@ suspend fun CharacterContext.cutscene() {
     player.playSound("rumbling")
     delay(1)
     player.open("fade_in")
-    npc<Talk>("gypsy_aris", """
-        Wally managed to arrive at the stone circle just as
-        Delrith was summoned by a cult of chaos druids...
-    """)
+    npc<Talk>("gypsy_aris","Wally managed to arrive at the stone circle just as Delrith was summoned by a cult of chaos druids...")
 
     player.face(Direction.NORTH)
     player.clearCamera()
@@ -334,12 +275,7 @@ suspend fun CharacterContext.cutscene() {
     player.setGraphic("silverlight_sparkle")
     npc<Happy>("wally", "I am the greatest demon slayer EVER!")
 
-    npc<Talk>("""
-        By reciting the correct magical incantation, and
-        thrusting Silverlight into Delrith while he was newly
-        summoned, Wally was able to imprison Delrith in the
-        stone table at the centre of the circle.
-    """)
+    npc<Talk>("By reciting the correct magical incantation, and thrusting Silverlight into Delrith while he was newly summoned, Wally was able to imprison Delrith in the stone table at the centre of the circle.")
 
     statement("", clickToContinue = false)
     player.queue.clear("demon_slayer_wally_cutscene_end")
@@ -365,11 +301,7 @@ suspend fun CharacterContext.endCutscene(instance: Region) {
 }
 
 suspend fun ChoiceBuilder<NPCOption>.withSilver(): Unit = option<Unsure>("With silver?") {
-    npc<Talking>("""
-        Oh, sorry, I forgot. With gold, I mean. They haven't
-        used silver coins since before you were born! So, do
-        you want your fortune told?
-    """)
+    npc<Talking>("Oh, sorry, I forgot. With gold, I mean. They haven't used silver coins since before you were born! So, do you want your fortune told?")
     choice {
         hereYouGo()
         notBeliever()
@@ -378,10 +310,7 @@ suspend fun ChoiceBuilder<NPCOption>.withSilver(): Unit = option<Unsure>("With s
 
 suspend fun CharacterContext.delrithWillCome() {
     npc<Upset>("Delrith will come forth from the stone circle again.")
-    npc<Upset>("""
-        I would imagine an evil sorcerer is already beginning
-        the rituals to summon Delrith as we speak.
-    """)
+    npc<Upset>("I would imagine an evil sorcerer is already beginning the rituals to summon Delrith as we speak.")
     choice {
         cityDestroyer {
             otherQuestions()
@@ -400,24 +329,14 @@ suspend fun CharacterContext.delrithWillCome() {
 
 suspend fun CharacterContext.whereSilverlight() {
     player<Angry>("Where can I find Silverlight?")
-    npc<Talk>("""
-        Silverlight has been passed down by Wally's
-        descendants. I believe it is currently in the care of one
-        of the king's knights called Sir Prysin.
-    """)
-    npc<Happy>("""
-        He shouldn't be too hard to find. He lives in the royal
-        palace in this city. Tell him Gypsy Aris sent you.
-    """)
+    npc<Talk>("Silverlight has been passed down by Wally's descendants. I believe it is currently in the care of one of the king's knights called Sir Prysin.")
+    npc<Happy>("He shouldn't be too hard to find. He lives in the royal palace in this city. Tell him Gypsy Aris sent you.")
 }
 
 suspend fun NPCOption.howGoesQuest() {
     npc<Cheerful>("Greetings. How goes thy quest?")
     player<Talk>("I'm still working on it.")
-    npc<Talk>("""
-        Well if you need any advice I'm always here, young
-        one.
-    """)
+    npc<Talk>("Well if you need any advice I'm always here, young one.")
     choice {
         incantationReminder()
         silverlightReminder()
@@ -452,10 +371,7 @@ suspend fun PlayerChoice.stopCallingMeThat(): Unit = option<Furious>("Stop calli
     npc<Talk>("In the scheme of things you are very young.")
     choice {
         option<Talk>("Ok but how old are you?") {
-            npc<Talk>("""
-                Count the number of legs on the stools in the Blue
-                Moon inn, and multiply that number by seven.
-            """)
+            npc<Talk>("Count the number of legs on the stools in the Blue Moon inn, and multiply that number by seven.")
             player<Talk>("Er, yeah, whatever.")
         }
         option<Cheerful>("Oh if it's in the scheme of things that's ok.") {

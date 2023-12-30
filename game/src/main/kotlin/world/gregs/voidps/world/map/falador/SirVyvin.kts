@@ -47,10 +47,7 @@ on<ObjectOption>({ operate && target.id == "cupboard_the_knights_sword_opened" &
             val sirVyvin = npcs[player.tile.regionLevel].firstOrNull { it.id == "sir_vyvin" }
             if (sirVyvin != null && lineValidator.hasLineOfSight(sirVyvin, player)) {
                 player.talkWith(sirVyvin)
-                npc<Angry>("""
-                    HEY! Just WHAT do you THINK you are
-                     DOING??? STAY OUT of MY cupboard!
-                """)
+                npc<Angry>("HEY! Just WHAT do you THINK you are DOING??? STAY OUT of MY cupboard!")
                 return@on
             }
             if (player.holdsItem("portrait")) {
@@ -76,24 +73,12 @@ on<NPCOption>({ operate && target.id == "sir_vyvin" && option == "Talk-to" }) { 
             npc<Talking>("No, I'm sorry.")
         }
         option<Unsure>("Why are there so many knights in this city?") {
-            npc<Talking>("""
-                We are the White Knights of Falador. We are the most
-                powerful order of knights in the land. We are helping
-                the king Vallance rule the kingdom as he is getting old
-                and tired.
-            """)
+            npc<Talking>("We are the White Knights of Falador. We are the most powerful order of knights in the land. We are helping the king Vallance rule the kingdom as he is getting old and tired.")
         }
         option("Can I just distract you for a minute?") {
-            player<Talking>("""
-                Can I just talk to you very slowly for a few minutes,
-                while I distract you, so that my friend over there can
-                do something while you're busy being distracted by me?
-            """)
+            player<Talking>("Can I just talk to you very slowly for a few minutes, while I distract you, so that my friend over there can do something while you're busy being distracted by me?")
             npc<Uncertain>("... ...what?")
-            npc<Uncertain>("""
-                I'm... not sure what you're asking me... you want to
-                join the White Knights?
-            """)
+            npc<Uncertain>("I'm... not sure what you're asking me... you want to join the White Knights?")
             player<Talking>("Nope. I'm just trying to distract you.")
             npc<Uncertain>("... ...you are very odd.")
             player<Talking>("So can I distract you some more?")

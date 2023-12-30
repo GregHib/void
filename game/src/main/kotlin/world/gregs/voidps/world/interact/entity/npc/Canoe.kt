@@ -10,15 +10,9 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 suspend fun CharacterContext.minimumCanoeLevel(): Boolean {
     player<Unsure>("Could you teach me about canoes?")
     if (player.levels.get(Skill.Woodcutting) < 12) {
-        npc<Talking>("""
-            Well, you don't look like you have the skill to make a
-            canoe.
-        """)
+        npc<Talking>("Well, you don't look like you have the skill to make a canoe.")
         npc<Talking>("You need to have at least level 12 woodcutting.")
-        npc<Talking>("""
-            Once you are able to make a canoe it makes travel
-            along the river much quicker!
-        """)
+        npc<Talking>("Once you are able to make a canoe it makes travel along the river much quicker!")
         return true
     }
     return false

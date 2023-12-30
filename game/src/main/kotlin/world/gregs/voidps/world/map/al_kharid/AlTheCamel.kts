@@ -57,29 +57,17 @@ on<NPCOption>({ operate && target.id == "al_the_camel" && option == "Talk-to" &&
 
 suspend fun CharacterContext.bestOfLuck() {
     player<Talk>("Well, best of luck with that.")
-    npc<Talk>("""
-        If you want to hear my poems once more, please
-        come back again.
-    """)
+    npc<Talk>("If you want to hear my poems once more, please come back again.")
 }
 
 suspend fun CharacterContext.noThankYou() {
-    npc<Talk>("""
-        Ah, well. I shall return to writing
-        poems to Elly's beauty.
-    """)
+    npc<Talk>("Ah, well. I shall return to writing poems to Elly's beauty.")
     whatDoesSheThink()
 }
 
 suspend fun CharacterContext.idLoveTo() {
-    npc<Talk>("""
-        That's so kind of you. Which one would
-        you like to hear?
-    """)
-    npc<Talk>("""
-        'Shall I compare thee to a desert's day' is my
-        finest yet, but I've also composed others.
-    """)
+    npc<Talk>("That's so kind of you. Which one would you like to hear?")
+    npc<Talk>("'Shall I compare thee to a desert's day' is my finest yet, but I've also composed others.")
     poems()
 }
 
@@ -95,18 +83,11 @@ suspend fun CharacterContext.poems() {
 }
 
 suspend fun CharacterContext.justToSay() {
-    npc<Upset>("""
-        I wrote this poem when I went to the oasis
-        to nibble at a tree, then discovered I'd left
-        nothing for Elly to nibble. I was distraught.
-    """)
+    npc<Upset>("I wrote this poem when I went to the oasis to nibble at a tree, then discovered I'd left nothing for Elly to nibble. I was distraught.")
     npc<Talking>("This Is Just To Say")
     npc<Talking>("I have nibbled the cacti that were by the oasis,")
     npc<Talking>("and which you were probably saving for lunch.")
-    npc<Talking>("""
-        Forgive me, they were delicious,
-        so crunchy and so cold.
-    """)
+    npc<Talking>("Forgive me, they were delicious, so crunchy and so cold.")
     npc<Talking>("I wonder if she's forgiven me for eating her snack.")
     whatDoesSheThink()
 }
@@ -115,50 +96,23 @@ suspend fun CharacterContext.desertsDay(interrupt: Boolean) {
     if (!interrupt) {
         npc<Talk>("That's my favourite poem. Ahem...")
     }
-    npc<Talk>("""
-        Shall I compare thee to a desert's day?
-        Thou art drier and more rough-skinned.
-    """)
-    npc<Talk>("""
-        Rough sandstorms shake the cactuses away
-        And summer's heat defers to autumn wind.
-    """)
+    npc<Talk>("Shall I compare thee to a desert's day? Thou art drier and more rough-skinned.")
+    npc<Talk>("Rough sandstorms shake the cactuses away And summer's heat defers to autumn wind.")
     if (interrupt) {
         player<Talk>("Look, I don't really have the time to...")
     }
-    npc<Talk>("""
-        Sometimes too hot the eye of heaven shines,
-        With Guthix' gold complexion often dimmed;
-    """)
-    npc<Talk>("""
-        And every fair from fair sometime declines,
-        By chance or desert's changing course untrimmed...
-    """)
+    npc<Talk>("Sometimes too hot the eye of heaven shines, With Guthix' gold complexion often dimmed;")
+    npc<Talk>("And every fair from fair sometime declines, By chance or desert's changing course untrimmed...")
     if (interrupt) {
         player<Talk>("Please, stop.")
         npc<Talk>("But I've only got six lines left!")
-        player<Talk>("""
-                That's six too many. If I really want
-                to hear your poetry, I'll tell you, okay?
-            """)
-        npc<Talk>("""
-                Very well. Come back and talk to me if
-                you want to hear more.
-            """)
+        player<Talk>("That's six too many. If I really want to hear your poetry, I'll tell you, okay?")
+        npc<Talk>("Very well. Come back and talk to me if you want to hear more.")
         player["al_the_camel"] = true
     } else {
-        npc<Talk>("""
-            But thine eternal desert shall not fade
-            Nor lose possession of that sand thou owest;
-        """)
-        npc<Talk>("""
-            Nor Zamorak brag thou art in his shades,
-            When in eternal lines to sand thou growest,
-        """)
-        npc<Talk>("""
-            So long as camels breathe or eyes can see,
-            So long lives this, and this gives life to thee.
-        """)
+        npc<Talk>("But thine eternal desert shall not fade Nor lose possession of that sand thou owest;")
+        npc<Talk>("Nor Zamorak brag thou art in his shades, When in eternal lines to sand thou growest,")
+        npc<Talk>("So long as camels breathe or eyes can see, So long lives this, and this gives life to thee.")
         npc<Talk>("Ah, Elly, how beautiful you are.")
         whatDoesSheThink()
     }
@@ -168,17 +122,11 @@ suspend fun CharacterContext.whatDoesSheThink() {
     player<Unsure>("What does she think of your poems?")
     npc<Talk>("She's never heard them.")
     player<Talk>("Why not?")
-    npc<Sad>("""
-        I suspect she loves another - Ollie, another camel
-        who roams with her to the north.
-    """)
+    npc<Sad>("I suspect she loves another - Ollie, another camel who roams with her to the north.")
     npc<Sad>("So I shall stay here and compose poems for her.")
     choice {
         option<Talk>("Why not tell her how you feel?") {
-            npc<Talk>("""
-                She seems happy enough as she is, and I have
-                my poems to comfort me.
-            """)
+            npc<Talk>("She seems happy enough as she is, and I have my poems to comfort me.")
             bestOfLuck()
         }
         option("Well, best of luck with that.") {
@@ -188,16 +136,10 @@ suspend fun CharacterContext.whatDoesSheThink() {
 }
 
 suspend fun NPCOption.dung() {
-    player<Happy>("""
-        I'm sorry to bother you, but could
-        you spare me a little dung?
-    """)
+    player<Happy>("I'm sorry to bother you, but could you spare me a little dung?")
     npc<Talk>("Are you serious?")
     player<Talking>("Oh yes. If you'd be so kind...")
-    npc<Talk>("""
-        Well, just you close your eyes first.
-        I'm not doing it while you're watching me!
-    """)
+    npc<Talk>("Well, just you close your eyes first. I'm not doing it while you're watching me!")
     player.open("fade_out")
     player.interfaces.sendText("fade_out", "text", "<red>You close your eyes...")
     delay(2)
@@ -210,10 +152,7 @@ suspend fun NPCOption.dung() {
 }
 
 suspend fun NPCOption.listenTo() {
-    npc<Talking>("""
-        Oh, it's you again. Have you come back 
-        to listen to my poems?
-    """)
+    npc<Talking>("Oh, it's you again. Have you come back to listen to my poems?")
     choice {
         option<Happy>("I'd love to!") {
             idLoveTo()
@@ -229,16 +168,9 @@ suspend fun NPCOption.talkingToMe() {
     player<Talk>("No, er, nothing important.")
     npc<Sad>("Never mind, it is unimportant when I have such important matters weighing on my soul.")
     player<Talk>("How important can a camel's problems be?")
-    npc<Talking>("""
-        Well, you see, there is a camel called Elly.
-        A beautiful, wondrous camel, with hide like
-        spun gold and teeth that shine like an oasis.
-    """)
+    npc<Talking>("Well, you see, there is a camel called Elly. A beautiful, wondrous camel, with hide like spun gold and teeth that shine like an oasis.")
     player<Uncertain>("...I see.")
-    npc<Talk>("""
-        I've written many poems describing her beauty.
-        Would you like to hear one?
-    """)
+    npc<Talk>("I've written many poems describing her beauty. Would you like to hear one?")
     player<Talking>("It's all right, I'm...")
     desertsDay(interrupt = true)
 }

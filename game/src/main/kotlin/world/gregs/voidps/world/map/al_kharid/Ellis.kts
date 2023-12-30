@@ -33,10 +33,7 @@ on<NPCOption>({ operate && target.id == "ellis" && option == "Talk-to" }) { play
         leather()
         return@on
     }
-    npc<Talk>("""
-        I see you have bought me some hides.
-        Would you like me to tan them for you?
-    """)
+    npc<Talk>("I see you have bought me some hides. Would you like me to tan them for you?")
     choice {
         option("Yes please.") {
             player<Talk>("Yes please.")
@@ -56,27 +53,12 @@ on<NPCOption>({ operate && target.id == "ellis" && option == "Trade" }) { player
 suspend fun NPCOption.leather() {
     choice("What would you like to say?") {
         option<Unsure>("Can I buy some leather then?") {
-            npc<Talk>("""
-                I make leather from animal hides. Bring me some
-                cowhides and one gold coin per hide, and I'll tan them
-                into soft leather for you.
-            """)
+            npc<Talk>("I make leather from animal hides. Bring me some cowhides and one gold coin per hide, and I'll tan them into soft leather for you.")
         }
         option<Talk>("Leather is rather weak stuff.") {
-            npc<Talk>("""
-                Normal leather may be quite weak, but it's very heap -
-                I make it from cowhides for only 1 gp per hide - and
-                it's so easy to craft that anyone can work with it.
-            """)
-            npc<Talk>("""
-                Alternatively you could try hard leather. It's not so
-                easy to craft, but I only charge 3 gp per cowhide to
-                prepare it, and it makes much sturdier armour.
-            """)
-            npc<Cheerful>("""
-                I can also tan snake hides and dragonhides, suitable for
-                crafting into the highest quality armour for rangers.
-            """)
+            npc<Talk>("Normal leather may be quite weak, but it's very heap - I make it from cowhides for only 1 gp per hide - and it's so easy to craft that anyone can work with it.")
+            npc<Talk>("Alternatively you could try hard leather. It's not so easy to craft, but I only charge 3 gp per cowhide to prepare it, and it makes much sturdier armour.")
+            npc<Cheerful>("I can also tan snake hides and dragonhides, suitable for crafting into the highest quality armour for rangers.")
             player<Talk>("Thanks, I'll bear it in mind.")
         }
     }

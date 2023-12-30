@@ -33,26 +33,14 @@ val enums: EnumDefinitions by inject()
 
 on<NPCOption>({ operate && target.id == "thessalia" && option == "Talk-to" }) { player: Player ->
     npc<Cheerful>("Would you like to buy any fine clothes?")
-    npc<Cheerful>("""
-        Or if you're more after fancy dress costumes or
-        commemorative capes, talk to granny Iffie.
-    """)
+    npc<Cheerful>("Or if you're more after fancy dress costumes or commemorative capes, talk to granny Iffie.")
     choice {
         option<Unsure>("What do you have?") {
-            npc<Cheerful>("""
-                Well, I have a number of fine pieces of clothing on sale or,
-                if you prefer, I can offer you an exclusive, total clothing
-                makeover?
-            """)
+            npc<Cheerful>("Well, I have a number of fine pieces of clothing on sale or, if you prefer, I can offer you an exclusive, total clothing makeover?")
             choice {
                 option<Unsure>("Tell me more about this makeover.") {
                     npc<Cheerful>("Certainly!")
-                    npc<Cheerful>("""
-                        Here at Thessalia's Fine Clothing Boutique we offer a
-                        unique service, where we will totally revamp your outfit to
-                        your choosing. Tired of always wearing the same old
-                        outfit, day-in, day-out? Then this is the service for you!
-                    """)
+                    npc<Cheerful>("Here at Thessalia's Fine Clothing Boutique we offer a unique service, where we will totally revamp your outfit to your choosing. Tired of always wearing the same old outfit, day-in, day-out? Then this is the service for you!")
                     npc<Cheerful>("So, what do you say? Interested?")
                     choice {
                         openShop()
@@ -72,16 +60,10 @@ on<NPCOption>({ operate && target.id == "thessalia" && option == "Change-clothes
 
 fun PlayerChoice.changeOutfit(): Unit = option<Cheerful>("I'd like to change my outfit, please.") {
     if (!player.equipment.isEmpty()) {
-        npc<Talk>("""
-            You can't try them on while wearing armour. Take it off
-            and speak to me again.
-        """)
+        npc<Talk>("You can't try them on while wearing armour. Take it off and speak to me again.")
         return@option
     }
-    npc<Cheerful>("""
-        Wonderful. Feel free to try on some items and see if
-        there's anything you would like.
-    """)
+    npc<Cheerful>("Wonderful. Feel free to try on some items and see if there's anything you would like.")
     player<Cheerful>("Okay, thanks.")
     startMakeover()
 }
@@ -93,10 +75,7 @@ fun PlayerChoice.openShop(): Unit = option("I'd just like to buy some clothes.")
 suspend fun CharacterContext.startMakeover() {
     player.closeDialogue()
     if (!player.equipment.isEmpty()) {
-        npc<Talk>("""
-            You're not able to try on my clothes with all that armour.
-            Take it off and then speak to me again.
-        """)
+        npc<Talk>("You're not able to try on my clothes with all that armour. Take it off and then speak to me again.")
         return
     }
     openDressingRoom("thessalias_makeovers")

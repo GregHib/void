@@ -17,16 +17,9 @@ on<NPCOption>({ operate && target.id == "fadli" && option == "Talk-to" }) { play
     npc<RollEyes>("What?")
     choice {
         option<Talking>("What do you do?") {
-            npc<RollEyes>("""
-			    You can store your stuff here if you want. You can
-			    dump anything you don't want to carry whilst you're
-		        fighting duels and then pick it up again on the way out.
-			""")
+            npc<RollEyes>("You can store your stuff here if you want. You can dump anything you don't want to carry whilst you're fighting duels and then pick it up again on the way out.")
             npc<RollEyes>("To be honest I'm wasted here.")
-            npc<Angry>("""
-			    I should be winning duels in an arena! I'm the best
-			    warrior in Al Kharid!
-			""")
+            npc<Angry>("I should be winning duels in an arena! I'm the best warrior in Al Kharid!")
             player<Uncertain>("Easy, tiger!")
         }
         option<Uncertain>("What is this place?") {

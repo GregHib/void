@@ -29,17 +29,8 @@ suspend fun NPCOption.menu() {
         fighters()
         often()
         option<Unsure>("Can you tell me about your cape?") {
-            npc<Cheerful>("""
-                Certainly! Skillcapes are a symbol of achievement. Only
-                people who have mastered a skill and reached level 99
-                can get their hands on them and gain the benefits they
-                carry.
-            """)
-            npc<Talking>("""
-                The Cape of Constitution doubles the speed of your
-                constitution replenishing when worn. Is there anything else
-                I can help you with?
-            """)
+            npc<Cheerful>("Certainly! Skillcapes are a symbol of achievement. Only people who have mastered a skill and reached level 99 can get their hands on them and gain the benefits they carry.")
+            npc<Talking>("The Cape of Constitution doubles the speed of your constitution replenishing when worn. Is there anything else I can help you with?")
             menu()
         }
     }

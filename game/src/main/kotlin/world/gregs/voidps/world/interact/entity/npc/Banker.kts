@@ -28,15 +28,9 @@ on<NPCOption>({ approach && def.name == "Banker" && option == "Talk-to" }) { pla
     val collection = false
 
     if (loanReturned) {
-        npc<Talk>("""
-            Before we go any further, I should inform you that an
-            item you lent out has been returned to you.
-        """)
+        npc<Talk>("Before we go any further, I should inform you that an item you lent out has been returned to you.")
     } else if (collection) {
-        npc<Talk>("""
-            Before we go any further, I should inform you that you
-            have items ready for collection from the Grand Exchange.
-        """)
+        npc<Talk>("Before we go any further, I should inform you that you have items ready for collection from the Grand Exchange.")
     }
     menu()
 }
@@ -54,25 +48,13 @@ suspend fun CharacterContext.menu() {
         option("I'd like to see my collection box.", block = { player.open("collection_box") })
         option("I'd like to see my Returned Items box.", block = { player.open("returned_items") })
         option("What is this place?") {
-            npc<Talk>("""
-                This is a branch of the Bank of $name. We have
-                branches in many towns.
-            """)
+            npc<Talk>("This is a branch of the Bank of $name. We have branches in many towns.")
             choice {
                 option("And what do you do?") {
-                    npc<Talk>("""
-                        We will look after your items and money for you.
-                        Leave your valuables with us if you want to keep them
-                        safe.
-                    """)
+                    npc<Talk>("We will look after your items and money for you. Leave your valuables with us if you want to keep them safe.")
                 }
                 option("Didn't you used to be called the Bank of Varrock?") {
-                    npc<Talk>("""
-                        Yes we did, but people kept on coming into our
-                        branches outside of Varrock and telling us that our
-                        signs were wrong. They acted as if we didn't know
-                        what town we were in or something.
-                    """)
+                    npc<Talk>("Yes we did, but people kept on coming into our branches outside of Varrock and telling us that our signs were wrong. They acted as if we didn't know what town we were in or something.")
                 }
             }
         }

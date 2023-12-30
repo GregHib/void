@@ -46,10 +46,7 @@ on<InventoryOption>({ inventory == "worn_equipment" && item.id.startsWith("games
         "Wilderness Volcano" -> wildernessVolcano
         "Burgh De Rott" -> {
             if (!player.questComplete("darkness_of_hallowvale")) {
-                statement("""
-                    You need to have completed The Darkness of Hallowvale quest
-                    to teleport to this location.
-                """)
+                statement("You need to have completed The Darkness of Hallowvale quest to teleport to this location.")
                 return@on
             }
             burghDeRott

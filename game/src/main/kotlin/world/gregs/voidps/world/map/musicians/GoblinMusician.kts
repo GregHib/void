@@ -19,11 +19,7 @@ on<NPCOption>({ operate && target.id == "goblin_musician" && option == "Talk-to"
 suspend fun CharacterContext.choice() {
     choice {
         option<Unsure>("Who are you?") {
-            npc<CheerfulOld>("""
-                Me? Thump-Thump.
-                Me make thump-thumps with thump-thump drum.
-                Other goblins listen.
-            """)
+            npc<CheerfulOld>("Me? Thump-Thump. Me make thump-thumps with thump-thump drum. Other goblins listen.")
             choice()
         }
         option("Can I ask you some questions about resting?") {
@@ -36,24 +32,15 @@ suspend fun CharacterContext.choice() {
 suspend fun CharacterContext.resting() {
     choice("Can I ask you some questions about resting?") {
         option<Unsure>("How does resting work?") {
-            npc<TalkingOld>("""
-                You stoopid. Goblin sit down, goblin rest,
-                goblin feel better.
-            """)
+            npc<TalkingOld>("You stoopid. Goblin sit down, goblin rest, goblin feel better.")
             resting()
         }
         option<Happy>("What's special about resting by a musician?") {
-            npc<TalkingOld>("""
-                Drumming good! Make you feel better,
-                boom booms make you run longer!
-            """)
+            npc<TalkingOld>("Drumming good! Make you feel better, boom booms make you run longer!")
             resting()
         }
         option<Happy>("Can you summarise the effects for me?") {
-            npc<TalkingOld>("""
-                Wot? You sit down, you rest.
-                Listen to Thump-Thump is better.
-            """)
+            npc<TalkingOld>("Wot? You sit down, you rest. Listen to Thump-Thump is better.")
             resting()
         }
         exit()

@@ -59,15 +59,9 @@ on<ObjectOption>({ operate && target.id == "dairy_cow" && option == "Milk" }) { 
     } else {
         npc<Chuckle>("gillie_groats", "Tee hee! You've never milked a cow before, have you?")
         player<Unsure>("Erm...no. How could you tell?")
-        npc<Chuckle>("gillie_groats", """
-            Because you're spilling milk all over the floor. What a
-            waste! You need something to hold the milk.
-        """)
+        npc<Chuckle>("gillie_groats", "Because you're spilling milk all over the floor. What a waste! You need something to hold the milk.")
         player<Talk>("Ah, yes, I really should have guessed that one, shouldn't I?")
-        npc<Chuckle>("gillie_groats", """
-            You're from the city, aren't you? Try it again with an
-            empty bucket.
-        """)
+        npc<Chuckle>("gillie_groats", "You're from the city, aren't you? Try it again with an empty bucket.")
         player<Talk>("Right, I'll do that.")
         player.message("You'll need an empty bucket to collect the milk.")
     }

@@ -56,52 +56,29 @@ on<ItemOnNPC>({ operate && target.id == "traiborn" && item.id == "bones" && play
 
 suspend fun PlayerChoice.thingummywut(): Unit = option<Uncertain>("What's a thingummywut?") {
     npc<Uncertain>("A thingummywut? Where? Where?")
-    npc<Uncertain>("""
-        Those pesky thingummywuts. They get everywhere.
-        They leave a terrible mess too."
-    """)
+    npc<Uncertain>("Those pesky thingummywuts. They get everywhere. They leave a terrible mess too.")
     choice {
         option<Talking>("Err you just called me thingummywut.") {
-            npc<Uncertain>("""
-                You're a thingummywut? I've never seen one up close
-                before. They said I was mad!
-            """)
-            npc<Uncertain>("""
-                Now you are my proof! There ARE thingummywuts in
-                this tower. Now where can I find a cage big enough to
-                keep you?
-            """)
+            npc<Uncertain>("You're a thingummywut? I've never seen one up close before. They said I was mad!")
+            npc<Uncertain>("Now you are my proof! There ARE thingummywuts in this tower. Now where can I find a cage big enough to keep you?")
             betterBeOffChoice()
         }
         option<Furious>("Tell me what they look like and I'll mash 'em.") {
             npc<Uncertain>("Don't be ridiculous. No-one has ever seen one.")
-            npc<Uncertain>("""
-                They're invisible, or a myth, or a figment of my
-                imagination. Can't remember which right now.
-            """)
+            npc<Uncertain>("They're invisible, or a myth, or a figment of my imagination. Can't remember which right now.")
         }
     }
 }
 
 suspend fun PlayerChoice.betterBeOff(): Unit = option<Talk>("Err I'd better be off really.") {
-    npc<Uncertain>("""
-        Oh ok, have a good time, and watch out for sheep!
-        They're more cunning than they look.
-    """)
+    npc<Uncertain>("Oh ok, have a good time, and watch out for sheep! They're more cunning than they look.")
 }
 
 suspend fun PlayerChoice.teachMe(): Unit = option<Talk>("Teach me to be a mighty and powerful wizard.") {
-    npc<Uncertain>("""
-        Wizard eh? You don't want any truck with that sort.
-        They're not to be trusted. That's what I've heard
-        anyways.
-    """)
+    npc<Uncertain>("Wizard eh? You don't want any truck with that sort. They're not to be trusted. That's what I've heard anyways.")
     choice {
         option<Unsure>("So aren't you a wizard?") {
-            npc<Furious>("""
-                How dare you? Of course I'm a wizard. Now don't be
-                so cheeky or I'll turn you into a frog.
-            """)
+            npc<Furious>("How dare you? Of course I'm a wizard. Now don't be so cheeky or I'll turn you into a frog.")
         }
         option<Talk>("Oh I'd better stop talking to you then.") {
             npc<Talking>("Cheerio then. It was nice chatting to you.")
@@ -110,11 +87,7 @@ suspend fun PlayerChoice.teachMe(): Unit = option<Talk>("Teach me to be a mighty
 }
 
 suspend fun PlayerChoice.youLookedAfterIt(): Unit = option<Talk>("He told me you were looking after it for him.") {
-    npc<Uncertain>("""
-        That wasn't very clever of him. I'd lose my head if it
-        wasn't screwed on. Go and tell him to find someone else
-        to look after his valuables in future.
-    """)
+    npc<Uncertain>("That wasn't very clever of him. I'd lose my head if it wasn't screwed on. Go and tell him to find someone else to look after his valuables in future.")
     choice {
         option<Talking>("Okay, I'll go and tell him that.") {
             npc<Talking>("Oh that's great, if it wouldn't be too much trouble.")
@@ -128,10 +101,7 @@ suspend fun PlayerChoice.youLookedAfterIt(): Unit = option<Talk>("He told me you
 }
 
 suspend fun PlayerChoice.needAKey(): Unit = option<Talk>("I need to get a key given to you by Sir Prysin.") {
-    npc<Uncertain>("""
-        Sir Prysin? Who's that? What would I want his key
-        for?
-    """)
+    npc<Uncertain>("Sir Prysin? Who's that? What would I want his key for?")
     choice {
         youLookedAfterIt()
         kingsKnight()
@@ -143,23 +113,14 @@ suspend fun CharacterContext.betterBeOffChoice() {
     choice {
         betterBeOff()
         option<Talking>("They're right, you are mad.") {
-            npc<Upset>("""
-                That's a pity. I thought maybe they were winding me
-                up.
-            """)
+            npc<Upset>("That's a pity. I thought maybe they were winding me up.")
         }
     }
 }
 
 suspend fun PlayerChoice.kingsKnight(): Unit = option<Talk>("He's one of the King's knights.") {
-    npc<Cheerful>("""
-        Say, I remember one of the King's knights. He had
-        nice shoes...
-    """)
-    npc<Upset>("""
-        ...and didn't like my homemade spinach rolls. Would you
-        like a spinach roll?
-    """)
+    npc<Cheerful>("Say, I remember one of the King's knights. He had nice shoes...")
+    npc<Upset>("...and didn't like my homemade spinach rolls. Would you like a spinach roll?")
     choice {
         option<Talking>("Yes please.") {
             spinachRoll()
@@ -173,33 +134,17 @@ suspend fun CharacterContext.spinachRoll() {
     if (player.inventory.transaction.error != TransactionError.None) {
         floorItems.add(player.tile, "spinach_roll")
     }
-    item("""
-        Traiborn digs around in the pockets of his robes. After
-        a few moments he triumphantly presents you with a
-        spinach roll.
-    """, "spinach_roll", 400)
+    item("Traiborn digs around in the pockets of his robes. After a few moments he triumphantly presents you with a spinach roll.", "spinach_roll", 400)
     player<Talking>("Thank you very much.")
     betterBeOffChoice()
 }
 
 suspend fun PlayerChoice.anyKeys(): Unit = option<Talk>("Well, have you got any keys knocking around?") {
-    npc<Uncertain>("""
-        Now you come to mention it, yes I do have a key. It's
-        in my special closet of valuable stuff. Now how do I get
-        into that?
-    """)
-    npc<Uncertain>("""
-        I sealed it using one of my magic rituals. So it would
-        make sense that another ritual would open it again.
-    """)
+    npc<Uncertain>("Now you come to mention it, yes I do have a key. It's in my special closet of valuable stuff. Now how do I get into that?")
+    npc<Uncertain>("I sealed it using one of my magic rituals. So it would make sense that another ritual would open it again.")
     player<Talk>("So do you know what ritual to use?")
     npc<Talk>("Let me think a second.")
-    npc<Uncertain>("""
-        Yes a simple drazier style ritual should suffice. Hmm,
-        main problem with that is I'll need 25 sets of bones.
-        Now where am I going to get hold of something like
-        that?
-    """)
+    npc<Uncertain>("Yes a simple drazier style ritual should suffice. Hmm, main problem with that is I'll need 25 sets of bones. Now where am I going to get hold of something like that?")
     choice {
         option<Upset>("Hmm, that's too bad. I really need that key.") {
             npc<Talk>("Ah well, sorry I couldn't be any more help.")
@@ -213,11 +158,7 @@ suspend fun PlayerChoice.anyKeys(): Unit = option<Talk>("Well, have you got any 
 }
 
 suspend fun PlayerChoice.keyForSilverlight(): Unit = option<Talk>("It's the key to get a sword called Silverlight.") {
-    npc<Uncertain>("""
-        Silverlight? Never heard of that. Sounds a good name
-        for a ship. Are you sure it's not the name of a ship
-        rather than a sword?
-    """)
+    npc<Uncertain>("Silverlight? Never heard of that. Sounds a good name for a ship. Are you sure it's not the name of a ship rather than a sword?")
     choice {
         option<Talk>("Yeah, pretty sure.") {
             npc<Upset>("That's a pity, waste of a name.")
@@ -229,10 +170,7 @@ suspend fun PlayerChoice.keyForSilverlight(): Unit = option<Talk>("It's the key 
 
 suspend fun PlayerChoice.justTellMe(): Unit = option<Talk>("Just tell me if you have the key.") {
     npc<Uncertain>("The key? The key to what?")
-    npc<Uncertain>("""
-        There's more than one key in the world don't you
-        know? Would be a bit odd if there was only the one.
-    """)
+    npc<Uncertain>("There's more than one key in the world don't you know? Would be a bit odd if there was only the one.")
     choice {
         keyForSilverlight()
         option<Talk>("You've lost it haven't you?") {
@@ -247,12 +185,7 @@ suspend fun TargetNPCContext.startSpell() {
     target.setAnimation("traiborn_bone_spell")
     target.setGraphic("traiborn_bone_spell")
     player.playSound("demon_slayer_bone_spell")
-    npc<Uncertain>("""
-        Wings of dark and colour too,
-        Spreading in the morning dew;
-        Locked away I have a key;
-        Return it now, please, unto me.
-    """)
+    npc<Uncertain>("Wings of dark and colour too, Spreading in the morning dew; Locked away I have a key; Return it now, please, unto me.")
     player.playSound("demon_slayer_cupboard_appear")
     val direction = Direction.westClockwise.first { !target.blocked(it) }
     val rotation = Direction.westClockwise.indexOf(direction.rotate(6))
@@ -273,11 +206,7 @@ suspend fun TargetNPCContext.startSpell() {
 }
 
 suspend fun CharacterContext.somewhereToBe() {
-    npc<Uncertain>("""
-        Don't you have somewhere to be, young
-        thingummywut? You still have that key you asked me
-        for.
-    """)
+    npc<Uncertain>("Don't you have somewhere to be, young thingummywut? You still have that key you asked me for.")
     player<Talk>("You're right. I've got a demon to slay.")
 }
 
@@ -306,11 +235,7 @@ suspend fun NPCOption.bonesCheck() {
 
 suspend fun CharacterContext.lostKey() {
     player<Upset>("I've lost the key you gave to me.")
-    npc<Uncertain>("""
-        Yes I know, it was returned to me. If you want it back
-        you're going to have to collect another 25 sets of
-        bones.
-    """)
+    npc<Uncertain>("Yes I know, it was returned to me. If you want it back you're going to have to collect another 25 sets of bones.")
     player.bonesRequired = 25
 }
 

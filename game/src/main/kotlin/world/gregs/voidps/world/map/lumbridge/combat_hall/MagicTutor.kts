@@ -23,11 +23,7 @@ import world.gregs.voidps.world.interact.entity.player.display.Tab
 import java.util.concurrent.TimeUnit
 
 on<NPCOption>({ operate && def.name == "Magic instructor" && option == "Talk-to" }) { player: Player ->
-    npc<Unsure>("""
-        Hello there adventurer, I am the Magic combat tutor.
-        Would you like to learn about magic combat, or perhaps
-        how to make runes?
-    """)
+    npc<Unsure>("Hello there adventurer, I am the Magic combat tutor. Would you like to learn about magic combat, or perhaps how to make runes?")
     menu()
 }
 
@@ -44,105 +40,37 @@ suspend fun CharacterContext.menu(followUp: String = "") {
 }
 
 suspend fun PlayerChoice.magicCombat(): Unit = option<Talking>("Tell me about magic combat please.") {
-    npc<Cheerful>("""
-        Of course ${player.name}! As a rule of thumb, if you cast the
-        highest spell of which you're capable, you'll get the best
-        experience possible.
-    """)
-    npc<Cheerful>("""
-        Wearing metal armour and ranged armour can
-        seriously impair your magical abilities. Make sure you
-        wear some robes to maximise your capabilities.
-    """)
-    npc<Cheerful>("""
-        Superheat Item and the Alchemy spells are good ways
-        to level magic if you are not interested in the combat
-        aspect of magic.
-    """)
-    npc<Suspicious>("""
-        There's always the Magic Training Arena. You can
-        find it north of the Duel Arena in Al Kharid. You will
-        be able to earn some special rewards there by practicing
-        your magic there.
-    """)
-    npc<Cheerful>("""
-        I see you already have access to the ancient magicks.
-        Well done, these will aid you greatly.
-    """)
+    npc<Cheerful>("Of course ${player.name}! As a rule of thumb, if you cast the highest spell of which you're capable, you'll get the best experience possible.")
+    npc<Cheerful>("Wearing metal armour and ranged armour can seriously impair your magical abilities. Make sure you wear some robes to maximise your capabilities.")
+    npc<Cheerful>("Superheat Item and the Alchemy spells are good ways to level magic if you are not interested in the combat aspect of magic.")
+    npc<Suspicious>("There's always the Magic Training Arena. You can find it north of the Duel Arena in Al Kharid. You will be able to earn some special rewards there by practicing your magic there.")
+    npc<Cheerful>("I see you already have access to the ancient magicks. Well done, these will aid you greatly.")
     menu("Is there anything else you would like to know?")
 }
 
 suspend fun PlayerChoice.runeMaking(): Unit = option<Unsure>("How do I make runes?") {
-    npc<Cheerful>("""
-        There are a couple of things you will need to make
-        runes, rune essence and a talisman to enter the temple
-        ruins.
-    """)
+    npc<Cheerful>("There are a couple of things you will need to make runes, rune essence and a talisman to enter the temple ruins.")
     if (player.experience.get(Skill.Runecrafting) > 0.0) {
-        npc<Amazed>("""
-            To get rune essence you will need to gather them in
-            the essence mine. You can get to the mine by talking
-            to Aubury who owns the runes shop in south east
-            Varrock.
-        """)
-        npc<Cheerful>("""
-            I see you have some experience already in
-            Runecrafting. Perhaps you should try crafting some
-            runes which you can then use in magic.
-        """)
+        npc<Amazed>("To get rune essence you will need to gather them in the essence mine. You can get to the mine by talking to Aubury who owns the runes shop in south east Varrock.")
+        npc<Cheerful>("I see you have some experience already in Runecrafting. Perhaps you should try crafting some runes which you can then use in magic.")
         player["tab"] = Tab.Stats.name
         npc<Cheerful>("Check the skill guide to see which runes you can craft.")
     } else {
-        npc<Cheerful>("""
-            To get rune essence you will need to gather them
-            somehow. You should talk to the Duke of Lumbridge, he
-            may be able to help you with that. Alternatively, other
-            players may sell you the essence.
-        """)
-        npc<Cheerful>("""
-            As you're fairly new to runecrafting you should start
-            with air runes and mind runes.
-        """)
+        npc<Cheerful>("To get rune essence you will need to gather them somehow. You should talk to the Duke of Lumbridge, he may be able to help you with that. Alternatively, other players may sell you the essence.")
+        npc<Cheerful>("As you're fairly new to runecrafting you should start with air runes and mind runes.")
     }
-    npc<Cheerful>("""
-        You will need a talisman for the rune you would like to
-        create. You can right-click on it and select the Locate
-        option. This will tell you the rough location of the altar.
-    """)
-    npc<Cheerful>("""
-        When you find the ruined altar, use the talisman on it
-        to be transported to a temple where you can craft your
-        runes.
-    """)
-    npc<Cheerful>("""
-        Clicking on the temple's altar will imbue your rune
-        essence with the altar's magical property.
-    """)
-    npc<Cheerful>("""
-        If you want to save yourself an inventory space, you
-        could always try binding the talisman to a tiara.
-    """)
-    npc<Cheerful>("""
-        To make one, take a tiara and talisman to the ruins
-        and use the tiara on the temple altar. This will bind the
-        talisman to your tiara.
-    """)
+    npc<Cheerful>("You will need a talisman for the rune you would like to create. You can right-click on it and select the Locate option. This will tell you the rough location of the altar.")
+    npc<Cheerful>("When you find the ruined altar, use the talisman on it to be transported to a temple where you can craft your runes.")
+    npc<Cheerful>("Clicking on the temple's altar will imbue your rune essence with the altar's magical property.")
+    npc<Cheerful>("If you want to save yourself an inventory space, you could always try binding the talisman to a tiara.")
+    npc<Cheerful>("To make one, take a tiara and talisman to the ruins and use the tiara on the temple altar. This will bind the talisman to your tiara.")
     menu("Is there anything else you would like to know?")
 }
 
 suspend fun PlayerChoice.claimRunes(): Unit = option("I'd like some air and mind runes.") {
     if (player.remaining("claimed_tutor_consumables", epochSeconds()) > 0) {
-        npc<Amazed>("""
-            I work with the Ranged Combat tutor to give out
-            consumable items that you may need for combat such
-            as arrows and runes. However we have had some
-            cheeky people try to take both!
-        """)
-        npc<Cheerful>("""
-            So, every half an hour, you may come back and claim
-            either arrows OR runes, but not both. Come back in a
-            while for runes, or simply make your own.
-        """)
+        npc<Amazed>("I work with the Ranged Combat tutor to give out consumable items that you may need for combat such as arrows and runes. However we have had some cheeky people try to take both!")
+        npc<Cheerful>("So, every half an hour, you may come back and claim either arrows OR runes, but not both. Come back in a while for runes, or simply make your own.")
         return@option
     }
     if (player.ownsItem("mind_rune") || player.ownsItem("air_rune")) {
@@ -150,18 +78,12 @@ suspend fun PlayerChoice.claimRunes(): Unit = option("I'd like some air and mind
         return@option
     }
     if (player.inventory.isFull()) {
-        npc<Upset>("""
-            If you had enough space in your inventory I'd give
-            you some mind runes, come back when you do.
-        """)
+        npc<Upset>("If you had enough space in your inventory I'd give you some mind runes, come back when you do.")
         player.inventoryFull()
         return@option
     }
     if (player.inventory.spaces < 2) {
-        npc<Upset>("""
-            If you had enough space in your inventory I'd give
-            you some air runes, come back when you do.
-        """)
+        npc<Upset>("If you had enough space in your inventory I'd give you some air runes, come back when you do.")
         player.inventoryFull()
         return@option
     }
@@ -183,11 +105,7 @@ suspend fun CharacterContext.hasRunes() {
         banked = true
     }
     if (banked) {
-        item("""
-            You have some runes in your bank. Climb the stairs in
-            Lumbridge Castle until you see this icon on your
-            minimap. There you will find a bank.
-        """, "bank_icon", 1200)
+        item("You have some runes in your bank. Climb the stairs in Lumbridge Castle until you see this icon on your minimap. There you will find a bank.", "bank_icon", 1200)
         return
     }
     if (player.inventory.contains("mind_rune")) {

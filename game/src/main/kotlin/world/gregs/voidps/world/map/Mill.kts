@@ -50,10 +50,7 @@ on<ItemOnObject>({ operate && target.id == "hopper" && item.id == "grain" }) { p
         return@on
     }
     if (player["cooks_assistant_talked_to_millie", 0] == 0) {
-        player<Talk>("""
-            Hmm. I should probably ask that lady downstairs how I can
-            make extra fine flour.
-        """)
+        player<Talk>("Hmm. I should probably ask that lady downstairs how I can make extra fine flour.")
         return@on
     }
     if (player.holdsItem("extra_fine_flour")) {

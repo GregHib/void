@@ -22,8 +22,5 @@ on<NPCOption>({ operate && target.id == "iconis" && option == "Take-picture" }) 
 }
 
 suspend fun NPCOption.nonMember() {
-    npc<Talk>("""
-        Good day! I'm afraid you can't use the booth's services on
-        a non-members world. Film costs a lot you know!
-    """)
+    npc<Talk>("Good day! I'm afraid you can't use the booth's services on a non-members world. Film costs a lot you know!")
 }
