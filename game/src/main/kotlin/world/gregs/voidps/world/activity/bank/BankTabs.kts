@@ -18,7 +18,7 @@ fun world.gregs.voidps.engine.inv.Inventory.getFreeToPlayItemCount(): Int {
 }
 
 on<InterfaceSwitch>({ id == "bank" && component == "inventory" && toId == id && toComponent == component }) { player: Player ->
-    when (player.get("bank_item_mode", "swap")) {
+    when (player["bank_item_mode", "swap"]) {
         "swap" -> player.bank.swap(fromSlot, toSlot)
         "insert" -> {
             val fromTab = Bank.getTab(player, fromSlot)

@@ -123,7 +123,7 @@ on<InterfaceOption>({ id == "prayer_orb" && component == "orb" && option == "Tur
     val active = player.toggle(USING_QUICK_PRAYERS)
     val activePrayers = player.getActivePrayerVarKey()
     if (active) {
-        val quickPrayers: List<Any> = player.get(TEMP_QUICK_PRAYERS) ?: player[player.getQuickVarKey(), emptyList()]
+        val quickPrayers: List<Any> = player[TEMP_QUICK_PRAYERS] ?: player[player.getQuickVarKey(), emptyList()]
         if (quickPrayers.isNotEmpty()) {
             player[activePrayers] = quickPrayers
         } else {

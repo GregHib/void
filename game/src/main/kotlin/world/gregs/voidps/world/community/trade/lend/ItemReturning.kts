@@ -38,7 +38,7 @@ on<InterfaceOption>({ id == "returned_items" && component == "item" && option ==
     }
 
     player.message("Demanding return of item.")
-    val name: String? = player.get("lent_to")
+    val name: String? = player["lent_to"]
     val borrower = if (name == null) null else players.get(name)
     if (borrower == null) {
         player.message("There was an issue returning your item.")

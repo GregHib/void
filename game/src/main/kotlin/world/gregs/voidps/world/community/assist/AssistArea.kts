@@ -18,9 +18,9 @@ on<Moved>({ it.contains("assistant") }) { player: Player ->
     when (player.movementType) {
         MoveType.Teleport -> player["assist_point"] = player.tile
         else -> {
-            val point: Tile? = player.get("assist_point")
+            val point: Tile? = player["assist_point"]
             if (point == null || !player.tile.within(point, maximumTileDistance)) {
-                val assistant: Player? = player.get("assistant")
+                val assistant: Player? = player["assistant"]
                 assistant?.closeMenu()
             }
         }

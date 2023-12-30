@@ -63,7 +63,7 @@ fun checkBorrowUntilLogout(player: Player) {
 
 fun checkLoanUntilLogout(player: Player) {
     if (!player.contains("lend_timeout") && player.returnedItems.isFull() && player.contains("lent_to")) {
-        val name: String? = player.get("lent_to")
+        val name: String? = player["lent_to"]
         player.stop("lend_timeout")
         player.softTimers.stop("loan_message")
         val borrower = players.get(name ?: return) ?: return

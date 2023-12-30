@@ -99,12 +99,12 @@ fun generateData(player: Player, file: Int, data: ByteArray): ByteArray {
             QuickChatType.Varp -> {
                 val variable = definition.ids!!.first().first()
                 val key = variables.getVarp(variable)!!
-                return int(player.get(key)!!)
+                return int(player[key]!!)
             }
             QuickChatType.Varbit -> {
                 val variable = definition.ids!!.first().first()
                 val key = variables.getVarbit(variable)!!
-                return int(player.get(key)!!)
+                return int(player[key]!!)
             }
             QuickChatType.CombatLevel -> return byteArrayOf(player.combatLevel.toByte())
             QuickChatType.SlayerAssignment,

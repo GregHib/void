@@ -46,7 +46,7 @@ on<InventoryOption>({ inventory == "inventory" && item.id == "prayer_book" && op
         return@on
     }
     if (player.poisoned) {
-        val poisonDamage: Int = player.get("poison_damage") ?: return@on
+        val poisonDamage: Int = player["poison_damage"] ?: return@on
         var points = (poisonDamage - 20) / 2
         var decrease = poisonDamage
         val prayer = player.levels.get(Skill.Prayer)

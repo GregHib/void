@@ -44,7 +44,7 @@ on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option 
 
 fun cancel(player: Player) {
     if (player.contains("assistant")) {
-        val assistant: Player? = player.get("assistant")
+        val assistant: Player? = player["assistant"]
         assistant?.closeMenu()
     }
 

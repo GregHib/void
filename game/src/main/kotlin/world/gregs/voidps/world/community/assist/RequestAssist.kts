@@ -117,7 +117,7 @@ fun setupAssistant(player: Player, assisted: Player) {
 }
 
 on<InterfaceClosed>({ id == "assist_xp" }) { player: Player ->
-    val assisted: Player = player.get("assisted") ?: return@on
+    val assisted: Player = player["assisted"] ?: return@on
     cancelAssist(player, assisted)
 }
 

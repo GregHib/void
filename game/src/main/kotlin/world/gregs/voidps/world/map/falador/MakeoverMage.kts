@@ -151,7 +151,7 @@ on<InterfaceOption>({ id == "skin_colour" && component.startsWith("colour_") }) 
 }
 
 on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player: Player ->
-    val male = !player.get("makeover_female", false)
+    val male = !player["makeover_female", false]
     val changed = player.body.getColour(BodyColour.Skin) != player["makeover_colour_skin", 0] || player.body.male != male
     player.body.setColour(BodyColour.Skin, player["makeover_colour_skin", 0])
     if (player.body.male != male) {
