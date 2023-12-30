@@ -11,7 +11,10 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.inv.transact.Transaction
 import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.world.interact.dialogue.*
+import world.gregs.voidps.world.interact.dialogue.Happy
+import world.gregs.voidps.world.interact.dialogue.Talk
+import world.gregs.voidps.world.interact.dialogue.Uncertain
+import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -45,22 +48,11 @@ on<ItemOnNPC>({ operate && target.id == "guardian_mummy" && item.id == "pharaohs
 suspend fun CharacterContext.notAnother() {
     npc<Talk>("*sigh* Not another one.")
     player<Unsure>("Another what?")
-    npc<Talk>("""
-        Another 'archaeologist'. I'm not going to let you
-        plunder my master's tomb you know.
-    """)
-    player<Upset>("""
-        That's a shame. Have you got anything else I
-        could do while I'm here?
-    """)
-    npc<Talk>("""
-        If it will keep you out of mischief I suppose I
-        could set something up for you...
-    """)
-    npc<Talk>("""
-        I have a few rooms full of some things you humans
-        might consider valuable, do you want to give it a go?
-    """)
+    npc<Talk>("Another 'archaeologist'.")
+    npc<Talk>("I'm not going to let you plunder my master's tomb you know.")
+    player<Talk>("That's a shame, have you got anything else I could do while I'm here?")
+    npc<Talk>("If it will keep you out of mischief I suppose I could set something up for you...")
+    npc<Talk>("I have a few rooms full of some things you humans might consider valuable, do you want to give it a go?")
     playPyramidPlunder()
 }
 
@@ -93,14 +85,8 @@ suspend fun CharacterContext.itIsDone() {
 suspend fun CharacterContext.sceptreRecharging() {
     player<Talk>("This sceptre seems to have run out of charges.")
     npc<Talk>("You shouldn't have that thing in the first place, thief!")
-    player<Talk>("""
-        If I gave you back some of the artefacts I've taken
-        from the tomb, would you recharge the sceptre for me?
-    """)
-    npc<Talking>("""
-        *sigh* Oh alright. But only if the sceptre is fully
-        empty, I'm not wasting the King's magic...
-    """)
+    player<Talk>("If I gave you back some of the artefacts I've taken from the tomb, would you recharge the sceptre for me.")
+    npc<Talk>("*sigh* Oh alright. But only if the sceptre is fully empty, I'm not wasting the King's magic...")
     choice("Recharge the sceptre with...") {
         option("Gold artefacts?") {
             if (player.inventory.transaction { remove(6, gold); replace("pharaohs_sceptre", "pharaohs_sceptre_3") }) {
@@ -180,39 +166,14 @@ on<ItemOnNPC>({ operate && target.id == "guardian_mummy" && item.id != "pharaohs
 }
 
 suspend fun CharacterContext.soundsLikeFun() {
-    npc<Talk>("""
-        You have five minutes to explore the treasure rooms and
-        collect as many artefacts as you can.
-    """)
-    npc<Talk>("""
-        The artefacts are in the urns, chests and sarcophagi found
-        in each room.
-    """)
-    npc<Talk>("""
-        There are eight treasure rooms, each subsequent room
-        requires higher thieving skills to both enter the room and
-        thieve from the urns and other containers.
-    """)
-    npc<Talk>("""
-        The rewards also become more lucrative the further into
-        the tomb you go.
-    """)
-    npc<Talk>("""
-        You will also have to deactivate a trap in order to enter
-        the main part of each room.
-    """)
-    npc<Talk>("""
-        When you want to move onto the next room you need to
-        find the correct door first.
-    """)
-    npc<Talk>("""
-        There are four possible exits, you must open the door
-        before finding out whether it is the exit or not.
-    """)
-    npc<Talk>("""
-        Opening the doors require picking their locks. Having a
-        lockpick will make this easier.
-    """)
+    npc<Talk>("You have five minutes to explore the treasure rooms and collect as many artefacts as you can.")
+    npc<Talk>("The artefacts are in the urns, chests and sarcophagi found in each room.")
+    npc<Talk>("There are eight treasure rooms, each subsequent room requires higher thieving skills to both enter the room and thieve from the urns and other containers.")
+    npc<Talk>("The rewards also become more lucrative the further into the tomb you go.")
+    npc<Talk>("You will also have to deactivate a trap in order to enter the main part of each room.")
+    npc<Talk>("When you want to move onto the next room you need to find the correct door first.")
+    npc<Talk>("There are four possible exits, you must open the door before finding out whether it is the exit or not.")
+    npc<Talk>("Opening the doors require picking their locks. Having a lockpick will make this easier.")
     anymoreQuestions("How do I get the artefacts?")
 }
 
@@ -239,60 +200,28 @@ suspend fun CharacterContext.iKnowWhatImDoing() {
 }
 
 suspend fun CharacterContext.howDoILeave() {
-    npc<Talk>("""
-        If at any point you decide you need to leave just
-        use a glowing door.
-    """)
-    npc<Talk>("""
-        The game will end and you will be taken out of
-        the pyramid.
-    """)
+    npc<Talk>("If at any point you decide you need to leave just use a glowing door.")
+    npc<Talk>("The game will end and you will be taken out of the pyramid.")
     anymoreQuestions("What about the chests and sarcophagi?")
 }
 
 suspend fun CharacterContext.howToGetArtefacts() {
     npc<Talk>("The artefacts are in the urns, chests and sarcophagi.")
     npc<Talk>("Urns contain snakes that guard them.")
-    npc<Talk>("""
-        The sarcophagi take some strength to open.
-        They take a while to open.
-    """)
-    npc<Talk>("""
-        Of course, Mummies have been known to take a
-        nap in the sarcophagi, so beware.
-    """)
-    npc<Talk>("""
-        The golden chests generally contain better 
-        artefacts, but are also trapped with scarabs!
-    """)
+    npc<Talk>("The sarcophagi take some strength to open. They take a while to open.")
+    npc<Talk>("Of course, Mummies have been known to take a nap in the sarcophagi, so beware.")
+    npc<Talk>("The golden chests generally contain better artefacts, but are also trapped with scarabs!")
     anymoreQuestions("What about the chests and sarcophagi?")
 }
 
 suspend fun CharacterContext.whatToDoWithArtefacts() {
-    npc<Talk>("""
-        There are a number of different artefacts, of three main
-        types. The least valuable are the pottery statuettes and
-        scarabs, and the ivory combs.
-    """)
-    npc<Talk>("""
-        Next are the stone scarabs, statuettes and seals, and
-        finally the gold versions of those artefacts.
-    """)
+    npc<Talk>("There are a number of different artefacts, of three main types. The least valuable are the pottery statuettes and scarabs, and the ivory combs.")
+    npc<Talk>("Next are the stone scarabs, statuettes and seals, and finally the gold versions of those artefacts.")
     npc<Talk>("They are not old, but are well made.")
     player<Talk>("What do I do with artefacts once I've collected them?")
-    npc<Talk>("""
-        That Simon Simpleton, I mean Templeton, will
-        probably give you some money for them.
-    """)
-    npc<Talk>("""
-        He couldn't spot a real artefact if it came up
-        to him and bit him in the face.
-    """)
-    npc<Talk>("""
-        He usually slinks about near the pyramid north-east of
-        Sophanem. I expect he's trying to get some poor fools
-        to steal things from that pyramid as well.
-    """)
+    npc<Talk>("That Simon Simpleton, I mean Templeton, will probably give you some money for them.")
+    npc<Talk>("He couldn't spot a real artefact if it came up to him and bit him in the face.")
+    npc<Talk>("He usually slinks about near the pyramid north-east of Sophanem. I expect he's trying to get some poor fools to steal things from that pyramid as well.")
     npc<Talk>("I expect he'll give you more gold for some than others.")
     anymoreQuestionsSceptre()
 }
@@ -322,21 +251,12 @@ suspend fun CharacterContext.leaveTheTomb() {
 }
 
 suspend fun CharacterContext.whereDidYouHearAboutThat() {
-    npc<Unsure>("Where did you hear about that?")
+    npc<Talk>("Where did you hear about that?")
     player<Talk>("I couldn't possibly say.")
     npc<Talk>("It's the only genuinely valuable artefact in this place.")
-    npc<Talk>("""
-        It links all the great pyramids in the area,
-        and can be used to travel between them.
-    """)
-    npc<Talk>("""
-        It requires charging with offerings of fine craftsmanship,
-        that's why we have so many spare artefacts lying around.
-    """)
-    npc<Talk>("""
-        Anyway, I won't let you get your grubby little
-        hands on the sceptre.
-    """)
+    npc<Talk>("It links all the great pyramids in the area, and can be used to travel between them.")
+    npc<Talk>("It requires charging with offerings of fine craftsmanship, that's why we have so many spare artefacts lying around.")
+    npc<Talk>("Anyway, I won't let you get your grubby little hands on the sceptre.")
     anymoreQuestions("What about the chests and sarcophagi?")
 }
 
