@@ -7,7 +7,7 @@ import world.gregs.voidps.tools.definition.item.Extras
 class ObjectTrapdoors(private val decoder: Array<ObjectDefinitionFull>) : Pipeline.Modifier<MutableMap<Int, Extras>> {
 
     private fun check(id: Int): Boolean {
-        val def = decoder.get(id)
+        val def = decoder[id]
         if (!def.name.contains("trap", true)) {
             return false
         }
@@ -20,7 +20,7 @@ class ObjectTrapdoors(private val decoder: Array<ObjectDefinitionFull>) : Pipeli
     override fun modify(content: MutableMap<Int, Extras>): MutableMap<Int, Extras> {
         content.forEach { (id, content) ->
             val (_, extras) = content
-            val def = decoder.get(id)
+            val def = decoder[id]
             val name = def.name.replace(" ", "")
             if (name.contains("trapdoor", true)) {
                 val option = def.options?.first()

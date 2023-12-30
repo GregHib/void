@@ -23,7 +23,7 @@ class MinimapIconPainter(
     private val nameAreas = mutableMapOf<Int, MutableList<WorldMapInfoDefinition>>()
 
     fun startup(cache: Cache) {
-        val stringId = "${worldMapDefinitions.get(DEFAULTS).map}_staticelements"
+        val stringId = "${worldMapDefinitions[DEFAULTS].map}_staticelements"
 
         val archiveId = cache.getArchiveId(WORLD_MAP, stringId)
         var length = cache.archiveCount(WORLD_MAP, archiveId)
@@ -58,7 +58,7 @@ class MinimapIconPainter(
     }
 
     private fun loadAreaNames(length: Int, positions: IntArray, ids: IntArray) {
-        val sections = worldMapDefinitions.get(28).sections ?: return
+        val sections = worldMapDefinitions[28].sections ?: return
         for (i in 0 until length) {
             val x = positions[i] shr 14 and 0x3fff
             val y = positions[i] and 0x3fff
@@ -67,7 +67,7 @@ class MinimapIconPainter(
                 if (level == it.level && it.minX <= x && x <= it.maxX && y >= it.minY && y <= it.maxY) {
                     val key = Tile.id(x, y, level)
                     val list = nameAreas.getOrPut(key) { mutableListOf() }
-                    list.add(worldMapInfoDefinitions.get(ids[i]))
+                    list.add(worldMapInfoDefinitions[ids[i]])
                     break
                 }
             }
@@ -99,7 +99,7 @@ class MinimapIconPainter(
         objects?.forEach {
             val definition = objectDefinitions.getOrNull(it.id) ?: return@forEach
             if (definition.mapDefinitionId != -1) {
-                val mapInfo = worldMapInfoDefinitions.get(definition.mapDefinitionId)
+                val mapInfo = worldMapInfoDefinitions[definition.mapDefinitionId]
                 val sprite = mapInfo.toSprite(false)
                 if (sprite != null) {
                     val x = regionX * 64 + it.x
@@ -113,7 +113,7 @@ class MinimapIconPainter(
 
     private fun WorldMapInfoDefinition.toSprite(bool: Boolean): IndexedSprite? {
         val i = if (!bool) spriteId else highlightSpriteId
-        return if (i > 0) spriteDefinitions.get(i).sprites?.firstOrNull() else null
+        return if (i > 0) spriteDefinitions[i].sprites?.firstOrNull() else null
     }
 
 }

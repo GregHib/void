@@ -33,10 +33,10 @@ object AnimationNames {
                 map.getOrPut(render) { mutableListOf() }.add(id)
             }
             if (def.leftHandItem != -1) {
-                map.getOrPut(toIdentifier(itemDecoder.get(def.leftHandItem).name)) { mutableListOf() }.add(id)
+                map.getOrPut(toIdentifier(itemDecoder[def.leftHandItem].name)) { mutableListOf() }.add(id)
             }
             if (def.rightHandItem != -1) {
-                map.getOrPut(toIdentifier(itemDecoder.get(def.rightHandItem).name)) { mutableListOf() }.add(id)
+                map.getOrPut(toIdentifier(itemDecoder[def.rightHandItem].name)) { mutableListOf() }.add(id)
             }
         }
 

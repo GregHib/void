@@ -7,7 +7,7 @@ import world.gregs.voidps.type.random
 
 class Wander(
     private val npc: NPC,
-    private val spawn: Tile = npc.get("spawn_tile")!!
+    private val spawn: Tile = npc["spawn_tile"]!!
 ) : Movement(npc) {
 
     override fun tick() {

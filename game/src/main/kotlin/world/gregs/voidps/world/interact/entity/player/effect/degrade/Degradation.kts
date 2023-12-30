@@ -7,9 +7,9 @@ import world.gregs.voidps.engine.inv.ItemChanged
 // Switch two tracked items
 on<ItemChanged>({ containsCharge(it, inventory, index, from, fromIndex) }) { player: Player ->
     val original = Degrade.variable(from, fromIndex)
-    val originalCharge: Int? = player.get(original)
+    val originalCharge: Int? = player[original]
     val update = Degrade.variable(inventory, index)
-    val updateCharge: Int? = player.get(update)
+    val updateCharge: Int? = player[update]
     player["${original}_${update}"] = true
     if (originalCharge != null) {
         player[update] = originalCharge

@@ -9,7 +9,7 @@ class WorldMapLinks(
 
     fun getLinks(): List<Pair<Tile, Tile>> {
         val list = mutableListOf<Pair<Tile, Tile>>()
-        val script = scriptDecoder.get(295)
+        val script = scriptDecoder[295]
         val ints = script.intOperands!!
         for (i in ints.indices) {
             val int = ints[i]

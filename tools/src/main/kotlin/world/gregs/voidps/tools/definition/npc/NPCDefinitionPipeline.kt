@@ -99,12 +99,12 @@ object NPCDefinitionPipeline {
         }
 
         collectUnknownPages("osrs-npc", incomplete, null, pages, listOf("infobox monster", "infobox npc")) { id, page ->
-            (pages[id] ?: PageCollector(id, decoder.get(id).name)).apply {
+            (pages[id] ?: PageCollector(id, decoder[id].name)).apply {
                 osrs = page
             }
         }
         collectUnknownPages("rs3-npc", incomplete, null, pages, listOf("infobox monster", "infobox npc")) { id, page ->
-            (pages[id] ?: PageCollector(id, decoder.get(id).name)).apply {
+            (pages[id] ?: PageCollector(id, decoder[id].name)).apply {
                 rs3 = page
             }
         }

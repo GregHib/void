@@ -27,7 +27,7 @@ private val logger = InlineLogger()
 suspend fun Bot.goToNearest(tag: String) = goToNearest { it.tags.contains(tag) }
 
 suspend fun Bot.goToNearest(block: (AreaDefinition) -> Boolean): Boolean {
-    val current: AreaDefinition? = this.get("area")
+    val current: AreaDefinition? = this["area"]
     if (current != null && block.invoke(current)) {
         return true
     }

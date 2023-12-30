@@ -83,7 +83,7 @@ class CombatMovement(
 
     private fun retreat(character: NPC): Boolean {
         val wanderRadius = character.def["wander_radius", 5]
-        val spawn: Tile = character.get("respawn_tile") ?: return false
+        val spawn: Tile = character["respawn_tile"] ?: return false
         if (!character.tile.within(spawn, wanderRadius)) {
             character.walkTo(spawn)
             return true

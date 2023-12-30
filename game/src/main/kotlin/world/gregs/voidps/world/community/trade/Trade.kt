@@ -21,7 +21,7 @@ object Trade {
     }
 
     fun getPartner(player: Player): Player? {
-        val partner: Player? = player.get("trade_partner")
+        val partner: Player? = player["trade_partner"]
         if (partner == null) {
             player.closeMenu()
         }

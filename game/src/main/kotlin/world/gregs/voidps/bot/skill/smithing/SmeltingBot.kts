@@ -77,7 +77,7 @@ suspend fun Bot.smelt(map: AreaDefinition, set: GearDefinition) {
         // Make All
         var index = 0
         for (i in 0 until 10) {
-            val id = player.get<Int>("skill_creation_item_${i}") ?: continue
+            val id: Int = player.get("skill_creation_item_${i}") ?: continue
             if (id == barId) {
                 index = i
                 break

@@ -20,7 +20,7 @@ val scope = CoroutineScope(Contexts.Game)
 val logger = InlineLogger("Bot")
 
 onBot<StartBot>({ it.contains("task") && !it.contains("task_started") }) { bot: Bot ->
-    val name: String = bot.get("task")!!
+    val name: String = bot["task"]!!
     val task = tasks.get(name)
     if (task == null) {
         bot.clear("task")
@@ -32,11 +32,11 @@ onBot<StartBot>({ it.contains("task") && !it.contains("task_started") }) { bot: 
 on<World, AiTick> {
     players.forEach { player ->
         if (player.isBot) {
-            val bot: Bot = player.get("bot")!!
+            val bot: Bot = player["bot"]!!
             if (!bot.contains("task")) {
                 assign(bot, tasks.assign(bot))
             }
-            val events: ConcurrentLinkedQueue<Event> = player.get("events")!!
+            val events: ConcurrentLinkedQueue<Event> = player["events"]!!
             while (events.isNotEmpty()) {
                 val event = events.poll()
                 bot.botEvents.emit(event)
