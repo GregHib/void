@@ -4,7 +4,6 @@ import io.mockk.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -105,9 +104,9 @@ internal class VariablesTest {
         // Given
         every { variable.defaultValue } returns 42
         // When
-        assertThrows<NullPointerException> {
-            variables.get(key)
-        }
+        val result: Int? = variables.get(key)
+        // Then
+        assertNull(result)
     }
 
     @Test

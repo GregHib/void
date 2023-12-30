@@ -52,7 +52,7 @@ Tab.values().forEach { tab ->
 on<InterfaceOpened>({ id == it.gameFrame.name }) { player: Player ->
     list.forEach { name ->
         if (name.endsWith("_spellbook")) {
-            val book = player.get<Int>("spellbook_config") and 0x3
+            val book = player["spellbook_config", 0] and 0x3
             player.open(when (book) {
                 1 -> "ancient_spellbook"
                 2 -> "lunar_spellbook"

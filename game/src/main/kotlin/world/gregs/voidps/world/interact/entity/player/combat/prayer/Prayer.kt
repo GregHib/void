@@ -18,7 +18,7 @@ object Prayer {
     }
 
     fun setTurmoilTarget(source: Character, target: Character) {
-        if (source.praying("turmoil") && source.getOrNull<Int>("turmoil_target") != if (target is NPC) -target.index else target.index) {
+        if (source.praying("turmoil") && source.get<Int>("turmoil_target") != if (target is NPC) -target.index else target.index) {
             source["turmoil_attack_bonus"] = (target.levels.get(Skill.Attack).coerceAtMost(99) * 0.15).toInt()
             source["turmoil_strength_bonus"] = (target.levels.get(Skill.Strength).coerceAtMost(99) * 0.1).toInt()
             source["turmoil_defence_bonus"] = (target.levels.get(Skill.Defence).coerceAtMost(99) * 0.15).toInt()

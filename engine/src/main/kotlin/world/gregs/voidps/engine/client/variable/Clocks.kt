@@ -16,7 +16,7 @@ fun Character.stop(key: String) {
 }
 
 fun Character.hasClock(key: String, base: Int = GameLoop.tick): Boolean {
-    val tick: Int = variables.getOrNull(key) ?: return false
+    val tick: Int = variables.get(key) ?: return false
     if (tick == -1) {
         return true
     }
@@ -24,7 +24,7 @@ fun Character.hasClock(key: String, base: Int = GameLoop.tick): Boolean {
 }
 
 fun Character.remaining(key: String, base: Int = GameLoop.tick): Int {
-    val tick: Int = variables.getOrNull(key) ?: return -1
+    val tick: Int = variables.get(key) ?: return -1
     if (tick == -1) {
         return -1
     }

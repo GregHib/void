@@ -32,7 +32,7 @@ on<VariableSet>({ key == "special_attack" && to == true && isGraniteMaul(it.weap
     if (!player.underAttack) {
         return@on
     }
-    val target: Character? = player.getOrNull("target")
+    val target: Character? = player.get("target")
     if (target == null) {
         player.specialAttack = false
         return@on

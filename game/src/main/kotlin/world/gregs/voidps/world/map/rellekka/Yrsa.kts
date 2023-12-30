@@ -80,8 +80,8 @@ on<InterfaceOption>({ id == "yrsas_shoe_store" && component == "colours" }) { pl
 }
 
 on<InterfaceOption>({ id == "yrsas_shoe_store" && component == "confirm" }) { player: Player ->
-    player.body.setLook(BodyPart.Feet, player["makeover_shoes"])
-    player.body.setColour(BodyColour.Feet, player["makeover_colour_shoes"])
+    player.body.setLook(BodyPart.Feet, player["makeover_shoes", 0])
+    player.body.setColour(BodyColour.Feet, player["makeover_colour_shoes", 0])
     player.flagAppearance()
     player.closeMenu()
     npc<Cheerful>("yrsa", "Hey, They look great!")

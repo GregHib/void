@@ -28,7 +28,7 @@ class PlayerVariables(
         if (!variable.transmit) {
             return
         }
-        val value = getOrNull(key) ?: variable.defaultValue ?: return
+        val value = get(key) ?: variable.defaultValue ?: return
         variable.send(client ?: return, value)
     }
 

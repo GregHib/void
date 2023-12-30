@@ -46,7 +46,7 @@ suspend inline fun <reified T : Entity, reified E : Event> Bot.await(
 fun Bot.resume(type: Any) = resume(type, Unit)
 
 fun <T : Any> Bot.resume(type: Any, value: T) {
-    if (player.contains("suspension") && player.get<Any>("suspension") == type) {
+    if (player.get<Any>("suspension") == type) {
         val cont: CancellableContinuation<T>? = player.remove("cont")
         cont?.resume(value)
     }

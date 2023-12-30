@@ -107,7 +107,7 @@ suspend fun Bot.fight(map: AreaDefinition, skill: Skill, races: Set<String>) {
         }
         npcOption(target, "Attack")
         await("combat", timeout = 30)
-        target.getOrNull<Tile>("death_tile")?.let {
+        target.get<Tile>("death_tile")?.let {
             pickupItems(it, 4)
         }
         equipAmmo(skill)

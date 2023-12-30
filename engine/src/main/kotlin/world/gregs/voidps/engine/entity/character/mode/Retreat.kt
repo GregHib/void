@@ -12,7 +12,7 @@ import world.gregs.voidps.type.Tile
 class Retreat(
     private val npc: NPC,
     private val target: Entity,
-    private val spawn: Tile = npc["spawn_tile"],
+    private val spawn: Tile = npc.get("spawn_tile")!!,
     private val maxRetreatRadius: Int = npc.def["max_retreat_distance", 25],
     private val maxRadius: Int = npc.def["max_retreat_distance", 25]
 ) : Movement(npc) {

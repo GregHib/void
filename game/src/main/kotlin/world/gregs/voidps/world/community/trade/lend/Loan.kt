@@ -50,7 +50,7 @@ object Loan {
         }
         reset(player)
         logger.info { "$player discarded item $item" }
-        val name: String? = player.getOrNull("borrowed_from")
+        val name: String? = player.get("borrowed_from")
         if (name == null) {
             logger.error { "Unable to find borrowed item partner for $player" }
         } else {

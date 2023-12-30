@@ -13,7 +13,7 @@ val minRespawnTick = 280
 val maxRespawnTick = 530
 
 on<Registered>({ it.id.startsWith("fishing_spot") }) { npc: NPC ->
-    val area: Area = npc.getOrNull("area") ?: return@on
+    val area: Area = npc.get("area") ?: return@on
     move(npc, area)
 }
 

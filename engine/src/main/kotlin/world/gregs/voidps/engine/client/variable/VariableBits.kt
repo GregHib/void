@@ -9,7 +9,7 @@ class VariableBits(
 ) {
 
     fun contains(key: String, id: Any): Boolean {
-        val value: List<Any> = variables.getOrNull(key) ?: return false
+        val value: List<Any> = variables.get(key) ?: return false
         return value.contains(id)
     }
 
@@ -26,7 +26,7 @@ class VariableBits(
     }
 
     fun remove(key: String, value: Any, refresh: Boolean): Boolean {
-        val values: MutableList<Any> = variables.getOrNull(key) ?: return false
+        val values: MutableList<Any> = variables.get(key) ?: return false
         if (values.remove(value)) {
             if (refresh) {
                 variables.send(key)

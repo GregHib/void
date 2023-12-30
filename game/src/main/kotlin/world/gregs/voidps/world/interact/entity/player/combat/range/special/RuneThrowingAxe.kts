@@ -19,11 +19,10 @@ import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
-import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isThrowingAxe(weapon: Item) = weapon.id == "rune_throwing_axe"
@@ -50,7 +49,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
 
 on<CombatHit>({ target -> source is Player && special && isThrowingAxe(weapon) && target.inMultiCombat }) { target: Character ->
     val player = source as Player
-    val chain: MutableSet<Int> = player["chain_hits"]
+    val chain: MutableSet<Int> = player.getOrPut("chain_hits") { mutableSetOf() }
     val characters = if (target is Player) players else npcs
     for (tile in target.tile.spiral(4)) {
         characters[tile].forEach { character ->

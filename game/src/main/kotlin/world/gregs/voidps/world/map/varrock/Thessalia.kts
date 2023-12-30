@@ -103,7 +103,7 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component.startsWith("part
 
 on<InterfaceOption>({ id == "thessalias_makeovers" && component == "styles" }) { player: Player ->
     val part = player["makeover_body_part", "top"]
-    val previous = fullBodyChest(player["makeover_top"], player.male)
+    val previous = fullBodyChest(player["makeover_top", 0], player.male)
     if ((part == "arms" || part == "wrists") && previous) {
         return@on
     }
@@ -133,12 +133,12 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component == "colours" }) 
 }
 
 on<InterfaceOption>({ id == "thessalias_makeovers" && component == "confirm" }) { player: Player ->
-    player.body.setLook(BodyPart.Chest, player["makeover_top"])
-    player.body.setLook(BodyPart.Arms, player["makeover_arms"])
-    player.body.setLook(BodyPart.Hands, player["makeover_wrists"])
-    player.body.setLook(BodyPart.Legs, player["makeover_legs"])
-    player.body.setColour(BodyColour.Top, player["makeover_colour_top"])
-    player.body.setColour(BodyColour.Legs, player["makeover_colour_legs"])
+    player.body.setLook(BodyPart.Chest, player["makeover_top", 0])
+    player.body.setLook(BodyPart.Arms, player["makeover_arms", 0])
+    player.body.setLook(BodyPart.Hands, player["makeover_wrists", 0])
+    player.body.setLook(BodyPart.Legs, player["makeover_legs", 0])
+    player.body.setColour(BodyColour.Top, player["makeover_colour_top", 0])
+    player.body.setColour(BodyColour.Legs, player["makeover_colour_legs", 0])
     player.flagAppearance()
     player.closeMenu()
     npc<Cheerful>("thessalia", "A marvellous choice. You look splendid!")

@@ -18,7 +18,7 @@ fun world.gregs.voidps.engine.inv.Inventory.getFreeToPlayItemCount(): Int {
 }
 
 on<InterfaceSwitch>({ id == "bank" && component == "inventory" && toId == id && toComponent == component }) { player: Player ->
-    when (player.get<String>("bank_item_mode")) {
+    when (player.get("bank_item_mode", "swap")) {
         "swap" -> player.bank.swap(fromSlot, toSlot)
         "insert" -> {
             val fromTab = Bank.getTab(player, fromSlot)
@@ -37,7 +37,7 @@ on<InterfaceOption>({ id == "bank" && component.startsWith("tab_") && option == 
 }
 
 on<InterfaceOption>({ id == "bank" && component == "item_mode" && option == "Toggle swap/insert" }) { player: Player ->
-    val value: String = player["bank_item_mode"]
+    val value: String = player["bank_item_mode", "swap"]
     player["bank_item_mode"] = if (value == "insert") "swap" else "insert"
 }
 

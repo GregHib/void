@@ -25,7 +25,7 @@ on<Registered>({ it.id == "ducklings" }) { npc: NPC ->
 fun isDuck(it: NPC) = it.id.startsWith("duck") && it.id.endsWith("swim")
 
 on<Death>({ isDuck(it) }) { npc: NPC ->
-    val ducklings: NPC = npc.getOrNull("ducklings") ?: return@on
+    val ducklings: NPC = npc.get("ducklings") ?: return@on
     ducklings.forceChat = "Eek!"
     followParent(ducklings)
 }

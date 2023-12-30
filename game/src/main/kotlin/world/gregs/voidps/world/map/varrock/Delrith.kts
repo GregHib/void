@@ -75,7 +75,7 @@ fun CharacterContext.setCutsceneEnd(instance: Region) {
 }
 
 fun CharacterContext.endCutscene(instance: Region, tile: Tile? = null) {
-    val offset: Delta = player.getOrNull("demon_slayer_offset") ?: return
+    val offset: Delta = player.get("demon_slayer_offset") ?: return
     player.tele(tile ?: player.tile.minus(offset))
     stopCutscene(instance)
     player.clearCamera()
@@ -91,7 +91,7 @@ on<Unregistered>({ it.contains("demon_slayer_instance") }) { player: Player ->
 }
 
 fun exitArea(player: Player, to: Tile): Boolean {
-    val offset: Delta = player.getOrNull("demon_slayer_offset") ?: return false
+    val offset: Delta = player.get("demon_slayer_offset") ?: return false
     val actual = to.minus(offset)
     return !area.contains(actual) && !player.hasClock("demon_slayer_instance_exit")
 }

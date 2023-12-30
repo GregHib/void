@@ -55,7 +55,7 @@ on<Death> { npc: NPC ->
         npc.attackers.clear()
         npc.softTimers.stopAll()
         npcs.removeIndex(npc)
-        val respawn = npc.getOrNull<Tile>("respawn_tile")
+        val respawn = npc.get<Tile>("respawn_tile")
         if (respawn != null) {
             pause(npc["respawn_delay", 60])
             npc.damageDealers.clear()

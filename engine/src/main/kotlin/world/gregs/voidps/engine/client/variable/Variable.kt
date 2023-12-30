@@ -49,16 +49,12 @@ interface Variable {
         return variables.contains(key)
     }
 
-    operator fun <T : Any> get(key: String): T {
+    operator fun <T : Any> get(key: String): T? {
         return variables.get(key)
     }
 
     operator fun <T : Any> get(key: String, default: T): T {
         return variables.get(key, default)
-    }
-
-    fun <T : Any> getOrNull(key: String): T? {
-        return variables.getOrNull(key)
     }
 
     fun <T : Any> getOrPut(key: String, block: () -> T): T {

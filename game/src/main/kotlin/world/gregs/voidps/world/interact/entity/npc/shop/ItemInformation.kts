@@ -35,8 +35,8 @@ on<InterfaceOption>({ id == "item_info" && component == "exit" }) { player: Play
 }
 
 on<ItemChanged>({ it.contains("shop") && it.contains("info_sample") && it.contains("info_index") }) { player: Player ->
-    val shop: String = player["shop"]
-    val index: Int = player["info_index"]
+    val shop: String = player.get("shop") ?: return@on
+    val index: Int = player.get("info_index") ?: return@on
     if (inventory == shop && this.index == index) {
         player["item_info_price"] = if (this.item.amount == 0) 0 else Price.getPrice(player, item.id, index, this.item.amount)
     }

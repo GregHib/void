@@ -17,7 +17,7 @@ object Bank {
         val max = player.bank.count
         var total = 0
         for (tab in tabs) {
-            val count: Int = player["bank_tab_$tab"]
+            val count: Int = player["bank_tab_$tab", 0]
             if (count == 0) {
                 continue
             }
@@ -51,7 +51,7 @@ object Bank {
     }
 
     fun tabIndex(player: Player, tab: Int): Int {
-        return (1 until tab).sumOf { t -> player.get<Int>("bank_tab_$t") }
+        return (1 until tab).sumOf { t -> player.get<Int>("bank_tab_$t", 0) }
     }
 }
 
