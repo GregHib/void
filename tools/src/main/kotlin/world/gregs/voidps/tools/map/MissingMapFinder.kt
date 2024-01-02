@@ -146,7 +146,7 @@ object MissingMapFinder {
     }
 
     private fun getKeys(target: Cache): Xteas {
-        val file = temp.resolve("${target.scope}-${target.id}.keys")
+        val file = temp.resolve("${target.scope}-${target.id}.keys.json")
         val content = if (file.exists()) {
             file.readText()
         } else {
