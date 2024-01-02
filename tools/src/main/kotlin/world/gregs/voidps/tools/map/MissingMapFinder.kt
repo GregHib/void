@@ -25,7 +25,7 @@ private data class Cache(
  */
 object MissingMapFinder {
 
-    private val temp = File("./temp/")
+    private val temp = File("./temp/xteas/")
     private val json = jacksonObjectMapper().apply {
         configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
     }
