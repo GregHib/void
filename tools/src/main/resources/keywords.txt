@@ -1183,10 +1183,6 @@
 99
 999
 9999
-99999
-999999
-9999999
-99999999
 9pt
 9x
 a
@@ -1811,6 +1807,7 @@ boneyard
 bonus
 bonuses
 book
+booklet
 bookcases
 bookofscrolls
 books
@@ -1846,6 +1843,20 @@ boyfriend
 bp
 bq
 br
+burst
+bro
+brochure
+brother
+sis
+sister
+aunt
+uncle
+father
+mother
+mom
+mum
+dad
+cousin
 brace
 bracelet
 bracelets
@@ -2044,6 +2055,7 @@ cata
 catalytic
 catapult
 catch
+catcher
 catching
 categorise
 categorised
@@ -2607,6 +2619,7 @@ decant
 declared
 decline
 decor
+decorate
 decoration
 decorative
 dedicate
@@ -2650,6 +2663,8 @@ deltooltip
 demon
 demonic
 den
+dial
+dials
 departure
 depicts
 deposit
@@ -2693,6 +2708,7 @@ dg
 dh
 dhide
 di
+dibber
 dia
 diagonal
 diagonalcut
@@ -2731,6 +2747,7 @@ direct
 direction
 directions
 director
+directory
 disable
 disablebutton
 disableconfirm
@@ -3000,7 +3017,6 @@ edge
 edgeville
 editable
 ee
-eeeeeeeeeeeeee
 ef
 effect
 effects
@@ -3071,6 +3087,7 @@ encode
 encourage
 encouraging
 end
+endless
 endbit
 ended
 endhint
@@ -3371,9 +3388,11 @@ flows
 flute
 flutes
 fly
+flyer
 fm
 fn
 fo
+folder
 focus
 foe
 foes
@@ -3470,6 +3489,7 @@ ft
 ftp
 fu
 ful
+fuel
 fulfil
 full
 fullscreen
@@ -3544,6 +3564,7 @@ gaol
 garagorshuun
 garamond
 garden
+gardening
 gargoyleboss
 gates
 gatestone
@@ -3558,6 +3579,8 @@ gb
 gc
 gd
 ge
+gear
+gears
 gemini
 gender
 general
@@ -3925,6 +3948,7 @@ historyreset
 hit
 hitmark
 hitpoint
+hitpoints
 hitsplat
 hitsplats
 hitting
@@ -4020,6 +4044,10 @@ hv
 hw
 hx
 hy
+hieroglyphics
+hieroglyphic
+hieroglyphs
+hieroglyph
 hybrid
 hydra
 hyperlink
@@ -4093,6 +4121,8 @@ il
 ill
 illusive
 im
+bevel
+emboss
 image
 images
 imp
@@ -4110,6 +4140,8 @@ impulses
 injure
 injury
 in
+infinite
+infinity
 ing
 inability
 inactive
@@ -4545,6 +4577,7 @@ kril
 ks
 kt
 ku
+kudo
 kudos
 kuradal
 kv
@@ -4622,6 +4655,8 @@ l7
 l8
 l9
 la
+lake
+lazy
 labels
 labyrinth
 ladder
@@ -4666,6 +4701,7 @@ leader
 leaders
 leads
 leaf
+leaflet
 leafy
 leafytree
 leafytree02
@@ -5059,6 +5095,7 @@ m7
 m8
 m9
 ma
+marasamaw
 mace
 machine
 machines
@@ -5070,6 +5107,9 @@ madness
 mage
 magenta
 magic
+zuriel
+magick
+magicks
 magical
 magicoff
 magicoff2
@@ -5385,6 +5425,7 @@ museum
 mushroom
 mushrooms
 music
+combo
 musiceffect
 musiceffects
 muspah
@@ -5396,6 +5437,8 @@ mvp
 mw
 mx
 my
+mystic
+mystical
 my2arm
 myq3
 myre
@@ -5822,6 +5865,7 @@ onyx
 oo
 ooglog
 op
+opp
 op1
 op2
 opal
@@ -5937,6 +5981,8 @@ p7
 p8
 p9
 pa
+pamphlet
+papa
 parrot
 pack
 package
@@ -6001,6 +6047,7 @@ patch
 patchy
 path
 paths
+pathway
 pathways
 pattern
 pause
@@ -6164,6 +6211,7 @@ pop
 populate
 populatedisplay
 port
+ports
 port1
 port2
 port3
@@ -6199,6 +6247,7 @@ powerful
 powers
 poxstead
 pp
+peril
 pq
 pr
 pr42ibit13
@@ -6211,6 +6260,7 @@ prayeron
 prayers
 prd
 pre
+priest
 precise
 prefix
 prefixes
@@ -6266,6 +6316,7 @@ product
 products
 profanity
 profile
+prog
 progress
 progressbar
 progression
@@ -6290,6 +6341,7 @@ ps
 pt
 pts
 pu
+puddle
 public
 publishing
 pull
@@ -6306,6 +6358,7 @@ purple
 push
 put
 puzzle
+roguesden
 puzzles
 pv
 pvp
@@ -6840,6 +6893,7 @@ ible
 esque
 ism
 dom
+domestic
 ance
 ence
 ment
@@ -7055,6 +7109,7 @@ ropes
 rosa
 rose
 rotate
+rotation
 rott
 round
 rounds
@@ -7188,6 +7243,8 @@ sawmill
 say
 sb
 sc
+scavenger
+scavengers
 scare
 scared
 fri
@@ -7250,6 +7307,7 @@ seas
 season
 seasonal
 seasons
+secateur
 secateurs
 second
 secondary
@@ -7638,6 +7696,7 @@ simply
 simulation
 sin
 since
+sinister
 sindarpos
 single
 sink
@@ -7667,6 +7726,7 @@ skillmulti
 skills
 skilltotal
 skin
+skinned
 skins
 skip
 skipping
@@ -7724,6 +7784,7 @@ smoking
 smuggler
 sn
 snake
+sneak
 snail
 snapdragon
 snapshot
@@ -7782,6 +7843,7 @@ speak
 speaking
 spears
 spec
+specimen
 specenergy
 special
 species
@@ -7876,6 +7938,7 @@ stat
 statbuttondraw
 statdraw
 state
+statement
 states
 static
 staticons
@@ -7982,6 +8045,8 @@ suit
 suitable
 sullen
 summ
+sumn
+sumon
 summary
 summer
 summers
@@ -8135,6 +8200,7 @@ tears
 technique
 technology
 tele
+teleother
 teleblock
 teledirection
 telekinetic
@@ -8343,6 +8409,8 @@ toys
 tp
 tq
 tr
+trowl
+trace
 treat
 track
 tracker
@@ -8777,6 +8845,7 @@ want
 wanted
 wants
 war
+warn
 ward
 wardrobes
 wargames
@@ -9055,7 +9124,6 @@ xv
 xw
 xx
 xxxx
-xxxxxxxxxxxxx
 xy
 xz
 y
@@ -9096,6 +9164,12 @@ yb
 yc
 yd
 ye
+yel
+grn
+gre
+blu
+blk
+wht
 year
 years
 yellow
@@ -9193,6 +9267,7 @@ zm
 zmi
 zn
 zo
+zodiac
 zogre
 zombie
 zombiism
