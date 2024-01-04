@@ -1236,6 +1236,7 @@ abyss
 abyssal
 abyssalsire
 ac
+acorn
 acc
 acc0ss
 accept
@@ -1487,6 +1488,7 @@ artistry
 assassin
 assassinate
 as
+ashes
 ascend
 ascent
 asgarnia
@@ -1812,6 +1814,7 @@ bookcases
 bookofscrolls
 books
 bool
+boolean
 boosts
 booth
 boots
@@ -1905,6 +1908,7 @@ bs
 bt
 btn
 bu
+bull
 bush
 hedge
 bubble
@@ -1958,6 +1962,7 @@ bw
 bwo
 bx
 by
+byte
 bz
 c
 c1
@@ -2146,6 +2151,7 @@ chatting
 cheating
 cheats
 check
+checked
 checkavailable
 checkbox
 checker
@@ -2191,6 +2197,7 @@ city
 cj
 ck
 cl
+cloud
 cloak
 claim
 claimed
@@ -2246,6 +2253,7 @@ cm
 cmb
 cn
 co
+conj
 coal
 cocktails
 coconut
@@ -2438,6 +2446,10 @@ cox
 cp
 cq
 cr
+crcs
+tightrope
+circus
+critical
 cruise
 crab
 crabs
@@ -2479,6 +2491,7 @@ crunchies
 crunchy
 crunchy2
 crush
+crushing
 crusty
 cry
 crypt
@@ -2775,6 +2788,7 @@ distant
 distilled
 distillery
 distinct
+distract
 distractor
 distracts
 distribution
@@ -2821,6 +2835,7 @@ dpm
 dps
 dq
 dr
+drip
 draconic
 drag
 dragcomplete
@@ -2887,6 +2902,7 @@ ds
 ds2
 dt
 du
+dust
 due
 duel
 duelling
@@ -3010,6 +3026,7 @@ eat
 eaters
 eats
 eb
+ebon
 ec
 ecto
 ed
@@ -3041,6 +3058,7 @@ el
 elder
 elderly
 ele
+electric
 element
 elemental
 elements
@@ -3127,6 +3145,7 @@ esc
 escape
 especially
 espionage
+ess
 esse
 essence
 et
@@ -3229,6 +3248,8 @@ f7
 f8
 f9
 fa
+famine
+fall
 factory
 fadable
 fade
@@ -3274,6 +3295,8 @@ fb
 fc
 fd
 fe
+feast
+fetch
 fealty
 fear
 fearless
@@ -3322,6 +3345,7 @@ filtertest
 filterupdate
 fin
 finger
+fingers
 final
 finallocation
 finally
@@ -3353,7 +3377,10 @@ fixme
 fj
 fk
 fl
+flush
+flask
 flame
+flames
 flaming
 flag
 flags
@@ -3579,6 +3606,9 @@ gb
 gc
 gd
 ge
+gen
+generate
+generator
 gear
 gears
 gemini
@@ -3710,6 +3740,7 @@ grumpy
 gs
 gt
 gu
+gui
 gauge
 guam
 guard
@@ -3827,6 +3858,7 @@ halberdier
 half
 hall
 hallowed
+halloween
 hally
 ham
 hammer
@@ -4042,6 +4074,7 @@ hurt
 huzamogaarb
 hv
 hw
+hween
 hx
 hy
 hieroglyphics
@@ -4223,6 +4256,7 @@ insulting
 insurance
 insured
 int
+integer
 intelligence
 intenum
 inter
@@ -5139,6 +5173,7 @@ mal
 malady
 male
 man
+mantis
 manage
 management
 managment
@@ -5256,6 +5291,7 @@ mf
 mg
 mh
 mi
+missile
 mice
 middle
 midi
@@ -5311,7 +5347,6 @@ mj
 mk
 ml
 mm
-mmmmmmmm
 mn
 mo
 mob
@@ -5366,6 +5401,7 @@ month
 monument
 moody
 moonclan
+morph
 mor-ul-rek
 more
 morning
@@ -5799,6 +5835,8 @@ obviously
 ocean
 sea
 oc
+octo
+octopus
 occ
 occult
 oculus
@@ -6096,9 +6134,12 @@ personality
 perspective
 persuade
 pest
+pester
 pestilent
 pet
 pete
+petrifying
+petrify
 petlist
 pets
 pf
@@ -6151,6 +6192,7 @@ pj
 pk
 pl
 pla
+plague
 place
 placed
 placeholder
@@ -6305,6 +6347,7 @@ priw
 gielinor
 prizes
 pro
+proj
 probable
 proc
 proceed
@@ -6321,6 +6364,7 @@ progress
 progressbar
 progression
 project
+projectile
 promoting
 prompt
 properly
@@ -6341,6 +6385,7 @@ ps
 pt
 pts
 pu
+pup
 puddle
 public
 publishing
@@ -6786,6 +6831,8 @@ r7
 r8
 r9
 ra
+rending
+rain
 rabbit
 rabbits
 race
@@ -7435,6 +7482,7 @@ sf
 sfx
 sg
 sh
+shot
 shock
 sad
 upset
@@ -7631,6 +7679,7 @@ shifting
 shine
 shining
 ship
+shipment
 shipwrecked
 shipyard
 shoe
@@ -7757,6 +7806,7 @@ slider
 slideshow
 slightly
 slim
+slime
 slither
 slot
 slots
@@ -7831,6 +7881,9 @@ ern
 southeast
 southwest
 sp
+spray
+testudo
+splash
 spa
 space
 spacer
@@ -8244,6 +8297,7 @@ textures
 tf
 tg
 th
+thumb
 than
 thanks
 that
@@ -8291,6 +8345,10 @@ throwing
 thumbs
 thunder
 ti
+titan
+titans
+tired
+tiredless
 tiara
 tick
 tickdown
@@ -8773,6 +8831,8 @@ vn
 vo
 voices
 void
+ophidian
+incubation
 volatile
 volcanic
 volcano
@@ -8930,6 +8990,7 @@ whip
 whistle
 white
 who
+whole
 why
 wi
 widget
@@ -9290,3 +9351,78 @@ zz
 confuse
 confused
 confusion
+aip
+aiq
+ajq
+ajr
+akq
+aks
+alp
+alq
+als
+bip
+biq
+bjp
+bjq
+bjr
+bjs
+bjs
+bkp
+bkr
+blp
+blr
+cip
+ciq
+cjk
+cjs
+ckq
+ckr
+cks
+clr
+cls
+dip
+dis
+djp
+djr
+djs
+dkp
+dkq
+dkr
+dks
+dlq
+dls
+air
+ais
+ajs
+alr
+bir
+bis
+bkq
+blq
+cis
+ckp
+clp
+dir
+dlr
+aks
+djq
+clq
+cjp
+cjq
+cir
+bls
+ajp
+akp
+akr
+dlp
+stealth
+arctic
+siphon
+swallow
+dreadfowl
+conjure
+regrowth
+insane
+ferocity
+immense
+dissolve
