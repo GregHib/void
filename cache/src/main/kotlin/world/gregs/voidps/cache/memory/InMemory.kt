@@ -6,7 +6,6 @@ import com.displee.cache.index.Index
 import com.displee.cache.index.ReferenceTable
 import com.displee.compress.CompressionType
 import com.displee.compress.type.LZMACompressor
-import com.displee.util.generateWhirlpool
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
@@ -35,18 +34,16 @@ class InMemory {
         logger.trace { "Reading indices..." }
         val indicesLength = index255Raf.length().toInt() / Index.INDEX_SIZE
         val output = mutableMapOf<Int, Map<Int, Archive>>()
-        for (i in 0 until indicesLength) {
-            val file = File(path, "${CacheLibrary.CACHE_FILE_NAME}.idx$i")
+        for (indexId in 0 until indicesLength) {
+            val file = File(path, "${CacheLibrary.CACHE_FILE_NAME}.idx$indexId")
             if (!file.exists()) {
-                logger.warn { "No index $i file found." }
+                logger.warn { "No index $indexId file found." }
                 continue
             }
             try {
                 val archives = TreeMap<Int, Archive>()
-                val archiveSectorData = readArchiveSector(mainFile, index255Raf, 255, i)
+                val archiveSectorData = readArchiveSector(mainFile, index255Raf, 255, indexId)
                 if (archiveSectorData != null) {
-                    val crc = archiveSectorData.generateCrc()
-                    val whirlpool = archiveSectorData.generateWhirlpool()
                     val decompressed = decompress(archiveSectorData)
                     val buffer = BufferReader(decompressed)
                     val version = buffer.readUnsignedByte()
@@ -54,45 +51,32 @@ class InMemory {
                         throw RuntimeException("Unknown version: $version")
                     }
                     val revision = if (version >= 6) buffer.readInt() else 0
-                    val mask = buffer.readByte().toInt()
-                    val named = mask and ReferenceTable.FLAG_NAME != 0
-                    val hasWhirlPool = mask and ReferenceTable.FLAG_WHIRLPOOL != 0
-                    val flag4 = mask and ReferenceTable.FLAG_4 != 0
-                    val flag8 = mask and ReferenceTable.FLAG_8 != 0
+                    val flags = buffer.readByte()
+                    val named = flags and ReferenceTable.FLAG_NAME != 0
+                    val hasWhirlPool = flags and ReferenceTable.FLAG_WHIRLPOOL != 0
 
                     val archiveIds = IntArray(readValue(version, buffer))
                     for (i in archiveIds.indices) {
                         val archiveId = readValue(version, buffer) + if (i == 0) 0 else archiveIds[i - 1]
                         archiveIds[i] = archiveId.also { archives[it] = Archive(it) }
                     }
-                    val archives = archives.values.toTypedArray()
-                    val archiveNames = ArrayList<Int>(archives.size)
+                    val archiveArray = archives.values.toTypedArray()
                     if (named) {
-                        archives.forEach {
-                            val hashName = buffer.readInt()
-                            if (hashName != 0) {
-                                archiveNames.add(hashName)
-                            }
-                        }
+                        buffer.skip(archiveArray.size * 4)
                     }
                     if (hasWhirlPool) {
-                        archives.forEach {
-                            var archiveWhirlpool2 = it.whirlpool
-                            if (archiveWhirlpool2 == null) {
-                                archiveWhirlpool2 = ByteArray(Index.WHIRLPOOL_SIZE)
-                                it.whirlpool = archiveWhirlpool2
-                            }
-                            buffer.readBytes(archiveWhirlpool2)
-                        }
+                        buffer.skip(archiveArray.size * Index.WHIRLPOOL_SIZE)
                     }
-                    archives.forEach { it.crc = buffer.readInt() }
-                    archives.forEach { it.revision = buffer.readInt() }
-                    val archiveFileSizes = IntArray(archives.size)
-                    for (i in archives.indices) {
-                        archiveFileSizes[i] = readValue(version, buffer)
+                    buffer.skip(archiveArray.size * 4) // Crc
+                    buffer.skip(archiveArray.size * 4) // Revision
+                    var totalSize = 0
+                    val archiveFileSizes = IntArray(archiveArray.size) {
+                        val size = readValue(version, buffer)
+                        totalSize += size
+                        size
                     }
-                    for (i in archives.indices) {
-                        val archive = archives[i]!!
+                    for (i in archiveArray.indices) {
+                        val archive = archiveArray[i]
                         var fileId = 0
                         for (fileIndex in 0 until archiveFileSizes[i]) {
                             fileId += readValue(version, buffer)
@@ -100,19 +84,73 @@ class InMemory {
                         }
                     }
                     if (named) {
-                        for (i in archives.indices) {
-                            val archive = archives[i]
-                            val fileIds = archive?.files?.keys?.toIntArray()
-                            for (fileIndex in 0 until archiveFileSizes[i]) {
-                                /*archive?.files?.get(fileIds[fileIndex] ?: continue)?.hashName =*/ buffer.readInt()
+                        buffer.skip(totalSize * 4)
+                    }
+                    val raf = RandomAccessFile(File(path, "${CacheLibrary.CACHE_FILE_NAME}.idx${indexId}"), "r")
+                    for ((archiveId, archive) in archives) {
+                        val sector = readArchiveSector(mainFile, raf, indexId, archiveId)
+                        if (sector == null) {
+                            archive.files.clear()
+                            continue
+                        } else {
+                            val decompressed = decompress(sector, null)
+                            val files: Map<Int, File>? = if (decompressed.isNotEmpty()) {
+                                val buffer = BufferReader(decompressed)
+                                val files = archive.files
+                                val rawArray = buffer.array()
+                                if (files.size == 1) {
+                                    files.values.first().data = rawArray
+                                    null
+                                } else {
+                                    val fileIds = files.keys.toIntArray()
+                                    var fileDataSizesOffset = rawArray.size
+                                    val chunkSize: Int = rawArray[--fileDataSizesOffset].toInt() and 0xFF
+                                    fileDataSizesOffset -= chunkSize * (fileIds.size * 4)
+                                    val fileDataSizes = IntArray(fileIds.size)
+                                    buffer.position(fileDataSizesOffset)
+                                    for (i in 0 until chunkSize) {
+                                        var offset = 0
+                                        for (fileIndex in fileIds.indices) {
+                                            offset += buffer.readInt()
+                                            fileDataSizes[fileIndex] += offset
+                                        }
+                                    }
+                                    val filesData = arrayOfNulls<ByteArray>(fileIds.size)
+                                    for (i in fileIds.indices) {
+                                        filesData[i] = ByteArray(fileDataSizes[i])
+                                        fileDataSizes[i] = 0
+                                    }
+                                    buffer.position(fileDataSizesOffset)
+                                    var offset = 0
+                                    for (i in 0 until chunkSize) {
+                                        var read = 0
+                                        for (j in fileIds.indices) {
+                                            read += buffer.readInt()
+                                            System.arraycopy(rawArray, offset, filesData[j], fileDataSizes[j], read)
+                                            offset += read
+                                            fileDataSizes[j] += read
+                                        }
+                                    }
+                                    for (i in fileIds.indices) {
+                                        files[fileIds[i]]?.data = filesData[i]
+                                    }
+                                    files
+                                }
+                            } else null
+                            val sectorBuffer = BufferReader(sector)
+                            sectorBuffer.position(1)
+                            val remaining: Int = sector.size - (sectorBuffer.readInt() + sectorBuffer.position())
+                            if (remaining >= 2) {
+                                sectorBuffer.position(sector.size - 2)
+                                archive.revision = sectorBuffer.readUnsignedShort()
                             }
                         }
                     }
                 }
-                output[i] = archives
-                logger.debug { "Loaded index $i. ${archives.size}" }
+                output[indexId] = archives
+                logger.debug { "Loaded index $indexId. ${archives.size}" }
             } catch (e: Exception) {
-                logger.warn(e) { "Failed to load index $i." }
+                logger.warn(e) { "Failed to load index $indexId." }
             }
         }
         return output
@@ -164,27 +202,6 @@ class InMemory {
         }
         inflater.reset()
         return true
-    }
-
-    private val CRC_TABLE = IntArray(256) {
-        var crc = it
-        for (i_84_ in 0..7) {
-            crc = if (crc and 0x1 == 1) {
-                crc ushr 1 xor 0x12477cdf.inv()
-            } else {
-                crc ushr 1
-            }
-        }
-        crc
-    }
-
-    fun ByteArray.generateCrc(offset: Int = 0, length: Int = size): Int {
-        var crc = -1
-        for (i in offset until length) {
-            crc = crc ushr 8 xor CRC_TABLE[crc xor this[i].toInt() and 0xff]
-        }
-        crc = crc xor -0x1
-        return crc
     }
 
     fun readArchiveSector(mainFile: RandomAccessFile, raf: RandomAccessFile, index: Int, id: Int): ByteArray? {
@@ -240,9 +257,7 @@ class InMemory {
         return data
     }
 
-    class Archive(val id: Int, val hashName: Int = 0, val xtea: IntArray? = null) {
-        var compressionType: CompressionType? = null
-        var crc: Int = 0
+    class Archive(val id: Int) {
         var whirlpool: ByteArray? = null
         var revision = 0
         val files: SortedMap<Int, File> = TreeMap()
@@ -252,79 +267,6 @@ class InMemory {
 
     data class File(val id: Int, var data: ByteArray? = null)
 
-    fun readArchive(buffer: BufferReader, files: Map<Int, File>): Map<Int, File>? {
-        val rawArray = buffer.array()
-        if (files.size == 1) {
-            files.values.first().data = rawArray
-            return null
-        }
-        val fileIds = files.keys.toIntArray()
-        var fileDataSizesOffset = rawArray.size
-        val chunkSize: Int = rawArray[--fileDataSizesOffset].toInt() and 0xFF
-        fileDataSizesOffset -= chunkSize * (fileIds.size * 4)
-        val fileDataSizes = IntArray(fileIds.size)
-        buffer.position(fileDataSizesOffset)
-        for (i in 0 until chunkSize) {
-            var offset = 0
-            for (fileIndex in fileIds.indices) {
-                offset += buffer.readInt()
-                fileDataSizes[fileIndex] += offset
-            }
-        }
-        val filesData = arrayOfNulls<ByteArray>(fileIds.size)
-        for (i in fileIds.indices) {
-            filesData[i] = ByteArray(fileDataSizes[i])
-            fileDataSizes[i] = 0
-        }
-        buffer.position(fileDataSizesOffset)
-        var offset = 0
-        for (i in 0 until chunkSize) {
-            var read = 0
-            for (j in fileIds.indices) {
-                read += buffer.readInt()
-                System.arraycopy(rawArray, offset, filesData[j], fileDataSizes[j], read)
-                offset += read
-                fileDataSizes[j] += read
-            }
-        }
-        for (i in fileIds.indices) {
-            files[fileIds[i]]?.data = filesData[i]
-        }
-        return files
-    }
-
-    fun archive(mainFile: RandomAccessFile, raf: RandomAccessFile, indices: Map<Int, Map<Int, Archive>>, index: Int, id: Int, xtea: IntArray? = null): Map<Int, File>? {
-        val idx = indices.getValue(index)
-        val archive = idx[id] ?: return null
-//        if (archive.read || archive.new) {
-//            return archive
-//        }
-        val sector = readArchiveSector(mainFile, raf, index, id)
-        if (sector == null) {
-            archive.files.clear()
-//            archive.read = true
-//            archive.new = true
-//            archive.clear()
-            return null
-        } else {
-            val decompressed = decompress(sector, xtea)
-//            archive.compressionType = sector.compressionType
-            val files: Map<Int, File>? = if (decompressed.isNotEmpty()) readArchive(BufferReader(decompressed), archive.files) else null
-            val mapsIndex = 5
-            if (index == mapsIndex && (files == null || files.none { it.value.data != null })) {
-//                archive.read = false
-            }
-            val sectorBuffer = BufferReader(sector)
-            sectorBuffer.position(1)
-            val remaining: Int = sector.size - (sectorBuffer.readInt() + sectorBuffer.position())
-            if (remaining >= 2) {
-                sectorBuffer.position(sector.size - 2)
-                archive.revision = sectorBuffer.readUnsignedShort()
-            }
-            return files
-        }
-    }
-
     companion object {
         private val logger = InlineLogger()
 
@@ -332,10 +274,9 @@ class InMemory {
         fun main(args: Array<String>) {
             val memory = InMemory()
             val path = "./data/cache/"
+            val start = System.currentTimeMillis()
             val indices = memory.load(path)
-
-            val main = File(path, "${CacheLibrary.CACHE_FILE_NAME}.dat2")
-            val mainFile = RandomAccessFile(main, "r")
+            println("Loaded cache in ${System.currentTimeMillis() - start}ms")
 
             val lib = CacheLibrary(path)
             for (index in lib.indices()) {
@@ -343,8 +284,6 @@ class InMemory {
                     println("Different archive size")
                 }
                 for (archive in index.archives()) {
-                    val raf = RandomAccessFile(File(path, "${CacheLibrary.CACHE_FILE_NAME}.idx${index.id}"), "r")
-                    memory.archive(mainFile, raf, indices, index.id, archive.id)
                     if (archive.files.size != indices.getValue(index.id).getValue(archive.id).files.size) {
                         println("Different archive size")
                     }
@@ -358,6 +297,12 @@ class InMemory {
                     }
                 }
             }
+
+            /*
+                BZIP2 1772 files 1.193s
+                GZIP 95267 files 1.184s
+                NONE 4201 files 0.011s
+             */
         }
     }
 }
