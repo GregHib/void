@@ -32,7 +32,6 @@ class InMemory {
             throw FileNotFoundException("Checksum file not found at '${index255File.absolutePath}'.")
         }
         val index255Raf = RandomAccessFile(index255File, "rw")
-        val index255 = index(mainFile, index255Raf, id = 0)!!
         logger.trace { "Reading indices..." }
         val indicesLength = index255Raf.length().toInt() / Index.INDEX_SIZE
         val output = mutableMapOf<Int, Map<Int, Archive>>()
@@ -43,31 +42,81 @@ class InMemory {
                 continue
             }
             try {
-                val index = index(mainFile, index255Raf, i)
-                output[i] = index
-                logger.debug { "Loaded index $i. ${index.size}" }
+                val archives = TreeMap<Int, Archive>()
+                val archiveSectorData = readArchiveSector(mainFile, index255Raf, 255, i)
+                if (archiveSectorData != null) {
+                    val crc = archiveSectorData.generateCrc()
+                    val whirlpool = archiveSectorData.generateWhirlpool()
+                    val decompressed = decompress(archiveSectorData)
+                    val buffer = BufferReader(decompressed)
+                    val version = buffer.readUnsignedByte()
+                    if (version < 5 || version > 7) {
+                        throw RuntimeException("Unknown version: $version")
+                    }
+                    val revision = if (version >= 6) buffer.readInt() else 0
+                    val mask = buffer.readByte().toInt()
+                    val named = mask and ReferenceTable.FLAG_NAME != 0
+                    val hasWhirlPool = mask and ReferenceTable.FLAG_WHIRLPOOL != 0
+                    val flag4 = mask and ReferenceTable.FLAG_4 != 0
+                    val flag8 = mask and ReferenceTable.FLAG_8 != 0
+
+                    val archiveIds = IntArray(readValue(version, buffer))
+                    for (i in archiveIds.indices) {
+                        val archiveId = readValue(version, buffer) + if (i == 0) 0 else archiveIds[i - 1]
+                        archiveIds[i] = archiveId.also { archives[it] = Archive(it) }
+                    }
+                    val archives = archives.values.toTypedArray()
+                    val archiveNames = ArrayList<Int>(archives.size)
+                    if (named) {
+                        archives.forEach {
+                            val hashName = buffer.readInt()
+                            if (hashName != 0) {
+                                archiveNames.add(hashName)
+                            }
+                        }
+                    }
+                    if (hasWhirlPool) {
+                        archives.forEach {
+                            var archiveWhirlpool2 = it.whirlpool
+                            if (archiveWhirlpool2 == null) {
+                                archiveWhirlpool2 = ByteArray(Index.WHIRLPOOL_SIZE)
+                                it.whirlpool = archiveWhirlpool2
+                            }
+                            buffer.readBytes(archiveWhirlpool2)
+                        }
+                    }
+                    archives.forEach { it.crc = buffer.readInt() }
+                    archives.forEach { it.revision = buffer.readInt() }
+                    val archiveFileSizes = IntArray(archives.size)
+                    for (i in archives.indices) {
+                        archiveFileSizes[i] = readValue(version, buffer)
+                    }
+                    for (i in archives.indices) {
+                        val archive = archives[i]!!
+                        var fileId = 0
+                        for (fileIndex in 0 until archiveFileSizes[i]) {
+                            fileId += readValue(version, buffer)
+                            archive.files[fileId] = File(fileId)
+                        }
+                    }
+                    if (named) {
+                        for (i in archives.indices) {
+                            val archive = archives[i]
+                            val fileIds = archive?.files?.keys?.toIntArray()
+                            for (fileIndex in 0 until archiveFileSizes[i]) {
+                                /*archive?.files?.get(fileIds[fileIndex] ?: continue)?.hashName =*/ buffer.readInt()
+                            }
+                        }
+                    }
+                }
+                output[i] = archives
+                logger.debug { "Loaded index $i. ${archives.size}" }
             } catch (e: Exception) {
                 logger.warn(e) { "Failed to load index $i." }
             }
         }
         return output
     }
-
-    fun index(mainFile: RandomAccessFile, raf: RandomAccessFile, id: Int): MutableMap<Int, Archive> {
-        val archives = TreeMap<Int, Archive>()
-//        println("Index $id")
-        val archiveSectorData = readArchiveSector(mainFile, raf, 255, id) ?: return archives
-//        println("Read archive sector: ${archiveSectorData.take(100)}")
-        val crc = archiveSectorData.generateCrc()
-//        println("Crc: $crc")
-        val whirlpool = archiveSectorData.generateWhirlpool()
-//        println("Whirlpool: ${whirlpool.take(100)}")
-        val decompressed = decompress(archiveSectorData)
-//        println("Decompressed: ${decompressed.take(100)}")
-        readIndex(BufferReader(decompressed), crc, whirlpool, archives)
-        return archives
-    }
-
 
     fun decompress(data: ByteArray, keys: IntArray? = null): ByteArray {
         if (keys != null && (keys[0] != 0 || keys[1] != 0 || keys[2] != 0 || 0 != keys[3])) {
@@ -87,18 +136,17 @@ class InMemory {
             CompressionType.NONE -> decompressed = ByteArray(compressedSize).apply { buffer.readBytes(this) }
             CompressionType.BZIP2 -> BZIP2Compressor.decompress(decompressed, decompressed.size, data, compressedSize, 9)
             CompressionType.GZIP -> if (!inflate(buffer, decompressed)) return byteArrayOf()
-            CompressionType.LZMA -> decompressed = decompress(buffer, decompressedSize)
+            CompressionType.LZMA -> {
+                val output = BufferWriter(buffer.remaining)
+                output.writeBytes(buffer.array(), buffer.position(), buffer.remaining)
+                decompressed = LZMACompressor.decompress(output.toArray(), decompressedSize)
+            }
+
         }
         return decompressed
     }
 
-    val inflater = Inflater(true)
-
-    fun decompress(buffer: BufferReader, decompressedLength: Int): ByteArray {
-        val output = BufferWriter(buffer.remaining)
-        output.writeBytes(buffer.array(), buffer.position(), buffer.remaining)
-        return LZMACompressor.decompress(output.toArray(), decompressedLength)
-    }
+    private val inflater = Inflater(true)
 
     fun inflate(buffer: BufferReader, data: ByteArray): Boolean {
         val bytes = buffer.array()
@@ -200,69 +248,6 @@ class InMemory {
         val files: SortedMap<Int, File> = TreeMap()
     }
 
-    fun readIndex(buffer: BufferReader, crc: Int, whirlpool: ByteArray, archives: MutableMap<Int, Archive>) {
-        var whirlpool = whirlpool
-        val version = buffer.readUnsignedByte()
-        if (version < 5 || version > 7) {
-            throw RuntimeException("Unknown version: $version")
-        }
-        val revision = if (version >= 6) buffer.readInt() else 0
-        val mask = buffer.readByte().toInt()
-        val named = mask and ReferenceTable.FLAG_NAME != 0
-        val hasWhirlPool = mask and ReferenceTable.FLAG_WHIRLPOOL != 0
-        val flag4 = mask and ReferenceTable.FLAG_4 != 0
-        val flag8 = mask and ReferenceTable.FLAG_8 != 0
-
-        val archiveIds = IntArray(readValue(version, buffer))
-        for (i in archiveIds.indices) {
-            val archiveId = readValue(version, buffer) + if (i == 0) 0 else archiveIds[i - 1]
-            archiveIds[i] = archiveId.also { archives[it] = Archive(it) }
-        }
-        val archives = archives.values.toTypedArray()
-        val archiveNames = ArrayList<Int>(archives.size)
-        if (named) {
-            archives.forEach {
-                val hashName = buffer.readInt()
-                if (hashName != 0) {
-                    archiveNames.add(hashName)
-                }
-            }
-        }
-        if (hasWhirlPool) {
-            archives.forEach {
-                var archiveWhirlpool2 = it.whirlpool
-                if (archiveWhirlpool2 == null) {
-                    archiveWhirlpool2 = ByteArray(Index.WHIRLPOOL_SIZE)
-                    it.whirlpool = archiveWhirlpool2
-                }
-                buffer.readBytes(archiveWhirlpool2)
-            }
-        }
-        archives.forEach { it.crc = buffer.readInt() }
-        archives.forEach { it.revision = buffer.readInt() }
-        val archiveFileSizes = IntArray(archives.size)
-        for (i in archives.indices) {
-            archiveFileSizes[i] = readValue(version, buffer)
-        }
-        for (i in archives.indices) {
-            val archive = archives[i]!!
-            var fileId = 0
-            for (fileIndex in 0 until archiveFileSizes[i]) {
-                fileId += readValue(version, buffer)
-                archive.files[fileId] = File(fileId)
-            }
-        }
-        if (named) {
-            for (i in archives.indices) {
-                val archive = archives[i]
-                val fileIds = archive?.files?.keys?.toIntArray()
-                for (fileIndex in 0 until archiveFileSizes[i]) {
-                    /*archive?.files?.get(fileIds[fileIndex] ?: continue)?.hashName =*/ buffer.readInt()
-                }
-            }
-        }
-    }
-
     private fun readValue(version: Int, buffer: BufferReader) = if (version >= 7) buffer.readBigSmart() else buffer.readUnsignedShort()
 
     data class File(val id: Int, var data: ByteArray? = null)
@@ -270,7 +255,7 @@ class InMemory {
     fun readArchive(buffer: BufferReader, files: Map<Int, File>): Map<Int, File>? {
         val rawArray = buffer.array()
         if (files.size == 1) {
-            files.values.first()?.data = rawArray
+            files.values.first().data = rawArray
             return null
         }
         val fileIds = files.keys.toIntArray()
