@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.client.instruction
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -14,6 +15,7 @@ class InstructionTask(
     npcs: NPCs,
     items: FloorItems,
     objects: GameObjects,
+    itemDefinitions: ItemDefinitions,
     objectDefinitions: ObjectDefinitions,
     npcDefinitions: NPCDefinitions,
     interfaceDefinitions: InterfaceDefinitions,
@@ -26,6 +28,7 @@ class InstructionTask(
         npcs,
         items,
         objects,
+        itemDefinitions,
         objectDefinitions,
         npcDefinitions,
         interfaceDefinitions,
