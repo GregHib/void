@@ -9,6 +9,7 @@ import lzma.sdk.lzma.Decoder
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.secure.Xtea
 import java.io.*
+import java.util.zip.Deflater
 import java.util.zip.Inflater
 import kotlin.system.exitProcess
 
@@ -22,7 +23,7 @@ class InMemory {
     private var output: ByteArray = ByteArray(665_000)
     private val sectorData = ByteArray(Index.SECTOR_SIZE)
 
-    fun load(path: String, xteas: Map<Int, IntArray>?): Array<MutableMap<Int, MutableMap<Int, ByteArray?>>> {
+    fun load(path: String, xteas: Map<Int, IntArray>?): Array<Array<Array<ByteArray?>?>?> {
         val main = File(path, "${CacheLibrary.CACHE_FILE_NAME}.dat2")
         val mainFile = if (main.exists()) {
             RandomAccessFile(main, "rw")
@@ -37,19 +38,18 @@ class InMemory {
         val index255Raf = RandomAccessFile(index255File, "rw")
         logger.trace { "Reading indices..." }
         val indicesLength = index255Raf.length().toInt() / Index.INDEX_SIZE
-        val output = Array<MutableMap<Int, MutableMap<Int, ByteArray?>>>(indicesLength) { Int2ObjectOpenHashMap() }
-        for (indexId in 0 until indicesLength) {
+        return Array(indicesLength) { indexId ->
             val file = File(path, "${CacheLibrary.CACHE_FILE_NAME}.idx$indexId")
             if (!file.exists()) {
                 logger.warn { "No index $indexId file found." }
-                continue
+                return@Array null
             }
             try {
-                val archives = output[indexId]
+//                val archives = output[indexId]
                 val archiveSectorSize = readArchiveSector(mainFile, mainFileLength, index255Raf, 255, indexId)
                 if (archiveSectorSize == 0) {
                     logger.debug { "Loaded index $indexId. 0" }
-                    continue
+                    return@Array null
                 }
                 val decompressedSize = decompress(this.output, decompressed = decompressed, size = archiveSectorSize)
                 val tableBuffer = BufferReader(decompressed)
@@ -64,11 +64,16 @@ class InMemory {
 
                 val archiveCount = readValue(version, tableBuffer)
                 var previous = 0
+                var highest = 0
                 for (i in 0 until archiveCount) {
                     val archiveId = readValue(version, tableBuffer) + previous
                     previous = archiveId
                     archiveIds[i] = archiveId
+                    if (archiveId > highest) {
+                        highest = archiveId
+                    }
                 }
+                val archives = Array<Array<ByteArray?>?>(highest + 1) { null }
                 if (named) {
                     tableBuffer.skip(archiveCount * 4)
                 }
@@ -85,12 +90,13 @@ class InMemory {
                     if(sectorSize == 0) {
                         continue
                     }
-                    val archiveFiles = archives.getOrPut(archiveId) { Int2ObjectOpenHashMap() }
                     var fileId = 0
                     for (fileIndex in 0 until fileCount) {
                         fileId += readValue(version, tableBuffer)
                         fileIds[fileIndex] = fileId
                     }
+                    val archiveFiles: Array<ByteArray?> = Array(fileId + 1) { null }
+                    archives[archiveId] = archiveFiles
                     val keys = if(indexId == 5) xteas?.get(archiveId) else null
                     val indexDecompressedSize = decompress(this.output, keys, decompressed2, sectorSize)
                     if (indexDecompressedSize == 0) {
@@ -143,12 +149,15 @@ class InMemory {
                     }
                 }
                 logger.debug { "Loaded index $indexId. ${archives.size}" }
+                archives
             } catch (e: Exception) {
                 logger.warn(e) { "Failed to load index $indexId." }
+                Array(0) { null }
             }
         }
-        return output
     }
+
+    val deflater = Deflater(Deflater.DEFAULT_COMPRESSION, true)
 
     fun decompress(data: ByteArray, keys: IntArray? = null, decompressed: ByteArray, size: Int): Int {
         if (keys != null && (keys[0] != 0 || keys[1] != 0 || keys[2] != 0 || 0 != keys[3])) {
@@ -311,22 +320,21 @@ class InMemory {
             // TODO memory usage of storing inflated vs deflated
             println("Loaded cache in ${System.currentTimeMillis() - start}ms")
 
-//            println(memory.biggest)
-//            println(memory.biggest2)
             Thread.sleep(10000)
+            println(indices.size)
             exitProcess(0)
             val lib = CacheLibrary(path)
             for (index in lib.indices()) {
-                if (index.archives().size != indices.get(index.id).size) {
+                if (index.archives().size != indices.get(index.id)?.size) {
                     println("Different archive size")
                 }
                 for (archive in index.archives()) {
-                    if (archive.files.size != indices.get(index.id).getValue(archive.id).size) {
-                        println("Different archive size: ${index.id} ${archive.id} ${archive.files.size} != ${indices.get(index.id).getValue(archive.id).size}")
+                    if (archive.files.size != indices.get(index.id)?.get(archive.id)?.size) {
+                        println("Different archive size: ${index.id} ${archive.id} ${archive.files.size} != ${indices.get(index.id)?.get(archive.id)?.size}")
                     }
                     for (file in archive.files()) {
                         val expected = lib.data(index.id, archive.id, file.id)
-                        val actual = indices.get(index.id).getValue(archive.id)[file.id]
+                        val actual = indices.get(index.id)?.get(archive.id)?.get(file.id)
                         if (!expected.contentEquals(actual)) {
                             println("Mismatch ${index.id} ${archive.id} ${file.id} ${expected?.take(10)} ${actual?.take(10)}")
                             exitProcess(0)
