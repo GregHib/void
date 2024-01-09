@@ -1,17 +1,13 @@
 package world.gregs.voidps.cache.memory
 
 import com.displee.cache.CacheLibrary
-import com.displee.cache.compress.type.BZIP2Compressor
 import com.displee.cache.index.Index
 import com.displee.cache.index.ReferenceTable
-import com.displee.compress.type.LZMACompressor
 import com.github.michaelbull.logging.InlineLogger
+import lzma.sdk.lzma.Decoder
 import world.gregs.voidps.buffer.read.BufferReader
-import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.secure.Xtea
-import java.io.File
-import java.io.FileNotFoundException
-import java.io.RandomAccessFile
+import java.io.*
 import java.util.*
 import java.util.zip.Inflater
 import kotlin.system.exitProcess
@@ -154,6 +150,7 @@ class InMemory {
         }
         return output
     }
+    private val compressor = BZIP2Compressor()
 
     fun decompress(data: ByteArray, keys: IntArray? = null): ByteArray {
         if (keys != null && (keys[0] != 0 || keys[1] != 0 || keys[2] != 0 || 0 != keys[3])) {
@@ -167,19 +164,49 @@ class InMemory {
         if (type != 0) {
             decompressedSize = buffer.readInt() and 0xFFFFFF
         }
-        var decompressed = ByteArray(decompressedSize)
-        when (type) {
-            0 -> decompressed = ByteArray(compressedSize).apply { buffer.readBytes(this) }
-            1 -> BZIP2Compressor.decompress(decompressed, decompressed.size, data, compressedSize, 9)
-            2 -> if (!inflate(buffer, decompressed)) return byteArrayOf()
-            3 -> {
-                val output = BufferWriter(buffer.remaining)
-                output.writeBytes(buffer.array(), buffer.position(), buffer.remaining)
-                decompressed = LZMACompressor.decompress(output.toArray(), decompressedSize)
-            }
 
+        return when (type) {
+            0 -> ByteArray(compressedSize).apply { buffer.readBytes(this) }
+            1 -> {
+                val decompressed = ByteArray(decompressedSize)
+                compressor.decompress(decompressed, decompressed.size, data, 9)
+                decompressed
+            }
+            2 -> {
+                val offset = buffer.position()
+                if (buffer.readByte() != 31 || buffer.readByte() != -117) {
+                    return byteArrayOf()
+                }
+                val bytes = buffer.array()
+                val decompressed = ByteArray(decompressedSize)
+                try {
+                    inflater.setInput(bytes, offset + 10, bytes.size - (offset + 18))
+                    inflater.inflate(decompressed)
+                } catch (exception: Exception) {
+                    return byteArrayOf()
+                } finally {
+                    inflater.reset()
+                }
+                decompressed
+            }
+            3 -> decompress(data, buffer.position(), decompressedSize)
+            else -> ByteArray(decompressedSize)
         }
-        return decompressed
+    }
+
+    private val decoder = Decoder()
+
+    private fun decompress(compressed: ByteArray, offset: Int, decompressedLength: Int): ByteArray {
+        if (!decoder.setDecoderProperties(compressed)) {
+            logger.error { "LZMA: Bad properties." }
+            return byteArrayOf()
+        }
+        val input = ByteArrayInputStream(compressed)
+        input.skip(offset.toLong())
+        val output = ByteArrayOutputStream(decompressedLength)
+        decoder.code(input, output, decompressedLength.toLong())
+        output.flush()
+        return output.toByteArray()
     }
 
     private val inflater = Inflater(true)
@@ -254,8 +281,6 @@ class InMemory {
 
     private fun readValue(version: Int, buffer: BufferReader) = if (version >= 7) buffer.readBigSmart() else buffer.readUnsignedShort()
 
-    data class File(val id: Int, var data: ByteArray? = null)
-
     companion object {
         private val logger = InlineLogger()
 
@@ -267,6 +292,7 @@ class InMemory {
             val indices = memory.load(path)
             println("Loaded cache in ${System.currentTimeMillis() - start}ms")
 
+            exitProcess(0)
             val lib = CacheLibrary(path)
             for (index in lib.indices()) {
                 if (index.archives().size != indices.getValue(index.id).size) {
