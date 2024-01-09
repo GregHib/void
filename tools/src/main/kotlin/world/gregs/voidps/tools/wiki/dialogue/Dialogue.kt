@@ -70,7 +70,7 @@ internal data class Dialogue(
         const val PLAYER = "DIALOGUE_PLAYER"
 
         fun toMethodName(text: String) = "${
-            text.replace("%", "").replace(";", "").replace("!", "").replace(":", "").replace("(", "").replace(")", "").replace("?", "").replace(",", "").replace("*", "").replace("'", "").toCamelCase()
+            text.replace("%", "").replace("[", "").replace("]", "").replace(";", "").replace("!", "").replace(":", "").replace("(", "").replace(")", "").replace("?", "").replace(",", "").replace("*", "").replace("'", "").toCamelCase()
         }()"
 
         fun fromMap(map: Map<String, Any>, key: String) = Dialogue(
