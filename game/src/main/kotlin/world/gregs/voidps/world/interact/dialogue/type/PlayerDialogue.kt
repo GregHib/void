@@ -20,7 +20,7 @@ suspend inline fun <reified E : Expression> CharacterContext.player(text: String
 }
 
 suspend fun CharacterContext.player(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
-    val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("497").splitLines(text, 380)
+    val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("q8_full").splitLines(text, 380)
     check(lines.size <= 4) { "Maximum player chat lines exceeded ${lines.size} for $player" }
     val id = getInterfaceId(lines.size, clickToContinue)
     check(player.open(id)) { "Unable to open player dialogue for $player" }
