@@ -2,6 +2,22 @@ package world.gregs.voidps.cache
 
 interface Cache {
 
+    open fun data(index: Int, archive: Int, file: Int = 0, xtea: IntArray? = null): ByteArray? {
+        return null
+    }
+
+    open fun files(index: Int, archive: Int): IntArray? {
+        return null
+    }
+
+    open fun archives(index: Int): IntArray? {
+        return null
+    }
+
+    open fun indexes(): Int {
+        return 0
+    }
+
     fun getFile(index: Int, archive: Int, file: Int = 0, xtea: IntArray? = null): ByteArray?
 
     fun getFile(index: Int, name: String, xtea: IntArray? = null): ByteArray?

@@ -11,6 +11,7 @@ import world.gregs.voidps.cache.secure.Xtea
 import java.io.*
 import java.util.zip.Deflater
 import java.util.zip.Inflater
+import kotlin.system.exitProcess
 
 class InMemory {
 
@@ -86,11 +87,11 @@ class InMemory {
                 }
                 val raf = RandomAccessFile(file, "r")
                 val archiveArray = Array(highest + 1) arch@{ archiveId ->
-                    val fileCount = archiveIdSizes[archiveId]
                     val sectorSize = readArchiveSector(mainFile, mainFileLength, raf, indexId, archiveId)
                     if (sectorSize == 0) {
                         return@arch null
                     }
+                    val fileCount = archiveIdSizes[archiveId]
                     var fileId = 0
                     for (fileIndex in 0 until fileCount) {
                         fileId += readValue(version, tableBuffer)
@@ -173,7 +174,7 @@ class InMemory {
         return data
     }
 
-    private val deflater = Deflater(Deflater.DEFAULT_COMPRESSION, true)
+    private val deflater = Deflater(Deflater.BEST_SPEED, true)
 
     fun decompress(data: ByteArray, keys: IntArray? = null, decompressed: ByteArray, size: Int): Int {
         if (keys != null && (keys[0] != 0 || keys[1] != 0 || keys[2] != 0 || 0 != keys[3])) {
@@ -313,8 +314,26 @@ class InMemory {
         fun main(args: Array<String>) {
             val memory = InMemory()
             val path = "./data/cache/"
+
             val xteas = loadBinary(File("./data/xteas.dat"))
+
             val start = System.currentTimeMillis()
+            val cache = FileCacheLoader().load(path, xteas)
+            println("Loaded cache in ${System.currentTimeMillis() - start}ms")
+
+            var count = 0
+            for (index in 0 until cache.indexes()) {
+                val archives = cache.archives(index) ?: continue
+                for (archive in archives) {
+                    val files = cache.files(index, archive) ?: continue
+                    for (file in files) {
+                        val data = cache.data(index, archive, file) ?: continue
+                        count++
+                    }
+                }
+            }
+            println("Loaded $count files in ${System.currentTimeMillis() - start}ms")
+            exitProcess(0)
             val indices = memory.load(path, xteas)
             // TODO check data see if there's enough gaps to justify using Maps instead of arrays
             // TODO memory usage of storing inflated vs deflated
@@ -329,7 +348,6 @@ class InMemory {
             Thread.sleep(10000)
             println(indices.size)
             var total = 0
-            var count = 0
             var blank = 0
             for (data in indices) {
                 for (archives in data ?: continue) {
