@@ -4,17 +4,25 @@ import com.displee.cache.CacheLibrary
 import com.displee.cache.index.Index
 import com.displee.cache.index.ReferenceTable
 import com.github.michaelbull.logging.InlineLogger
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import lzma.sdk.lzma.Decoder
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.secure.Xtea
 import java.io.*
-import java.util.*
 import java.util.zip.Inflater
 import kotlin.system.exitProcess
 
 class InMemory {
 
-    fun load(path: String): Map<Int, Map<Int, Map<Int, ByteArray?>>> {
+    private val archiveIds = IntArray(64_000)
+    private val fileIds = IntArray(3_000)
+    private val compressor = BZIP2Compressor()
+    private var decompressed: ByteArray = ByteArray(900_000)
+    private var decompressed2: ByteArray = ByteArray(4_702_000)
+    private var output: ByteArray = ByteArray(665_000)
+    private val sectorData = ByteArray(Index.SECTOR_SIZE)
+
+    fun load(path: String, xteas: Map<Int, IntArray>?): Array<MutableMap<Int, MutableMap<Int, ByteArray?>>> {
         val main = File(path, "${CacheLibrary.CACHE_FILE_NAME}.dat2")
         val mainFile = if (main.exists()) {
             RandomAccessFile(main, "rw")
@@ -29,7 +37,7 @@ class InMemory {
         val index255Raf = RandomAccessFile(index255File, "rw")
         logger.trace { "Reading indices..." }
         val indicesLength = index255Raf.length().toInt() / Index.INDEX_SIZE
-        val output = mutableMapOf<Int, Map<Int, Map<Int, ByteArray?>>>()
+        val output = Array<MutableMap<Int, MutableMap<Int, ByteArray?>>>(indicesLength) { Int2ObjectOpenHashMap() }
         for (indexId in 0 until indicesLength) {
             val file = File(path, "${CacheLibrary.CACHE_FILE_NAME}.idx$indexId")
             if (!file.exists()) {
@@ -37,15 +45,14 @@ class InMemory {
                 continue
             }
             try {
-                val archives = TreeMap<Int, MutableMap<Int, ByteArray?>>()
-                val archiveSectorData = readArchiveSector(mainFile, mainFileLength, index255Raf, 255, indexId)
-                if (archiveSectorData == null) {
-                    output[indexId] = archives
+                val archives = output[indexId]
+                val archiveSectorSize = readArchiveSector(mainFile, mainFileLength, index255Raf, 255, indexId)
+                if (archiveSectorSize == 0) {
                     logger.debug { "Loaded index $indexId. 0" }
                     continue
                 }
-                val tableDecompressed = decompress(archiveSectorData)
-                val tableBuffer = BufferReader(tableDecompressed)
+                val decompressedSize = decompress(this.output, decompressed = decompressed, size = archiveSectorSize)
+                val tableBuffer = BufferReader(decompressed)
                 val version = tableBuffer.readUnsignedByte()
                 if (version < 5 || version > 7) {
                     throw RuntimeException("Unknown version: $version")
@@ -57,10 +64,10 @@ class InMemory {
 
                 val archiveCount = readValue(version, tableBuffer)
                 var previous = 0
-                val archiveIds = IntArray(archiveCount) {
+                for (i in 0 until archiveCount) {
                     val archiveId = readValue(version, tableBuffer) + previous
                     previous = archiveId
-                    archiveId
+                    archiveIds[i] = archiveId
                 }
                 if (named) {
                     tableBuffer.skip(archiveCount * 4)
@@ -68,49 +75,42 @@ class InMemory {
                 if (hasWhirlPool) {
                     tableBuffer.skip(archiveCount * Index.WHIRLPOOL_SIZE)
                 }
-                tableBuffer.skip(archiveCount * 4) // Crc
-                tableBuffer.skip(archiveCount * 4) // Revision
+                tableBuffer.skip(archiveCount * 8) // Crc & revisions
                 val archiveFileSizes = IntArray(archiveCount) { readValue(version, tableBuffer) }
-
                 val raf = RandomAccessFile(file, "r")
                 for (archiveIndex in 0 until archiveCount) {
                     val archiveId = archiveIds[archiveIndex]
                     val fileCount = archiveFileSizes[archiveIndex]
-                    val sector = readArchiveSector(mainFile, mainFileLength, raf, indexId, archiveId) ?: continue
-                    var fileId = 0
-                    val archiveFiles = archives.getOrPut(archiveId) { mutableMapOf() }
-                    val fileIds = IntArray(fileCount) {
-                        fileId += readValue(version, tableBuffer)
-                        fileId
+                    val sectorSize = readArchiveSector(mainFile, mainFileLength, raf, indexId, archiveId)
+                    if(sectorSize == 0) {
+                        continue
                     }
-                    val indexDecompressed = decompress(sector, null)
-                    if (indexDecompressed.isEmpty()) {
+                    val archiveFiles = archives.getOrPut(archiveId) { Int2ObjectOpenHashMap() }
+                    var fileId = 0
+                    for (fileIndex in 0 until fileCount) {
+                        fileId += readValue(version, tableBuffer)
+                        fileIds[fileIndex] = fileId
+                    }
+                    val keys = if(indexId == 5) xteas?.get(archiveId) else null
+                    val indexDecompressedSize = decompress(this.output, keys, decompressed2, sectorSize)
+                    if (indexDecompressedSize == 0) {
                         // TODO we don't really need this
                         if (fileCount == 1) {
                             archiveFiles[fileId] = null
                         } else {
-                            for (fileId in fileIds) {
+                            for (fileId in 0 until fileCount) {
                                 archiveFiles[fileId] = null
                             }
                         }
                         continue
                     }
                     if (fileCount == 1) {
-                        archiveFiles[fileId] = indexDecompressed
+                        archiveFiles[fileId] = decompressed2.copyOf(indexDecompressedSize)
                         continue
                     }
-                    /*
-                        [chunk 0, file 0] // The same file
-                        [chunk 0, file 1]
-                        [chunk 0, file 2]
-                        [chunk 2, file 0] // The same file
-                        [chunk 3, file 0]
-                        [chunk 3, file 1]
-                        Offset
-                     */
-                    val indexBuffer = BufferReader(indexDecompressed)
+                    val indexBuffer = BufferReader(decompressed2)
                     val rawArray = indexBuffer.array()
-                    var fileDataSizesOffset = rawArray.size
+                    var fileDataSizesOffset = indexDecompressedSize
                     val chunkSize: Int = rawArray[--fileDataSizesOffset].toInt() and 0xFF
                     fileDataSizesOffset -= chunkSize * (fileCount * 4)
                     val offsets = IntArray(fileCount)
@@ -142,7 +142,6 @@ class InMemory {
                         }
                     }
                 }
-                output[indexId] = archives
                 logger.debug { "Loaded index $indexId. ${archives.size}" }
             } catch (e: Exception) {
                 logger.warn(e) { "Failed to load index $indexId." }
@@ -150,12 +149,10 @@ class InMemory {
         }
         return output
     }
-    private val compressor = BZIP2Compressor()
 
-    fun decompress(data: ByteArray, keys: IntArray? = null): ByteArray {
+    fun decompress(data: ByteArray, keys: IntArray? = null, decompressed: ByteArray, size: Int): Int {
         if (keys != null && (keys[0] != 0 || keys[1] != 0 || keys[2] != 0 || 0 != keys[3])) {
-            logger.info { "Deciphering xteas: ${keys.contentToString()}" }
-            Xtea.decipher(data, keys, 5)
+            Xtea.decipher(data, keys, 5, size)
         }
         val buffer = BufferReader(data)
         val type = buffer.readUnsignedByte()
@@ -165,48 +162,63 @@ class InMemory {
             decompressedSize = buffer.readInt() and 0xFFFFFF
         }
 
-        return when (type) {
-            0 -> ByteArray(compressedSize).apply { buffer.readBytes(this) }
-            1 -> {
-                val decompressed = ByteArray(decompressedSize)
-                compressor.decompress(decompressed, decompressed.size, data, 9)
-                decompressed
+        // TODO Replace with backing array and remove byte array copies
+        when (type) {
+            0 -> {
+                buffer.readBytes(decompressed, 0, compressedSize)
+                return compressedSize
             }
+            1 -> compressor.decompress(decompressed, decompressedSize, data, 9)
             2 -> {
                 val offset = buffer.position()
                 if (buffer.readByte() != 31 || buffer.readByte() != -117) {
-                    return byteArrayOf()
+                    return 0
                 }
-                val bytes = buffer.array()
-                val decompressed = ByteArray(decompressedSize)
                 try {
-                    inflater.setInput(bytes, offset + 10, bytes.size - (offset + 18))
+                    inflater.setInput(data, offset + 10, data.size - (offset + 18))
                     inflater.inflate(decompressed)
                 } catch (exception: Exception) {
-                    return byteArrayOf()
+                    exception.printStackTrace()
+                    return 0
                 } finally {
                     inflater.reset()
                 }
-                decompressed
             }
-            3 -> decompress(data, buffer.position(), decompressedSize)
-            else -> ByteArray(decompressedSize)
+            3 -> decompress(data, buffer.position(), decompressed, decompressedSize)
         }
+        return decompressedSize
     }
 
     private val decoder = Decoder()
 
-    private fun decompress(compressed: ByteArray, offset: Int, decompressedLength: Int): ByteArray {
+    private fun decompress(compressed: ByteArray, offset: Int, decompressed: ByteArray, decompressedLength: Int) {
         if (!decoder.setDecoderProperties(compressed)) {
             logger.error { "LZMA: Bad properties." }
-            return byteArrayOf()
+            return
         }
         val input = ByteArrayInputStream(compressed)
         input.skip(offset.toLong())
-        val output = ByteArrayOutputStream(decompressedLength)
+        val output = ByteArrayWrapperOutputStream(decompressed)
         decoder.code(input, output, decompressedLength.toLong())
-        output.flush()
-        return output.toByteArray()
+    }
+
+    class ByteArrayWrapperOutputStream(private val byteArray: ByteArray) : OutputStream() {
+        private var position = 0
+
+        override fun write(b: Int) {
+            byteArray[position++] = b.toByte()
+        }
+
+        override fun write(b: ByteArray, off: Int, len: Int) {
+            System.arraycopy(b, off, byteArray, position, len)
+            position += len
+        }
+
+        override fun flush() {
+        }
+
+        override fun close() {
+        }
     }
 
     private val inflater = Inflater(true)
@@ -217,7 +229,6 @@ class InMemory {
         if (bytes[offset].toInt() != 31 || bytes[offset + 1].toInt() != -117) {
             return false
         }
-        val inflater = this.inflater
         try {
             inflater.setInput(bytes, offset + 10, bytes.size - (offset + 18))
             inflater.inflate(data)
@@ -229,11 +240,9 @@ class InMemory {
         return true
     }
 
-    val sectorData = ByteArray(Index.SECTOR_SIZE)
-
-    fun readArchiveSector(mainFile: RandomAccessFile, length: Long, raf: RandomAccessFile, indexId: Int, sectorId: Int): ByteArray? {
+    fun readArchiveSector(mainFile: RandomAccessFile, length: Long, raf: RandomAccessFile, indexId: Int, sectorId: Int): Int {
         if (length < Index.INDEX_SIZE * sectorId + Index.INDEX_SIZE) {
-            return null
+            return 0
         }
         raf.seek(sectorId.toLong() * Index.INDEX_SIZE)
         raf.read(sectorData, 0, Index.INDEX_SIZE)
@@ -242,16 +251,15 @@ class InMemory {
         val sectorSize = buffer.readUnsignedMedium()
         var sectorPosition = buffer.readUnsignedMedium()
         if (sectorSize < 0 || sectorPosition <= 0 || sectorPosition > mainFile.length() / Index.SECTOR_SIZE) {
-            return null
+            return 0
         }
         var read = 0
         var chunk = 0
         val sectorHeaderSize = if (bigSector) Index.SECTOR_HEADER_SIZE_BIG else Index.SECTOR_HEADER_SIZE_SMALL
         val sectorDataSize = if (bigSector) Index.SECTOR_DATA_SIZE_BIG else Index.SECTOR_DATA_SIZE_SMALL
-        val data = ByteArray(sectorSize)
         while (read < sectorSize) {
             if (sectorPosition == 0) {
-                return null
+                return 0
             }
             var requiredToRead = sectorSize - read
             if (requiredToRead > sectorDataSize) {
@@ -265,46 +273,60 @@ class InMemory {
             val sectorNextPosition = buffer.readUnsignedMedium()
             val sectorIndex = buffer.readUnsignedByte()
             if (sectorIndex != indexId || id != sectorId || sectorChunk != chunk) {
-                return null
+                return 0
             } else if (sectorNextPosition < 0 || sectorNextPosition > mainFile.length() / Index.SECTOR_SIZE) {
-                return null
+                return 0
             }
             val bufferData = buffer.array()
             for (i in 0 until requiredToRead) {
-                data[read++] = bufferData[i + sectorHeaderSize]
+                output[read++] = bufferData[i + sectorHeaderSize]
             }
             sectorPosition = sectorNextPosition
             chunk++
         }
-        return data
+        return read
     }
 
     private fun readValue(version: Int, buffer: BufferReader) = if (version >= 7) buffer.readBigSmart() else buffer.readUnsignedShort()
 
     companion object {
         private val logger = InlineLogger()
-
+        fun loadBinary(file: File): Map<Int, IntArray> {
+            val xteas = Int2ObjectOpenHashMap<IntArray>()
+            val reader = BufferReader(file.readBytes())
+            while (reader.remaining > 0) {
+                val region = reader.readShort()
+                xteas[region] = IntArray(4) { reader.readInt() }
+            }
+            return xteas
+        }
         @JvmStatic
         fun main(args: Array<String>) {
             val memory = InMemory()
             val path = "./data/cache/"
+            val xteas = loadBinary(File("./data/xteas.dat"))
             val start = System.currentTimeMillis()
-            val indices = memory.load(path)
+            val indices = memory.load(path, xteas)
+            // TODO check data see if there's enough gaps to justify using Maps instead of arrays
+            // TODO memory usage of storing inflated vs deflated
             println("Loaded cache in ${System.currentTimeMillis() - start}ms")
 
+//            println(memory.biggest)
+//            println(memory.biggest2)
+            Thread.sleep(10000)
             exitProcess(0)
             val lib = CacheLibrary(path)
             for (index in lib.indices()) {
-                if (index.archives().size != indices.getValue(index.id).size) {
+                if (index.archives().size != indices.get(index.id).size) {
                     println("Different archive size")
                 }
                 for (archive in index.archives()) {
-                    if (archive.files.size != indices.getValue(index.id).getValue(archive.id).size) {
-                        println("Different archive size: ${index.id} ${archive.id} ${archive.files.size} != ${indices.getValue(index.id).getValue(archive.id).size}")
+                    if (archive.files.size != indices.get(index.id).getValue(archive.id).size) {
+                        println("Different archive size: ${index.id} ${archive.id} ${archive.files.size} != ${indices.get(index.id).getValue(archive.id).size}")
                     }
                     for (file in archive.files()) {
                         val expected = lib.data(index.id, archive.id, file.id)
-                        val actual = indices.getValue(index.id).getValue(archive.id)[file.id]
+                        val actual = indices.get(index.id).getValue(archive.id)[file.id]
                         if (!expected.contentEquals(actual)) {
                             println("Mismatch ${index.id} ${archive.id} ${file.id} ${expected?.take(10)} ${actual?.take(10)}")
                             exitProcess(0)

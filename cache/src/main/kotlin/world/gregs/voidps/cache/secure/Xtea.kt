@@ -23,12 +23,12 @@ object Xtea {
      * @throws IllegalArgumentException if the key is not exactly 4 elements
      * long.
      */
-    fun decipher(buffer: ByteArray, key: IntArray, start: Int = 0) {
+    fun decipher(buffer: ByteArray, key: IntArray, start: Int = 0, end: Int = buffer.size) {
         if (key.size != 4) {
             throw IllegalArgumentException()
         }
 
-        val numQuads = buffer.size / 8
+        val numQuads = end / 8
         for (i in 0 until numQuads) {
             var sum = GOLDEN_RATIO * ROUNDS
             var v0 = getInt(buffer, start + i * 8)
