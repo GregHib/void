@@ -178,7 +178,12 @@ collection_box:
 # Item
 dialogue_double_obj_box:
   id: 131
-  type: dialogue_box
+  type: dialogue_box_small
+  components:
+    model1: 0
+    line1: 1
+    model2: 2
+    continue: 3
 dialogue_garden_quiz:
   id: 133
   type: dialogue_box
