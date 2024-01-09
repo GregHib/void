@@ -6,14 +6,14 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.type.random
 import world.gregs.voidps.type.Area
+import world.gregs.voidps.type.random
 
 val minRespawnTick = 280
 val maxRespawnTick = 530
 
 on<Registered>({ it.id.startsWith("fishing_spot") }) { npc: NPC ->
-    val area: Area = npc.getOrNull("area") ?: return@on
+    val area: Area = npc["area"] ?: return@on
     move(npc, area)
 }
 

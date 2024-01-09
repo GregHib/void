@@ -39,7 +39,7 @@ object Degrade {
     fun charges(player: Player, inventory: String, slot: Int): Int {
         val item = player.inventories.inventory(inventory).getOrNull(slot) ?: return 0
         // Inventory tracked item
-        val charge: Int? = player.getOrNull(variable(inventory, slot))
+        val charge: Int? = player[variable(inventory, slot)]
         if (charge != null) {
             return charge
         }
@@ -47,7 +47,7 @@ object Degrade {
         // Player variable
         val variable = item.def["charge", "${item.id}_charges"]
         if (player.contains(variable)) {
-            return player[variable]
+            return player[variable, 0]
         }
 
         // Return default
@@ -65,7 +65,7 @@ object Degrade {
         }
 
         val variable = variable(item, inventory, slot)
-        val charge = player.getOrNull(variable) ?: item.def["charges", 0]
+        val charge = player[variable] ?: item.def["charges", 0]
         if (charge <= 0) {
             return false
         }

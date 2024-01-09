@@ -43,7 +43,7 @@ on<Registered> { character: Character ->
 }
 
 val Character.damageDealers: MutableMap<Character, Int>
-    get() = this["damage_dealers"]
+    get() = getOrPut("damage_dealers") { mutableMapOf() }
 
 val x = getIntProperty("homeX", 0)
 val y = getIntProperty("homeY", 0)

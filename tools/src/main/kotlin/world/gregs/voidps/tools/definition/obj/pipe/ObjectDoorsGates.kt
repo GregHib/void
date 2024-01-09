@@ -16,7 +16,7 @@ class ObjectDoorsGates(private val decoder: Array<ObjectDefinitionFull>) : Pipel
         var door = 0
         content.forEach { (id, content) ->
             val (_, extras) = content
-            val def = decoder.get(id)
+            val def = decoder[id]
             if (fences.contains(id) || def.isDoor() && def.options?.first().equals("open", true)) {
                 val match = match(def)
                 if (match != -1) {
@@ -110,7 +110,7 @@ class ObjectDoorsGates(private val decoder: Array<ObjectDefinitionFull>) : Pipel
             val cache = CacheDelegate("./data/cache")
             val decoder = ObjectDecoderFull(false, true).loadCache(cache)
             val gates = ObjectDoorsGates(decoder)
-            val match = gates.match(decoder.get(45849))
+            val match = gates.match(decoder[45849])
             println("Match $match")
         }
     }

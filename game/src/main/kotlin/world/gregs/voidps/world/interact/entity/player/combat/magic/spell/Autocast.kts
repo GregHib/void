@@ -14,7 +14,7 @@ val interfaceDefinitions: InterfaceDefinitions by inject()
 
 on<InterfaceOption>({ id.endsWith("_spellbook") && option == "Autocast" }) { player: Player ->
     val value: Int? = interfaceDefinitions.getComponent(id, component)?.getOrNull("cast_id")
-    if (value == null || player.get<Int>("autocast") == value) {
+    if (value == null || player["autocast", 0] == value) {
         player.clear("autocast")
     } else {
         player["autocast_spell"] = component

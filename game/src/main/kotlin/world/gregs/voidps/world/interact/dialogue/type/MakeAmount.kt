@@ -47,7 +47,7 @@ suspend fun CharacterContext.makeAmountIndex(
     val choice: Int = IntSuspension()
     player.close(INTERFACE_ID)
     player.close(INTERFACE_AMOUNT_ID)
-    val amount = player.get<Int>("skill_creation_amount")
+    val amount = player["skill_creation_amount", 1]
     return choice to amount
 }
 

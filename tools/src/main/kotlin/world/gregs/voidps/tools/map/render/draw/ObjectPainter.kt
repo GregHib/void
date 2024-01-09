@@ -163,7 +163,7 @@ class ObjectPainter(
     }
 
     internal fun MapSceneDefinition.method1606(i: Int, bool: Boolean): IndexedSprite? {
-        val image = spriteDefinitions.get(sprite).sprites?.first()
+        val image = spriteDefinitions[sprite].sprites?.first()
         if (image != null) {
             image.offsetY = 0
             image.deltaWidth = image.offsetY

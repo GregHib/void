@@ -10,10 +10,10 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.death.Death
 
 val npcs: NPCs by inject()
@@ -25,7 +25,7 @@ on<Registered>({ it.id == "ducklings" }) { npc: NPC ->
 fun isDuck(it: NPC) = it.id.startsWith("duck") && it.id.endsWith("swim")
 
 on<Death>({ isDuck(it) }) { npc: NPC ->
-    val ducklings: NPC = npc.getOrNull("ducklings") ?: return@on
+    val ducklings: NPC = npc["ducklings"] ?: return@on
     ducklings.forceChat = "Eek!"
     followParent(ducklings)
 }

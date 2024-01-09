@@ -108,7 +108,7 @@ object Target {
 }
 
 internal var Character.target: Character?
-    get() = getOrNull("target")
+    get() = get("target")
     set(value) {
         if (value != null) {
             set("target", value)

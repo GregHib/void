@@ -89,7 +89,7 @@ fun fillShop(inventory: Inventory, shopId: String) {
     }
 }
 
-on<ItemChanged>({ it.contains("shop") && inventory == it["shop"] }) { player: Player ->
+on<ItemChanged>({ it.contains("shop") && inventory == it["shop", ""] }) { player: Player ->
     player["amount_${index}"] = item.amount
 }
 

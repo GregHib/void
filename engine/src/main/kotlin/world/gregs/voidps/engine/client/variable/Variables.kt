@@ -8,22 +8,18 @@ open class Variables(
     val data: MutableMap<String, Any> = Object2ObjectOpenHashMap(2)
 ) {
 
+    @Suppress("LeakingThis")
     var bits = VariableBits(this, events)
 
     @Suppress("UNCHECKED_CAST")
-    open fun <T : Any> get(key: String): T {
-        return data(key)[key] as T
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    open fun <T : Any> getOrNull(key: String): T? {
+    open fun <T : Any> get(key: String): T? {
         return data(key)[key] as? T
     }
 
-    open fun <T : Any> get(key: String, default: T): T = getOrNull(key) ?: default
+    open fun <T : Any> get(key: String, default: T): T = get(key) ?: default
 
     open fun <T : Any> getOrPut(key: String, block: () -> T): T {
-        var value = getOrNull<T>(key)
+        var value = get<T>(key)
         if (value != null) {
             return value
         }
@@ -40,7 +36,7 @@ open class Variables(
     }
 
     open fun set(key: String, value: Any, refresh: Boolean = true) {
-        val previous: Any? = getOrNull(key)
+        val previous: Any? = get(key)
         if (previous == value) {
             return
         }

@@ -102,7 +102,7 @@ on<NPCOption>({ operate && def.contains("fishing") }) { player: Player ->
         }
         player.stop("skill_delay")
     }
-    target.get<MutableSet<Player>>("fishers").remove(player)
+    target.get<MutableSet<Player>>("fishers", mutableSetOf<Player>()).remove(player)
     player.softTimers.stop("fishing")
 }
 

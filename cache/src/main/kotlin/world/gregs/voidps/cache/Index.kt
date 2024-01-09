@@ -34,5 +34,6 @@ object Index {
     const val SHADERS = 31
     const val LOADING_FONTS_AND_IMAGES = 32
     const val GAME_TIPS = 33
+    const val LOADING_FONTS_AND_SPRITES = 34
     const val CUTSCENES = 35
 }

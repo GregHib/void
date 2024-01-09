@@ -100,13 +100,13 @@ internal class VariablesTest {
     }
 
     @Test
-    fun `Get default value`() {
+    fun `Get doesn't return default value`() {
         // Given
         every { variable.defaultValue } returns 42
         // When
-        val result: Int = variables.get(key)
+        val result: Int? = variables.get(key)
         // Then
-        assertEquals(42, result)
+        assertNull(result)
     }
 
     @Test

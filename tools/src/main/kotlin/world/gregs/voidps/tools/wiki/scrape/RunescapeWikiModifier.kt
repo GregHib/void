@@ -109,7 +109,7 @@ internal object RunescapeWikiModifier {
                     if (output.containsKey(id)) {
                         continue
                     }
-                    val def = decoder.get(id)
+                    val def = decoder[id]
                     if (name == def.name) {
                         found.add(id)
                     }

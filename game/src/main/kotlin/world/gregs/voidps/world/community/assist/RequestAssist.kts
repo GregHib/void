@@ -117,7 +117,7 @@ fun setupAssistant(player: Player, assisted: Player) {
 }
 
 on<InterfaceClosed>({ id == "assist_xp" }) { player: Player ->
-    val assisted: Player = player["assisted"]
+    val assisted: Player = player["assisted"] ?: return@on
     cancelAssist(player, assisted)
 }
 
@@ -160,7 +160,7 @@ fun cancelAssist(assistant: Player?, assisted: Player?) {
 }
 
 on<BlockedExperience>({ it.contains("assistant") }) { assisted: Player ->
-    val player: Player = assisted["assistant"]
+    val player: Player = assisted.get("assistant") ?: return@on
     val active = player["assist_toggle_${skill.name.lowercase()}", false]
     var gained = player["total_xp_earned", 0].toDouble()
     if (active && !exceededMaximum(gained)) {

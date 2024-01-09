@@ -77,7 +77,7 @@ class ObjectOptionHandler(
 
         private fun getInt(definitions: VariableDefinitions, key: String, player: Player): Int {
             val variable = definitions.get(key) ?: return 0
-            val value = player.variables.getOrNull<Any>(key) ?: return 0
+            val value = player.variables.get<Any>(key) ?: return 0
             return variable.values.toInt(value)
         }
 

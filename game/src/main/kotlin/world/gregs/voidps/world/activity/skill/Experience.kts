@@ -18,7 +18,7 @@ on<InterfaceOption>({ id == it.gameFrame.name && component == "xp_orb" && option
 }
 
 on<GrantExp> { player: Player ->
-    val current = player.get<Double>("xp_counter")
+    val current = player["xp_counter", 0.0]
     val increase = to - from
     player["xp_counter"] = current + increase
     player["lifetime_xp"] = player["lifetime_xp", 0.0] + increase

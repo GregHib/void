@@ -29,14 +29,14 @@ suspend inline fun <reified E : Expression> CharacterContext.npc(npcId: String, 
 
 @JvmName("npcExpression")
 suspend fun CharacterContext.npc(expression: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
-    val target: NPC = player.getOrNull("dialogue_target") ?: throw IllegalArgumentException("No npc specified for dialogue. Please use player.talkWith(npc) or npc(npcId, text).")
-    val id = target["transform_id", player.getOrNull<NPCDefinition>("dialogue_def")?.stringId ?: target.id]
+    val target: NPC = player["dialogue_target"] ?: throw IllegalArgumentException("No npc specified for dialogue. Please use player.talkWith(npc) or npc(npcId, text).")
+    val id = target["transform_id", player.get<NPCDefinition>("dialogue_def")?.stringId ?: target.id]
     target.mode = Face(target, player)
     npc(id, expression, text, largeHead, clickToContinue, title)
 }
 
 suspend fun CharacterContext.npc(npcId: String, expression: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
-    val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("497").splitLines(text, 380)
+    val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("q8_full").splitLines(text, 380)
     check(lines.size <= 4) { "Maximum npc chat lines exceeded ${lines.size} for $player" }
     val id = getInterfaceId(lines.size, clickToContinue)
     check(player.open(id)) { "Unable to open npc dialogue $id for $player" }

@@ -83,13 +83,13 @@ class CombatMovement(
 
     private fun retreat(character: NPC): Boolean {
         val wanderRadius = character.def["wander_radius", 5]
-        val spawn: Tile = character.getOrNull("respawn_tile") ?: return false
+        val spawn: Tile = character["respawn_tile"] ?: return false
         if (!character.tile.within(spawn, wanderRadius)) {
             character.walkTo(spawn)
             return true
         }
         val attackRadius = character.def["attack_radius", 8]
-        val target = character.getOrNull<Character>("target")
+        val target = character.get<Character>("target")
         if (target != null && !character.tile.within(target.tile, attackRadius)) {
             character.mode = Retreat(character, target)
             return true

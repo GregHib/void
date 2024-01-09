@@ -17,13 +17,13 @@ on<InterfaceOption>({ id == "skill_creation_amount" && component == "create10" }
 }
 
 on<InterfaceOption>({ id == "skill_creation_amount" && component == "all" }) { player: Player ->
-    val max: Int = player["skill_creation_maximum"]
+    val max: Int = player["skill_creation_maximum", 1]
     player["skill_creation_amount", false] = max
 }
 
 on<InterfaceOption>({ id == "skill_creation_amount" && component == "increment" }) { player: Player ->
-    var current: Int = player["skill_creation_amount"]
-    val maximum: Int = player["skill_creation_maximum"]
+    var current: Int = player["skill_creation_amount", 1]
+    val maximum: Int = player["skill_creation_maximum", 1]
     current++
     if (current > maximum) {
         current = maximum
@@ -32,7 +32,7 @@ on<InterfaceOption>({ id == "skill_creation_amount" && component == "increment" 
 }
 
 on<InterfaceOption>({ id == "skill_creation_amount" && component == "decrement" }) { player: Player ->
-    var current: Int = player["skill_creation_amount"]
+    var current: Int = player["skill_creation_amount", 1]
     current--
     if (current < 0) {
         current = 0

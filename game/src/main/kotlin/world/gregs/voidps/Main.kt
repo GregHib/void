@@ -89,6 +89,7 @@ object Main {
             queue,
             get(),
             get(),
+            get(),
             objectDefinitions,
             get(),
             interfaceDefinitions,

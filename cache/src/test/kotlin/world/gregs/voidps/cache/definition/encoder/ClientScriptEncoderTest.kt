@@ -43,7 +43,7 @@ internal class ClientScriptEncoderTest {
         every { cache.getFile(CLIENT_SCRIPTS, any<Int>(), any<Int>(), any()) } returns data
         every { cache.lastArchiveId(any()) } returns 1
         val decoder = ClientScriptDecoder(revision634).loadCache(cache)
-        val decoded = decoder.get(0)
+        val decoded = decoder[0]
         assertEquals(definition, decoded)
     }
 
@@ -75,7 +75,7 @@ internal class ClientScriptEncoderTest {
         every { cache.getFile(CLIENT_SCRIPTS, any(), any<Int>()) } returns data
         every { cache.lastArchiveId(any()) } returns 1
         val decoder = ClientScriptDecoder(revision634).loadCache(cache)
-        val decoded = decoder.get(0)
+        val decoded = decoder[0]
         assertEquals(definition, decoded)
     }
 }

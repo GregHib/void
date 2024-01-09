@@ -21,7 +21,7 @@ class WorldMapDungeons(
             val iconDef = iconDecoder.getOrNull(def.map.hashCode()) ?: continue
             iconDef.icons.forEach { (id, position) ->
                 val scriptId = ClientScriptDefinitions.getScriptId(cache, id, 10)
-                val script = scriptDecoder.get(scriptId)
+                val script = scriptDecoder[scriptId]
                 if (script.hasInstruction(0, LOCATION) && script.hasInstruction(1, SCRIPT_ID) && script.getIntOrNull(1) == 304) {
                     val targetPos = script.getInt(0)
 

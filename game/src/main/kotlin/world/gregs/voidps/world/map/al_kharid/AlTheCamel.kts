@@ -143,7 +143,7 @@ suspend fun NPCOption.dung() {
     player.open("fade_out")
     player.interfaces.sendText("fade_out", "text", "<red>You close your eyes...")
     delay(2)
-    val tile = player.getOrNull<NPC>("dialogue_target")?.tile ?: player.tile.add(Direction.all.random())
+    val tile = player.get<NPC>("dialogue_target")?.tile ?: player.tile.add(Direction.all.random())
     objects.add("dung", tile, ticks = TimeUnit.SECONDS.toTicks(30))
     delay(2)
     player.open("fade_in")

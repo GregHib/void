@@ -7,9 +7,9 @@ import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.tools.wiki.model.Infobox
 import world.gregs.voidps.tools.wiki.model.Wiki
+import world.gregs.voidps.type.Tile
 import java.io.File
 import java.time.LocalDate
 import java.time.Month
@@ -35,7 +35,7 @@ object MusicInfoBoxDumper {
 
         val cache = CacheDelegate("./data/cache/")
         val defs = EnumDecoder().loadCache(cache)
-        val enum = defs.get(1345)
+        val enum = defs[1345]
         val enumMap = enum.map!!.mapValues { (_, value) -> toIdentifier(value as String) }
         println(enumMap)
 

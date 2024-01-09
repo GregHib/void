@@ -1,7 +1,8 @@
 package world.gregs.voidps.world.community.trade.lend
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -62,10 +63,10 @@ fun checkBorrowUntilLogout(player: Player) {
 
 fun checkLoanUntilLogout(player: Player) {
     if (!player.contains("lend_timeout") && player.returnedItems.isFull() && player.contains("lent_to")) {
-        val name: String = player["lent_to"]
+        val name: String? = player["lent_to"]
         player.stop("lend_timeout")
         player.softTimers.stop("loan_message")
-        val borrower = players.get(name) ?: return
+        val borrower = players.get(name ?: return) ?: return
         borrower.stop("borrow_timeout")
         borrower.softTimers.stop("borrow_message")
         borrower.message("The item you borrowed has been returned to its owner.")

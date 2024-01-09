@@ -48,7 +48,7 @@ class ZoneBatchUpdates : Runnable {
     }
 
     fun run(player: Player) {
-        val previousZone: Zone? = player.getOrNull("previous_zone")
+        val previousZone: Zone? = player["previous_zone"]
         val previous = previousZone?.toRectangle(radius = player.viewport!!.localRadius)?.toZones(player.tile.level)?.toSet()
         player["previous_zone"] = player.tile.zone
         for (zone in player.tile.zone.toRectangle(radius = player.viewport!!.localRadius).toZonesReversed(player.tile.level)) {

@@ -45,7 +45,7 @@ internal class LootShareTest : WorldTest() {
 
         player.interfaceOption("clan_chat", "loot_share", "Toggle-LootShare")
 
-        assertFalse(player["loot_share"])
+        assertFalse(player["loot_share", false])
         verify {
             client.message("LootShare is disabled by the clan owner.", ChatType.ClanChat.id)
         }
@@ -63,7 +63,7 @@ internal class LootShareTest : WorldTest() {
         player.interfaceOption("clan_chat", "loot_share", "Toggle-LootShare")
         tickIf(limit = 210) { !player["loot_share", false] }
 
-        assertTrue(player["loot_share"])
+        assertTrue(player["loot_share", false])
         verify {
             client.message("LootShare is now active. The CoinShare option is off.", ChatType.ClanChat.id)
         }
@@ -83,7 +83,7 @@ internal class LootShareTest : WorldTest() {
         player.interfaceOption("clan_chat_setup", "coin_share", "Toggle CoinShare")
         tickIf { !player["coin_share", false] }
 
-        assertTrue(player["coin_share"])
+        assertTrue(player["coin_share", false])
         verify {
             client.message("CoinShare has been switched on.", ChatType.ClanChat.id)
         }
@@ -105,7 +105,7 @@ internal class LootShareTest : WorldTest() {
         player.interfaceOption("clan_chat_setup", "coin_share", "Toggle CoinShare")
         tickIf { clan.coinShare }
 
-        assertFalse(player["coin_share_setting"])
+        assertFalse(player["coin_share_setting", false])
         verify {
             client.message("CoinShare has been switched off.", ChatType.ClanChat.id)
         }

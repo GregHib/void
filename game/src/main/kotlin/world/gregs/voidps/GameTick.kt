@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.client.update.player.PlayerResetTask
 import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.AiTick
@@ -49,6 +50,7 @@ fun getTickStages(
     queue: NetworkQueue,
     factory: PlayerAccounts,
     batches: ZoneBatchUpdates,
+    itemDefinitions: ItemDefinitions,
     objectDefinitions: ObjectDefinitions,
     npcDefinitions: NPCDefinitions,
     interfaceDefinitions: InterfaceDefinitions,
@@ -66,7 +68,7 @@ fun getTickStages(
         queue,
         factory,
         // Tick
-        InstructionTask(players, npcs, items, objects, objectDefinitions, npcDefinitions, interfaceDefinitions, handler),
+        InstructionTask(players, npcs, items, objects, itemDefinitions, objectDefinitions, npcDefinitions, interfaceDefinitions, handler),
         World,
         NPCTask(sequentialNpc, npcs),
         PlayerTask(sequentialPlayer, players),

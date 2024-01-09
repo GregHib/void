@@ -16,7 +16,7 @@ on<Registered>({ it.skulled }) { player: Player ->
     player.softTimers.restart("skull")
 }
 
-on<CombatSwing>({ it.inWilderness && target is Player && !it.get<List<Character>>("attackers").contains(target) }) { player: Player ->
+on<CombatSwing>({ it.inWilderness && target is Player && it.get<List<Character>>("attackers")?.contains(target) != true }) { player: Player ->
     player.skull()
 }
 

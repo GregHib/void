@@ -120,7 +120,7 @@ class TileLevel(
     }
 
     private fun textureColour(i: Int): Int {
-        return textureDefinitions.get(i).colour and 0xffff
+        return textureDefinitions[i].colour and 0xffff
     }
 
     private fun light(light: Int, colour: Int): Int {
@@ -308,7 +308,7 @@ class TileLevel(
                 }
                 val id = textures[index]
                 if (id != -1) {
-                    val textureMetrics = textureDefinitions.get(id)
+                    val textureMetrics = textureDefinitions[id]
                     if (!textureMetrics.useTextureColour) {
                         withoutTexture = true
                         if (isTypeFourEightNine(textureMetrics.type.toInt()) || textureMetrics.aByte1211.toInt() != 0 || textureMetrics.aByte1203.toInt() != 0) {
@@ -346,7 +346,7 @@ class TileLevel(
                     textureColour.vertexIndices2!![textureColour.count.toInt()] = vertexIndices2[index].toShort()
                     textureColour.vertexIndices3!![textureColour.count.toInt()] = vertexIndices3[index].toShort()
                     if (withoutTexture) {
-                        if (textures[index] == -1 || textureDefinitions.get(textures[index]).useTextureColour) {
+                        if (textures[index] == -1 || textureDefinitions[textures[index]].useTextureColour) {
                             textureColour.textureIds!![textureColour.count.toInt()] = (-1).toShort()
                         } else {
                             textureColour.textureIds!![textureColour.count.toInt()] = textures[index].toShort()
@@ -372,7 +372,7 @@ class TileLevel(
             }
             var textureMetrics: TextureDefinition? = null
             if (texture != -1) {
-                textureMetrics = textureDefinitions.get(texture)
+                textureMetrics = textureDefinitions[texture]
             }
             if (textureMetrics != null && tileColour.type.toInt() and 0x2 == 0 && !textureMetrics.useTextureColour) {
                 tileColour.middleColourIndex = (tileBrightness[x][y] - tileShadows[x][y]).toShort()

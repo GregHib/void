@@ -77,7 +77,7 @@ object MapPacker {
     }
 
     private fun getKeys(target: Int): Xteas {
-        val file = File("./temp/runescape-${target}.keys")
+        val file = File("./temp/xteas/runescape-${target}.keys.json")
         val content = if (file.exists()) {
             file.readText()
         } else {

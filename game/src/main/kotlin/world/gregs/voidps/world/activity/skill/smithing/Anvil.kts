@@ -72,7 +72,7 @@ val orange = 30309
 val green = 992
 
 on<InterfaceOption>({ id == "smithing" }) { player: Player ->
-    val metal: String = player.getOrNull("smithing_metal") ?: return@on
+    val metal: String = player["smithing_metal"] ?: return@on
     val type = component.substringBeforeLast('_')
     val amount = when {
         component.endsWith("_1") -> 1

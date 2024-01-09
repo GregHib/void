@@ -89,9 +89,9 @@ on<InterfaceClosed>({ id == "hairdressers_salon" }) { player: Player ->
 }
 
 on<InterfaceOption>({ id == "hairdressers_salon" && component == "confirm" }) { player: Player ->
-    player.body.setLook(BodyPart.Hair, player["makeover_hair"])
-    player.body.setLook(BodyPart.Beard, player["makeover_beard"])
-    player.body.setColour(BodyColour.Hair, player["makeover_colour_hair"])
+    player.body.setLook(BodyPart.Hair, player["makeover_hair", 0])
+    player.body.setLook(BodyPart.Beard, player["makeover_beard", 0])
+    player.body.setColour(BodyColour.Hair, player["makeover_colour_hair", 0])
     player.flagAppearance()
     player.closeMenu()
     npc<Cheerful>("hairdresser", if (player.male) {

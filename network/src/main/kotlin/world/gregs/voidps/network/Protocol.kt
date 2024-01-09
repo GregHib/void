@@ -237,6 +237,6 @@ fun protocol(huffman: Huffman): Map<Int, Decoder> = mapOf(
     28 to ResumeObjDialogueDecoder(),
     84 to ToolkitPreferencesDecoder(),
     52 to WindowHoveredDecoder(),
-    37 to Unknown2Decoder(),
+    37 to FloorItemExamineDecoder(),
     71 to UnknownDecoder()
 )

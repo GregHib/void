@@ -39,7 +39,7 @@ internal class MakeAmountTest : DialogueTest() {
 
     @Test
     fun `Send make amount dialogue`() {
-        every { player.get<Int>("skill_creation_amount") } returns 3
+        every { player["skill_creation_amount", 1] } returns 3
         var result: Pair<String, Int>? = null
         dialogue {
             result = makeAmount(listOf("1", "2", "3"), "ants", 25)
