@@ -28,7 +28,7 @@ object Xtea {
             throw IllegalArgumentException()
         }
 
-        val numQuads = end / 8
+        val numQuads = (end- start) / 8
         for (i in 0 until numQuads) {
             var sum = GOLDEN_RATIO * ROUNDS
             var v0 = getInt(buffer, start + i * 8)

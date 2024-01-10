@@ -36,8 +36,8 @@ object HashCodeMatcher {
         }
 
         findInterfaces(keywords, depth = -1)
-        findSprites(keywords, depth = 3)
-        findScripts(keywords, depth = -1)
+        findSprites(keywords, depth = -1)
+        findScripts(keywords, depth = 2)
     }
 
     fun add(string: String): Boolean {
@@ -226,6 +226,19 @@ object HashCodeMatcher {
                     }
                 }
             }
+        }
+    }
+
+    private fun brute(prefix: String, target: Int, chars: List<Char>, limit: Int, depth: Int = 0) {
+        if (depth > limit) {
+            return
+        }
+        for (a in chars) {
+            val str = "$prefix${a}"
+            if (str.hashCode() == target) {
+                println("Found: $str")
+            }
+            brute(str, target, chars, limit, depth + 1)
         }
     }
 }
