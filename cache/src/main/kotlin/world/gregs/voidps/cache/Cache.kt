@@ -14,6 +14,14 @@ interface Cache {
         return null
     }
 
+    open fun archiveId(name: String): Int {
+        return -1
+    }
+
+    open fun indices(): IntArray {
+        return intArrayOf()
+    }
+
     open fun indexes(): Int {
         return 0
     }

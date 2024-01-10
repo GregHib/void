@@ -1,8 +1,13 @@
-package world.gregs.voidps.cache.memory
+package world.gregs.voidps.cache.memory.load
 
 import com.displee.cache.index.Index
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.memory.ArchiveSectorReader
+import world.gregs.voidps.cache.memory.Decompressor
+import world.gregs.voidps.cache.memory.InMemory
+import world.gregs.voidps.cache.memory.cache.FileCache
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.RandomAccessFile
@@ -12,25 +17,26 @@ class FileCacheLoader : CacheLoader {
     private val decompressor = Decompressor()
 
     override fun load(path: String, xteas: Map<Int, IntArray>?): Cache {
-        val mainFile = File(path, "${CACHE_FILE_NAME}.dat2")
+        val mainFile = File(path, "$CACHE_FILE_NAME.dat2")
         if (!mainFile.exists()) {
             throw FileNotFoundException("Main file not found at '${mainFile.absolutePath}'.")
         }
         val main = RandomAccessFile(mainFile, "r")
-        val index255File = File(path, "${CACHE_FILE_NAME}.idx255")
+        val index255File = File(path, "$CACHE_FILE_NAME.idx255")
         if (!index255File.exists()) {
             throw FileNotFoundException("Checksum file not found at '${index255File.absolutePath}'.")
         }
         val index255 = RandomAccessFile(index255File, "r")
         val indexCount = index255.length().toInt() / INDEX_SIZE
         val indices = Array(indexCount) { indexId ->
-            val file = File(path, "${CACHE_FILE_NAME}.idx$indexId")
+            val file = File(path, "$CACHE_FILE_NAME.idx$indexId")
             RandomAccessFile(file, "r")
         }
         val archives: Array<IntArray?> = arrayOfNulls(indexCount)
         val fileCounts: Array<IntArray?> = arrayOfNulls(indexCount)
         val files: Array<Array<IntArray?>?> = arrayOfNulls(indexCount)
         val length = mainFile.length()
+        val hashes = Int2IntOpenHashMap(16384)
         for (indexId in 0 until indexCount) {
             val compressedSize = sectorReader.read(main, length, index255, indexId = 255, sectorId = indexId)
             val decompressedSize = decompressor.decompress(sectorReader.data, compressedSize)
@@ -55,9 +61,11 @@ class FileCacheLoader : CacheLoader {
                 archiveId
             }
             archives[indexId] = archiveIds
-            files[indexId] = arrayOfNulls(highest + 1)
             if (flags and NAME_FLAG != 0) {
-                tableBuffer.skip(archiveCount * 4)
+                for (i in 0 until archiveCount) {
+                    val archiveId = archiveIds[i]
+                    hashes[tableBuffer.readInt()] = archiveId
+                }
             }
             if (flags and WHIRLPOOL_FLAG != 0) {
                 tableBuffer.skip(archiveCount * Index.WHIRLPOOL_SIZE)
@@ -70,17 +78,19 @@ class FileCacheLoader : CacheLoader {
                 archiveSizes[id] = size
             }
             fileCounts[indexId] = archiveSizes
+            val fileIds = arrayOfNulls<IntArray>(highest + 1)
+            files[indexId] = fileIds
             for (i in 0 until archiveCount) {
                 var fileId = 0
                 val archiveId = archiveIds[i]
                 val fileCount = archiveSizes[archiveId]
-                files[indexId]!![archiveId] = IntArray(fileCount) {
+                fileIds[archiveId] = IntArray(fileCount) {
                     fileId += tableBuffer.readSmart(version)
                     fileId
                 }
             }
         }
-        return FileCache(main, indices, archives, fileCounts, files, xteas)
+        return FileCache(main, indices, (0 until indexCount).toList().toIntArray(), archives, fileCounts, files, hashes, xteas)
     }
 
     private fun BufferReader.readSmart(version: Int) = if (version >= 7) readBigSmart() else readUnsignedShort()
@@ -90,5 +100,28 @@ class FileCacheLoader : CacheLoader {
         private const val WHIRLPOOL_FLAG = 0x2
         const val CACHE_FILE_NAME = "main_file_cache"
         private const val INDEX_SIZE = 6
+
+        @JvmStatic
+        fun main(args: Array<String>) {
+            val path = "./data/cache/"
+            val xteas = InMemory.loadBinary(File("./data/xteas.dat"))
+
+            val start = System.currentTimeMillis()
+            val cache = FileCacheLoader().load(path, xteas)
+            println("Loaded cache in ${System.currentTimeMillis() - start}ms")
+
+            var count = 0
+            for (index in 0 until cache.indexes()) {
+                val archives = cache.archives(index) ?: continue
+                for (archive in archives) {
+                    val files = cache.files(index, archive) ?: continue
+                    for (file in files) {
+                        val data = cache.data(index, archive, file) ?: continue
+                        count++
+                    }
+                }
+            }
+            println("Loaded $count files in ${System.currentTimeMillis() - start}ms")
+        }
     }
 }

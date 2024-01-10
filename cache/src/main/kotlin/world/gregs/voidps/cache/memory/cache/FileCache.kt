@@ -1,18 +1,21 @@
-package world.gregs.voidps.cache.memory
+package world.gregs.voidps.cache.memory.cache
 
 import world.gregs.voidps.buffer.read.BufferReader
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
+import world.gregs.voidps.cache.memory.ArchiveSectorReader
+import world.gregs.voidps.cache.memory.Decompressor
 import java.io.RandomAccessFile
 
 class FileCache(
     private val main: RandomAccessFile,
-    private val indices: Array<RandomAccessFile>,
-    private val archives: Array<IntArray?>,
-    private val fileCounts: Array<IntArray?>,
-    private val files: Array<Array<IntArray?>?>,
-    private val xteas: Map<Int, IntArray>?
-) : Cache {
+    private val indexes: Array<RandomAccessFile>,
+    indices: IntArray,
+    archives: Array<IntArray?>,
+    fileCounts: Array<IntArray?>,
+    files: Array<Array<IntArray?>?>,
+    hashes: Map<Int, Int>?,
+    val xteas: Map<Int, IntArray>?
+) : ReadOnlyCache(indices, archives, fileCounts, files, hashes) {
     private val dataCache = object : LinkedHashMap<Int, Array<ByteArray?>>(16, 0.75f, true) {
         override fun removeEldestEntry(eldest: MutableMap.MutableEntry<Int, Array<ByteArray?>>?): Boolean {
             return size > 10
@@ -20,7 +23,7 @@ class FileCache(
     }
     private val length = main.length()
     private val sectorReader = ArchiveSectorReader()
-    private val decompressor = Decompressor(4_702_000)
+    private val decompressor = Decompressor(5_000_000)
 
     private fun hash(index: Int, archive: Int) = index + (archive shl 4)
 
@@ -30,7 +33,7 @@ class FileCache(
             return null
         }
         val files = dataCache.getOrPut(hash(index, archive)) {
-            val indexRaf = indices[index]
+            val indexRaf = indexes[index]
             val sectorSize = sectorReader.read(main, length, indexRaf, index, archive)
             if (sectorSize == 0) {
                 return null
@@ -82,73 +85,4 @@ class FileCache(
         }
         return files[matchingIndex]
     }
-
-    override fun files(index: Int, archive: Int): IntArray? {
-        return files[index]?.get(archive)
-    }
-
-    override fun archives(index: Int): IntArray? {
-        return archives[index]
-    }
-
-    override fun indexes(): Int {
-        return indices.size
-    }
-
-    override fun getFile(index: Int, name: String, xtea: IntArray?): ByteArray? {
-        return getFile(index, name.hashCode(), 0, xtea)
-    }
-
-
-    override fun getFile(index: Int, archive: Int, file: Int, xtea: IntArray?): ByteArray? {
-        TODO("Not yet implemented")
-    }
-
-    override fun close() {
-    }
-
-    override fun getIndexCrc(indexId: Int): Int {
-        TODO("Not yet implemented")
-    }
-
-    override fun archiveCount(indexId: Int, archiveId: Int): Int {
-        return fileCounts[indexId]?.get(archiveId) ?: 0
-    }
-
-    override fun lastFileId(indexId: Int, archive: Int): Int {
-        return files[indexId]?.get(archive)?.last() ?: -1
-    }
-
-    override fun lastArchiveId(indexId: Int): Int {
-        return archives[indexId]?.last() ?: -1
-    }
-
-    override fun getArchiveId(index: Int, name: String): Int {
-        TODO("Not yet implemented")
-    }
-
-    override fun getArchiveId(index: Int, archive: Int): Int {
-        TODO("Not yet implemented")
-    }
-
-    override fun getArchives(index: Int): IntArray {
-        TODO("Not yet implemented")
-    }
-
-    override fun write(index: Int, archive: Int, file: Int, data: ByteArray, xteas: IntArray?) {
-        TODO("Not yet implemented")
-    }
-
-    override fun write(index: Int, archive: String, data: ByteArray, xteas: IntArray?) {
-        TODO("Not yet implemented")
-    }
-
-    override fun update(): Boolean {
-        TODO("Not yet implemented")
-    }
-
-    override fun getArchiveData(index: Int, archive: Int): Map<Int, ByteArray?>? {
-        TODO("Not yet implemented")
-    }
-
 }

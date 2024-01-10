@@ -1,4 +1,4 @@
-package world.gregs.voidps.cache.memory
+package world.gregs.voidps.cache.memory.load
 
 import world.gregs.voidps.cache.Cache
 
