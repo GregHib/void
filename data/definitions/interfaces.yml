@@ -1861,6 +1861,7 @@ equipment_bonuses:
     magic_damage: 47
     bank: 49
     stats: 52
+    stats_done: 64
     close: 75
 dialogue_pick_a_puppy:
   id: 668
