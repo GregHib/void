@@ -14,13 +14,22 @@ import java.io.File
  */
 object MapPacker {
 
+    fun pack634(target: File, targetXteas: Xteas, cache727: File, xteas727: Xteas, cache681: File, xteas681: Xteas, cache537: File) {
+        val cache = CacheDelegate(target.path)
+        packMissingMaps(cache, targetXteas, CacheDelegate(cache727.path), xteas727, all())
+        packMissingMaps(cache, targetXteas, CacheDelegate(cache681.path), xteas681, all()) // revision 681
+        packEaster08Map(cache, CacheDelegate(cache537.path)) // revision 537
+    }
+
     @JvmStatic
     fun main(args: Array<String>) {
-        val target = CacheDelegate("${System.getProperty("user.home")}/Downloads/rs634_cache/")
+        val target = File("${System.getProperty("user.home")}/Downloads/rs634_cache/")
         val xteas = Xteas().load("./data/xteas.dat", Xteas.DEFAULT_KEY, Xteas.DEFAULT_VALUE)
-        packMissingMaps(target, xteas, CacheDelegate("${System.getProperty("user.home")}/Downloads/727 cache with most xteas/"), Xteas(), all())
-        packMissingMaps(target, xteas, CacheDelegate("${System.getProperty("user.home")}/Downloads/cache-280/"), getKeys(280), all()) // revision 681
-        packEaster08Map(target, CacheDelegate("${System.getProperty("user.home")}/Downloads/cache-257/")) // revision 537
+        val cache727 = File("${System.getProperty("user.home")}/Downloads/727 cache with most xteas/")
+        val cache681 = File("${System.getProperty("user.home")}/Downloads/cache-280/")
+        val xteas681 = getKeys(280)
+        val cache537 = File("${System.getProperty("user.home")}/Downloads/cache-257/")
+        pack634(target, xteas, cache727, Xteas(), cache681, xteas681, cache537)
     }
 
     private fun packMissingMaps(target: CacheDelegate, sourceXteas: Xteas, source: CacheDelegate, targetXteas: Xteas, regions: List<Region>) {

@@ -1,9 +1,6 @@
 package world.gregs.voidps.tools.convert
 
-import org.koin.core.context.startKoin
-import org.koin.dsl.module
 import world.gregs.voidps.buffer.write.BufferWriter
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Config.INVENTORIES
 import world.gregs.voidps.cache.Index
@@ -11,93 +8,86 @@ import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.encoder.InventoryEncoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.tools.property
 import world.gregs.yaml.Yaml
+import java.io.File
+import kotlin.collections.component1
+import kotlin.collections.component2
+import kotlin.collections.set
 
 /**
  * Converts inventories from one cache into another, dumping the default values into inventories.yml
  */
 object InventoryConverter {
+
     @Suppress("USELESS_CAST")
-    @JvmStatic
-    fun main(args: Array<String>) {
-        val cacheModule = module {
-            single { CacheDelegate("${System.getProperty("user.home")}/Downloads/rs634_cache/") as Cache }
-        }
-        val cache718Module = module {
-            single { CacheDelegate("${System.getProperty("user.home")}/Downloads/rs718_cache/") as Cache }
-        }
-        val koin = startKoin {
-        }.koin
-        koin.loadModules(listOf(cache718Module))
-        var decoder = InventoryDecoder().loadCache(get<Cache>())
-
-        val inventories = decoder.indices.associateWith { decoder.getOrNull(it) }
-
-        koin.unloadModules(listOf(cache718Module))
-        koin.loadModules(listOf(cacheModule))
-        val encoder = InventoryEncoder()
-        val cache: Cache = get()
+    fun convert(target: File, provider: File) {
+        val targetCache = CacheDelegate(target.path)
+        val otherCache = CacheDelegate(provider.path)
 
         val yaml = Yaml()
+        val otherDecoder = InventoryDecoder().loadCache(otherCache)
+        val targetDecoder = InventoryDecoder().loadCache(targetCache)
+        val itemDefinitions = ItemDefinitions(ItemDecoder().loadCache(targetCache)).load(yaml, property("itemDefinitionsPath"))
+        val encoder = InventoryEncoder()
         val data: MutableMap<String, Any> = yaml.load<Map<String, Any>>(property("inventoryDefinitionsPath")).toMutableMap()
 
-
-        val itemDecoder = ItemDefinitions(ItemDecoder().loadCache(cache)).load(Yaml(), property("itemDefinitionsPath"))
-        decoder = InventoryDecoder().loadCache(cache)
         var counter = 0
-        for (i in decoder.indices) {
-            val def = decoder.getOrNull(i)
-            val cont = inventories[i]
-            if (def == null || cont == null) {
+        for (index in targetDecoder.indices) {
+            val otherDef = otherDecoder.getOrNull(index)
+            val targetDef = targetDecoder.getOrNull(index)
+            if (targetDef == null || otherDef == null) {
                 continue
             }
 
-            if (def.length != cont.length) {
-//                println("Length changed $i ${def.length} ${cont.length} ${cont.ids?.mapIndexed { index, it -> "${itemDecoder.getOrNull(it)?.name} ${cont.amounts!![index]}" }?.joinToString(separator = ", ")}")
-            }
-
-            if (cont.ids != null) {
-                def.ids = cont.ids?.filter { itemDecoder.getOrNull(it) != null }?.toIntArray()
-                def.amounts = cont.amounts!!.take(def.ids!!.size).toIntArray()
-                def.length = def.ids!!.size
+            if (otherDef.ids != null) {
+                targetDef.ids = otherDef.ids?.filter { itemDefinitions.getOrNull(it) != null }?.toIntArray()
+                targetDef.amounts = otherDef.amounts!!.take(targetDef.ids!!.size).toIntArray()
+                targetDef.length = targetDef.ids!!.size
                 counter++
                 val writer = BufferWriter(4096)
                 with(encoder) {
-                    writer.encode(def)
+                    writer.encode(targetDef)
                 }
-                cache.write(Index.CONFIGS, INVENTORIES, i, writer.toArray())
+                targetCache.write(Index.CONFIGS, INVENTORIES, index, writer.toArray())
 
                 var found: String? = null
                 var int = false
                 data.forEach { (key, value) ->
-                    if (value is Int && value == i) {
+                    if (value is Int && value == index) {
                         found = key
                         int = true
-                    } else if (value is Map<*, *> && value["id"] as Int == i) {
+                    } else if (value is Map<*, *> && value["id"] as Int == index) {
                         found = key
                     }
                 }
                 val list = mutableListOf<Map<String, Int>>()
-                def.ids!!.forEachIndexed { index, id ->
-                    list.add(mapOf(itemDecoder.get(id).stringId to def.amounts!![index]))
+                targetDef.ids!!.forEachIndexed { index, id ->
+                    list.add(mapOf(itemDefinitions.get(id).stringId to targetDef.amounts!![index]))
                 }
                 if (found != null) {
                     if (int) {
-                        data[found!!] = mapOf("id" to i)
+                        data[found!!] = mapOf("id" to index)
                     }
                     val map = (data[found] as Map<String, Any>).toMutableMap()
                     map["defaults"] = list
                     data[found!!] = map
                 } else {
-                    data["inventory_${i}"] = mapOf("id" to i, "defaults" to list)
+                    data["inventory_${index}"] = mapOf("id" to index, "defaults" to list)
                 }
-                println("$i ${cont.ids!!.mapIndexed { index, it -> "${itemDecoder.getOrNull(it)?.name} ${cont.amounts!![index]}" }.joinToString(separator = ", ")}")
+                println("$index ${otherDef.ids!!.mapIndexed { index, it -> "${itemDefinitions.getOrNull(it)?.name} ${otherDef.amounts!![index]}" }.joinToString(separator = ", ")}")
             }
         }
-        cache.update()
-        println("Shops: $counter")
+        targetCache.update()
+        println("Updated $counter inventories.")
 //        yaml.save("inventories.yml", data)
+    }
+
+    @JvmStatic
+    fun main(args: Array<String>) {
+
+        val target = File("${System.getProperty("user.home")}/Downloads/rs634_cache/")
+        val other = File("${System.getProperty("user.home")}/Downloads/rs718_cache/")
+        convert(target, other)
     }
 }

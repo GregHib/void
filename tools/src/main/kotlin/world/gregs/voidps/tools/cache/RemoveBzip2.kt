@@ -1,13 +1,11 @@
-package world.gregs.voidps.cache.memory
+package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
 import com.displee.compress.CompressionType
 
 object RemoveBzip2 {
-    @JvmStatic
-    fun main(args: Array<String>) {
-        val path = "./data/cache/test/"
-        val lib = CacheLibrary(path)
+    fun remove(lib: CacheLibrary) {
+        println("Removing slow compression")
         var indices = 0
         var archives = 0
         for (index in lib.indices()) {
@@ -31,6 +29,13 @@ object RemoveBzip2 {
             }
         }
         lib.update()
-        println("Recompressed $archives archives and $indices indices")
+        println("Removed old compression from $archives archives and $indices indices.")
+    }
+
+    @JvmStatic
+    fun main(args: Array<String>) {
+        val path = "./data/cache/test/"
+        val lib = CacheLibrary(path)
+        remove(lib)
     }
 }
