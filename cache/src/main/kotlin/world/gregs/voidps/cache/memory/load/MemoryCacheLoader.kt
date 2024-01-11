@@ -170,7 +170,7 @@ class MemoryCacheLoader : CacheLoader {
             val fileIds = fileIds[archiveId] ?: continue
             val sectorData = readArchiveSector(main, mainFileLength, raf, indexId, archiveId) ?: continue
             val fileCount = archiveIdSizes[archiveId]
-            val keys = if (indexId == world.gregs.voidps.cache.Index.MAPS) xteas?.get(archiveId) else null
+            val keys = if (xteas != null && indexId == world.gregs.voidps.cache.Index.MAPS) xteas[archiveId] else null
             val decompressed = context.decompress(context, sectorData, keys) ?: continue
             val fileId = fileIds.last()
 
