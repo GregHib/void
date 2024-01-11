@@ -9,15 +9,12 @@ import kotlinx.coroutines.*
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.memory.InMemory
-import world.gregs.voidps.cache.memory.cache.InflatableMemoryCache
 import world.gregs.voidps.cache.memory.cache.MemoryCache
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.RandomAccessFile
 
-class MemoryCacheLoader(
-    private val compress: Boolean = false
-) : CacheLoader {
+class MemoryCacheLoader : CacheLoader {
     private val logger = InlineLogger()
 
     override fun load(path: String, xteas: Map<Int, IntArray>?): Cache {
@@ -34,7 +31,7 @@ class MemoryCacheLoader(
         val indexCount = index255.length().toInt() / INDEX_SIZE
 
         val indices = (0 until indexCount).toList()
-        val processors = Runtime.getRuntime().availableProcessors()
+        val processors = 10//Runtime.getRuntime().availableProcessors()
         val dispatcher = newFixedThreadPoolContext(processors, "cache-loader")
         val archives: Array<IntArray?> = arrayOfNulls(indexCount)
         val fileCounts: Array<IntArray?> = arrayOfNulls(indexCount)
@@ -49,11 +46,7 @@ class MemoryCacheLoader(
             data.awaitAll().toTypedArray()
         }
         dispatcher.close()
-        return if (compress) {
-            InflatableMemoryCache(data, indices.toIntArray(), archives, fileCounts, files, hashNames)
-        } else {
-            MemoryCache(data, indices.toIntArray(), archives, fileCounts, files, hashNames)
-        }
+        return MemoryCache(data, indices.toIntArray(), archives, fileCounts, files, hashNames)
     }
 
     suspend fun load(
@@ -88,7 +81,7 @@ class MemoryCacheLoader(
                 logger.debug { "Loaded index $indexId. 0" }
                 return null
             }
-            val context = ThreadContext(compress)
+            val context = ThreadContext()
             val decompressed = context.decompress(context, archiveSector, null) ?: return null
             val tableBuffer = BufferReader(decompressed)
             val version = tableBuffer.readUnsignedByte()
@@ -170,21 +163,20 @@ class MemoryCacheLoader(
         xteas: Map<Int, IntArray>?,
         output: Array<Array<ByteArray?>?>
     ) {
-        val context = ThreadContext(compress)
+        val context = ThreadContext()
         val raf = RandomAccessFile(file, "r")
         val main = RandomAccessFile(mainFile, "r")
         for (archiveId in list) {
             val fileIds = fileIds[archiveId] ?: continue
             val sectorData = readArchiveSector(main, mainFileLength, raf, indexId, archiveId) ?: continue
             val fileCount = archiveIdSizes[archiveId]
-            val keys = if (indexId == 5) xteas?.get(archiveId) else null
+            val keys = if (indexId == world.gregs.voidps.cache.Index.MAPS) xteas?.get(archiveId) else null
             val decompressed = context.decompress(context, sectorData, keys) ?: continue
             val fileId = fileIds.last()
 
             if (fileCount == 1) {
-                val deflated = context.deflate(decompressed)
                 output[archiveId] = Array(fileId + 1) {
-                    if (it == fileId) deflated else null
+                    if (it == fileId) decompressed else null
                 }
                 continue
             }
@@ -223,7 +215,7 @@ class MemoryCacheLoader(
             val archiveData: Array<ByteArray?> = arrayOfNulls(fileId + 1)
             for (fileIndex in 0 until fileCount) {
                 val data = archiveFiles[fileIndex]
-                archiveData[fileIds[fileIndex]] = context.deflate(data)
+                archiveData[fileIds[fileIndex]] = data
             }
             output[archiveId] = archiveData
         }
@@ -291,18 +283,7 @@ class MemoryCacheLoader(
             println("Loaded cache in ${System.currentTimeMillis() - start}ms")
             start = System.currentTimeMillis()
             var count = 0
-            for (index in 0 until cache.indexes()) {
-                val archives = cache.archives(index) ?: continue
-                for (archive in archives) {
-                    val files = cache.files(index, archive) ?: continue
-                    for (file in files) {
-
-                        val data = cache.data(index, archive, file) ?: continue
-                        count++
-                    }
-                }
-            }
-            println("Loaded $count files in ${System.currentTimeMillis() - start}ms")
+            println("Loaded $count maps in ${System.currentTimeMillis() - start}ms")
         }
     }
 }

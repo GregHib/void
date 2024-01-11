@@ -7,17 +7,12 @@ import world.gregs.voidps.cache.memory.BZIP2Compressor
 import world.gregs.voidps.cache.secure.Xtea
 import java.io.ByteArrayInputStream
 import java.io.OutputStream
-import java.util.concurrent.atomic.AtomicLong
-import java.util.zip.Deflater
 import java.util.zip.Inflater
 
 
-class ThreadContext(
-    private val deflate: Boolean = false
-) {
+class ThreadContext {
     val inflater = Inflater(true)
 
-    private val deflater = Deflater(Deflater.BEST_SPEED, true)
     private var warned = false
 
     fun decompress(context: ThreadContext, data: ByteArray, keys: IntArray? = null): ByteArray? {
@@ -74,22 +69,6 @@ class ThreadContext(
         return null
     }
 
-    fun deflate(data: ByteArray, offset: Int = 0, length: Int = data.size): ByteArray {
-        if (deflate) {
-            val another = ByteArray(data.size)
-            deflater.setInput(data, offset, length)
-            deflater.finish()
-            val size = deflater.deflate(another)
-            val output = another.copyOf(size)
-            deflater.reset()
-            return output
-        }
-        if (length != data.size) {
-            return data.copyOf(length)
-        }
-        return data
-    }
-
     val compressor = BZIP2Compressor()
 
     private val decoder = Decoder()
@@ -126,7 +105,5 @@ class ThreadContext(
 
     companion object {
         val logger = InlineLogger()
-        val bzipCounter = AtomicLong()
-        val counter = AtomicLong()
     }
 }

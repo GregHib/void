@@ -6,6 +6,10 @@ interface Cache {
         return null
     }
 
+    open fun data(index: Int, archive: String, file: Int = 0, xtea: IntArray? = null): ByteArray? {
+        return data(index, archiveId(archive), file, xtea)
+    }
+
     open fun files(index: Int, archive: Int): IntArray? {
         return null
     }

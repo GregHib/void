@@ -43,7 +43,7 @@ open class ReadOnlyCache(
     }
 
     override fun getFile(index: Int, name: String, xtea: IntArray?): ByteArray? {
-        return data(index, name.hashCode(), 0, xtea)
+        return data(index, archiveId(name), 0, xtea)
     }
 
     override fun getFile(index: Int, archive: Int, file: Int, xtea: IntArray?): ByteArray? {

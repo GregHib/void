@@ -10,7 +10,7 @@ class MemoryCache(
 ) : ReadOnlyCache(indices, archives, fileCounts, files, hashes) {
 
     override fun data(index: Int, archive: Int, file: Int, xtea: IntArray?): ByteArray? {
-        return data[index]?.get(archive)?.get(file)
+        return data.getOrNull(index)?.getOrNull(archive)?.getOrNull(file)
     }
 
 }

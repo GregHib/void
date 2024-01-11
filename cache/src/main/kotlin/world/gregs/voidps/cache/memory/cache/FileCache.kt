@@ -18,7 +18,7 @@ class FileCache(
 ) : ReadOnlyCache(indices, archives, fileCounts, files, hashes) {
     private val dataCache = object : LinkedHashMap<Int, Array<ByteArray?>>(16, 0.75f, true) {
         override fun removeEldestEntry(eldest: MutableMap.MutableEntry<Int, Array<ByteArray?>>?): Boolean {
-            return size > 10
+            return size > 12
         }
     }
     private val length = main.length()
