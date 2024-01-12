@@ -98,7 +98,7 @@ class MapDefinitions(
             start = System.currentTimeMillis()
             val cache3 = FileCacheLoader().load(path)
             println("Cache3 loaded in ${System.currentTimeMillis() - start}ms")
-            for (cache in listOf(cache2, cache3, cache1)) {
+            for (cache in listOf(cache3, cache1, cache2)) {
                 val collisions = Collisions()
                 val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache1))
                     .load(Yaml(), "./data/definitions/objects.yml")
