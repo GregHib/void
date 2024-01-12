@@ -14,7 +14,7 @@ import java.util.zip.Inflater
 class ThreadContext {
     val inflater = Inflater(true)
 
-    fun decompress(context: ThreadContext, data: ByteArray, keys: IntArray? = null): ByteArray? {
+    fun decompress(data: ByteArray, keys: IntArray? = null): ByteArray? {
         if (keys != null && (keys[0] != 0 || keys[1] != 0 || keys[2] != 0 || 0 != keys[3])) {
             Xtea.decipher(data, keys, 5)
         }
@@ -38,7 +38,7 @@ class ThreadContext {
                     warned.set(true)
                 }
                 val decompressed = ByteArray(decompressedSize)
-                context.compressor.decompress(decompressed, decompressedSize, data, 9)
+                compressor.decompress(decompressed, decompressedSize, data, 9)
                 return decompressed
             }
             2 -> {
@@ -48,20 +48,20 @@ class ThreadContext {
                 }
                 return try {
                     val decompressed = ByteArray(decompressedSize)
-                    context.inflater.setInput(data, offset + 10, data.size - (offset + 18))
-                    context.inflater.finished()
-                    context.inflater.inflate(decompressed)
+                    inflater.setInput(data, offset + 10, data.size - (offset + 18))
+                    inflater.finished()
+                    inflater.inflate(decompressed)
                     decompressed
                 } catch (exception: Exception) {
                     logger.warn(exception) { "Error decompressing gzip data." }
                     null
                 } finally {
-                    context.inflater.reset()
+                    inflater.reset()
                 }
             }
             3 -> {
                 val decompressed = ByteArray(decompressedSize)
-                context.decompress(data, buffer.position(), decompressed, decompressedSize)
+                decompress(data, buffer.position(), decompressed, decompressedSize)
                 return decompressed
             }
         }

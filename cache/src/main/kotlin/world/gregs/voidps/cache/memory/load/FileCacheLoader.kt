@@ -11,7 +11,6 @@ import java.io.FileNotFoundException
 import java.io.RandomAccessFile
 
 class FileCacheLoader : CacheLoader {
-    private val logger = InlineLogger()
 
     override fun load(path: String, xteas: Map<Int, IntArray>?): Cache {
         val mainFile = File(path, "$CACHE_FILE_NAME.dat2")
@@ -36,12 +35,33 @@ class FileCacheLoader : CacheLoader {
         val hashes = Int2IntOpenHashMap(16384)
         val context = ThreadContext()
         for (indexId in 0 until indexCount) {
+            loadSectorIntoFiles(main, length, index255, indexId, archives, hashes, fileCounts, files, context)
+        }
+        return FileCache(main, indices, (0 until indexCount).toList().toIntArray(), archives, fileCounts, files, hashes, xteas)
+    }
+
+    companion object {
+        private val logger = InlineLogger()
+
+        private fun BufferReader.readSmart(version: Int) = if (version >= 7) readBigSmart() else readUnsignedShort()
+
+        fun loadSectorIntoFiles(
+            main: RandomAccessFile,
+            length: Long,
+            index255: RandomAccessFile,
+            indexId: Int,
+            archives: Array<IntArray?>,
+            hashes: Int2IntOpenHashMap,
+            fileCounts: Array<IntArray?>,
+            files: Array<Array<IntArray?>?>,
+            context: ThreadContext
+        ): Int {
             val archiveSector = readArchiveSector(main, length, index255, 255, indexId)
             if (archiveSector == null) {
                 logger.trace { "Empty index $indexId." }
-                continue
+                return -1
             }
-            val decompressed = context.decompress(context, archiveSector, null) ?: continue
+            val decompressed = context.decompress(archiveSector, null) ?: return -1
             val tableBuffer = BufferReader(decompressed)
             val version = tableBuffer.readUnsignedByte()
             if (version < 5 || version > 7) {
@@ -91,13 +111,9 @@ class FileCacheLoader : CacheLoader {
                     fileId
                 }
             }
+            return highest
         }
-        return FileCache(main, indices, (0 until indexCount).toList().toIntArray(), archives, fileCounts, files, hashes, xteas)
-    }
 
-    private fun BufferReader.readSmart(version: Int) = if (version >= 7) readBigSmart() else readUnsignedShort()
-
-    companion object {
         fun readArchiveSector(mainFile: RandomAccessFile, length: Long, raf: RandomAccessFile, indexId: Int, sectorId: Int): ByteArray? {
             if (length < Index.INDEX_SIZE * sectorId + Index.INDEX_SIZE) {
                 return null

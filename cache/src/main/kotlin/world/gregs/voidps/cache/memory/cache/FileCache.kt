@@ -36,7 +36,7 @@ class FileCache(
             val fileCount = fileCounts.getOrNull(index)?.getOrNull(archive) ?: return null
             val sectorData = FileCacheLoader.readArchiveSector(main, length, indexRaf, index, archive) ?: return null
             val keys = if (xteas != null && index == Index.MAPS) xteas[archive] else null
-            val decompressed = context.decompress(context, sectorData, keys) ?: return null
+            val decompressed = context.decompress(sectorData, keys) ?: return null
 
             if (fileCount == 1) {
                 return decompressed

@@ -2,7 +2,6 @@ package world.gregs.voidps.cache.memory.load
 
 import com.displee.cache.CacheLibrary
 import com.displee.cache.index.Index
-import com.displee.cache.index.ReferenceTable
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import kotlinx.coroutines.*
@@ -36,9 +35,10 @@ class MemoryCacheLoader(
         val index255 = RandomAccessFile(index255File, "r")
         val indexCount = index255.length().toInt() / INDEX_SIZE
 
-        val indices = (0 until indexCount).toList()
         val processors = (Runtime.getRuntime().availableProcessors() * threadUsage).toInt().coerceAtLeast(1)
         val dispatcher = newFixedThreadPoolContext(processors, "cache-loader")
+
+        val indices = (0 until indexCount).toList()
         val archives: Array<IntArray?> = arrayOfNulls(indexCount)
         val fileCounts: Array<IntArray?> = arrayOfNulls(indexCount)
         val files: Array<Array<IntArray?>?> = arrayOfNulls(indexCount)
@@ -82,62 +82,13 @@ class MemoryCacheLoader(
             val index255 = withContext(Dispatchers.IO) {
                 RandomAccessFile(index255File, "r")
             }
-            val archiveSector = readArchiveSector(main, mainFileLength, index255, 255, indexId)
-            if (archiveSector == null) {
-                logger.trace { "Empty index $indexId." }
+            val context = ThreadContext()
+            val highest = FileCacheLoader.loadSectorIntoFiles(main, mainFileLength, index255, indexId, archives, hashNames, fileCounts, files, context)
+            if (highest == -1) {
                 return null
             }
-            val context = ThreadContext()
-            val decompressed = context.decompress(context, archiveSector, null) ?: return null
-            val tableBuffer = BufferReader(decompressed)
-            val version = tableBuffer.readUnsignedByte()
-            if (version < 5 || version >= 7) {
-                throw RuntimeException("Unknown version: $version")
-            }
-            if (version >= 6) {
-                tableBuffer.skip(4) // Revision
-            }
-            val flags = tableBuffer.readByte()
-            val archiveCount = tableBuffer.readUnsignedShort()
-            var previous = 0
-            var highest = 0
-            val archiveIds = IntArray(archiveCount)
-            for (i in 0 until archiveCount) {
-                val archiveId = tableBuffer.readUnsignedShort() + previous
-                previous = archiveId
-                archiveIds[i] = archiveId
-                if (archiveId > highest) {
-                    highest = archiveId
-                }
-            }
-            archives[indexId] = archiveIds
-            if (flags and ReferenceTable.FLAG_NAME != 0) {
-                for (i in 0 until archiveCount) {
-                    val archiveId = archiveIds[i]
-                    hashNames[tableBuffer.readInt()] = archiveId
-                }
-            }
-            if (flags and ReferenceTable.FLAG_WHIRLPOOL != 0) {
-                tableBuffer.skip(archiveCount * Index.WHIRLPOOL_SIZE)
-            }
-            tableBuffer.skip(archiveCount * 8) // Crc & revisions
-            val archiveIdSizes = IntArray(highest + 1)
-            for (i in 0 until archiveCount) {
-                val id = archiveIds[i]
-                archiveIdSizes[id] = tableBuffer.readUnsignedShort()
-            }
-            fileCounts[indexId] = archiveIdSizes
-            val fileIds = arrayOfNulls<IntArray>(highest + 1)
-            for (i in 0 until archiveCount) {
-                val archiveId = archiveIds[i]
-                val fileCount = archiveIdSizes[archiveId]
-                var fileId = 0
-                fileIds[archiveId] = IntArray(fileCount) {
-                    fileId += tableBuffer.readUnsignedShort()
-                    fileId
-                }
-            }
-            files[indexId] = fileIds
+            val fileIds = files[indexId]!!
+            val archiveIdSizes = fileCounts[indexId]!!
             val archiveArray = arrayOfNulls<Array<ByteArray?>?>(highest + 1)
             withContext(dispatcher) {
                 if (processors in 2 until highest) {
@@ -177,7 +128,7 @@ class MemoryCacheLoader(
             val sectorData = readArchiveSector(main, mainFileLength, raf, indexId, archiveId) ?: continue
             val fileCount = archiveIdSizes[archiveId]
             val keys = if (xteas != null && indexId == world.gregs.voidps.cache.Index.MAPS) xteas[archiveId] else null
-            val decompressed = context.decompress(context, sectorData, keys) ?: continue
+            val decompressed = context.decompress(sectorData, keys) ?: continue
             val fileId = fileIds.last()
 
             if (fileCount == 1) {
