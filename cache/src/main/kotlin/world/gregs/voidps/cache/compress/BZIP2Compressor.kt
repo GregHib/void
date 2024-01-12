@@ -1,11 +1,12 @@
-package world.gregs.voidps.cache.memory
+package world.gregs.voidps.cache.compress
 
 /**
  * A class representing the BZIP2 (de)compressor.
  * @author Jagex
  * @author Displee
  */
-class BZIP2Compressor {
+@Deprecated("Decompression is slow, use gzip for better performance. Kept for backwards compatability.")
+internal class BZIP2Compressor {
     private var anInt3070 = 0
     private var anInt3071 = 0
     private var aBooleanArray3072: BooleanArray = BooleanArray(16)

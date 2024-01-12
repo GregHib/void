@@ -1,14 +1,14 @@
-package world.gregs.voidps.cache.memory.cache
+package world.gregs.voidps.cache
 
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
-import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.Index
-import world.gregs.voidps.cache.memory.load.Archive
-import world.gregs.voidps.cache.memory.load.ThreadContext
+import world.gregs.voidps.cache.compress.DecompressionContext
 import java.io.RandomAccessFile
 
+/**
+ * [Cache] which efficiently stores information about its indexes, archives and files.
+ */
 open class ReadOnlyCache(
     val indices: IntArray,
     val archives: Array<IntArray?>,
@@ -20,8 +20,8 @@ open class ReadOnlyCache(
     constructor(indexCount: Int) : this(IntArray(indexCount) { it }, arrayOfNulls(indexCount), arrayOfNulls(indexCount), arrayOfNulls(indexCount), Int2IntOpenHashMap(16384))
 
     @Suppress("UNCHECKED_CAST")
-    fun readFileData(
-        context: ThreadContext,
+    internal fun readFileData(
+        context: DecompressionContext,
         main: RandomAccessFile,
         mainLength: Long,
         indexRaf: RandomAccessFile,
@@ -32,7 +32,7 @@ open class ReadOnlyCache(
         val fileCounts = fileCounts[indexId] ?: return null
         val fileIds = files[indexId] ?: return null
         val fileCount = fileCounts.getOrNull(archiveId) ?: return null
-        val sectorData = Archive.readSector(main, mainLength, indexRaf, indexId, archiveId) ?: return null
+        val sectorData = readSector(main, mainLength, indexRaf, indexId, archiveId) ?: return null
         val keys = if (xteas != null && indexId == Index.MAPS) xteas[archiveId] else null
         val decompressed = context.decompress(sectorData, keys) ?: return null
 
@@ -78,14 +78,14 @@ open class ReadOnlyCache(
         return archiveFiles as Array<ByteArray?>
     }
 
-    fun readArchiveData(
-        context: ThreadContext,
+    internal fun readArchiveData(
+        context: DecompressionContext,
         main: RandomAccessFile,
         length: Long,
         index255: RandomAccessFile,
         indexId: Int
     ): Int {
-        val archiveSector = Archive.readSector(main, length, index255, 255, indexId)
+        val archiveSector = readSector(main, length, index255, 255, indexId)
         if (archiveSector == null) {
             logger.trace { "Empty index $indexId." }
             return -1
@@ -222,9 +222,66 @@ open class ReadOnlyCache(
         private val logger = InlineLogger()
         private const val NAME_FLAG = 0x1
         private const val WHIRLPOOL_FLAG = 0x2
+
+        const val INDEX_SIZE = 6
         private const val WHIRLPOOL_SIZE = 64
+        private const val SECTOR_SIZE = 520
+        private const val SECTOR_HEADER_SIZE_SMALL = 8
+        private const val SECTOR_DATA_SIZE_SMALL = 512
+        private const val SECTOR_HEADER_SIZE_BIG = 10
+        private const val SECTOR_DATA_SIZE_BIG = 510
 
         private fun BufferReader.readSmart(version: Int) = if (version >= 7) readBigSmart() else readUnsignedShort()
+
+        /**
+         * Reads a section of a cache's archive
+         */
+        private fun readSector(mainFile: RandomAccessFile, length: Long, raf: RandomAccessFile, indexId: Int, sectorId: Int): ByteArray? {
+            if (length < INDEX_SIZE * sectorId + INDEX_SIZE) {
+                return null
+            }
+            raf.seek(sectorId.toLong() * INDEX_SIZE)
+            val sectorData = ByteArray(SECTOR_SIZE)
+            raf.read(sectorData, 0, INDEX_SIZE)
+            val bigSector = sectorId > 65535
+            val buffer = BufferReader(sectorData)
+            val sectorSize = buffer.readUnsignedMedium()
+            var sectorPosition = buffer.readUnsignedMedium()
+            if (sectorSize < 0 || sectorPosition <= 0 || sectorPosition > mainFile.length() / SECTOR_SIZE) {
+                return null
+            }
+            var read = 0
+            var chunk = 0
+            val sectorHeaderSize = if (bigSector) SECTOR_HEADER_SIZE_BIG else SECTOR_HEADER_SIZE_SMALL
+            val sectorDataSize = if (bigSector) SECTOR_DATA_SIZE_BIG else SECTOR_DATA_SIZE_SMALL
+            val output = ByteArray(sectorSize)
+            while (read < sectorSize) {
+                if (sectorPosition == 0) {
+                    return null
+                }
+                var requiredToRead = sectorSize - read
+                if (requiredToRead > sectorDataSize) {
+                    requiredToRead = sectorDataSize
+                }
+                mainFile.seek(sectorPosition.toLong() * SECTOR_SIZE)
+                mainFile.read(sectorData, 0, requiredToRead + sectorHeaderSize)
+                buffer.position(0)
+                val id = if (bigSector) buffer.readInt() else buffer.readUnsignedShort()
+                val sectorChunk = buffer.readUnsignedShort()
+                val sectorNextPosition = buffer.readUnsignedMedium()
+                val sectorIndex = buffer.readUnsignedByte()
+                if (sectorIndex != indexId || id != sectorId || sectorChunk != chunk) {
+                    return null
+                } else if (sectorNextPosition < 0 || sectorNextPosition > mainFile.length() / SECTOR_SIZE) {
+                    return null
+                }
+                System.arraycopy(sectorData, sectorHeaderSize, output, read, requiredToRead)
+                read += requiredToRead
+                sectorPosition = sectorNextPosition
+                chunk++
+            }
+            return output
+        }
     }
 
 }

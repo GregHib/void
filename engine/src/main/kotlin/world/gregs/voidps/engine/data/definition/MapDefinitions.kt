@@ -2,13 +2,9 @@ package world.gregs.voidps.engine.data.definition
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.read.BufferReader
-import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.Index
+import world.gregs.voidps.cache.*
 import world.gregs.voidps.cache.definition.decoder.MapTileDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.cache.memory.load.FileCacheLoader
-import world.gregs.voidps.cache.memory.load.MemoryCacheLoader
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -93,10 +89,10 @@ class MapDefinitions(
             val cache1 = CacheDelegate(path)
             println("Cache1 loaded in ${System.currentTimeMillis() - start}ms")
             start = System.currentTimeMillis()
-            val cache2 = MemoryCacheLoader.load(path)
+            val cache2 = MemoryCache(path)
             println("Cache2 loaded in ${System.currentTimeMillis() - start}ms")
             start = System.currentTimeMillis()
-            val cache3 = FileCacheLoader.load(path)
+            val cache3 = FileCache(path)
             println("Cache3 loaded in ${System.currentTimeMillis() - start}ms")
             for (cache in listOf(cache3, cache1, cache2)) {
                 val collisions = Collisions()

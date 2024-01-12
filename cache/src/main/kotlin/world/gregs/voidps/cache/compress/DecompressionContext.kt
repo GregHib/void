@@ -1,17 +1,18 @@
-package world.gregs.voidps.cache.memory.load
+package world.gregs.voidps.cache.compress
 
 import com.github.michaelbull.logging.InlineLogger
 import lzma.sdk.lzma.Decoder
 import world.gregs.voidps.buffer.read.BufferReader
-import world.gregs.voidps.cache.memory.BZIP2Compressor
 import world.gregs.voidps.cache.secure.Xtea
 import java.io.ByteArrayInputStream
 import java.io.OutputStream
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.zip.Inflater
 
-
-class ThreadContext {
+/**
+ * Context per thread for decompressing data in parallel
+ */
+internal class DecompressionContext {
     private val gzipInflater = Inflater(true)
     private val bzip2Compressor: BZIP2Compressor by lazy { BZIP2Compressor() }
     private val lzmaDecoder: Decoder by lazy { Decoder() }
@@ -28,12 +29,12 @@ class ThreadContext {
             decompressedSize = buffer.readInt() and 0xFFFFFF
         }
         when (type) {
-            0 -> {
+            NONE -> {
                 val decompressed = ByteArray(compressedSize)
                 buffer.readBytes(decompressed, 0, compressedSize)
                 return decompressed
             }
-            1 -> {
+            BZIP2 -> {
                 // Deprecated
                 if (!warned.get()) {
                     logger.warn { "GZIP2 Compression found - replace to improve read performance." }
@@ -43,7 +44,7 @@ class ThreadContext {
                 bzip2Compressor.decompress(decompressed, decompressedSize, data, 9)
                 return decompressed
             }
-            2 -> {
+            GZIP -> {
                 val offset = buffer.position()
                 if (buffer.readByte() != 31 || buffer.readByte() != -117) {
                     return null
@@ -61,7 +62,7 @@ class ThreadContext {
                     gzipInflater.reset()
                 }
             }
-            3 -> {
+            LZMA -> {
                 val decompressed = ByteArray(decompressedSize)
                 decompress(data, buffer.position(), decompressed, decompressedSize)
                 return decompressed
@@ -70,8 +71,7 @@ class ThreadContext {
         return null
     }
 
-
-    fun decompress(compressed: ByteArray, offset: Int, decompressed: ByteArray, decompressedLength: Int) {
+    private fun decompress(compressed: ByteArray, offset: Int, decompressed: ByteArray, decompressedLength: Int) {
         if (!lzmaDecoder.setDecoderProperties(compressed)) {
             logger.error { "LZMA: Bad properties." }
             return
@@ -102,6 +102,10 @@ class ThreadContext {
     }
 
     companion object {
+        private const val NONE = 0
+        private const val BZIP2 = 1
+        private const val GZIP = 2
+        private const val LZMA = 3
         private val warned = AtomicBoolean()
         private val logger = InlineLogger()
     }

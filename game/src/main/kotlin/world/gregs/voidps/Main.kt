@@ -8,12 +8,12 @@ import org.koin.dsl.module
 import org.koin.fileProperties
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.FileCache
 import world.gregs.voidps.cache.Index
+import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
-import world.gregs.voidps.cache.memory.load.FileCacheLoader
-import world.gregs.voidps.cache.memory.load.MemoryCacheLoader
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
@@ -50,7 +50,7 @@ object Main {
     @JvmStatic
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
-        val module = cache((if (USE_MEMORY_CACHE) MemoryCacheLoader else FileCacheLoader).load("./data/cache/"))
+        val module = cache((if (USE_MEMORY_CACHE) MemoryCache else FileCache).load("./data/cache/"))
         logger.info { "Cache loaded in ${System.currentTimeMillis() - startTime}ms" }
         preload(module)
         name = getProperty("name")
