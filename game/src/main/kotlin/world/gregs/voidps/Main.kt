@@ -116,19 +116,19 @@ object Main {
     private fun cache(cache: Cache) = module {
         single(createdAtStart = true) { MapDefinitions(CollisionReader(get()), get(), get(), cache).loadCache() }
         single(createdAtStart = true) { Huffman().load(cache.getFile(Index.HUFFMAN, 1)!!) }
-        single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = getProperty<String>("members") == "true", lowDetail = false, get<ParameterDefinitions>()).loadCache(cache)).load() }
-        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = getProperty<String>("members") == "true", get<ParameterDefinitions>()).loadCache(cache)).load() }
-        single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get<ParameterDefinitions>()).loadCache(cache)).load() }
-        single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().loadCache(cache)).load() }
-        single(createdAtStart = true) { EnumDefinitions(EnumDecoder().loadCache(cache), get()).load() }
-        single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().loadCache(cache)).load() }
-        single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().loadCache(cache)).load() }
-        single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().loadCache(cache)).load() }
-        single(createdAtStart = true) { StructDefinitions(StructDecoder(get<ParameterDefinitions>()).loadCache(cache)).load() }
-        single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().loadCache(cache)).load() }
+        single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = getProperty<String>("members") == "true", lowDetail = false, get<ParameterDefinitions>()).load(cache)).load() }
+        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = getProperty<String>("members") == "true", get<ParameterDefinitions>()).load(cache)).load() }
+        single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get<ParameterDefinitions>()).load(cache)).load() }
+        single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(cache)).load() }
+        single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(cache), get()).load() }
+        single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(cache)).load() }
+        single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(cache)).load() }
+        single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().load(cache)).load() }
+        single(createdAtStart = true) { StructDefinitions(StructDecoder(get<ParameterDefinitions>()).load(cache)).load() }
+        single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
         single(createdAtStart = true) { WeaponStyleDefinitions().load() }
         single(createdAtStart = true) { AmmoDefinitions().load() }
         single(createdAtStart = true) { ParameterDefinitions(CategoryDefinitions().load(), get()).load() }
-        single(createdAtStart = true) { FontDefinitions(FontDecoder().loadCache(cache)).load() }
+        single(createdAtStart = true) { FontDefinitions(FontDecoder().load(cache)).load() }
     }
 }

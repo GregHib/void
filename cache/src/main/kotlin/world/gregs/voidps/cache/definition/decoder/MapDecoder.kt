@@ -33,7 +33,7 @@ class MapDecoder(val xteas: Map<Int, IntArray>? = null) : DefinitionDecoder<MapD
 
     val regionHashes: MutableMap<Int, Int> = Int2IntOpenHashMap(1600)
 
-    override fun loadCache(cache: Cache): Array<MapDefinition> {
+    override fun load(cache: Cache): Array<MapDefinition> {
         regionHashes.clear()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
@@ -44,7 +44,7 @@ class MapDecoder(val xteas: Map<Int, IntArray>? = null) : DefinitionDecoder<MapD
                 regionHashes[archiveId] = Region.id(regionX, regionY)
             }
         }
-        return super.loadCache(cache)
+        return super.load(cache)
     }
 
     override fun load(definitions: Array<MapDefinition>, cache: Cache, id: Int) {

@@ -39,7 +39,7 @@ class EncoderComparator {
                 null
             }
         }
-        val defs = decoder.loadCache(cache).getOrNull(0)
+        val defs = decoder.load(cache).getOrNull(0)
         println("Expected $definition")
         println("Actual   $defs")
     }

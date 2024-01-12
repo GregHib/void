@@ -8,7 +8,7 @@ object GraphicDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = GraphicDecoder().loadCache(cache)
+        val decoder = GraphicDecoder().load(cache)
         println(decoder[212])
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue

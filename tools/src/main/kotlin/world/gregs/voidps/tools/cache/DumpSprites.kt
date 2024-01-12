@@ -12,7 +12,7 @@ object DumpSprites {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = SpriteDecoder().loadCache(cache)
+        val decoder = SpriteDecoder().load(cache)
         println(decoder.lastIndex)
         File("./sprites/").mkdir()
         for (i in decoder.indices) {

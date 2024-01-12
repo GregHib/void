@@ -108,7 +108,7 @@ class ObjectDoorsGates(private val decoder: Array<ObjectDefinitionFull>) : Pipel
         @JvmStatic
         fun main(args: Array<String>) {
             val cache = CacheDelegate("./data/cache")
-            val decoder = ObjectDecoderFull(false, true).loadCache(cache)
+            val decoder = ObjectDecoderFull(false, true).load(cache)
             val gates = ObjectDoorsGates(decoder)
             val match = gates.match(decoder[45849])
             println("Match $match")

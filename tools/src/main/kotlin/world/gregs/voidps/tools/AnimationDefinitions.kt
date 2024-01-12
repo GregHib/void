@@ -8,7 +8,7 @@ object AnimationDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = AnimationDecoderFull().loadCache(cache)
+        val decoder = AnimationDecoderFull().load(cache)
         loop@ for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
             if (def.aBoolean691) {

@@ -27,7 +27,7 @@ object SkillDataConverter {
 
         val koin = startKoin {
             modules(module {
-                single { ItemDefinitions(ItemDecoder().loadCache(get())).load(get(), "./data/definitions/items.yml") }
+                single { ItemDefinitions(ItemDecoder().load(get())).load(get(), "./data/definitions/items.yml") }
                 single { CacheDelegate("./data/cache/") as Cache }
             })
         }.koin
@@ -36,7 +36,7 @@ object SkillDataConverter {
         val storage: Yaml = get()
         val items: ItemDefinitions = get()
         val sounds = SoundDefinitions().load(storage, "./data/definitions/sounds.yml")
-        val animations = AnimationDefinitions(AnimationDecoder().loadCache(cache)).load(storage, "./data/definitions/animations.yml")
+        val animations = AnimationDefinitions(AnimationDecoder().load(cache)).load(storage, "./data/definitions/animations.yml")
 //        var decoder = InventoryDecoder(koin.get())
         val mapper = ObjectMapper()
         val yaml = ObjectMapper(YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER).apply {

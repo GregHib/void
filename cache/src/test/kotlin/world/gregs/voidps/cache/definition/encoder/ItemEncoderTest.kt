@@ -102,7 +102,7 @@ internal class ItemEncoderTest {
     fun `Encode everything`() {
         val cache: Cache = CacheDelegate("../data/cache/")
         val decoder = ItemDecoderFull()
-        val full = decoder.loadCache(cache)
+        val full = decoder.load(cache)
         val encoder = ItemEncoder()
         val writer = BufferWriter(1024)
 

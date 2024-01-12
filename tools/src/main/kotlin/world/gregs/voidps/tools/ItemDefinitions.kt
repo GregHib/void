@@ -18,7 +18,7 @@ object ItemDefinitions {
         val categories = CategoryDefinitions().load(yaml, property("categoryDefinitionsPath"))
         val ammo = AmmoDefinitions().load(yaml, property("ammoDefinitionsPath"))
         val parameters = ParameterDefinitions(categories, ammo).load(yaml, property("parameterDefinitionsPath"))
-        val decoder = ItemDefinitions(ItemDecoder(parameters).loadCache(cache)).load(yaml, property("itemDefinitionsPath"))
+        val decoder = ItemDefinitions(ItemDecoder(parameters).load(cache)).load(yaml, property("itemDefinitionsPath"))
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
             if (def.contains("extra_equipment_option")) {

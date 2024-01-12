@@ -42,15 +42,15 @@ object WorldMapDumper {
         }.koin
 
         val cache: Cache = koin.get()
-        val mapDefinitions = MapDecoder(koin.get<Xteas>()).loadCache(cache).associateBy { it.id }
-        val objectDecoder = ObjectDecoderFull(members = true, lowDetail = false).loadCache(cache)
-        val overlayDefinitions = OverlayDecoder().loadCache(cache)
-        val underlayDefinitions = UnderlayDecoder().loadCache(cache)
-        val textureDefinitions = TextureDecoder().loadCache(cache)
-        val worldMapDecoder = WorldMapDetailsDecoder().loadCache(cache)
-        val worldMapInfoDecoder = WorldMapInfoDecoder().loadCache(cache)
-        val spriteDecoder = SpriteDecoder().loadCache(cache)
-        val mapSceneDecoder = MapSceneDecoder().loadCache(cache)
+        val mapDefinitions = MapDecoder(koin.get<Xteas>()).load(cache).associateBy { it.id }
+        val objectDecoder = ObjectDecoderFull(members = true, lowDetail = false).load(cache)
+        val overlayDefinitions = OverlayDecoder().load(cache)
+        val underlayDefinitions = UnderlayDecoder().load(cache)
+        val textureDefinitions = TextureDecoder().load(cache)
+        val worldMapDecoder = WorldMapDetailsDecoder().load(cache)
+        val worldMapInfoDecoder = WorldMapInfoDecoder().load(cache)
+        val spriteDecoder = SpriteDecoder().load(cache)
+        val mapSceneDecoder = MapSceneDecoder().load(cache)
 
         File("./images/").mkdir()
         for (i in 0 until 4) {

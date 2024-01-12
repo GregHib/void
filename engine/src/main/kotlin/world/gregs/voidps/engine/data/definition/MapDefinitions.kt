@@ -100,7 +100,7 @@ class MapDefinitions(
             println("Cache3 loaded in ${System.currentTimeMillis() - start}ms")
             for (cache in listOf(cache2, cache3, cache1)) {
                 val collisions = Collisions()
-                val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).loadCache(cache1))
+                val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache1))
                     .load(Yaml(), "./data/definitions/objects.yml")
                 val objects = GameObjects(GameObjectCollision(collisions), ZoneBatchUpdates(), objectDefinitions, storeUnused = true)
                 val mapDefinitions = MapDefinitions(CollisionReader(collisions), objectDefinitions, objects, cache)

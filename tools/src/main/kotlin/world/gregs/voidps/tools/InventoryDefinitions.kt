@@ -8,7 +8,7 @@ object InventoryDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\")
-        val decoder = InventoryDecoder().loadCache(cache)
+        val decoder = InventoryDecoder().load(cache)
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
             println(def)

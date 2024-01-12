@@ -55,7 +55,7 @@ object ItemDefinitionPipeline {
 
         val start = System.currentTimeMillis()
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = ItemDecoder().loadCache(cache)
+        val decoder = ItemDecoder().load(cache)
 
         val pages = getPages(decoder, rs2Wiki)
         val output = buildItemExtras(revisionDate, decoder, cache718, rs2Wiki, pages)

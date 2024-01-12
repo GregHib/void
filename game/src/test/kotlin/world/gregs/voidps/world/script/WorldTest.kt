@@ -233,22 +233,22 @@ abstract class WorldTest : KoinTest {
         private val huffman: Huffman by lazy { Huffman().load(cache.data(Index.HUFFMAN, 0)!!) }
         private val ammoDefinitions: AmmoDefinitions by lazy { AmmoDefinitions().load() }
         private val parameterDefinitions: ParameterDefinitions by lazy { ParameterDefinitions(CategoryDefinitions().load(), ammoDefinitions).load() }
-        private val objectDefinitions: ObjectDefinitions by lazy { ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false, parameterDefinitions).loadCache(cache)).load() }
-        private val npcDefinitions: NPCDefinitions by lazy { NPCDefinitions(NPCDecoder(member = true, parameterDefinitions).loadCache(cache)).load() }
-        private val itemDefinitions: ItemDefinitions by lazy { ItemDefinitions(ItemDecoder(parameterDefinitions).loadCache(cache)).load() }
-        private val animationDefinitions: AnimationDefinitions by lazy { AnimationDefinitions(AnimationDecoder().loadCache(cache)).load() }
-        private val graphicDefinitions: GraphicDefinitions by lazy { GraphicDefinitions(GraphicDecoder().loadCache(cache)).load() }
-        private val interfaceDefinitions: InterfaceDefinitions by lazy { InterfaceDefinitions(InterfaceDecoder().loadCache(cache)).load() }
-        private val inventoryDefinitions: InventoryDefinitions by lazy { InventoryDefinitions(InventoryDecoder().loadCache(cache)).load() }
-        private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(parameterDefinitions).loadCache(cache)).load() }
-        private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().loadCache(cache)).load() }
+        private val objectDefinitions: ObjectDefinitions by lazy { ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false, parameterDefinitions).load(cache)).load() }
+        private val npcDefinitions: NPCDefinitions by lazy { NPCDefinitions(NPCDecoder(member = true, parameterDefinitions).load(cache)).load() }
+        private val itemDefinitions: ItemDefinitions by lazy { ItemDefinitions(ItemDecoder(parameterDefinitions).load(cache)).load() }
+        private val animationDefinitions: AnimationDefinitions by lazy { AnimationDefinitions(AnimationDecoder().load(cache)).load() }
+        private val graphicDefinitions: GraphicDefinitions by lazy { GraphicDefinitions(GraphicDecoder().load(cache)).load() }
+        private val interfaceDefinitions: InterfaceDefinitions by lazy { InterfaceDefinitions(InterfaceDecoder().load(cache)).load() }
+        private val inventoryDefinitions: InventoryDefinitions by lazy { InventoryDefinitions(InventoryDecoder().load(cache)).load() }
+        private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(parameterDefinitions).load(cache)).load() }
+        private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
         private val weaponStyleDefinitions: WeaponStyleDefinitions by lazy { WeaponStyleDefinitions().load() }
-        private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().loadCache(cache), structDefinitions).load() }
+        private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(cache), structDefinitions).load() }
         private val collisions: Collisions by lazy { Collisions() }
         private val objectCollision: GameObjectCollision by lazy { GameObjectCollision(collisions) }
         private val gameObjects: GameObjects by lazy { GameObjects(objectCollision, ZoneBatchUpdates(), objectDefinitions, storeUnused = true) }
         private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionReader( collisions), objectDefinitions, gameObjects, cache).loadCache() }
-        private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().loadCache(cache)).load() }
+        private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(cache)).load() }
         val emptyTile = Tile(2655, 4640)
     }
 }
