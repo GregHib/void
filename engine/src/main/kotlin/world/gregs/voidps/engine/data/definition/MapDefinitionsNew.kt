@@ -37,7 +37,7 @@ class MapDefinitionsNew(
     private val reader = ObjectsReader(objects, definitions)
     private val rotationReader = ObjectsRotatedReader(objects, definitions)
 
-    fun loadCache(xteas: Map<Int, IntArray>? = null) {
+    fun loadCache(xteas: Map<Int, IntArray>? = null): MapDefinitionsNew {
         val start = System.currentTimeMillis()
         var regions = 0
         for (regionX in 0 until 256) {
@@ -50,6 +50,7 @@ class MapDefinitionsNew(
             }
         }
         logger.info { "Loaded $regions maps ${objects.size} ${"object".plural(objects.size)} in ${System.currentTimeMillis() - start}ms" }
+        return this
     }
 
     /*
