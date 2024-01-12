@@ -15,7 +15,7 @@ class MapDefinition(
     }
 
     companion object {
-        internal fun index(localX: Int, localY: Int, level: Int): Int {
+        fun index(localX: Int, localY: Int, level: Int): Int {
             return (level shl 12) + (localX shl 6) + localY
         }
         internal fun localX(tile: Int) = tile shr 6 and 0x3f
