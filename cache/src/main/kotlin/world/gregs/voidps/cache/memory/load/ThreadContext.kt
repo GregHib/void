@@ -12,7 +12,9 @@ import java.util.zip.Inflater
 
 
 class ThreadContext {
-    val inflater = Inflater(true)
+    private val gzipInflater = Inflater(true)
+    private val bzip2Compressor: BZIP2Compressor by lazy { BZIP2Compressor() }
+    private val lzmaDecoder: Decoder by lazy { Decoder() }
 
     fun decompress(data: ByteArray, keys: IntArray? = null): ByteArray? {
         if (keys != null && (keys[0] != 0 || keys[1] != 0 || keys[2] != 0 || 0 != keys[3])) {
@@ -38,7 +40,7 @@ class ThreadContext {
                     warned.set(true)
                 }
                 val decompressed = ByteArray(decompressedSize)
-                compressor.decompress(decompressed, decompressedSize, data, 9)
+                bzip2Compressor.decompress(decompressed, decompressedSize, data, 9)
                 return decompressed
             }
             2 -> {
@@ -48,15 +50,15 @@ class ThreadContext {
                 }
                 return try {
                     val decompressed = ByteArray(decompressedSize)
-                    inflater.setInput(data, offset + 10, data.size - (offset + 18))
-                    inflater.finished()
-                    inflater.inflate(decompressed)
+                    gzipInflater.setInput(data, offset + 10, data.size - (offset + 18))
+                    gzipInflater.finished()
+                    gzipInflater.inflate(decompressed)
                     decompressed
                 } catch (exception: Exception) {
                     logger.warn(exception) { "Error decompressing gzip data." }
                     null
                 } finally {
-                    inflater.reset()
+                    gzipInflater.reset()
                 }
             }
             3 -> {
@@ -68,19 +70,16 @@ class ThreadContext {
         return null
     }
 
-    val compressor = BZIP2Compressor()
-
-    private val decoder = Decoder()
 
     fun decompress(compressed: ByteArray, offset: Int, decompressed: ByteArray, decompressedLength: Int) {
-        if (!decoder.setDecoderProperties(compressed)) {
+        if (!lzmaDecoder.setDecoderProperties(compressed)) {
             logger.error { "LZMA: Bad properties." }
             return
         }
         val input = ByteArrayInputStream(compressed)
         input.skip(offset.toLong())
         val output = ByteArrayWrapperOutputStream(decompressed)
-        decoder.code(input, output, decompressedLength.toLong())
+        lzmaDecoder.code(input, output, decompressedLength.toLong())
     }
 
     private class ByteArrayWrapperOutputStream(private val byteArray: ByteArray) : OutputStream() {
@@ -104,6 +103,6 @@ class ThreadContext {
 
     companion object {
         private val warned = AtomicBoolean()
-        val logger = InlineLogger()
+        private val logger = InlineLogger()
     }
 }

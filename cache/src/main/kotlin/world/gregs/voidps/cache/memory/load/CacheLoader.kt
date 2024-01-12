@@ -8,12 +8,12 @@ import java.io.RandomAccessFile
 interface CacheLoader {
 
     fun load(path: String, xteas: Map<Int, IntArray>? = null, threadUsage: Double = 1.0): Cache {
-        val mainFile = File(path, "${Archive.CACHE_FILE_NAME}.dat2")
+        val mainFile = File(path, "${FileCacheLoader.CACHE_FILE_NAME}.dat2")
         if (!mainFile.exists()) {
             throw FileNotFoundException("Main file not found at '${mainFile.absolutePath}'.")
         }
         val main = RandomAccessFile(mainFile, "r")
-        val index255File = File(path, "${Archive.CACHE_FILE_NAME}.idx255")
+        val index255File = File(path, "${FileCacheLoader.CACHE_FILE_NAME}.idx255")
         if (!index255File.exists()) {
             throw FileNotFoundException("Checksum file not found at '${index255File.absolutePath}'.")
         }

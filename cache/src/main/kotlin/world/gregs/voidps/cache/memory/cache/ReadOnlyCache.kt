@@ -1,12 +1,11 @@
 package world.gregs.voidps.cache.memory.cache
 
-import com.displee.cache.index.Index
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.memory.load.Archive
-import world.gregs.voidps.cache.memory.load.Archive.readArchiveSector
 import world.gregs.voidps.cache.memory.load.ThreadContext
 import java.io.RandomAccessFile
 
@@ -15,95 +14,97 @@ open class ReadOnlyCache(
     val archives: Array<IntArray?>,
     val fileCounts: Array<IntArray?>,
     val files: Array<Array<IntArray?>?>,
-    val hashes: MutableMap<Int, Int>
+    private val hashes: MutableMap<Int, Int>
 ) : Cache {
 
     constructor(indexCount: Int) : this(IntArray(indexCount) { it }, arrayOfNulls(indexCount), arrayOfNulls(indexCount), arrayOfNulls(indexCount), Int2IntOpenHashMap(16384))
 
+    @Suppress("UNCHECKED_CAST")
     fun readFileData(
-        fileCounts: IntArray,
-        fileIds: Array<IntArray?>,
-        index: Int,
-        archive: Int,
+        context: ThreadContext,
         main: RandomAccessFile,
-        length: Long,
+        mainLength: Long,
         indexRaf: RandomAccessFile,
-        xteas: Map<Int, IntArray>?,
-        context: ThreadContext
+        indexId: Int,
+        archiveId: Int,
+        xteas: Map<Int, IntArray>?
     ): Array<ByteArray?>? {
-        val fileCount = fileCounts.getOrNull(archive) ?: return null
-        val sectorData = readArchiveSector(main, length, indexRaf, index, archive) ?: return null
-        val keys = if (xteas != null && index == world.gregs.voidps.cache.Index.MAPS) xteas[archive] else null
+        val fileCounts = fileCounts[indexId] ?: return null
+        val fileIds = files[indexId] ?: return null
+        val fileCount = fileCounts.getOrNull(archiveId) ?: return null
+        val sectorData = Archive.readSector(main, mainLength, indexRaf, indexId, archiveId) ?: return null
+        val keys = if (xteas != null && indexId == Index.MAPS) xteas[archiveId] else null
         val decompressed = context.decompress(sectorData, keys) ?: return null
 
         if (fileCount == 1) {
-            val fileId = fileIds[archive]?.last() ?: return null
+            val fileId = fileIds[archiveId]?.last() ?: return null
             return Array(fileId + 1) {
                 if (it == fileId) decompressed else null
             }
         }
 
-        val indexBuffer = BufferReader(decompressed)
-        val rawArray = indexBuffer.array()
+        val reader = BufferReader(decompressed)
+        val rawArray = reader.array()
         var fileDataSizesOffset = decompressed.size
         val chunkSize: Int = rawArray[--fileDataSizesOffset].toInt() and 0xFF
         fileDataSizesOffset -= chunkSize * (fileCount * 4)
         val offsets = IntArray(fileCount)
-        indexBuffer.position(fileDataSizesOffset)
+        reader.position(fileDataSizesOffset)
         for (i in 0 until chunkSize) {
             var previousLength = 0
             for (fileIndex in 0 until fileCount) {
-                previousLength += indexBuffer.readInt()
+                previousLength += reader.readInt()
                 offsets[fileIndex] += previousLength
             }
         }
-        val archiveFiles: Array<ByteArray?> = Array(fileCount) { index ->
+        val archiveFiles = Array(fileCount) { index ->
             val array = ByteArray(offsets[index])
             offsets[index] = 0
             array
         }
         var offset = 0
-        indexBuffer.position(fileDataSizesOffset)
+        reader.position(fileDataSizesOffset)
         for (i in 0 until chunkSize) {
             var length = 0
             for (fileIndex in 0 until fileCount) {
-                val read = indexBuffer.readInt()
-                val fileData = archiveFiles[fileIndex]!!
+                val read = reader.readInt()
+                val fileData = archiveFiles[fileIndex]
                 length += read
                 System.arraycopy(rawArray, offset, fileData, offsets[fileIndex], length)
                 offset += length
                 offsets[fileIndex] += length
             }
         }
-        return archiveFiles
+        return archiveFiles as Array<ByteArray?>
     }
-    fun readSectorFiles(
+
+    fun readArchiveData(
+        context: ThreadContext,
         main: RandomAccessFile,
         length: Long,
         index255: RandomAccessFile,
-        indexId: Int,
-        context: ThreadContext
+        indexId: Int
     ): Int {
-        val archiveSector = Archive.readArchiveSector(main, length, index255, 255, indexId)
+        val archiveSector = Archive.readSector(main, length, index255, 255, indexId)
         if (archiveSector == null) {
             logger.trace { "Empty index $indexId." }
             return -1
         }
         val decompressed = context.decompress(archiveSector) ?: return -1
-        val tableBuffer = BufferReader(decompressed)
-        val version = tableBuffer.readUnsignedByte()
+        val reader = BufferReader(decompressed)
+        val version = reader.readUnsignedByte()
         if (version < 5 || version > 7) {
             throw RuntimeException("Unknown version: $version")
         }
         if (version >= 6) {
-            tableBuffer.skip(4) // revision
+            reader.skip(4) // revision
         }
-        val flags = tableBuffer.readByte()
-        val archiveCount = tableBuffer.readSmart(version)
+        val flags = reader.readByte()
+        val archiveCount = reader.readSmart(version)
         var previous = 0
         var highest = 0
         val archiveIds = IntArray(archiveCount) {
-            val archiveId = tableBuffer.readSmart(version) + previous
+            val archiveId = reader.readSmart(version) + previous
             previous = archiveId
             if (archiveId > highest) {
                 highest = archiveId
@@ -114,17 +115,17 @@ open class ReadOnlyCache(
         if (flags and NAME_FLAG != 0) {
             for (i in 0 until archiveCount) {
                 val archiveId = archiveIds[i]
-                hashes[tableBuffer.readInt()] = archiveId
+                hashes[reader.readInt()] = archiveId
             }
         }
         if (flags and WHIRLPOOL_FLAG != 0) {
-            tableBuffer.skip(archiveCount * Index.WHIRLPOOL_SIZE)
+            reader.skip(archiveCount * WHIRLPOOL_SIZE)
         }
-        tableBuffer.skip(archiveCount * 8) // Crc & revisions
+        reader.skip(archiveCount * 8) // Crc & revisions
         val archiveSizes = IntArray(highest + 1)
         for (i in 0 until archiveCount) {
             val id = archiveIds[i]
-            val size = tableBuffer.readSmart(version)
+            val size = reader.readSmart(version)
             archiveSizes[id] = size
         }
         fileCounts[indexId] = archiveSizes
@@ -135,20 +136,11 @@ open class ReadOnlyCache(
             val archiveId = archiveIds[i]
             val fileCount = archiveSizes[archiveId]
             fileIds[archiveId] = IntArray(fileCount) {
-                fileId += tableBuffer.readSmart(version)
+                fileId += reader.readSmart(version)
                 fileId
             }
         }
         return highest
-    }
-
-    companion object {
-        private val logger = InlineLogger()
-        private fun BufferReader.readSmart(version: Int) = if (version >= 7) readBigSmart() else readUnsignedShort()
-        private const val NAME_FLAG = 0x1
-        private const val WHIRLPOOL_FLAG = 0x2
-        const val INDEX_SIZE = 6
-        const val CACHE_FILE_NAME = "main_file_cache"
     }
 
     override fun files(index: Int, archive: Int): IntArray? {
@@ -180,7 +172,7 @@ open class ReadOnlyCache(
     }
 
     override fun archiveId(name: String): Int {
-        return hashes?.get(name.hashCode()) ?: -1
+        return hashes[name.hashCode()] ?: -1
     }
 
     override fun getFile(index: Int, name: String, xtea: IntArray?): ByteArray? {
@@ -224,6 +216,15 @@ open class ReadOnlyCache(
 
     override fun getArchiveData(index: Int, archive: Int): Map<Int, ByteArray?>? {
         TODO("Not yet implemented")
+    }
+
+    companion object {
+        private val logger = InlineLogger()
+        private const val NAME_FLAG = 0x1
+        private const val WHIRLPOOL_FLAG = 0x2
+        private const val WHIRLPOOL_SIZE = 64
+
+        private fun BufferReader.readSmart(version: Int) = if (version >= 7) readBigSmart() else readUnsignedShort()
     }
 
 }

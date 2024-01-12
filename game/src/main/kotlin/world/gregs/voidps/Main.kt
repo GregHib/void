@@ -50,7 +50,7 @@ object Main {
     @JvmStatic
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
-        val module = cache((if (USE_MEMORY_CACHE) MemoryCacheLoader() else FileCacheLoader()).load("./data/cache/"))
+        val module = cache((if (USE_MEMORY_CACHE) MemoryCacheLoader else FileCacheLoader).load("./data/cache/"))
         logger.info { "Cache loaded in ${System.currentTimeMillis() - startTime}ms" }
         preload(module)
         name = getProperty("name")

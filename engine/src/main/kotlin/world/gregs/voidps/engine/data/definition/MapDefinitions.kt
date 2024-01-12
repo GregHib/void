@@ -93,10 +93,10 @@ class MapDefinitions(
             val cache1 = CacheDelegate(path)
             println("Cache1 loaded in ${System.currentTimeMillis() - start}ms")
             start = System.currentTimeMillis()
-            val cache2 = MemoryCacheLoader().load(path)
+            val cache2 = MemoryCacheLoader.load(path)
             println("Cache2 loaded in ${System.currentTimeMillis() - start}ms")
             start = System.currentTimeMillis()
-            val cache3 = FileCacheLoader().load(path)
+            val cache3 = FileCacheLoader.load(path)
             println("Cache3 loaded in ${System.currentTimeMillis() - start}ms")
             for (cache in listOf(cache3, cache1, cache2)) {
                 val collisions = Collisions()
