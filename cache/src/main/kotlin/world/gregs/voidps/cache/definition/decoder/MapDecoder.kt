@@ -11,7 +11,7 @@ import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.data.MapTile
 import world.gregs.voidps.type.Region
 
-class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapDefinition>(MAPS) {
+class MapDecoder(val xteas: Map<Int, IntArray>? = null) : DefinitionDecoder<MapDefinition>(MAPS) {
 
     override fun MapDefinition.read(opcode: Int, buffer: Reader) {
         TODO("Not yet implemented")
@@ -103,7 +103,7 @@ class MapDecoder(private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapD
     }
 
     private fun loadObjects(cache: Cache, definition: MapDefinition) {
-        val objectData = cache.getFile(index, "l${definition.id shr 8}_${definition.id and 0xff}", xteas[definition.id]) ?: return
+        val objectData = cache.getFile(index, "l${definition.id shr 8}_${definition.id and 0xff}", xteas?.get(definition.id)) ?: return
         val reader = BufferReader(objectData)
         var objectId = -1
         while (true) {

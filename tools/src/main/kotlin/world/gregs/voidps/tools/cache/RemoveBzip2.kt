@@ -5,7 +5,7 @@ import com.displee.compress.CompressionType
 
 object RemoveBzip2 {
     fun remove(lib: CacheLibrary) {
-        println("Removing slow compression")
+        println("Removing slow compression...")
         var indices = 0
         var archives = 0
         for (index in lib.indices()) {

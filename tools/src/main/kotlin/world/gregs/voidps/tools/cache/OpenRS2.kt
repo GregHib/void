@@ -1,7 +1,6 @@
 package world.gregs.voidps.tools.cache
 
 import org.jsoup.Jsoup
-import world.gregs.voidps.engine.map.region.Xteas
 import java.io.BufferedInputStream
 import java.io.File
 import java.io.FileOutputStream

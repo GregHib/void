@@ -3,7 +3,7 @@ package world.gregs.voidps.tools.map.xtea
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index
-import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.tools.cache.Xteas
 import world.gregs.voidps.type.Region
 
 object CacheMapDecryption {

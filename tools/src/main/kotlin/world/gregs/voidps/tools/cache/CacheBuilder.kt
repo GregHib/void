@@ -1,7 +1,6 @@
 package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
-import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.tools.convert.DefinitionsParameterConverter
 import world.gregs.voidps.tools.convert.InventoryConverter
 import world.gregs.voidps.tools.map.MapPacker
@@ -14,7 +13,7 @@ object CacheBuilder {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val target = File("./data/cache/new/")
+        val target = File("./data/cache/")
 
         val cache727 = File("${System.getProperty("user.home")}/Downloads/727 cache with most xteas/")
         if (!cache727.exists()) {
@@ -27,7 +26,7 @@ object CacheBuilder {
         val temp = File("./temp/cache/")
         temp.mkdir()
         val path = temp.resolve("build/")
-        path.delete()
+        path.deleteRecursively()
         path.mkdirs()
 
         println("Finding original cache...")
@@ -53,7 +52,7 @@ object CacheBuilder {
         RemoveBzip2.remove(library)
         println("Rebuilding cache.")
         library.rebuild(target)
-        addEmptyIndexFiles(target)
+        addEmptyIndexFiles(target, library.last()?.id ?: 0)
     }
 
     private fun checkCacheOverride(path: File) {
@@ -78,16 +77,13 @@ object CacheBuilder {
         }
     }
 
-    private fun addEmptyIndexFiles(target: File) {
-        val indices = target.listFiles()
-            ?.filter { it.extension.startsWith("idx") && it.extension != "idx255" }
-            ?.maxOfOrNull { it.extension.removePrefix("idx").toInt() }
-            ?: 0
-        for (i in 0..indices) {
+    private fun addEmptyIndexFiles(target: File, lastIndex: Int) {
+        for (i in 0..lastIndex) {
             val file = target.resolve("main_file_cache.idx$i")
             if (file.exists()) {
                 continue
             }
+            println("Filling in blank index $i.")
             file.createNewFile()
         }
     }

@@ -2,7 +2,6 @@ package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
 import world.gregs.voidps.cache.Index
-import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.type.Region
 
 object RemoveXteas {

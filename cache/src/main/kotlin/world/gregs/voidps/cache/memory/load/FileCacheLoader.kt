@@ -35,13 +35,13 @@ class FileCacheLoader : CacheLoader {
         val files: Array<Array<IntArray?>?> = arrayOfNulls(indexCount)
         val length = mainFile.length()
         val hashes = Int2IntOpenHashMap(16384)
+        val context = ThreadContext()
         for (indexId in 0 until indexCount) {
             val archiveSector = readArchiveSector(main, length, index255, 255, indexId)
             if (archiveSector == null) {
                 logger.trace { "Empty index $indexId." }
                 continue
             }
-            val context = ThreadContext()
             val decompressed = context.decompress(context, archiveSector, null) ?: continue
             val tableBuffer = BufferReader(decompressed)
             val version = tableBuffer.readUnsignedByte()

@@ -43,7 +43,6 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.gameModule
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.Client
@@ -159,7 +158,6 @@ abstract class WorldTest : KoinTest {
                 single(createdAtStart = true) { fontDefinitions }
                 single { ammoDefinitions }
                 single { parameterDefinitions }
-                single { xteas }
                 single { gameObjects }
                 single { mapDefinitions }
                 single { collisions }
@@ -253,7 +251,6 @@ abstract class WorldTest : KoinTest {
         private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(active), structDefinitions).load() }
         private val collisions: Collisions by lazy { Collisions() }
         private val objectCollision: GameObjectCollision by lazy { GameObjectCollision(collisions) }
-        private val xteas: Xteas by lazy { Xteas().load() }
         private val gameObjects: GameObjects by lazy { GameObjects(objectCollision, ZoneBatchUpdates(), objectDefinitions, storeUnused = true) }
         private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(collisions, objectDefinitions, gameObjects).load(active) }
         private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(active)).load() }

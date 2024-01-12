@@ -30,7 +30,7 @@ class MapEncoder(
         tileCount = 0
         val lastArchiveId = cache.lastArchiveId(Index.OBJECTS)
         val objectSize = lastArchiveId * 256 + (cache.archiveCount(Index.OBJECTS, lastArchiveId))
-        val definitions = MapDecoder(emptyMap()).loadCache(cache)
+        val definitions = MapDecoder().loadCache(cache)
         val start = System.currentTimeMillis()
         val tiles = LongArray(TOTAL_ZONE_COUNT)
         val objects = Int2ObjectOpenHashMap<MutableList<Int>>()

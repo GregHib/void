@@ -75,7 +75,7 @@ object InventoryConverter {
                 } else {
                     data["inventory_${index}"] = mapOf("id" to index, "defaults" to list)
                 }
-                println("$index ${otherDef.ids!!.mapIndexed { index, it -> "${itemDefinitions.getOrNull(it)?.name} ${otherDef.amounts!![index]}" }.joinToString(separator = ", ")}")
+//                println("$index ${otherDef.ids!!.mapIndexed { index, it -> "${itemDefinitions.getOrNull(it)?.name} ${otherDef.amounts!![index]}" }.joinToString(separator = ", ")}")
             }
         }
         targetCache.update()

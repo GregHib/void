@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.type.Tile
@@ -44,9 +43,9 @@ class MapDefinitions(
     private val tileArray = ByteArray(12)
     private var position = 0
 
-    fun loadCache(cache: Cache, xteas: Xteas): MapDefinitions {
+    fun loadCache(cache: Cache): MapDefinitions {
         val start = System.currentTimeMillis()
-        val maps = MapDecoder(xteas).loadCache(cache)
+        val maps = MapDecoder().loadCache(cache)
         val reader = CollisionReader(collisions)
         for (map in maps) {
             val region = Region(map.id)

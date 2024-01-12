@@ -5,7 +5,7 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.tools.cache.Xteas
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Region

@@ -3,7 +3,6 @@ package world.gregs.voidps.tools.cache
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index
-import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.tools.property
 import world.gregs.voidps.type.Region
 import java.io.File

@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.map.xtea
 
 import com.displee.cache.CacheLibrary
 import world.gregs.voidps.cache.Index
-import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.tools.cache.Xteas
 import world.gregs.voidps.type.Region
 import java.io.File
 import java.io.RandomAccessFile
