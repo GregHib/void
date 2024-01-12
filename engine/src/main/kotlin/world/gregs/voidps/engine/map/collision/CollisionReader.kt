@@ -60,8 +60,8 @@ class CollisionReader(private val collisions: Collisions) {
     }
 
     companion object {
-        private const val BLOCKED_TILE = 0x1
-        private const val BRIDGE_TILE = 0x2
+        internal const val BLOCKED_TILE = 0x1
+        internal const val BRIDGE_TILE = 0x2
 
         private fun isTile(tiles: LongArray, localX: Int, localY: Int, level: Int, flag: Int): Boolean {
             return MapTile.settings(tiles[MapDefinition.index(localX, localY, level)]) and flag == flag

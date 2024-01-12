@@ -12,8 +12,8 @@ import org.koin.fileProperties
 import org.koin.test.KoinTest
 import world.gregs.voidps.FakeRandom
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index
+import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
@@ -229,7 +229,7 @@ abstract class WorldTest : KoinTest {
     }
 
     companion object {
-        private val cache: Cache by lazy { CacheDelegate(getProperty("cachePath")) }
+        private val cache: Cache by lazy { MemoryCache(getProperty("cachePath")) }
         private val huffman: Huffman by lazy { Huffman().load(cache.data(Index.HUFFMAN, 0)!!) }
         private val ammoDefinitions: AmmoDefinitions by lazy { AmmoDefinitions().load() }
         private val parameterDefinitions: ParameterDefinitions by lazy { ParameterDefinitions(CategoryDefinitions().load(), ammoDefinitions).load() }
