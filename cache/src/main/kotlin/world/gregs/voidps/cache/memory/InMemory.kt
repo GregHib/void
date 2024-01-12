@@ -4,7 +4,6 @@ import com.displee.cache.CacheLibrary
 import com.displee.cache.index.Index
 import com.displee.cache.index.ReferenceTable
 import com.github.michaelbull.logging.InlineLogger
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import lzma.sdk.lzma.Decoder
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.secure.Xtea
@@ -300,16 +299,6 @@ class InMemory {
 
     companion object {
         private val logger = InlineLogger()
-        fun loadBinary(file: File): Map<Int, IntArray> {
-            val xteas = Int2ObjectOpenHashMap<IntArray>()
-            val reader = BufferReader(file.readBytes())
-            while (reader.remaining > 0) {
-                val region = reader.readShort()
-                xteas[region] = IntArray(4) { reader.readInt() }
-            }
-            return xteas
-        }
-
         @JvmStatic
         fun main(args: Array<String>) {
             /*
@@ -322,9 +311,8 @@ class InMemory {
             val memory = InMemory()
             val path = "./data/cache/"
 
-            val xteas = loadBinary(File("./data/xteas.dat"))
             val start = System.currentTimeMillis()
-            val cache = memory.load(path, xteas)
+            val cache = memory.load(path, null)
             println("Loaded cache in ${System.currentTimeMillis() - start}ms")
 
             var count = 0
@@ -349,7 +337,7 @@ class InMemory {
             }
             println("Files: $count")
             exitProcess(0)
-            val indices = memory.load(path, xteas)
+            val indices = memory.load(path, null)
             println("Loaded cache in ${System.currentTimeMillis() - start}ms")
 
             /*

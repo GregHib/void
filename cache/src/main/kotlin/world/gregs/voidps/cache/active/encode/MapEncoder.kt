@@ -16,9 +16,7 @@ import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Zone
 import java.io.File
 
-class MapEncoder(
-    private val xteasPath: String
-) : ActiveIndexEncoder(Index.MAPS) {
+class MapEncoder : ActiveIndexEncoder(Index.MAPS) {
 
     private val logger = InlineLogger()
     private var empty = true
@@ -171,9 +169,8 @@ class MapEncoder(
         @JvmStatic
         fun main(args: Array<String>) {
             val cache = CacheDelegate("./data/cache")
-            val path = "./data/xteas.dat"
             val writer = BufferWriter(20_000_000)
-            MapEncoder(path).encode(writer, cache)
+            MapEncoder().encode(writer, cache)
             File("./data/test-map-2.dat").writeBytes(writer.toArray())
         }
     }

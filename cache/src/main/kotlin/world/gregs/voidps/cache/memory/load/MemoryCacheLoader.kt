@@ -8,7 +8,6 @@ import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import kotlinx.coroutines.*
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.memory.InMemory
 import world.gregs.voidps.cache.memory.cache.MemoryCache
 import java.io.File
 import java.io.FileNotFoundException
@@ -284,7 +283,6 @@ class MemoryCacheLoader(
         @JvmStatic
         fun main(args: Array<String>) {
             val path = "./data/cache/"
-            val xteas = InMemory.loadBinary(File("./data/xteas.dat"))
             var start = System.currentTimeMillis()
             val cache = MemoryCacheLoader().load(path, null)
             println("Loaded cache in ${System.currentTimeMillis() - start}ms")

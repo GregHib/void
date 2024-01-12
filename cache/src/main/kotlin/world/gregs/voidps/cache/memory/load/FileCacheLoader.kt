@@ -5,7 +5,6 @@ import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.memory.InMemory
 import world.gregs.voidps.cache.memory.cache.FileCache
 import java.io.File
 import java.io.FileNotFoundException
@@ -153,7 +152,6 @@ class FileCacheLoader : CacheLoader {
         @JvmStatic
         fun main(args: Array<String>) {
             val path = "./data/cache/"
-            val xteas = InMemory.loadBinary(File("./data/xteas.dat"))
 
             val memCache = MemoryCacheLoader().load(path)
             val start = System.currentTimeMillis()

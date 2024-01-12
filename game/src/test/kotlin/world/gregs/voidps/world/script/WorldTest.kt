@@ -230,7 +230,7 @@ abstract class WorldTest : KoinTest {
 
     companion object {
         private val active: File by lazy {
-            ActiveCache { ActiveCache.load(getProperty("xteaPath")) }
+            ActiveCache { ActiveCache.load() }
                 .checkChanges(getProperty("cachePath"), "active")
             File("../data/cache/active/")
         }

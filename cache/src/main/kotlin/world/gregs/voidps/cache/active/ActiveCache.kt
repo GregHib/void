@@ -162,7 +162,7 @@ class ActiveCache(
             return BigInteger(1, hash).toString(16)
         }
 
-        fun load(xteaPath: String = "./data/xteas.dat"): List<ActiveIndexEncoder> {
+        fun load(): List<ActiveIndexEncoder> {
             return listOf(
                 ConfigEncoder(Config.IDENTITY_KIT),
                 ConfigEncoder(Config.INVENTORIES),
@@ -171,7 +171,7 @@ class ActiveCache(
                 ConfigEncoder(Config.STRUCTS),
                 ConfigEncoder(Config.RENDER_ANIMATIONS),
                 InterfaceEncoder(),
-                MapEncoder(xteaPath),
+                MapEncoder(),
                 HuffmanEncoder(),
                 ClientScriptEncoder(),
                 ShiftEncoder(Index.OBJECTS, 8),

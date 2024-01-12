@@ -10,7 +10,7 @@ object XteaValidator {
     @JvmStatic
     fun main(args: Array<String>) = runBlocking {
         val cache = CacheDelegate("./data/cache/new/")
-        val xteas = Xteas().load("./data/xteas.dat", Xteas.DEFAULT_KEY, Xteas.DEFAULT_VALUE)
+        val xteas = Xteas().load("./tools/src/main/resources/xteas.dat", Xteas.DEFAULT_KEY, Xteas.DEFAULT_VALUE)
 
         val archives = cache.getArchives(Index.MAPS).toSet()
         var total = 0

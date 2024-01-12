@@ -24,7 +24,7 @@ object MapPacker {
     @JvmStatic
     fun main(args: Array<String>) {
         val target = File("${System.getProperty("user.home")}/Downloads/rs634_cache/")
-        val xteas = Xteas().load("./data/xteas.dat", Xteas.DEFAULT_KEY, Xteas.DEFAULT_VALUE)
+        val xteas = Xteas().load("./tools/src/main/resources/xteas.dat", Xteas.DEFAULT_KEY, Xteas.DEFAULT_VALUE)
         val cache727 = File("${System.getProperty("user.home")}/Downloads/727 cache with most xteas/")
         val cache681 = File("${System.getProperty("user.home")}/Downloads/cache-280/")
         val xteas681 = getKeys(280)

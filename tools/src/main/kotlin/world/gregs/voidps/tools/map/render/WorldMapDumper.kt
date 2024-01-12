@@ -18,6 +18,7 @@ import world.gregs.voidps.tools.map.render.load.MapTileSettings
 import world.gregs.voidps.tools.map.render.load.RegionManager
 import world.gregs.voidps.type.Region
 import java.io.File
+import java.util.concurrent.TimeUnit
 
 /**
  * Renders and saves all regions to individual pngs
@@ -35,7 +36,7 @@ object WorldMapDumper {
                 single { CacheDelegate(getProperty("cachePath")) as Cache }
                 single { MapDecoder(get<Xteas>()) }
                 single(createdAtStart = true) {
-                    Xteas().load(getProperty("xteaPath"), getPropertyOrNull("xteaJsonKey") ?: Xteas.DEFAULT_KEY, getPropertyOrNull("xteaJsonValue") ?: Xteas.DEFAULT_VALUE)
+                    Xteas()//.load(getProperty("xteaPath"), getPropertyOrNull("xteaJsonKey") ?: Xteas.DEFAULT_KEY, getPropertyOrNull("xteaJsonValue") ?: Xteas.DEFAULT_VALUE)
                 }
             })
         }.koin
@@ -76,6 +77,6 @@ object WorldMapDumper {
         regions.forEach {
             pipeline.process(it)
         }
-        println("${regions.size} regions loaded in ${System.currentTimeMillis() - start}ms")
+        println("${regions.size} regions loaded in ${TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - start)}s")
     }
 }
