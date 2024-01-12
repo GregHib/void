@@ -23,18 +23,21 @@ import world.gregs.yaml.Yaml
 
 /**
  * Loads map collision and objects directly, quicker than [MapDecoder]
+ *
+ *  Note: this is the only place we store the cache; for dynamic zone loading.
  */
 class MapDefinitionsNew(
     private val collisions: CollisionReader,
     definitions: ObjectDefinitions,
     private val objects: GameObjects,
+    private val cache: Cache
 ) {
     private val logger = InlineLogger()
 
     private val reader = ObjectsReader(objects, definitions)
     private val rotationReader = ObjectsRotatedReader(objects, definitions)
 
-    fun loadCache(cache: Cache, xteas: Map<Int, IntArray>? = null) {
+    fun loadCache(xteas: Map<Int, IntArray>? = null) {
         val start = System.currentTimeMillis()
         var regions = 0
         for (regionX in 0 until 256) {
@@ -54,7 +57,7 @@ class MapDefinitionsNew(
             Load tiles array and do loop over zone coords with applied rotation
             Load all objects and skip over those with x/y +/- size in the zone and apply rotation
      */
-    fun loadZone(cache: Cache, from: Zone, to: Zone, rotation: Int, xteas: Map<Int, IntArray>? = null) {
+    fun loadZone(from: Zone, to: Zone, rotation: Int, xteas: Map<Int, IntArray>? = null) {
         val start = System.currentTimeMillis()
         val regionX = from.region.x
         val regionY = from.region.x
@@ -99,8 +102,8 @@ class MapDefinitionsNew(
                 val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).loadCache(cache1))
                     .load(Yaml(), "./data/definitions/objects.yml")
                 val objects = GameObjects(GameObjectCollision(collisions), ZoneBatchUpdates(), objectDefinitions, storeUnused = true)
-                val mapDefinitions = MapDefinitionsNew(CollisionReader(collisions), objectDefinitions, objects)
-                mapDefinitions.loadCache(cache)
+                val mapDefinitions = MapDefinitionsNew(CollisionReader(collisions), objectDefinitions, objects, cache)
+                mapDefinitions.loadCache()
             }
         }
     }
