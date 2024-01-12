@@ -1,9 +1,5 @@
 package world.gregs.voidps.cache.memory
 
-import org.apache.tools.bzip2.CBZip2OutputStream
-import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
-
 /**
  * A class representing the BZIP2 (de)compressor.
  * @author Jagex
@@ -41,33 +37,6 @@ class BZIP2Compressor {
     private var aByte3108: Byte = 0
     private var compressed: ByteArray = ByteArray(0)
     private var anIntArray5786: IntArray = IntArray(100000)
-
-    /**
-     * Compress a decompressed BZIP2 file.
-     * @param bytes The uncompressed BZIP2 file.
-     * @return The compressed BZIP2 file.
-     */
-    fun compress(bytes: ByteArray): ByteArray {
-        try {
-            ByteArrayInputStream(bytes).use { inputStream ->
-                val bout = ByteArrayOutputStream()
-                CBZip2OutputStream(bout, 1).use { os ->
-                    val buf = ByteArray(4096)
-                    var len: Int
-                    while (inputStream.read(buf, 0, buf.size).also { len = it } != -1) {
-                        os.write(buf, 0, len)
-                    }
-                }
-                val bytes = bout.toByteArray()
-                val bzip2 = ByteArray(bytes.size - 2)
-                System.arraycopy(bytes, 2, bzip2, 0, bzip2.size)
-                return bzip2
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return byteArrayOf()
-        }
-    }
 
     /**
      * Decompress a compressed BZIP2 file.

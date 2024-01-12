@@ -47,7 +47,7 @@ val engineModule = module {
     single { DynamicZones(get(), get(), get()) }
     single { EventHandlerStore() }
     single(createdAtStart = true) { AreaDefinitions().load() }
-    single(createdAtStart = true) { Xteas().load() }
+    single(createdAtStart = true) { Xteas()/*.load()*/ }
     // Network
     single {
         ConnectionQueue(getIntProperty("connectionPerTickCap", 1))

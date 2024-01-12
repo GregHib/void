@@ -283,14 +283,11 @@ class MemoryCacheLoader(
 
         @JvmStatic
         fun main(args: Array<String>) {
-            val path = "./data/cache/test/"
+            val path = "./data/cache/"
             val xteas = InMemory.loadBinary(File("./data/xteas.dat"))
             var start = System.currentTimeMillis()
-            val cache = MemoryCacheLoader().load(path, xteas)
+            val cache = MemoryCacheLoader().load(path, null)
             println("Loaded cache in ${System.currentTimeMillis() - start}ms")
-            start = System.currentTimeMillis()
-            var count = 0
-            println("Loaded $count maps in ${System.currentTimeMillis() - start}ms")
         }
     }
 }
