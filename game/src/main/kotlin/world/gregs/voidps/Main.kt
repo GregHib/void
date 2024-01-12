@@ -9,7 +9,6 @@ import org.koin.fileProperties
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
-import world.gregs.voidps.cache.active.ActiveCache
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
@@ -112,25 +111,6 @@ object Main {
             saves.mkdir()
         }
         loadScripts(getProperty("scriptModule"))
-    }
-
-    private fun active(activeDir: File) = module {
-//        single(createdAtStart = true) { MapDefinitionsNew(CollisionReader(get()), get(), get()).load() }
-        single(createdAtStart = true) { Huffman().load(activeDir.resolve(ActiveCache.indexFile(Index.HUFFMAN)).readBytes()) }
-        single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = getProperty<String>("members") == "true", lowDetail = false, get<ParameterDefinitions>()).load(activeDir)).load() }
-        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = getProperty<String>("members") == "true", get<ParameterDefinitions>()).load(activeDir)).load() }
-        single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get<ParameterDefinitions>()).load(activeDir)).load() }
-        single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(activeDir)).load() }
-        single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(activeDir), get()).load() }
-        single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(activeDir)).load() }
-        single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(activeDir)).load() }
-        single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().load(activeDir)).load() }
-        single(createdAtStart = true) { StructDefinitions(StructDecoder(get<ParameterDefinitions>()).load(activeDir)).load() }
-        single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(activeDir)).load() }
-        single(createdAtStart = true) { WeaponStyleDefinitions().load() }
-        single(createdAtStart = true) { AmmoDefinitions().load() }
-        single(createdAtStart = true) { ParameterDefinitions(CategoryDefinitions().load(), get()).load() }
-        single(createdAtStart = true) { FontDefinitions(FontDecoder().load(activeDir)).load() }
     }
 
     private fun cache(cache: Cache) = module {

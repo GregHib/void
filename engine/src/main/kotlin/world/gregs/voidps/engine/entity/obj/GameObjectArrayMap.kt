@@ -19,11 +19,6 @@ class GameObjectArrayMap : GameObjectMap {
         return data[zoneIndex]?.get(tileIndex) ?: -1
     }
 
-    override operator fun set(zone: Int, tile: Int, mask: Int) {
-        val tiles = data[zone] ?: allocateIfAbsent(zone)
-        tiles[tile] = mask
-    }
-
     override operator fun set(x: Int, y: Int, level: Int, layer: Int, mask: Int) {
         val tiles = data[Zone.tileIndex(x, y, level)] ?: allocateIfAbsent(x, y, level)
         tiles[Tile.index(x, y, layer)] = mask

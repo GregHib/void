@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.map.collision
 
-import world.gregs.voidps.cache.active.encode.ZoneObject
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectShape
@@ -25,23 +24,6 @@ class GameObjectCollision(
             ObjectShape.WALL_CORNER -> modifyWallCorner(x, y, level, def.block, ordinal[rotation], add)
             in ObjectShape.WALL_DIAGONAL until ObjectShape.GROUND_DECOR -> modifyObject(def, x, y, level, rotation, def.block, add)
             ObjectShape.GROUND_DECOR -> if (def.interactive == 1 && def.solid == 1) modifyCardinal(x, y, level, def.block, add)
-        }
-    }
-
-    fun modify(obj: ZoneObject, zone: Int, def: ObjectDefinition) {
-        if (def.solid == 0) {
-            return
-        }
-        val x = obj.x + (Zone.x(zone) shl 3)
-        val y = obj.y + (Zone.y(zone) shl 3)
-        val level = obj.level
-        val rotation = obj.rotation
-        when (obj.shape) {
-            ObjectShape.WALL_STRAIGHT -> modifyWall(x, y, level, def.block, cardinal[(rotation + 3) and 0x3], true)
-            ObjectShape.WALL_DIAGONAL_CORNER, ObjectShape.WALL_SQUARE_CORNER -> modifyWall(x, y, level, def.block, ordinal[rotation], true)
-            ObjectShape.WALL_CORNER -> modifyWallCorner(x, y, level, def.block, ordinal[rotation], true)
-            in ObjectShape.WALL_DIAGONAL until ObjectShape.GROUND_DECOR -> modifyObject(def, x, y, level, rotation, def.block, true)
-            ObjectShape.GROUND_DECOR -> if (def.interactive == 1 && def.solid == 1) modifyCardinal(x, y, level, def.block, true)
         }
     }
 

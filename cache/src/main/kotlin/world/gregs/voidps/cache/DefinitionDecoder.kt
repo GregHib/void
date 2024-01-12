@@ -3,34 +3,11 @@ package world.gregs.voidps.cache
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.active.ActiveCache
-import java.io.File
 import java.nio.BufferUnderflowException
 
 abstract class DefinitionDecoder<T : Definition>(val index: Int) {
 
     abstract fun create(size: Int): Array<T>
-
-    /**
-     * Load from active cache
-     */
-    fun load(cache: File): Array<T> {
-        val start = System.currentTimeMillis()
-        val file = cache.resolve(fileName())
-        if (!file.exists()) {
-            return create(0)
-        }
-        val reader = BufferReader(file.readBytes())
-        val size = reader.readInt() + 1
-        val array = create(size)
-        while (reader.position() < reader.length) {
-            load(array, reader)
-        }
-        logger.info { "$size ${this::class.simpleName} definitions loaded in ${System.currentTimeMillis() - start}ms" }
-        return array
-    }
-
-    open fun fileName() = ActiveCache.indexFile(index)
 
     open fun load(definitions: Array<T>, reader: Reader) {
         val id = readId(reader)

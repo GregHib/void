@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.obj
 
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
-import world.gregs.voidps.cache.active.encode.ZoneObject
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
@@ -92,19 +91,6 @@ class GameObjects(
         collisions.modify(definition, x, y, level, shape, rotation, add = true)
         if (interactive(definition)) {
             map[x, y, level, ObjectLayer.layer(shape)] = value(false, id, shape, rotation)
-            size++
-        }
-    }
-
-    /**
-     * Sets the original placement of a game object (but faster)
-     */
-    fun set(obj: ZoneObject, zoneIndex: Int, definition: ObjectDefinition) {
-        collisions.modify(obj, zoneIndex, definition)
-        if (interactive(definition)) {
-            val zone = zoneIndex or (obj.level shl 22)
-            val tile = ZoneObject.tile(obj.packed) or (ObjectLayer.layer(obj.shape) shl 6)
-            map[zone, tile] = ZoneObject.info(obj.packed) shl 1
             size++
         }
     }
