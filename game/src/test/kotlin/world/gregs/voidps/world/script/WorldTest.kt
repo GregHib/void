@@ -41,6 +41,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.gameModule
@@ -165,7 +166,7 @@ abstract class WorldTest : KoinTest {
             })
         }
         loadScripts(getProperty("scriptModule"))
-        MapDefinitions(get(), get(), get()).load(active)
+        MapDefinitions(get(), get(), get(), cache).loadCache()
         saves = File(getProperty("savePath"))
         saves?.mkdirs()
         store = get()
@@ -252,7 +253,7 @@ abstract class WorldTest : KoinTest {
         private val collisions: Collisions by lazy { Collisions() }
         private val objectCollision: GameObjectCollision by lazy { GameObjectCollision(collisions) }
         private val gameObjects: GameObjects by lazy { GameObjects(objectCollision, ZoneBatchUpdates(), objectDefinitions, storeUnused = true) }
-        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(collisions, objectDefinitions, gameObjects).load(active) }
+        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionReader( collisions), objectDefinitions, gameObjects, cache).loadCache() }
         private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(active)).load() }
         val emptyTile = Tile(2655, 4640)
     }

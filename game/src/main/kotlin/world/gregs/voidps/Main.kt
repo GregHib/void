@@ -30,6 +30,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.network.Network
 import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.loadScripts
@@ -114,7 +115,7 @@ object Main {
     }
 
     private fun active(activeDir: File) = module {
-        single(createdAtStart = true) { MapDefinitions(get(), get(), get()).load(activeDir) }
+//        single(createdAtStart = true) { MapDefinitionsNew(CollisionReader(get()), get(), get()).load() }
         single(createdAtStart = true) { Huffman().load(activeDir.resolve(ActiveCache.indexFile(Index.HUFFMAN)).readBytes()) }
         single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = getProperty<String>("members") == "true", lowDetail = false, get<ParameterDefinitions>()).load(activeDir)).load() }
         single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = getProperty<String>("members") == "true", get<ParameterDefinitions>()).load(activeDir)).load() }
@@ -133,7 +134,7 @@ object Main {
     }
 
     private fun cache(cache: Cache) = module {
-        single(createdAtStart = true) { MapDefinitions(get(), get(), get()).loadCache(cache) }
+        single(createdAtStart = true) { MapDefinitions(CollisionReader(get()), get(), get(), cache).loadCache() }
         single(createdAtStart = true) { Huffman().load(cache.getFile(Index.HUFFMAN, 1)!!) }
         single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = getProperty<String>("members") == "true", lowDetail = false, get<ParameterDefinitions>()).loadCache(cache)).load() }
         single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = getProperty<String>("members") == "true", get<ParameterDefinitions>()).loadCache(cache)).load() }
