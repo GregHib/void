@@ -11,11 +11,11 @@ open class ReadOnlyCache(
 ) : Cache {
 
     override fun files(index: Int, archive: Int): IntArray? {
-        return files[index]?.get(archive)
+        return files.getOrNull(index)?.getOrNull(archive)
     }
 
     override fun archives(index: Int): IntArray? {
-        return archives[index]
+        return archives.getOrNull(index)
     }
 
     override fun indexes(): Int {
@@ -27,15 +27,15 @@ open class ReadOnlyCache(
     }
 
     override fun archiveCount(indexId: Int, archiveId: Int): Int {
-        return fileCounts[indexId]?.get(archiveId) ?: 0
+        return fileCounts.getOrNull(indexId)?.getOrNull(archiveId) ?: 0
     }
 
     override fun lastFileId(indexId: Int, archive: Int): Int {
-        return files[indexId]?.get(archive)?.last() ?: -1
+        return files.getOrNull(indexId)?.getOrNull(archive)?.last() ?: -1
     }
 
     override fun lastArchiveId(indexId: Int): Int {
-        return archives[indexId]?.last() ?: -1
+        return archives.getOrNull(indexId)?.last() ?: -1
     }
 
     override fun archiveId(name: String): Int {
@@ -66,7 +66,7 @@ open class ReadOnlyCache(
     }
 
     override fun getArchives(index: Int): IntArray {
-        TODO("Not yet implemented")
+        return archives(index) ?: IntArray(0)
     }
 
     override fun write(index: Int, archive: Int, file: Int, data: ByteArray, xteas: IntArray?) {

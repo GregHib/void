@@ -14,7 +14,14 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.RandomAccessFile
 
-class MemoryCacheLoader : CacheLoader {
+class MemoryCacheLoader(
+    private val threadUsage: Double = 1.0
+) : CacheLoader {
+
+    init {
+        assert(threadUsage in 0.0..1.0) { "Thread usage must be between 0.0 - 1.0." }
+    }
+
     private val logger = InlineLogger()
 
     override fun load(path: String, xteas: Map<Int, IntArray>?): Cache {
@@ -31,7 +38,7 @@ class MemoryCacheLoader : CacheLoader {
         val indexCount = index255.length().toInt() / INDEX_SIZE
 
         val indices = (0 until indexCount).toList()
-        val processors = 10//Runtime.getRuntime().availableProcessors()
+        val processors = (Runtime.getRuntime().availableProcessors() * threadUsage).toInt().coerceAtLeast(1)
         val dispatcher = newFixedThreadPoolContext(processors, "cache-loader")
         val archives: Array<IntArray?> = arrayOfNulls(indexCount)
         val fileCounts: Array<IntArray?> = arrayOfNulls(indexCount)
@@ -65,7 +72,7 @@ class MemoryCacheLoader : CacheLoader {
     ): Array<Array<ByteArray?>?>? {
         val file = File(path, "${CacheLibrary.CACHE_FILE_NAME}.idx$indexId")
         if (!file.exists()) {
-            logger.warn { "No index $indexId file found." }
+            logger.trace { "No index $indexId file found." }
             return null
         }
         try {
@@ -78,7 +85,7 @@ class MemoryCacheLoader : CacheLoader {
             }
             val archiveSector = readArchiveSector(main, mainFileLength, index255, 255, indexId)
             if (archiveSector == null) {
-                logger.debug { "Loaded index $indexId. 0" }
+                logger.trace { "Empty index $indexId." }
                 return null
             }
             val context = ThreadContext()
@@ -144,7 +151,7 @@ class MemoryCacheLoader : CacheLoader {
                     loadArchives(file, (0..highest).toList(), fileIds, mainFile, mainFileLength, indexId, archiveIdSizes, xteas, archiveArray)
                 }
             }
-            logger.debug { "Loaded ${archiveArray.size} index $indexId archives in ${System.currentTimeMillis() - start}ms." }
+            logger.trace { "Loaded ${archiveArray.size} index $indexId archives in ${System.currentTimeMillis() - start}ms." }
             return archiveArray
         } catch (e: Exception) {
             logger.warn(e) { "Failed to load index $indexId." }

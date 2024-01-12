@@ -74,7 +74,7 @@ class InMemory {
                     }
                 }
                 if (named) {
-                    tableBuffer.skip(archiveCount * 4)
+                    tableBuffer.skip(archiveCount * 4) // Hashes
                 }
                 if (hasWhirlPool) {
                     tableBuffer.skip(archiveCount * Index.WHIRLPOOL_SIZE)
@@ -312,31 +312,44 @@ class InMemory {
 
         @JvmStatic
         fun main(args: Array<String>) {
+            /*
+                TODO
+                    in memory loader - done
+                    parallel index loader to get < 3s - yup!
+                    how fast can it go? - very 750ms
+                    if < 3s how fast can it load all maps - can active cache be removed?
+             */
             val memory = InMemory()
             val path = "./data/cache/"
 
             val xteas = loadBinary(File("./data/xteas.dat"))
-
             val start = System.currentTimeMillis()
-            val cache = FileCacheLoader().load(path, xteas)
+            val cache = memory.load(path, xteas)
             println("Loaded cache in ${System.currentTimeMillis() - start}ms")
 
             var count = 0
-            for (index in 0 until cache.indexes()) {
-                val archives = cache.archives(index) ?: continue
-                for (archive in archives) {
-                    val files = cache.files(index, archive) ?: continue
-                    for (file in files) {
-                        val data = cache.data(index, archive, file) ?: continue
+            for (index in cache) {
+                for (archive in index ?: continue) {
+                    for (data in archive ?: continue) {
                         count++
                     }
                 }
             }
             println("Loaded $count files in ${System.currentTimeMillis() - start}ms")
+
+            count = 0
+            val lib = CacheLibrary(path)
+            for (index in lib.indices()) {
+                for (archive in index.archives()) {
+                    for (file in archive.files()) {
+                        val expected = lib.data(index.id, archive.id, file.id) ?: continue
+                        count++
+                    }
+                }
+            }
+            println("Files: $count")
             exitProcess(0)
             val indices = memory.load(path, xteas)
-            // TODO check data see if there's enough gaps to justify using Maps instead of arrays
-            // TODO memory usage of storing inflated vs deflated
             println("Loaded cache in ${System.currentTimeMillis() - start}ms")
 
             /*
@@ -372,7 +385,7 @@ class InMemory {
 
             println("Tot= $total cnt=$count blk=$blank")
 
-            val lib = CacheLibrary(path)
+//            val lib = CacheLibrary(path)
             for (index in lib.indices()) {
                 if (index.archives().size != indices.get(index.id)?.size) {
                     println("Different archive size")

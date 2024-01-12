@@ -7,13 +7,12 @@ import world.gregs.voidps.cache.memory.BZIP2Compressor
 import world.gregs.voidps.cache.secure.Xtea
 import java.io.ByteArrayInputStream
 import java.io.OutputStream
+import java.util.concurrent.atomic.AtomicBoolean
 import java.util.zip.Inflater
 
 
 class ThreadContext {
     val inflater = Inflater(true)
-
-    private var warned = false
 
     fun decompress(context: ThreadContext, data: ByteArray, keys: IntArray? = null): ByteArray? {
         if (keys != null && (keys[0] != 0 || keys[1] != 0 || keys[2] != 0 || 0 != keys[3])) {
@@ -34,9 +33,9 @@ class ThreadContext {
             }
             1 -> {
                 // Deprecated
-                if (!warned) {
+                if (!warned.get()) {
                     logger.warn { "GZIP2 Compression found - replace to improve read performance." }
-                    warned = true
+                    warned.set(true)
                 }
                 val decompressed = ByteArray(decompressedSize)
                 context.compressor.decompress(decompressed, decompressedSize, data, 9)
@@ -104,6 +103,7 @@ class ThreadContext {
     }
 
     companion object {
+        private val warned = AtomicBoolean()
         val logger = InlineLogger()
     }
 }

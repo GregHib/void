@@ -1,11 +1,10 @@
 package world.gregs.voidps.cache.memory.load
 
 import com.displee.cache.index.Index
+import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.memory.ArchiveSectorReader
-import world.gregs.voidps.cache.memory.Decompressor
 import world.gregs.voidps.cache.memory.InMemory
 import world.gregs.voidps.cache.memory.cache.FileCache
 import java.io.File
@@ -13,8 +12,7 @@ import java.io.FileNotFoundException
 import java.io.RandomAccessFile
 
 class FileCacheLoader : CacheLoader {
-    private val sectorReader = ArchiveSectorReader()
-    private val decompressor = Decompressor()
+    private val logger = InlineLogger()
 
     override fun load(path: String, xteas: Map<Int, IntArray>?): Cache {
         val mainFile = File(path, "$CACHE_FILE_NAME.dat2")
@@ -30,7 +28,7 @@ class FileCacheLoader : CacheLoader {
         val indexCount = index255.length().toInt() / INDEX_SIZE
         val indices = Array(indexCount) { indexId ->
             val file = File(path, "$CACHE_FILE_NAME.idx$indexId")
-            RandomAccessFile(file, "r")
+            if (file.exists()) RandomAccessFile(file, "r") else null
         }
         val archives: Array<IntArray?> = arrayOfNulls(indexCount)
         val fileCounts: Array<IntArray?> = arrayOfNulls(indexCount)
@@ -38,9 +36,14 @@ class FileCacheLoader : CacheLoader {
         val length = mainFile.length()
         val hashes = Int2IntOpenHashMap(16384)
         for (indexId in 0 until indexCount) {
-            val compressedSize = sectorReader.read(main, length, index255, indexId = 255, sectorId = indexId)
-            val decompressedSize = decompressor.decompress(sectorReader.data, compressedSize)
-            val tableBuffer = BufferReader(decompressor.data)
+            val archiveSector = readArchiveSector(main, length, index255, 255, indexId)
+            if (archiveSector == null) {
+                logger.trace { "Empty index $indexId." }
+                continue
+            }
+            val context = ThreadContext()
+            val decompressed = context.decompress(context, archiveSector, null) ?: continue
+            val tableBuffer = BufferReader(decompressed)
             val version = tableBuffer.readUnsignedByte()
             if (version < 5 || version > 7) {
                 throw RuntimeException("Unknown version: $version")
@@ -72,7 +75,7 @@ class FileCacheLoader : CacheLoader {
             }
             tableBuffer.skip(archiveCount * 8) // Crc & revisions
             val archiveSizes = IntArray(highest + 1)
-            for(i in 0 until archiveCount) {
+            for (i in 0 until archiveCount) {
                 val id = archiveIds[i]
                 val size = tableBuffer.readSmart(version)
                 archiveSizes[id] = size
@@ -96,6 +99,52 @@ class FileCacheLoader : CacheLoader {
     private fun BufferReader.readSmart(version: Int) = if (version >= 7) readBigSmart() else readUnsignedShort()
 
     companion object {
+        fun readArchiveSector(mainFile: RandomAccessFile, length: Long, raf: RandomAccessFile, indexId: Int, sectorId: Int): ByteArray? {
+            if (length < Index.INDEX_SIZE * sectorId + Index.INDEX_SIZE) {
+                return null
+            }
+            raf.seek(sectorId.toLong() * Index.INDEX_SIZE)
+            val sectorData = ByteArray(Index.SECTOR_SIZE)
+            raf.read(sectorData, 0, Index.INDEX_SIZE)
+            val bigSector = sectorId > 65535
+            val buffer = BufferReader(sectorData)
+            val sectorSize = buffer.readUnsignedMedium()
+            var sectorPosition = buffer.readUnsignedMedium()
+            if (sectorSize < 0 || sectorPosition <= 0 || sectorPosition > mainFile.length() / Index.SECTOR_SIZE) {
+                return null
+            }
+            var read = 0
+            var chunk = 0
+            val sectorHeaderSize = if (bigSector) Index.SECTOR_HEADER_SIZE_BIG else Index.SECTOR_HEADER_SIZE_SMALL
+            val sectorDataSize = if (bigSector) Index.SECTOR_DATA_SIZE_BIG else Index.SECTOR_DATA_SIZE_SMALL
+            val output = ByteArray(sectorSize)
+            while (read < sectorSize) {
+                if (sectorPosition == 0) {
+                    return null
+                }
+                var requiredToRead = sectorSize - read
+                if (requiredToRead > sectorDataSize) {
+                    requiredToRead = sectorDataSize
+                }
+                mainFile.seek(sectorPosition.toLong() * Index.SECTOR_SIZE)
+                mainFile.read(sectorData, 0, requiredToRead + sectorHeaderSize)
+                buffer.position(0)
+                val id = if (bigSector) buffer.readInt() else buffer.readUnsignedShort()
+                val sectorChunk = buffer.readUnsignedShort()
+                val sectorNextPosition = buffer.readUnsignedMedium()
+                val sectorIndex = buffer.readUnsignedByte()
+                if (sectorIndex != indexId || id != sectorId || sectorChunk != chunk) {
+                    return null
+                } else if (sectorNextPosition < 0 || sectorNextPosition > mainFile.length() / Index.SECTOR_SIZE) {
+                    return null
+                }
+                System.arraycopy(sectorData, sectorHeaderSize, output, read, requiredToRead)
+                read += requiredToRead
+                sectorPosition = sectorNextPosition
+                chunk++
+            }
+            return output
+        }
         private const val NAME_FLAG = 0x1
         private const val WHIRLPOOL_FLAG = 0x2
         const val CACHE_FILE_NAME = "main_file_cache"
@@ -106,8 +155,9 @@ class FileCacheLoader : CacheLoader {
             val path = "./data/cache/"
             val xteas = InMemory.loadBinary(File("./data/xteas.dat"))
 
+            val memCache = MemoryCacheLoader().load(path)
             val start = System.currentTimeMillis()
-            val cache = FileCacheLoader().load(path, xteas)
+            val cache = FileCacheLoader().load(path)
             println("Loaded cache in ${System.currentTimeMillis() - start}ms")
 
             var count = 0
@@ -116,7 +166,12 @@ class FileCacheLoader : CacheLoader {
                 for (archive in archives) {
                     val files = cache.files(index, archive) ?: continue
                     for (file in files) {
-                        val data = cache.data(index, archive, file) ?: continue
+                        val expected = memCache.data(index, archive, file)
+                        val actual = cache.data(index, archive, file)
+                        if (!expected.contentEquals(actual)) {
+                            println("Mismatch $index $archive $file")
+                            println("${expected?.take(10)} ${actual?.take(10)}")
+                        }
                         count++
                     }
                 }
