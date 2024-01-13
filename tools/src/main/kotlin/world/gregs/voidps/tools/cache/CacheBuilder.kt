@@ -51,9 +51,11 @@ object CacheBuilder {
         MapPacker.pack634(path, xteas, cache727, Xteas(), cache681, xteas681, cache537)
 
         // Further improvements
+        val cache667 = OpenRS2.downloadCache(temp.resolve("cache-667/"), 1473)
         val library = CacheLibrary(path.path)
         RemoveXteas.remove(library, xteas)
         RemoveBzip2.remove(library)
+        MoveCameraClientScript.convert(library, cache667)
         println("Rebuilding cache.")
         library.rebuild(target)
         addEmptyIndexFiles(target, library.last()?.id ?: 0)
