@@ -59,6 +59,7 @@ object CacheBuilder {
         println("Rebuilding cache.")
         library.rebuild(target)
         addEmptyIndexFiles(target, library.last()?.id ?: 0)
+        PrefetchKeyGeneration.print(library)
     }
 
     private fun checkCacheOverride(path: File) {
