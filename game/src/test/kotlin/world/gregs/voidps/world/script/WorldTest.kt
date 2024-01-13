@@ -136,6 +136,7 @@ abstract class WorldTest : KoinTest {
 
     @BeforeAll
     fun beforeAll() {
+        stopKoin()
         startKoin {
             printLogger(Level.ERROR)
             fileProperties("/test.properties")
@@ -165,7 +166,7 @@ abstract class WorldTest : KoinTest {
             })
         }
         loadScripts(getProperty("scriptModule"))
-        MapDefinitions(get(), get(), get(), cache).loadCache()
+        MapDefinitions(CollisionReader(get()), get(), get(), cache).loadCache()
         saves = File(getProperty("savePath"))
         saves?.mkdirs()
         store = get()
@@ -230,7 +231,7 @@ abstract class WorldTest : KoinTest {
 
     companion object {
         private val cache: Cache by lazy { MemoryCache(getProperty("cachePath")) }
-        private val huffman: Huffman by lazy { Huffman().load(cache.data(Index.HUFFMAN, 0)!!) }
+        private val huffman: Huffman by lazy { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
         private val ammoDefinitions: AmmoDefinitions by lazy { AmmoDefinitions().load() }
         private val parameterDefinitions: ParameterDefinitions by lazy { ParameterDefinitions(CategoryDefinitions().load(), ammoDefinitions).load() }
         private val objectDefinitions: ObjectDefinitions by lazy { ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false, parameterDefinitions).load(cache)).load() }

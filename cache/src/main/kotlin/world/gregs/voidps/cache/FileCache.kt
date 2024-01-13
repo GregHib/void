@@ -6,7 +6,7 @@ import java.io.RandomAccessFile
 
 /**
  * [Cache] which reads data directly from file
- * Slow read speeds, fast loading and low but variable memory usage.
+ * Average read speeds, fast loading and low but variable memory usage.
  */
 class FileCache(
     private val main: RandomAccessFile,
