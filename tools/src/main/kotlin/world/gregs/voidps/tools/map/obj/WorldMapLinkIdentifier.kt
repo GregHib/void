@@ -37,7 +37,7 @@ object WorldMapLinkIdentifier {
         val collisionReader = CollisionReader(collisions)
         val graph = MutableNavigationGraph()
         val linker = ObjectLinker(collisions)
-        val clientScriptDecoder = ClientScriptDecoder(revision634 = true).load(cache)
+        val clientScriptDecoder = ClientScriptDecoder().load(cache)
         val objects = GameObjects(GameObjectCollision(collisions), ZoneBatchUpdates(), definitions)
         val regions = mutableListOf<Region>()
         for (regionX in 0 until 256) {

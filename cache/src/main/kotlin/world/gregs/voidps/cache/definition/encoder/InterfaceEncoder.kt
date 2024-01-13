@@ -1,17 +1,23 @@
 package world.gregs.voidps.cache.definition.encoder
 
+import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.DefinitionEncoder
+import world.gregs.voidps.cache.Index
+import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinitionFull
+import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
+import world.gregs.voidps.cache.definition.decoder.InterfaceDecoderFull
+import kotlin.system.exitProcess
 
-internal class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinitionFull> {
+class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinitionFull> {
 
     override fun Writer.encode(definition: InterfaceComponentDefinitionFull) {
         if (definition.id == -1) {
             return
         }
         writeByte(-1)
-        if(!definition.unknown.isNullOrEmpty()) {
+        if (!definition.unknown.isNullOrEmpty()) {
             writeByte(definition.type or 0x80)
             writeString(definition.unknown)
         } else {
@@ -35,17 +41,17 @@ internal class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinition
         writeByte(flag)
 
         when (definition.type) {
-            0 -> {
+            InterfaceDecoder.CONTAINER -> {
                 writeShort(definition.scrollWidth)
                 writeShort(definition.scrollHeight)
                 writeByte(definition.disableHover)
             }
-            3 -> {
+            InterfaceDecoder.RECTANGLE -> {
                 writeInt(definition.colour)
                 writeByte(definition.filled)
                 writeByte(definition.alpha)
             }
-            4 -> {
+            InterfaceDecoder.TEXT -> {
                 writeShort(definition.fontId)
                 writeString(definition.text)
                 writeByte(definition.lineHeight)
@@ -55,7 +61,7 @@ internal class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinition
                 writeInt(definition.colour)
                 writeByte(definition.alpha)
             }
-            5 -> {
+            InterfaceDecoder.SPRITE -> {
                 writeInt(definition.defaultImage)
                 writeShort(definition.imageRotation)
                 var flag = 0
@@ -73,7 +79,7 @@ internal class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinition
                 writeByte(definition.flipHorizontal)
                 writeInt(definition.colour)
             }
-            6 -> {
+            InterfaceDecoder.MODEL -> {
                 writeShort(definition.defaultMediaId)
                 var flag = 0
                 if (definition.animated) {
@@ -85,10 +91,10 @@ internal class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinition
                 if (definition.ignoreZBuffer) {
                     flag = flag or 0x8
                 }
-                if (definition.viewportZ == 0) {
+                if (definition.viewportZ == 0 && (definition.viewportX != 0 || definition.viewportY != 0 || definition.spritePitch != 0 || definition.spriteRoll != 0 || definition.spriteYaw != 0 || definition.spriteScale != 100)) {
                     flag = flag or 0x1
                 }
-
+                writeByte(flag)
                 if (flag and 0x1 == 1) {
                     writeShort(definition.viewportX)
                     writeShort(definition.viewportY)
@@ -113,7 +119,7 @@ internal class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinition
                     writeShort(definition.viewportHeight)
                 }
             }
-            9 -> {
+            InterfaceDecoder.LINE -> {
                 writeByte(definition.lineWidth)
                 writeInt(definition.colour)
                 writeByte(definition.lineMirrored)
@@ -121,30 +127,55 @@ internal class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinition
         }
 
         writeMedium(definition.setting.setting)
-        writeByte(0)// TODO
+        var startOffset = 0
+        val keyRepeat = definition.keyRepeats
+        val keyCodes = definition.keyCodes
+        val keyModifiers = definition.keyModifiers
+        if (keyRepeat != null && keyCodes != null && keyModifiers != null) {
+            startOffset = 16
+            for (i in keyCodes) {
+                if (i.toInt() != 0) {
+                    break
+                }
+                startOffset += 16
+            }
+            writeByte(startOffset)
+            var counter = (startOffset shr 4) - 1
+            val length = 11
+            while (counter != length) {
+                writeByte(keyRepeat[counter].toInt())
+                writeByte(keyCodes[counter].toInt())
+                writeByte(keyModifiers[counter])
+                counter += 1
+                while (counter != length) {
+                    if (keyCodes[counter].toInt() != 0) {
+                        break
+                    }
+                    counter++
+                }
+                writeByte(if (counter == length) 0 else counter + 1 shl 4)
+            }
+        } else {
+            writeByte(0)
+        }
         writeString(definition.name)
         var optionFlag = 0
         val options = definition.options
-        if(options != null) {
+        if (options != null) {
             optionFlag = options.size
         }
         val icons = definition.mouseIcon
-        if(icons != null) {
+        if (icons != null) {
             optionFlag = optionFlag or (icons.size shl 4)
         }
         writeByte(optionFlag)
         options?.forEach {
             writeString(it)
         }
-        if(icons != null) {
-            if(icons.isNotEmpty()) {
-                writeByte(icons.lastIndex)
-                for (index in icons.indices) {
-                    writeShort(icons[index])
-                }
-            }
-            if(icons.size > 1) {
-                //TODO
+        if (icons != null && icons.isNotEmpty()) {
+            writeByte(icons.lastIndex)
+            for (index in icons.indices) {
+                writeShort(icons[index])
             }
         }
 
@@ -205,6 +236,41 @@ internal class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinition
         writeByte(size)
         script?.forEach {
             writeInt(it)
+        }
+    }
+
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            val cache = MemoryCache("./data/cache/")
+
+            val decoder = InterfaceDecoderFull().load(cache)
+            val encoder = InterfaceEncoder()
+            for (definition in decoder) {
+                if (definition.id != 37) {
+                    continue
+                }
+                val components = definition.components ?: continue
+                for ((index, component) in components.withIndex()) {
+                    if (index != 13) {
+                        continue
+                    }
+                    val expected = cache.data(Index.INTERFACES, definition.id, index)!!
+                    val writer = BufferWriter(4096)
+                    with(encoder) {
+                        writer.encode(component)
+                    }
+                    if (component.keyRepeats != null) {
+                        continue
+                    }
+                    if (!expected.contentEquals(writer.toArray())) {
+                        println("Mismatch ${definition.id} $index ${component.id}")
+                        println(expected.contentToString())
+                        println(writer.toArray().contentToString())
+                        exitProcess(0)
+                    }
+                }
+            }
         }
     }
 

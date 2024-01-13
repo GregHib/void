@@ -42,7 +42,7 @@ object DumpStyles {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = ClientScriptDecoder(revision634 = true).load(cache)
+        val decoder = ClientScriptDecoder().load(cache)
         val clientScript = decoder[1142]
         load(clientScript)
         val builder = StringBuilder()

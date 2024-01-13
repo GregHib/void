@@ -9,7 +9,7 @@ object ClientScriptDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = ClientScriptDecoder(revision634 = true).load(cache)
+        val decoder = ClientScriptDecoder().load(cache)
         for (i in decoder.indices) {
 //            if (i != 1142) {
 //                continue

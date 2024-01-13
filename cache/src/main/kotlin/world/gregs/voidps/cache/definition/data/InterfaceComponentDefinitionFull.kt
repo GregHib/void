@@ -58,7 +58,7 @@ data class InterfaceComponentDefinitionFull(
     var viewportHeight: Int = 0,
     var lineWidth: Int = 1,
     var lineMirrored: Boolean = false,
-    var keyRepeat: ByteArray? = null,
+    var keyRepeats: ByteArray? = null,
     var keyCodes: ByteArray? = null,
     var keyModifiers: IntArray? = null,
     var clickable: Boolean = false,
@@ -165,10 +165,10 @@ data class InterfaceComponentDefinitionFull(
         if (viewportHeight != other.viewportHeight) return false
         if (lineWidth != other.lineWidth) return false
         if (lineMirrored != other.lineMirrored) return false
-        if (keyRepeat != null) {
-            if (other.keyRepeat == null) return false
-            if (!keyRepeat.contentEquals(other.keyRepeat)) return false
-        } else if (other.keyRepeat != null) return false
+        if (keyRepeats != null) {
+            if (other.keyRepeats == null) return false
+            if (!keyRepeats.contentEquals(other.keyRepeats)) return false
+        } else if (other.keyRepeats != null) return false
         if (keyCodes != null) {
             if (other.keyCodes == null) return false
             if (!keyCodes.contentEquals(other.keyCodes)) return false
@@ -363,7 +363,7 @@ data class InterfaceComponentDefinitionFull(
         result = 31 * result + viewportHeight
         result = 31 * result + lineWidth
         result = 31 * result + lineMirrored.hashCode()
-        result = 31 * result + (keyRepeat?.contentHashCode() ?: 0)
+        result = 31 * result + (keyRepeats?.contentHashCode() ?: 0)
         result = 31 * result + (keyCodes?.contentHashCode() ?: 0)
         result = 31 * result + (keyModifiers?.contentHashCode() ?: 0)
         result = 31 * result + clickable.hashCode()

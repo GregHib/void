@@ -30,7 +30,7 @@ internal class InterfaceEncoderTest {
             verticalPositionMode = 1,
             parent = 1,
             hidden = true,
-            keyRepeat = null,
+            keyRepeats = null,
             keyCodes = null,
             keyModifiers = null,
             name = "Applied",
