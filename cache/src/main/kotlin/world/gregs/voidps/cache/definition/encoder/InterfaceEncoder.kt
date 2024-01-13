@@ -6,7 +6,6 @@ import world.gregs.voidps.cache.DefinitionEncoder
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinitionFull
-import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoderFull
 import kotlin.system.exitProcess
 
@@ -41,17 +40,17 @@ class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinitionFull> {
         writeByte(flag)
 
         when (definition.type) {
-            InterfaceDecoder.CONTAINER -> {
+            0 -> {
                 writeShort(definition.scrollWidth)
                 writeShort(definition.scrollHeight)
                 writeByte(definition.disableHover)
             }
-            InterfaceDecoder.RECTANGLE -> {
+            3 -> {
                 writeInt(definition.colour)
                 writeByte(definition.filled)
                 writeByte(definition.alpha)
             }
-            InterfaceDecoder.TEXT -> {
+            4 -> {
                 writeShort(definition.fontId)
                 writeString(definition.text)
                 writeByte(definition.lineHeight)
@@ -61,7 +60,7 @@ class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinitionFull> {
                 writeInt(definition.colour)
                 writeByte(definition.alpha)
             }
-            InterfaceDecoder.SPRITE -> {
+            5 -> {
                 writeInt(definition.defaultImage)
                 writeShort(definition.imageRotation)
                 var flag = 0
@@ -79,7 +78,7 @@ class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinitionFull> {
                 writeByte(definition.flipHorizontal)
                 writeInt(definition.colour)
             }
-            InterfaceDecoder.MODEL -> {
+            6 -> {
                 writeShort(definition.defaultMediaId)
                 var flag = 0
                 if (definition.animated) {
@@ -119,7 +118,7 @@ class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinitionFull> {
                     writeShort(definition.viewportHeight)
                 }
             }
-            InterfaceDecoder.LINE -> {
+            9 -> {
                 writeByte(definition.lineWidth)
                 writeInt(definition.colour)
                 writeByte(definition.lineMirrored)
