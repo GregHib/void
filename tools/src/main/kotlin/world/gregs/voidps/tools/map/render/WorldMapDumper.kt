@@ -4,7 +4,7 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.config.decoder.MapSceneDecoder
 import world.gregs.voidps.cache.config.decoder.OverlayDecoder
 import world.gregs.voidps.cache.config.decoder.UnderlayDecoder
@@ -21,7 +21,7 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 
 /**
- * Renders and saves all regions to individual pngs
+ * Renders and saves all regions to individual pngs with various levels of detail
  */
 object WorldMapDumper {
 
@@ -33,7 +33,7 @@ object WorldMapDumper {
             fileProperties("/tool.properties")
             modules(
             module {
-                single { CacheDelegate(getProperty("cachePath")) as Cache }
+                single { MemoryCache(getProperty<String>("cachePath")) as Cache }
                 single { MapDecoder(get<Xteas>()) }
                 single(createdAtStart = true) {
                     Xteas()//.load(getProperty("xteaPath"), getPropertyOrNull("xteaJsonKey") ?: Xteas.DEFAULT_KEY, getPropertyOrNull("xteaJsonValue") ?: Xteas.DEFAULT_VALUE)
