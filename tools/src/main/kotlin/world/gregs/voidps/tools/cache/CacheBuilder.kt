@@ -5,6 +5,7 @@ import world.gregs.voidps.tools.convert.DefinitionsParameterConverter
 import world.gregs.voidps.tools.convert.InventoryConverter
 import world.gregs.voidps.tools.map.MapPacker
 import java.io.File
+import kotlin.system.exitProcess
 
 /**
  * Automatically builds a cache from scratch with all modifications
@@ -26,7 +27,10 @@ object CacheBuilder {
         val temp = File("./temp/cache/")
         temp.mkdir()
         val path = temp.resolve("build/")
-        path.deleteRecursively()
+        if (!path.deleteRecursively()) {
+            System.err.println("Unable to delete temp cache.")
+            return
+        }
         path.mkdirs()
 
         println("Finding original cache...")
@@ -73,7 +77,10 @@ object CacheBuilder {
             if (!file.isFile || file.nameWithoutExtension != "main_file_cache") {
                 continue
             }
-            file.delete()
+            if (!file.delete()) {
+                System.err.println("Unable to delete temp cache. Is it in use by another process?")
+                exitProcess(0)
+            }
         }
     }
 
