@@ -68,16 +68,29 @@ internal class CollisionReaderTest {
     }
 
     @Test
-    fun `Load rotated blocked`() {
+    fun `Load rotated and moved blocked`() {
         // Given
         val source = Zone(9, 9)
-        val target = Zone(18, 9)
+        val target = Zone(18, 10)
         tiles[MapDefinition.index(10, 12, 0)] = MapTile.pack(0, 0, 0, 0, 0, BLOCKED_TILE, 0)
         // When
         reader.read(tiles, source, target, 1)
         // Then
         verifyOrder {
             collisions.add(target.tile.x + 4, target.tile.y + 5, 0, CollisionFlag.FLOOR)
+        }
+    }
+
+    @Test
+    fun `Load rotated blocked`() {
+        // Given
+        val source = Zone(1, 1)
+        tiles[MapDefinition.index(10, 12, 0)] = MapTile.pack(0, 0, 0, 0, 0, BLOCKED_TILE, 0)
+        // When
+        reader.read(tiles, source, source, 1)
+        // Then
+        verifyOrder {
+            collisions.add(source.tile.x + 4, source.tile.y + 5, 0, CollisionFlag.FLOOR)
         }
     }
 }

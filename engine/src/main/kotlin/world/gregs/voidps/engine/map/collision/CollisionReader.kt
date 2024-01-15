@@ -21,7 +21,9 @@ class CollisionReader(private val collisions: Collisions) {
         for (level in 0 until 4) {
             for (localX in 0 until 64) {
                 for (localY in 0 until 64) {
-                    allocate(localX, localY, x, y, level)
+                    if (localX.rem(8) == 0 && localY.rem(8) == 0) {
+                        collisions.allocateIfAbsent(x + localX, y + localY, level)
+                    }
                     if (!isTile(tiles, localX, localY, level, BLOCKED_TILE)) {
                         continue
                     }
@@ -40,9 +42,9 @@ class CollisionReader(private val collisions: Collisions) {
         val targetX = to.tile.x
         val targetY = to.tile.y
         for (level in 0 until 4) {
+            collisions.allocateIfAbsent(targetX, targetY, level)
             for (localX in x until x + 8) {
                 for (localY in y until y + 8) {
-                    allocate(localX, localY, targetX, targetY, level)
                     if (!isTile(tiles, localX, localY, level, BLOCKED_TILE)) {
                         continue
                     }
@@ -54,12 +56,6 @@ class CollisionReader(private val collisions: Collisions) {
                     }
                 }
             }
-        }
-    }
-
-    private fun allocate(localX: Int, localY: Int, x: Int, y: Int, level: Int) {
-        if (localX.rem(8) == 0 && localY.rem(8) == 0) {
-            collisions.allocateIfAbsent(x + localX, y + localY, level)
         }
     }
 

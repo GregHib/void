@@ -34,13 +34,13 @@ class MapObjectsDecoderTest {
     fun `Load object`() {
         val writer = BufferWriter()
         writer.writeSmart(124)
-        writer.writeSmart(packTile(10, 11, 1) + 1)
+        writer.writeSmart(packTile(10, 11, 1))
         val shape = ObjectShape.GROUND_DECOR
         writer.writeByte(packInfo(shape, 2))
         writer.writeSmart(0)
         writer.writeSmart(0)
         val reader = BufferReader(writer.toArray())
-        decoder.loadObjects(reader, tiles, 2, 4)
+        decoder.loadObjects(reader, tiles, 128, 256)
 
         val tile = Tile(138, 267, 1)
         val gameObject = objects.getShape(tile, shape)
@@ -55,14 +55,14 @@ class MapObjectsDecoderTest {
     fun `Load multiple object locations with same id`() {
         val writer = BufferWriter()
         writer.writeSmart(124)
-        writer.writeSmart(packTile(10, 11, 1) + 1)
+        writer.writeSmart(packTile(10, 11, 1))
         writer.writeByte(packInfo(ObjectShape.WALL_CORNER, 0))
-        writer.writeSmart(packTile(4, 4, 1) + 1)
+        writer.writeSmart(packTile(4, 4, 1))
         writer.writeByte(packInfo(ObjectShape.WALL_STRAIGHT, 1))
         writer.writeSmart(0)
         writer.writeSmart(0)
         val reader = BufferReader(writer.toArray())
-        decoder.loadObjects(reader, tiles, 2, 4)
+        decoder.loadObjects(reader, tiles, 128, 256)
 
         var tile = Tile(138, 267, 1)
         var gameObject = objects.getShape(tile, ObjectShape.WALL_CORNER)
@@ -81,16 +81,16 @@ class MapObjectsDecoderTest {
     fun `Load multiple objects of different ids`() {
         val writer = BufferWriter()
         writer.writeSmart(124)
-        writer.writeSmart(packTile(10, 11, 0) + 1)
+        writer.writeSmart(packTile(10, 11, 0))
         writer.writeByte(packInfo(ObjectShape.GROUND_DECOR, 3))
         writer.writeSmart(0)
         writer.writeSmart(1234)
-        writer.writeSmart(packTile(4, 8, 2) + 1)
+        writer.writeSmart(packTile(4, 8, 2))
         writer.writeByte(packInfo(ObjectShape.ROOF_DIAGONAL, 0))
         writer.writeSmart(0)
         writer.writeSmart(0)
         val reader = BufferReader(writer.toArray())
-        decoder.loadObjects(reader, tiles, 3, 1)
+        decoder.loadObjects(reader, tiles, 192, 64)
 
         var tile = Tile(202, 75, 0)
         var gameObject = objects.getShape(tile, ObjectShape.GROUND_DECOR)
@@ -108,6 +108,6 @@ class MapObjectsDecoderTest {
     companion object {
         private fun packInfo(shape: Int, rotation: Int) = rotation + (shape shl 2)
 
-        private fun packTile(localX: Int, localY: Int, level: Int) = (localY and 0x3f) + (localX and 0x3f shl 6) + (level shl 12)
+        private fun packTile(localX: Int, localY: Int, level: Int) = (localY and 0x3f) + (localX and 0x3f shl 6) + (level shl 12) + 1
     }
 }

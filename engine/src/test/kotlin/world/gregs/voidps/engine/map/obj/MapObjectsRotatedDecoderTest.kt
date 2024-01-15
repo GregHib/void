@@ -31,10 +31,10 @@ class MapObjectsRotatedDecoderTest {
     }
 
     @Test
-    fun `Load object in zone`() {
+    fun `Load object in moved zone`() {
         val writer = BufferWriter()
         writer.writeSmart(124)
-        writer.writeSmart(packTile(10, 11, 1) + 1)
+        writer.writeSmart(packTile(10, 11, 1))
         val shape = ObjectShape.GROUND_DECOR
         writer.writeByte(packInfo(shape, 2))
         writer.writeSmart(0)
@@ -42,12 +42,10 @@ class MapObjectsRotatedDecoderTest {
         val reader = BufferReader(writer.toArray())
 
         decoder.zoneRotation = 2
-        decoder.targetX = 960
-        decoder.targetY = 896
-        decoder.area = Rectangle(8, 8, 16, 16)
-        decoder.loadObjects(reader, tiles, 1, 1)
+        decoder.zone = Rectangle(8, 8, 16, 16)
+        decoder.loadObjects(reader, tiles, 960, 896)
 
-        val tile = Tile(957, 892, 1)
+        val tile = Tile(965, 900, 1) // local 5, 4
         val gameObject = objects.getShape(tile, shape)
 
         assertNotNull(gameObject)
@@ -57,10 +55,34 @@ class MapObjectsRotatedDecoderTest {
     }
 
     @Test
-    fun `Load spits objects out of zone`() {
+    fun `Load object in rotated zone`() {
         val writer = BufferWriter()
         writer.writeSmart(124)
-        writer.writeSmart(packTile(18, 19, 0) + 1)
+        writer.writeSmart(packTile(2, 3, 0))
+        val shape = ObjectShape.GROUND_DECOR
+        writer.writeByte(packInfo(shape, 2))
+        writer.writeSmart(0)
+        writer.writeSmart(0)
+        val reader = BufferReader(writer.toArray())
+
+        decoder.zoneRotation = 3
+        decoder.zone = Rectangle(0, 0, 8, 8)
+        decoder.loadObjects(reader, tiles, 0, 0)
+
+        val tile = Tile(4, 2, 0)
+        val gameObject = objects.getShape(tile, shape)
+
+        assertNotNull(gameObject)
+        assertEquals(shape, gameObject!!.shape)
+        assertEquals(1, gameObject.rotation)
+        assertEquals(123, gameObject.intId)
+    }
+
+    @Test
+    fun `Load ignores objects out of zone`() {
+        val writer = BufferWriter()
+        writer.writeSmart(124)
+        writer.writeSmart(packTile(18, 19, 0))
         val shape = ObjectShape.ROOF_EDGE_CORNER
         writer.writeByte(packInfo(shape, 1))
         writer.writeSmart(0)
@@ -68,10 +90,8 @@ class MapObjectsRotatedDecoderTest {
         val reader = BufferReader(writer.toArray())
 
         decoder.zoneRotation = 0
-        decoder.targetX = 64
-        decoder.targetY = 64
-        decoder.area = Rectangle(8, 8, 16, 16)
-        decoder.loadObjects(reader, tiles, 1, 1)
+        decoder.zone = Rectangle(8, 8, 16, 16)
+        decoder.loadObjects(reader, tiles, 64, 64)
 
         val tile = Tile(82, 84, 0)
         val gameObject = objects.getShape(tile, shape)
@@ -81,6 +101,6 @@ class MapObjectsRotatedDecoderTest {
     companion object {
         private fun packInfo(shape: Int, rotation: Int) = rotation + (shape shl 2)
 
-        private fun packTile(localX: Int, localY: Int, level: Int) = (localY and 0x3f) + (localX and 0x3f shl 6) + (level shl 12)
+        private fun packTile(localX: Int, localY: Int, level: Int) = (localY and 0x3f) + (localX and 0x3f shl 6) + (level shl 12) + 1
     }
 }

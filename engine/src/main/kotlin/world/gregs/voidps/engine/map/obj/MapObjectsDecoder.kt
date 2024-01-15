@@ -18,13 +18,12 @@ class MapObjectsDecoder(
     fun loadObjects(cache: Cache, tiles: LongArray, regionX: Int, regionY: Int, keys: IntArray?) {
         val objectData = cache.data(Index.MAPS, "l${regionX}_${regionY}", xtea = keys) ?: return
         val reader = BufferReader(objectData)
-        super.loadObjects(reader, tiles, regionX, regionY)
+        super.loadObjects(reader, tiles, regionX shl 6, regionY shl 6)
     }
 
-    override fun add(objectId: Int, localX: Int, localY: Int, level: Int, shape: Int, rotation: Int, regionX: Int, regionY: Int) {
+    override fun add(objectId: Int, localX: Int, localY: Int, level: Int, shape: Int, rotation: Int, regionTileX: Int, regionTileY: Int) {
         if (objectId > definitions.definitions.size) {
             return
         }
-        objects.set(objectId, (regionX * 64) + localX, (regionY * 64) + localY, level, shape, rotation, definitions.getValue(objectId))
-    }
+        objects.set(objectId, regionTileX + localX, regionTileY + localY, level, shape, rotation, definitions.getValue(objectId))    }
 }

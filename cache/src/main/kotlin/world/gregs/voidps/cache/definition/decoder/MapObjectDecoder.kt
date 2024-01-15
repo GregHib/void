@@ -9,7 +9,7 @@ import world.gregs.voidps.cache.definition.data.MapTile
  */
 abstract class MapObjectDecoder {
 
-    fun loadObjects(reader: BufferReader, tiles: LongArray, regionX: Int, regionY: Int) {
+    fun loadObjects(reader: BufferReader, tiles: LongArray, regionTileX: Int, regionTileY: Int) {
         var objectId = -1
         while (true) {
             val skip = reader.readLargeSmart()
@@ -45,12 +45,12 @@ abstract class MapObjectDecoder {
                 val rotation = data and 0x3
 
                 // Valid object
-                add(objectId, localX, localY, level, shape, rotation, regionX, regionY)
+                add(objectId, localX, localY, level, shape, rotation, regionTileX, regionTileY)
             }
         }
     }
 
-    abstract fun add(objectId: Int, localX: Int, localY: Int, level: Int, shape: Int, rotation: Int, regionX: Int, regionY: Int)
+    abstract fun add(objectId: Int, localX: Int, localY: Int, level: Int, shape: Int, rotation: Int, regionTileX: Int, regionTileY: Int)
 
     companion object {
         private const val BRIDGE_TILE = 0x2

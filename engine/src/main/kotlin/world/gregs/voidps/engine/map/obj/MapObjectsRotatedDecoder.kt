@@ -10,41 +10,35 @@ import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.area.Rectangle
 
 /**
- * Adds collision for all blocked tiles except bridges
+ * Adds all objects except bridges from a single [zone], into a different zone, with [zoneRotation] applied.
  */
 class MapObjectsRotatedDecoder(
     private val objects: GameObjects,
     private val definitions: ObjectDefinitions
 ) : MapObjectDecoder() {
 
-    var zoneRotation: Int = 0
-    lateinit var area: Rectangle
-    var targetX = 0
-    var targetY = 0
+    internal var zoneRotation: Int = 0
+    internal lateinit var zone: Rectangle
 
     fun loadObjects(cache: Cache, tiles: LongArray, from: Zone, to: Zone, rotation: Int, keys: IntArray?) {
-        zoneRotation = rotation
+        val objectData = cache.data(Index.MAPS, "l${from.region.x}_${from.region.y}", xtea = keys) ?: return
+        val reader = BufferReader(objectData)
         val x = from.tile.x.rem(64)
         val y = from.tile.y.rem(64)
-        targetX = to.tile.x
-        targetY = to.tile.y
-        area = Rectangle(x, y, x + 8, y + 8)
-        val regionX = from.region.x
-        val regionY = from.region.y
-        val objectData = cache.data(Index.MAPS, "l${regionX}_${regionY}", xtea = keys) ?: return
-        val reader = BufferReader(objectData)
-        super.loadObjects(reader, tiles, regionX, regionY)
+        zone = Rectangle(x, y, x + 8, y + 8)
+        zoneRotation = rotation
+        super.loadObjects(reader, tiles, to.tile.x, to.tile.y)
     }
 
-    override fun add(objectId: Int, localX: Int, localY: Int, level: Int, shape: Int, rotation: Int, regionX: Int, regionY: Int) {
-        if (objectId > definitions.definitions.size || !area.contains(localX, localY)) {
+    override fun add(objectId: Int, localX: Int, localY: Int, level: Int, shape: Int, rotation: Int, regionTileX: Int, regionTileY: Int) {
+        if (objectId > definitions.definitions.size || !zone.contains(localX, localY)) {
             return
         }
         val def = definitions.getValue(objectId)
         val objRotation = (rotation + zoneRotation) and 0x3
-        val rotX = rotateX(localX, localY, def.sizeX, def.sizeY, objRotation, zoneRotation)
-        val rotY = rotateY(localX, localY, def.sizeX, def.sizeY, objRotation, zoneRotation)
-        objects.set(objectId, targetX + rotX, targetY + rotY, level, shape, objRotation, def)
+        val rotX = rotateX(localX.rem(8), localY.rem(8), def.sizeX, def.sizeY, objRotation, zoneRotation)
+        val rotY = rotateY(localX.rem(8), localY.rem(8), def.sizeX, def.sizeY, objRotation, zoneRotation)
+        objects.set(objectId, regionTileX + rotX, regionTileY + rotY, level, shape, objRotation, def)
     }
 
     companion object {
