@@ -19,7 +19,7 @@ class MapObjectDefinitionDecoder(
         this.definition = definition
         val regionX = definition.id shr 8
         val regionY = definition.id and 0xff
-        val objectData = cache.getFile(Index.MAPS, "l${regionX}_$regionY", xteas?.get(definition.id)) ?: return
+        val objectData = cache.data(Index.MAPS, "l${regionX}_$regionY", xteas?.get(definition.id)) ?: return
         val reader = BufferReader(objectData)
         super.loadObjects(reader, definition.tiles, regionX, regionY)
     }

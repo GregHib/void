@@ -32,8 +32,8 @@ internal class MapDecoderTest {
         data[66] = 51
         data[2] = 52
         data[4099] = 53
-        every { cache.getFile(5, 123, 0, null) } returns data
-        every { cache.getFile(5, "l48_57", any()) } returns null
+        every { cache.data(5, 123, 0, null) } returns data
+        every { cache.data(5, "l48_57", any()) } returns null
 
         decoder.load(definitions, cache, 123)
         val def = definitions[123]
@@ -48,8 +48,8 @@ internal class MapDecoderTest {
     fun `Read object ignores invalid levels`() {
         val tileData = ByteArray((4 * 64 * 64) + 4)
         val objectData = byteArrayOf(-80, 58, -64, 66, 17, 0, 0)
-        every { cache.getFile(5, 123, 0, null) } returns tileData
-        every { cache.getFile(5, "l48_57", any()) } returns objectData
+        every { cache.data(5, 123, 0, null) } returns tileData
+        every { cache.data(5, "l48_57", any()) } returns objectData
 
         decoder.load(definitions, cache, 123)
         val def = definitions[123]
@@ -61,8 +61,8 @@ internal class MapDecoderTest {
     fun `Read object ignores locations out of region`() {
         val tileData = ByteArray((4 * 64 * 64) + 4)
         val objectData = byteArrayOf(-80, 58, -112, 65, 0, 0, 0)
-        every { cache.getFile(5, 123, 0, null) } returns tileData
-        every { cache.getFile(5, "l48_57", any()) } returns objectData
+        every { cache.data(5, 123, 0, null) } returns tileData
+        every { cache.data(5, "l48_57", any()) } returns objectData
 
         decoder.load(definitions, cache, 123)
         val def = definitions[123]
@@ -74,8 +74,8 @@ internal class MapDecoderTest {
     fun `Read two objects with the same tile`() {
         val tileData = ByteArray((4 * 64 * 64) + 4)
         val objectData = byteArrayOf(-80, 58, -115, -82, 50, 0, -13, -41, -115, -82, 0, 0, 0)
-        every { cache.getFile(5, 123, 0, null) } returns tileData
-        every { cache.getFile(5, "l48_57", any()) } returns objectData
+        every { cache.data(5, 123, 0, null) } returns tileData
+        every { cache.data(5, "l48_57", any()) } returns objectData
 
         decoder.load(definitions, cache, 123)
         val def = definitions[123]
@@ -88,8 +88,8 @@ internal class MapDecoderTest {
     fun `Read two objects with the same id`() {
         val tileData = ByteArray((4 * 64 * 64) + 4)
         val objectData = byteArrayOf(-80, 58, 1, 50, -64, 0, 17, 0, 0)
-        every { cache.getFile(5, 123, 0, null) } returns tileData
-        every { cache.getFile(5, "l48_57", any()) } returns objectData
+        every { cache.data(5, 123, 0, null) } returns tileData
+        every { cache.data(5, "l48_57", any()) } returns objectData
 
         decoder.load(definitions, cache, 123)
         val def = definitions[123]

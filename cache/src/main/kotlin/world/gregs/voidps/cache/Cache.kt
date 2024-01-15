@@ -2,53 +2,29 @@ package world.gregs.voidps.cache
 
 interface Cache {
 
-    open fun data(index: Int, archive: Int, file: Int = 0, xtea: IntArray? = null): ByteArray? {
-        return null
-    }
+    fun indexCount(): Int
 
-    open fun data(index: Int, archive: String, file: Int = 0, xtea: IntArray? = null): ByteArray? {
-        return data(index, archiveId(archive), file, xtea)
-    }
+    fun indices(): IntArray
 
-    open fun files(index: Int, archive: Int): IntArray? {
-        return null
-    }
+    fun archives(index: Int): IntArray
 
-    open fun archives(index: Int): IntArray? {
-        return null
-    }
-
-    open fun archiveId(name: String): Int {
-        return -1
-    }
-
-    open fun indices(): IntArray {
-        return intArrayOf()
-    }
-
-    open fun indexes(): Int {
-        return 0
-    }
-
-    fun getFile(index: Int, archive: Int, file: Int = 0, xtea: IntArray? = null): ByteArray?
-
-    fun getFile(index: Int, name: String, xtea: IntArray? = null): ByteArray?
-
-    fun close()
-
-    fun getIndexCrc(indexId: Int): Int
-
-    fun archiveCount(indexId: Int, archiveId: Int): Int
-
-    fun lastFileId(indexId: Int, archive: Int): Int
+    fun archiveCount(index: Int): Int
 
     fun lastArchiveId(indexId: Int): Int
 
-    fun getArchiveId(index: Int, name: String): Int
+    fun archiveId(index: Int, hash: Int): Int
 
-    fun getArchiveId(index: Int, archive: Int): Int
+    fun archiveId(index: Int, name: String): Int = archiveId(index, name.hashCode())
 
-    fun getArchives(index: Int): IntArray
+    fun files(index: Int, archive: Int): IntArray
+
+    fun fileCount(indexId: Int, archiveId: Int): Int
+
+    fun lastFileId(indexId: Int, archive: Int): Int
+
+    fun data(index: Int, archive: Int, file: Int = 0, xtea: IntArray? = null): ByteArray?
+
+    fun data(index: Int, name: String, xtea: IntArray? = null) = data(index, archiveId(index, name), xtea = xtea)
 
     fun write(index: Int, archive: Int, file: Int, data: ByteArray, xteas: IntArray? = null)
 
@@ -56,6 +32,6 @@ interface Cache {
 
     fun update(): Boolean
 
-    fun getArchiveData(index: Int, archive: Int): Map<Int, ByteArray?>?
+    fun close()
 
 }

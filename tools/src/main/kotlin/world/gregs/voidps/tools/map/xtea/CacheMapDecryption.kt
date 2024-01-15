@@ -13,17 +13,17 @@ object CacheMapDecryption {
         val cache = CacheDelegate("./data/cache_decrypted/")
         val xteas = Xteas().load("./xteas/")
         var count = 0
-        val archives = cache.getArchives(Index.MAPS).toSet()
+        val archives = cache.archives(Index.MAPS).toSet()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
                 val region = Region(regionX, regionY)
-                val archive = cache.getArchiveId(Index.MAPS, "l${regionX}_${regionY}")
+                val archive = cache.archiveId(Index.MAPS, "l${regionX}_${regionY}")
                 if (!archives.contains(archive)) {
                     continue
                 }
                 val keys = xteas[region]
                 if (keys != null) {
-                    val data = cache.getFile(Index.MAPS, archive, 0, keys)!!
+                    val data = cache.data(Index.MAPS, archive, 0, keys)!!
                     cache.write(Index.MAPS, archive, 0, data)
                     count++
                 }

@@ -58,7 +58,7 @@ internal class InterfaceEncoderTest {
         val data = writer.toArray()
 
         val cache: Cache = mockk(relaxed = true)
-        every { cache.getFile(INTERFACES, any(), any<Int>()) } returns data
+        every { cache.data(INTERFACES, any(), any<Int>()) } returns data
         every { cache.lastArchiveId(any()) } returns 1
         val decoder = InterfaceDecoderFull().load(cache)
         val inter = decoder[0]

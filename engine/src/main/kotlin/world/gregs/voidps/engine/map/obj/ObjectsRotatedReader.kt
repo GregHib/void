@@ -19,7 +19,7 @@ class ObjectsRotatedReader(
 
     fun loadObjects(cache: Cache, tiles: LongArray, sourceX: Int, sourceY: Int, regionX: Int, regionY: Int, rotation: Int, keys: IntArray?) {
         zoneRotation = rotation
-        val objectData = cache.getFile(Index.MAPS, "l${sourceX}_${sourceY}", xtea = keys) ?: return
+        val objectData = cache.data(Index.MAPS, "l${sourceX}_${sourceY}", xtea = keys) ?: return
         val reader = BufferReader(objectData)
         super.loadObjects(reader, tiles, regionX, regionY)
     }

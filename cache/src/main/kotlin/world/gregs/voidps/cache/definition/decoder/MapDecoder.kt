@@ -37,7 +37,7 @@ class MapDecoder(val xteas: Map<Int, IntArray>? = null) : DefinitionDecoder<MapD
         regionHashes.clear()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
-                val archiveId = cache.getArchiveId(index, "m${regionX}_$regionY")
+                val archiveId = cache.archiveId(index, "m${regionX}_$regionY")
                 if (archiveId == -1) {
                     continue
                 }
@@ -49,7 +49,7 @@ class MapDecoder(val xteas: Map<Int, IntArray>? = null) : DefinitionDecoder<MapD
 
     override fun load(definitions: Array<MapDefinition>, cache: Cache, id: Int) {
         val region = regionHashes[id] ?: return
-        val data = cache.getFile(index, id, 0, null) ?: return
+        val data = cache.data(index, id, 0, null) ?: return
         val reader = BufferReader(data)
         val definition = definitions[id]
         definition.id = region

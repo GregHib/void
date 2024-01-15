@@ -69,11 +69,11 @@ class MapDefinitions(
     }
 
     private fun loadTiles(cache: Cache, regionX: Int, regionY: Int): LongArray? {
-        val archive = cache.getArchiveId(Index.MAPS, "m${regionX}_$regionY")
+        val archive = cache.archiveId(Index.MAPS, "m${regionX}_$regionY")
         if (archive == -1) {
             return null
         }
-        val data = cache.getFile(Index.MAPS, archive) ?: return null
+        val data = cache.data(Index.MAPS, archive) ?: return null
         val buffer = BufferReader(data)
         val tiles = LongArray(16384) // TODO faster to remake or fill or parallel?
         MapTileDecoder.loadTiles(buffer, tiles)

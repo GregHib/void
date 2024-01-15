@@ -9,7 +9,7 @@ import java.io.RandomAccessFile
 /**
  * [Cache] which efficiently stores information about its indexes, archives and files.
  */
-open class ReadOnlyCache(
+abstract class ReadOnlyCache(
     val indices: IntArray,
     val archives: Array<IntArray?>,
     val fileCounts: Array<IntArray?>,
@@ -143,79 +143,37 @@ open class ReadOnlyCache(
         return highest
     }
 
-    override fun files(index: Int, archive: Int): IntArray? {
-        return files.getOrNull(index)?.getOrNull(archive)
-    }
+    override fun indexCount() = indices.size
 
-    override fun archives(index: Int): IntArray? {
-        return archives.getOrNull(index)
-    }
+    override fun indices() = indices
 
-    override fun indexes(): Int {
-        return indices.size
-    }
+    override fun archives(index: Int) = archives.getOrNull(index) ?: IntArray(0)
 
-    override fun indices(): IntArray {
-        return indices
-    }
+    override fun archiveCount(index: Int) = archives.size
 
-    override fun archiveCount(indexId: Int, archiveId: Int): Int {
-        return fileCounts.getOrNull(indexId)?.getOrNull(archiveId) ?: 0
-    }
+    override fun lastArchiveId(indexId: Int) = archives.getOrNull(indexId)?.last() ?: -1
 
-    override fun lastFileId(indexId: Int, archive: Int): Int {
-        return files.getOrNull(indexId)?.getOrNull(archive)?.last() ?: -1
-    }
+    override fun archiveId(index: Int, hash: Int) = hashes[hash] ?: -1
 
-    override fun lastArchiveId(indexId: Int): Int {
-        return archives.getOrNull(indexId)?.last() ?: -1
-    }
+    override fun files(index: Int, archive: Int) = files.getOrNull(index)?.getOrNull(archive) ?: IntArray(0)
 
-    override fun archiveId(name: String): Int {
-        return hashes[name.hashCode()] ?: -1
-    }
+    override fun fileCount(indexId: Int, archiveId: Int) = fileCounts.getOrNull(indexId)?.getOrNull(archiveId) ?: 0
 
-    override fun getFile(index: Int, name: String, xtea: IntArray?): ByteArray? {
-        return data(index, archiveId(name), 0, xtea)
-    }
-
-    override fun getFile(index: Int, archive: Int, file: Int, xtea: IntArray?): ByteArray? {
-        return data(index, archive, file, xtea)
-    }
-
-    override fun close() {
-    }
-
-    override fun getArchiveId(index: Int, name: String): Int {
-        return archiveId(name)
-    }
-
-    override fun getIndexCrc(indexId: Int): Int {
-        TODO("Not yet implemented")
-    }
-
-    override fun getArchiveId(index: Int, archive: Int): Int {
-        TODO("Not yet implemented")
-    }
-
-    override fun getArchives(index: Int): IntArray {
-        return archives(index) ?: IntArray(0)
-    }
+    override fun lastFileId(indexId: Int, archive: Int) = files.getOrNull(indexId)?.getOrNull(archive)?.last() ?: -1
 
     override fun write(index: Int, archive: Int, file: Int, data: ByteArray, xteas: IntArray?) {
-        TODO("Not yet implemented")
+        throw UnsupportedOperationException("Read only cache.")
     }
 
     override fun write(index: Int, archive: String, data: ByteArray, xteas: IntArray?) {
-        TODO("Not yet implemented")
+        throw UnsupportedOperationException("Read only cache.")
     }
 
     override fun update(): Boolean {
         return false
     }
 
-    override fun getArchiveData(index: Int, archive: Int): Map<Int, ByteArray?>? {
-        TODO("Not yet implemented")
+    override fun close() {
     }
 
     companion object {

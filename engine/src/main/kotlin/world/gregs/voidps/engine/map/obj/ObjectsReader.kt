@@ -16,7 +16,7 @@ class ObjectsReader(
 ) : MapObjectDecoder() {
 
     fun loadObjects(cache: Cache, tiles: LongArray, regionX: Int, regionY: Int, keys: IntArray?) {
-        val objectData = cache.getFile(Index.MAPS, "l${regionX}_${regionY}", xtea = keys) ?: return
+        val objectData = cache.data(Index.MAPS, "l${regionX}_${regionY}", xtea = keys) ?: return
         val reader = BufferReader(objectData)
         super.loadObjects(reader, tiles, regionX, regionY)
     }

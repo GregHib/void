@@ -36,13 +36,13 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
     }
 
     open fun size(cache: Cache): Int {
-        return cache.lastArchiveId(index) * 256 + (cache.archiveCount(index, cache.lastArchiveId(index)))
+        return cache.lastArchiveId(index) * 256 + (cache.fileCount(index, cache.lastArchiveId(index)))
     }
 
     open fun load(definitions: Array<T>, cache: Cache, id: Int) {
         val archive = getArchive(id)
         val file = getFile(id)
-        val data = cache.getFile(index, archive, file) ?: return
+        val data = cache.data(index, archive, file) ?: return
         read(definitions, id, BufferReader(data))
     }
 

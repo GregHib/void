@@ -68,7 +68,7 @@ object WorldMapDumper {
         val regions = mutableListOf<Region>()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
-                cache.getFile(5, "m${regionX}_${regionY}") ?: continue
+                cache.data(5, "m${regionX}_${regionY}") ?: continue
                 regions.add(Region(regionX, regionY))
             }
         }

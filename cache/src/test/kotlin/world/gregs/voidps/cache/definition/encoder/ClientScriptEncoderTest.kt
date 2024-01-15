@@ -40,7 +40,7 @@ internal class ClientScriptEncoderTest {
         val data = writer.array().copyOf(writer.position())
 
         val cache: Cache = mockk(relaxed = true)
-        every { cache.getFile(CLIENT_SCRIPTS, any<Int>(), any<Int>(), any()) } returns data
+        every { cache.data(CLIENT_SCRIPTS, any<Int>(), any<Int>(), any()) } returns data
         every { cache.lastArchiveId(any()) } returns 1
         val decoder = ClientScriptDecoder(revision667).load(cache)
         val decoded = decoder[0]
@@ -72,7 +72,7 @@ internal class ClientScriptEncoderTest {
         val data = writer.array().copyOf(writer.position())
 
         val cache: Cache = mockk(relaxed = true)
-        every { cache.getFile(CLIENT_SCRIPTS, any(), any<Int>()) } returns data
+        every { cache.data(CLIENT_SCRIPTS, any(), any<Int>()) } returns data
         every { cache.lastArchiveId(any()) } returns 1
         val decoder = ClientScriptDecoder(revision667).load(cache)
         val decoded = decoder[0]

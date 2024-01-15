@@ -35,16 +35,16 @@ object MapPacker {
     private fun packMissingMaps(target: CacheDelegate, sourceXteas: Xteas, source: CacheDelegate, targetXteas: Xteas, regions: List<Region>) {
         val invalid = mutableSetOf<Region>()
         runBlocking {
-            val archives = target.getArchives(Index.MAPS).toSet()
+            val archives = target.archives(Index.MAPS).toSet()
             for (region in regions) {
-                val archive = target.getArchiveId(Index.MAPS, "l${region.x}_${region.y}")
+                val archive = target.archiveId(Index.MAPS, "l${region.x}_${region.y}")
                 if (!archives.contains(archive)) {
                     continue
                 }
-                val data = target.getFile(Index.MAPS, archive, 0, sourceXteas[region])
+                val data = target.data(Index.MAPS, archive, 0, sourceXteas[region])
                 if (data == null) {
-                    val objData = source.getFile(Index.MAPS, "l${region.x}_${region.y}", targetXteas[region])
-                    val tileData = source.getFile(Index.MAPS, "m${region.x}_${region.y}")
+                    val objData = source.data(Index.MAPS, "l${region.x}_${region.y}", targetXteas[region])
+                    val tileData = source.data(Index.MAPS, "m${region.x}_${region.y}")
                     if (objData == null || tileData == null) {
                         println("Can't find map $region")
                     } else {
@@ -62,8 +62,8 @@ object MapPacker {
 
     private fun packEaster08Map(target: CacheDelegate, source: CacheDelegate) {
         val region = Region(9811)
-        val objData = source.getFile(Index.MAPS, "l${region.x}_${region.y}", intArrayOf(-929935426, 1005492936, -2143736251, 386758357))
-        val tileData = source.getFile(Index.MAPS, "m${region.x}_${region.y}")
+        val objData = source.data(Index.MAPS, "l${region.x}_${region.y}", intArrayOf(-929935426, 1005492936, -2143736251, 386758357))
+        val tileData = source.data(Index.MAPS, "m${region.x}_${region.y}")
         if (objData == null || tileData == null) {
             println("Can't find map $region")
         } else {

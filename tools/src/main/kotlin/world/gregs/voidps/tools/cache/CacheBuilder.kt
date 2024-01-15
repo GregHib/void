@@ -1,6 +1,7 @@
 package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
+import world.gregs.voidps.cache.FileCache
 import world.gregs.voidps.tools.convert.DefinitionsParameterConverter
 import world.gregs.voidps.tools.convert.InventoryConverter
 import world.gregs.voidps.tools.map.MapPacker
@@ -63,7 +64,7 @@ object CacheBuilder {
     }
 
     private fun checkCacheOverride(path: File) {
-        val idx = path.resolve("main_file_cache.dat2")
+        val idx = path.resolve("${FileCache.CACHE_FILE_NAME}.dat2")
         if (idx.exists()) {
             println("Cache exists at '${path}' continuing will override.")
             System.err.println("Continuing will delete the current cache. Are you sure?")
@@ -77,7 +78,7 @@ object CacheBuilder {
             return
         }
         for (file in path.listFiles() ?: return) {
-            if (!file.isFile || file.nameWithoutExtension != "main_file_cache") {
+            if (!file.isFile || file.nameWithoutExtension != FileCache.CACHE_FILE_NAME) {
                 continue
             }
             if (!file.delete()) {
@@ -89,7 +90,7 @@ object CacheBuilder {
 
     private fun addEmptyIndexFiles(target: File, lastIndex: Int) {
         for (i in 0..lastIndex) {
-            val file = target.resolve("main_file_cache.idx$i")
+            val file = target.resolve("${FileCache.CACHE_FILE_NAME}.idx$i")
             if (file.exists()) {
                 continue
             }
