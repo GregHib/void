@@ -14,7 +14,7 @@ class MapDecoder(val xteas: Map<Int, IntArray>? = null) : DefinitionDecoder<MapD
     private val objects = MapObjectDefinitionDecoder(xteas)
 
     override fun MapDefinition.read(opcode: Int, buffer: Reader) {
-        TODO("Not yet implemented")
+        throw UnsupportedOperationException("Not in use.")
     }
 
     override fun create(size: Int) = Array(size) { MapDefinition(it) }

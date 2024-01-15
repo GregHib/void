@@ -68,7 +68,7 @@ class MapDefinitions(
         }
         val data = cache.data(Index.MAPS, archive) ?: return null
         val buffer = BufferReader(data)
-        val tiles = LongArray(16384) // TODO faster to remake or fill or parallel?
+        val tiles = LongArray(16384)
         MapTileDecoder.loadTiles(buffer, tiles)
         return tiles
     }
