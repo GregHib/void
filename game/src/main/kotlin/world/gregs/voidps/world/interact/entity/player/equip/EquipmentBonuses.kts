@@ -55,6 +55,13 @@ on<InterfaceOption>({ it.equipping() && (id == "equipment_side" || id == "equipm
     showStats(player, definitions.get(item.id))
 }
 
+on<InterfaceOption>({ it.equipping() && (id == "equipment_side" || id == "equipment_bonuses") && component == "stats_done" && option == "Done" }) { player: Player ->
+    player.clear("equipment_titles")
+    player.clear("equipment_names")
+    player.clear("equipment_stats")
+    player.clear("equipment_name")
+}
+
 /*
     Redirect equipping actions to regular inventories
  */
@@ -167,20 +174,25 @@ fun showStats(player: Player, item: ItemDefinition) {
 
     if (item.contains("attack_speed")) {
         val attackSpeed = item["attack_speed", 4]
-        appendLine("attack rate", when (attackSpeed) {
-            2 -> "Very fast"
-            3 -> "Fast"
-            4 -> "Standard"
-            5 -> "Slow"
-            6 -> "Very slow"
-            else -> attackSpeed.toString()
-        })
+        if (attackSpeed != 0) {
+            appendLine("Attack Rate", when (attackSpeed) {
+                2 -> "Very fast"
+                3 -> "Fast"
+                4 -> "Standard"
+                5 -> "Slow"
+                6 -> "Very slow"
+                else -> attackSpeed.toString()
+            })
+        }
     }
     appendLine("Weight", "${df.format(item["weight", 0.0])} kg")
 
     player["equipment_titles"] = titles.toString()
     player["equipment_names"] = types.toString()
     player["equipment_stats"] = stats.toString()
+    player.sendVariable("equipment_titles")
+    player.sendVariable("equipment_names")
+    player.sendVariable("equipment_stats")
 }
 
 val df = DecimalFormat("0.0").apply {

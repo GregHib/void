@@ -13,13 +13,11 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.region.RegionRetry
-import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.engine.map.zone.ReloadZone
 import world.gregs.voidps.network.encode.dynamicMapRegion
 import world.gregs.voidps.network.encode.mapRegion
 import world.gregs.voidps.type.Distance
-import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Zone
 
 /**
@@ -27,7 +25,6 @@ import world.gregs.voidps.type.Zone
  * Loads maps when they are accessed
  */
 
-val xteas: Xteas by inject()
 val players: Players by inject()
 val dynamicZones: DynamicZones by inject()
 
@@ -119,7 +116,7 @@ fun update(player: Player, initial: Boolean, force: Boolean) {
     val radius = viewport.zoneRadius
     for (regionX in (zone.x - radius) / 8..(zone.x + radius) / 8) {
         for (regionY in (zone.y - radius) / 8..(zone.y + radius) / 8) {
-            val xtea = xteas[Region.id(regionX, regionY)] ?: blankXtea
+            val xtea = blankXtea
             xteaList.add(xtea)
         }
     }
@@ -153,9 +150,8 @@ fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
             zones.add(null)
             continue
         }
-        val region = DynamicZones.getZone(target).region
         zones.add(target)
-        val xtea = xteas[region] ?: blankXtea
+        val xtea = blankXtea
         if (!xteaList.contains(xtea)) {
             xteaList.add(xtea)
         } else {

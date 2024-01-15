@@ -7704,3 +7704,6 @@ zygomites
 zz
 hsl
 hsv
+windows/x86/
+windows/x86_64/
+linux/x86/

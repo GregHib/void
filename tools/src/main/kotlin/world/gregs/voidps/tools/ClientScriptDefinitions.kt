@@ -9,7 +9,7 @@ object ClientScriptDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = ClientScriptDecoder(revision634 = true).loadCache(cache)
+        val decoder = ClientScriptDecoder().load(cache)
         for (i in decoder.indices) {
 //            if (i != 1142) {
 //                continue
@@ -30,15 +30,15 @@ object ClientScriptDefinitions {
     }
 
     fun getScriptId(cache: Cache, id: Int, context: Int): Int {
-        var scriptId = cache.getArchiveId(Index.CLIENT_SCRIPTS, context or (id shl 10))
+        var scriptId = cache.archiveId(Index.CLIENT_SCRIPTS, context or (id shl 10))
         if (scriptId != -1) {
             return scriptId
         }
-        scriptId = cache.getArchiveId(Index.CLIENT_SCRIPTS, (65536 + id shl 10) or context)
+        scriptId = cache.archiveId(Index.CLIENT_SCRIPTS, (65536 + id shl 10) or context)
         if (scriptId != -1) {
             return scriptId
         }
-        scriptId = cache.getArchiveId(Index.CLIENT_SCRIPTS, context or 0x3fffc00)
+        scriptId = cache.archiveId(Index.CLIENT_SCRIPTS, context or 0x3fffc00)
         return scriptId
     }
 

@@ -34,7 +34,7 @@ object MusicInfoBoxDumper {
         val output = mutableMapOf<String, Any>()
 
         val cache = CacheDelegate("./data/cache/")
-        val defs = EnumDecoder().loadCache(cache)
+        val defs = EnumDecoder().load(cache)
         val enum = defs[1345]
         val enumMap = enum.map!!.mapValues { (_, value) -> toIdentifier(value as String) }
         println(enumMap)

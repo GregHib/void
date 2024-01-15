@@ -51,7 +51,7 @@ private object ObjectDefinitionPipeline {
     fun main(args: Array<String>) {
         val start = System.currentTimeMillis()
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = ObjectDecoderFull(members = true, lowDetail = false).loadCache(cache)
+        val decoder = ObjectDecoderFull(members = true, lowDetail = false).load(cache)
         val pages = decoder.indices.mapNotNull {
             val def = decoder.getOrNull(it)
             if (def != null) {

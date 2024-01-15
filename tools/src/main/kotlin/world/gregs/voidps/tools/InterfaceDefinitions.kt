@@ -8,7 +8,7 @@ object InterfaceDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = InterfaceDecoderFull().loadCache(cache)
+        val decoder = InterfaceDecoderFull().load(cache)
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
             for (comp in def.components ?: continue) {

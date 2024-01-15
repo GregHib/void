@@ -12,7 +12,7 @@ class ItemEquipmentInfo(decoder: Array<ItemDefinition>, val cache: Cache) : Pipe
 
     init {
         // Load equip slots and types
-        ItemDecoder718().loadCache(cache)
+        ItemDecoder718().load(cache)
     }
 
     private val types = ItemTypes(decoder)

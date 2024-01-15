@@ -109,7 +109,7 @@ internal class NPCEncoderTest {
     fun `Encode everything`() {
         val cache: Cache = CacheDelegate("../data/cache/")
         val decoder = NPCDecoderFull()
-        val full = decoder.loadCache(cache)
+        val full = decoder.load(cache)
         val encoder = NPCEncoder()
         val writer = BufferWriter(1024)
         for (definition in full) {

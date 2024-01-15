@@ -15,9 +15,9 @@ class TextureDecoder : DefinitionDecoder<TextureDefinition>(TEXTURE_DEFINITIONS)
 
     override fun getFile(id: Int) = 0
 
-    override fun loadCache(cache: Cache): Array<TextureDefinition> {
+    override fun load(cache: Cache): Array<TextureDefinition> {
         val start = System.currentTimeMillis()
-        val data = cache.getFile(index, 0, 0)!!
+        val data = cache.data(index, 0, 0)!!
         val reader = BufferReader(data)
         val size = reader.readShort()
         val definitions = create(size)

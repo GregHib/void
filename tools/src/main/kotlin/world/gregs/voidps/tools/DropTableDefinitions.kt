@@ -20,7 +20,7 @@ object DropTableDefinitions {
             fileProperties("/tool.properties")
             modules(module {
                 single { CacheDelegate(getProperty("cachePath")) as Cache }
-                single { ItemDefinitions(ItemDecoder().loadCache(get())).load(Yaml()) }
+                single { ItemDefinitions(ItemDecoder().load(get())).load(Yaml()) }
             })
         }.koin
         val decoder = DropTables().load(Yaml())

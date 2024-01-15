@@ -30,7 +30,7 @@ internal class InterfaceEncoderTest {
             verticalPositionMode = 1,
             parent = 1,
             hidden = true,
-            keyRepeat = null,
+            keyRepeats = null,
             keyCodes = null,
             keyModifiers = null,
             name = "Applied",
@@ -58,9 +58,9 @@ internal class InterfaceEncoderTest {
         val data = writer.toArray()
 
         val cache: Cache = mockk(relaxed = true)
-        every { cache.getFile(INTERFACES, any(), any<Int>()) } returns data
+        every { cache.data(INTERFACES, any(), any<Int>()) } returns data
         every { cache.lastArchiveId(any()) } returns 1
-        val decoder = InterfaceDecoderFull().loadCache(cache)
+        val decoder = InterfaceDecoderFull().load(cache)
         val inter = decoder[0]
         val decoded = inter.components?.get(0)
         assertEquals(definition, decoded)

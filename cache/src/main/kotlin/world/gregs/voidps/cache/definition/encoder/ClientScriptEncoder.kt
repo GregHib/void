@@ -4,7 +4,7 @@ import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.DefinitionEncoder
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 
-class ClientScriptEncoder(private val revision634: Boolean = false) : DefinitionEncoder<ClientScriptDefinition> {
+class ClientScriptEncoder(private val revision667: Boolean = false) : DefinitionEncoder<ClientScriptDefinition> {
 
     override fun Writer.encode(definition: ClientScriptDefinition) {
         if (definition.id == -1) {
@@ -15,9 +15,9 @@ class ClientScriptEncoder(private val revision634: Boolean = false) : Definition
             writeShort(instruction)
             when (instruction) {
                 3 -> writeString(definition.stringOperands!![index])
-                54 -> if (!revision634) writeLong(definition.longOperands!![index])
+                54 -> if (revision667) writeLong(definition.longOperands!![index])
                 else -> {
-                    if (instruction >= (if (revision634) 100 else 150) || instruction == 21 || instruction == 38 || instruction == 39) {
+                    if (instruction >= (if (revision667) 150 else 100) || instruction == 21 || instruction == 38 || instruction == 39) {
                         writeByte(definition.intOperands!![index])
                     } else {
                         writeInt(definition.intOperands!![index])
@@ -28,12 +28,12 @@ class ClientScriptEncoder(private val revision634: Boolean = false) : Definition
         writeInt(definition.instructions.size)
         writeShort(definition.intVariableCount)
         writeShort(definition.stringVariableCount)
-        if (!revision634) {
+        if (revision667) {
             writeShort(definition.longVariableCount)
         }
         writeShort(definition.intArgumentCount)
         writeShort(definition.stringArgumentCount)
-        if (!revision634) {
+        if (revision667) {
             writeShort(definition.longArgumentCount)
         }
         val position = position()

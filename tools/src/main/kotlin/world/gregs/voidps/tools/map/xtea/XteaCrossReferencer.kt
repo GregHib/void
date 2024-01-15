@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.map.xtea
 
 import com.displee.cache.CacheLibrary
 import world.gregs.voidps.cache.Index
-import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.tools.cache.Xteas
 import world.gregs.voidps.type.Region
 import java.io.File
 import java.io.RandomAccessFile
@@ -43,7 +43,7 @@ object XteaCrossReferencer {
     @JvmStatic
     fun main(args: Array<String>) {
         val library = CacheLibrary("./data/cache/")
-        val xteas = Xteas().load(path = "./data/xteas.dat")
+        val xteas = Xteas().load(path = "./tools/src/main/resources/xteas.dat")
 
         val xteasList = all("${System.getProperty("user.home")}\\Downloads\\rs634_cache\\xteas\\xteas.dat")
         more(xteasList)

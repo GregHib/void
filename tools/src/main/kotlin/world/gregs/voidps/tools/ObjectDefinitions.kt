@@ -9,7 +9,7 @@ object ObjectDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache = CacheDelegate("./data/cache")
-        val decoder = ObjectDecoderFull(false, true).loadCache(cache)
+        val decoder = ObjectDecoderFull(false, true).load(cache)
         for (def in decoder) {
             if(def.params?.containsKey(599) == true) {
                 println("${def.id} ${def.name} ${def.params}")

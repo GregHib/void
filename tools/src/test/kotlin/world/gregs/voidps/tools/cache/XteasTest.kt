@@ -1,12 +1,12 @@
-package world.gregs.voidps.engine.map.region
+package world.gregs.voidps.tools.cache
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import world.gregs.voidps.engine.map.region.Xteas.Companion.DEFAULT_KEY
-import world.gregs.voidps.engine.map.region.Xteas.Companion.DEFAULT_VALUE
-import world.gregs.voidps.engine.map.region.Xteas.Companion.loadJson
+import world.gregs.voidps.tools.cache.Xteas.Companion.DEFAULT_KEY
+import world.gregs.voidps.tools.cache.Xteas.Companion.DEFAULT_VALUE
+import world.gregs.voidps.tools.cache.Xteas.Companion.loadJson
 
 internal class XteasTest {
 

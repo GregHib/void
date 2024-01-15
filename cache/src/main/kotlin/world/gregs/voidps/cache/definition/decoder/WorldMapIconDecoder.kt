@@ -23,14 +23,14 @@ class WorldMapIconDecoder : DefinitionDecoder<WorldMapIconDefinition>(WORLD_MAP)
 
     override fun load(definitions: Array<WorldMapIconDefinition>, cache: Cache, id: Int) {
         val archive = getArchive(id)
-        var length = cache.archiveCount(index, archive)
+        var length = cache.fileCount(index, archive)
         var counter = 0
         var index = 0
         if (length > 0) {
             val definition = definitions[id]
             val icons = mutableListOf<WorldMapIcon>()
             while (length > counter) {
-                val data = cache.getFile(this.index, archive, index++) ?: continue
+                val data = cache.data(this.index, archive, index++) ?: continue
                 val buffer = BufferReader(data)
                 val position = buffer.readInt()
                 val iconId = buffer.readShort()

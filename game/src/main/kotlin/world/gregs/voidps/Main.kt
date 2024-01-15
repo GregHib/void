@@ -8,9 +8,9 @@ import org.koin.dsl.module
 import org.koin.fileProperties
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.FileCache
 import world.gregs.voidps.cache.Index
-import world.gregs.voidps.cache.active.ActiveCache
+import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
@@ -29,7 +29,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.Network
 import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.loadScripts
@@ -44,19 +44,14 @@ object Main {
 
     lateinit var name: String
     private val logger = InlineLogger()
-    private const val USE_ACTIVE_CACHE = true
+    private const val USE_MEMORY_CACHE = false
 
     @OptIn(ExperimentalUnsignedTypes::class)
     @JvmStatic
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
-        val module = if (USE_ACTIVE_CACHE) {
-            val activeDir = File("./data/cache/active/")
-            ActiveCache().checkChanges(activeDir.parent, activeDir.name)
-            active(activeDir)
-        } else {
-            cache(CacheDelegate("./data/cache/"))
-        }
+        val module = cache((if (USE_MEMORY_CACHE) MemoryCache else FileCache).load("./data/cache/"))
+        logger.info { "Cache loaded in ${System.currentTimeMillis() - startTime}ms" }
         preload(module)
         name = getProperty("name")
         val revision = getProperty("revision").toInt()
@@ -118,41 +113,22 @@ object Main {
         loadScripts(getProperty("scriptModule"))
     }
 
-    private fun active(activeDir: File) = module {
-        single(createdAtStart = true) { MapDefinitions(get(), get(), get()).load(activeDir) }
-        single(createdAtStart = true) { Huffman().load(activeDir.resolve(ActiveCache.indexFile(Index.HUFFMAN)).readBytes()) }
-        single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = getProperty<String>("members") == "true", lowDetail = false, get<ParameterDefinitions>()).load(activeDir)).load() }
-        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = getProperty<String>("members") == "true", get<ParameterDefinitions>()).load(activeDir)).load() }
-        single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get<ParameterDefinitions>()).load(activeDir)).load() }
-        single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(activeDir)).load() }
-        single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(activeDir), get()).load() }
-        single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(activeDir)).load() }
-        single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(activeDir)).load() }
-        single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().load(activeDir)).load() }
-        single(createdAtStart = true) { StructDefinitions(StructDecoder(get<ParameterDefinitions>()).load(activeDir)).load() }
-        single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(activeDir)).load() }
-        single(createdAtStart = true) { WeaponStyleDefinitions().load() }
-        single(createdAtStart = true) { AmmoDefinitions().load() }
-        single(createdAtStart = true) { ParameterDefinitions(CategoryDefinitions().load(), get()).load() }
-        single(createdAtStart = true) { FontDefinitions(FontDecoder().load(activeDir)).load() }
-    }
-
     private fun cache(cache: Cache) = module {
-        single(createdAtStart = true) { MapDefinitions(get(), get(), get()).loadCache(cache, get<Xteas>()) }
-        single(createdAtStart = true) { Huffman().load(cache.getFile(Index.HUFFMAN, 1)!!) }
-        single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = getProperty<String>("members") == "true", lowDetail = false, get<ParameterDefinitions>()).loadCache(cache)).load() }
-        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = getProperty<String>("members") == "true", get<ParameterDefinitions>()).loadCache(cache)).load() }
-        single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get<ParameterDefinitions>()).loadCache(cache)).load() }
-        single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().loadCache(cache)).load() }
-        single(createdAtStart = true) { EnumDefinitions(EnumDecoder().loadCache(cache), get()).load() }
-        single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().loadCache(cache)).load() }
-        single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().loadCache(cache)).load() }
-        single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().loadCache(cache)).load() }
-        single(createdAtStart = true) { StructDefinitions(StructDecoder(get<ParameterDefinitions>()).loadCache(cache)).load() }
-        single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().loadCache(cache)).load() }
+        single(createdAtStart = true) { MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache() }
+        single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
+        single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = getProperty<String>("members") == "true", lowDetail = false, get<ParameterDefinitions>()).load(cache)).load() }
+        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = getProperty<String>("members") == "true", get<ParameterDefinitions>()).load(cache)).load() }
+        single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get<ParameterDefinitions>()).load(cache)).load() }
+        single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(cache)).load() }
+        single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(cache), get()).load() }
+        single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(cache)).load() }
+        single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(cache)).load() }
+        single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().load(cache)).load() }
+        single(createdAtStart = true) { StructDefinitions(StructDecoder(get<ParameterDefinitions>()).load(cache)).load() }
+        single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
         single(createdAtStart = true) { WeaponStyleDefinitions().load() }
         single(createdAtStart = true) { AmmoDefinitions().load() }
         single(createdAtStart = true) { ParameterDefinitions(CategoryDefinitions().load(), get()).load() }
-        single(createdAtStart = true) { FontDefinitions(FontDecoder().loadCache(cache)).load() }
+        single(createdAtStart = true) { FontDefinitions(FontDecoder().load(cache)).load() }
     }
 }

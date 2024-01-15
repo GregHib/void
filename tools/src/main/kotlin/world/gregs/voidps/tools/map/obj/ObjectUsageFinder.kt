@@ -6,7 +6,7 @@ import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoderFull
-import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.tools.cache.Xteas
 import world.gregs.voidps.tools.property
 import world.gregs.voidps.tools.propertyOrNull
 import world.gregs.voidps.type.Region
@@ -17,8 +17,8 @@ object ObjectUsageFinder {
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val xteas: Xteas = Xteas().load(property("xteaPath"), propertyOrNull("xteaJsonKey") ?: Xteas.DEFAULT_KEY, propertyOrNull("xteaJsonValue") ?: Xteas.DEFAULT_VALUE)
-        val decoder = ObjectDecoderFull(members = false, lowDetail = false).loadCache(cache)
-        val maps = MapDecoder(xteas).loadCache(cache)
+        val decoder = ObjectDecoderFull(members = false, lowDetail = false).load(cache)
+        val maps = MapDecoder(xteas).load(cache)
         for (map in maps) {
             val region = Region(map.id)
             for (obj in map.objects) {

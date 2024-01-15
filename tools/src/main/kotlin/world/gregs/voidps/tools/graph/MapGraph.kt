@@ -5,7 +5,7 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.tools.cache.Xteas
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Region
@@ -37,7 +37,7 @@ class MapGraph(
             for (region in reg.toCuboid(width = 33, height = 23).toRegions()) {
                 // TODO better way of determining empty maps
                 val xtea = xteas[region.id]
-                cache.getFile(5, "l${region.x}_${region.y}", xtea) ?: continue
+                cache.data(5, "l${region.x}_${region.y}", xtea) ?: continue
 
                 for (zone in region.tile.zone.toCuboid(width = 8, height = 8).toZones()) {
                     val time = measureNanoTime {

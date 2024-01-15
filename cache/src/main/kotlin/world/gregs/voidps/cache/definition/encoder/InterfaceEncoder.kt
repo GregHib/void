@@ -4,14 +4,14 @@ import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.DefinitionEncoder
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinitionFull
 
-internal class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinitionFull> {
+class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinitionFull> {
 
     override fun Writer.encode(definition: InterfaceComponentDefinitionFull) {
         if (definition.id == -1) {
             return
         }
         writeByte(-1)
-        if(!definition.unknown.isNullOrEmpty()) {
+        if (!definition.unknown.isNullOrEmpty()) {
             writeByte(definition.type or 0x80)
             writeString(definition.unknown)
         } else {
@@ -85,10 +85,10 @@ internal class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinition
                 if (definition.ignoreZBuffer) {
                     flag = flag or 0x8
                 }
-                if (definition.viewportZ == 0) {
+                if (definition.viewportZ == 0 && (definition.viewportX != 0 || definition.viewportY != 0 || definition.spritePitch != 0 || definition.spriteRoll != 0 || definition.spriteYaw != 0 || definition.spriteScale != 100)) {
                     flag = flag or 0x1
                 }
-
+                writeByte(flag)
                 if (flag and 0x1 == 1) {
                     writeShort(definition.viewportX)
                     writeShort(definition.viewportY)
@@ -121,30 +121,55 @@ internal class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinition
         }
 
         writeMedium(definition.setting.setting)
-        writeByte(0)// TODO
+        var startOffset = 0
+        val keyRepeat = definition.keyRepeats
+        val keyCodes = definition.keyCodes
+        val keyModifiers = definition.keyModifiers
+        if (keyRepeat != null && keyCodes != null && keyModifiers != null) {
+            startOffset = 16
+            for (i in keyCodes) {
+                if (i.toInt() != 0) {
+                    break
+                }
+                startOffset += 16
+            }
+            writeByte(startOffset)
+            var counter = (startOffset shr 4) - 1
+            val length = 11
+            while (counter != length) {
+                writeByte(keyRepeat[counter].toInt())
+                writeByte(keyCodes[counter].toInt())
+                writeByte(keyModifiers[counter])
+                counter += 1
+                while (counter != length) {
+                    if (keyCodes[counter].toInt() != 0) {
+                        break
+                    }
+                    counter++
+                }
+                writeByte(if (counter == length) 0 else counter + 1 shl 4)
+            }
+        } else {
+            writeByte(0)
+        }
         writeString(definition.name)
         var optionFlag = 0
         val options = definition.options
-        if(options != null) {
+        if (options != null) {
             optionFlag = options.size
         }
         val icons = definition.mouseIcon
-        if(icons != null) {
+        if (icons != null) {
             optionFlag = optionFlag or (icons.size shl 4)
         }
         writeByte(optionFlag)
         options?.forEach {
             writeString(it)
         }
-        if(icons != null) {
-            if(icons.isNotEmpty()) {
-                writeByte(icons.lastIndex)
-                for (index in icons.indices) {
-                    writeShort(icons[index])
-                }
-            }
-            if(icons.size > 1) {
-                //TODO
+        if (icons != null && icons.isNotEmpty()) {
+            writeByte(icons.lastIndex)
+            for (index in icons.indices) {
+                writeShort(icons[index])
             }
         }
 

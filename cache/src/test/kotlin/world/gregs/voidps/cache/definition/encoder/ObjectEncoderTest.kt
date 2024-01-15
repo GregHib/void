@@ -123,7 +123,7 @@ internal class ObjectEncoderTest {
     fun `Encode everything`() {
         val cache: Cache = CacheDelegate("../data/cache/")
         val decoder = ObjectDecoderFull()
-        val full = decoder.loadCache(cache)
+        val full = decoder.load(cache)
         val encoder = ObjectEncoder()
         val writer = BufferWriter(1024)
         for (definition in full) {

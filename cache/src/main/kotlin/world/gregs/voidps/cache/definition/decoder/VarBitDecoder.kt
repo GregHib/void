@@ -9,7 +9,7 @@ import world.gregs.voidps.cache.definition.data.VarBitDefinition
 class VarBitDecoder : DefinitionDecoder<VarBitDefinition>(VAR_BIT) {
 
     override fun size(cache: Cache): Int {
-        return cache.lastArchiveId(index) * 0x400 + cache.archiveCount(index, cache.lastArchiveId(index))
+        return cache.lastArchiveId(index) * 0x400 + cache.fileCount(index, cache.lastArchiveId(index))
     }
 
     override fun create(size: Int) = Array(size) { VarBitDefinition(it) }

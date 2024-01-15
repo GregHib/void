@@ -3,10 +3,10 @@ package world.gregs.voidps.tools.cache
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.engine.data.config.WeaponStyleDefinition
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.data.Instructions
 import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
+import world.gregs.voidps.engine.data.config.WeaponStyleDefinition
 import world.gregs.voidps.tools.property
 import java.io.File
 
@@ -42,7 +42,7 @@ object DumpStyles {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = ClientScriptDecoder(revision634 = true).loadCache(cache)
+        val decoder = ClientScriptDecoder().load(cache)
         val clientScript = decoder[1142]
         load(clientScript)
         val builder = StringBuilder()

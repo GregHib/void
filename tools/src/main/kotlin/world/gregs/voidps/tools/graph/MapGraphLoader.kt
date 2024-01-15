@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.tools.cache.Xteas
 import world.gregs.voidps.tools.property
 import world.gregs.yaml.Yaml
 
@@ -18,7 +18,7 @@ object MapGraphLoader {
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val collisions: Collisions = Collisions()
-        val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).loadCache(cache))
+        val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache))
             .load(Yaml(), property("objectDefinitionsPath"))
         val objects = GameObjects(GameObjectCollision(Collisions()), ZoneBatchUpdates(), objectDefinitions)
         val xteas: Xteas = Xteas().load()

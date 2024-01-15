@@ -36,7 +36,7 @@ class InterfaceDecoderFull : DefinitionDecoder<InterfaceDefinitionFull>(INTERFAC
         val definition = definitions[id]
         val components = Array(lastArchive + 1) { InterfaceComponentDefinitionFull(id = it + (id shl 16)) }
         for (i in 0..lastArchive) {
-            val data = cache.getFile(index, archiveId, i)
+            val data = cache.data(index, archiveId, i)
             if (data != null) {
                 components[i].read(BufferReader(data))
             }
@@ -44,7 +44,7 @@ class InterfaceDecoderFull : DefinitionDecoder<InterfaceDefinitionFull>(INTERFAC
         definition.components = components
     }
 
-    internal fun InterfaceComponentDefinitionFull.read(buffer: Reader) {
+    fun InterfaceComponentDefinitionFull.read(buffer: Reader) {
         buffer.readUnsignedByte()
         type = buffer.readUnsignedByte()
         if (type and 0x80 != 0) {
@@ -143,7 +143,7 @@ class InterfaceDecoderFull : DefinitionDecoder<InterfaceDefinitionFull>(INTERFAC
         val setting = buffer.readUnsignedMedium()
         var i_21_ = buffer.readUnsignedByte()
         if (i_21_ != 0) {
-            keyRepeat = ByteArray(11)
+            keyRepeats = ByteArray(11)
             keyCodes = ByteArray(11)
             keyModifiers = IntArray(11)
             while (i_21_ != 0) {
@@ -159,7 +159,7 @@ class InterfaceDecoderFull : DefinitionDecoder<InterfaceDefinitionFull>(INTERFAC
                 }
                 val b_24_ = buffer.readByte().toByte()
                 keyModifiers!![i_22_] = i_21_
-                keyRepeat!![i_22_] = b_23_
+                keyRepeats!![i_22_] = b_23_
                 keyCodes!![i_22_] = b_24_
                 i_21_ = buffer.readUnsignedByte()
             }

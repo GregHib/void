@@ -24,9 +24,9 @@ class QuickChatOptionDecoder : DefinitionDecoder<QuickChatOptionDefinition>(QUIC
         val archive = getArchive(id)
         val file = getFile(id)
         val data = (if (file <= 0x7fff) {
-            cache.getFile(index, archive, file)
+            cache.data(index, archive, file)
         } else {
-            cache.getFile(QUICK_CHAT_MENUS, archive, file and 0x7fff)
+            cache.data(QUICK_CHAT_MENUS, archive, file and 0x7fff)
         }) ?: return
         read(definitions, id, BufferReader(data))
     }

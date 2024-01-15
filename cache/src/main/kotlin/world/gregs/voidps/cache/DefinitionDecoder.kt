@@ -3,34 +3,11 @@ package world.gregs.voidps.cache
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.active.ActiveCache
-import java.io.File
 import java.nio.BufferUnderflowException
 
 abstract class DefinitionDecoder<T : Definition>(val index: Int) {
 
     abstract fun create(size: Int): Array<T>
-
-    /**
-     * Load from active cache
-     */
-    fun load(cache: File): Array<T> {
-        val start = System.currentTimeMillis()
-        val file = cache.resolve(fileName())
-        if (!file.exists()) {
-            return create(0)
-        }
-        val reader = BufferReader(file.readBytes())
-        val size = reader.readInt() + 1
-        val array = create(size)
-        while (reader.position() < reader.length) {
-            load(array, reader)
-        }
-        logger.info { "$size ${this::class.simpleName} definitions loaded in ${System.currentTimeMillis() - start}ms" }
-        return array
-    }
-
-    open fun fileName() = ActiveCache.indexFile(index)
 
     open fun load(definitions: Array<T>, reader: Reader) {
         val id = readId(reader)
@@ -42,7 +19,7 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
     /**
      * Load from cache
      */
-    open fun loadCache(cache: Cache): Array<T> {
+    open fun load(cache: Cache): Array<T> {
         val start = System.currentTimeMillis()
         val size = size(cache) + 1
         val definitions = create(size)
@@ -59,13 +36,13 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
     }
 
     open fun size(cache: Cache): Int {
-        return cache.lastArchiveId(index) * 256 + (cache.archiveCount(index, cache.lastArchiveId(index)))
+        return cache.lastArchiveId(index) * 256 + (cache.fileCount(index, cache.lastArchiveId(index)))
     }
 
     open fun load(definitions: Array<T>, cache: Cache, id: Int) {
         val archive = getArchive(id)
         val file = getFile(id)
-        val data = cache.getFile(index, archive, file) ?: return
+        val data = cache.data(index, archive, file) ?: return
         read(definitions, id, BufferReader(data))
     }
 

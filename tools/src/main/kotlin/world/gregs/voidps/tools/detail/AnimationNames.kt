@@ -22,8 +22,8 @@ object AnimationNames {
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val yaml = Yaml()
-        val decoder = AnimationDecoderFull().loadCache(cache)
-        val itemDecoder = ItemDecoderFull().loadCache(cache)
+        val decoder = AnimationDecoderFull().load(cache)
+        val itemDecoder = ItemDecoderFull().load(cache)
         val renders = getRenderAnimations(cache)
         val map = mutableMapOf<String, MutableList<Int>>()
         for (id in decoder.indices) {
@@ -50,7 +50,7 @@ object AnimationNames {
 
     private fun getRenderAnimations(cache: Cache): Map<Int, String> {
         val renders = getNPCRenderIds(cache)
-        val decoder = RenderAnimationDecoder().loadCache(cache)
+        val decoder = RenderAnimationDecoder().load(cache)
         val map = mutableMapOf<Int, String>()
         for (id in decoder.indices) {
             val def = decoder.getOrNull(id) ?: continue
@@ -75,7 +75,7 @@ object AnimationNames {
 
     private fun getNPCRenderIds(cache: Cache): Map<Int, String> {
         val map = mutableMapOf<Int, String>()
-        val decoder = NPCDecoder(member = true).loadCache(cache)
+        val decoder = NPCDecoder(member = true).load(cache)
         for (id in decoder.indices) {
             val def = decoder.getOrNull(id) ?: continue
             map[def.renderEmote] = def.name

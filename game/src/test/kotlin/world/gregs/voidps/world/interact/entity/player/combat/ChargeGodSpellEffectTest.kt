@@ -42,15 +42,14 @@ internal class ChargeGodSpellEffectTest : CombatFormulaTest() {
         player.hit(target, type = "magic", spell = "saradomin_strike", damage = 100)
         tick(2)
 
-//        assertEquals(790, target.levels.get(Skill.Constitution))
-//        TODO Waiting for hit roll order to change
+        assertEquals(790, target.levels.get(Skill.Constitution))
     }
 
     @Test
     fun `Charge with god spell and different cape does nothing`() {
         val player = createPlayer(Skill.Magic to 99)
-        player.equipment.set(EquipSlot.Cape.index, "saradomin_cape")
-        player.equipment.set(EquipSlot.Weapon.index, "zamorak_staff")
+        player.equipment.set(EquipSlot.Cape.index, "zamorak_cape")
+        player.equipment.set(EquipSlot.Weapon.index, "saradomin_staff")
         player.inventory.add("fire_rune", 3)
         player.inventory.add("blood_rune", 3)
         player.inventory.add("air_rune", 3)

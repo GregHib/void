@@ -12,13 +12,13 @@ import java.util.*
 class WorldMapDetailsDecoder : DefinitionDecoder<WorldMapDefinition>(WORLD_MAP) {
 
     override fun size(cache: Cache): Int {
-        return cache.lastFileId(index, cache.getArchiveId(index, "details"))
+        return cache.lastFileId(index, cache.archiveId(index, "details"))
     }
 
     override fun load(definitions: Array<WorldMapDefinition>, cache: Cache, id: Int) {
-        val archive = cache.getArchiveId(index, "details")
+        val archive = cache.archiveId(index, "details")
         val file = getFile(id)
-        val data = cache.getFile(index, archive, file) ?: return
+        val data = cache.data(index, archive, file) ?: return
         read(definitions, id, BufferReader(data))
     }
 

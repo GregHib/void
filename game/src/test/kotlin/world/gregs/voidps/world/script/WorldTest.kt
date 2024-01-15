@@ -12,9 +12,8 @@ import org.koin.fileProperties
 import org.koin.test.KoinTest
 import world.gregs.voidps.FakeRandom
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index
-import world.gregs.voidps.cache.active.ActiveCache
+import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
@@ -41,9 +40,9 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.gameModule
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.Client
@@ -137,6 +136,7 @@ abstract class WorldTest : KoinTest {
 
     @BeforeAll
     fun beforeAll() {
+        stopKoin()
         startKoin {
             printLogger(Level.ERROR)
             fileProperties("/test.properties")
@@ -159,7 +159,6 @@ abstract class WorldTest : KoinTest {
                 single(createdAtStart = true) { fontDefinitions }
                 single { ammoDefinitions }
                 single { parameterDefinitions }
-                single { xteas }
                 single { gameObjects }
                 single { mapDefinitions }
                 single { collisions }
@@ -167,7 +166,7 @@ abstract class WorldTest : KoinTest {
             })
         }
         loadScripts(getProperty("scriptModule"))
-        MapDefinitions(get(), get(), get()).load(active)
+        MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache()
         saves = File(getProperty("savePath"))
         saves?.mkdirs()
         store = get()
@@ -231,32 +230,26 @@ abstract class WorldTest : KoinTest {
     }
 
     companion object {
-        private val active: File by lazy {
-            ActiveCache { ActiveCache.load(getProperty("xteaPath")) }
-                .checkChanges(getProperty("cachePath"), "active")
-            File("../data/cache/active/")
-        }
-        private val cache: Cache by lazy { CacheDelegate(getProperty("cachePath")) }
-        private val huffman: Huffman by lazy { Huffman().load(active.resolve(ActiveCache.indexFile(Index.HUFFMAN)).readBytes()) }
+        private val cache: Cache by lazy { MemoryCache(getProperty("cachePath")) }
+        private val huffman: Huffman by lazy { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
         private val ammoDefinitions: AmmoDefinitions by lazy { AmmoDefinitions().load() }
         private val parameterDefinitions: ParameterDefinitions by lazy { ParameterDefinitions(CategoryDefinitions().load(), ammoDefinitions).load() }
-        private val objectDefinitions: ObjectDefinitions by lazy { ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false, parameterDefinitions).load(active)).load() }
-        private val npcDefinitions: NPCDefinitions by lazy { NPCDefinitions(NPCDecoder(member = true, parameterDefinitions).load(active)).load() }
-        private val itemDefinitions: ItemDefinitions by lazy { ItemDefinitions(ItemDecoder(parameterDefinitions).load(active)).load() }
-        private val animationDefinitions: AnimationDefinitions by lazy { AnimationDefinitions(AnimationDecoder().load(active)).load() }
-        private val graphicDefinitions: GraphicDefinitions by lazy { GraphicDefinitions(GraphicDecoder().load(active)).load() }
-        private val interfaceDefinitions: InterfaceDefinitions by lazy { InterfaceDefinitions(InterfaceDecoder().load(active)).load() }
-        private val inventoryDefinitions: InventoryDefinitions by lazy { InventoryDefinitions(InventoryDecoder().load(active)).load() }
-        private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(parameterDefinitions).load(active)).load() }
-        private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(active)).load() }
+        private val objectDefinitions: ObjectDefinitions by lazy { ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false, parameterDefinitions).load(cache)).load() }
+        private val npcDefinitions: NPCDefinitions by lazy { NPCDefinitions(NPCDecoder(member = true, parameterDefinitions).load(cache)).load() }
+        private val itemDefinitions: ItemDefinitions by lazy { ItemDefinitions(ItemDecoder(parameterDefinitions).load(cache)).load() }
+        private val animationDefinitions: AnimationDefinitions by lazy { AnimationDefinitions(AnimationDecoder().load(cache)).load() }
+        private val graphicDefinitions: GraphicDefinitions by lazy { GraphicDefinitions(GraphicDecoder().load(cache)).load() }
+        private val interfaceDefinitions: InterfaceDefinitions by lazy { InterfaceDefinitions(InterfaceDecoder().load(cache)).load() }
+        private val inventoryDefinitions: InventoryDefinitions by lazy { InventoryDefinitions(InventoryDecoder().load(cache)).load() }
+        private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(parameterDefinitions).load(cache)).load() }
+        private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
         private val weaponStyleDefinitions: WeaponStyleDefinitions by lazy { WeaponStyleDefinitions().load() }
-        private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(active), structDefinitions).load() }
+        private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(cache), structDefinitions).load() }
         private val collisions: Collisions by lazy { Collisions() }
         private val objectCollision: GameObjectCollision by lazy { GameObjectCollision(collisions) }
-        private val xteas: Xteas by lazy { Xteas().load() }
         private val gameObjects: GameObjects by lazy { GameObjects(objectCollision, ZoneBatchUpdates(), objectDefinitions, storeUnused = true) }
-        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(collisions, objectDefinitions, gameObjects).load(active) }
-        private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(active)).load() }
+        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder( collisions), objectDefinitions, gameObjects, cache).loadCache() }
+        private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(cache)).load() }
         val emptyTile = Tile(2655, 4640)
     }
 }

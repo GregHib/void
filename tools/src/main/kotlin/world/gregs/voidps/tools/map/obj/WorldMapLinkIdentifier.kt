@@ -9,10 +9,10 @@ import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.map.collision.CollisionReader
+import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.tools.cache.Xteas
 import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
 import world.gregs.voidps.tools.property
 import world.gregs.voidps.tools.propertyOrNull
@@ -29,20 +29,20 @@ object WorldMapLinkIdentifier {
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val xteas: Xteas = Xteas().load(property("xteaPath"), propertyOrNull("xteaJsonKey") ?: Xteas.DEFAULT_KEY, propertyOrNull("xteaJsonValue") ?: Xteas.DEFAULT_VALUE)
-        val worldMapDetailsDecoder = WorldMapDetailsDecoder().loadCache(cache)
-        val worldMapIconDecoder = WorldMapIconDecoder().loadCache(cache)
-        val definitions: ObjectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).loadCache(cache)).load(Yaml(), property("objectDefinitionsPath"))
-        val mapDecoder = MapDecoder(xteas).loadCache(cache)
+        val worldMapDetailsDecoder = WorldMapDetailsDecoder().load(cache)
+        val worldMapIconDecoder = WorldMapIconDecoder().load(cache)
+        val definitions: ObjectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(Yaml(), property("objectDefinitionsPath"))
+        val mapDecoder = MapDecoder(xteas).load(cache)
         val collisions = Collisions()
-        val collisionReader = CollisionReader(collisions)
+        val collisionDecoder = CollisionDecoder(collisions)
         val graph = MutableNavigationGraph()
         val linker = ObjectLinker(collisions)
-        val clientScriptDecoder = ClientScriptDecoder(revision634 = true).loadCache(cache)
+        val clientScriptDecoder = ClientScriptDecoder().load(cache)
         val objects = GameObjects(GameObjectCollision(collisions), ZoneBatchUpdates(), definitions)
         val regions = mutableListOf<Region>()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
-                cache.getFile(5, "m${regionX}_${regionY}") ?: continue
+                cache.data(5, "m${regionX}_${regionY}") ?: continue
                 regions.add(Region(regionX, regionY))
             }
         }
@@ -63,7 +63,7 @@ object WorldMapLinkIdentifier {
                 objects.add(obj)
                 objCollision.modify(obj, add = true)
             }
-            collisionReader.read(region, def)
+            collisionDecoder.decode(region, def)
         }
         val cacheLinks = mutableListOf<Pair<Tile, Tile>>()
         val dungeons = WorldMapDungeons(worldMapDetailsDecoder, worldMapIconDecoder, clientScriptDecoder, cache)

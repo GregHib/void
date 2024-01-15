@@ -22,7 +22,7 @@ internal object RunescapeWikiModifier {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val decoder = ItemDecoder().loadCache(cache)
+        val decoder = ItemDecoder().load(cache)
 
         val file = File("./data/dump/ItemsPretty.json")
         val text = file.readText()

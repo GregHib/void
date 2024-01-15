@@ -5,7 +5,7 @@ import kotlinx.coroutines.runBlocking
 import org.jsoup.Jsoup
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index
-import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.tools.cache.Xteas
 import world.gregs.voidps.type.Region
 import java.io.File
 
@@ -14,28 +14,37 @@ import java.io.File
  */
 object MapPacker {
 
+    fun pack634(target: File, targetXteas: Xteas, cache727: File, xteas727: Xteas, cache681: File, xteas681: Xteas, cache537: File) {
+        val cache = CacheDelegate(target.path)
+        packMissingMaps(cache, targetXteas, CacheDelegate(cache727.path), xteas727, all())
+        packMissingMaps(cache, targetXteas, CacheDelegate(cache681.path), xteas681, all()) // revision 681
+        packEaster08Map(cache, CacheDelegate(cache537.path)) // revision 537
+    }
+
     @JvmStatic
     fun main(args: Array<String>) {
-        val target = CacheDelegate("${System.getProperty("user.home")}/Downloads/rs634_cache/")
-        val xteas = Xteas().load("./data/xteas.dat", Xteas.DEFAULT_KEY, Xteas.DEFAULT_VALUE)
-        packMissingMaps(target, xteas, CacheDelegate("${System.getProperty("user.home")}/Downloads/727 cache with most xteas/"), Xteas(), all())
-        packMissingMaps(target, xteas, CacheDelegate("${System.getProperty("user.home")}/Downloads/cache-280/"), getKeys(280), all()) // revision 681
-        packEaster08Map(target, CacheDelegate("${System.getProperty("user.home")}/Downloads/cache-257/")) // revision 537
+        val target = File("${System.getProperty("user.home")}/Downloads/rs634_cache/")
+        val xteas = Xteas().load("./tools/src/main/resources/xteas.dat", Xteas.DEFAULT_KEY, Xteas.DEFAULT_VALUE)
+        val cache727 = File("${System.getProperty("user.home")}/Downloads/727 cache with most xteas/")
+        val cache681 = File("${System.getProperty("user.home")}/Downloads/cache-280/")
+        val xteas681 = getKeys(280)
+        val cache537 = File("${System.getProperty("user.home")}/Downloads/cache-257/")
+        pack634(target, xteas, cache727, Xteas(), cache681, xteas681, cache537)
     }
 
     private fun packMissingMaps(target: CacheDelegate, sourceXteas: Xteas, source: CacheDelegate, targetXteas: Xteas, regions: List<Region>) {
         val invalid = mutableSetOf<Region>()
         runBlocking {
-            val archives = target.getArchives(Index.MAPS).toSet()
+            val archives = target.archives(Index.MAPS).toSet()
             for (region in regions) {
-                val archive = target.getArchiveId(Index.MAPS, "l${region.x}_${region.y}")
+                val archive = target.archiveId(Index.MAPS, "l${region.x}_${region.y}")
                 if (!archives.contains(archive)) {
                     continue
                 }
-                val data = target.getFile(Index.MAPS, archive, 0, sourceXteas[region])
+                val data = target.data(Index.MAPS, archive, 0, sourceXteas[region])
                 if (data == null) {
-                    val objData = source.getFile(Index.MAPS, "l${region.x}_${region.y}", targetXteas[region])
-                    val tileData = source.getFile(Index.MAPS, "m${region.x}_${region.y}")
+                    val objData = source.data(Index.MAPS, "l${region.x}_${region.y}", targetXteas[region])
+                    val tileData = source.data(Index.MAPS, "m${region.x}_${region.y}")
                     if (objData == null || tileData == null) {
                         println("Can't find map $region")
                     } else {
@@ -53,8 +62,8 @@ object MapPacker {
 
     private fun packEaster08Map(target: CacheDelegate, source: CacheDelegate) {
         val region = Region(9811)
-        val objData = source.getFile(Index.MAPS, "l${region.x}_${region.y}", intArrayOf(-929935426, 1005492936, -2143736251, 386758357))
-        val tileData = source.getFile(Index.MAPS, "m${region.x}_${region.y}")
+        val objData = source.data(Index.MAPS, "l${region.x}_${region.y}", intArrayOf(-929935426, 1005492936, -2143736251, 386758357))
+        val tileData = source.data(Index.MAPS, "m${region.x}_${region.y}")
         if (objData == null || tileData == null) {
             println("Can't find map $region")
         } else {

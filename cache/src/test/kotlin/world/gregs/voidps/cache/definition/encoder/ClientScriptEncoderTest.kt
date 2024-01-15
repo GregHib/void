@@ -29,8 +29,8 @@ internal class ClientScriptEncoderTest {
             longOperands = longArrayOf(0, 1, 2, 3, 0, 0),
             intOperands = intArrayOf(0, 0, 0, 0, 300, 2)
         )
-        val revision634 = false
-        val encoder = ClientScriptEncoder(revision634)
+        val revision667 = true
+        val encoder = ClientScriptEncoder(revision667)
 
         val writer = BufferWriter(capacity = 256)
         with(encoder) {
@@ -40,9 +40,9 @@ internal class ClientScriptEncoderTest {
         val data = writer.array().copyOf(writer.position())
 
         val cache: Cache = mockk(relaxed = true)
-        every { cache.getFile(CLIENT_SCRIPTS, any<Int>(), any<Int>(), any()) } returns data
+        every { cache.data(CLIENT_SCRIPTS, any<Int>(), any<Int>(), any()) } returns data
         every { cache.lastArchiveId(any()) } returns 1
-        val decoder = ClientScriptDecoder(revision634).loadCache(cache)
+        val decoder = ClientScriptDecoder(revision667).load(cache)
         val decoded = decoder[0]
         assertEquals(definition, decoded)
     }
@@ -61,8 +61,8 @@ internal class ClientScriptEncoderTest {
             stringOperands = arrayOf("one", null, null),
             intOperands = intArrayOf(0, 300, 2)
         )
-        val revision634 = true
-        val encoder = ClientScriptEncoder(revision634)
+        val revision667 = false
+        val encoder = ClientScriptEncoder(revision667)
 
         val writer = BufferWriter(capacity = 256)
         with(encoder) {
@@ -72,9 +72,9 @@ internal class ClientScriptEncoderTest {
         val data = writer.array().copyOf(writer.position())
 
         val cache: Cache = mockk(relaxed = true)
-        every { cache.getFile(CLIENT_SCRIPTS, any(), any<Int>()) } returns data
+        every { cache.data(CLIENT_SCRIPTS, any(), any<Int>()) } returns data
         every { cache.lastArchiveId(any()) } returns 1
-        val decoder = ClientScriptDecoder(revision634).loadCache(cache)
+        val decoder = ClientScriptDecoder(revision667).load(cache)
         val decoded = decoder[0]
         assertEquals(definition, decoded)
     }

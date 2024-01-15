@@ -25,8 +25,8 @@ class MinimapIconPainter(
     fun startup(cache: Cache) {
         val stringId = "${worldMapDefinitions[DEFAULTS].map}_staticelements"
 
-        val archiveId = cache.getArchiveId(WORLD_MAP, stringId)
-        var length = cache.archiveCount(WORLD_MAP, archiveId)
+        val archiveId = cache.archiveId(WORLD_MAP, stringId)
+        var length = cache.fileCount(WORLD_MAP, archiveId)
         val positions = IntArray(length)
         val ids = IntArray(length)
 
@@ -34,7 +34,7 @@ class MinimapIconPainter(
         var counter = 0
         var index = 0
         while (length > counter) {
-            val file = cache.getFile(WORLD_MAP, archiveId, index++) ?: continue
+            val file = cache.data(WORLD_MAP, archiveId, index++) ?: continue
             val buffer = BufferReader(file)
             val position = buffer.readInt()
             val id = buffer.readShort()

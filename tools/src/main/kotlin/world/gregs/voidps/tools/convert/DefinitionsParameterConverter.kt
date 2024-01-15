@@ -1,8 +1,5 @@
 package world.gregs.voidps.tools.convert
 
-import org.koin.core.context.startKoin
-import org.koin.dsl.module
-import org.koin.fileProperties
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.*
 import world.gregs.voidps.cache.Index.ITEMS
@@ -15,50 +12,36 @@ import world.gregs.voidps.cache.definition.decoder.ObjectDecoderFull
 import world.gregs.voidps.cache.definition.encoder.ItemEncoder
 import world.gregs.voidps.cache.definition.encoder.NPCEncoder
 import world.gregs.voidps.cache.definition.encoder.ObjectEncoder
+import java.io.File
 
 object DefinitionsParameterConverter {
-    @Suppress("USELESS_CAST")
-    @JvmStatic
-    fun main(args: Array<String>) {
-        val cache667 = module {
-            single { CacheDelegate("${System.getProperty("user.home")}/Downloads/rs634_cache/") as Cache }
-        }
-        val cache718 = module {
-            single { CacheDelegate("${System.getProperty("user.home")}/Downloads/rs718_cache/") as Cache }
-        }
 
-        val koin = startKoin {
-            fileProperties("/tool.properties")
-            modules(cache718)
-        }.koin
+    fun convert(target: File, other: File) {
+        val cache = CacheDelegate(target.path)
+        val otherCache = CacheDelegate(other.path)
 
-        val itemDefinitions718 = ItemDecoder718().loadCache(koin.get())
-        val npcDefinitions718 = NPCDecoder718().loadCache(koin.get())
-        val objectDefinitions718 = ObjectDecoder718().loadCache(koin.get())
-
-        koin.unloadModules(listOf(cache718))
-        koin.loadModules(listOf(cache667))
-
-        val cache = koin.get<Cache>() as CacheDelegate
+        val itemDefinitions718 = ItemDecoder718().load(otherCache)
+        val npcDefinitions718 = NPCDecoder718().load(otherCache)
+        val objectDefinitions718 = ObjectDecoder718().load(otherCache)
 
         val itemDecoder = ItemDecoderFull()
-        val itemDefinitions = itemDecoder.loadCache(koin.get())
+        val itemDefinitions = itemDecoder.load(cache)
         val itemEncoder = ItemEncoder()
         val itemCount = definition(itemDecoder, itemEncoder, itemDefinitions, itemDefinitions, itemDefinitions718, cache, ITEMS)
         println("Parameters transferred from $itemCount item definitions.")
 
         val npcDecoder = NPCDecoderFull(members = false)
-        val npcDefinitions = npcDecoder.loadCache(koin.get())
+        val npcDefinitions = npcDecoder.load(cache)
         val npcDecoderMembers = NPCDecoderFull(members = true)
-        val npcDefinitionsMembers = npcDecoderMembers.loadCache(koin.get())
+        val npcDefinitionsMembers = npcDecoderMembers.load(cache)
         val npcEncoder = NPCEncoder()
         val npcCount = definition(npcDecoder, npcEncoder, npcDefinitions, npcDefinitionsMembers, npcDefinitions718, cache, NPCS)
         println("Parameters transferred from $npcCount npc definitions.")
 
-        val objectDecoder = ObjectDecoderFull()
-        val objectDefinitions = objectDecoder.loadCache(koin.get())
-        val objectDecoderMembers = ObjectDecoderFull()
-        val objectDefinitionsMembers = objectDecoderMembers.loadCache(koin.get())
+        val objectDecoder = ObjectDecoderFull(members = false)
+        val objectDefinitions = objectDecoder.load(cache)
+        val objectDecoderMembers = ObjectDecoderFull(members = true)
+        val objectDefinitionsMembers = objectDecoderMembers.load(cache)
         val objectEncoder = ObjectEncoder()
         val objectCount = definition(objectDecoder, objectEncoder, objectDefinitions, objectDefinitionsMembers, objectDefinitions718, cache, OBJECTS)
         println("Parameters transferred from $objectCount object definitions.")
@@ -103,5 +86,12 @@ object DefinitionsParameterConverter {
             }
         }
         return count
+    }
+
+    @JvmStatic
+    fun main(args: Array<String>) {
+        val cache = File("${System.getProperty("user.home")}/Downloads/rs634_cache/")
+        val other = File("${System.getProperty("user.home")}/Downloads/rs718_cache/")
+        convert(cache, other)
     }
 }

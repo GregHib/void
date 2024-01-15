@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 
-class ClientScriptDecoder(private val revision634: Boolean) : DefinitionDecoder<ClientScriptDefinition>(Index.CLIENT_SCRIPTS) {
+class ClientScriptDecoder(private val revision667: Boolean = false) : DefinitionDecoder<ClientScriptDefinition>(Index.CLIENT_SCRIPTS) {
 
     override fun size(cache: Cache): Int {
         return cache.lastArchiveId(index)
@@ -38,17 +38,17 @@ class ClientScriptDecoder(private val revision634: Boolean) : DefinitionDecoder<
     override fun ClientScriptDefinition.read(opcode: Int, buffer: Reader) {
         buffer.position(buffer.length - 2)
         val i = buffer.readShort()
-        val length: Int = buffer.length - (2 + i) - if (revision634) 12 else 16
+        val length: Int = buffer.length - 2 - i - (if (revision667) 16 else 12)
         buffer.position(length)
         val instructionCount = buffer.readInt()
         intVariableCount = buffer.readShort()
         stringVariableCount = buffer.readShort()
-        if (!revision634) {
+        if (revision667) {
             longVariableCount = buffer.readShort()
         }
         intArgumentCount = buffer.readShort()
         stringArgumentCount = buffer.readShort()
-        if (!revision634) {
+        if (revision667) {
             longArgumentCount = buffer.readShort()
         }
         val count = buffer.readUnsignedByte()
@@ -75,7 +75,7 @@ class ClientScriptDecoder(private val revision634: Boolean) : DefinitionDecoder<
                     stringOperands = arrayOfNulls(instructionCount)
                 }
                 stringOperands!![index] = buffer.readString().intern()
-            } else if (!revision634 && clientOpcode == 54) {
+            } else if (revision667 && clientOpcode == 54) {
                 if (longOperands == null) {
                     longOperands = LongArray(instructionCount)
                 }
@@ -84,7 +84,7 @@ class ClientScriptDecoder(private val revision634: Boolean) : DefinitionDecoder<
                 if (intOperands == null) {
                     intOperands = IntArray(instructionCount)
                 }
-                if (clientOpcode < 100 && clientOpcode != 21 && clientOpcode != 38 && clientOpcode != 39) {
+                if (clientOpcode < 150 && clientOpcode != 21 && clientOpcode != 38 && clientOpcode != 39) {
                     intOperands!![index] = buffer.readInt()
                 } else {
                     intOperands!![index] = buffer.readUnsignedByte()
@@ -93,5 +93,4 @@ class ClientScriptDecoder(private val revision634: Boolean) : DefinitionDecoder<
             instructions[index++] = clientOpcode
         }
     }
-
 }

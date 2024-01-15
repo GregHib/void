@@ -39,7 +39,7 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
         val definition = definitions[id]
         val components = Int2ObjectOpenHashMap<InterfaceComponentDefinition>(2)
         for (i in 0..lastArchive) {
-            val data = cache.getFile(index, archiveId, i)
+            val data = cache.data(index, archiveId, i)
             if (data != null) {
                 val componentDefinition = InterfaceComponentDefinition(id = InterfaceDefinition.pack(id, i))
                 if (!componentDefinition.isEmpty(BufferReader(data))) {
