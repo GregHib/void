@@ -47,7 +47,7 @@ object Spell {
     /**
      * Applies modifications to spells damage
      */
-    fun damageModifiers(source: Character, type: String, weapon: Item, baseDamage: Int): Int {
+    fun damageModifiers(source: Character, type: String, weapon: Item, spell: String, baseDamage: Int): Int {
         if (type != "magic") {
             return baseDamage
         }
@@ -59,7 +59,7 @@ object Spell {
             val damageMultiplier = 1.0 + equipmentDamage + eliteVoidDamage
             damage = (damage * damageMultiplier).roundToInt()
         }
-        if (source.hasClock("charge") && source is Player && Equipment.wearingMatchingArenaGear(source)) {
+        if (source.hasClock("charge") && source is Player && Equipment.wearingMatchingArenaGear(source, spell)) {
             damage += 100
         }
         return damage

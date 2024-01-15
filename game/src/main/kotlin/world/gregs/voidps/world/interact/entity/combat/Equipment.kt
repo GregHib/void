@@ -120,7 +120,7 @@ object Equipment {
 
     fun fireResistantShield(shield: String) = shield == "elemental_shield" || shield == "mind_shield" || shield == "body_shield" || shield == "dragonfire_shield"
 
-    fun wearingMatchingArenaGear(player: Player): Boolean = isMatchingArenaSpell(player.spell, player.equipped(EquipSlot.Cape).id)
+    fun wearingMatchingArenaGear(player: Player, spell: String): Boolean = isMatchingArenaSpell(spell, player.equipped(EquipSlot.Cape).id)
     fun isMatchingArenaSpell(spell: String, cape: String): Boolean = isSaradomin(spell, cape) || isGuthix(spell, cape) || isZamorak(spell, cape)
     fun isSaradomin(spell: String, cape: String): Boolean = spell == "saradomin_strike" && cape == "saradomin_cape"
     fun isGuthix(spell: String, cape: String): Boolean = spell == "claws_of_guthix" && cape == "guthix_cape"

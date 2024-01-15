@@ -98,10 +98,10 @@ object Damage {
     /**
      * Applies modifiers to a [maximum]
      */
-    fun modify(source: Character, target: Character, type: String, baseMaxHit: Int, weapon: Item, special: Boolean = false): Int {
+    fun modify(source: Character, target: Character, type: String, baseMaxHit: Int, weapon: Item, spell: String, special: Boolean = false): Int {
         var damage = baseMaxHit
 
-        damage = Spell.damageModifiers(source, type, weapon, damage)
+        damage = Spell.damageModifiers(source, type, weapon, spell, damage)
 
         damage = Bonus.slayerModifier(source, target, type, damage, damage = true)
 

@@ -42,8 +42,7 @@ internal class ChargeGodSpellEffectTest : CombatFormulaTest() {
         player.hit(target, type = "magic", spell = "saradomin_strike", damage = 100)
         tick(2)
 
-//        assertEquals(790, target.levels.get(Skill.Constitution))
-//        TODO Waiting for hit roll order to change
+        assertEquals(790, target.levels.get(Skill.Constitution))
     }
 
     @Test
