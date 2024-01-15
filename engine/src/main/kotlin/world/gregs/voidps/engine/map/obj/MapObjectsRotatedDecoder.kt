@@ -6,36 +6,45 @@ import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.decoder.MapObjectDecoder
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.type.Zone
+import world.gregs.voidps.type.area.Rectangle
 
 /**
  * Adds collision for all blocked tiles except bridges
  */
-class ObjectsRotatedReader(
+class MapObjectsRotatedDecoder(
     private val objects: GameObjects,
     private val definitions: ObjectDefinitions
 ) : MapObjectDecoder() {
 
-    private var zoneRotation: Int = 0
+    var zoneRotation: Int = 0
+    lateinit var area: Rectangle
+    var targetX = 0
+    var targetY = 0
 
-    fun loadObjects(cache: Cache, tiles: LongArray, sourceX: Int, sourceY: Int, regionX: Int, regionY: Int, rotation: Int, keys: IntArray?) {
+    fun loadObjects(cache: Cache, tiles: LongArray, from: Zone, to: Zone, rotation: Int, keys: IntArray?) {
         zoneRotation = rotation
-        val objectData = cache.data(Index.MAPS, "l${sourceX}_${sourceY}", xtea = keys) ?: return
+        val x = from.tile.x.rem(64)
+        val y = from.tile.y.rem(64)
+        targetX = to.tile.x
+        targetY = to.tile.y
+        area = Rectangle(x, y, x + 8, y + 8)
+        val regionX = from.region.x
+        val regionY = from.region.y
+        val objectData = cache.data(Index.MAPS, "l${regionX}_${regionY}", xtea = keys) ?: return
         val reader = BufferReader(objectData)
         super.loadObjects(reader, tiles, regionX, regionY)
     }
 
-    /**
-     * TODO only add objects within zone
-     */
     override fun add(objectId: Int, localX: Int, localY: Int, level: Int, shape: Int, rotation: Int, regionX: Int, regionY: Int) {
-        if (objectId > definitions.definitions.size) {
+        if (objectId > definitions.definitions.size || !area.contains(localX, localY)) {
             return
         }
         val def = definitions.getValue(objectId)
         val objRotation = (rotation + zoneRotation) and 0x3
-        val rotX = (regionX shl 6) + rotateX(localX, localY, def.sizeX, def.sizeY, objRotation, zoneRotation)
-        val rotY = (regionY shl 6) + rotateY(localX, localY, def.sizeX, def.sizeY, objRotation, zoneRotation)
-        objects.set(objectId, rotX, rotY, level, shape, objRotation, def)
+        val rotX = rotateX(localX, localY, def.sizeX, def.sizeY, objRotation, zoneRotation)
+        val rotY = rotateY(localX, localY, def.sizeX, def.sizeY, objRotation, zoneRotation)
+        objects.set(objectId, targetX + rotX, targetY + rotY, level, shape, objRotation, def)
     }
 
     companion object {

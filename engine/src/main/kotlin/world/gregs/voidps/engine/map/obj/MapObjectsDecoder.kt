@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 /**
  * Adds collision for all blocked tiles except bridges
  */
-class ObjectsReader(
+class MapObjectsDecoder(
     private val objects: GameObjects,
     private val definitions: ObjectDefinitions
 ) : MapObjectDecoder() {

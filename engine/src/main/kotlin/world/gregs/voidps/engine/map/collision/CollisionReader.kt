@@ -4,6 +4,7 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapTile
 import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.Zone
 
 /**
  * Adds collision for all blocked tiles except bridges
@@ -20,48 +21,58 @@ class CollisionReader(private val collisions: Collisions) {
         for (level in 0 until 4) {
             for (localX in 0 until 64) {
                 for (localY in 0 until 64) {
-                    addCollision(localX, localY, x, y, level, tiles)
+                    allocate(localX, localY, x, y, level)
+                    if (!isTile(tiles, localX, localY, level, BLOCKED_TILE)) {
+                        continue
+                    }
+                    val height = tileHeight(tiles, localX, localY, level)
+                    if (height >= 0) {
+                        collisions.add(x + localX, y + localY, height, CollisionFlag.FLOOR)
+                    }
                 }
             }
         }
     }
 
-    private fun addCollision(localX: Int, localY: Int, x: Int, y: Int, level: Int, tiles: LongArray) {
+    fun read(tiles: LongArray, from: Zone, to: Zone, zoneRotation: Int) {
+        val x = from.tile.x.rem(64)
+        val y = from.tile.y.rem(64)
+        val targetX = to.tile.x
+        val targetY = to.tile.y
+        for (level in 0 until 4) {
+            for (localX in x until x + 8) {
+                for (localY in y until y + 8) {
+                    allocate(localX, localY, targetX, targetY, level)
+                    if (!isTile(tiles, localX, localY, level, BLOCKED_TILE)) {
+                        continue
+                    }
+                    val height = tileHeight(tiles, localX, localY, level)
+                    if (height >= 0) {
+                        val rotX = rotateX(localX, localY, zoneRotation)
+                        val rotY = rotateY(localX, localY, zoneRotation)
+                        collisions.add(targetX + rotX, targetY + rotY, height, CollisionFlag.FLOOR)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun allocate(localX: Int, localY: Int, x: Int, y: Int, level: Int) {
         if (localX.rem(8) == 0 && localY.rem(8) == 0) {
             collisions.allocateIfAbsent(x + localX, y + localY, level)
-        }
-        val blocked = isTile(tiles, localX, localY, level, BLOCKED_TILE)
-        if (!blocked) {
-            return
-        }
-        var height = level
-        val bridge = isTile(tiles, localX, localY, 1, BRIDGE_TILE)
-        if (bridge) {
-            height--
-        }
-        if (height >= 0) {
-            collisions.add(x + localX, y + localY, height, CollisionFlag.FLOOR)
-        }
-    }
-
-    /**
-     * TODO only apply collision in zone
-     */
-    fun read(tiles: LongArray, x: Int, y: Int, zoneRotation: Int) {
-        for (level in 0 until 4) {
-            for (localX in 0 until 64) {
-                for (localY in 0 until 64) {
-                    val rotX = rotateX(localX, localY, zoneRotation)
-                    val rotY = rotateY(localX, localY, zoneRotation)
-                    addCollision(rotX, rotY, x, y, level, tiles)
-                }
-            }
         }
     }
 
     companion object {
         internal const val BLOCKED_TILE = 0x1
         internal const val BRIDGE_TILE = 0x2
+
+        private fun tileHeight(tiles: LongArray, localX: Int, localY: Int, level: Int): Int {
+            if (isTile(tiles, localX, localY, 1, BRIDGE_TILE)) {
+                return level - 1
+            }
+            return level
+        }
 
         private fun isTile(tiles: LongArray, localX: Int, localY: Int, level: Int, flag: Int): Boolean {
             return MapTile.settings(tiles[MapDefinition.index(localX, localY, level)]) and flag == flag

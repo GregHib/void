@@ -12,30 +12,29 @@ import world.gregs.voidps.cache.definition.data.MapTile
 import world.gregs.voidps.engine.map.collision.CollisionReader.Companion.BLOCKED_TILE
 import world.gregs.voidps.engine.map.collision.CollisionReader.Companion.BRIDGE_TILE
 import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.Zone
 
 internal class CollisionReaderTest {
-    lateinit var collisions: Collisions
-    lateinit var reader: CollisionReader
-    lateinit var map: MapDefinition
+    private lateinit var collisions: Collisions
+    private lateinit var reader: CollisionReader
+    private lateinit var tiles: LongArray
 
     @BeforeEach
     fun setup() {
         collisions = mockk(relaxed = true)
         reader = spyk(CollisionReader(collisions))
-        map = MapDefinition(id = 12345)
+        tiles = LongArray(64 * 64 * 4)
     }
 
     @Test
     fun `Load blocked`() {
         // Given
         val region = Region(1, 1)
-        map.setTile(1, 1, 0, MapTile(0, 0, 0, 0, 0, BLOCKED_TILE, 0))
+        tiles[MapDefinition.index(1, 1, 0)] = MapTile.pack(0, 0, 0, 0, 0, BLOCKED_TILE, 0)
         // When
-        reader.read(region, map)
+        reader.read(tiles, region.tile.x, region.tile.y)
         // Then
         verifyOrder {
-            map.getTile(1, 1, 0)
-            map.getTile(1, 1, 1)
             collisions.add(region.tile.x + 1, region.tile.y + 1, 0, CollisionFlag.FLOOR)
         }
     }
@@ -44,10 +43,10 @@ internal class CollisionReaderTest {
     fun `Ignore blocked bridge`() {
         // Given
         val region = Region(1, 1)
-        map.setTile(1, 1, 0, MapTile(0, 0, 0, 0, 0, BLOCKED_TILE, 0))
-        map.setTile(1, 1, 1, MapTile(0, 0, 0, 0, 0, BRIDGE_TILE, 0))
+        tiles[MapDefinition.index(1, 1, 0)] = MapTile.pack(0, 0, 0, 0, 0, BLOCKED_TILE, 0)
+        tiles[MapDefinition.index(1, 1, 1)] = MapTile.pack(0, 0, 0, 0, 0, BRIDGE_TILE, 0)
         // When
-        reader.read(region, map)
+        reader.read(tiles, region.tile.x, region.tile.y)
         // Then
         verify(exactly = 0) {
             collisions.add(any(), any(), any(), CollisionFlag.FLOOR)
@@ -58,13 +57,27 @@ internal class CollisionReaderTest {
     fun `Add suspended bridge`() {
         // Given
         val region = Region(1, 1)
-        map.setTile(1, 1, 1, MapTile(0, 0, 0, 0, 0, BLOCKED_TILE, 0))
-        map.setTile(1, 1, 2, MapTile(0, 0, 0, 0, 0, BRIDGE_TILE, 0))
+        tiles[MapDefinition.index(1, 1, 1)] = MapTile.pack(0, 0, 0, 0, 0, BLOCKED_TILE, 0)
+        tiles[MapDefinition.index(1, 1, 2)] = MapTile.pack(0, 0, 0, 0, 0, BRIDGE_TILE, 0)
         // When
-        reader.read(region, map)
+        reader.read(tiles, region.tile.x, region.tile.y)
         // Then
         verify {
             collisions.add(region.tile.x + 1, region.tile.y + 1, 1, CollisionFlag.FLOOR)
+        }
+    }
+
+    @Test
+    fun `Load rotated blocked`() {
+        // Given
+        val source = Zone(9, 9)
+        val target = Zone(18, 9)
+        tiles[MapDefinition.index(10, 12, 0)] = MapTile.pack(0, 0, 0, 0, 0, BLOCKED_TILE, 0)
+        // When
+        reader.read(tiles, source, target, 1)
+        // Then
+        verifyOrder {
+            collisions.add(target.tile.x + 4, target.tile.y + 5, 0, CollisionFlag.FLOOR)
         }
     }
 }

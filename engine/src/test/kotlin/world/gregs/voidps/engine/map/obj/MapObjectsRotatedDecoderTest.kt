@@ -1,0 +1,86 @@
+package world.gregs.voidps.engine.map.obj
+
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectShape
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.GameObjectCollision
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.area.Rectangle
+
+class MapObjectsRotatedDecoderTest {
+
+    private lateinit var definitions: ObjectDefinitions
+    private lateinit var objects: GameObjects
+    private lateinit var decoder: MapObjectsRotatedDecoder
+    private lateinit var tiles: LongArray
+
+    @BeforeEach
+    fun setup() {
+        definitions = ObjectDefinitions(Array(10_000) { ObjectDefinition.EMPTY })
+        objects = GameObjects(GameObjectCollision(Collisions()), ZoneBatchUpdates(), definitions, storeUnused = true)
+        decoder = MapObjectsRotatedDecoder(objects, definitions)
+        tiles = LongArray(64 * 64 * 4)
+    }
+
+    @Test
+    fun `Load object in zone`() {
+        val writer = BufferWriter()
+        writer.writeSmart(124)
+        writer.writeSmart(packTile(10, 11, 1) + 1)
+        val shape = ObjectShape.GROUND_DECOR
+        writer.writeByte(packInfo(shape, 2))
+        writer.writeSmart(0)
+        writer.writeSmart(0)
+        val reader = BufferReader(writer.toArray())
+
+        decoder.zoneRotation = 2
+        decoder.targetX = 960
+        decoder.targetY = 896
+        decoder.area = Rectangle(8, 8, 16, 16)
+        decoder.loadObjects(reader, tiles, 1, 1)
+
+        val tile = Tile(957, 892, 1)
+        val gameObject = objects.getShape(tile, shape)
+
+        assertNotNull(gameObject)
+        assertEquals(shape, gameObject!!.shape)
+        assertEquals(0, gameObject.rotation)
+        assertEquals(123, gameObject.intId)
+    }
+
+    @Test
+    fun `Load spits objects out of zone`() {
+        val writer = BufferWriter()
+        writer.writeSmart(124)
+        writer.writeSmart(packTile(18, 19, 0) + 1)
+        val shape = ObjectShape.ROOF_EDGE_CORNER
+        writer.writeByte(packInfo(shape, 1))
+        writer.writeSmart(0)
+        writer.writeSmart(0)
+        val reader = BufferReader(writer.toArray())
+
+        decoder.zoneRotation = 0
+        decoder.targetX = 64
+        decoder.targetY = 64
+        decoder.area = Rectangle(8, 8, 16, 16)
+        decoder.loadObjects(reader, tiles, 1, 1)
+
+        val tile = Tile(82, 84, 0)
+        val gameObject = objects.getShape(tile, shape)
+        assertNull(gameObject)
+    }
+
+    companion object {
+        private fun packInfo(shape: Int, rotation: Int) = rotation + (shape shl 2)
+
+        private fun packTile(localX: Int, localY: Int, level: Int) = (localY and 0x3f) + (localX and 0x3f shl 6) + (level shl 12)
+    }
+}

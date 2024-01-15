@@ -29,7 +29,7 @@ abstract class MapObjectDecoder {
                 val localX = tile shr 6 and 0x3f
                 val localY = tile and 0x3f
                 var level = tile shr 12
-                val obj = reader.readUnsignedByte()
+                val data = reader.readUnsignedByte()
 
                 // Decrease bridges
                 if (isBridge(tiles, localX, localY)) {
@@ -41,8 +41,8 @@ abstract class MapObjectDecoder {
                     continue
                 }
 
-                val shape = obj shr 2
-                val rotation = obj and 0x3
+                val shape = data shr 2
+                val rotation = data and 0x3
 
                 // Valid object
                 add(objectId, localX, localY, level, shape, rotation, regionX, regionY)

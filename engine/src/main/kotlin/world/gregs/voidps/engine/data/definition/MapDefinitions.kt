@@ -11,8 +11,8 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.map.obj.ObjectsReader
-import world.gregs.voidps.engine.map.obj.ObjectsRotatedReader
+import world.gregs.voidps.engine.map.obj.MapObjectsDecoder
+import world.gregs.voidps.engine.map.obj.MapObjectsRotatedDecoder
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Zone
 import world.gregs.yaml.Yaml
@@ -30,8 +30,8 @@ class MapDefinitions(
 ) {
     private val logger = InlineLogger()
 
-    private val reader = ObjectsReader(objects, definitions)
-    private val rotationReader = ObjectsRotatedReader(objects, definitions)
+    private val decoder = MapObjectsDecoder(objects, definitions)
+    private val rotationDecoder = MapObjectsRotatedDecoder(objects, definitions)
 
     fun loadCache(xteas: Map<Int, IntArray>? = null): MapDefinitions {
         val start = System.currentTimeMillis()
@@ -41,7 +41,7 @@ class MapDefinitions(
                 val tiles = loadTiles(cache, regionX, regionY) ?: continue
                 collisions.read(tiles, regionX shl 6, regionY shl 6)
                 val keys = if (xteas != null) xteas[Region.id(regionX, regionY)] else null
-                reader.loadObjects(cache, tiles, regionX, regionY, keys)
+                decoder.loadObjects(cache, tiles, regionX, regionY, keys)
                 regions++
             }
         }
@@ -49,19 +49,12 @@ class MapDefinitions(
         return this
     }
 
-    /*
-        TODO
-            Load tiles array and do loop over zone coords with applied rotation
-            Load all objects and skip over those with x/y +/- size in the zone and apply rotation
-     */
     fun loadZone(from: Zone, to: Zone, rotation: Int, xteas: Map<Int, IntArray>? = null) {
         val start = System.currentTimeMillis()
-        val regionX = from.region.x
-        val regionY = from.region.x
-        val tiles = loadTiles(cache, regionX, regionY) ?: return
-        collisions.read(tiles, regionX shl 6, regionY shl 6)
-        val keys = if (xteas != null) xteas[Region.id(regionX, regionY)] else null
-        rotationReader.loadObjects(cache, tiles, regionX, regionY, to.region.x, to.region.y, rotation, keys)
+        val tiles = loadTiles(cache, from.region.x, from.region.y) ?: return
+        collisions.read(tiles, from, to, rotation)
+        val keys = if (xteas != null) xteas[from.region.id] else null
+        rotationDecoder.loadObjects(cache, tiles, from, to, rotation, keys)
         val took = System.currentTimeMillis() - start
         if (took > 5) {
             logger.info { "Loaded zone $from -> $to $rotation in ${took}ms" }
