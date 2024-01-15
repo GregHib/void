@@ -4,18 +4,13 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.*
 import world.gregs.voidps.cache.definition.decoder.MapTileDecoder
-import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.obj.MapObjectsDecoder
 import world.gregs.voidps.engine.map.obj.MapObjectsRotatedDecoder
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Zone
-import world.gregs.yaml.Yaml
 
 /**
  * Loads map collision and objects directly, quicker than [MapDecoder]
@@ -71,30 +66,5 @@ class MapDefinitions(
         val tiles = LongArray(16384)
         MapTileDecoder.loadTiles(buffer, tiles)
         return tiles
-    }
-
-    companion object {
-        @JvmStatic
-        fun main(args: Array<String>) {
-            val path = "./data/cache/"
-
-            var start = System.currentTimeMillis()
-            val cache1 = CacheDelegate(path)
-            println("Cache1 loaded in ${System.currentTimeMillis() - start}ms")
-            start = System.currentTimeMillis()
-            val cache2 = MemoryCache(path)
-            println("Cache2 loaded in ${System.currentTimeMillis() - start}ms")
-            start = System.currentTimeMillis()
-            val cache3 = FileCache(path)
-            println("Cache3 loaded in ${System.currentTimeMillis() - start}ms")
-            for (cache in listOf(cache3, cache1, cache2)) {
-                val collisions = Collisions()
-                val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache1))
-                    .load(Yaml(), "./data/definitions/objects.yml")
-                val objects = GameObjects(GameObjectCollision(collisions), ZoneBatchUpdates(), objectDefinitions, storeUnused = true)
-                val mapDefinitions = MapDefinitions(CollisionDecoder(collisions), objectDefinitions, objects, cache)
-                mapDefinitions.loadCache()
-            }
-        }
     }
 }

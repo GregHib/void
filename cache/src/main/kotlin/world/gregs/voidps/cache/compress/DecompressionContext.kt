@@ -35,7 +35,6 @@ internal class DecompressionContext {
                 return decompressed
             }
             BZIP2 -> {
-                // Deprecated
                 if (!warned.get()) {
                     logger.warn { "GZIP2 Compression found - replace to improve read performance." }
                     warned.set(true)

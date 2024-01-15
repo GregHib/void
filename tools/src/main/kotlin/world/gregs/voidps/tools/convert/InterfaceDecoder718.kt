@@ -7,7 +7,9 @@ class InterfaceDecoder718 {
 
     fun InterfaceComponentDefinitionFull.read(reader: Reader) {
         var flag0: Int = reader.readUnsignedByte()
-        if (flag0 == 255) flag0 = -1
+        if (flag0 == 255) {
+            flag0 = -1
+        }
         type = reader.readUnsignedByte()
         if (type and 0x80 != 0) {
             type = type and 0x7f
@@ -23,22 +25,26 @@ class InterfaceDecoder718 {
         horizontalPositionMode = reader.readByte().toByte()
         verticalPositionMode = reader.readByte().toByte()
         parent = reader.readUnsignedShort()
-        if (65535 == parent) {
+        if (parent == 65535) {
             parent = -1
         }
         val flag1: Int = reader.readUnsignedByte()
-        hidden = 0 != flag1 and 0x1
-        if (flag0 >= 0) disableHover = flag1 and 0x2 != 0
-        if (0 == type) {
+        hidden = flag1 and 0x1 != 0
+        if (flag0 >= 0) {
+            disableHover = flag1 and 0x2 != 0
+        }
+        if (type == 0) {
             scrollWidth = reader.readUnsignedShort()
             scrollHeight = reader.readUnsignedShort()
-            if (flag0 < 0) disableHover = reader.readUnsignedByte() == 1
+            if (flag0 < 0) {
+                disableHover = reader.readUnsignedByte() == 1
+            }
         }
         if (type == 5) {
             defaultImage = reader.readInt()
             imageRotation = reader.readUnsignedShort()
             val flag3: Int = reader.readUnsignedByte()
-            val aBoolean1196 = 0 != flag3 and 0x1
+            val aBoolean1196 = flag3 and 0x1 != 0
             imageRepeat = flag3 and 0x2 != 0
             alpha = reader.readUnsignedByte()
             rotation = reader.readUnsignedByte()
@@ -50,14 +56,14 @@ class InterfaceDecoder718 {
                 val aBoolean1183 = reader.readUnsignedByte() == 1
             }
         }
-        if (6 == type) {
-            defaultMediaType = -1530138943
+        if (type == 6) {
+            defaultMediaType = 1
             defaultMediaId = reader.readBigSmart()
             val i_4_: Int = reader.readUnsignedByte()
-            val bool = 1 == i_4_ and 0x1
+            val bool = i_4_ and 0x1 == 1
             centreType = i_4_ and 0x2 == 2
-            animated = 4 == i_4_ and 0x4
-            ignoreZBuffer = 8 == i_4_ and 0x8
+            animated = i_4_ and 0x4 == 4
+            ignoreZBuffer = i_4_ and 0x8 == 8
             if (bool) {
                 viewportX = reader.readShort()
                 viewportY = reader.readShort()
@@ -75,8 +81,8 @@ class InterfaceDecoder718 {
                 spriteScale = reader.readShort()
             }
             animation = reader.readBigSmart()
-            if (0 != horizontalSizeMode.toInt()) viewportWidth = reader.readUnsignedShort()
-            if (0 != verticalSizeMode.toInt()) viewportHeight = reader.readUnsignedShort()
+            if (horizontalSizeMode.toInt() != 0) viewportWidth = reader.readUnsignedShort()
+            if (verticalSizeMode.toInt() != 0) viewportHeight = reader.readUnsignedShort()
         }
         if (type == 4) {
             fontId = reader.readBigSmart()
@@ -94,12 +100,12 @@ class InterfaceDecoder718 {
                 val anInt1217 = reader.readUnsignedByte()
             }
         }
-        if (3 == type) {
+        if (type == 3) {
             colour = reader.readInt()
             filled = reader.readUnsignedByte() == 1
             alpha = reader.readUnsignedByte()
         }
-        if (9 == type) {
+        if (type == 9) {
             lineWidth = reader.readUnsignedByte()
             colour = reader.readInt()
             lineMirrored = reader.readUnsignedByte() == 1
@@ -114,7 +120,9 @@ class InterfaceDecoder718 {
                 val index = (modifier shr 4) - 1
                 modifier = modifier shl 8 or reader.readUnsignedByte()
                 modifier = modifier and 0xfff
-                if (modifier == 4095) modifier = -1
+                if (modifier == 4095) {
+                    modifier = -1
+                }
                 val repeat: Byte = reader.readByte().toByte()
                 if (repeat.toInt() != 0) {
                     val aBoolean1220 = true
@@ -123,8 +131,7 @@ class InterfaceDecoder718 {
                 keyModifiers!![index] = modifier
                 keyRepeats!![index] = repeat
                 keyCodes!![index] = code
-                modifier = reader
-                    .readUnsignedByte()
+                modifier = reader.readUnsignedByte()
             }
         }
         name = reader.readString()
@@ -138,7 +145,7 @@ class InterfaceDecoder718 {
         }
         if (iconCount > 0) {
             val i_14_: Int = reader.readUnsignedByte()
-            mouseIcon = IntArray(1 + i_14_)
+            mouseIcon = IntArray(i_14_ + 1)
             for (i_15_ in mouseIcon!!.indices) mouseIcon!![i_15_] = -1
             mouseIcon!![i_14_] = reader.readUnsignedShort()
         }
@@ -155,11 +162,17 @@ class InterfaceDecoder718 {
         var i_17_ = -1
         if (setting shr 11 and 0x7f != 0) {
             i_17_ = reader.readUnsignedShort()
-            if (i_17_ == 65535) i_17_ = -1
+            if (i_17_ == 65535) {
+                i_17_ = -1
+            }
             anInt4698 = reader.readUnsignedShort()
-            if (anInt4698 == 65535) anInt4698 = -1
+            if (anInt4698 == 65535) {
+                anInt4698 = -1
+            }
             anInt4839 = reader.readUnsignedShort()
-            if (anInt4839 == 65535) anInt4839 = -1
+            if (anInt4839 == 65535) {
+                anInt4839 = -1
+            }
         }
         if (flag0 >= 0) {
             var anInt1272 = reader.readUnsignedShort()
@@ -232,8 +245,8 @@ class InterfaceDecoder718 {
             val array = IntArray(length)
             for (i in 0 until length) array[i] = reader.readInt()
             array
-        } catch (runtimeexception: RuntimeException) {
-            runtimeexception.printStackTrace()
+        } catch (exception: RuntimeException) {
+            exception.printStackTrace()
             null
         }
     }

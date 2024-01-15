@@ -47,6 +47,7 @@ internal class BZIP2Compressor {
      * @param startOffset        The start offset.
      * @return The decompressed length.
      */
+    @Deprecated("Use GZIP")
     fun decompress(decompressed: ByteArray, decompressedLength: Int, archiveData: ByteArray, startOffset: Int): Int {
         compressed = archiveData
         this.startOffset = startOffset

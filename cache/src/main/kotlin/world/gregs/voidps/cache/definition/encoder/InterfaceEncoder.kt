@@ -1,13 +1,8 @@
 package world.gregs.voidps.cache.definition.encoder
 
-import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.DefinitionEncoder
-import world.gregs.voidps.cache.Index
-import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinitionFull
-import world.gregs.voidps.cache.definition.decoder.InterfaceDecoderFull
-import kotlin.system.exitProcess
 
 class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinitionFull> {
 
@@ -235,41 +230,6 @@ class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinitionFull> {
         writeByte(size)
         script?.forEach {
             writeInt(it)
-        }
-    }
-
-    companion object {
-        @JvmStatic
-        fun main(args: Array<String>) {
-            val cache = MemoryCache("./data/cache/")
-
-            val decoder = InterfaceDecoderFull().load(cache)
-            val encoder = InterfaceEncoder()
-            for (definition in decoder) {
-                if (definition.id != 37) {
-                    continue
-                }
-                val components = definition.components ?: continue
-                for ((index, component) in components.withIndex()) {
-                    if (index != 13) {
-                        continue
-                    }
-                    val expected = cache.data(Index.INTERFACES, definition.id, index)!!
-                    val writer = BufferWriter(4096)
-                    with(encoder) {
-                        writer.encode(component)
-                    }
-                    if (component.keyRepeats != null) {
-                        continue
-                    }
-                    if (!expected.contentEquals(writer.toArray())) {
-                        println("Mismatch ${definition.id} $index ${component.id}")
-                        println(expected.contentToString())
-                        println(writer.toArray().contentToString())
-                        exitProcess(0)
-                    }
-                }
-            }
         }
     }
 

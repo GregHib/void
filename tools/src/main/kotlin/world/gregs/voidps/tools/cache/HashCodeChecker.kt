@@ -4,7 +4,6 @@ import java.io.File
 
 object HashCodeChecker {
 
-
     private val matches = mutableMapOf<Int, String>()
     private lateinit var known: Map<Int, String?>
     private val input = File("./temp/hashes/check.tsv")
