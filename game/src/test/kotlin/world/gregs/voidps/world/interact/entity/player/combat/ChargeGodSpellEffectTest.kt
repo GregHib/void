@@ -48,8 +48,8 @@ internal class ChargeGodSpellEffectTest : CombatFormulaTest() {
     @Test
     fun `Charge with god spell and different cape does nothing`() {
         val player = createPlayer(Skill.Magic to 99)
-        player.equipment.set(EquipSlot.Cape.index, "saradomin_cape")
-        player.equipment.set(EquipSlot.Weapon.index, "zamorak_staff")
+        player.equipment.set(EquipSlot.Cape.index, "zamorak_cape")
+        player.equipment.set(EquipSlot.Weapon.index, "saradomin_staff")
         player.inventory.add("fire_rune", 3)
         player.inventory.add("blood_rune", 3)
         player.inventory.add("air_rune", 3)
