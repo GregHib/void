@@ -9,7 +9,10 @@ import world.gregs.voidps.cache.definition.data.MapTile
  */
 abstract class MapObjectDecoder {
 
-    fun loadObjects(reader: BufferReader, tiles: LongArray, regionTileX: Int, regionTileY: Int) {
+    /**
+     * Decodes object information and calls [add] for each using [tiles] to skip bridge objects
+     */
+    fun decode(reader: BufferReader, tiles: LongArray, regionTileX: Int, regionTileY: Int) {
         var objectId = -1
         while (true) {
             val skip = reader.readLargeSmart()

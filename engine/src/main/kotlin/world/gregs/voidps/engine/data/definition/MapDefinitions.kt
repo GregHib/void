@@ -8,7 +8,7 @@ import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.map.collision.CollisionReader
+import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.obj.MapObjectsDecoder
@@ -23,7 +23,7 @@ import world.gregs.yaml.Yaml
  *  Note: this is the only place we store the cache; for dynamic zone loading.
  */
 class MapDefinitions(
-    private val collisions: CollisionReader,
+    private val collisions: CollisionDecoder,
     definitions: ObjectDefinitions,
     private val objects: GameObjects,
     private val cache: Cache
@@ -39,9 +39,9 @@ class MapDefinitions(
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
                 val tiles = loadTiles(cache, regionX, regionY) ?: continue
-                collisions.read(tiles, regionX shl 6, regionY shl 6)
+                collisions.decode(tiles, regionX shl 6, regionY shl 6)
                 val keys = if (xteas != null) xteas[Region.id(regionX, regionY)] else null
-                decoder.loadObjects(cache, tiles, regionX, regionY, keys)
+                decoder.decode(cache, tiles, regionX, regionY, keys)
                 regions++
             }
         }
@@ -52,9 +52,9 @@ class MapDefinitions(
     fun loadZone(from: Zone, to: Zone, rotation: Int, xteas: Map<Int, IntArray>? = null) {
         val start = System.currentTimeMillis()
         val tiles = loadTiles(cache, from.region.x, from.region.y) ?: return
-        collisions.read(tiles, from, to, rotation)
+        collisions.decode(tiles, from, to, rotation)
         val keys = if (xteas != null) xteas[from.region.id] else null
-        rotationDecoder.loadObjects(cache, tiles, from, to, rotation, keys)
+        rotationDecoder.decode(cache, tiles, from, to, rotation, keys)
         val took = System.currentTimeMillis() - start
         if (took > 5) {
             logger.info { "Loaded zone $from -> $to $rotation in ${took}ms" }
@@ -92,7 +92,7 @@ class MapDefinitions(
                 val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache1))
                     .load(Yaml(), "./data/definitions/objects.yml")
                 val objects = GameObjects(GameObjectCollision(collisions), ZoneBatchUpdates(), objectDefinitions, storeUnused = true)
-                val mapDefinitions = MapDefinitions(CollisionReader(collisions), objectDefinitions, objects, cache)
+                val mapDefinitions = MapDefinitions(CollisionDecoder(collisions), objectDefinitions, objects, cache)
                 mapDefinitions.loadCache()
             }
         }

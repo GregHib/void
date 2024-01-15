@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.map.collision.CollisionReader
+import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.tools.cache.Xteas
@@ -34,7 +34,7 @@ object WorldMapLinkIdentifier {
         val definitions: ObjectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(Yaml(), property("objectDefinitionsPath"))
         val mapDecoder = MapDecoder(xteas).load(cache)
         val collisions = Collisions()
-        val collisionReader = CollisionReader(collisions)
+        val collisionDecoder = CollisionDecoder(collisions)
         val graph = MutableNavigationGraph()
         val linker = ObjectLinker(collisions)
         val clientScriptDecoder = ClientScriptDecoder().load(cache)
@@ -63,7 +63,7 @@ object WorldMapLinkIdentifier {
                 objects.add(obj)
                 objCollision.modify(obj, add = true)
             }
-            collisionReader.read(region, def)
+            collisionDecoder.decode(region, def)
         }
         val cacheLinks = mutableListOf<Pair<Tile, Tile>>()
         val dungeons = WorldMapDungeons(worldMapDetailsDecoder, worldMapIconDecoder, clientScriptDecoder, cache)

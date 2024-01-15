@@ -54,7 +54,7 @@ class MapDecoder(val xteas: Map<Int, IntArray>? = null) : DefinitionDecoder<MapD
         val definition = definitions[id]
         definition.id = region
         MapTileDecoder.loadTiles(reader, definition.tiles)
-        objects.loadObjects(cache, definition)
+        objects.decode(cache, definition)
     }
 
     override fun readLoop(definition: MapDefinition, buffer: Reader) {

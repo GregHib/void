@@ -9,15 +9,21 @@ import world.gregs.voidps.type.Zone
 /**
  * Adds collision for all blocked tiles except bridges
  */
-class CollisionReader(private val collisions: Collisions) {
+class CollisionDecoder(private val collisions: Collisions) {
 
-    fun read(region: Region, map: MapDefinition) {
+    /**
+     * Decode into [MapDefinition.tiles]
+     */
+    fun decode(region: Region, map: MapDefinition) {
         val x = region.tile.x
         val y = region.tile.y
-        read(map.tiles, x, y)
+        decode(map.tiles, x, y)
     }
 
-    fun read(tiles: LongArray, x: Int, y: Int) {
+    /**
+     * Decode [tiles] region [x] [y] into [Collisions]
+     */
+    fun decode(tiles: LongArray, x: Int, y: Int) {
         for (level in 0 until 4) {
             for (localX in 0 until 64) {
                 for (localY in 0 until 64) {
@@ -36,7 +42,10 @@ class CollisionReader(private val collisions: Collisions) {
         }
     }
 
-    fun read(tiles: LongArray, from: Zone, to: Zone, zoneRotation: Int) {
+    /**
+     * Decode [from] Zone [tiles] into [Collisions] [to] with applied [zoneRotation]
+     */
+    fun decode(tiles: LongArray, from: Zone, to: Zone, zoneRotation: Int) {
         val x = from.tile.x.rem(64)
         val y = from.tile.y.rem(64)
         val targetX = to.tile.x

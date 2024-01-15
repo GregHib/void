@@ -15,13 +15,13 @@ class MapObjectDefinitionDecoder(
 
     lateinit var definition: MapDefinition
 
-    fun loadObjects(cache: Cache, definition: MapDefinition) {
+    fun decode(cache: Cache, definition: MapDefinition) {
         this.definition = definition
         val regionX = definition.id shr 8
         val regionY = definition.id and 0xff
         val objectData = cache.data(Index.MAPS, "l${regionX}_$regionY", xteas?.get(definition.id)) ?: return
         val reader = BufferReader(objectData)
-        super.loadObjects(reader, definition.tiles, -1, -1)
+        super.decode(reader, definition.tiles, -1, -1)
     }
 
     override fun add(objectId: Int, localX: Int, localY: Int, level: Int, shape: Int, rotation: Int, regionTileX: Int, regionTileY: Int) {

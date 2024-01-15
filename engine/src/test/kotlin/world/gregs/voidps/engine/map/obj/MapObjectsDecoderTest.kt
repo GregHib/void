@@ -40,7 +40,7 @@ class MapObjectsDecoderTest {
         writer.writeSmart(0)
         writer.writeSmart(0)
         val reader = BufferReader(writer.toArray())
-        decoder.loadObjects(reader, tiles, 128, 256)
+        decoder.decode(reader, tiles, 128, 256)
 
         val tile = Tile(138, 267, 1)
         val gameObject = objects.getShape(tile, shape)
@@ -62,7 +62,7 @@ class MapObjectsDecoderTest {
         writer.writeSmart(0)
         writer.writeSmart(0)
         val reader = BufferReader(writer.toArray())
-        decoder.loadObjects(reader, tiles, 128, 256)
+        decoder.decode(reader, tiles, 128, 256)
 
         var tile = Tile(138, 267, 1)
         var gameObject = objects.getShape(tile, ObjectShape.WALL_CORNER)
@@ -90,7 +90,7 @@ class MapObjectsDecoderTest {
         writer.writeSmart(0)
         writer.writeSmart(0)
         val reader = BufferReader(writer.toArray())
-        decoder.loadObjects(reader, tiles, 192, 64)
+        decoder.decode(reader, tiles, 192, 64)
 
         var tile = Tile(202, 75, 0)
         var gameObject = objects.getShape(tile, ObjectShape.GROUND_DECOR)

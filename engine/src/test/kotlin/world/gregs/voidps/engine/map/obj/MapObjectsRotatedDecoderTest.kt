@@ -43,7 +43,7 @@ class MapObjectsRotatedDecoderTest {
 
         decoder.zoneRotation = 2
         decoder.zone = Rectangle(8, 8, 16, 16)
-        decoder.loadObjects(reader, tiles, 960, 896)
+        decoder.decode(reader, tiles, 960, 896)
 
         val tile = Tile(965, 900, 1) // local 5, 4
         val gameObject = objects.getShape(tile, shape)
@@ -67,7 +67,7 @@ class MapObjectsRotatedDecoderTest {
 
         decoder.zoneRotation = 3
         decoder.zone = Rectangle(0, 0, 8, 8)
-        decoder.loadObjects(reader, tiles, 0, 0)
+        decoder.decode(reader, tiles, 0, 0)
 
         val tile = Tile(4, 2, 0)
         val gameObject = objects.getShape(tile, shape)
@@ -91,7 +91,7 @@ class MapObjectsRotatedDecoderTest {
 
         decoder.zoneRotation = 0
         decoder.zone = Rectangle(8, 8, 16, 16)
-        decoder.loadObjects(reader, tiles, 64, 64)
+        decoder.decode(reader, tiles, 64, 64)
 
         val tile = Tile(82, 84, 0)
         val gameObject = objects.getShape(tile, shape)
