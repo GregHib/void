@@ -10,6 +10,8 @@ class VersionTableBuilder(
     private val indexCount: Int
 ) {
 
+    val crc = CRC()
+    val whirlpool = Whirlpool()
     private val versionTable: BufferWriter = BufferWriter(positionFor(indexCount) + MAX_RSA_SIZE)
     private var built = false
 
@@ -23,6 +25,16 @@ class VersionTableBuilder(
         versionTable.skip(TABLE_INDEX_OFFSET)
     }
 
+    fun sector(index: Int, sectorData: ByteArray) {
+        val crc = crc.get(sectorData)
+        crc(index, crc)
+        val output = ByteArray(ReadOnlyCache.WHIRLPOOL_SIZE)
+        whirlpool.reset()
+        whirlpool.add(sectorData)
+        whirlpool.finalize(output)
+        whirlpool(index, output)
+    }
+
     fun crc(index: Int, crc: Int) {
         versionTable.position(positionFor(index))
         versionTable.writeInt(crc)
@@ -33,21 +45,23 @@ class VersionTableBuilder(
         versionTable.writeInt(revision)
     }
 
+
     fun whirlpool(index: Int, whirlpool: ByteArray) {
         versionTable.position(positionFor(index) + 8)
         versionTable.writeBytes(whirlpool)
     }
-
 
     fun build(): ByteArray {
         if (built) {
             return versionTable.toArray()
         }
         built = true
-        val whirlpool = ByteArray(ReadOnlyCache.WHIRLPOOL_SIZE + 1)
-        whirlpool[0] = 1
-        CRC.generateWhirlpool(versionTable.array(), 5, whirlpool, 1, positionFor(indexCount) - 5)
-        val rsa = RSA.crypt(whirlpool, modulus, exponent)
+        val output = ByteArray(ReadOnlyCache.WHIRLPOOL_SIZE + 1)
+        output[0] = 1
+        whirlpool.reset()
+        whirlpool.add(versionTable.array(), 5, positionFor(indexCount) - 5)
+        whirlpool.finalize(output, 1)
+        val rsa = RSA.crypt(output, modulus, exponent)
         versionTable.position(positionFor(indexCount))
         versionTable.writeBytes(rsa)
         val end = versionTable.position()

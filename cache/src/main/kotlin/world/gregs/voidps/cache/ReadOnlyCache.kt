@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.compress.DecompressionContext
-import world.gregs.voidps.cache.secure.CRC
 import world.gregs.voidps.cache.secure.VersionTableBuilder
 import java.io.RandomAccessFile
 import java.math.BigInteger
@@ -98,15 +97,7 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
             versionTable?.skip(indexId)
             return -1
         }
-
-        if (versionTable != null) {
-            val crc = CRC.get(archiveSector)
-            versionTable.crc(indexId, crc)
-            val whirlpool = ByteArray(WHIRLPOOL_SIZE)
-            CRC.generateWhirlpool(source = archiveSector, target = whirlpool)
-            versionTable.whirlpool(indexId, whirlpool)
-        }
-
+        versionTable?.sector(indexId, archiveSector)
         val decompressed = context.decompress(archiveSector) ?: return -1
         val reader = BufferReader(decompressed)
         val version = reader.readUnsignedByte()
