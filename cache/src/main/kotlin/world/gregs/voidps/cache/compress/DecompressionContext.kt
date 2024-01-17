@@ -36,7 +36,7 @@ internal class DecompressionContext {
             }
             BZIP2 -> {
                 if (!warned.get()) {
-                    logger.warn { "GZIP2 Compression found - replace to improve read performance." }
+                    logger.warn { "BZIP2 Compression found - replace to improve read performance." }
                     warned.set(true)
                 }
                 val decompressed = ByteArray(decompressedSize)

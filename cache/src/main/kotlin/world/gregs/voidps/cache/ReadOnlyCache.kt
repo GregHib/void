@@ -32,15 +32,18 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
         indexRaf: RandomAccessFile,
         indexId: Int,
         archiveId: Int,
-        xteas: Map<Int, IntArray>?
+        xteas: Map<Int, IntArray>?,
+        cache: MemoryCache? = null
     ): Array<ByteArray?>? {
         val fileCounts = fileCounts[indexId] ?: return null
         val fileIds = files[indexId] ?: return null
         val fileCount = fileCounts.getOrNull(archiveId) ?: return null
         val sectorData = readSector(main, mainLength, indexRaf, indexId, archiveId) ?: return null
+        if (cache != null) {
+            cache.sectors[indexId]!![archiveId] = sectorData
+        }
         val keys = if (xteas != null && indexId == Index.MAPS) xteas[archiveId] else null
         val decompressed = context.decompress(sectorData, keys) ?: return null
-
         if (fileCount == 1) {
             val fileId = fileIds[archiveId]?.last() ?: return null
             return Array(fileId + 1) {

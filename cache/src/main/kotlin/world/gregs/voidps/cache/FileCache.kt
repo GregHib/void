@@ -12,18 +12,31 @@ import java.math.BigInteger
  */
 class FileCache(
     private val main: RandomAccessFile,
+    private val index255: RandomAccessFile,
     private val indexes: Array<RandomAccessFile?>,
     indexCount: Int,
     val xteas: Map<Int, IntArray>?
 ) : ReadOnlyCache(indexCount) {
 
     private val dataCache = object : LinkedHashMap<Int, Array<ByteArray?>>(16, 0.75f, true) {
-        override fun removeEldestEntry(eldest: MutableMap.MutableEntry<Int, Array<ByteArray?>>?): Boolean {
+        override fun removeEldestEntry(eldest: MutableMap.MutableEntry<Int, Array<ByteArray?>>): Boolean {
+            return size > 12
+        }
+    }
+    private val sectorCache = object : LinkedHashMap<Int, ByteArray?>(16, 0.75f, true) {
+        override fun removeEldestEntry(eldest: MutableMap.MutableEntry<Int, ByteArray?>): Boolean {
             return size > 12
         }
     }
     private val length = main.length()
     private val context = DecompressionContext()
+
+    override fun sector(index: Int, archive: Int): ByteArray? {
+        val indexRaf = if (index == 255) index255 else indexes[index] ?: return null
+        return sectorCache.getOrPut(index + (archive shl 6)) {
+            readSector(main, length, indexRaf, index, archive)
+        }
+    }
 
     override fun data(index: Int, archive: Int, file: Int, xtea: IntArray?): ByteArray? {
         val matchingIndex = files.getOrNull(index)?.getOrNull(archive)?.indexOf(file) ?: -1
@@ -72,7 +85,7 @@ class FileCache(
                 val file = File(path, "${CACHE_FILE_NAME}.idx$indexId")
                 if (file.exists()) RandomAccessFile(file, "r") else null
             }
-            val cache = FileCache(main, indices, indexCount, xteas)
+            val cache = FileCache(main, index255, indices, indexCount, xteas)
             for (indexId in 0 until indexCount) {
                 cache.readArchiveData(context, main, length, index255, indexId, versionTable)
             }

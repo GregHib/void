@@ -1,5 +1,7 @@
 package world.gregs.voidps.cache
 
+import java.math.BigInteger
+
 interface Cache {
 
     fun versionTable(exponent: BigInteger, modulus: BigInteger): ByteArray
@@ -7,6 +9,8 @@ interface Cache {
     fun indexCount(): Int
 
     fun indices(): IntArray
+
+    fun sector(index: Int, archive: Int): ByteArray?
 
     fun archives(index: Int): IntArray
 

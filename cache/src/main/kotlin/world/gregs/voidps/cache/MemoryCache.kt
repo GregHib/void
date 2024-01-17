@@ -16,6 +16,11 @@ import java.math.BigInteger
 class MemoryCache(indexCount: Int) : ReadOnlyCache(indexCount) {
 
     val data: Array<Array<Array<ByteArray?>?>?> = arrayOfNulls(indexCount)
+    val sectors: Array<Array<ByteArray?>?> = arrayOfNulls(indexCount)
+
+    override fun sector(index: Int, archive: Int): ByteArray? {
+        return sectors.getOrNull(index)?.getOrNull(archive)
+    }
 
     override fun data(index: Int, archive: Int, file: Int, xtea: IntArray?): ByteArray? {
         return data.getOrNull(index)?.getOrNull(archive)?.getOrNull(file)
@@ -93,6 +98,7 @@ class MemoryCache(indexCount: Int) : ReadOnlyCache(indexCount) {
                 if (highest == -1) {
                     return
                 }
+                cache.sectors[indexId] = arrayOfNulls(highest + 1)
                 cache.data[indexId] = arrayOfNulls<Array<ByteArray?>?>(highest + 1)
                 coroutineScope {
                     if (processors in 2 until highest) {
@@ -128,7 +134,8 @@ class MemoryCache(indexCount: Int) : ReadOnlyCache(indexCount) {
             val raf = RandomAccessFile(file, "r")
             val main = RandomAccessFile(mainFile, "r")
             for (archiveId in archives) {
-                val archiveFiles = cache.readFileData(context, main, mainFileLength, raf, indexId, archiveId, xteas) ?: continue
+//                cache.sectors[indexId]!![archiveId] = readSector(main, mainFileLength, raf, indexId, archiveId) ?: continue
+                val archiveFiles = cache.readFileData(context, main, mainFileLength, raf, indexId, archiveId, xteas, cache) ?: continue
                 val archiveFileIds = cache.files[indexId]?.get(archiveId) ?: continue
                 val fileId = archiveFileIds.last()
                 val fileCount = cache.fileCounts[indexId]?.getOrNull(archiveId) ?: continue
@@ -147,6 +154,9 @@ class MemoryCache(indexCount: Int) : ReadOnlyCache(indexCount) {
             var start = System.currentTimeMillis()
             val cache = load(path, null)
             println("Loaded cache in ${System.currentTimeMillis() - start}ms")
+            runBlocking {
+                delay(10_000)
+            }
         }
     }
 }

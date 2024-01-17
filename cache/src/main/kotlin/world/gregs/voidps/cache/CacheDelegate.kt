@@ -22,6 +22,14 @@ class CacheDelegate(directory: String) : Cache {
 
     override fun indices() = library.indices().map { it.id }.toIntArray()
 
+    override fun sector(index: Int, archive: Int): ByteArray? {
+        return if (index == 255) {
+            library.index255
+        } else {
+            library.index(index)
+        }?.readArchiveSector(archive)?.data
+    }
+
     override fun archives(index: Int) = library.index(index).archiveIds()
 
     override fun archiveCount(index: Int) = library.index(index).archiveIds().size

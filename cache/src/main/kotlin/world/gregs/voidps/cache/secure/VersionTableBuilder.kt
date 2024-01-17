@@ -26,7 +26,7 @@ class VersionTableBuilder(
     }
 
     fun sector(index: Int, sectorData: ByteArray) {
-        val crc = crc.get(sectorData)
+        val crc = crc.calculate(sectorData)
         crc(index, crc)
         val output = ByteArray(ReadOnlyCache.WHIRLPOOL_SIZE)
         whirlpool.reset()
