@@ -4,20 +4,26 @@ import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.compress.DecompressionContext
+import world.gregs.voidps.cache.secure.CRC
+import world.gregs.voidps.cache.secure.VersionTableBuilder
 import java.io.RandomAccessFile
+import java.math.BigInteger
 
 /**
  * [Cache] which efficiently stores information about its indexes, archives and files.
  */
-abstract class ReadOnlyCache(
-    val indices: IntArray,
-    val archives: Array<IntArray?>,
-    val fileCounts: Array<IntArray?>,
-    val files: Array<Array<IntArray?>?>,
-    private val hashes: MutableMap<Int, Int>
-) : Cache {
+abstract class ReadOnlyCache(indexCount: Int) : Cache {
+    val indices: IntArray = IntArray(indexCount) { it }
+    val archives: Array<IntArray?> = arrayOfNulls(indexCount)
+    val fileCounts: Array<IntArray?> = arrayOfNulls(indexCount)
+    val files: Array<Array<IntArray?>?> = arrayOfNulls(indexCount)
+    private val hashes: MutableMap<Int, Int> = Int2IntOpenHashMap(16384)
 
-    constructor(indexCount: Int) : this(IntArray(indexCount) { it }, arrayOfNulls(indexCount), arrayOfNulls(indexCount), arrayOfNulls(indexCount), Int2IntOpenHashMap(16384))
+    protected lateinit var versionTable: ByteArray
+
+    override fun versionTable(exponent: BigInteger, modulus: BigInteger): ByteArray {
+        return versionTable
+    }
 
     @Suppress("UNCHECKED_CAST")
     internal fun readFileData(
@@ -83,13 +89,24 @@ abstract class ReadOnlyCache(
         main: RandomAccessFile,
         length: Long,
         index255: RandomAccessFile,
-        indexId: Int
+        indexId: Int,
+        versionTable: VersionTableBuilder?
     ): Int {
         val archiveSector = readSector(main, length, index255, 255, indexId)
         if (archiveSector == null) {
             logger.trace { "Empty index $indexId." }
+            versionTable?.skip(indexId)
             return -1
         }
+
+        if (versionTable != null) {
+            val crc = CRC.get(archiveSector)
+            versionTable.crc(indexId, crc)
+            val whirlpool = ByteArray(WHIRLPOOL_SIZE)
+            CRC.generateWhirlpool(source = archiveSector, target = whirlpool)
+            versionTable.whirlpool(indexId, whirlpool)
+        }
+
         val decompressed = context.decompress(archiveSector) ?: return -1
         val reader = BufferReader(decompressed)
         val version = reader.readUnsignedByte()
@@ -97,7 +114,8 @@ abstract class ReadOnlyCache(
             throw RuntimeException("Unknown version: $version")
         }
         if (version >= 6) {
-            reader.skip(4) // revision
+            val revision = reader.readInt()
+            versionTable?.revision(indexId, revision)
         }
         val flags = reader.readByte()
         val archiveCount = reader.readSmart(version)
@@ -182,7 +200,7 @@ abstract class ReadOnlyCache(
         private const val WHIRLPOOL_FLAG = 0x2
 
         const val INDEX_SIZE = 6
-        private const val WHIRLPOOL_SIZE = 64
+        const val WHIRLPOOL_SIZE = 64
         private const val SECTOR_SIZE = 520
         private const val SECTOR_HEADER_SIZE_SMALL = 8
         private const val SECTOR_DATA_SIZE_SMALL = 512
@@ -194,7 +212,7 @@ abstract class ReadOnlyCache(
         /**
          * Reads a section of a cache's archive
          */
-        private fun readSector(mainFile: RandomAccessFile, length: Long, raf: RandomAccessFile, indexId: Int, sectorId: Int): ByteArray? {
+        internal fun readSector(mainFile: RandomAccessFile, length: Long, raf: RandomAccessFile, indexId: Int, sectorId: Int): ByteArray? {
             if (length < INDEX_SIZE * sectorId + INDEX_SIZE) {
                 return null
             }

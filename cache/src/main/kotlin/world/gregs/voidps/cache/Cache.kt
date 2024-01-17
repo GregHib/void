@@ -2,6 +2,8 @@ package world.gregs.voidps.cache
 
 interface Cache {
 
+    fun versionTable(exponent: BigInteger, modulus: BigInteger): ByteArray
+
     fun indexCount(): Int
 
     fun indices(): IntArray

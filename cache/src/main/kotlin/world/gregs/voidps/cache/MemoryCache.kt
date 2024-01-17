@@ -3,8 +3,10 @@ package world.gregs.voidps.cache
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.*
 import world.gregs.voidps.cache.compress.DecompressionContext
+import world.gregs.voidps.cache.secure.VersionTableBuilder
 import java.io.File
 import java.io.RandomAccessFile
+import java.math.BigInteger
 
 /**
  * [Cache] that holds all data in memory
@@ -22,15 +24,25 @@ class MemoryCache(indexCount: Int) : ReadOnlyCache(indexCount) {
     companion object : CacheLoader {
         private val logger = InlineLogger()
 
-        operator fun invoke(path: String, threadUsage: Double = 1.0, xteas: Map<Int, IntArray>? = null): Cache {
-            return load(path, xteas, threadUsage)
+        operator fun invoke(path: String, threadUsage: Double = 1.0, exponent: BigInteger? = null, modulus: BigInteger? = null, xteas: Map<Int, IntArray>? = null): Cache {
+            return load(path, exponent, modulus, xteas, threadUsage) as ReadOnlyCache
         }
 
         /**
          * Load each index in parallel using a percentage of cpu cores
          */
         @OptIn(DelicateCoroutinesApi::class)
-        override fun load(path: String, mainFile: File, main: RandomAccessFile, index255File: File, index255: RandomAccessFile, indexCount: Int, xteas: Map<Int, IntArray>?, threadUsage: Double): Cache {
+        override fun load(
+            path: String,
+            mainFile: File,
+            main: RandomAccessFile,
+            index255File: File,
+            index255: RandomAccessFile,
+            indexCount: Int,
+            versionTable: VersionTableBuilder?,
+            xteas: Map<Int, IntArray>?,
+            threadUsage: Double
+        ): Cache {
             val cache = MemoryCache(indexCount)
             val processors = (Runtime.getRuntime().availableProcessors() * threadUsage).toInt().coerceAtLeast(1)
             newFixedThreadPoolContext(processors, "cache-loader").use { dispatcher ->
@@ -39,12 +51,13 @@ class MemoryCache(indexCount: Int) : ReadOnlyCache(indexCount) {
                         val fileLength = mainFile.length()
                         for (indexId in 0 until indexCount) {
                             launch {
-                                loadIndex(path, indexId, mainFile, fileLength, index255File, xteas, processors, cache)
+                                loadIndex(path, indexId, mainFile, fileLength, index255File, xteas, processors, cache, versionTable)
                             }
                         }
                     }
                 }
             }
+            cache.versionTable = versionTable?.build() ?: ByteArray(0)
             return cache
         }
 
@@ -59,7 +72,8 @@ class MemoryCache(indexCount: Int) : ReadOnlyCache(indexCount) {
             index255File: File,
             xteas: Map<Int, IntArray>?,
             processors: Int,
-            cache: MemoryCache
+            cache: MemoryCache,
+            versionTable: VersionTableBuilder?
         ) {
             val file = File(path, "${FileCache.CACHE_FILE_NAME}.idx$indexId")
             if (!file.exists()) {
@@ -75,7 +89,7 @@ class MemoryCache(indexCount: Int) : ReadOnlyCache(indexCount) {
                     RandomAccessFile(index255File, "r")
                 }
                 val context = DecompressionContext()
-                val highest = cache.readArchiveData(context, main, mainFileLength, index255, indexId)
+                val highest = cache.readArchiveData(context, main, mainFileLength, index255, indexId, versionTable)
                 if (highest == -1) {
                     return
                 }

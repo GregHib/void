@@ -2,6 +2,7 @@ package world.gregs.voidps.cache
 
 import com.displee.cache.CacheLibrary
 import com.github.michaelbull.logging.InlineLogger
+import java.math.BigInteger
 
 class CacheDelegate(directory: String) : Cache {
 
@@ -11,6 +12,10 @@ class CacheDelegate(directory: String) : Cache {
         val start = System.currentTimeMillis()
         library = CacheLibrary(directory)
         logger.info { "Cache read from $directory in ${System.currentTimeMillis() - start}ms" }
+    }
+
+    override fun versionTable(exponent: BigInteger, modulus: BigInteger): ByteArray {
+        return library.generateNewUkeys(exponent, modulus)
     }
 
     override fun indexCount() = library.indices().size

@@ -1,8 +1,10 @@
 package world.gregs.voidps.cache
 
 import world.gregs.voidps.cache.compress.DecompressionContext
+import world.gregs.voidps.cache.secure.VersionTableBuilder
 import java.io.File
 import java.io.RandomAccessFile
+import java.math.BigInteger
 
 /**
  * [Cache] which reads data directly from file
@@ -46,14 +48,24 @@ class FileCache(
     companion object : CacheLoader {
         const val CACHE_FILE_NAME = "main_file_cache"
 
-        operator fun invoke(path: String, xteas: Map<Int, IntArray>? = null): Cache {
-            return load(path, xteas)
+        operator fun invoke(path: String, exponent: BigInteger? = null, modulus: BigInteger? = null, xteas: Map<Int, IntArray>? = null): Cache {
+            return load(path, exponent, modulus, xteas)
         }
 
         /**
          * Create [RandomAccessFile]'s for each index file, load only the archive data into memory
          */
-        override fun load(path: String, mainFile: File, main: RandomAccessFile, index255File: File, index255: RandomAccessFile, indexCount: Int, xteas: Map<Int, IntArray>?, threadUsage: Double): Cache {
+        override fun load(
+            path: String,
+            mainFile: File,
+            main: RandomAccessFile,
+            index255File: File,
+            index255: RandomAccessFile,
+            indexCount: Int,
+            versionTable: VersionTableBuilder?,
+            xteas: Map<Int, IntArray>?,
+            threadUsage: Double
+        ): Cache {
             val length = mainFile.length()
             val context = DecompressionContext()
             val indices = Array(indexCount) { indexId ->
@@ -62,8 +74,9 @@ class FileCache(
             }
             val cache = FileCache(main, indices, indexCount, xteas)
             for (indexId in 0 until indexCount) {
-                cache.readArchiveData(context, main, length, index255, indexId)
+                cache.readArchiveData(context, main, length, index255, indexId, versionTable)
             }
+            cache.versionTable = versionTable?.build() ?: ByteArray(0)
             return cache
         }
 

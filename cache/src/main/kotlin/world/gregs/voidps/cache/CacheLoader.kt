@@ -1,12 +1,14 @@
 package world.gregs.voidps.cache
 
+import world.gregs.voidps.cache.secure.VersionTableBuilder
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.RandomAccessFile
+import java.math.BigInteger
 
 interface CacheLoader {
 
-    fun load(path: String, xteas: Map<Int, IntArray>? = null, threadUsage: Double = 1.0): Cache {
+    fun load(path: String, exponent: BigInteger? = null, modulus: BigInteger? = null, xteas: Map<Int, IntArray>? = null, threadUsage: Double = 1.0): Cache {
         val mainFile = File(path, "${FileCache.CACHE_FILE_NAME}.dat2")
         if (!mainFile.exists()) {
             throw FileNotFoundException("Main file not found at '${mainFile.absolutePath}'.")
@@ -18,8 +20,19 @@ interface CacheLoader {
         }
         val index255 = RandomAccessFile(index255File, "r")
         val indexCount = index255.length().toInt() / ReadOnlyCache.INDEX_SIZE
-        return load(path, mainFile, main, index255File, index255, indexCount, xteas, threadUsage)
+        val versionTable = if (exponent != null && modulus != null) VersionTableBuilder(exponent, modulus, indexCount) else null
+        return load(path, mainFile, main, index255File, index255, indexCount, versionTable, xteas, threadUsage)
     }
 
-    fun load(path: String, mainFile: File, main: RandomAccessFile, index255File: File, index255: RandomAccessFile, indexCount: Int, xteas: Map<Int, IntArray>? = null, threadUsage: Double = 1.0): Cache
+    fun load(
+        path: String,
+        mainFile: File,
+        main: RandomAccessFile,
+        index255File: File,
+        index255: RandomAccessFile,
+        indexCount: Int,
+        versionTable: VersionTableBuilder? = null,
+        xteas: Map<Int, IntArray>? = null,
+        threadUsage: Double = 1.0
+    ): Cache
 }
