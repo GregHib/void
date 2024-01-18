@@ -20,7 +20,7 @@ class GameServer(
     private val loginLimit: Int,
     private val loginServer: Server,
     private val fileServer: Server
-) : Server {
+) {
 
     private lateinit var dispatcher: ExecutorCoroutineDispatcher
     private var running = false
@@ -42,27 +42,28 @@ class GameServer(
             while (running) {
                 val socket = server.accept()
                 logger.trace { "New connection accepted ${socket.remoteAddress}" }
-                val read = socket.openReadChannel()
-                socket.openReadChannel()
-                val write = socket.openWriteChannel(autoFlush = false)
-                launch(Client.context) {
-                    connect(read, write, socket.remoteAddress.toJavaAddress().hostname)
+                val hostname = socket.remoteAddress.toJavaAddress().hostname
+                if (gatekeeper.connections(hostname) >= loginLimit) {
+                    socket.writer { channel.writeByte(Response.LOGIN_LIMIT_EXCEEDED) }
+                    socket.close()
+                    continue
                 }
-            }
-        }
-    }
-
-    override suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
-        if (gatekeeper.connections(hostname) >= loginLimit) {
-            write.finish(Response.LOGIN_LIMIT_EXCEEDED)
-            return
-        }
-        when (val opcode = read.readByte().toInt()) {
-            Request.CONNECT_LOGIN -> loginServer.connect(read, write, hostname)
-            Request.CONNECT_JS5 -> fileServer.connect(read, write, hostname)
-            else -> {
-                logger.trace { "Invalid sync session id: $opcode" }
-                write.finish(Response.INVALID_LOGIN_SERVER)
+                launch(Client.context) {
+                    val read = socket.openReadChannel()
+                    val write = socket.openWriteChannel(autoFlush = false)
+                    when (val opcode = read.readByte().toInt()) {
+                        Request.CONNECT_LOGIN -> {
+                            loginServer.connect(read, write, hostname)
+                        }
+                        Request.CONNECT_JS5 -> launch {
+                            fileServer.connect(read, write, hostname)
+                        }
+                        else -> {
+                            logger.trace { "Invalid sync session id: $opcode" }
+                            write.finish(Response.INVALID_LOGIN_SERVER)
+                        }
+                    }
+                }
             }
         }
     }
