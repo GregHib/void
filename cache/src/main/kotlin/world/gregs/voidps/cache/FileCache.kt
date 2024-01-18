@@ -10,7 +10,7 @@ import java.math.BigInteger
  * [Cache] which reads data directly from file
  * Average read speeds, fast loading and low but variable memory usage.
  */
-class FileCache(
+open class FileCache(
     private val main: RandomAccessFile,
     private val index255: RandomAccessFile,
     private val indexes: Array<RandomAccessFile?>,

@@ -7,10 +7,7 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 import org.koin.fileProperties
 import org.koin.logger.slf4jLogger
-import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.FileCache
-import world.gregs.voidps.cache.Index
-import world.gregs.voidps.cache.MemoryCache
+import world.gregs.voidps.cache.*
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
@@ -44,14 +41,21 @@ object Main {
 
     lateinit var name: String
     private val logger = InlineLogger()
-    private const val USE_MEMORY_CACHE = false
+    private const val CACHE_MEM_USAGE_TYPE = 0
 
     @OptIn(ExperimentalUnsignedTypes::class)
     @JvmStatic
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
-        val module = cache((if (USE_MEMORY_CACHE) MemoryCache else FileCache).load("./data/cache/"))
+        val cache = (when (CACHE_MEM_USAGE_TYPE) {
+            2 -> MemoryCache
+            1 -> HybridCache
+            else -> FileCache
+        }).load("./data/cache/")
         logger.info { "Cache loaded in ${System.currentTimeMillis() - startTime}ms" }
+        val start = System.currentTimeMillis()
+        val module = cache(cache)
+        logger.info { "Cache modules loaded in ${System.currentTimeMillis() - start}ms" }
         preload(module)
         name = getProperty("name")
         val revision = getProperty("revision").toInt()
