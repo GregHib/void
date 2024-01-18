@@ -24,7 +24,7 @@ class FileServer(
         synchronise(read, write)
         if (acknowledge(read, write)) {
             logger.trace { "Client synchronisation complete: $hostname" }
-            readRequests(read, write)
+            readRequests(read, write, hostname)
         }
     }
 
@@ -69,7 +69,7 @@ class FileServer(
         write.flush()
     }
 
-    private suspend fun readRequests(read: ByteReadChannel, write: ByteWriteChannel) = coroutineScope {
+    private suspend fun readRequests(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) = coroutineScope {
         try {
             while (isActive) {
                 when (val opcode = read.readByte().toInt()) {
@@ -86,7 +86,7 @@ class FileServer(
                 }
             }
         } finally {
-            logger.trace { "Client disconnected: $read" }
+            logger.trace { "Client disconnected: ${hostname}." }
         }
     }
 

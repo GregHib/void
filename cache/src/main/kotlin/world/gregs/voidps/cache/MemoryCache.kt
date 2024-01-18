@@ -152,16 +152,5 @@ class MemoryCache(indexCount: Int) : ReadOnlyCache(indexCount) {
                 cache.data[indexId]!![archiveId] = archiveData
             }
         }
-
-        @JvmStatic
-        fun main(args: Array<String>) {
-            val path = "./data/cache/"
-            var start = System.currentTimeMillis()
-            val cache = load(path, null)
-            println("Loaded cache in ${System.currentTimeMillis() - start}ms")
-            runBlocking {
-                delay(10_000)
-            }
-        }
     }
 }

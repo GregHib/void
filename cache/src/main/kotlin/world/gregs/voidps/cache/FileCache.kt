@@ -10,7 +10,7 @@ import java.math.BigInteger
  * [Cache] which reads data directly from file
  * Average read speeds, fast loading and low but variable memory usage.
  */
-open class FileCache(
+class FileCache(
     private val main: RandomAccessFile,
     private val index255: RandomAccessFile,
     private val indexes: Array<RandomAccessFile?>,
@@ -91,15 +91,6 @@ open class FileCache(
             }
             cache.versionTable = versionTable?.build() ?: ByteArray(0)
             return cache
-        }
-
-        @JvmStatic
-        fun main(args: Array<String>) {
-            val path = "./data/cache/"
-
-            val start = System.currentTimeMillis()
-            val cache = load(path)
-            println("Loaded cache in ${System.currentTimeMillis() - start}ms")
         }
     }
 }

@@ -76,16 +76,5 @@ class CacheDelegate(directory: String, exponent: BigInteger? = null, modulus: Bi
 
     companion object {
         private val logger = InlineLogger()
-
-        @JvmStatic
-        fun main(args: Array<String>) {
-
-            val path = "./data/cache/"
-
-            val start = System.currentTimeMillis()
-            val cache = CacheDelegate(path)
-            println("Loaded cache in ${System.currentTimeMillis() - start}ms")
-            println(cache.sector(28, 30)?.contentToString())
-        }
     }
 }

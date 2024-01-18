@@ -6,8 +6,10 @@ import io.ktor.network.sockets.*
 import io.ktor.util.network.*
 import io.ktor.utils.io.*
 import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.ClosedReceiveChannelException
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.network.client.Client
+import java.net.SocketException
 import java.util.*
 import java.util.concurrent.Executors
 import kotlin.concurrent.thread
@@ -31,8 +33,14 @@ class GameServer(
         dispatcher = executor.asCoroutineDispatcher()
         val selector = ActorSelectorManager(dispatcher)
         val supervisor = SupervisorJob()
-        val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-            logger.error(throwable) { "Connection error" }
+        val exceptionHandler = CoroutineExceptionHandler { context, throwable ->
+            if (throwable is SocketException && throwable.message == "Connection reset") {
+                logger.trace { "Connection reset: ${context.job}" }
+            } else if (throwable is ClosedReceiveChannelException && throwable.message == "EOF while 1 bytes expected") {
+                logger.trace { "EOF disconnection: ${context.job}" }
+            } else {
+                logger.error(throwable) { "Connection error" }
+            }
         }
         val scope = CoroutineScope(coroutineContext + supervisor + exceptionHandler)
         with(scope) {
@@ -42,28 +50,26 @@ class GameServer(
             while (running) {
                 val socket = server.accept()
                 logger.trace { "New connection accepted ${socket.remoteAddress}" }
-                val hostname = socket.remoteAddress.toJavaAddress().hostname
-                if (gatekeeper.connections(hostname) >= loginLimit) {
-                    socket.writer { channel.writeByte(Response.LOGIN_LIMIT_EXCEEDED) }
-                    socket.close()
-                    continue
-                }
+                val read = socket.openReadChannel()
+                val write = socket.openWriteChannel(autoFlush = false)
                 launch(Client.context) {
-                    val read = socket.openReadChannel()
-                    val write = socket.openWriteChannel(autoFlush = false)
-                    when (val opcode = read.readByte().toInt()) {
-                        Request.CONNECT_LOGIN -> {
-                            loginServer.connect(read, write, hostname)
-                        }
-                        Request.CONNECT_JS5 -> launch {
-                            fileServer.connect(read, write, hostname)
-                        }
-                        else -> {
-                            logger.trace { "Invalid sync session id: $opcode" }
-                            write.finish(Response.INVALID_LOGIN_SERVER)
-                        }
-                    }
+                    connect(read, write, socket.remoteAddress.toJavaAddress().hostname)
                 }
+            }
+        }
+    }
+
+    suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
+        if (gatekeeper.connections(hostname) >= loginLimit) {
+            write.finish(Response.LOGIN_LIMIT_EXCEEDED)
+            return
+        }
+        when (val opcode = read.readByte().toInt()) {
+            Request.CONNECT_LOGIN -> loginServer.connect(read, write, hostname)
+            Request.CONNECT_JS5 -> fileServer.connect(read, write, hostname)
+            else -> {
+                logger.trace { "Invalid sync session id: $opcode" }
+                write.finish(Response.INVALID_LOGIN_SERVER)
             }
         }
     }
