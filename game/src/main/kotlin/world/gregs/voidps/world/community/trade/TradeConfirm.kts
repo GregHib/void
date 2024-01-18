@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
@@ -70,6 +71,8 @@ on<InterfaceOption>({ id == "trade_confirm" && component == "accept" && option =
             requester.closeMenu()
             return@request
         }
+        acceptor.message("Accepted trade.", ChatType.Trade)
+        requester.message("Accepted trade.", ChatType.Trade)
         loanItem(requester, acceptorLoan, acceptor)
         loanItem(acceptor, requesterLoan, requester)
         requester.closeMenu()
