@@ -186,7 +186,7 @@ abstract class WorldTest : KoinTest {
                 get(),
                 get(),
                 handler,
-                parallelPlayer = SequentialIterator())
+                iterator = SequentialIterator())
             engine = GameLoop(tickStages, mockk(relaxed = true))
             store.populate(World)
             World.start(true)

@@ -1,5 +1,6 @@
 package world.gregs.voidps
 
+import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.CharacterUpdateTask
@@ -27,6 +28,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.NetworkQueue
 import world.gregs.voidps.network.visual.NPCVisuals
 import world.gregs.voidps.network.visual.PlayerVisuals
@@ -42,21 +44,21 @@ import world.gregs.voidps.network.visual.encode.npc.*
 import world.gregs.voidps.network.visual.encode.player.*
 
 fun getTickStages(
-    players: Players,
-    npcs: NPCs,
-    items: FloorItems,
-    floorItems: FloorItemTracking,
-    objects: GameObjects,
-    queue: NetworkQueue,
-    factory: PlayerAccounts,
-    batches: ZoneBatchUpdates,
-    itemDefinitions: ItemDefinitions,
-    objectDefinitions: ObjectDefinitions,
-    npcDefinitions: NPCDefinitions,
-    interfaceDefinitions: InterfaceDefinitions,
-    hunting: Hunting,
-    handler: InterfaceHandler,
-    parallelPlayer: TaskIterator<Player>
+    players: Players = get(),
+    npcs: NPCs = get(),
+    items: FloorItems = get(),
+    floorItems: FloorItemTracking = get(),
+    objects: GameObjects = get(),
+    queue: NetworkQueue = get<ConnectionQueue>(),
+    factory: PlayerAccounts = get(),
+    batches: ZoneBatchUpdates = get(),
+    itemDefinitions: ItemDefinitions = get(),
+    objectDefinitions: ObjectDefinitions = get(),
+    npcDefinitions: NPCDefinitions = get(),
+    interfaceDefinitions: InterfaceDefinitions = get(),
+    hunting: Hunting = get(),
+    handler: InterfaceHandler = InterfaceHandler(get(), get(), get()),
+    iterator: TaskIterator<Player>
 ): List<Runnable> {
     val sequentialNpc: TaskIterator<NPC> = SequentialIterator()
     val sequentialPlayer: TaskIterator<Player> = SequentialIterator()
@@ -77,7 +79,7 @@ fun getTickStages(
         // Update
         batches,
         CharacterUpdateTask(
-            parallelPlayer,
+            iterator,
             players,
             PlayerUpdateTask(players, playerVisualEncoders()),
             NPCUpdateTask(npcs, npcVisualEncoders()),

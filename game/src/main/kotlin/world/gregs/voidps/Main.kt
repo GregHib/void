@@ -16,25 +16,17 @@ import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.PlayerAccountLoader
-import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.CharacterTask
 import world.gregs.voidps.engine.client.update.iterator.ParallelIterator
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
-import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.Network
-import world.gregs.voidps.network.file.FileNetwork
-import world.gregs.voidps.network.file.FileProvider
-import world.gregs.voidps.network.file.prefetchKeys
 import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.loadScripts
 import java.io.File
-import java.math.BigInteger
+import java.util.*
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -50,59 +42,26 @@ object Main {
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
         val properties = properties("/game.properties")
-        val cache = Cache.load(properties)
-        val prefetchKeys = timed("prefetch keys") { prefetchKeys(cache, properties) }
-        preload(cache)
-
         name = properties.getProperty("name")
-        val revision = getProperty("revision").toInt()
-        val limit = getProperty("loginLimit").toInt()
 
-        val players: Players = get()
-        val accounts: PlayerAccounts = get()
-        val queue: ConnectionQueue = get()
-        val gatekeeper: ConnectionGatekeeper = get()
+        val cache = Cache.load(properties)
+        preload(cache, properties)
 
-        val fileProvider: FileProvider = FileProvider.load(cache, properties)
-        val accountLoader = PlayerAccountLoader(queue, accounts, Contexts.Game)
+        val accountLoader = PlayerAccountLoader(get<ConnectionQueue>(), get(), Contexts.Game)
         val protocol = protocol(get<Huffman>())
-        val fileNetwork = FileNetwork(revision, prefetchKeys, fileProvider)
-        val gameModulus = BigInteger(properties.getProperty("rsaModulus"), 16)
-        val gamePrivate = BigInteger(properties.getProperty("rsaPrivate"), 16)
-        val server = Network(revision, gameModulus, gamePrivate, gatekeeper, accountLoader, limit, Contexts.Game, protocol, fileNetwork)
+        val server = Network.load(cache, properties, protocol, get<ConnectionGatekeeper>(), accountLoader, Contexts.Game)
 
-        val interfaceDefinitions: InterfaceDefinitions = get()
-        val npcs: NPCs = get()
-        val items: FloorItems = get()
-        val objectDefinitions: ObjectDefinitions = get()
-
-        val handler = InterfaceHandler(get(), interfaceDefinitions, get())
-        val tickStages = getTickStages(
-            players,
-            npcs,
-            items,
-            get(),
-            get(),
-            queue,
-            get(),
-            get(),
-            get(),
-            objectDefinitions,
-            get(),
-            interfaceDefinitions,
-            get(),
-            handler,
-            if (CharacterTask.DEBUG) SequentialIterator() else ParallelIterator())
+        val tickStages = getTickStages(iterator = if (CharacterTask.DEBUG) SequentialIterator() else ParallelIterator())
         val engine = GameLoop(tickStages)
-
-        World.start(getProperty("members") == "true")
+        World.start(properties)
         engine.start()
-        logger.info { "${getProperty("name")} loaded in ${System.currentTimeMillis() - startTime}ms" }
+
+        logger.info { "$name loaded in ${System.currentTimeMillis() - startTime}ms" }
         server.start(getIntProperty("port"))
     }
 
-    private fun preload(cache: Cache) {
-        val module = cache(cache)
+    private fun preload(cache: Cache, properties: Properties) {
+        val module = cache(cache, properties)
         startKoin {
             slf4jLogger(level = Level.ERROR)
             fileProperties("/game.properties")
@@ -115,11 +74,12 @@ object Main {
         loadScripts(getProperty("scriptModule"))
     }
 
-    private fun cache(cache: Cache) = module {
+    private fun cache(cache: Cache, properties: Properties) = module {
+        val members = properties.getProperty("members").toBoolean()
         single(createdAtStart = true) { MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache() }
         single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
-        single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(member = getProperty<String>("members") == "true", lowDetail = false, get<ParameterDefinitions>()).load(cache)).load() }
-        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(member = getProperty<String>("members") == "true", get<ParameterDefinitions>()).load(cache)).load() }
+        single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(members, lowDetail = false, get<ParameterDefinitions>()).load(cache)).load() }
+        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(members, get<ParameterDefinitions>()).load(cache)).load() }
         single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get<ParameterDefinitions>()).load(cache)).load() }
         single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(cache)).load() }
         single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(cache), get()).load() }

@@ -8,12 +8,16 @@ import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableSharedFlow
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.secure.RSA
 import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.network.Decoder.Companion.BYTE
 import world.gregs.voidps.network.Decoder.Companion.SHORT
 import world.gregs.voidps.network.file.FileNetwork
+import world.gregs.voidps.network.file.FileProvider
+import world.gregs.voidps.network.file.prefetchKeys
 import java.math.BigInteger
+import java.util.*
 import java.util.concurrent.Executors
 
 @ExperimentalUnsignedTypes
@@ -197,6 +201,17 @@ class Network(
     }
 
     companion object {
+
+        fun load(cache: Cache, properties: Properties, protocol: Array<Decoder?>, gatekeeper: NetworkGatekeeper, account: AccountLoader, context: CoroutineDispatcher): Network {
+            val fileProvider: FileProvider = FileProvider.load(cache, properties)
+            val gameModulus = BigInteger(properties.getProperty("gameModulus"), 16)
+            val gamePrivate = BigInteger(properties.getProperty("gamePrivate"), 16)
+            val revision = properties.getProperty("revision").toInt()
+            val limit = properties.getProperty("loginLimit").toInt()
+            val prefetchKeys = prefetchKeys(cache, properties)
+            val fileNetwork = FileNetwork(revision, prefetchKeys, fileProvider)
+            return Network(revision, gameModulus, gamePrivate, gatekeeper, account, limit, context, protocol, fileNetwork)
+        }
 
         private suspend fun ByteWriteChannel.respond(value: Int) {
             writeByte(value)
