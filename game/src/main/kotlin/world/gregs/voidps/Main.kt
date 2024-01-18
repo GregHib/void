@@ -58,7 +58,6 @@ object Main {
         val revision = getProperty("revision").toInt()
         val limit = getProperty("loginLimit").toInt()
 
-        val huffman: Huffman = get()
         val players: Players = get()
         val accounts: PlayerAccounts = get()
         val queue: ConnectionQueue = get()
@@ -66,7 +65,7 @@ object Main {
 
         val fileProvider: FileProvider = FileProvider.load(cache, properties)
         val accountLoader = PlayerAccountLoader(queue, accounts, Contexts.Game)
-        val protocol = protocol(huffman)
+        val protocol = protocol(get<Huffman>())
         val fileNetwork = FileNetwork(revision, prefetchKeys, fileProvider)
         val gameModulus = BigInteger(properties.getProperty("rsaModulus"), 16)
         val gamePrivate = BigInteger(properties.getProperty("rsaPrivate"), 16)

@@ -25,7 +25,7 @@ class Network(
     private val loader: AccountLoader,
     private val loginLimit: Int,
     private val disconnectContext: CoroutineDispatcher,
-    private val protocol: Map<Int, Decoder>,
+    private val protocol: Array<Decoder?>,
     private val fileNetwork: FileNetwork
 ) {
 
