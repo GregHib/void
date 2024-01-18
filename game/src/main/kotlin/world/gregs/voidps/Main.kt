@@ -22,8 +22,8 @@ import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
+import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
-import world.gregs.voidps.network.Network
 import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.loadScripts
 import java.io.File
@@ -53,7 +53,7 @@ object Main {
 
         val gatekeeper: ConnectionGatekeeper = get()
         val loginServer = LoginServer.load(properties, protocol, gatekeeper, accountLoader, Contexts.Game)
-        val server = Network.load(cache, properties, gatekeeper, loginServer)
+        val server = GameServer.load(cache, properties, gatekeeper, loginServer)
 
         val tickStages = getTickStages(iterator = if (CharacterTask.DEBUG) SequentialIterator() else ParallelIterator())
         val engine = GameLoop(tickStages)

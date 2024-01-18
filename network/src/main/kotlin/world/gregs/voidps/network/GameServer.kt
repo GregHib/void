@@ -12,18 +12,21 @@ import java.util.*
 import java.util.concurrent.Executors
 import kotlin.concurrent.thread
 
-class Network(
+/**
+ * A network server for client's to connect to the game with
+ */
+class GameServer(
     private val gatekeeper: NetworkGatekeeper,
     private val loginLimit: Int,
     private val loginServer: Server,
     private val fileServer: Server
-) {
+) : Server {
 
     private lateinit var dispatcher: ExecutorCoroutineDispatcher
     private var running = false
 
     fun start(port: Int) = runBlocking {
-        Runtime.getRuntime().addShutdownHook(thread(start = false) { shutdown() })
+        Runtime.getRuntime().addShutdownHook(thread(start = false) { stop() })
         val executor = Executors.newCachedThreadPool()
         dispatcher = executor.asCoroutineDispatcher()
         val selector = ActorSelectorManager(dispatcher)
@@ -40,6 +43,7 @@ class Network(
                 val socket = server.accept()
                 logger.trace { "New connection accepted ${socket.remoteAddress}" }
                 val read = socket.openReadChannel()
+                socket.openReadChannel()
                 val write = socket.openWriteChannel(autoFlush = false)
                 launch(Client.context) {
                     connect(read, write, socket.remoteAddress.toJavaAddress().hostname)
@@ -48,7 +52,7 @@ class Network(
         }
     }
 
-    suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
+    override suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
         if (gatekeeper.connections(hostname) >= loginLimit) {
             write.finish(Response.LOGIN_LIMIT_EXCEEDED)
             return
@@ -63,7 +67,7 @@ class Network(
         }
     }
 
-    fun shutdown() {
+    fun stop() {
         running = false
         dispatcher.close()
     }
@@ -71,10 +75,10 @@ class Network(
     companion object {
 
         @ExperimentalUnsignedTypes
-        fun load(cache: Cache, properties: Properties, gatekeeper: NetworkGatekeeper, loginServer: LoginServer): Network {
+        fun load(cache: Cache, properties: Properties, gatekeeper: NetworkGatekeeper, loginServer: LoginServer): GameServer {
             val limit = properties.getProperty("loginLimit").toInt()
             val fileServer = FileServer.load(cache, properties)
-            return Network(gatekeeper, limit, loginServer, fileServer)
+            return GameServer(gatekeeper, limit, loginServer, fileServer)
         }
 
         private val logger = InlineLogger()

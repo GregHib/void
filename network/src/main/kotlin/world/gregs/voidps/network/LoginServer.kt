@@ -13,6 +13,9 @@ import world.gregs.voidps.network.client.IsaacCipher
 import java.math.BigInteger
 import java.util.*
 
+/**
+ * Connects a client to their account in the game world
+ */
 @ExperimentalUnsignedTypes
 class LoginServer(
     private val protocol: Array<Decoder?>,

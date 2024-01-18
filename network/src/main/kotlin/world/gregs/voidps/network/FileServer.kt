@@ -9,6 +9,9 @@ import world.gregs.voidps.network.file.FileProvider
 import world.gregs.voidps.network.file.prefetchKeys
 import java.util.*
 
+/**
+ * Serves the client with the sector of cache files it has requested
+ */
 class FileServer(
     private val revision: Int,
     private val prefetchKeys: IntArray,

@@ -12,9 +12,9 @@ import org.junit.jupiter.api.extension.ExtendWith
 
 @ExtendWith(MockKExtension::class)
 @ExperimentalUnsignedTypes
-internal class NetworkTest {
+internal class GameServerTest {
     @MockK
-    lateinit var network: Network
+    lateinit var server: GameServer
 
     @RelaxedMockK
     lateinit var gatekeeper: NetworkGatekeeper
@@ -27,8 +27,8 @@ internal class NetworkTest {
 
     @BeforeEach
     fun setup() {
-        network = spyk(
-            Network(
+        server = spyk(
+            GameServer(
                 gatekeeper,
                 2,
                 mockk(relaxed = true),
@@ -41,7 +41,7 @@ internal class NetworkTest {
     fun `Login limit exceeded`() = runTest {
         every { gatekeeper.connections("") } returns 1000
 
-        network.connect(read, write, "")
+        server.connect(read, write, "")
 
         coVerify {
             write.writeByte(Response.LOGIN_LIMIT_EXCEEDED)
@@ -53,7 +53,7 @@ internal class NetworkTest {
     fun `Network rejected synchronisation`() = runTest {
         coEvery { read.readByte() } returns 12
 
-        network.connect(read, write, "")
+        server.connect(read, write, "")
 
         coVerify {
             write.writeByte(Response.INVALID_LOGIN_SERVER)
