@@ -23,7 +23,7 @@ class HybridCache(
 
     override fun sector(index: Int, archive: Int): ByteArray? {
         if (index == 255) {
-            return index255[archive]
+            return index255.getOrNull(archive)
         }
         return sectors.getOrNull(index)?.getOrNull(archive)
     }
