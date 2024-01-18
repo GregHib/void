@@ -4,7 +4,7 @@ import com.displee.cache.CacheLibrary
 import com.github.michaelbull.logging.InlineLogger
 import java.math.BigInteger
 
-class CacheDelegate(directory: String) : Cache {
+class CacheDelegate(directory: String, exponent: BigInteger? = null, modulus: BigInteger? = null) : Cache {
 
     private val library: CacheLibrary
 
@@ -14,8 +14,8 @@ class CacheDelegate(directory: String) : Cache {
         logger.info { "Cache read from $directory in ${System.currentTimeMillis() - start}ms" }
     }
 
-    override fun versionTable(exponent: BigInteger, modulus: BigInteger): ByteArray {
-        return library.generateNewUkeys(exponent, modulus)
+    override val versionTable: ByteArray = if (exponent == null || modulus == null) ByteArray(0) else {
+        library.generateNewUkeys(exponent, modulus)
     }
 
     override fun indexCount() = library.indices().size
@@ -76,5 +76,16 @@ class CacheDelegate(directory: String) : Cache {
 
     companion object {
         private val logger = InlineLogger()
+
+        @JvmStatic
+        fun main(args: Array<String>) {
+
+            val path = "./data/cache/"
+
+            val start = System.currentTimeMillis()
+            val cache = CacheDelegate(path)
+            println("Loaded cache in ${System.currentTimeMillis() - start}ms")
+            println(cache.sector(28, 30)?.contentToString())
+        }
     }
 }

@@ -1,10 +1,10 @@
 package world.gregs.voidps.cache
 
-import java.math.BigInteger
+import java.util.*
 
 interface Cache {
 
-    fun versionTable(exponent: BigInteger, modulus: BigInteger): ByteArray
+    val versionTable: ByteArray
 
     fun indexCount(): Int
 
