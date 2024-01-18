@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity.item
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -28,6 +29,7 @@ on<FloorItemOption>({ operate && option == "Take" }) { player: Player ->
         return@on
     }
     if (!floorItems.remove(target)) {
+        player.message("Too late - it's gone!")
         return@on
     }
     player.inventory.add(target.id, target.amount)
