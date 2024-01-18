@@ -6,6 +6,18 @@ import world.gregs.voidps.buffer.write.BufferWriter
 import kotlin.random.Random
 import kotlin.text.toByteArray
 
+suspend fun ByteReadChannel.readUByte(): Int = readByte().toInt() and 0xff
+
+suspend fun ByteReadChannel.readUShort(): Int = (readUByte() shl 8) or readUByte()
+
+suspend fun ByteReadChannel.readMedium(): Int {
+    return (readByte().toInt() shl 16) + (readByte().toInt() shl 8) + readByte().toInt()
+}
+
+suspend fun ByteReadChannel.readUMedium(): Int {
+    return (readUByte() shl 16) + (readUByte() shl 8) + readUByte()
+}
+
 suspend fun ByteWriteChannel.writeByte(value: Boolean) = writeByte(if (value) 1 else 0)
 
 suspend fun ByteWriteChannel.writeByteAdd(value: Boolean) = writeByteAdd(if (value) 1 else 0)

@@ -12,6 +12,7 @@ import world.gregs.voidps.cache.secure.RSA
 import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.network.Decoder.Companion.BYTE
 import world.gregs.voidps.network.Decoder.Companion.SHORT
+import world.gregs.voidps.network.file.FileNetwork
 import java.math.BigInteger
 import java.util.concurrent.Executors
 
@@ -24,7 +25,8 @@ class Network(
     private val loader: AccountLoader,
     private val loginLimit: Int,
     private val disconnectContext: CoroutineDispatcher,
-    private val protocol: Map<Int, Decoder>
+    private val protocol: Map<Int, Decoder>,
+    private val fileNetwork: FileNetwork
 ) {
 
     private lateinit var dispatcher: ExecutorCoroutineDispatcher
@@ -60,19 +62,19 @@ class Network(
             write.finish(Response.LOGIN_LIMIT_EXCEEDED)
             return
         }
-        synchronise(read, write)
-        login(read, write, hostname)
+        when (val opcode = read.readByte().toInt()) {
+            CONNECTION_TYPE_GAME -> {
+                write.respond(ACCEPT_SESSION)
+                login(read, write, hostname)
+            }
+            CONNECTION_TYPE_JS5 -> fileNetwork.connect(read, write, hostname)
+            else -> {
+                logger.trace { "Invalid sync session id: $opcode" }
+                write.finish(Response.LOGIN_SERVER_REJECTED_SESSION)
+            }
+        }
     }
 
-    private suspend fun synchronise(read: ByteReadChannel, write: ByteWriteChannel) {
-        val opcode = read.readByte().toInt()
-        if (opcode != SYNCHRONISE) {
-            logger.trace { "Invalid sync session id: $opcode" }
-            write.finish(Response.LOGIN_SERVER_REJECTED_SESSION)
-            return
-        }
-        write.respond(ACCEPT_SESSION)
-    }
 
     private suspend fun login(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
         val opcode = read.readByte().toInt()
@@ -89,7 +91,7 @@ class Network(
     private suspend fun checkClientVersion(read: ByteReadChannel, packet: ByteReadPacket, write: ByteWriteChannel, hostname: String) {
         val version = packet.readInt()
         if (version != revision) {
-            logger.trace { "Invalid revision: $version" }
+            logger.trace { "Invalid client revision: $version" }
             write.finish(Response.GAME_UPDATE)
             return
         }
@@ -194,9 +196,6 @@ class Network(
         dispatcher.close()
     }
 
-    private suspend fun ByteReadChannel.readUByte(): Int = readByte().toInt() and 0xff
-    private suspend fun ByteReadChannel.readUShort(): Int = (readUByte() shl 8) or readUByte()
-
     companion object {
 
         private suspend fun ByteWriteChannel.respond(value: Int) {
@@ -211,12 +210,25 @@ class Network(
 
         private val logger = InlineLogger()
 
-        private const val SYNCHRONISE = 14
-        private const val LOGIN = 16
-        private const val RECONNECT = 18
-        private const val SESSION = 10
-        private const val SIGN_UP = 28
+        const val PREFETCH_REQUEST = 0
+        const val PRIORITY_REQUEST = 1
+        const val STATUS_LOGGED_IN = 2
+        const val STATUS_LOGGED_OUT = 3
+        const val ENCRYPTION_KEY_UPDATE = 4
+        const val ACKNOWLEDGE = 6
+        const val SESSION = 10
+        const val CONNECTION_TYPE_GAME = 14
+        const val CONNECTION_TYPE_JS5 = 15
+        const val LOGIN = 16
+        const val RECONNECT = 18
+        const val SIGN_UP = 28
 
-        private const val ACCEPT_SESSION = 0
+        const val ACKNOWLEDGE_ID = 3
+
+
+        const val ACCEPT_SESSION = 0
+        const val GAME_UPDATED = 6
+        const val BAD_SESSION_ID = 10
+        const val REJECT_SESSION = 11
     }
 }

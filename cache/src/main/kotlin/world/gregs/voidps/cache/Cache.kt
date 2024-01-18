@@ -40,4 +40,12 @@ interface Cache {
 
     fun close()
 
+
+    companion object {
+        fun load(properties: Properties): Cache {
+            val memory = properties.getProperty("memoryCache").toBoolean()
+            val loader = if (memory) MemoryCache else FileCache
+            return loader.load(properties)
+        }
+    }
 }

@@ -44,7 +44,8 @@ internal class NetworkTest {
                 loader,
                 2,
                 UnconfinedTestDispatcher(),
-                protocol(mockk())
+                protocol(mockk()),
+                mockk()
             )
         )
     }

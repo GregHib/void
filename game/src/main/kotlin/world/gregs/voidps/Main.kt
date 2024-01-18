@@ -3,11 +3,11 @@ package world.gregs.voidps
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
-import org.koin.core.module.Module
 import org.koin.dsl.module
 import org.koin.fileProperties
 import org.koin.logger.slf4jLogger
-import world.gregs.voidps.cache.*
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
@@ -28,6 +28,9 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.Network
+import world.gregs.voidps.network.file.FileNetwork
+import world.gregs.voidps.network.file.FileProvider
+import world.gregs.voidps.network.file.prefetchKeys
 import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.loadScripts
 import java.io.File
@@ -41,27 +44,19 @@ object Main {
 
     lateinit var name: String
     private val logger = InlineLogger()
-    private const val CACHE_MEM_USAGE_TYPE = 0
 
     @OptIn(ExperimentalUnsignedTypes::class)
     @JvmStatic
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
-        val cache = (when (CACHE_MEM_USAGE_TYPE) {
-            2 -> MemoryCache
-            1 -> HybridCache
-            else -> FileCache
-        }).load("./data/cache/")
-        logger.info { "Cache loaded in ${System.currentTimeMillis() - startTime}ms" }
-        val start = System.currentTimeMillis()
-        val module = cache(cache)
-        logger.info { "Cache modules loaded in ${System.currentTimeMillis() - start}ms" }
-        preload(module)
-        name = getProperty("name")
+        val properties = properties("/game.properties")
+        val cache = Cache.load(properties)
+        val prefetchKeys = timed("prefetch keys") { prefetchKeys(cache, properties) }
+        preload(cache)
+
+        name = properties.getProperty("name")
         val revision = getProperty("revision").toInt()
         val limit = getProperty("loginLimit").toInt()
-        val modulus = BigInteger(getProperty("rsaModulus"), 16)
-        val private = BigInteger(getProperty("rsaPrivate"), 16)
 
         val huffman: Huffman = get()
         val players: Players = get()
@@ -69,9 +64,13 @@ object Main {
         val queue: ConnectionQueue = get()
         val gatekeeper: ConnectionGatekeeper = get()
 
+        val fileProvider: FileProvider = FileProvider.load(cache, properties)
         val accountLoader = PlayerAccountLoader(queue, accounts, Contexts.Game)
         val protocol = protocol(huffman)
-        val server = Network(revision, modulus, private, gatekeeper, accountLoader, limit, Contexts.Game, protocol)
+        val fileNetwork = FileNetwork(revision, prefetchKeys, fileProvider)
+        val gameModulus = BigInteger(properties.getProperty("rsaModulus"), 16)
+        val gamePrivate = BigInteger(properties.getProperty("rsaPrivate"), 16)
+        val server = Network(revision, gameModulus, gamePrivate, gatekeeper, accountLoader, limit, Contexts.Game, protocol, fileNetwork)
 
         val interfaceDefinitions: InterfaceDefinitions = get()
         val npcs: NPCs = get()
@@ -103,11 +102,11 @@ object Main {
         server.start(getIntProperty("port"))
     }
 
-    private fun preload(module: Module) {
+    private fun preload(cache: Cache) {
+        val module = cache(cache)
         startKoin {
             slf4jLogger(level = Level.ERROR)
             fileProperties("/game.properties")
-            fileProperties("/private.properties")
             modules(engineModule, gameModule, module)
         }
         val saves = File(getProperty("savePath"))

@@ -5,8 +5,17 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.RandomAccessFile
 import java.math.BigInteger
+import java.util.*
 
 interface CacheLoader {
+
+    fun load(properties: Properties, xteas: Map<Int, IntArray>? = null): Cache {
+        val fileModulus = BigInteger(properties.getProperty("fileModulus"), 16)
+        val filePrivate = BigInteger(properties.getProperty("filePrivate"), 16)
+        val cachePath = properties.getProperty("cachePath")
+        val threadUsage = properties.getProperty("threadUsage", "1.0").toDouble()
+        return load(cachePath, filePrivate, fileModulus, threadUsage = threadUsage)
+    }
 
     fun load(path: String, exponent: BigInteger? = null, modulus: BigInteger? = null, xteas: Map<Int, IntArray>? = null, threadUsage: Double = 1.0): Cache {
         val mainFile = File(path, "${FileCache.CACHE_FILE_NAME}.dat2")
