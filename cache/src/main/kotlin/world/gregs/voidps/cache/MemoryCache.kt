@@ -17,8 +17,12 @@ class MemoryCache(indexCount: Int) : ReadOnlyCache(indexCount) {
 
     val data: Array<Array<Array<ByteArray?>?>?> = arrayOfNulls(indexCount)
     val sectors: Array<Array<ByteArray?>?> = arrayOfNulls(indexCount)
+    val index255: Array<ByteArray?> = arrayOfNulls(indexCount)
 
     override fun sector(index: Int, archive: Int): ByteArray? {
+        if (index == 255) {
+            return index255.getOrNull(archive)
+        }
         return sectors.getOrNull(index)?.getOrNull(archive)
     }
 
@@ -94,7 +98,7 @@ class MemoryCache(indexCount: Int) : ReadOnlyCache(indexCount) {
                     RandomAccessFile(index255File, "r")
                 }
                 val context = DecompressionContext()
-                val highest = cache.readArchiveData(context, main, mainFileLength, index255, indexId, versionTable)
+                val highest = cache.archiveData(context, main, mainFileLength, index255, indexId, versionTable, cache.index255)
                 if (highest == -1) {
                     return
                 }
@@ -134,8 +138,9 @@ class MemoryCache(indexCount: Int) : ReadOnlyCache(indexCount) {
             val raf = RandomAccessFile(file, "r")
             val main = RandomAccessFile(mainFile, "r")
             for (archiveId in archives) {
-//                cache.sectors[indexId]!![archiveId] = readSector(main, mainFileLength, raf, indexId, archiveId) ?: continue
-                val archiveFiles = cache.readFileData(context, main, mainFileLength, raf, indexId, archiveId, xteas, cache) ?: continue
+                val archiveFiles = cache.fileData(
+                    context, main, mainFileLength, raf, indexId, archiveId, xteas, cache.sectors
+                ) ?: continue
                 val archiveFileIds = cache.files[indexId]?.get(archiveId) ?: continue
                 val fileId = archiveFileIds.last()
                 val fileCount = cache.fileCounts[indexId]?.getOrNull(archiveId) ?: continue

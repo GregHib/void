@@ -25,7 +25,7 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
     }
 
     @Suppress("UNCHECKED_CAST")
-    internal fun readFileData(
+    internal fun fileData(
         context: DecompressionContext,
         main: RandomAccessFile,
         mainLength: Long,
@@ -33,14 +33,14 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
         indexId: Int,
         archiveId: Int,
         xteas: Map<Int, IntArray>?,
-        cache: MemoryCache? = null
+        sectors: Array<Array<ByteArray?>?>? = null
     ): Array<ByteArray?>? {
         val fileCounts = fileCounts[indexId] ?: return null
         val fileIds = files[indexId] ?: return null
         val fileCount = fileCounts.getOrNull(archiveId) ?: return null
         val sectorData = readSector(main, mainLength, indexRaf, indexId, archiveId) ?: return null
-        if (cache != null) {
-            cache.sectors[indexId]!![archiveId] = sectorData
+        if (sectors != null) {
+            sectors[indexId]!![archiveId] = sectorData
         }
         val keys = if (xteas != null && indexId == Index.MAPS) xteas[archiveId] else null
         val decompressed = context.decompress(sectorData, keys) ?: return null
@@ -86,15 +86,19 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
         return archiveFiles as Array<ByteArray?>
     }
 
-    internal fun readArchiveData(
+    internal fun archiveData(
         context: DecompressionContext,
         main: RandomAccessFile,
         length: Long,
         index255: RandomAccessFile,
         indexId: Int,
-        versionTable: VersionTableBuilder?
+        versionTable: VersionTableBuilder?,
+        sectors: Array<ByteArray?>? = null
     ): Int {
         val archiveSector = readSector(main, length, index255, 255, indexId)
+        if (sectors != null) {
+            sectors[indexId] = archiveSector
+        }
         if (archiveSector == null) {
             logger.trace { "Empty index $indexId." }
             versionTable?.skip(indexId)
@@ -163,7 +167,7 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
 
     override fun archiveCount(index: Int) = archives.size
 
-    override fun lastArchiveId(indexId: Int) = archives.getOrNull(indexId)?.last() ?: -1
+    override fun lastArchiveId(indexId: Int) = archives.getOrNull(indexId)?.lastOrNull() ?: -1
 
     override fun archiveId(index: Int, hash: Int) = hashes[hash] ?: -1
 
@@ -171,7 +175,7 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
 
     override fun fileCount(indexId: Int, archiveId: Int) = fileCounts.getOrNull(indexId)?.getOrNull(archiveId) ?: 0
 
-    override fun lastFileId(indexId: Int, archive: Int) = files.getOrNull(indexId)?.getOrNull(archive)?.last() ?: -1
+    override fun lastFileId(indexId: Int, archive: Int) = files.getOrNull(indexId)?.getOrNull(archive)?.lastOrNull() ?: -1
 
     override fun write(index: Int, archive: Int, file: Int, data: ByteArray, xteas: IntArray?) {
         throw UnsupportedOperationException("Read only cache.")

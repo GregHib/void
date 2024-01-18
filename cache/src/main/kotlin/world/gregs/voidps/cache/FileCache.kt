@@ -46,7 +46,7 @@ class FileCache(
         val hash = index + (archive shl 6)
         val files = dataCache.getOrPut(hash) {
             val indexRaf = indexes[index] ?: return null
-            readFileData(context, main, length, indexRaf, index, archive, xteas) ?: return null
+            fileData(context, main, length, indexRaf, index, archive, xteas) ?: return null
         }
         return files[matchingIndex]
     }
@@ -87,7 +87,7 @@ class FileCache(
             }
             val cache = FileCache(main, index255, indices, indexCount, xteas)
             for (indexId in 0 until indexCount) {
-                cache.readArchiveData(context, main, length, index255, indexId, versionTable)
+                cache.archiveData(context, main, length, index255, indexId, versionTable)
             }
             cache.versionTable = versionTable?.build() ?: ByteArray(0)
             return cache
