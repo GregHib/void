@@ -6,7 +6,6 @@ import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.compress.DecompressionContext
 import world.gregs.voidps.cache.secure.VersionTableBuilder
 import java.io.RandomAccessFile
-import java.math.BigInteger
 
 /**
  * [Cache] which efficiently stores information about its indexes, archives and files.
@@ -18,11 +17,7 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
     val files: Array<Array<IntArray?>?> = arrayOfNulls(indexCount)
     private val hashes: MutableMap<Int, Int> = Int2IntOpenHashMap(16384)
 
-    protected lateinit var versionTable: ByteArray
-
-    override fun versionTable(exponent: BigInteger, modulus: BigInteger): ByteArray {
-        return versionTable
-    }
+    override lateinit var versionTable: ByteArray
 
     @Suppress("UNCHECKED_CAST")
     internal fun fileData(
