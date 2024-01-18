@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
-import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import kotlin.test.assertTrue

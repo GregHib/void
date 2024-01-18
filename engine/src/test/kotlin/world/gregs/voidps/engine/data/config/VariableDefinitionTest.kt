@@ -5,7 +5,7 @@ import io.mockk.mockkStatic
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.encode.sendVarbit
 import world.gregs.voidps.network.encode.sendVarc
 import world.gregs.voidps.network.encode.sendVarcStr

@@ -2,14 +2,15 @@ package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
 import world.gregs.voidps.network.*
-import world.gregs.voidps.network.Client.Companion.BYTE
-import world.gregs.voidps.network.Client.Companion.SHORT
-import world.gregs.voidps.network.Client.Companion.name
-import world.gregs.voidps.network.Client.Companion.string
 import world.gregs.voidps.network.Protocol.APPEND_CLAN_CHAT
 import world.gregs.voidps.network.Protocol.CLAN_CHAT
 import world.gregs.voidps.network.Protocol.CLAN_QUICK_CHAT
 import world.gregs.voidps.network.Protocol.UPDATE_CLAN_CHAT
+import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.Client.Companion.BYTE
+import world.gregs.voidps.network.client.Client.Companion.SHORT
+import world.gregs.voidps.network.client.Client.Companion.name
+import world.gregs.voidps.network.client.Client.Companion.string
 
 fun Client.clanChat(displayName: String, clan: String, rights: Int, data: ByteArray, responseName: String = displayName) {
     send(CLAN_CHAT, name(displayName, responseName) + 14 + data.size, BYTE) {

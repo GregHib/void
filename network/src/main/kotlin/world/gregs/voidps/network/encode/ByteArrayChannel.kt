@@ -1,4 +1,4 @@
-package world.gregs.voidps.network
+package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
 import io.ktor.utils.io.bits.*

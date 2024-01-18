@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
-import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.encode.Friend
 import world.gregs.voidps.network.encode.sendFriendsList
 import world.gregs.voidps.world.script.WorldTest

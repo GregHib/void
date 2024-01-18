@@ -6,6 +6,7 @@ import world.gregs.voidps.network.Protocol.CAMERA_MOVE
 import world.gregs.voidps.network.Protocol.CAMERA_RESET
 import world.gregs.voidps.network.Protocol.CAMERA_SHAKE
 import world.gregs.voidps.network.Protocol.CAMERA_TURN
+import world.gregs.voidps.network.client.Client
 
 /**
  * @param localX localX

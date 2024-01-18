@@ -32,9 +32,9 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.Timers
-import world.gregs.voidps.network.Client
-import world.gregs.voidps.network.ClientState
 import world.gregs.voidps.network.Instruction
+import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.ClientState
 import world.gregs.voidps.network.encode.login
 import world.gregs.voidps.network.encode.logout
 import world.gregs.voidps.network.visual.PlayerVisuals

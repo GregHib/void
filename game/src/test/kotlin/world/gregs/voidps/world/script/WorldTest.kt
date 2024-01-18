@@ -45,8 +45,8 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.gameModule
 import world.gregs.voidps.getTickStages
-import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.NetworkGatekeeper
+import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.script.loadScripts
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom

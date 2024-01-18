@@ -7,6 +7,7 @@ import io.ktor.util.network.*
 import io.ktor.utils.io.*
 import kotlinx.coroutines.*
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.network.client.Client
 import java.util.*
 import java.util.concurrent.Executors
 import kotlin.concurrent.thread

@@ -4,7 +4,7 @@ import io.mockk.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.encode.contextMenuOption
 
 internal class PlayerOptionsTest {
