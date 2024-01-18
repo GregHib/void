@@ -25,7 +25,7 @@ class VersionTableBuilder(
         versionTable.skip(TABLE_INDEX_OFFSET)
     }
 
-    fun sector(index: Int, sectorData: ByteArray) {
+    fun sector(index: Int, sectorData: ByteArray, whirlpool: Whirlpool = this.whirlpool) {
         val crc = crc.calculate(sectorData)
         crc(index, crc)
         val output = ByteArray(ReadOnlyCache.WHIRLPOOL_SIZE)

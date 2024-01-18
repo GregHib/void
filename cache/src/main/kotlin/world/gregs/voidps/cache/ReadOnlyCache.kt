@@ -5,6 +5,7 @@ import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.compress.DecompressionContext
 import world.gregs.voidps.cache.secure.VersionTableBuilder
+import world.gregs.voidps.cache.secure.Whirlpool
 import java.io.RandomAccessFile
 
 /**
@@ -99,7 +100,7 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
             versionTable?.skip(indexId)
             return -1
         }
-        versionTable?.sector(indexId, archiveSector)
+        versionTable?.sector(indexId, archiveSector, Whirlpool())
         val decompressed = context.decompress(archiveSector) ?: return -1
         val reader = BufferReader(decompressed)
         val version = reader.readUnsignedByte()
