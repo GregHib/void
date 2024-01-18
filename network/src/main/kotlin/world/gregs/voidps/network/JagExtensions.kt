@@ -134,6 +134,16 @@ suspend fun ByteWriteChannel.bitAccess(block: BitAccessor.() -> Unit) {
     accessor.write(this)
 }
 
+suspend fun ByteWriteChannel.respond(value: Int) {
+    writeByte(value)
+    flush()
+}
+
+suspend fun ByteWriteChannel.finish(value: Int) {
+    respond(value)
+    close()
+}
+
 fun ByteReadPacket.readString(): String {
     val sb = StringBuilder()
     var b: Int

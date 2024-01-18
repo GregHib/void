@@ -1,24 +1,23 @@
-package world.gregs.voidps.network.file
+package world.gregs.voidps.network
 
 import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.isActive
-import world.gregs.voidps.network.Network
-import world.gregs.voidps.network.Network.Companion.ACCEPT_SESSION
-import world.gregs.voidps.network.readMedium
-import world.gregs.voidps.network.readUByte
-import world.gregs.voidps.network.readUMedium
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.network.file.FileProvider
+import world.gregs.voidps.network.file.prefetchKeys
+import java.util.*
 
-class FileNetwork(
+class FileServer(
     private val revision: Int,
     private val prefetchKeys: IntArray,
     private val provider: FileProvider
-) {
+) : Server {
 
     val logger = InlineLogger()
 
-    suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
+    override suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
         synchronise(read, write)
         if (acknowledge(read, write)) {
             logger.trace { "Client synchronisation complete: $hostname" }
@@ -31,17 +30,17 @@ class FileNetwork(
      */
     private suspend fun acknowledge(read: ByteReadChannel, write: ByteWriteChannel): Boolean {
         val opcode = read.readByte().toInt()
-        if (opcode != Network.ACKNOWLEDGE) {
+        if (opcode != Request.ACKNOWLEDGE) {
             logger.trace { "Invalid ack opcode: $opcode" }
-            write.writeByte(Network.REJECT_SESSION)
+            write.writeByte(Response.LOGIN_SERVER_REJECTED_SESSION)
             write.close()
             return false
         }
 
         val id = read.readMedium()
-        if (id != Network.ACKNOWLEDGE_ID) {
-            logger.trace { "Invalid session id expected: ${Network.ACKNOWLEDGE_ID} actual: $id" }
-            write.writeByte(Network.BAD_SESSION_ID)
+        if (id != ACKNOWLEDGE_ID) {
+            logger.trace { "Invalid session id expected: $ACKNOWLEDGE_ID actual: $id" }
+            write.writeByte(Response.BAD_SESSION_ID)
             write.close()
             return false
         }
@@ -55,12 +54,12 @@ class FileNetwork(
         val revision = read.readInt()
         if (revision != this.revision) {
             logger.trace { "Invalid game revision: $revision" }
-            write.writeByte(Network.GAME_UPDATED)
+            write.writeByte(Response.GAME_UPDATE)
             write.close()
             return
         }
 
-        write.writeByte(ACCEPT_SESSION)
+        write.writeByte(Response.DATA_CHANGE)
         for (key in prefetchKeys) {
             write.writeInt(key)
         }
@@ -71,12 +70,12 @@ class FileNetwork(
         try {
             while (isActive) {
                 when (val opcode = read.readByte().toInt()) {
-                    Network.STATUS_LOGGED_OUT, Network.STATUS_LOGGED_IN -> verify(read, write, Network.PREFETCH_REQUEST)
-                    Network.PRIORITY_REQUEST, Network.PREFETCH_REQUEST -> {
+                    Request.STATUS_LOGGED_OUT, Request.STATUS_LOGGED_IN -> verify(read, write, Request.PREFETCH_REQUEST)
+                    Request.PRIORITY_REQUEST, Request.PREFETCH_REQUEST -> {
                         val value = read.readUMedium()
-                        provider.serve(write, value, opcode == Network.PREFETCH_REQUEST)
+                        provider.serve(write, value, opcode == Request.PREFETCH_REQUEST)
                     }
-                    Network.ENCRYPTION_KEY_UPDATE -> read.readUByte()
+                    Request.ENCRYPTION_KEY_UPDATE -> read.readUByte()
                     else -> {
                         logger.warn { "Unknown file-server request $opcode." }
                         write.close()
@@ -97,10 +96,21 @@ class FileNetwork(
         val id = read.readMedium()
         if (id != expected) {
             logger.trace { "Invalid session id expected: $expected actual: $id" }
-            write.writeByte(Network.BAD_SESSION_ID)
+            write.writeByte(Response.BAD_SESSION_ID)
             write.close()
             return false
         }
         return true
+    }
+
+    companion object {
+        private const val ACKNOWLEDGE_ID = 3
+
+        fun load(cache: Cache, properties: Properties): FileServer {
+            val fileProvider: FileProvider = FileProvider.load(cache, properties)
+            val revision = properties.getProperty("revision").toInt()
+            val prefetchKeys = prefetchKeys(cache, properties)
+            return FileServer(revision, prefetchKeys, fileProvider)
+        }
     }
 }
