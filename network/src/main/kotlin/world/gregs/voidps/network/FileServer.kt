@@ -109,7 +109,14 @@ class FileServer(
     companion object {
         private const val ACKNOWLEDGE_ID = 3
 
-        fun load(cache: Cache, properties: Properties): FileServer {
+        fun load(cache: Cache, properties: Properties): Server {
+            val fileServer = properties.getProperty("fileServer").toBoolean()
+            if (!fileServer) {
+                return object : Server {
+                    override suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
+                    }
+                }
+            }
             val fileProvider: FileProvider = FileProvider.load(cache, properties)
             val revision = properties.getProperty("revision").toInt()
             val prefetchKeys = prefetchKeys(cache, properties)
