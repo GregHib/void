@@ -16,12 +16,12 @@ profile:
 exclude:
   - name: Tools
     paths:
-      - ./tools/
+      - tools/
 
 projectJDK: openjdk-19 #(Applied in CI/CD pipeline)
 
 #Execute shell command before Qodana execution (Applied in CI/CD pipeline)
-#bootstrap: sh ./prepare-qodana.sh
+bootstrap: sh ./prepare-qodana.sh
 
 #Install IDE plugins before Qodana execution (Applied in CI/CD pipeline)
 #plugins:
