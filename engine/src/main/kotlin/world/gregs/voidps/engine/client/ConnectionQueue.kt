@@ -19,7 +19,7 @@ class ConnectionQueue(
         disconnect.add(block)
     }
 
-    override suspend fun await() = suspendCancellableCoroutine<Unit> {
+    override suspend fun await(): Unit = suspendCancellableCoroutine {
         waiting.add(it)
     }
 

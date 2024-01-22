@@ -35,7 +35,7 @@ class RenderAnimationDecoder : ConfigDecoder<RenderAnimationDefinition>(RENDER_A
             }
             27 -> {
                 if (anIntArrayArray3273 == null) {
-                    anIntArrayArray3273 = arrayOfNulls(defaultsSize)
+                    anIntArrayArray3273 = arrayOfNulls(DEFAULTS_SIZE)
                 }
                 val length = buffer.readUnsignedByte()
                 anIntArrayArray3273!![length] = IntArray(6)
@@ -94,14 +94,14 @@ class RenderAnimationDecoder : ConfigDecoder<RenderAnimationDefinition>(RENDER_A
             }
             55 -> {
                 if (anIntArray3255 == null) {
-                    anIntArray3255 = IntArray(defaultsSize)
+                    anIntArray3255 = IntArray(DEFAULTS_SIZE)
                 }
                 val index = buffer.readUnsignedByte()
                 anIntArray3255!![index] = buffer.readShort()
             }
             56 -> {
                 if (anIntArrayArray3249 == null) {
-                    anIntArrayArray3249 = arrayOfNulls(defaultsSize)
+                    anIntArrayArray3249 = arrayOfNulls(DEFAULTS_SIZE)
                 }
                 val length = buffer.readUnsignedByte()
                 anIntArrayArray3249!![length] = IntArray(3)
@@ -113,6 +113,6 @@ class RenderAnimationDecoder : ConfigDecoder<RenderAnimationDefinition>(RENDER_A
     }
 
     companion object {
-        const val defaultsSize = 15
+        const val DEFAULTS_SIZE = 15
     }
 }

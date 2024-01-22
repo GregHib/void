@@ -97,11 +97,7 @@ internal class BZIP2Compressor {
             anInt3083 = anInt3083 shl 8 or (i_30_ and 0xff)
             for (i_31_ in 0..15) {
                 i_29_ = method152(1)
-                if (i_29_ == 1) {
-                    aBooleanArray3072[i_31_] = true
-                } else {
-                    aBooleanArray3072[i_31_] = false
-                }
+                aBooleanArray3072[i_31_] = i_29_ == 1
             }
             for (i_32_ in 0..255) {
                 aBooleanArray3103[i_32_] = false

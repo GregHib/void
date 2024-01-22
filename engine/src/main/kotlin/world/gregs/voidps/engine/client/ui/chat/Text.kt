@@ -40,7 +40,7 @@ fun Long.toSIPrefix(): String {
 
 private val dec = DecimalFormat("#,###")
 
-fun Number.toDigitGroupString() = dec.format(this)
+fun Number.toDigitGroupString() = dec.format(this) ?: ""
 
 fun Int.toSIPrefix() = toLong().toSIPrefix()
 
