@@ -17,6 +17,7 @@ include:
   - name: network/
   - name: types/
   - name: yaml/
+  - name: CheckDependencyLicenses
 
 #Disable inspections
 exclude:
