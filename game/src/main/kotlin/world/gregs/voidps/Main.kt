@@ -45,7 +45,7 @@ object Main {
         val properties = properties("/game.properties")
         name = properties.getProperty("name")
 
-        val cache = Cache.load(properties)
+        val cache = timed("cache") { Cache.load(properties) }
         preload(cache, properties)
 
         val accountLoader = PlayerAccountLoader(get<ConnectionQueue>(), get(), Contexts.Game)

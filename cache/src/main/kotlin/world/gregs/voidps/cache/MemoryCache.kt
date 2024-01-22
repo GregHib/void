@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.*
 import world.gregs.voidps.cache.compress.DecompressionContext
 import world.gregs.voidps.cache.secure.VersionTableBuilder
+import world.gregs.voidps.cache.secure.Whirlpool
 import java.io.File
 import java.io.RandomAccessFile
 import java.math.BigInteger
@@ -103,7 +104,8 @@ class MemoryCache(indexCount: Int) : ReadOnlyCache(indexCount) {
                     RandomAccessFile(index255File, "r")
                 }
                 val context = DecompressionContext()
-                val highest = cache.archiveData(context, main, mainFileLength, index255, indexId, versionTable, cache.index255)
+                val whirlpool = Whirlpool()
+                val highest = cache.archiveData(context, main, mainFileLength, index255, indexId, versionTable, whirlpool, cache.index255)
                 if (highest == -1) {
                     return
                 }

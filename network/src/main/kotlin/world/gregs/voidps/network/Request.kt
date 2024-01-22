@@ -12,5 +12,6 @@ object Request {
     const val CONNECT_JS5 = 15
     const val LOGIN = 16
     const val RECONNECT = 18
+    const val LOBBY = 19
     const val SIGN_UP = 28
 }

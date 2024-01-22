@@ -1,6 +1,5 @@
 package world.gregs.voidps.cache.secure
 
-import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.ReadOnlyCache
 import java.math.BigInteger
 
@@ -10,22 +9,22 @@ class VersionTableBuilder(
     private val indexCount: Int
 ) {
 
-    val crc = CRC()
-    val whirlpool = Whirlpool()
-    private val versionTable: BufferWriter = BufferWriter(positionFor(indexCount) + MAX_RSA_SIZE)
+    private val crc = CRC()
+    private val versionTable = ByteArray(positionFor(indexCount) + MAX_RSA_SIZE)
     private var built = false
 
     init {
-        versionTable.position(5)
-        versionTable.writeByte(indexCount)
+        versionTable[5] = indexCount.toByte()
     }
 
     fun skip(index: Int) {
-        versionTable.position(positionFor(index))
-        versionTable.skip(TABLE_INDEX_OFFSET)
+        val pos = positionFor(index)
+        for (i in 0 until TABLE_INDEX_OFFSET) {
+            versionTable[pos + i] = 0
+        }
     }
 
-    fun sector(index: Int, sectorData: ByteArray, whirlpool: Whirlpool = this.whirlpool) {
+    fun sector(index: Int, sectorData: ByteArray, whirlpool: Whirlpool) {
         val crc = crc.calculate(sectorData)
         crc(index, crc)
         val output = ByteArray(ReadOnlyCache.WHIRLPOOL_SIZE)
@@ -36,40 +35,54 @@ class VersionTableBuilder(
     }
 
     fun crc(index: Int, crc: Int) {
-        versionTable.position(positionFor(index))
-        versionTable.writeInt(crc)
+        val pos = positionFor(index)
+        versionTable[pos] = (crc shr 24).toByte()
+        versionTable[pos + 1] = (crc shr 16).toByte()
+        versionTable[pos + 2] = (crc shr 8).toByte()
+        versionTable[pos + 3] = (crc).toByte()
     }
 
     fun revision(index: Int, revision: Int) {
-        versionTable.position(positionFor(index) + 4)
-        versionTable.writeInt(revision)
+        val pos = positionFor(index) + 4
+        versionTable[pos] = (revision shr 24).toByte()
+        versionTable[pos + 1] = (revision shr 16).toByte()
+        versionTable[pos + 2] = (revision shr 8).toByte()
+        versionTable[pos + 3] = (revision).toByte()
     }
 
 
     fun whirlpool(index: Int, whirlpool: ByteArray) {
-        versionTable.position(positionFor(index) + 8)
-        versionTable.writeBytes(whirlpool)
+        val pos = positionFor(index) + 8
+        for (i in whirlpool.indices) {
+            versionTable[pos + i] = whirlpool[i]
+        }
     }
 
-    fun build(): ByteArray {
+    fun build(whirlpool: Whirlpool = Whirlpool()): ByteArray {
         if (built) {
-            return versionTable.toArray()
+            return versionTable
         }
         built = true
         val output = ByteArray(ReadOnlyCache.WHIRLPOOL_SIZE + 1)
         output[0] = 1
         whirlpool.reset()
-        whirlpool.add(versionTable.array(), 5, positionFor(indexCount) - 5)
+        whirlpool.add(versionTable, 5, positionFor(indexCount) - 5)
         whirlpool.finalize(output, 1)
         val rsa = RSA.crypt(output, modulus, exponent)
-        versionTable.position(positionFor(indexCount))
-        versionTable.writeBytes(rsa)
-        val end = versionTable.position()
-        versionTable.position(0)
-        versionTable.writeByte(0)
-        versionTable.writeInt(end - 5)
-        versionTable.position(end)
-        return versionTable.toArray()
+        val pos = positionFor(indexCount)
+        for(i in rsa.indices) {
+            versionTable[pos + i] = rsa[i]
+        }
+        val end = pos + rsa.size
+        versionTable[0] = 0
+        val value = end - 5
+        versionTable[1] = (value shr 24).toByte()
+        versionTable[2] = (value shr 16).toByte()
+        versionTable[3] = (value shr 8).toByte()
+        versionTable[4] = (value).toByte()
+        val data = ByteArray(end)
+        System.arraycopy(versionTable, 0, data, 0, data.size)
+        return data
     }
 
     companion object {

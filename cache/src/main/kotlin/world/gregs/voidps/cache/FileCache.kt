@@ -2,6 +2,7 @@ package world.gregs.voidps.cache
 
 import world.gregs.voidps.cache.compress.DecompressionContext
 import world.gregs.voidps.cache.secure.VersionTableBuilder
+import world.gregs.voidps.cache.secure.Whirlpool
 import java.io.File
 import java.io.RandomAccessFile
 import java.math.BigInteger
@@ -85,11 +86,12 @@ class FileCache(
                 val file = File(path, "${CACHE_FILE_NAME}.idx$indexId")
                 if (file.exists()) RandomAccessFile(file, "r") else null
             }
+            val whirlpool = Whirlpool()
             val cache = FileCache(main, index255, indices, indexCount, xteas)
             for (indexId in 0 until indexCount) {
-                cache.archiveData(context, main, length, index255, indexId, versionTable)
+                cache.archiveData(context, main, length, index255, indexId, versionTable, whirlpool)
             }
-            cache.versionTable = versionTable?.build() ?: ByteArray(0)
+            cache.versionTable = versionTable?.build(whirlpool) ?: ByteArray(0)
             return cache
         }
     }

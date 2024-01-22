@@ -89,6 +89,7 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
         index255: RandomAccessFile,
         indexId: Int,
         versionTable: VersionTableBuilder?,
+        whirlpool: Whirlpool,
         sectors: Array<ByteArray?>? = null
     ): Int {
         val archiveSector = readSector(main, length, index255, 255, indexId)
@@ -100,7 +101,7 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
             versionTable?.skip(indexId)
             return -1
         }
-        versionTable?.sector(indexId, archiveSector, Whirlpool())
+        versionTable?.sector(indexId, archiveSector, whirlpool)
         val decompressed = context.decompress(archiveSector) ?: return -1
         val reader = BufferReader(decompressed)
         val version = reader.readUnsignedByte()
