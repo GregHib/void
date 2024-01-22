@@ -6,6 +6,7 @@ buildscript {
 
 plugins {
     kotlin("jvm") version "1.8.21"
+    id("org.jetbrains.kotlinx.kover") version "0.7.5"
 }
 
 allprojects {
@@ -38,6 +39,22 @@ allprojects {
             kotlinOptions.jvmTarget = JavaVersion.VERSION_19.toString()
             kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility")
         }
+        test {
+            useJUnitPlatform()
+            failFast = true
+        }
     }
 
+}
+
+kover {
+    useJacoco()
+}
+
+koverReport {
+    filters {
+        includes {
+            classes("world.gregs.voidps")
+        }
+    }
 }
