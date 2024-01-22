@@ -59,7 +59,7 @@ koverReport {
             classes("world.gregs.voidps.*")
         }
         excludes {
-            classes("world.gregs.voidps.tools.*")
+            classes("world.gregs.voidps.tools.*", "world.greg.voidps.bot.*", "world.greg.voidps.world.*")
         }
     }
 }
