@@ -20,13 +20,8 @@ jobs:
           cache: 'gradle'
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
-      - name: Run Gradle build
+      - name: Run Gradle build and run tests
         uses: gradle/gradle-build-action@v2
         with:
           gradle-version: 8.5
-          arguments: build
-      - name: Run Gradle unit tests
-        uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: 8.5
-          arguments: test
+          arguments: build test
