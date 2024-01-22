@@ -9,8 +9,14 @@ profile:
   name: qodana.recommended
 
 #Enable inspections
-#include:
-#  - name: <SomeEnabledInspectionId>
+include:
+  - name: buffer/
+  - name: cache/
+  - name: engine/
+  - name: game/
+  - name: network/
+  - name: types/
+  - name: yaml/
 
 #Disable inspections
 exclude:
