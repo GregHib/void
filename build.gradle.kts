@@ -6,14 +6,12 @@ buildscript {
 
 plugins {
     kotlin("jvm") version "1.8.21"
-    id("org.jetbrains.kotlinx.kover") version "0.7.5"
 }
 
 allprojects {
     apply(plugin = "kotlin")
     apply(plugin = "idea")
     apply(plugin = "org.jetbrains.kotlin.jvm")
-    apply(plugin = "org.jetbrains.kotlinx.kover")
 
     group = "world.gregs.void"
     version = "1.0.0"
@@ -53,19 +51,4 @@ allprojects {
             }
         }
     }
-}
-
-koverReport {
-    filters {
-        includes {
-            classes("world.gregs.voidps.*")
-        }
-        excludes {
-            classes("world.gregs.voidps.tools.*", "world.greg.voidps.bot.*", "world.greg.voidps.world.*")
-        }
-    }
-}
-
-kover {
-    useJacoco()
 }
