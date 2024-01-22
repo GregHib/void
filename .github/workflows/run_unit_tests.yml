@@ -20,6 +20,7 @@ jobs:
           cache: 'gradle'
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
+      - run: ls
       - name: Grant Permissions to gradlew
         run: chmod +x gradlew
       - name: Run Gradle build and run tests
