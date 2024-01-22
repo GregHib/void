@@ -11,7 +11,7 @@ import world.gregs.voidps.cache.definition.data.WorldMapIconDefinition
 class WorldMapIconDecoder : DefinitionDecoder<WorldMapIconDefinition>(WORLD_MAP) {
 
     private var archive = -1
-    var aBoolean1313 = false
+    private var aBoolean1313 = false
 
     override fun getArchive(id: Int) = archive
 

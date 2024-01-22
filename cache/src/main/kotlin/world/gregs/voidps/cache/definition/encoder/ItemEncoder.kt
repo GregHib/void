@@ -95,7 +95,7 @@ class ItemEncoder : DefinitionEncoder<ItemDefinitionFull> {
         val floorOptions = definition.floorOptions
         for (index in 0 until 5) {
             val option = floorOptions[index]
-            if ((index == 5 && option == "Examine") || (index == 2 && option == "Take") || option == null) {
+            if ((index == 2 && option == "Take") || option == null) {
                 continue
             }
             writeByte(30 + index)
