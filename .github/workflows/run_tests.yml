@@ -1,3 +1,4 @@
+name: JUnit Tests
 on:
   pull_request:
 permissions:
@@ -14,7 +15,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           java-version: '19'
-          distribution: 'termurin'
+          distribution: 'temurin'
           architecture: x64
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@ccb4328a959376b642e027874838f60f8e596de3
