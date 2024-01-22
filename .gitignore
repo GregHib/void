@@ -44,8 +44,6 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 /gradle/
-gradlew
-gradlew.bat
 *.lock
 /data/dump/
 /data/saves/
