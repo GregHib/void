@@ -10,18 +10,20 @@ profile:
 
 #Enable inspections
 include:
-  - name: buffer/
-  - name: cache/
-  - name: engine/
-  - name: game/
-  - name: network/
-  - name: types/
-  - name: yaml/
+  - name: All
+    paths:
+      - buffer/
+      - cache/
+      - engine/
+      - game/
+      - network/
+      - types/
+      - yaml/
   - name: CheckDependencyLicenses
 
 #Disable inspections
 exclude:
-  - name: Tools
+  - name: All
     paths:
       - tools/
 
