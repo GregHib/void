@@ -14,7 +14,6 @@ import kotlin.test.assertTrue
 
 internal class StatementTest : DialogueTest() {
 
-
     @TestFactory
     fun `Send statement lines`() = arrayOf(
         "One line" to "dialogue_message1",
@@ -41,15 +40,15 @@ internal class StatementTest : DialogueTest() {
 
     @Test
     fun `Long line wraps statement`() {
-        val text = "This is one very long statement dialogue text line which should be wrapped into at least three lines ideally more than even that."
+        val text = "This is one very long statement dialogue text paragraph which should be wrapped into at least three lines but ideally even more than three, maybe four."
         dialogue {
             statement(text = text, clickToContinue = true)
         }
         verify {
             player.open("dialogue_message3")
-            interfaces.sendText("dialogue_message3", "line1", "This is one very long statement dialogue text line which")
-            interfaces.sendText("dialogue_message3", "line2", "should be wrapped into at least three lines ideally more")
-            interfaces.sendText("dialogue_message3", "line3", "than even that.")
+            interfaces.sendText("dialogue_message3", "line1", "This is one very long statement dialogue text paragraph which should")
+            interfaces.sendText("dialogue_message3", "line2", "be wrapped into at least three lines but ideally even more than three,")
+            interfaces.sendText("dialogue_message3", "line3", "maybe four.")
         }
     }
 

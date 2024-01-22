@@ -1,10 +1,10 @@
 package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
-import world.gregs.voidps.network.Client
-import world.gregs.voidps.network.Client.Companion.string
 import world.gregs.voidps.network.Protocol.UNLOCK_IGNORES
 import world.gregs.voidps.network.Protocol.UPDATE_IGNORE
+import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.Client.Companion.string
 import world.gregs.voidps.network.writeByte
 import world.gregs.voidps.network.writeString
 

@@ -1,82 +1,36 @@
 package world.gregs.voidps.network
 
 import com.github.michaelbull.logging.InlineLogger
-import io.ktor.network.selector.*
-import io.ktor.network.sockets.*
-import io.ktor.util.network.*
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.cache.secure.RSA
 import world.gregs.voidps.cache.secure.Xtea
-import world.gregs.voidps.network.Decoder.Companion.BYTE
-import world.gregs.voidps.network.Decoder.Companion.SHORT
+import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.ClientState
+import world.gregs.voidps.network.client.IsaacCipher
 import java.math.BigInteger
-import java.util.concurrent.Executors
+import java.util.*
 
+/**
+ * Connects a client to their account in the game world
+ */
 @ExperimentalUnsignedTypes
-class Network(
+class LoginServer(
+    private val protocol: Array<Decoder?>,
     private val revision: Int,
     private val modulus: BigInteger,
     private val private: BigInteger,
     private val gatekeeper: NetworkGatekeeper,
     private val loader: AccountLoader,
-    private val loginLimit: Int,
-    private val disconnectContext: CoroutineDispatcher,
-    private val protocol: Map<Int, Decoder>
-) {
+    private val disconnectContext: CoroutineDispatcher
+) : Server {
 
-    private lateinit var dispatcher: ExecutorCoroutineDispatcher
-    private var running = false
-
-    fun start(port: Int) = runBlocking {
-        val executor = Executors.newCachedThreadPool()
-        dispatcher = executor.asCoroutineDispatcher()
-        val selector = ActorSelectorManager(dispatcher)
-        val supervisor = SupervisorJob()
-        val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-            logger.error(throwable) { "Connection error" }
-        }
-        val scope = CoroutineScope(coroutineContext + supervisor + exceptionHandler)
-        with(scope) {
-            val server = aSocket(selector).tcp().bind(port = port)
-            running = true
-            logger.info { "Listening for requests on port ${port}..." }
-            while (running) {
-                val socket = server.accept()
-                logger.trace { "New connection accepted ${socket.remoteAddress}" }
-                val read = socket.openReadChannel()
-                val write = socket.openWriteChannel(autoFlush = false)
-                launch(Client.context) {
-                    connect(read, write, socket.remoteAddress.toJavaAddress().hostname)
-                }
-            }
-        }
-    }
-
-    suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
-        if (gatekeeper.connections(hostname) >= loginLimit) {
-            write.finish(Response.LOGIN_LIMIT_EXCEEDED)
-            return
-        }
-        synchronise(read, write)
-        login(read, write, hostname)
-    }
-
-    private suspend fun synchronise(read: ByteReadChannel, write: ByteWriteChannel) {
+    override suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
+        write.respond(Response.DATA_CHANGE)
         val opcode = read.readByte().toInt()
-        if (opcode != SYNCHRONISE) {
-            logger.trace { "Invalid sync session id: $opcode" }
-            write.finish(Response.LOGIN_SERVER_REJECTED_SESSION)
-            return
-        }
-        write.respond(ACCEPT_SESSION)
-    }
-
-    private suspend fun login(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
-        val opcode = read.readByte().toInt()
-        if (opcode != LOGIN && opcode != RECONNECT) {
+        if (opcode != Request.LOGIN && opcode != Request.RECONNECT) {
             logger.trace { "Invalid request id: $opcode" }
             write.finish(Response.LOGIN_SERVER_REJECTED_SESSION)
             return
@@ -89,7 +43,7 @@ class Network(
     private suspend fun checkClientVersion(read: ByteReadChannel, packet: ByteReadPacket, write: ByteWriteChannel, hostname: String) {
         val version = packet.readInt()
         if (version != revision) {
-            logger.trace { "Invalid revision: $version" }
+            logger.trace { "Invalid client revision: $version" }
             write.finish(Response.GAME_UPDATE)
             return
         }
@@ -106,7 +60,7 @@ class Network(
 
     suspend fun validateSession(read: ByteReadChannel, rsa: ByteReadPacket, packet: ByteReadPacket, write: ByteWriteChannel, hostname: String) {
         val sessionId = rsa.readUByte().toInt()
-        if (sessionId != SESSION) {
+        if (sessionId != Request.SESSION) {
             logger.debug { "Bad session id $sessionId" }
             write.finish(Response.BAD_SESSION_ID)
             return
@@ -180,43 +134,23 @@ class Network(
                 return
             }
             val size = when (decoder.length) {
-                BYTE -> read.readUByte()
-                SHORT -> read.readUShort()
+                Decoder.BYTE -> read.readUByte()
+                Decoder.SHORT -> read.readUShort()
                 else -> decoder.length
             }
             val packet = read.readPacket(size = size)
             decoder.decode(instructions, packet)
         }
     }
-
-    fun shutdown() {
-        running = false
-        dispatcher.close()
-    }
-
-    private suspend fun ByteReadChannel.readUByte(): Int = readByte().toInt() and 0xff
-    private suspend fun ByteReadChannel.readUShort(): Int = (readUByte() shl 8) or readUByte()
-
+    
     companion object {
-
-        private suspend fun ByteWriteChannel.respond(value: Int) {
-            writeByte(value)
-            flush()
-        }
-
-        private suspend fun ByteWriteChannel.finish(value: Int) {
-            respond(value)
-            close()
-        }
-
         private val logger = InlineLogger()
 
-        private const val SYNCHRONISE = 14
-        private const val LOGIN = 16
-        private const val RECONNECT = 18
-        private const val SESSION = 10
-        private const val SIGN_UP = 28
-
-        private const val ACCEPT_SESSION = 0
+        fun load(properties: Properties, protocol: Array<Decoder?>, gatekeeper: NetworkGatekeeper, loader: AccountLoader, disconnectContext: CoroutineDispatcher): LoginServer {
+            val gameModulus = BigInteger(properties.getProperty("gameModulus"), 16)
+            val gamePrivate = BigInteger(properties.getProperty("gamePrivate"), 16)
+            val revision = properties.getProperty("revision").toInt()
+            return LoginServer(protocol, revision, gameModulus, gamePrivate, gatekeeper, loader, disconnectContext)
+        }
     }
 }

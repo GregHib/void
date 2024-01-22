@@ -9,6 +9,7 @@ import java.util.*
 
 /**
  * Parses dialogue yaml files into code to be queried
+ * https://mega.nz/file/sJsRlDzI#E5U0ObIAz9CrAD2HWmJLaALdvrQyR2oaF2gcbWe5qVE
  */
 object DialogueParsing {
 

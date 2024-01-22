@@ -1,4 +1,4 @@
-package world.gregs.voidps.network
+package world.gregs.voidps.network.client
 
 import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
@@ -6,6 +6,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
+import world.gregs.voidps.network.writeSmart
 
 open class Client(
     private val write: ByteWriteChannel,

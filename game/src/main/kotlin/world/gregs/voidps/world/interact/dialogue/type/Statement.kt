@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.dialogue.sendLines
 private const val MAXIMUM_STATEMENT_SIZE = 5
 
 suspend fun CharacterContext.statement(text: String, clickToContinue: Boolean = true) {
-    val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("q8_full").splitLines(text, 380)
+    val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("q8_full").splitLines(text, 470)
     check(lines.size <= MAXIMUM_STATEMENT_SIZE) { "Maximum statement lines exceeded ${lines.size} for $player" }
     val id = getInterfaceId(lines.size, clickToContinue)
     check(player.open(id)) { "Unable to open statement dialogue $id for $player" }

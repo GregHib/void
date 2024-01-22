@@ -1,9 +1,9 @@
 package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
-import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.Protocol.CLIENT_VARP
 import world.gregs.voidps.network.Protocol.CLIENT_VARP_LARGE
+import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.writeIntInverseMiddle
 import world.gregs.voidps.network.writeShortAdd
 

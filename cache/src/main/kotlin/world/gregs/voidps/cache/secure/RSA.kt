@@ -9,8 +9,8 @@ object RSA {
     /**
      * Encrypt/decrypts bytes with key and modulus
      */
-    fun crypt(data: ByteArray, modulus: BigInteger, key: BigInteger): ByteArray {
-        return BigInteger(data).modPow(key, modulus).toByteArray()
+    fun crypt(data: ByteArray, modulus: BigInteger, exponent: BigInteger): ByteArray {
+        return BigInteger(data).modPow(exponent, modulus).toByteArray()
     }
 
     /**

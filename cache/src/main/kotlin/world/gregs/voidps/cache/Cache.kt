@@ -1,10 +1,16 @@
 package world.gregs.voidps.cache
 
+import java.util.*
+
 interface Cache {
+
+    val versionTable: ByteArray
 
     fun indexCount(): Int
 
     fun indices(): IntArray
+
+    fun sector(index: Int, archive: Int): ByteArray?
 
     fun archives(index: Int): IntArray
 
@@ -34,4 +40,12 @@ interface Cache {
 
     fun close()
 
+
+    companion object {
+        fun load(properties: Properties): Cache {
+            val live = properties.getProperty("live").toBoolean()
+            val loader = if (live) MemoryCache else FileCache
+            return loader.load(properties)
+        }
+    }
 }

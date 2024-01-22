@@ -55,7 +55,7 @@ object CacheBuilder {
         val cache667 = OpenRS2.downloadCache(temp.resolve("cache-667/"), 1473)
         val library = CacheLibrary(path.path)
         RemoveXteas.remove(library, xteas)
-        RemoveBzip2.remove(library)
+//        RemoveBzip2.remove(library)
         MoveCameraClientScript.convert(library, cache667)
         println("Rebuilding cache.")
         library.rebuild(target)

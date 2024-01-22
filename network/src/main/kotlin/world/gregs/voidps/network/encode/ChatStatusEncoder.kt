@@ -1,9 +1,9 @@
 package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
-import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.Protocol.PRIVATE_STATUS
 import world.gregs.voidps.network.Protocol.PUBLIC_STATUS
+import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.writeByteAdd
 import world.gregs.voidps.network.writeByteSubtract
 

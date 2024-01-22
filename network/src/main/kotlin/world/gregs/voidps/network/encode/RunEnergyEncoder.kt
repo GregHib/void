@@ -1,8 +1,8 @@
 package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
-import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.Protocol.RUN_ENERGY
+import world.gregs.voidps.network.client.Client
 
 /**
  * Sends run energy

@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Tile
+import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
 const val MAX_PLAYERS = 0x800 // 2048
@@ -20,13 +21,25 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
 
     override val variables = Variables(events)
 
-    const val id = 16
-    const val name = "World $id"
+    var id = 0
+        private set(value) {
+            field = value
+            name = "World $value"
+        }
+    var name: String = "World"
+        private set
     var members: Boolean = false
         private set
 
-    fun start(members: Boolean) {
+    fun start(properties: Properties) {
+        val members = properties.getProperty("members").toBoolean()
+        val id = properties.getProperty("world").toInt()
+        start(members, id)
+    }
+
+    fun start(members: Boolean = true, id: Int = 16) {
         this.members = members
+        this.id = id
         val store: EventHandlerStore = get()
         store.populate(World)
         events.emit(Registered)

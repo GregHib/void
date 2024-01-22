@@ -8,7 +8,7 @@ import org.koin.test.mock.declare
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.client.Client
 
 abstract class InterfaceTest : KoinMock() {
 

@@ -12,14 +12,15 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import world.gregs.voidps.network.client.Client
 import java.math.BigInteger
 
 @ExtendWith(MockKExtension::class)
 @OptIn(ExperimentalCoroutinesApi::class)
 @ExperimentalUnsignedTypes
-internal class NetworkTest {
+internal class LoginServerTest {
     @MockK
-    lateinit var network: Network
+    lateinit var network: LoginServer
 
     @RelaxedMockK
     lateinit var gatekeeper: NetworkGatekeeper
@@ -36,29 +37,16 @@ internal class NetworkTest {
     @BeforeEach
     fun setup() {
         network = spyk(
-            Network(
+            LoginServer(
+                protocol(mockk()),
                 123,
                 BigInteger.ONE,
                 BigInteger.valueOf(2),
                 gatekeeper,
                 loader,
-                2,
-                UnconfinedTestDispatcher(),
-                protocol(mockk())
+                UnconfinedTestDispatcher()
             )
         )
-    }
-
-    @Test
-    fun `Login limit exceeded`() = runTest {
-        every { gatekeeper.connections("") } returns 1000
-
-        network.connect(read, write, "")
-
-        coVerify {
-            write.writeByte(Response.LOGIN_LIMIT_EXCEEDED)
-            write.close()
-        }
     }
 
     @Test
@@ -92,11 +80,7 @@ internal class NetworkTest {
 
     @Test
     fun `Game update`() = runTest {
-        var index = 0
-        val array = arrayOf(14, 16)
-        coEvery { read.readByte() } answers {
-            array[index++].toByte()
-        }
+        coEvery { read.readByte() } returns 16
         coEvery { read.readShort() } returns 4
         coEvery { read.readPacket(4) } returns ByteReadPacket(byteArrayOf(0, 0, 2, 123))
 

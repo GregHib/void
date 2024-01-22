@@ -18,9 +18,6 @@ object RemoveBzip2 {
                 indices++
             }
             for (archive in index.archives()) {
-                for (file in archive.files) {
-                    lib.data(index.id, archive.id, file.key)
-                }
                 if (archive.compressionType == CompressionType.BZIP2) {
                     archive.compressionType = CompressionType.GZIP
                     archive.flag()

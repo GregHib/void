@@ -1,7 +1,7 @@
 package world.gregs.voidps.network.encode
 
-import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.Protocol.SKILL_LEVEL
+import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.writeByteInverse
 import world.gregs.voidps.network.writeByteSubtract
 import world.gregs.voidps.network.writeIntMiddle

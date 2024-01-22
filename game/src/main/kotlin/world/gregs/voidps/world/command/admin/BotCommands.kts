@@ -28,7 +28,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.network.DummyClient
+import world.gregs.voidps.network.client.DummyClient
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.type.area.Rectangle

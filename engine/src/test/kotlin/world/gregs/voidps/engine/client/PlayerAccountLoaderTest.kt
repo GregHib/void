@@ -16,9 +16,9 @@ import org.junit.jupiter.api.extension.ExtendWith
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.NetworkQueue
 import world.gregs.voidps.network.Response
+import world.gregs.voidps.network.client.Client
 
 @ExtendWith(MockKExtension::class)
 @OptIn(ExperimentalCoroutinesApi::class)

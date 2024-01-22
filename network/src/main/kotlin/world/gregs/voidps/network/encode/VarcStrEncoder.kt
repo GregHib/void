@@ -1,11 +1,11 @@
 package world.gregs.voidps.network.encode
 
-import world.gregs.voidps.network.Client
-import world.gregs.voidps.network.Client.Companion.BYTE
-import world.gregs.voidps.network.Client.Companion.SHORT
-import world.gregs.voidps.network.Client.Companion.string
 import world.gregs.voidps.network.Protocol.CLIENT_VARC_STR
 import world.gregs.voidps.network.Protocol.CLIENT_VARC_STR_LARGE
+import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.Client.Companion.BYTE
+import world.gregs.voidps.network.client.Client.Companion.SHORT
+import world.gregs.voidps.network.client.Client.Companion.string
 import world.gregs.voidps.network.writeShortAdd
 import world.gregs.voidps.network.writeShortAddLittle
 import world.gregs.voidps.network.writeString

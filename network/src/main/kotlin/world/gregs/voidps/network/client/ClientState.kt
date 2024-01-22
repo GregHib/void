@@ -1,4 +1,4 @@
-package world.gregs.voidps.network
+package world.gregs.voidps.network.client
 
 sealed class ClientState {
     object Connected : ClientState()

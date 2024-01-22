@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.client.Client
 
 internal class VariablesTest {
 

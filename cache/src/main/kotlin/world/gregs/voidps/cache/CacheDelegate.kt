@@ -2,20 +2,27 @@ package world.gregs.voidps.cache
 
 import com.displee.cache.CacheLibrary
 import com.github.michaelbull.logging.InlineLogger
+import java.math.BigInteger
 
-class CacheDelegate(directory: String) : Cache {
+class CacheDelegate(private val library: CacheLibrary, exponent: BigInteger? = null, modulus: BigInteger? = null) : Cache {
 
-    private val library: CacheLibrary
+    constructor(directory: String, exponent: BigInteger? = null, modulus: BigInteger? = null) : this(timed(directory), exponent, modulus)
 
-    init {
-        val start = System.currentTimeMillis()
-        library = CacheLibrary(directory)
-        logger.info { "Cache read from $directory in ${System.currentTimeMillis() - start}ms" }
+    override val versionTable: ByteArray = if (exponent == null || modulus == null) ByteArray(0) else {
+        library.generateNewUkeys(exponent, modulus)
     }
 
     override fun indexCount() = library.indices().size
 
     override fun indices() = library.indices().map { it.id }.toIntArray()
+
+    override fun sector(index: Int, archive: Int): ByteArray? {
+        return if (index == 255) {
+            library.index255
+        } else {
+            library.index(index)
+        }?.readArchiveSector(archive)?.data
+    }
 
     override fun archives(index: Int) = library.index(index).archiveIds()
 
@@ -63,5 +70,12 @@ class CacheDelegate(directory: String) : Cache {
 
     companion object {
         private val logger = InlineLogger()
+
+        private fun timed(directory: String): CacheLibrary {
+            val start = System.currentTimeMillis()
+            val library = CacheLibrary(directory)
+            logger.info { "Cache read from $directory in ${System.currentTimeMillis() - start}ms" }
+            return library
+        }
     }
 }

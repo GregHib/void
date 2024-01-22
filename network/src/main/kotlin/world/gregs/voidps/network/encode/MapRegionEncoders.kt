@@ -2,9 +2,10 @@ package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
 import world.gregs.voidps.network.*
-import world.gregs.voidps.network.Client.Companion.SHORT
-import world.gregs.voidps.network.Client.Companion.bits
 import world.gregs.voidps.network.Protocol.REGION
+import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.Client.Companion.SHORT
+import world.gregs.voidps.network.client.Client.Companion.bits
 
 fun Client.mapRegion(
     zoneX: Int,

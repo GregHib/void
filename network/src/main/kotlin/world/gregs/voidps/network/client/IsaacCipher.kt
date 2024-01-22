@@ -1,4 +1,4 @@
-package world.gregs.voidps.network
+package world.gregs.voidps.network.client
 
 /**
  * An implementation of an ISAAC cipher. See

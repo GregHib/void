@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.encode.clearZone
 import world.gregs.voidps.network.encode.send
 import world.gregs.voidps.network.encode.sendBatch

@@ -1,9 +1,13 @@
 package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
-import world.gregs.voidps.network.*
-import world.gregs.voidps.network.Client.Companion.SHORT
 import world.gregs.voidps.network.Protocol.INTERFACE_ITEMS
+import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.Client.Companion.SHORT
+import world.gregs.voidps.network.writeByte
+import world.gregs.voidps.network.writeByteAdd
+import world.gregs.voidps.network.writeIntMiddle
+import world.gregs.voidps.network.writeShortAdd
 
 /**
  * Sends a list of items to display on an interface item group component

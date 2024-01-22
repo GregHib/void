@@ -2,16 +2,17 @@ package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
 import world.gregs.voidps.network.*
-import world.gregs.voidps.network.Client.Companion.BYTE
-import world.gregs.voidps.network.Client.Companion.name
-import world.gregs.voidps.network.Client.Companion.smart
-import world.gregs.voidps.network.Client.Companion.string
 import world.gregs.voidps.network.Protocol.GAME_MESSAGE
 import world.gregs.voidps.network.Protocol.PRIVATE_CHAT_FROM
 import world.gregs.voidps.network.Protocol.PRIVATE_CHAT_TO
 import world.gregs.voidps.network.Protocol.PRIVATE_QUICK_CHAT_FROM
 import world.gregs.voidps.network.Protocol.PRIVATE_QUICK_CHAT_TO
 import world.gregs.voidps.network.Protocol.PUBLIC_CHAT
+import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.Client.Companion.BYTE
+import world.gregs.voidps.network.client.Client.Companion.name
+import world.gregs.voidps.network.client.Client.Companion.smart
+import world.gregs.voidps.network.client.Client.Companion.string
 
 /**
  * A chat box message to display
@@ -67,7 +68,7 @@ fun Client.publicChat(index: Int, effects: Int, rights: Int, message: ByteArray)
     }
 }
 
-fun Client.publicQuickChat(index: Int,  effects: Int, rights: Int, file: Int, data: ByteArray) {
+fun Client.publicQuickChat(index: Int, effects: Int, rights: Int, file: Int, data: ByteArray) {
     send(PUBLIC_CHAT, data.size + 7, BYTE) {
         writeShort(index)
         writeShort(effects)

@@ -4,38 +4,42 @@ import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.compress.DecompressionContext
+import world.gregs.voidps.cache.secure.VersionTableBuilder
+import world.gregs.voidps.cache.secure.Whirlpool
 import java.io.RandomAccessFile
 
 /**
  * [Cache] which efficiently stores information about its indexes, archives and files.
  */
-abstract class ReadOnlyCache(
-    val indices: IntArray,
-    val archives: Array<IntArray?>,
-    val fileCounts: Array<IntArray?>,
-    val files: Array<Array<IntArray?>?>,
-    private val hashes: MutableMap<Int, Int>
-) : Cache {
+abstract class ReadOnlyCache(indexCount: Int) : Cache {
+    val indices: IntArray = IntArray(indexCount) { it }
+    val archives: Array<IntArray?> = arrayOfNulls(indexCount)
+    val fileCounts: Array<IntArray?> = arrayOfNulls(indexCount)
+    val files: Array<Array<IntArray?>?> = arrayOfNulls(indexCount)
+    private val hashes: MutableMap<Int, Int> = Int2IntOpenHashMap(16384)
 
-    constructor(indexCount: Int) : this(IntArray(indexCount) { it }, arrayOfNulls(indexCount), arrayOfNulls(indexCount), arrayOfNulls(indexCount), Int2IntOpenHashMap(16384))
+    override lateinit var versionTable: ByteArray
 
     @Suppress("UNCHECKED_CAST")
-    internal fun readFileData(
+    internal fun fileData(
         context: DecompressionContext,
         main: RandomAccessFile,
         mainLength: Long,
         indexRaf: RandomAccessFile,
         indexId: Int,
         archiveId: Int,
-        xteas: Map<Int, IntArray>?
+        xteas: Map<Int, IntArray>?,
+        sectors: Array<Array<ByteArray?>?>? = null
     ): Array<ByteArray?>? {
         val fileCounts = fileCounts[indexId] ?: return null
         val fileIds = files[indexId] ?: return null
         val fileCount = fileCounts.getOrNull(archiveId) ?: return null
         val sectorData = readSector(main, mainLength, indexRaf, indexId, archiveId) ?: return null
+        if (sectors != null) {
+            sectors[indexId]!![archiveId] = sectorData
+        }
         val keys = if (xteas != null && indexId == Index.MAPS) xteas[archiveId] else null
         val decompressed = context.decompress(sectorData, keys) ?: return null
-
         if (fileCount == 1) {
             val fileId = fileIds[archiveId]?.last() ?: return null
             return Array(fileId + 1) {
@@ -78,18 +82,26 @@ abstract class ReadOnlyCache(
         return archiveFiles as Array<ByteArray?>
     }
 
-    internal fun readArchiveData(
+    internal fun archiveData(
         context: DecompressionContext,
         main: RandomAccessFile,
         length: Long,
         index255: RandomAccessFile,
-        indexId: Int
+        indexId: Int,
+        versionTable: VersionTableBuilder?,
+        whirlpool: Whirlpool,
+        sectors: Array<ByteArray?>? = null
     ): Int {
         val archiveSector = readSector(main, length, index255, 255, indexId)
+        if (sectors != null) {
+            sectors[indexId] = archiveSector
+        }
         if (archiveSector == null) {
             logger.trace { "Empty index $indexId." }
+            versionTable?.skip(indexId)
             return -1
         }
+        versionTable?.sector(indexId, archiveSector, whirlpool)
         val decompressed = context.decompress(archiveSector) ?: return -1
         val reader = BufferReader(decompressed)
         val version = reader.readUnsignedByte()
@@ -97,7 +109,8 @@ abstract class ReadOnlyCache(
             throw RuntimeException("Unknown version: $version")
         }
         if (version >= 6) {
-            reader.skip(4) // revision
+            val revision = reader.readInt()
+            versionTable?.revision(indexId, revision)
         }
         val flags = reader.readByte()
         val archiveCount = reader.readSmart(version)
@@ -151,7 +164,7 @@ abstract class ReadOnlyCache(
 
     override fun archiveCount(index: Int) = archives.size
 
-    override fun lastArchiveId(indexId: Int) = archives.getOrNull(indexId)?.last() ?: -1
+    override fun lastArchiveId(indexId: Int) = archives.getOrNull(indexId)?.lastOrNull() ?: -1
 
     override fun archiveId(index: Int, hash: Int) = hashes[hash] ?: -1
 
@@ -159,7 +172,7 @@ abstract class ReadOnlyCache(
 
     override fun fileCount(indexId: Int, archiveId: Int) = fileCounts.getOrNull(indexId)?.getOrNull(archiveId) ?: 0
 
-    override fun lastFileId(indexId: Int, archive: Int) = files.getOrNull(indexId)?.getOrNull(archive)?.last() ?: -1
+    override fun lastFileId(indexId: Int, archive: Int) = files.getOrNull(indexId)?.getOrNull(archive)?.lastOrNull() ?: -1
 
     override fun write(index: Int, archive: Int, file: Int, data: ByteArray, xteas: IntArray?) {
         throw UnsupportedOperationException("Read only cache.")
@@ -182,7 +195,7 @@ abstract class ReadOnlyCache(
         private const val WHIRLPOOL_FLAG = 0x2
 
         const val INDEX_SIZE = 6
-        private const val WHIRLPOOL_SIZE = 64
+        const val WHIRLPOOL_SIZE = 64
         private const val SECTOR_SIZE = 520
         private const val SECTOR_HEADER_SIZE_SMALL = 8
         private const val SECTOR_DATA_SIZE_SMALL = 512
@@ -194,7 +207,7 @@ abstract class ReadOnlyCache(
         /**
          * Reads a section of a cache's archive
          */
-        private fun readSector(mainFile: RandomAccessFile, length: Long, raf: RandomAccessFile, indexId: Int, sectorId: Int): ByteArray? {
+        internal fun readSector(mainFile: RandomAccessFile, length: Long, raf: RandomAccessFile, indexId: Int, sectorId: Int): ByteArray? {
             if (length < INDEX_SIZE * sectorId + INDEX_SIZE) {
                 return null
             }
