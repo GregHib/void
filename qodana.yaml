@@ -9,23 +9,23 @@ profile:
   name: qodana.recommended
 
 #Enable inspections
-include:
-  - name: All
-    paths:
-      - buffer/
-      - cache/
-      - engine/
-      - game/
-      - network/
-      - types/
-      - yaml/
-  - name: CheckDependencyLicenses
+#include:
+#  - name: All
+#    paths:
+#      - buffer/
+#      - cache/
+#      - engine/
+#      - game/
+#      - network/
+#      - types/
+#      - yaml/
+#  - name: CheckDependencyLicenses
 
 #Disable inspections
-exclude:
-  - name: All
-    paths:
-      - tools/
+#exclude:
+#  - name: All
+#    paths:
+#      - tools/
 
 projectJDK: 19 #(Applied in CI/CD pipeline)
 
