@@ -80,33 +80,33 @@ class OverlayDecoder : ConfigDecoder<OverlayDefinition>(FLOOR_OVERLAY) {
                 }
             }
             h /= 6.0
-            val i_15_ = (h * 256.0).toInt()
-            var i_16_ = (256.0 * s).toInt()
-            var i_17_ = (l * 256.0).toInt()
-            if (i_16_ < 0) {
-                i_16_ = 0
-            } else if (i_16_ > 255) {
-                i_16_ = 255
+            val h2 = (256.0 * h).toInt()
+            var s2 = (256.0 * s).toInt()
+            var l2 = (256.0 * l).toInt()
+            if (s2 < 0) {
+                s2 = 0
+            } else if (s2 > 255) {
+                s2 = 255
             }
-            if (i_17_ >= 0) {
-                if (i_17_ > 255) {
-                    i_17_ = 255
+            if (l2 >= 0) {
+                if (l2 > 255) {
+                    l2 = 255
                 }
             } else {
-                i_17_ = 0
+                l2 = 0
             }
             //Shift hsl
-            i_16_ = if (i_17_ <= 243) {
+            s2 = if (l2 <= 243) {
                 when {
-                    i_17_ > 217 -> i_16_ shr 3
-                    i_17_ > 192 -> i_16_ shr 2
-                    i_17_ > 179 -> i_16_ shr 1
-                    else -> i_16_
+                    l2 > 217 -> s2 shr 3
+                    l2 > 192 -> s2 shr 2
+                    l2 > 179 -> s2 shr 1
+                    else -> s2
                 }
             } else {
-                i_16_ shr 4
+                s2 shr 4
             }
-            return (i_17_ shr 1) + ((i_16_ shr 5 shl 7) + (i_15_ and 0xff shr 2 shl 10))
+            return (l2 shr 1) + ((s2 shr 5 shl 7) + (h2 and 0xff shr 2 shl 10))
         }
     }
 }

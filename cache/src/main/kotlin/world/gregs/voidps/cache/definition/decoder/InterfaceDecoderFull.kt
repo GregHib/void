@@ -64,8 +64,8 @@ class InterfaceDecoderFull : DefinitionDecoder<InterfaceDefinitionFull>(INTERFAC
         if (parent == 65535) {
             parent = -1
         }
-        val i_17_ = buffer.readUnsignedByte()
-        hidden = 0x1 and i_17_ != 0
+        val flag = buffer.readUnsignedByte()
+        hidden = 0x1 and flag != 0
         if (type == 0) {
             scrollWidth = buffer.readShort()
             scrollHeight = buffer.readShort()
@@ -89,9 +89,9 @@ class InterfaceDecoderFull : DefinitionDecoder<InterfaceDefinitionFull>(INTERFAC
         } else if (type == 5) {
             defaultImage = buffer.readInt()
             imageRotation = buffer.readShort()
-            val i_18_ = buffer.readUnsignedByte()
-            aBoolean4861 = i_18_ and 0x1 != 0
-            imageRepeat = i_18_ and 0x2 != 0
+            val type = buffer.readUnsignedByte()
+            aBoolean4861 = type and 0x1 != 0
+            imageRepeat = type and 0x2 != 0
             alpha = buffer.readUnsignedByte()
             rotation = buffer.readUnsignedByte()
             backgroundColour = buffer.readInt()
@@ -104,11 +104,11 @@ class InterfaceDecoderFull : DefinitionDecoder<InterfaceDefinitionFull>(INTERFAC
             if (defaultMediaId == 65535) {
                 defaultMediaId = -1
             }
-            val i_19_ = buffer.readUnsignedByte()
-            animated = 0x4 and i_19_ == 4
-            val bool = 0x1 and i_19_ == 1
-            centreType = i_19_ and 0x2 == 2
-            ignoreZBuffer = 0x8 and i_19_ == 8
+            val modelFlag = buffer.readUnsignedByte()
+            animated = 0x4 and modelFlag == 4
+            val bool = 0x1 and modelFlag == 1
+            centreType = modelFlag and 0x2 == 2
+            ignoreZBuffer = 0x8 and modelFlag == 8
             if (bool) {
                 viewportX = buffer.readUnsignedShort()
                 viewportY = buffer.readUnsignedShort()
@@ -141,44 +141,40 @@ class InterfaceDecoderFull : DefinitionDecoder<InterfaceDefinitionFull>(INTERFAC
             lineMirrored = buffer.readUnsignedByte() == 1
         }
         val setting = buffer.readUnsignedMedium()
-        var i_21_ = buffer.readUnsignedByte()
-        if (i_21_ != 0) {
+        var mod = buffer.readUnsignedByte()
+        if (mod != 0) {
             keyRepeats = ByteArray(11)
             keyCodes = ByteArray(11)
             keyModifiers = IntArray(11)
-            while (i_21_ != 0) {
-                val i_22_ = (i_21_ shr 4) - 1
-                i_21_ = buffer.readUnsignedByte() or i_21_ shl 8
-                i_21_ = i_21_ and 0xfff
-                if (i_21_ == 4095) {
-                    i_21_ = -1
-                }
-                val b_23_ = buffer.readByte().toByte()
-                if (b_23_.toInt() != 0) {
+            while (mod != 0) {
+                val index = (mod shr 4) - 1
+                mod = buffer.readUnsignedByte() or mod shl 8
+                mod = mod and 0xfff
+                val repeat = buffer.readByte().toByte()
+                if (repeat.toInt() != 0) {
                     clickable = true
                 }
-                val b_24_ = buffer.readByte().toByte()
-                keyModifiers!![i_22_] = i_21_
-                keyRepeats!![i_22_] = b_23_
-                keyCodes!![i_22_] = b_24_
-                i_21_ = buffer.readUnsignedByte()
+                val code = buffer.readByte().toByte()
+                keyModifiers!![index] = mod
+                keyRepeats!![index] = repeat
+                keyCodes!![index] = code
+                mod = buffer.readUnsignedByte()
             }
         }
         name = buffer.readString()
-        val i_25_ = buffer.readUnsignedByte()
-        val optionCount = i_25_ and 0xf
+        val mouseFlag = buffer.readUnsignedByte()
+        val optionCount = mouseFlag and 0xf
         if (optionCount > 0) {
             options = Array(optionCount) { buffer.readString() }
         }
-        val iconCount = i_25_ shr 4
+        val iconCount = mouseFlag shr 4
         if (iconCount > 0) {
-            val i_29_ = buffer.readUnsignedByte()
-            mouseIcon = IntArray(i_29_ + 1) { if (i_29_ + 1 > it) -1 else 0 }
-            mouseIcon!![i_29_] = buffer.readShort()
+            val size = buffer.readUnsignedByte()
+            mouseIcon = IntArray(size + 1) { if (size + 1 > it) -1 else 0 }
+            mouseIcon!![size] = buffer.readShort()
         }
         if (iconCount > 1) {
-            val i_31_ = buffer.readUnsignedByte()
-            mouseIcon!![i_31_] = buffer.readShort()
+            mouseIcon!![buffer.readUnsignedByte()] = buffer.readShort()
         }
         optionOverride = buffer.readString()
         if (optionOverride == "") {
@@ -188,11 +184,11 @@ class InterfaceDecoderFull : DefinitionDecoder<InterfaceDefinitionFull>(INTERFAC
         anInt4795 = buffer.readUnsignedByte()
         anInt4860 = buffer.readUnsignedByte()
         useOption = buffer.readString()
-        var i_32_ = -1
+        var settingData = -1
         if (setting and 0x3fda8 shr 11 != 0) {
-            i_32_ = buffer.readShort()
-            if (i_32_ == 65535) {
-                i_32_ = -1
+            settingData = buffer.readShort()
+            if (settingData == 65535) {
+                settingData = -1
             }
             anInt4698 = buffer.readShort()
             if (anInt4698 == 65535) {
@@ -203,7 +199,7 @@ class InterfaceDecoderFull : DefinitionDecoder<InterfaceDefinitionFull>(INTERFAC
                 anInt4839 = -1
             }
         }
-        this.setting = InterfaceComponentSetting(setting, i_32_)
+        this.setting = InterfaceComponentSetting(setting, settingData)
         anObjectArray4758 = decodeScript(buffer)
         mouseEnterHandler = decodeScript(buffer)
         mouseExitHandler = decodeScript(buffer)
