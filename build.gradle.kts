@@ -13,6 +13,7 @@ allprojects {
     apply(plugin = "kotlin")
     apply(plugin = "idea")
     apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "org.jetbrains.kotlinx.kover")
 
     group = "world.gregs.void"
     version = "1.0.0"
@@ -27,6 +28,7 @@ allprojects {
     dependencies {
         implementation(kotlin("stdlib-jdk8"))
         testImplementation("org.junit.jupiter:junit-jupiter-api:${findProperty("junitVersion")}")
+        testImplementation("org.junit.jupiter:junit-jupiter-engine:${findProperty("junitVersion")}")
     }
 
     tasks {
@@ -39,22 +41,29 @@ allprojects {
             kotlinOptions.jvmTarget = JavaVersion.VERSION_19.toString()
             kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility")
         }
-        test {
-            useJUnitPlatform()
-            failFast = true
+    }
+    tasks.test {
+        minHeapSize = "512m"
+        maxHeapSize = "4096m"
+        useJUnitPlatform()
+        failFast = true
+        testLogging {
+            events("passed", "skipped", "failed")
         }
     }
-
-}
-
-kover {
-    useJacoco()
 }
 
 koverReport {
     filters {
         includes {
-            classes("world.gregs.voidps")
+            classes("world.gregs.voidps.*")
+        }
+        excludes {
+            classes("world.gregs.voidps.tools.*")
         }
     }
+}
+
+kover {
+    useJacoco()
 }

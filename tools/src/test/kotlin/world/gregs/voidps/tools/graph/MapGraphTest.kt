@@ -5,13 +5,15 @@ import io.mockk.mockk
 import org.junit.Ignore
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 
 @Ignore
+@Disabled
 internal class MapGraphTest {
 
     private lateinit var strategy: TileTraversalStrategy
