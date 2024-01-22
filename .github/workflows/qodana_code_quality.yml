@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-
 jobs:
   qodana:
     runs-on: ubuntu-latest
