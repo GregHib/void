@@ -42,13 +42,15 @@ allprojects {
             kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility")
         }
     }
-    tasks.test {
-        minHeapSize = "512m"
-        maxHeapSize = "4096m"
-        useJUnitPlatform()
-        failFast = true
-        testLogging {
-            events("passed", "skipped", "failed")
+    if (name != "game") {
+        tasks.test {
+            minHeapSize = "512m"
+            maxHeapSize = "4096m"
+            useJUnitPlatform()
+            failFast = true
+            testLogging {
+                events("passed", "skipped", "failed")
+            }
         }
     }
 }
