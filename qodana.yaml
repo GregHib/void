@@ -18,7 +18,7 @@ exclude:
     paths:
       - tools/
 
-projectJDK: openjdk-19 #(Applied in CI/CD pipeline)
+projectJDK: 19 #(Applied in CI/CD pipeline)
 
 #Execute shell command before Qodana execution (Applied in CI/CD pipeline)
 # bootstrap: sh ./prepare-qodana.sh
