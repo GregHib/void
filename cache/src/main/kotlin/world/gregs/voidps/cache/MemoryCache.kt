@@ -12,6 +12,11 @@ import java.math.BigInteger
  * [Cache] that holds all data in memory
  * Read speeds are as fast, loading is slow and memory usage is high but stable.
  * Loading is done in parallel as it is much slower to load than [FileCache]
+ *
+ * Not much benefit of using this in the live game as file providers cache the
+ * sector data independently for the file server; so the only use after startup is
+ * reading dynamic map regions in MapDefinitions.
+ * It is however very useful for integration tests to speed world resetting.
  */
 class MemoryCache(indexCount: Int) : ReadOnlyCache(indexCount) {
 
