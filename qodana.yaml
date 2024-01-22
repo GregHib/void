@@ -21,11 +21,11 @@ exclude:
 projectJDK: openjdk-19 #(Applied in CI/CD pipeline)
 
 #Execute shell command before Qodana execution (Applied in CI/CD pipeline)
-bootstrap: sh ./prepare-qodana.sh
+# bootstrap: sh ./prepare-qodana.sh
 
 #Install IDE plugins before Qodana execution (Applied in CI/CD pipeline)
 #plugins:
 #  - id: <plugin.id> #(plugin id can be found at https://plugins.jetbrains.com)
 
 #Specify Qodana linter for analysis (Applied in CI/CD pipeline)
-linter: jetbrains/qodana-jvm-community:latest
+linter: jetbrains/qodana-jvm-community:2023.3
