@@ -16,7 +16,7 @@ internal class BufferReaderTest {
     @Test
     fun `Read byte`() {
         //Given
-        packet(2, -2)
+        packet(1, -2)
         //Then
         assertEquals(2, buffer.readByte())
         assertEquals(-2, buffer.readByte())

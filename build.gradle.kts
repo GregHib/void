@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+
 buildscript {
     dependencies {
         classpath(kotlin("gradle-plugin", version = "1.8.21"))
@@ -42,12 +44,12 @@ allprojects {
     }
     if (name != "game") {
         tasks.test {
-            minHeapSize = "512m"
             maxHeapSize = "4096m"
             useJUnitPlatform()
             failFast = true
             testLogging {
                 events("passed", "skipped", "failed")
+                exceptionFormat = TestExceptionFormat.FULL
             }
         }
     }
