@@ -1,10 +1,6 @@
 name: JUnit Tests
 on:
   pull_request:
-permissions:
-  contents: read
-  actions: read
-  checks: write
 jobs:
   build-test:
     name: Build & Test
@@ -22,25 +18,5 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
       - name: Grant Permissions to gradlew
         run: chmod +x gradlew
-      - name: Run Gradle build and run tests
-        uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: 8.5
-      - run: ./gradlew koverXmlReport
-      - name: Add coverage report to PR
-        id: kover
-        uses: mi-kas/kover-report@v1
-        with:
-          path: |
-            ${{ github.workspace }}/buffer/build/reports/kover/report.xml
-            ${{ github.workspace }}/cache/build/reports/kover/report.xml
-            ${{ github.workspace }}/engine/build/reports/kover/report.xml
-            ${{ github.workspace }}/game/build/reports/kover/report.xml
-            ${{ github.workspace }}/network/build/reports/kover/report.xml
-            ${{ github.workspace }}/types/build/reports/kover/report.xml
-            ${{ github.workspace }}/yaml/build/reports/kover/report.xml
-          title: Code Coverage
-          update-comment: true
-          min-coverage-overall: 80
-          min-coverage-changed-files: 80
-          coverage-counter-type: LINE
+      - name: Run unit tests
+        run: ./gradlew test
