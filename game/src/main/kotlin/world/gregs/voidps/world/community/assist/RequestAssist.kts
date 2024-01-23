@@ -21,11 +21,11 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TICKS
+import world.gregs.voidps.world.community.assist.Assistance.MAX_EXPERIENCE
 import world.gregs.voidps.world.community.assist.Assistance.canAssist
 import world.gregs.voidps.world.community.assist.Assistance.exceededMaximum
 import world.gregs.voidps.world.community.assist.Assistance.getHoursRemaining
 import world.gregs.voidps.world.community.assist.Assistance.hasEarnedMaximumExperience
-import world.gregs.voidps.world.community.assist.Assistance.maximumExperience
 import world.gregs.voidps.world.community.assist.Assistance.redirectSkillExperience
 import world.gregs.voidps.world.community.assist.Assistance.stopRedirectingSkillExp
 import world.gregs.voidps.world.community.assist.Assistance.toggleInventory
@@ -160,11 +160,11 @@ fun cancelAssist(assistant: Player?, assisted: Player?) {
 }
 
 on<BlockedExperience>({ it.contains("assistant") }) { assisted: Player ->
-    val player: Player = assisted.get("assistant") ?: return@on
+    val player: Player = assisted["assistant"] ?: return@on
     val active = player["assist_toggle_${skill.name.lowercase()}", false]
     var gained = player["total_xp_earned", 0].toDouble()
     if (active && !exceededMaximum(gained)) {
-        val exp = min(experience, (maximumExperience - gained) / 10)
+        val exp = min(experience, (MAX_EXPERIENCE - gained) / 10)
         gained += exp * 10.0
         val maxed = exceededMaximum(gained)
         player.experience.add(skill, exp)

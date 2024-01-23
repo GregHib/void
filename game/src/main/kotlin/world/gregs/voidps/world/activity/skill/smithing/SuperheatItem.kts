@@ -51,9 +51,9 @@ on<ItemOnItem>({ fromInterface == "modern_spellbook" && fromComponent == "superh
     when (player.inventory.transaction.error) {
         TransactionError.Invalid -> {}
         TransactionError.None -> {
-            for (item in items) {
-                // player.equipment.get(item.id).charge -= item.amount
-            }
+//            for (item in items) {
+//                 player.equipment.get(item.id).charge -= item.amount
+//            }
             player.playSound("superheat_all")
             player.setAnimation(spell)
             player.setGraphic(spell)

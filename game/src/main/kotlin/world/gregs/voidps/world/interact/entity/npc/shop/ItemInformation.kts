@@ -45,8 +45,8 @@ on<ItemChanged>({ it.contains("shop") && it.contains("info_sample") && it.contai
 fun showInfo(player: Player, item: Item, index: Int, sample: Boolean) {
     player.open("item_info")
     if (item.isNotEmpty()) {
-        player["info_title_colour"] = Colours.orange
-        player["info_colour"] = Colours.orange
+        player["info_title_colour"] = Colours.ORANGE
+        player["info_colour"] = Colours.ORANGE
         player["info_item"] = item.def.id
         val def = item.def
         if (def.options.contains("Wear") || def.options.contains("Wield")) {

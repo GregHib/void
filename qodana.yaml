@@ -1,0 +1,18 @@
+version: "1.0"
+profile:
+  name: qodana.recommended
+include:
+  - name: CheckDependencyLicenses
+exclude:
+  - name: All
+    paths:
+      - tools
+      - buffer
+      - cache
+      - engine
+      - network
+      - tools
+      - types
+      - yaml
+projectJDK: 19
+linter: jetbrains/qodana-jvm-community:2023.3

@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+
 buildscript {
     dependencies {
         classpath(kotlin("gradle-plugin", version = "1.8.21"))
@@ -26,6 +28,7 @@ allprojects {
     dependencies {
         implementation(kotlin("stdlib-jdk8"))
         testImplementation("org.junit.jupiter:junit-jupiter-api:${findProperty("junitVersion")}")
+        testImplementation("org.junit.jupiter:junit-jupiter-engine:${findProperty("junitVersion")}")
     }
 
     tasks {
@@ -39,5 +42,15 @@ allprojects {
             kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility")
         }
     }
-
+    if (name != "game") {
+        tasks.test {
+            maxHeapSize = "4096m"
+            useJUnitPlatform()
+            failFast = true
+            testLogging {
+                events("passed", "skipped", "failed")
+                exceptionFormat = TestExceptionFormat.FULL
+            }
+        }
+    }
 }

@@ -34,6 +34,6 @@ class TaskManager {
             },
             spaces = Int.MAX_VALUE
         )
-        val DEBUG = false
+        const val DEBUG = false
     }
 }

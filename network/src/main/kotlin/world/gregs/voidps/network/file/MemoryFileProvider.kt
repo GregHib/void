@@ -4,7 +4,7 @@ import io.ktor.utils.io.*
 import world.gregs.voidps.cache.Cache
 
 /**
- * Reads all [cache] sectors into memory
+ * Reads all [Cache] sectors into memory
  * Fast read speed, high memory usage
  */
 class MemoryFileProvider(cache: Cache) : FileProvider {

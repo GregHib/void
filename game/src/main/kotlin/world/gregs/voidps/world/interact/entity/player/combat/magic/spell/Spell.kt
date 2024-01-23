@@ -74,13 +74,13 @@ object Spell {
         for (rune in runes) {
             player.inventory.remove(rune.id, rune.amount)
         }
-        for (rune in items) {
+//        for (rune in items) {
 //            if (rune.id.endsWith("_staff")) {
 //                val staff = player.equipped(EquipSlot.Weapon)
 //                staff.charge = (staff.charge - rune.amount).coerceAtLeast(0)
 //            } else {
 //            }
-        }
+//        }
         return true
     }
 

@@ -34,7 +34,6 @@ class Distribution<T : Any>(
         cumulativeProbability = cumulativeArray(normalized, invert)
     }
 
-    @Suppress("UNCHECKED_CAST")
     fun sample(size: Int): Array<Any?> {
         check(size > 0) { "Sample size must be positive." }
         return Array(size) { sample() }

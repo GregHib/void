@@ -72,10 +72,10 @@ internal class BZIP2Compressor {
         var intArray1 = IntArray(0)
         var intArray2 = IntArray(0)
         var intArray3 = IntArray(0)
-        var bool_28_ = true
-        while (bool_28_) {
-            var i_29_ = method152(8)
-            if (i_29_ == 23) {
+        var bool28 = true
+        while (bool28) {
+            var i29 = method152(8)
+            if (i29 == 23) {
                 break
             }
             method152(8)
@@ -89,29 +89,25 @@ internal class BZIP2Compressor {
             method152(8)
             method152(1)
             anInt3083 = 0
-            var i_30_ = method152(8)
-            anInt3083 = anInt3083 shl 8 or (i_30_ and 0xff)
-            i_30_ = method152(8)
-            anInt3083 = anInt3083 shl 8 or (i_30_ and 0xff)
-            i_30_ = method152(8)
-            anInt3083 = anInt3083 shl 8 or (i_30_ and 0xff)
-            for (i_31_ in 0..15) {
-                i_29_ = method152(1)
-                if (i_29_ == 1) {
-                    aBooleanArray3072[i_31_] = true
-                } else {
-                    aBooleanArray3072[i_31_] = false
-                }
+            var i30 = method152(8)
+            anInt3083 = anInt3083 shl 8 or (i30 and 0xff)
+            i30 = method152(8)
+            anInt3083 = anInt3083 shl 8 or (i30 and 0xff)
+            i30 = method152(8)
+            anInt3083 = anInt3083 shl 8 or (i30 and 0xff)
+            for (i31 in 0..15) {
+                i29 = method152(1)
+                aBooleanArray3072[i31] = i29 == 1
             }
-            for (i_32_ in 0..255) {
-                aBooleanArray3103[i_32_] = false
+            for (i32 in 0..255) {
+                aBooleanArray3103[i32] = false
             }
-            for (i_33_ in 0..15) {
-                if (aBooleanArray3072[i_33_]) {
-                    for (i_34_ in 0..15) {
-                        i_29_ = method152(1)
-                        if (i_29_ == 1) {
-                            aBooleanArray3103[i_33_ * 16 + i_34_] = true
+            for (i33 in 0..15) {
+                if (aBooleanArray3072[i33]) {
+                    for (i34 in 0..15) {
+                        i29 = method152(1)
+                        if (i29 == 1) {
+                            aBooleanArray3103[i33 * 16 + i34] = true
                         }
                     }
                 }
@@ -123,227 +119,224 @@ internal class BZIP2Compressor {
                     anInt3073++
                 }
             }
-            val i_35_ = anInt3073 + 2
-            val i_36_ = method152(3)
-            val i_37_ = method152(15)
-            for (i_38_ in 0 until i_37_) {
-                var i_39_ = 0
+            val i35 = anInt3073 + 2
+            val i36 = method152(3)
+            val i37 = method152(15)
+            for (i38 in 0 until i37) {
+                var i39 = 0
                 while (true) {
-                    i_29_ = method152(1)
-                    if (i_29_ == 0) {
+                    i29 = method152(1)
+                    if (i29 == 0) {
                         break
                     }
-                    i_39_++
+                    i39++
                 }
-                aByteArray3094[i_38_] = i_39_.toByte()
+                aByteArray3094[i38] = i39.toByte()
             }
-            val is_40_ = ByteArray(6)
-            for (i_41_ in 0 until i_36_) {
-                is_40_[i_41_] = i_41_.toByte()
+            val is40 = ByteArray(6)
+            for (i41 in 0 until i36) {
+                is40[i41] = i41.toByte()
             }
-            for (i_42_ in 0 until i_37_) {
-                var i_43_ = aByteArray3094[i_42_]
-                val i_44_ = is_40_[i_43_.toInt()]
-                while (i_43_ > 0) {
-                    is_40_[i_43_.toInt()] = is_40_[i_43_ - 1]
-                    i_43_--
+            for (i42 in 0 until i37) {
+                var i43 = aByteArray3094[i42]
+                val i44 = is40[i43.toInt()]
+                while (i43 > 0) {
+                    is40[i43.toInt()] = is40[i43 - 1]
+                    i43--
                 }
-                is_40_[0] = i_44_
-                aByteArray3076[i_42_] = i_44_
+                is40[0] = i44
+                aByteArray3076[i42] = i44
             }
-            for (i_45_ in 0 until i_36_) {
-                var i_46_ = method152(5)
-                for (i_47_ in 0 until i_35_) {
+            for (i45 in 0 until i36) {
+                var i46 = method152(5)
+                for (i47 in 0 until i35) {
                     while (true) {
-                        i_29_ = method152(1)
-                        if (i_29_ == 0) {
+                        i29 = method152(1)
+                        if (i29 == 0) {
                             break
                         }
-                        i_29_ = method152(1)
-                        if (i_29_ == 0) {
-                            i_46_++
+                        i29 = method152(1)
+                        if (i29 == 0) {
+                            i46++
                         } else {
-                            i_46_--
+                            i46--
                         }
                     }
-                    aByteArrayArray3098[i_45_][i_47_] = i_46_.toByte()
+                    aByteArrayArray3098[i45][i47] = i46.toByte()
                 }
             }
-            for (i_48_ in 0 until i_36_) {
-                var i_49_ = 32
-                var i_50_: Byte = 0
-                for (i_51_ in 0 until i_35_) {
-                    if (aByteArrayArray3098[i_48_][i_51_] > i_50_) {
-                        i_50_ = aByteArrayArray3098[i_48_][i_51_]
+            for (i48 in 0 until i36) {
+                var i49 = 32
+                var i50: Byte = 0
+                for (i51 in 0 until i35) {
+                    if (aByteArrayArray3098[i48][i51] > i50) {
+                        i50 = aByteArrayArray3098[i48][i51]
                     }
-                    if (aByteArrayArray3098[i_48_][i_51_] < i_49_) {
-                        i_49_ = aByteArrayArray3098[i_48_][i_51_].toInt()
+                    if (aByteArrayArray3098[i48][i51] < i49) {
+                        i49 = aByteArrayArray3098[i48][i51].toInt()
                     }
                 }
-                method145(anIntArrayArray3095[i_48_],
-                    anIntArrayArray3082[i_48_],
-                    anIntArrayArray3099[i_48_],
-                    aByteArrayArray3098[i_48_],
-                    i_49_,
-                    i_50_.toInt(),
-                    i_35_)
-                anIntArray3090[i_48_] = i_49_
+                method145(anIntArrayArray3095[i48],
+                    anIntArrayArray3082[i48],
+                    anIntArrayArray3099[i48],
+                    aByteArrayArray3098[i48],
+                    i49,
+                    i50.toInt(),
+                    i35)
+                anIntArray3090[i48] = i49
             }
-            val i_52_ = anInt3073 + 1
-            var i_53_ = -1
-            var i_54_ = 0
-            for (i_55_ in 0..255) {
-                anIntArray3075[i_55_] = 0
+            val i52 = anInt3073 + 1
+            var i53 = 0
+            var i54 = 0
+            for (i55 in 0..255) {
+                anIntArray3075[i55] = 0
             }
-            var i_56_ = 4095
-            for (i_57_ in 15 downTo 0) {
-                for (i_58_ in 15 downTo 0) {
-                    aByteArray3101[i_56_] = (i_57_ * 16 + i_58_).toByte()
-                    i_56_--
+            var i56 = 4095
+            for (i57 in 15 downTo 0) {
+                for (i58 in 15 downTo 0) {
+                    aByteArray3101[i56] = (i57 * 16 + i58).toByte()
+                    i56--
                 }
-                anIntArray3092[i_57_] = i_56_ + 1
+                anIntArray3092[i57] = i56 + 1
             }
-            var i_59_ = 0
-            if (i_54_ == 0) {
-                i_53_++
-                i_54_ = 50
-                val i_60_ = aByteArray3076[i_53_]
-                i = anIntArray3090[i_60_.toInt()]
-                intArray1 = anIntArrayArray3095[i_60_.toInt()]
-                intArray3 = anIntArrayArray3099[i_60_.toInt()]
-                intArray2 = anIntArrayArray3082[i_60_.toInt()]
+            var i59 = 0
+            i54 = 50
+            val index = aByteArray3076[i53]
+            i = anIntArray3090[index.toInt()]
+            intArray1 = anIntArrayArray3095[index.toInt()]
+            intArray3 = anIntArrayArray3099[index.toInt()]
+            intArray2 = anIntArrayArray3082[index.toInt()]
+            i54--
+            var i61 = i
+            var i62: Int
+            var i63: Int
+            i63 = method152(i61)
+            while (i63 > intArray1[i61]) {
+                i61++
+                i62 = method152(1)
+                i63 = i63 shl 1 or i62
             }
-            i_54_--
-            var i_61_ = i
-            var i_62_: Int
-            var i_63_: Int
-            i_63_ = method152(i_61_)
-            while (i_63_ > intArray1[i_61_]) {
-                i_61_++
-                i_62_ = method152(1)
-                i_63_ = i_63_ shl 1 or i_62_
-            }
-            var i_64_ = intArray3[i_63_ - intArray2[i_61_]]
-            while (i_64_ != i_52_) {
-                if (i_64_ == 0 || i_64_ == 1) {
-                    var i_65_ = -1
-                    var i_66_ = 1
+            var i64 = intArray3[i63 - intArray2[i61]]
+            while (i64 != i52) {
+                if (i64 == 0 || i64 == 1) {
+                    var i65 = -1
+                    var i66 = 1
                     do {
-                        if (i_64_ == 0) {
-                            i_65_ += i_66_
-                        } else if (i_64_ == 1) {
-                            i_65_ += 2 * i_66_
+                        i65 += if (i64 == 0) {
+                            i66
+                        } else {
+                            2 * i66
                         }
-                        i_66_ *= 2
-                        if (i_54_ == 0) {
-                            i_53_++
-                            i_54_ = 50
-                            val i_67_ = aByteArray3076[i_53_]
-                            i = anIntArray3090[i_67_.toInt()]
-                            intArray1 = anIntArrayArray3095[i_67_.toInt()]
-                            intArray3 = anIntArrayArray3099[i_67_.toInt()]
-                            intArray2 = anIntArrayArray3082[i_67_.toInt()]
+                        i66 *= 2
+                        if (i54 == 0) {
+                            i53++
+                            i54 = 50
+                            val index = aByteArray3076[i53]
+                            i = anIntArray3090[index.toInt()]
+                            intArray1 = anIntArrayArray3095[index.toInt()]
+                            intArray3 = anIntArrayArray3099[index.toInt()]
+                            intArray2 = anIntArrayArray3082[index.toInt()]
                         }
-                        i_54_--
-                        i_61_ = i
-                        i_63_ = method152(i_61_)
-                        while (i_63_ > intArray1[i_61_]) {
-                            i_61_++
-                            i_62_ = method152(1)
-                            i_63_ = i_63_ shl 1 or i_62_
+                        i54--
+                        i61 = i
+                        i63 = method152(i61)
+                        while (i63 > intArray1[i61]) {
+                            i61++
+                            i62 = method152(1)
+                            i63 = i63 shl 1 or i62
                         }
-                        i_64_ = intArray3[i_63_ - intArray2[i_61_]]
-                    } while (i_64_ == 0 || i_64_ == 1)
-                    i_65_++
-                    i_30_ = aByteArray3107[aByteArray3101[anIntArray3092[0]].toInt() and 0xff].toInt()
-                    anIntArray3075[i_30_ and 0xff] += i_65_
-                    while ( /**/i_65_ > 0) {
-                        anIntArray5786[i_59_] = i_30_ and 0xff
-                        i_59_++
-                        i_65_--
+                        i64 = intArray3[i63 - intArray2[i61]]
+                    } while (i64 == 0 || i64 == 1)
+                    i65++
+                    i30 = aByteArray3107[aByteArray3101[anIntArray3092[0]].toInt() and 0xff].toInt()
+                    anIntArray3075[i30 and 0xff] += i65
+                    while ( /**/i65 > 0) {
+                        anIntArray5786[i59] = i30 and 0xff
+                        i59++
+                        i65--
                     }
                 } else {
-                    var i_68_ = i_64_ - 1
-                    if (i_68_ < 16) {
-                        val i_69_ = anIntArray3092[0]
-                        i_29_ = aByteArray3101[i_69_ + i_68_].toInt()
-                        while ( /**/i_68_ > 3) {
-                            val i_70_ = i_69_ + i_68_
-                            aByteArray3101[i_70_] = aByteArray3101[i_70_ - 1]
-                            aByteArray3101[i_70_ - 1] = aByteArray3101[i_70_ - 2]
-                            aByteArray3101[i_70_ - 2] = aByteArray3101[i_70_ - 3]
-                            aByteArray3101[i_70_ - 3] = aByteArray3101[i_70_ - 4]
-                            i_68_ -= 4
+                    var i68 = i64 - 1
+                    if (i68 < 16) {
+                        val i69 = anIntArray3092[0]
+                        i29 = aByteArray3101[i69 + i68].toInt()
+                        while ( /**/i68 > 3) {
+                            val i70 = i69 + i68
+                            aByteArray3101[i70] = aByteArray3101[i70 - 1]
+                            aByteArray3101[i70 - 1] = aByteArray3101[i70 - 2]
+                            aByteArray3101[i70 - 2] = aByteArray3101[i70 - 3]
+                            aByteArray3101[i70 - 3] = aByteArray3101[i70 - 4]
+                            i68 -= 4
                         }
-                        while ( /**/i_68_ > 0) {
-                            aByteArray3101[i_69_ + i_68_] = aByteArray3101[i_69_ + i_68_ - 1]
-                            i_68_--
+                        while ( /**/i68 > 0) {
+                            aByteArray3101[i69 + i68] = aByteArray3101[i69 + i68 - 1]
+                            i68--
                         }
-                        aByteArray3101[i_69_] = i_29_.toByte()
+                        aByteArray3101[i69] = i29.toByte()
                     } else {
-                        var i_71_ = i_68_ / 16
-                        val i_72_ = i_68_ % 16
-                        var i_73_ = anIntArray3092[i_71_] + i_72_
-                        i_29_ = aByteArray3101[i_73_].toInt()
-                        while (i_73_ > anIntArray3092[i_71_]) {
-                            aByteArray3101[i_73_] = aByteArray3101[i_73_ - 1]
-                            i_73_--
+                        var i71 = i68 / 16
+                        val i72 = i68 % 16
+                        var i73 = anIntArray3092[i71] + i72
+                        i29 = aByteArray3101[i73].toInt()
+                        while (i73 > anIntArray3092[i71]) {
+                            aByteArray3101[i73] = aByteArray3101[i73 - 1]
+                            i73--
                         }
-                        anIntArray3092[i_71_]++
-                        while (i_71_ > 0) {
-                            anIntArray3092[i_71_]--
-                            aByteArray3101[anIntArray3092[i_71_]] = aByteArray3101[anIntArray3092[i_71_ - 1] + 16 - 1]
-                            i_71_--
+                        anIntArray3092[i71]++
+                        while (i71 > 0) {
+                            anIntArray3092[i71]--
+                            aByteArray3101[anIntArray3092[i71]] = aByteArray3101[anIntArray3092[i71 - 1] + 16 - 1]
+                            i71--
                         }
                         anIntArray3092[0]--
-                        aByteArray3101[anIntArray3092[0]] = i_29_.toByte()
+                        aByteArray3101[anIntArray3092[0]] = i29.toByte()
                         if (anIntArray3092[0] == 0) {
-                            var i_74_ = 4095
-                            for (i_75_ in 15 downTo 0) {
-                                for (i_76_ in 15 downTo 0) {
-                                    aByteArray3101[i_74_] = aByteArray3101[anIntArray3092[i_75_] + i_76_]
-                                    i_74_--
+                            var i74 = 4095
+                            for (i75 in 15 downTo 0) {
+                                for (i76 in 15 downTo 0) {
+                                    aByteArray3101[i74] = aByteArray3101[anIntArray3092[i75] + i76]
+                                    i74--
                                 }
-                                anIntArray3092[i_75_] = i_74_ + 1
+                                anIntArray3092[i75] = i74 + 1
                             }
                         }
                     }
-                    anIntArray3075[aByteArray3107[i_29_ and 0xff].toInt() and 0xff]++
-                    anIntArray5786[i_59_] = aByteArray3107[i_29_ and 0xff].toInt() and 0xff
-                    i_59_++
-                    if (i_54_ == 0) {
-                        i_53_++
-                        i_54_ = 50
-                        val i_77_ = aByteArray3076[i_53_]
-                        i = anIntArray3090[i_77_.toInt()]
-                        intArray1 = anIntArrayArray3095[i_77_.toInt()]
-                        intArray3 = anIntArrayArray3099[i_77_.toInt()]
-                        intArray2 = anIntArrayArray3082[i_77_.toInt()]
+                    anIntArray3075[aByteArray3107[i29 and 0xff].toInt() and 0xff]++
+                    anIntArray5786[i59] = aByteArray3107[i29 and 0xff].toInt() and 0xff
+                    i59++
+                    if (i54 == 0) {
+                        i53++
+                        i54 = 50
+                        val i77 = aByteArray3076[i53]
+                        i = anIntArray3090[i77.toInt()]
+                        intArray1 = anIntArrayArray3095[i77.toInt()]
+                        intArray3 = anIntArrayArray3099[i77.toInt()]
+                        intArray2 = anIntArrayArray3082[i77.toInt()]
                     }
-                    i_54_--
-                    i_61_ = i
-                    i_63_ = method152(i_61_)
-                    while (i_63_ > intArray1[i_61_]) {
-                        i_61_++
-                        i_62_ = method152(1)
-                        i_63_ = i_63_ shl 1 or i_62_
+                    i54--
+                    i61 = i
+                    i63 = method152(i61)
+                    while (i63 > intArray1[i61]) {
+                        i61++
+                        i62 = method152(1)
+                        i63 = i63 shl 1 or i62
                     }
-                    i_64_ = intArray3[i_63_ - intArray2[i_61_]]
+                    i64 = intArray3[i63 - intArray2[i61]]
                 }
             }
             anInt3080 = 0
             aByte3108 = 0.toByte()
             anIntArray3091[0] = 0
-            for (i_78_ in 1..256) {
-                anIntArray3091[i_78_] = anIntArray3075[i_78_ - 1]
+            for (i78 in 1..256) {
+                anIntArray3091[i78] = anIntArray3075[i78 - 1]
             }
-            for (i_79_ in 1..256) {
-                anIntArray3091[i_79_] += anIntArray3091[i_79_ - 1]
+            for (i79 in 1..256) {
+                anIntArray3091[i79] += anIntArray3091[i79 - 1]
             }
-            for (i_80_ in 0 until i_59_) {
-                i_30_ = (anIntArray5786[i_80_] and 0xff).toByte().toInt()
-                anIntArray5786[anIntArray3091[i_30_ and 0xff]] = anIntArray5786[anIntArray3091[i_30_ and 0xff]] or (i_80_ shl 8)
-                anIntArray3091[i_30_ and 0xff]++
+            for (i80 in 0 until i59) {
+                i30 = (anIntArray5786[i80] and 0xff).toByte().toInt()
+                anIntArray5786[anIntArray3091[i30 and 0xff]] = anIntArray5786[anIntArray3091[i30 and 0xff]] or (i80 shl 8)
+                anIntArray3091[i30 and 0xff]++
             }
             anInt3106 = anIntArray5786[anInt3083] shr 8
             anInt3071 = 0
@@ -351,9 +344,9 @@ internal class BZIP2Compressor {
             anInt3070 = (anInt3106 and 0xff).toByte().toInt()
             anInt3106 = anInt3106 shr 8
             anInt3071++
-            anInt3077 = i_59_
+            anInt3077 = i59
             method151()
-            bool_28_ = anInt3071 == anInt3077 + 1 && anInt3080 == 0
+            bool28 = anInt3071 == anInt3077 + 1 && anInt3080 == 0
         }
     }
 
@@ -482,34 +475,34 @@ internal class BZIP2Compressor {
 
     private fun method145(arg0: IntArray, arg1: IntArray, arg2: IntArray, arg3: ByteArray, arg4: Int, arg5: Int, arg6: Int) {
         var i = 0
-        for (i_0_ in arg4..arg5) {
-            for (i_1_ in 0 until arg6) {
-                if (arg3[i_1_].toInt() == i_0_) {
-                    arg2[i] = i_1_
+        for (i0 in arg4..arg5) {
+            for (i1 in 0 until arg6) {
+                if (arg3[i1].toInt() == i0) {
+                    arg2[i] = i1
                     i++
                 }
             }
         }
-        for (i_2_ in 0..22) {
-            arg1[i_2_] = 0
+        for (index in 0..22) {
+            arg1[index] = 0
         }
-        for (i_3_ in 0 until arg6) {
-            arg1[arg3[i_3_] + 1]++
+        for (index in 0 until arg6) {
+            arg1[arg3[index] + 1]++
         }
-        for (i_4_ in 1..22) {
-            arg1[i_4_] += arg1[i_4_ - 1]
+        for (index in 1..22) {
+            arg1[index] += arg1[index - 1]
         }
-        for (i_5_ in 0..22) {
-            arg0[i_5_] = 0
+        for (index in 0..22) {
+            arg0[index] = 0
         }
-        var i_6_ = 0
-        for (i_7_ in arg4..arg5) {
-            i_6_ += arg1[i_7_ + 1] - arg1[i_7_]
-            arg0[i_7_] = i_6_ - 1
-            i_6_ = i_6_ shl 1
+        var i6 = 0
+        for (index in arg4..arg5) {
+            i6 += arg1[index + 1] - arg1[index]
+            arg0[index] = i6 - 1
+            i6 = i6 shl 1
         }
-        for (i_8_ in arg4 + 1..arg5) {
-            arg1[i_8_] = (arg0[i_8_ - 1] + 1 shl 1) - arg1[i_8_]
+        for (index in arg4 + 1..arg5) {
+            arg1[index] = (arg0[index - 1] + 1 shl 1) - arg1[index]
         }
     }
 }

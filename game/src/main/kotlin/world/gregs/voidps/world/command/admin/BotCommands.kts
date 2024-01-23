@@ -66,7 +66,7 @@ on<Command>({ prefix == "bots" }) { _: Player ->
     GlobalScope.launch {
         repeat(count) {
             if (it % 25 == 0) {
-                suspendCancellableCoroutine<Unit> { cont ->
+                suspendCancellableCoroutine { cont ->
                     World.run("bot_${counter}", 0) {
                         cont.resume(Unit)
                     }

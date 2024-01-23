@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.player.skill.level
 
-import world.gregs.voidps.engine.entity.character.player.skill.*
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.event.Events
 import kotlin.math.max
 import kotlin.math.min

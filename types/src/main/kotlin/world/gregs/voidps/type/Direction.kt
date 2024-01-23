@@ -1,8 +1,5 @@
 package world.gregs.voidps.type
 
-import world.gregs.voidps.type.Delta
-import world.gregs.voidps.type.equals
-
 enum class Direction(deltaX: Int, deltaY: Int) {
     NORTH_WEST(-1, 1),
     NORTH(0, 1),

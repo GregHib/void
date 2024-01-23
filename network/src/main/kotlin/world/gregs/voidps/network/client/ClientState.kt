@@ -1,5 +1,7 @@
 package world.gregs.voidps.network.client
 
+import world.gregs.voidps.network.NetworkQueue
+
 sealed class ClientState {
     object Connected : ClientState()
     /**

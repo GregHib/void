@@ -19,36 +19,36 @@ class Whirlpool {
         for (i in 0..255) {
             val code = chars[i / 2].code
             val l = if (i and 0x1 == 0) (code ushr 8).toLong() else (code and 0xff).toLong()
-            var l_38_ = l shl 1
-            if (l_38_ >= 256L) {
-                l_38_ = l_38_ xor 0x11dL
+            var l38 = l shl 1
+            if (l38 >= 256L) {
+                l38 = l38 xor 0x11dL
             }
-            var l_39_ = l_38_ shl 1
-            if (l_39_ >= 256L) {
-                l_39_ = l_39_ xor 0x11dL
+            var l39 = l38 shl 1
+            if (l39 >= 256L) {
+                l39 = l39 xor 0x11dL
             }
-            val l_40_ = l_39_ xor l
-            var l_41_ = l_39_ shl 1
-            if (l_41_ >= 256L) {
-                l_41_ = l_41_ xor 0x11dL
+            val l40 = l39 xor l
+            var l41 = l39 shl 1
+            if (l41 >= 256L) {
+                l41 = l41 xor 0x11dL
             }
-            val l_42_ = l_41_ xor l
-            aLongArrayArray6630[0][i] = l shl 56 or (l shl 48) or (l_39_ shl 40) or (l shl 32) or (l_41_ shl 24) or (l_40_ shl 16) or (l_38_ shl 8) or l_42_
-            for (i_43_ in 1..7) {
-                aLongArrayArray6630[i_43_][i] = aLongArrayArray6630[i_43_ - 1][i] ushr 8 or (aLongArrayArray6630[i_43_ - 1][i] shl 56)
+            val l42 = l41 xor l
+            aLongArrayArray6630[0][i] = l shl 56 or (l shl 48) or (l39 shl 40) or (l shl 32) or (l41 shl 24) or (l40 shl 16) or (l38 shl 8) or l42
+            for (index in 1..7) {
+                aLongArrayArray6630[index][i] = aLongArrayArray6630[index - 1][i] ushr 8 or (aLongArrayArray6630[index - 1][i] shl 56)
             }
         }
         aLongArray6631[0] = 0L
         for (i in 1..10) {
-            val i_44_ = 8 * (i - 1)
-            aLongArray6631[i] = aLongArrayArray6630[0][i_44_] and 0xffffffffffffffL.inv() xor
-                    (aLongArrayArray6630[1][i_44_ + 1] and 0xff000000000000L) xor
-                    (aLongArrayArray6630[2][i_44_ + 2] and 0xff0000000000L) xor
-                    (aLongArrayArray6630[3][i_44_ + 3] and 0xff00000000L) xor
-                    (aLongArrayArray6630[4][4 + i_44_] and 0xff000000L) xor
-                    (aLongArrayArray6630[5][5 + i_44_] and 0xff0000L) xor
-                    (aLongArrayArray6630[6][6 + i_44_] and 0xff00L) xor
-                    (aLongArrayArray6630[7][7 + i_44_] and 0xffL)
+            val index = 8 * (i - 1)
+            aLongArray6631[i] = aLongArrayArray6630[0][index] and 0xffffffffffffffL.inv() xor
+                    (aLongArrayArray6630[1][index + 1] and 0xff000000000000L) xor
+                    (aLongArrayArray6630[2][index + 2] and 0xff0000000000L) xor
+                    (aLongArrayArray6630[3][index + 3] and 0xff00000000L) xor
+                    (aLongArrayArray6630[4][index + 4] and 0xff000000L) xor
+                    (aLongArrayArray6630[5][index + 5] and 0xff0000L) xor
+                    (aLongArrayArray6630[6][index + 6] and 0xff00L) xor
+                    (aLongArrayArray6630[7][index + 7] and 0xffL)
         }
         reset()
     }
@@ -60,74 +60,74 @@ class Whirlpool {
         bufferPosition = 0
         bufferBits = 0
         buffer[0] = 0.toByte()
-        for (i_3_ in 0..7) {
-            hash[i_3_] = 0L
+        for (i in 0..7) {
+            hash[i] = 0L
         }
     }
 
     private fun processBuffer() {
-        var i_4_ = 0
-        var i_5_ = 0
-        while (i_4_ < 8) {
-            block[i_4_] = buffer[i_5_].toLong() shl 56 xor
-                    (buffer[i_5_ + 1].toLong() and 0xffL shl 48) xor
-                    (buffer[2 + i_5_].toLong() and 0xffL shl 40) xor
-                    (buffer[i_5_ + 3].toLong() and 0xffL shl 32) xor
-                    (buffer[i_5_ + 4].toLong() and 0xffL shl 24) xor
-                    (buffer[5 + i_5_].toLong() and 0xffL shl 16) xor
-                    (buffer[i_5_ + 6].toLong() and 0xffL shl 8) xor
-                    (buffer[7 + i_5_].toLong() and 0xffL)
-            i_4_++
-            i_5_ += 8
+        var index = 0
+        var offset = 0
+        while (index < 8) {
+            block[index] = buffer[offset].toLong() shl 56 xor
+                    (buffer[offset + 1].toLong() and 0xffL shl 48) xor
+                    (buffer[offset + 2].toLong() and 0xffL shl 40) xor
+                    (buffer[offset + 3].toLong() and 0xffL shl 32) xor
+                    (buffer[offset + 4].toLong() and 0xffL shl 24) xor
+                    (buffer[offset + 5].toLong() and 0xffL shl 16) xor
+                    (buffer[offset + 6].toLong() and 0xffL shl 8) xor
+                    (buffer[offset + 7].toLong() and 0xffL)
+            index++
+            offset += 8
         }
-        i_4_ = 0
-        while (i_4_ < 8) {
-            state[i_4_] = block[i_4_] xor hash[i_4_].also { aLongArray6637[i_4_] = it }
-            i_4_++
+        index = 0
+        while (index < 8) {
+            state[index] = block[index] xor hash[index].also { aLongArray6637[index] = it }
+            index++
         }
-        i_4_ = 1
-        while (i_4_ <= 10) {
-            i_5_ = 0
-            while (i_5_ < 8) {
-                aLongArray6638[i_5_] = 0L
-                var i_6_ = 0
-                var i_7_ = 56
-                while (i_6_ < 8) {
-                    aLongArray6638[i_5_] = aLongArray6638[i_5_] xor aLongArrayArray6630[i_6_][(aLongArray6637[i_5_ - i_6_ and 0x7] ushr i_7_).toInt() and 0xff]
-                    i_6_++
-                    i_7_ -= 8
+        index = 1
+        while (index <= 10) {
+            offset = 0
+            while (offset < 8) {
+                aLongArray6638[offset] = 0L
+                var start = 0
+                var offset2 = 56
+                while (start < 8) {
+                    aLongArray6638[offset] = aLongArray6638[offset] xor aLongArrayArray6630[start][(aLongArray6637[offset - start and 0x7] ushr offset2).toInt() and 0xff]
+                    start++
+                    offset2 -= 8
                 }
-                i_5_++
+                offset++
             }
-            i_5_ = 0
-            while (i_5_ < 8) {
-                aLongArray6637[i_5_] = aLongArray6638[i_5_]
-                i_5_++
+            offset = 0
+            while (offset < 8) {
+                aLongArray6637[offset] = aLongArray6638[offset]
+                offset++
             }
-            aLongArray6637[0] = aLongArray6637[0] xor aLongArray6631[i_4_]
-            i_5_ = 0
-            while (i_5_ < 8) {
-                aLongArray6638[i_5_] = aLongArray6637[i_5_]
-                var i_8_ = 0
-                var i_9_ = 56
-                while (i_8_ < 8) {
-                    aLongArray6638[i_5_] = aLongArray6638[i_5_] xor aLongArrayArray6630[i_8_][(state[i_5_ - i_8_ and 0x7] ushr i_9_).toInt() and 0xff]
-                    i_8_++
-                    i_9_ -= 8
+            aLongArray6637[0] = aLongArray6637[0] xor aLongArray6631[index]
+            offset = 0
+            while (offset < 8) {
+                aLongArray6638[offset] = aLongArray6637[offset]
+                var offset2 = 0
+                var start = 56
+                while (offset2 < 8) {
+                    aLongArray6638[offset] = aLongArray6638[offset] xor aLongArrayArray6630[offset2][(state[offset - offset2 and 0x7] ushr start).toInt() and 0xff]
+                    offset2++
+                    start -= 8
                 }
-                i_5_++
+                offset++
             }
-            i_5_ = 0
-            while (i_5_ < 8) {
-                state[i_5_] = aLongArray6638[i_5_]
-                i_5_++
+            offset = 0
+            while (offset < 8) {
+                state[offset] = aLongArray6638[offset]
+                offset++
             }
-            i_4_++
+            index++
         }
-        i_4_ = 0
-        while (i_4_ < 8) {
-            hash[i_4_] = hash[i_4_] xor (state[i_4_] xor block[i_4_])
-            i_4_++
+        index = 0
+        while (index < 8) {
+            hash[index] = hash[index] xor (state[index] xor block[index])
+            index++
         }
     }
 
@@ -166,55 +166,52 @@ class Whirlpool {
     fun add(source: ByteArray, offset: Int = 0, length: Int = source.size) {
         var sourceBits = length * 8L
         var i = offset
-        val i_23_ = 8 - (sourceBits.toInt() and 0x7) and 0x7
-        val i_24_ = bufferBits and 0x7
-        var l_25_ = sourceBits
-        var i_26_ = 31
-        var i_27_ = 0
-        while ( /**/i_26_ >= 0) {
-            i_27_ += (bitLength[i_26_].toInt() and 0xff) + (l_25_.toInt() and 0xff)
-            bitLength[i_26_] = i_27_.toByte()
-            i_27_ = i_27_ ushr 8
-            l_25_ = l_25_ ushr 8
-            i_26_--
+        val diff = 8 - (sourceBits.toInt() and 0x7) and 0x7
+        val bits = bufferBits and 0x7
+        var previous = sourceBits
+        var index = 31
+        var total = 0
+        while (index >= 0) {
+            total += (bitLength[index].toInt() and 0xff) + (previous.toInt() and 0xff)
+            bitLength[index] = total.toByte()
+            total = total ushr 8
+            previous = previous ushr 8
+            index--
         }
         while (sourceBits > 8L) {
-            val i_28_ = source[i].toInt() shl i_23_ and 0xff or (source[i + 1].toInt() and 0xff ushr 8 - i_23_)
-            if (i_28_ < 0 || i_28_ >= 256) {
-                throw RuntimeException()
-            }
-            buffer[bufferPosition] = (buffer[bufferPosition].toInt() or (i_28_ ushr i_24_)).toByte()
+            val value = source[i].toInt() shl diff and 0xff or (source[i + 1].toInt() and 0xff ushr 8 - diff)
+            buffer[bufferPosition] = (buffer[bufferPosition].toInt() or (value ushr bits)).toByte()
             ++bufferPosition
-            bufferBits += 8 - i_24_
+            bufferBits += 8 - bits
             if (bufferBits == 512) {
                 processBuffer()
                 bufferPosition = 0
                 bufferBits = 0
             }
-            buffer[bufferPosition] = (i_28_ shl 8 - i_24_ and 0xff).toByte()
-            bufferBits += i_24_
+            buffer[bufferPosition] = (value shl 8 - bits and 0xff).toByte()
+            bufferBits += bits
             sourceBits -= 8L
             i++
         }
-        val i_29_: Int
+        val last: Int
         if (sourceBits > 0L) {
-            i_29_ = source[i].toInt() shl i_23_ and 0xff
-            buffer[bufferPosition] = (buffer[bufferPosition].toInt() or (i_29_ ushr i_24_)).toByte()
+            last = source[i].toInt() shl diff and 0xff
+            buffer[bufferPosition] = (buffer[bufferPosition].toInt() or (last ushr bits)).toByte()
         } else {
-            i_29_ = 0
+            last = 0
         }
-        if (i_24_.toLong() + sourceBits < 8L) {
+        if (bits.toLong() + sourceBits < 8L) {
             bufferBits += sourceBits.toInt()
         } else {
             ++bufferPosition
-            bufferBits += 8 - i_24_
-            sourceBits -= (8 - i_24_).toLong()
+            bufferBits += 8 - bits
+            sourceBits -= (8 - bits).toLong()
             if (bufferBits == 512) {
                 processBuffer()
                 bufferPosition = 0
                 bufferBits = 0
             }
-            buffer[bufferPosition] = (i_29_ shl 8 - i_24_ and 0xff).toByte()
+            buffer[bufferPosition] = (last shl 8 - bits and 0xff).toByte()
             bufferBits += sourceBits.toInt()
         }
     }
