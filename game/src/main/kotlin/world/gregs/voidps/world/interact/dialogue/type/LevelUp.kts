@@ -37,10 +37,10 @@ on<MaxLevelChanged>({ to > from && !it["skip_level_up", false] }) { player: Play
         player.playJingle("level_up_${skill.name.lowercase()}${if (unlock) "_unlock" else ""}", 0.5)
         player.setGraphic("level_up")
         player.addVarbit("skill_stat_flash", skill.name.toSnakeCase())
-        levelUp("""
+        levelUp(skill, """
             Congratulations! You've just advanced${skill.name.an()} ${skill.name} level!
             You have now reached level ${to}!
-        """, skill)
+        """)
     }
 }
 

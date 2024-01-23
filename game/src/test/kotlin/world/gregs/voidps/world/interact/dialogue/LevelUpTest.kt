@@ -17,7 +17,7 @@ internal class LevelUpTest : DialogueTest() {
     fun `Send level up`() {
         var resumed = false
         dialogue {
-            levelUp("Congrats\nLevel", Skill.Runecrafting)
+            levelUp(Skill.Runecrafting, "Congrats\nLevel")
             resumed = true
         }
         (player.dialogueSuspension as ContinueSuspension).resume()
@@ -35,7 +35,7 @@ internal class LevelUpTest : DialogueTest() {
         every { player.open("dialogue_level_up") } returns false
         assertThrows<IllegalStateException> {
             dialogueBlocking {
-                levelUp("One\nTwo", Skill.Agility)
+                levelUp(Skill.Agility, "One\nTwo")
             }
         }
 
