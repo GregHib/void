@@ -18,6 +18,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
     - [Your First Code Contribution](#your-first-code-contribution)
 - [Style Guides](#style-guides)
     - [Commit Messages](#commit-messages)
+    - [Code](#code)
 
 
 
@@ -61,7 +62,8 @@ A good bug report shouldn't leave others needing to chase you up for more inform
 
 #### How Do I Submit a Good Bug Report?
 
-> You must never report security related issues, vulnerabilities or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to <>.
+> [!WARNING]
+> You must never report security related issues, vulnerabilities or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead, sensitive bugs must be sent by email to <greghib@users.noreply.github.com>.
 
 We use GitHub issues to track bugs and errors. If you run into an issue with the project:
 
@@ -99,7 +101,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/GregHi
 
 ### Your First Code Contribution
 
-To submit contributions please [fork the repository](https://github.com/GregHib/void/fork) [check out](README.md#development) the project in your IDE, apply the changes to a branch and [Submit a Pull Request](https://github.com/GregHib/void/pulls).
+To submit contributions please [fork the repository](https://github.com/GregHib/void/fork) before [checking out](README.md#development) the project in your IDE, apply the changes to a branch and [Submit a Pull Request](https://github.com/GregHib/void/pulls).
 
 ## Style guides
 
