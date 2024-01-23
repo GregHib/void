@@ -1,4 +1,4 @@
-<div style="text-align: center;">
+<div align="center">
 <h1>Void</h1>
 <a href="https://github.com/GregHib/void">
   <img src="https://i.imgur.com/N8RhzRY.png" alt="void">
@@ -8,7 +8,7 @@
 
 <a href="#features">Features</a> &nbsp;&bull;&nbsp;
 <a href="#installation">Installation</a> &nbsp;&bull;&nbsp;
-<a href="https://rune-server.org/runescape-development/rs-503-client-and-server/projects/697260-void-634-a.html">Blog</a> &nbsp;&bull;&nbsp;
+<a href="https://rune-server.org/runescape-development/rs-503-client-and-server/projects/697260-void-634-a.html" target="_blank">Blog</a> &nbsp;&bull;&nbsp;
 <a href="https://github.com/GregHib/void/wiki">Documentation</a> &nbsp;&bull;&nbsp;
 <a href="https://github.com/GregHib/void/issues">Bugs</a>
 </div>
