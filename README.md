@@ -31,16 +31,17 @@
 * Downloaded the latest `client.jar` from the [client release page](https://github.com/GregHib/void-client/releases).
 * Downloaded pre-modified cache game files from [cache artifacts](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A).
 
-> [!NOTE]
-> Instructions on how to [build your own client](https://github.com/GregHib/void/wiki/client-building)
-> Instructions on how to [build your own cache](https://github.com/GregHib/void/wiki/cache-building)
+> [!TIP]
+> There are instructions on how to [build your own client](https://github.com/GregHib/void/wiki/client-building) and [build your own cache](https://github.com/GregHib/void/wiki/cache-building)!
 
 ### Download game code
 
 > [!NOTE]
-> Executable jar builds and docker images are coming soon!
+> Jar builds, game bundles and docker images are coming soon!
 
 #### Git
+
+Clone the repository using the GitHub url.
 
 ```bash
 git clone git@github.com:GregHib/void.git
