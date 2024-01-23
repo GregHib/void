@@ -74,6 +74,6 @@ on<ObjectOption>({ operate && def.stringId == "demon_slayer_rusty_key" && option
     arriveDelay()
     if (player.inventory.add("silverlight_key_sir_prysin")) {
         player["demon_slayer_drain_dislodged"] = false
-        item("You pick up an old rusty key.", "silverlight_key_sir_prysin", 400)
+        item("silverlight_key_sir_prysin", 400, "You pick up an old rusty key.")
     }
 }

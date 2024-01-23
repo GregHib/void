@@ -13,6 +13,6 @@ on<ItemOnObject>({ operate && target.id == "fountain_of_heroes" && item.id == "a
     if (player.inventory.replace(itemSlot, item.id, "amulet_of_glory_4")) {
         player.message("You dip the amulet in the fountain...")
         player.setAnimation("bend_down")
-        item("You feel a power emanating from the fountain as it recharges your amulet. You can now rub the amulet to teleport and wear it to get more gems whilst mining.", "amulet_of_glory", 300)
+        item("amulet_of_glory", 300, "You feel a power emanating from the fountain as it recharges your amulet. You can now rub the amulet to teleport and wear it to get more gems whilst mining.")
     }
 }

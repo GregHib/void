@@ -47,7 +47,7 @@ suspend fun CharacterContext.sellFur() {
         option<Talking>("Yeah, OK, here you go.") {
             if (player.inventory.remove("coins", 20)) {
                 player.inventory.add("bear_fur")
-                item("Baraek sells you a fur.", "bear_fur", 645)
+                item("bear_fur", 645, "Baraek sells you a fur.")
             } else {
                 player<Sad>("Oh dear, I don't have enough money!")
                 npc<Talking>("Well, my best price is 18 coins.")
@@ -55,7 +55,7 @@ suspend fun CharacterContext.sellFur() {
                     option<Talking>("OK, here you go.") {
                         if (player.inventory.remove("coins", 18)) {
                             player.inventory.add("bear_fur")
-                            item("Baraek sells you a fur.", "bear_fur", 645)
+                            item("bear_fur", 645, "Baraek sells you a fur.")
                         } else {
                             player<Sad>("Oh dear, I don't have that either.")
                             npc<Sad>("Well, I can't go any cheaper than that mate. I've got a family to feed.")
@@ -76,7 +76,7 @@ suspend fun CharacterContext.sellFur() {
 
 suspend fun CharacterContext.buyFur() {
     npc<Talking>("Let's have a look at it.")
-    item("You hand Baraek your fur to look at.", "bear_fur", 645)
+    item("bear_fur", 645, "You hand Baraek your fur to look at.")
     //wait 4sec and cant move
     npc<Talking>("It's not in the best condition. I guess I could give you 12 coins for it.")
     choice {

@@ -157,6 +157,6 @@ suspend fun PlayerChoice.whyDidHeGiveKeyToYou(): Unit = option<Unsure>("Why did 
     npc<Laugh>("Ha ha ha! The idiot!")
     npc<Laugh>("Okay, I'll give you the key, just so that it's you that kills the demon and not Sir Prysin!")
     if (player.inventory.add("silverlight_key_captain_rovin")) {
-        item("Captain Rovin hands you a key.", "silverlight_key_captain_rovin", 400)
+        item("silverlight_key_captain_rovin", 400, "Captain Rovin hands you a key.")
     }
 }

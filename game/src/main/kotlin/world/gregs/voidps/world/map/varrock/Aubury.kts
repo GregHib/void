@@ -60,7 +60,7 @@ suspend fun PlayerChoice.packageForYou(): Unit = option<Talking>(
     if (player.ownsItem("research_package_rune_mysteries")) {
         player["rune_mysteries"] = "package_delivered"
         player.inventory.remove("research_package_rune_mysteries")
-        item("You hand the package to Aubury.", "research_package_rune_mysteries", 600)
+        item("research_package_rune_mysteries", 600, "You hand the package to Aubury.")
         npc<Cheerful>("Now, let's have a look...")
         researchPackage()
     } else {
@@ -71,7 +71,7 @@ suspend fun PlayerChoice.packageForYou(): Unit = option<Talking>(
 }
 
 suspend fun CharacterContext.researchPackage() {
-    item("Aubury goes through the package of research notes.", "research_package_rune_mysteries", 600)
+    item("research_package_rune_mysteries", 600, "Aubury goes through the package of research notes.")
     npc<Surprised>("This... this is incredible.")
     npc<Cheerful>("My gratitude to you adventurer for bringing me these research notes. Thanks to you, I think we finally have it.")
     player<Unsure>("You mean the incantation?")
@@ -79,12 +79,12 @@ suspend fun CharacterContext.researchPackage() {
     npc<Talking>("No, no, I'm getting ahead of myself. The signs are promising, but let's not jump to any conclusions just yet.")
     npc<Unsure>("Here, take these notes back to Sedridor. They should hopefully give him everything he needs.")
     if (player.inventory.isFull()) {
-        item("Aubury tries to hand you some research notes, but you don't have enough room to take them.", "research_notes_rune_mysteries", 600)
+        item("research_notes_rune_mysteries", 600, "Aubury tries to hand you some research notes, but you don't have enough room to take them.")
         return
     }
     player["rune_mysteries"] = "research_notes"
     player.inventory.add("research_notes_rune_mysteries")
-    item("Aubury hands you some research notes.", "research_notes_rune_mysteries", 600)
+    item("research_notes_rune_mysteries", 600, "Aubury hands you some research notes.")
 }
 
 suspend fun CharacterContext.checkNotes() {
@@ -101,14 +101,14 @@ suspend fun CharacterContext.checkNotes() {
         player<Sad>("Sorry, but I lost them.")
         npc<Talking>("Well, luckily I have duplicates. It's a good thing they are written in code. I wouldn't want the wrong kind of person to get access to the information contained within.")
         if (player.inventory.isFull()) {
-            item("Aubury tries to hand you some research notes, but you don't have enough room to take them.", "research_notes_rune_mysteries", 600)
+            item("research_notes_rune_mysteries", 600, "Aubury tries to hand you some research notes, but you don't have enough room to take them.")
             return
         }
         if (player.bank.contains("research_notes_rune_mysteries")) {
             player.bank.remove("research_notes_rune_mysteries")
         }
         player.inventory.add("research_notes_rune_mysteries")
-        item("Aubury hands you some research notes.", "research_notes_rune_mysteries", 600)
+        item("research_notes_rune_mysteries", 600, "Aubury hands you some research notes.")
     }
 }
 

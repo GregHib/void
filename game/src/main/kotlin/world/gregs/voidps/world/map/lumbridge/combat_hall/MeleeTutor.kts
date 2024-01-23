@@ -101,7 +101,7 @@ suspend fun PlayerChoice.skillcapes(): Unit = option<Talking>("Tell me about ski
                 option("Hood") {
                     player<Unsure>("May I have another hood for my cape, please?")
                     npc<Talking>("Most certainly, and free of charge!")
-                    item("The tutor hands you another hood for your skillcape.", "defence_hood", 400)
+                    item("defence_hood", 400, "The tutor hands you another hood for your skillcape.")
                     player.inventory.add("defence_hood")
                 }
             }
@@ -151,9 +151,9 @@ suspend fun PlayerChoice.training(): Unit = option<Talking>("I'd like a training
         return@option
     }
 
-    item("Harlan gives you a Training sword.", "training_sword", 800)
+    item("training_sword", 800, "Harlan gives you a Training sword.")
     player.inventory.add("training_sword")
-    item("Harlan gives you a Training shield.", "training_shield", 800)
+    item("training_shield", 800, "Harlan gives you a Training shield.")
     player.inventory.add("training_shield")
     npc<Talking>("There you go, use it well.")
     menu("Is there anything else I can help you with?")

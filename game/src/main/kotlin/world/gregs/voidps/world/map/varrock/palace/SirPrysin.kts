@@ -266,7 +266,7 @@ suspend fun NPCOption.giveSilverlight() {
     player.inventory.transaction {
         add("silverlight")
     }
-    item("Sir Prysin hands you a very shiny sword.", "silverlight", 600)
+    item("silverlight", 600, "Sir Prysin hands you a very shiny sword.")
     player.setAnimation("silverlight_showoff")
     player.setGraphic("silverlight_sparkle")
     player.playSound("equip_silverlight")

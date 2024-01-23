@@ -76,11 +76,11 @@ suspend fun CharacterContext.okHere() {
     player<Talking>("Okay, here you are.")
     if (player.inventory.contains("air_talisman")) {
         player["rune_mysteries"] = "talisman_delivered"
-        item("You hand the talisman to Sedridor.", "air_talisman", 600)
+        item("air_talisman", 600, "You hand the talisman to Sedridor.")
         player.inventory.remove("air_talisman")
         npc<Uncertain>("Hmm... Doesn't seem to be anything too special. Just a normal air talisman by the looks of things. Still, looks can be deceiving. Let me take a closer look...")
         player.playSound("enchant_emerald_ring")
-        item("Sedridor murmurs some sort of incantation and the talisman glows slightly.", "air_talisman", 600)
+        item("air_talisman", 600, "Sedridor murmurs some sort of incantation and the talisman glows slightly.")
         npc<Uncertain>("How interesting... It would appear I spoke too soon. There's more to this talisman than meets the eye. In fact, it may well be the last piece of the puzzle.")
         player<Unsure>("Puzzle?")
         npc<Cheerful>("Indeed! The lost legacy of the first tower. This talisman may in fact be key to finding the forgotten essence mine!")
@@ -147,14 +147,14 @@ suspend fun CharacterContext.checkPackageDelivered() {
         player<Sad>("I lost it. Could I have another?")
         npc<Talking>("Well it's a good job I have copies of everything.")
         if (player.inventory.isFull()) {
-            item("Sedridor tries to hand you a package, but you don't have enough room to take it.", "research_package_rune_mysteries", 600)
+            item("research_package_rune_mysteries", 600, "Sedridor tries to hand you a package, but you don't have enough room to take it.")
             return
         }
         if (player.bank.contains("research_package_rune_mysteries")) {
             player.bank.remove("research_package_rune_mysteries")
         }
         player.inventory.add("research_package_rune_mysteries")
-        item("Sedridor hands you a package.", "research_package_rune_mysteries", 600)
+        item("research_package_rune_mysteries", 600, "Sedridor hands you a package.")
         npc<Cheerful>("Best of luck, ${player.name}.")
     }
 }
@@ -164,7 +164,7 @@ suspend fun CharacterContext.checkResearchDelivered() {
     player<Talking>("Yes, I have. He gave me some notes to give to you.")
     npc<Cheerful>("Wonderful! Let's have a look then.")
     if (player.holdsItem("research_notes_rune_mysteries")) {
-        item("You hand the notes to Sedridor.", "research_notes_rune_mysteries", 600)
+        item("research_notes_rune_mysteries", 600, "You hand the notes to Sedridor.")
         npc<Cheerful>("Alright, let's see what Aubury has for us...")
         npc<Surprised>("Yes, this is it! The lost incantation!")
         player<Unsure>("So you'll be able to access that essence mine now?")
@@ -194,11 +194,11 @@ suspend fun PlayerChoice.yesCertainly(): Unit = option<Talking>("Yes, certainly.
     player["rune_mysteries"] = "research_package"
     npc<Cheerful>("He runs a rune shop in the south east of Varrock. Please, take this package of research notes to him. If all goes well, the secrets of the essence mine may soon be ours once more!")
     if (player.inventory.isFull()) {
-        item("Sedridor tries to hand you a package, but you don't have enough room to take it.", "research_package_rune_mysteries", 600)
+        item("research_package_rune_mysteries", 600, "Sedridor tries to hand you a package, but you don't have enough room to take it.")
         return@option
     }
     player.inventory.add("research_package_rune_mysteries")
-    item("Sedridor hands you a package.", "research_package_rune_mysteries", 600)
+    item("research_package_rune_mysteries", 600, "Sedridor hands you a package.")
     npc<Cheerful>("Best of luck, ${player.name}.")
 }
 

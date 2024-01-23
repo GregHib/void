@@ -134,7 +134,7 @@ suspend fun CharacterContext.spinachRoll() {
     if (player.inventory.transaction.error != TransactionError.None) {
         floorItems.add(player.tile, "spinach_roll")
     }
-    item("Traiborn digs around in the pockets of his robes. After a few moments he triumphantly presents you with a spinach roll.", "spinach_roll", 400)
+    item("spinach_roll", 400, "Traiborn digs around in the pockets of his robes. After a few moments he triumphantly presents you with a spinach roll.")
     player<Talking>("Thank you very much.")
     betterBeOffChoice()
 }
@@ -200,7 +200,7 @@ suspend fun TargetNPCContext.startSpell() {
     obj.animate("demon_slayer_cupboard_disappear")
     player.playSound("demon_slayer_cupboard_disappear")
     target.watch(player)
-    item("Traiborn hands you a key.", "silverlight_key_wizard_traiborn", 400)
+    item("silverlight_key_wizard_traiborn", 400, "Traiborn hands you a key.")
     player<Talking>("Thank you very much.")
     npc<Talking>("Not a problem for a friend of Sir What's-his-face.")
 }

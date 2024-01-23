@@ -87,10 +87,10 @@ suspend fun PlayerChoice.claimRunes(): Unit = option("I'd like some air and mind
         player.inventoryFull()
         return@option
     }
-    item("Mikasi gives you 30 air runes.", "air_rune", 400)
+    item("air_rune", 400, "Mikasi gives you 30 air runes.")
     player.inventory.add("air_rune", 30)
     player.start("claimed_tutor_consumables", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
-    item("Mikasi gives you 30 mind runes.", "mind_rune", 400)
+    item("mind_rune", 400, "Mikasi gives you 30 mind runes.")
     player.inventory.add("mind_rune", 30)
 }
 
@@ -105,7 +105,7 @@ suspend fun CharacterContext.hasRunes() {
         banked = true
     }
     if (banked) {
-        item("You have some runes in your bank. Climb the stairs in Lumbridge Castle until you see this icon on your minimap. There you will find a bank.", "bank_icon", 1200)
+        item("bank_icon", 1200, "You have some runes in your bank. Climb the stairs in Lumbridge Castle until you see this icon on your minimap. There you will find a bank.")
         return
     }
     if (player.inventory.contains("mind_rune")) {
