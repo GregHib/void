@@ -46,19 +46,19 @@ on<NPCOption>({ operate && target.id == "cook_lumbridge" && option == "Talk-to" 
 suspend fun CharacterContext.started() {
     npc<Upset>("how are you getting on with finding the ingredients?")
     if (player.holdsItem("top_quality_milk")) {
-        item("You give the top-quality milk to the cook.", "top_quality_milk", 500)
+        item("top_quality_milk", 500, "You give the top-quality milk to the cook.")
         player.inventory.remove("top_quality_milk")
         player["cooks_assistant_milk"] = 1
         player<Cheerful>("Here's some top-quality milk.")
     }
     if (player.holdsItem("extra_fine_flour")) {
-        item("You give the extra fine flour to the cook.", "extra_fine_flour", 500)
+        item("extra_fine_flour", 500, "You give the extra fine flour to the cook.")
         player.inventory.remove("extra_fine_flour")
         player["cooks_assistant_flour"] = 1
         player<Cheerful>("Here's the extra fine flour.")
     }
     if (player.holdsItem("super_large_egg")) {
-        item("You give the super large egg to the cook.", "super_large_egg", 500)
+        item("super_large_egg", 500, "You give the super large egg to the cook.")
         player.inventory.remove("super_large_egg")
         player["cooks_assistant_egg"] = 1
         player<Cheerful>("Here's a super large egg.")
@@ -188,7 +188,7 @@ suspend fun CharacterContext.canIUseRange() {
     } else {
         npc<Cheerful>("Here, take this manual. It should tell you everything you need to know about this range.")
         player.inventory.add("cook_o_matic_manual")
-        item("The cook hands you a manual.", "cook_o_matic_manual", 500)
+        item("cook_o_matic_manual", 500, "The cook hands you a manual.")
     }
     player<Talk>("Thanks!")
 }

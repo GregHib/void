@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
 
 private const val LEVEL_UP_INTERFACE_ID = "dialogue_level_up"
 
-suspend fun CharacterContext.levelUp(text: String, skill: Skill) {
+suspend fun CharacterContext.levelUp(skill: Skill, text: String) {
     val lines = text.trimIndent().lines()
     check(player.open(LEVEL_UP_INTERFACE_ID)) { "Unable to open level up interface for $player" }
     for ((index, line) in lines.withIndex()) {

@@ -29,11 +29,12 @@ on<InventoryOption>({ inventory == "inventory" && option == "Discard" }) { playe
         }
         return@on
     }
-    item("""
+    val loan = itemDefinitions.get(item.def.lendId).stringId
+    item(loan, 900, """
         <col=00007f>~ Loan expires ${getExpiryMessage(player)} ~</col>
         If you discard this item, it will disappear.
         You won't be able to pick it up again.
-    """, itemDefinitions.get(item.def.lendId).stringId, 900)
+    """)
 
     choice("Really discard item?") {
         option("Yes, discard it. I won't need it again.") {

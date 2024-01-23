@@ -92,7 +92,7 @@ suspend fun PlayerChoice.amulet(): Unit = option<Happy>("Cool amulet! Can I have
                 add("yin_yang_amulet")
             }
             when (player.inventory.transaction.error) {
-                TransactionError.None -> item("You receive an amulet in exchange for $cost coins", "yin_yang_amulet", 300)
+                TransactionError.None -> item("yin_yang_amulet", 300, "You receive an amulet in exchange for $cost coins")
                 is TransactionError.Deficient -> player.notEnough("coins")
                 is TransactionError.Full -> {
                     npc<Unsure>("Um...you don't seem to have room to take the amulet. Maybe you should buy it some other time.")

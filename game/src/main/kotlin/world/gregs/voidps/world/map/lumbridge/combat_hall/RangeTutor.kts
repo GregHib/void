@@ -92,10 +92,10 @@ suspend fun CharacterContext.claimBow() {
         return
     }
     if (!player.ownsItem("training_bow")) {
-        item("Nemarti gives you a Training shortbow.", "training_bow", 400)
+        item("training_bow", 400, "Nemarti gives you a Training shortbow.")
         player.inventory.add("training_bow")
     }
-    item("Mikasi gives you 25 arrows. They can only be used with the Training shortbow.", "training_arrows", 400)
+    item("training_arrows", 400, "Mikasi gives you 25 arrows. They can only be used with the Training shortbow.")
     player.inventory.add("training_arrows", 25)
     player.start("claimed_tutor_consumables", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
 }
@@ -111,7 +111,7 @@ suspend fun CharacterContext.hasEquipment() {
         banked = true
     }
     if (banked) {
-        item("You have some arrows in your bank. Climb the stairs in Lumbridge Castle until you see this icon on your minimap. There you will find a bank.", "bank_icon", 1200)
+        item("bank_icon", 1200, "You have some arrows in your bank. Climb the stairs in Lumbridge Castle until you see this icon on your minimap. There you will find a bank.")
         return
     }
     if (player.inventory.contains("training_arrows") || player.equipment.contains("training_arrows")) {

@@ -48,7 +48,7 @@ suspend fun PlayerChoice.replacementSword() = option<Cheerful>(
         player.inventory.remove("iron_bar", 2)
         player.inventory.remove("blurite_ore")
         player.inventory.add("blurite_sword")
-        item("You give the blurite ore and iron bars to Thurgo. Thurgo makes you a sword.", "blurite_sword", 600)
+        item("blurite_sword", 600, "You give the blurite ore and iron bars to Thurgo. Thurgo makes you a sword.")
         player<Cheerful>("Thank you very much!")
         npc<CheerfulOld>("Just remember to call in with more pie some time!")
         return@option
@@ -109,7 +109,7 @@ suspend fun PlayerChoice.aboutSword() = option<Cheerful>("About that sword...") 
         return@option
     }
     player<Talking>("I have found a picture of the sword I would like you to make.")
-    item("You give the portrait to Thurgo. Thurgo studies the portrait.", "portrait", 600)
+    item("portrait", 600, "You give the portrait to Thurgo. Thurgo studies the portrait.")
     player["the_knights_sword"] = "blurite_sword"
     player.inventory.remove("portrait")
     npc<TalkingOld>("You'll need to get me some stuff to make this. I'll need two iron bars to make the sword, to start with. I'll also need an ore called blurite.")

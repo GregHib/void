@@ -13,7 +13,7 @@ private const val ITEM_INTERFACE_ID = "dialogue_obj_box"
 private const val DOUBLE_ITEM_INTERFACE_ID = "dialogue_double_obj_box"
 private const val ITEM_SCRIPT_ID = 3449
 
-suspend fun CharacterContext.item(text: String, item: String, zoom: Int, sprite: Int? = null) {
+suspend fun CharacterContext.item(item: String, zoom: Int, text: String, sprite: Int? = null) {
     check(player.open(ITEM_INTERFACE_ID)) { "Unable to open item dialogue for $player" }
     player.sendScript(ITEM_SCRIPT_ID, get<ItemDefinitions>().get(item).id, zoom)
     if (sprite != null) {
@@ -25,7 +25,7 @@ suspend fun CharacterContext.item(text: String, item: String, zoom: Int, sprite:
     player.close(ITEM_INTERFACE_ID)
 }
 
-suspend fun CharacterContext.items(text: String, item1: String, item2: String) {
+suspend fun CharacterContext.items(item1: String, item2: String, text: String) {
     check(player.open(DOUBLE_ITEM_INTERFACE_ID)) { "Unable to open item dialogue for $player" }
     player.interfaces.sendItem(DOUBLE_ITEM_INTERFACE_ID, "model1", get<ItemDefinitions>().get(item1).id)
     player.interfaces.sendItem(DOUBLE_ITEM_INTERFACE_ID, "model2", get<ItemDefinitions>().get(item2).id)

@@ -23,10 +23,10 @@ internal class ItemBoxTest : DialogueTest() {
         }
         every { player.sendScript(any(), *anyVararg()) } just Runs
         dialogue {
-            item("""
+            item("item_name", 650, """
                 An item
                 description
-            """, "item_name", 650, 10)
+            """, 10)
             resumed = true
         }
         (player.dialogueSuspension as ContinueSuspension).resume()
@@ -48,7 +48,7 @@ internal class ItemBoxTest : DialogueTest() {
             every { this@declareMock.get("item2_name").id } returns 9010
         }
         dialogue {
-            items("Item descriptions", "item_name", "item2_name")
+            items("item_name", "item2_name", "Item descriptions")
             resumed = true
         }
         (player.dialogueSuspension as ContinueSuspension).resume()
@@ -68,7 +68,7 @@ internal class ItemBoxTest : DialogueTest() {
         every { player.open("dialogue_obj_box") } returns false
         assertThrows<IllegalStateException> {
             dialogueBlocking {
-                item("text", "9009", 650, 10)
+                item("9009", 650, "text", 10)
             }
         }
         coVerify(exactly = 0) {

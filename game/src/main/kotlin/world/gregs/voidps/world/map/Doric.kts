@@ -129,7 +129,7 @@ suspend fun CharacterContext.startQuest() {
 }
 
 suspend fun CharacterContext.takeOre() {
-    item("You hand the clay, copper, and iron to Doric.", "copper_ore", 600)
+    item("copper_ore", 600, "You hand the clay, copper, and iron to Doric.")
     player.inventory.transaction {
         remove("clay", 6)
         remove("copper_ore", 4)

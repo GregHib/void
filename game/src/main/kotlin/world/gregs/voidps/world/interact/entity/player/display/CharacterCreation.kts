@@ -86,9 +86,9 @@ fun updateColours(
 ) {
     val struct = getStyleStruct(player, styleIndex, subIndex)
     val colour = hairStyle.rem(8)
-    player["makeover_colour_top"] = struct["character_style_top_colour_$colour"]
-    player["makeover_colour_legs"] = struct["character_style_legs_colour_$colour"]
-    player["makeover_colour_shoes"] = struct["character_style_shoes_colour_$colour"]
+    player["makeover_colour_top"] = struct["character_style_colour_top_$colour"]
+    player["makeover_colour_legs"] = struct["character_style_colour_legs_$colour"]
+    player["makeover_colour_shoes"] = struct["character_style_colour_shoes_$colour"]
 }
 
 on<InterfaceOption>({ id == "character_creation" && component.startsWith("part_") }) { player: Player ->
