@@ -1,5 +1,6 @@
 plugins {
     `java-library`
+    application
 }
 
 dependencies {
@@ -30,4 +31,9 @@ dependencies {
 }
 tasks.withType<Test> {
     jvmArgs("-XX:-OmitStackTraceInFastThrow")
+}
+
+application {
+    mainClass.set("world.gregs.voidps.Main")
+    tasks.run.get().workingDir = rootProject.projectDir
 }
