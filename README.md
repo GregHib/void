@@ -9,8 +9,8 @@
 <a href="#features">Features</a> &nbsp;&bull;&nbsp;
 <a href="#installation">Installation</a> &nbsp;&bull;&nbsp;
 <a href="https://rune-server.org/runescape-development/rs-503-client-and-server/projects/697260-void-634-a.html">Blog</a> &nbsp;&bull;&nbsp;
-<a href="#documentation">Documentation</a> &nbsp;&bull;&nbsp;
-<a href="#bugs">Bugs</a>
+<a href="https://github.com/GregHib/void/wiki">Documentation</a> &nbsp;&bull;&nbsp;
+<a href="https://github.com/GregHib/void/issues">Bugs</a>
 </div>
 
 ## Features
@@ -56,7 +56,7 @@ Download from GitHub and extract the `void-main.zip`
 
 ### Extract cache
 
-Create a new folder `cache` inside the `/data/` directory and extract the cache files inside of it.
+Create a new folder `/cache/` inside the `/data/` directory and extract the cache files inside of it.
 The files location should look like this: `/void/data/cache/main_file_cache.dat2`
 
 ### Play
@@ -100,7 +100,7 @@ Press clone and after a little while the project will be opened for you, the JDK
 From here you can navigate in the left panel to `/game/src/main/kotlin/world/gregs/voidps/` where you will find [Main.kt](./game/src/main/kotlin/world/gregs/voidps/Main.kt) which you should be able to right-click and run.
 
 > [!NOTE]
-> See the [Troubleshooting Guide](https://github.com/GregHib/void/wiki/Troubleshooting) for further problems
+> See the [Troubleshooting Guide](https://github.com/GregHib/void/wiki/Troubleshooting) for further problems.
 
 ## Documentation
 
