@@ -75,7 +75,7 @@ object Prayer {
         return damage
     }
 
-    fun usingProtectionPrayer(source: Character, target: Character, type: String): Boolean {
+    private fun usingProtectionPrayer(source: Character, target: Character, type: String): Boolean {
         return type == "melee" && target.protectMelee() ||
                 type == "range" && target.protectRange() ||
                 type == "magic" && target.protectMagic() ||
@@ -89,7 +89,7 @@ object Prayer {
                 source.isFamiliar && (target.praying("deflect_summoning"))
     }
 
-    fun hitThroughProtectionPrayer(source: Character, target: Character?, type: String, weapon: Item, special: Boolean): Boolean {
+    private fun hitThroughProtectionPrayer(source: Character, target: Character?, type: String, weapon: Item, special: Boolean): Boolean {
         if (target == null) {
             return false
         }

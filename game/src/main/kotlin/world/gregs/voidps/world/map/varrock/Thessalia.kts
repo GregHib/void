@@ -24,7 +24,6 @@ import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.onStyle
 import world.gregs.voidps.world.map.falador.openDressingRoom
@@ -55,16 +54,6 @@ on<NPCOption>({ operate && target.id == "thessalia" && option == "Talk-to" }) { 
 }
 
 on<NPCOption>({ operate && target.id == "thessalia" && option == "Change-clothes" }) { player: Player ->
-    startMakeover()
-}
-
-fun PlayerChoice.changeOutfit(): Unit = option<Cheerful>("I'd like to change my outfit, please.") {
-    if (!player.equipment.isEmpty()) {
-        npc<Talk>("You can't try them on while wearing armour. Take it off and speak to me again.")
-        return@option
-    }
-    npc<Cheerful>("Wonderful. Feel free to try on some items and see if there's anything you would like.")
-    player<Cheerful>("Okay, thanks.")
     startMakeover()
 }
 

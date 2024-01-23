@@ -44,7 +44,7 @@ on<InterfaceOption>({ id == "bank" && component == "item_mode" && option == "Tog
 on<InterfaceSwitch>({ id == "bank" && component == "inventory" && toId == id && toComponent.startsWith("tab_") }) { player: Player ->
     val fromTab = Bank.getTab(player, fromSlot)
     val toTab = toComponent.removePrefix("tab_").toInt() - 1
-    val toIndex = if (toTab == Bank.mainTab) player.bank.freeIndex() else Bank.tabIndex(player, toTab + 1)
+    val toIndex = if (toTab == Bank.MAIN_TAB) player.bank.freeIndex() else Bank.tabIndex(player, toTab + 1)
     shiftTab(player, fromSlot, toIndex, fromTab, toTab)
 }
 
@@ -57,7 +57,7 @@ fun shiftTab(player: Player, fromIndex: Int, toIndex: Int, fromTab: Int, toTab: 
     if (moved && toTab > 0) {
         player.inc("bank_tab_$toTab")
     }
-    if (moved || toTab == Bank.mainTab) {
+    if (moved || toTab == Bank.MAIN_TAB) {
         Bank.decreaseTab(player, fromTab)
     }
     // Remove one from target index to include this item's own position change

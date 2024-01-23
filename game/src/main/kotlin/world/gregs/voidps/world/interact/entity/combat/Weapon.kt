@@ -75,7 +75,7 @@ object Weapon {
 
     fun isDemonbane(item: Item) = item.id == "silverlight" || item.id == "darklight" || item.id == "holy_water"
 
-    fun isOutlier(special: Boolean, id: String): Boolean = (special && id.startsWith("magic") || id == "seercull" || id == "rune_thrownaxe") || id == "ogre_bow"
+    private fun isOutlier(special: Boolean, id: String): Boolean = (special && id.startsWith("magic") || id == "seercull" || id == "rune_thrownaxe") || id == "ogre_bow"
 
     fun isBowOrCrossbow(item: Item) = item.id.endsWith("bow") || item.id == "seercull" || item.id.endsWith("longbow_sighted")
 

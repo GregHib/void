@@ -9,7 +9,7 @@ import kotlin.math.max
 
 object Assistance {
 
-    const val maximumExperience = 300000.0// 30k
+    const val MAX_EXPERIENCE = 300000.0// 30k
 
     fun redirectSkillExperience(player: Player, skill: Skill) {
         player["blocked_${skill.name}"] = player.experience.blocked(skill)
@@ -42,7 +42,7 @@ object Assistance {
     }
 
     fun exceededMaximum(earned: Double): Boolean {
-        return earned >= maximumExperience
+        return earned >= MAX_EXPERIENCE
     }
 
     fun stopRedirectingSkillExp(player: Player, skill: Skill) {
