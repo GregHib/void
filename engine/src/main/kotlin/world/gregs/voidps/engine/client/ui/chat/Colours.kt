@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.client.ui.chat
 
 import java.util.regex.Pattern
 
+@Suppress("MemberVisibilityCanBePrivate")
 object Colours {
 
     private val tagPattern = Pattern.compile("<(/?[a-zA-Z_]+)>")

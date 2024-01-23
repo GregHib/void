@@ -180,9 +180,6 @@ class Whirlpool {
         }
         while (sourceBits > 8L) {
             val value = source[i].toInt() shl diff and 0xff or (source[i + 1].toInt() and 0xff ushr 8 - diff)
-            if (value < 0 || value >= 256) {
-                throw RuntimeException()
-            }
             buffer[bufferPosition] = (buffer[bufferPosition].toInt() or (value ushr bits)).toByte()
             ++bufferPosition
             bufferBits += 8 - bits

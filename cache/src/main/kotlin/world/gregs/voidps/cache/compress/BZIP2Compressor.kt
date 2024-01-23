@@ -186,7 +186,7 @@ internal class BZIP2Compressor {
                 anIntArray3090[i48] = i49
             }
             val i52 = anInt3073 + 1
-            var i53 = -1
+            var i53 = 0
             var i54 = 0
             for (i55 in 0..255) {
                 anIntArray3075[i55] = 0
@@ -200,15 +200,12 @@ internal class BZIP2Compressor {
                 anIntArray3092[i57] = i56 + 1
             }
             var i59 = 0
-            if (i54 == 0) {
-                i53++
-                i54 = 50
-                val index = aByteArray3076[i53]
-                i = anIntArray3090[index.toInt()]
-                intArray1 = anIntArrayArray3095[index.toInt()]
-                intArray3 = anIntArrayArray3099[index.toInt()]
-                intArray2 = anIntArrayArray3082[index.toInt()]
-            }
+            i54 = 50
+            val index = aByteArray3076[i53]
+            i = anIntArray3090[index.toInt()]
+            intArray1 = anIntArrayArray3095[index.toInt()]
+            intArray3 = anIntArrayArray3099[index.toInt()]
+            intArray2 = anIntArrayArray3082[index.toInt()]
             i54--
             var i61 = i
             var i62: Int
