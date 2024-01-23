@@ -1,4 +1,4 @@
-<div style="text-align: center;">
+<div align="center">
 <h1>Void</h1>
 <a href="https://github.com/GregHib/void">
   <img src="https://i.imgur.com/N8RhzRY.png" alt="void">
