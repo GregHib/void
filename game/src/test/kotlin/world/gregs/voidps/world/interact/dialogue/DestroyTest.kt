@@ -27,10 +27,10 @@ internal class DestroyTest : DialogueTest() {
     @Test
     fun `Send item destroy`() {
         dialogue {
-            destroy("""
+            destroy("1234", """
                 question
                 lines
-            """, "1234")
+            """)
         }
         verify {
             player.open("dialogue_confirm_destroy")
@@ -45,7 +45,7 @@ internal class DestroyTest : DialogueTest() {
         every { player.open("dialogue_confirm_destroy") } returns false
         assertThrows<IllegalStateException> {
             dialogueBlocking {
-                destroy("question", "1234")
+                destroy("1234", "question")
             }
         }
         coVerify(exactly = 0) {
@@ -58,7 +58,7 @@ internal class DestroyTest : DialogueTest() {
         every { player.open("dialogue_confirm_destroy") } returns true
         var destroyed = false
         dialogue {
-            destroyed = destroy("question", "1234")
+            destroyed = destroy("1234", "question")
         }
         val suspend = player.dialogueSuspension as StringSuspension
         suspend.string = "confirm"
