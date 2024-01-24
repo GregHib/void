@@ -82,7 +82,7 @@ class VersionTableBuilderTest {
             table.whirlpool(i, index.whirlpool ?: ByteArray(64))
         }
 
-        val expected = library.generateNewUkeys(exponent, modulus)
+        val expected = library.generateUkeys(exponent = exponent, modulus = modulus)
         val actual = table.build()
         assertEquals(expected, actual)
     }
