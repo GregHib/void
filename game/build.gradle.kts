@@ -1,6 +1,7 @@
 plugins {
     `java-library`
     application
+    id("io.ktor.plugin") version "2.3.7"
 }
 
 dependencies {
@@ -37,4 +38,10 @@ tasks.withType<Test> {
 application {
     mainClass.set("world.gregs.voidps.Main")
     tasks.run.get().workingDir = rootProject.projectDir
+}
+
+ktor {
+    fatJar {
+        archiveFileName.set("void-server.jar")
+    }
 }
