@@ -2,12 +2,12 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
 buildscript {
     dependencies {
-        classpath(kotlin("gradle-plugin", version = "1.8.21"))
+        classpath(kotlin("gradle-plugin", version = "1.9.22"))
     }
 }
 
 plugins {
-    kotlin("jvm") version "1.8.21"
+    kotlin("jvm") version "1.9.22"
 }
 
 allprojects {
@@ -36,11 +36,11 @@ allprojects {
         compileKotlin {
             kotlinOptions.jvmTarget = java.sourceCompatibility.toString()
             // https://youtrack.jetbrains.com/issue/KT-4779/Generate-default-methods-for-implementations-in-interfaces
-            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility")
+            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility", "-Xallow-any-scripts-in-source-roots")
         }
         compileTestKotlin {
             kotlinOptions.jvmTarget = java.sourceCompatibility.toString()
-            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility")
+            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility", "-Xallow-any-scripts-in-source-roots")
         }
     }
     if (name != "game") {
