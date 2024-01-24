@@ -51,12 +51,21 @@ tasks {
         archiveClassifier.set("")
         archiveVersion.set("")
     }
+    register("buildScripts") {
+        var file = layout.buildDirectory.get().file("scripts/run.bat").asFile
+        file.parentFile.mkdirs()
+        file.writeText("java -jar $name\npause")
+        file = layout.buildDirectory.get().file("scripts/run.sh").asFile
+        file.writeText("#!/bin/sh\njava -jar $name")
+    }
 }
 
 distributions {
     create("bundle") {
         distributionBaseName = "void"
         contents {
+            from(tasks["shadowJar"])
+            from(tasks["buildScripts"])
             from("../data/definitions/") {
                 into("data/definitions")
             }
@@ -66,9 +75,6 @@ distributions {
             from("../data/spawns") {
                 into("data/spawns")
             }
-            val name = "void-server-${version}.jar"
-            from(layout.buildDirectory.dir("libs/$name"))
-
             val emptyDirs = listOf("cache", "saves")
             for (dir in emptyDirs) {
                 val file = file("/tmp/$dir/")
@@ -77,13 +83,8 @@ distributions {
             from("/tmp/") {
                 into("data")
             }
-
-            var file = file(layout.buildDirectory.dir("scripts/run.bat"))
-            file.writeText("java -jar $name\npause")
-            from(file)
-            file = file(layout.buildDirectory.dir("scripts/run.sh"))
-            file.writeText("#!/bin/sh\njava -jar $name")
-            from(file)
+            from(layout.buildDirectory.dir("scripts/run.bat"))
+            from(layout.buildDirectory.dir("scripts/run.sh"))
         }
     }
 }
