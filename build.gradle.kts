@@ -3,6 +3,7 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 buildscript {
     dependencies {
         classpath(kotlin("gradle-plugin", version = "1.9.22"))
+        classpath("com.github.johnrengelman:shadow:8.1.1")
     }
 }
 

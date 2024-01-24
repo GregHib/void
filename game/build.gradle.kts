@@ -1,7 +1,9 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     `java-library`
     application
-    id("io.ktor.plugin") version "2.3.7"
+    id("com.github.johnrengelman.shadow")
 }
 
 dependencies {
@@ -40,8 +42,48 @@ application {
     tasks.run.get().workingDir = rootProject.projectDir
 }
 
-ktor {
-    fatJar {
-        archiveFileName.set("void-server.jar")
+tasks {
+    named<ShadowJar>("shadowJar") {
+        minimize {
+            exclude(dependency("ch.qos.logback:logback-classic:.*"))
+        }
+        archiveBaseName.set("void-server-${version}")
+        archiveClassifier.set("")
+        archiveVersion.set("")
+    }
+}
+
+distributions {
+    create("bundle") {
+        distributionBaseName = "void"
+        contents {
+            from("../data/definitions/") {
+                into("data/definitions")
+            }
+            from("../data/map") {
+                into("data/map")
+            }
+            from("../data/spawns") {
+                into("data/spawns")
+            }
+            val name = "void-server-${version}.jar"
+            from(layout.buildDirectory.dir("libs/$name"))
+
+            val emptyDirs = listOf("cache", "saves")
+            for (dir in emptyDirs) {
+                val file = file("/tmp/$dir/")
+                file.mkdirs()
+            }
+            from("/tmp/") {
+                into("data")
+            }
+
+            var file = file(layout.buildDirectory.dir("scripts/run.bat"))
+            file.writeText("java -jar $name\npause")
+            from(file)
+            file = file(layout.buildDirectory.dir("scripts/run.sh"))
+            file.writeText("#!/bin/sh\njava -jar $name")
+            from(file)
+        }
     }
 }
