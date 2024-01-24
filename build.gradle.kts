@@ -56,3 +56,9 @@ allprojects {
         }
     }
 }
+
+tasks.register("printVersion") {
+    doLast {
+        println(project.version)
+    }
+}
