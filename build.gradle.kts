@@ -19,6 +19,7 @@ allprojects {
     version = "1.0.0"
 
     java.sourceCompatibility = JavaVersion.VERSION_19
+    java.targetCompatibility = java.sourceCompatibility
 
     repositories {
         mavenCentral()
@@ -33,12 +34,12 @@ allprojects {
 
     tasks {
         compileKotlin {
-            kotlinOptions.jvmTarget = JavaVersion.VERSION_19.toString()
+            kotlinOptions.jvmTarget = java.sourceCompatibility.toString()
             // https://youtrack.jetbrains.com/issue/KT-4779/Generate-default-methods-for-implementations-in-interfaces
             kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility")
         }
         compileTestKotlin {
-            kotlinOptions.jvmTarget = JavaVersion.VERSION_19.toString()
+            kotlinOptions.jvmTarget = java.sourceCompatibility.toString()
             kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility")
         }
     }
