@@ -109,3 +109,14 @@ For further guides on how to write content please refer to the [Void Wiki](https
 ## Bugs
 
 If you run into any problems or find any bugs please report them by creating a [New Issue on our Issues Page](https://github.com/GregHib/void/issues) describing the problem, so it can be fixed.
+
+## Thanks to
+
+* All contributors
+* Kris - [osrs-docs](https://osrs-docs.com/)
+* Ebp90
+* Jarryd
+* Tomm - [RSMod Pathfinder](https://github.com/rsmod/rsmod)
+* Graham - [OpenRS2](https://archive.openrs2.org/)
+
+[![image](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_square.svg)](https://jb.gg/OpenSourceSupport)
