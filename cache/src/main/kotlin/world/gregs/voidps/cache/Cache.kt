@@ -40,7 +40,6 @@ interface Cache {
 
     fun close()
 
-
     companion object {
         fun load(properties: Properties): Cache {
             val live = properties.getProperty("live").toBoolean()

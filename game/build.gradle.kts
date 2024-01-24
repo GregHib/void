@@ -22,6 +22,7 @@ dependencies {
     implementation("io.insert-koin:koin-logger-slf4j:${findProperty("koinLogVersion")}")
     implementation("ch.qos.logback:logback-classic:${findProperty("logbackVersion")}")
     implementation("com.michael-bull.kotlin-inline-logger:kotlin-inline-logger-jvm:${findProperty("inlineLoggingVersion")}")
+    implementation("io.github.classgraph:classgraph:4.8.165")
 
     testImplementation("org.junit.jupiter:junit-jupiter-params:${findProperty("junitVersion")}")
     testImplementation("io.insert-koin:koin-test:${findProperty("koinVersion")}")
