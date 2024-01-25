@@ -23,7 +23,7 @@ jobs:
       - name: Grant permissions to gradlew
         run: chmod +x gradlew
       - name: Get build version
-        run: echo "build_version=$(./gradlew printVersion)" >> $GITHUB_ENV
+        run: echo "build_version=$(./gradlew -q printVersion)" >> $GITHUB_ENV
       - name: Check tag matches project version
         if: ${{ env.build_version != github.ref_name }}
         run: exit 1
@@ -33,4 +33,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run:
-          gh release upload ${{ github.ref_name }} ./game/build/distributions/void-${{ github.ref_name }}.zip
+          gh release create ${{ github.ref_name }} ./game/build/distributions/void-${{ github.ref_name }}.zip
