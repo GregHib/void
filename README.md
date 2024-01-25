@@ -37,7 +37,6 @@
     ```
    You should see these two messages followed by many `[GameLoop]` to know the server is up and running correctly.
 
-   > [!TIP]
    > Ctrl + C to exit and shutdown the server when running from a command line terminal.
 
 5. Run the [latest client.jar](https://github.com/GregHib/void-client/releases) and login with any username and password to create a new account.
