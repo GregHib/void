@@ -43,20 +43,42 @@ application {
 }
 
 tasks {
+    val name = "void-server-${version}"
     named<ShadowJar>("shadowJar") {
         minimize {
             exclude(dependency("ch.qos.logback:logback-classic:.*"))
         }
-        archiveBaseName.set("void-server-${version}")
+        archiveBaseName.set(name)
         archiveClassifier.set("")
         archiveVersion.set("")
     }
     register("buildScripts") {
-        var file = layout.buildDirectory.get().file("scripts/run.bat").asFile
+        var file = layout.buildDirectory.get().file("scripts/run-server.bat").asFile
         file.parentFile.mkdirs()
-        file.writeText("java -jar $name\npause")
-        file = layout.buildDirectory.get().file("scripts/run.sh").asFile
-        file.writeText("#!/bin/sh\njava -jar $name")
+        file.writeText("""
+            @echo off
+            title Void Game Sever
+            java -jar $name.jar
+            pause
+        """.trimIndent())
+        file = layout.buildDirectory.get().file("scripts/run-server.sh").asFile
+        file.writeText("""
+            #!/usr/bin/env bash
+            title="Void Game Server"
+            echo -e '\033]2;'${'$'}title'\007'
+            # Early exit on cancel
+            cleanup() {
+            	echo ""
+                exit 1
+            }
+            trap cleanup INT
+            java -jar $name.jar
+            # Stop console closing
+            if [ ${'$'}? -ne 0 ]; then
+                echo "Error: The Java application exited with a non-zero status."
+                read -p "Press enter to continue..."
+            fi 
+        """.trimIndent())
     }
 }
 
@@ -77,14 +99,15 @@ distributions {
             }
             val emptyDirs = listOf("cache", "saves")
             for (dir in emptyDirs) {
-                val file = file("/tmp/$dir/")
+                val file = layout.buildDirectory.get().dir("/tmp/$dir/").asFile
                 file.mkdirs()
             }
-            from("/tmp/") {
+            from(layout.buildDirectory.dir("tmp/")) {
                 into("data")
             }
-            from(layout.buildDirectory.dir("scripts/run.bat"))
-            from(layout.buildDirectory.dir("scripts/run.sh"))
+            from(layout.projectDirectory.dir("src/main/resources/game.properties"))
+            from(layout.buildDirectory.dir("scripts/run-server.bat"))
+            from(layout.buildDirectory.dir("scripts/run-server.sh"))
         }
     }
 }
