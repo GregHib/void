@@ -61,16 +61,13 @@ Extract the [cache files](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A
 
 From here you can navigate in the left panel to `/game/src/main/kotlin/world/gregs/voidps/` where you will find [Main.kt](./game/src/main/kotlin/world/gregs/voidps/Main.kt) which you should be able to right-click and run.
 
-> [!NOTE]
-> See the [Troubleshooting Guide](https://github.com/GregHib/void/wiki/Troubleshooting) for further problems.
-
 You can also run in the command line using the gradle wrapper.
 
 ```bash
 ./gradlew run
 ```
 
-Once the server is up and running; set up the [void game client repository](https://github.com/GregHib/void-client/) or download one of the [prebuilt client.jars](https://github.com/GregHib/void-client/releases) and run to log into the game.
+Once the server is up and running; setup the [void-client repository](https://github.com/GregHib/void-client/) or download one of the [prebuilt client.jars](https://github.com/GregHib/void-client/releases) and run to log into the game.
 
 Don't forget to check out our [Contributing guidelines](./CONTRIBUTING.md) before submitting your first pull request!
 
