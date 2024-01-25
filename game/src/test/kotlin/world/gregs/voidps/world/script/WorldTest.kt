@@ -165,7 +165,7 @@ abstract class WorldTest : KoinTest {
                 single { objectCollision }
             })
         }
-        loadScripts(getProperty("scriptModule"))
+        loadScripts()
         MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache()
         saves = File(getProperty("savePath"))
         saves?.mkdirs()

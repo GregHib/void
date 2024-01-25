@@ -4,12 +4,11 @@ import com.github.michaelbull.logging.InlineLogger
 import io.github.classgraph.ClassGraph
 import world.gregs.voidps.Main
 import world.gregs.voidps.engine.client.ui.chat.plural
-import java.io.File
 import kotlin.system.measureTimeMillis
 
-private val logger = InlineLogger()
+private val logger = InlineLogger("ScriptLoader")
 
-fun loadScripts(scriptPath: String) {
+fun loadScripts() {
     var scriptCount = 0
     val found = mutableSetOf<String>()
     val isJar = Main::class.java.getResource("Main.class")?.protocol == "jar"
@@ -33,9 +32,8 @@ fun loadScripts(scriptPath: String) {
                 }
             }
     }
-    val directory = File(scriptPath)
     if (scriptCount == 0) {
-        logger.warn { "No scripts found at '${directory.absoluteFile}'" }
+        logger.warn { "No scripts found." }
     }
     logger.info { "Loaded $scriptCount ${"script".plural(scriptCount)} in ${time}ms" }
 }

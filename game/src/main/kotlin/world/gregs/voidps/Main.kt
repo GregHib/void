@@ -75,7 +75,7 @@ object Main {
         if (!saves.exists()) {
             saves.mkdir()
         }
-        loadScripts(getProperty("scriptModule"))
+        loadScripts()
     }
 
     private fun cache(cache: Cache, properties: Properties) = module {
