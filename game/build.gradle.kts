@@ -99,10 +99,10 @@ distributions {
             }
             val emptyDirs = listOf("cache", "saves")
             for (dir in emptyDirs) {
-                val file = layout.buildDirectory.get().dir("/tmp/$dir/").asFile
+                val file = layout.buildDirectory.get().dir("tmp/empty/$dir/").asFile
                 file.mkdirs()
             }
-            from(layout.buildDirectory.dir("tmp/")) {
+            from(layout.buildDirectory.dir("tmp/empty/")) {
                 into("data")
             }
             from(layout.projectDirectory.dir("src/main/resources/game.properties"))
