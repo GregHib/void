@@ -7,7 +7,8 @@
 <p>Void is a lightweight, high-performance back-end game server emulating the 2011 MMORPG RuneScape (revision 634). It serves as a modern and user-friendly base for others to built-off of.</p>
 
 <a href="#features">Features</a> &nbsp;&bull;&nbsp;
-<a href="#installation">Installation</a> &nbsp;&bull;&nbsp;
+<a href="#quick-setup">Quick setup</a> &nbsp;&bull;&nbsp;
+<a href="#development">Development</a> &nbsp;&bull;&nbsp;
 <a href="https://rune-server.org/runescape-development/rs-503-client-and-server/projects/697260-void-634-a.html" target="_blank">Blog</a> &nbsp;&bull;&nbsp;
 <a href="https://github.com/GregHib/void/wiki">Documentation</a> &nbsp;&bull;&nbsp;
 <a href="https://github.com/GregHib/void/issues">Bugs</a>
@@ -23,69 +24,28 @@
 
 ![void in game picture](https://i.imgur.com/OZ317on.png)
 
-## Installation
 
-### Prerequisites
+## Quick setup
 
-* Installed Java Development Kit (JDK) 19 or above. https://adoptium.net/en-GB/
-* Downloaded the latest `client.jar` from the [client release page](https://github.com/GregHib/void-client/releases).
-* Downloaded pre-modified cache game files from [cache artifacts](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A).
+1. Make sure you have java 19 or above installed. (`java --version` on command line)
+2. Extract the [latest void.zip released bundle](https://github.com/GregHib/void/releases) into a directory.
+3. Extract the [latest pre-modified game files cache.zip](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A) into `/void/data/cache/`.
+4. Run either the `run-server.bat` on Windows, or `run-server.sh` on Linux.
+    ```
+    [Main] - Void loaded in 2349ms
+    [GameServer] - Listening for requests on port 43594...
+    ```
+   You should see these two messages followed by many `[GameLoop]` to know the server is up and running correctly.
 
-> [!TIP]
-> There are instructions on how to [build your own client](https://github.com/GregHib/void/wiki/client-building) and [build your own cache](https://github.com/GregHib/void/wiki/cache-building)!
+   > Ctrl + C to exit and shutdown the server when running from a command line terminal.
 
-### Download game code
+5. Run the [latest client.jar](https://github.com/GregHib/void-client/releases) and login with any username and password to create a new account.
 
 > [!NOTE]
-> Jar builds, game bundles and docker images are coming soon!
+> For common problems see the [Troubleshooting Guide](https://github.com/GregHib/void/wiki/Troubleshooting).
 
-#### Git
 
-Clone the repository using the GitHub url.
-
-```bash
-git clone git@github.com:GregHib/void.git
-cd void
-```
-
-#### Manual download
-
-Download from GitHub and extract the `void-main.zip`
-
-![github code button menu](https://i.imgur.com/98TDsxX.png)
-
-### Extract cache
-
-Create a new folder `/cache/` inside the `/data/` directory and extract the cache files inside of it.
-The files location should look like this: `/void/data/cache/main_file_cache.dat2`
-
-### Play
-
-To quickly launch the server to log in and play; open a terminal in the `void` directory and run the following command:
-
-```bash
-./gradlew run
-```
-
-> [!TIP]
-> Ctrl + C to exit and shutdown the server when running from a command line terminal.
-
-#### Common issues
-
-To resolve the error
-
-```bash
-> Kotlin could not find the required JDK tools in the Java installation. Make sure Kotlin compilation is running on a JDK, not JRE.
-```
-
-Open the `gradle.properties` file, remove the hash from the first line and replace the directory with the location of
-your JDK installation.
-
-```properties
-org.gradle.java.home=C:/Users/Greg/.jdks/openjdk-19.0.1/
-```
-
-### Development
+## Development
 
 It is recommended to use IntelliJ IDEA to develop with Void.
 The community edition can be downloaded for free from the [jetbrains website.](https://www.jetbrains.com/idea/download/)
@@ -97,15 +57,41 @@ Selecting `git` version control and entering the void project URL `git@github.co
 
 Press clone and after a little while the project will be opened for you, the JDK indexed and gradle setup.
 
+Extract the [cache files](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A) into a new directory called `/cache/` inside of the `/data/` directory.
+
 From here you can navigate in the left panel to `/game/src/main/kotlin/world/gregs/voidps/` where you will find [Main.kt](./game/src/main/kotlin/world/gregs/voidps/Main.kt) which you should be able to right-click and run.
 
-> [!NOTE]
-> See the [Troubleshooting Guide](https://github.com/GregHib/void/wiki/Troubleshooting) for further problems.
+You can also run in the command line using the gradle wrapper.
+
+```bash
+./gradlew run
+```
+
+Once the server is up and running; setup the [void-client repository](https://github.com/GregHib/void-client/) or download one of the [prebuilt client.jars](https://github.com/GregHib/void-client/releases) and run to log into the game.
+
+Don't forget to check out our [Contributing guidelines](./CONTRIBUTING.md) before submitting your first pull request!
+
+> [!TIP]
+> There are instructions on how to [build your own client](https://github.com/GregHib/void/wiki/client-building) and [build your own cache](https://github.com/GregHib/void/wiki/cache-building)!
+
 
 ## Documentation
 
 For further guides on how to write content please refer to the [Void Wiki](https://github.com/GregHib/void/wiki/).
 
+
 ## Bugs
 
 If you run into any problems or find any bugs please report them by creating a [New Issue on our Issues Page](https://github.com/GregHib/void/issues) describing the problem, so it can be fixed.
+
+
+## Thanks to
+
+* All contributors
+* Kris - [osrs-docs](https://osrs-docs.com/)
+* Ebp90
+* Jarryd
+* Tomm - [RSMod Pathfinder](https://github.com/rsmod/rsmod)
+* Graham - [OpenRS2](https://archive.openrs2.org/)
+
+[![image](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_square.svg)](https://jb.gg/OpenSourceSupport)

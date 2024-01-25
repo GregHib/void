@@ -34,7 +34,7 @@ interface FileProvider {
     }
 
     companion object {
-        private val logger = InlineLogger()
+        private val logger = InlineLogger("FileProvider")
 
         fun load(cache: Cache, properties: Properties): FileProvider {
             val start = System.currentTimeMillis()

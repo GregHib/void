@@ -2,12 +2,13 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
 buildscript {
     dependencies {
-        classpath(kotlin("gradle-plugin", version = "1.8.21"))
+        classpath(kotlin("gradle-plugin", version = "1.9.22"))
+        classpath("com.github.johnrengelman:shadow:8.1.1")
     }
 }
 
 plugins {
-    kotlin("jvm") version "1.8.21"
+    kotlin("jvm") version "1.9.22"
 }
 
 allprojects {
@@ -19,6 +20,7 @@ allprojects {
     version = "1.0.0"
 
     java.sourceCompatibility = JavaVersion.VERSION_19
+    java.targetCompatibility = java.sourceCompatibility
 
     repositories {
         mavenCentral()
@@ -33,13 +35,13 @@ allprojects {
 
     tasks {
         compileKotlin {
-            kotlinOptions.jvmTarget = JavaVersion.VERSION_19.toString()
+            kotlinOptions.jvmTarget = java.sourceCompatibility.toString()
             // https://youtrack.jetbrains.com/issue/KT-4779/Generate-default-methods-for-implementations-in-interfaces
-            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility")
+            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility", "-Xallow-any-scripts-in-source-roots")
         }
         compileTestKotlin {
-            kotlinOptions.jvmTarget = JavaVersion.VERSION_19.toString()
-            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility")
+            kotlinOptions.jvmTarget = java.sourceCompatibility.toString()
+            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility", "-Xallow-any-scripts-in-source-roots")
         }
     }
     if (name != "game") {
@@ -52,5 +54,11 @@ allprojects {
                 exceptionFormat = TestExceptionFormat.FULL
             }
         }
+    }
+}
+
+tasks.register("printVersion") {
+    doLast {
+        println(project.version)
     }
 }

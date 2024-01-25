@@ -37,12 +37,13 @@ object Main {
 
     lateinit var name: String
     private val logger = InlineLogger()
+    private const val PROPERTY_FILE_NAME = "game.properties"
 
     @OptIn(ExperimentalUnsignedTypes::class)
     @JvmStatic
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
-        val properties = properties("/game.properties")
+        val properties = properties()
         name = properties.getProperty("name")
 
         val cache = timed("cache") { Cache.load(properties) }
@@ -64,6 +65,18 @@ object Main {
         server.start(getIntProperty("port"))
     }
 
+    private fun properties(): Properties = timed("properties") {
+        val properties = Properties()
+        val file = File("./$PROPERTY_FILE_NAME")
+        if (file.exists()) {
+            properties.load(file.inputStream())
+        } else {
+            logger.debug { "Property file not found; defaulting to internal." }
+            properties.load(Main::class.java.getResourceAsStream("/$PROPERTY_FILE_NAME"))
+        }
+        return@timed properties
+    }
+
     private fun preload(cache: Cache, properties: Properties) {
         val module = cache(cache, properties)
         startKoin {
@@ -75,7 +88,7 @@ object Main {
         if (!saves.exists()) {
             saves.mkdir()
         }
-        loadScripts(getProperty("scriptModule"))
+        loadScripts()
     }
 
     private fun cache(cache: Cache, properties: Properties) = module {
