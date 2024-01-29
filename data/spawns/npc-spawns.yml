@@ -383,6 +383,8 @@
 - { id: goblin_light_grey_bald_spear, x: 2392, y: 9656 }
 - { id: goblin_light_grey_bald_spear, x: 2396, y: 9658 }
 - { id: goblin_light_grey_bald_spear, x: 2397, y: 9655 }
+# 9623
+- { id: zombie, x: 2405, y: 9713, members: true }
 # 9772
 - { id: giant_spider_2, x: 2459, y: 2864, members: true }
 - { id: giant_spider_2, x: 2479, y: 2866, members: true }
@@ -521,6 +523,7 @@
 - { id: goblin_light_grey_bald_spear, x: 2438, y: 9700 }
 - { id: goblin_light_grey_bald_spear, x: 2441, y: 9698 }
 - { id: goblin_light_grey_bald_spear, x: 2439, y: 9696 }
+- { id: zombie, x: 2452, y: 9684, members: true }
 # 9882
 - { id: rat, x: 2442, y: 9891, members: true }
 - { id: rat, x: 2447, y: 9891, members: true }
@@ -650,10 +653,14 @@
 - { id: rat, x: 2502, y: 9437, members: true }
 - { id: rat, x: 2501, y: 9430, members: true }
 - { id: rat, x: 2527, y: 9412, members: true }
+# 10133
+- { id: zombie, x: 2541, y: 9569, members: true }
 # 10137
 - { id: butterfly_1, x: 2540, y: 9820, members: true }
 - { id: butterfly_1, x: 2546, y: 9817, members: true }
 - { id: butterfly_1, x: 2543, y: 9813, members: true }
+# 10137
+- { id: zombie, x: 2540, y: 9823, members: true }
 # 10138
 - { id: rat, x: 2542, y: 9897, members: true }
 # 10284
@@ -1351,6 +1358,13 @@
 - { id: goblin_orange_hat_spear, x: 3126, y: 3450 }
 - { id: goblin_orange_hat_spear, x: 3121, y: 3422 }
 - { id: sigurd, x: 3113, y: 3413 }
+- { id: dororan_after_cutscene, x: 3083, y: 3417, direction: SOUTH }
+- { id: gudrun_after_cutscene, x: 3082, y: 3417, direction: SOUTH }
+- { id: dororan, x: 3098, y: 3422, direction: EAST }
+- { id: gudrun, x: 3082, y: 3417 }
+- { id: chieftain_gunthor, x: 3078, y: 3444 }
+- { id: haakon_the_champion, x: 3081, y: 3444 }
+- { id: kjell, x: 3079, y: 3414, direction: NORTH_EAST }
 # 12342
 - { id: man, x: 3093, y: 3512 }
 - { id: man, x: 3097, y: 3512 }
@@ -1369,6 +1383,7 @@
 - { id: rat, x: 3123, y: 3487 }
 - { id: rat, x: 3128, y: 3485 }
 - { id: hari, x: 3133, y: 3509 }
+- { id: jeffery, x: 3108, y: 3500 }
 # 12436
 - { id: combat_instructor, x: 3106, y: 9509 }
 - { id: mining_instructor, x: 3081, y: 9504 }
@@ -1634,6 +1649,8 @@
 - { id: banker_4, x: 3166, y: 3489, direction: EAST }
 - { id: rat, x: 3151, y: 3414 }
 - { id: musician_cooks_guild, x: 3153, y: 3422, direction: SOUTH }
+- { id: dororan_after_quest, x: 3159, y: 3434 }
+- { id: gudrun_after_quest, x: 3162, y: 3434 }
 # 12600
 - { id: goblin_musician, x: 3143, y: 3642, direction: WEST }
 - { id: rat, x: 3160, y: 3639 }

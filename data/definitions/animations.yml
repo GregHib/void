@@ -1,4 +1,7 @@
 # Dialogue expressions
+
+expression_unknown_expression: 9807
+
 expression_no: 9740
 expression_yes: 9741
 expression_amazed1: 9742
@@ -1626,3 +1629,4 @@ teleport_pharaohs_sceptre:
   ticks: 3
 fill_bucket: 895
 altar_pray: 645
+engrave: 14736

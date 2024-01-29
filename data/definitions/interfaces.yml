@@ -226,6 +226,12 @@ inventory:
         Option12: 17
         Drag: 20
         Option13: 21
+messagescrol:
+  id: 156
+  type: wide_screen
+  components:  
+    title: 5
+    line0: 7-106        
 slayer_rewards_assignment: 161
 slayer_rewards_learn_old: 163
 slayer_rewards: 164

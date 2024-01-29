@@ -409,6 +409,11 @@ squire_asrol:
   race: human
   wander_radius: 4
   examine: "Indentured servant of a Knight."
+jeffery:
+  id: 637
+  wander_radius: 4
+  race: human
+  examine: "The man with the armour."
 reldo:
   id: 647
   wander_radius: 4
@@ -595,6 +600,10 @@ banker_canifis:
   interact_distance: 2
   race: human
   examine: "He can look after my money."
+dororan:
+  id: 1168
+  race: dwarf
+  examine: "A dwarf in anguish."  
 yrsa:
   id: 1301
   race: human
@@ -674,6 +683,19 @@ quiz_master:
   interact_distance: 4
   race: human
   examine: "Apparently a master of quizzes!"
+dororan_after_cutscene:
+  id: 2646
+dororan_after_cutscene2:
+  id: 2647
+  examine: "A dwarf on top of the world."
+dororan_after_quest:
+  &dororan_after_quest
+  id: 2648
+  race: dwarf
+  examine: "A dwarf on top of the world."
+dororan_after_quest2:
+  <<: *dororan_after_quest
+  id: 2651
 reldo_normal:
   id: 2661
   race: human
@@ -709,6 +731,58 @@ ellis:
   id: 2824
   race: human
   examine: "Manufacturer of fine leathers."
+dororan_cutscene:
+  id: 2863
+  examine: "A dwarf in suspense."  
+gudrun:
+  &gudrun
+  id: 2864
+  wander_radius: 4
+  race: human
+  examine: "The chieftain's daughter."
+gudrun2:
+  <<: *gudrun
+  id: 2865
+gudrun_after_cutscene:
+  <<: *gudrun
+  id: 2866
+gudrun_after_cutscene2:
+  <<: *gudrun
+  id: 2867  
+gudrun_after_quest:
+  <<: *gudrun
+  id: 2869
+gudrun_after_quest2:
+  <<: *gudrun
+  id: 2870
+gudrun_cutscene:
+  <<: *gudrun
+  id: 2871
+kjell:
+  &kjell
+  id: 2872
+  race: human
+  examine: "A barbarian guard."
+kjell_sword:
+  <<: *kjell
+  id: 2873
+kjell_guitar:
+  <<: *kjell
+  id: 2874
+kjell_cutscene:
+  id: 2875
+  examine: "A barbarian guard."
+chieftain_gunthor:
+  &chieftain_gunthor
+  id: 2876
+  race: human
+  examine: "A heavily built barbarian with an air of power and authority."
+chieftain_gunthor_icon:
+  <<: *chieftain_gunthor
+  id: 2877
+chieftain_gunthort_no_icon:
+  <<: *chieftain_gunthor
+  id: 2878
 rat_ratcatchers:
   id: 2974
   wander_radius: 4
@@ -731,6 +805,22 @@ rat_ratcatchers_7:
   id: 2980
   wander_radius: 4
   examine: "A popular dwarven delicacy."
+chieftain_gunthor_cutscene:
+  id: 3089
+  examine: "A heavily built barbarian with an air of power and authority."
+haakon_the_champion:
+  id: 3090
+  max_hit_melee: 42
+  hitpoints: 360
+  immune_poison: true
+  wander_radius: 4
+  respawn_delay: 75
+  style: crush
+  race: human
+  examine: "A mighty warrior, Haakon is powerfully concerned for his tribe."
+haakon_the_champion_cutscene:
+  id: 3091
+  examine: "A mighty warrior, Haakon is powerfully concerned for his tribe."
 prison_pete:
   id: 3118
   examine: "He wants to escape!"
@@ -767,6 +857,11 @@ frog_9_frogland:
 cow_zanaris:
   <<: *cow
   id: 3309
+jeffery3:
+  id: 3323
+  wander_radius: 4
+  race: human
+  examine: "The man with the armour."
 tarquin:
   id: 3328
   examine: "A dandy canoe man."
@@ -1109,6 +1204,11 @@ fishing_spot_crayfish_lumbridge:
         none:
           - raw_crayfish
   examine: "It looks like there might be fish swimming in the water."
+jeffery2:
+  id: 6298
+  wander_radius: 4
+  race: human
+  examine: "The man with the armour."
 pikkupstix:
   id: 6970
   race: human
