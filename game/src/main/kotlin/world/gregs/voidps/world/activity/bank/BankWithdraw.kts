@@ -21,14 +21,11 @@ on<InterfaceOption>({ id == "bank" && component == "inventory" && option.startsW
         "Withdraw-*" -> player["last_bank_amount", 0]
         "Withdraw-All" -> Int.MAX_VALUE
         "Withdraw-All but one" -> item.amount - 1
+        "Withdraw-X" -> intEntry("Enter amount:").also {
+            player["last_bank_amount"] = it
+        }
         else -> return@on
     }
-    withdraw(player, item, itemSlot, amount)
-}
-
-on<InterfaceOption>({ id == "bank" && component == "inventory" && option == "Withdraw-X" }) { player: Player ->
-    val amount = intEntry("Enter amount:")
-    player["last_bank_amount"] = amount
     withdraw(player, item, itemSlot, amount)
 }
 

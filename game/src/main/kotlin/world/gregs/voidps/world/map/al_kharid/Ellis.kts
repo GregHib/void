@@ -64,18 +64,15 @@ suspend fun NPCOption.leather() {
     }
 }
 
-on<InterfaceOption>({ id == "tanner" && option.lowercase() == "tan ${Colours.ORANGE.toTag()}X" }) { player: Player ->
-    val amount = intEntry("Enter amount:")
-    player["last_bank_amount"] = amount
-    tan(player, component, amount)
-}
-
-on<InterfaceOption>({ id == "tanner" && option.startsWith("Tan") && !option.endsWith("X") }) { player: Player ->
+on<InterfaceOption>({ id == "tanner" && option.startsWith("Tan ") }) { player: Player ->
     val amount = when (option.lowercase()) {
         "tan ${Colours.ORANGE.toTag()}1" -> 1
         "tan ${Colours.ORANGE.toTag()}5" -> 5
         "tan ${Colours.ORANGE.toTag()}10" -> 10
         "tan ${Colours.ORANGE.toTag()}all" -> player.inventory.count(component.removeSuffix("_1"))
+        "tan ${Colours.ORANGE.toTag()}X" -> intEntry("Enter amount:").also {
+            player["last_bank_amount"] = it
+        }
         else -> return@on
     }
     tan(player, component, amount)

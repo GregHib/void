@@ -58,18 +58,14 @@ on<InterfaceRefreshed>({ id.startsWith("make_mould") }) { player: Player ->
     }
 }
 
-on<InterfaceOption>({ id.startsWith("make_mould") && component.startsWith("make_") && option != "Make X" }) { player: Player ->
+on<InterfaceOption>({ id.startsWith("make_mould") && component.startsWith("make_") && option.startsWith("Make ") }) { player: Player ->
     val amount = when (option) {
         "Make 1" -> 1
         "Make 5" -> 5
         "Make All" -> Int.MAX_VALUE
+        "Make X" -> intEntry("Enter amount:")
         else -> return@on
     }
-    make(component, amount)
-}
-
-on<InterfaceOption>({ id.startsWith("make_mould") && component.startsWith("make_") && option == "Make X" }) { player: Player ->
-    val amount = intEntry("Enter amount:")
     make(component, amount)
 }
 

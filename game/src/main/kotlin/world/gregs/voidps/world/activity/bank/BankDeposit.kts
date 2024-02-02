@@ -23,14 +23,11 @@ on<InterfaceOption>({ id == "bank_side" && component == "inventory" && option.st
         "Deposit-10" -> 10
         "Deposit-*" -> player["last_bank_amount", 0]
         "Deposit-All" -> Int.MAX_VALUE
+        "Deposit-X" -> intEntry("Enter amount:").also {
+            player["last_bank_amount"] = it
+        }
         else -> return@on
     }
-    deposit(player, player.inventory, item, amount)
-}
-
-on<InterfaceOption>({ id == "bank_side" && component == "inventory" && option == "Deposit-X" }) { player: Player ->
-    val amount = intEntry("Enter amount:")
-    player["last_bank_amount"] = amount
     deposit(player, player.inventory, item, amount)
 }
 

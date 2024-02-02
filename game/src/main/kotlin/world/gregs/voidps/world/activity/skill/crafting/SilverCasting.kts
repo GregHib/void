@@ -76,13 +76,9 @@ on<InterfaceOption>({ id == "silver_mould" && component.endsWith("_button") }) {
         "Make 1" -> 1
         "Make 5" -> 5
         "Make All" -> 28
+        "Make X" -> intEntry("Enter amount:")
         else -> return@on
     }
-    player.make(Item(component.removeSuffix("_button")), amount)
-}
-
-on<InterfaceOption>({ id == "trade_side" && component.endsWith("_button") && option == "Offer-X" }) { player: Player ->
-    val amount = intEntry("Enter amount:")
     player.make(Item(component.removeSuffix("_button")), amount)
 }
 
