@@ -3,6 +3,9 @@ package world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.world.interact.entity.combat.weapon
 
 /**
  * Damage done to a [target]
@@ -21,4 +24,10 @@ data class CombatAttack(
     val delay: Int
 ) : Event {
     var blocked = false
+}
+
+fun block(weapon: String = "*", block: suspend CombatAttack.(Character) -> Unit) {
+    on<CombatAttack>({ !blocked && wildcardEquals(weapon, target.weapon.id) }) { character: Character ->
+        block.invoke(this, character)
+    }
 }

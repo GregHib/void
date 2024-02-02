@@ -5,6 +5,9 @@ package world.gregs.voidps.engine.event
  * or '#' to match against any single digit.
  */
 fun wildcardEquals(wildcard: String, other: String): Boolean {
+    if (wildcard == "*") {
+        return true
+    }
     var wildIndex = 0
     var otherIndex = 0
     var starIndex = -1

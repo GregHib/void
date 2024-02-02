@@ -1,6 +1,10 @@
 package world.gregs.voidps.engine.client.variable
 
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.wildcardEquals
 
 /**
  * Variable with name [key] was set to [to]
@@ -11,3 +15,39 @@ data class VariableSet(
     val from: Any?,
     val to: Any?
 ) : Event
+
+fun variableSet(id: String, block: suspend VariableSet.(Player) -> Unit) {
+    on<VariableSet>({ wildcardEquals(id, key) }) { player: Player ->
+        block.invoke(this, player)
+    }
+}
+
+fun variableSet(id: String, to: Any?, block: suspend VariableSet.(Player) -> Unit) {
+    on<VariableSet>({ wildcardEquals(id, key) && to == this.to }) { player: Player ->
+        block.invoke(this, player)
+    }
+}
+
+fun variableSet(id: String, from: Any?, to: Any?, block: suspend VariableSet.(Player) -> Unit) {
+    on<VariableSet>({ wildcardEquals(id, key) && from == this.from && to == this.to }) { player: Player ->
+        block.invoke(this, player)
+    }
+}
+
+fun npcVariableSet(id: String, block: suspend VariableSet.(NPC) -> Unit) {
+    on<VariableSet>({ wildcardEquals(id, key) }) { npc: NPC ->
+        block.invoke(this, npc)
+    }
+}
+
+fun npcVariableSet(id: String, to: Any?, block: suspend VariableSet.(NPC) -> Unit) {
+    on<VariableSet>({ wildcardEquals(id, key) && to == this.to }) { npc: NPC ->
+        block.invoke(this, npc)
+    }
+}
+
+fun npcVariableSet(id: String, from: Any?, to: Any?, block: suspend VariableSet.(NPC) -> Unit) {
+    on<VariableSet>({ wildcardEquals(id, key) && from == this.from && to == this.to }) { npc: NPC ->
+        block.invoke(this, npc)
+    }
+}

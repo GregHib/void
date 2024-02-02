@@ -2,7 +2,10 @@ package world.gregs.voidps.engine.client.ui
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.wildcardEquals
 
 data class InterfaceOption(
     override val character: Character,
@@ -15,4 +18,16 @@ data class InterfaceOption(
     val inventory: String
 ) : Interaction() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
+}
+
+fun interfaceClick(id: String, component: String, block: suspend InterfaceOption.() -> Unit) {
+    on<InterfaceOption>({ wildcardEquals(this.id, id) && wildcardEquals(this.component, component) }) { _: Player ->
+        block.invoke(this)
+    }
+}
+
+fun interfaceClick(id: String, component: String, option: String, block: suspend InterfaceOption.() -> Unit) {
+    on<InterfaceOption>({ wildcardEquals(this.id, id) && wildcardEquals(this.component, component) && wildcardEquals(this.option, option) }) { _: Player ->
+        block.invoke(this)
+    }
 }

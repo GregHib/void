@@ -1,7 +1,10 @@
 package world.gregs.voidps.engine.inv
 
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.wildcardEquals
 
 /**
  * An item slot change in an inventory.
@@ -25,4 +28,22 @@ data class ItemChanged(
 
     val removed = oldItem.isNotEmpty() && item.isEmpty()
 
+}
+
+fun itemAdded(inventory: String, item: String = "*", index: Int = -1, block: suspend ItemChanged.(Player) -> Unit) {
+    on<ItemChanged>({ wildcardEquals(inventory, this.inventory) && wildcardEquals(item, this.item.id) && (index == -1 || index == this.index) }) { player: Player ->
+        block.invoke(this, player)
+    }
+}
+
+fun itemRemoved(inventory: String, item: String = "*", index: Int = -1, block: suspend ItemChanged.(Player) -> Unit) {
+    on<ItemChanged>({ wildcardEquals(inventory, this.from) && wildcardEquals(item, this.oldItem.id) && (index == -1 || index == this.fromIndex) }) { player: Player ->
+        block.invoke(this, player)
+    }
+}
+
+fun itemChange(inventory: String, index: Int = -1, block: suspend ItemChanged.(Player) -> Unit) {
+    on<ItemChanged>({ wildcardEquals(inventory, this.from) && (index == -1 || index == this.fromIndex) }) { player: Player ->
+        block.invoke(this, player)
+    }
 }
