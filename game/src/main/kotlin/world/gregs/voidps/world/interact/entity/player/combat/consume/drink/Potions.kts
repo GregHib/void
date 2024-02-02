@@ -1,15 +1,15 @@
 package world.gregs.voidps.world.interact.entity.player.combat.consume.drink
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.player.combat.consume.Consumable
 import world.gregs.voidps.world.interact.entity.player.combat.consume.Consume
-import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 import world.gregs.voidps.world.interact.entity.player.toxin.antiDisease
 import world.gregs.voidps.world.interact.entity.player.toxin.antiPoison
@@ -64,11 +64,11 @@ on<Consume>({ item.id.startsWith("super_defence") || item.id.startsWith("super_d
     player.levels.boost(Skill.Defence, 5, 0.15)
 }
 
-on<Consume>({ item.id.startsWith("super_magic") || item.id.startsWith("super_magic_mix") }) { player: Player ->
+on<Consume>({ item.id.startsWith("super_magic_potion") || item.id.startsWith("super_magic_mix") }) { player: Player ->
     player.levels.boost(Skill.Magic, 5, 0.15)
 }
 
-on<Consume>({ item.id.startsWith("super_ranging") || item.id.startsWith("super_ranging_mix") }) { player: Player ->
+on<Consume>({ item.id.startsWith("super_ranging_potion") || item.id.startsWith("super_ranging_mix") }) { player: Player ->
     player.levels.boost(Skill.Ranged, 4, 0.10)
 }
 
