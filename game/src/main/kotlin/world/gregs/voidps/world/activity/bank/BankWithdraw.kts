@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
 val logger = InlineLogger()
 
-on<InterfaceOption>({ id == "bank" && component == "inventory" && option.startsWith("Withdraw") }) { player: Player ->
+on<InterfaceOption>({ id == "bank" && component == "inventory" && option.startsWith("Withdraw-") }) { player: Player ->
     val amount = when (option) {
         "Withdraw-1" -> 1
         "Withdraw-5" -> 5

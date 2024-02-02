@@ -21,7 +21,7 @@ on<InterfaceOption>({ id == "shop_side" && component == "inventory" && option ==
     player.message("${item.def.name}: shop will buy for $price $currency.")
 }
 
-on<InterfaceOption>({ id == "shop_side" && component == "inventory" && option.startsWith("Sell") }) { player: Player ->
+on<InterfaceOption>({ id == "shop_side" && component == "inventory" && option.startsWith("Sell ") }) { player: Player ->
     val amount = when (option) {
         "Sell 1" -> 1
         "Sell 5" -> 5
