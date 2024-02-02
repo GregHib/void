@@ -31,6 +31,11 @@ class WildcardTest {
     }
 
     @Test
+    fun `Match anything`() {
+        assertTrue(wildcardEquals("*", "one_two"))
+    }
+
+    @Test
     fun `Match starts with`() {
         assertTrue(wildcardEquals("one_*", "one_two"))
         assertTrue(wildcardEquals("one_*", "one_"))
