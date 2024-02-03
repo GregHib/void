@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.mode.interact.TargetObjectCont
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.wildcardEquals
 
@@ -19,6 +20,14 @@ data class ItemOnObject(
     val inventory: String
 ) : Interaction(), TargetObjectContext {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
+}
+
+fun itemOnObjectApproach(filter: ItemOnObject.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend ItemOnObject.(Player) -> Unit) {
+    on<ItemOnObject>({ approach && filter(this, it) }, priority, block)
+}
+
+fun itemOnObjectOperate(filter: ItemOnObject.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend ItemOnObject.(Player) -> Unit) {
+    on<ItemOnObject>({ operate && filter(this, it) }, priority, block)
 }
 
 fun itemOnObjectApproach(item: String, id: String, inventory: String = "inventory", block: suspend ItemOnObject.() -> Unit) {

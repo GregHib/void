@@ -4,11 +4,24 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.CancellableEvent
+import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.wildcardEquals
 
 data class TimerTick(val timer: String) : CancellableEvent() {
     var nextInterval: Int = -1
+}
+
+fun timerStop(filter: TimerTick.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend TimerTick.(Player) -> Unit) {
+    on<TimerTick>(filter, priority, block)
+}
+
+fun characterTimerTick(filter: TimerTick.(Character) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend TimerTick.(Character) -> Unit) {
+    on<TimerTick>(filter, priority, block)
+}
+
+fun npcTimerTick(filter: TimerTick.(NPC) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend TimerTick.(NPC) -> Unit) {
+    on<TimerTick>(filter, priority, block)
 }
 
 fun timerTick(timer: String, block: suspend TimerTick.(Player) -> Unit) {

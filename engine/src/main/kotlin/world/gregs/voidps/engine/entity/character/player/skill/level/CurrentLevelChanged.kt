@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.CancellableEvent
+import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 
 /**
@@ -11,6 +12,10 @@ import world.gregs.voidps.engine.event.on
  * @see [MaxLevelChanged]
  */
 data class CurrentLevelChanged(val skill: Skill, val from: Int, val to: Int) : CancellableEvent()
+
+fun levelChange(filter: CurrentLevelChanged.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend CurrentLevelChanged.(Player) -> Unit) {
+    on<CurrentLevelChanged>(filter, priority, block)
+}
 
 fun levelChange(skill: Skill, block: suspend CurrentLevelChanged.(Player) -> Unit) {
     on<CurrentLevelChanged>({ this.skill == skill }) { player: Player ->

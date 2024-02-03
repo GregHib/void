@@ -9,6 +9,14 @@ import world.gregs.voidps.engine.event.wildcardEquals
 
 object Death : Event
 
+fun playerDeath(filter: Death.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend Death.(Player) -> Unit) {
+    on<Death>(filter, priority, block)
+}
+
+fun npcDeath(filter: Death.(NPC) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend Death.(NPC) -> Unit) {
+    on<Death>(filter, priority, block)
+}
+
 fun playerDeath(priority: Priority = Priority.MEDIUM, block: suspend (Player) -> Unit) {
     on<Death>(priority = priority) { character: Player ->
         block.invoke(character)

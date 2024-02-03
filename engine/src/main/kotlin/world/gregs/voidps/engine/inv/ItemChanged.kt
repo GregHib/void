@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.inv
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.wildcardEquals
 
@@ -28,6 +29,10 @@ data class ItemChanged(
 
     val removed = oldItem.isNotEmpty() && item.isEmpty()
 
+}
+
+fun itemChanged(filter: ItemChanged.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend ItemChanged.(Player) -> Unit) {
+    on<ItemChanged>(filter, priority, block)
 }
 
 fun itemAdded(inventory: String, item: String = "*", index: Int = -1, block: suspend ItemChanged.(Player) -> Unit) {

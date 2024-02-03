@@ -1,8 +1,10 @@
 package world.gregs.voidps.engine.client.variable
 
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.wildcardEquals
 
@@ -15,6 +17,18 @@ data class VariableSet(
     val from: Any?,
     val to: Any?
 ) : Event
+
+fun variableSet(filter: VariableSet.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend VariableSet.(Player) -> Unit) {
+    on<VariableSet>(filter, priority, block)
+}
+
+fun variableSet(filter: VariableSet.(NPC) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend VariableSet.(NPC) -> Unit) {
+    on<VariableSet>(filter, priority, block)
+}
+
+fun variableSet(filter: VariableSet.(Character) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend VariableSet.(Character) -> Unit) {
+    on<VariableSet>(filter, priority, block)
+}
 
 fun variableSet(id: String, block: suspend VariableSet.(Player) -> Unit) {
     on<VariableSet>({ wildcardEquals(id, key) }) { player: Player ->

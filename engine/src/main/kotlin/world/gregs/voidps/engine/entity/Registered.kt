@@ -9,6 +9,18 @@ import world.gregs.voidps.engine.event.wildcardEquals
 
 object Registered : Event
 
+fun playerSpawn(filter: Registered.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend Registered.(Player) -> Unit) {
+    on<Registered>(filter, priority, block)
+}
+
+fun npcSpawn(filter: Registered.(NPC) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend Registered.(NPC) -> Unit) {
+    on<Registered>(filter, priority, block)
+}
+
+fun worldSpawn(filter: Registered.(World) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend Registered.(World) -> Unit) {
+    on<Registered>(filter, priority, block)
+}
+
 fun playerSpawn(priority: Priority = Priority.MEDIUM, block: suspend (Player) -> Unit) {
     on<Registered>(priority = priority) { character: Player ->
         block.invoke(character)

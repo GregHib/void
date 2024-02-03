@@ -4,9 +4,14 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 
 object Unregistered : Event
+
+fun playerDespawn(filter: Unregistered.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend Unregistered.(Player) -> Unit) {
+    on<Unregistered>(filter, priority, block)
+}
 
 fun playerDespawn(block: suspend (Player) -> Unit) {
     on<Unregistered> { player: Player ->
