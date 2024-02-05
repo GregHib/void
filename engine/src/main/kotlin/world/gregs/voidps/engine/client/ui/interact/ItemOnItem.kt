@@ -24,8 +24,8 @@ fun itemOnItem(filter: ItemOnItem.(Player) -> Boolean = { true }, priority: Prio
     on<ItemOnItem>(filter, priority, block)
 }
 
-fun itemOnItem(fromItem: String, toItem: String, inventory: String = "inventory", block: suspend ItemOnItem.(Player) -> Unit) {
-    on<ItemOnItem>({ ((wildcardEquals(fromItem, this.fromItem.id) && wildcardEquals(toItem, this.toItem.id)) || (wildcardEquals(toItem, this.fromItem.id) && wildcardEquals(fromItem, this.toItem.id))) && wildcardEquals(inventory, fromInventory) }) { player: Player ->
+fun itemOnItem(fromItem: String, toItem: String, block: suspend ItemOnItem.(Player) -> Unit) {
+    on<ItemOnItem>({ ((wildcardEquals(fromItem, this.fromItem.id) && wildcardEquals(toItem, this.toItem.id)) || (wildcardEquals(toItem, this.fromItem.id) && wildcardEquals(fromItem, this.toItem.id))) }) { player: Player ->
         block.invoke(this, player)
     }
 }

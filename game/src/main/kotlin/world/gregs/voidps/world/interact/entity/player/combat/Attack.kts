@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat
 
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
+import world.gregs.voidps.engine.client.ui.interact.spellOnNPCApproach
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -33,7 +33,7 @@ characterApproachPlayer("Attack") {
     combatInteraction(character, target)
 }
 
-itemOnNPCApproach("*_spellbook", "*", priority = Priority.HIGH) {
+spellOnNPCApproach("*", "*_spellbook", priority = Priority.HIGH) {
     player.approachRange(8, update = false)
     player.spell = component
     player["attack_speed"] = 5

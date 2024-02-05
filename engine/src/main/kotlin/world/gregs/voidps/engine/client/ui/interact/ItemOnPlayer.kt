@@ -20,26 +20,26 @@ data class ItemOnPlayer(
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 }
 
-fun itemOnPlayerApproach(item: String, inventory: String = "inventory", block: suspend ItemOnPlayer.() -> Unit) {
-    on<ItemOnPlayer>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(inventory, this.inventory) }) { _: Player ->
+fun itemOnPlayerApproach(item: String, id: String = "*", block: suspend ItemOnPlayer.() -> Unit) {
+    on<ItemOnPlayer>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(id, this.id) }) { _: Player ->
         block.invoke(this)
     }
 }
 
-fun itemOnPlayerOperate(item: String, inventory: String = "inventory", block: suspend ItemOnPlayer.() -> Unit) {
-    on<ItemOnPlayer>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(inventory, this.inventory) }) { _: Player ->
+fun itemOnPlayerOperate(item: String, id: String = "*", block: suspend ItemOnPlayer.() -> Unit) {
+    on<ItemOnPlayer>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(id, this.id) }) { _: Player ->
         block.invoke(this)
     }
 }
 
-fun spellOnPlayerApproach(component: String, inventory: String = "inventory", block: suspend ItemOnPlayer.() -> Unit) {
-    on<ItemOnPlayer>({ approach && wildcardEquals(inventory, this.inventory) && wildcardEquals(component, this.component) }) { _: Player ->
+fun spellOnPlayerApproach(component: String, id: String = "*", block: suspend ItemOnPlayer.() -> Unit) {
+    on<ItemOnPlayer>({ approach && wildcardEquals(id, this.id) && wildcardEquals(component, this.component) }) { _: Player ->
         block.invoke(this)
     }
 }
 
-fun spellOnPlayerOperate(component: String, inventory: String = "inventory", block: suspend ItemOnPlayer.() -> Unit) {
-    on<ItemOnPlayer>({ operate && wildcardEquals(inventory, this.inventory) && wildcardEquals(component, this.component) }) { _: Player ->
+fun spellOnPlayerOperate(component: String, id: String = "*", block: suspend ItemOnPlayer.() -> Unit) {
+    on<ItemOnPlayer>({ operate && wildcardEquals(id, this.id) && wildcardEquals(component, this.component) }) { _: Player ->
         block.invoke(this)
     }
 }

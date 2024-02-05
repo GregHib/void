@@ -30,14 +30,14 @@ fun itemOnObjectOperate(filter: ItemOnObject.(Player) -> Boolean, priority: Prio
     on<ItemOnObject>({ operate && filter(this, it) }, priority, block)
 }
 
-fun itemOnObjectApproach(item: String, id: String, inventory: String = "inventory", block: suspend ItemOnObject.() -> Unit) {
-    on<ItemOnObject>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(id, this.target.id) && wildcardEquals(inventory, this.inventory) }) { _: Player ->
+fun itemOnObjectApproach(item: String, id: String, block: suspend ItemOnObject.() -> Unit) {
+    on<ItemOnObject>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(id, this.target.id) }) { _: Player ->
         block.invoke(this)
     }
 }
 
-fun itemOnObjectOperate(item: String, id: String, inventory: String = "inventory", priority: Priority = Priority.MEDIUM, block: suspend ItemOnObject.() -> Unit) {
-    on<ItemOnObject>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(id, this.target.id) && wildcardEquals(inventory, this.inventory) }, priority) { _: Player ->
+fun itemOnObjectOperate(item: String, id: String, priority: Priority = Priority.MEDIUM, block: suspend ItemOnObject.() -> Unit) {
+    on<ItemOnObject>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(id, this.target.id) }, priority) { _: Player ->
         block.invoke(this)
     }
 }

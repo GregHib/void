@@ -22,14 +22,26 @@ data class ItemOnNPC(
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 }
 
-fun itemOnNPCApproach(item: String, npc: String, inventory: String = "inventory", priority: Priority = Priority.MEDIUM, block: suspend ItemOnNPC.() -> Unit) {
-    on<ItemOnNPC>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(npc, this.target.id) && wildcardEquals(inventory, this.inventory) }, priority) { _: Character ->
+fun itemOnNPCApproach(item: String, npc: String, priority: Priority = Priority.MEDIUM, block: suspend ItemOnNPC.() -> Unit) {
+    on<ItemOnNPC>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(npc, this.target.id) }, priority) { _: Character ->
         block.invoke(this)
     }
 }
 
-fun itemOnNPCOperate(item: String, npc: String, inventory: String = "inventory", priority: Priority = Priority.MEDIUM, block: suspend ItemOnNPC.() -> Unit) {
-    on<ItemOnNPC>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(npc, this.target.id) && wildcardEquals(inventory, this.inventory) }, priority) { _: Player ->
+fun itemOnNPCOperate(item: String, npc: String, priority: Priority = Priority.MEDIUM, block: suspend ItemOnNPC.() -> Unit) {
+    on<ItemOnNPC>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(npc, this.target.id) }, priority) { _: Player ->
+        block.invoke(this)
+    }
+}
+
+fun spellOnNPCApproach(component: String, id: String = "*", priority: Priority = Priority.MEDIUM, block: suspend ItemOnNPC.() -> Unit) {
+    on<ItemOnNPC>({ operate && wildcardEquals(component, this.component) && wildcardEquals(id, this.id) }, priority) { _: Player ->
+        block.invoke(this)
+    }
+}
+
+fun spellOnNPCOperate(component: String, id: String, priority: Priority = Priority.MEDIUM, block: suspend ItemOnNPC.() -> Unit) {
+    on<ItemOnNPC>({ operate && wildcardEquals(component, this.component) && wildcardEquals(id, this.id) }, priority) { _: Player ->
         block.invoke(this)
     }
 }

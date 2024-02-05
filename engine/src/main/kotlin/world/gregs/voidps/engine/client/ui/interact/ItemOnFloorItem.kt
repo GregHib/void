@@ -20,14 +20,14 @@ data class ItemOnFloorItem(
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 }
 
-fun itemOnFloorItemApproach(item: String, floorItem: String, inventory: String = "inventory", block: suspend ItemOnFloorItem.() -> Unit) {
-    on<ItemOnFloorItem>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(floorItem, this.floorItem.id) && wildcardEquals(inventory, this.inventory) }) { _: Player ->
+fun itemOnFloorItemApproach(item: String, floorItem: String, block: suspend ItemOnFloorItem.() -> Unit) {
+    on<ItemOnFloorItem>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(floorItem, this.floorItem.id) }) { _: Player ->
         block.invoke(this)
     }
 }
 
-fun itemOnFloorItemOperate(item: String, floorItem: String, inventory: String = "inventory", block: suspend ItemOnFloorItem.() -> Unit) {
-    on<ItemOnFloorItem>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(floorItem, this.floorItem.id) && wildcardEquals(inventory, this.inventory) }) { _: Player ->
+fun itemOnFloorItemOperate(item: String, floorItem: String, block: suspend ItemOnFloorItem.() -> Unit) {
+    on<ItemOnFloorItem>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(floorItem, this.floorItem.id) }) { _: Player ->
         block.invoke(this)
     }
 }
