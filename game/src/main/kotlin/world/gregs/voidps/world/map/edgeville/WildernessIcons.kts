@@ -3,6 +3,7 @@ package world.gregs.voidps.world.map.edgeville
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.variableClear
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -12,7 +13,7 @@ import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.world.interact.entity.combat.inWilderness
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 
-variableSet({ key == "in_wilderness" && to == true }) { player: Player ->
+variableSet("in_wilderness", true) { player: Player ->
     player.options.set(1, "Attack")
     player.open("wilderness_skull")
 //    player.setVar("no_pvp_zone", false)
@@ -20,7 +21,7 @@ variableSet({ key == "in_wilderness" && to == true }) { player: Player ->
     updateIcon(player)
 }
 
-variableSet({ key == "in_wilderness" && to != true }) { player: Player ->
+variableClear("in_wilderness") { player: Player ->
     player.options.remove("Attack")
     player.close("wilderness_skull")
 //    player.setVar("no_pvp_zone", true)

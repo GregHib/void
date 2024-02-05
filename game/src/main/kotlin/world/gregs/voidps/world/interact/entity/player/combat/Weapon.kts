@@ -1,6 +1,8 @@
 package world.gregs.voidps.world.interact.entity.player.combat
 
+import world.gregs.voidps.engine.client.variable.variableClear
 import world.gregs.voidps.engine.client.variable.variableSet
+import world.gregs.voidps.engine.client.variable.variableUnset
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
@@ -19,19 +21,19 @@ itemChanged({ inventory == "worn_equipment" && index == EquipSlot.Weapon.index }
     updateWeapon(player, item)
 }
 
-variableSet({ key == "autocast" && to == null }) { player: Player ->
+variableClear("autocast") { player: Player ->
     updateWeapon(player, player.weapon)
 }
 
-variableSet({ key == "spell" && to == null }) { player: Player ->
+variableClear("spell") { player: Player ->
     updateWeapon(player, player.weapon)
 }
 
-variableSet({ key == "attack_style" && to == "long_range" }) { player: Player ->
+variableSet("attack_style", "long_range") { player: Player ->
     updateWeapon(player, player.weapon, 2)
 }
 
-variableSet({ key == "attack_style" && from == "long_range" && to != "long_range" }) { player: Player ->
+variableUnset("attack_style", "long_range") { player: Player ->
     updateWeapon(player, player.weapon)
 }
 

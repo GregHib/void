@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.client.variable
 
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
@@ -18,18 +18,12 @@ data class VariableSet(
     val to: Any?
 ) : Event
 
-@JvmName("variableSetPlayer")
+@JvmName("variableClearPlayer")
+fun variableClear(key: String, block: suspend VariableSet.(Player) -> Unit) {
+    on<VariableSet>({ wildcardEquals(key, this.key) }, block = block)
+}
+
 fun variableSet(filter: VariableSet.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend VariableSet.(Player) -> Unit) {
-    on<VariableSet>(filter, priority, block)
-}
-
-@JvmName("variableSetNPC")
-fun variableSet(filter: VariableSet.(NPC) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend VariableSet.(NPC) -> Unit) {
-    on<VariableSet>(filter, priority, block)
-}
-
-@JvmName("variableSetCharacter")
-fun variableSet(filter: VariableSet.(Character) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend VariableSet.(Character) -> Unit) {
     on<VariableSet>(filter, priority, block)
 }
 
@@ -39,8 +33,20 @@ fun variableSet(id: String, block: suspend VariableSet.(Player) -> Unit) {
     }
 }
 
-fun variableSet(id: String, to: Any?, block: suspend VariableSet.(Player) -> Unit) {
-    on<VariableSet>({ wildcardEquals(id, key) && to == this.to }) { player: Player ->
+fun variableSet(id: String, to: Any, block: suspend VariableSet.(Player) -> Unit) {
+    on<VariableSet>({ wildcardEquals(id, key) && to == this.to && from != to }) { player: Player ->
+        block.invoke(this, player)
+    }
+}
+
+fun variableUnset(id: String, from: Any, block: suspend VariableSet.(Player) -> Unit) {
+    on<VariableSet>({ wildcardEquals(id, key) && from == this.from && to != from }) { player: Player ->
+        block.invoke(this, player)
+    }
+}
+
+fun specialAttack(id: String, block: suspend VariableSet.(Player) -> Unit) {
+    on<VariableSet>({ key == "special_attack" && to == true && from != true && wildcardEquals(id, it["weapon", Item.EMPTY].id) }) { player: Player ->
         block.invoke(this, player)
     }
 }

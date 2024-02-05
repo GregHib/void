@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
-import world.gregs.voidps.engine.client.variable.variableSet
+import world.gregs.voidps.engine.client.variable.specialAttack
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -27,17 +27,17 @@ combatSwing({ !swung() && it.specialAttack && isGraniteMaul(it.weapon) }) { play
     delay = 1
 }
 
-variableSet({ key == "special_attack" && to == true && isGraniteMaul(it.weapon) }) { player: Player ->
+specialAttack("granite_maul*") { player: Player ->
     if (!player.underAttack) {
-        return@variableSet
+        return@specialAttack
     }
     val target: Character? = player["target"]
     if (target == null) {
         player.specialAttack = false
-        return@variableSet
+        return@specialAttack
     }
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
-        return@variableSet
+        return@specialAttack
     }
     player.setAnimation("quick_smash")
     player.setGraphic("quick_smash")
