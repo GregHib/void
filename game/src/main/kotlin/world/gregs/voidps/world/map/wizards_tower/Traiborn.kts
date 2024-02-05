@@ -49,9 +49,11 @@ npcOperate({ target.id == "traiborn" && option == "Talk-to" }) { player: Player 
     }
 }
 
-itemOnNPCOperate({ target.id == "traiborn" && item.id == "bones" && player.bonesRequired > 0 }) { player: Player ->
-    player.talkWith(target)
-    giveBones()
+itemOnNPCOperate("bones", "traiborn") {
+    if (player.bonesRequired > 0) {
+        player.talkWith(target)
+        giveBones()
+    }
 }
 
 suspend fun PlayerChoice.thingummywut(): Unit = option<Uncertain>("What's a thingummywut?") {

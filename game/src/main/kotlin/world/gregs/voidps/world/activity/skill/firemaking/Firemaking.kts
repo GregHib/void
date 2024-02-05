@@ -2,7 +2,6 @@ package world.gregs.voidps.world.activity.skill.firemaking
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.ui.interact.either
 import world.gregs.voidps.engine.client.ui.interact.itemOnFloorItemOperate
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.client.variable.remaining
@@ -37,7 +36,7 @@ import world.gregs.voidps.type.Tile
 val floorItems: FloorItems by inject()
 val objects: GameObjects by inject()
 
-itemOnItem({ either { from, to -> from.lighter && to.burnable } }) { player: Player ->
+itemOnItem("tinderbox*", "*logs*") { player: Player ->
     val log = if (toItem.burnable) toItem else fromItem
     val logSlot = if (toItem.burnable) toSlot else fromSlot
     player.closeDialogue()
@@ -48,9 +47,11 @@ itemOnItem({ either { from, to -> from.lighter && to.burnable } }) { player: Pla
     }
 }
 
-itemOnFloorItemOperate({ operate && item.lighter && floorItem.def.contains("firemaking") }) { player: Player ->
-    arriveDelay()
-    lightFire(player, floorItem)
+itemOnFloorItemOperate("tinderbox*", "*log*") {
+    if (floorItem.def.contains("firemaking")) {
+        arriveDelay()
+        lightFire(player, floorItem)
+    }
 }
 
 floorItemOperate({ option == "Light" }) { player: Player ->
@@ -129,9 +130,6 @@ fun spawnFire(player: Player, tile: Tile, fire: Fire) {
     }
     player["face_entity"] = obj
 }
-
-val Item.lighter: Boolean
-    get() = id.startsWith("tinderbox")
 
 val Item.burnable: Boolean
     get() = def.contains("firemaking")

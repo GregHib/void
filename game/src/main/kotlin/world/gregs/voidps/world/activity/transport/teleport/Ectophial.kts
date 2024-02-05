@@ -41,7 +41,7 @@ inventory({ inventory == "inventory" && item.id == "ectophial" && option == "Emp
     }
 }
 
-itemOnObjectOperate({ inventory == "inventory" && target.id == "ectofuntus" && item.id == "ectophial_empty" }) { player: Player ->
+itemOnObjectOperate("ectophial_empty", "ectofuntus") {
     arriveDelay()
     if (player.inventory.replace(itemSlot, item.id, "ectophial")) {
         player.setAnimation("take")

@@ -151,7 +151,7 @@ suspend fun CharacterContext.thatCape() {
     npc<CheerfulOld>("If you ever achieve level 99 Smithing you'll be able to wear a cape like this, and receive more experience when smelting gold ore.")
 }
 
-itemOnNPCOperate({ target.id == "thurgo" && item.id == "redberry_pie" }) { player: Player ->
+itemOnNPCOperate("redberry_pie", "thurgo") {
     when (player.quest("the_knights_sword")) {
         "find_thurgo" -> menu()
         "happy_thurgo" -> menuSword()

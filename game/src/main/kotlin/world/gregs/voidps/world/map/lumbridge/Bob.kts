@@ -30,7 +30,7 @@ npcOperate({ target.id == "bob" && option == "Talk-to" }) { player: Player ->
     }
 }
 
-itemOnNPCOperate({ target.id == "bob" }) { player: Player ->
+itemOnNPCOperate("*", "bob") {
     if (!repairable(item.id)) {
         npc<Unsure>("Sorry friend, but I can't do anything with that.")
         return@itemOnNPCOperate

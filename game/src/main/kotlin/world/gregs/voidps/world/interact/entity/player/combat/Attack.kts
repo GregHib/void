@@ -33,7 +33,7 @@ playerApproach({ option == "Attack" }) { character: Character ->
     combatInteraction(character, target)
 }
 
-itemOnNPCApproach({ id.endsWith("_spellbook") }, Priority.HIGH) { player: Player ->
+itemOnNPCApproach("*_spellbook", "*", priority = Priority.HIGH) {
     player.approachRange(8, update = false)
     player.spell = component
     player["attack_speed"] = 5

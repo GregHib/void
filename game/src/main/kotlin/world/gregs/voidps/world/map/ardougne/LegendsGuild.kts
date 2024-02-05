@@ -21,13 +21,13 @@ objectOperate({ target.id == "legends_guild_totem_pole" && option == "Look" }) {
     }
 }
 
-itemOnObjectOperate({ target.id == "legends_guild_totem_pole" && item.id == "combat_bracelet" }) { player: Player ->
+itemOnObjectOperate("combat_bracelet", "legends_guild_totem_pole") {
     if (player.inventory.replace(itemSlot, item.id, "combat_bracelet_4")) {
         combatBracelet(player)
     }
 }
 
-itemOnObjectOperate({ target.id == "legends_guild_totem_pole" && item.id == "skills_necklace" }) { player: Player ->
+itemOnObjectOperate("skills_necklace", "legends_guild_totem_pole") {
     if (player.inventory.replace(itemSlot, item.id, "skills_necklace_4")) {
         skillsNecklace(player)
     }

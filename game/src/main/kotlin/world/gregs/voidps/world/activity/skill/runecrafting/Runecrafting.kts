@@ -26,7 +26,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 val itemDefinitions: ItemDefinitions by inject()
 val logger = InlineLogger()
 
-itemOnObjectOperate({ target.id.endsWith("_altar") && item.id.endsWith("_essence") }) { player: Player ->
+itemOnObjectOperate("*_essence", "*_altar") {
     arriveDelay()
     bindRunes(player, item.id, item.def)
 }

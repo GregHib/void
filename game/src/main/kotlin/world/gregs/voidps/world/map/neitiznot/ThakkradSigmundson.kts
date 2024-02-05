@@ -30,7 +30,7 @@ npcOperate({ target.id == "thakkrad_sigmundson" && option == "Craft-goods" }) { 
     }
 }
 
-itemOnNPCOperate({ target.id == "thakkrad_sigmundson" && item.id == "yak_hide" }) { player: Player ->
+itemOnNPCOperate("yak_hide", "thakkrad_sigmundson") {
     cureHide()
 }
 

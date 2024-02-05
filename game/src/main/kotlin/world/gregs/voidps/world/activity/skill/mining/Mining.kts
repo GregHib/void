@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -160,13 +161,13 @@ fun deplete(rock: Rock, obj: GameObject): Boolean {
     return false
 }
 
-objectOperate({ approach && option == "Prospect" }) { player: Player ->
+objectApproach({ option == "Prospect" }) { player: Player ->
     if (target.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
-        return@objectOperate
+        return@objectApproach
     }
     if (player.queue.contains("prospect")) {
-        return@objectOperate
+        return@objectApproach
     }
     player.message("You examine the rock for ores...")
     player.start("movement_delay", 4)

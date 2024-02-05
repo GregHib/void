@@ -46,7 +46,7 @@ objectOperate({ target.id.startsWith("furnace") && option == "Smelt" }) { player
     smeltingOptions(player, target, bars)
 }
 
-itemOnObjectOperate({ target.id.startsWith("furnace") && item.id.endsWith("_ore") }) { player: Player ->
+itemOnObjectOperate("*_ore", "furnace*") {
     val list = mutableListOf<String>()
     list.add(oreToBar(item.id))
     if (item.id == "iron_ore" && player.inventory.contains("coal")) {

@@ -36,8 +36,8 @@ fun itemOnObjectApproach(item: String, id: String, inventory: String = "inventor
     }
 }
 
-fun itemOnObjectOperate(item: String, id: String, inventory: String = "inventory", block: suspend ItemOnObject.() -> Unit) {
-    on<ItemOnObject>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(id, this.target.id) && wildcardEquals(inventory, this.inventory) }) { _: Player ->
+fun itemOnObjectOperate(item: String, id: String, inventory: String = "inventory", priority: Priority = Priority.MEDIUM, block: suspend ItemOnObject.() -> Unit) {
+    on<ItemOnObject>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(id, this.target.id) && wildcardEquals(inventory, this.inventory) }, priority) { _: Player ->
         block.invoke(this)
     }
 }

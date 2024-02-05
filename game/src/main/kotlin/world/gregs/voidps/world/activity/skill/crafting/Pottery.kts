@@ -21,7 +21,7 @@ import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 val Item.pottery: Pottery
     get() = def["pottery"]
 
-itemOnObjectOperate({ target.id.startsWith("potters_wheel") && item.id == "soft_clay" }) { player: Player ->
+itemOnObjectOperate("soft_clay", "potters_wheel*") {
     make("spinning")
 }
 

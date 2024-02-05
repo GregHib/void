@@ -23,7 +23,7 @@ objectOperate({ def.stringId.startsWith("web") && option == "Slash" }, Priority.
     slash(player, target)
 }
 
-itemOnObjectOperate({ target.id.startsWith("web") }) { player: Player ->
+itemOnObjectOperate("*", "web*") {
     if (item.id == "knife" || item.def["slash_attack", 0] > 0) {
         player.message("Only a sharp blade can cut through this sticky web.")
         cancel()

@@ -20,15 +20,6 @@ data class ItemOnItem(
     val toInventory: String
 ) : Event
 
-fun ItemOnItem.either(block: (Item, Item) -> Boolean): Boolean {
-    return block.invoke(fromItem, toItem) || block.invoke(toItem, fromItem)
-}
-
-fun ItemOnItem.sort(condition: (Item) -> Boolean): Pair<Item, Item> {
-    val flip = condition(toItem)
-    return (if (flip) toItem else fromItem) to (if (flip) fromItem else toItem)
-}
-
 fun itemOnItem(filter: ItemOnItem.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend ItemOnItem.(Player) -> Unit) {
     on<ItemOnItem>(filter, priority, block)
 }

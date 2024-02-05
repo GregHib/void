@@ -22,7 +22,10 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val logger = InlineLogger()
 
-itemOnObjectOperate({ target.id.startsWith("furnace") && item.id == "steel_bar" && it.quest("dwarf_cannon") == "completed" }) { player: Player ->
+itemOnObjectOperate("steel_bar", "furnace*") {
+    if(player.quest("dwarf_cannon") != "completed") {
+        return@itemOnObjectOperate
+    }
     arriveDelay()
     if (!player.inventory.contains("ammo_mould")) {
         statement("You need a mould to make cannonballs with.")

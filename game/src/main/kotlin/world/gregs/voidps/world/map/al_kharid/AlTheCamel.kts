@@ -38,7 +38,7 @@ npcOperate({ target.id.endsWith("camel") && option == "Talk-to" && player.equipp
     })
 }
 
-npcOperate({ operate && target.id == "al_the_camel" && option == "Talk-to" && player.equipped(EquipSlot.Amulet).id == "camulet" }) { player: Player ->
+npcOperate({ target.id == "al_the_camel" && option == "Talk-to" && player.equipped(EquipSlot.Amulet).id == "camulet" }) { player: Player ->
     choice("What would you like to do?") {
         option("Ask the camel about its dung.") {
             dung()
@@ -184,7 +184,7 @@ objectOperate({ target.id == "dung" && option == "Pick-up" }) { player: Player -
     scoopPoop()
 }
 
-itemOnObjectOperate({ target.id == "dung" }) { _: Player ->
+itemOnObjectOperate("*", "dung") {
     arriveDelay()
     if (item.id != "bucket") {
         player<Unsure>("Surely there's something better I could use to pick up the dung.")

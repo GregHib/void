@@ -39,7 +39,7 @@ objectOperate({ target.id == "hopper_controls" && option == "Operate" }) { playe
     }
 }
 
-itemOnObjectOperate({ target.id == "hopper" && item.id == "grain" }) { player: Player ->
+itemOnObjectOperate("grain", "hopper") {
     arriveDelay()
     if (player.quest("cooks_assistant") != "started") {
         player.setAnimation("fill_hopper")

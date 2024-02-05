@@ -61,7 +61,7 @@ interfaceOpen("silver_mould") { player: Player ->
     }
 }
 
-itemOnObjectOperate({ target.id.startsWith("furnace") && item.id == "silver_bar" }) { player: Player ->
+itemOnObjectOperate("silver_bar", "furnace*") {
     player.open("silver_mould")
 }
 

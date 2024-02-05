@@ -83,7 +83,7 @@ interfaceOption({ id == "smithing" }) { player: Player ->
     smith(player, metal, type, amount)
 }
 
-itemOnObjectOperate({ target.id.startsWith("anvil") && item.id.endsWith("_bar") }) { player: Player ->
+itemOnObjectOperate("*_bar", "anvil*") {
     arriveDelay()
     if (!player.inventory.contains("hammer")) {
         statement("You need a hammer to work the metal with.")
@@ -120,7 +120,7 @@ itemOnObjectOperate({ target.id.startsWith("anvil") && item.id.endsWith("_bar") 
 }
 
 
-itemOnObjectOperate({ target.id.startsWith("anvil") && item.id == "hammer" }) { player: Player ->
+itemOnObjectOperate("hammer", "anvil*") {
     player.message("To smith metal equipment, you must use the metal bar on the anvil.")
 }
 

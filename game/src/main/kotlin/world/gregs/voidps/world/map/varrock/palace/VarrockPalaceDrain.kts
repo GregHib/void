@@ -41,7 +41,7 @@ playerSpawn({ it["demon_slayer_drain_dislodged", false] }) { player: Player ->
     player.sendVariable("demon_slayer_drain_dislodged")
 }
 
-itemOnObjectOperate({ target.id == "varrock_palace_drain" && item.id.endsWith("of_water") }) { player: Player ->
+itemOnObjectOperate("*of_water", "varrock_palace_drain") {
     arriveDelay()
     val replacement = when {
         item.id.startsWith("bucket_of") -> "bucket"

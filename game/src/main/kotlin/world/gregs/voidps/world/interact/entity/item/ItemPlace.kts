@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.item
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inject
@@ -14,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val floorItems: FloorItems by inject()
 
-itemOnObjectOperate({ target.id.startsWith("table") }) { player: Player ->
+itemOnObjectOperate("*", "table*") {
     arriveDelay()
     if (!World.members && item.def["members", false]) {
         player.message("To use this item please login to a members' server.")

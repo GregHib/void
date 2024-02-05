@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.timer.npcTimerStart
@@ -26,6 +25,6 @@ npcTimerTick({ timer == "eat_grass" }) { npc: NPC ->
     npc.setAnimation("cow_eat_grass")
 }
 
-itemOnNPCOperate({ target.def.name == "cow" }) { player: Player ->
+itemOnNPCOperate("*", "cow*") {
     player.message("The cow doesn't want that.")
 }

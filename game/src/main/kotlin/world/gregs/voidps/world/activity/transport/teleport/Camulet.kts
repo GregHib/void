@@ -2,7 +2,6 @@ package world.gregs.voidps.world.activity.transport.teleport
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.interact.either
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -31,7 +30,7 @@ inventory({ inventory == "inventory" && item.id == "camulet" && option == "Check
     }
 }
 
-itemOnItem({ fromInventory == "inventory" && toInventory == "inventory" && either { item, item2 -> item.id == "camulet" && item2.id == "ugthanki_dung" } }) { player: Player ->
+itemOnItem("ugthanki_dung", "camulet") { player: Player ->
     val slot = if (fromItem.id == "camulet") fromSlot else toSlot
     val charges = Degrade.charges(player, fromInventory, slot)
     if (charges == 4) {

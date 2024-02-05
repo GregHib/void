@@ -36,11 +36,11 @@ npcOperate({ target.id == "guardian_mummy" && option == "Start-activity" }) { pl
     iKnowWhatImDoing()
 }
 
-itemOnNPCOperate({ target.id == "guardian_mummy" && item.id.startsWith("pharaohs_sceptre_") }) { _: Player ->
+itemOnNPCOperate("pharaohs_sceptre_*", "guardian_mummy") {
     discharge(itemSlot)
 }
 
-itemOnNPCOperate({ target.id == "guardian_mummy" && item.id == "pharaohs_sceptre" }) { player: Player ->
+itemOnNPCOperate("pharaohs_sceptre", "guardian_mummy") {
     sceptreRecharging()
 }
 
@@ -160,7 +160,7 @@ fun Transaction.remove(amount: Int, items: List<String>) {
 }
 
 
-itemOnNPCOperate({ target.id == "guardian_mummy" && item.id != "pharaohs_sceptre" }) { player: Player ->
+itemOnNPCOperate("*", "guardian_mummy") {
     player.message("The Mummy is not interested in this")
 }
 
