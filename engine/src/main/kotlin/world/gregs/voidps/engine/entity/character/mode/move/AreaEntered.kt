@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.character.mode.move
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.wildcardEquals
@@ -16,10 +15,6 @@ data class AreaEntered(
     val area: Area
 ) : SuspendableEvent, CharacterContext {
     override var onCancel: (() -> Unit)? = null
-}
-
-fun enterArea(filter: AreaEntered.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend AreaEntered.(Player) -> Unit) {
-    on<AreaEntered>(filter, priority, block)
 }
 
 fun enterArea(area: String = "*", tag: String = "*", block: suspend AreaEntered.() -> Unit) {

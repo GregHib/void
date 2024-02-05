@@ -64,8 +64,10 @@ val targets = listOf(
     Tile(3228, 3370) to Tile(3231, 3373)
 )
 
-enterArea({ name == "demon_slayer_stone_circle" && it["demon_slayer_silverlight", false] && !player.hasClock("demon_slayer_instance_exit") }) { _: Player ->
-    cutscene()
+enterArea("demon_slayer_stone_circle") {
+    if (player["demon_slayer_silverlight", false] && !player.hasClock("demon_slayer_instance_exit")) {
+        cutscene()
+    }
 }
 
 fun CharacterContext.setCutsceneEnd(instance: Region) {

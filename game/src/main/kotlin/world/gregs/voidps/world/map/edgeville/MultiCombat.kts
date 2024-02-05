@@ -5,13 +5,12 @@ import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Priority
 
-enterArea({ tags.contains("multi_combat") }, Priority.LOW) { player: Player ->
+enterArea(tag = "multi_combat") {
     player["in_multi_combat"] = true
 }
 
-exitArea({ tags.contains("multi_combat") }, Priority.LOW) { player: Player ->
+exitArea(tag = "multi_combat") {
     player.clear("in_multi_combat")
 }
 

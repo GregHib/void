@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.move.walkTo
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
@@ -35,7 +34,7 @@ worldSpawn {
     }
 }
 
-enterArea({ name.startsWith("border_guard") && area is Rectangle }) { player: Player ->
+enterArea("border_guard*") {
     val border = area as Rectangle
     if (player.steps.destination in border) {
         val tile = border.nearestTo(player.tile)
@@ -48,7 +47,7 @@ enterArea({ name.startsWith("border_guard") && area is Rectangle }) { player: Pl
     changeGuardState(guards, true)
 }
 
-exitArea({ name.startsWith("border_guard") && area is Rectangle }) { player: Player ->
+exitArea("border_guard*") {
     val border = area as Rectangle
     val guards = guards[border] ?: return@exitArea
     player.steps.update(noCollision = false, noRun = false)
