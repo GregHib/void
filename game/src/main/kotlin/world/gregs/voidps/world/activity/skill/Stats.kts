@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.skill
 import net.pearx.kasechange.toSentenceCase
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
@@ -16,7 +16,7 @@ val definitions: InterfaceDefinitions by inject()
 val menu = listOf(Attack, Strength, Ranged, Magic, Defence, Constitution, Prayer, Agility, Herblore, Thieving, Crafting, Runecrafting,
     Mining, Smithing, Fishing, Cooking, Firemaking, Woodcutting, Fletching, Slayer, Farming, Construction, Hunter, Summoning, Dungeoneering)
 
-interfaceOpened({ id == "stats" }) { player: Player ->
+interfaceOpen("stats") { player: Player ->
     player.sendVariable("skill_stat_flash")
     values().forEach {
         player.experience.update(it)

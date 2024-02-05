@@ -2,8 +2,8 @@ package world.gregs.voidps.world.map.rellekka
 
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.event.interfaceClosed
-import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.CharacterContext
@@ -56,11 +56,11 @@ suspend fun CharacterContext.startShoeShopping() {
     openDressingRoom("yrsas_shoe_store")
 }
 
-interfaceClosed({ id == "yrsas_shoe_store" }) { player: Player ->
+interfaceClose("yrsas_shoe_store") { player: Player ->
     player.softTimers.stop("dressing_room")
 }
 
-interfaceOpened({ id == "yrsas_shoe_store" }) { player: Player ->
+interfaceOpen("yrsas_shoe_store") { player: Player ->
     player.interfaces.sendText(id, "confirm_text", "Change")
     player.interfaceOptions.unlockAll(id, "styles", 0 until 40)
     val colours = enums.get("colour_shoes")

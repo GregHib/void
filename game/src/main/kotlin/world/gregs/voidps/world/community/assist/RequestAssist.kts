@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.event.interfaceClosed
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
@@ -116,8 +116,8 @@ fun setupAssistant(player: Player, assisted: Player) {
     toggleInventory(player, enabled = false)
 }
 
-interfaceClosed({ id == "assist_xp" }) { player: Player ->
-    val assisted: Player = player["assisted"] ?: return@interfaceClosed
+interfaceClose("assist_xp") { player: Player ->
+    val assisted: Player = player["assisted"] ?: return@interfaceClose
     cancelAssist(player, assisted)
 }
 

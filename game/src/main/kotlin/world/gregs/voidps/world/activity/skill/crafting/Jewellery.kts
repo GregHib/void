@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.skill.crafting
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.event.interfaceRefreshed
+import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
@@ -34,7 +34,7 @@ itemOnObjectOperate({ target.id.startsWith("furnace") && item.id.endsWith("_moul
     player.open("make_mould${if (World.members) "_slayer" else ""}")
 }
 
-interfaceRefreshed({ id.startsWith("make_mould") }) { player: Player ->
+interfaceRefresh("make_mould*") { player: Player ->
     for (type in moulds) {
         val showText = !player.inventory.contains("${type}_mould")
         player.interfaces.sendVisibility(id, "${type}_text", showText)

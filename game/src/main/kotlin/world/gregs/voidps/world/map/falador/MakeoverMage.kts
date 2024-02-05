@@ -2,8 +2,8 @@ package world.gregs.voidps.world.map.falador
 
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.client.ui.event.interfaceClosed
-import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.CharacterContext
@@ -125,11 +125,11 @@ npcOperate({ target.id.startsWith("makeover_mage") && option == "Makeover" }) { 
     openDressingRoom("skin_colour")
 }
 
-interfaceClosed({ id == "skin_colour" }) { player: Player ->
+interfaceClose("skin_colour") { player: Player ->
     player.softTimers.stop("dressing_room")
 }
 
-interfaceOpened({ id == "skin_colour" }) { player: Player ->
+interfaceOpen("skin_colour") { player: Player ->
     player["makeover_female"] = !player.male
     player["makeover_colour_skin"] = player.body.getColour(BodyColour.Skin)
     player.interfaces.sendText(id, "confirm", "CONFIRM")

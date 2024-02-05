@@ -4,8 +4,8 @@ import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.ui.event.interfaceClosed
-import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemOnItemDefinitions
@@ -149,11 +149,11 @@ fun replaceItems(
     useItemOnItem(player, skill, def, amount, count + 1)
 }
 
-interfaceClosed({ id == "dialogue_skill_creation" }) { player: Player ->
+interfaceClose("dialogue_skill_creation") { player: Player ->
     player.clear("selecting_amount")
 }
 
-interfaceOpened({ id == "dialogue_skill_creation" }) { player: Player ->
+interfaceOpen("dialogue_skill_creation") { player: Player ->
     player["selecting_amount"] = true
 }
 

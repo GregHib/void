@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.community.clan
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
@@ -25,8 +25,8 @@ interfaceOption({ id == "clan_chat" && component == "settings" && option == "Cla
     player.open("clan_chat_setup")
 }
 
-interfaceOpened({ id == "clan_chat_setup" }) { player: Player ->
-    val clan = player.clan ?: player.ownClan ?: return@interfaceOpened
+interfaceOpen("clan_chat_setup") { player: Player ->
+    val clan = player.clan ?: player.ownClan ?: return@interfaceOpen
     player.interfaces.apply {
         sendText(id, "name", clan.name.ifBlank { "Chat disabled" })
         sendText(id, "enter", clan.joinRank.string)

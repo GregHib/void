@@ -2,8 +2,8 @@ package world.gregs.voidps.world.map.falador
 
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.event.interfaceClosed
-import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -53,7 +53,7 @@ suspend fun NPCOption.startHairdressing() {
     openDressingRoom("hairdressers_salon")
 }
 
-interfaceOpened({ id == "hairdressers_salon" }) { player: Player ->
+interfaceOpen("hairdressers_salon") { player: Player ->
     player.interfaces.sendText(id, "confirm_text", "Change")
     val styles = enums.get("style_hair_${player.sex}")
     val colours = enums.get("colour_hair")
@@ -84,7 +84,7 @@ interfaceOption({ id == "hairdressers_salon" && component == "colours" }) { play
     player["makeover_colour_hair"] = enums.get("colour_hair").getInt(itemSlot / 2)
 }
 
-interfaceClosed({ id == "hairdressers_salon" }) { player: Player ->
+interfaceClose("hairdressers_salon") { player: Player ->
     player.softTimers.stop("dressing_room")
 }
 

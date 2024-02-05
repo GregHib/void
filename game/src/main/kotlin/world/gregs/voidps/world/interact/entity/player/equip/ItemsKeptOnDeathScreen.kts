@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.equip
 
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.toInt
-import world.gregs.voidps.engine.client.ui.event.interfaceRefreshed
+import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -30,7 +30,7 @@ timerStop({ timer == "prayer_protect_item" && it.interfaces.contains("items_kept
     player.open("items_kept_on_death", close = false)
 }
 
-interfaceRefreshed({ id == "items_kept_on_death" }) { player: Player ->
+interfaceRefresh("items_kept_on_death") { player: Player ->
     val items = ItemsKeptOnDeath.getAllOrdered(player)
     val savedItems = ItemsKeptOnDeath.kept(player, items, enums)
     val carriedWealth = items.sumOf { it.def.cost }

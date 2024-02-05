@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.interact.entity.combat.style
 
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.ui.event.interfaceOpened
-import world.gregs.voidps.engine.client.ui.event.interfaceRefreshed
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
+import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -19,14 +19,14 @@ npcSpawn { npc: NPC ->
     npc["combat_style"] = npc.def["style", ""]
 }
 
-interfaceOpened({ id == "combat_styles" }) { player: Player ->
+interfaceOpen("combat_styles") { player: Player ->
     player.sendVariable("attack_style_index")
     player.sendVariable("special_attack_energy")
     player.sendVariable("auto_retaliate")
     refreshStyle(player)
 }
 
-interfaceRefreshed({ id == "combat_styles" }) { player: Player ->
+interfaceRefresh("combat_styles") { player: Player ->
     player.interfaceOptions.unlockAll(id, "style1")
     player.interfaceOptions.unlockAll(id, "style2")
     player.interfaceOptions.unlockAll(id, "style3")

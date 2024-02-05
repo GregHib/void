@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.energy
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendRunEnergy
-import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Rest
@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.playerSpawn
 
-interfaceOpened({ id == "energy_orb" }) { player: Player ->
+interfaceOpen("energy_orb") { player: Player ->
     player.sendRunEnergy(player.energyPercent())
 }
 

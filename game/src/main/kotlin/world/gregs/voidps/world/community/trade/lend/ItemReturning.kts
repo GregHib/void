@@ -2,7 +2,7 @@ package world.gregs.voidps.world.community.trade.lend
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -18,7 +18,7 @@ import world.gregs.voidps.world.community.trade.returnedItems
 val logger = InlineLogger()
 val players: Players by inject()
 
-interfaceOpened({ id == "returned_items" }) { player: Player ->
+interfaceOpen("returned_items") { player: Player ->
     player.sendInventory(player.returnedItems)
 }
 

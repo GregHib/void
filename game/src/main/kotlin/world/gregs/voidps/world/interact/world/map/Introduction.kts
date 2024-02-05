@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.world.map
 
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.interfaceClosed
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
@@ -31,7 +31,7 @@ playerSpawn(priority = Priority.HIGHER) { player: Player ->
     }
 }
 
-interfaceClosed({ id == "character_creation" }) { player: Player ->
+interfaceClose("character_creation") { player: Player ->
     player.flagAppearance()
     setup(player)
 }

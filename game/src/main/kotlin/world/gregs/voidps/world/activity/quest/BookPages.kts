@@ -2,7 +2,7 @@ package world.gregs.voidps.world.activity.quest
 
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
-import world.gregs.voidps.engine.client.ui.event.interfaceRefreshed
+import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
@@ -14,7 +14,7 @@ inventory({ item.def.contains("book") && option == "Read" }) { player: Player ->
     player.openBook(item.def["book"])
 }
 
-interfaceRefreshed({ id == "book" }) { player: Player ->
+interfaceRefresh("book") { player: Player ->
     refreshBook(player)
 }
 

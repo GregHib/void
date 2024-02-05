@@ -2,8 +2,8 @@ package world.gregs.voidps.world.map.varrock
 
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.event.interfaceClosed
-import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.CharacterContext
@@ -69,7 +69,7 @@ suspend fun CharacterContext.startMakeover() {
     openDressingRoom("thessalias_makeovers")
 }
 
-interfaceOpened({ id == "thessalias_makeovers" }) { player: Player ->
+interfaceOpen("thessalias_makeovers") { player: Player ->
     player.interfaces.sendText(id, "confirm_text", "Change")
     player.interfaceOptions.unlockAll(id, "styles", 0 until 100)
     player.interfaceOptions.unlockAll(id, "colours", 0 until enums.get("colour_top").length * 2)
@@ -81,7 +81,7 @@ interfaceOpened({ id == "thessalias_makeovers" }) { player: Player ->
     player["makeover_colour_legs"] = player.body.getColour(BodyColour.Legs)
 }
 
-interfaceClosed({ id == "thessalias_makeovers" }) { player: Player ->
+interfaceClose("thessalias_makeovers") { player: Player ->
     player.softTimers.stop("dressing_room")
 }
 

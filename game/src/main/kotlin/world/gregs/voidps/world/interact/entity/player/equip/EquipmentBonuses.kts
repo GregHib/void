@@ -1,9 +1,9 @@
 package world.gregs.voidps.world.interact.entity.player.equip
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.client.ui.event.interfaceClosed
-import world.gregs.voidps.engine.client.ui.event.interfaceOpened
-import world.gregs.voidps.engine.client.ui.event.interfaceRefreshed
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
+import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.open
@@ -33,7 +33,7 @@ itemChanged({ inventory == "worn_equipment" }) { player: Player ->
     updateStats(player, item, true)
 }
 
-interfaceOpened({ id == "equipment_bonuses" }) { player: Player ->
+interfaceOpen("equipment_bonuses") { player: Player ->
     player.interfaces.sendVisibility("equipment_bonuses", "close", !player["equipment_banking", false])
     updateEmote(player)
     player.open("equipment_side")
@@ -41,11 +41,11 @@ interfaceOpened({ id == "equipment_bonuses" }) { player: Player ->
     updateStats(player)
 }
 
-interfaceClosed({ id == "equipment_bonuses" }) { player: Player ->
+interfaceClose("equipment_bonuses") { player: Player ->
     player.open("inventory")
 }
 
-interfaceRefreshed({ id == "equipment_side" }) { player: Player ->
+interfaceRefresh("equipment_side") { player: Player ->
     player.interfaceOptions.send("equipment_side", "inventory")
     player.interfaceOptions.unlockAll("equipment_side", "inventory", 0 until 28)
 }

@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.activity.quest
 
 import world.gregs.voidps.engine.client.clearCamera
-import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.playerSpawn
@@ -18,7 +18,7 @@ val quests = setOf(
     // members
 )
 
-interfaceOpened({ id == "quest_journals" }) { player: Player ->
+interfaceOpen("quest_journals") { player: Player ->
     player.interfaceOptions.unlock(id, "journals", 0 until 201, "View")
     player.sendVariable("quest_points")
     player.sendVariable("quest_points_total") //set total quest points available in variables.yml

@@ -2,7 +2,7 @@ package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeType
-import world.gregs.voidps.engine.client.ui.event.interfaceClosed
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.moveAll
 import world.gregs.voidps.world.community.friend.friend
 import world.gregs.voidps.world.community.trade.Trade.getPartner
-import world.gregs.voidps.world.community.trade.Trade.isTradeInterface
 import world.gregs.voidps.world.interact.entity.player.display.Tab
 
 /**
@@ -70,10 +69,10 @@ fun startTrade(player: Player, partner: Player) {
     }
 }
 
-interfaceClosed({ isTradeInterface(id) }) { player: Player ->
-    val other: Player = getPartner(player) ?: return@interfaceClosed
+interfaceClose("trade_made", "trade_confirm") { player: Player ->
+    val other: Player = getPartner(player) ?: return@interfaceClose
     if (player.hasRequest(other, "accept_trade")) {
-        return@interfaceClosed
+        return@interfaceClose
     }
     reset(player, other)
     reset(other, player)

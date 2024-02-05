@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.interact.entity.player.display
 
 import world.gregs.voidps.cache.config.data.StructDefinition
-import world.gregs.voidps.engine.client.ui.event.interfaceClosed
-import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -18,7 +18,7 @@ import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.on
 val enums: EnumDefinitions by inject()
 val structs: StructDefinitions by inject()
 
-interfaceOpened({ id == "character_creation" }) { player: Player ->
+interfaceOpen("character_creation") { player: Player ->
     player.interfaceOptions.unlockAll(id, "skin_colour", 0 until enums.get("character_skin_interfaces").length)
     player.interfaceOptions.unlockAll(id, "colours", 0 until enums.get("character_top_interfaces").length)
     player.interfaceOptions.unlockAll(id, "styles", 0 until enums.get("character_top_styles_female").length)
@@ -32,7 +32,7 @@ interfaceOpened({ id == "character_creation" }) { player: Player ->
     }
 }
 
-interfaceClosed({ id == "character_creation" }) { player: Player ->
+interfaceClose("character_creation") { player: Player ->
     for (i in 1 until 20) {
         player.inventories.clear("character_creation_${i}")
     }
@@ -129,7 +129,7 @@ interfaceOption({ id == "character_creation" && component == "styles" }) { playe
     player["makeover_${part}"] = value
 }
 
-interfaceOpened({ id == "character_creation" }) { player: Player ->
+interfaceOpen("character_creation") { player: Player ->
     player["makeover_female"] = !player.body.male
     player["makeover_hair"] = player.body.getLook(BodyPart.Hair)
     player["makeover_beard"] = player.body.getLook(BodyPart.Beard)

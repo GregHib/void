@@ -3,8 +3,8 @@ package world.gregs.voidps.world.interact.entity.player.display.tab
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.command
-import world.gregs.voidps.engine.client.ui.event.interfaceOpened
-import world.gregs.voidps.engine.client.ui.event.interfaceRefreshed
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
+import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.CharacterContext
@@ -31,7 +31,7 @@ val definitions: InterfaceDefinitions by inject()
 
 val unlockableRange = 26..52
 
-interfaceOpened({ id == "emotes" }) { player: Player ->
+interfaceOpen("emotes") { player: Player ->
     for (compId in unlockableRange) {
         val component = definitions.getComponent(id, compId) ?: continue
         player.sendVariable("unlocked_emote_${component.stringId}")
@@ -39,7 +39,7 @@ interfaceOpened({ id == "emotes" }) { player: Player ->
     player.sendVariable("unlocked_emote_lost_tribe")
 }
 
-interfaceRefreshed({ id == "emotes" }) { player: Player ->
+interfaceRefresh("emotes") { player: Player ->
     player.interfaceOptions.unlockAll("emotes", "emotes", 0..190)
 }
 

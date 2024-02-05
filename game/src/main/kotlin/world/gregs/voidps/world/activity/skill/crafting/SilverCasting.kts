@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.skill.crafting
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
@@ -42,7 +42,7 @@ val moulds = listOf(
 val Item.silver: Silver?
     get() = def.getOrNull("silver_jewellery")
 
-interfaceOpened({ id == "silver_mould" }) { player: Player ->
+interfaceOpen("silver_mould") { player: Player ->
     for (mould in moulds) {
         val silver = mould.silver ?: continue
         val item = silver.item

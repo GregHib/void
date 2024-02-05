@@ -3,8 +3,8 @@ package world.gregs.voidps.world.activity.bank
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.command
-import world.gregs.voidps.engine.client.ui.event.interfaceClosed
-import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -24,11 +24,11 @@ objectOperate({ option == "Collect" }) { player: Player ->
     player.open("collection_box")
 }
 
-interfaceClosed({ id == "bank" }) { player: Player ->
+interfaceClose("bank") { player: Player ->
     player.close("bank_side")
 }
 
-interfaceOpened({ id == "bank" }) { player: Player ->
+interfaceOpen("bank") { player: Player ->
     player.sendInventory("bank")
     player.open("bank_side")
     player.sendVariable("open_bank_tab")

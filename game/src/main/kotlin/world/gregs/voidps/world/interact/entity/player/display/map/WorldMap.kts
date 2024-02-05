@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.display.map
 
-import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
@@ -11,7 +11,7 @@ import world.gregs.voidps.network.encode.updateInterface
 
 val definitions: InterfaceDefinitions by inject()
 
-interfaceOpened({ id == "world_map" }) { player: Player ->
+interfaceOpen("world_map") { player: Player ->
     updateMap(player)
 }
 

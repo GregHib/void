@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.map.edgeville
 
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -27,7 +27,7 @@ variableSet({ key == "in_wilderness" && to != true }) { player: Player ->
     resetIcons(player)
 }
 
-interfaceOpened({ id == "wilderness_skull" }) { player: Player ->
+interfaceOpen("wilderness_skull") { player: Player ->
     player.interfaces.sendSprite(id, "right_skull", 439)
 }
 

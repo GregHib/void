@@ -2,8 +2,8 @@ package world.gregs.voidps.world.interact.entity.npc.shop
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.event.interfaceClosed
-import world.gregs.voidps.engine.client.ui.event.interfaceRefreshed
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
+import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.character.face
@@ -24,7 +24,7 @@ npcOperate({ def.contains("shop") && option == "Trade" }) { player: Player ->
     player.openShop(def["shop"])
 }
 
-interfaceClosed({ id == "shop" }) { player: Player ->
+interfaceClose("shop") { player: Player ->
     player.close("item_info")
     player.close("shop_side")
     val shop = player.shop()
@@ -56,7 +56,7 @@ on<OpenShop> { player: Player ->
     player.interfaces.sendText("shop", "title", definition["title", "Shop"])
 }
 
-interfaceRefreshed({ id == "shop_side" }) { player: Player ->
+interfaceRefresh("shop_side") { player: Player ->
     player.interfaceOptions.send("shop_side", "inventory")
     player.interfaceOptions.unlockAll("shop_side", "inventory", 0 until 28)
 }

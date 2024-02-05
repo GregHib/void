@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.equip
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.ui.event.interfaceRefreshed
+import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.interfaceSwitch
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inv.swap
 
 val logger = InlineLogger()
 
-interfaceRefreshed({ id == "inventory" }) { player: Player ->
+interfaceRefresh("inventory") { player: Player ->
     player.interfaceOptions.unlockAll(id, "inventory", 0 until 28)
     player.interfaceOptions.unlock(id, "inventory", 28 until 56, "Drag")
     player.sendInventory(id)
