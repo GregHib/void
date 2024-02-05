@@ -54,8 +54,10 @@ timerTick({ timer == "sever" }) { _: Player ->
     cancel()
 }
 
-prayerStart({ (prayer.startsWith("prayer_deflect") || prayer.startsWith("prayer_protect")) && it.softTimers.contains("sever") }) { player: Player ->
-    player.message("You've been injured and can no longer use ${if (player.isCurses()) "deflect curses" else "protection prayers"}!")
-    val key = player.getActivePrayerVarKey()
-    player.removeVarbit(key, prayer.removePrefix("prayer_").toTitleCase())
+prayerStart("prayer_deflect_*", "prayer_protect_*") { player ->
+    if (player.softTimers.contains("sever")) {
+        player.message("You've been injured and can no longer use ${if (player.isCurses()) "deflect curses" else "protection prayers"}!")
+        val key = player.getActivePrayerVarKey()
+        player.removeVarbit(key, prayer.removePrefix("prayer_").toTitleCase())
+    }
 }
