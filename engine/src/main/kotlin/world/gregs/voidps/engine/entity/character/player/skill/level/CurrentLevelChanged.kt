@@ -29,14 +29,8 @@ fun levelChange(filter: CurrentLevelChanged.(Character) -> Boolean, priority: Pr
     on<CurrentLevelChanged>(filter, priority, block)
 }
 
-fun levelChange(skill: Skill, block: suspend CurrentLevelChanged.(Player) -> Unit) {
-    on<CurrentLevelChanged>({ this.skill == skill }) { player: Player ->
-        block.invoke(this, player)
-    }
-}
-
-fun characterLevelChange(skill: Skill, block: suspend CurrentLevelChanged.(Character) -> Unit) {
-    on<CurrentLevelChanged>({ this.skill == skill }) { player: Character ->
+fun levelChange(skill: Skill? = null, block: suspend CurrentLevelChanged.(Player) -> Unit) {
+    on<CurrentLevelChanged>({ skill == null || this.skill == skill }) { player: Player ->
         block.invoke(this, player)
     }
 }

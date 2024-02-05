@@ -28,13 +28,13 @@ experience { player: Player ->
     player.client?.skillLevel(skill.ordinal, if (skill == Skill.Constitution) level / 10 else level, to.toInt())
 }
 
-levelChange({ skill != Skill.Constitution }) { player: Player ->
-    val exp = player.experience.get(skill)
-    player.client?.skillLevel(skill.ordinal, to, exp.toInt())
-}
-
-levelChange({ skill == Skill.Constitution }) { player: Player ->
-    val exp = player.experience.get(skill)
-    player.client?.skillLevel(skill.ordinal, to / 10, exp.toInt())
-    player["life_points"] = player.levels.get(Skill.Constitution)
+levelChange { player: Player ->
+    if (skill == Skill.Constitution) {
+        val exp = player.experience.get(skill)
+        player.client?.skillLevel(skill.ordinal, to / 10, exp.toInt())
+        player["life_points"] = player.levels.get(Skill.Constitution)
+    } else {
+        val exp = player.experience.get(skill)
+        player.client?.skillLevel(skill.ordinal, to, exp.toInt())
+    }
 }
