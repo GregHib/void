@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
@@ -16,7 +15,7 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import java.util.concurrent.TimeUnit
 
-npcOperate({ def.name == "Ranged instructor" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "nemarti") {
     npc<Unsure>("Hey there adventurer, I am the Ranged combat tutor. Is there anything you would like to know?")
     menu()
 }

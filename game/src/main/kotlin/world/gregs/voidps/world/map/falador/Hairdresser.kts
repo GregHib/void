@@ -23,7 +23,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 
 val enums: EnumDefinitions by inject()
 
-npcOperate({ target.id == "hairdresser" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "hairdresser") {
     npc<Happy>("Good afternoon ${if (player.male) "sir" else "madam"}. In need of a haircut${if (player.male) " or shave" else ""} are we?")
     choice {
         option<Talk>("Yes, please.") {
@@ -36,7 +36,7 @@ npcOperate({ target.id == "hairdresser" && option == "Talk-to" }) { player: Play
     }
 }
 
-npcOperate({ target.id == "hairdresser" && option == "Hair-cut" }) { player: Player ->
+npcOperate("Hair-cut", "hairdresser") {
     startHairdressing()
 }
 

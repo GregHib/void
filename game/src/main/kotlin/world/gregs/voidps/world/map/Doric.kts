@@ -2,7 +2,6 @@ package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -20,7 +19,7 @@ import world.gregs.voidps.world.interact.entity.sound.playJingle
 
 val floorItems: FloorItems by inject()
 
-npcOperate({ target.id == "doric" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "doric") {
     when (player.quest("dorics_quest")) {
         "started" -> {
             npc<Unsure>("Have you got my materials yet, traveller?")

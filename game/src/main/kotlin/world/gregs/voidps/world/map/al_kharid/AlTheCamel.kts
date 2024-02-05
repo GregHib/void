@@ -29,29 +29,29 @@ import java.util.concurrent.TimeUnit
 
 val objects: GameObjects by inject()
 
-npcOperate({ target.id.endsWith("camel") && option == "Talk-to" && player.equipped(EquipSlot.Amulet).id != "camulet" }) { player: Player ->
-    insult()
-    player.message(when (random.nextInt(3)) {
-        0 -> "The camel turns its head and glares at you."
-        1 -> "The camel spits at you, and you jump back hurriedly.."
-        else -> "The camel tries to stamp on your foot, but you pull it back quickly."
-    })
-}
-
-npcOperate({ target.id == "al_the_camel" && option == "Talk-to" && player.equipped(EquipSlot.Amulet).id == "camulet" }) { player: Player ->
-    choice("What would you like to do?") {
-        option("Ask the camel about its dung.") {
-            dung()
-        }
-        option("Say something unpleasant.") {
-            insult()
-            if (player["al_the_camel", false]) {
-                listenTo()
-            } else {
-                talkingToMe()
+npcOperate("Talk-to", "*camel") {
+    if (player.equipped(EquipSlot.Amulet).id == "camulet") {
+        choice("What would you like to do?") {
+            option("Ask the camel about its dung.") {
+                dung()
             }
+            option("Say something unpleasant.") {
+                insult()
+                if (player["al_the_camel", false]) {
+                    listenTo()
+                } else {
+                    talkingToMe()
+                }
+            }
+            option("Neither - I'm a polite person.")
         }
-        option("Neither - I'm a polite person.")
+    } else {
+        insult()
+        player.message(when (random.nextInt(3)) {
+            0 -> "The camel turns its head and glares at you."
+            1 -> "The camel spits at you, and you jump back hurriedly.."
+            else -> "The camel tries to stamp on your foot, but you pull it back quickly."
+        })
     }
 }
 

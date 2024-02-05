@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
-npcOperate({ target.id == "bob" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "bob") {
     choice {
         option("Give me a quest!") {
             npc<Talk>("Sorry I don't have any quests for you at the moment.")

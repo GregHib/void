@@ -35,21 +35,3 @@ fun move(filter: Moved.(NPC) -> Boolean = { true}, priority: Priority = Priority
 fun move(filter: Moved.(Character) -> Boolean = { true}, priority: Priority = Priority.MEDIUM, block: suspend Moved.(Character) -> Unit) {
     on<Moved>(filter, priority, block)
 }
-
-fun move(filter: Moved.(Player) -> Boolean, block: Moved.() -> Unit) {
-    move(filter) { _: Player ->
-        block.invoke(this)
-    }
-}
-
-fun npcMove(filter: Moved.(NPC) -> Boolean, block: Moved.() -> Unit) {
-    move(filter) { _: NPC ->
-        block.invoke(this)
-    }
-}
-
-fun characterMove(filter: Moved.(Character) -> Boolean, block: Moved.() -> Unit) {
-    move(filter) { _: Character ->
-        block.invoke(this)
-    }
-}

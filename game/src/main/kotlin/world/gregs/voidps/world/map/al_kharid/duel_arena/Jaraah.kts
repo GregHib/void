@@ -7,7 +7,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-npcOperate({ target.id == "jaraah" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "jaraah") {
     player<Cheerful>("Hi!")
     npc<Angry>("What? Can't you see I'm busy?!")
     choice {
@@ -28,6 +28,6 @@ npcOperate({ target.id == "jaraah" && option == "Talk-to" }) { player: Player ->
     }
 }
 
-npcOperate({ target.id == "jaraah" && option == "Heal" }) { player: Player ->
+npcOperate("Heal", "jaraah") {
     heal()
 }

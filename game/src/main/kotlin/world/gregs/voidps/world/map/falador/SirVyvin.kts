@@ -64,7 +64,7 @@ objectOperate({ target.id == "cupboard_the_knights_sword_opened" && option == "S
     }
 }
 
-npcOperate({ target.id == "sir_vyvin" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "sir_vyvin") {
     player<Talking>("Hello.")
     npc<Talking>("Greetings traveller.")
     choice {

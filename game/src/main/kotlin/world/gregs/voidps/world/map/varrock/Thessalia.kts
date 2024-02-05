@@ -29,7 +29,7 @@ import world.gregs.voidps.world.map.falador.openDressingRoom
 
 val enums: EnumDefinitions by inject()
 
-npcOperate({ target.id == "thessalia" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "thessalia") {
     npc<Cheerful>("Would you like to buy any fine clothes?")
     npc<Cheerful>("Or if you're more after fancy dress costumes or commemorative capes, talk to granny Iffie.")
     choice {
@@ -52,7 +52,7 @@ npcOperate({ target.id == "thessalia" && option == "Talk-to" }) { player: Player
     }
 }
 
-npcOperate({ target.id == "thessalia" && option == "Change-clothes" }) { player: Player ->
+npcOperate("Change-clothes", "thessalia") {
     startMakeover()
 }
 

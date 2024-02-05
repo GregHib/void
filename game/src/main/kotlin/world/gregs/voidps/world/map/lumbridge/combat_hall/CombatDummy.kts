@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.npcApproach
+import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.levelChange
@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
 
 for (type in listOf("magic", "melee")) {
-    npcApproach({ target.id == "${type}_dummy" && option == "Attack" && it.fightStyle != type }, Priority.HIGH) { player: Player ->
+    on<NPCOption>({ target.id == "${type}_dummy" && option == "Attack" && it.fightStyle != type }, Priority.HIGH) { player: Player ->
         player.message("You can only use ${type.toTitleCase()} against this dummy.")
         player.approachRange(10, false)
         player.mode = EmptyMode

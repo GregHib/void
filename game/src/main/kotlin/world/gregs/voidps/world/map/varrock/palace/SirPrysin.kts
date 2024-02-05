@@ -20,7 +20,7 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-npcOperate({ target.id == "sir_prysin" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "sir_prysin") {
     when (player.quest("demon_slayer")) {
         "key_hunt" -> {
             if (!player["demon_slayer_silverlight", false]) {

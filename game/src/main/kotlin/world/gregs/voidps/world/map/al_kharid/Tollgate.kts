@@ -37,7 +37,7 @@ import world.gregs.voidps.world.interact.entity.obj.door.DoubleDoor
 val objects: GameObjects by inject()
 val southGate = Tile(3268, 3227)
 
-objectOperate({ target.id.startsWith("toll_gate_al_kharid") && option == "Pay-toll(10gp)" }) { player: Player ->
+objectOperate("Pay-toll(10gp)", "toll_gate_al_kharid*") {
     arriveDelay()
     if (!payToll(player)) {
         dialogue(player)

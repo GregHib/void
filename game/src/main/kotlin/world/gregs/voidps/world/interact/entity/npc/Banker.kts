@@ -19,7 +19,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 
 val npcs: NPCs by inject()
 
-npcApproach({ def.name == "Banker" && option == "Talk-to" }) { player: Player ->
+npcApproach("Talk-to", "banker*") {
     player.approachRange(2)
     pause()
     npc<Unsure>("Good day. How may I help you?")
@@ -60,13 +60,13 @@ suspend fun CharacterContext.menu() {
     }
 }
 
-npcApproach({ def.name == "Banker" && option == "Bank" }) { player: Player ->
+npcApproach("Bank", "banker*") {
     player.approachRange(2)
     pause()
     player.open("bank")
 }
 
-npcApproach({ def.name == "Banker" && option == "Collect" }) { player: Player ->
+npcApproach("Collect", "banker*") {
     player.approachRange(2)
     pause()
     player.open("collection_box")

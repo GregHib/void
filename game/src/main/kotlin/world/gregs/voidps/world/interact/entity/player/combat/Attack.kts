@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.combat.attackRange
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 
-npcApproach({ option == "Attack" }) { character: Character ->
+npcApproach("Attack") {
     if (character.attackRange != 1) {
         character.approachRange(character.attackRange, update = false)
     } else {

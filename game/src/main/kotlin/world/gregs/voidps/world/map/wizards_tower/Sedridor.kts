@@ -24,7 +24,7 @@ import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-npcOperate({ target.id == "sedridor" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "sedridor") {
     when (player.quest("rune_mysteries")) {
         "unstarted" -> {
             npc<Cheerful>("Welcome adventurer, to the world renowned Wizards' Tower, home to the Order of Wizards. How may I help you?")
@@ -39,7 +39,7 @@ npcOperate({ target.id == "sedridor" && option == "Talk-to" }) { player: Player 
     }
 }
 
-npcOperate({ target.id == "sedridor" && option == "Teleport" }) { player: Player ->
+npcOperate("Teleport", "sedridor") {
     teleport()
 }
 

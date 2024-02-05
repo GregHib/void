@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
@@ -23,7 +22,7 @@ val ivory = listOf("ivory_comb", "pottery_scarab", "pottery_statuette")
 val stone = listOf("stone_seal", "stone_scarab", "stone_statuette")
 val gold = listOf("gold_seal", "gold_scarab", "gold_statuette")
 
-npcOperate({ target.id == "guardian_mummy" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "guardian_mummy") {
     if (player.holdsItem("pharaohs_sceptre")) {
         sceptreRecharging()
         return@npcOperate
@@ -31,7 +30,7 @@ npcOperate({ target.id == "guardian_mummy" && option == "Talk-to" }) { player: P
     notAnother()
 }
 
-npcOperate({ target.id == "guardian_mummy" && option == "Start-activity" }) { player: Player ->
+npcOperate("Start-activity", "guardian_mummy") {
     player<Happy>("I know what I'm doing - let's get on with it.")
     iKnowWhatImDoing()
 }

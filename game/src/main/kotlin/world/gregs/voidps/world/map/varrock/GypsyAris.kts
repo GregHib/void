@@ -46,7 +46,7 @@ import world.gregs.voidps.engine.timer.npcTimerStart
 import world.gregs.voidps.engine.timer.npcTimerTick
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
-npcOperate({ target.id == "gypsy_aris" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "gypsy_aris") {
     when (player.quest("demon_slayer")) {
         "unstarted" -> {
             npc<Talk>("Hello, young one.")

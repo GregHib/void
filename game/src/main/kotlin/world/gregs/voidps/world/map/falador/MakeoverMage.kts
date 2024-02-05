@@ -37,7 +37,7 @@ import java.util.concurrent.TimeUnit
 val enums: EnumDefinitions by inject()
 val npcs: NPCs by inject()
 
-npcOperate({ target.id.startsWith("makeover_mage") && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "makeover_mage*") {
     npc<Happy>("Hello there! I am known as the Makeover Mage! I have spent many years researching magicks that can change your physical appearance.")
     npc<Happy>("I call it a 'makeover'. Would you like me to perform my magicks on you?")
     choice {

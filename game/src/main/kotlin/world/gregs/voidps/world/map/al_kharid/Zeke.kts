@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
-npcOperate({ target.id == "zeke" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "zeke") {
     npc<Talk>("A thousand greetings, ${if (player.male) "sir" else "madam"}.")
     choice {
         option("Do you want to trade?") {

@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.map.lumbridge
 
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Talking
@@ -10,11 +9,11 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
-npcOperate({ (def.name == "Shopkeeper" || def.name == "Shop assistant") && option == "Trade" }) { player: Player ->
+npcOperate("Trade", "shopkeeper*", "shop_assistant*") {
     player.openShop("lumbridge_general_store")
 }
 
-npcOperate({ def.name == "Shopkeeper" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "shopkeeper*") {
     npc<Talking>("Can I help you at all?")
     choice {
         option("Yes please. What are you selling?") {
@@ -31,7 +30,7 @@ npcOperate({ def.name == "Shopkeeper" && option == "Talk-to" }) { player: Player
     }
 }
 
-npcOperate({ def.name == "Shop assistant" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "shop_assistant*") {
     npc<Cheerful>("Can I help you at all?")
     choice {
         option("Yes please. What are you selling?") {

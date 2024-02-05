@@ -2,7 +2,6 @@ package world.gregs.voidps.world.map.varrock
 
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -13,7 +12,7 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 
-npcOperate({ target.id == "aubury" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "aubury") {
     if (player.quest("rune_mysteries") == "research_notes") {
         checkNotes()
         return@npcOperate

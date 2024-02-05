@@ -20,7 +20,7 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
-npcOperate({ target.id == "squire_asrol" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "squire_asrol") {
     when (player.quest("the_knights_sword")) {
         "unstarted" -> {
             npc<Talking>("Hello. I am the squire to Sir Vyvin.")

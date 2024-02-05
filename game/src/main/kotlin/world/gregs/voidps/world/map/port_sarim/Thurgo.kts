@@ -4,13 +4,12 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 
-npcOperate({ target.id == "thurgo" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "thurgo") {
     when (player.quest("the_knights_sword")) {
         "started", "find_thurgo" -> menu()
         "happy_thurgo" -> menuSword()

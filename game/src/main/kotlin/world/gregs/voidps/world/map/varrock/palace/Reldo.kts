@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-npcOperate({ target.id == "reldo" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "reldo") {
     npc<Talking>("Hello stranger.")
     choice {
         anythingToTrade()

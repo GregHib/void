@@ -30,7 +30,7 @@ var Player.bonesRequired: Int
     get() = get("demon_slayer_bones", -1)
     set(value) = set("demon_slayer_bones", value)
 
-npcOperate({ target.id == "traiborn" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "traiborn") {
     npc<Uncertain>("Ello young thingummywut.")
     if (player.quest("demon_slayer") == "key_hunt") {
         if (player.inventory.contains("silverlight_key_wizard_traiborn")) {

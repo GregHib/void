@@ -18,10 +18,6 @@ data class NPCOption(
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 }
 
-fun npcApproach(filter: NPCOption.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend NPCOption.(Player) -> Unit) {
-    on<NPCOption>({ approach && filter(this, it) }, priority, block)
-}
-
 fun npcOperate(filter: NPCOption.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend NPCOption.(Player) -> Unit) {
     on<NPCOption>({ operate && filter(this, it) }, priority, block)
 }

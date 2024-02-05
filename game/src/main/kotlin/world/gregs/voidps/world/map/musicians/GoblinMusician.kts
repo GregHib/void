@@ -2,7 +2,6 @@ package world.gregs.voidps.world.map.musicians
 
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.world.interact.dialogue.CheerfulOld
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.TalkingOld
@@ -11,7 +10,7 @@ import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 
-npcOperate({ target.id == "goblin_musician" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "goblin_musician") {
     choice()
 }
 

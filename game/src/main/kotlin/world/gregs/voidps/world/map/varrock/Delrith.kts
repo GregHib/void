@@ -234,7 +234,10 @@ combatSwing({ target is NPC && target.id == "delrith" && target.transform == "de
 
 val words = listOf("Carlem", "Aber", "Camerinthum", "Purchai", "Gabindo")
 
-npcOperate({ target.id == "delrith" && target.transform == "delrith_weakened" }) { player: Player ->
+npcOperate("*", "delrith") {
+    if (target.transform != "delrith_weakened") {
+        return@npcOperate
+    }
     player.weakQueue("banish_delrith") {
         player<Furious>("Now what was that incantation again?")
         var correct = true

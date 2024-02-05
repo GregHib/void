@@ -3,7 +3,6 @@ package world.gregs.voidps.world.map.lumbridge
 
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.world.activity.bank.ownsItem
@@ -12,7 +11,7 @@ import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 
-npcOperate({ target.id == "duke_horacio" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "duke_horacio") {
     npc<Talking>("Greetings. Welcome to my castle.")
     when (player.quest("rune_mysteries")) {
         "unstarted" -> unstarted()

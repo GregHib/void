@@ -4,14 +4,13 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
-npcOperate({ target.id == "fadli" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "fadli") {
     player<Cheerful>("Hi.")
     npc<RollEyes>("What?")
     choice {
@@ -48,15 +47,15 @@ npcOperate({ target.id == "fadli" && option == "Talk-to" }) { player: Player ->
     }
 }
 
-npcOperate({ target.id == "fadli" && option == "Bank" }) { player: Player ->
+npcOperate("Bank", "fadli") {
     player.open("bank")
 }
 
-npcOperate({ target.id == "fadli" && option == "Collect" }) { player: Player ->
+npcOperate("Collect", "fadli") {
     player.open("collection_box")
 }
 
-npcOperate({ target.id == "fadli" && option == "Buy" }) { player: Player ->
+npcOperate("Buy", "fadli") {
     if (World.members) {
         player.openShop("shop_of_distaste")
         return@npcOperate

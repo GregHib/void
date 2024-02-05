@@ -189,7 +189,7 @@ object DialogueConverter {
             import world.gregs.voidps.world.interact.dialogue.*
             import world.gregs.voidps.world.interact.dialogue.type.*
             
-            npcOperate({ target.id == "$name" && option == "Talk-to" }) { player: Player ->
+            npcOperate("Talk-to", "$name") {
                 startDialogue()
             }
         """.trimIndent())

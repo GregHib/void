@@ -2,14 +2,13 @@ package world.gregs.voidps.world.map.musicians
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Talking
 import world.gregs.voidps.world.interact.dialogue.type.npc
 
-npcOperate({ target.id == "bill_blakey" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "bill_blakey") {
     if (player.equipped(EquipSlot.Amulet).id != "ghostspeak_amulet") {
         npc<Talk>("Woo, wooo. Woooo.")
         player.message("The ghost seems barely aware of your existence,")

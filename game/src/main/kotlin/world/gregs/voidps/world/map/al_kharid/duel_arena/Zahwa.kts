@@ -1,13 +1,12 @@
 package world.gregs.voidps.world.map.al_kharid.duel_arena
 
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-npcOperate({ target.id == "zahwa" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "zahwa") {
     when (random.nextInt(0, 6)) {
         0 -> {
             player<Cheerful>("Hi!")

@@ -3,18 +3,17 @@ package world.gregs.voidps.world.map.falador
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.npc
 
-npcOperate({ target.id == "iconis" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "iconis") {
     if (!World.members) {
         nonMember()
         return@npcOperate
     }
 }
 
-npcOperate({ target.id == "iconis" && option == "Take-picture" }) { player: Player ->
+npcOperate("Take-picture", "iconis") {
     if (!World.members) {
         nonMember()
         return@npcOperate
