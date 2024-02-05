@@ -121,7 +121,7 @@ suspend fun PlayerChoice.colour(): Unit = option<Happy>("Can you make me a diffe
     whatDoYouSay()
 }
 
-npcOperate({ target.id.startsWith("makeover_mage") && option == "Makeover" }) { player: Player ->
+npcOperate("Makeover", "makeover_mage*") {
     openDressingRoom("skin_colour")
 }
 

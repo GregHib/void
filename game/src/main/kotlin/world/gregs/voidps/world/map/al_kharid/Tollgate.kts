@@ -48,7 +48,7 @@ objectOperate({ target.id.startsWith("toll_gate_al_kharid") && option == "Open" 
     dialogue(player)
 }
 
-npcOperate({ target.id.startsWith("border_guard_al_kharid") && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "border_guard_al_kharid*") {
     dialogue(player, target)
 }
 
