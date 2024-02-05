@@ -23,7 +23,7 @@ fun npcOperate(filter: NPCOption.(Player) -> Boolean, priority: Priority = Prior
 }
 
 fun npcApproach(option: String, npc: String = "*", block: suspend NPCOption.() -> Unit) {
-    on<NPCOption>({ approach && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) { _: Character ->
+    on<NPCOption>({ approach && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) { _: Player ->
         block.invoke(this)
     }
 }
@@ -37,15 +37,27 @@ fun npcApproach(option: String, vararg npcs: String, block: suspend NPCOption.()
 }
 
 fun npcOperate(option: String, npc: String = "*", block: suspend NPCOption.() -> Unit) {
-    on<NPCOption>({ operate && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) { _: Character ->
+    on<NPCOption>({ operate && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) { _: Player ->
         block.invoke(this)
     }
 }
 
 fun npcOperate(option: String, vararg npcs: String, block: suspend NPCOption.() -> Unit) {
     for (npc in npcs) {
-        on<NPCOption>({ operate && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) { _: Character ->
+        on<NPCOption>({ operate && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) { _: Player ->
             block.invoke(this)
         }
+    }
+}
+
+fun characterApproachNPC(option: String, npc: String = "*", block: suspend NPCOption.() -> Unit) {
+    on<NPCOption>({ approach && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) { _: Character ->
+        block.invoke(this)
+    }
+}
+
+fun characterOperateNPC(option: String, npc: String = "*", block: suspend NPCOption.() -> Unit) {
+    on<NPCOption>({ operate && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) { _: Character ->
+        block.invoke(this)
     }
 }

@@ -5,9 +5,9 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.npc.npcApproach
+import world.gregs.voidps.engine.entity.character.npc.characterApproachNPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.playerApproach
+import world.gregs.voidps.engine.entity.character.player.characterApproachPlayer
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.world.interact.entity.combat.CombatInteraction
@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.combat.attackRange
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 
-npcApproach("Attack") {
+characterApproachNPC("Attack") {
     if (character.attackRange != 1) {
         character.approachRange(character.attackRange, update = false)
     } else {
@@ -24,7 +24,7 @@ npcApproach("Attack") {
     combatInteraction(character, target)
 }
 
-playerApproach("Attack") {
+characterApproachPlayer("Attack") {
     if (character.attackRange != 1) {
         character.approachRange(character.attackRange, update = false)
     } else {

@@ -15,12 +15,24 @@ data class PlayerOption(
 }
 
 fun playerApproach(option: String, block: suspend PlayerOption.() -> Unit) {
-    on<PlayerOption>({ approach && wildcardEquals(option, this.option) }) { _: Character ->
+    on<PlayerOption>({ approach && wildcardEquals(option, this.option) }) { _: Player ->
         block.invoke(this)
     }
 }
 
 fun playerOperate(option: String, block: suspend PlayerOption.() -> Unit) {
+    on<PlayerOption>({ operate && wildcardEquals(option, this.option) }) { _: Player ->
+        block.invoke(this)
+    }
+}
+
+fun characterApproachPlayer(option: String, block: suspend PlayerOption.() -> Unit) {
+    on<PlayerOption>({ approach && wildcardEquals(option, this.option) }) { _: Character ->
+        block.invoke(this)
+    }
+}
+
+fun characterOperatePlayer(option: String, block: suspend PlayerOption.() -> Unit) {
     on<PlayerOption>({ operate && wildcardEquals(option, this.option) }) { _: Character ->
         block.invoke(this)
     }
