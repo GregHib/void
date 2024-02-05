@@ -23,7 +23,7 @@ data class ItemOnNPC(
 }
 
 fun itemOnNPCApproach(item: String, npc: String, inventory: String = "inventory", priority: Priority = Priority.MEDIUM, block: suspend ItemOnNPC.() -> Unit) {
-    on<ItemOnNPC>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(npc, this.target.id) && wildcardEquals(inventory, this.inventory) }, priority) { _: Player ->
+    on<ItemOnNPC>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(npc, this.target.id) && wildcardEquals(inventory, this.inventory) }, priority) { _: Character ->
         block.invoke(this)
     }
 }
