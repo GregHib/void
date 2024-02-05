@@ -24,7 +24,7 @@ npcApproach("Attack") {
     combatInteraction(character, target)
 }
 
-playerApproach({ option == "Attack" }) { character: Character ->
+playerApproach("Attack") {
     if (character.attackRange != 1) {
         character.approachRange(character.attackRange, update = false)
     } else {
