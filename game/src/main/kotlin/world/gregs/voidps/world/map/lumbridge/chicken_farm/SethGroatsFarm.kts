@@ -23,7 +23,7 @@ objectOperate({ target.id == "hatchet_logs" && option == "Take-hatchet" }, Prior
     }
 }
 
-floorItemOperate({ target.id == "super_large_egg" && option == "Take" }, Priority.HIGH) { player: Player ->
+floorItemOperate("Take", "super_large_egg", Priority.HIGH) {
     if (player.quest("cooks_assistant") == "completed") {
         player.message("You've no reason to pick that up; eggs of that size are only useful for royal cakes.")
         cancel()

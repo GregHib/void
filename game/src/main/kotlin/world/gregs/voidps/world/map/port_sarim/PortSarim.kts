@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.map.port_sarim
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -15,7 +14,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val items: FloorItems by inject()
 
-floorItemOperate({ target.id == "white_apron_port_sarim" && option == "Take" }, Priority.HIGH) { player: Player ->
+floorItemOperate("Take", "white_apron_port_sarim", Priority.HIGH) {
     if (player.holdsItem("white_apron")) {
         player.message("You already have one of those.")
         cancel()

@@ -54,7 +54,7 @@ itemOnFloorItemOperate("tinderbox*", "*log*") {
     }
 }
 
-floorItemOperate({ option == "Light" }) { player: Player ->
+floorItemOperate("Light") {
     arriveDelay()
     lightFire(player, target)
 }

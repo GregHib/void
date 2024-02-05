@@ -2,13 +2,12 @@ package world.gregs.voidps.world.interact.entity.item
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.turn
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.floorItemOperate
+import world.gregs.voidps.engine.entity.item.floor.npcFloorItemOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -20,7 +19,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 val floorItems: FloorItems by inject()
 val logger = InlineLogger()
 
-floorItemOperate({ option == "Take" }) { player: Player ->
+floorItemOperate("Take") {
     arriveDelay()
     player.approachRange(-1)
     if (player.inventory.isFull() && (!player.inventory.stackable(target.id) || !player.inventory.contains(target.id))) {
@@ -45,7 +44,7 @@ floorItemOperate({ option == "Take" }) { player: Player ->
     }
 }
 
-floorItemOperate({ option == "Take" }) { npc: NPC ->
+npcFloorItemOperate("Take") {
     if (!floorItems.remove(target)) {
         logger.warn { "$npc unable to pick up $target." }
     }

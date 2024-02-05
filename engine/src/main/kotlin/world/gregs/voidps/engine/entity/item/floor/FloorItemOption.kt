@@ -17,34 +17,20 @@ data class FloorItemOption(
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 }
 
-@JvmName("floorItemApproachPlayer")
-fun floorItemApproach(filter: FloorItemOption.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend FloorItemOption.(Player) -> Unit) {
-    on<FloorItemOption>({ approach && filter(this, it) }, priority, block)
-}
-
-@JvmName("floorItemOperatePlayer")
-fun floorItemOperate(filter: FloorItemOption.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend FloorItemOption.(Player) -> Unit) {
-    on<FloorItemOption>({ operate && filter(this, it) }, priority, block)
-}
-
-@JvmName("floorItemApproachNPC")
-fun floorItemApproach(filter: FloorItemOption.(NPC) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend FloorItemOption.(NPC) -> Unit) {
-    on<FloorItemOption>({ approach && filter(this, it) }, priority, block)
-}
-
-@JvmName("floorItemOperateNPC")
-fun floorItemOperate(filter: FloorItemOption.(NPC) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend FloorItemOption.(NPC) -> Unit) {
-    on<FloorItemOption>({ operate && filter(this, it) }, priority, block)
-}
-
-fun floorItemApproach(option: String, item: String, block: suspend FloorItemOption.() -> Unit) {
+fun floorItemApproach(option: String, item: String = "*", block: suspend FloorItemOption.() -> Unit) {
     on<FloorItemOption>({ approach && wildcardEquals(item, target.id) && wildcardEquals(option, this.option) }) { _: Player ->
         block.invoke(this)
     }
 }
 
-fun floorItemOperate(option: String, item: String, block: suspend FloorItemOption.() -> Unit) {
-    on<FloorItemOption>({ operate && wildcardEquals(item, target.id) && wildcardEquals(option, this.option) }) { _: Player ->
+fun floorItemOperate(option: String, item: String = "*", priority: Priority = Priority.MEDIUM, block: suspend FloorItemOption.() -> Unit) {
+    on<FloorItemOption>({ operate && wildcardEquals(item, target.id) && wildcardEquals(option, this.option) }, priority) { _: Player ->
+        block.invoke(this)
+    }
+}
+
+fun npcFloorItemOperate(option: String, item: String = "*", priority: Priority = Priority.MEDIUM, block: suspend FloorItemOption.() -> Unit) {
+    on<FloorItemOption>({ operate && wildcardEquals(item, target.id) && wildcardEquals(option, this.option) }, priority) { _: NPC ->
         block.invoke(this)
     }
 }
