@@ -43,7 +43,7 @@ playerSpawn { player: Player ->
 
 Tab.entries.forEach { tab ->
     val name = tab.name.toSnakeCase()
-    interfaceOption({ id == it.gameFrame.name && component == name && option == name.toTitleCase() }) { player: Player ->
+    interfaceOption("toplevel*", name, name.toTitleCase()) {
         player["tab", false] = tab.name
     }
 }
