@@ -1,17 +1,16 @@
 package world.gregs.voidps.world.map.port_sarim
 
-import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
+import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 
-on<NPCOption>({ operate && target.id == "thurgo" && option == "Talk-to" }) { player: Player ->
+npcOperate({ target.id == "thurgo" && option == "Talk-to" }) { player: Player ->
     when (player.quest("the_knights_sword")) {
         "started", "find_thurgo" -> menu()
         "happy_thurgo" -> menuSword()
@@ -152,7 +151,7 @@ suspend fun CharacterContext.thatCape() {
     npc<CheerfulOld>("If you ever achieve level 99 Smithing you'll be able to wear a cape like this, and receive more experience when smelting gold ore.")
 }
 
-on<ItemOnNPC>({ operate && target.id == "thurgo" && item.id == "redberry_pie" }) { player: Player ->
+itemOnNPCOperate({ target.id == "thurgo" && item.id == "redberry_pie" }) { player: Player ->
     when (player.quest("the_knights_sword")) {
         "find_thurgo" -> menu()
         "happy_thurgo" -> menuSword()

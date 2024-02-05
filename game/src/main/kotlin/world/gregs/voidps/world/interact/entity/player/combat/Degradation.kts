@@ -3,18 +3,17 @@ package world.gregs.voidps.world.interact.entity.player.combat
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.player.effect.degrade.Degrade
 
-on<CombatHit> { player: Player ->
+combatHit { player: Player ->
     degrade(player)
 }
 
-on<CombatAttack> { player: Player ->
+combatAttack { player: Player ->
     degrade(player)
 }
 

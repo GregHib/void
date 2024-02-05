@@ -4,9 +4,9 @@ import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -20,18 +20,18 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<NPCOption>({ operate && target.id == "sir_prysin" && option == "Talk-to" }) { player: Player ->
+npcOperate({ target.id == "sir_prysin" && option == "Talk-to" }) { player: Player ->
     when (player.quest("demon_slayer")) {
         "key_hunt" -> {
             if (!player["demon_slayer_silverlight", false]) {
                 keyProgressCheck()
-                return@on
+                return@npcOperate
             }
             npc<Talk>("Have you sorted that demon out yet?")
             if (player.ownsItem("silverlight")) {
                 player<Upset>("No, not yet.")
                 npc<Talk>("Well get on with it. He'll be pretty powerful when he gets to full strength.")
-                return@on
+                return@npcOperate
             }
             player<Upset>("Not yet. And I, um, lost Silverlight.")
             if (player.inventory.add("silverlight")) {

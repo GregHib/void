@@ -8,11 +8,10 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.Target
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import world.gregs.voidps.world.interact.entity.combat.weapon
@@ -24,10 +23,10 @@ fun isDragon2hSword(item: Item) = item.id.startsWith("dragon_2h_sword")
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-on<CombatSwing>({ !swung() && it.specialAttack && isDragon2hSword(it.weapon) }) { player: Player ->
+combatSwing({ !swung() && it.specialAttack && isDragon2hSword(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, 600)) {
         delay = -1
-        return@on
+        return@combatSwing
     }
     player.setAnimation("powerstab")
     player.setGraphic("powerstab")

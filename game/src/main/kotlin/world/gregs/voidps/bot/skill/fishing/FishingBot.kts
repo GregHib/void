@@ -16,14 +16,12 @@ import world.gregs.voidps.engine.data.definition.GearDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Catch
 import world.gregs.voidps.engine.data.definition.data.Spot
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
@@ -40,7 +38,7 @@ onBot<TimerStop>({ timer == "fishing" }) { bot: Bot ->
     bot.resume(timer)
 }
 
-on<World, Registered> {
+worldSpawn {
     for (area in areas.getTagged("fish")) {
         val spaces: Int = area["spaces", 1]
         val type: String = area.getOrNull("type") ?: continue

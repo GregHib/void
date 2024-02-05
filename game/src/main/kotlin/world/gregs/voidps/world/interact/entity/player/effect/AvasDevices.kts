@@ -1,19 +1,19 @@
 package world.gregs.voidps.world.interact.entity.player.effect
 
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.engine.inv.itemChanged
+import world.gregs.voidps.engine.timer.timerStart
+import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
+import world.gregs.voidps.world.interact.entity.player.equip.inventory
 import java.util.concurrent.TimeUnit
 
 val attractor = setOf(
@@ -69,15 +69,15 @@ val accumulator = setOf(
 
 val floorItems: FloorItems by inject()
 
-on<Registered> { player: Player ->
+playerSpawn { player: Player ->
     update(player)
 }
 
-on<ItemChanged>({ inventory == "worn_equipment" && changedMetalChestplate() || changedAvasDevice() }) { player: Player ->
+itemChanged({ inventory == "worn_equipment" && changedMetalChestplate() || changedAvasDevice() }) { player: Player ->
     update(player)
 }
 
-on<InventoryOption>({ (inventory == "inventory" || inventory == "worn_equipment") && option == "Toggle" && item.id.startsWith("avas_") }) { player: Player ->
+inventory({ (inventory == "inventory" || inventory == "worn_equipment") && option == "Toggle" && item.id.startsWith("avas_") }) { player: Player ->
     player["collect_junk"] = !player["collect_junk", false]
     update(player)
 }
@@ -90,11 +90,11 @@ fun update(player: Player) {
     }
 }
 
-on<TimerStart>({ timer == "junk_collection" }) { _: Player ->
+timerStart({ timer == "junk_collection" }) { _: Player ->
     interval = TimeUnit.SECONDS.toTicks(90)
 }
 
-on<TimerTick>({ timer == "junk_collection" }) { player: Player ->
+timerTick({ timer == "junk_collection" }) { player: Player ->
     val junk = if (player.equipped(EquipSlot.Cape).id == "avas_attractor") attractor else accumulator
     val item = junk.random()
     if (!player.inventory.add(item)) {

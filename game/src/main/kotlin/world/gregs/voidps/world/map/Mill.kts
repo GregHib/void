@@ -1,12 +1,11 @@
 package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
-import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.bank.bank
@@ -15,10 +14,10 @@ import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<ObjectOption>({ operate && target.id == "hopper_controls" && option == "Operate" }) { player: Player ->
+objectOperate({ target.id == "hopper_controls" && option == "Operate" }) { player: Player ->
     if (player["flour_bin", 0] == 30) {
         player.message("The flour bin downstairs is full, I should empty it first.")
-        return@on
+        return@objectOperate
     }
     arriveDelay()
     if (player["hopper_bin", 0] != 1) {
@@ -26,7 +25,7 @@ on<ObjectOption>({ operate && target.id == "hopper_controls" && option == "Opera
         player.playSound("lever")
         target.animate("3572")// todo find right anim
         player.message("You operate the empty hopper. Nothing interesting happens.")
-        return@on
+        return@objectOperate
     }
     player.setAnimation("pull_hopper_controls")
     player.playSound("lever")
@@ -40,26 +39,26 @@ on<ObjectOption>({ operate && target.id == "hopper_controls" && option == "Opera
     }
 }
 
-on<ItemOnObject>({ operate && target.id == "hopper" && item.id == "grain" }) { player: Player ->
+itemOnObjectOperate({ target.id == "hopper" && item.id == "grain" }) { player: Player ->
     arriveDelay()
     if (player.quest("cooks_assistant") != "started") {
         player.setAnimation("fill_hopper")
         player.inventory.remove("grain")
         player["hopper_bin"] = 1
         player.message("You put the grain in the hopper. You should now pull the lever nearby to operate the hopper.")
-        return@on
+        return@itemOnObjectOperate
     }
     if (player["cooks_assistant_talked_to_millie", 0] == 0) {
         player<Talk>("Hmm. I should probably ask that lady downstairs how I can make extra fine flour.")
-        return@on
+        return@itemOnObjectOperate
     }
     if (player.holdsItem("extra_fine_flour")) {
         player.message("It'd be best to take the extra fine flour you already have to the cook first.")
-        return@on
+        return@itemOnObjectOperate
     }
     if (player.bank.contains("extra_fine_flour")) {
         player.message("It'd be best to take the extra fine flour you already have in your bank to the cook first.")
-        return@on
+        return@itemOnObjectOperate
     }
     if (player["hopper_bin", 0] == 1) {
         player.message("There is already grain in the hopper.")
@@ -71,10 +70,10 @@ on<ItemOnObject>({ operate && target.id == "hopper" && item.id == "grain" }) { p
     }
 }
 
-on<ObjectOption>({ operate && target.id == "flour_bin_3" && option == "Take-flour" }) { player: Player ->
+objectOperate({ target.id == "flour_bin_3" && option == "Take-flour" }) { player: Player ->
     if (!player.holdsItem("empty_pot")) {
         player.message("You need an empty pot to hold the flour in.")
-        return@on
+        return@objectOperate
     }
     arriveDelay()
     if (player.quest("cooks_assistant") == "started" && player["cooks_assistant_talked_to_millie", 0] == 1) {
@@ -94,6 +93,6 @@ on<ObjectOption>({ operate && target.id == "flour_bin_3" && option == "Take-flou
     }
 }
 
-on<Registered> { player: Player ->
+playerSpawn { player: Player ->
     player.sendVariable("flour_bin")
 }

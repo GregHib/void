@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity
 
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
@@ -9,25 +10,19 @@ import world.gregs.voidps.engine.event.wildcardEquals
 
 object Registered : Event
 
-fun playerSpawn(filter: Registered.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend Registered.(Player) -> Unit) {
+fun playerSpawn(filter: Registered.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend Registered.(Player) -> Unit) {
     on<Registered>(filter, priority, block)
 }
 
-fun npcSpawn(filter: Registered.(NPC) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend Registered.(NPC) -> Unit) {
+fun npcSpawn(filter: Registered.(NPC) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend Registered.(NPC) -> Unit) {
     on<Registered>(filter, priority, block)
 }
 
-fun worldSpawn(filter: Registered.(World) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend Registered.(World) -> Unit) {
+fun characterSpawn(filter: Registered.(Character) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend Registered.(Character) -> Unit) {
     on<Registered>(filter, priority, block)
 }
 
-fun playerSpawn(priority: Priority = Priority.MEDIUM, block: suspend (Player) -> Unit) {
-    on<Registered>(priority = priority) { character: Player ->
-        block.invoke(character)
-    }
-}
-
-fun npcSpawn(npc: String = "*", priority: Priority = Priority.MEDIUM, block: suspend (NPC) -> Unit) {
+fun npcSpawn(npc: String, priority: Priority = Priority.MEDIUM, block: suspend (NPC) -> Unit) {
     if (npc == "*") {
         on<Registered>(priority = priority) { character: NPC ->
             block.invoke(character)

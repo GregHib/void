@@ -1,12 +1,11 @@
 package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.entity.character.CharacterContext
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.contains
@@ -21,13 +20,13 @@ import world.gregs.voidps.world.interact.entity.sound.playJingle
 
 val floorItems: FloorItems by inject()
 
-on<NPCOption>({ operate && target.id == "doric" && option == "Talk-to" }) { player: Player ->
+npcOperate({ target.id == "doric" && option == "Talk-to" }) { player: Player ->
     when (player.quest("dorics_quest")) {
         "started" -> {
             npc<Unsure>("Have you got my materials yet, traveller?")
             if (!player.inventory.contains("clay" to 6, "copper_ore" to 4, "iron_ore" to 2)) {
                 noOre()
-                return@on
+                return@npcOperate
             }
             player<Cheerful>("I have everything you need!")
             npc<Cheerful>("Many thanks! Pass them here, please. I can spare you some coins for your trouble, and please use my anvils any time you want.")

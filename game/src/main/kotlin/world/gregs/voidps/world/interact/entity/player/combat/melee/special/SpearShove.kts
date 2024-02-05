@@ -9,10 +9,9 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.effect.freeze
@@ -23,20 +22,20 @@ import java.util.concurrent.TimeUnit
 
 fun isDragonSpear(item: Item) = item.id.startsWith("dragon_spear") || item.id.startsWith("zamorakian_spear")
 
-on<CombatSwing>({ !swung() && it.specialAttack && isDragonSpear(it.weapon) }) { player: Player ->
+combatSwing({ !swung() && it.specialAttack && isDragonSpear(it.weapon) }) { player: Player ->
     if (target.size > 1) {
         player.message("That creature is too large to knock back!")
         delay = -1
-        return@on
+        return@combatSwing
     }
     if (target.hasClock("movement_delay")) {
         player.message("That ${if (target is Player) "player" else "creature"} is already stunned!")
         delay = -1
-        return@on
+        return@combatSwing
     }
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 4)) {
         delay = -1
-        return@on
+        return@combatSwing
     }
     player.setAnimation("shove")
     player.setGraphic("shove")

@@ -1,20 +1,19 @@
 package world.gregs.voidps.world.interact.entity.player.combat.armour.barrows
 
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.inv.ItemChanged
+import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.inv.itemChanged
 
-on<Registered>({ it.hasFullSet() }) { player: Player ->
+playerSpawn({ it.hasFullSet() }) { player: Player ->
     player["dharoks_set_effect"] = true
 }
 
-on<ItemChanged>({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && it.contains("dharoks_set_effect") && !isDharoks(item) }) { player: Player ->
+itemChanged({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && it.contains("dharoks_set_effect") && !isDharoks(item) }) { player: Player ->
     player.clear("dharoks_set_effect")
 }
 
-on<ItemChanged>({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && !it.contains("dharoks_set_effect") && isDharoks(item) && it.hasFullSet() }) { player: Player ->
+itemChanged({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && !it.contains("dharoks_set_effect") && isDharoks(item) && it.hasFullSet() }) { player: Player ->
     player["dharoks_set_effect"] = true
 }
 

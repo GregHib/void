@@ -18,14 +18,17 @@ data class VariableSet(
     val to: Any?
 ) : Event
 
+@JvmName("variableSetPlayer")
 fun variableSet(filter: VariableSet.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend VariableSet.(Player) -> Unit) {
     on<VariableSet>(filter, priority, block)
 }
 
+@JvmName("variableSetNPC")
 fun variableSet(filter: VariableSet.(NPC) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend VariableSet.(NPC) -> Unit) {
     on<VariableSet>(filter, priority, block)
 }
 
+@JvmName("variableSetCharacter")
 fun variableSet(filter: VariableSet.(Character) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend VariableSet.(Character) -> Unit) {
     on<VariableSet>(filter, priority, block)
 }

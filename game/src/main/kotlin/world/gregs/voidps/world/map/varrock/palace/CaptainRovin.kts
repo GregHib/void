@@ -1,9 +1,8 @@
 package world.gregs.voidps.world.map.varrock.palace
 
 import world.gregs.voidps.engine.entity.character.CharacterContext
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -12,7 +11,7 @@ import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 
-on<NPCOption>({ operate && target.id == "captain_rovin" && option == "Talk-to" }) { player: Player ->
+npcOperate({ target.id == "captain_rovin" && option == "Talk-to" }) { player: Player ->
     npc<Furious>("What are you doing up here? Only the palace guards are allowed up here.")
     choice {
         palaceGuard()

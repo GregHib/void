@@ -11,7 +11,7 @@ import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
-import world.gregs.voidps.engine.client.ui.event.Command
+import world.gregs.voidps.engine.client.ui.event.command
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventHandlerStore
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -45,7 +44,7 @@ val accounts: PlayerAccounts by inject()
 val enums: EnumDefinitions by inject()
 val structs: StructDefinitions by inject()
 
-on<Command>({ prefix == "bot" }) { player: Player ->
+command({ prefix == "bot" }) { player: Player ->
     if (player.isBot) {
         player.clear("bot")
     } else {
@@ -59,7 +58,7 @@ on<Command>({ prefix == "bot" }) { player: Player ->
 
 var counter = 0
 
-on<Command>({ prefix == "bots" }) { _: Player ->
+command({ prefix == "bots" }) { _: Player ->
     val count = content.toIntOrNull() ?: 1
     val lumbridge = Rectangle(3221, 3217, 3222, 3220)
     val tile = lumbridge.random()

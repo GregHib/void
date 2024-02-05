@@ -2,17 +2,17 @@ package world.gregs.voidps.world.map.al_kharid
 
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toTag
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Tanning
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -27,11 +27,11 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 
 val itemDefs: ItemDefinitions by inject()
 
-on<NPCOption>({ operate && target.id == "ellis" && option == "Talk-to" }) { player: Player ->
+npcOperate({ target.id == "ellis" && option == "Talk-to" }) { player: Player ->
     npc<Talk>("Greetings friend. I am a manufacturer of leather.")
     if (player.inventory.items.none { it.id == "cowhide" || it.id.startsWith("snake_hide") || it.id.endsWith("dragonhide") }) {
         leather()
-        return@on
+        return@npcOperate
     }
     npc<Talk>("I see you have bought me some hides. Would you like me to tan them for you?")
     choice {
@@ -46,7 +46,7 @@ on<NPCOption>({ operate && target.id == "ellis" && option == "Talk-to" }) { play
     }
 }
 
-on<NPCOption>({ operate && target.id == "ellis" && option == "Trade" }) { player: Player ->
+npcOperate({ target.id == "ellis" && option == "Trade" }) { player: Player ->
     player.open("tanner")
 }
 
@@ -64,7 +64,7 @@ suspend fun NPCOption.leather() {
     }
 }
 
-on<InterfaceOption>({ id == "tanner" && option.startsWith("Tan ") }) { player: Player ->
+interfaceOption({ id == "tanner" && option.startsWith("Tan ") }) { player: Player ->
     val amount = when (option.lowercase()) {
         "tan ${Colours.ORANGE.toTag()}1" -> 1
         "tan ${Colours.ORANGE.toTag()}5" -> 5
@@ -73,7 +73,7 @@ on<InterfaceOption>({ id == "tanner" && option.startsWith("Tan ") }) { player: P
         "tan ${Colours.ORANGE.toTag()}X" -> intEntry("Enter amount:").also {
             player["last_bank_amount"] = it
         }
-        else -> return@on
+        else -> return@interfaceOption
     }
     tan(player, component, amount)
 }

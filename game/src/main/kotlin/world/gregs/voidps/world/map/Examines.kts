@@ -1,26 +1,25 @@
 package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.client.ui.interfaceOption
+import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
+import world.gregs.voidps.engine.entity.obj.objectApproach
+import world.gregs.voidps.world.interact.entity.player.equip.inventory
 
-on<InterfaceOption>({ id == "equipment_bonuses" && option == "Examine" }) { player: Player ->
-    player.message(item.def.getOrNull("examine") ?: return@on, ChatType.ItemExamine)
+interfaceOption({ id == "equipment_bonuses" && option == "Examine" }) { player: Player ->
+    player.message(item.def.getOrNull("examine") ?: return@interfaceOption, ChatType.ItemExamine)
 }
 
-on<InventoryOption>({ option == "Examine" }) { player: Player ->
-    player.message(item.def.getOrNull("examine") ?: return@on, ChatType.ItemExamine)
+inventory({ option == "Examine" }) { player: Player ->
+    player.message(item.def.getOrNull("examine") ?: return@inventory, ChatType.ItemExamine)
 }
 
-on<ObjectOption>({ approach && option == "Examine" }) { player: Player ->
-    player.message(def.getOrNull("examine") ?: return@on, ChatType.ObjectExamine)
+objectApproach({ option == "Examine" }) { player: Player ->
+    player.message(def.getOrNull("examine") ?: return@objectApproach, ChatType.ObjectExamine)
 }
 
-on<NPCOption>({ approach && option == "Examine" }) { player: Player ->
-    player.message(def.getOrNull("examine") ?: return@on, ChatType.NPCExamine)
+npcApproach({ option == "Examine" }) { player: Player ->
+    player.message(def.getOrNull("examine") ?: return@npcApproach, ChatType.NPCExamine)
 }

@@ -2,15 +2,14 @@ package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeType
-import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
+import world.gregs.voidps.engine.client.ui.event.interfaceClosed
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.playerOperate
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.removeRequest
 import world.gregs.voidps.engine.entity.character.player.req.request
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.moveAll
@@ -24,10 +23,10 @@ import world.gregs.voidps.world.interact.entity.player.display.Tab
  * When an offer is updated the change is persisted to the other player
  */
 
-on<PlayerOption>({ operate && option == "Trade with" }) { player: Player ->
+playerOperate({ option == "Trade with" }) { player: Player ->
     val filter = target["trade_filter", "on"]
     if (filter == "off" || (filter == "friends" && !target.friend(player))) {
-        return@on
+        return@playerOperate
     }
     if (target.hasRequest(player, "trade")) {
         player.message("Sending trade offer...", ChatType.Trade)
@@ -71,10 +70,10 @@ fun startTrade(player: Player, partner: Player) {
     }
 }
 
-on<InterfaceClosed>({ isTradeInterface(id) }) { player: Player ->
-    val other: Player = getPartner(player) ?: return@on
+interfaceClosed({ isTradeInterface(id) }) { player: Player ->
+    val other: Player = getPartner(player) ?: return@interfaceClosed
     if (player.hasRequest(other, "accept_trade")) {
-        return@on
+        return@interfaceClosed
     }
     reset(player, other)
     reset(other, player)

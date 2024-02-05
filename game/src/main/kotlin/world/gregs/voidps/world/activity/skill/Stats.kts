@@ -2,14 +2,13 @@ package world.gregs.voidps.world.activity.skill
 
 import net.pearx.kasechange.toSentenceCase
 import net.pearx.kasechange.toSnakeCase
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 
 val definitions: InterfaceDefinitions by inject()
@@ -17,14 +16,14 @@ val definitions: InterfaceDefinitions by inject()
 val menu = listOf(Attack, Strength, Ranged, Magic, Defence, Constitution, Prayer, Agility, Herblore, Thieving, Crafting, Runecrafting,
     Mining, Smithing, Fishing, Cooking, Firemaking, Woodcutting, Fletching, Slayer, Farming, Construction, Hunter, Summoning, Dungeoneering)
 
-on<InterfaceOpened>({ id == "stats" }) { player: Player ->
+interfaceOpened({ id == "stats" }) { player: Player ->
     player.sendVariable("skill_stat_flash")
     values().forEach {
         player.experience.update(it)
     }
 }
 
-on<InterfaceOption>({ id == "stats" && option == "View" }) { player: Player ->
+interfaceOption({ id == "stats" && option == "View" }) { player: Player ->
     val skill = valueOf(component.toSentenceCase())
     val menuIndex = menu.indexOf(skill) + 1
     player.closeInterfaces()
@@ -40,7 +39,7 @@ on<InterfaceOption>({ id == "stats" && option == "View" }) { player: Player ->
     }
 }
 
-on<InterfaceOption>({ id == "skill_guide" && option == "Open subsection" }) { player: Player ->
+interfaceOption({ id == "skill_guide" && option == "Open subsection" }) { player: Player ->
     val index = (definitions.getComponentId(id, component) ?: 0) - 10
     val menuIndex = player["active_skill_guide", 1]
     player["skill_guide"] = menuIndex + index * 1024

@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.event.wildcardEquals
 
 data class PrayerStart(val prayer: String, val restart: Boolean = false) : Event
 
-fun prayerStart(filter: PrayerStart.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend PrayerStart.(Player) -> Unit) {
+fun prayerStart(filter: PrayerStart.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend PrayerStart.(Player) -> Unit) {
     on<PrayerStart>(filter, priority, block)
 }
 

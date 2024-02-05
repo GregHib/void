@@ -1,31 +1,30 @@
 package world.gregs.voidps.world.map.falador
 
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceClosed
+import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.engine.timer.npcTimerStart
+import world.gregs.voidps.engine.timer.npcTimerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
@@ -38,7 +37,7 @@ import java.util.concurrent.TimeUnit
 val enums: EnumDefinitions by inject()
 val npcs: NPCs by inject()
 
-on<NPCOption>({ operate && target.id.startsWith("makeover_mage") && option == "Talk-to" }) { player: Player ->
+npcOperate({ target.id.startsWith("makeover_mage") && option == "Talk-to" }) { player: Player ->
     npc<Happy>("Hello there! I am known as the Makeover Mage! I have spent many years researching magicks that can change your physical appearance.")
     npc<Happy>("I call it a 'makeover'. Would you like me to perform my magicks on you?")
     choice {
@@ -122,35 +121,35 @@ suspend fun PlayerChoice.colour(): Unit = option<Happy>("Can you make me a diffe
     whatDoYouSay()
 }
 
-on<NPCOption>({ operate && target.id.startsWith("makeover_mage") && option == "Makeover" }) { player: Player ->
+npcOperate({ target.id.startsWith("makeover_mage") && option == "Makeover" }) { player: Player ->
     openDressingRoom("skin_colour")
 }
 
-on<InterfaceClosed>({ id == "skin_colour" }) { player: Player ->
+interfaceClosed({ id == "skin_colour" }) { player: Player ->
     player.softTimers.stop("dressing_room")
 }
 
-on<InterfaceOpened>({ id == "skin_colour" }) { player: Player ->
+interfaceOpened({ id == "skin_colour" }) { player: Player ->
     player["makeover_female"] = !player.male
     player["makeover_colour_skin"] = player.body.getColour(BodyColour.Skin)
     player.interfaces.sendText(id, "confirm", "CONFIRM")
 }
 
-on<InterfaceOption>({ id == "skin_colour" && component == "female" }) { player: Player ->
+interfaceOption({ id == "skin_colour" && component == "female" }) { player: Player ->
     player["makeover_female"] = true
     player.sendVariable("makeover_colour_skin")
 }
 
-on<InterfaceOption>({ id == "skin_colour" && component == "male" }) { player: Player ->
+interfaceOption({ id == "skin_colour" && component == "male" }) { player: Player ->
     player["makeover_female"] = false
     player.sendVariable("makeover_colour_skin")
 }
 
-on<InterfaceOption>({ id == "skin_colour" && component.startsWith("colour_") }) { player: Player ->
+interfaceOption({ id == "skin_colour" && component.startsWith("colour_") }) { player: Player ->
     player["makeover_colour_skin"] = enums.get("character_skin").getInt(component.removePrefix("colour_").toInt())
 }
 
-on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player: Player ->
+interfaceOption({ id == "skin_colour" && component == "confirm" }) { player: Player ->
     val male = !player["makeover_female", false]
     val changed = player.body.getColour(BodyColour.Skin) != player["makeover_colour_skin", 0] || player.body.male != male
     player.body.setColour(BodyColour.Skin, player["makeover_colour_skin", 0])
@@ -163,7 +162,7 @@ on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player:
     player.talkWith(mage)
     if (!changed) {
         npc<Unsure>("That is no different from what you already have. I guess I shouldn't charge you if I'm not changing anything.")
-        return@on
+        return@interfaceOption
     }
     when (random.nextInt(0, 4)) {
         0 -> {
@@ -207,15 +206,15 @@ fun swapLook(player: Player, male: Boolean, bodyPart: BodyPart, name: String) {
     player.body.setLook(bodyPart, new.getInt(key))
 }
 
-on<Registered>({ it.id.startsWith("makeover_mage") }) { npc: NPC ->
+npcSpawn({ it.id.startsWith("makeover_mage") }) { npc: NPC ->
     npc.softTimers.start("makeover")
 }
 
-on<TimerStart>({ timer == "makeover" }) { _: NPC ->
+npcTimerStart({ timer == "makeover" }) { _: NPC ->
     interval = TimeUnit.SECONDS.toTicks(250)
 }
 
-on<TimerTick>({ timer == "makeover" }) { npc: NPC ->
+npcTimerTick({ timer == "makeover" }) { npc: NPC ->
     val current: String = npc["transform_id", "makeover_mage_male"]
     val toFemale = current == "makeover_mage_male"
     npc.transform = if (toFemale) "makeover_mage_female" else "makeover_mage_male"

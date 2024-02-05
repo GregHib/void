@@ -3,8 +3,8 @@ package world.gregs.voidps.world.activity.transport.teleport
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.playAnimation
@@ -22,15 +21,15 @@ import java.util.concurrent.TimeUnit
 
 val areas: AreaDefinitions by inject()
 
-on<InterfaceOption>({ id == "modern_spellbook" && component == "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
+interfaceOption({ id == "modern_spellbook" && component == "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
     val seconds = player.remaining("home_teleport_timeout", epochSeconds())
     if (seconds > 0) {
         val remaining = TimeUnit.SECONDS.toMinutes(seconds.toLong())
         player.message("You have to wait $remaining ${"minute".plural(remaining)} before trying this again.")
-        return@on
+        return@interfaceOption
     }
     if (player.hasClock("teleport_delay")) {
-        return@on
+        return@interfaceOption
     }
     player.weakQueue("home_teleport") {
         if (!Spell.removeRequirements(player, component)) {

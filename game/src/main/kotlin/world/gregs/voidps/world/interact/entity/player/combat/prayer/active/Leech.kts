@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
 
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.VariableSet
+import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -11,13 +11,12 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.timer.timerStart
+import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerTick
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
+import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.*
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
@@ -25,11 +24,11 @@ import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-on<TimerStart>({ timer == "prayer_bonus_drain" }) { _: Player ->
+timerStart({ timer == "prayer_bonus_drain" }) { _: Player ->
     interval = 50
 }
 
-on<TimerTick>({ timer == "prayer_bonus_drain" }) { player: Player ->
+timerTick({ timer == "prayer_bonus_drain" }) { player: Player ->
     val attack = player.getLeech(Skill.Attack)
     val strength = player.getLeech(Skill.Strength)
     val defence = player.getLeech(Skill.Defence)
@@ -64,29 +63,29 @@ fun getLevel(target: Character, skill: Skill): Int {
     return target.levels.getMax(skill)
 }
 
-on<CombatHit>({ source is Player && source.praying("sap_spirit") }) { target: Player ->
+combatHit({ source is Player && source.praying("sap_spirit") }) { target: Player ->
     if (random.nextDouble() >= 0.25) {
-        return@on
+        return@combatHit
     }
     val player = source as Player
     val energy = target.specialAttackEnergy
     if (energy <= 0) {
         weakMessage(player, true, "spirit")
-        return@on
+        return@combatHit
     }
     target.specialAttackEnergy = (energy - (MAX_SPECIAL_ATTACK / 10)).coerceAtLeast(0)
     cast(player, target, true, "spirit")
 }
 
-on<CombatHit>({ source is Player && source.praying("special_attack") }) { target: Player ->
+combatHit({ source is Player && source.praying("special_attack") }) { target: Player ->
     if (random.nextDouble() >= 0.15) {
-        return@on
+        return@combatHit
     }
     val player = source as Player
     var energy = target.specialAttackEnergy
     if (energy <= 0) {
         weakMessage(player, true, "spirit")
-        return@on
+        return@combatHit
     }
     val amount = MAX_SPECIAL_ATTACK / 10
     target.specialAttackEnergy = (energy - amount).coerceAtLeast(0)
@@ -95,21 +94,21 @@ on<CombatHit>({ source is Player && source.praying("special_attack") }) { target
     energy = player.specialAttackEnergy
     if (energy == MAX_SPECIAL_ATTACK) {
         drainMessage(player, "special_attack")
-        return@on
+        return@combatHit
     }
     player.specialAttackEnergy = (energy + amount).coerceAtMost(MAX_SPECIAL_ATTACK)
     boostMessage(player, "Special Attack")
 }
 
-on<CombatHit>({ source is Player && source.praying("leech_energy") }) { target: Player ->
+combatHit({ source is Player && source.praying("leech_energy") }) { target: Player ->
     if (random.nextDouble() >= 0.15) {
-        return@on
+        return@combatHit
     }
     val player = source as Player
     var energy = target.runEnergy
     if (energy <= 0) {
         weakMessage(player, false, "run_energy")
-        return@on
+        return@combatHit
     }
     val amount = MAX_RUN_ENERGY / 10
     target.runEnergy = energy - amount
@@ -118,7 +117,7 @@ on<CombatHit>({ source is Player && source.praying("leech_energy") }) { target: 
     energy = player.runEnergy
     if (energy == MAX_RUN_ENERGY) {
         drainMessage(player, "run_energy")
-        return@on
+        return@combatHit
     }
     target.runEnergy = energy + amount
     boostMessage(player, "Run Energy")
@@ -144,21 +143,21 @@ set("leech_magic", Skill.Magic)
 
 fun set(prayer: String, skill: Skill) {
     val sap = prayer.startsWith("sap")
-    on<VariableSet>({ key == "under_attack" && to == 0 }) { player: Player ->
+    variableSet({ key == "under_attack" && to == 0 }) { player: Player ->
         player.clear("${skill.name.lowercase()}_drain_msg")
         player.clear("${skill.name.lowercase()}_leech_msg")
     }
 
-    on<CombatHit>({ source is Player && source.praying(prayer) }, Priority.HIGHER) { target: Character ->
+    combatHit({ source is Player && source.praying(prayer) }, Priority.HIGHER) { target: Character ->
         val player = source as Player
         if (random.nextDouble() >= if (sap) 0.25 else 0.15) {
-            return@on
+            return@combatHit
         }
         val name = skill.name.lowercase()
         val drain = target.getDrain(skill) + 1
         if (drain * 100.0 / getLevel(target, skill) > if (sap) 10 else 15) {
             weakMessage(player, sap, name)
-            return@on
+            return@combatHit
         }
 
         cast(player, target, sap, name)
@@ -179,7 +178,7 @@ fun set(prayer: String, skill: Skill) {
             val leech = player.getLeech(skill) + 1
             if (leech * 100.0 / player.levels.getMax(skill) > 5) {
                 drainMessage(player, name)
-                return@on
+                return@combatHit
             }
             boostMessage(player, skill.name)
             player.setLeech(skill, leech)

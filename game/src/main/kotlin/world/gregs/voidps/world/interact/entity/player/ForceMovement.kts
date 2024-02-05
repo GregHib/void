@@ -1,10 +1,9 @@
 package world.gregs.voidps.world.interact.entity.player
 
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.mode.move.Moved
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.character.mode.move.move
 
-on<Moved>({ it.contains("force_walk") }) { character: Character ->
-    val block: () -> Unit = character.remove("force_walk") ?: return@on
+move({ it.contains("force_walk") }) { character: Character ->
+    val block: () -> Unit = character.remove("force_walk") ?: return@move
     block.invoke()
 }

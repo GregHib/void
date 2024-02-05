@@ -3,7 +3,10 @@ package world.gregs.voidps.world.interact.entity.obj
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.CancellableEvent
+import world.gregs.voidps.engine.event.Priority
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.type.Tile
 
 data class Teleport(
@@ -18,4 +21,8 @@ data class Teleport(
     var land: Boolean = false
     val takeoff: Boolean
         get() = !land
+}
+
+fun teleport(filter: Teleport.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend Teleport.(Player) -> Unit) {
+    on<Teleport>(filter, priority, block)
 }

@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.mode.combat.CombatStop
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.death.Death
+import world.gregs.voidps.world.interact.entity.death.characterDeath
 
 /**
  * When triggered via [Interact] replace the Interaction with [CombatInteraction]
@@ -70,7 +70,7 @@ on<CombatStop> { character: Character ->
     character.target = null
 }
 
-on<CombatSwing> { character: Character ->
+combatSwing { character: Character ->
     target.start("under_attack", 16)
     if (target.inSingleCombat) {
         target.attackers.clear()
@@ -78,7 +78,7 @@ on<CombatSwing> { character: Character ->
     target.attackers.add(character)
 }
 
-on<Death> { character: Character ->
+characterDeath { character: Character ->
     for (attacker in character.attackers) {
         if (attacker.target == character) {
             attacker.stop("under_attack")

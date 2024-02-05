@@ -18,11 +18,11 @@ data class AreaExited(
     override var onCancel: (() -> Unit)? = null
 }
 
-fun exit(filter: AreaExited.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend AreaExited.(Player) -> Unit) {
+fun exitArea(filter: AreaExited.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend AreaExited.(Player) -> Unit) {
     on<AreaExited>(filter, priority, block)
 }
 
-fun exit(area: String = "*", tag: String = "*", block: suspend AreaEntered.() -> Unit) {
+fun exitArea(area: String = "*", tag: String = "*", block: suspend AreaEntered.() -> Unit) {
     on<AreaEntered>({ wildcardEquals(area, name) && (tag == "*" || tags.any { wildcardEquals(tag, it) }) }) { _: Player ->
         block.invoke(this)
     }

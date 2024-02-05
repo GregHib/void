@@ -1,31 +1,30 @@
 package world.gregs.voidps.world.activity.quest
 
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
-import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
+import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
+import world.gregs.voidps.engine.client.ui.event.interfaceRefreshed
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
+import world.gregs.voidps.world.interact.entity.player.equip.inventory
 
 val books: Books by inject()
 
-on<InventoryOption>({ item.def.contains("book") && option == "Read" }) { player: Player ->
+inventory({ item.def.contains("book") && option == "Read" }) { player: Player ->
     player.openBook(item.def["book"])
 }
 
-on<InterfaceRefreshed>({ id == "book" }) { player: Player ->
+interfaceRefreshed({ id == "book" }) { player: Player ->
     refreshBook(player)
 }
 
-on<ContinueDialogue>({ id == "book" && component == "turn_page_right" }) { player: Player ->
+continueDialogue({ id == "book" && component == "turn_page_right" }) { player: Player ->
     player.inc("book_page")
     player.close("book")
     player.open("book")
 }
 
-on<ContinueDialogue>({ id == "book" && component == "turn_page_left" }) { player: Player ->
+continueDialogue({ id == "book" && component == "turn_page_left" }) { player: Player ->
     player.dec("book_page")
     player.close("book")
     player.open("book")

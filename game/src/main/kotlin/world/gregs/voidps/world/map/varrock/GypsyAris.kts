@@ -42,15 +42,18 @@ import world.gregs.voidps.world.interact.entity.player.music.playTrack
 import world.gregs.voidps.world.interact.entity.sound.areaSound
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playSound
+import world.gregs.voidps.engine.timer.npcTimerStart
+import world.gregs.voidps.engine.timer.npcTimerTick
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
-on<NPCOption>({ operate && target.id == "gypsy_aris" && option == "Talk-to" }) { player: Player ->
+npcOperate({ target.id == "gypsy_aris" && option == "Talk-to" }) { player: Player ->
     when (player.quest("demon_slayer")) {
         "unstarted" -> {
             npc<Talk>("Hello, young one.")
             npc<Talk>("Cross my palm with silver and the future will be revealed to you.")
             if (!player.inventory.contains("coins")) {
                 player<Upset>("Oh dear. I don't have any money.")
-                return@on
+                return@npcOperate
             }
             if (player.combatLevel < 15) {
                 statement("Before starting this quest, be aware that your combat level is lower than the recommended level of 15.")
@@ -163,14 +166,14 @@ suspend fun PlayerChoice.notBeliever(): Unit = option<Talk>("No, I don't believe
     npc<Upset>("Ok suit yourself.")
 }
 
-on<TimerStart>({ it.id == "gypsy_aris" && timer == "demon_slayer_crystal_ball" }) { _: NPC ->
+npcTimerStart({ it.id == "gypsy_aris" && timer == "demon_slayer_crystal_ball" }) { _: NPC ->
     interval = 2
 }
 
-on<TimerTick>({ timer == "demon_slayer_crystal_ball" }) { npc: NPC ->
+npcTimerTick({ timer == "demon_slayer_crystal_ball" }) { npc: NPC ->
     if (npc.mode !is Face) {
         cancel()
-        return@on
+        return@npcTimerTick
     }
     areaSound("demon_slayer_crystal_ball_anim", npc.tile)
 }

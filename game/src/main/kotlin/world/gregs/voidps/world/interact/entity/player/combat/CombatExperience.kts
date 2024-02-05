@@ -7,17 +7,16 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.activity.skill.slayer.isTask
 import world.gregs.voidps.world.interact.entity.combat.attackStyle
 import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import kotlin.math.floor
 
 val definitions: SpellDefinitions by inject()
 
-on<CombatAttack>({ damage > 0 }) { player: Player ->
+combatAttack({ damage > 0 }) { player: Player ->
     if (type == "magic" || type == "blaze") {
         val base = definitions.get(spell).experience
         if (player["defensive_cast", false]) {

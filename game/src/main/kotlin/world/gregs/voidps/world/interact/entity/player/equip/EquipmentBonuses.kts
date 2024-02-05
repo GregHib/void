@@ -1,21 +1,20 @@
 package world.gregs.voidps.world.interact.entity.player.equip
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
+import world.gregs.voidps.engine.client.ui.event.interfaceClosed
+import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceRefreshed
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.itemChanged
 import world.gregs.voidps.network.visual.VisualMask.APPEARANCE_MASK
 import world.gregs.voidps.world.interact.entity.player.equip.EquipBonuses.names
 import java.math.RoundingMode
@@ -25,16 +24,16 @@ val definitions: ItemDefinitions by inject()
 
 fun Player.equipping() = menu == "equipment_bonuses"
 
-on<Registered> { player: Player ->
+playerSpawn { player: Player ->
     updateStats(player)
 }
 
-on<ItemChanged>({ inventory == "worn_equipment" }) { player: Player ->
+itemChanged({ inventory == "worn_equipment" }) { player: Player ->
     updateStats(player, oldItem, false)
     updateStats(player, item, true)
 }
 
-on<InterfaceOpened>({ id == "equipment_bonuses" }) { player: Player ->
+interfaceOpened({ id == "equipment_bonuses" }) { player: Player ->
     player.interfaces.sendVisibility("equipment_bonuses", "close", !player["equipment_banking", false])
     updateEmote(player)
     player.open("equipment_side")
@@ -42,20 +41,20 @@ on<InterfaceOpened>({ id == "equipment_bonuses" }) { player: Player ->
     updateStats(player)
 }
 
-on<InterfaceClosed>({ id == "equipment_bonuses" }) { player: Player ->
+interfaceClosed({ id == "equipment_bonuses" }) { player: Player ->
     player.open("inventory")
 }
 
-on<InterfaceRefreshed>({ id == "equipment_side" }) { player: Player ->
+interfaceRefreshed({ id == "equipment_side" }) { player: Player ->
     player.interfaceOptions.send("equipment_side", "inventory")
     player.interfaceOptions.unlockAll("equipment_side", "inventory", 0 until 28)
 }
 
-on<InterfaceOption>({ it.equipping() && (id == "equipment_side" || id == "equipment_bonuses") && component == "inventory" && option == "Stats" }) { player: Player ->
+interfaceOption({ it.equipping() && (id == "equipment_side" || id == "equipment_bonuses") && component == "inventory" && option == "Stats" }) { player: Player ->
     showStats(player, definitions.get(item.id))
 }
 
-on<InterfaceOption>({ it.equipping() && (id == "equipment_side" || id == "equipment_bonuses") && component == "stats_done" && option == "Done" }) { player: Player ->
+interfaceOption({ it.equipping() && (id == "equipment_side" || id == "equipment_bonuses") && component == "stats_done" && option == "Done" }) { player: Player ->
     player.clear("equipment_titles")
     player.clear("equipment_names")
     player.clear("equipment_stats")
@@ -66,12 +65,12 @@ on<InterfaceOption>({ it.equipping() && (id == "equipment_side" || id == "equipm
     Redirect equipping actions to regular inventories
  */
 
-on<InterfaceOption>({ it.equipping() && id == "equipment_side" && component == "inventory" && option == "Equip" }) { player: Player ->
+interfaceOption({ it.equipping() && id == "equipment_side" && component == "inventory" && option == "Equip" }) { player: Player ->
     player.events.emit(InventoryOption(player, "inventory", item, itemSlot, "Wield"))
     checkEmoteUpdate(player)
 }
 
-on<InterfaceOption>({ it.equipping() && id == "equipment_bonuses" && component == "inventory" && option == "Remove" }) { player: Player ->
+interfaceOption({ it.equipping() && id == "equipment_bonuses" && component == "inventory" && option == "Remove" }) { player: Player ->
     player.events.emit(InventoryOption(player, "worn_equipment", item, itemSlot, "Remove"))
     checkEmoteUpdate(player)
 }

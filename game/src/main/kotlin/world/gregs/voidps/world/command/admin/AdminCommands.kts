@@ -15,14 +15,12 @@ import world.gregs.voidps.engine.client.ui.chat.toSIInt
 import world.gregs.voidps.engine.client.ui.chat.toSILong
 import world.gregs.voidps.engine.client.ui.chat.toSIPrefix
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.event.Command
+import world.gregs.voidps.engine.client.ui.event.command
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.*
@@ -35,7 +33,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
@@ -69,7 +67,7 @@ import kotlin.system.measureTimeMillis
 val areas: AreaDefinitions by inject()
 val players: Players by inject()
 
-on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
+command({ prefix == "tele" || prefix == "tp" }) { player: Player ->
     if (content.contains(",")) {
         val params = content.split(",")
         val level = params[0].toInt()
@@ -87,25 +85,25 @@ on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "teleto" }) { player: Player ->
+command({ prefix == "teleto" }) { player: Player ->
     val target = players.firstOrNull { it.name.equals(content, true) }
     if (target != null) {
         player.tele(target.tile)
     }
 }
 
-on<Command>({ prefix == "teletome" }) { player: Player ->
-    val other = players.get(content) ?: return@on
+command({ prefix == "teletome" }) { player: Player ->
+    val other = players.get(content) ?: return@command
     other.tele(player.tile)
 }
 
-on<Command>({ prefix == "npc" }) { player: Player ->
+command({ prefix == "npc" }) { player: Player ->
     val id = content.toIntOrNull()
     val defs: NPCDefinitions = get()
     val definition = if (id != null) defs.getOrNull(id) else defs.getOrNull(content)
     if (definition == null) {
         player.message("Unable to find npc with id ${content}.")
-        return@on
+        return@command
     }
     val npcs: NPCs = get()
     println("""
@@ -118,7 +116,7 @@ on<Command>({ prefix == "npc" }) { player: Player ->
     npc?.start("movement_delay", -1)
 }
 
-on<Command>({ prefix == "save" }) { _: Player ->
+command({ prefix == "save" }) { _: Player ->
     val account: PlayerAccounts = get()
     players.forEach(account::queueSave)
 }
@@ -126,7 +124,7 @@ on<Command>({ prefix == "save" }) { _: Player ->
 val definitions: ItemDefinitions by inject()
 val alternativeNames = Object2ObjectOpenHashMap<String, String>()
 
-on<World, Registered> {
+worldSpawn {
     for (id in 0 until definitions.size) {
         val definition = definitions.get(id)
         val list = (definition.extras as? MutableMap<String, Any>)?.remove("aka") as? List<String> ?: continue
@@ -136,7 +134,7 @@ on<World, Registered> {
     }
 }
 
-on<Command>({ prefix == "items" }) { player: Player ->
+command({ prefix == "items" }) { player: Player ->
     val parts = content.split(" ")
     for (i in parts.indices) {
         val id = definitions.get(alternativeNames.getOrDefault(parts[i], parts[i])).stringId
@@ -144,7 +142,7 @@ on<Command>({ prefix == "items" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "item" }) { player: Player ->
+command({ prefix == "item" }) { player: Player ->
     val parts = content.split(" ")
     val id = definitions.get(alternativeNames.getOrDefault(parts[0], parts[0])).stringId
     val amount = parts.getOrNull(1) ?: "1"
@@ -152,7 +150,7 @@ on<Command>({ prefix == "item" }) { player: Player ->
     println(player.inventory.transaction.error)
 }
 
-on<Command>({ prefix == "give" }) { player: Player ->
+command({ prefix == "give" }) { player: Player ->
     val parts = content.split(" ")
     val id = definitions.get(parts.first()).stringId
     val amount = parts[1]
@@ -165,7 +163,7 @@ on<Command>({ prefix == "give" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "find" }) { player: Player ->
+command({ prefix == "find" }) { player: Player ->
     val search = content.lowercase()
     var found = false
     repeat(definitions.size) { id ->
@@ -180,11 +178,11 @@ on<Command>({ prefix == "find" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "clear" }) { player: Player ->
+command({ prefix == "clear" }) { player: Player ->
     player.inventory.clear()
 }
 
-on<Command>({ prefix == "master" }) { player: Player ->
+command({ prefix == "master" }) { player: Player ->
     for (skill in Skill.all) {
         player.experience.set(skill, 14000000.0)
         player.levels.restore(skill, 1000)
@@ -194,7 +192,7 @@ on<Command>({ prefix == "master" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "setlevel" }) { player: Player ->
+command({ prefix == "setlevel" }) { player: Player ->
     val split = content.split(" ")
     val skill = Skill.valueOf(split[0].toSentenceCase())
     val level = split[1].toInt()
@@ -215,7 +213,7 @@ on<Command>({ prefix == "setlevel" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "reset" }) { player: Player ->
+command({ prefix == "reset" }) { player: Player ->
     for ((index, skill) in Skill.all.withIndex()) {
         player.experience.set(skill, Experience.defaultExperience[index])
         player.levels.set(skill, Levels.defaultLevels[index])
@@ -225,58 +223,58 @@ on<Command>({ prefix == "reset" }) { player: Player ->
     player.clearCamera()
 }
 
-on<Command>({ prefix == "hide" }) { player: Player ->
+command({ prefix == "hide" }) { player: Player ->
     player.appearance.hidden = !player.appearance.hidden
     player.flagAppearance()
 }
 
-on<Command>({ prefix == "skull" }) { player: Player ->
+command({ prefix == "skull" }) { player: Player ->
     player.skull()
 }
 
-on<Command>({ prefix == "unskull" }) { player: Player ->
+command({ prefix == "unskull" }) { player: Player ->
     player.unskull()
 }
 
-on<Command>({ prefix == "rest" }) { player: Player ->
+command({ prefix == "rest" }) { player: Player ->
     player["energy"] = MAX_RUN_ENERGY
 }
 
-on<Command>({ prefix == "spec" }) { player: Player ->
+command({ prefix == "spec" }) { player: Player ->
     player.specialAttackEnergy = MAX_SPECIAL_ATTACK
 }
 
-on<Command>({ prefix.removeSuffix("s") == "curse" }) { player: Player ->
+command({ prefix.removeSuffix("s") == "curse" }) { player: Player ->
     player[PRAYERS] = if (player.isCurses()) "normal" else "curses"
 }
 
-on<Command>({ prefix.removeSuffix("s") == "ancient" }) { player: Player ->
+command({ prefix.removeSuffix("s") == "ancient" }) { player: Player ->
     player.open("ancient_spellbook")
 }
 
-on<Command>({ prefix.removeSuffix("s") == "lunar" }) { player: Player ->
+command({ prefix.removeSuffix("s") == "lunar" }) { player: Player ->
     player.open("lunar_spellbook")
 }
 
-on<Command>({ prefix.removeSuffix("s") == "regular" || prefix.removeSuffix("s") == "modern" }) { player: Player ->
+command({ prefix.removeSuffix("s") == "regular" || prefix.removeSuffix("s") == "modern" }) { player: Player ->
     player.open("modern_spellbook")
 }
 
-on<Command>({ prefix.removeSuffix("s") == "dung" || prefix.removeSuffix("s") == "dungeoneering" }) { player: Player ->
+command({ prefix.removeSuffix("s") == "dung" || prefix.removeSuffix("s") == "dungeoneering" }) { player: Player ->
     player.open("dungeoneering_spellbook")
 }
 
-on<Command>({ prefix == "pray" }) { player: Player ->
+command({ prefix == "pray" }) { player: Player ->
     player.levels.clear(Skill.Prayer)
 }
 
-on<Command>({ prefix == "restore" }) { player: Player ->
+command({ prefix == "restore" }) { player: Player ->
     Skill.values().forEach {
         player.levels.clear(it)
     }
 }
 
-on<Command>({ prefix == "sound" }) { player: Player ->
+command({ prefix == "sound" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
         player.playSound(content.toSnakeCase())
@@ -285,7 +283,7 @@ on<Command>({ prefix == "sound" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "midi" }) { player: Player ->
+command({ prefix == "midi" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
         player.playMidi(content.toSnakeCase())
@@ -294,7 +292,7 @@ on<Command>({ prefix == "midi" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "jingle" }) { player: Player ->
+command({ prefix == "jingle" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
         player.playJingle(content.toSnakeCase())
@@ -303,16 +301,16 @@ on<Command>({ prefix == "jingle" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "song" || prefix == "track" }) { player: Player ->
+command({ prefix == "song" || prefix == "track" }) { player: Player ->
     player.playTrack(content.toInt())
 }
 
-on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->
+command({ prefix == "pos" || prefix == "mypos" }) { player: Player ->
     player.message("${player.tile} Zone(${player.tile.zone.id}) ${player.tile.region}")
     println(player.tile)
 }
 
-on<Command>({ prefix == "reload" }) { player: Player ->
+command({ prefix == "reload" }) { player: Player ->
     when (content) {
         "book", "books" -> get<Books>().load()
         "stairs", "tele", "teles", "teleports" -> get<Teleports>().load()
@@ -348,11 +346,11 @@ on<Command>({ prefix == "reload" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "shop" }) { player: Player ->
+command({ prefix == "shop" }) { player: Player ->
     player.events.emit(OpenShop(content))
 }
 
-on<Command>({ prefix == "debug" }) { player: Player ->
+command({ prefix == "debug" }) { player: Player ->
     val target = if (content.isNotEmpty()) {
         players.get(content)
     } else {
@@ -360,7 +358,7 @@ on<Command>({ prefix == "debug" }) { player: Player ->
     }
     if (target == null) {
         player.message("Unable to find player with name '$content'.")
-        return@on
+        return@command
     }
     target["debug"] = !target["debug", false]
     player.message("Debugging ${if (target["debug", false]) "enabled" else "disabled"} for player '${target.name}'.")
@@ -378,7 +376,7 @@ class InventoryDelegate(
     }
 }
 
-on<Command>({ prefix == "sim" }) { player: Player ->
+command({ prefix == "sim" }) { player: Player ->
     val parts = content.split(" ")
     val name = parts.first()
     val count = parts.last().toSIInt()
@@ -386,11 +384,11 @@ on<Command>({ prefix == "sim" }) { player: Player ->
     val title = "${count.toSIPrefix()} '${name.removeSuffix("_drop_table")}' drops"
     if (table == null) {
         player.message("No drop table found for '$name'")
-        return@on
+        return@command
     }
     if (count < 0) {
         player.message("Simulation count has to be more than 0.")
-        return@on
+        return@command
     }
     player.message("Simulating $title")
     if (count > 100_000) {

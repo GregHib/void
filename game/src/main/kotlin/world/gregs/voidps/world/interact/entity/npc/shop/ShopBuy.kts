@@ -2,11 +2,10 @@ package world.gregs.voidps.world.interact.entity.npc.shop
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.moveToLimit
@@ -16,15 +15,15 @@ import kotlin.math.min
 val itemDefs: ItemDefinitions by inject()
 val logger = InlineLogger()
 
-on<InterfaceOption>({ id == "item_info" && component == "button" && option.startsWith("Buy ") }) { player: Player ->
+interfaceOption({ id == "item_info" && component == "button" && option.startsWith("Buy ") }) { player: Player ->
     val amount = when (option) {
         "Buy 1" -> 1
         "Buy 5" -> 5
         "Buy 10" -> 10
         "Buy 50" -> 50
-        else -> return@on
+        else -> return@interfaceOption
     }
-    val id: Int = player["info_item"] ?: return@on
+    val id: Int = player["info_item"] ?: return@interfaceOption
     val item = itemDefs.get(id).stringId
     val inventory = player.shopInventory()
     val index = inventory.indexOf(item)
@@ -35,13 +34,13 @@ on<InterfaceOption>({ id == "item_info" && component == "button" && option.start
     }
 }
 
-on<InterfaceOption>({ id == "shop" && component == "sample" && option.startsWith("Take-") }) { player: Player ->
+interfaceOption({ id == "shop" && component == "sample" && option.startsWith("Take-") }) { player: Player ->
     val amount = when (option) {
         "Take-1" -> 1
         "Take-5" -> 5
         "Take-10" -> 10
         "Take-50" -> 50
-        else -> return@on
+        else -> return@interfaceOption
     }
     take(player, player.shopInventory(true), itemSlot / 4, amount)
 }
@@ -65,14 +64,14 @@ fun take(player: Player, shop: world.gregs.voidps.engine.inv.Inventory, index: I
     }
 }
 
-on<InterfaceOption>({ id == "shop" && component == "stock" && option.startsWith("Buy-") }) { player: Player ->
+interfaceOption({ id == "shop" && component == "stock" && option.startsWith("Buy-") }) { player: Player ->
     val amount = when (option) {
         "Buy-1" -> 1
         "Buy-5" -> 5
         "Buy-10" -> 10
         "Buy-50" -> 50
         "Buy-500" -> 500
-        else -> return@on
+        else -> return@interfaceOption
     }
     buy(player, player.shopInventory(false), itemSlot / 6, amount)
 }

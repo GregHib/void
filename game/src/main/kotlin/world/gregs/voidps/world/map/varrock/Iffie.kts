@@ -1,15 +1,14 @@
 package world.gregs.voidps.world.map.varrock
 
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
-on<NPCOption>({ operate && target.id == "iffie" && option == "Talk-to" }) { player: Player ->
+npcOperate({ target.id == "iffie" && option == "Talk-to" }) { player: Player ->
     npc<Cheerful>("Hello, dearie! Were you wanting to collect a random event costume, or is there something else I can do for you today?")
     choice {
         option("I've come for a random event costume.") {
@@ -26,6 +25,6 @@ on<NPCOption>({ operate && target.id == "iffie" && option == "Talk-to" }) { play
     }
 }
 
-on<NPCOption>({ operate && target.id == "iffie" && option == "Claim-costume" }) { player: Player ->
+npcOperate({ target.id == "iffie" && option == "Claim-costume" }) { player: Player ->
     player.openShop("iffies_random_costume_shop")
 }

@@ -12,7 +12,7 @@ data class TimerTick(val timer: String) : CancellableEvent() {
     var nextInterval: Int = -1
 }
 
-fun timerStop(filter: TimerTick.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend TimerTick.(Player) -> Unit) {
+fun timerTick(filter: TimerTick.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend TimerTick.(Player) -> Unit) {
     on<TimerTick>(filter, priority, block)
 }
 

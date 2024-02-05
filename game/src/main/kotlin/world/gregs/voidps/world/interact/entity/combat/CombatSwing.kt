@@ -24,9 +24,24 @@ class CombatSwing(
 
 }
 
+@JvmName("combatSwingPlayer")
+fun combatSwing(filter: CombatSwing.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Player) -> Unit) {
+    on<CombatSwing>(filter, priority, block)
+}
+
+@JvmName("combatSwingNPC")
+fun combatSwing(filter: CombatSwing.(NPC) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(NPC) -> Unit) {
+    on<CombatSwing>(filter, priority, block)
+}
+
+@JvmName("combatSwingCharacter")
+fun combatSwing(filter: CombatSwing.(Character) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Character) -> Unit) {
+    on<CombatSwing>(filter, priority, block)
+}
+
 fun npcSwing(npc: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(NPC) -> Unit) {
     if (npc == "*") {
-        on<CombatSwing>({ !swung() }, priority) { character: NPC ->
+        combatSwing({ !swung() }, priority) { character: NPC ->
             block.invoke(this, character)
         }
     } else {
@@ -46,7 +61,7 @@ fun spellSwing(spells: Set<String>, priority: Priority = Priority.MEDIUM, block:
     if (spells.any { it.contains("*") || it.contains("#") }) {
         throw IllegalArgumentException("Spell collections cannot contain wildcards.")
     }
-    on<CombatSwing>({ player -> !swung() && spells.contains(player.spell) }, priority) { character: Player ->
+    combatSwing({ player -> !swung() && spells.contains(player.spell) }, priority) { character: Player ->
         block.invoke(this, character)
     }
 }
@@ -61,7 +76,7 @@ fun specialAttackSwing(style: String, weapons: Set<String>, priority: Priority =
     if (weapons.any { it.contains("*") || it.contains("#") }) {
         throw IllegalArgumentException("Weapon collections cannot contain wildcards.")
     }
-    on<CombatSwing>({ player -> !swung() && player.specialAttack && player.fightStyle == style && weapons.contains(player.weapon.id) }, priority) { character: Player ->
+    combatSwing({ player -> !swung() && player.specialAttack && player.fightStyle == style && weapons.contains(player.weapon.id) }, priority) { character: Player ->
         block.invoke(this, character)
     }
 }

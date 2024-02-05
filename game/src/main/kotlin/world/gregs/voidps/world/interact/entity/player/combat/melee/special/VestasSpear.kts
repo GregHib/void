@@ -9,11 +9,10 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.Target
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import world.gregs.voidps.world.interact.entity.combat.weapon
@@ -26,10 +25,10 @@ fun isVestasSpear(item: Item) = item.id.startsWith("vestas_spear") || item.id.st
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-on<CombatSwing>({ !swung() && it.specialAttack && isVestasSpear(it.weapon) }) { player: Player ->
+combatSwing({ !swung() && it.specialAttack && isVestasSpear(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
         delay = -1
-        return@on
+        return@combatSwing
     }
     player.start("spear_wall", duration = 8)
     player.setAnimation("spear_wall")

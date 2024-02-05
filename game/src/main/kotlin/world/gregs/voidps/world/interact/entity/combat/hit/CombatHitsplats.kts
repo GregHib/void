@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.hit
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.Hitsplat
 import world.gregs.voidps.world.interact.entity.combat.damageDealers
@@ -13,7 +12,7 @@ import kotlin.math.floor
 
 val definitions: SpellDefinitions by inject()
 
-on<CombatHit>({ damage >= 0 && !(type == "magic" && definitions.get(spell).maxHit == -1) && type != "healed" }) { character: Character ->
+combatHit({ damage >= 0 && !(type == "magic" && definitions.get(spell).maxHit == -1) && type != "healed" }) { character: Character ->
     var damage = damage
     var soak = 0
     if (damage > 200) {
@@ -48,7 +47,7 @@ on<CombatHit>({ damage >= 0 && !(type == "magic" && definitions.get(spell).maxHi
     character.levels.drain(Skill.Constitution, damage)
 }
 
-on<CombatHit>({ damage >= 0 && type == "healed" }) { character: Character ->
+combatHit({ damage >= 0 && type == "healed" }) { character: Character ->
     character.hit(
         source = source,
         amount = damage,
@@ -57,7 +56,7 @@ on<CombatHit>({ damage >= 0 && type == "healed" }) { character: Character ->
     character.levels.restore(Skill.Constitution, damage)
 }
 
-on<CombatHit>({ damage < 0 }) { character: Character ->
+combatHit({ damage < 0 }) { character: Character ->
     character.hit(
         source = source,
         amount = 0,

@@ -4,7 +4,7 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
+import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.data.definition.data.Weaving
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.face
@@ -15,8 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.queue.weakQueue
@@ -33,7 +32,7 @@ val materials = listOf(
 val Item.weaving: Weaving
     get() = def["weaving"]
 
-on<ObjectOption>({ operate && target.id.startsWith("loom_") && option == "Weave" }) { player: Player ->
+objectOperate({ target.id.startsWith("loom_") && option == "Weave" }) { player: Player ->
     val strings = materials.map { it.weaving.to }
     val (index, amount) = makeAmountIndex(
         items = strings,
@@ -45,7 +44,7 @@ on<ObjectOption>({ operate && target.id.startsWith("loom_") && option == "Weave"
     weave(target, item, amount)
 }
 
-on<ItemOnObject>({ operate && target.id.startsWith("loom_") && item.def.contains("weaving") }) { player: Player ->
+itemOnObjectOperate({ target.id.startsWith("loom_") && item.def.contains("weaving") }) { player: Player ->
     val (_, amount) = makeAmount(
         items = listOf(item.weaving.to),
         type = "Make",

@@ -10,22 +10,21 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.Target
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
+import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 fun isKorasisSword(item: Item) = item.id == "korasis_sword"
 
-on<CombatSwing>({ !swung() && isKorasisSword(it.weapon) }, Priority.LOW) { player: Player ->
+combatSwing({ !swung() && isKorasisSword(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("korasis_sword_${
         when (player.attackType) {
             "chop" -> "chop"
@@ -36,7 +35,7 @@ on<CombatSwing>({ !swung() && isKorasisSword(it.weapon) }, Priority.LOW) { playe
     delay = 5
 }
 
-on<CombatAttack>({ !blocked && target is Player && isKorasisSword(target.weapon) }) { _: Character ->
+combatAttack({ !blocked && target is Player && isKorasisSword(target.weapon) }) { _: Character ->
     target.setAnimation("korasis_sword_block", delay)
     blocked = true
 }
@@ -47,10 +46,10 @@ val players: Players by inject()
 val npcs: NPCs by inject()
 val lineOfSight: LineValidator by inject()
 
-on<CombatSwing>({ !swung() && it.specialAttack && isKorasisSword(it.weapon) }) { player: Player ->
+combatSwing({ !swung() && it.specialAttack && isKorasisSword(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, 600)) {
         delay = -1
-        return@on
+        return@combatSwing
     }
     player["korasi_chain"] = mutableSetOf(target.index)
     player.setAnimation("disrupt")
@@ -61,14 +60,14 @@ on<CombatSwing>({ !swung() && it.specialAttack && isKorasisSword(it.weapon) }) {
     delay = 5
 }
 
-on<CombatHit>({ special && isKorasisSword(weapon) }) { character: Character ->
+combatHit({ special && isKorasisSword(weapon) }) { character: Character ->
     character.setGraphic("disrupt_hit")
 }
 
-on<CombatHit>({ target -> special && isKorasisSword(weapon) && target.inMultiCombat }) { target: Character ->
+combatHit({ target -> special && isKorasisSword(weapon) && target.inMultiCombat }) { target: Character ->
     val chain: MutableSet<Int> = source["korasi_chain", mutableSetOf()]
     if (chain.size >= 3) {
-        return@on
+        return@combatHit
     }
     val characters = if (target is Player) players else npcs
     for (tile in target.tile.spiral(4)) {
@@ -83,10 +82,10 @@ on<CombatHit>({ target -> special && isKorasisSword(weapon) && target.inMultiCom
             val hit = damage / when (chain.size) {
                 2 -> 2
                 3 -> 4
-                else -> return@on
+                else -> return@combatHit
             }
             source.hit(character, damage = hit, weapon = weapon, type = type, special = true)
-            return@on
+            return@combatHit
         }
     }
 }

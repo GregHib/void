@@ -29,7 +29,7 @@ fun ItemOnItem.sort(condition: (Item) -> Boolean): Pair<Item, Item> {
     return (if (flip) toItem else fromItem) to (if (flip) fromItem else toItem)
 }
 
-fun itemOnItem(filter: ItemOnItem.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend ItemOnItem.(Player) -> Unit) {
+fun itemOnItem(filter: ItemOnItem.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend ItemOnItem.(Player) -> Unit) {
     on<ItemOnItem>(filter, priority, block)
 }
 

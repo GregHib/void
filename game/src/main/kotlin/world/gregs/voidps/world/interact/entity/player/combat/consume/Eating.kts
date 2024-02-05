@@ -8,14 +8,13 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
+import world.gregs.voidps.world.interact.entity.player.equip.inventory
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<InventoryOption>({ (item.def.contains("heals") || item.def.contains("excess")) && (option == "Eat" || option == "Drink" || option == "Heal") }) { player: Player ->
+inventory({ (item.def.contains("heals") || item.def.contains("excess")) && (option == "Eat" || option == "Drink" || option == "Heal") }) { player: Player ->
     val drink = option == "Drink"
     val combo = item.def.contains("combo")
     val delay = when {
@@ -29,13 +28,13 @@ on<InventoryOption>({ (item.def.contains("heals") || item.def.contains("excess")
         else -> 3
     }
     if (player.hasClock(delay)) {
-        return@on
+        return@inventory
     }
     player.start(delay, ticks)
     val consumable = Consumable(item)
     player.events.emit(consumable)
     if (consumable.cancelled) {
-        return@on
+        return@inventory
     }
     val replacement = item.def["excess", ""]
     val message = item.def["eat_message", ""]
@@ -54,8 +53,8 @@ on<InventoryOption>({ (item.def.contains("heals") || item.def.contains("excess")
     player.events.emit(Consume(item, slot))
 }
 
-on<Consume>(priority = Priority.LOW) { player: Player ->
-    val range: IntRange = item.def.getOrNull("heals") ?: return@on
+consume(priority = Priority.LOW) { player: Player ->
+    val range: IntRange = item.def.getOrNull("heals") ?: return@consume
     val amount = range.random()
     if (amount > 0) {
         player.levels.restore(Skill.Constitution, amount)

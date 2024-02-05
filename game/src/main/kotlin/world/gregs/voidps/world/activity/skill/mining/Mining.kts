@@ -23,8 +23,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -38,10 +37,10 @@ import world.gregs.voidps.type.random
 val objects: GameObjects by inject()
 val itemDefinitions: ItemDefinitions by inject()
 
-on<ObjectOption>({ operate && option == "Mine" }) { player: Player ->
+objectOperate({ option == "Mine" }) { player: Player ->
     if (target.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
-        return@on
+        return@objectOperate
     }
     arriveDelay()
     player.softTimers.start("mining")
@@ -161,13 +160,13 @@ fun deplete(rock: Rock, obj: GameObject): Boolean {
     return false
 }
 
-on<ObjectOption>({ approach && option == "Prospect" }) { player: Player ->
+objectOperate({ approach && option == "Prospect" }) { player: Player ->
     if (target.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
-        return@on
+        return@objectOperate
     }
     if (player.queue.contains("prospect")) {
-        return@on
+        return@objectOperate
     }
     player.message("You examine the rock for ores...")
     player.start("movement_delay", 4)

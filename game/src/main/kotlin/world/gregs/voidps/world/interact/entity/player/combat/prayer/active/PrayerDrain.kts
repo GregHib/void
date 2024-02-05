@@ -3,20 +3,19 @@ package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerStop
-import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.engine.timer.timerStart
+import world.gregs.voidps.engine.timer.timerStop
+import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePrayerVarKey
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<TimerStart>({ timer == "prayer_drain" }) { _: Player ->
+timerStart({ timer == "prayer_drain" }) { _: Player ->
     interval = 1
 }
 
-on<TimerTick>({ timer == "prayer_drain" }) { player: Player ->
+timerTick({ timer == "prayer_drain" }) { player: Player ->
     val equipmentBonus = player["prayer", 0]
     var prayerDrainCounter = player["prayer_drain_counter", 0]
 
@@ -35,7 +34,7 @@ on<TimerTick>({ timer == "prayer_drain" }) { player: Player ->
     player["prayer_drain_counter"] = prayerDrainCounter
 }
 
-on<TimerStop>({ timer == "prayer_drain" }) { player: Player ->
+timerStop({ timer == "prayer_drain" }) { player: Player ->
     player.clear(player.getActivePrayerVarKey())
     player[PrayerConfigs.USING_QUICK_PRAYERS] = false
 }

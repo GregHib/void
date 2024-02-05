@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.interact.entity.npc.shop
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.Colours
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -10,16 +10,15 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.slot
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.ItemChanged
+import world.gregs.voidps.engine.inv.itemChanged
 
 /**
  * The item information side panel which shows a shop items requirements, stats and price
  */
 val enums: EnumDefinitions by inject()
 
-on<InterfaceOption>({ id == "shop" && option == "Info" }) { player: Player ->
+interfaceOption({ id == "shop" && option == "Info" }) { player: Player ->
     val sample = component == "sample"
     val actualIndex = itemSlot / (if (sample) 4 else 6)
     val inventory = player.shopInventory(sample)
@@ -29,14 +28,14 @@ on<InterfaceOption>({ id == "shop" && option == "Info" }) { player: Player ->
     showInfo(player, item, actualIndex, sample)
 }
 
-on<InterfaceOption>({ id == "item_info" && component == "exit" }) { player: Player ->
+interfaceOption({ id == "item_info" && component == "exit" }) { player: Player ->
     player.open("shop_side")
     player.interfaceOptions.send("shop_side", "inventory")
 }
 
-on<ItemChanged>({ it.contains("shop") && it.contains("info_sample") && it.contains("info_index") }) { player: Player ->
-    val shop: String = player["shop"] ?: return@on
-    val index: Int = player["info_index"] ?: return@on
+itemChanged({ it.contains("shop") && it.contains("info_sample") && it.contains("info_index") }) { player: Player ->
+    val shop: String = player["shop"] ?: return@itemChanged
+    val index: Int = player["info_index"] ?: return@itemChanged
     if (inventory == shop && this.index == index) {
         player["item_info_price"] = if (this.item.amount == 0) 0 else Price.getPrice(player, item.id, index, this.item.amount)
     }

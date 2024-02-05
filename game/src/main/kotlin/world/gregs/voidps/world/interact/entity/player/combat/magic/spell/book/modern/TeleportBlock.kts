@@ -8,11 +8,10 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerTick
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.engine.timer.timerStart
+import world.gregs.voidps.engine.timer.timerTick
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
@@ -22,11 +21,11 @@ import kotlin.math.sign
 
 val definitions: SpellDefinitions by inject()
 
-on<CombatSwing>({ player -> !swung() && player.spell == "teleport_block" }, Priority.LOW) { player: Player ->
+combatSwing({ player -> !swung() && player.spell == "teleport_block" }, Priority.LOW) { player: Player ->
     if (target is NPC) {
         delay = -1
         player.message("You can't use that against an NPC.")
-        return@on
+        return@combatSwing
     }
     val spell = player.spell
     player.setAnimation("${spell}_cast")
@@ -40,22 +39,22 @@ on<CombatSwing>({ player -> !swung() && player.spell == "teleport_block" }, Prio
     delay = 5
 }
 
-on<TimerStart>({ timer == "teleport_block" }) { player: Player ->
+timerStart({ timer == "teleport_block" }) { player: Player ->
     if (!restart) {
         player.message("You have been teleblocked.")
     }
     interval = 50
 }
 
-on<TimerStart>({ timer == "teleport_block" && it.teleBlockImmune }, Priority.HIGH) { _: Player ->
+timerStart({ timer == "teleport_block" && it.teleBlockImmune }, Priority.HIGH) { _: Player ->
     cancel()
 }
 
-on<TimerStart>({ timer == "teleport_block" && it.protectMagic() }, Priority.HIGH) { player: Player ->
+timerStart({ timer == "teleport_block" && it.protectMagic() }, Priority.HIGH) { player: Player ->
     player.teleBlockCounter /= 2
 }
 
-on<TimerTick>({ timer == "teleport_block" }) { player: Player ->
+timerTick({ timer == "teleport_block" }) { player: Player ->
     val blocked = player.teleBlocked
     player.teleBlockCounter -= player.teleBlockCounter.sign
     when (player.teleBlockCounter) {

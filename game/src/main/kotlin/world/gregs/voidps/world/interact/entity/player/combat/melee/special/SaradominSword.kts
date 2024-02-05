@@ -5,10 +5,9 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
+import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
@@ -17,10 +16,10 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.specialAtt
 
 fun isSaradominSword(weapon: Item) = weapon.id.startsWith("saradomin_sword")
 
-on<CombatSwing>({ !swung() && it.specialAttack && isSaradominSword(it.weapon) }) { player: Player ->
+combatSwing({ !swung() && it.specialAttack && isSaradominSword(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {
         delay = -1
-        return@on
+        return@combatSwing
     }
     player.setAnimation("saradomins_lightning")
     val weapon = player.weapon
@@ -32,6 +31,6 @@ on<CombatSwing>({ !swung() && it.specialAttack && isSaradominSword(it.weapon) })
     delay = 4
 }
 
-on<CombatHit>({ isSaradominSword(weapon) && special && type == "melee" }) { character: Character ->
+combatHit({ isSaradominSword(weapon) && special && type == "melee" }) { character: Character ->
     character.setGraphic("saradomins_lightning")
 }

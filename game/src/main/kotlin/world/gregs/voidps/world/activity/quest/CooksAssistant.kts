@@ -1,12 +1,11 @@
 package world.gregs.voidps.world.activity.quest
 
-import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.world.activity.bank.bank
 
-on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemSlot == 1 }) { player: Player ->
+interfaceOption({ id == "quest_journals" && component == "journals" && itemSlot == 1 }) { player: Player ->
     val lines = when (player.quest("cooks_assistant")) {
         "completed" -> listOf(
             "<str>It was the Duke of Lumbridge's birthday, but his cook had",

@@ -2,16 +2,15 @@ package world.gregs.voidps.world.map.lumbridge
 
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.mode.Retreat
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.EvilLaugh
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Uncertain
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 
-on<NPCOption>({ operate && target.id == "hans" && option == "Talk-to" }) { player: Player ->
+npcOperate({ target.id == "hans" && option == "Talk-to" }) { player: Player ->
     npc<Talk>("Hello. What are you doing here?")
     choice {
         option<Talk>("I'm looking for whoever is in charge of this place.") {

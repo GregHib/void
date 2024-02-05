@@ -2,7 +2,7 @@ package world.gregs.voidps.world.activity.skill.smithing
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
+import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smelting
 import world.gregs.voidps.engine.entity.character.CharacterContext
@@ -15,16 +15,15 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.remove
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.type.random
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
@@ -43,11 +42,11 @@ val bars = listOf(
 val logger = InlineLogger()
 val itemDefinitions: ItemDefinitions by inject()
 
-on<ObjectOption>({ operate && target.id.startsWith("furnace") && option == "Smelt" }) { player: Player ->
+objectOperate({ target.id.startsWith("furnace") && option == "Smelt" }) { player: Player ->
     smeltingOptions(player, target, bars)
 }
 
-on<ItemOnObject>({ operate && target.id.startsWith("furnace") && item.id.endsWith("_ore") }) { player: Player ->
+itemOnObjectOperate({ target.id.startsWith("furnace") && item.id.endsWith("_ore") }) { player: Player ->
     val list = mutableListOf<String>()
     list.add(oreToBar(item.id))
     if (item.id == "iron_ore" && player.inventory.contains("coal")) {

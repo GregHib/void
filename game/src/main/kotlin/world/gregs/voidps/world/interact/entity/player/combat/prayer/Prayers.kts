@@ -1,17 +1,16 @@
 package world.gregs.voidps.world.interact.entity.player.combat.prayer
 
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.headIcon
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.ACTIVE_CURSES
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<Registered> { player: Player ->
+playerSpawn { player: Player ->
     player.sendVariable("attack_bonus")
     player.sendVariable("strength_bonus")
     player.sendVariable("defence_bonus")
@@ -19,7 +18,7 @@ on<Registered> { player: Player ->
     player.sendVariable("magic_bonus")
 }
 
-on<PrayerStart> { player: Player ->
+prayerStart { player: Player ->
     if (!restart) {
         val curses = player.isCurses()
         if (curses) {
@@ -33,7 +32,7 @@ on<PrayerStart> { player: Player ->
     player.softTimers.startIfAbsent("prayer_drain")
 }
 
-on<PrayerStop> { player: Player ->
+prayerStop { player: Player ->
     player.playSound("deactivate_prayer")
     val curses = player.isCurses()
     stopPrayerDrain(player, curses)

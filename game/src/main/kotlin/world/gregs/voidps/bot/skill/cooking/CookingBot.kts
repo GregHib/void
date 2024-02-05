@@ -13,12 +13,10 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.config.GearDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.TimerStop
@@ -32,7 +30,7 @@ onBot<TimerStop>({ timer == "cooking" }) { bot: Bot ->
     bot.resume(timer)
 }
 
-on<World, Registered> {
+worldSpawn {
     for (area in areas.getTagged("cooking")) {
         val spaces: Int = area["spaces", 1]
         val type: String = area.getOrNull("type") ?: ""

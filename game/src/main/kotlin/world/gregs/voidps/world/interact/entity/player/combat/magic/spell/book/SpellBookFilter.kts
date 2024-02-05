@@ -1,13 +1,12 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book
 
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.toInt
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.playerSpawn
 
-on<InterfaceOpened>({ id.endsWith("_spellbook") }) { player: Player ->
+interfaceOpened({ id.endsWith("_spellbook") }) { player: Player ->
     val id = when (id) {
         "ancient_spellbook" -> 1
         "lunar_spellbook" -> 2
@@ -17,11 +16,11 @@ on<InterfaceOpened>({ id.endsWith("_spellbook") }) { player: Player ->
     player["spellbook_config"] = id or (player["defensive_cast", false].toInt() shl 8)
 }
 
-on<Registered> { player: Player ->
+playerSpawn { player: Player ->
     player.sendVariable("spellbook_sort")
 }
 
-on<InterfaceOption>({ id.endsWith("_spellbook") && component.startsWith("filter_") }) { player: Player ->
+interfaceOption({ id.endsWith("_spellbook") && component.startsWith("filter_") }) { player: Player ->
     val key = "spellbook_sort"
     val id = "${id}_$component"
     if (player.containsVarbit(key, id)) {
@@ -31,7 +30,7 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.startsWith("filter_
     }
 }
 
-on<InterfaceOption>({ id.endsWith("_spellbook") && component.startsWith("sort_") }) { player: Player ->
+interfaceOption({ id.endsWith("_spellbook") && component.startsWith("sort_") }) { player: Player ->
     val key = "spellbook_sort"
     if (component.startsWith("sort_")) {
         // Make sure don't sort by multiple at once
@@ -43,6 +42,6 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.startsWith("sort_")
     }
 }
 
-on<InterfaceOption>({ id.endsWith("_spellbook") && component == "defensive_cast" && option == "Defensive Casting" }) { player: Player ->
+interfaceOption({ id.endsWith("_spellbook") && component == "defensive_cast" && option == "Defensive Casting" }) { player: Player ->
     player.toggle(component)
 }

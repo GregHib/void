@@ -12,18 +12,16 @@ import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.instruct.InteractObject
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 
-on<World, Registered> {
+worldSpawn {
     for (area in areas.getTagged("altar")) {
         val type: String = area["type"]
         val spaces: Int = area["spaces", 1]

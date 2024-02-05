@@ -3,13 +3,12 @@ package world.gregs.voidps.world.map.falador
 import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.obj.ObjectOption
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -31,24 +30,24 @@ val floorItems: FloorItems by inject()
 val npcs: NPCs by inject()
 val lineValidator: LineValidator by inject()
 
-on<ObjectOption>({ operate && target.id == "cupboard_the_knights_sword_closed" && option == "Open" }) { player: Player ->
+objectOperate({ target.id == "cupboard_the_knights_sword_closed" && option == "Open" }) { player: Player ->
     player.playSound("cupboard_open")
     target.replace("cupboard_the_knights_sword_opened", ticks = TimeUnit.MINUTES.toTicks(3))
 }
 
-on<ObjectOption>({ operate && target.id == "cupboard_the_knights_sword_opened" && option == "Shut" }) { player: Player ->
+objectOperate({ target.id == "cupboard_the_knights_sword_opened" && option == "Shut" }) { player: Player ->
     player.playSound("cupboard_close")
     target.replace("cupboard_the_knights_sword_closed")
 }
 
-on<ObjectOption>({ operate && target.id == "cupboard_the_knights_sword_opened" && option == "Search" }) { player: Player ->
+objectOperate({ target.id == "cupboard_the_knights_sword_opened" && option == "Search" }) { player: Player ->
     when (player.quest("the_knights_sword")) {
         "cupboard", "blurite_sword" -> {
             val sirVyvin = npcs[player.tile.regionLevel].firstOrNull { it.id == "sir_vyvin" }
             if (sirVyvin != null && lineValidator.hasLineOfSight(sirVyvin, player)) {
                 player.talkWith(sirVyvin)
                 npc<Angry>("HEY! Just WHAT do you THINK you are DOING??? STAY OUT of MY cupboard!")
-                return@on
+                return@objectOperate
             }
             if (player.holdsItem("portrait")) {
                 statement("There is just a load of junk in here.")
@@ -56,7 +55,7 @@ on<ObjectOption>({ operate && target.id == "cupboard_the_knights_sword_opened" &
                 statement("You find a small portrait in here which you take.")
                 if (player.inventory.isFull()) {
                     floorItems.add(player.tile, "portrait", disappearTicks = 300, owner = player)
-                    return@on
+                    return@objectOperate
                 }
                 player.inventory.add("portrait")
             }
@@ -65,7 +64,7 @@ on<ObjectOption>({ operate && target.id == "cupboard_the_knights_sword_opened" &
     }
 }
 
-on<NPCOption>({ operate && target.id == "sir_vyvin" && option == "Talk-to" }) { player: Player ->
+npcOperate({ target.id == "sir_vyvin" && option == "Talk-to" }) { player: Player ->
     player<Talking>("Hello.")
     npc<Talking>("Greetings traveller.")
     choice {

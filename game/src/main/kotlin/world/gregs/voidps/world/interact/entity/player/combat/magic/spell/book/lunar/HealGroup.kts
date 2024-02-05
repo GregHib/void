@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.lunar
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
@@ -17,14 +16,14 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 val definitions: SpellDefinitions by inject()
 val players: Players by inject()
 
-on<InterfaceOption>({ id == "lunar_spellbook" && component == "heal_group" }) { player: Player ->
+interfaceOption({ id == "lunar_spellbook" && component == "heal_group" }) { player: Player ->
     val spell = component
     if (player.levels.get(Skill.Constitution) < player.levels.getMax(Skill.Constitution) * 0.11) {
         player.message("You don't have enough life points.")
-        return@on
+        return@interfaceOption
     }
     if (!Spell.removeRequirements(player, spell)) {
-        return@on
+        return@interfaceOption
     }
     val definition = definitions.get(spell)
     var healed = 0

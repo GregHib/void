@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.skill.cooking
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
+import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Uncooked
 import world.gregs.voidps.engine.entity.character.face
@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -36,11 +35,11 @@ val GameObject.cookingRange: Boolean get() = id.startsWith("cooking_range")
 
 val GameObject.heatSource: Boolean get() = id.startsWith("fire_") || cookingRange
 
-on<ItemOnObject>({ operate && target.heatSource && item.def.contains("cooking") }) { player: Player ->
+itemOnObjectOperate({ target.heatSource && item.def.contains("cooking") }) { player: Player ->
     arriveDelay()
-    val definition = if (player["sinew", false]) definitions.get("sinew") else if (item.id == "sinew") return@on else item.def
+    val definition = if (player["sinew", false]) definitions.get("sinew") else if (item.id == "sinew") return@itemOnObjectOperate else item.def
     player["sinew"] = false
-    val cooking: Uncooked = definition.getOrNull("cooking") ?: return@on
+    val cooking: Uncooked = definition.getOrNull("cooking") ?: return@itemOnObjectOperate
     var amount = player.inventory.count(item.id)
     if (amount != 1) {
         amount = makeAmount(

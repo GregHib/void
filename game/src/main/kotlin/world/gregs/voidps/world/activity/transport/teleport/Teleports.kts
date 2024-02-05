@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.activity.transport.teleport
 
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeInterfaces
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -21,15 +20,15 @@ import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
-import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
+import world.gregs.voidps.world.interact.entity.player.equip.inventory
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val areas: AreaDefinitions by inject()
 val definitions: SpellDefinitions by inject()
 
-on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport") && component != "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
+interfaceOption({ id.endsWith("_spellbook") && component.endsWith("_teleport") && component != "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
     if (player.queue.contains(ActionPriority.Normal)) {
-        return@on
+        return@interfaceOption
     }
     player.closeInterfaces()
     player.queue("teleport", onCancel = null) {
@@ -56,12 +55,12 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport
     }
 }
 
-on<InventoryOption>({ item.id.endsWith("_teleport") }) { player: Player ->
+inventory({ item.id.endsWith("_teleport") }) { player: Player ->
     if (player.queue.contains(ActionPriority.Normal)) {
-        return@on
+        return@inventory
     }
     player.closeInterfaces()
-    val definition = areas.getOrNull(item.id) ?: return@on
+    val definition = areas.getOrNull(item.id) ?: return@inventory
     val scrolls = areas.getTagged("scroll")
     val type = if (scrolls.contains(definition)) "scroll" else "tablet"
     val map = definition.area

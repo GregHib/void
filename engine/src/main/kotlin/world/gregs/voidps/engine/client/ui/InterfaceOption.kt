@@ -25,13 +25,13 @@ fun interfaceOption(filter: InterfaceOption.(Player) -> Boolean, priority: Prior
     on<InterfaceOption>(filter, priority, block)
 }
 
-fun interfaceClick(id: String, component: String, block: suspend InterfaceOption.() -> Unit) {
+fun interfaceOption(id: String, component: String, block: suspend InterfaceOption.() -> Unit) {
     on<InterfaceOption>({ wildcardEquals(this.id, id) && wildcardEquals(this.component, component) }) { _: Player ->
         block.invoke(this)
     }
 }
 
-fun interfaceClick(id: String, component: String, option: String, block: suspend InterfaceOption.() -> Unit) {
+fun interfaceOption(id: String, component: String, option: String, block: suspend InterfaceOption.() -> Unit) {
     on<InterfaceOption>({ wildcardEquals(this.id, id) && wildcardEquals(this.component, component) && wildcardEquals(this.option, option) }) { _: Player ->
         block.invoke(this)
     }

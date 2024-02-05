@@ -1,30 +1,27 @@
 package world.gregs.voidps.world.interact.entity.player.toxin
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.Command
-import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.client.ui.event.command
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.characterSpawn
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerStop
-import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import kotlin.math.sign
 
-on<Registered>({ it.poisonCounter != 0 }) { character: Character ->
+characterSpawn({ it.poisonCounter != 0 }) { character: Character ->
     val timers = if (character is Player) character.timers else character.softTimers
     timers.restart("poison")
 }
 
-on<TimerStart>({ timer == "poison" }) { character: Character ->
+characterTimerStart({ timer == "poison" }) { character: Character ->
     if (!restart && character.poisonCounter == 0) {
         (character as? Player)?.message("<green>You have been poisoned.")
         damage(character)
@@ -32,7 +29,7 @@ on<TimerStart>({ timer == "poison" }) { character: Character ->
     interval = 30
 }
 
-on<TimerTick>({ timer == "poison" }) { character: Character ->
+characterTimerTick({ timer == "poison" }) { character: Character ->
     val poisoned = character.poisoned
     character.poisonCounter -= character.poisonCounter.sign
     when {
@@ -40,14 +37,15 @@ on<TimerTick>({ timer == "poison" }) { character: Character ->
             if (!poisoned) {
                 (character as? Player)?.message("<purple>Your poison resistance has worn off.")
             }
-            return@on cancel()
+            cancel()
+            return@characterTimerTick
         }
         character.poisonCounter == -1 -> (character as? Player)?.message("<purple>Your poison resistance is about to wear off.")
         poisoned -> damage(character)
     }
 }
 
-on<TimerStop>({ timer == "poison" }) { character: Character ->
+characterTimerStop({ timer == "poison" }) { character: Character ->
     character.poisonCounter = 0
     character.clear("poison_damage")
     character.clear("poison_source")
@@ -68,7 +66,7 @@ fun isPoisoned(id: String) = id.endsWith("_p") || id.endsWith("_p+") || id.endsW
 
 fun poisonous(source: Character, weapon: Item) = source is Player && isPoisoned(weapon.id)
 
-on<CombatAttack>({ damage > 0 && poisonous(it, weapon) }) { source: Character ->
+combatAttack({ damage > 0 && poisonous(it, weapon) }) { source: Character ->
     val poison = 20 + weapon.id.count { it == '+' } * 10
     if (type == "range" && random.nextDouble() < 0.125) {
         source.poison(target, if (weapon.id == "emerald_bolts_e") 50 else poison)
@@ -77,7 +75,7 @@ on<CombatAttack>({ damage > 0 && poisonous(it, weapon) }) { source: Character ->
     }
 }
 
-on<Command>({ prefix == "poison" }) { player: Player ->
+command({ prefix == "poison" }) { player: Player ->
     if (player.poisoned) {
         player.curePoison()
     } else {
@@ -85,14 +83,14 @@ on<Command>({ prefix == "poison" }) { player: Player ->
     }
 }
 
-on<TimerStart>({ timer == "poison" && it.equipped(EquipSlot.Shield).id == "anti_poison_totem" }, Priority.HIGH) { _: Player ->
+timerStart({ timer == "poison" && it.equipped(EquipSlot.Shield).id == "anti_poison_totem" }, Priority.HIGH) { _: Player ->
     cancel()
 }
 
-on<TimerStart>({ timer == "poison" && it.def["immune_poison", false] }, Priority.HIGH) { _: NPC ->
+npcTimerStart({ timer == "poison" && it.def["immune_poison", false] }, Priority.HIGH) { _: NPC ->
     cancel()
 }
 
-on<TimerStart>({ timer == "poison" && it.antiPoison }, Priority.HIGH) { _: Character ->
+characterTimerStart({ timer == "poison" && it.antiPoison }, Priority.HIGH) { _: Character ->
     cancel()
 }

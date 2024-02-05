@@ -11,13 +11,12 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.Target
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
+import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
@@ -31,12 +30,12 @@ val players: Players by inject()
 val npcs: NPCs by inject()
 val lineOfSight: LineValidator by inject()
 
-on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.specialAttack && isThrowingAxe(player.weapon) }, Priority.MEDIUM) { player: Player ->
+combatSwing({ player -> !swung() && player.fightStyle == "range" && player.specialAttack && isThrowingAxe(player.weapon) }, Priority.MEDIUM) { player: Player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 10)) {
         delay = -1
-        return@on
+        return@combatSwing
     }
     val ammo = player.ammo
     player["chain_hits"] = mutableSetOf(target.index)
@@ -47,7 +46,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
     player.hit(target, delay = Hit.throwDelay(distance))
 }
 
-on<CombatHit>({ target -> source is Player && special && isThrowingAxe(weapon) && target.inMultiCombat }) { target: Character ->
+combatHit({ target -> source is Player && special && isThrowingAxe(weapon) && target.inMultiCombat }) { target: Character ->
     val player = source as Player
     val chain: MutableSet<Int> = player.getOrPut("chain_hits") { mutableSetOf() }
     val characters = if (target is Player) players else npcs
@@ -61,12 +60,12 @@ on<CombatHit>({ target -> source is Player && special && isThrowingAxe(weapon) &
             }
             if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 10)) {
                 player.clear("chain_hits")
-                return@on
+                return@combatHit
             }
             chain.add(character.index)
             target.shoot(id = "rune_throwing_axe_special", target = character)
             player.hit(character, weapon, type, special = true, delay = 1)
-            return@on
+            return@combatHit
         }
     }
 }

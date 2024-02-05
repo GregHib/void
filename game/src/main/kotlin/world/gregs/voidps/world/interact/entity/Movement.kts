@@ -1,16 +1,16 @@
 package world.gregs.voidps.world.interact.entity
 
 import org.rsmod.game.pathfinder.flag.CollisionFlag
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.mode.move.Moved
+import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.size
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.characterDespawn
+import world.gregs.voidps.engine.entity.npcSpawn
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -21,13 +21,13 @@ val npcs: NPCs by inject()
 val players: Players by inject()
 val active = getProperty("characterCollision") == "true"
 
-on<Registered> { player: Player ->
+playerSpawn { player: Player ->
     if (players.add(player) && active) {
         collisions.add(player)
     }
 }
 
-on<Registered>({ active }) { npc: NPC ->
+npcSpawn({ active }) { npc: NPC ->
     val mask = entity(npc)
     for (x in npc.tile.x until npc.tile.x + npc.def.size) {
         for (y in npc.tile.y until npc.tile.y + npc.def.size) {
@@ -36,15 +36,15 @@ on<Registered>({ active }) { npc: NPC ->
     }
 }
 
-on<Unregistered>({ active }) { character: Character ->
+characterDespawn({ active }) { character: Character ->
     collisions.remove(character)
 }
 
-on<Moved>({ active }) { character: Character ->
+move({ active }) { character: Character ->
     collisions.move(character, from, to)
 }
 
-on<Moved> { npc: NPC ->
+move { npc: NPC ->
     npcs.update(from, to, npc)
 }
 

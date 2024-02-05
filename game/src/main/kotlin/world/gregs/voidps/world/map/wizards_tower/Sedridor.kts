@@ -5,10 +5,10 @@ import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -24,7 +24,7 @@ import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<NPCOption>({ operate && target.id == "sedridor" && option == "Talk-to" }) { player: Player ->
+npcOperate({ target.id == "sedridor" && option == "Talk-to" }) { player: Player ->
     when (player.quest("rune_mysteries")) {
         "unstarted" -> {
             npc<Cheerful>("Welcome adventurer, to the world renowned Wizards' Tower, home to the Order of Wizards. How may I help you?")
@@ -39,7 +39,7 @@ on<NPCOption>({ operate && target.id == "sedridor" && option == "Talk-to" }) { p
     }
 }
 
-on<NPCOption>({ operate && target.id == "sedridor" && option == "Teleport" }) { player: Player ->
+npcOperate({ target.id == "sedridor" && option == "Teleport" }) { player: Player ->
     teleport()
 }
 

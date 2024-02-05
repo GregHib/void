@@ -2,9 +2,9 @@ package world.gregs.voidps.world.activity.skill.firemaking
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.ui.interact.ItemOnFloorItem
-import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
 import world.gregs.voidps.engine.client.ui.interact.either
+import world.gregs.voidps.engine.client.ui.interact.itemOnFloorItemOperate
+import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.data.Fire
@@ -21,10 +21,10 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.floorItemOperate
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -37,7 +37,7 @@ import world.gregs.voidps.type.Tile
 val floorItems: FloorItems by inject()
 val objects: GameObjects by inject()
 
-on<ItemOnItem>({ either { from, to -> from.lighter && to.burnable } }) { player: Player ->
+itemOnItem({ either { from, to -> from.lighter && to.burnable } }) { player: Player ->
     val log = if (toItem.burnable) toItem else fromItem
     val logSlot = if (toItem.burnable) toSlot else fromSlot
     player.closeDialogue()
@@ -48,12 +48,12 @@ on<ItemOnItem>({ either { from, to -> from.lighter && to.burnable } }) { player:
     }
 }
 
-on<ItemOnFloorItem>({ operate && item.lighter && floorItem.def.contains("firemaking") }) { player: Player ->
+itemOnFloorItemOperate({ operate && item.lighter && floorItem.def.contains("firemaking") }) { player: Player ->
     arriveDelay()
     lightFire(player, floorItem)
 }
 
-on<FloorItemOption>({ operate && option == "Light" }) { player: Player ->
+floorItemOperate({ option == "Light" }) { player: Player ->
     arriveDelay()
     lightFire(player, target)
 }

@@ -15,11 +15,23 @@ data class PlayerOption(
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 }
 
+@JvmName("playerApproachPlayer")
 fun playerApproach(filter: PlayerOption.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend PlayerOption.(Player) -> Unit) {
     on<PlayerOption>({ approach && filter(this, it) }, priority, block)
 }
 
+@JvmName("playerOperatePlayer")
 fun playerOperate(filter: PlayerOption.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend PlayerOption.(Player) -> Unit) {
+    on<PlayerOption>({ operate && filter(this, it) }, priority, block)
+}
+
+@JvmName("playerApproachCharacter")
+fun playerApproach(filter: PlayerOption.(Character) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend PlayerOption.(Character) -> Unit) {
+    on<PlayerOption>({ approach && filter(this, it) }, priority, block)
+}
+
+@JvmName("playerOperateCharacter")
+fun playerOperate(filter: PlayerOption.(Character) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend PlayerOption.(Character) -> Unit) {
     on<PlayerOption>({ operate && filter(this, it) }, priority, block)
 }
 

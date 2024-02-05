@@ -2,12 +2,11 @@ package world.gregs.voidps.world.community.trade.lend
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.sendInventory
@@ -19,22 +18,22 @@ import world.gregs.voidps.world.community.trade.returnedItems
 val logger = InlineLogger()
 val players: Players by inject()
 
-on<InterfaceOpened>({ id == "returned_items" }) { player: Player ->
+interfaceOpened({ id == "returned_items" }) { player: Player ->
     player.sendInventory(player.returnedItems)
 }
 
-on<InterfaceOption>({ id == "returned_items" && component == "item" && option == "Reclaim" }) { player: Player ->
+interfaceOption({ id == "returned_items" && component == "item" && option == "Reclaim" }) { player: Player ->
     if (!player.contains("lent_item_id")) {
         returnItem(player)
-        return@on
+        return@interfaceOption
     }
     if (player.contains("lend_timeout")) {
         player.message("Your item will be returned to you ${getExpiry(player, "lend_timeout")}.") // TODO real message
-        return@on
+        return@interfaceOption
     }
     if (!player.contains("lent_to")) {
         logger.warn { "Invalid item lending state; can't force claim an item when target has already logged out." }
-        return@on
+        return@interfaceOption
     }
 
     player.message("Demanding return of item.")
@@ -43,7 +42,7 @@ on<InterfaceOption>({ id == "returned_items" && component == "item" && option ==
     if (borrower == null) {
         player.message("There was an issue returning your item.")
         logger.warn { "Unable to find lent item borrower '$name'." }
-        return@on
+        return@interfaceOption
     }
 
     player.softTimers.clear("loan_message")

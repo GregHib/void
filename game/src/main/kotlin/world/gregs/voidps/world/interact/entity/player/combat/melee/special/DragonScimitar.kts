@@ -6,26 +6,25 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.engine.timer.timerStart
+import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerStart
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePrayerVarKey
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import java.util.concurrent.TimeUnit
 
 fun isDragonScimitar(item: Item) = item.id.endsWith("dragon_scimitar")
 
-on<CombatSwing>({ !swung() && it.specialAttack && isDragonScimitar(it.weapon) }) { player: Player ->
+combatSwing({ !swung() && it.specialAttack && isDragonScimitar(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, 550)) {
         delay = -1
-        return@on
+        return@combatSwing
     }
     player.setAnimation("sever")
     player.setGraphic("sever")
@@ -35,7 +34,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonScimitar(it.weapon) })
     delay = 4
 }
 
-on<TimerStart>({ timer == "sever" }) { player: Player ->
+timerStart({ timer == "sever" }) { player: Player ->
     interval = TimeUnit.SECONDS.toTicks(5)
     val key = player.getActivePrayerVarKey()
     if (player.isCurses()) {
@@ -51,11 +50,11 @@ on<TimerStart>({ timer == "sever" }) { player: Player ->
     }
 }
 
-on<TimerTick>({ timer == "sever" }) { _: Player ->
+timerTick({ timer == "sever" }) { _: Player ->
     cancel()
 }
 
-on<PrayerStart>({ (prayer.startsWith("prayer_deflect") || prayer.startsWith("prayer_protect")) && it.softTimers.contains("sever") }) { player: Player ->
+prayerStart({ (prayer.startsWith("prayer_deflect") || prayer.startsWith("prayer_protect")) && it.softTimers.contains("sever") }) { player: Player ->
     player.message("You've been injured and can no longer use ${if (player.isCurses()) "deflect curses" else "protection prayers"}!")
     val key = player.getActivePrayerVarKey()
     player.removeVarbit(key, prayer.removePrefix("prayer_").toTitleCase())

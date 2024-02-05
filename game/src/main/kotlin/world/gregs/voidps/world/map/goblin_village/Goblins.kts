@@ -1,8 +1,7 @@
 package world.gregs.voidps.world.map.goblin_village
 
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -12,7 +11,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 fun isRedGoblin(id: String) = id.startsWith("goblin_") && id.endsWith("_red")
 fun isGreenGoblin(id: String) = id.startsWith("goblin_") && id.endsWith("_green")
 
-on<NPCOption>({ operate && isRedGoblin(target.id) && option == "Talk-to" }) { _: Player ->
+npcOperate({ isRedGoblin(target.id) && option == "Talk-to" }) { _: Player ->
     when (random.nextInt(0, 2)) {
         0 -> {
             npc<Talking>("Red armour best!")
@@ -31,7 +30,7 @@ on<NPCOption>({ operate && isRedGoblin(target.id) && option == "Talk-to" }) { _:
     }
 }
 
-on<NPCOption>({ operate && isGreenGoblin(target.id) && option == "Talk-to" }) { _: Player ->
+npcOperate({ isGreenGoblin(target.id) && option == "Talk-to" }) { _: Player ->
     when (random.nextInt(0, 2)) {
         0 -> {
             npc<Talking>("green armour best!")
@@ -51,7 +50,7 @@ on<NPCOption>({ operate && isGreenGoblin(target.id) && option == "Talk-to" }) { 
     }
 }
 
-on<NPCOption>({ operate && target.id.startsWith("grubfoot") && option == "Talk-to" }) { _: Player ->
+npcOperate({ target.id.startsWith("grubfoot") && option == "Talk-to" }) { _: Player ->
     npc<Sad>("Grubfoot wear red armour! Grubfoot wear green armour!")
     npc<Unsure>("Why they not make up their minds?")
     npc<Angry>(npcId = "general_bentnoze_rfd", "Shut up Grubfoot!")

@@ -11,8 +11,6 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -22,7 +20,7 @@ import world.gregs.voidps.engine.entity.character.player.equip.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
@@ -31,14 +29,14 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.interact.entity.combat.attackRange
 import world.gregs.voidps.world.interact.entity.combat.attackers
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spellBook
 import world.gregs.voidps.world.interact.entity.combat.underAttack
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spellBook
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 
-on<World, Registered> {
-    val area = areas.getOrNull("lumbridge_combat_tutors") ?: return@on
+worldSpawn {
+    val area = areas.getOrNull("lumbridge_combat_tutors") ?: return@worldSpawn
     val range = 1..5
     val skills = listOf(Skill.Attack, Skill.Magic, Skill.Ranged)
     val melees = listOf(Skill.Attack, Skill.Strength, Skill.Defence)

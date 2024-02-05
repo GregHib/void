@@ -18,11 +18,11 @@ data class AreaEntered(
     override var onCancel: (() -> Unit)? = null
 }
 
-fun enter(filter: AreaEntered.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend AreaEntered.(Player) -> Unit) {
+fun enterArea(filter: AreaEntered.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend AreaEntered.(Player) -> Unit) {
     on<AreaEntered>(filter, priority, block)
 }
 
-fun enter(area: String = "*", tag: String = "*", block: suspend AreaEntered.() -> Unit) {
+fun enterArea(area: String = "*", tag: String = "*", block: suspend AreaEntered.() -> Unit) {
     on<AreaEntered>({ wildcardEquals(area, name) && (tag == "*" || tags.any { wildcardEquals(tag, it) }) }) { _: Player ->
         block.invoke(this)
     }

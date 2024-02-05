@@ -1,8 +1,7 @@
 package world.gregs.voidps.world.map.lumbridge
 
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Talking
@@ -11,11 +10,11 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
-on<NPCOption>({ operate && (def.name == "Shopkeeper" || def.name == "Shop assistant") && option == "Trade" }) { player: Player ->
+npcOperate({ (def.name == "Shopkeeper" || def.name == "Shop assistant") && option == "Trade" }) { player: Player ->
     player.openShop("lumbridge_general_store")
 }
 
-on<NPCOption>({ operate && def.name == "Shopkeeper" && option == "Talk-to" }) { player: Player ->
+npcOperate({ def.name == "Shopkeeper" && option == "Talk-to" }) { player: Player ->
     npc<Talking>("Can I help you at all?")
     choice {
         option("Yes please. What are you selling?") {
@@ -32,7 +31,7 @@ on<NPCOption>({ operate && def.name == "Shopkeeper" && option == "Talk-to" }) { 
     }
 }
 
-on<NPCOption>({ operate && def.name == "Shop assistant" && option == "Talk-to" }) { player: Player ->
+npcOperate({ def.name == "Shop assistant" && option == "Talk-to" }) { player: Player ->
     npc<Cheerful>("Can I help you at all?")
     choice {
         option("Yes please. What are you selling?") {

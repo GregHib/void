@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.combat
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.Command
+import world.gregs.voidps.engine.client.ui.event.command
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -12,17 +12,16 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
+import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 
 val npcDefinitions: NPCDefinitions by inject()
 val eventHandler: EventHandlerStore by inject()
 
-on<Command>({ prefix == "maxhit" }) { player: Player ->
+command({ prefix == "maxhit" }) { player: Player ->
     val debug = player["debug", false]
     player["debug"] = false
     val parts = content.split(" ")
@@ -53,12 +52,12 @@ val logger = InlineLogger()
 val Character.charName: String
     get() = (this as? Player)?.name ?: (this as NPC).id
 
-on<CombatSwing>({ it["debug", false] || target["debug", false] }, Priority.HIGHEST) { character: Character ->
+combatSwing({ it["debug", false] || target["debug", false] }, Priority.HIGHEST) { character: Character ->
     val player = if (character["debug", false] && character is Player) character else target as Player
     player.message("---- Swing (${character.charName}) -> (${target.charName}) -----")
 }
 
-on<CombatHit>({ debug(source, it) }, Priority.LOWEST) { character: Character ->
+combatHit({ debug(source, it) }, Priority.LOWEST) { character: Character ->
     val player = if (character["debug", false] && character is Player) character else source as Player
     val message = "Damage: $damage ($type, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
     player.message(message)

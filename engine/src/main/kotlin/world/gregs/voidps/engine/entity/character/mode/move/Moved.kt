@@ -21,32 +21,35 @@ data class Moved(
     override var onCancel: (() -> Unit)? = null
 }
 
-fun move(filter: Moved.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend Moved.(Player) -> Unit) {
+@JvmName("movePlayer")
+fun move(filter: Moved.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend Moved.(Player) -> Unit) {
     on<Moved>(filter, priority, block)
 }
 
-fun move(filter: Moved.(NPC) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend Moved.(NPC) -> Unit) {
+@JvmName("moveNPC")
+fun move(filter: Moved.(NPC) -> Boolean = { true}, priority: Priority = Priority.MEDIUM, block: suspend Moved.(NPC) -> Unit) {
     on<Moved>(filter, priority, block)
 }
 
-fun move(filter: Moved.(Character) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend Moved.(Character) -> Unit) {
+@JvmName("moveCharacter")
+fun move(filter: Moved.(Character) -> Boolean = { true}, priority: Priority = Priority.MEDIUM, block: suspend Moved.(Character) -> Unit) {
     on<Moved>(filter, priority, block)
 }
 
 fun move(filter: Moved.(Player) -> Boolean, block: Moved.() -> Unit) {
-    on<Moved>(filter) { _: Player ->
+    move(filter) { _: Player ->
         block.invoke(this)
     }
 }
 
 fun npcMove(filter: Moved.(NPC) -> Boolean, block: Moved.() -> Unit) {
-    on<Moved>(filter) { _: NPC ->
+    move(filter) { _: NPC ->
         block.invoke(this)
     }
 }
 
 fun characterMove(filter: Moved.(Character) -> Boolean, block: Moved.() -> Unit) {
-    on<Moved>(filter) { _: Character ->
+    move(filter) { _: Character ->
         block.invoke(this)
     }
 }

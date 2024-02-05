@@ -1,10 +1,9 @@
 package world.gregs.voidps.world.map.al_kharid
 
 import world.gregs.voidps.engine.entity.character.CharacterContext
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -12,7 +11,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
-on<NPCOption>({ operate && target.id == "zeke" && option == "Talk-to" }) { player: Player ->
+npcOperate({ target.id == "zeke" && option == "Talk-to" }) { player: Player ->
     npc<Talk>("A thousand greetings, ${if (player.male) "sir" else "madam"}.")
     choice {
         option("Do you want to trade?") {

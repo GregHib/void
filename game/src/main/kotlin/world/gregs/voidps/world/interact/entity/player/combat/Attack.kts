@@ -1,22 +1,21 @@
 package world.gregs.voidps.world.interact.entity.player.combat
 
-import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
+import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerOption
+import world.gregs.voidps.engine.entity.character.player.playerApproach
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.world.interact.entity.combat.CombatInteraction
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.attackRange
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 
-on<NPCOption>({ approach && option == "Attack" }) { character: Character ->
+npcApproach({ option == "Attack" }) { character: Character ->
     if (character.attackRange != 1) {
         character.approachRange(character.attackRange, update = false)
     } else {
@@ -25,7 +24,7 @@ on<NPCOption>({ approach && option == "Attack" }) { character: Character ->
     combatInteraction(character, target)
 }
 
-on<PlayerOption>({ approach && option == "Attack" }) { character: Character ->
+playerApproach({ option == "Attack" }) { character: Character ->
     if (character.attackRange != 1) {
         character.approachRange(character.attackRange, update = false)
     } else {
@@ -34,7 +33,7 @@ on<PlayerOption>({ approach && option == "Attack" }) { character: Character ->
     combatInteraction(character, target)
 }
 
-on<ItemOnNPC>({ approach && id.endsWith("_spellbook") }, Priority.HIGH) { player: Player ->
+itemOnNPCApproach({ id.endsWith("_spellbook") }, Priority.HIGH) { player: Player ->
     player.approachRange(8, update = false)
     player.spell = component
     player["attack_speed"] = 5
@@ -45,7 +44,7 @@ on<ItemOnNPC>({ approach && id.endsWith("_spellbook") }, Priority.HIGH) { player
     cancel()
 }
 
-on<CombatSwing>({ it.contains("one_time") }) { player: Player ->
+combatSwing({ it.contains("one_time") }) { player: Player ->
     player.mode = EmptyMode
     player.clear("one_time")
 }

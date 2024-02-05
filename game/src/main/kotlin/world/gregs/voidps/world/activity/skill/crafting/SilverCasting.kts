@@ -2,10 +2,10 @@ package world.gregs.voidps.world.activity.skill.crafting
 
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
+import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Silver
@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -43,7 +42,7 @@ val moulds = listOf(
 val Item.silver: Silver?
     get() = def.getOrNull("silver_jewellery")
 
-on<InterfaceOpened>({ id == "silver_mould" }) { player: Player ->
+interfaceOpened({ id == "silver_mould" }) { player: Player ->
     for (mould in moulds) {
         val silver = mould.silver ?: continue
         val item = silver.item
@@ -62,22 +61,22 @@ on<InterfaceOpened>({ id == "silver_mould" }) { player: Player ->
     }
 }
 
-on<ItemOnObject>({ operate && target.id.startsWith("furnace") && item.id == "silver_bar" }) { player: Player ->
+itemOnObjectOperate({ target.id.startsWith("furnace") && item.id == "silver_bar" }) { player: Player ->
     player.open("silver_mould")
 }
 
-on<ItemOnObject>({ operate && target.id.startsWith("furnace") && item.silver != null }) { player: Player ->
+itemOnObjectOperate({ target.id.startsWith("furnace") && item.silver != null }) { player: Player ->
     arriveDelay()
     player.make(item, 1)
 }
 
-on<InterfaceOption>({ id == "silver_mould" && component.endsWith("_button") }) { player: Player ->
+interfaceOption({ id == "silver_mould" && component.endsWith("_button") }) { player: Player ->
     val amount = when (option) {
         "Make 1" -> 1
         "Make 5" -> 5
         "Make All" -> 28
         "Make X" -> intEntry("Enter amount:")
-        else -> return@on
+        else -> return@interfaceOption
     }
     player.make(Item(component.removeSuffix("_button")), amount)
 }

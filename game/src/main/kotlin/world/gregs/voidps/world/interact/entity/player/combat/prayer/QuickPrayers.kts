@@ -3,16 +3,15 @@ package world.gregs.voidps.world.interact.entity.player.combat.prayer
 import com.github.michaelbull.logging.InlineLogger
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.death.Death
+import world.gregs.voidps.world.interact.entity.death.playerDeath
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.QUICK_CURSES
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.QUICK_PRAYERS
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS
@@ -53,12 +52,12 @@ val cursesGroups = setOf(
     setOf("sap_spirit", "leech_special_attack", "turmoil")
 )
 
-on<InterfaceOption>({ id == "prayer_list" && component == "regular_prayers" }) { player: Player ->
+interfaceOption({ id == "prayer_list" && component == "regular_prayers" }) { player: Player ->
     val prayers = player.getActivePrayerVarKey()
     player.togglePrayer(itemSlot, prayers, false)
 }
 
-on<InterfaceOption>({ id == "prayer_list" && component == "quick_prayers" }) { player: Player ->
+interfaceOption({ id == "prayer_list" && component == "quick_prayers" }) { player: Player ->
     player.togglePrayer(itemSlot, player.getQuickVarKey(), true)
 }
 
@@ -98,7 +97,7 @@ fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
  * Until the new quick prayer selection is confirmed old
  * quick prayers are stored in [TEMP_QUICK_PRAYERS]
  */
-on<InterfaceOption>({ id == "prayer_orb" && component == "orb" && option == "Select Quick Prayers" }) { player: Player ->
+interfaceOption({ id == "prayer_orb" && component == "orb" && option == "Select Quick Prayers" }) { player: Player ->
     val selecting = player.toggle(SELECTING_QUICK_PRAYERS)
     if (selecting) {
         player["tab"] = Tab.PrayerList.name
@@ -114,11 +113,11 @@ on<InterfaceOption>({ id == "prayer_orb" && component == "orb" && option == "Sel
     }
 }
 
-on<InterfaceOption>({ id == "prayer_orb" && component == "orb" && option == "Turn Quick Prayers On" }) { player: Player ->
+interfaceOption({ id == "prayer_orb" && component == "orb" && option == "Turn Quick Prayers On" }) { player: Player ->
     if (player.levels.get(Skill.Prayer) == 0) {
         player.message("You've run out of prayer points.")
         player[USING_QUICK_PRAYERS] = false
-        return@on
+        return@interfaceOption
     }
     val active = player.toggle(USING_QUICK_PRAYERS)
     val activePrayers = player.getActivePrayerVarKey()
@@ -129,7 +128,7 @@ on<InterfaceOption>({ id == "prayer_orb" && component == "orb" && option == "Tur
         } else {
             player.message("You haven't selected any quick-prayers.")
             player[USING_QUICK_PRAYERS] = false
-            return@on
+            return@interfaceOption
         }
     } else {
         player.playSound("deactivate_prayer")
@@ -137,15 +136,15 @@ on<InterfaceOption>({ id == "prayer_orb" && component == "orb" && option == "Tur
     }
 }
 
-on<InterfaceOption>({ id == "prayer_list" && component == "confirm" && option == "Confirm Selection" }) { player: Player ->
+interfaceOption({ id == "prayer_list" && component == "confirm" && option == "Confirm Selection" }) { player: Player ->
     player.saveQuickPrayers()
 }
 
-on<Unregistered>({ it.contains(TEMP_QUICK_PRAYERS) }) { player: Player ->
+playerDespawn({ it.contains(TEMP_QUICK_PRAYERS) }) { player: Player ->
     player.cancelQuickPrayers()
 }
 
-on<Death> { player: Player ->
+playerDeath { player: Player ->
     player[USING_QUICK_PRAYERS] = false
 }
 

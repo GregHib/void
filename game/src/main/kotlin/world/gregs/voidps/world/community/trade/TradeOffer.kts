@@ -1,12 +1,11 @@
 package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
@@ -27,23 +26,23 @@ val tradeRestriction = object : ItemRestrictionRule {
     }
 }
 
-on<Registered> { player: Player ->
+playerSpawn { player: Player ->
     player.offer.itemRule = tradeRestriction
 }
 
-on<InterfaceOption>({ id == "trade_side" && component == "offer" }) { player: Player ->
+interfaceOption({ id == "trade_side" && component == "offer" }) { player: Player ->
     val amount = when (option) {
         "Offer" -> 1
         "Offer-5" -> 5
         "Offer-10" -> 10
         "Offer-All" -> Int.MAX_VALUE
         "Offer-X" -> intEntry("Enter amount:")
-        else -> return@on
+        else -> return@interfaceOption
     }
     offer(player, item.id, amount)
 }
 
-on<InterfaceOption>({ id == "trade_side" && component == "offer" && option == "Value" }) { player: Player ->
+interfaceOption({ id == "trade_side" && component == "offer" && option == "Value" }) { player: Player ->
     player.message("${item.def.name} is priceless!", ChatType.Trade)
 }
 

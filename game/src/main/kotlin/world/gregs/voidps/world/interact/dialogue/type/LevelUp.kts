@@ -8,15 +8,15 @@ import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
-import world.gregs.voidps.engine.entity.character.player.skill.exp.GrantExp
+import world.gregs.voidps.engine.entity.character.player.skill.exp.experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.MaxLevelChanged
+import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelChange
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
-on<GrantExp> { player: Player ->
+experience { player: Player ->
     val previousLevel = Experience.level(skill, from)
     val currentLevel = Experience.level(skill, to)
     if (currentLevel != previousLevel) {
@@ -25,7 +25,7 @@ on<GrantExp> { player: Player ->
     }
 }
 
-on<MaxLevelChanged>({ to > from && !it["skip_level_up", false] }) { player: Player ->
+maxLevelChange({ to > from && !it["skip_level_up", false] }) { player: Player ->
     player.weakQueue(name = "level_up") {
         val unlock = when (skill) {
             Agility -> false
@@ -44,6 +44,6 @@ on<MaxLevelChanged>({ to > from && !it["skip_level_up", false] }) { player: Play
     }
 }
 
-on<CombatHit>({ !(it.menu ?: it.dialogue).isNullOrBlank() }) { player: Player ->
+combatHit({ !(it.menu ?: it.dialogue).isNullOrBlank() }) { player: Player ->
     player.closeInterfaces()
 }

@@ -1,18 +1,18 @@
 package world.gregs.voidps.world.map.falador
 
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceClosed
+import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.player.sex
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
@@ -23,7 +23,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 
 val enums: EnumDefinitions by inject()
 
-on<NPCOption>({ operate && target.id == "hairdresser" && option == "Talk-to" }) { player: Player ->
+npcOperate({ target.id == "hairdresser" && option == "Talk-to" }) { player: Player ->
     npc<Happy>("Good afternoon ${if (player.male) "sir" else "madam"}. In need of a haircut${if (player.male) " or shave" else ""} are we?")
     choice {
         option<Talk>("Yes, please.") {
@@ -36,7 +36,7 @@ on<NPCOption>({ operate && target.id == "hairdresser" && option == "Talk-to" }) 
     }
 }
 
-on<NPCOption>({ operate && target.id == "hairdresser" && option == "Hair-cut" }) { player: Player ->
+npcOperate({ target.id == "hairdresser" && option == "Hair-cut" }) { player: Player ->
     startHairdressing()
 }
 
@@ -53,7 +53,7 @@ suspend fun NPCOption.startHairdressing() {
     openDressingRoom("hairdressers_salon")
 }
 
-on<InterfaceOpened>({ id == "hairdressers_salon" }) { player: Player ->
+interfaceOpened({ id == "hairdressers_salon" }) { player: Player ->
     player.interfaces.sendText(id, "confirm_text", "Change")
     val styles = enums.get("style_hair_${player.sex}")
     val colours = enums.get("colour_hair")
@@ -64,11 +64,11 @@ on<InterfaceOpened>({ id == "hairdressers_salon" }) { player: Player ->
     player["makeover_colour_hair"] = player.body.getColour(BodyColour.Hair)
 }
 
-on<InterfaceOption>({ id == "hairdressers_salon" && component.startsWith("style_") }) { player: Player ->
+interfaceOption({ id == "hairdressers_salon" && component.startsWith("style_") }) { player: Player ->
     player["makeover_facial_hair"] = component == "style_beard"
 }
 
-on<InterfaceOption>({ id == "hairdressers_salon" && component == "styles" }) { player: Player ->
+interfaceOption({ id == "hairdressers_salon" && component == "styles" }) { player: Player ->
     val beard = player["makeover_facial_hair", false]
     val type = if (beard) "beard" else "hair"
     val key = "look_${type}_${player.sex}"
@@ -80,15 +80,15 @@ on<InterfaceOption>({ id == "hairdressers_salon" && component == "styles" }) { p
     player["makeover_$type"] = value
 }
 
-on<InterfaceOption>({ id == "hairdressers_salon" && component == "colours" }) { player: Player ->
+interfaceOption({ id == "hairdressers_salon" && component == "colours" }) { player: Player ->
     player["makeover_colour_hair"] = enums.get("colour_hair").getInt(itemSlot / 2)
 }
 
-on<InterfaceClosed>({ id == "hairdressers_salon" }) { player: Player ->
+interfaceClosed({ id == "hairdressers_salon" }) { player: Player ->
     player.softTimers.stop("dressing_room")
 }
 
-on<InterfaceOption>({ id == "hairdressers_salon" && component == "confirm" }) { player: Player ->
+interfaceOption({ id == "hairdressers_salon" && component == "confirm" }) { player: Player ->
     player.body.setLook(BodyPart.Hair, player["makeover_hair", 0])
     player.body.setLook(BodyPart.Beard, player["makeover_beard", 0])
     player.body.setColour(BodyColour.Hair, player["makeover_colour_hair", 0])

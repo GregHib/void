@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.item.floor
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetFloorItemContext
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
@@ -16,11 +17,23 @@ data class FloorItemOption(
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 }
 
+@JvmName("floorItemApproachPlayer")
 fun floorItemApproach(filter: FloorItemOption.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend FloorItemOption.(Player) -> Unit) {
     on<FloorItemOption>({ approach && filter(this, it) }, priority, block)
 }
 
+@JvmName("floorItemOperatePlayer")
 fun floorItemOperate(filter: FloorItemOption.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend FloorItemOption.(Player) -> Unit) {
+    on<FloorItemOption>({ operate && filter(this, it) }, priority, block)
+}
+
+@JvmName("floorItemApproachNPC")
+fun floorItemApproach(filter: FloorItemOption.(NPC) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend FloorItemOption.(NPC) -> Unit) {
+    on<FloorItemOption>({ approach && filter(this, it) }, priority, block)
+}
+
+@JvmName("floorItemOperateNPC")
+fun floorItemOperate(filter: FloorItemOption.(NPC) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend FloorItemOption.(NPC) -> Unit) {
     on<FloorItemOption>({ operate && filter(this, it) }, priority, block)
 }
 

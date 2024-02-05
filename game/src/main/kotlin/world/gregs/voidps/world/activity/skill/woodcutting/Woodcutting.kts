@@ -20,8 +20,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -39,13 +38,13 @@ val objects: GameObjects by inject()
 val minPlayers = 0
 val maxPlayers = 2000
 
-on<ObjectOption>({ operate && def.contains("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
-    val tree: Tree = def.getOrNull("woodcutting") ?: return@on
+objectOperate({ def.contains("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
+    val tree: Tree = def.getOrNull("woodcutting") ?: return@objectOperate
     val hatchet = getBestHatchet(player)
     if (hatchet == null) {
         player.message("You need a hatchet to chop down this tree.")
         player.message("You do not have a hatchet which you have the woodcutting level to use.")
-        return@on
+        return@objectOperate
     }
     arriveDelay()
     player.closeDialogue()

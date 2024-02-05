@@ -20,7 +20,7 @@ data class InterfaceSwitch(
     val toInventory: String
 ) : Event
 
-fun interfaceSwitch(filter: InterfaceSwitch.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend InterfaceSwitch.(Player) -> Unit) {
+fun interfaceSwitch(filter: InterfaceSwitch.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend InterfaceSwitch.(Player) -> Unit) {
     on<InterfaceSwitch>(filter, priority, block)
 }
 

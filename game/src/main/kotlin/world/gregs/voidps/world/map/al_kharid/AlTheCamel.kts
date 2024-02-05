@@ -1,17 +1,17 @@
 package world.gregs.voidps.world.map.al_kharid
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
+import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit
 
 val objects: GameObjects by inject()
 
-on<NPCOption>({ operate && target.id.endsWith("camel") && option == "Talk-to" && player.equipped(EquipSlot.Amulet).id != "camulet" }) { player: Player ->
+npcOperate({ target.id.endsWith("camel") && option == "Talk-to" && player.equipped(EquipSlot.Amulet).id != "camulet" }) { player: Player ->
     insult()
     player.message(when (random.nextInt(3)) {
         0 -> "The camel turns its head and glares at you."
@@ -38,7 +38,7 @@ on<NPCOption>({ operate && target.id.endsWith("camel") && option == "Talk-to" &&
     })
 }
 
-on<NPCOption>({ operate && target.id == "al_the_camel" && option == "Talk-to" && player.equipped(EquipSlot.Amulet).id == "camulet" }) { player: Player ->
+npcOperate({ operate && target.id == "al_the_camel" && option == "Talk-to" && player.equipped(EquipSlot.Amulet).id == "camulet" }) { player: Player ->
     choice("What would you like to do?") {
         option("Ask the camel about its dung.") {
             dung()
@@ -175,20 +175,20 @@ suspend fun NPCOption.talkingToMe() {
     desertsDay(interrupt = true)
 }
 
-on<ObjectOption>({ operate && target.id == "dung" && option == "Pick-up" }) { player: Player ->
+objectOperate({ target.id == "dung" && option == "Pick-up" }) { player: Player ->
     arriveDelay()
     if (!player.inventory.contains("bucket")) {
         player<Talk>("I'm not picking that up. I'll need a container...")
-        return@on
+        return@objectOperate
     }
     scoopPoop()
 }
 
-on<ItemOnObject>({ operate && target.id == "dung" }) { _: Player ->
+itemOnObjectOperate({ target.id == "dung" }) { _: Player ->
     arriveDelay()
     if (item.id != "bucket") {
         player<Unsure>("Surely there's something better I could use to pick up the dung.")
-        return@on
+        return@itemOnObjectOperate
     }
     scoopPoop()
 }

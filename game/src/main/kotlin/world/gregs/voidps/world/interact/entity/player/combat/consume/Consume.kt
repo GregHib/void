@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.event.wildcardEquals
 
 data class Consume(val item: Item, val slot: Int) : CancellableEvent()
 
-fun consume(filter: Consume.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend Consume.(Player) -> Unit) {
+fun consume(filter: Consume.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend Consume.(Player) -> Unit) {
     on<Consume>(filter, priority, block)
 }
 

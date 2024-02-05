@@ -4,9 +4,9 @@ import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
+import world.gregs.voidps.engine.client.ui.event.interfaceClosed
+import world.gregs.voidps.engine.client.ui.event.interfaceOpened
+import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemOnItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -30,10 +29,10 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val itemOnItemDefs: ItemOnItemDefinitions by inject()
 
-on<ItemOnItem>({ itemOnItemDefs.contains(fromItem, toItem) }) { player: Player ->
+itemOnItem({ itemOnItemDefs.contains(fromItem, toItem) }) { player: Player ->
     val overlaps = itemOnItemDefs.get(fromItem, toItem)
     if (overlaps.isEmpty()) {
-        return@on
+        return@itemOnItem
     }
     player.closeInterfaces()
     player.weakQueue("item_on_item") {
@@ -56,11 +55,11 @@ on<ItemOnItem>({ itemOnItemDefs.contains(fromItem, toItem) }) { player: Player -
             hasItems(player, def)
             return@weakQueue
         }
-        itemOnItem(player, skill, def, amount, 0)
+        useItemOnItem(player, skill, def, amount, 0)
     }
 }
 
-fun itemOnItem(
+fun useItemOnItem(
     player: Player,
     skill: Skill?,
     def: ItemOnItemDefinition,
@@ -147,14 +146,14 @@ fun replaceItems(
             player.inventory.add(add.id, add.amount)
         }
     }
-    itemOnItem(player, skill, def, amount, count + 1)
+    useItemOnItem(player, skill, def, amount, count + 1)
 }
 
-on<InterfaceClosed>({ id == "dialogue_skill_creation" }) { player: Player ->
+interfaceClosed({ id == "dialogue_skill_creation" }) { player: Player ->
     player.clear("selecting_amount")
 }
 
-on<InterfaceOpened>({ id == "dialogue_skill_creation" }) { player: Player ->
+interfaceOpened({ id == "dialogue_skill_creation" }) { player: Player ->
     player["selecting_amount"] = true
 }
 
