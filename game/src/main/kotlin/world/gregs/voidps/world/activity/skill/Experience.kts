@@ -12,7 +12,7 @@ playerSpawn { player: Player ->
     player.sendVariable("xp_counter")
 }
 
-interfaceOption({ id == it.gameFrame.name && component == "xp_orb" && option == "Reset XP Total" }) { player: Player ->
+interfaceOption("toplevel*", "xp_orb", "Reset XP Total") {
     player["xp_counter"] = 0.0
 }
 

@@ -23,7 +23,7 @@ interfaceOpen("stats") { player: Player ->
     }
 }
 
-interfaceOption({ id == "stats" && option == "View" }) { player: Player ->
+interfaceOption("stats", option = "View") {
     val skill = valueOf(component.toSentenceCase())
     val menuIndex = menu.indexOf(skill) + 1
     player.closeInterfaces()
@@ -39,7 +39,7 @@ interfaceOption({ id == "stats" && option == "View" }) { player: Player ->
     }
 }
 
-interfaceOption({ id == "skill_guide" && option == "Open subsection" }) { player: Player ->
+interfaceOption("skill_guide", option = "Open subsection") {
     val index = (definitions.getComponentId(id, component) ?: 0) - 10
     val menuIndex = player["active_skill_guide", 1]
     player["skill_guide"] = menuIndex + index * 1024

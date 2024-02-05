@@ -57,7 +57,7 @@ interfaceRefresh("make_mould*") { player: Player ->
     }
 }
 
-interfaceOption({ id.startsWith("make_mould") && component.startsWith("make_") && option.startsWith("Make ") }) { player: Player ->
+interfaceOption("make_mould*", "make*", "Make *") {
     val amount = when (option) {
         "Make 1" -> 1
         "Make 5" -> 5

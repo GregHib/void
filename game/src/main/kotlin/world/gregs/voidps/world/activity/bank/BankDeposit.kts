@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
 val logger = InlineLogger()
 
-interfaceOption({ id == "bank_side" && component == "inventory" && option.startsWith("Deposit-") }) { player: Player ->
+interfaceOption("bank_side", "inventory", "Deposit-*") {
     val amount = when (option) {
         "Deposit-1" -> 1
         "Deposit-5" -> 5
@@ -71,7 +71,7 @@ fun deposit(player: Player, inventory: world.gregs.voidps.engine.inv.Inventory, 
     return true
 }
 
-interfaceOption({ id == "bank" && component == "carried" && option == "Deposit carried items" }) { player: Player ->
+interfaceOption("bank", "carried", "Deposit carried items") {
     if (player.inventory.isEmpty()) {
         player.message("You have no items in your inventory to deposit.")
     } else {
@@ -79,7 +79,7 @@ interfaceOption({ id == "bank" && component == "carried" && option == "Deposit c
     }
 }
 
-interfaceOption({ id == "bank" && component == "worn" && option == "Deposit worn items" }) { player: Player ->
+interfaceOption("bank", "worn", "Deposit worn items") {
     if (player.equipment.isEmpty()) {
         player.message("You have no equipped items to deposit.")
     } else {
@@ -87,7 +87,7 @@ interfaceOption({ id == "bank" && component == "worn" && option == "Deposit worn
     }
 }
 
-interfaceOption({ id == "bank" && component == "burden" && option == "Deposit beast of burden inventory" }) { player: Player ->
+interfaceOption("bank", "burden", "Deposit beast of burden inventory") {
     // TODO no familiar & no bob familiar messages
     if (player.beastOfBurden.isEmpty()) {
         player.message("Your familiar has no items to deposit.")

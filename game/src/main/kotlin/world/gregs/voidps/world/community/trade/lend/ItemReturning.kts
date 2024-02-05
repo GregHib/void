@@ -22,7 +22,7 @@ interfaceOpen("returned_items") { player: Player ->
     player.sendInventory(player.returnedItems)
 }
 
-interfaceOption({ id == "returned_items" && component == "item" && option == "Reclaim" }) { player: Player ->
+interfaceOption("returned_items", "item", "Reclaim") {
     if (!player.contains("lent_item_id")) {
         returnItem(player)
         return@interfaceOption

@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inject
@@ -16,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 
 val definitions: SpellDefinitions by inject()
 
-interfaceOption({ id == "modern_spellbook" && component == "charge" }) { player: Player ->
+interfaceOption("modern_spellbook", "charge") {
     if (player.hasClock("charge_delay")) {
         val remaining = TICKS.toSeconds(player.remaining("charge_delay"))
         player.message("You must wait another $remaining ${"second".plural(remaining)} before casting this spell again.")

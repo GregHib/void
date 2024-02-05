@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -17,7 +16,7 @@ import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
 val definitions: SpellDefinitions by inject()
 val players: Players by inject()
 
-interfaceOption({ id == "lunar_spellbook" && component == "cure_group" }) { player: Player ->
+interfaceOption("lunar_spellbook", "cure_group") {
     val spell = component
     if (!Spell.removeRequirements(player, spell)) {
         return@interfaceOption

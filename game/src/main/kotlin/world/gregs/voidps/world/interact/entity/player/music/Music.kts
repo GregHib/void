@@ -57,7 +57,7 @@ move({ !it.isBot }) { player: Player ->
     }
 }
 
-interfaceOption({ id == "music_player" && component == "tracks" && option == "Play" }) { player: Player ->
+interfaceOption("music_player", "tracks", "Play") {
     val index = itemSlot / 2
     if (player.hasUnlocked(index)) {
         player["playing_song"] = true

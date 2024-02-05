@@ -31,8 +31,8 @@ fun interfaceOption(id: String, component: String, block: suspend InterfaceOptio
     }
 }
 
-fun interfaceOption(id: String, component: String, option: String, block: suspend InterfaceOption.() -> Unit) {
-    on<InterfaceOption>({ wildcardEquals(this.id, id) && wildcardEquals(this.component, component) && wildcardEquals(this.option, option) }) { _: Player ->
+fun interfaceOption(id: String, component: String = "*", option: String = "*", itemSlot: Int = -1, block: suspend InterfaceOption.() -> Unit) {
+    on<InterfaceOption>({ wildcardEquals(this.id, id) && wildcardEquals(this.component, component) && wildcardEquals(this.option, option) && (itemSlot == -1 || this.itemSlot == itemSlot) }) { _: Player ->
         block.invoke(this)
     }
 }

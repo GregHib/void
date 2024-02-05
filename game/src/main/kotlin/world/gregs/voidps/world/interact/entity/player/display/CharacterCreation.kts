@@ -38,24 +38,24 @@ interfaceClose("character_creation") { player: Player ->
     }
 }
 
-interfaceOption({ id == "character_creation" && component == "female" }) { player: Player ->
+interfaceOption("character_creation", "female") {
     swapSex(player, true)
 }
 
-interfaceOption({ id == "character_creation" && component == "male" }) { player: Player ->
+interfaceOption("character_creation", "male") {
     swapSex(player, false)
 }
 
-interfaceOption({ id == "character_creation" && component == "skin_colour" }) { player: Player ->
+interfaceOption("character_creation", "skin_colour") {
     player["makeover_colour_skin"] = enums.get("character_skin").getInt(itemSlot)
 }
 
-interfaceOption({ id == "character_creation" && component.startsWith("style_") }) { player: Player ->
+interfaceOption("character_creation", "style_*") {
     val index = component.removePrefix("style_").toInt()
     updateStyle(player, index, 0)
 }
 
-interfaceOption({ id == "character_creation" && component.startsWith("type_") }) { player: Player ->
+interfaceOption("character_creation", "type_*") {
     val index = component.removePrefix("type_").toInt()
     val style: Int = player["character_creation_style", 0]
     updateStyle(player, style - 1, index)
@@ -90,12 +90,12 @@ fun updateColours(
     player["makeover_colour_shoes"] = struct["character_style_colour_shoes_$colour"]
 }
 
-interfaceOption({ id == "character_creation" && component.startsWith("part_") }) { player: Player ->
+interfaceOption("character_creation", "part_*") {
     val part = component.removePrefix("part_")
     player["character_part"] = part
 }
 
-interfaceOption({ id == "character_creation" && component == "colours" }) { player: Player ->
+interfaceOption("character_creation", "colours") {
     var part = player["character_part", "skin"]
     if (part == "beard") {
         part = "hair"
@@ -103,13 +103,13 @@ interfaceOption({ id == "character_creation" && component == "colours" }) { play
     player["makeover_colour_${part}"] = enums.get("character_$part").getInt(itemSlot)
 }
 
-interfaceOption({ id == "character_creation" && component == "choose_colour" }) { player: Player ->
+interfaceOption("character_creation", "choose_colour") {
     val colourProfile = (player["character_creation_colour_offset", 0] + 1).rem(8)
     player["character_creation_colour_offset"] = colourProfile
     updateColours(player, hairStyle = player["character_creation_hair_style", 0] + colourProfile)
 }
 
-interfaceOption({ id == "character_creation" && component == "styles" }) { player: Player ->
+interfaceOption("character_creation", "styles") {
     val sex = if (player["makeover_female", false]) "female" else "male"
     val part = player["character_part", "skin"]
     val value = if (part == "hair") {
@@ -145,7 +145,7 @@ interfaceOpen("character_creation") { player: Player ->
     player["makeover_colour_skin"] = player.body.getColour(BodyColour.Skin)
 }
 
-interfaceOption({ id == "character_creation" && component == "confirm" }) { player: Player ->
+interfaceOption("character_creation", "confirm") {
     val male = !player["makeover_female", false]
     player.body.setLook(BodyPart.Hair, player["makeover_hair", 0])
     player.body.setLook(BodyPart.Beard, if (male) player["makeover_beard", 0] else -1)

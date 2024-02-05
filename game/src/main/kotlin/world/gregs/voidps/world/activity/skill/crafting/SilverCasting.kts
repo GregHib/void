@@ -70,7 +70,7 @@ itemOnObjectOperate({ target.id.startsWith("furnace") && item.silver != null }) 
     player.make(item, 1)
 }
 
-interfaceOption({ id == "silver_mould" && component.endsWith("_button") }) { player: Player ->
+interfaceOption("silver_mould", "*_button") {
     val amount = when (option) {
         "Make 1" -> 1
         "Make 5" -> 5

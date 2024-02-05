@@ -1,10 +1,9 @@
 package world.gregs.voidps.world.activity.quest
 
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.holdsItem
 
-interfaceOption({ id == "quest_journals" && component == "journals" && itemSlot == 13 }) { player: Player ->
+interfaceOption("quest_journals", "journals", itemSlot = 13) {
     val lines = when (player.quest("rune_mysteries")) {
         "completed" -> listOf(
             "<str>I spoke to Duke Horacio in Lumbridge Castle. He told me",

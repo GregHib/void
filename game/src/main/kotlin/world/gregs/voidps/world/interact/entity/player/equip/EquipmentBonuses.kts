@@ -50,29 +50,37 @@ interfaceRefresh("equipment_side") { player: Player ->
     player.interfaceOptions.unlockAll("equipment_side", "inventory", 0 until 28)
 }
 
-interfaceOption({ it.equipping() && (id == "equipment_side" || id == "equipment_bonuses") && component == "inventory" && option == "Stats" }) { player: Player ->
-    showStats(player, definitions.get(item.id))
+interfaceOption("equipment_*", "inventory", "Stats") {
+    if (player.equipping()) {
+        showStats(player, definitions.get(item.id))
+    }
 }
 
-interfaceOption({ it.equipping() && (id == "equipment_side" || id == "equipment_bonuses") && component == "stats_done" && option == "Done" }) { player: Player ->
-    player.clear("equipment_titles")
-    player.clear("equipment_names")
-    player.clear("equipment_stats")
-    player.clear("equipment_name")
+interfaceOption("equipment_*", "stats_done", "Done") {
+    if (player.equipping()) {
+        player.clear("equipment_titles")
+        player.clear("equipment_names")
+        player.clear("equipment_stats")
+        player.clear("equipment_name")
+    }
 }
 
 /*
     Redirect equipping actions to regular inventories
  */
 
-interfaceOption({ it.equipping() && id == "equipment_side" && component == "inventory" && option == "Equip" }) { player: Player ->
-    player.events.emit(InventoryOption(player, "inventory", item, itemSlot, "Wield"))
-    checkEmoteUpdate(player)
+interfaceOption("equipment_side", "inventory", "Equip") {
+    if (player.equipping()) {
+        player.events.emit(InventoryOption(player, "inventory", item, itemSlot, "Wield"))
+        checkEmoteUpdate(player)
+    }
 }
 
-interfaceOption({ it.equipping() && id == "equipment_bonuses" && component == "inventory" && option == "Remove" }) { player: Player ->
-    player.events.emit(InventoryOption(player, "worn_equipment", item, itemSlot, "Remove"))
-    checkEmoteUpdate(player)
+interfaceOption( "equipment_bonuses", "inventory", "Remove") {
+    if (player.equipping()) {
+        player.events.emit(InventoryOption(player, "worn_equipment", item, itemSlot, "Remove"))
+        checkEmoteUpdate(player)
+    }
 }
 
 fun checkEmoteUpdate(player: Player) {

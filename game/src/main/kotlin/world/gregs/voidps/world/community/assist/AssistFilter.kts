@@ -13,7 +13,7 @@ import world.gregs.voidps.world.community.assist.Assistance.hasEarnedMaximumExpe
  * Assistance privacy filter settings
  */
 
-interfaceOption({ id == "filter_buttons" && component == "assist" && option == "XP Earned/Time" }) { player: Player ->
+interfaceOption("filter_buttons", "assist", "XP Earned/Time") {
     if (hasEarnedMaximumExperience(player)) {
         val hours = getHoursRemaining(player)
         player.message(
@@ -27,16 +27,16 @@ interfaceOption({ id == "filter_buttons" && component == "assist" && option == "
     }
 }
 
-interfaceOption({ id == "filter_buttons" && component == "assist" && option == "On Assist" }) { player: Player ->
+interfaceOption("filter_buttons", "assist", "On Assist") {
     player["assist_status"] = "on"
 }
 
-interfaceOption({ id == "filter_buttons" && component == "assist" && option == "Friends Assist" }) { player: Player ->
+interfaceOption("filter_buttons", "assist", "Friends Assist") {
     player["assist_status"] = "friends"
     cancel(player)
 }
 
-interfaceOption({ id == "filter_buttons" && component == "assist" && option == "Off Assist" }) { player: Player ->
+interfaceOption("filter_buttons", "assist", "Off Assist") {
     player["assist_status"] = "off"
     cancel(player)
 }

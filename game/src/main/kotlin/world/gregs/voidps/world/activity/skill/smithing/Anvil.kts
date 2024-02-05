@@ -70,7 +70,7 @@ val black = 0
 val orange = 30309
 val green = 992
 
-interfaceOption({ id == "smithing" }) { player: Player ->
+interfaceOption("smithing") {
     val metal: String = player["smithing_metal"] ?: return@interfaceOption
     val type = component.substringBeforeLast('_')
     val amount = when {

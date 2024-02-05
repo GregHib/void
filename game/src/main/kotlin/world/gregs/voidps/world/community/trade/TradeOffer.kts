@@ -30,7 +30,7 @@ playerSpawn { player: Player ->
     player.offer.itemRule = tradeRestriction
 }
 
-interfaceOption({ id == "trade_side" && component == "offer" }) { player: Player ->
+interfaceOption("trade_side", "offer") {
     val amount = when (option) {
         "Offer" -> 1
         "Offer-5" -> 5
@@ -42,7 +42,7 @@ interfaceOption({ id == "trade_side" && component == "offer" }) { player: Player
     offer(player, item.id, amount)
 }
 
-interfaceOption({ id == "trade_side" && component == "offer" && option == "Value" }) { player: Player ->
+interfaceOption("trade_side", "offer", "Value") {
     player.message("${item.def.name} is priceless!", ChatType.Trade)
 }
 

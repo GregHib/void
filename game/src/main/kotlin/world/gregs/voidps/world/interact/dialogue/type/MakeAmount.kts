@@ -1,26 +1,25 @@
 package world.gregs.voidps.world.interact.dialogue.type
 
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.entity.character.player.Player
 
-interfaceOption({ id == "skill_creation_amount" && component == "create1" }) { player: Player ->
+interfaceOption("skill_creation_amount", "create1") {
     player["skill_creation_amount", false] = 1
 }
 
-interfaceOption({ id == "skill_creation_amount" && component == "create5" }) { player: Player ->
+interfaceOption("skill_creation_amount", "create5") {
     player["skill_creation_amount", false] = 5
 }
 
-interfaceOption({ id == "skill_creation_amount" && component == "create10" }) { player: Player ->
+interfaceOption("skill_creation_amount", "create10") {
     player["skill_creation_amount", false] = 10
 }
 
-interfaceOption({ id == "skill_creation_amount" && component == "all" }) { player: Player ->
+interfaceOption("skill_creation_amount", "all") {
     val max: Int = player["skill_creation_maximum", 1]
     player["skill_creation_amount", false] = max
 }
 
-interfaceOption({ id == "skill_creation_amount" && component == "increment" }) { player: Player ->
+interfaceOption("skill_creation_amount", "increment") {
     var current: Int = player["skill_creation_amount", 1]
     val maximum: Int = player["skill_creation_maximum", 1]
     current++
@@ -30,7 +29,7 @@ interfaceOption({ id == "skill_creation_amount" && component == "increment" }) {
     player["skill_creation_amount"] = current
 }
 
-interfaceOption({ id == "skill_creation_amount" && component == "decrement" }) { player: Player ->
+interfaceOption("skill_creation_amount", "decrement") {
     var current: Int = player["skill_creation_amount", 1]
     current--
     if (current < 0) {

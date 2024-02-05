@@ -42,11 +42,13 @@ interfaceOpen("bank") { player: Player ->
     player.interfaceOptions.unlockAll("bank_side", "inventory", 0 until 28)
 }
 
-interfaceOption({ id == "bank" && component == "equipment" && option == "Show Equipment Stats" }) { player: Player ->
+interfaceOption("bank", "equipment", "Show Equipment Stats") {
     player.open("equipment_bonuses")
 //    player.setVar("equipment_banking", true)
 }
 
-interfaceOption({ id == "equipment_bonuses" && component == "bank" && option == "Show bank" && it["equipment_banking", false] }) { player: Player ->
-    player.open("bank")
+interfaceOption("equipment_bonuses", "bank", "Show bank") {
+    if (player["equipment_banking", false]) {
+        player.open("bank")
+    }
 }

@@ -27,15 +27,15 @@ interfaceSwitch({ id == "bank" && component == "inventory" && toId == id && toCo
     }
 }
 
-interfaceOption({ id == "bank" && component == "tab_1" && option == "View all" }) { player: Player ->
+interfaceOption("bank", "tab_1", "View all") {
     player["open_bank_tab"] = 1
 }
 
-interfaceOption({ id == "bank" && component.startsWith("tab_") && option == "View Tab" }) { player: Player ->
+interfaceOption("bank", "tab_#", "View Tab") {
     player["open_bank_tab"] = component.removePrefix("tab_").toInt()
 }
 
-interfaceOption({ id == "bank" && component == "item_mode" && option == "Toggle swap/insert" }) { player: Player ->
+interfaceOption("bank", "item_mode", "Toggle swap/insert") {
     val value: String = player["bank_item_mode", "swap"]
     player["bank_item_mode"] = if (value == "insert") "swap" else "insert"
 }

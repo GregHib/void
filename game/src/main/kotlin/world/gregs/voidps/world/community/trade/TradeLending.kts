@@ -26,12 +26,12 @@ playerSpawn { player: Player ->
     player.loan.itemRule = lendRestriction
 }
 
-interfaceOption({ id == "trade_main" && component == "loan_time" && option == "Specify" }) { player: Player ->
+interfaceOption("trade_main", "loan_time", "Specify") {
     val hours = intEntry("Set the loan duration in hours: (1 - 72)<br>(Enter <col=7f0000>0</col> for 'Just until logout'.)").coerceIn(0, 72)
     setLend(player, hours)
 }
 
-interfaceOption({ id == "trade_main" && component == "loan_time" && option == "‘Until Logout‘" }) { player: Player ->
+interfaceOption("trade_main", "loan_time", "‘Until Logout‘") {
     setLend(player, 0)
 }
 
@@ -41,7 +41,7 @@ fun setLend(player: Player, time: Int) {
     partner["other_lend_time"] = time
 }
 
-interfaceOption({ id == "trade_side" && component == "offer" && option == "Lend" }) { player: Player ->
+interfaceOption("trade_side", "offer", "Lend") {
     val partner = getPartner(player) ?: return@interfaceOption
     lend(player, partner, item.id, itemSlot)
 }

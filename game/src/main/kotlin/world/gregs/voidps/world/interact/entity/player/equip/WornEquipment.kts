@@ -14,22 +14,22 @@ interfaceRefresh("worn_equipment") { player: Player ->
     player.sendInventory(id)
 }
 
-interfaceOption({ id == "worn_equipment" && component == "bonuses" && option == "Show Equipment Stats" }) { player: Player ->
+interfaceOption("worn_equipment", "bonuses", "Show Equipment Stats") {
 //    player.setVar("equipment_banking", false)
     player.open("equipment_bonuses")
 }
 
-interfaceOption({ id == "worn_equipment" && component == "price" && option == "Show Price-checker" }) { player: Player ->
+interfaceOption("worn_equipment", "price", "Show Price-checker") {
     player.open("price_checker")
 }
 
-interfaceOption({ id == "worn_equipment" && component == "items" && option == "Show Items Kept on Death" }) { player: Player ->
+interfaceOption("worn_equipment", "items", "Show Items Kept on Death") {
     player.open("items_kept_on_death")
 }
 
 val logger = InlineLogger()
 
-interfaceOption({ id == "worn_equipment" && option == "*" }) { player: Player ->
+interfaceOption("worn_equipment") {
     val equipOption = getEquipmentOption(item.def, optionIndex)
     if (equipOption == null) {
         logger.info { "Unhandled equipment option $item - $optionIndex" }

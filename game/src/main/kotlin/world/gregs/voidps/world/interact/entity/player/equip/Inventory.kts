@@ -34,7 +34,7 @@ interfaceSwitch({ id == "inventory" && toId == "inventory" }) { player: Player -
     }
 }
 
-interfaceOption({ id == "inventory" && component == "inventory" }) { player: Player ->
+interfaceOption("inventory", "inventory") {
     val itemDef = item.def
     val equipOption = when (optionIndex) {
         6 -> itemDef.options.getOrNull(3)

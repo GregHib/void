@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-interfaceOption({ id == "clan_chat" && component == "loot_share" }) { player: Player ->
+interfaceOption("clan_chat", "loot_share") {
     val clan = player.clan ?: return@interfaceOption
     if (clan.lootRank == ClanRank.None) {
         player.message("LootShare is disabled by the clan owner.", ChatType.ClanChat)

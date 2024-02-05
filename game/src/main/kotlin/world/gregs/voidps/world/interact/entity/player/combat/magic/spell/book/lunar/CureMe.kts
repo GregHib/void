@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -14,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
 
 val definitions: SpellDefinitions by inject()
 
-interfaceOption({ id == "lunar_spellbook" && component == "cure_me" }) { player: Player ->
+interfaceOption("lunar_spellbook", "cure_me") {
     val spell = component
     if (!player.poisoned) {
         player.message("You are not poisoned.")

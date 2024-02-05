@@ -85,11 +85,11 @@ interfaceClose("thessalias_makeovers") { player: Player ->
     player.softTimers.stop("dressing_room")
 }
 
-interfaceOption({ id == "thessalias_makeovers" && component.startsWith("part_") }) { player: Player ->
+interfaceOption("thessalias_makeovers", "part_*") {
     player["makeover_body_part"] = component.removePrefix("part_")
 }
 
-interfaceOption({ id == "thessalias_makeovers" && component == "styles" }) { player: Player ->
+interfaceOption("thessalias_makeovers", "styles") {
     val part = player["makeover_body_part", "top"]
     val previous = fullBodyChest(player["makeover_top", 0], player.male)
     if ((part == "arms" || part == "wrists") && previous) {
@@ -110,7 +110,7 @@ interfaceOption({ id == "thessalias_makeovers" && component == "styles" }) { pla
     player["makeover_${part}"] = value
 }
 
-interfaceOption({ id == "thessalias_makeovers" && component == "colours" }) { player: Player ->
+interfaceOption("thessalias_makeovers", "colours") {
     val part = player["makeover_body_part", "top"]
     val colour = when (part) {
         "top", "arms" -> "makeover_colour_top"
@@ -120,7 +120,7 @@ interfaceOption({ id == "thessalias_makeovers" && component == "colours" }) { pl
     player[colour] = enums.get("colour_$part").getInt(itemSlot / 2)
 }
 
-interfaceOption({ id == "thessalias_makeovers" && component == "confirm" }) { player: Player ->
+interfaceOption("thessalias_makeovers", "confirm") {
     player.body.setLook(BodyPart.Chest, player["makeover_top", 0])
     player.body.setLook(BodyPart.Arms, player["makeover_arms", 0])
     player.body.setLook(BodyPart.Hands, player["makeover_wrists", 0])

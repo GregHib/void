@@ -26,7 +26,10 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 val areas: AreaDefinitions by inject()
 val definitions: SpellDefinitions by inject()
 
-interfaceOption({ id.endsWith("_spellbook") && component.endsWith("_teleport") && component != "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
+interfaceOption("*_spellbook", "*_teleport", "Cast") {
+    if (component == "lumbridge_home_teleport") {
+        return@interfaceOption
+    }
     if (player.queue.contains(ActionPriority.Normal)) {
         return@interfaceOption
     }

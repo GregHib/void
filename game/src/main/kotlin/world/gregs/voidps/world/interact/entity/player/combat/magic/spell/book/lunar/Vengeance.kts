@@ -19,7 +19,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 
 val definitions: SpellDefinitions by inject()
 
-interfaceOption({ id == "lunar_spellbook" && component == "vengeance" && option == "Cast" }) { player: Player ->
+interfaceOption("lunar_spellbook", "vengeance", "Cast") {
     val spell = component
     if (player.contains("vengeance")) {
         player.message("You already have vengeance cast.")

@@ -19,7 +19,7 @@ playerSpawn { player: Player ->
     player.sendVariable("movement")
 }
 
-interfaceOption({ id == "energy_orb" && option == "Turn Run mode on" }) { player: Player ->
+interfaceOption("energy_orb", option = "Turn Run mode on") {
     if (player.mode is Rest) {
         val walking = player["movement", "walk"] == "walk"
         toggleRun(player, !walking)
