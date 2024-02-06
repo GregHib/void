@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.characterSpellAttack
 
 playerSpawn { player: Player ->
     if (player.hasFullSet()) {
@@ -32,7 +32,10 @@ fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
     "ahrims_robe_top",
     "ahrims_robe_skirt")
 
-combatAttack({ type == "magic" && it.contains("ahrims_set_effect") && damage > 0 && random.nextInt(4) == 0 }) { _: Character ->
+characterSpellAttack { character: Character ->
+    if (!character.contains("ahrims_set_effect") || random.nextInt(4) != 0) {
+        return@characterSpellAttack
+    }
     val drain = target.levels.drain(Skill.Strength, 5)
     if (drain < 0) {
         target.setGraphic("ahrims_effect")

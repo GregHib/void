@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.timer.characterTimerStop
 import world.gregs.voidps.engine.timer.characterTimerTick
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import kotlin.math.sign
 
@@ -75,7 +75,10 @@ fun isPoisoned(id: String) = id.endsWith("_p") || id.endsWith("_p+") || id.endsW
 
 fun poisonous(source: Character, weapon: Item) = source is Player && isPoisoned(weapon.id)
 
-combatAttack({ damage > 0 && poisonous(it, weapon) }) { source: Character ->
+characterCombatAttack { source: Character ->
+    if (damage <= 0 || !poisonous(source, weapon)) {
+        return@characterCombatAttack
+    }
     val poison = 20 + weapon.id.count { it == '+' } * 10
     if (type == "range" && random.nextDouble() < 0.125) {
         source.poison(target, if (weapon.id == "emerald_bolts_e") 50 else poison)

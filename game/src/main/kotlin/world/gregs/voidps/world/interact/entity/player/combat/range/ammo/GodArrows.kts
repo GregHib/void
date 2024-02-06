@@ -8,7 +8,10 @@ import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 
-combatAttack({ type == "range" && it.ammo == "saradomin_arrows" }) { source: Player ->
+combatAttack { source: Player ->
+    if (type != "range" || source.ammo != "saradomin_arrows") {
+        return@combatAttack
+    }
     val chance = if (weapon.id == "saradomin_bow") 0.2 else 0.1
     if (random.nextDouble() < chance) {
         // water_strike
@@ -17,7 +20,10 @@ combatAttack({ type == "range" && it.ammo == "saradomin_arrows" }) { source: Pla
     }
 }
 
-combatAttack({ type == "range" && it.ammo == "guthix_arrows" }) { source: Player ->
+combatAttack { source: Player ->
+    if (type != "range" || source.ammo != "guthix_arrows") {
+        return@combatAttack
+    }
     val chance = if (weapon.id == "guthix_bow") 0.2 else 0.1
     if (random.nextDouble() < chance) {
         // earth_strike
@@ -26,7 +32,10 @@ combatAttack({ type == "range" && it.ammo == "guthix_arrows" }) { source: Player
     }
 }
 
-combatAttack({ type == "range" && it.ammo == "zamorak_arrows" }) { source: Player ->
+combatAttack { source: Player ->
+    if (type != "range" || source.ammo != "zamorak_arrows") {
+        return@combatAttack
+    }
     val chance = if (weapon.id == "zamorak_bow") 0.2 else 0.1
     if (random.nextDouble() < chance) {
         // fire_strike

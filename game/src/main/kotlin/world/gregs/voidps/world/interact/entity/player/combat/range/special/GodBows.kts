@@ -45,7 +45,10 @@ var Player.restoration: Int
         this["restoration"] = value
     }
 
-combatAttack({ isGodBow(weapon) && special }) { source: Player ->
+combatAttack { source: Player ->
+    if (!isGodBow(weapon) || !special) {
+        return@combatAttack
+    }
     when (weapon.id) {
         "zamorak_bow" -> target.hit(source, weapon, type, CLIENT_TICKS.toTicks(delay), spell, special, damage)
         "saradomin_bow" -> {

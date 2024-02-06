@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
-import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.characterSpellAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.spellSwing
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
@@ -37,7 +37,7 @@ combatSwing(priority = Priority.LOWEST) { player: Player ->
     }
 }
 
-combatAttack({ spell.startsWith("miasmic_") && damage > 0 }) { source: Character ->
+characterSpellAttack("miasmic_*") { _: Character ->
     val seconds: Int = definitions.get(spell)["effect_seconds"]
     target.start("miasmic", seconds, epochSeconds())
 }

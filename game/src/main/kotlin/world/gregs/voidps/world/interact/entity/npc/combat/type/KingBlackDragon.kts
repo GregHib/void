@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.hit.npcCombatAttack
 import world.gregs.voidps.world.interact.entity.combat.npcSwing
 import world.gregs.voidps.world.interact.entity.effect.freeze
 import world.gregs.voidps.world.interact.entity.player.toxin.poison
@@ -56,7 +56,7 @@ fun nearestTile(source: Character, target: Character): Tile {
     return centre.add(direction).add(direction)
 }
 
-combatAttack({ it.id == "king_black_dragon" }) { npc: NPC ->
+npcCombatAttack("king_black_dragon") { npc: NPC ->
     when (spell) {
         "toxic" -> npc.poison(target, 80)
         "ice" -> npc.freeze(target, 10)

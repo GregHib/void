@@ -16,7 +16,7 @@ import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
-import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.block
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
@@ -34,7 +34,7 @@ weaponSwing("korasis_sword", Priority.LOW) { player: Player ->
     delay = 5
 }
 
-combatAttack({ !blocked && target is Player && isKorasisSword(target.weapon) }) { _: Character ->
+block("korasis_sword") {
     target.setAnimation("korasis_sword_block", delay)
     blocked = true
 }

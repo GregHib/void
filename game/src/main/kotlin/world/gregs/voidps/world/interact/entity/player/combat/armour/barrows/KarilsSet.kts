@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
 
 playerSpawn { player: Player ->
     if (player.hasFullSet()) {
@@ -32,7 +32,10 @@ fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
     "karils_top",
     "karils_skirt")
 
-combatAttack({ type == "range" && damage > 0 && target is Player && weapon.id.startsWith("karils_crossbow") && it.contains("karils_set_effect") && random.nextInt(4) == 0 }) { _: Character ->
+characterCombatAttack { character: Character ->
+    if (type != "range" || damage <= 0 || target !is Player || !weapon.id.startsWith("karils_crossbow") || !character.contains("karils_set_effect") || random.nextInt(4) != 0) {
+        return@characterCombatAttack
+    }
     if (target.levels.drain(Skill.Agility, multiplier = 0.20) < 0) {
         target.setGraphic("karils_effect")
     }

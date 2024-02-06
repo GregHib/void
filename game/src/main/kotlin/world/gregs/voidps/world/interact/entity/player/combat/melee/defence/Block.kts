@@ -6,16 +6,20 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.world.activity.skill.slayer.race
-import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.block
 
-combatAttack({ !blocked && target is Player }, Priority.LOWEST) { _: Character ->
-    target.setAnimation("player_block")
-    blocked = true
+block(Priority.LOWEST) { _: Character ->
+    if (target is Player) {
+        target.setAnimation("player_block")
+        blocked = true
+    }
 }
 
-combatAttack({ !blocked && target is NPC }, Priority.LOWEST) { _: Character ->
-    val npc = target as NPC
-    val animation = if (npc.race.isNotEmpty()) "${npc.race}_hit" else npc.def.getOrNull("hit_anim") ?: return@combatAttack
-    target.setAnimation(animation)
-    blocked = true
+block(Priority.LOWEST) { _: Character ->
+    if (target is NPC) {
+        val npc = target as NPC
+        val animation = if (npc.race.isNotEmpty()) "${npc.race}_hit" else npc.def.getOrNull("hit_anim") ?: return@block
+        target.setAnimation(animation)
+        blocked = true
+    }
 }

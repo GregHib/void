@@ -1,23 +1,18 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.block
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
-import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.combat.weaponSwing
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 
-fun isDragonDagger(item: Item) = item.id.startsWith("dragon_dagger") || item.id.startsWith("corrupt_dragon_dagger")
-
-weaponSwing("*dragon_dagger*", Priority.LOW) { player: Player ->
+weaponSwing("dragon_dagger*", "corrupt_dragon_dagger*", priority = Priority.LOW) { player: Player ->
     player.setAnimation("dragon_dagger_${
         when (player.attackType) {
             "slash" -> "slash"
@@ -28,7 +23,7 @@ weaponSwing("*dragon_dagger*", Priority.LOW) { player: Player ->
     delay = 4
 }
 
-combatAttack({ !blocked && target is Player && isDragonDagger(target.weapon) }) { _: Character ->
+block("dragon_dagger*", "corrupt_dragon_dagger*") {
     target.setAnimation("dragon_dagger_block", delay)
     blocked = true
 }

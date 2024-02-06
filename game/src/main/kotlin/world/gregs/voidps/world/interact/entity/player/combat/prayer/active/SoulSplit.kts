@@ -17,7 +17,10 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun usingSoulSplit(player: Player) = player.praying("soul_split") && player.levels.getOffset(Skill.Constitution) < 0
 
-combatAttack({ usingSoulSplit(it) && damage >= 5 && type != "deflect" && type != "cannon" && !target.isFamiliar }) { player: Player ->
+combatAttack { player: Player ->
+    if (!usingSoulSplit(player) || damage < 5 || type == "deflect" || type == "cannon" || target.isFamiliar) {
+        return@combatAttack
+    }
     val distance = player.tile.distanceTo(target)
     player.shoot("soul_split", target, height = 10, endHeight = 10)
     val ticks = Hit.magicDelay(distance)

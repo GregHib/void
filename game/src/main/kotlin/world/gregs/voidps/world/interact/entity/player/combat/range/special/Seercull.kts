@@ -42,11 +42,12 @@ combatHit({ source is Player && isSeercull(weapon) && special }) { character: Ch
     character.setGraphic("seercull_special_hit")
 }
 
-combatAttack({ isSeercull(weapon) && special }) { _: Player ->
-    if (!target["soulshot", false]) {
-        target["soulshot"] = true
-        target.levels.drain(Skill.Magic, damage / 10)
+combatAttack { _: Player ->
+    if (!isSeercull(weapon) || !special || target["soulshot", false]) {
+        return@combatAttack
     }
+    target["soulshot"] = true
+    target.levels.drain(Skill.Magic, damage / 10)
 }
 
 levelChange({ skill == Skill.Magic && it["soulshot", false] && to >= it.levels.getMax(skill) }) { character: Character ->

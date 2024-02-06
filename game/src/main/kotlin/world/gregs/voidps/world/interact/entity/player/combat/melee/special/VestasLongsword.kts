@@ -1,20 +1,15 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.block
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
-import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.combat.weaponSwing
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
-
-fun isVestas(item: Item) = item.id.endsWith("vestas_longsword")
 
 weaponSwing("*vestas_longsword", Priority.LOW) { player: Player ->
     player.setAnimation("vestas_longsword_${
@@ -27,7 +22,7 @@ weaponSwing("*vestas_longsword", Priority.LOW) { player: Player ->
     delay = 5
 }
 
-combatAttack({ !blocked && target is Player && isVestas(target.weapon) }) { _: Character ->
+block("*vestas_longsword") {
     target.setAnimation("vestas_longsword_block", delay)
     blocked = true
 }

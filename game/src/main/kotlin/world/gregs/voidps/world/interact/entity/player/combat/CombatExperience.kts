@@ -16,7 +16,10 @@ import kotlin.math.floor
 
 val definitions: SpellDefinitions by inject()
 
-combatAttack({ damage > 0 }) { player: Player ->
+combatAttack { player: Player ->
+    if (damage <= 0) {
+        return@combatAttack
+    }
     if (type == "magic" || type == "blaze") {
         val base = definitions.get(spell).experience
         if (player["defensive_cast", false]) {

@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.characterSpellAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.spellSwing
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
@@ -25,7 +25,9 @@ spellSwing("smoke_*", Priority.LOW) { player: Player ->
     delay = 5
 }
 
-combatAttack({ spell.startsWith("smoke_") && damage > 0 && random.nextDouble() <= 0.2 }) { source: Character ->
-    val damage: Int = definitions.get(spell)["poison_damage"]
-    source.poison(target, damage)
+characterSpellAttack("smoke_*") { source: Character ->
+    if (random.nextDouble() <= 0.2) {
+        val damage: Int = definitions.get(spell)["poison_damage"]
+        source.poison(target, damage)
+    }
 }

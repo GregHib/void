@@ -29,23 +29,43 @@ data class CombatAttack(
     var blocked = false
 }
 
-@JvmName("combatAttackPlayer")
-fun combatAttack(filter: CombatAttack.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Player) -> Unit) {
-    on<CombatAttack>(filter, priority, block)
+fun combatAttack(priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Player) -> Unit) {
+    on<CombatAttack>(priority = priority, block = block)
 }
 
-@JvmName("combatAttackNPC")
-fun combatAttack(filter: CombatAttack.(NPC) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(NPC) -> Unit) {
-    on<CombatAttack>(filter, priority, block)
+fun npcCombatAttack(npc: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(NPC) -> Unit) {
+    on<CombatAttack>({ wildcardEquals(npc, it.id) }, priority, block)
 }
 
-@JvmName("combatAttackCharacter")
-fun combatAttack(filter: CombatAttack.(Character) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Character) -> Unit) {
-    on<CombatAttack>(filter, priority, block)
+fun characterCombatAttack(priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Character) -> Unit) {
+    on<CombatAttack>(priority = priority, block = block)
 }
 
-fun block(weapon: String = "*", block: suspend CombatAttack.(Character) -> Unit) {
-    on<CombatAttack>({ !blocked && wildcardEquals(weapon, target.weapon.id) }) { character: Character ->
+fun characterSpellAttack(spell: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Character) -> Unit) {
+    on<CombatAttack>({ damage > 0 && type == "magic" && wildcardEquals(spell, this.spell) }, priority, block)
+}
+
+fun characterSpellAttack(spells: Set<String>, priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Character) -> Unit) {
+    if (spells.any { it.contains("*") || it.contains("#") }) {
+        throw IllegalArgumentException("Spell collections cannot contain wildcards.")
+    }
+    on<CombatAttack>({ damage > 0 && type == "magic" && spells.contains(spell) }, priority, block)
+}
+
+fun block(vararg weapons: String, priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Character) -> Unit) {
+    for (weapon in weapons) {
+        on<CombatAttack>({ !blocked && wildcardEquals(weapon, target.weapon.id) }, priority) { character: Character ->
+            block.invoke(this, character)
+        }
+    }
+}
+
+fun block(weapon: String, priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Character) -> Unit) {
+    on<CombatAttack>({ !blocked && wildcardEquals(weapon, target.weapon.id) }, priority) { character: Character ->
         block.invoke(this, character)
     }
+}
+
+fun block(priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Character) -> Unit) {
+    on<CombatAttack>({ !blocked }, priority, block)
 }

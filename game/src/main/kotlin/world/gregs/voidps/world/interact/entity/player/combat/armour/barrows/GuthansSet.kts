@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
 
 playerSpawn { player: Player ->
     if (player.hasFullSet()) {
@@ -32,7 +32,9 @@ fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
     "guthans_platebody",
     "guthans_chainskirt")
 
-combatAttack({ type == "melee" && it.contains("guthans_set_effect") && random.nextInt(4) == 0 }) { character: Character ->
-    character.levels.boost(Skill.Constitution, damage)
-    target.setGraphic("guthans_effect")
+characterCombatAttack { character: Character ->
+    if (type == "melee" && character.contains("guthans_set_effect") && random.nextInt(4) == 0) {
+        character.levels.boost(Skill.Constitution, damage)
+        target.setGraphic("guthans_effect")
+    }
 }

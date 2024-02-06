@@ -14,9 +14,10 @@ combatAttack(priority = Priority.LOWER) { player: Player ->
     player.playSound(calculateHitSound(target), delay)
 }
 
-combatAttack({ target is Player }, Priority.LOWER) { _: Character ->
-    val player = target as Player
-    player.playSound(calculateHitSound(target), delay)
+combatAttack(Priority.LOWER) {
+    if (target is Player) {
+        target.playSound(calculateHitSound(target), delay)
+    }
 }
 
 fun calculateHitSound(target: Character): String {
