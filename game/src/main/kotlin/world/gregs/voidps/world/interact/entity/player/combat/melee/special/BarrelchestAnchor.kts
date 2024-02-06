@@ -7,18 +7,18 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.combat.weaponSwing
 import world.gregs.voidps.world.interact.entity.player.combat.melee.drainByDamage
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 fun isAnchor(item: Item) = item.id == "barrelchest_anchor"
 
-combatSwing({ !swung() && isAnchor(it.weapon) }, Priority.LOW) { player: Player ->
+weaponSwing("barrelchest_anchor", Priority.LOW) { player: Player ->
     player.setAnimation("anchor_attack")
     player.hit(target)
     delay = 6
@@ -29,10 +29,10 @@ combatAttack({ !blocked && target is Player && isAnchor(target.weapon) }) { _: C
     blocked = true
 }
 
-combatSwing({ !swung() && it.specialAttack && isAnchor(it.weapon) }) { player: Player ->
+specialAttackSwing("barrelchest_anchor") { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
         delay = -1
-        return@combatSwing
+        return@specialAttackSwing
     }
     player.setAnimation("sunder")
     player.setGraphic("sunder")

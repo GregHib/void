@@ -4,27 +4,22 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
-import world.gregs.voidps.world.interact.entity.combat.fightStyle
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-fun isMagicLong(weapon: Item) = weapon.id.startsWith("magic_longbow") || weapon.id.startsWith("magic_composite_bow")
-
-combatSwing({ player -> !swung() && player.fightStyle == "range" && player.specialAttack && isMagicLong(player.weapon) }, Priority.MEDIUM) { player: Player ->
+specialAttackSwing("magic_longbow*", "magic_composite_bow*", style = "range", priority = Priority.MEDIUM) { player: Player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, 350)) {
         delay = -1
-        return@combatSwing
+        return@specialAttackSwing
     }
     player.setAnimation("bow_accurate")
     player.setGraphic("special_arrow_shoot")

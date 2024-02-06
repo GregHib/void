@@ -70,7 +70,7 @@ on<CombatStop> { character: Character ->
     character.target = null
 }
 
-combatSwing { character: Character ->
+on<CombatSwing> { character: Character ->
     target.start("under_attack", 16)
     if (target.inSingleCombat) {
         target.attackers.clear()

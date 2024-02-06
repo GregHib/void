@@ -20,11 +20,10 @@ import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 fun isKorasisSword(item: Item) = item.id == "korasis_sword"
 
-combatSwing({ !swung() && isKorasisSword(it.weapon) }, Priority.LOW) { player: Player ->
+weaponSwing("korasis_sword", Priority.LOW) { player: Player ->
     player.setAnimation("korasis_sword_${
         when (player.attackType) {
             "chop" -> "chop"
@@ -46,10 +45,10 @@ val players: Players by inject()
 val npcs: NPCs by inject()
 val lineOfSight: LineValidator by inject()
 
-combatSwing({ !swung() && it.specialAttack && isKorasisSword(it.weapon) }) { player: Player ->
+specialAttackSwing("korasis_sword") { player: Player ->
     if (!drainSpecialEnergy(player, 600)) {
         delay = -1
-        return@combatSwing
+        return@specialAttackSwing
     }
     player["korasi_chain"] = mutableSetOf(target.index)
     player.setAnimation("disrupt")

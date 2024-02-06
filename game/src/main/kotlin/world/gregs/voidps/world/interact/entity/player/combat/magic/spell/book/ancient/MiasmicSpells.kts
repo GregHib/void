@@ -14,12 +14,13 @@ import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.spellSwing
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val definitions: SpellDefinitions by inject()
 
-combatSwing({ player -> !swung() && player.spell.startsWith("miasmic_") }, Priority.LOW) { player: Player ->
+spellSwing("miasmic_*", Priority.LOW) { player: Player ->
     val spell = player.spell
     player.setAnimation("${spell}_cast")
     player.setGraphic("${spell}_cast")
@@ -30,8 +31,10 @@ combatSwing({ player -> !swung() && player.spell.startsWith("miasmic_") }, Prior
 
 fun meleeOrRanged(type: String) = type == "range" || type == "melee"
 
-combatSwing({ delay != null && delay!! > 0 && it.hasClock("miasmic") && meleeOrRanged(it.fightStyle) }, Priority.LOWEST) { _: Player ->
-    delay = delay!! * 2
+combatSwing(priority = Priority.LOWEST) { player: Player ->
+    if(delay != null && delay!! > 0 && player.hasClock("miasmic") && meleeOrRanged(player.fightStyle)) {
+        delay = delay!! * 2
+    }
 }
 
 combatAttack({ spell.startsWith("miasmic_") && damage > 0 }) { source: Character ->

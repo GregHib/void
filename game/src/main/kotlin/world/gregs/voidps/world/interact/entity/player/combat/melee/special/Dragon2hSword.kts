@@ -7,26 +7,21 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.world.interact.entity.combat.Target
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
-
-fun isDragon2hSword(item: Item) = item.id.startsWith("dragon_2h_sword")
 
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-combatSwing({ !swung() && it.specialAttack && isDragon2hSword(it.weapon) }) { player: Player ->
+specialAttackSwing("dragon_2h_sword*") { player: Player ->
     if (!drainSpecialEnergy(player, 600)) {
         delay = -1
-        return@combatSwing
+        return@specialAttackSwing
     }
     player.setAnimation("powerstab")
     player.setGraphic("powerstab")

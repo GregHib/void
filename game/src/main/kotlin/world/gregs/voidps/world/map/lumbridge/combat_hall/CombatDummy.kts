@@ -31,10 +31,12 @@ for (type in listOf("magic", "melee")) {
         cancel()
     }
 
-    combatSwing({ target is NPC && target.id == "${type}_dummy" && it.fightStyle != type }, Priority.HIGHER) { player: Player ->
-        player.message("You can only use ${type.toTitleCase()} against this dummy.")
-        player.mode = EmptyMode
-        delay = -1
+    combatSwing(priority = Priority.HIGHER) { player: Player ->
+        if (target is NPC && target.id == "${type}_dummy" && player.fightStyle != type) {
+            player.message("You can only use ${type.toTitleCase()} against this dummy.")
+            player.mode = EmptyMode
+            delay = -1
+        }
     }
 
     levelChange({ it.id == "${type}_dummy" && skill == Skill.Constitution && to <= 10 }, Priority.HIGH) { npc: NPC ->

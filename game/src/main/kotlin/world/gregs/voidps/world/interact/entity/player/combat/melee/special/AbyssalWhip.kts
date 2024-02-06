@@ -8,10 +8,10 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.combat.weaponSwing
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
@@ -19,10 +19,10 @@ import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 
 fun isWhip(item: Item) = item.id.startsWith("abyssal_whip")
 
-combatSwing({ !swung() && isWhip(it.weapon) }, Priority.LOW) { player: Player ->
+weaponSwing("abyssal_whip*", Priority.LOW) { player: Player ->
     if (player.specialAttack && !drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
         delay = -1
-        return@combatSwing
+        return@weaponSwing
     }
     player.setAnimation("whip_${if (player.specialAttack) "special" else player.attackType}")
     if (player.hit(target) != -1 && player.specialAttack) {

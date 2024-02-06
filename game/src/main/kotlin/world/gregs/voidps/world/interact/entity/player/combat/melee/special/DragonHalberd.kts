@@ -8,23 +8,18 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.character.size
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
-
-fun isDragonHalberd(item: Item) = item.id == "dragon_halberd"
 
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-combatSwing({ !swung() && it.specialAttack && isDragonHalberd(it.weapon) }) { player: Player ->
+specialAttackSwing("dragon_halberd") { player: Player ->
     if (!drainSpecialEnergy(player, 300)) {
         delay = -1
-        return@combatSwing
+        return@specialAttackSwing
     }
     player.setAnimation("sweep")
     player.setGraphic("sweep")

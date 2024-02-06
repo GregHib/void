@@ -7,19 +7,20 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.spellSwing
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.effect.freeze
-import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val definitions: SpellDefinitions by inject()
 
 fun isBindSpell(spell: String) = spell == "bind" || spell == "snare" || spell == "entangle"
 
-combatSwing({ player -> !swung() && isBindSpell(player.spell) }, Priority.LOW) { player: Player ->
+val bindSpells = setOf("bind", "snare", "entangle")
+
+spellSwing(bindSpells, Priority.LOW) { player: Player ->
     player.setAnimation("bind${if (player.weapon.def["category", ""] == "staff") "_staff" else ""}")
     player.setGraphic("bind_cast")
     player.shoot(id = "bind", target = target, endHeight = 0)

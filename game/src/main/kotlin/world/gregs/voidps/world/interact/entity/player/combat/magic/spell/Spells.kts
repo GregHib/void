@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
+import world.gregs.voidps.world.interact.entity.combat.characterSpellSwing
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.player.combat.melee.multiTargetHit
@@ -15,14 +16,16 @@ combatHit({ spell.isNotBlank() }) { character: Character ->
 /**
  * Clear one use spell
  */
-combatSwing({ it.contains("spell") }, Priority.LOWEST) { player: Player ->
+combatSwing(priority = Priority.LOWEST) { player: Player ->
     player.clear("spell")
 }
 
-combatSwing({ (delay ?: -1) >= 0 && it.spell.isNotBlank() }, Priority.LOWEST) { character: Character ->
-    character.clear("spell")
-    if (character is Player && !character.contains("autocast")) {
-        character.queue.clearWeak()
+characterSpellSwing(priority = Priority.LOWEST) { character: Character ->
+    if ((delay ?: -1) >= 0) {
+        character.clear("spell")
+        if (character is Player && !character.contains("autocast")) {
+            character.queue.clearWeak()
+        }
     }
 }
 

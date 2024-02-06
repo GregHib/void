@@ -6,9 +6,9 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.spellSwing
 import world.gregs.voidps.world.interact.entity.effect.freeze
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
@@ -16,7 +16,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val definitions: SpellDefinitions by inject()
 
-combatSwing({ player -> !swung() && player.spell.startsWith("ice_") }, Priority.LOW) { player: Player ->
+spellSwing("ice_*", Priority.LOW) { player: Player ->
     val spell = player.spell
     player.setAnimation("ancient_spell${if (Spell.isMultiTarget(spell)) "_multi" else ""}")
     player.shoot(spell, target)

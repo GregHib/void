@@ -44,9 +44,11 @@ spellOnNPCApproach("*_spellbook", priority = Priority.HIGH) {
     cancel()
 }
 
-combatSwing({ it.contains("one_time") }) { player: Player ->
-    player.mode = EmptyMode
-    player.clear("one_time")
+combatSwing { player: Player ->
+    if (player.contains("one_time")) {
+        player.mode = EmptyMode
+        player.clear("one_time")
+    }
 }
 
 /**

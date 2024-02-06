@@ -6,14 +6,14 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.combat.weaponSwing
 
 fun isGreatAxe(item: Item) = item.id.startsWith("dharoks_greataxe") || item.id == "balmung"
 
-combatSwing({ !swung() && isGreatAxe(it.weapon) }, Priority.LOW) { player: Player ->
+weaponSwing("dharoks_greataxe*", "balmung", priority = Priority.LOW) { player: Player ->
     player.setAnimation("dharoks_greataxe_${
         when (player.attackType) {
             "smash" -> "smash"
