@@ -5,18 +5,18 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
-import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.hit.specialAttackHit
+import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
+import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.combat.weaponSwing
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
-
-fun isDarkBow(weapon: Item) = weapon.id.startsWith("dark_bow")
 
 specialAttackSwing("dark_bow*", style = "range", priority = Priority.HIGHISH) { player: Player ->
     val dragon = player.ammo == "dragon_arrow"
@@ -46,8 +46,7 @@ specialAttackSwing("dark_bow*", style = "range", priority = Priority.HIGHISH) { 
     player.hit(target)
 }
 
-combatHit({ source is Player && source.fightStyle == "range" && isDarkBow(weapon) && special }) { character: Character ->
-    source as Player
+specialAttackHit("dark_bow*", "range") { character: Character ->
     source.playSound("descent_of_darkness")
     source.playSound("descent_of_darkness", delay = 20)
     character.setGraphic("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_hit")

@@ -44,6 +44,8 @@ maxLevelChange({ to > from && !it["skip_level_up", false] }) { player: Player ->
     }
 }
 
-combatHit({ !(it.menu ?: it.dialogue).isNullOrBlank() }) { player: Player ->
-    player.closeInterfaces()
+combatHit { player: Player ->
+    if (!(player.menu ?: player.dialogue).isNullOrBlank()) {
+        player.closeInterfaces()
+    }
 }

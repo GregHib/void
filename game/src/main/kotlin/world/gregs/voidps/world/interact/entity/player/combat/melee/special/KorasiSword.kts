@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
@@ -17,11 +16,9 @@ import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.block
-import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.hit.specialAttackHit
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-
-fun isKorasisSword(item: Item) = item.id == "korasis_sword"
 
 weaponSwing("korasis_sword", Priority.LOW) { player: Player ->
     player.setAnimation("korasis_sword_${
@@ -59,14 +56,17 @@ specialAttackSwing("korasis_sword") { player: Player ->
     delay = 5
 }
 
-combatHit({ special && isKorasisSword(weapon) }) { character: Character ->
+specialAttackHit("korasis_sword") { character: Character ->
     character.setGraphic("disrupt_hit")
 }
 
-combatHit({ target -> special && isKorasisSword(weapon) && target.inMultiCombat }) { target: Character ->
+specialAttackHit("korasis_sword") { target: Character ->
+    if (!target.inMultiCombat) {
+        return@specialAttackHit
+    }
     val chain: MutableSet<Int> = source["korasi_chain", mutableSetOf()]
     if (chain.size >= 3) {
-        return@combatHit
+        return@specialAttackHit
     }
     val characters = if (target is Player) players else npcs
     for (tile in target.tile.spiral(4)) {
@@ -81,10 +81,10 @@ combatHit({ target -> special && isKorasisSword(weapon) && target.inMultiCombat 
             val hit = damage / when (chain.size) {
                 2 -> 2
                 3 -> 4
-                else -> return@combatHit
+                else -> return@specialAttackHit
             }
             source.hit(character, damage = hit, weapon = weapon, type = type, special = true)
-            return@combatHit
+            return@specialAttackHit
         }
     }
 }

@@ -6,11 +6,13 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.world.interact.entity.combat.characterSpellSwing
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
-import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
+import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.player.combat.melee.multiTargetHit
 
-combatHit({ spell.isNotBlank() }) { character: Character ->
-    character.setGraphic("${spell}_hit")
+characterCombatHit { character: Character ->
+    if (spell.isNotBlank()) {
+        character.setGraphic("${spell}_hit")
+    }
 }
 
 /**

@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
-import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.hit.weaponHit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.combat.weaponSwing
 import world.gregs.voidps.world.interact.entity.player.combat.melee.multiTargetHit
@@ -44,7 +44,7 @@ weaponSwing("*chinchompa", style = "range", priority = Priority.LOW) { player: P
     delay = player["attack_speed", 4] - if (player.attackType == "medium_fuse") 1 else 0
 }
 
-combatHit({ source is Player && isChinchompa(weapon) }) { character: Character ->
+weaponHit("*chinchompa", "range") { character: Character ->
     source as Player
     source.playSound("chinchompa_explode", delay = 40)
     character.setGraphic("chinchompa_hit")

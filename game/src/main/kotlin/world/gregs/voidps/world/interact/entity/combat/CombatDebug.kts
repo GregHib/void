@@ -15,9 +15,9 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
-import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 
 val npcDefinitions: NPCDefinitions by inject()
 val eventHandler: EventHandlerStore by inject()
@@ -58,7 +58,7 @@ on<CombatSwing>({ it["debug", false] || target["debug", false] }, Priority.HIGHE
     player.message("---- Swing (${character.charName}) -> (${target.charName}) -----")
 }
 
-combatHit({ debug(source, it) }, Priority.LOWEST) { character: Character ->
+on<CombatHit>({ debug(source, it) }, Priority.LOWEST) { character: Character ->
     val player = if (character["debug", false] && character is Player) character else source as Player
     val message = "Damage: $damage ($type, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
     player.message(message)

@@ -7,6 +7,8 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
 
 /**
  * Damage done by [source] to the emitter
@@ -26,18 +28,32 @@ data class CombatHit(
     val special: Boolean
 ) : Event
 
-
-@JvmName("combatHitPlayer")
-fun combatHit(filter: CombatHit.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend CombatHit.(Player) -> Unit) {
-    on<CombatHit>(filter, priority, block)
+fun combatHit(block: suspend CombatHit.(Player) -> Unit) {
+    on<CombatHit>(block = block)
 }
 
-@JvmName("combatHitNPC")
-fun combatHit(filter: CombatHit.(NPC) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend CombatHit.(NPC) -> Unit) {
-    on<CombatHit>(filter, priority, block)
+fun npcCombatHit(block: suspend CombatHit.(NPC) -> Unit) {
+    on<CombatHit>(block = block)
 }
 
-@JvmName("combatHitCharacter")
-fun combatHit(filter: CombatHit.(Character) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend CombatHit.(Character) -> Unit) {
-    on<CombatHit>(filter, priority, block)
+fun characterCombatHit(block: suspend CombatHit.(Character) -> Unit) {
+    on<CombatHit>(block = block)
+}
+
+fun weaponHit(weapon: String = "*", type: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatHit.(Character) -> Unit) {
+    on<CombatHit>({ wildcardEquals(weapon, this.weapon.id) && wildcardEquals(type, this.type) }, priority, block)
+}
+
+fun specialAttackHit(weapon: String = "*", type: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatHit.(Character) -> Unit) {
+    on<CombatHit>({ special && wildcardEquals(weapon, this.weapon.id) && wildcardEquals(type, this.type) }, priority, block)
+}
+
+fun specialAttackHit(vararg weapons: String, type: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatHit.(Character) -> Unit) {
+    for (weapon in weapons) {
+        on<CombatHit>({ special && wildcardEquals(weapon, this.weapon.id) && wildcardEquals(type, this.type) }, priority, block)
+    }
+}
+
+fun prayerHit(prayer: String, priority: Priority = Priority.MEDIUM, block: suspend CombatHit.(Character) -> Unit) {
+    on<CombatHit>({ source.praying(prayer) }, priority, block)
 }

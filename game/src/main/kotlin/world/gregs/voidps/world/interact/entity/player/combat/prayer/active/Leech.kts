@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
+import world.gregs.voidps.world.interact.entity.combat.hit.prayerHit
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.*
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
@@ -63,11 +64,14 @@ fun getLevel(target: Character, skill: Skill): Int {
     return target.levels.getMax(skill)
 }
 
-combatHit({ source is Player && source.praying("sap_spirit") }) { target: Player ->
+combatHit { target: Player ->
+    if (source !is Player || !source.praying("sap_spirit")) {
+        return@combatHit
+    }
     if (random.nextDouble() >= 0.25) {
         return@combatHit
     }
-    val player = source as Player
+    val player = source
     val energy = target.specialAttackEnergy
     if (energy <= 0) {
         weakMessage(player, true, "spirit")
@@ -77,11 +81,14 @@ combatHit({ source is Player && source.praying("sap_spirit") }) { target: Player
     cast(player, target, true, "spirit")
 }
 
-combatHit({ source is Player && source.praying("special_attack") }) { target: Player ->
+combatHit { target: Player ->
+    if (source !is Player || !source.praying("special_attack")) {
+        return@combatHit
+    }
     if (random.nextDouble() >= 0.15) {
         return@combatHit
     }
-    val player = source as Player
+    val player = source
     var energy = target.specialAttackEnergy
     if (energy <= 0) {
         weakMessage(player, true, "spirit")
@@ -100,11 +107,14 @@ combatHit({ source is Player && source.praying("special_attack") }) { target: Pl
     boostMessage(player, "Special Attack")
 }
 
-combatHit({ source is Player && source.praying("leech_energy") }) { target: Player ->
+combatHit { target: Player ->
+    if (source !is Player || !source.praying("leech_energy")) {
+        return@combatHit
+    }
     if (random.nextDouble() >= 0.15) {
         return@combatHit
     }
-    val player = source as Player
+    val player = source
     var energy = target.runEnergy
     if (energy <= 0) {
         weakMessage(player, false, "run_energy")
@@ -123,13 +133,13 @@ combatHit({ source is Player && source.praying("leech_energy") }) { target: Play
     boostMessage(player, "Run Energy")
 }
 
-fun cast(player: Player, target: Character, sap: Boolean, name: String) {
-    player.queue("leech", 1) {
+fun cast(source: Character, target: Character, sap: Boolean, name: String) {
+    source.queue("leech", 1) {
         val type = if (sap) "sap" else "leech"
-        player.setAnimation(type)
-        player.setGraphic("cast_${type}_${name}")
-        player.shoot("proj_${type}_${name}", target)
-        target.setGraphic("land_${type}_${name}", delay = Hit.magicDelay(player.tile.distanceTo(target)) * 30)
+        source.setAnimation(type)
+        source.setGraphic("cast_${type}_${name}")
+        source.shoot("proj_${type}_${name}", target)
+        target.setGraphic("land_${type}_${name}", delay = Hit.magicDelay(source.tile.distanceTo(target)) * 30)
     }
 }
 
@@ -148,22 +158,21 @@ fun set(prayer: String, skill: Skill) {
         player.clear("${skill.name.lowercase()}_leech_msg")
     }
 
-    combatHit({ source is Player && source.praying(prayer) }, Priority.HIGHER) { target: Character ->
-        val player = source as Player
+    prayerHit(prayer, Priority.HIGHER) { target: Character ->
         if (random.nextDouble() >= if (sap) 0.25 else 0.15) {
-            return@combatHit
+            return@prayerHit
         }
         val name = skill.name.lowercase()
         val drain = target.getDrain(skill) + 1
         if (drain * 100.0 / getLevel(target, skill) > if (sap) 10 else 15) {
-            weakMessage(player, sap, name)
-            return@combatHit
+            weakMessage(source, sap, name)
+            return@prayerHit
         }
 
-        cast(player, target, sap, name)
+        cast(source, target, sap, name)
 
         if (sap) {
-            player.message("Your curse drains ${skill.name} from the enemy, boosting your ${skill.name}.")
+            source.message("Your curse drains ${skill.name} from the enemy, boosting your ${skill.name}.")
         }
         if (sap && skill == Skill.Attack) {
             target.setDrain(Skill.Attack, drain, 10)
@@ -175,36 +184,36 @@ fun set(prayer: String, skill: Skill) {
         target.updateBonus(skill)
 
         if (!sap) {
-            val leech = player.getLeech(skill) + 1
-            if (leech * 100.0 / player.levels.getMax(skill) > 5) {
-                drainMessage(player, name)
-                return@combatHit
+            val leech = source.getLeech(skill) + 1
+            if (leech * 100.0 / source.levels.getMax(skill) > 5) {
+                drainMessage(source, name)
+                return@prayerHit
             }
-            boostMessage(player, skill.name)
-            player.setLeech(skill, leech)
-            player.updateBonus(skill)
-            player.softTimers.startIfAbsent("prayer_bonus_drain")
+            boostMessage(source, skill.name)
+            source.setLeech(skill, leech)
+            source.updateBonus(skill)
+            source.softTimers.startIfAbsent("prayer_bonus_drain")
         }
     }
 }
 
-fun weakMessage(player: Player, sap: Boolean, name: String) {
+fun weakMessage(source: Character, sap: Boolean, name: String) {
     val key = "${name}_drain_msg"
-    if (!player[key, false]) {
-        player[key] = true
-        player.message("Your opponent has been weakened so much that your ${if (sap) "sap" else "leech"} curse has no effect.")
+    if (!source[key, false]) {
+        source[key] = true
+        source.message("Your opponent has been weakened so much that your ${if (sap) "sap" else "leech"} curse has no effect.")
     }
 }
 
-fun boostMessage(player: Player, name: String) {
-    player.message("Your curse drains $name from the enemy, boosting your $name.")
+fun boostMessage(source: Character, name: String) {
+    source.message("Your curse drains $name from the enemy, boosting your $name.")
 }
 
-fun drainMessage(player: Player, name: String) {
+fun drainMessage(source: Character, name: String) {
     val key = "${name}_leech_msg"
-    if (!player[key, false]) {
-        player[key] = true
-        player.message("Your curse drains ${name.toTitleCase()} from the enemy, but has already made you so strong that", ChatType.Filter)
-        player.message("it can improve you no further.", ChatType.Filter)
+    if (!source[key, false]) {
+        source[key] = true
+        source.message("Your curse drains ${name.toTitleCase()} from the enemy, but has already made you so strong that", ChatType.Filter)
+        source.message("it can improve you no further.", ChatType.Filter)
     }
 }

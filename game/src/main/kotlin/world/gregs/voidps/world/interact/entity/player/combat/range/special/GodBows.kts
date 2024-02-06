@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
-import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.hit.specialAttackHit
 import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
@@ -64,8 +64,7 @@ combatAttack { source: Player ->
     }
 }
 
-combatHit({ source is Player && isGodBow(weapon) && special }) { character: Character ->
-    source as Player
+specialAttackHit("saradomin_bow", "guthix_bow", "zamorak_bow") { character: Character ->
     character.setGraphic("${weapon.id}_special_hit")
     source.playSound("god_bow_special_hit")
 }

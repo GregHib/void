@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
-import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.hit.specialAttackHit
 import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
@@ -38,7 +38,7 @@ specialAttackSwing("seercull", style = "range", priority = Priority.MEDIUM) { pl
     player.hit(target, delay = Hit.bowDelay(distance))
 }
 
-combatHit({ source is Player && isSeercull(weapon) && special }) { character: Character ->
+specialAttackHit("seercull", "range") { character: Character ->
     character.setGraphic("seercull_special_hit")
 }
 

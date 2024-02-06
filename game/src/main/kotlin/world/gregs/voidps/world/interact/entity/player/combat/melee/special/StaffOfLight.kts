@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
@@ -23,8 +22,10 @@ itemRemoved("worn_equipment", "staff_of_light*", EquipSlot.Weapon) { player: Pla
     player.softTimers.stop("power_of_light")
 }
 
-combatHit({ it.softTimers.contains("power_of_light") }, Priority.LOW) { player: Player ->
-    player.setGraphic("power_of_light_hit")
+combatHit { player: Player ->
+    if (player.softTimers.contains("power_of_light")) {
+        player.setGraphic("power_of_light_hit")
+    }
 }
 
 // Special attack

@@ -4,17 +4,14 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.hit.specialAttackHit
 import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.effect.freeze
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import java.util.concurrent.TimeUnit
-
-fun isZamorakGodsword(weapon: Item) = weapon.id.startsWith("zamorak_godsword")
 
 specialAttackSwing("zamorak_godsword*") { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
@@ -29,6 +26,6 @@ specialAttackSwing("zamorak_godsword*") { player: Player ->
     delay = 6
 }
 
-combatHit({ special && isZamorakGodsword(weapon) }) { character: Character ->
+specialAttackHit("zamorak_godsword*") { character: Character ->
     character.setGraphic("ice_cleave_hit")
 }

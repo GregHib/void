@@ -40,7 +40,10 @@ interfaceOption("lunar_spellbook", "vengeance", "Cast") {
     player.start("vengeance_delay", definition["delay_seconds"], epochSeconds())
 }
 
-combatHit({ target -> target.contains("vengeance") && type != "damage" && damage >= 4 }) { player: Player ->
+combatHit { player: Player ->
+    if (!player.contains("vengeance") || type == "damage" || damage < 4) {
+        return@combatHit
+    }
     player.forceChat = "Taste vengeance!"
     player.hit(target = source, type = "damage", delay = 0, damage = (damage * 0.75).toInt())
     player.stop("vengeance")
