@@ -17,12 +17,6 @@ fun timerStop(vararg timers: String, block: suspend TimerStop.(Player) -> Unit) 
     }
 }
 
-fun characterTimerStop(timer: String, block: suspend TimerStop.(Character) -> Unit) {
-    on<TimerStop>({ wildcardEquals(timer, this.timer) }) { character: Character ->
-        block.invoke(this, character)
-    }
-}
-
 fun npcTimerStop(timer: String, npc: String = "*", block: suspend TimerStop.(NPC) -> Unit) {
     if (npc == "*") {
         on<TimerStop>({ wildcardEquals(timer, this.timer) }) { character: NPC ->
@@ -32,5 +26,11 @@ fun npcTimerStop(timer: String, npc: String = "*", block: suspend TimerStop.(NPC
         on<TimerStop>({ wildcardEquals(timer, this.timer) && wildcardEquals(npc, it.id) }) { character: NPC ->
             block.invoke(this, character)
         }
+    }
+}
+
+fun characterTimerStop(timer: String, block: suspend TimerStop.(Character) -> Unit) {
+    on<TimerStop>({ wildcardEquals(timer, this.timer) }) { character: Character ->
+        block.invoke(this, character)
     }
 }
