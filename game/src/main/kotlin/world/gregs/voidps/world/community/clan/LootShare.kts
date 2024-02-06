@@ -46,7 +46,7 @@ timerStart("clan_loot_rank_update", "clan_coin_share_update") { _: Player ->
     interval = TimeUnit.SECONDS.toTicks(30)
 }
 
-timerTick({ timer == "clan_loot_rank_update" }) { player: Player ->
+timerTick("clan_loot_rank_update") { player: Player ->
     cancel()
     val clan = player.clan ?: player.ownClan ?: return@timerTick
     clan.lootRank = ClanRank.valueOf(player["clan_loot_rank", "None"])
@@ -58,7 +58,7 @@ timerTick({ timer == "clan_loot_rank_update" }) { player: Player ->
     }
 }
 
-timerTick({ timer == "clan_coin_share_update" }) { player: Player ->
+timerTick("clan_coin_share_update") { player: Player ->
     cancel()
     val clan = player.clan ?: player.ownClan ?: return@timerTick
     clan.coinShare = player["coin_share_setting", false]

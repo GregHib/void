@@ -27,7 +27,7 @@ timerStart("skull") { player: Player ->
     player.flagAppearance()
 }
 
-timerTick({ timer == "skull" }) { player: Player ->
+timerTick("skull") { player: Player ->
     if (--player.skullCounter <= 0) {
         cancel()
         return@timerTick

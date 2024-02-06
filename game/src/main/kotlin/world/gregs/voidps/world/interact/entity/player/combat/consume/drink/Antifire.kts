@@ -35,7 +35,7 @@ timerStart("fire_immunity") { _: Player ->
     interval = 20
 }
 
-timerTick({ timer == "fire_resistance" || timer == "fire_immunity" }) { player: Player ->
+timerTick("fire_resistance", "fire_immunity") { player: Player ->
     val remaining = player.dec(if (timer == "fire_immunity") "super_antifire" else "antifire", 0)
     if (remaining <= 0) {
         cancel()

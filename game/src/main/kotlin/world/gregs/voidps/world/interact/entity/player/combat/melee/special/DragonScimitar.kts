@@ -50,7 +50,7 @@ timerStart("sever") { player: Player ->
     }
 }
 
-timerTick({ timer == "sever" }) { _: Player ->
+timerTick("sever") { _: Player ->
     cancel()
 }
 

@@ -15,7 +15,7 @@ timerStart("prayer_drain") { _: Player ->
     interval = 1
 }
 
-timerTick({ timer == "prayer_drain" }) { player: Player ->
+timerTick("prayer_drain") { player: Player ->
     val equipmentBonus = player["prayer", 0]
     var prayerDrainCounter = player["prayer_drain_counter", 0]
 

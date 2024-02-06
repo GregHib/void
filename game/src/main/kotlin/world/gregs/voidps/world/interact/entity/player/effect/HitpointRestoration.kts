@@ -26,7 +26,7 @@ timerStart("restore_hitpoints") { _: Player ->
     interval = TimeUnit.SECONDS.toTicks(6)
 }
 
-timerTick({ timer == "restore_hitpoints" }) { player: Player ->
+timerTick("restore_hitpoints") { player: Player ->
     if (player.levels.get(Skill.Constitution) == 0) {
         cancel()
         return@timerTick

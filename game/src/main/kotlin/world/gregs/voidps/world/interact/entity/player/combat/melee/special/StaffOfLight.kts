@@ -50,7 +50,7 @@ timerStart("power_of_light") { _: Player ->
     interval = 1
 }
 
-timerTick({ timer == "power_of_light" }) { player: Player ->
+timerTick("power_of_light") { player: Player ->
     if (player.dec("power_of_light") <= 0) {
         cancel()
     }

@@ -100,7 +100,7 @@ timerStart("junk_collection") { _: Player ->
     interval = TimeUnit.SECONDS.toTicks(90)
 }
 
-timerTick({ timer == "junk_collection" }) { player: Player ->
+timerTick("junk_collection") { player: Player ->
     val junk = if (player.equipped(EquipSlot.Cape).id == "avas_attractor") attractor else accumulator
     val item = junk.random()
     if (!player.inventory.add(item)) {

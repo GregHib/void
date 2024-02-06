@@ -170,7 +170,7 @@ npcTimerStart("demon_slayer_crystal_ball", "gypsy_aris") { _: NPC ->
     interval = 2
 }
 
-npcTimerTick({ timer == "demon_slayer_crystal_ball" }) { npc: NPC ->
+npcTimerTick("demon_slayer_crystal_ball") { npc: NPC ->
     if (npc.mode !is Face) {
         cancel()
         return@npcTimerTick

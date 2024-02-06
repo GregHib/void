@@ -34,7 +34,7 @@ timerStart("recover_special") { _: Player ->
     interval = 10
 }
 
-timerTick({ timer == "recover_special" }) { player: Player ->
+timerTick("recover_special") { player: Player ->
     if (player.dec("recover_special_delay") <= 0) {
         cancel()
         return@timerTick

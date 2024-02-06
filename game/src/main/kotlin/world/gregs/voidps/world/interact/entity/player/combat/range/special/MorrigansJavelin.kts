@@ -52,7 +52,7 @@ characterTimerStart("phantom_strike") { _: Character ->
     interval = 3
 }
 
-characterTimerTick({ timer == "phantom_strike" }) { character: Character ->
+characterTimerTick("phantom_strike") { character: Character ->
     val remaining = character["phantom_damage", 0]
     val damage = remaining.coerceAtMost(50)
     if (remaining - damage <= 0) {

@@ -87,7 +87,7 @@ timerStart("borrow_message") { _: Player ->
     interval = TimeUnit.MINUTES.toTicks(1)
 }
 
-timerTick({ timer == "borrow_message" }) { player: Player ->
+timerTick("borrow_message") { player: Player ->
     val remaining = player.remaining("borrow_timeout", epochSeconds())
     if (remaining <= 0) {
         player.message("Your loan has expired; the item you borrowed will now be returned to its owner.")

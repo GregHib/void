@@ -13,7 +13,7 @@ characterTimerStart("movement_delay") { character: Character ->
     interval = 1
 }
 
-characterTimerTick({ timer == "movement_delay" }) { character: Character ->
+characterTimerTick("movement_delay") { character: Character ->
     val frozen = character.frozen
     character.movementDelay -= character.movementDelay.sign
     if (character.movementDelay == 0) {

@@ -24,9 +24,11 @@ fun npcTimerTick(filter: TimerTick.(NPC) -> Boolean, priority: Priority = Priori
     on<TimerTick>(filter, priority, block)
 }
 
-fun timerTick(timer: String, block: suspend TimerTick.(Player) -> Unit) {
-    on<TimerTick>({ wildcardEquals(timer, this.timer) }) { character: Player ->
-        block.invoke(this, character)
+fun timerTick(vararg timers: String, block: suspend TimerTick.(Player) -> Unit) {
+    for (timer in timers) {
+        on<TimerTick>({ wildcardEquals(timer, this.timer) }) { character: Player ->
+            block.invoke(this, character)
+        }
     }
 }
 

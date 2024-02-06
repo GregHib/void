@@ -178,7 +178,7 @@ command({ prefix == "path" }) { player: Player ->
     player.softTimers.toggle("show_path")
 }
 
-timerTick({ timer == "show_path" }) { player: Player ->
+timerTick("show_path") { player: Player ->
     var tile = player.tile
     for (step in player.steps) {
         tile = tile.add(step)

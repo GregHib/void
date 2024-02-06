@@ -20,7 +20,7 @@ timerStart("restore_special_energy") { _: Player ->
 val half = MAX_SPECIAL_ATTACK / 2
 val tenth = MAX_SPECIAL_ATTACK / 10
 
-timerTick({ timer == "restore_special_energy" }) { player: Player ->
+timerTick("restore_special_energy") { player: Player ->
     val energy = player.specialAttackEnergy
     if (energy >= MAX_SPECIAL_ATTACK) {
         cancel()

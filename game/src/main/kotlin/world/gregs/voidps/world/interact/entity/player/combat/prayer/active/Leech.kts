@@ -28,7 +28,7 @@ timerStart("prayer_bonus_drain") { _: Player ->
     interval = 50
 }
 
-timerTick({ timer == "prayer_bonus_drain" }) { player: Player ->
+timerTick("prayer_bonus_drain") { player: Player ->
     val attack = player.getLeech(Skill.Attack)
     val strength = player.getLeech(Skill.Strength)
     val defence = player.getLeech(Skill.Defence)

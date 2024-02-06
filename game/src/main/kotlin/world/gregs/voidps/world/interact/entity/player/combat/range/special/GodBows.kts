@@ -73,7 +73,7 @@ timerStart("restorative_shot", "balanced_shot") { _: Player ->
     interval = TimeUnit.SECONDS.toTicks(6)
 }
 
-timerTick({ timer == "restorative_shot" || timer == "balanced_shot" }) { player: Player ->
+timerTick("restorative_shot", "balanced_shot") { player: Player ->
     val amount = player.restoration
     if (amount <= 0) {
         cancel()

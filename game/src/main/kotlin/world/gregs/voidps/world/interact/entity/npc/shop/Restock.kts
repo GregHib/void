@@ -31,7 +31,7 @@ timerStart("shop_restock") { _: Player ->
     interval = restockTimeTicks
 }
 
-timerTick({ timer == "shop_restock" }) { player: Player ->
+timerTick("shop_restock") { player: Player ->
     for (name in player.inventories.keys) {
         val inventory = player.inventories.inventory(name)
         val def = inventoryDefinitions.get(name)

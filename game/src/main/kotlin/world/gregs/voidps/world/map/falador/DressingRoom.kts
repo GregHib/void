@@ -14,7 +14,7 @@ timerStart("dressing_room") { _: Player ->
     interval = 1
 }
 
-timerTick({ timer == "dressing_room" }) { player: Player ->
+timerTick("dressing_room") { player: Player ->
     player.setGraphic("dressing_room")
 }
 

@@ -53,7 +53,7 @@ timerStart("teleport_block") { player: Player ->
     interval = 50
 }
 
-timerTick({ timer == "teleport_block" }) { player: Player ->
+timerTick("teleport_block") { player: Player ->
     val blocked = player.teleBlocked
     player.teleBlockCounter -= player.teleBlockCounter.sign
     when (player.teleBlockCounter) {

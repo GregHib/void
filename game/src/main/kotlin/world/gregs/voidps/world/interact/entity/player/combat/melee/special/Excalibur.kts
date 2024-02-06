@@ -40,7 +40,7 @@ timerStart("sanctuary") { _: Player ->
     interval = 4
 }
 
-timerTick({ timer == "sanctuary" }) { player: Player ->
+timerTick("sanctuary") { player: Player ->
     val cycle = player["sanctuary", 1] - 1
     player["sanctuary"] = cycle
     if (cycle <= 0) {

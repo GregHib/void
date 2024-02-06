@@ -28,7 +28,7 @@ timerStart("restore_stats") { _: Player ->
     interval = TimeUnit.SECONDS.toTicks(60)
 }
 
-timerTick({ timer == "restore_stats" }) { player: Player ->
+timerTick("restore_stats") { player: Player ->
     val berserker = player.praying("berserker") && player.hasClock("berserker_cooldown")
     val skip = player.praying("berserker") && !player.hasClock("berserker_cooldown")
     if (skip) {

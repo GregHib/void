@@ -16,7 +16,7 @@ playerSpawn { player: Player ->
     }
 }
 
-timerTick({ timer == "energy_restore" }) { player: Player ->
+timerTick("energy_restore") { player: Player ->
     if (player.runEnergy >= MAX_RUN_ENERGY) {
         cancel()
         return@timerTick

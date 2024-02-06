@@ -38,7 +38,7 @@ characterTimerStart("poison") { character: Character ->
     interval = 30
 }
 
-characterTimerTick({ timer == "poison" }) { character: Character ->
+characterTimerTick("poison") { character: Character ->
     val poisoned = character.poisoned
     character.poisonCounter -= character.poisonCounter.sign
     when {

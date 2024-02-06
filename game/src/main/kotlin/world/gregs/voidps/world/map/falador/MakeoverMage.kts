@@ -214,7 +214,7 @@ npcTimerStart("makeover") { _: NPC ->
     interval = TimeUnit.SECONDS.toTicks(250)
 }
 
-npcTimerTick({ timer == "makeover" }) { npc: NPC ->
+npcTimerTick("makeover") { npc: NPC ->
     val current: String = npc["transform_id", "makeover_mage_male"]
     val toFemale = current == "makeover_mage_male"
     npc.transform = if (toFemale) "makeover_mage_female" else "makeover_mage_male"

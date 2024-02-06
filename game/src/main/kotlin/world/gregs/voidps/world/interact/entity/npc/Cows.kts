@@ -20,7 +20,7 @@ npcTimerStart("eat_grass") { npc: NPC ->
     interval = random.nextInt(50, 200)
 }
 
-npcTimerTick({ timer == "eat_grass" }) { npc: NPC ->
+npcTimerTick("eat_grass") { npc: NPC ->
     npc.forceChat = "Moo"
     npc.setAnimation("cow_eat_grass")
 }

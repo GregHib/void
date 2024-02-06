@@ -56,7 +56,7 @@ timerStart("overload") { player: Player ->
     }
 }
 
-timerTick({ timer == "overload" }) { player: Player ->
+timerTick("overload") { player: Player ->
     if (player.dec("overload_refreshes_remaining") <= 0) {
         cancel()
         return@timerTick
