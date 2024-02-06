@@ -52,7 +52,7 @@ characterTimerTick({ timer == "disease" }) { character: Character ->
     }
 }
 
-characterTimerStop({ timer == "disease" }) { character: Character ->
+characterTimerStop("disease") { character: Character ->
     character.diseaseCounter = 0
     character.clear("disease_damage")
     character.clear("disease_source")

@@ -14,6 +14,6 @@ characterTimerTick({ timer == "colour_overlay" }) { _: Character ->
     cancel()
 }
 
-characterTimerStop({ timer == "colour_overlay" }) { character: Character ->
+characterTimerStop("colour_overlay") { character: Character ->
     character.visuals.colourOverlay.reset()
 }

@@ -85,7 +85,7 @@ timerTick({ timer == "restorative_shot" || timer == "balanced_shot" }) { player:
     player.setGraphic("saradomin_bow_restoration")
 }
 
-timerStop({ timer == "restorative_shot" || timer == "balanced_shot" }) { player: Player ->
+timerStop("restorative_shot", "balanced_shot") { player: Player ->
     player.clear("restoration")
     player.clear("restoration_amount")
 }

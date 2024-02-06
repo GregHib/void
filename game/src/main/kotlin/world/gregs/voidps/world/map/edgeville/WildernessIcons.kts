@@ -39,9 +39,11 @@ timerStart("prayer_protect_item") { player: Player ->
     }
 }
 
-timerStop({ timer == "prayer_protect_item" && it.inWilderness }) { player: Player ->
-    resetIcons(player)
-    updateIcon(player)
+timerStop("prayer_protect_item") { player: Player ->
+    if (player.inWilderness) {
+        resetIcons(player)
+        updateIcon(player)
+    }
 }
 
 fun resetIcons(player: Player) = player.interfaces.apply {

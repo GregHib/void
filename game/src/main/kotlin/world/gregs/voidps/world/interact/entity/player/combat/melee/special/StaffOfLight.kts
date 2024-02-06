@@ -56,7 +56,7 @@ timerTick({ timer == "power_of_light" }) { player: Player ->
     }
 }
 
-timerStop({ timer == "power_of_light" }) { player: Player ->
+timerStop("power_of_light") { player: Player ->
     player.message("<red>The power of the light fades. Your resistance to melee attacks returns to normal.")
     player.clear("power_of_light")
 }

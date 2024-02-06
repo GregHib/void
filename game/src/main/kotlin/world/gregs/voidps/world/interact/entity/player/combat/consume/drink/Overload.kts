@@ -76,7 +76,7 @@ timerTick({ timer == "overload" }) { player: Player ->
     }
 }
 
-timerStop({ timer == "overload" }) { player: Player ->
+timerStop("overload") { player: Player ->
     reset(player, Skill.Attack)
     reset(player, Skill.Strength)
     reset(player, Skill.Defence)

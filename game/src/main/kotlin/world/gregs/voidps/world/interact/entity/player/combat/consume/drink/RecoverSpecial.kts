@@ -41,6 +41,6 @@ timerTick({ timer == "recover_special" }) { player: Player ->
     }
 }
 
-timerStop({ timer == "recover_special" }) { player: Player ->
+timerStop("recover_special") { player: Player ->
     player.clear("recover_special_delay")
 }

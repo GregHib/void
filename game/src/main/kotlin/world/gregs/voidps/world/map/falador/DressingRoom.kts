@@ -18,7 +18,7 @@ timerTick({ timer == "dressing_room" }) { player: Player ->
     player.setGraphic("dressing_room")
 }
 
-timerStop({ timer == "dressing_room" }) { player: Player ->
+timerStop("dressing_room") { player: Player ->
     player.clearGraphic()
     player.start("delay", 1)
     player.closeMenu()

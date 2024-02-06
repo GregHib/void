@@ -32,7 +32,7 @@ characterTimerStart("soul_split") { character: Character ->
     interval = character.remove("soul_split_distance") ?: return@characterTimerStart
 }
 
-characterTimerStop({ timer == "soul_split" }) { target: Character ->
+characterTimerStop("soul_split") { target: Character ->
     val player = target.remove<Character>("source_split_source") ?: return@characterTimerStop
     val damage = target.remove<Int>("source_split_damage") ?: return@characterTimerStop
     var heal = if (target is Player) 0.4 else 0.2

@@ -65,8 +65,8 @@ characterTimerTick({ timer == "phantom_strike" }) { character: Character ->
     (character as? Player)?.message("You ${character.remove("phantom_first") ?: "continue"} to bleed as a result of the javelin strike.")
 }
 
-npcTimerStop({ timer == "phantom_strike" }) { character: NPC ->
-    character.clear("phantom")
-    character.clear("phantom_damage")
-    character.clear("phantom_first")
+npcTimerStop("phantom_strike") { npc: NPC ->
+    npc.clear("phantom")
+    npc.clear("phantom_damage")
+    npc.clear("phantom_first")
 }

@@ -34,7 +34,7 @@ timerTick({ timer == "skull" }) { player: Player ->
     }
 }
 
-timerStop({ timer == "skull" }) { player: Player ->
+timerStop("skull") { player: Player ->
     player.clear("skull")
     player.clear("skull_duration")
     player.appearance.skull = -1

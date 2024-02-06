@@ -34,7 +34,7 @@ timerTick({ timer == "prayer_drain" }) { player: Player ->
     player["prayer_drain_counter"] = prayerDrainCounter
 }
 
-timerStop({ timer == "prayer_drain" }) { player: Player ->
+timerStop("prayer_drain") { player: Player ->
     player.clear(player.getActivePrayerVarKey())
     player[PrayerConfigs.USING_QUICK_PRAYERS] = false
 }

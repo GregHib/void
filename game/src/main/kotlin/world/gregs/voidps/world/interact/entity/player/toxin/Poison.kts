@@ -54,7 +54,7 @@ characterTimerTick({ timer == "poison" }) { character: Character ->
     }
 }
 
-characterTimerStop({ timer == "poison" }) { character: Character ->
+characterTimerStop("poison") { character: Character ->
     character.poisonCounter = 0
     character.clear("poison_damage")
     character.clear("poison_source")

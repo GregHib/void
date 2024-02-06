@@ -25,6 +25,6 @@ characterTimerTick({ timer == "movement_delay" }) { character: Character ->
     }
 }
 
-characterTimerStop({ timer == "movement_delay" }) { character: Character ->
+characterTimerStop("movement_delay") { character: Character ->
     character.stop("movement_delay")
 }

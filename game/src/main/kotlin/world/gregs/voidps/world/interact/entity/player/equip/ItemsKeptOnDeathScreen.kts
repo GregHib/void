@@ -20,8 +20,10 @@ timerStart("skull") { player: Player ->
     }
 }
 
-timerStop({ timer == "skull" && it.interfaces.contains("items_kept_on_death") }) { player: Player ->
-    player.open("items_kept_on_death", close = false)
+timerStop("skull") { player: Player ->
+    if (player.interfaces.contains("items_kept_on_death")) {
+        player.open("items_kept_on_death", close = false)
+    }
 }
 
 timerStart("prayer_protect_item") { player: Player ->
@@ -30,8 +32,10 @@ timerStart("prayer_protect_item") { player: Player ->
     }
 }
 
-timerStop({ timer == "prayer_protect_item" && it.interfaces.contains("items_kept_on_death") }) { player: Player ->
-    player.open("items_kept_on_death", close = false)
+timerStop("prayer_protect_item") { player: Player ->
+    if (player.interfaces.contains("items_kept_on_death")) {
+        player.open("items_kept_on_death", close = false)
+    }
 }
 
 interfaceRefresh("items_kept_on_death") { player: Player ->

@@ -77,8 +77,10 @@ timerStart("loan_message") { player: Player ->
     interval = TimeUnit.SECONDS.toTicks(remaining)
 }
 
-timerStop({ timer == "loan_message" && !logout }) { player: Player ->
-    stopLending(player)
+timerStop("loan_message") { player: Player ->
+    if (!logout) {
+        stopLending(player)
+    }
 }
 
 timerStart("borrow_message") { _: Player ->
@@ -95,8 +97,10 @@ timerTick({ timer == "borrow_message" }) { player: Player ->
     }
 }
 
-timerStop({ timer == "borrow_message" && !logout }) { player: Player ->
-    returnLoan(player)
+timerStop("borrow_message") { player: Player ->
+    if (!logout) {
+        returnLoan(player)
+    }
 }
 
 fun stopLending(player: Player) {

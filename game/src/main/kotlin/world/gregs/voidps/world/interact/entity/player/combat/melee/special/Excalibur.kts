@@ -51,6 +51,6 @@ timerTick({ timer == "sanctuary" }) { player: Player ->
 }
 
 
-timerStop({ timer == "sanctuary" }) { player: Player ->
+timerStop("sanctuary") { player: Player ->
     player.clear("sanctuary")
 }

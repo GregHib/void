@@ -22,7 +22,7 @@ characterTimerStart("transform") { character: Character ->
     character.collision = collision.get(def)
 }
 
-timerStop({ timer == "transform" }) { player: Player ->
+timerStop("transform") { player: Player ->
     player.appearance.apply {
         emote = 1426
         transform = -1
@@ -38,7 +38,7 @@ timerStop({ timer == "transform" }) { player: Player ->
     player.collision = player.remove("old_collision") ?: return@timerStop
 }
 
-npcTimerStop({ timer == "transform" }) { npc: NPC ->
+npcTimerStop("transform") { npc: NPC ->
     npc.visuals.transform.reset()
     npc.clear("transform_id")
     npc.flagTransform()

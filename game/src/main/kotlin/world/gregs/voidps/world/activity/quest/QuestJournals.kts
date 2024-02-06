@@ -36,7 +36,7 @@ timerStart("refresh_quest_journal") { _: Player ->
     interval = 1
 }
 
-timerStop({ timer == "refresh_quest_journal" }) { player: Player ->
+timerStop("refresh_quest_journal") { player: Player ->
     player.refreshQuestJournal()
 }
 

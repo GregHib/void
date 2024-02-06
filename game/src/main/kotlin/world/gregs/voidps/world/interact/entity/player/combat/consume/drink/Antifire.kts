@@ -46,7 +46,7 @@ timerTick({ timer == "fire_resistance" || timer == "fire_immunity" }) { player: 
     }
 }
 
-timerStop({ timer == "fire_resistance" || timer == "fire_immunity" }) { player: Player ->
+timerStop("fire_resistance", "fire_immunity") { player: Player ->
     player.message("<dark_red>Your resistance to dragonfire has run out.")
     player["antifire"] = 0
     player["super_antifire"] = 0
