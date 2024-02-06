@@ -34,13 +34,13 @@ fun itemOnNPCOperate(item: String, npc: String, priority: Priority = Priority.ME
     }
 }
 
-fun spellOnNPCApproach(component: String, id: String = "*", priority: Priority = Priority.MEDIUM, block: suspend ItemOnNPC.() -> Unit) {
+fun spellOnNPCApproach(id: String, component: String = "*", priority: Priority = Priority.MEDIUM, block: suspend ItemOnNPC.() -> Unit) {
     on<ItemOnNPC>({ operate && wildcardEquals(component, this.component) && wildcardEquals(id, this.id) }, priority) { _: Player ->
         block.invoke(this)
     }
 }
 
-fun spellOnNPCOperate(component: String, id: String, priority: Priority = Priority.MEDIUM, block: suspend ItemOnNPC.() -> Unit) {
+fun spellOnNPCOperate(id: String, component: String = "*", priority: Priority = Priority.MEDIUM, block: suspend ItemOnNPC.() -> Unit) {
     on<ItemOnNPC>({ operate && wildcardEquals(component, this.component) && wildcardEquals(id, this.id) }, priority) { _: Player ->
         block.invoke(this)
     }

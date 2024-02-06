@@ -16,7 +16,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 
 val definitions: SpellDefinitions by inject()
 
-spellOnPlayerApproach("heal_other", "lunar_spellbook") {
+spellOnPlayerApproach("lunar_spellbook", "heal_other") {
     player.approachRange(2)
     pause()
     val spell = component

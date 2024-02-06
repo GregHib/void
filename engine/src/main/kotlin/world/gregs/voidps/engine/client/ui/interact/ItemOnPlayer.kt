@@ -32,13 +32,13 @@ fun itemOnPlayerOperate(item: String, id: String = "*", block: suspend ItemOnPla
     }
 }
 
-fun spellOnPlayerApproach(component: String, id: String = "*", block: suspend ItemOnPlayer.() -> Unit) {
+fun spellOnPlayerApproach(id: String, component: String, block: suspend ItemOnPlayer.() -> Unit) {
     on<ItemOnPlayer>({ approach && wildcardEquals(id, this.id) && wildcardEquals(component, this.component) }) { _: Player ->
         block.invoke(this)
     }
 }
 
-fun spellOnPlayerOperate(component: String, id: String = "*", block: suspend ItemOnPlayer.() -> Unit) {
+fun spellOnPlayerOperate(id: String, component: String, block: suspend ItemOnPlayer.() -> Unit) {
     on<ItemOnPlayer>({ operate && wildcardEquals(id, this.id) && wildcardEquals(component, this.component) }) { _: Player ->
         block.invoke(this)
     }

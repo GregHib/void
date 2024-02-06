@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
 
 val definitions: SpellDefinitions by inject()
 
-spellOnPlayerApproach("cure_other", "lunar_spellbook") {
+spellOnPlayerApproach("lunar_spellbook", "cure_other") {
     player.approachRange(2)
     pause()
     val spell = component

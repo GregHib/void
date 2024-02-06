@@ -33,7 +33,7 @@ characterApproachPlayer("Attack") {
     combatInteraction(character, target)
 }
 
-spellOnNPCApproach("*", "*_spellbook", priority = Priority.HIGH) {
+spellOnNPCApproach("*_spellbook", priority = Priority.HIGH) {
     player.approachRange(8, update = false)
     player.spell = component
     player["attack_speed"] = 5

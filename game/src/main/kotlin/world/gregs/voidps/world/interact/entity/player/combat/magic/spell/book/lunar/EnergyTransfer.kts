@@ -21,7 +21,7 @@ import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 
 val definitions: SpellDefinitions by inject()
 
-spellOnPlayerApproach("energy_transfer", "lunar_spellbook") {
+spellOnPlayerApproach("lunar_spellbook", "energy_transfer") {
     player.approachRange(2)
     pause()
     val spell = component
