@@ -84,7 +84,7 @@ inventoryItem("Spin", "spinning_plate", "inventory") {
     player.playAnimation("emote_${if (drop) "cry" else "cheer"}")
 }
 
-continueDialogue({ id == "snow_globe" && component == "continue" }) { player: Player ->
+continueDialogue("snow_globe", "continue") { player: Player ->
     player.close("snow_globe")
     player.continueDialogue()
 }

@@ -9,23 +9,23 @@ import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
 import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
 import world.gregs.voidps.engine.suspend.resumeDialogueSuspension
 
-continueDialogue({ (id.startsWith("dialogue_npc_chat") || id.startsWith("dialogue_chat")) && component == "continue" }) { player: Player ->
+continueDialogue("dialogue_*chat", "continue") { player: Player ->
     player.continueDialogue()
 }
 
-continueDialogue({ id.startsWith("dialogue_message") && component == "continue" }) { player: Player ->
+continueDialogue("dialogue_message*", "continue") { player: Player ->
     player.continueDialogue()
 }
 
-continueDialogue({ id == "dialogue_level_up" && component == "continue" }) { player: Player ->
+continueDialogue("dialogue_level_up", "continue") { player: Player ->
     player.continueDialogue()
 }
 
-continueDialogue({ id == "dialogue_obj_box" && component == "continue" }) { player: Player ->
+continueDialogue("dialogue_obj_box", "continue") { player: Player ->
     player.continueDialogue()
 }
 
-continueDialogue({ id.startsWith("dialogue_multi") && component.startsWith("line") }) { player: Player ->
+continueDialogue("dialogue_multi*", "line*") { player: Player ->
     val choice = component.substringAfter("line").toIntOrNull() ?: -1
     val suspension = player.dialogueSuspension as? IntSuspension ?: return@continueDialogue
     suspension.int = choice
@@ -44,13 +44,13 @@ on<StringEntered> { player: Player ->
     player.resumeDialogueSuspension()
 }
 
-continueDialogue({ id == "dialogue_confirm_destroy" }) { player: Player ->
+continueDialogue("dialogue_confirm_destroy") { player: Player ->
     val suspension = player.dialogueSuspension as? StringSuspension ?: return@continueDialogue
     suspension.string = component
     player.resumeDialogueSuspension()
 }
 
-continueDialogue({ id == "dialogue_skill_creation" && component.startsWith("choice") }) { player: Player ->
+continueDialogue("dialogue_skill_creation", "choice*") { player: Player ->
     val choice = component.substringAfter("choice").toIntOrNull() ?: 0
     val suspension = player.dialogueSuspension as? IntSuspension ?: return@continueDialogue
     suspension.int = choice - 1

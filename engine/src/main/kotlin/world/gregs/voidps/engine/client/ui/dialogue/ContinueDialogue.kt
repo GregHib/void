@@ -2,8 +2,8 @@ package world.gregs.voidps.engine.client.ui.dialogue
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.wildcardEquals
 
 data class ContinueDialogue(
     val id: String,
@@ -11,6 +11,6 @@ data class ContinueDialogue(
     val option: Int
 ) : Event
 
-fun continueDialogue(filter: ContinueDialogue.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend ContinueDialogue.(Player) -> Unit) {
-    on<ContinueDialogue>(filter, priority, block)
+fun continueDialogue(id: String = "*", component: String = "*", block: suspend ContinueDialogue.(Player) -> Unit) {
+    on<ContinueDialogue>({ wildcardEquals(id, this.id) && wildcardEquals(component, this.component) }, block = block)
 }

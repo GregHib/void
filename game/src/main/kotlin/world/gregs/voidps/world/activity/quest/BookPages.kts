@@ -18,13 +18,13 @@ interfaceRefresh("book") { player: Player ->
     refreshBook(player)
 }
 
-continueDialogue({ id == "book" && component == "turn_page_right" }) { player: Player ->
+continueDialogue("book", "turn_page_right") { player: Player ->
     player.inc("book_page")
     player.close("book")
     player.open("book")
 }
 
-continueDialogue({ id == "book" && component == "turn_page_left" }) { player: Player ->
+continueDialogue("book", "turn_page_left") { player: Player ->
     player.dec("book_page")
     player.close("book")
     player.open("book")
