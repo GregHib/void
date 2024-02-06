@@ -88,8 +88,10 @@ move({ exitArea(it, to) }) { player: Player ->
     destroyInstance(player)
 }
 
-playerDespawn({ it.contains("demon_slayer_instance") }) { player: Player ->
-    destroyInstance(player)
+playerDespawn { player: Player ->
+    if (player.contains("demon_slayer_instance")) {
+        destroyInstance(player)
+    }
 }
 
 fun exitArea(player: Player, to: Tile): Boolean {

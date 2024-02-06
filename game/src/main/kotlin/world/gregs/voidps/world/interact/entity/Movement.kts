@@ -39,8 +39,10 @@ npcSpawn { npc: NPC ->
     }
 }
 
-characterDespawn({ active }) { character: Character ->
-    collisions.remove(character)
+characterDespawn { character: Character ->
+    if (active) {
+        collisions.remove(character)
+    }
 }
 
 move({ active }) { character: Character ->

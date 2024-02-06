@@ -44,7 +44,7 @@ playerSpawn { player: Player ->
     ownClan.ignores = player.ignores
 }
 
-playerDespawn({ player -> player.clan != null }) { player: Player ->
+playerDespawn { player: Player ->
     val clan = player.clan ?: return@playerDespawn
     clan.members.remove(player)
     updateMembers(player, clan, ClanRank.Anyone)

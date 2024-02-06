@@ -28,8 +28,10 @@ interfaceOption("trade_*", "close", "Close") {
     other?.message("Other player declined trade.", ChatType.Trade)
 }
 
-playerDespawn({ isTradeInterface(it.menu) }) { player: Player ->
-    val other = getPartner(player)
-    player.closeMenu()
-    other?.message("Other player declined trade.", ChatType.Trade)
+playerDespawn { player: Player ->
+    if (isTradeInterface(player.menu)) {
+        val other = getPartner(player)
+        player.closeMenu()
+        other?.message("Other player declined trade.", ChatType.Trade)
+    }
 }

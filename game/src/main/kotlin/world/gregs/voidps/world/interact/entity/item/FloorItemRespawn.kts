@@ -25,9 +25,11 @@ command({ prefix == "reload" && (content == "item defs" || content == "items" ||
     loadItemSpawns(items, spawns)
 }
 
-floorItemDespawn({ isSpawnItem(it) }) { floorItem ->
-    val spawn = spawns.get(floorItem.tile) ?: return@floorItemDespawn
-    items.add(floorItem.tile, spawn.id, spawn.amount, revealTicks = spawn.delay, owner = "")
+floorItemDespawn { floorItem ->
+    if (isSpawnItem(floorItem)) {
+        val spawn = spawns.get(floorItem.tile) ?: return@floorItemDespawn
+        items.add(floorItem.tile, spawn.id, spawn.amount, revealTicks = spawn.delay, owner = "")
+    }
 }
 
 fun isSpawnItem(item: FloorItem): Boolean {

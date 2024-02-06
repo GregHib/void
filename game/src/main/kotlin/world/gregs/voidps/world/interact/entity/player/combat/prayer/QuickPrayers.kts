@@ -140,8 +140,10 @@ interfaceOption("prayer_list", "confirm", "Confirm Selection") {
     player.saveQuickPrayers()
 }
 
-playerDespawn({ it.contains(TEMP_QUICK_PRAYERS) }) { player: Player ->
-    player.cancelQuickPrayers()
+playerDespawn { player: Player ->
+    if (player.contains(TEMP_QUICK_PRAYERS)) {
+        player.cancelQuickPrayers()
+    }
 }
 
 playerDeath { player: Player ->

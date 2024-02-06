@@ -10,18 +10,18 @@ import world.gregs.voidps.engine.event.on
 
 object Unregistered : Event
 
-fun playerDespawn(filter: Unregistered.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend Unregistered.(Player) -> Unit) {
-    on<Unregistered>(filter, priority, block)
+fun playerDespawn(priority: Priority = Priority.MEDIUM, block: suspend Unregistered.(Player) -> Unit) {
+    on<Unregistered>(priority = priority, block = block)
 }
 
-fun npcDespawn(filter: Unregistered.(NPC) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend Unregistered.(NPC) -> Unit) {
-    on<Unregistered>(filter, priority, block)
+fun npcDespawn(priority: Priority = Priority.MEDIUM, block: suspend Unregistered.(NPC) -> Unit) {
+    on<Unregistered>(priority = priority, block = block)
 }
 
-fun characterDespawn(filter: Unregistered.(Character) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend Unregistered.(Character) -> Unit) {
-    on<Unregistered>(filter, priority, block)
+fun characterDespawn(block: suspend Unregistered.(Character) -> Unit) {
+    on<Unregistered>(block = block)
 }
 
-fun floorItemDespawn(filter: Unregistered.(FloorItem) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend Unregistered.(FloorItem) -> Unit) {
-    on<Unregistered>(filter, priority, block)
+fun floorItemDespawn(block: suspend Unregistered.(FloorItem) -> Unit) {
+    on<Unregistered>(block = block)
 }
