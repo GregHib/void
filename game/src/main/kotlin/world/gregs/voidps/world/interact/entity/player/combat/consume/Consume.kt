@@ -9,13 +9,9 @@ import world.gregs.voidps.engine.event.wildcardEquals
 
 data class Consume(val item: Item, val slot: Int) : CancellableEvent()
 
-fun consume(filter: Consume.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend Consume.(Player) -> Unit) {
-    on<Consume>(filter, priority, block)
-}
-
-fun consume(vararg items: String, block: Consume.(Player) -> Unit) {
+fun consume(vararg items: String = arrayOf("*"), priority: Priority = Priority.MEDIUM, block: Consume.(Player) -> Unit) {
     for (item in items) {
-        on<Consume>({ wildcardEquals(item, this.item.id) }) { player: Player ->
+        on<Consume>({ wildcardEquals(item, this.item.id) }, priority) { player: Player ->
             block.invoke(this, player)
         }
     }

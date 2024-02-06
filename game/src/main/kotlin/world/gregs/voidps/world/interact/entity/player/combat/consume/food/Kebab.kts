@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
 
-consume({ item.id == "kebab" }) { player: Player ->
+consume("kebab") { player: Player ->
     val random = random.nextDouble(100.0)
     when {
         random < 66 -> {
@@ -31,7 +31,7 @@ consume({ item.id == "kebab" }) { player: Player ->
     cancel()
 }
 
-consume({ item.id == "super_kebab" }) { player: Player ->
+consume("super_kebab") { player: Player ->
     if (random.nextInt(8) < 5) {
         player.levels.restore(Skill.Constitution, 30, 0.07)
     }
@@ -47,7 +47,7 @@ consume({ item.id == "super_kebab" }) { player: Player ->
 
 val phrases = listOf("Lovely!", "Scrummy!", "Delicious!", "Yum!")
 
-consume({ item.id == "ugthanki_kebab" }) { player: Player ->
+consume("ugthanki_kebab") { player: Player ->
     if (player.levels.get(Skill.Constitution) != player.levels.getMax(Skill.Constitution)) {
         player.forceChat = phrases.random()
     }

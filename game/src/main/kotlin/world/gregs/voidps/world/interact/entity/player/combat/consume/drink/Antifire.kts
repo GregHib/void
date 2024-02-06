@@ -10,11 +10,11 @@ import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
 import world.gregs.voidps.world.interact.entity.player.effect.antifire
 import world.gregs.voidps.world.interact.entity.player.effect.superAntifire
 
-consume({ item.id.startsWith("antifire") || item.id.startsWith("antifire_mix") }) { player: Player ->
+consume("antifire*", "antifire_mix*") { player: Player ->
     player.antifire(6)
 }
 
-consume({ item.id.startsWith("super_antifire") }) { player: Player ->
+consume("super_antifire*") { player: Player ->
     player.superAntifire(6)
 }
 

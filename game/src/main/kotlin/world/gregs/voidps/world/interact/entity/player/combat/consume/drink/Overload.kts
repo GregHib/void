@@ -27,7 +27,7 @@ on<Consumable>({ item.id.startsWith("overload") }) { player: Player ->
     }
 }
 
-consume({ item.id.startsWith("overload") }) { player: Player ->
+consume("overload*") { player: Player ->
     player["overload_refreshes_remaining"] = 20
     player.timers.start("overload")
 }

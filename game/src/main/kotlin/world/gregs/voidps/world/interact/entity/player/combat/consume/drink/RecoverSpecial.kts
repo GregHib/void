@@ -20,7 +20,7 @@ on<Consumable>({ item.id.startsWith("recover_special") }) { player: Player ->
     }
 }
 
-consume({ item.id.startsWith("recover_special") }) { player: Player ->
+consume("recover_special*") { player: Player ->
     player.specialAttackEnergy = (MAX_SPECIAL_ATTACK / 100) * 25
     val percentage = (player.specialAttackEnergy / MAX_SPECIAL_ATTACK) * 100
     if (percentage == 0) {
