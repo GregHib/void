@@ -21,7 +21,7 @@ import world.gregs.voidps.world.interact.entity.death.npcDeath
 
 val npcs: NPCs by inject()
 
-npcSpawn({ it.id == "ducklings" }) { npc: NPC ->
+npcSpawn("ducklings") { npc: NPC ->
     followParent(npc)
 }
 

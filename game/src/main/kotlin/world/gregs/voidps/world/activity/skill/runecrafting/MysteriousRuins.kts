@@ -24,8 +24,10 @@ val objectDefinitions: ObjectDefinitions by inject()
 
 val omni = listOf("air", "mind", "water", "earth", "fire", "body", "cosmic", "law", "nature", "chaos", "death", "blood")
 
-playerSpawn({ it.equipped(EquipSlot.Hat).id.endsWith("_tiara") }) { player: Player ->
-    toggleAltar(player, player.equipped(EquipSlot.Hat), true)
+playerSpawn { player: Player ->
+    if (player.equipped(EquipSlot.Hat).id.endsWith("_tiara")) {
+        toggleAltar(player, player.equipped(EquipSlot.Hat), true)
+    }
 }
 
 itemChanged({ inventory == "worn_equipment" && index == EquipSlot.Hat.index && item.id.endsWith("_tiara") }) { player: Player ->

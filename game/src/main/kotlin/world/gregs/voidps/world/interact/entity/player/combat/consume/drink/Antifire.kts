@@ -18,12 +18,13 @@ consume({ item.id.startsWith("super_antifire") }) { player: Player ->
     player.superAntifire(6)
 }
 
-playerSpawn({ it.antifire }) { player: Player ->
-    player.timers.restart("fire_resistance")
-}
-
-playerSpawn({ it.superAntifire }) { player: Player ->
-    player.timers.restart("fire_immunity")
+playerSpawn { player: Player ->
+    if (player.antifire) {
+        player.timers.restart("fire_resistance")
+    }
+    if (player.superAntifire) {
+        player.timers.restart("fire_immunity")
+    }
 }
 
 timerStart({ timer == "fire_resistance" }) { _: Player ->

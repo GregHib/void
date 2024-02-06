@@ -11,7 +11,7 @@ import world.gregs.voidps.type.random
 val minRespawnTick = 280
 val maxRespawnTick = 530
 
-npcSpawn({ it.id.startsWith("fishing_spot") }) { npc: NPC ->
+npcSpawn("fishing_spot*") { npc: NPC ->
     val area: Area = npc["area"] ?: return@npcSpawn
     move(npc, area)
 }

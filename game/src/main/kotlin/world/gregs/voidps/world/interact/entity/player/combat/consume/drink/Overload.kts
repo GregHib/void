@@ -32,8 +32,10 @@ consume({ item.id.startsWith("overload") }) { player: Player ->
     player.timers.start("overload")
 }
 
-playerSpawn({ it["overload_refreshes_remaining", 0] > 0 }) { player: Player ->
-    player.timers.restart("overload")
+playerSpawn { player: Player ->
+    if (player["overload_refreshes_remaining", 0] > 0) {
+        player.timers.restart("overload")
+    }
 }
 
 timerStart({ timer == "overload" }) { _: Player ->

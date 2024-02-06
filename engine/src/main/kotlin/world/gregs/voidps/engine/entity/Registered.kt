@@ -10,32 +10,28 @@ import world.gregs.voidps.engine.event.wildcardEquals
 
 object Registered : Event
 
-fun playerSpawn(filter: Registered.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend Registered.(Player) -> Unit) {
-    on<Registered>(filter, priority, block)
+fun playerSpawn(priority: Priority = Priority.MEDIUM, block: suspend Registered.(Player) -> Unit) {
+    on<Registered>(priority = priority, block = block)
 }
 
-fun npcSpawn(filter: Registered.(NPC) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend Registered.(NPC) -> Unit) {
-    on<Registered>(filter, priority, block)
-}
-
-fun characterSpawn(filter: Registered.(Character) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend Registered.(Character) -> Unit) {
-    on<Registered>(filter, priority, block)
-}
-
-fun npcSpawn(npc: String, priority: Priority = Priority.MEDIUM, block: suspend (NPC) -> Unit) {
+fun npcSpawn(npc: String = "*", block: suspend (NPC) -> Unit) {
     if (npc == "*") {
-        on<Registered>(priority = priority) { character: NPC ->
+        on<Registered> { character: NPC ->
             block.invoke(character)
         }
     } else {
-        on<Registered>({ wildcardEquals(npc, it.id) }, priority) { character: NPC ->
+        on<Registered>({ wildcardEquals(npc, it.id) }) { character: NPC ->
             block.invoke(character)
         }
     }
 }
 
-fun worldSpawn(priority: Priority = Priority.MEDIUM, block: suspend () -> Unit) {
-    on<Registered>(priority = priority) { _: World ->
+fun characterSpawn(block: suspend Registered.(Character) -> Unit) {
+    on<Registered>(block = block)
+}
+
+fun worldSpawn(block: suspend () -> Unit) {
+    on<Registered> { _: World ->
         block.invoke()
     }
 }

@@ -5,8 +5,10 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.itemChanged
 
-playerSpawn({ it.hasFullSet() }) { player: Player ->
-    player["dharoks_set_effect"] = true
+playerSpawn { player: Player ->
+    if (player.hasFullSet()) {
+        player["dharoks_set_effect"] = true
+    }
 }
 
 itemChanged({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && it.contains("dharoks_set_effect") && !isDharoks(item) }) { player: Player ->

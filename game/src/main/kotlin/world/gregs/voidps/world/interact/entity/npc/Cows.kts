@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.timer.npcTimerStart
 import world.gregs.voidps.engine.timer.npcTimerTick
 import world.gregs.voidps.type.random
 
-npcSpawn({ it.def.name == "cow" }) { npc: NPC ->
+npcSpawn("cow*") { npc: NPC ->
     npc.softTimers.start("eat_grass")
 }
 

@@ -10,8 +10,10 @@ import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 
-playerSpawn({ it.hasFullSet() }) { player: Player ->
-    player["torags_set_effect"] = true
+playerSpawn { player: Player ->
+    if (player.hasFullSet()) {
+        player["torags_set_effect"] = true
+    }
 }
 
 itemChanged({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && it.contains("torags_set_effect") && !isTorags(item) }) { player: Player ->

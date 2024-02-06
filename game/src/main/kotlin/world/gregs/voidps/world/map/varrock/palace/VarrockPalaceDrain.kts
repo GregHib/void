@@ -37,8 +37,10 @@ objectOperate("Search", "varrock_palace_drain") {
     }
 }
 
-playerSpawn({ it["demon_slayer_drain_dislodged", false] }) { player: Player ->
-    player.sendVariable("demon_slayer_drain_dislodged")
+playerSpawn { player: Player ->
+    if (player["demon_slayer_drain_dislodged", false]) {
+        player.sendVariable("demon_slayer_drain_dislodged")
+    }
 }
 
 itemOnObjectOperate("*of_water", "varrock_palace_drain") {

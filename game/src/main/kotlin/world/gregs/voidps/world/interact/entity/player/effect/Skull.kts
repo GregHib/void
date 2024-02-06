@@ -11,8 +11,10 @@ import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.inWilderness
 
-playerSpawn({ it.skulled }) { player: Player ->
-    player.softTimers.restart("skull")
+playerSpawn { player: Player ->
+    if (player.skulled) {
+        player.softTimers.restart("skull")
+    }
 }
 
 combatSwing({ it.inWilderness && target is Player && it.get<List<Character>>("attackers")?.contains(target) != true }) { player: Player ->

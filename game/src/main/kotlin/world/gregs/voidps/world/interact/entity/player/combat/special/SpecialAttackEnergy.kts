@@ -7,8 +7,10 @@ import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import kotlin.math.min
 
-playerSpawn({ it.specialAttackEnergy < MAX_SPECIAL_ATTACK }) { player: Player ->
-    player.softTimers.start("restore_special_energy")
+playerSpawn { player: Player ->
+    if (player.specialAttackEnergy < MAX_SPECIAL_ATTACK) {
+        player.softTimers.start("restore_special_energy")
+    }
 }
 
 timerStart({ timer == "restore_special_energy" }) { _: Player ->

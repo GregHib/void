@@ -16,9 +16,11 @@ import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import kotlin.math.sign
 
-characterSpawn({ it.poisonCounter != 0 }) { character: Character ->
-    val timers = if (character is Player) character.timers else character.softTimers
-    timers.restart("poison")
+characterSpawn { character: Character ->
+    if (character.poisonCounter != 0) {
+        val timers = if (character is Player) character.timers else character.softTimers
+        timers.restart("poison")
+    }
 }
 
 characterTimerStart({ timer == "poison" }) { character: Character ->

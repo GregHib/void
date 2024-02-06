@@ -27,7 +27,10 @@ playerSpawn { player: Player ->
     }
 }
 
-npcSpawn({ active }) { npc: NPC ->
+npcSpawn { npc: NPC ->
+    if (!active) {
+        return@npcSpawn
+    }
     val mask = entity(npc)
     for (x in npc.tile.x until npc.tile.x + npc.def.size) {
         for (y in npc.tile.y until npc.tile.y + npc.def.size) {

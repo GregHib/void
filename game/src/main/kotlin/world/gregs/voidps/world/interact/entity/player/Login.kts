@@ -8,12 +8,14 @@ import world.gregs.voidps.engine.entity.character.player.flagTemporaryMoveType
 import world.gregs.voidps.engine.entity.character.turn
 import world.gregs.voidps.engine.entity.playerSpawn
 
-playerSpawn({ !it.isBot }) { player: Player ->
-    player.options.send(2)
-    player.options.send(4)
-    player.options.send(7)
-    player.flagMovementType()
-    player.flagTemporaryMoveType()
-    player.flagAppearance()
-    player.turn()
+playerSpawn { player: Player ->
+    if (!player.isBot) {
+        player.options.send(2)
+        player.options.send(4)
+        player.options.send(7)
+        player.flagMovementType()
+        player.flagTemporaryMoveType()
+        player.flagAppearance()
+        player.turn()
+    }
 }

@@ -10,8 +10,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolati
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.timer.timerTick
 
-playerSpawn({ it.runEnergy < MAX_RUN_ENERGY }) { player: Player ->
-    player.softTimers.start("energy_restore")
+playerSpawn { player: Player ->
+    if (player.runEnergy < MAX_RUN_ENERGY) {
+        player.softTimers.start("energy_restore")
+    }
 }
 
 timerTick({ timer == "energy_restore" }) { player: Player ->

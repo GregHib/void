@@ -10,8 +10,10 @@ import world.gregs.voidps.engine.inv.itemChanged
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 
-playerSpawn({ it.hasFullSet() }) { player: Player ->
-    player["ahrims_set_effect"] = true
+playerSpawn { player: Player ->
+    if (player.hasFullSet()) {
+        player["ahrims_set_effect"] = true
+    }
 }
 
 itemChanged({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && it.contains("ahrims_set_effect") && !isAhrims(item) }) { player: Player ->

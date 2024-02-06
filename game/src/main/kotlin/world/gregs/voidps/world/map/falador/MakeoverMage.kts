@@ -206,7 +206,7 @@ fun swapLook(player: Player, male: Boolean, bodyPart: BodyPart, name: String) {
     player.body.setLook(bodyPart, new.getInt(key))
 }
 
-npcSpawn({ it.id.startsWith("makeover_mage") }) { npc: NPC ->
+npcSpawn("makeover_mage*") { npc: NPC ->
     npc.softTimers.start("makeover")
 }
 

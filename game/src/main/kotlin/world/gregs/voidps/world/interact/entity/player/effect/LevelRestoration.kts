@@ -14,8 +14,10 @@ import java.util.concurrent.TimeUnit
 
 val skills = Skill.all.filterNot { it == Skill.Prayer || it == Skill.Summoning || it == Skill.Constitution }
 
-playerSpawn({ player -> skills.any { player.levels.getOffset(it) != 0 } }) { player: Player ->
-    player.softTimers.start("restore_stats")
+playerSpawn { player: Player ->
+    if (skills.any { player.levels.getOffset(it) != 0 }) {
+        player.softTimers.start("restore_stats")
+    }
 }
 
 levelChange({ skill != Skill.Prayer && skill != Skill.Summoning && skill != Skill.Constitution && to != it.levels.getMax(skill) && !it.softTimers.contains("restore_stats") }) { player: Player ->

@@ -7,12 +7,12 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.itemChanged
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
-playerSpawn({ it.hasFullSet("") }) { player: Player ->
-    player["void_set_effect"] = true
-}
-
-playerSpawn({ it.hasFullSet("elite_") }) { player: Player ->
-    player["elite_void_set_effect"] = true
+playerSpawn { player: Player ->
+    if (player.hasFullSet("")) {
+        player["void_set_effect"] = true
+    } else if (player.hasFullSet("elite_")) {
+        player["elite_void_set_effect"] = true
+    }
 }
 
 itemChanged({ inventory == "worn_equipment" && isSetSlot(index) && it.contains("void_set_effect") && !isVoid(item) }) { player: Player ->
