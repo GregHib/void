@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
@@ -30,17 +29,17 @@ val floorItems: FloorItems by inject()
 val npcs: NPCs by inject()
 val lineValidator: LineValidator by inject()
 
-objectOperate({ target.id == "cupboard_the_knights_sword_closed" && option == "Open" }) { player: Player ->
+objectOperate("Open", "cupboard_the_knights_sword_closed") {
     player.playSound("cupboard_open")
     target.replace("cupboard_the_knights_sword_opened", ticks = TimeUnit.MINUTES.toTicks(3))
 }
 
-objectOperate({ target.id == "cupboard_the_knights_sword_opened" && option == "Shut" }) { player: Player ->
+objectOperate("Shut", "cupboard_the_knights_sword_opened") {
     player.playSound("cupboard_close")
     target.replace("cupboard_the_knights_sword_closed")
 }
 
-objectOperate({ target.id == "cupboard_the_knights_sword_opened" && option == "Search" }) { player: Player ->
+objectOperate("Search", "cupboard_the_knights_sword_opened") {
     when (player.quest("the_knights_sword")) {
         "cupboard", "blurite_sword" -> {
             val sirVyvin = npcs[player.tile.regionLevel].firstOrNull { it.id == "sir_vyvin" }

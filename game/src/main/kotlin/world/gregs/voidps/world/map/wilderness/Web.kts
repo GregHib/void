@@ -7,13 +7,12 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import java.util.concurrent.TimeUnit
 
-objectOperate({ def.stringId.startsWith("web") && option == "Slash" }, Priority.HIGH) { player: Player ->
+objectOperate("Slash", "web*") {
     arriveDelay()
     if (player.weapon.def["slash_attack", 0] <= 0) {
         player.message("Only a sharp blade can cut through this sticky web.")

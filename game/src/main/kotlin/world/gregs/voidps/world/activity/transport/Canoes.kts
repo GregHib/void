@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.world.interact.dialogue.type.statement
 
-objectOperate({ target.id == "canoe_station" && option == "Chop-down" }) { player: Player ->
+objectOperate("Chop-down", "canoe_station") {
     if (!player.has(Skill.Woodcutting, 12, false)) {
         statement("You must have at least level 12 woodcutting to start making canoes.")
     }

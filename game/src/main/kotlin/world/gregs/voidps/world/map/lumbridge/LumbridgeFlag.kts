@@ -1,13 +1,12 @@
 package world.gregs.voidps.world.map.lumbridge
 
 import world.gregs.voidps.engine.entity.character.forceChat
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.playAnimation
 
-objectOperate({ target.id == "lumbridge_flag" && option == "Raise" }) { player: Player ->
+objectOperate("Raise", "lumbridge_flag") {
     arriveDelay()
     player.strongQueue("lumbridge_flag") {
         target.animate("lumbridge_flag")

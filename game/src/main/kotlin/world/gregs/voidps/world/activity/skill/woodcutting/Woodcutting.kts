@@ -38,7 +38,7 @@ val objects: GameObjects by inject()
 val minPlayers = 0
 val maxPlayers = 2000
 
-objectOperate({ def.contains("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
+objectOperate("Chop*") {
     val tree: Tree = def.getOrNull("woodcutting") ?: return@objectOperate
     val hatchet = getBestHatchet(player)
     if (hatchet == null) {

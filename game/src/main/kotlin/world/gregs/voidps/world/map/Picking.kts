@@ -2,7 +2,6 @@ package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.data.Pickable
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -17,7 +16,7 @@ import java.util.concurrent.TimeUnit
 val GameObject.pickable: Pickable?
     get() = def.getOrNull("pickable")
 
-objectOperate({ option == "Pick" }) { player: Player ->
+objectOperate("Pick") {
     val pickable: Pickable = target.pickable ?: return@objectOperate
     arriveDelay()
     if (player.inventory.add(pickable.item)) {

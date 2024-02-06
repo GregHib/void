@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.world.interact.dialogue.type.item
 
-objectOperate({ target.id == "legends_guild_totem_pole" && option == "Look" }) { player: Player ->
+objectOperate("Look", "legends_guild_totem_pole") {
     // TODO proper message
     if (player.inventory.contains("combat_bracelet") && player.inventory.replace("combat_bracelet", "combat_bracelet_4")) {
         combatBracelet(player)

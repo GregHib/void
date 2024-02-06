@@ -42,7 +42,7 @@ val bars = listOf(
 val logger = InlineLogger()
 val itemDefinitions: ItemDefinitions by inject()
 
-objectOperate({ target.id.startsWith("furnace") && option == "Smelt" }) { player: Player ->
+objectOperate("Smelt", "furnace*") {
     smeltingOptions(player, target, bars)
 }
 

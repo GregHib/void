@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.approachRange
@@ -34,7 +33,7 @@ npcApproach("Talk-to", "banker*") {
     menu()
 }
 
-objectOperate({ option == "Use" }) { player: Player ->
+objectOperate("Use", "bank_*") {
     val banker = npcs.first { it.def.name == "Banker" }
     player.talkWith(banker)
     menu()

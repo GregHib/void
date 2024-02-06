@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -175,7 +174,7 @@ suspend fun NPCOption.talkingToMe() {
     desertsDay(interrupt = true)
 }
 
-objectOperate({ target.id == "dung" && option == "Pick-up" }) { player: Player ->
+objectOperate("Pick-up", "dung") {
     arriveDelay()
     if (!player.inventory.contains("bucket")) {
         player<Talk>("I'm not picking that up. I'll need a container...")

@@ -44,7 +44,7 @@ objectOperate("Pay-toll(10gp)", "toll_gate_al_kharid*") {
     }
 }
 
-objectOperate({ target.id.startsWith("toll_gate_al_kharid") && option == "Open" }) { player: Player ->
+objectOperate("Open", "toll_gate_al_kharid*") {
     dialogue(player)
 }
 

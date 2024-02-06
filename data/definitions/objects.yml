@@ -11070,3 +11070,87 @@ jalsavrah_tomb_door:
 dung:
   id: 6257
   examine: "Lovely... Fresh."
+bank_booth_classic:
+  id: 2213
+  examine: "The bank teller will serve you from here."
+bank_booth_tutorial_island:
+  id: 3045
+  examine: "The bank teller will serve you from here."
+bank_chest_castle_wars:
+  id: 4483
+  examine: "The bank teller will serve you from here."
+bank_booth_port_phasmatys:
+  id: 5276
+  examine: "The bank teller will serve you from here."
+bank_booth_keldagrim:
+  id: 6084
+  examine: "The bank teller will serve you from here."
+bank_booth_nardah:
+  id: 10517
+  examine: "The bank teller will serve you from here."
+bank_booth_mos_le_harmless:
+  id: 11338
+  examine: "The bank teller will serve you from here."
+bank_booth_varrock:
+  id: 11402
+  examine: "The bank teller will serve you from here."
+bank_booth_falador:
+  id: 11758
+  examine: "The bank teller will serve you from here."
+bank_booth_burgh_de_rott:
+  id: 12798
+  examine: "The bank teller will serve you from here."
+bank_booth_void_knights_outpost:
+  id: 14369
+  examine: "The bank teller will serve you from here."
+bank_booth_lunar_isle:
+  id: 16700
+  examine: "The bank teller will serve you from here."
+bank_booth_living_rock_cavern:
+  id: 18491
+  examine: "The bank teller will serve you from here."
+bank_booth_sophanem:
+  id: 20325
+  examine: "The bank teller will serve you from here."
+bank_chest_neitiznot:
+  id: 21301
+  examine: "An open bank chest."
+bank_booth_dorgesh_kaan:
+  id: 22819
+  examine: "Deposit your monies here."
+bank_booth_canifis:
+  id: 24914
+  examine: "The bank teller will serve you from here."
+bank_booth_seers_village:
+  id: 25808
+  examine: "The bank teller will serve you from here."
+bank_booth_edgeville:
+  id: 26972
+  examine: "For accessing your bank account."
+bank_booth_oo_glog:
+  id: 29085
+  examine: "The bank teller will serve you from here."
+bank_booth_ardougne:
+  id: 34752
+  examine: "The bank teller will serve you from here."
+bank_booth_al_kharid:
+  id: 35647
+  examine: "Open for business."
+bank_booth_lumbridge:
+  id: 36786
+  examine: "Used to access your bank account."
+bank_booth_lumbridge_instance:
+  id: 37474
+  examine: "For accessing your bank account."
+bank_chest_soul_wars:
+  id: 42192
+  examine: "I can store my items safely here."
+bank_booth_fishing_guild:
+  id: 49018
+  examine: "The bank teller will serve you from here."
+bank_booth_thieves_guild:
+  id: 52397
+  examine: "The bank teller will serve you from here."
+bank_booth_zanaris:
+  id: 52589
+  examine: "The bank teller will serve you from here."

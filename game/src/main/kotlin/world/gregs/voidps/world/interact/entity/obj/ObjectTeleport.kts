@@ -9,9 +9,11 @@ import world.gregs.voidps.engine.suspend.arriveDelay
 
 val teleports: Teleports by inject()
 
-objectOperate({ teleports.contains(def.stringId.ifEmpty { def.id.toString() }, target.tile, option) }) { _: Player ->
-    arriveDelay()
-    teleports.teleport(this)
+objectOperate("*") {
+    if (teleports.contains(def.stringId.ifEmpty { def.id.toString() }, target.tile, option)) {
+        arriveDelay()
+        teleports.teleport(this)
+    }
 }
 
 teleport({ takeoff && delay != null }, Priority.LOWEST) { player: Player ->

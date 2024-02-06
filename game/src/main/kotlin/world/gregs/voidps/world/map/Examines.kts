@@ -16,7 +16,7 @@ inventory({ option == "Examine" }) { player: Player ->
     player.message(item.def.getOrNull("examine") ?: return@inventory, ChatType.ItemExamine)
 }
 
-objectApproach({ option == "Examine" }) { player: Player ->
+objectApproach("Examine") {
     player.message(def.getOrNull("examine") ?: return@objectApproach, ChatType.ObjectExamine)
 }
 

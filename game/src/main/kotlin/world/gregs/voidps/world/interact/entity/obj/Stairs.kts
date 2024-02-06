@@ -10,7 +10,10 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 
 val teleports: Teleports by inject()
 
-objectOperate({ option == "Climb" && hasClimbOption(def.options) }) { _: Player ->
+objectOperate("Climb") {
+    if (def.options?.filterNotNull()?.any { it.startsWith("Climb-") } != true) {
+        return@objectOperate
+    }
     choice("What would you like to do?") {
         option("Go up the stairs.", block = { teleports.teleport(this, "Climb-up") })
         option("Go down the stairs.", block = { teleports.teleport(this, "Climb-down") })

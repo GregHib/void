@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.map.lumbridge.chicken_farm
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.floor.floorItemOperate
 import world.gregs.voidps.engine.entity.obj.objectOperate
@@ -15,7 +14,7 @@ import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.quest.quest
 import java.util.concurrent.TimeUnit
 
-objectOperate({ target.id == "hatchet_logs" && option == "Take-hatchet" }, Priority.HIGH) { player: Player ->
+objectOperate("Take-hatchet", "hatchet_logs") {
     if (player.inventory.add("bronze_hatchet")) {
         target.replace("logs", ticks = TimeUnit.MINUTES.toTicks(3))
     } else {

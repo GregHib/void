@@ -16,7 +16,10 @@ import world.gregs.voidps.world.interact.entity.obj.door.Door.openDoor
 // Times a door can be closed consecutively before getting stuck
 val doorStuckCount = 5
 
-objectOperate({ def.isDoor() && option == "Close" }) { player: Player ->
+objectOperate("Close") {
+    if (!def.isDoor()) {
+        return@objectOperate
+    }
     arriveDelay()
     // Prevent players from trapping one another
     if (stuck(player)) {
@@ -25,7 +28,10 @@ objectOperate({ def.isDoor() && option == "Close" }) { player: Player ->
     closeDoor(player, target, def)
 }
 
-objectOperate({ def.isDoor() && option == "Open" }) { player: Player ->
+objectOperate("Open") {
+    if (!def.isDoor()) {
+        return@objectOperate
+    }
     arriveDelay()
     if (openDoor(player, target, def)) {
         pause(1)

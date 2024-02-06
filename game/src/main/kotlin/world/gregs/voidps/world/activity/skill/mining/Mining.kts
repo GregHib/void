@@ -38,7 +38,7 @@ import world.gregs.voidps.type.random
 val objects: GameObjects by inject()
 val itemDefinitions: ItemDefinitions by inject()
 
-objectOperate({ option == "Mine" }) { player: Player ->
+objectOperate("Mine") {
     if (target.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
         return@objectOperate
@@ -161,7 +161,7 @@ fun deplete(rock: Rock, obj: GameObject): Boolean {
     return false
 }
 
-objectApproach({ option == "Prospect" }) { player: Player ->
+objectApproach("Prospect") {
     if (target.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
         return@objectApproach

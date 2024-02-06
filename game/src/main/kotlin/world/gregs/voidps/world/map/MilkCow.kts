@@ -2,7 +2,6 @@ package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.add
@@ -21,7 +20,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-objectOperate({ target.id == "prized_dairy_cow" && option == "Milk" }) { player: Player ->
+objectOperate("Milk", "prized_dairy_cow") {
     if (!player.holdsItem("bucket")) {
         player.message("You'll need an empty bucket to collect the milk.")
         return@objectOperate
@@ -44,7 +43,7 @@ objectOperate({ target.id == "prized_dairy_cow" && option == "Milk" }) { player:
     }
 }
 
-objectOperate({ target.id == "dairy_cow" && option == "Milk" }) { player: Player ->
+objectOperate("Milk", "dairy_cow") {
     if (player.holdsItem("bucket")) {
         arriveDelay()
         player.setAnimation("milk_cow")

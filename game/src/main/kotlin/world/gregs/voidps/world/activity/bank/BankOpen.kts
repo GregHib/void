@@ -16,11 +16,11 @@ command({ prefix == "bank" }) { player: Player ->
     player.open("bank")
 }
 
-objectOperate({ option == "Use-quickly" }) { player: Player ->
+objectOperate("Use-quickly") {
     player.open("bank")
 }
 
-objectOperate({ option == "Collect" }) { player: Player ->
+objectOperate("Collect") {
     player.open("collection_box")
 }
 

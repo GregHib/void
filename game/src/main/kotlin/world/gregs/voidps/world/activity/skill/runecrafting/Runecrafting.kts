@@ -31,7 +31,7 @@ itemOnObjectOperate("*_essence", "*_altar") {
     bindRunes(player, item.id, item.def)
 }
 
-objectOperate({ target.id.endsWith("_altar") && option == "Craft-rune" }) { player: Player ->
+objectOperate("Craft-rune", "*_altar") {
     arriveDelay()
     val id = target.id.replace("_altar", "_rune")
     bindRunes(player, id, itemDefinitions.get(id))

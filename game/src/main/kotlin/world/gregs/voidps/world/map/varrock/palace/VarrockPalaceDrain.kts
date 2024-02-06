@@ -24,7 +24,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val logger = InlineLogger()
 
-objectOperate({ target.id == "varrock_palace_drain" && option == "Search" }) { player: Player ->
+objectOperate("Search", "varrock_palace_drain") {
     arriveDelay()
     player.setAnimation("climb_down")
     if (player["demon_slayer_drain_dislodged", false] || player.ownsItem("silverlight_key_sir_prysin")) {
@@ -69,7 +69,7 @@ itemOnObjectOperate("*of_water", "varrock_palace_drain") {
     }
 }
 
-objectOperate({ def.stringId == "demon_slayer_rusty_key" && option == "Take" }) { player: Player ->
+objectOperate("Take", "demon_slayer_rusty_key") {
     arriveDelay()
     if (player.inventory.add("silverlight_key_sir_prysin")) {
         player["demon_slayer_drain_dislodged"] = false

@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetObjectContext
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.wildcardEquals
 
@@ -16,14 +15,6 @@ data class ObjectOption(
     val option: String
 ) : Interaction(), TargetObjectContext {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
-}
-
-fun objectApproach(filter: ObjectOption.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend ObjectOption.(Player) -> Unit) {
-    on<ObjectOption>({ approach && filter(this, it) }, priority, block)
-}
-
-fun objectOperate(filter: ObjectOption.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend ObjectOption.(Player) -> Unit) {
-    on<ObjectOption>({ operate && filter(this, it) }, priority, block)
 }
 
 fun objectApproach(option: String, vararg objects: String, block: suspend ObjectOption.() -> Unit) {
