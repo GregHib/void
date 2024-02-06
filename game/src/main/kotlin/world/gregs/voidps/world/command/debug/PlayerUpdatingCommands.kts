@@ -4,7 +4,8 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.command
+import world.gregs.voidps.engine.client.ui.event.adminCommand
+import world.gregs.voidps.engine.client.ui.event.modCommand
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.get
@@ -18,7 +19,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val players: Players by inject()
 
-command({ prefix == "kill" }) { _: Player ->
+adminCommand("kill") {
     players.forEach { bot ->
         if (bot.name.startsWith("Bot")) {
             players.remove(bot)
@@ -34,59 +35,59 @@ command({ prefix == "kill" }) { _: Player ->
     }
 }
 
-command({ prefix == "players" }) { player: Player ->
+modCommand("players") {
     player.message("Players: ${players.size}, ${player.viewport?.players?.localCount}")
 }
 
-command({ prefix == "under" }) { player: Player ->
+adminCommand("under") {
     players[player.tile].forEach {
         println("$it - ${players[it.tile]}")
     }
 }
 
-command({ prefix == "anim" }) { player: Player ->
+adminCommand("anim") {
     when (content) {
         "-1", "" -> player.clearAnimation()
         else -> player.setAnimation(content, override = true)// 863
     }
 }
 
-command({ prefix == "gfx" }) { player: Player ->
+adminCommand("gfx") {
     when (content) {
         "-1", "" -> player.clearGraphic()
         else -> player.setGraphic(content)// 93
     }
 }
 
-command({ prefix == "proj" }) { player: Player ->
+adminCommand("proj") {
     player.shoot(content, player.tile.add(0, 5), delay = 0, flightTime = 400)
 }
 
-command({ prefix == "tfm" || prefix == "transform" }) { player: Player ->
+adminCommand("tfm", "transform") {
     player.transform(content)
 }
 
-command({ prefix == "overlay" }) { player: Player ->
+adminCommand("overlay") {
     player.colourOverlay(-2108002746, 10, 100)
 }
 
-command({ prefix == "chat" }) { player: Player ->
+adminCommand("chat") {
     player.forceChat = content
 }
 
-command({ prefix == "move" }) { player: Player ->
+adminCommand("move") {
     player.setForceMovement(Delta(0, -2), 120, startDelay = 60, direction = Direction.SOUTH)
 }
 
-command({ prefix == "hit" }) { player: Player ->
+adminCommand("hit") {
     player.damage(content.toIntOrNull() ?: 10)
 }
 
-command({ prefix == "time" }) { player: Player ->
+adminCommand("time") {
     player.setTimeBar(true, 0, 60, 1)
 }
 
-command({ prefix == "watch" }) { player: Player ->
+adminCommand("watch") {
     val bot = players.get(content)
     if (bot != null) {
         player.watch(bot)
@@ -95,37 +96,37 @@ command({ prefix == "watch" }) { player: Player ->
     }
 }
 
-command({ prefix == "shoot" }) { player: Player ->
+adminCommand("shoot") {
     player.shoot("15", player.tile.addY(10))
 }
 
-command({ prefix == "face" }) { player: Player ->
+adminCommand("face") {
     val parts = content.split(" ")
     player.turn(parts[0].toInt(), parts[1].toInt())
 }
 
-command({ prefix == "zone" || prefix == "chunk" }) { player: Player ->
+adminCommand("zone", "chunk") {
     val zones: DynamicZones = get()
     zones.copy(player.tile.zone, player.tile.zone, rotation = 2)
 }
 
-command({ prefix == "clear_zone" }) { player: Player ->
+adminCommand("clear_zone") {
     val zones: DynamicZones = get()
     zones.clear(player.tile.zone)
 }
 
-command({ prefix == "skill" }) { player: Player ->
+adminCommand("skill") {
     player.skillLevel = content.toInt()
 }
 
-command({ prefix == "cmb" }) { player: Player ->
+adminCommand("cmb") {
     player.combatLevel = content.toInt()
 }
 
-command({ prefix == "tgl" }) { player: Player ->
+adminCommand("tgl") {
     player.toggleSkillLevel()
 }
 
-command({ prefix == "sum" }) { player: Player ->
+adminCommand("sum") {
     player.summoningCombatLevel = content.toInt()
 }

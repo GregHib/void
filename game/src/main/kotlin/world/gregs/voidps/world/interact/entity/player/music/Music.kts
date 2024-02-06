@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.music
 
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.command
+import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -82,7 +82,7 @@ fun autoPlay(player: Player, track: MusicTracks.Track) {
 /**
  * Unlocks all music tracks
  */
-command({ prefix == "unlock" }) { player: Player ->
+adminCommand("unlock") {
     enums.get("music_track_names").map?.keys?.forEach { key ->
         MusicUnlock.unlockTrack(player, key)
     }

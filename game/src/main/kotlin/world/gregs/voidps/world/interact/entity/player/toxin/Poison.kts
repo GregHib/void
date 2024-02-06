@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.toxin
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.command
+import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -84,7 +84,7 @@ combatAttack({ damage > 0 && poisonous(it, weapon) }) { source: Character ->
     }
 }
 
-command({ prefix == "poison" }) { player: Player ->
+adminCommand("poison") {
     if (player.poisoned) {
         player.curePoison()
     } else {

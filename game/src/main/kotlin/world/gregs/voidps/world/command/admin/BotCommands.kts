@@ -11,7 +11,7 @@ import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
-import world.gregs.voidps.engine.client.ui.event.command
+import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
@@ -44,7 +44,7 @@ val accounts: PlayerAccounts by inject()
 val enums: EnumDefinitions by inject()
 val structs: StructDefinitions by inject()
 
-command({ prefix == "bot" }) { player: Player ->
+adminCommand("bot") {
     if (player.isBot) {
         player.clear("bot")
     } else {
@@ -58,7 +58,7 @@ command({ prefix == "bot" }) { player: Player ->
 
 var counter = 0
 
-command({ prefix == "bots" }) { _: Player ->
+adminCommand("bots") {
     val count = content.toIntOrNull() ?: 1
     val lumbridge = Rectangle(3221, 3217, 3222, 3220)
     val tile = lumbridge.random()

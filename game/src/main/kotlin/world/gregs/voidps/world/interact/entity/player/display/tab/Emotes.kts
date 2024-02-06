@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.display.tab
 
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.command
+import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -229,7 +229,7 @@ suspend fun CharacterContext.playDungeoneeringMasterCapeEmote(player: Player) {
     player.transform("")
 }
 
-command({ prefix == "emotes" }) { player: Player ->
+adminCommand("emotes") {
     for (compId in unlockableRange) {
         if (compId == 39) {
             continue

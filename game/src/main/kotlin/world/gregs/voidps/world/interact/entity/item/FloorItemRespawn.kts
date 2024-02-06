@@ -1,8 +1,7 @@
 package world.gregs.voidps.world.interact.entity.item
 
-import world.gregs.voidps.engine.client.ui.event.command
+import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.floorItemDespawn
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -19,10 +18,12 @@ worldSpawn {
     loadItemSpawns(items, spawns)
 }
 
-command({ prefix == "reload" && (content == "item defs" || content == "items" || content == "floor items") }) { _: Player ->
-    items.clear()
-    definitions.load()
-    loadItemSpawns(items, spawns)
+adminCommand("reload") {
+    if (content == "item defs" || content == "items" || content == "floor items") {
+        items.clear()
+        definitions.load()
+        loadItemSpawns(items, spawns)
+    }
 }
 
 floorItemDespawn { floorItem ->

@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendInterfaceSettings
 import world.gregs.voidps.engine.client.sendInventoryItems
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.client.ui.event.command
+import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
@@ -16,7 +16,7 @@ import world.gregs.voidps.network.encode.*
 
 val definitions: InterfaceDefinitions by inject()
 
-command({ prefix == "inter" }) { player: Player ->
+adminCommand("inter") {
     val id = content.toIntOrNull()
     if (id == null) {
         val name = content
@@ -44,40 +44,40 @@ fun closeInterface(player: Player): Boolean {
     return player.interfaces.close(id)
 }
 
-command({ prefix == "show" }) { player: Player ->
+adminCommand("show") {
     val parts = content.split(" ")
     player.client?.interfaceVisibility(parts[0].toInt(), parts[1].toInt(), !parts[2].toBoolean())
 }
 
-command({ prefix == "colour" }) { player: Player ->
+adminCommand("colour") {
     val parts = content.split(" ")
     player.client?.colourInterface(parts[0].toInt(), parts[1].toInt(), parts[2].toInt(), parts[3].toInt(), parts[4].toInt())
 }
 
-command({ prefix == "sendItem" }) { player: Player ->
+adminCommand("sendItem") {
     val parts = content.split(" ")
     player.interfaces.sendItem(parts[0], parts[1], parts[2].toInt(), parts.getOrNull(3)?.toInt() ?: 1)
 }
 
-command({ prefix == "sendText" }) { player: Player ->
+adminCommand("sendText") {
     val parts = content.split(" ")
     player.interfaces.sendText(parts[0], parts[1], content.removePrefix("${parts[0]} ${parts[1]} "))
 }
 
-command({ prefix == "setting" }) { player: Player ->
+adminCommand("setting") {
     val parts = content.split(" ")
     val remainder = parts.subList(4, parts.size).map { it.toIntOrNull() }.requireNoNulls().toIntArray()
     player.message("Settings sent ${remainder.toList()}", ChatType.Console)
     player.sendInterfaceSettings(parts[0].toInt(), parts[1].toInt(), parts[2].toInt(), parts[3].toInt(), getHash(*remainder))
 }
 
-command({ prefix == "script" }) { player: Player ->
+adminCommand("script") {
     val parts = content.split(" ")
     val remainder = parts.subList(1, parts.size).map { it.toIntOrNull() ?: it }.toTypedArray()
     player.sendScript(parts[0].toInt(), *remainder)
 }
 
-command({ prefix == "sendItems" }) { player: Player ->
+adminCommand("sendItems") {
     repeat(1200) {
         player.sendInventoryItems(it, 0, intArrayOf(), false)
     }
@@ -86,12 +86,12 @@ command({ prefix == "sendItems" }) { player: Player ->
     }
 }
 
-command({ prefix == "var" }) { player: Player ->
+adminCommand("var") {
     val parts = content.split(" ")
     player[parts.first()] = parts.last().toIntOrNull() ?: parts.last()
 }
 
-command({ prefix == "varp" }) { player: Player ->
+adminCommand("varp") {
     val parts = content.split(" ")
     val intId = parts.first().toIntOrNull()
     if (intId == null) {
@@ -107,7 +107,7 @@ command({ prefix == "varp" }) { player: Player ->
     }
 }
 
-command({ prefix == "varbit" }) { player: Player ->
+adminCommand("varbit") {
     val parts = content.split(" ")
     val intId = parts.first().toIntOrNull()
     if (intId == null) {
@@ -123,7 +123,7 @@ command({ prefix == "varbit" }) { player: Player ->
     }
 }
 
-command({ prefix == "varc" }) { player: Player ->
+adminCommand("varc") {
     val parts = content.split(" ")
     val intId = parts.first().toIntOrNull()
     if (intId == null) {
@@ -133,7 +133,7 @@ command({ prefix == "varc" }) { player: Player ->
     }
 }
 
-command({ prefix == "varcstr" }) { player: Player ->
+adminCommand("varcstr") {
     val parts = content.split(" ")
     val intId = parts.first().toIntOrNull()
     val string = content.removePrefix("${parts.first()} ")

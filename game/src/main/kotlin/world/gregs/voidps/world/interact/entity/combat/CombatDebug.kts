@@ -21,7 +21,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 val npcDefinitions: NPCDefinitions by inject()
 val eventHandler: EventHandlerStore by inject()
 
-command({ prefix == "maxhit" }) { player: Player ->
+command("maxhit") {
     val debug = player["debug", false]
     player["debug"] = false
     val parts = content.split(" ")

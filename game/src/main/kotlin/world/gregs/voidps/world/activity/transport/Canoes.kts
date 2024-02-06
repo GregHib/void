@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.activity.transport
 
-import world.gregs.voidps.engine.client.ui.event.command
+import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -15,7 +15,7 @@ objectOperate("Chop-down", "canoe_station") {
     }
 }
 
-command({ prefix == "canoe" }) { player: Player ->
+adminCommand("canoe") {
     player.open("canoe")
 }
 
