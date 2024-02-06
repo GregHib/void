@@ -27,7 +27,7 @@ npcSpawn("ducklings") { npc: NPC ->
 
 fun isDuck(it: NPC) = it.id.startsWith("duck") && it.id.endsWith("swim")
 
-npcDeath({ isDuck(it) }) { npc: NPC ->
+npcDeath("duck*swim") { npc: NPC ->
     val ducklings: NPC = npc["ducklings"] ?: return@npcDeath
     ducklings.forceChat = "Eek!"
     followParent(ducklings)
