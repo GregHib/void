@@ -213,7 +213,7 @@ potato:
     item: raw_potato
     delay: 30
     message: "You pick a potato."
-  examine: "Potato-licious!"  
+  examine: "Potato-licious!"
 wheat:
   &wheat
   id: 313
@@ -380,7 +380,7 @@ cabbage:
     item: cabbage
     delay: 45
     message: "You pick a cabbage."
-  examine: "Cabbage... yuck!"  
+  examine: "Cabbage... yuck!"
 small_fern:
   id: 1173
   examine: "A commonly found fern."
@@ -1812,7 +1812,7 @@ flax:
     item: flax
     delay: 5
     message: "You pick some flax."
-  examine: "A plant cultivated for fibres."  
+  examine: "A plant cultivated for fibres."
 sinclair_family_fountain:
   id: 2654
   examine: "This fountain suits the garden."
@@ -1842,7 +1842,7 @@ door_81_closed:
   examine: "The entrance to the Cooking Guild."
 hopper_controls:
   id: 2718
-  examine: "These control the flow of wheat from the hopper to the millstones."  
+  examine: "These control the flow of wheat from the hopper to the millstones."
 fire_orange:
   id: 2732
   examine: "Hot!"
@@ -2097,7 +2097,7 @@ onion:
     item: onion
     delay: 30
     message: "You pick an onion."
-  examine: "Makes you cry."  
+  examine: "Makes you cry."
 prison_door_4_opened:
   id: 5173
 prison_door_4_closed:
@@ -3228,7 +3228,7 @@ yew_tree_farming_stump:
   examine: "You can uproot this tree stump with a spade."
 dairy_cow:
   id: 8689
-  examine: "Fit for milking."  
+  examine: "Fit for milking."
 door_falador_farm_opened:
   id: 8696
   examine: "The door is open."
@@ -6519,7 +6519,7 @@ crate_208:
   examine: "A wooden crate."
 wheat_5:
   id: 22300
-  examine: "Baby bread."  
+  examine: "Baby bread."
 cabbage_2:
   <<: *cabbage
   id: 22301
@@ -8552,10 +8552,10 @@ flour_bin_2:
   examine: "When I've ground some flour, I'll be able to collect it here."
 flour_bin_3:
   id: 36880
-  examine: "When I've ground some flour, I'll be able to collect it here."  
+  examine: "When I've ground some flour, I'll be able to collect it here."
 hopper:
   id: 36881
-  examine: "Grain goes in here."  
+  examine: "Grain goes in here."
 hat_stand_4:
   id: 36906
   examine: "A stand for hats."
@@ -8696,7 +8696,7 @@ dead_tree_24:
   examine: "It's only useful for firewood now."
 lumbridge_flag:
   id: 37335
-  examine: "A flag on a pole."  
+  examine: "A flag on a pole."
 chair_137:
   id: 37337
   examine: "The ideal thing to sit on."
@@ -10026,7 +10026,7 @@ chair_183:
   examine: "A posh chair."
 prized_dairy_cow:
   id: 47721
-  examine: "Produces top-quality milk."  
+  examine: "Produces top-quality milk."
 fountain_24:
   id: 47747
   examine: "The water looks VERY cold!"
