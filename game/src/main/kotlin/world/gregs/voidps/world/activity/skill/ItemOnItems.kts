@@ -29,8 +29,8 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val itemOnItemDefs: ItemOnItemDefinitions by inject()
 
-itemOnItem({ itemOnItemDefs.contains(fromItem, toItem) }) { player: Player ->
-    val overlaps = itemOnItemDefs.get(fromItem, toItem)
+itemOnItem { player: Player ->
+    val overlaps = itemOnItemDefs.getOrNull(fromItem, toItem) ?: return@itemOnItem
     if (overlaps.isEmpty()) {
         return@itemOnItem
     }
