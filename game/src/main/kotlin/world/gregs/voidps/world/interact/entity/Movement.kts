@@ -2,7 +2,8 @@ package world.gregs.voidps.world.interact.entity
 
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.mode.move.move
+import world.gregs.voidps.engine.entity.character.mode.move.characterMove
+import world.gregs.voidps.engine.entity.character.mode.move.npcMove
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -45,11 +46,11 @@ characterDespawn { character: Character ->
     }
 }
 
-move({ active }) { character: Character ->
+characterMove({ active }) { character: Character ->
     collisions.move(character, from, to)
 }
 
-move { npc: NPC ->
+npcMove { npc: NPC ->
     npcs.update(from, to, npc)
 }
 

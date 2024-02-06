@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.data.definition.data.Catch
 import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.mode.move.move
+import world.gregs.voidps.engine.entity.character.mode.move.npcMove
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -36,8 +36,8 @@ import world.gregs.voidps.type.random
 val logger = InlineLogger()
 val itemDefinitions: ItemDefinitions by inject()
 
-move({ it.contains("fishers") && it.def.contains("fishing") }) { npc: NPC ->
-    val fishers: Set<Player> = npc.remove("fishers") ?: return@move
+npcMove({ it.contains("fishers") && it.def.contains("fishing") }) { npc: NPC ->
+    val fishers: Set<Player> = npc.remove("fishers") ?: return@npcMove
     for (fisher in fishers) {
         fisher.queue.clearWeak()
     }

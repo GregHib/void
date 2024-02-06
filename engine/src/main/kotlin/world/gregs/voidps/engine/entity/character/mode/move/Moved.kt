@@ -21,17 +21,14 @@ data class Moved(
     override var onCancel: (() -> Unit)? = null
 }
 
-@JvmName("movePlayer")
 fun move(filter: Moved.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, block: suspend Moved.(Player) -> Unit) {
     on<Moved>(filter, priority, block)
 }
 
-@JvmName("moveNPC")
-fun move(filter: Moved.(NPC) -> Boolean = { true}, priority: Priority = Priority.MEDIUM, block: suspend Moved.(NPC) -> Unit) {
+fun npcMove(filter: Moved.(NPC) -> Boolean = { true}, priority: Priority = Priority.MEDIUM, block: suspend Moved.(NPC) -> Unit) {
     on<Moved>(filter, priority, block)
 }
 
-@JvmName("moveCharacter")
-fun move(filter: Moved.(Character) -> Boolean = { true}, priority: Priority = Priority.MEDIUM, block: suspend Moved.(Character) -> Unit) {
+fun characterMove(filter: Moved.(Character) -> Boolean = { true}, priority: Priority = Priority.MEDIUM, block: suspend Moved.(Character) -> Unit) {
     on<Moved>(filter, priority, block)
 }
