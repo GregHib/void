@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.variable.variableClear
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.itemChanged
+import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.attackRange
 
@@ -26,6 +26,6 @@ variableClear("autocast") { player: Player ->
     player.clear("autocast_spell")
 }
 
-itemChanged({ inventory == "worn_equipment" && index == EquipSlot.Weapon.index }) { player: Player ->
+itemChange("worn_equipment", EquipSlot.Weapon) { player: Player ->
     player.clear("autocast")
 }

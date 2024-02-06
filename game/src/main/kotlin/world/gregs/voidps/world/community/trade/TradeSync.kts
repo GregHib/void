@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.itemChanged
+import world.gregs.voidps.engine.inv.itemChange
 
 /**
  * Persist updates on an offer to the other player
@@ -22,8 +22,8 @@ val inventoryDefinitions: InventoryDefinitions by inject()
 /*
     Offer
  */
-itemChanged({ inventory == "trade_offer" && it.contains("trade_partner") }) { player: Player ->
-    val other: Player = Trade.getPartner(player) ?: return@itemChanged
+itemChange("trade_offer") { player: Player ->
+    val other: Player = Trade.getPartner(player) ?: return@itemChange
     applyUpdates(other.otherOffer, this)
     val warn = player.hasRequest(other, "accept_trade") && removedAnyItems(this)
     if (warn) {
@@ -55,8 +55,8 @@ fun updateValue(player: Player, other: Player) {
 /*
     Loan
  */
-itemChanged({ inventory == "item_loan" && it.contains("trade_partner") }) { player: Player ->
-    val other: Player = Trade.getPartner(player) ?: return@itemChanged
+itemChange("item_loan") { player: Player ->
+    val other: Player = Trade.getPartner(player) ?: return@itemChange
     applyUpdates(other.otherLoan, this)
     val warn = player.hasRequest(other, "accept_trade") && removedAnyItems(this)
     modified(player, other, warn)
@@ -81,8 +81,8 @@ fun modified(player: Player, other: Player, warned: Boolean) {
 /*
     Item count
  */
-itemChanged({ inventory == "inventory" && it.contains("trade_partner") }) { player: Player ->
-    val other: Player = Trade.getPartner(player) ?: return@itemChanged
+itemChange("inventory") { player: Player ->
+    val other: Player = Trade.getPartner(player) ?: return@itemChange
     updateInventorySpaces(other, player)
 }
 

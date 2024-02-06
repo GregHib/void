@@ -5,10 +5,10 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.itemChanged
+import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.network.encode.weight
 
-itemChanged({ inventory == "worn_equipment" || inventory == "inventory" }) { player: Player ->
+itemChange("worn_equipment", "inventory") { player: Player ->
     updateWeight(player)
 }
 

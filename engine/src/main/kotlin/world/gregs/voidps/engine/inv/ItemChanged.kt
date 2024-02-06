@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.network.visual.update.player.EquipSlot
 
 /**
  * An item slot change in an inventory.
@@ -31,12 +32,28 @@ data class ItemChanged(
 
 }
 
-fun itemChanged(filter: ItemChanged.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend ItemChanged.(Player) -> Unit) {
-    on<ItemChanged>(filter, priority, block)
+fun itemAdded(inventory: String, item: String = "*", slot: EquipSlot = EquipSlot.None, block: suspend ItemChanged.(Player) -> Unit) {
+    itemAdded(inventory, item, slot.index, block)
 }
 
 fun itemAdded(inventory: String, item: String = "*", index: Int = -1, block: suspend ItemChanged.(Player) -> Unit) {
     on<ItemChanged>({ wildcardEquals(inventory, this.inventory) && wildcardEquals(item, this.item.id) && (index == -1 || index == this.index) }) { player: Player ->
+        block.invoke(this, player)
+    }
+}
+
+fun itemAdded(inventory: String, item: String = "*", indices: Set<Int> = emptySet(), block: suspend ItemChanged.(Player) -> Unit) {
+    on<ItemChanged>({ wildcardEquals(inventory, this.inventory) && wildcardEquals(item, this.item.id) && (indices.isEmpty() || indices.contains(index)) }) { player: Player ->
+        block.invoke(this, player)
+    }
+}
+
+fun itemRemoved(inventory: String, item: String = "*", slot: EquipSlot = EquipSlot.None, block: suspend ItemChanged.(Player) -> Unit) {
+    itemRemoved(inventory, item, slot.index, block)
+}
+
+fun itemRemoved(inventory: String, item: String = "*", indices: Set<Int> = emptySet(), block: suspend ItemChanged.(Player) -> Unit) {
+    on<ItemChanged>({ wildcardEquals(inventory, this.from) && wildcardEquals(item, this.oldItem.id) && (indices.isEmpty() || indices.contains(this.fromIndex)) }) { player: Player ->
         block.invoke(this, player)
     }
 }
@@ -47,8 +64,20 @@ fun itemRemoved(inventory: String, item: String = "*", index: Int = -1, block: s
     }
 }
 
-fun itemChange(inventory: String, index: Int = -1, block: suspend ItemChanged.(Player) -> Unit) {
-    on<ItemChanged>({ wildcardEquals(inventory, this.from) && (index == -1 || index == this.fromIndex) }) { player: Player ->
+fun itemChange(inventory: String, slot: EquipSlot, priority: Priority = Priority.MEDIUM, block: suspend ItemChanged.(Player) -> Unit) {
+    itemChange(inventory, slot.index, priority, block)
+}
+
+fun itemChange(inventory: String = "*", index: Int = -1, priority: Priority = Priority.MEDIUM, block: suspend ItemChanged.(Player) -> Unit) {
+    on<ItemChanged>({ wildcardEquals(inventory, this.from) && (index == -1 || index == this.fromIndex) }, priority) { player: Player ->
         block.invoke(this, player)
+    }
+}
+
+fun itemChange(vararg inventories: String, index: Int = -1, block: suspend ItemChanged.(Player) -> Unit) {
+    for (inventory in inventories) {
+        on<ItemChanged>({ wildcardEquals(inventory, this.from) && (index == -1 || index == this.fromIndex) }) { player: Player ->
+            block.invoke(this, player)
+        }
     }
 }

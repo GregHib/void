@@ -4,9 +4,9 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.inv.itemChanged
+import world.gregs.voidps.engine.inv.itemAdded
+import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 
@@ -16,15 +16,15 @@ playerSpawn { player: Player ->
     }
 }
 
-itemChanged({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && it.contains("ahrims_set_effect") && !isAhrims(item) }) { player: Player ->
+itemRemoved("worn_equipment", "ahrims_*", BarrowsArmour.slots) { player: Player ->
     player.clear("ahrims_set_effect")
 }
 
-itemChanged({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && !it.contains("ahrims_set_effect") && isAhrims(item) && it.hasFullSet() }) { player: Player ->
-    player["ahrims_set_effect"] = true
+itemAdded("worn_equipment", "ahrims_*", BarrowsArmour.slots) { player: Player ->
+    if (player.hasFullSet()) {
+        player["ahrims_set_effect"] = true
+    }
 }
-
-fun isAhrims(item: Item) = item.id.startsWith("ahrims_")
 
 fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
     "ahrims_staff",

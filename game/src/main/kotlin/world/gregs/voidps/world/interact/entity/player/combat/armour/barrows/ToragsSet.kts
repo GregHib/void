@@ -3,9 +3,9 @@ package world.gregs.voidps.world.interact.entity.player.combat.armour.barrows
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.inv.itemChanged
+import world.gregs.voidps.engine.inv.itemAdded
+import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
@@ -16,15 +16,15 @@ playerSpawn { player: Player ->
     }
 }
 
-itemChanged({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && it.contains("torags_set_effect") && !isTorags(item) }) { player: Player ->
+itemRemoved("worn_equipment", "torags_*", BarrowsArmour.slots) { player: Player ->
     player.clear("torags_set_effect")
 }
 
-itemChanged({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && !it.contains("torags_set_effect") && isTorags(item) && it.hasFullSet() }) { player: Player ->
-    player["torags_set_effect"] = true
+itemAdded("worn_equipment", "torags_*", BarrowsArmour.slots) { player: Player ->
+    if (player.hasFullSet()) {
+        player["torags_set_effect"] = true
+    }
 }
-
-fun isTorags(item: Item) = item.id.startsWith("torags_")
 
 fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
     "torags_hammers",

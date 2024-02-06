@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.itemChanged
+import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
 val styles: WeaponStyleDefinitions by inject()
@@ -33,7 +33,7 @@ interfaceRefresh("combat_styles") { player: Player ->
     player.interfaceOptions.unlockAll(id, "style4")
 }
 
-itemChanged({ index == EquipSlot.Weapon.index }) { player: Player ->
+itemChange("*", EquipSlot.Weapon) { player: Player ->
     refreshStyle(player)
 }
 

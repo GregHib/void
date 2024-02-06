@@ -25,11 +25,12 @@ object BarrowsArmour {
         else -> damage
     }
 
-    fun isSlot(index: Int) =
-        index == EquipSlot.Hat.index ||
-                index == EquipSlot.Chest.index ||
-                index == EquipSlot.Legs.index ||
-                index == EquipSlot.Weapon.index
+    val slots = setOf(
+        EquipSlot.Hat.index,
+        EquipSlot.Chest.index,
+        EquipSlot.Legs.index,
+        EquipSlot.Weapon.index
+    )
 
     fun hasSet(player: Player, weapon: String, helm: String, top: String, legs: String) =
         notBroken(player.equipped(EquipSlot.Weapon).id, weapon) &&

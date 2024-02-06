@@ -13,7 +13,8 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.itemChanged
+import world.gregs.voidps.engine.inv.itemAdded
+import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.network.visual.update.player.EquipSlot
@@ -30,11 +31,11 @@ playerSpawn { player: Player ->
     }
 }
 
-itemChanged({ inventory == "worn_equipment" && index == EquipSlot.Hat.index && item.id.endsWith("_tiara") }) { player: Player ->
+itemAdded("worn_equipment", "*_tiara", EquipSlot.Hat) { player: Player ->
     toggleAltar(player, item, true)
 }
 
-itemChanged({ inventory == "worn_equipment" && index == EquipSlot.Hat.index && oldItem.id.endsWith("_tiara") && oldItem.id != item.id }) { player: Player ->
+itemRemoved("worn_equipment", "*_tiara", EquipSlot.Hat) { player: Player ->
     toggleAltar(player, oldItem, false)
 }
 

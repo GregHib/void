@@ -1,9 +1,9 @@
 package world.gregs.voidps.world.interact.entity.player.combat.armour.barrows
 
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.inv.itemChanged
+import world.gregs.voidps.engine.inv.itemAdded
+import world.gregs.voidps.engine.inv.itemRemoved
 
 playerSpawn { player: Player ->
     if (player.hasFullSet()) {
@@ -11,15 +11,15 @@ playerSpawn { player: Player ->
     }
 }
 
-itemChanged({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && it.contains("dharoks_set_effect") && !isDharoks(item) }) { player: Player ->
+itemRemoved("worn_equipment", "dharoks_*", BarrowsArmour.slots) { player: Player ->
     player.clear("dharoks_set_effect")
 }
 
-itemChanged({ inventory == "worn_equipment" && BarrowsArmour.isSlot(index) && !it.contains("dharoks_set_effect") && isDharoks(item) && it.hasFullSet() }) { player: Player ->
-    player["dharoks_set_effect"] = true
+itemAdded("worn_equipment", "dharoks_*", BarrowsArmour.slots) { player: Player ->
+    if (player.hasFullSet()) {
+        player["dharoks_set_effect"] = true
+    }
 }
-
-fun isDharoks(item: Item) = item.id.startsWith("dharoks_")
 
 fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
     "dharoks_greataxe",

@@ -54,7 +54,7 @@ inventory({ inventory == "worn_equipment" && option == "Remove" }) { player: Pla
     }
 }
 
-itemChanged({ inventory == "worn_equipment" && index == EquipSlot.Weapon.index }) { player: Player ->
+itemChange("worn_equipment", EquipSlot.Weapon) { player: Player ->
     updateWeaponEmote(player)
 }
 

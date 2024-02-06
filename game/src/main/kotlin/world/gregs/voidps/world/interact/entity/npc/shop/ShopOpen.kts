@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
-import world.gregs.voidps.engine.inv.itemChanged
+import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.engine.inv.sendInventory
 
 val inventoryDefinitions: InventoryDefinitions by inject()
@@ -91,8 +91,10 @@ fun fillShop(inventory: Inventory, shopId: String) {
     }
 }
 
-itemChanged({ it.contains("shop") && inventory == it["shop", ""] }) { player: Player ->
-    player["amount_${index}"] = item.amount
+itemChange("*") { player: Player ->
+    if (player.contains("shop") && player["shop", ""] == inventory) {
+        player["amount_${index}"] = item.amount
+    }
 }
 
 fun sendAmounts(player: Player, inventory: Inventory) {

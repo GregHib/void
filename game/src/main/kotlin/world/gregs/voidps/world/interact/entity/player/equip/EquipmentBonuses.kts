@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.engine.inv.itemChanged
+import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.network.visual.VisualMask.APPEARANCE_MASK
 import world.gregs.voidps.world.interact.entity.player.equip.EquipBonuses.names
 import java.math.RoundingMode
@@ -28,7 +28,7 @@ playerSpawn { player: Player ->
     updateStats(player)
 }
 
-itemChanged({ inventory == "worn_equipment" }) { player: Player ->
+itemChange("worn_equipment") { player: Player ->
     updateStats(player, oldItem, false)
     updateStats(player, item, true)
 }

@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.itemChanged
+import world.gregs.voidps.engine.inv.itemChange
 
 /**
  * The item information side panel which shows a shop items requirements, stats and price
@@ -33,9 +33,12 @@ interfaceOption("item_info", "exit") {
     player.interfaceOptions.send("shop_side", "inventory")
 }
 
-itemChanged({ it.contains("shop") && it.contains("info_sample") && it.contains("info_index") }) { player: Player ->
-    val shop: String = player["shop"] ?: return@itemChanged
-    val index: Int = player["info_index"] ?: return@itemChanged
+itemChange("*") { player: Player ->
+    if (!player.contains("info_sample")) {
+        return@itemChange
+    }
+    val shop: String = player["shop"] ?: return@itemChange
+    val index: Int = player["info_index"] ?: return@itemChange
     if (inventory == shop && this.index == index) {
         player["item_info_price"] = if (this.item.amount == 0) 0 else Price.getPrice(player, item.id, index, this.item.amount)
     }

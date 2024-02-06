@@ -5,10 +5,10 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.itemChanged
+import world.gregs.voidps.engine.inv.itemAdded
+import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
@@ -73,7 +73,13 @@ playerSpawn { player: Player ->
     update(player)
 }
 
-itemChanged({ inventory == "worn_equipment" && changedMetalChestplate() || changedAvasDevice() }) { player: Player ->
+itemChange("worn_equipment", EquipSlot.Chest) { player: Player ->
+    if (item.def["material", ""] == "metal" || oldItem.def["material", ""] == "metal") {
+        update(player)
+    }
+}
+
+itemAdded("worn_equipment", "avas_*", EquipSlot.Cape) { player: Player ->
     update(player)
 }
 
@@ -101,7 +107,3 @@ timerTick({ timer == "junk_collection" }) { player: Player ->
         floorItems.add(player.tile, item, revealTicks = 100, disappearTicks = 200, owner = player)
     }
 }
-
-fun ItemChanged.changedMetalChestplate() = index == EquipSlot.Chest.index && (item.def["material", ""] == "metal" || oldItem.def["material", ""] == "metal")
-
-fun ItemChanged.changedAvasDevice() = index == EquipSlot.Cape.index && (oldItem.id.startsWith("avas_") || item.id.startsWith("avas_"))
