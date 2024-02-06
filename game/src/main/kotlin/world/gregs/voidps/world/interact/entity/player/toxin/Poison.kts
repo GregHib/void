@@ -8,8 +8,9 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.characterSpawn
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.timer.*
+import world.gregs.voidps.engine.timer.characterTimerStart
+import world.gregs.voidps.engine.timer.characterTimerStop
+import world.gregs.voidps.engine.timer.characterTimerTick
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
@@ -23,7 +24,13 @@ characterSpawn { character: Character ->
     }
 }
 
-characterTimerStart({ timer == "poison" }) { character: Character ->
+fun immune(character: Character) = character is NPC && character.def["immune_poison", false] || character is Player && character.equipped(EquipSlot.Shield).id == "anti_poison_totem"
+
+characterTimerStart("poison") { character: Character ->
+    if (character.antiPoison || immune(character)) {
+        cancel()
+        return@characterTimerStart
+    }
     if (!restart && character.poisonCounter == 0) {
         (character as? Player)?.message("<green>You have been poisoned.")
         damage(character)
@@ -83,16 +90,4 @@ command({ prefix == "poison" }) { player: Player ->
     } else {
         player.poison(player, content.toIntOrNull() ?: 100)
     }
-}
-
-timerStart({ timer == "poison" && it.equipped(EquipSlot.Shield).id == "anti_poison_totem" }, Priority.HIGH) { _: Player ->
-    cancel()
-}
-
-npcTimerStart({ timer == "poison" && it.def["immune_poison", false] }, Priority.HIGH) { _: NPC ->
-    cancel()
-}
-
-characterTimerStart({ timer == "poison" && it.antiPoison }, Priority.HIGH) { _: Character ->
-    cancel()
 }

@@ -96,7 +96,7 @@ fun update(player: Player) {
     }
 }
 
-timerStart({ timer == "junk_collection" }) { _: Player ->
+timerStart("junk_collection") { _: Player ->
     interval = TimeUnit.SECONDS.toTicks(90)
 }
 

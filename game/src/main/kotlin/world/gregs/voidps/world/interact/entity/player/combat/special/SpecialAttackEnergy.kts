@@ -13,7 +13,7 @@ playerSpawn { player: Player ->
     }
 }
 
-timerStart({ timer == "restore_special_energy" }) { _: Player ->
+timerStart("restore_special_energy") { _: Player ->
     interval = 50
 }
 

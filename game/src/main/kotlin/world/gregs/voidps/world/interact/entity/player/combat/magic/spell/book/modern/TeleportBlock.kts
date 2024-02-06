@@ -39,19 +39,18 @@ combatSwing({ player -> !swung() && player.spell == "teleport_block" }, Priority
     delay = 5
 }
 
-timerStart({ timer == "teleport_block" }) { player: Player ->
+timerStart("teleport_block") { player: Player ->
+    if (player.teleBlockImmune) {
+        cancel()
+        return@timerStart
+    }
+    if (player.protectMagic()) {
+        player.teleBlockCounter /= 2
+    }
     if (!restart) {
         player.message("You have been teleblocked.")
     }
     interval = 50
-}
-
-timerStart({ timer == "teleport_block" && it.teleBlockImmune }, Priority.HIGH) { _: Player ->
-    cancel()
-}
-
-timerStart({ timer == "teleport_block" && it.protectMagic() }, Priority.HIGH) { player: Player ->
-    player.teleBlockCounter /= 2
 }
 
 timerTick({ timer == "teleport_block" }) { player: Player ->

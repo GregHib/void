@@ -33,7 +33,7 @@ npcDeath({ isDuck(it) }) { npc: NPC ->
     followParent(ducklings)
 }
 
-npcTimerStart({ timer == "follow_parent" }) { _: NPC ->
+npcTimerStart("follow_parent") { _: NPC ->
     interval = 0
 }
 

@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.timer.characterTimerStart
 import world.gregs.voidps.engine.timer.characterTimerStop
 import world.gregs.voidps.engine.timer.characterTimerTick
 
-characterTimerStart({ timer == "colour_overlay" }) { character: Character ->
+characterTimerStart("colour_overlay") { character: Character ->
     val overlay = character.visuals.colourOverlay
     interval = (overlay.delay + overlay.duration) / 30
 }

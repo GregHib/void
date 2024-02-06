@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.timer.timerStop
 val collision: CollisionStrategyProvider by inject()
 val definitions: NPCDefinitions by inject()
 
-characterTimerStart({ timer == "transform" }) { character: Character ->
+characterTimerStart("transform") { character: Character ->
     val def = definitions.get(character["transform_id", ""])
     character["old_collision"] = character.collision
     character.collision = collision.get(def)

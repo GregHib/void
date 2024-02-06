@@ -7,8 +7,9 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.characterSpawn
-import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.timer.*
+import world.gregs.voidps.engine.timer.characterTimerStart
+import world.gregs.voidps.engine.timer.characterTimerStop
+import world.gregs.voidps.engine.timer.characterTimerTick
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import kotlin.math.sign
@@ -20,7 +21,14 @@ characterSpawn { character: Character ->
     }
 }
 
-characterTimerStart({ timer == "disease" }) { character: Character ->
+fun immune(character: Character) = character is NPC && character.def["immune_disease", false] ||
+        character is Player && character.equipped(EquipSlot.Hands).id == "inoculation_brace"
+
+characterTimerStart("disease") { character: Character ->
+    if (character.antiDisease || immune(character)) {
+        cancel()
+        return@characterTimerStart
+    }
     if (!restart && character.diseaseCounter == 0) {
         (character as? Player)?.message("You have been diseased.")
         damage(character)
@@ -67,16 +75,4 @@ command({ prefix == "disease" }) { player: Player ->
     } else {
         player.disease(player, content.toIntOrNull() ?: 100)
     }
-}
-
-timerStart({ timer == "disease" && it.equipped(EquipSlot.Hands).id == "inoculation_brace" }, Priority.HIGH) { _: Player ->
-    cancel()
-}
-
-npcTimerStart({ timer == "disease" && it.def["immune_disease", false] }, Priority.HIGH) { _: NPC ->
-    cancel()
-}
-
-characterTimerStart({ timer == "disease" && it.antiDisease }, Priority.HIGH) { _: Character ->
-    cancel()
 }

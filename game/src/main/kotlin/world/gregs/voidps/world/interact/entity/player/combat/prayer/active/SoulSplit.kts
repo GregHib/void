@@ -28,7 +28,7 @@ combatAttack({ usingSoulSplit(it) && damage >= 5 && type != "deflect" && type !=
     target.softTimers.start("soul_split")
 }
 
-characterTimerStart({ timer == "soul_split" }) { character: Character ->
+characterTimerStart("soul_split") { character: Character ->
     interval = character.remove("soul_split_distance") ?: return@characterTimerStart
 }
 

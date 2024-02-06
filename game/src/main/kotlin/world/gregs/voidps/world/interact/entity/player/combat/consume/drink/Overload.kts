@@ -38,11 +38,14 @@ playerSpawn { player: Player ->
     }
 }
 
-timerStart({ timer == "overload" }) { _: Player ->
+timerStart("overload") { _: Player ->
     interval = 25
 }
 
-timerStart({ timer == "overload" && !restart }) { player: Player ->
+timerStart("overload") { player: Player ->
+    if (restart) {
+        return@timerStart
+    }
     player.queue(name = "hit") {
         repeat(5) {
             player.directHit(100)

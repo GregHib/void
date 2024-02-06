@@ -27,7 +27,7 @@ playerSpawn { player: Player ->
     player.softTimers.restart("shop_restock")
 }
 
-timerStart({ timer == "shop_restock" }) { _: Player ->
+timerStart("shop_restock") { _: Player ->
     interval = restockTimeTicks
 }
 

@@ -24,7 +24,7 @@ levelChange({ skill != Skill.Prayer && skill != Skill.Summoning && skill != Skil
     player.softTimers.start("restore_stats")
 }
 
-timerStart({ timer == "restore_stats" }) { _: Player ->
+timerStart("restore_stats") { _: Player ->
     interval = TimeUnit.SECONDS.toTicks(60)
 }
 

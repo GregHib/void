@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePr
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-timerStart({ timer == "prayer_drain" }) { _: Player ->
+timerStart("prayer_drain") { _: Player ->
     interval = 1
 }
 

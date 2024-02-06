@@ -27,11 +27,11 @@ playerSpawn { player: Player ->
     }
 }
 
-timerStart({ timer == "fire_resistance" }) { _: Player ->
+timerStart("fire_resistance") { _: Player ->
     interval = 30
 }
 
-timerStart({ timer == "fire_immunity" }) { _: Player ->
+timerStart("fire_immunity") { _: Player ->
     interval = 20
 }
 

@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.timer.characterTimerStop
 import world.gregs.voidps.engine.timer.characterTimerTick
 import kotlin.math.sign
 
-characterTimerStart({ timer == "movement_delay" }) { character: Character ->
+characterTimerStart("movement_delay") { character: Character ->
     character.start("movement_delay", -1)
     interval = 1
 }

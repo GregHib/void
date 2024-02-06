@@ -36,7 +36,7 @@ specialAttack("*excalibur*") { player: Player ->
 }
 
 
-timerStart({ timer == "sanctuary" }) { _: Player ->
+timerStart("sanctuary") { _: Player ->
     interval = 4
 }
 

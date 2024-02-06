@@ -30,11 +30,11 @@ interfaceOption("clan_chat", "loot_share") {
     player.message("You will ${if (lootShare) "stop sharing" else "be able to share"} loot in 2 minutes.", ChatType.ClanChat)
 }
 
-timerStart({ timer == "clan_loot_update" }) { _: Player ->
+timerStart("clan_loot_update") { _: Player ->
     interval = TimeUnit.MINUTES.toTicks(2)
 }
 
-timerStart({ timer == "clan_loot_update" }) { player: Player ->
+timerStart("clan_loot_update") { player: Player ->
     cancel()
     player["loading_loot_share"] = false
     val clan = player.clan ?: return@timerStart
@@ -42,7 +42,7 @@ timerStart({ timer == "clan_loot_update" }) { player: Player ->
     update(player, clan, lootShare)
 }
 
-timerStart({ timer == "clan_loot_rank_update" || timer == "clan_coin_share_update" }) { _: Player ->
+timerStart("clan_loot_rank_update", "clan_coin_share_update") { _: Player ->
     interval = TimeUnit.SECONDS.toTicks(30)
 }
 

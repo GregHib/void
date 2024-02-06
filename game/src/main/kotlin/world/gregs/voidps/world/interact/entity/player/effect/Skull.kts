@@ -21,7 +21,7 @@ combatSwing({ it.inWilderness && target is Player && it.get<List<Character>>("at
     player.skull()
 }
 
-timerStart({ timer == "skull" }) { player: Player ->
+timerStart("skull") { player: Player ->
     interval = 50
     player.appearance.skull = player["skull", 0]
     player.flagAppearance()

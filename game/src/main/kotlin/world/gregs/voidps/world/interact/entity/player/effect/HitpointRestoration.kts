@@ -22,7 +22,7 @@ levelChange({ skill == Skill.Constitution && to > 0 && to < it.levels.getMax(ski
     player.softTimers.start("restore_hitpoints")
 }
 
-timerStart({ timer == "restore_hitpoints" }) { _: Player ->
+timerStart("restore_hitpoints") { _: Player ->
     interval = TimeUnit.SECONDS.toTicks(6)
 }
 

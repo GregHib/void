@@ -30,7 +30,7 @@ consume({ item.id.startsWith("recover_special") }) { player: Player ->
     player.softTimers.start("recover_special")
 }
 
-timerStart({ timer == "recover_special" }) { _: Player ->
+timerStart("recover_special") { _: Player ->
     interval = 10
 }
 

@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
 
-timerStart({ timer == "dressing_room" }) { _: Player ->
+timerStart("dressing_room") { _: Player ->
     interval = 1
 }
 

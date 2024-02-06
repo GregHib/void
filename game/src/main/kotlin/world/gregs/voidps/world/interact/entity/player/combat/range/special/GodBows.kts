@@ -69,7 +69,7 @@ combatHit({ source is Player && isGodBow(weapon) && special }) { character: Char
     source.playSound("god_bow_special_hit")
 }
 
-timerStart({ timer == "restorative_shot" || timer == "balanced_shot" }) { _: Player ->
+timerStart("restorative_shot", "balanced_shot") { _: Player ->
     interval = TimeUnit.SECONDS.toTicks(6)
 }
 

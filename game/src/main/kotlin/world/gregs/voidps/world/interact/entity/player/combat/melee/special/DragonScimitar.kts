@@ -34,7 +34,7 @@ combatSwing({ !swung() && it.specialAttack && isDragonScimitar(it.weapon) }) { p
     delay = 4
 }
 
-timerStart({ timer == "sever" }) { player: Player ->
+timerStart("sever") { player: Player ->
     interval = TimeUnit.SECONDS.toTicks(5)
     val key = player.getActivePrayerVarKey()
     if (player.isCurses()) {

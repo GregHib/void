@@ -72,7 +72,7 @@ fun checkLoanUntilLogout(player: Player) {
     }
 }
 
-timerStart({ timer == "loan_message" }) { player: Player ->
+timerStart("loan_message") { player: Player ->
     val remaining = player.remaining("lend_timeout", epochSeconds())
     interval = TimeUnit.SECONDS.toTicks(remaining)
 }
@@ -81,7 +81,7 @@ timerStop({ timer == "loan_message" && !logout }) { player: Player ->
     stopLending(player)
 }
 
-timerStart({ timer == "borrow_message" }) { _: Player ->
+timerStart("borrow_message") { _: Player ->
     interval = TimeUnit.MINUTES.toTicks(1)
 }
 

@@ -32,7 +32,7 @@ variableSet({ quests.contains(key) }) { player: Player ->
     player.softTimers.start("refresh_quest_journal")
 }
 
-timerStart({ timer == "refresh_quest_journal" }) { _: Player ->
+timerStart("refresh_quest_journal") { _: Player ->
     interval = 1
 }
 

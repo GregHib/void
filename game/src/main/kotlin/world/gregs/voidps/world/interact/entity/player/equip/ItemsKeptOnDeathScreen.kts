@@ -14,16 +14,20 @@ import world.gregs.voidps.world.interact.entity.player.effect.skulled
 
 val enums: EnumDefinitions by inject()
 
-timerStart({ timer == "skull" && it.interfaces.contains("items_kept_on_death") }) { player: Player ->
-    player.open("items_kept_on_death", close = false)
+timerStart("skull") { player: Player ->
+    if (player.interfaces.contains("items_kept_on_death")) {
+        player.open("items_kept_on_death", close = false)
+    }
 }
 
 timerStop({ timer == "skull" && it.interfaces.contains("items_kept_on_death") }) { player: Player ->
     player.open("items_kept_on_death", close = false)
 }
 
-timerStart({ timer == "prayer_protect_item" && it.interfaces.contains("items_kept_on_death") }) { player: Player ->
-    player.open("items_kept_on_death", close = false)
+timerStart("prayer_protect_item") { player: Player ->
+    if (player.interfaces.contains("items_kept_on_death")) {
+        player.open("items_kept_on_death", close = false)
+    }
 }
 
 timerStop({ timer == "prayer_protect_item" && it.interfaces.contains("items_kept_on_death") }) { player: Player ->

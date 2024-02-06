@@ -48,7 +48,7 @@ combatSwing({ player -> !swung() && player.fightStyle == "range" && player.speci
     }
 }
 
-characterTimerStart({ timer == "phantom_strike" }) { _: Character ->
+characterTimerStart("phantom_strike") { _: Character ->
     interval = 3
 }
 

@@ -15,7 +15,7 @@ npcSpawn("cow*") { npc: NPC ->
     npc.softTimers.start("eat_grass")
 }
 
-npcTimerStart({ timer == "eat_grass" }) { npc: NPC ->
+npcTimerStart("eat_grass") { npc: NPC ->
     npc.mode = EmptyMode
     interval = random.nextInt(50, 200)
 }
