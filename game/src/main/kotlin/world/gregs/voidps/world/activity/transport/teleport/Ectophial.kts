@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -19,12 +18,12 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.world.interact.entity.player.equip.inventory
+import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 
 val areas: AreaDefinitions by inject()
 val objects: GameObjects by inject()
 
-inventory({ inventory == "inventory" && item.id == "ectophial" && option == "Empty" }, Priority.HIGH) { player: Player ->
+inventoryItem("Empty", "ectophial", "inventory", priority = Priority.HIGH) {
     cancel()
     player.strongQueue("ectophial") {
         player.setAnimation("empty_ectophial")

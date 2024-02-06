@@ -17,17 +17,15 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-fun canWear(option: String) = option == "Wield" || option == "Wear" || option == "Hold" || option == "Equip"
-
-inventory({ inventory == "inventory" && canWear(option) }) { player: Player ->
+inventoryOptions("Wield", "Wear", "Hold", "Equip", inventory = "inventory") {
     val def = item.def
 
     if (!player.hasRequirements(item, true)) {
-        return@inventory
+        return@inventoryOptions
     }
     if (replaceWeaponShieldWith2h(player, def) && !player.equipment.move(EquipSlot.Shield.index, player.inventory)) {
         player.inventoryFull()
-        return@inventory
+        return@inventoryOptions
     }
 
     if (replace2hWithShield(player, def) || replaceShieldWith2h(player, def)) {
@@ -45,7 +43,7 @@ inventory({ inventory == "inventory" && canWear(option) }) { player: Player ->
     playEquipSound(player, def)
 }
 
-inventory({ inventory == "worn_equipment" && option == "Remove" }) { player: Player ->
+inventoryOption("Remove", "worn_equipment") {
     player.equipment.move(slot, player.inventory)
     when (player.equipment.transaction.error) {
         TransactionError.None -> playEquipSound(player, item.def)

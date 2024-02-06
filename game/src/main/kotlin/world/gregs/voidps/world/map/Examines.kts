@@ -3,17 +3,16 @@ package world.gregs.voidps.world.map
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.obj.objectApproach
-import world.gregs.voidps.world.interact.entity.player.equip.inventory
+import world.gregs.voidps.world.interact.entity.player.equip.inventoryOption
 
 interfaceOption("equipment_bonuses", option = "Examine") {
     player.message(item.def.getOrNull("examine") ?: return@interfaceOption, ChatType.ItemExamine)
 }
 
-inventory({ option == "Examine" }) { player: Player ->
-    player.message(item.def.getOrNull("examine") ?: return@inventory, ChatType.ItemExamine)
+inventoryOption("Examine") {
+    player.message(item.def.getOrNull("examine") ?: return@inventoryOption, ChatType.ItemExamine)
 }
 
 objectApproach("Examine") {

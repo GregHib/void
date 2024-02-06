@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.world.community.trade.lend.Loan.getExpiry
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.item
-import world.gregs.voidps.world.interact.entity.player.equip.inventory
+import world.gregs.voidps.world.interact.entity.player.equip.inventoryOption
 
 /**
  * Lent item discarding
@@ -21,12 +21,12 @@ val logger = InlineLogger()
 val players: Players by inject()
 val itemDefinitions: ItemDefinitions by inject()
 
-inventory({ inventory == "inventory" && option == "Discard" }) { player: Player ->
+inventoryOption("Discard", "inventory") {
     if (!player.contains("borrowed_item")) {
         if (player.inventory.remove(slot, item.id)) {
             logger.info { "$player discarded un-borrowed item $item" }
         }
-        return@inventory
+        return@inventoryOption
     }
     val loan = itemDefinitions.get(item.def.lendId).stringId
     item(loan, 900, """

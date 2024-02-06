@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -20,7 +19,7 @@ import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
-import world.gregs.voidps.world.interact.entity.player.equip.inventory
+import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val areas: AreaDefinitions by inject()
@@ -58,12 +57,12 @@ interfaceOption("*_spellbook", "*_teleport", "Cast") {
     }
 }
 
-inventory({ item.id.endsWith("_teleport") }) { player: Player ->
+inventoryItem("*", "*_teleport") {
     if (player.queue.contains(ActionPriority.Normal)) {
-        return@inventory
+        return@inventoryItem
     }
     player.closeInterfaces()
-    val definition = areas.getOrNull(item.id) ?: return@inventory
+    val definition = areas.getOrNull(item.id) ?: return@inventoryItem
     val scrolls = areas.getTagged("scroll")
     val type = if (scrolls.contains(definition)) "scroll" else "tablet"
     val map = definition.area

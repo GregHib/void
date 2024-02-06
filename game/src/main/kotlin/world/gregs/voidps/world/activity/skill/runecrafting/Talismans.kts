@@ -3,24 +3,23 @@ package world.gregs.voidps.world.activity.skill.runecrafting
 import net.pearx.kasechange.toKebabCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.area.Rectangle
 import world.gregs.voidps.world.interact.entity.obj.Teleports
-import world.gregs.voidps.world.interact.entity.player.equip.inventory
+import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 
 val overworld = Rectangle(2048, 2496, 3903, 4159)
 
 val teleports: Teleports by inject()
 
-inventory({ item.id.endsWith("_talisman") && option == "Locate" }) { player: Player ->
+inventoryItem("Locate", "*_talisman") {
     val id = item.id.replace("_talisman", "_altar_portal")
     val teleport = teleports.get(id, "Enter").first()
     if (player.tile.region == teleport.tile.region) {
         val type = item.id.removeSuffix("_talisman").toSentenceCase()
         player.message("You are standing in the $type temple.")
-        return@inventory
+        return@inventoryItem
     }
     val direction = teleport.to.delta(player.tile).toDirection()
     if (player.tile in overworld || direction == Direction.NONE) {

@@ -2,11 +2,10 @@ package world.gregs.voidps.world.activity.transport.teleport
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.entity.player.equip.inventory
+import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 
 val areas: AreaDefinitions by inject()
 
@@ -15,7 +14,7 @@ val karamja = areas["karamja_teleport"]
 val draynorVillage = areas["draynor_village_teleport"]
 val alKharid = areas["al_kharid_teleport"]
 
-inventory({ inventory == "inventory" && item.id.startsWith("amulet_of_glory_") && option == "Rub" }) { player: Player ->
+inventoryItem("Rub", "amulet_of_glory_#", "inventory") {
     choice("Where would you like to teleport to?") {
         option("Edgeville") {
             player.message("You rub the amulet...", ChatType.Filter)
@@ -37,13 +36,13 @@ inventory({ inventory == "inventory" && item.id.startsWith("amulet_of_glory_") &
     }
 }
 
-inventory({ inventory == "worn_equipment" && item.id.startsWith("amulet_of_glory_") }) { player: Player ->
+inventoryItem("*", "amulet_of_glory_#", "worn_equipment") {
     val area = when (option) {
         "Edgeville" -> edgeville
         "Karamja" -> karamja
         "Draynor Village" -> draynorVillage
         "Al Kharid" -> alKharid
-        else -> return@inventory
+        else -> return@inventoryItem
     }
     player.message("You rub the amulet...", ChatType.Filter)
     jewelleryTeleport(player, inventory, slot, area)

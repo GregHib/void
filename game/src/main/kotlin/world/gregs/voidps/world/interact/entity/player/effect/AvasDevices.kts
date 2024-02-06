@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.player.equip.inventory
+import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 import java.util.concurrent.TimeUnit
 
 val attractor = setOf(
@@ -83,7 +83,12 @@ itemAdded("worn_equipment", "avas_*", EquipSlot.Cape) { player: Player ->
     update(player)
 }
 
-inventory({ (inventory == "inventory" || inventory == "worn_equipment") && option == "Toggle" && item.id.startsWith("avas_") }) { player: Player ->
+inventoryItem("Toggle", "avas_*", "worn_equipment") {
+    player["collect_junk"] = !player["collect_junk", false]
+    update(player)
+}
+
+inventoryItem("Toggle", "avas_*", "inventory") {
     player["collect_junk"] = !player["collect_junk", false]
     update(player)
 }

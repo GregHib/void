@@ -17,35 +17,36 @@ import world.gregs.voidps.engine.suspend.awaitInterfaces
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.dialogue.continueDialogue
-import world.gregs.voidps.world.interact.entity.player.equip.inventory
+import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
+import world.gregs.voidps.world.interact.entity.player.equip.inventoryOptions
 import world.gregs.voidps.world.interact.entity.player.toxin.curePoison
 import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
-inventory({ item.id == "toy_kite" && option == "Fly" }) { player: Player ->
+inventoryItem("Fly", "toy_kite") {
     if (player.hasClock("emote_delay")) {
         player.message("Please wait till you've finished performing your current emote.")
-        return@inventory
+        return@inventoryItem
     }
     player.playAnimation("emote_fly_kite")
 }
 
-inventory({ inventory == "worn_equipment" && item.id == "reindeer_hat" && option == "Emote" }) { player: Player ->
+inventoryItem("Emote", "reindeer_hat", "worn_equipment") {
     if (player.hasClock("emote_delay")) {
         player.message("Please wait till you've finished performing your current emote.")
-        return@inventory
+        return@inventoryItem
     }
     player.setGraphic("emote_reindeer")
     player.playAnimation("emote_reindeer")
 }
 
-inventory({ inventory == "inventory" && item.id == "prayer_book" && option == "Recite-prayer" }) { player: Player ->
+inventoryItem("Recite-prayer", "prayer_book", "inventory") {
     if (player.hasClock("emote_delay")) {
         player.message("Please wait till you've finished performing your current emote.")
-        return@inventory
+        return@inventoryItem
     }
     if (player.poisoned) {
-        val poisonDamage: Int = player["poison_damage"] ?: return@inventory
+        val poisonDamage: Int = player["poison_damage"] ?: return@inventoryItem
         var points = (poisonDamage - 20) / 2
         var decrease = poisonDamage
         val prayer = player.levels.get(Skill.Prayer)
@@ -64,18 +65,18 @@ inventory({ inventory == "inventory" && item.id == "prayer_book" && option == "R
     player.playAnimation("emote_recite_prayer")
 }
 
-inventory({ item.id == "rubber_chicken" && option == "Dance" }) { player: Player ->
+inventoryItem("Dance", "rubber_chicken") {
     if (player.hasClock("emote_delay")) {
         player.message("Please wait till you've finished performing your current emote.")
-        return@inventory
+        return@inventoryItem
     }
     player.playAnimation("emote_chicken_dance")
 }
 
-inventory({ inventory == "inventory" && item.id == "spinning_plate" && option == "Spin" }) { player: Player ->
+inventoryItem("Spin", "spinning_plate", "inventory") {
     if (player.hasClock("emote_delay")) {
         player.message("Please wait till you've finished performing your current emote.")
-        return@inventory
+        return@inventoryItem
     }
     val drop = random.nextBoolean()
     player.playAnimation("emote_spinning_plate")
@@ -88,10 +89,10 @@ continueDialogue({ id == "snow_globe" && component == "continue" }) { player: Pl
     player.continueDialogue()
 }
 
-inventory({ inventory == "inventory" && item.id == "snow_globe" && option == "Shake" }) { player: Player ->
+inventoryItem("Shake", "snow_globe", "inventory") {
     if (player.hasClock("emote_delay")) {
         player.message("Please wait till you've finished performing your current emote.")
-        return@inventory
+        return@inventoryItem
     }
     player.queue("snow_globe") {
         player.message("You shake the snow globe.")
@@ -108,10 +109,10 @@ inventory({ inventory == "inventory" && item.id == "snow_globe" && option == "Sh
     }
 }
 
-inventory({ inventory == "inventory" && item.id == "yo_yo" && (option == "Play" || option == "Loop" || option == "Walk" || option == "Crazy") }) { player: Player ->
+inventoryOptions("Play", "Loop", "Walk", "Crazy", item = "yo_yo", inventory = "inventory") {
     if (player.hasClock("emote_delay")) {
         player.message("Please wait till you've finished performing your current emote.")
-        return@inventory
+        return@inventoryOptions
     }
     player.playAnimation("emote_yoyo_${option.lowercase()}")
 }

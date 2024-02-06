@@ -6,12 +6,12 @@ import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.player.equip.inventory
+import world.gregs.voidps.world.interact.entity.player.equip.inventoryOption
 
 val books: Books by inject()
 
-inventory({ item.def.contains("book") && option == "Read" }) { player: Player ->
-    player.openBook(item.def["book"])
+inventoryOption("Read") {
+    player.openBook(item.def.getOrNull("book") ?: return@inventoryOption)
 }
 
 interfaceRefresh("book") { player: Player ->

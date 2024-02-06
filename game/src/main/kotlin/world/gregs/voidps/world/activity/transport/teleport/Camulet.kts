@@ -10,11 +10,11 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.player.effect.degrade.Degrade
-import world.gregs.voidps.world.interact.entity.player.equip.inventory
+import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 
 val areas: AreaDefinitions by inject()
 
-inventory({ item.id == "camulet" && option == "Rub" }) { player: Player ->
+inventoryItem("Rub", "camulet") {
     if (jewelleryTeleport(player, inventory, slot, areas["camulet_teleport"])) {
         player.message("You rub the amulet...")
     } else {
@@ -22,7 +22,7 @@ inventory({ item.id == "camulet" && option == "Rub" }) { player: Player ->
     }
 }
 
-inventory({ inventory == "inventory" && item.id == "camulet" && option == "Check-charge" }) { player: Player ->
+inventoryItem("Check-charge", "camulet", "inventory") {
     val charges = Degrade.charges(player, inventory, slot)
     player.message("Your Camulet has $charges ${"charge".plural(charges)} left.")
     if (charges == 0) {

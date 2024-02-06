@@ -11,10 +11,13 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.world.interact.entity.player.equip.inventory
+import world.gregs.voidps.world.interact.entity.player.equip.inventoryOptions
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-inventory({ (item.def.contains("heals") || item.def.contains("excess")) && (option == "Eat" || option == "Drink" || option == "Heal") }) { player: Player ->
+inventoryOptions("Eat", "Drink", "Heal") {
+    if (!item.def.contains("heals") && !item.def.contains("excess")) {
+        return@inventoryOptions
+    }
     val drink = option == "Drink"
     val combo = item.def.contains("combo")
     val delay = when {
@@ -28,13 +31,13 @@ inventory({ (item.def.contains("heals") || item.def.contains("excess")) && (opti
         else -> 3
     }
     if (player.hasClock(delay)) {
-        return@inventory
+        return@inventoryOptions
     }
     player.start(delay, ticks)
     val consumable = Consumable(item)
     player.events.emit(consumable)
     if (consumable.cancelled) {
-        return@inventory
+        return@inventoryOptions
     }
     val replacement = item.def["excess", ""]
     val message = item.def["eat_message", ""]
