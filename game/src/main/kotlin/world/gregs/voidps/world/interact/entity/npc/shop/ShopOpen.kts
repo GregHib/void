@@ -19,9 +19,11 @@ import world.gregs.voidps.engine.inv.sendInventory
 val inventoryDefinitions: InventoryDefinitions by inject()
 val logger = InlineLogger()
 
-npcOperate({ def.contains("shop") && option == "Trade" }) { player: Player ->
-    target.face(player)
-    player.openShop(def["shop"])
+npcOperate("Trade") {
+    if (def.contains("shop")) {
+        target.face(player)
+        player.openShop(def["shop"])
+    }
 }
 
 interfaceClose("shop") { player: Player ->

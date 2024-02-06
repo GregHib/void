@@ -43,7 +43,10 @@ move({ it.contains("fishers") && it.def.contains("fishing") }) { npc: NPC ->
     }
 }
 
-npcOperate({ def.contains("fishing") }) { player: Player ->
+npcOperate("*") {
+    if (!def.contains("fishing")) {
+        return@npcOperate
+    }
     arriveDelay()
     target.getOrPut("fishers") { mutableSetOf<Player>() }.add(player)
     player.softTimers.start("fishing")

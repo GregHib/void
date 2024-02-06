@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.wildcardEquals
 
@@ -16,10 +15,6 @@ data class NPCOption(
     val option: String
 ) : Interaction(), TargetNPCContext {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
-}
-
-fun npcOperate(filter: NPCOption.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend NPCOption.(Player) -> Unit) {
-    on<NPCOption>({ operate && filter(this, it) }, priority, block)
 }
 
 fun npcApproach(option: String, npc: String = "*", block: suspend NPCOption.() -> Unit) {

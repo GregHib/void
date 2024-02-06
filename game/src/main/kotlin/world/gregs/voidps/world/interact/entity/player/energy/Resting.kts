@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.mode.Rest
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.arriveDelay
 
 interfaceOption("energy_orb", option = "Rest") {
@@ -15,7 +14,9 @@ interfaceOption("energy_orb", option = "Rest") {
     }
 }
 
-npcOperate({ def["song", -1] != -1 && option == "Listen-to" }) { player: Player ->
-    arriveDelay()
-    player.mode = Rest(player, def["song"])
+npcOperate("Listen-to") {
+    if (def["song", -1] != -1) {
+        arriveDelay()
+        player.mode = Rest(player, def["song"])
+    }
 }
