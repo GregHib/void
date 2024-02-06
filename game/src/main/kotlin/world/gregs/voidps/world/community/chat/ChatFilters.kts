@@ -14,7 +14,7 @@ playerSpawn { player: Player ->
     player.sendVariable("clan_status")
 }
 
-interfaceOption({ id == "filter_buttons" && component != "report" && component != "assist" && option != "View" }) { player: Player ->
+interfaceOption("filter_buttons", option = "View") {
     when (component) {
         "game", "clan" -> player["${component}_status"] = option.lowercase()
         "public" -> player.publicStatus = option.lowercase()

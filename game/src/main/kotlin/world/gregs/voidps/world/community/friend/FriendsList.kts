@@ -106,7 +106,10 @@ on<DeleteIgnore>({ player -> player.privateStatus == "on" }, Priority.LOWER) { p
     }
 }
 
-interfaceOption({ id == "filter_buttons" && component == "private" && it.privateStatus != "on" && option != "Off" }, Priority.HIGH) { player: Player ->
+interfaceOption("filter_buttons", "private") {
+    if (player.privateStatus == "on" || option == "Off") {
+        return@interfaceOption
+    }
     val next = option.lowercase()
     notifyBefriends(player, online = true) { it, current ->
         when {
@@ -118,7 +121,10 @@ interfaceOption({ id == "filter_buttons" && component == "private" && it.private
     }
 }
 
-interfaceOption({ id == "filter_buttons" && component == "private" && it.privateStatus != "off" && option != "On" }, Priority.HIGH) { player: Player ->
+interfaceOption("filter_buttons", "private") {
+    if (player.privateStatus == "off" || option == "On") {
+        return@interfaceOption
+    }
     val next = option.lowercase()
     notifyBefriends(player, online = false) { it, current ->
         when {

@@ -14,11 +14,14 @@ import world.gregs.voidps.world.community.trade.Trade.isTradeInterface
  * Declining or closing cancels the trade
  */
 
-fun isDecline(component: String, option: String) = component == "decline" && option == "Decline"
+interfaceOption("trade_*", "decline", "Decline") {
+    val other = getPartner(player)
+    player.message("Declined trade.", ChatType.Trade)
+    player.closeMenu()
+    other?.message("Other player declined trade.", ChatType.Trade)
+}
 
-fun isClose(component: String, option: String) = component == "close" && option == "Close"
-
-interfaceOption({ isTradeInterface(id) && (isDecline(component, option) || isClose(component, option)) }) { player: Player ->
+interfaceOption("trade_*", "close", "Close") {
     val other = getPartner(player)
     player.message("Declined trade.", ChatType.Trade)
     player.closeMenu()
