@@ -41,8 +41,8 @@ timerStop("prayer_protect_item") { player: Player ->
 interfaceRefresh("items_kept_on_death") { player: Player ->
     val items = ItemsKeptOnDeath.getAllOrdered(player)
     val savedItems = ItemsKeptOnDeath.kept(player, items, enums)
-    val carriedWealth = items.sumOf { it.def.cost }
-    val savedWealth = savedItems.sumOf { it.def.cost }
+    val carriedWealth = items.sumOf { it.def.cost * it.amount }
+    val savedWealth = savedItems.sumOf { it.def.cost * it.amount }
     player.updateItemsOnDeath(
         savedItems,
         carriedWealth = carriedWealth,
