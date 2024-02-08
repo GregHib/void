@@ -21,12 +21,12 @@ variableSet("activated_*") { player: Player ->
     }
 }
 
-variableAdded({ key == ACTIVE_PRAYERS || key == ACTIVE_CURSES }) { player: Player ->
+variableAdded(ACTIVE_PRAYERS, ACTIVE_CURSES) { player: Player ->
     player.closeInterfaces()
     player.events.emit(PrayerStart((value as String).toSnakeCase()))
 }
 
-variableRemoved({ key == ACTIVE_PRAYERS || key == ACTIVE_CURSES }) { player: Player ->
+variableRemoved(ACTIVE_PRAYERS, ACTIVE_CURSES) { player: Player ->
     player.closeInterfaces()
     player.events.emit(PrayerStop((value as String).toSnakeCase()))
 }

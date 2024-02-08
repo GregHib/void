@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.wildcardEquals
 
@@ -22,8 +21,10 @@ fun variableClear(key: String, block: suspend VariableSet.(Player) -> Unit) {
     on<VariableSet>({ wildcardEquals(key, this.key) && to == null }, block = block)
 }
 
-fun variableSet(filter: VariableSet.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend VariableSet.(Player) -> Unit) {
-    on<VariableSet>(filter, priority, block)
+fun variableSet(variables: Set<String>, block: suspend VariableSet.(Player) -> Unit) {
+    for (variable in variables) {
+        on<VariableSet>({ wildcardEquals(variable, key) }, block = block)
+    }
 }
 
 fun variableSet(id: String, block: suspend VariableSet.(Player) -> Unit) {

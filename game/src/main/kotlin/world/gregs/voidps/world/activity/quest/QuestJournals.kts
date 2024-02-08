@@ -28,7 +28,7 @@ interfaceOpen("quest_journals") { player: Player ->
     }
 }
 
-variableSet({ quests.contains(key) }) { player: Player ->
+variableSet(quests) { player: Player ->
     player.softTimers.start("refresh_quest_journal")
 }
 
