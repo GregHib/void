@@ -20,7 +20,13 @@ playerSpawn { player: Player ->
     }
 }
 
-levelChange({ skill != Skill.Prayer && skill != Skill.Summoning && skill != Skill.Constitution && to != it.levels.getMax(skill) && !it.softTimers.contains("restore_stats") }) { player: Player ->
+levelChange { player: Player ->
+    if (skill == Skill.Prayer || skill == Skill.Summoning || skill == Skill.Constitution) {
+        return@levelChange
+    }
+    if (to == player.levels.getMax(skill) || player.softTimers.contains("restore_stats")) {
+        return@levelChange
+    }
     player.softTimers.start("restore_stats")
 }
 

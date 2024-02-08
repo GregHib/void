@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.levelChange
+import world.gregs.voidps.engine.entity.character.player.skill.level.npcLevelChange
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.suspend.approachRange
@@ -39,7 +39,10 @@ for (type in listOf("magic", "melee")) {
         }
     }
 
-    levelChange({ it.id == "${type}_dummy" && skill == Skill.Constitution && to <= 10 }, Priority.HIGH) { npc: NPC ->
+    npcLevelChange("${type}_dummy", Skill.Constitution, Priority.HIGH) { npc: NPC ->
+        if (to > 10) {
+            return@npcLevelChange
+        }
         npc.levels.clear()
         npc.attackers.forEach {
             it.mode = EmptyMode

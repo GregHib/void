@@ -3,11 +3,10 @@ package world.gregs.voidps.world.interact.entity.player.combat.range.special
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.levelChange
+import world.gregs.voidps.engine.entity.character.player.skill.level.characterLevelChange
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
@@ -20,8 +19,6 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIA
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
-
-fun isSeercull(weapon: Item) = weapon.id == "seercull"
 
 specialAttackSwing("seercull", style = "range", priority = Priority.MEDIUM) { player: Player ->
     val speed = player.weapon.def["attack_speed", 4]
@@ -43,13 +40,15 @@ specialAttackHit("seercull", "range") { character: Character ->
 }
 
 combatAttack { _: Player ->
-    if (!isSeercull(weapon) || !special || target["soulshot", false]) {
+    if (weapon.id != "seercull" || !special || target["soulshot", false]) {
         return@combatAttack
     }
     target["soulshot"] = true
     target.levels.drain(Skill.Magic, damage / 10)
 }
 
-levelChange({ skill == Skill.Magic && it["soulshot", false] && to >= it.levels.getMax(skill) }) { character: Character ->
-    character.clear("soulshot")
+characterLevelChange(Skill.Magic) { character: Character ->
+    if (character["soulshot", false] && to >= character.levels.getMax(skill)) {
+        character.clear("soulshot")
+    }
 }

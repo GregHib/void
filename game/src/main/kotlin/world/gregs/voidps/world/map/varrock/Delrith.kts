@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.levelChange
+import world.gregs.voidps.engine.entity.character.player.skill.level.npcLevelChange
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.playerDespawn
@@ -283,7 +283,10 @@ npcOperate("*", "delrith") {
 }
 
 
-levelChange({ skill == Skill.Constitution && to <= 0 && it.id == "delrith" }, Priority.HIGH) { npc: NPC ->
+npcLevelChange("delrith", Skill.Constitution, Priority.HIGH) { npc: NPC ->
+    if (to > 0) {
+        return@npcLevelChange
+    }
     cancel()
 //    player.playSound("demon_slayer_portal_open")
     npc.transform = "delrith_weakened"

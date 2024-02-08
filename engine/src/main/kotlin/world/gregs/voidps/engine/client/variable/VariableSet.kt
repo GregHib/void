@@ -18,7 +18,6 @@ data class VariableSet(
     val to: Any?
 ) : Event
 
-@JvmName("variableClearPlayer")
 fun variableClear(key: String, block: suspend VariableSet.(Player) -> Unit) {
     on<VariableSet>({ wildcardEquals(key, this.key) }, block = block)
 }

@@ -18,7 +18,10 @@ playerSpawn { player: Player ->
     }
 }
 
-levelChange({ skill == Skill.Constitution && to > 0 && to < it.levels.getMax(skill) && !it.softTimers.contains("restore_hitpoints") }) { player: Player ->
+levelChange(Skill.Constitution) { player: Player ->
+    if (to <= 0 || to >= player.levels.getMax(skill) || player.softTimers.contains("restore_hitpoints")) {
+        return@levelChange
+    }
     player.softTimers.start("restore_hitpoints")
 }
 
