@@ -91,12 +91,3 @@ fun specialAttackSwing(vararg weapons: String = arrayOf("*"), style: String = "m
         }
     }
 }
-
-fun specialAttackSwing(style: String, weapons: Set<String>, priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Player) -> Unit) {
-    if (weapons.any { it.contains("*") || it.contains("#") }) {
-        throw IllegalArgumentException("Weapon collections cannot contain wildcards.")
-    }
-    on<CombatSwing>({ player -> !swung() && player.specialAttack && player.fightStyle == style && weapons.contains(player.weapon.id) }, priority) { character: Player ->
-        block.invoke(this, character)
-    }
-}

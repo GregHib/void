@@ -17,8 +17,7 @@ block(Priority.LOWEST) { _: Character ->
 
 block(Priority.LOWEST) { _: Character ->
     if (target is NPC) {
-        val npc = target as NPC
-        val animation = if (npc.race.isNotEmpty()) "${npc.race}_hit" else npc.def.getOrNull("hit_anim") ?: return@block
+        val animation = if (target.race.isNotEmpty()) "${target.race}_hit" else target.def.getOrNull("hit_anim") ?: return@block
         target.setAnimation(animation)
         blocked = true
     }

@@ -17,8 +17,8 @@ data class AreaExited(
     override var onCancel: (() -> Unit)? = null
 }
 
-fun exitArea(area: String = "*", tag: String = "*", block: suspend AreaEntered.() -> Unit) {
-    on<AreaEntered>({ wildcardEquals(area, name) && (tag == "*" || tags.any { wildcardEquals(tag, it) }) }) { _: Player ->
+fun exitArea(area: String = "*", tag: String = "*", block: suspend AreaExited.() -> Unit) {
+    on<AreaExited>({ wildcardEquals(area, name) && (tag == "*" || tags.any { wildcardEquals(tag, it) }) }) { _: Player ->
         block.invoke(this)
     }
 }

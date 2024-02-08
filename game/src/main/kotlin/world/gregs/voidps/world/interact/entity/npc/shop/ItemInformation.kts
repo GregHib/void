@@ -33,7 +33,7 @@ interfaceOption("item_info", "exit") {
     player.interfaceOptions.send("shop_side", "inventory")
 }
 
-itemChange("*") { player: Player ->
+itemChange { player: Player ->
     if (!player.contains("info_sample")) {
         return@itemChange
     }

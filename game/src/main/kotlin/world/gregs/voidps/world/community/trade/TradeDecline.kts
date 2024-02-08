@@ -17,15 +17,17 @@ import world.gregs.voidps.world.community.trade.Trade.isTradeInterface
 interfaceOption("trade_*", "decline", "Decline") {
     val other = getPartner(player)
     player.message("Declined trade.", ChatType.Trade)
-    player.closeMenu()
     other?.message("Other player declined trade.", ChatType.Trade)
+    player.closeMenu()
+    other?.closeMenu()
 }
 
 interfaceOption("trade_*", "close", "Close") {
     val other = getPartner(player)
     player.message("Declined trade.", ChatType.Trade)
-    player.closeMenu()
     other?.message("Other player declined trade.", ChatType.Trade)
+    player.closeMenu()
+    other?.closeMenu()
 }
 
 playerDespawn { player: Player ->
@@ -33,5 +35,6 @@ playerDespawn { player: Player ->
         val other = getPartner(player)
         player.closeMenu()
         other?.message("Other player declined trade.", ChatType.Trade)
+        other?.closeMenu()
     }
 }

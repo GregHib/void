@@ -22,7 +22,7 @@ object Trade {
 
     fun getPartner(player: Player): Player? {
         val partner: Player? = player["trade_partner"]
-        if (partner == null) {
+        if (partner == null && isTradeInterface(player.menu)) {
             player.closeMenu()
         }
         return partner

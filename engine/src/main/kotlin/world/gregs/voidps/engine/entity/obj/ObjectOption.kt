@@ -17,7 +17,7 @@ data class ObjectOption(
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 }
 
-fun objectApproach(option: String, vararg objects: String, block: suspend ObjectOption.() -> Unit) {
+fun objectApproach(option: String, vararg objects: String = arrayOf("*"), block: suspend ObjectOption.() -> Unit) {
     for (id in objects) {
         on<ObjectOption>({ approach && wildcardEquals(id, target.id) && wildcardEquals(option, this.option) }) { _: Player ->
             block.invoke(this)
@@ -25,7 +25,7 @@ fun objectApproach(option: String, vararg objects: String, block: suspend Object
     }
 }
 
-fun objectOperate(option: String, vararg objects: String, block: suspend ObjectOption.() -> Unit) {
+fun objectOperate(option: String, vararg objects: String = arrayOf("*"), block: suspend ObjectOption.() -> Unit) {
     for (id in objects) {
         on<ObjectOption>({ operate && wildcardEquals(id, target.id) && wildcardEquals(option, this.option) }) { _: Player ->
             block.invoke(this)

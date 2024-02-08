@@ -20,7 +20,7 @@ data class InterfaceSwitch(
 ) : Event
 
 fun interfaceSwap(id: String, component: String = "*", block: suspend InterfaceSwitch.(Player) -> Unit) {
-    on<InterfaceSwitch>({ wildcardEquals(this.id, id) && this.id == this.toId && wildcardEquals(component, this.component) && this.component == this.toComponent }) { player: Player ->
+    on<InterfaceSwitch>({ wildcardEquals(id, this.id) && this.id == this.toId && wildcardEquals(component, this.component) && this.component == this.toComponent }) { player: Player ->
         block.invoke(this, player)
     }
 }

@@ -9,7 +9,11 @@ import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
 import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
 import world.gregs.voidps.engine.suspend.resumeDialogueSuspension
 
-continueDialogue("dialogue_*chat", "continue") { player: Player ->
+continueDialogue("dialogue_npc_chat*", "continue") { player: Player ->
+    player.continueDialogue()
+}
+
+continueDialogue("dialogue_chat*", "continue") { player: Player ->
     player.continueDialogue()
 }
 

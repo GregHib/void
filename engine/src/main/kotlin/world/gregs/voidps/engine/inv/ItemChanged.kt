@@ -69,14 +69,14 @@ fun itemChange(inventory: String, slot: EquipSlot, priority: Priority = Priority
 }
 
 fun itemChange(inventory: String = "*", index: Int = -1, priority: Priority = Priority.MEDIUM, block: suspend ItemChanged.(Player) -> Unit) {
-    on<ItemChanged>({ wildcardEquals(inventory, this.from) && (index == -1 || index == this.fromIndex) }, priority) { player: Player ->
+    on<ItemChanged>({ wildcardEquals(inventory, this.inventory) && (index == -1 || index == this.index) }, priority) { player: Player ->
         block.invoke(this, player)
     }
 }
 
-fun itemChange(vararg inventories: String, index: Int = -1, block: suspend ItemChanged.(Player) -> Unit) {
+fun itemChange(vararg inventories: String = arrayOf("*"), index: Int = -1, block: suspend ItemChanged.(Player) -> Unit) {
     for (inventory in inventories) {
-        on<ItemChanged>({ wildcardEquals(inventory, this.from) && (index == -1 || index == this.fromIndex) }) { player: Player ->
+        on<ItemChanged>({ wildcardEquals(inventory, this.inventory) && (index == -1 || index == this.index) }) { player: Player ->
             block.invoke(this, player)
         }
     }
