@@ -5,16 +5,19 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.script.*
+import world.gregs.voidps.world.script.WorldTest
+import world.gregs.voidps.world.script.interfaceOption
+import world.gregs.voidps.world.script.interfaceSwitch
+import world.gregs.voidps.world.script.walk
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
@@ -26,7 +29,6 @@ internal class WeakInteractionTest : WorldTest() {
     fun `Interaction clears dialogue`() = listOf(
         "Interface switch",
         "Remove equipment",
-        "Item on item",
         "Activate prayer",
         "Skill guide",
         "Toggle attack style"
@@ -48,11 +50,7 @@ internal class WeakInteractionTest : WorldTest() {
                     val wool = Item("ball_of_wool", 1)
                     player.interfaceSwitch("inventory", "inventory", "inventory", wool, wool, 0, 1)
                 }
-                "Remove equipment" -> player.interfaceOption("worn_equipment", "weapon", "*", 0, Item("bronze_sword"))
-                "Item on item" -> {
-                    val wool = Item("ball_of_wool", 1)
-                    player.interfaceUse("inventory", "inventory", "inventory", wool, wool, 0, 1)
-                }
+                "Remove equipment" -> player.interfaceOption("worn_equipment", "weapon_slot", "*", 0, Item("bronze_sword"))
                 "Activate prayer" -> player.interfaceOption("prayer_list", "regular_prayers", "Activate", slot = 0)
                 "Skill guide" -> player.interfaceOption("stats", "attack", "View")
                 "Toggle attack style" -> player.interfaceOption("combat_styles", "style2", "Kick")

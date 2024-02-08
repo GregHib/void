@@ -117,8 +117,7 @@ internal class CombatTest : WorldTest() {
 
         player.interfaceOption("combat_styles", "special_attack_bar", "Use")
         player.npcOption(npc, "Attack")
-        tick()
-        tick()
+        tick(2)
 
         assertEquals(2, hits)
     }

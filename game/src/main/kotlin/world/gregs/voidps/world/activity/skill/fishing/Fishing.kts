@@ -43,7 +43,7 @@ npcMove({ it.contains("fishers") && it.def.contains("fishing") }) { npc: NPC ->
     }
 }
 
-npcOperate("*") {
+npcOperate("*", "fishing_spot_*") {
     if (!def.contains("fishing")) {
         return@npcOperate
     }

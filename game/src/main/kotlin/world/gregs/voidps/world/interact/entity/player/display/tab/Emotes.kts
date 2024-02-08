@@ -50,7 +50,6 @@ interfaceOption("emotes") {
         return@interfaceOption
     }
     player.strongQueue("emote") {
-        println(id)
         when {
             id == "skillcape" -> {
                 val cape = player.equipped(EquipSlot.Cape)

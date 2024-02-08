@@ -19,7 +19,7 @@ data class VariableSet(
 ) : Event
 
 fun variableClear(key: String, block: suspend VariableSet.(Player) -> Unit) {
-    on<VariableSet>({ wildcardEquals(key, this.key) }, block = block)
+    on<VariableSet>({ wildcardEquals(key, this.key) && to == null }, block = block)
 }
 
 fun variableSet(filter: VariableSet.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend VariableSet.(Player) -> Unit) {

@@ -1257,7 +1257,7 @@ worn_equipment:
     bonuses: 39
     price: 42
     items: 45
-    hat:
+    hat_slot:
       id: 8
       inventory: worn_equipment
       options:
@@ -1268,7 +1268,7 @@ worn_equipment:
         Option5: 4
         Option6: 5
         Examine: 9
-    cape:
+    cape_slot:
       id: 11
       inventory: worn_equipment
       options:
@@ -1279,7 +1279,7 @@ worn_equipment:
         Option5: 4
         Option6: 5
         Examine: 9
-    amulet:
+    amulet_slot:
       id: 14
       inventory: worn_equipment
       options:
@@ -1290,7 +1290,7 @@ worn_equipment:
         Option5: 4
         Option6: 5
         Examine: 9
-    weapon:
+    weapon_slot:
       id: 17
       inventory: worn_equipment
       options:
@@ -1301,7 +1301,7 @@ worn_equipment:
         Option5: 4
         Option6: 5
         Examine: 9
-    chest:
+    chest_slot:
       id: 20
       inventory: worn_equipment
       options:
@@ -1312,7 +1312,7 @@ worn_equipment:
         Option5: 4
         Option6: 5
         Examine: 9
-    shield:
+    shield_slot:
       id: 23
       inventory: worn_equipment
       options:
@@ -1323,7 +1323,7 @@ worn_equipment:
         Option5: 4
         Option6: 5
         Examine: 9
-    legs:
+    legs_slot:
       id: 26
       inventory: worn_equipment
       options:
@@ -1334,7 +1334,7 @@ worn_equipment:
         Option5: 4
         Option6: 5
         Examine: 9
-    hands:
+    hands_slot:
       id: 29
       inventory: worn_equipment
       options:
@@ -1345,7 +1345,7 @@ worn_equipment:
         Option5: 4
         Option6: 5
         Examine: 9
-    feet:
+    feet_slot:
       id: 32
       inventory: worn_equipment
       options:
@@ -1356,7 +1356,7 @@ worn_equipment:
         Option5: 4
         Option6: 5
         Examine: 9
-    ring:
+    ring_slot:
       id: 35
       inventory: worn_equipment
       options:
@@ -1367,7 +1367,7 @@ worn_equipment:
         Option5: 4
         Option6: 5
         Examine: 9
-    ammo:
+    ammo_slot:
       id: 38
       inventory: worn_equipment
       options:

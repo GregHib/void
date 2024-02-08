@@ -29,13 +29,13 @@ interfaceOption("worn_equipment", "items", "Show Items Kept on Death") {
 
 val logger = InlineLogger()
 
-interfaceOption("worn_equipment") {
+interfaceOption("worn_equipment", "*_slot") {
     val equipOption = getEquipmentOption(item.def, optionIndex)
     if (equipOption == null) {
         logger.info { "Unhandled equipment option $item - $optionIndex" }
         return@interfaceOption
     }
-    val slot = EquipSlot.by(component)
+    val slot = EquipSlot.by(component.removeSuffix("_slot"))
     player.closeInterfaces()
     player.events.emit(InventoryOption(player, id, item, slot.index, equipOption))
 }

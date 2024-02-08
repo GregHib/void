@@ -35,7 +35,7 @@ fun itemOnNPCOperate(item: String, npc: String, priority: Priority = Priority.ME
 }
 
 fun spellOnNPCApproach(id: String, component: String = "*", priority: Priority = Priority.MEDIUM, block: suspend ItemOnNPC.() -> Unit) {
-    on<ItemOnNPC>({ operate && wildcardEquals(component, this.component) && wildcardEquals(id, this.id) }, priority) { _: Player ->
+    on<ItemOnNPC>({ approach && wildcardEquals(component, this.component) && wildcardEquals(id, this.id) }, priority) { _: Player ->
         block.invoke(this)
     }
 }
