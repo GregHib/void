@@ -38,7 +38,7 @@ variableUnset("attack_style", "long_range") { player: Player ->
 }
 
 fun updateWeapon(player: Player, weapon: Item, range: Int = 0) {
-    player.attackRange = (weapon.def["attack_range", 1] + range).coerceAtMost(10)
+    player.attackRange = if (player.contains("autocast")) 8 else (weapon.def["attack_range", 1] + range).coerceAtMost(10)
     player["attack_speed"] = weapon.def["attack_speed", 4]
     player.weapon = weapon
 }
