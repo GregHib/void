@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.CancellableEvent
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.wildcardEquals
 
@@ -12,29 +11,11 @@ data class TimerTick(val timer: String) : CancellableEvent() {
     var nextInterval: Int = -1
 }
 
-fun timerTick(filter: TimerTick.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend TimerTick.(Player) -> Unit) {
-    on<TimerTick>(filter, priority, block)
-}
-
-fun characterTimerTick(filter: TimerTick.(Character) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend TimerTick.(Character) -> Unit) {
-    on<TimerTick>(filter, priority, block)
-}
-
-fun npcTimerTick(filter: TimerTick.(NPC) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend TimerTick.(NPC) -> Unit) {
-    on<TimerTick>(filter, priority, block)
-}
-
 fun timerTick(vararg timers: String, block: suspend TimerTick.(Player) -> Unit) {
     for (timer in timers) {
         on<TimerTick>({ wildcardEquals(timer, this.timer) }) { character: Player ->
             block.invoke(this, character)
         }
-    }
-}
-
-fun characterTimerTick(timer: String, block: suspend TimerTick.(Character) -> Unit) {
-    on<TimerTick>({ wildcardEquals(timer, this.timer) }) { character: Character ->
-        block.invoke(this, character)
     }
 }
 
@@ -47,5 +28,11 @@ fun npcTimerTick(timer: String, npc: String = "*", block: suspend TimerTick.(NPC
         on<TimerTick>({ wildcardEquals(timer, this.timer) && wildcardEquals(npc, it.id) }) { character: NPC ->
             block.invoke(this, character)
         }
+    }
+}
+
+fun characterTimerTick(timer: String, block: suspend TimerTick.(Character) -> Unit) {
+    on<TimerTick>({ wildcardEquals(timer, this.timer) }) { character: Character ->
+        block.invoke(this, character)
     }
 }

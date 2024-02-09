@@ -12,7 +12,9 @@ playerSpawn { player: Player ->
     player.combatLevel = calculateCombatLevel(player.levels)
 }
 
-maxLevelChange({ skill.combat }) { player: Player ->
+val combatSkills = Skill.entries.filter { it.ordinal <= 6 || it.ordinal == 23 }.toSet()
+
+maxLevelChange(combatSkills) { player: Player ->
     player.combatLevel = calculateCombatLevel(player.levels)
 }
 

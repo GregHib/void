@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val floorItems: FloorItems by inject()
 
-itemOnObjectOperate("*", "table*") {
+itemOnObjectOperate(obj = "table*") {
     arriveDelay()
     if (!World.members && item.def["members", false]) {
         player.message("To use this item please login to a members' server.")

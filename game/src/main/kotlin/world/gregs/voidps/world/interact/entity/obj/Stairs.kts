@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.obj
 
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
@@ -21,7 +20,10 @@ objectOperate("Climb") {
     }
 }
 
-teleport({ takeoff && obj.name.isLadder() }) { player: Player ->
+teleportTakeOff {
+    if (!obj.name.isLadder()) {
+        return@teleportTakeOff
+    }
     val remaining = player.remaining("teleport_delay")
     if (remaining > 0) {
         delay = remaining

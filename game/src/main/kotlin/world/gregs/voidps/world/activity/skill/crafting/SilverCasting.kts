@@ -65,7 +65,7 @@ itemOnObjectOperate("silver_bar", "furnace*") {
     player.open("silver_mould")
 }
 
-itemOnObjectOperate({ target.id.startsWith("furnace") && item.silver != null }) { player: Player ->
+itemOnObjectOperate(obj = "furnace*", def = "silver_jewellery") {
     arriveDelay()
     player.make(item, 1)
 }

@@ -183,7 +183,7 @@ objectOperate("Pick-up", "dung") {
     scoopPoop()
 }
 
-itemOnObjectOperate("*", "dung") {
+itemOnObjectOperate(obj = "dung") {
     arriveDelay()
     if (item.id != "bucket") {
         player<Unsure>("Surely there's something better I could use to pick up the dung.")

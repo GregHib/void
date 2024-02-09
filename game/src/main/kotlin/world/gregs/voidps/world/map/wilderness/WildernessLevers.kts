@@ -12,7 +12,8 @@ import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.statement
-import world.gregs.voidps.world.interact.entity.obj.teleport
+import world.gregs.voidps.world.interact.entity.obj.teleportLand
+import world.gregs.voidps.world.interact.entity.obj.teleportTakeOff
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 objectOperate("Pull", "lever_") {
@@ -44,17 +45,17 @@ suspend fun CharacterContext.pullLever(player: Player) {
     delay(1)
 }
 
-teleport({ takeoff && obj.stringId.startsWith("lever_") && option == "Pull" }) { player: Player ->
+teleportTakeOff("Pull", "lever_*") {
     delay = 3
     player.playSound("teleport")
     player.setGraphic("teleport_modern")
     player.setAnimation("teleport_modern")
 }
 
-teleport({ land && obj.stringId.startsWith("lever_") && option == "Pull" }) { player: Player ->
+teleportLand("Pull", "lever_*") {
     player.playSound("teleport_land")
     player.setGraphic("teleport_land_modern")
     player.setAnimation("teleport_land_modern")
-    val message: String = obj.getOrNull("land_message") ?: return@teleport
+    val message: String = obj.getOrNull("land_message") ?: return@teleportLand
     player.message(message, ChatType.Filter)
 }

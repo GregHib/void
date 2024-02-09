@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.obj.teleport
+import world.gregs.voidps.world.interact.entity.obj.teleportTakeOff
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val objectDefinitions: ObjectDefinitions by inject()
@@ -50,7 +50,10 @@ fun toggleAltar(player: Player, item: Item, unlocked: Boolean) {
     }
 }
 
-itemOnObjectOperate({ item.id.endsWith("_talisman") && target.id == "${item.id.removeSuffix("_talisman")}_altar_ruins" }) { player: Player ->
+itemOnObjectOperate("*_talisman", "*_altar_ruins") {
+    if (target.id != "${item.id.removeSuffix("_talisman")}_altar_ruins") {
+        return@itemOnObjectOperate
+    }
     arriveDelay()
     val id = target.def.transforms?.getOrNull(1) ?: return@itemOnObjectOperate
     val definition = objectDefinitions.get(id)
@@ -60,13 +63,13 @@ itemOnObjectOperate({ item.id.endsWith("_talisman") && target.id == "${item.id.r
     player.mode = Interact(player, target, ObjectOption(player, target, definition, "Enter"), approachRange = -1)
 }
 
-teleport({ takeoff && obj.stringId.endsWith("_altar_ruins_enter") && option == "Enter" }) { player: Player ->
+teleportTakeOff("Enter", "*_altar_ruins_enter") {
     player.clearAnimation()
     player.playSound("teleport")
     player.message("You feel a powerful force talk hold of you...")
 }
 
-teleport({ takeoff && obj.stringId.endsWith("_altar_portal") && option == "Enter" }) { player: Player ->
+teleportTakeOff("Enter", "*_altar_portal") {
     player.clearAnimation()
     player.playSound("teleport")
     player.message("You step through the portal...")

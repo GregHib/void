@@ -1,19 +1,21 @@
 package world.gregs.voidps.tools
 
+import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
-import world.gregs.voidps.cache.definition.decoder.ObjectDecoderFull
+import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
+import world.gregs.yaml.Yaml
 
 object ObjectDefinitions {
 
     @JvmStatic
     fun main(args: Array<String>) {
         val cache = CacheDelegate("./data/cache")
-        val decoder = ObjectDecoderFull(false, true).load(cache)
-        for (def in decoder) {
-            if(def.params?.containsKey(599) == true) {
-                println("${def.id} ${def.name} ${def.params}")
-            }
+        val definitions = ObjectDefinitions(ObjectDecoder(member = false, lowDetail = true).load(cache)).load(Yaml(), property("objectDefinitionsPath"))
+        for (def in definitions.definitions) {
+            println("${def.id} ${def.name}")
         }
     }
 

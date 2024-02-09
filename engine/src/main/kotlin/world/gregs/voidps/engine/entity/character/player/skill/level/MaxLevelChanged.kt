@@ -12,6 +12,10 @@ import world.gregs.voidps.engine.event.on
  */
 data class MaxLevelChanged(val skill: Skill, val from: Int, val to: Int) : Event
 
-fun maxLevelChange(filter: MaxLevelChanged.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend MaxLevelChanged.(Player) -> Unit) {
-    on<MaxLevelChanged>(filter, priority, block)
+fun maxLevelChange(skills: Set<Skill>, priority: Priority = Priority.MEDIUM, block: suspend MaxLevelChanged.(Player) -> Unit) {
+    on<MaxLevelChanged>({ skills.contains(skill) }, priority, block)
+}
+
+fun maxLevelUp(skill: Skill? = null, block: suspend MaxLevelChanged.(Player) -> Unit) {
+    on<MaxLevelChanged>({ (skill == null || skill == this.skill) && to > from }, block = block)
 }

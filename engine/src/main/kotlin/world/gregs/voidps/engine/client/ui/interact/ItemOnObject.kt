@@ -22,22 +22,24 @@ data class ItemOnObject(
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 }
 
-fun itemOnObjectApproach(filter: ItemOnObject.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend ItemOnObject.(Player) -> Unit) {
-    on<ItemOnObject>({ approach && filter(this, it) }, priority, block)
-}
-
-fun itemOnObjectOperate(filter: ItemOnObject.(Player) -> Boolean, priority: Priority = Priority.MEDIUM, block: suspend ItemOnObject.(Player) -> Unit) {
-    on<ItemOnObject>({ operate && filter(this, it) }, priority, block)
-}
-
-fun itemOnObjectApproach(item: String, id: String, block: suspend ItemOnObject.() -> Unit) {
-    on<ItemOnObject>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(id, this.target.id) }) { _: Player ->
+fun itemOnObjectApproach(item: String, obj: String, block: suspend ItemOnObject.() -> Unit) {
+    on<ItemOnObject>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(obj, this.target.id) }) { _: Player ->
         block.invoke(this)
     }
 }
 
-fun itemOnObjectOperate(item: String, id: String, priority: Priority = Priority.MEDIUM, block: suspend ItemOnObject.() -> Unit) {
-    on<ItemOnObject>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(id, this.target.id) }, priority) { _: Player ->
+fun itemOnObjectOperate(item: String = "*", obj: String = "*", def: String = "*", inventory: String = "*", priority: Priority = Priority.MEDIUM, block: suspend ItemOnObject.() -> Unit) {
+    on<ItemOnObject>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(obj, this.target.id) && (def == "*" || this.item.def.contains(def)) && wildcardEquals(inventory, this.inventory) }, priority) { _: Player ->
         block.invoke(this)
+    }
+}
+
+fun itemOnObjectOperate(items: Set<String> = setOf("*"), objects: Set<String> = setOf("*"), def: String = "*", inventory: String = "*", block: suspend ItemOnObject.() -> Unit) {
+    for (obj in objects) {
+        for (item in items) {
+            on<ItemOnObject>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(obj, this.target.id) && (def == "*" || this.item.def.contains(def)) && wildcardEquals(inventory, this.inventory) }) { _: Player ->
+                block.invoke(this)
+            }
+        }
     }
 }

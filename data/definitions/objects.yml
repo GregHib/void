@@ -1813,7 +1813,7 @@ flax:
     delay: 5
     message: "You pick some flax."
   examine: "A plant cultivated for fibres."
-sinclair_family_fountain:
+fountain_sinclair_family:
   id: 2654
   examine: "This fountain suits the garden."
 rock_rocks_tourist_trap_dark_1:
@@ -4402,7 +4402,7 @@ magic_door_2_opened:
 magic_door_2_closed:
   id: 12045
   examine: "A magic door."
-fairy_fountain:
+fountain_fairy:
   id: 12089
   examine: "A beautiful fairy fountain!"
 crate_97:
@@ -4796,13 +4796,13 @@ small_fern_2:
 fern_5:
   id: 13433
   examine: "A plant."
-small fountain:
+fountain_small:
   id: 13478
   examine: "Like a tiny private waterfall."
-large_fountain:
+fountain_large:
   id: 13479
   examine: "A sculpture of flowing water."
-ornamental_fountain:
+fountain_ornamental:
   id: 13480
   examine: "Two little fishes forever spew water into the pond."
 chair_53:
@@ -8369,7 +8369,7 @@ jail_door_8_closed:
 chair_132:
   id: 35451
   examine: "A well-made chair."
-carved_fountain:
+fountain_carved:
   id: 35469
   examine: "Conspicuous consumption of water."
 cell_door_14_opened:
@@ -10501,7 +10501,7 @@ small_fern_3:
 fern_17:
   id: 52795
   examine: "A plant."
-ornamental_fountain_2:
+fountain_ornamental_2:
   id: 52800
   examine: "Two little fishes forever spew water into the pond."
 crate_365:
@@ -11154,3 +11154,207 @@ bank_booth_thieves_guild:
 bank_booth_zanaris:
   id: 52589
   examine: "The bank teller will serve you from here."
+sink:
+  id: 873
+  examine: "Ideal for washing things in."
+sink_1:
+  id: 874
+  examine: "Ideal for washing things in."
+well:
+  id: 878
+  examine: "No this is not a mirage!"
+well_1:
+  id: 884
+  examine: "Best used with a bucket."
+well_stacked_rocks:
+  id: 2234
+  examine: "Rocks that have been stacked at regular intervals."
+well_2:
+  id: 3359
+  examine: "Well of the damned."
+well_3:
+  id: 3485
+  examine: "An ornately carved well that draws water from the river Salve."
+well_old:
+  id: 3546
+  examine: ""
+sink_2:
+  id: 4063
+  examine: "Ideal for washing things in."
+well_4:
+  id: 6097
+  examine: "A good source of water."
+sink_3:
+  id: 6151
+  examine: "Used for getting water."
+sink_4:
+  id: 8699
+  examine: "After working with livestock, why not wash your hands?"
+well_5:
+  id: 8747
+  examine: "A local water source."
+well_6:
+  id: 8927
+  examine: "Best used with a bucket."
+sink_5:
+  id: 9143
+  examine: "Used for getting water."
+sink_6:
+  id: 9684
+  examine: "Wash your hands!"
+sink_7:
+  id: 10175
+  examine: "'Please remember te wash yer hook'. Sound advice for the hygienic pirate."
+well_7:
+  id: 11793
+  examine: "Best used with a bucket."
+water_trough:
+  id: 12122
+  examine: ""
+well_8:
+  id: 12201
+  examine: ""
+sink_8:
+  id: 12279
+  examine: ""
+well_9:
+  id: 12897
+  examine: ""
+pump_and_drain:
+  id: 13559
+  examine: "Running water in your own home! Luxury!"
+pump_and_drain_2:
+  id: 13560
+  examine: "Running water in your own home! Luxury!"
+sink_9:
+  id: 13563
+  examine: "Running water in your own home! Luxury!"
+sink_10:
+  id: 13564
+  examine: "Running water in your own home! Luxury!"
+water_trough_2:
+  id: 14352
+  examine: "A trough of water."
+sink_11:
+  id: 14917
+  examine: "There must be a source of fresh water somewhere nearby."
+sink_13:
+  id: 16704
+  examine: "Wash your dirty dirty hands."
+sink_14:
+  id: 16705
+  examine: "Wash your hands!"
+sink_15:
+  id: 22715
+  examine: "A busy goblin has left the sink running."
+pump_and_drain_3:
+  id: 23920
+  examine: "A kitchen sink."
+well_10:
+  id: 24166
+  examine: "Best used with a bucket."
+sink_17:
+  id: 25729
+  examine: "Ideal for washing things in."
+sink_18:
+  id: 25929
+  examine: "Ideal for washing things in."
+well_11:
+  id: 26945
+  examine: "Best used with a bucket."
+sink_19:
+  id: 26966
+  examine: "This could use a clean."
+sink_kringk:
+  id: 29105
+  examine: "Kringk's sink."
+sink_20:
+  id: 33458
+  examine: "Ideal for washing things in."
+sink_21:
+  id: 34082
+  examine: "After working with livestock, why not wash your hands?"
+sink_22:
+  id: 34496
+  examine: "Running water - a nice feature."
+sink_23:
+  id: 34547
+  examine: "Running water - a nice feature."
+well_12:
+  id: 34576
+  examine: "Best used with a bucket."
+well_13:
+  id: 35671
+  examine: "A well with a cover to protect against sand."
+sink_24:
+  id: 35762
+  examine: "Running water - a nice feature."
+sink_25:
+  id: 36971
+  examine: "A source of water."
+sink_26:
+  id: 37154
+  examine: "Ideal for washing things in."
+sink_27:
+  id: 37155
+  examine: "Ideal for washing things in."
+sink_28:
+  id: 40063
+  examine: "Running water - a nice feature."
+well_14:
+  id: 43100
+  examine: "Best used with a bucket."
+well_15:
+  id: 43101
+  examine: "Best used with a bucket."
+well_16:
+  id: 43102
+  examine: "Best used with a bucket."
+well_17:
+  id: 43103
+  examine: "No this is not a mirage!"
+well_18:
+  id: 43104
+  examine: "Best used with a bucket."
+well_19:
+  id: 43105
+  examine: "Best used with a bucket."
+sink_29:
+  id: 45299
+  examine: "A source of water."
+well_20:
+  id: 47336
+  examine: "An ornately carved well."
+water_trough_3:
+  id: 49937
+  examine: "A handy source of water."
+water_trough_4:
+  id: 49938
+  examine: "A handy source of water."
+water_trough_5:
+  id: 49939
+  examine: "A handy source of water."
+water_trough_6:
+  id: 51059
+  examine: "A handy source of water."
+water_trough_7:
+  id: 51607
+  examine: "A handy source of water."
+water_trough_8:
+  id: 52152
+  examine: "A handy source of water."
+sink_30:
+  id: 52815
+  examine: "Running water in your own home! Luxury!"
+water_trough_9:
+  id: 54883
+  examine: "A handy source of water."
+water_trough_10:
+  id: 54949
+  examine: "A handy source of water."
+water_trough_11:
+  id: 55811
+  examine: "A handy source of water."
+water_trough_12:
+  id: 55841
+  examine: "A handy source of water."

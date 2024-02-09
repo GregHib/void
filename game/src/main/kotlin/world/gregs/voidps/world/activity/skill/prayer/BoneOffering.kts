@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -16,7 +15,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 
-itemOnObjectOperate({ inventory == "inventory" && item.def.contains("prayer_xp") && target.id.startsWith("altar") }) { player: Player ->
+itemOnObjectOperate(obj = "altar*", def = "prayer_xp", inventory = "inventory") {
     arriveDelay()
     val tile = target.nearestTo(player.tile)
     val count = player.inventory.count(item.id)

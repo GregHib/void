@@ -33,9 +33,7 @@ val objects: GameObjects by inject()
 
 val GameObject.cookingRange: Boolean get() = id.startsWith("cooking_range")
 
-val GameObject.heatSource: Boolean get() = id.startsWith("fire_") || cookingRange
-
-itemOnObjectOperate({ target.heatSource && item.def.contains("cooking") }) { player: Player ->
+itemOnObjectOperate(objects = setOf("fire_*", "cooking_range*"), def = "cooking") {
     arriveDelay()
     val definition = if (player["sinew", false]) definitions.get("sinew") else if (item.id == "sinew") return@itemOnObjectOperate else item.def
     player["sinew"] = false

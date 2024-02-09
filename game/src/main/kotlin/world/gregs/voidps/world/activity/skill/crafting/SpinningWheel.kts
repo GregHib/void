@@ -66,7 +66,7 @@ objectOperate("Spin", "spinning_wheel*") {
     start(player, target, fibre, amount)
 }
 
-itemOnObjectOperate({ target.id.startsWith("spinning_wheel") && item.def.contains("spinning") }) { player: Player ->
+itemOnObjectOperate(obj = "spinning_wheel*", def = "spinning") {
     val (_, amount) = makeAmount(
         items = listOf(item.spinning.to),
         type = "Make",

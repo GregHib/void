@@ -44,7 +44,7 @@ objectOperate("Weave", "loom_*") {
     weave(target, item, amount)
 }
 
-itemOnObjectOperate({ target.id.startsWith("loom_") && item.def.contains("weaving") }) { player: Player ->
+itemOnObjectOperate(obj = "loom_*", def = "weaving") {
     val (_, amount) = makeAmount(
         items = listOf(item.weaving.to),
         type = "Make",

@@ -37,7 +37,10 @@ npcTimerStart("follow_parent") { _: NPC ->
     interval = 0
 }
 
-npcTimerTick({ timer == "follow_parent" && it.mode == EmptyMode || it.mode is Wander }) { npc: NPC ->
+npcTimerTick("follow_parent") { npc: NPC ->
+    if (npc.mode != EmptyMode && npc.mode !is Wander) {
+        return@npcTimerTick
+    }
     val parent = findParent(npc) ?: return@npcTimerTick
     npc.mode = Follow(npc, parent)
     parent["ducklings"] = npc

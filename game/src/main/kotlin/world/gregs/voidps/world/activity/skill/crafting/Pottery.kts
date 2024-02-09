@@ -25,8 +25,10 @@ itemOnObjectOperate("soft_clay", "potters_wheel*") {
     make("spinning")
 }
 
-itemOnObjectOperate({ target.id.startsWith("potters_oven") && item.id != "soft_clay" && item.def.contains("pottery") }) { player: Player ->
-    make("cook_range")
+itemOnObjectOperate(obj = "potters_oven*", def = "pottery") {
+    if (item.id != "soft_clay") {
+        make("cook_range")
+    }
 }
 
 suspend fun ItemOnObject.make(animation: String) {
