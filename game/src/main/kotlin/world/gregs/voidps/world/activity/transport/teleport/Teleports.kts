@@ -25,7 +25,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 val areas: AreaDefinitions by inject()
 val definitions: SpellDefinitions by inject()
 
-interfaceOption("*_spellbook", "*_teleport", "Cast") {
+interfaceOption("Cast", "*_teleport", "*_spellbook") {
     if (component == "lumbridge_home_teleport") {
         return@interfaceOption
     }

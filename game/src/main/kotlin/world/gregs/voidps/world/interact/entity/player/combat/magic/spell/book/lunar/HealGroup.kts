@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 val definitions: SpellDefinitions by inject()
 val players: Players by inject()
 
-interfaceOption("lunar_spellbook", "heal_group") {
+interfaceOption(component = "heal_group", id = "lunar_spellbook") {
     val spell = component
     if (player.levels.get(Skill.Constitution) < player.levels.getMax(Skill.Constitution) * 0.11) {
         player.message("You don't have enough life points.")

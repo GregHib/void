@@ -15,7 +15,7 @@ import kotlin.math.min
 val itemDefs: ItemDefinitions by inject()
 val logger = InlineLogger()
 
-interfaceOption("item_info", "button", "Buy *") {
+interfaceOption("Buy *", "button", "item_info") {
     val amount = when (option) {
         "Buy 1" -> 1
         "Buy 5" -> 5
@@ -34,7 +34,7 @@ interfaceOption("item_info", "button", "Buy *") {
     }
 }
 
-interfaceOption("shop", "sample", "Take-*") {
+interfaceOption("Take-*", "sample", "shop") {
     val amount = when (option) {
         "Take-1" -> 1
         "Take-5" -> 5
@@ -64,7 +64,7 @@ fun take(player: Player, shop: world.gregs.voidps.engine.inv.Inventory, index: I
     }
 }
 
-interfaceOption("shop", "stock", "Buy-*") {
+interfaceOption("Buy-*", "stock", "shop") {
     val amount = when (option) {
         "Buy-1" -> 1
         "Buy-5" -> 5

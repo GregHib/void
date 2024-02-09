@@ -59,7 +59,7 @@ move({ !it.isBot }) { player: Player ->
     }
 }
 
-interfaceOption("music_player", "tracks", "Play") {
+interfaceOption("Play", "tracks", "music_player") {
     val index = itemSlot / 2
     if (player.hasUnlocked(index)) {
         player["playing_song"] = true

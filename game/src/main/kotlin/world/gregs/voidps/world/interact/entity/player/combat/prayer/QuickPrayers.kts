@@ -52,12 +52,12 @@ val cursesGroups = setOf(
     setOf("sap_spirit", "leech_special_attack", "turmoil")
 )
 
-interfaceOption("prayer_list", "regular_prayers") {
+interfaceOption(component = "regular_prayers", id = "prayer_list") {
     val prayers = player.getActivePrayerVarKey()
     player.togglePrayer(itemSlot, prayers, false)
 }
 
-interfaceOption("prayer_list", "quick_prayers") {
+interfaceOption(component = "quick_prayers", id = "prayer_list") {
     player.togglePrayer(itemSlot, player.getQuickVarKey(), true)
 }
 
@@ -97,7 +97,7 @@ fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
  * Until the new quick prayer selection is confirmed old
  * quick prayers are stored in [TEMP_QUICK_PRAYERS]
  */
-interfaceOption("prayer_orb", "orb", "Select Quick Prayers") {
+interfaceOption("Select Quick Prayers", "orb", "prayer_orb") {
     val selecting = player.toggle(SELECTING_QUICK_PRAYERS)
     if (selecting) {
         player["tab"] = Tab.PrayerList.name
@@ -113,7 +113,7 @@ interfaceOption("prayer_orb", "orb", "Select Quick Prayers") {
     }
 }
 
-interfaceOption("prayer_orb", "orb", "Turn Quick Prayers On") {
+interfaceOption("Turn Quick Prayers On", "orb", "prayer_orb") {
     if (player.levels.get(Skill.Prayer) == 0) {
         player.message("You've run out of prayer points.")
         player[USING_QUICK_PRAYERS] = false
@@ -136,7 +136,7 @@ interfaceOption("prayer_orb", "orb", "Turn Quick Prayers On") {
     }
 }
 
-interfaceOption("prayer_list", "confirm", "Confirm Selection") {
+interfaceOption("Confirm Selection", "confirm", "prayer_list") {
     player.saveQuickPrayers()
 }
 

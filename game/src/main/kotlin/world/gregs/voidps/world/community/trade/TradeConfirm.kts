@@ -23,7 +23,7 @@ import world.gregs.voidps.world.community.trade.lend.Loan
 
 val logger = InlineLogger()
 
-interfaceOption("trade_main", "accept", "Accept") {
+interfaceOption("Accept", "accept", "trade_main") {
     val partner = getPartner(player) ?: return@interfaceOption
     if (player.offer.count + player.loan.count > partner.inventory.spaces) {
         player.message("Other player doesn't have enough inventory space to accept this trade.")
@@ -52,7 +52,7 @@ fun confirm(player: Player) {
     player.interfaces.sendText("trade_confirm", "status", "Are you sure you want to make this trade?")
 }
 
-interfaceOption("trade_confirm", "accept", "Accept") {
+interfaceOption("Accept", "accept", "trade_confirm") {
     val partner = getPartner(player) ?: return@interfaceOption
     player.interfaces.sendText("trade_confirm", "status", "Waiting for other player...")
     partner.interfaces.sendText("trade_confirm", "status", "Other player has accepted.")

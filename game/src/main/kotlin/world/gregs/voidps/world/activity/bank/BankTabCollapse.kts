@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.bank
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.world.activity.bank.Bank.tabIndex
 
-interfaceOption("bank", "tab_#", "Collapse") {
+interfaceOption("Collapse", "tab_#", "bank") {
     val tab = component.removePrefix("tab_").toInt() - 1
     val tabIndex = tabIndex(player, tab)
     val count: Int = player["bank_tab_$tab", 0]

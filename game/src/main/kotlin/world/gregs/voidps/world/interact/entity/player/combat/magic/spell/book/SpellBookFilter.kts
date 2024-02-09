@@ -20,7 +20,7 @@ playerSpawn { player: Player ->
     player.sendVariable("spellbook_sort")
 }
 
-interfaceOption("*_spellbook", "filter_*") {
+interfaceOption(component = "filter_*", id = "*_spellbook") {
     val key = "spellbook_sort"
     val id = "${id}_$component"
     if (player.containsVarbit(key, id)) {
@@ -30,7 +30,7 @@ interfaceOption("*_spellbook", "filter_*") {
     }
 }
 
-interfaceOption("*_spellbook", "sort_*") {
+interfaceOption(component = "sort_*", id = "*_spellbook") {
     val key = "spellbook_sort"
     if (component.startsWith("sort_")) {
         // Make sure don't sort by multiple at once
@@ -42,6 +42,6 @@ interfaceOption("*_spellbook", "sort_*") {
     }
 }
 
-interfaceOption("*_spellbook", "defensive_cast", "Defensive Casting") {
+interfaceOption("Defensive Casting", "defensive_cast", "*_spellbook") {
     player.toggle(component)
 }

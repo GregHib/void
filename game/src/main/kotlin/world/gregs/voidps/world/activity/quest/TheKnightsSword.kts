@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.world.activity.bank.ownsItem
 
-interfaceOption("quest_journals", "journals", itemSlot = 8) {
+interfaceOption(component = "journals", id = "quest_journals", itemSlot = 8) {
     val lines = when (player.quest("the_knights_sword")) {
         "completed" -> listOf(
             "<str>Thurgo needed a picture of the sword before he could",

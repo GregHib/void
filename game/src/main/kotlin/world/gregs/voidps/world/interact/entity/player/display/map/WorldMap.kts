@@ -15,11 +15,11 @@ interfaceOpen("world_map") { player: Player ->
     updateMap(player)
 }
 
-interfaceOption("toplevel*", "world_map") {
+interfaceOption(component = "world_map", id = "toplevel*") {
     player.open("world_map")
 }
 
-interfaceOption("world_map", "close") {
+interfaceOption(component = "close", id = "world_map") {
     // Mechanics are unknown, would need tracking last interface to handle inside Interfaces.kt
     player.client?.updateInterface(definitions.get(player.gameFrame.name).id, 2)
     player.open(player.gameFrame.name, close = false)

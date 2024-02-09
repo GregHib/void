@@ -135,21 +135,21 @@ interfaceOpen("skin_colour") { player: Player ->
     player.interfaces.sendText(id, "confirm", "CONFIRM")
 }
 
-interfaceOption("skin_colour", "female") {
+interfaceOption(component = "female", id = "skin_colour") {
     player["makeover_female"] = true
     player.sendVariable("makeover_colour_skin")
 }
 
-interfaceOption("skin_colour", "male") {
+interfaceOption(component = "male", id = "skin_colour") {
     player["makeover_female"] = false
     player.sendVariable("makeover_colour_skin")
 }
 
-interfaceOption("skin_colour", "colour_*") {
+interfaceOption(component = "colour_*", id = "skin_colour") {
     player["makeover_colour_skin"] = enums.get("character_skin").getInt(component.removePrefix("colour_").toInt())
 }
 
-interfaceOption("skin_colour", "confirm") {
+interfaceOption(component = "confirm", id = "skin_colour") {
     val male = !player["makeover_female", false]
     val changed = player.body.getColour(BodyColour.Skin) != player["makeover_colour_skin", 0] || player.body.male != male
     player.body.setColour(BodyColour.Skin, player["makeover_colour_skin", 0])

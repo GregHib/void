@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
 
 val definitions: SpellDefinitions by inject()
 
-interfaceOption("lunar_spellbook", "cure_me") {
+interfaceOption(component = "cure_me", id = "lunar_spellbook") {
     val spell = component
     if (!player.poisoned) {
         player.message("You are not poisoned.")

@@ -12,7 +12,7 @@ playerSpawn { player: Player ->
     player.sendVariable("xp_counter")
 }
 
-interfaceOption("toplevel*", "xp_orb", "Reset XP Total") {
+interfaceOption("Reset XP Total", "xp_orb", "toplevel*") {
     player["xp_counter"] = 0.0
 }
 

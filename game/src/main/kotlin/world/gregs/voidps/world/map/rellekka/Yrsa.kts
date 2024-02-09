@@ -69,16 +69,16 @@ interfaceOpen("yrsas_shoe_store") { player: Player ->
     player["makeover_colour_shoes"] = player.body.getColour(BodyColour.Feet)
 }
 
-interfaceOption("yrsas_shoe_store", "styles") {
+interfaceOption(component = "styles", id = "yrsas_shoe_store") {
     val value = enums.get("look_shoes_${player.sex}").getInt(itemSlot / 2)
     player["makeover_shoes"] = value
 }
 
-interfaceOption("yrsas_shoe_store", "colours") {
+interfaceOption(component = "colours", id = "yrsas_shoe_store") {
     player["makeover_colour_shoes"] = enums.get("colour_shoes").getInt(itemSlot / 2)
 }
 
-interfaceOption("yrsas_shoe_store", "confirm") {
+interfaceOption(component = "confirm", id = "yrsas_shoe_store") {
     player.body.setLook(BodyPart.Feet, player["makeover_shoes", 0])
     player.body.setColour(BodyColour.Feet, player["makeover_colour_shoes", 0])
     player.flagAppearance()

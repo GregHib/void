@@ -70,7 +70,7 @@ itemOnObjectOperate(obj = "furnace*", def = "silver_jewellery") {
     player.make(item, 1)
 }
 
-interfaceOption("silver_mould", "*_button") {
+interfaceOption(component = "*_button", id = "silver_mould") {
     val amount = when (option) {
         "Make 1" -> 1
         "Make 5" -> 5

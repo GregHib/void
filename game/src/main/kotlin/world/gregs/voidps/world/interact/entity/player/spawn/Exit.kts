@@ -5,11 +5,11 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.world.interact.entity.combat.underAttack
 
-interfaceOption("toplevel*", "logout", "Exit") {
+interfaceOption("Exit", "logout", "toplevel*") {
     player.open("logout")
 }
 
-interfaceOption("logout") {
+interfaceOption(id = "logout") {
     if (player.underAttack) {
         player.message("You can't log out until 8 seconds after the end of combat.")
         return@interfaceOption

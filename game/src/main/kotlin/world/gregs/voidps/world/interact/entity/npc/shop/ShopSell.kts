@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 
-interfaceOption("shop_side", "inventory", "Value") {
+interfaceOption("Value", "inventory", "shop_side") {
     val inventory = player.shopInventory(false)
     if (inventory.restricted(item.id)) {
         player.message("You can't sell this item to this shop.")
@@ -20,7 +20,7 @@ interfaceOption("shop_side", "inventory", "Value") {
     player.message("${item.def.name}: shop will buy for $price $currency.")
 }
 
-interfaceOption("shop_side", "inventory", "Sell *") {
+interfaceOption("Sell *", "inventory", "shop_side") {
     val amount = when (option) {
         "Sell 1" -> 1
         "Sell 5" -> 5

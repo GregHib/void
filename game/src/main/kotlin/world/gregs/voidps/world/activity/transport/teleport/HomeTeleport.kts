@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit
 
 val areas: AreaDefinitions by inject()
 
-interfaceOption("modern_spellbook", "lumbridge_home_teleport", "Cast") {
+interfaceOption("Cast", "lumbridge_home_teleport", "modern_spellbook") {
     val seconds = player.remaining("home_teleport_timeout", epochSeconds())
     if (seconds > 0) {
         val remaining = TimeUnit.SECONDS.toMinutes(seconds.toLong())

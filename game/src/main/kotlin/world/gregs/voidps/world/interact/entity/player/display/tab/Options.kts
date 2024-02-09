@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 
-interfaceOption("options", "graphics", "Graphics Settings") {
+interfaceOption("Graphics Settings", "graphics", "options") {
     if (player.hasMenuOpen()) {
         player.message("Please close the interface you have open before setting your graphics options.")
         return@interfaceOption
@@ -13,7 +13,7 @@ interfaceOption("options", "graphics", "Graphics Settings") {
     player.open("graphics_options")
 }
 
-interfaceOption("options", "audio", "Audio Settings") {
+interfaceOption("Audio Settings", "audio", "options") {
     if (player.hasMenuOpen()) {
         player.message("Please close the interface you have open before setting your audio options.")
         return@interfaceOption

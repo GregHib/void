@@ -34,7 +34,7 @@ interfaceSwap("inventory") { player: Player ->
     }
 }
 
-interfaceOption("inventory", "inventory") {
+interfaceOption(component = "inventory", id = "inventory") {
     val itemDef = item.def
     val equipOption = when (optionIndex) {
         6 -> itemDef.options.getOrNull(3)

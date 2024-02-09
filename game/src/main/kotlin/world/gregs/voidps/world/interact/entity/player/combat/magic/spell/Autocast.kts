@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.entity.combat.attackRange
 
 val interfaceDefinitions: InterfaceDefinitions by inject()
 
-interfaceOption("*_spellbook", option = "Autocast") {
+interfaceOption("Autocast", id = "*_spellbook") {
     val value: Int? = interfaceDefinitions.getComponent(id, component)?.getOrNull("cast_id")
     if (value == null || player["autocast", 0] == value) {
         player.clear("autocast")

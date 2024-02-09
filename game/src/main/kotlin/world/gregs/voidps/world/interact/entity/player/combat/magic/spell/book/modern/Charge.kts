@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 
 val definitions: SpellDefinitions by inject()
 
-interfaceOption("modern_spellbook", "charge") {
+interfaceOption(component = "charge", id = "modern_spellbook") {
     if (player.hasClock("charge_delay")) {
         val remaining = TICKS.toSeconds(player.remaining("charge_delay"))
         player.message("You must wait another $remaining ${"second".plural(remaining)} before casting this spell again.")

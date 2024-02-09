@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.mode.Rest
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.suspend.arriveDelay
 
-interfaceOption("energy_orb", option = "Rest") {
+interfaceOption("Rest", id = "energy_orb") {
     if (player["movement", "walk"] == "rest") {
         player.message("You are already resting.")
     } else {

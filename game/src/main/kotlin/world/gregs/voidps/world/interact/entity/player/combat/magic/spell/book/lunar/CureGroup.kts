@@ -16,7 +16,7 @@ import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
 val definitions: SpellDefinitions by inject()
 val players: Players by inject()
 
-interfaceOption("lunar_spellbook", "cure_group") {
+interfaceOption(component = "cure_group", id = "lunar_spellbook") {
     val spell = component
     if (!Spell.removeRequirements(player, spell)) {
         return@interfaceOption

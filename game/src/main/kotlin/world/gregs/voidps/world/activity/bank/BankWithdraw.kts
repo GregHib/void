@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
 val logger = InlineLogger()
 
-interfaceOption("bank", "inventory", "Withdraw-*") {
+interfaceOption("Withdraw-*", "inventory", "bank") {
     val amount = when (option) {
         "Withdraw-1" -> 1
         "Withdraw-5" -> 5
@@ -28,7 +28,7 @@ interfaceOption("bank", "inventory", "Withdraw-*") {
     withdraw(player, item, itemSlot, amount)
 }
 
-interfaceOption("bank", "note_mode", "Toggle item/note withdrawl") {
+interfaceOption("Toggle item/note withdrawl", "note_mode", "bank") {
     player.toggle("bank_notes")
 }
 

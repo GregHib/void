@@ -106,7 +106,7 @@ on<DeleteIgnore>({ player -> player.privateStatus == "on" }, Priority.LOWER) { p
     }
 }
 
-interfaceOption("filter_buttons", "private") {
+interfaceOption(component = "private", id = "filter_buttons") {
     if (player.privateStatus == "on" || option == "Off") {
         return@interfaceOption
     }
@@ -121,7 +121,7 @@ interfaceOption("filter_buttons", "private") {
     }
 }
 
-interfaceOption("filter_buttons", "private") {
+interfaceOption(component = "private", id = "filter_buttons") {
     if (player.privateStatus == "off" || option == "On") {
         return@interfaceOption
     }

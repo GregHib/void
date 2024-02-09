@@ -10,24 +10,24 @@ playerSpawn { player: Player ->
     player.sendVariable("private_chat_colour")
 }
 
-interfaceOption("options", "chat", "Open chat display options") {
+interfaceOption("Open chat display options", "chat", "options") {
     player.open("chat_setup")
 }
 
-interfaceOption("chat_setup", "no_split", "No split") {
+interfaceOption("No split", "no_split", "chat_setup") {
     player["private_chat_colour"] = -1
 }
 
-interfaceOption("chat_setup", "clan_colour*", "Select colour") {
+interfaceOption("Select colour", "clan_colour*", "chat_setup") {
     val index = component.removePrefix("clan_colour").toInt()
     player["clan_chat_colour"] = index - 1
 }
 
-interfaceOption("chat_setup", "private_colour*", "Select colour") {
+interfaceOption("Select colour", "private_colour*", "chat_setup") {
     val index = component.removePrefix("private_colour").toInt()
     player["private_chat_colour"] = index
 }
 
-interfaceOption("chat_setup", "close", "Close") {
+interfaceOption("Close", "close", "chat_setup") {
     player.open("options")
 }

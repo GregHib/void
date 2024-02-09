@@ -50,13 +50,13 @@ interfaceRefresh("equipment_side") { player: Player ->
     player.interfaceOptions.unlockAll("equipment_side", "inventory", 0 until 28)
 }
 
-interfaceOption("equipment_*", "inventory", "Stats") {
+interfaceOption("Stats", "inventory", "equipment_*") {
     if (player.equipping()) {
         showStats(player, definitions.get(item.id))
     }
 }
 
-interfaceOption("equipment_*", "stats_done", "Done") {
+interfaceOption("Done", "stats_done", "equipment_*") {
     if (player.equipping()) {
         player.clear("equipment_titles")
         player.clear("equipment_names")
@@ -69,14 +69,14 @@ interfaceOption("equipment_*", "stats_done", "Done") {
     Redirect equipping actions to regular inventories
  */
 
-interfaceOption("equipment_side", "inventory", "Equip") {
+interfaceOption("Equip", "inventory", "equipment_side") {
     if (player.equipping()) {
         player.events.emit(InventoryOption(player, "inventory", item, itemSlot, "Wield"))
         checkEmoteUpdate(player)
     }
 }
 
-interfaceOption( "equipment_bonuses", "inventory", "Remove") {
+interfaceOption("Remove", "inventory", "equipment_bonuses") {
     if (player.equipping()) {
         player.events.emit(InventoryOption(player, "worn_equipment", item, itemSlot, "Remove"))
         checkEmoteUpdate(player)

@@ -17,7 +17,7 @@ import world.gregs.voidps.network.encode.leaveClanChat
 import world.gregs.voidps.network.encode.updateClanChat
 import world.gregs.voidps.world.interact.dialogue.type.stringEntry
 
-interfaceOption("clan_chat", "settings", "Clan Setup") {
+interfaceOption("Clan Setup", "settings", "clan_chat") {
     if (player.hasMenuOpen()) {
         player.message("Please close the interface you have open before using Clan Chat setup.")
         return@interfaceOption
@@ -37,7 +37,7 @@ interfaceOpen("clan_chat_setup") { player: Player ->
     player.sendVariable("coin_share_setting")
 }
 
-interfaceOption("clan_chat_setup", "enter") {
+interfaceOption(component = "enter", id = "clan_chat_setup") {
     val clan = player.clan ?: player.ownClan ?: return@interfaceOption
     if (!clan.hasRank(player, ClanRank.Owner)) {
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
@@ -57,7 +57,7 @@ interfaceOption("clan_chat_setup", "enter") {
     }
 }
 
-interfaceOption("clan_chat_setup", "talk") {
+interfaceOption(component = "talk", id = "clan_chat_setup") {
     val clan = player.clan ?: player.ownClan ?: return@interfaceOption
     if (!clan.hasRank(player, ClanRank.Owner)) {
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
@@ -72,7 +72,7 @@ interfaceOption("clan_chat_setup", "talk") {
     player.interfaces.sendText(id, component, option)
 }
 
-interfaceOption("clan_chat_setup", "kick") {
+interfaceOption(component = "kick", id = "clan_chat_setup") {
     val clan = player.clan ?: player.ownClan ?: return@interfaceOption
     if (!clan.hasRank(player, ClanRank.Owner)) {
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
@@ -88,7 +88,7 @@ interfaceOption("clan_chat_setup", "kick") {
     updateUI(clan)
 }
 
-interfaceOption("clan_chat_setup", "loot") {
+interfaceOption(component = "loot", id = "clan_chat_setup") {
     val clan = player.clan ?: player.ownClan ?: return@interfaceOption
     if (!clan.hasRank(player, ClanRank.Owner)) {
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
@@ -104,7 +104,7 @@ interfaceOption("clan_chat_setup", "loot") {
     player.message("Changes will take effect on your clan in the next 60 seconds.", ChatType.ClanChat)
 }
 
-interfaceOption("clan_chat_setup", "coin_share") {
+interfaceOption(component = "coin_share", id = "clan_chat_setup") {
     val clan = player.clan ?: player.ownClan ?: return@interfaceOption
     if (!clan.hasRank(player, ClanRank.Owner)) {
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
@@ -115,7 +115,7 @@ interfaceOption("clan_chat_setup", "coin_share") {
     player.message("Changes will take effect on your clan in the next 60 seconds.", ChatType.ClanChat)
 }
 
-interfaceOption("clan_chat_setup", "name", "Set prefix") {
+interfaceOption("Set prefix", "name", "clan_chat_setup") {
     val clan = player.clan ?: player.ownClan ?: return@interfaceOption
     if (!clan.hasRank(player, ClanRank.Owner)) {
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
@@ -136,7 +136,7 @@ interfaceOption("clan_chat_setup", "name", "Set prefix") {
     updateUI(clan)
 }
 
-interfaceOption("clan_chat_setup", "name", "Disable") {
+interfaceOption("Disable", "name", "clan_chat_setup") {
     val clan = player.clan ?: player.ownClan ?: return@interfaceOption
     if (!clan.hasRank(player, ClanRank.Owner)) {
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)

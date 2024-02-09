@@ -43,7 +43,7 @@ interfaceRefresh("emotes") { player: Player ->
     player.interfaceOptions.unlockAll("emotes", "emotes", 0..190)
 }
 
-interfaceOption("emotes") {
+interfaceOption(id = "emotes") {
     val id = option.toSnakeCase()
     val componentId = definitions.getComponentId(this.id, component)!!
     if (componentId > 23 && !unlocked(id, option)) {

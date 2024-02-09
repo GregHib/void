@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.dialogue.type.intEntry
  * Removing an item from an offer or loan
  */
 
-interfaceOption("trade_main", "offer_options") {
+interfaceOption(component = "offer_options", id = "trade_main") {
     val amount = when (option) {
         "Remove" -> 1
         "Remove-5" -> 5
@@ -24,11 +24,11 @@ interfaceOption("trade_main", "offer_options") {
     remove(player, item.id, itemSlot, amount)
 }
 
-interfaceOption("trade_main", "offer_options", "Value") {
+interfaceOption("Value", "offer_options", "trade_main") {
     player.message("${item.def.name} is priceless!", ChatType.Trade)
 }
 
-interfaceOption("trade_main", "loan_item", "Remove") {
+interfaceOption("Remove", "loan_item", "trade_main") {
     removeLend(player, item.id, 0)
 }
 

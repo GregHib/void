@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.inv.itemChange
  */
 val enums: EnumDefinitions by inject()
 
-interfaceOption("shop", option = "Info") {
+interfaceOption("Info", id = "shop") {
     val sample = component == "sample"
     val actualIndex = itemSlot / (if (sample) 4 else 6)
     val inventory = player.shopInventory(sample)
@@ -28,7 +28,7 @@ interfaceOption("shop", option = "Info") {
     showInfo(player, item, actualIndex, sample)
 }
 
-interfaceOption("item_info", "exit") {
+interfaceOption(component = "exit", id = "item_info") {
     player.open("shop_side")
     player.interfaceOptions.send("shop_side", "inventory")
 }

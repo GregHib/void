@@ -64,11 +64,11 @@ interfaceOpen("hairdressers_salon") { player: Player ->
     player["makeover_colour_hair"] = player.body.getColour(BodyColour.Hair)
 }
 
-interfaceOption("hairdressers_salon", "style_*") {
+interfaceOption(component = "style_*", id = "hairdressers_salon") {
     player["makeover_facial_hair"] = component == "style_beard"
 }
 
-interfaceOption("hairdressers_salon", "styles") {
+interfaceOption(component = "styles", id = "hairdressers_salon") {
     val beard = player["makeover_facial_hair", false]
     val type = if (beard) "beard" else "hair"
     val key = "look_${type}_${player.sex}"
@@ -80,7 +80,7 @@ interfaceOption("hairdressers_salon", "styles") {
     player["makeover_$type"] = value
 }
 
-interfaceOption("hairdressers_salon", "colours") {
+interfaceOption(component = "colours", id = "hairdressers_salon") {
     player["makeover_colour_hair"] = enums.get("colour_hair").getInt(itemSlot / 2)
 }
 
@@ -88,7 +88,7 @@ interfaceClose("hairdressers_salon") { player: Player ->
     player.softTimers.stop("dressing_room")
 }
 
-interfaceOption("hairdressers_salon", "confirm") {
+interfaceOption(component = "confirm", id = "hairdressers_salon") {
     player.body.setLook(BodyPart.Hair, player["makeover_hair", 0])
     player.body.setLook(BodyPart.Beard, player["makeover_beard", 0])
     player.body.setColour(BodyColour.Hair, player["makeover_colour_hair", 0])

@@ -57,7 +57,7 @@ interfaceRefresh("make_mould*") { player: Player ->
     }
 }
 
-interfaceOption("make_mould*", "make*", "Make *") {
+interfaceOption("Make *", "make*", "make_mould*") {
     val amount = when (option) {
         "Make 1" -> 1
         "Make 5" -> 5
