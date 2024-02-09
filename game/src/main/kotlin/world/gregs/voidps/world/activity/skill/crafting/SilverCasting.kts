@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
@@ -61,12 +60,11 @@ interfaceOpen("silver_mould") { player: Player ->
     }
 }
 
-itemOnObjectOperate("silver_bar", "furnace*") {
+itemOnObjectOperate("silver_bar", "furnace*", arrive = false) {
     player.open("silver_mould")
 }
 
 itemOnObjectOperate(obj = "furnace*", def = "silver_jewellery") {
-    arriveDelay()
     player.make(item, 1)
 }
 

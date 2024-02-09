@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.EquipSlot
@@ -183,7 +182,6 @@ objectOperate("Pick-up", "dung") {
 }
 
 itemOnObjectOperate(obj = "dung") {
-    arriveDelay()
     if (item.id != "bucket") {
         player<Unsure>("Surely there's something better I could use to pick up the dung.")
         return@itemOnObjectOperate

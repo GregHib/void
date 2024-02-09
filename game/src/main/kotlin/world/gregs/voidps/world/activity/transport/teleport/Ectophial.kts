@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 
@@ -41,7 +40,6 @@ inventoryItem("Empty", "ectophial", "inventory", priority = Priority.HIGH) {
 }
 
 itemOnObjectOperate("ectophial_empty", "ectofuntus") {
-    arriveDelay()
     if (player.inventory.replace(itemSlot, item.id, "ectophial")) {
         player.setAnimation("take")
         player.message("You refill the ectophial from the Ectofuntus.")

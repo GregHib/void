@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Cheerful
@@ -43,7 +42,6 @@ playerSpawn { player: Player ->
 }
 
 itemOnObjectOperate("*of_water", "varrock_palace_drain") {
-    arriveDelay()
     val replacement = when {
         item.id.startsWith("bucket_of") -> "bucket"
         item.id.startsWith("jug_of") -> "jug"

@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.engine.suspend.arriveDelay
 
 data class ItemOnObject(
     override val character: Character,
@@ -28,8 +29,22 @@ fun itemOnObjectApproach(item: String, obj: String, block: suspend ItemOnObject.
     }
 }
 
-fun itemOnObjectOperate(item: String = "*", obj: String = "*", def: String = "*", inventory: String = "*", priority: Priority = Priority.MEDIUM, block: suspend ItemOnObject.() -> Unit) {
-    on<ItemOnObject>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(obj, this.target.id) && (def == "*" || this.item.def.contains(def)) && wildcardEquals(inventory, this.inventory) }, priority) { _: Player ->
+fun itemOnObjectOperate(
+    item: String = "*",
+    obj: String = "*",
+    def: String = "*",
+    inventory: String = "*",
+    arrive: Boolean = true,
+    priority: Priority = Priority.MEDIUM,
+    block: suspend ItemOnObject.() -> Unit
+) {
+    on<ItemOnObject>({
+        operate && wildcardEquals(item, this.item.id) && wildcardEquals(obj, this.target.id) && (def == "*" || this.item.def.contains(def)) && wildcardEquals(inventory,
+            this.inventory)
+    }, priority) { _: Player ->
+        if (arrive) {
+            arriveDelay()
+        }
         block.invoke(this)
     }
 }
@@ -37,7 +52,10 @@ fun itemOnObjectOperate(item: String = "*", obj: String = "*", def: String = "*"
 fun itemOnObjectOperate(items: Set<String> = setOf("*"), objects: Set<String> = setOf("*"), def: String = "*", inventory: String = "*", block: suspend ItemOnObject.() -> Unit) {
     for (obj in objects) {
         for (item in items) {
-            on<ItemOnObject>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(obj, this.target.id) && (def == "*" || this.item.def.contains(def)) && wildcardEquals(inventory, this.inventory) }) { _: Player ->
+            on<ItemOnObject>({
+                operate && wildcardEquals(item, this.item.id) && wildcardEquals(obj, this.target.id) && (def == "*" || this.item.def.contains(def)) && wildcardEquals(inventory,
+                    this.inventory)
+            }) { _: Player ->
                 block.invoke(this)
             }
         }

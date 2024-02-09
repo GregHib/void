@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.*
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Talk
@@ -39,7 +38,6 @@ objectOperate("Operate", "hopper_controls") {
 }
 
 itemOnObjectOperate("grain", "hopper") {
-    arriveDelay()
     if (player.quest("cooks_assistant") != "started") {
         player.setAnimation("fill_hopper")
         player.inventory.remove("grain")

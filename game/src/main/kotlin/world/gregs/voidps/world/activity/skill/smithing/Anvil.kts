@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 import world.gregs.voidps.world.interact.dialogue.type.statement
@@ -84,7 +83,6 @@ interfaceOption(id = "smithing") {
 }
 
 itemOnObjectOperate("*_bar", "anvil*") {
-    arriveDelay()
     if (!player.inventory.contains("hammer")) {
         statement("You need a hammer to work the metal with.")
         return@itemOnObjectOperate
@@ -120,7 +118,7 @@ itemOnObjectOperate("*_bar", "anvil*") {
 }
 
 
-itemOnObjectOperate("hammer", "anvil*") {
+itemOnObjectOperate("hammer", "anvil*", arrive = false) {
     player.message("To smith metal equipment, you must use the metal bar on the anvil.")
 }
 

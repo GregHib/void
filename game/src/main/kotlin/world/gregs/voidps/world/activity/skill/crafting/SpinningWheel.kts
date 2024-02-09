@@ -66,7 +66,7 @@ objectOperate("Spin", "spinning_wheel*", arrive = false) {
     start(player, target, fibre, amount)
 }
 
-itemOnObjectOperate(obj = "spinning_wheel*", def = "spinning") {
+itemOnObjectOperate(obj = "spinning_wheel*", def = "spinning", arrive = false) {
     val (_, amount) = makeAmount(
         items = listOf(item.spinning.to),
         type = "Make",

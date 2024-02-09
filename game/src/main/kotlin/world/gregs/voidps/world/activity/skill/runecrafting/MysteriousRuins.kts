@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.obj.teleportTakeOff
@@ -54,7 +53,6 @@ itemOnObjectOperate("*_talisman", "*_altar_ruins") {
     if (target.id != "${item.id.removeSuffix("_talisman")}_altar_ruins") {
         return@itemOnObjectOperate
     }
-    arriveDelay()
     val id = target.def.transforms?.getOrNull(1) ?: return@itemOnObjectOperate
     val definition = objectDefinitions.get(id)
     player.message("You hold the ${item.id.toSentenceCase()} towards the mysterious ruins.")

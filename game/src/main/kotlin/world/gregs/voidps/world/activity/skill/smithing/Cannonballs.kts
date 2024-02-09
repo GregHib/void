@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.dialogue.type.statement
@@ -26,7 +25,6 @@ itemOnObjectOperate("steel_bar", "furnace*") {
     if (player.quest("dwarf_cannon") != "completed") {
         return@itemOnObjectOperate
     }
-    arriveDelay()
     if (!player.inventory.contains("ammo_mould")) {
         statement("You need a mould to make cannonballs with.")
         return@itemOnObjectOperate

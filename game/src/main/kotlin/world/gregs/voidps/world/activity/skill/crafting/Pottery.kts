@@ -22,11 +22,11 @@ import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 val Item.pottery: Pottery
     get() = def["pottery"]
 
-itemOnObjectOperate("soft_clay", "potters_wheel*") {
+itemOnObjectOperate("soft_clay", "potters_wheel*", arrive = false) {
     make("spinning", item)
 }
 
-itemOnObjectOperate(obj = "pottery_oven*", def = "pottery") {
+itemOnObjectOperate(obj = "pottery_oven*", def = "pottery", arrive = false) {
     if (item.id != "soft_clay") {
         make("cook_range", item)
     }
