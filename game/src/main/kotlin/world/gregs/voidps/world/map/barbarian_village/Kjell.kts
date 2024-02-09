@@ -1,20 +1,19 @@
 package world.gregs.voidps.world.map.barbarian_village
 
 import world.gregs.voidps.engine.entity.character.CharacterContext
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.interact.dialogue.*
+import world.gregs.voidps.world.interact.dialogue.Angry
+import world.gregs.voidps.world.interact.dialogue.Furious
+import world.gregs.voidps.world.interact.dialogue.Talk
+import world.gregs.voidps.world.interact.dialogue.Talking
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 
-on<NPCOption>({ operate && target.id == "kjell" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "kjell") {
     when (player.quest("gunnars_ground")) {
-        "gunnars_ground", "completed" -> {
-            completed()
-        }
+        "gunnars_ground", "completed" -> completed()
         "started" -> {
         }
         else -> unstarted()
@@ -22,35 +21,17 @@ on<NPCOption>({ operate && target.id == "kjell" && option == "Talk-to" }) { play
 }
 
 suspend fun CharacterContext.completed() {
-    when (random.nextInt(0, 8)) {
-        0 -> {
-            npc<Talk>("...there's a place for us...")
-        }
-        1 -> {
-            npc<Talk>("...but I'd do anything for you...")
-        }
-        2 -> {
-            npc<Talk>("...you exploded into my heart...")
-        }
-        3 -> {
-            npc<Talk>("...love you like the stars above...")
-        }
-        4 -> {
-            npc<Talk>("...I dreamed your dream for you...")
-        }
-       5 -> {
-            npc<Talk>("...there's a place for us...")
-        }
-        5 -> {
-            npc<Talk>("...fall for chains of gold...")
-        }
-        6 -> {
-            npc<Talk>("...when you gonna realise...")
-        }
-        7 -> {
-            npc<Talk>("...fall for pretty strangers...")
-        }
-    }
+    npc<Talk>(when (random.nextInt(0, 9)) {
+        0 -> "...there's a place for us..."
+        1 -> "...but I'd do anything for you..."
+        2 -> "...you exploded into my heart..."
+        3 -> "...love you like the stars above..."
+        4 -> "...I dreamed your dream for you..."
+        5 -> "...there's a place for us..."
+        6 -> "...fall for chains of gold..."
+        7 -> "...when you gonna realise..."
+        else -> "...fall for pretty strangers..."
+    })
     npc<Furious>("Blast!")
     choice {
         option<Talking>("Having trouble there?") {
