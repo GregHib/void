@@ -31,11 +31,11 @@ playerSpawn { player: Player ->
     }
 }
 
-itemAdded("worn_equipment", "*_tiara", EquipSlot.Hat) { player: Player ->
+itemAdded("*_tiara", EquipSlot.Hat, "worn_equipment") { player: Player ->
     toggleAltar(player, item, true)
 }
 
-itemRemoved("worn_equipment", "*_tiara", EquipSlot.Hat) { player: Player ->
+itemRemoved("*_tiara", EquipSlot.Hat, "worn_equipment") { player: Player ->
     toggleAltar(player, oldItem, false)
 }
 

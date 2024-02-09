@@ -32,39 +32,39 @@ data class ItemChanged(
 
 }
 
-fun itemAdded(inventory: String, item: String = "*", slot: EquipSlot = EquipSlot.None, block: suspend ItemChanged.(Player) -> Unit) {
-    itemAdded(inventory, item, slot.index, block)
+fun itemAdded(item: String = "*", slot: EquipSlot = EquipSlot.None, inventory: String = "*", block: suspend ItemChanged.(Player) -> Unit) {
+    itemAdded(item, slot.index, inventory, block)
 }
 
-fun itemAdded(inventory: String, item: String = "*", index: Int = -1, block: suspend ItemChanged.(Player) -> Unit) {
+fun itemAdded(item: String = "*", index: Int = -1, inventory: String = "*", block: suspend ItemChanged.(Player) -> Unit) {
     on<ItemChanged>({ wildcardEquals(inventory, this.inventory) && wildcardEquals(item, this.item.id) && (index == -1 || index == this.index) }) { player: Player ->
         block.invoke(this, player)
     }
 }
 
-fun itemAdded(inventory: String, item: String = "*", indices: Set<Int> = emptySet(), block: suspend ItemChanged.(Player) -> Unit) {
+fun itemAdded(item: String = "*", indices: Set<Int> = emptySet(), inventory: String = "*", block: suspend ItemChanged.(Player) -> Unit) {
     on<ItemChanged>({ wildcardEquals(inventory, this.inventory) && wildcardEquals(item, this.item.id) && (indices.isEmpty() || indices.contains(index)) }) { player: Player ->
         block.invoke(this, player)
     }
 }
 
-fun itemRemoved(inventory: String, item: String = "*", slot: EquipSlot = EquipSlot.None, block: suspend ItemChanged.(Player) -> Unit) {
-    itemRemoved(inventory, item, slot.index, block)
+fun itemRemoved(item: String = "*", slot: EquipSlot = EquipSlot.None, inventory: String, block: suspend ItemChanged.(Player) -> Unit) {
+    itemRemoved(item, slot.index, inventory, block)
 }
 
-fun itemRemoved(inventory: String, item: String = "*", indices: Set<Int> = emptySet(), block: suspend ItemChanged.(Player) -> Unit) {
+fun itemRemoved(item: String = "*", indices: Set<Int> = emptySet(), inventory: String, block: suspend ItemChanged.(Player) -> Unit) {
     on<ItemChanged>({ wildcardEquals(inventory, this.from) && wildcardEquals(item, this.oldItem.id) && (indices.isEmpty() || indices.contains(this.fromIndex)) }) { player: Player ->
         block.invoke(this, player)
     }
 }
 
-fun itemRemoved(inventory: String, item: String = "*", index: Int = -1, block: suspend ItemChanged.(Player) -> Unit) {
+fun itemRemoved(item: String = "*", index: Int = -1, inventory: String, block: suspend ItemChanged.(Player) -> Unit) {
     on<ItemChanged>({ wildcardEquals(inventory, this.from) && wildcardEquals(item, this.oldItem.id) && (index == -1 || index == this.fromIndex) }) { player: Player ->
         block.invoke(this, player)
     }
 }
 
-fun itemChange(inventory: String, slot: EquipSlot, priority: Priority = Priority.MEDIUM, block: suspend ItemChanged.(Player) -> Unit) {
+fun itemChange(slot: EquipSlot, inventory: String = "*", priority: Priority = Priority.MEDIUM, block: suspend ItemChanged.(Player) -> Unit) {
     itemChange(inventory, slot.index, priority, block)
 }
 
@@ -74,9 +74,9 @@ fun itemChange(inventory: String = "*", index: Int = -1, priority: Priority = Pr
     }
 }
 
-fun itemChange(vararg inventories: String = arrayOf("*"), index: Int = -1, block: suspend ItemChanged.(Player) -> Unit) {
+fun itemChange(vararg inventories: String = arrayOf("*"), block: suspend ItemChanged.(Player) -> Unit) {
     for (inventory in inventories) {
-        on<ItemChanged>({ wildcardEquals(inventory, this.inventory) && (index == -1 || index == this.index) }) { player: Player ->
+        on<ItemChanged>({ wildcardEquals(inventory, this.inventory) }) { player: Player ->
             block.invoke(this, player)
         }
     }

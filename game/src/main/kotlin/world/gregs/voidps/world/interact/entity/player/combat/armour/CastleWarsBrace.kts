@@ -27,13 +27,13 @@ exitArea("castle_wars") {
     }
 }
 
-itemAdded("worn_equipment", "castle_wars_brace*", EquipSlot.Hands) { player: Player ->
+itemAdded("castle_wars_brace*", EquipSlot.Hands, "worn_equipment") { player: Player ->
     if (player.tile in area) {
         player["castle_wars_brace"] = true
     }
 }
 
-itemRemoved("worn_equipment", "castle_wars_brace*", EquipSlot.Hands) { player: Player ->
+itemRemoved("castle_wars_brace*", EquipSlot.Hands, "worn_equipment") { player: Player ->
     if (player.tile in area) {
         player.clear("castle_wars_brace")
     }

@@ -11,11 +11,11 @@ playerSpawn { player: Player ->
     }
 }
 
-itemRemoved("worn_equipment", "veracs_*", BarrowsArmour.slots) { player: Player ->
+itemRemoved("veracs_*", BarrowsArmour.slots, "worn_equipment") { player: Player ->
     player.clear("veracs_set_effect")
 }
 
-itemAdded("worn_equipment", "veracs_*", BarrowsArmour.slots) { player: Player ->
+itemAdded("veracs_*", BarrowsArmour.slots, "worn_equipment") { player: Player ->
     if (player.hasFullSet()) {
         player["veracs_set_effect"] = true
     }

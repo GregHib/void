@@ -73,13 +73,13 @@ playerSpawn { player: Player ->
     update(player)
 }
 
-itemChange("worn_equipment", EquipSlot.Chest) { player: Player ->
+itemChange(EquipSlot.Chest, "worn_equipment") { player: Player ->
     if (item.def["material", ""] == "metal" || oldItem.def["material", ""] == "metal") {
         update(player)
     }
 }
 
-itemAdded("worn_equipment", "avas_*", EquipSlot.Cape) { player: Player ->
+itemAdded("avas_*", EquipSlot.Cape, "worn_equipment") { player: Player ->
     update(player)
 }
 

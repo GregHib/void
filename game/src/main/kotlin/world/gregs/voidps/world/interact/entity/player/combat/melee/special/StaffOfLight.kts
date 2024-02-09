@@ -18,7 +18,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpeci
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import java.util.concurrent.TimeUnit
 
-itemRemoved("worn_equipment", "staff_of_light*", EquipSlot.Weapon) { player: Player ->
+itemRemoved("staff_of_light*", EquipSlot.Weapon, "worn_equipment") { player: Player ->
     player.softTimers.stop("power_of_light")
 }
 
