@@ -25,10 +25,10 @@ fun move(filter: Moved.(Player) -> Boolean = { true }, priority: Priority = Prio
     on<Moved>(filter, priority, block)
 }
 
-fun npcMove(filter: Moved.(NPC) -> Boolean = { true}, priority: Priority = Priority.MEDIUM, block: suspend Moved.(NPC) -> Unit) {
-    on<Moved>(filter, priority, block)
+fun npcMove(filter: Moved.(NPC) -> Boolean = { true}, block: suspend Moved.(NPC) -> Unit) {
+    on<Moved>(filter, block = block)
 }
 
-fun characterMove(filter: Moved.(Character) -> Boolean = { true}, priority: Priority = Priority.MEDIUM, block: suspend Moved.(Character) -> Unit) {
-    on<Moved>(filter, priority, block)
+fun characterMove(filter: Moved.(Character) -> Boolean = { true}, block: suspend Moved.(Character) -> Unit) {
+    on<Moved>(filter, block = block)
 }

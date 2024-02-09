@@ -65,11 +65,13 @@ fun itemRemoved(item: String = "*", index: Int = -1, inventory: String, block: s
 }
 
 fun itemChange(slot: EquipSlot, inventory: String = "*", priority: Priority = Priority.MEDIUM, block: suspend ItemChanged.(Player) -> Unit) {
-    itemChange(inventory, slot.index, priority, block)
+    on<ItemChanged>({ wildcardEquals(inventory, this.inventory) && (slot.index == -1 || slot.index == this.index) }, priority) { player: Player ->
+        block.invoke(this, player)
+    }
 }
 
-fun itemChange(inventory: String = "*", index: Int = -1, priority: Priority = Priority.MEDIUM, block: suspend ItemChanged.(Player) -> Unit) {
-    on<ItemChanged>({ wildcardEquals(inventory, this.inventory) && (index == -1 || index == this.index) }, priority) { player: Player ->
+fun itemChange(inventory: String = "*", index: Int = -1, block: suspend ItemChanged.(Player) -> Unit) {
+    on<ItemChanged>({ wildcardEquals(inventory, this.inventory) && (index == -1 || index == this.index) }) { player: Player ->
         block.invoke(this, player)
     }
 }
