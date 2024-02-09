@@ -1,16 +1,14 @@
 package world.gregs.voidps.world.map.barbarian_village
 
 import world.gregs.voidps.engine.entity.character.CharacterContext
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ operate && target.id == "chieftain_gunthor" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "chieftain_gunthor") {
     when (player.quest("gunnars_ground")) {
         "completed" -> {
         }
@@ -19,9 +17,7 @@ on<NPCOption>({ operate && target.id == "chieftain_gunthor" && option == "Talk-t
             npc<Furious>("Tell her to think of Gunnar and what he would think of this insult! Now go before I have Haakon dismember you.")
             seeHimTry()
         }
-        "meet_chieftain" -> {
-            meetChieftain()
-        }
+        "meet_chieftain" -> meetChieftain()
         else -> unstarted()
     }
 }
@@ -78,16 +74,16 @@ suspend fun CharacterContext.waitAMoment() {
 
 suspend fun CharacterContext.campOfWar() {
     npc<Angry>("We are the freemen of the ice. You think this a settlement, but it is a camp of war!")
-    npc<Angry>("haakon_the_champion","Chieftain! May I interrupt?")
+    npc<Angry>("haakon_the_champion", "Chieftain! May I interrupt?")
     npc<Angry>("What is it, Haakon?")
-    npc<Angry>("haakon_the_champion","We have lived here since before the time of my father. Perhaps we are no longer a camp.")
+    npc<Angry>("haakon_the_champion", "We have lived here since before the time of my father. Perhaps we are no longer a camp.")
     npc<Unsure>("Your father? Do you honour him, Haakon?")
-    npc<Furious>("haakon_the_champion","Of course!")
+    npc<Furious>("haakon_the_champion", "Of course!")
     npc<Unsure>("And do you honour Warloard Gunnar?")
-    npc<Furious>("haakon_the_champion","Of course, Chieftain!")
+    npc<Furious>("haakon_the_champion", "Of course, Chieftain!")
     npc<Angry>("Then why do you dishonour his name by abandoning what he fought for?")
     npc<Furious>("We will honour our fathers and we will honour Gunnar!")
-    npc<Angry>("haakon_the_champion","Yes, Chieftain. You are wise. I am sorry.")
+    npc<Angry>("haakon_the_champion", "Yes, Chieftain. You are wise. I am sorry.")
     npc<Unknown_expression>("You! Outerlander!")
     player<Unsure>("What?")
     npc<Unknown_expression>("We are not friends, you and I! We are not allies!")
@@ -102,10 +98,10 @@ suspend fun CharacterContext.seeHimTry() {
         option<Talk>("I'm going!") {
         }
         option<Talk>("I'd like to see him try.") {
-            npc<Furious>("haakon_the_champion","Come here and say that to my face, outerlander!")
+            npc<Furious>("haakon_the_champion", "Come here and say that to my face, outerlander!")
         }
         option<Talk>("I'm going to challenge him right now!") {
-            npc<Furious>("haakon_the_champion","Come here and say that to my face, outerlander!")
+            npc<Furious>("haakon_the_champion", "Come here and say that to my face, outerlander!")
         }
     }
 }
