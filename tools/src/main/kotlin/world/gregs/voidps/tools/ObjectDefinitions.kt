@@ -1,8 +1,6 @@
 package world.gregs.voidps.tools
 
-import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions

@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.map.varrock.palace
 
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.world.interact.dialogue.Angry
 import world.gregs.voidps.world.interact.dialogue.Surprised
 import world.gregs.voidps.world.interact.dialogue.type.npc
