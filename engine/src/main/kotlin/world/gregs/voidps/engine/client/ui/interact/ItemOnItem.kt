@@ -26,9 +26,6 @@ fun itemOnItem(fromItem: String = "*", toItem: String = "*", block: suspend Item
     }, block = block)
 }
 
-fun itemOnItemInterface(fromInterface: String = "*", fromComponent: String = "*", toInterface: String = "*", toComponent: String = "*", block: suspend ItemOnItem.(Player) -> Unit) {
-    on<ItemOnItem>({
-        wildcardEquals(fromInterface, this.fromInterface) && wildcardEquals(fromComponent, this.fromComponent) || wildcardEquals(toInterface, this.toInterface) && wildcardEquals(toComponent,
-            this.toComponent)
-    }, block = block)
+fun itemOnItemInterface(fromInterface: String = "*", fromComponent: String = "*", block: suspend ItemOnItem.(Player) -> Unit) {
+    on<ItemOnItem>({ wildcardEquals(fromInterface, this.fromInterface) && wildcardEquals(fromComponent, this.fromComponent) }, block = block)
 }
