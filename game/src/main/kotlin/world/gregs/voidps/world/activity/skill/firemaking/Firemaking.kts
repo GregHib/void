@@ -27,7 +27,6 @@ import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.type.Direction
@@ -49,13 +48,11 @@ itemOnItem("tinderbox*", "*logs*") { player: Player ->
 
 itemOnFloorItemOperate("tinderbox*", "*log*") {
     if (floorItem.def.contains("firemaking")) {
-        arriveDelay()
         lightFire(player, floorItem)
     }
 }
 
 floorItemOperate("Light") {
-    arriveDelay()
     lightFire(player, target)
 }
 

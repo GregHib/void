@@ -29,7 +29,6 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.type.random
 
@@ -43,11 +42,10 @@ npcMove({ it.contains("fishers") && it.def.contains("fishing") }) { npc: NPC ->
     }
 }
 
-npcOperate("*", "fishing_spot_*") {
+npcOperate("*", "fishing_spot_*", arrive = true) {
     if (!def.contains("fishing")) {
         return@npcOperate
     }
-    arriveDelay()
     target.getOrPut("fishers") { mutableSetOf<Player>() }.add(player)
     player.softTimers.start("fishing")
     player.closeDialogue()

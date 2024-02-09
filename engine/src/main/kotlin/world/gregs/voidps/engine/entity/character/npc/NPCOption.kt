@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.engine.suspend.arriveDelay
 
 data class NPCOption(
     override val character: Character,
@@ -31,8 +32,11 @@ fun npcApproach(option: String, vararg npcs: String = arrayOf("*"), block: suspe
     }
 }
 
-fun npcOperate(option: String = "*", npc: String = "*", block: suspend NPCOption.() -> Unit) {
+fun npcOperate(option: String = "*", npc: String = "*", arrive: Boolean = false, block: suspend NPCOption.() -> Unit) {
     on<NPCOption>({ operate && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) { _: Player ->
+        if (arrive) {
+            arriveDelay()
+        }
         block.invoke(this)
     }
 }

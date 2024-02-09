@@ -49,13 +49,22 @@ fun itemOnObjectOperate(
     }
 }
 
-fun itemOnObjectOperate(items: Set<String> = setOf("*"), objects: Set<String> = setOf("*"), def: String = "*", inventory: String = "*", block: suspend ItemOnObject.() -> Unit) {
+fun itemOnObjectOperate(
+    items: Set<String> = setOf("*"),
+    objects: Set<String> = setOf("*"),
+    def: String = "*",
+    inventory: String = "*",
+    arrive: Boolean = true,
+    block: suspend ItemOnObject.() -> Unit
+) {
     for (obj in objects) {
         for (item in items) {
             on<ItemOnObject>({
-                operate && wildcardEquals(item, this.item.id) && wildcardEquals(obj, this.target.id) && (def == "*" || this.item.def.contains(def)) && wildcardEquals(inventory,
-                    this.inventory)
+                operate && wildcardEquals(item, this.item.id) && wildcardEquals(obj, this.target.id) && wildcardEquals(inventory, this.inventory) && (def == "*" || this.item.def.contains(def))
             }) { _: Player ->
+                if (arrive) {
+                    arriveDelay()
+                }
                 block.invoke(this)
             }
         }

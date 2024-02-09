@@ -6,11 +6,9 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 
 itemOnObjectOperate(objects = setOf("sink*", "fountain*", "well*", "water_trough*", "pump_and_drain*"), def = "full") {
-    arriveDelay()
     while (player.inventory.contains(item.id)) {
         player.setAnimation("take")
         player.inventory.replace(item.id, item.def["full"])

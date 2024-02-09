@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 
@@ -34,7 +33,6 @@ val objects: GameObjects by inject()
 val GameObject.cookingRange: Boolean get() = id.startsWith("cooking_range")
 
 itemOnObjectOperate(objects = setOf("fire_*", "cooking_range*"), def = "cooking") {
-    arriveDelay()
     val definition = if (player["sinew", false]) definitions.get("sinew") else if (item.id == "sinew") return@itemOnObjectOperate else item.def
     player["sinew"] = false
     val cooking: Uncooked = definition.getOrNull("cooking") ?: return@itemOnObjectOperate

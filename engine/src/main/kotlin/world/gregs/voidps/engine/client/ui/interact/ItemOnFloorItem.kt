@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.engine.suspend.arriveDelay
 
 data class ItemOnFloorItem(
     override val character: Character,
@@ -26,8 +27,11 @@ fun itemOnFloorItemApproach(item: String, floorItem: String, block: suspend Item
     }
 }
 
-fun itemOnFloorItemOperate(item: String, floorItem: String, block: suspend ItemOnFloorItem.() -> Unit) {
+fun itemOnFloorItemOperate(item: String, floorItem: String, arrive: Boolean = true, block: suspend ItemOnFloorItem.() -> Unit) {
     on<ItemOnFloorItem>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(floorItem, this.floorItem.id) }) { _: Player ->
+        if (arrive) {
+            arriveDelay()
+        }
         block.invoke(this)
     }
 }
