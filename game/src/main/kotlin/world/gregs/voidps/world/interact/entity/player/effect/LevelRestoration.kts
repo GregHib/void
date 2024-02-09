@@ -2,32 +2,39 @@ package world.gregs.voidps.world.interact.entity.player.effect
 
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.CurrentLevelChanged
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.engine.entity.character.player.skill.level.levelChange
+import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.timer.timerStart
+import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
 import java.util.concurrent.TimeUnit
 
 val skills = Skill.all.filterNot { it == Skill.Prayer || it == Skill.Summoning || it == Skill.Constitution }
 
-on<Registered>({ player -> skills.any { player.levels.getOffset(it) != 0 } }) { player: Player ->
+playerSpawn { player: Player ->
+    if (skills.any { player.levels.getOffset(it) != 0 }) {
+        player.softTimers.start("restore_stats")
+    }
+}
+
+levelChange { player: Player ->
+    if (skill == Skill.Prayer || skill == Skill.Summoning || skill == Skill.Constitution) {
+        return@levelChange
+    }
+    if (to == player.levels.getMax(skill) || player.softTimers.contains("restore_stats")) {
+        return@levelChange
+    }
     player.softTimers.start("restore_stats")
 }
 
-on<CurrentLevelChanged>({ skill != Skill.Prayer && skill != Skill.Summoning && skill != Skill.Constitution && to != it.levels.getMax(skill) && !it.softTimers.contains("restore_stats") }) { player: Player ->
-    player.softTimers.start("restore_stats")
-}
-
-on<TimerStart>({ timer == "restore_stats" }) { _: Player ->
+timerStart("restore_stats") { _: Player ->
     interval = TimeUnit.SECONDS.toTicks(60)
 }
 
-on<TimerTick>({ timer == "restore_stats" }) { player: Player ->
+timerTick("restore_stats") { player: Player ->
     val berserker = player.praying("berserker") && player.hasClock("berserker_cooldown")
     val skip = player.praying("berserker") && !player.hasClock("berserker_cooldown")
     if (skip) {

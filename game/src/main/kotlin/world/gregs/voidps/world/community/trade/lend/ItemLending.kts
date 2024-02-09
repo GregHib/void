@@ -3,11 +3,10 @@ package world.gregs.voidps.world.community.trade.lend
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.stop
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.playerDespawn
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.world.community.trade.lend.Loan.returnLoan
@@ -20,7 +19,7 @@ import java.util.concurrent.TimeUnit
  */
 val players: Players by inject()
 
-on<Registered> { player: Player ->
+playerSpawn { player: Player ->
     checkBorrowComplete(player)
     checkLoanComplete(player)
 }
@@ -50,7 +49,7 @@ fun checkLoanComplete(player: Player) {
     }
 }
 
-on<Unregistered> { player: Player ->
+playerDespawn { player: Player ->
     checkBorrowUntilLogout(player)
     checkLoanUntilLogout(player)
 }
@@ -73,20 +72,22 @@ fun checkLoanUntilLogout(player: Player) {
     }
 }
 
-on<TimerStart>({ timer == "loan_message" }) { player: Player ->
+timerStart("loan_message") { player: Player ->
     val remaining = player.remaining("lend_timeout", epochSeconds())
     interval = TimeUnit.SECONDS.toTicks(remaining)
 }
 
-on<TimerStop>({ timer == "loan_message" && !logout }) { player: Player ->
-    stopLending(player)
+timerStop("loan_message") { player: Player ->
+    if (!logout) {
+        stopLending(player)
+    }
 }
 
-on<TimerStart>({ timer == "borrow_message" }) { _: Player ->
+timerStart("borrow_message") { _: Player ->
     interval = TimeUnit.MINUTES.toTicks(1)
 }
 
-on<TimerTick>({ timer == "borrow_message" }) { player: Player ->
+timerTick("borrow_message") { player: Player ->
     val remaining = player.remaining("borrow_timeout", epochSeconds())
     if (remaining <= 0) {
         player.message("Your loan has expired; the item you borrowed will now be returned to its owner.")
@@ -96,8 +97,10 @@ on<TimerTick>({ timer == "borrow_message" }) { player: Player ->
     }
 }
 
-on<TimerStop>({ timer == "borrow_message" && !logout }) { player: Player ->
-    returnLoan(player)
+timerStop("borrow_message") { player: Player ->
+    if (!logout) {
+        returnLoan(player)
+    }
 }
 
 fun stopLending(player: Player) {

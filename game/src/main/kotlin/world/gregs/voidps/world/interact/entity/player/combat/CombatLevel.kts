@@ -1,19 +1,20 @@
 package world.gregs.voidps.world.interact.entity.player.combat
 
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
-import world.gregs.voidps.engine.entity.character.player.skill.level.MaxLevelChanged
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelChange
+import world.gregs.voidps.engine.entity.playerSpawn
 import kotlin.math.max
 
-on<Registered> { player: Player ->
+playerSpawn { player: Player ->
     player.combatLevel = calculateCombatLevel(player.levels)
 }
 
-on<MaxLevelChanged>({ skill.combat }) { player: Player ->
+val combatSkills = Skill.entries.filter { it.ordinal <= 6 || it.ordinal == 23 }.toSet()
+
+maxLevelChange(combatSkills) { player: Player ->
     player.combatLevel = calculateCombatLevel(player.levels)
 }
 

@@ -1,82 +1,81 @@
 package world.gregs.voidps.world.command.debug
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.Command
+import world.gregs.voidps.engine.client.ui.event.adminCommand
+import world.gregs.voidps.engine.client.ui.event.modCommand
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.Hitsplat
 import world.gregs.voidps.world.interact.entity.effect.transform
 
 val npcs: NPCs by inject()
 
-on<Command>({ prefix == "npckill" }) { player: Player ->
+adminCommand("npckill") {
     npcs.forEach { npc ->
         npcs.remove(npc)
     }
 }
 
-on<Command>({ prefix == "npcs" }) { player: Player ->
+modCommand("npcs") {
     player.message("NPCs: ${npcs.size}")
 }
 
-on<Command>({ prefix == "npctfm" }) { player: Player ->
+adminCommand("npctfm") {
     val npc = npcs[player.tile.addY(1)].first()
     npc.transform = content
 }
 
-on<Command>({ prefix == "npcturn" }) { player: Player ->
+adminCommand("npcturn") {
     val npc = npcs[player.tile.addY(1)].first()
     val parts = content.split(" ")
     npc.turn(parts[0].toInt(), parts[1].toInt())
 }
 
-on<Command>({ prefix == "npcanim" }) { player: Player ->
+adminCommand("npcanim") {
     val npc = npcs[player.tile.addY(1)].first()
     npc.setAnimation(content)// 863
 }
 
-on<Command>({ prefix == "npcoverlay" }) { player: Player ->
+adminCommand("npcoverlay") {
     val npc = npcs[player.tile.addY(1)].first()
     npc.colourOverlay(-2108002746, 10, 100)
 }
 
-on<Command>({ prefix == "npcchat" }) { player: Player ->
+adminCommand("npcchat") {
     val npc = npcs[player.tile.addY(1)].first()
     npc.forceChat = "Testing"
 }
 
-on<Command>({ prefix == "npcgfx" }) { player: Player ->
+adminCommand("npcgfx") {
     val npc = npcs[player.tile.addY(1)].first()
     npc.setGraphic(content)// 93
 }
 
-on<Command>({ prefix == "npchit" }) { player: Player ->
+adminCommand("npchit") {
     val npc = npcs[player.tile.addY(1)].first()
     npc.hit(player, 10, Hitsplat.Mark.Healed)
 }
 
-on<Command>({ prefix == "npctime" }) { player: Player ->
+adminCommand("npctime") {
     val npc = npcs[player.tile.addY(1)].first()
     npc.setTimeBar(true, 0, 60, 1)
 }
 
-on<Command>({ prefix == "npcwatch" }) { player: Player ->
+adminCommand("npcwatch") {
     val npc = npcs[player.tile.addY(1)].first()
     npc.watch(player)
 }
 
-on<Command>({ prefix == "npccrawl" }) { player: Player ->
+adminCommand("npccrawl") {
     val npc = npcs[player.tile.addY(1)].first()
 //    npc.def["crawl"] = true
 //    npc.walkTo(npc.tile)
 //    npc.movement.steps.add(Tile(npc.tile.x, npc.tile.y + 1))
 }
 
-on<Command>({ prefix == "npcrun" }) { player: Player ->
+adminCommand("npcrun") {
     val npc = npcs[player.tile.addY(1)].first()
     npc.running = true
 //    npc.walkTo(npc.tile)

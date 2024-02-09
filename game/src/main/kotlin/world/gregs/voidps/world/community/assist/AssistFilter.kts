@@ -1,12 +1,11 @@
 package world.gregs.voidps.world.community.assist
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.closeMenu
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.community.assist.Assistance.getHoursRemaining
 import world.gregs.voidps.world.community.assist.Assistance.hasEarnedMaximumExperience
 
@@ -14,7 +13,7 @@ import world.gregs.voidps.world.community.assist.Assistance.hasEarnedMaximumExpe
  * Assistance privacy filter settings
  */
 
-on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option == "XP Earned/Time" }) { player: Player ->
+interfaceOption("XP Earned/Time", "assist", "filter_buttons") {
     if (hasEarnedMaximumExperience(player)) {
         val hours = getHoursRemaining(player)
         player.message(
@@ -28,16 +27,16 @@ on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option 
     }
 }
 
-on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option == "On Assist" }) { player: Player ->
+interfaceOption("On Assist", "assist", "filter_buttons") {
     player["assist_status"] = "on"
 }
 
-on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option == "Friends Assist" }) { player: Player ->
+interfaceOption("Friends Assist", "assist", "filter_buttons") {
     player["assist_status"] = "friends"
     cancel(player)
 }
 
-on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option == "Off Assist" }) { player: Player ->
+interfaceOption("Off Assist", "assist", "filter_buttons") {
     player["assist_status"] = "off"
     cancel(player)
 }

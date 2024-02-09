@@ -1,26 +1,25 @@
 package world.gregs.voidps.world.activity.transport
 
-import world.gregs.voidps.engine.client.ui.event.Command
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.event.adminCommand
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.world.interact.dialogue.type.statement
 
-on<ObjectOption>({ operate && target.id == "canoe_station" && option == "Chop-down" }) { player: Player ->
+objectOperate("Chop-down", "canoe_station") {
     if (!player.has(Skill.Woodcutting, 12, false)) {
         statement("You must have at least level 12 woodcutting to start making canoes.")
     }
 }
 
-on<Command>({ prefix == "canoe" }) { player: Player ->
+adminCommand("canoe") {
     player.open("canoe")
 }
 
-on<InterfaceOpened>({ id == "canoe" }) { player: Player ->
+interfaceOpen("canoe") { player: Player ->
     if (player.levels.get(Skill.Woodcutting) > 26) {
         player.interfaces.sendVisibility(id, "visible_dugout", true)
         player.interfaces.sendVisibility(id, "invisible_dugout", false)
@@ -35,8 +34,8 @@ on<InterfaceOpened>({ id == "canoe" }) { player: Player ->
     }
 }
 
-on<InterfaceOpened>({ id == "canoe_stations_map" }) { player: Player ->
+interfaceOpen("canoe_stations_map") { player: Player ->
 }
 
-on<InterfaceOpened>({ id == "canoe_travel" }) { player: Player ->
+interfaceOpen("canoe_travel") { player: Player ->
 }

@@ -13,13 +13,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolati
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
@@ -29,10 +26,9 @@ import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-on<ObjectOption>({ operate && target.id == "archery_target" && option == "Shoot-at" }, Priority.HIGH) { player: Player ->
+objectOperate("Shoot-at", "archery_target") {
     player.closeDialogue()
     player.face(target)
-    arriveDelay()
     swing(player, target, 0)
 }
 

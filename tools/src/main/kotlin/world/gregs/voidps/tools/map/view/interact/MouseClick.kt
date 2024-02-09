@@ -168,7 +168,7 @@ class MouseClick(
             JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)
         if (result == JOptionPane.OK_OPTION) {
             val newNode = populate(node, settings)
-            if(node != newNode) {
+            if (node != newNode) {
                 links.forEach {
                     graph.repaint(it)
                 }

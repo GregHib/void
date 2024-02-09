@@ -2,14 +2,14 @@ package world.gregs.voidps.world.map.wizards_tower
 
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
+import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -30,7 +30,7 @@ var Player.bonesRequired: Int
     get() = get("demon_slayer_bones", -1)
     set(value) = set("demon_slayer_bones", value)
 
-on<NPCOption>({ operate && target.id == "traiborn" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "traiborn") {
     npc<Uncertain>("Ello young thingummywut.")
     if (player.quest("demon_slayer") == "key_hunt") {
         if (player.inventory.contains("silverlight_key_wizard_traiborn")) {
@@ -49,9 +49,11 @@ on<NPCOption>({ operate && target.id == "traiborn" && option == "Talk-to" }) { p
     }
 }
 
-on<ItemOnNPC>({ operate && target.id == "traiborn" && item.id == "bones" && player.bonesRequired > 0 }) { player: Player ->
-    player.talkWith(target)
-    giveBones()
+itemOnNPCOperate("bones", "traiborn") {
+    if (player.bonesRequired > 0) {
+        player.talkWith(target)
+        giveBones()
+    }
 }
 
 suspend fun PlayerChoice.thingummywut(): Unit = option<Uncertain>("What's a thingummywut?") {

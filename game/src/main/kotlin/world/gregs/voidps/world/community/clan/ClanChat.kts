@@ -1,10 +1,10 @@
 package world.gregs.voidps.world.community.clan
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -14,6 +14,8 @@ import world.gregs.voidps.engine.entity.character.player.chat.friend.AddFriend
 import world.gregs.voidps.engine.entity.character.player.chat.friend.DeleteFriend
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.playerDespawn
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -30,20 +32,20 @@ val maxMembers = 100
 val maxAttempts = 10
 val players: Players by inject()
 
-on<Registered> { player: Player ->
+playerSpawn { player: Player ->
     val current = player["clan_chat", ""]
     if (current.isNotEmpty()) {
         val account = accountDefinitions.getByAccount(current)
         player.events.emit(JoinClanChat(account?.displayName ?: ""))
     }
-    val ownClan = accounts.clan(player.name) ?: return@on
+    val ownClan = accounts.clan(player.name) ?: return@playerSpawn
     player.ownClan = ownClan
     ownClan.friends = player.friends
     ownClan.ignores = player.ignores
 }
 
-on<Unregistered>({ player -> player.clan != null }) { player: Player ->
-    val clan = player.clan ?: return@on
+playerDespawn { player: Player ->
+    val clan = player.clan ?: return@playerDespawn
     clan.members.remove(player)
     updateMembers(player, clan, ClanRank.Anyone)
 }

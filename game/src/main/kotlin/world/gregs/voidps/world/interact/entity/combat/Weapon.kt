@@ -31,7 +31,7 @@ object Weapon {
         if (type == "melee" && source.contains("veracs_set_effect") && random.nextInt(4) == 0) {
             target.start("veracs_effect", 1)
             return true
-        } else if(weapon.id.startsWith("bone_dagger")) {
+        } else if (weapon.id.startsWith("bone_dagger")) {
             val last = target.attackers.lastOrNull()
             return last != null && last != source
         } else if (type == "magic" && special && weapon.id == "korasis_sword") {

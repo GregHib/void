@@ -2,10 +2,10 @@ package world.gregs.voidps.world.activity.skill.crafting
 
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
+import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
+import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.data.Jewellery
 import world.gregs.voidps.engine.entity.World
@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
@@ -31,11 +30,11 @@ val gems = listOf("gold", "sapphire", "emerald", "ruby", "diamond", "dragonstone
 val Item.jewellery: Jewellery?
     get() = def.getOrNull("jewellery")
 
-on<ItemOnObject>({ operate && target.id.startsWith("furnace") && item.id.endsWith("_mould") }) { player: Player ->
+itemOnObjectOperate("*_mould", "furnace*", arrive = false) {
     player.open("make_mould${if (World.members) "_slayer" else ""}")
 }
 
-on<InterfaceRefreshed>({ id.startsWith("make_mould") }) { player: Player ->
+interfaceRefresh("make_mould*") { player: Player ->
     for (type in moulds) {
         val showText = !player.inventory.contains("${type}_mould")
         player.interfaces.sendVisibility(id, "${type}_text", showText)
@@ -58,18 +57,14 @@ on<InterfaceRefreshed>({ id.startsWith("make_mould") }) { player: Player ->
     }
 }
 
-on<InterfaceOption>({ id.startsWith("make_mould") && component.startsWith("make_") && option != "Make X" }) { player: Player ->
+interfaceOption("Make *", "make*", "make_mould*") {
     val amount = when (option) {
         "Make 1" -> 1
         "Make 5" -> 5
         "Make All" -> Int.MAX_VALUE
-        else -> return@on
+        "Make X" -> intEntry("Enter amount:")
+        else -> return@interfaceOption
     }
-    make(component, amount)
-}
-
-on<InterfaceOption>({ id.startsWith("make_mould") && component.startsWith("make_") && option == "Make X" }) { player: Player ->
-    val amount = intEntry("Enter amount:")
     make(component, amount)
 }
 

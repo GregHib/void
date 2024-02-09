@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.equip
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -12,23 +11,21 @@ import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
 import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.entity.item.type
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-fun canWear(option: String) = option == "Wield" || option == "Wear" || option == "Hold" || option == "Equip"
-
-on<InventoryOption>({ inventory == "inventory" && canWear(option) }) { player: Player ->
+inventoryOptions("Wield", "Wear", "Hold", "Equip", inventory = "inventory") {
     val def = item.def
 
     if (!player.hasRequirements(item, true)) {
-        return@on
+        return@inventoryOptions
     }
     if (replaceWeaponShieldWith2h(player, def) && !player.equipment.move(EquipSlot.Shield.index, player.inventory)) {
         player.inventoryFull()
-        return@on
+        return@inventoryOptions
     }
 
     if (replace2hWithShield(player, def) || replaceShieldWith2h(player, def)) {
@@ -46,7 +43,7 @@ on<InventoryOption>({ inventory == "inventory" && canWear(option) }) { player: P
     playEquipSound(player, def)
 }
 
-on<InventoryOption>({ inventory == "worn_equipment" && option == "Remove" }) { player: Player ->
+inventoryOption("Remove", "worn_equipment") {
     player.equipment.move(slot, player.inventory)
     when (player.equipment.transaction.error) {
         TransactionError.None -> playEquipSound(player, item.def)
@@ -55,11 +52,11 @@ on<InventoryOption>({ inventory == "worn_equipment" && option == "Remove" }) { p
     }
 }
 
-on<ItemChanged>({ inventory == "worn_equipment" && index == EquipSlot.Weapon.index }) { player: Player ->
+itemChange(EquipSlot.Weapon, "worn_equipment") { player: Player ->
     updateWeaponEmote(player)
 }
 
-on<Registered> { player: Player ->
+playerSpawn { player: Player ->
     updateWeaponEmote(player)
 }
 

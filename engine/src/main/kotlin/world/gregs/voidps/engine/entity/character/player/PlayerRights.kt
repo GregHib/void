@@ -16,4 +16,4 @@ fun Player.isAdmin() = hasRights(PlayerRights.Admin)
 
 fun Player.isMod() = hasRights(PlayerRights.Mod)
 
-private fun Player.hasRights(rights: PlayerRights) = this.rights.ordinal >= rights.ordinal
+fun Player.hasRights(rights: PlayerRights) = this.rights.ordinal >= rights.ordinal

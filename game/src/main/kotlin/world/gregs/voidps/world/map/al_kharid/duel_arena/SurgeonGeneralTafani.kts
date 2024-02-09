@@ -1,8 +1,7 @@
 package world.gregs.voidps.world.map.al_kharid.duel_arena
 
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Talking
 import world.gregs.voidps.world.interact.dialogue.Uncertain
@@ -11,13 +10,13 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ operate && target.id == "surgeon_general_tafani" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "surgeon_general_tafani") {
     player<Cheerful>("Hi!")
     npc<Cheerful>("Hi. How can I help?")
     menu()
 }
 
-on<NPCOption>({ operate && target.id == "surgeon_general_tafani" && option == "Heal" }) { player: Player ->
+npcOperate("Heal", "surgeon_general_tafani") {
     heal()
 }
 

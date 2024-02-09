@@ -4,11 +4,9 @@ import world.gregs.voidps.Main.name
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.CharacterContext
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.character.npc.npcApproach
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.engine.suspend.pause
@@ -20,7 +18,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 
 val npcs: NPCs by inject()
 
-on<NPCOption>({ approach && def.name == "Banker" && option == "Talk-to" }) { player: Player ->
+npcApproach("Talk-to", "banker*") {
     player.approachRange(2)
     pause()
     npc<Unsure>("Good day. How may I help you?")
@@ -35,7 +33,7 @@ on<NPCOption>({ approach && def.name == "Banker" && option == "Talk-to" }) { pla
     menu()
 }
 
-on<ObjectOption>({ operate && option == "Use" }) { player: Player ->
+objectOperate("Use", "bank_*", arrive = false) {
     val banker = npcs.first { it.def.name == "Banker" }
     player.talkWith(banker)
     menu()
@@ -61,13 +59,13 @@ suspend fun CharacterContext.menu() {
     }
 }
 
-on<NPCOption>({ approach && def.name == "Banker" && option == "Bank" }) { player: Player ->
+npcApproach("Bank", "banker*") {
     player.approachRange(2)
     pause()
     player.open("bank")
 }
 
-on<NPCOption>({ approach && def.name == "Banker" && option == "Collect" }) { player: Player ->
+npcApproach("Collect", "banker*") {
     player.approachRange(2)
     pause()
     player.open("collection_box")

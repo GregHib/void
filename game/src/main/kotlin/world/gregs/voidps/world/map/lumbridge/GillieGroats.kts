@@ -1,9 +1,7 @@
 package world.gregs.voidps.world.map.lumbridge
 
 import world.gregs.voidps.engine.entity.character.CharacterContext
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Cheerful
@@ -13,7 +11,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ operate && target.id == "gillie_groats" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "gillie_groats") {
     npc<Cheerful>("Hello, I'm Gillie the Milkmaid. What can I do for you?")
     choice {
         option("I'm after some Top-quality milk.", { player.quest("cooks_assistant") == "started" && !player.holdsItem("top_quality_milk") }) {

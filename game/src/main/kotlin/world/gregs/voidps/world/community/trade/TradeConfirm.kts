@@ -2,16 +2,15 @@ package world.gregs.voidps.world.community.trade
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.client.ui.closeMenu
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.world.community.trade.Trade.getPartner
@@ -24,15 +23,15 @@ import world.gregs.voidps.world.community.trade.lend.Loan
 
 val logger = InlineLogger()
 
-on<InterfaceOption>({ id == "trade_main" && component == "accept" && option == "Accept" }) { player: Player ->
-    val partner = getPartner(player) ?: return@on
+interfaceOption("Accept", "accept", "trade_main") {
+    val partner = getPartner(player) ?: return@interfaceOption
     if (player.offer.count + player.loan.count > partner.inventory.spaces) {
         player.message("Other player doesn't have enough inventory space to accept this trade.")
-        return@on
+        return@interfaceOption
     }
     if (partner.offer.count + partner.loan.count > player.inventory.spaces) {
         player.message("You don't have enough inventory space to accept this trade.")
-        return@on
+        return@interfaceOption
     }
     player.interfaces.sendText("trade_main", "status", "Waiting for other player...")
     partner.interfaces.sendText("trade_main", "status", "Other player has accepted.")
@@ -53,8 +52,8 @@ fun confirm(player: Player) {
     player.interfaces.sendText("trade_confirm", "status", "Are you sure you want to make this trade?")
 }
 
-on<InterfaceOption>({ id == "trade_confirm" && component == "accept" && option == "Accept" }) { player: Player ->
-    val partner = getPartner(player) ?: return@on
+interfaceOption("Accept", "accept", "trade_confirm") {
+    val partner = getPartner(player) ?: return@interfaceOption
     player.interfaces.sendText("trade_confirm", "status", "Waiting for other player...")
     partner.interfaces.sendText("trade_confirm", "status", "Other player has accepted.")
     player.request(partner, "confirm_trade") { requester, acceptor ->

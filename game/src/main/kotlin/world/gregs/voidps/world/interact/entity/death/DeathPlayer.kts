@@ -4,7 +4,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -12,9 +11,9 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.characterSpawn
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.getIntProperty
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
@@ -37,7 +36,7 @@ import world.gregs.voidps.world.interact.entity.sound.playJingle
 val floorItems: FloorItems by inject()
 val enums: EnumDefinitions by inject()
 
-on<Registered> { character: Character ->
+characterSpawn { character: Character ->
     character["damage_dealers"] = Object2IntOpenHashMap<Character>(1)
     character["attackers"] = ObjectArrayList<Character>(1)
 }
@@ -50,7 +49,7 @@ val y = getIntProperty("homeY", 0)
 val level = getIntProperty("homeLevel", 0)
 val respawnTile = Tile(x, y, level)
 
-on<Death> { player: Player ->
+playerDeath { player: Player ->
     player.dead = true
     player.strongQueue("death") {
         player.steps.clear()

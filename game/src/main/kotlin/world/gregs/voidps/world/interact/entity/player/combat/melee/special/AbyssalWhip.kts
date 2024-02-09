@@ -5,25 +5,20 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.block
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.combat.weaponSwing
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 
-fun isWhip(item: Item) = item.id.startsWith("abyssal_whip")
-
-on<CombatSwing>({ !swung() && isWhip(it.weapon) }, Priority.LOW) { player: Player ->
+weaponSwing("abyssal_whip*", Priority.LOW) { player: Player ->
     if (player.specialAttack && !drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
         delay = -1
-        return@on
+        return@weaponSwing
     }
     player.setAnimation("whip_${if (player.specialAttack) "special" else player.attackType}")
     if (player.hit(target) != -1 && player.specialAttack) {
@@ -40,7 +35,7 @@ on<CombatSwing>({ !swung() && isWhip(it.weapon) }, Priority.LOW) { player: Playe
     delay = 4
 }
 
-on<CombatAttack>({ !blocked && target is Player && isWhip(target.weapon) }) { _: Character ->
+block("abyssal_whip*") { _: Character ->
     target.setAnimation("whip_block", delay)
     blocked = true
 }

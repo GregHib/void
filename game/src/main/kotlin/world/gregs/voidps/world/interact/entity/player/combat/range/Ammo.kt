@@ -126,6 +126,6 @@ object Ammo {
     }
 }
 
-var Player.ammo: String
+var Character.ammo: String
     get() = get("ammo", "")
     set(value) = set("ammo", value)

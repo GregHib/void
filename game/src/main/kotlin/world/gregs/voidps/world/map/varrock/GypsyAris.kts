@@ -14,18 +14,17 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.LogoutBehaviour
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.delay
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.engine.timer.npcTimerStart
+import world.gregs.voidps.engine.timer.npcTimerTick
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
@@ -43,14 +42,14 @@ import world.gregs.voidps.world.interact.entity.sound.areaSound
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<NPCOption>({ operate && target.id == "gypsy_aris" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "gypsy_aris") {
     when (player.quest("demon_slayer")) {
         "unstarted" -> {
             npc<Talk>("Hello, young one.")
             npc<Talk>("Cross my palm with silver and the future will be revealed to you.")
             if (!player.inventory.contains("coins")) {
                 player<Upset>("Oh dear. I don't have any money.")
-                return@on
+                return@npcOperate
             }
             if (player.combatLevel < 15) {
                 statement("Before starting this quest, be aware that your combat level is lower than the recommended level of 15.")
@@ -163,14 +162,14 @@ suspend fun PlayerChoice.notBeliever(): Unit = option<Talk>("No, I don't believe
     npc<Upset>("Ok suit yourself.")
 }
 
-on<TimerStart>({ it.id == "gypsy_aris" && timer == "demon_slayer_crystal_ball" }) { _: NPC ->
+npcTimerStart("demon_slayer_crystal_ball", "gypsy_aris") { _: NPC ->
     interval = 2
 }
 
-on<TimerTick>({ timer == "demon_slayer_crystal_ball" }) { npc: NPC ->
+npcTimerTick("demon_slayer_crystal_ball") { npc: NPC ->
     if (npc.mode !is Face) {
         cancel()
-        return@on
+        return@npcTimerTick
     }
     areaSound("demon_slayer_crystal_ball_anim", npc.tile)
 }

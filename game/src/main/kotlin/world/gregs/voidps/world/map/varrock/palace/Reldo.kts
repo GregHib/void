@@ -1,8 +1,6 @@
 package world.gregs.voidps.world.map.varrock.palace
 
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Laugh
 import world.gregs.voidps.world.interact.dialogue.Suspicious
@@ -13,7 +11,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ operate && target.id == "reldo" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "reldo") {
     npc<Talking>("Hello stranger.")
     choice {
         anythingToTrade()

@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.community.clan
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
@@ -9,20 +9,20 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.engine.timer.timerStart
+import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-on<InterfaceOption>({ id == "clan_chat" && component == "loot_share" }) { player: Player ->
-    val clan = player.clan ?: return@on
+interfaceOption(component = "loot_share", id = "clan_chat") {
+    val clan = player.clan ?: return@interfaceOption
     if (clan.lootRank == ClanRank.None) {
         player.message("LootShare is disabled by the clan owner.", ChatType.ClanChat)
-        return@on
+        return@interfaceOption
     }
     if (!clan.hasRank(player, clan.lootRank)) {
         player.message("Only ${clan.lootRank.name.lowercase()}s can share loot.", ChatType.ClanChat)
-        return@on
+        return@interfaceOption
     }
     player["loading_loot_share"] = true
     player.softTimers.start("clan_loot_update")
@@ -30,25 +30,25 @@ on<InterfaceOption>({ id == "clan_chat" && component == "loot_share" }) { player
     player.message("You will ${if (lootShare) "stop sharing" else "be able to share"} loot in 2 minutes.", ChatType.ClanChat)
 }
 
-on<TimerStart>({ timer == "clan_loot_update" }) { _: Player ->
+timerStart("clan_loot_update") { _: Player ->
     interval = TimeUnit.MINUTES.toTicks(2)
 }
 
-on<TimerStart>({ timer == "clan_loot_update" }) { player: Player ->
+timerStart("clan_loot_update") { player: Player ->
     cancel()
     player["loading_loot_share"] = false
-    val clan = player.clan ?: return@on
+    val clan = player.clan ?: return@timerStart
     val lootShare = player.toggle("loot_share")
     update(player, clan, lootShare)
 }
 
-on<TimerStart>({ timer == "clan_loot_rank_update" || timer == "clan_coin_share_update" }) { _: Player ->
+timerStart("clan_loot_rank_update", "clan_coin_share_update") { _: Player ->
     interval = TimeUnit.SECONDS.toTicks(30)
 }
 
-on<TimerTick>({ timer == "clan_loot_rank_update" }) { player: Player ->
+timerTick("clan_loot_rank_update") { player: Player ->
     cancel()
-    val clan = player.clan ?: player.ownClan ?: return@on
+    val clan = player.clan ?: player.ownClan ?: return@timerTick
     clan.lootRank = ClanRank.valueOf(player["clan_loot_rank", "None"])
     for (member in clan.members) {
         if (clan.hasRank(member, clan.lootRank) || !member["loot_share", false]) {
@@ -58,9 +58,9 @@ on<TimerTick>({ timer == "clan_loot_rank_update" }) { player: Player ->
     }
 }
 
-on<TimerTick>({ timer == "clan_coin_share_update" }) { player: Player ->
+timerTick("clan_coin_share_update") { player: Player ->
     cancel()
-    val clan = player.clan ?: player.ownClan ?: return@on
+    val clan = player.clan ?: player.ownClan ?: return@timerTick
     clan.coinShare = player["coin_share_setting", false]
     for (member in clan.members) {
         member["coin_share"] = clan.coinShare

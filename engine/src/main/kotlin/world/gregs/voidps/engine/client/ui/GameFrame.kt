@@ -12,7 +12,7 @@ data class GameFrame(
         }
 
     val name: String
-        get() = if(resizable) GAME_FRAME_RESIZE_NAME else GAME_FRAME_NAME
+        get() = if (resizable) GAME_FRAME_RESIZE_NAME else GAME_FRAME_NAME
 
     companion object {
         const val FIXED_SCREEN = 1

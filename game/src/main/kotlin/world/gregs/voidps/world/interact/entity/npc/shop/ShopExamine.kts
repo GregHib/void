@@ -1,23 +1,21 @@
 package world.gregs.voidps.world.interact.entity.npc.shop
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.client.ui.interfaceOption
 
-on<InterfaceOption>({ id == "shop_side" && component == "inventory" && option == "Examine" }) { player: Player ->
-    val examine: String = item.def.getOrNull("examine") ?: return@on
+interfaceOption("Examine", "inventory", "shop_side") {
+    val examine: String = item.def.getOrNull("examine") ?: return@interfaceOption
     player.message(examine)
 }
 
-on<InterfaceOption>({ id == "shop" && component == "sample" && option == "Examine" }) { player: Player ->
+interfaceOption("Examine", "sample", "shop") {
     val item = player.shopInventory(true)[itemSlot / 4]
-    val examine: String = item.def.getOrNull("examine") ?: return@on
+    val examine: String = item.def.getOrNull("examine") ?: return@interfaceOption
     player.message(examine)
 }
 
-on<InterfaceOption>({ id == "shop" && component == "stock" && option == "Examine" }) { player: Player ->
+interfaceOption("Examine", "stock", "shop") {
     val item = player.shopInventory(false)[itemSlot / 6]
-    val examine: String = item.def.getOrNull("examine") ?: return@on
+    val examine: String = item.def.getOrNull("examine") ?: return@interfaceOption
     player.message(examine)
 }

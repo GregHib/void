@@ -3,12 +3,12 @@ package world.gregs.voidps.world.interact.world.map
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.mode.move.Moved
+import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.playerDespawn
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -32,10 +32,10 @@ val playerRegions = IntArray(MAX_PLAYERS - 1)
 
 private val blankXtea = IntArray(4)
 
-on<Registered>(priority = Priority.HIGHEST) { player: Player ->
+playerSpawn(priority = Priority.HIGHEST) { player: Player ->
     player.viewport?.seen(player)
     playerRegions[player.index - 1] = player.tile.regionLevel.id
-    val viewport = player.viewport ?: return@on
+    val viewport = player.viewport ?: return@playerSpawn
     players.forEach { other ->
         viewport.seen(other)
     }
@@ -52,18 +52,18 @@ on<RegionRetry>({ it.networked }) { player: Player ->
     Player regions
  */
 
-on<Unregistered> { player: Player ->
+playerDespawn { player: Player ->
     playerRegions[player.index - 1] = 0
 }
 
 /*
     Region updating
  */
-on<Moved>({ from.regionLevel != to.regionLevel }) { player: Player ->
+move({ from.regionLevel != to.regionLevel }) { player: Player ->
     playerRegions[player.index - 1] = to.regionLevel.id
 }
 
-on<Moved>({ it.networked && needsRegionChange(it) }, Priority.HIGH) { player: Player ->
+move({ it.networked && needsRegionChange(it) }, Priority.HIGH) { player: Player ->
     updateRegion(player, false, crossedDynamicBoarder(player))
 }
 

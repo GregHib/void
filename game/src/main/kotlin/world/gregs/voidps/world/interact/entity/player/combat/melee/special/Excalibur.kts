@@ -1,16 +1,14 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
-import world.gregs.voidps.engine.client.variable.VariableSet
+import world.gregs.voidps.engine.client.variable.specialAttack
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerStop
-import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.engine.timer.timerStart
+import world.gregs.voidps.engine.timer.timerStop
+import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
@@ -18,13 +16,11 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpeci
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import java.util.concurrent.TimeUnit
 
-fun isExcalibur(weapon: Item?) = weapon != null && (weapon.id.startsWith("excalibur") || weapon.id.startsWith("enhanced_excalibur"))
-
 fun seersVillageEliteTasks(player: Player) = false
 
-on<VariableSet>({ key == "special_attack" && to == true && isExcalibur(it.weapon) }) { player: Player ->
+specialAttack("*excalibur*") { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {
-        return@on
+        return@specialAttack
     }
     player.setAnimation("sanctuary")
     player.setGraphic("sanctuary")
@@ -40,20 +36,21 @@ on<VariableSet>({ key == "special_attack" && to == true && isExcalibur(it.weapon
 }
 
 
-on<TimerStart>({ timer == "sanctuary" }) { _: Player ->
+timerStart("sanctuary") { _: Player ->
     interval = 4
 }
 
-on<TimerTick>({ timer == "sanctuary" }) { player: Player ->
+timerTick("sanctuary") { player: Player ->
     val cycle = player["sanctuary", 1] - 1
     player["sanctuary"] = cycle
     if (cycle <= 0) {
-        return@on cancel()
+        cancel()
+        return@timerTick
     }
     player.levels.restore(Skill.Constitution, 40)
 }
 
 
-on<TimerStop>({ timer == "sanctuary" }) { player: Player ->
+timerStop("sanctuary") { player: Player ->
     player.clear("sanctuary")
 }

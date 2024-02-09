@@ -2,7 +2,7 @@ package world.gregs.voidps.world.activity.skill.smithing
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
+import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -11,11 +11,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.dialogue.type.statement
@@ -23,11 +21,13 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val logger = InlineLogger()
 
-on<ItemOnObject>({ operate && target.id.startsWith("furnace") && item.id == "steel_bar" && it.quest("dwarf_cannon") == "completed" }) { player: Player ->
-    arriveDelay()
+itemOnObjectOperate("steel_bar", "furnace*") {
+    if (player.quest("dwarf_cannon") != "completed") {
+        return@itemOnObjectOperate
+    }
     if (!player.inventory.contains("ammo_mould")) {
         statement("You need a mould to make cannonballs with.")
-        return@on
+        return@itemOnObjectOperate
     }
     val max = player.inventory.count("steel_bar")
     val (item, amount) = makeAmount(listOf("cannonball"), "Make", max, names = listOf("Cannonball<br>(set of 4)"))

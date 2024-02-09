@@ -1,13 +1,11 @@
 package world.gregs.voidps.world.activity.transport.teleport
 
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.activity.quest.questComplete
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.statement
-import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
+import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 
 val areas: AreaDefinitions by inject()
 
@@ -17,7 +15,7 @@ val clanWars = areas["clan_wars_teleport"]
 val wildernessVolcano = areas["wilderness_volcano_teleport"]
 val burghDeRott = areas["burgh_de_rott_teleport"]
 
-on<InventoryOption>({ inventory == "inventory" && item.id.startsWith("games_necklace_") && option == "Rub" }) { player: Player ->
+inventoryItem("Rub", "games_necklace_#", "inventory") {
     choice("Where would you like to teleport to?") {
         option("Burthorpe Games Rooms.") {
             jewelleryTeleport(player, inventory, slot, burthorpe)
@@ -38,7 +36,7 @@ on<InventoryOption>({ inventory == "inventory" && item.id.startsWith("games_neck
     }
 }
 
-on<InventoryOption>({ inventory == "worn_equipment" && item.id.startsWith("games_necklace_") }) { player: Player ->
+inventoryItem("*", "games_necklace_#", "worn_equipment") {
     val area = when (option) {
         "Burthorpe" -> burthorpe
         "Barbarian Outpost" -> barbarianOutput
@@ -47,11 +45,11 @@ on<InventoryOption>({ inventory == "worn_equipment" && item.id.startsWith("games
         "Burgh De Rott" -> {
             if (!player.questComplete("darkness_of_hallowvale")) {
                 statement("You need to have completed The Darkness of Hallowvale quest to teleport to this location.")
-                return@on
+                return@inventoryItem
             }
             burghDeRott
         }
-        else -> return@on
+        else -> return@inventoryItem
     }
     jewelleryTeleport(player, inventory, slot, area)
 }

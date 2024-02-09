@@ -2,9 +2,8 @@ package world.gregs.voidps.world.interact.entity.player.combat.special
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 
-on<CombatSwing>({ player -> player.specialAttack }, Priority.LOWEST) { player: Player ->
+combatSwing(priority = Priority.LOWEST) { player: Player ->
     player.specialAttack = false
 }

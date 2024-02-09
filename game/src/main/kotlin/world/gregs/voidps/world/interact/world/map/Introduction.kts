@@ -2,25 +2,24 @@ package world.gregs.voidps.world.interact.world.map
 
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.interact.dialogue.type.statement
 
-on<Registered>(priority = Priority.HIGHER) { player: Player ->
+playerSpawn(priority = Priority.HIGHER) { player: Player ->
     player.message("Welcome to Void.", ChatType.Welcome)
     if (!player.contains("creation")) {
         if (!player.isBot) {
@@ -32,7 +31,7 @@ on<Registered>(priority = Priority.HIGHER) { player: Player ->
     }
 }
 
-on<InterfaceClosed>({ id == "character_creation" }) { player: Player ->
+interfaceClose("character_creation") { player: Player ->
     player.flagAppearance()
     setup(player)
 }

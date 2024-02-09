@@ -7,22 +7,22 @@ import world.gregs.voidps.engine.entity.character.npc.flagTransform
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerStop
+import world.gregs.voidps.engine.timer.characterTimerStart
+import world.gregs.voidps.engine.timer.npcTimerStop
+import world.gregs.voidps.engine.timer.timerStop
 
 val collision: CollisionStrategyProvider by inject()
 val definitions: NPCDefinitions by inject()
 
-on<TimerStart>({ timer == "transform" }) { character: Character ->
+characterTimerStart("transform") { character: Character ->
     val def = definitions.get(character["transform_id", ""])
     character["old_collision"] = character.collision
     character.collision = collision.get(def)
 }
 
-on<TimerStop>({ timer == "transform" }) { player: Player ->
+timerStop("transform") { player: Player ->
     player.appearance.apply {
         emote = 1426
         transform = -1
@@ -35,12 +35,12 @@ on<TimerStop>({ timer == "transform" }) { player: Player ->
     }
     player.clear("transform_id")
     player.flagAppearance()
-    player.collision = player.remove("old_collision") ?: return@on
+    player.collision = player.remove("old_collision") ?: return@timerStop
 }
 
-on<TimerStop>({ timer == "transform" }) { npc: NPC ->
+npcTimerStop("transform") { npc: NPC ->
     npc.visuals.transform.reset()
     npc.clear("transform_id")
     npc.flagTransform()
-    npc.collision = npc.remove("old_collision") ?: return@on
+    npc.collision = npc.remove("old_collision") ?: return@npcTimerStop
 }

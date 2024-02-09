@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.skill.crafting
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
+import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.data.definition.data.Spinning
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -13,8 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
@@ -42,7 +41,7 @@ val treeRoots = listOf(
 val Item.spinning: Spinning
     get() = def["spinning"]
 
-on<ObjectOption>({ operate && target.id.startsWith("spinning_wheel") && option == "Spin" }) { player: Player ->
+objectOperate("Spin", "spinning_wheel*", arrive = false) {
     val strings = fibres.map { if (it.id == "tree_roots") "crossbow_string" else it.spinning.to }
     val (index, amount) = makeAmountIndex(
         items = strings,
@@ -60,14 +59,14 @@ on<ObjectOption>({ operate && target.id.startsWith("spinning_wheel") && option =
         val root = treeRoots.firstOrNull { player.inventory.contains(it.id) }
         if (root == null) {
             player.message("You need some tree roots in order to make a crossbow string.")
-            return@on
+            return@objectOperate
         }
         fibre = root
     }
     start(player, target, fibre, amount)
 }
 
-on<ItemOnObject>({ operate && target.id.startsWith("spinning_wheel") && item.def.contains("spinning") }) { player: Player ->
+itemOnObjectOperate(obj = "spinning_wheel*", def = "spinning", arrive = false) {
     val (_, amount) = makeAmount(
         items = listOf(item.spinning.to),
         type = "Make",

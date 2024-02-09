@@ -1,41 +1,40 @@
 package world.gregs.voidps.world.activity.skill
 
-import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.exp.GrantExp
-import world.gregs.voidps.engine.entity.character.player.skill.level.CurrentLevelChanged
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.character.player.skill.exp.experience
+import world.gregs.voidps.engine.entity.character.player.skill.level.levelChange
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.network.encode.skillLevel
 
-on<Registered> { player: Player ->
+playerSpawn { player: Player ->
     player.sendVariable("xp_counter")
 }
 
-on<InterfaceOption>({ id == it.gameFrame.name && component == "xp_orb" && option == "Reset XP Total" }) { player: Player ->
+interfaceOption("Reset XP Total", "xp_orb", "toplevel*") {
     player["xp_counter"] = 0.0
 }
 
-on<GrantExp> { player: Player ->
+experience { player: Player ->
     val current = player["xp_counter", 0.0]
     val increase = to - from
     player["xp_counter"] = current + increase
     player["lifetime_xp"] = player["lifetime_xp", 0.0] + increase
 }
 
-on<GrantExp> { player: Player ->
+experience { player: Player ->
     val level = player.levels.get(skill)
     player.client?.skillLevel(skill.ordinal, if (skill == Skill.Constitution) level / 10 else level, to.toInt())
 }
 
-on<CurrentLevelChanged>({ skill != Skill.Constitution }) { player: Player ->
-    val exp = player.experience.get(skill)
-    player.client?.skillLevel(skill.ordinal, to, exp.toInt())
-}
-
-on<CurrentLevelChanged>({ skill == Skill.Constitution }) { player: Player ->
-    val exp = player.experience.get(skill)
-    player.client?.skillLevel(skill.ordinal, to / 10, exp.toInt())
-    player["life_points"] = player.levels.get(Skill.Constitution)
+levelChange { player: Player ->
+    if (skill == Skill.Constitution) {
+        val exp = player.experience.get(skill)
+        player.client?.skillLevel(skill.ordinal, to / 10, exp.toInt())
+        player["life_points"] = player.levels.get(Skill.Constitution)
+    } else {
+        val exp = player.experience.get(skill)
+        player.client?.skillLevel(skill.ordinal, to, exp.toInt())
+    }
 }

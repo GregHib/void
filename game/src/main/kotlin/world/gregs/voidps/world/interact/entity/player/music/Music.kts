@@ -2,23 +2,24 @@ package world.gregs.voidps.world.interact.entity.player.music
 
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.event.Command
+import world.gregs.voidps.engine.client.ui.event.adminCommand
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.mode.move.Moved
+import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 
 val tracks: MusicTracks by inject()
 val enums: EnumDefinitions by inject()
 
-on<Registered>({ !it.isBot }) { player: Player ->
-    unlockDefaultTracks(player)
-    playAreaTrack(player)
-    sendUnlocks(player)
+playerSpawn { player: Player ->
+    if (!player.isBot) {
+        unlockDefaultTracks(player)
+        playAreaTrack(player)
+        sendUnlocks(player)
+    }
 }
 
 fun unlockDefaultTracks(player: Player) {
@@ -49,7 +50,7 @@ fun sendUnlocks(player: Player) {
     player.interfaceOptions.unlockAll("music_player", "tracks", 0..2048) // 837.cs2
 }
 
-on<Moved>({ !it.isBot }) { player: Player ->
+move({ !it.isBot }) { player: Player ->
     val tracks = tracks[player.tile.region]
     for (track in tracks) {
         if (!track.area.contains(from) && track.area.contains(to)) {
@@ -58,7 +59,7 @@ on<Moved>({ !it.isBot }) { player: Player ->
     }
 }
 
-on<InterfaceOption>({ id == "music_player" && component == "tracks" && option == "Play" }) { player: Player ->
+interfaceOption("Play", "tracks", "music_player") {
     val index = itemSlot / 2
     if (player.hasUnlocked(index)) {
         player["playing_song"] = true
@@ -81,7 +82,7 @@ fun autoPlay(player: Player, track: MusicTracks.Track) {
 /**
  * Unlocks all music tracks
  */
-on<Command>({ prefix == "unlock" }) { player: Player ->
+adminCommand("unlock") {
     enums.get("music_track_names").map?.keys?.forEach { key ->
         MusicUnlock.unlockTrack(player, key)
     }

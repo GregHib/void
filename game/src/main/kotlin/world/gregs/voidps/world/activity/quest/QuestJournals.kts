@@ -1,13 +1,12 @@
 package world.gregs.voidps.world.activity.quest
 
 import world.gregs.voidps.engine.client.clearCamera
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.client.variable.VariableSet
-import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
+import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerStop
+import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.timer.timerStart
+import world.gregs.voidps.engine.timer.timerStop
 
 val quests = setOf(
     // free
@@ -19,7 +18,7 @@ val quests = setOf(
     // members
 )
 
-on<InterfaceOpened>({ id == "quest_journals" }) { player: Player ->
+interfaceOpen("quest_journals") { player: Player ->
     player.interfaceOptions.unlock(id, "journals", 0 until 201, "View")
     player.sendVariable("quest_points")
     player.sendVariable("quest_points_total") //set total quest points available in variables.yml
@@ -29,18 +28,18 @@ on<InterfaceOpened>({ id == "quest_journals" }) { player: Player ->
     }
 }
 
-on<VariableSet>({ quests.contains(key) }) { player: Player ->
+variableSet(quests) { player: Player ->
     player.softTimers.start("refresh_quest_journal")
 }
 
-on<TimerStart>({ timer == "refresh_quest_journal" }) { _: Player ->
+timerStart("refresh_quest_journal") { _: Player ->
     interval = 1
 }
 
-on<TimerStop>({ timer == "refresh_quest_journal" }) { player: Player ->
+timerStop("refresh_quest_journal") { player: Player ->
     player.refreshQuestJournal()
 }
 
-on<Registered> { player: Player ->
+playerSpawn { player: Player ->
     player.clearCamera()
 }

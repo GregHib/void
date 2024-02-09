@@ -24,7 +24,7 @@ class ItemDefaults : Pipeline.Modifier<MutableMap<Int, Extras>> {
         extras.remove("weight", 0.0)
         extras.remove("edible", false)
         val destroy = extras["destroy"]
-        if(destroy != null && destroy is String && destroy.startsWith("drop", true)) {
+        if (destroy != null && destroy is String && destroy.startsWith("drop", true)) {
             extras.remove("destroy")
         }
         extras.remove("destroy", "")

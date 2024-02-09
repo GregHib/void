@@ -312,7 +312,7 @@ potato_with_butter:
   skill: cooking
   level: 39
   xp: 40.0
-  remove: [ baked_potato, bucket_of_milk ]
+  remove: [ baked_potato, pat_of_butter ]
   add: [ potato_with_butter ]
   ticks: 2
   message: "You add the butter to the potato."

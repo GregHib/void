@@ -3,16 +3,14 @@ package world.gregs.voidps.world.map.al_kharid.duel_arena
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
-on<NPCOption>({ operate && target.id == "fadli" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "fadli") {
     player<Cheerful>("Hi.")
     npc<RollEyes>("What?")
     choice {
@@ -49,18 +47,18 @@ on<NPCOption>({ operate && target.id == "fadli" && option == "Talk-to" }) { play
     }
 }
 
-on<NPCOption>({ operate && target.id == "fadli" && option == "Bank" }) { player: Player ->
+npcOperate("Bank", "fadli") {
     player.open("bank")
 }
 
-on<NPCOption>({ operate && target.id == "fadli" && option == "Collect" }) { player: Player ->
+npcOperate("Collect", "fadli") {
     player.open("collection_box")
 }
 
-on<NPCOption>({ operate && target.id == "fadli" && option == "Buy" }) { player: Player ->
+npcOperate("Buy", "fadli") {
     if (World.members) {
         player.openShop("shop_of_distaste")
-        return@on
+        return@npcOperate
     }
     npc<RollEyes>("Sorry, I'm not interested.")
     player.message("You need to be on a members world to use this feature.")

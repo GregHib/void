@@ -4,15 +4,15 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.playerOperate
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -50,16 +50,16 @@ val skills = listOf(
 )
 val logger = InlineLogger()
 
-on<PlayerOption>({ operate && option == "Req Assist" }) { player: Player ->
+playerOperate("Req Assist") {
     val filter = target["assist_filter", "on"]
     if (filter == "off" || (filter == "friends" && !target.friend(player))) {
-        return@on
+        return@playerOperate
     }
     if (target.hasRequest(player, "assist")) {
         player.message("Sending assistance response.", ChatType.Assist)
     } else {
         if (requestingTooQuickly(player) || refuseRequest(target, player)) {
-            return@on
+            return@playerOperate
         }
         player.message("Sending assistance request.", ChatType.Assist)
         target.message("is requesting your assistance.", ChatType.AssistRequest, name = player.name)
@@ -116,8 +116,8 @@ fun setupAssistant(player: Player, assisted: Player) {
     toggleInventory(player, enabled = false)
 }
 
-on<InterfaceClosed>({ id == "assist_xp" }) { player: Player ->
-    val assisted: Player = player["assisted"] ?: return@on
+interfaceClose("assist_xp") { player: Player ->
+    val assisted: Player = player["assisted"] ?: return@interfaceClose
     cancelAssist(player, assisted)
 }
 

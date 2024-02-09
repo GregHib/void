@@ -5,20 +5,19 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.block
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.Prayer
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerStart
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerStop
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStop
 
 fun set(name: String, bonus: String, value: Int) {
-    on<PrayerStart>({ this.prayer == name }) { player: Player ->
+    prayerStart(name) { player: Player ->
         player["base_${bonus}"] = player["base_${bonus}", 1.0] + value / 100.0
     }
-    on<PrayerStop>({ this.prayer == name }) { player: Player ->
+    prayerStop(name) { player: Player ->
         player["base_${bonus}"] = player["base_${bonus}", 1.0] - value / 100.0
     }
 }
@@ -62,7 +61,10 @@ set("turmoil", "attack_bonus", 15)
 set("turmoil", "strength_bonus", 23)
 set("turmoil", "defence_bonus", 15)
 
-on<CombatAttack>({ !blocked && target is Player && Prayer.usingDeflectPrayer(it, target, type) }, Priority.MEDIUM) { character: Character ->
+block(Priority.MEDIUM) { character: Character ->
+    if (!Prayer.usingDeflectPrayer(character, target, type)) {
+        return@block
+    }
     val damage = target["protected_damage", 0]
     if (damage > 0) {
         target.setAnimation("deflect", delay)

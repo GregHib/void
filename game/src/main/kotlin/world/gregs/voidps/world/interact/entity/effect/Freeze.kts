@@ -3,18 +3,17 @@ package world.gregs.voidps.world.interact.entity.effect
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerStop
-import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.engine.timer.characterTimerStart
+import world.gregs.voidps.engine.timer.characterTimerStop
+import world.gregs.voidps.engine.timer.characterTimerTick
 import kotlin.math.sign
 
-on<TimerStart>({ timer == "movement_delay" }) { character: Character ->
+characterTimerStart("movement_delay") { character: Character ->
     character.start("movement_delay", -1)
     interval = 1
 }
 
-on<TimerTick>({ timer == "movement_delay" }) { character: Character ->
+characterTimerTick("movement_delay") { character: Character ->
     val frozen = character.frozen
     character.movementDelay -= character.movementDelay.sign
     if (character.movementDelay == 0) {
@@ -26,6 +25,6 @@ on<TimerTick>({ timer == "movement_delay" }) { character: Character ->
     }
 }
 
-on<TimerStop>({ timer == "movement_delay" }) { character: Character ->
+characterTimerStop("movement_delay") { character: Character ->
     character.stop("movement_delay")
 }

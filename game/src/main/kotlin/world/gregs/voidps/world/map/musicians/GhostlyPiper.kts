@@ -2,22 +2,20 @@ package world.gregs.voidps.world.map.musicians
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.CharacterContext
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ operate && target.id == "ghostly_piper" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "ghostly_piper") {
     if (player.equipped(EquipSlot.Amulet).id != "ghostspeak_amulet") {
         npc<Happy>("Woo, wooo. Woooo.")
         player.message("The ghost seems barely aware of your existence,")
         player.message("but you sense that resting here might recharge you for battle!")
-        return@on
+        return@npcOperate
     }
     choice()
 }

@@ -1,38 +1,42 @@
 package world.gregs.voidps.world.interact.entity.player.effect
 
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerStop
-import world.gregs.voidps.engine.timer.TimerTick
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.timer.timerStart
+import world.gregs.voidps.engine.timer.timerStop
+import world.gregs.voidps.engine.timer.timerTick
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.inWilderness
 
-on<Registered>({ it.skulled }) { player: Player ->
-    player.softTimers.restart("skull")
+playerSpawn { player: Player ->
+    if (player.skulled) {
+        player.softTimers.restart("skull")
+    }
 }
 
-on<CombatSwing>({ it.inWilderness && target is Player && it.get<List<Character>>("attackers")?.contains(target) != true }) { player: Player ->
-    player.skull()
+combatSwing { player: Player ->
+    if (player.inWilderness && target is Player && player.get<List<Character>>("attackers")?.contains(target) != true) {
+        player.skull()
+    }
 }
 
-on<TimerStart>({ timer == "skull" }) { player: Player ->
+timerStart("skull") { player: Player ->
     interval = 50
     player.appearance.skull = player["skull", 0]
     player.flagAppearance()
 }
 
-on<TimerTick>({ timer == "skull" }) { player: Player ->
+timerTick("skull") { player: Player ->
     if (--player.skullCounter <= 0) {
-        return@on cancel()
+        cancel()
+        return@timerTick
     }
 }
 
-on<TimerStop>({ timer == "skull" }) { player: Player ->
+timerStop("skull") { player: Player ->
     player.clear("skull")
     player.clear("skull_duration")
     player.appearance.skull = -1

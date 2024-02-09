@@ -14,14 +14,12 @@ import world.gregs.voidps.bot.skill.combat.hasExactGear
 import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.TimerStop
@@ -35,7 +33,7 @@ onBot<TimerStop>({ timer == "firemaking" }) { bot: Bot ->
     bot.resume(timer)
 }
 
-on<World, Registered> {
+worldSpawn {
     for (area in areas.getTagged("fire_making")) {
         val spaces: Int = area["spaces", 1]
         val task = Task(

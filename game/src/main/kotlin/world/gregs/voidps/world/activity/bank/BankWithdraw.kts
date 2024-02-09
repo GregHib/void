@@ -2,18 +2,17 @@ package world.gregs.voidps.world.activity.bank
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
 val logger = InlineLogger()
 
-on<InterfaceOption>({ id == "bank" && component == "inventory" && option.startsWith("Withdraw") }) { player: Player ->
+interfaceOption("Withdraw-*", "inventory", "bank") {
     val amount = when (option) {
         "Withdraw-1" -> 1
         "Withdraw-5" -> 5
@@ -21,18 +20,15 @@ on<InterfaceOption>({ id == "bank" && component == "inventory" && option.startsW
         "Withdraw-*" -> player["last_bank_amount", 0]
         "Withdraw-All" -> Int.MAX_VALUE
         "Withdraw-All but one" -> item.amount - 1
-        else -> return@on
+        "Withdraw-X" -> intEntry("Enter amount:").also {
+            player["last_bank_amount"] = it
+        }
+        else -> return@interfaceOption
     }
     withdraw(player, item, itemSlot, amount)
 }
 
-on<InterfaceOption>({ id == "bank" && component == "inventory" && option == "Withdraw-X" }) { player: Player ->
-    val amount = intEntry("Enter amount:")
-    player["last_bank_amount"] = amount
-    withdraw(player, item, itemSlot, amount)
-}
-
-on<InterfaceOption>({ id == "bank" && component == "note_mode" && option == "Toggle item/note withdrawl" }) { player: Player ->
+interfaceOption("Toggle item/note withdrawl", "note_mode", "bank") {
     player.toggle("bank_notes")
 }
 

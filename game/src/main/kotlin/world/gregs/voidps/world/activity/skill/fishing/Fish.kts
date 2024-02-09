@@ -1,9 +1,8 @@
 package world.gregs.voidps.world.activity.skill.fishing
 
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.type.Area
@@ -12,8 +11,8 @@ import world.gregs.voidps.type.random
 val minRespawnTick = 280
 val maxRespawnTick = 530
 
-on<Registered>({ it.id.startsWith("fishing_spot") }) { npc: NPC ->
-    val area: Area = npc["area"] ?: return@on
+npcSpawn("fishing_spot*") { npc: NPC ->
+    val area: Area = npc["area"] ?: return@npcSpawn
     move(npc, area)
 }
 

@@ -15,13 +15,11 @@ import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smithing
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.TimerStop
@@ -35,7 +33,7 @@ onBot<TimerStop>({ timer == "smithing" }) { bot: Bot ->
     bot.resume(timer)
 }
 
-on<World, Registered> {
+worldSpawn {
     for (area in areas.getTagged("smithing")) {
         val spaces: Int = area["spaces", 1]
         val task = Task(

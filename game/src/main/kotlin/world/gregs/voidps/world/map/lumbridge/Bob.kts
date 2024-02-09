@@ -1,12 +1,11 @@
 package world.gregs.voidps.world.map.lumbridge
 
-import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation.interpolate
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Talk
@@ -16,7 +15,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
-on<NPCOption>({ operate && target.id == "bob" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "bob") {
     choice {
         option("Give me a quest!") {
             npc<Talk>("Sorry I don't have any quests for you at the moment.")
@@ -31,10 +30,10 @@ on<NPCOption>({ operate && target.id == "bob" && option == "Talk-to" }) { player
     }
 }
 
-on<ItemOnNPC>({ operate && target.id == "bob" }) { player: Player ->
+itemOnNPCOperate("*", "bob") {
     if (!repairable(item.id)) {
         npc<Unsure>("Sorry friend, but I can't do anything with that.")
-        return@on
+        return@itemOnNPCOperate
     }
     val cost = repairCost(player, item)
     npc<Talk>("That'll cost you $cost gold coins to fix, are you sure?")

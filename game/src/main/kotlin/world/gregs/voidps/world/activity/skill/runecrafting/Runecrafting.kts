@@ -5,7 +5,7 @@ import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
+import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Rune
@@ -16,24 +16,20 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val itemDefinitions: ItemDefinitions by inject()
 val logger = InlineLogger()
 
-on<ItemOnObject>({ operate && target.id.endsWith("_altar") && item.id.endsWith("_essence") }) { player: Player ->
-    arriveDelay()
+itemOnObjectOperate("*_essence", "*_altar") {
     bindRunes(player, item.id, item.def)
 }
 
-on<ObjectOption>({ operate && target.id.endsWith("_altar") && option == "Craft-rune" }) { player: Player ->
-    arriveDelay()
+objectOperate("Craft-rune", "*_altar") {
     val id = target.id.replace("_altar", "_rune")
     bindRunes(player, id, itemDefinitions.get(id))
 }

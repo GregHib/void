@@ -35,7 +35,7 @@ class PlayerOptions(
     }
 
     fun get(slot: Int): String {
-        return options[slot]
+        return options.getOrNull(slot) ?: EMPTY_OPTION
     }
 
     fun has(slot: Int): Boolean {

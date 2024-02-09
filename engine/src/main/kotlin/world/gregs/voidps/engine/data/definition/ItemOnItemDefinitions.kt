@@ -18,7 +18,9 @@ class ItemOnItemDefinitions {
 
     private lateinit var definitions: Map<String, List<ItemOnItemDefinition>>
 
-    fun get(one: Item, two: Item) = definitions[id(one, two)] ?: definitions[id(two, one)] ?: emptyList()
+    fun get(one: Item, two: Item) = getOrNull(one, two) ?: emptyList()
+
+    fun getOrNull(one: Item, two: Item) = definitions[id(one, two)] ?: definitions[id(two, one)]
 
     fun contains(one: Item, two: Item) = definitions.containsKey(id(one, two)) || definitions.containsKey(id(two, one))
 

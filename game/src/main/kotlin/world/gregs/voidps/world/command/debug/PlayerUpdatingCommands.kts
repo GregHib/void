@@ -4,22 +4,22 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.Command
-import world.gregs.voidps.type.Direction
+import world.gregs.voidps.engine.client.ui.event.adminCommand
+import world.gregs.voidps.engine.client.ui.event.modCommand
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.player.*
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.type.Delta
 import world.gregs.voidps.engine.map.zone.DynamicZones
+import world.gregs.voidps.type.Delta
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val players: Players by inject()
 
-on<Command>({ prefix == "kill" }) { _: Player ->
+adminCommand("kill") {
     players.forEach { bot ->
         if (bot.name.startsWith("Bot")) {
             players.remove(bot)
@@ -35,59 +35,59 @@ on<Command>({ prefix == "kill" }) { _: Player ->
     }
 }
 
-on<Command>({ prefix == "players" }) { player: Player ->
+modCommand("players") {
     player.message("Players: ${players.size}, ${player.viewport?.players?.localCount}")
 }
 
-on<Command>({ prefix == "under" }) { player: Player ->
+adminCommand("under") {
     players[player.tile].forEach {
         println("$it - ${players[it.tile]}")
     }
 }
 
-on<Command>({ prefix == "anim" }) { player: Player ->
+adminCommand("anim") {
     when (content) {
         "-1", "" -> player.clearAnimation()
         else -> player.setAnimation(content, override = true)// 863
     }
 }
 
-on<Command>({ prefix == "gfx" }) { player: Player ->
+adminCommand("gfx") {
     when (content) {
         "-1", "" -> player.clearGraphic()
         else -> player.setGraphic(content)// 93
     }
 }
 
-on<Command>({ prefix == "proj" }) { player: Player ->
+adminCommand("proj") {
     player.shoot(content, player.tile.add(0, 5), delay = 0, flightTime = 400)
 }
 
-on<Command>({ prefix == "tfm" || prefix == "transform" }) { player: Player ->
+adminCommand("tfm", "transform") {
     player.transform(content)
 }
 
-on<Command>({ prefix == "overlay" }) { player: Player ->
+adminCommand("overlay") {
     player.colourOverlay(-2108002746, 10, 100)
 }
 
-on<Command>({ prefix == "chat" }) { player: Player ->
+adminCommand("chat") {
     player.forceChat = content
 }
 
-on<Command>({ prefix == "move" }) { player: Player ->
+adminCommand("move") {
     player.setForceMovement(Delta(0, -2), 120, startDelay = 60, direction = Direction.SOUTH)
 }
 
-on<Command>({ prefix == "hit" }) { player: Player ->
+adminCommand("hit") {
     player.damage(content.toIntOrNull() ?: 10)
 }
 
-on<Command>({ prefix == "time" }) { player: Player ->
+adminCommand("time") {
     player.setTimeBar(true, 0, 60, 1)
 }
 
-on<Command>({ prefix == "watch" }) { player: Player ->
+adminCommand("watch") {
     val bot = players.get(content)
     if (bot != null) {
         player.watch(bot)
@@ -96,37 +96,37 @@ on<Command>({ prefix == "watch" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "shoot" }) { player: Player ->
+adminCommand("shoot") {
     player.shoot("15", player.tile.addY(10))
 }
 
-on<Command>({ prefix == "face" }) { player: Player ->
+adminCommand("face") {
     val parts = content.split(" ")
     player.turn(parts[0].toInt(), parts[1].toInt())
 }
 
-on<Command>({ prefix == "zone" || prefix == "chunk" }) { player: Player ->
+adminCommand("zone", "chunk") {
     val zones: DynamicZones = get()
     zones.copy(player.tile.zone, player.tile.zone, rotation = 2)
 }
 
-on<Command>({ prefix == "clear_zone" }) { player: Player ->
+adminCommand("clear_zone") {
     val zones: DynamicZones = get()
     zones.clear(player.tile.zone)
 }
 
-on<Command>({ prefix == "skill" }) { player: Player ->
+adminCommand("skill") {
     player.skillLevel = content.toInt()
 }
 
-on<Command>({ prefix == "cmb" }) { player: Player ->
+adminCommand("cmb") {
     player.combatLevel = content.toInt()
 }
 
-on<Command>({ prefix == "tgl" }) { player: Player ->
+adminCommand("tgl") {
     player.toggleSkillLevel()
 }
 
-on<Command>({ prefix == "sum" }) { player: Player ->
+adminCommand("sum") {
     player.summoningCombatLevel = content.toInt()
 }

@@ -1,16 +1,13 @@
 package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.mode.move.AreaEntered
-import world.gregs.voidps.engine.entity.character.mode.move.AreaExited
+import world.gregs.voidps.engine.entity.character.mode.move.enterArea
+import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.move.walkTo
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Tile
@@ -24,7 +21,7 @@ val areas: AreaDefinitions by inject()
 val borders = mutableMapOf<Zone, Rectangle>()
 val guards = mutableMapOf<Rectangle, List<GameObject>>()
 
-on<World, Registered> {
+worldSpawn {
     for (border in areas.getTagged("border")) {
         val passage = border.area as Rectangle
         for (zone in passage.toZones()) {
@@ -37,7 +34,7 @@ on<World, Registered> {
     }
 }
 
-on<AreaEntered>({ name.startsWith("border_guard") && area is Rectangle }) { player: Player ->
+enterArea("border_guard*") {
     val border = area as Rectangle
     if (player.steps.destination in border) {
         val tile = border.nearestTo(player.tile)
@@ -46,13 +43,13 @@ on<AreaEntered>({ name.startsWith("border_guard") && area is Rectangle }) { play
     } else {
         player.steps.update(noCollision = true, noRun = true)
     }
-    val guards = guards[border] ?: return@on
+    val guards = guards[border] ?: return@enterArea
     changeGuardState(guards, true)
 }
 
-on<AreaExited>({ name.startsWith("border_guard") && area is Rectangle }) { player: Player ->
+exitArea("border_guard*") {
     val border = area as Rectangle
-    val guards = guards[border] ?: return@on
+    val guards = guards[border] ?: return@exitArea
     player.steps.update(noCollision = false, noRun = false)
     changeGuardState(guards, false)
 }

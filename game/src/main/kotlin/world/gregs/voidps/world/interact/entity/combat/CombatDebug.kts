@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.combat
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.Command
+import world.gregs.voidps.engine.client.ui.event.command
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -22,7 +22,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 val npcDefinitions: NPCDefinitions by inject()
 val eventHandler: EventHandlerStore by inject()
 
-on<Command>({ prefix == "maxhit" }) { player: Player ->
+command("maxhit") {
     val debug = player["debug", false]
     player["debug"] = false
     val parts = content.split(" ")

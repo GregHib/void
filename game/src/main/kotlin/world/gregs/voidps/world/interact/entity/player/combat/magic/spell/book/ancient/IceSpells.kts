@@ -5,11 +5,10 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.characterSpellAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.spellSwing
 import world.gregs.voidps.world.interact.entity.effect.freeze
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
@@ -17,7 +16,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val definitions: SpellDefinitions by inject()
 
-on<CombatSwing>({ player -> !swung() && player.spell.startsWith("ice_") }, Priority.LOW) { player: Player ->
+spellSwing("ice_*", Priority.LOW) { player: Player ->
     val spell = player.spell
     player.setAnimation("ancient_spell${if (Spell.isMultiTarget(spell)) "_multi" else ""}")
     player.shoot(spell, target)
@@ -25,7 +24,7 @@ on<CombatSwing>({ player -> !swung() && player.spell.startsWith("ice_") }, Prior
     delay = 5
 }
 
-on<CombatAttack>({ spell.startsWith("ice_") && damage > 0 }) { source: Character ->
+characterSpellAttack("ice_*") { source: Character ->
     val ticks: Int = definitions.get(spell)["freeze_ticks"]
     source.freeze(target, ticks)
 }

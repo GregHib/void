@@ -10,19 +10,18 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.fightStyle
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.combat.weaponSwing
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
@@ -34,30 +33,30 @@ fun isHandCannon(item: Item) = item.id == "hand_cannon"
 
 val ammoDefinitions: AmmoDefinitions by inject()
 
-on<CombatSwing>({ player -> player.fightStyle == "range" && isHandCannon(player.weapon) }, Priority.HIGH) { player: Player ->
+weaponSwing("hand_cannon", style = "range", priority = Priority.HIGH) { player: Player ->
     val ammo = player.equipped(EquipSlot.Ammo)
     val weapon = player.weapon
     if (!player.hasUseLevel(Skill.Ranged, ammo)) {
         player.message("You are not high enough level to use this item.")
         player.message("You need to have a Ranged level of ${ammo.def.get<Int>("secondary_use_level")}.")
         delay = -1
-        return@on
+        return@weaponSwing
     }
     val group = weapon.def["ammo_group", ""]
     if (!ammoDefinitions.get(group).items.contains(ammo.id)) {
         player.message("You can't use that ammo with your cannon.")
         delay = -1
-        return@on
+        return@weaponSwing
     }
     if (!player.equipment.remove(ammo.id, if (player.specialAttack) 2 else 1)) {
         player.message("There is no ammo left in your quiver.")
         delay = -1
-        return@on
+        return@weaponSwing
     }
     player.ammo = ammo.id
 }
 
-on<CombatSwing>({ player -> !swung() && isHandCannon(player.weapon) }, Priority.LOW) { player: Player ->
+weaponSwing("hand_cannon", style = "range", priority = Priority.LOW) { player: Player ->
     player.setAnimation("hand_cannon_shoot")
     player.setGraphic("hand_cannon_shoot")
     player.shoot(id = player.ammo, target = target)
@@ -66,10 +65,10 @@ on<CombatSwing>({ player -> !swung() && isHandCannon(player.weapon) }, Priority.
     explode(player, 0.005)
 }
 
-on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.specialAttack && isHandCannon(player.weapon) }, Priority.HIGHISH) { player: Player ->
+specialAttackSwing("hand_cannon", style = "range", priority = Priority.HIGHISH) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
         delay = -1
-        return@on
+        return@specialAttackSwing
     }
     player.setAnimation("hand_cannon_shoot")
     player.setGraphic("hand_cannon_shoot")

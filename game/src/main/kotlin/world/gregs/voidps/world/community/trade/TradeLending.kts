@@ -1,11 +1,10 @@
 package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
@@ -23,16 +22,16 @@ val lendRestriction = object : ItemRestrictionRule {
     override fun restricted(id: String) = definitions.get(id).lendId == -1
 }
 
-on<Registered> { player: Player ->
+playerSpawn { player: Player ->
     player.loan.itemRule = lendRestriction
 }
 
-on<InterfaceOption>({ id == "trade_main" && component == "loan_time" && option == "Specify" }) { player: Player ->
+interfaceOption("Specify", "loan_time", "trade_main") {
     val hours = intEntry("Set the loan duration in hours: (1 - 72)<br>(Enter <col=7f0000>0</col> for 'Just until logout'.)").coerceIn(0, 72)
     setLend(player, hours)
 }
 
-on<InterfaceOption>({ id == "trade_main" && component == "loan_time" && option == "‘Until Logout‘" }) { player: Player ->
+interfaceOption("‘Until Logout‘", "loan_time", "trade_main") {
     setLend(player, 0)
 }
 
@@ -42,8 +41,8 @@ fun setLend(player: Player, time: Int) {
     partner["other_lend_time"] = time
 }
 
-on<InterfaceOption>({ id == "trade_side" && component == "offer" && option == "Lend" }) { player: Player ->
-    val partner = getPartner(player) ?: return@on
+interfaceOption("Lend", "offer", "trade_side") {
+    val partner = getPartner(player) ?: return@interfaceOption
     lend(player, partner, item.id, itemSlot)
 }
 

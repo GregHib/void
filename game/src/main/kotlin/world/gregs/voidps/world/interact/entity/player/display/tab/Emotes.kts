@@ -2,10 +2,10 @@ package world.gregs.voidps.world.interact.entity.player.display.tab
 
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.event.Command
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
+import world.gregs.voidps.engine.client.ui.event.adminCommand
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
+import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.clearAnimation
@@ -14,9 +14,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.ItemChanged
+import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.playAnimation
@@ -32,7 +31,7 @@ val definitions: InterfaceDefinitions by inject()
 
 val unlockableRange = 26..52
 
-on<InterfaceOpened>({ id == "emotes" }) { player: Player ->
+interfaceOpen("emotes") { player: Player ->
     for (compId in unlockableRange) {
         val component = definitions.getComponent(id, compId) ?: continue
         player.sendVariable("unlocked_emote_${component.stringId}")
@@ -40,18 +39,17 @@ on<InterfaceOpened>({ id == "emotes" }) { player: Player ->
     player.sendVariable("unlocked_emote_lost_tribe")
 }
 
-on<InterfaceRefreshed>({ id == "emotes" }) { player: Player ->
+interfaceRefresh("emotes") { player: Player ->
     player.interfaceOptions.unlockAll("emotes", "emotes", 0..190)
 }
 
-on<InterfaceOption>({ id == "emotes" }) { player: Player ->
+interfaceOption(id = "emotes") {
     val id = option.toSnakeCase()
     val componentId = definitions.getComponentId(this.id, component)!!
     if (componentId > 23 && !unlocked(id, option)) {
-        return@on
+        return@interfaceOption
     }
     player.strongQueue("emote") {
-        println(id)
         when {
             id == "skillcape" -> {
                 val cape = player.equipped(EquipSlot.Cape)
@@ -141,7 +139,7 @@ fun areaClear(player: Player): Boolean {
     return true
 }
 
-on<ItemChanged>({ inventory == "worn_equipment" && index == EquipSlot.Cape.index }) { player: Player ->
+itemChange(EquipSlot.Cape, "worn_equipment") { player: Player ->
     player["unlocked_emote_skillcape"] = item.def.contains("skill_cape") || item.def.contains("skill_cape_t") || item.id == "quest_point_cape"
 }
 
@@ -230,7 +228,7 @@ suspend fun CharacterContext.playDungeoneeringMasterCapeEmote(player: Player) {
     player.transform("")
 }
 
-on<Command>({ prefix == "emotes" }) { player: Player ->
+adminCommand("emotes") {
     for (compId in unlockableRange) {
         if (compId == 39) {
             continue

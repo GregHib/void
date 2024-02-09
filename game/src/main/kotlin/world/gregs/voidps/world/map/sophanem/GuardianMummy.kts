@@ -1,11 +1,9 @@
 package world.gregs.voidps.world.map.sophanem
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
+import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.CharacterContext
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
@@ -24,24 +22,24 @@ val ivory = listOf("ivory_comb", "pottery_scarab", "pottery_statuette")
 val stone = listOf("stone_seal", "stone_scarab", "stone_statuette")
 val gold = listOf("gold_seal", "gold_scarab", "gold_statuette")
 
-on<NPCOption>({ operate && target.id == "guardian_mummy" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "guardian_mummy") {
     if (player.holdsItem("pharaohs_sceptre")) {
         sceptreRecharging()
-        return@on
+        return@npcOperate
     }
     notAnother()
 }
 
-on<NPCOption>({ operate && target.id == "guardian_mummy" && option == "Start-activity" }) { player: Player ->
+npcOperate("Start-activity", "guardian_mummy") {
     player<Happy>("I know what I'm doing - let's get on with it.")
     iKnowWhatImDoing()
 }
 
-on<ItemOnNPC>({ operate && target.id == "guardian_mummy" && item.id.startsWith("pharaohs_sceptre_") }) { _: Player ->
+itemOnNPCOperate("pharaohs_sceptre_*", "guardian_mummy") {
     discharge(itemSlot)
 }
 
-on<ItemOnNPC>({ operate && target.id == "guardian_mummy" && item.id == "pharaohs_sceptre" }) { player: Player ->
+itemOnNPCOperate("pharaohs_sceptre", "guardian_mummy") {
     sceptreRecharging()
 }
 
@@ -161,7 +159,7 @@ fun Transaction.remove(amount: Int, items: List<String>) {
 }
 
 
-on<ItemOnNPC>({ operate && target.id == "guardian_mummy" && item.id != "pharaohs_sceptre" }) { player: Player ->
+itemOnNPCOperate("*", "guardian_mummy") {
     player.message("The Mummy is not interested in this")
 }
 

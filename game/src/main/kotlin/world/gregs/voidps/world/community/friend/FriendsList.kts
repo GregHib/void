@@ -1,12 +1,10 @@
 package world.gregs.voidps.world.community.friend
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.updateFriend
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
@@ -16,6 +14,8 @@ import world.gregs.voidps.engine.entity.character.player.chat.friend.AddFriend
 import world.gregs.voidps.engine.entity.character.player.chat.friend.DeleteFriend
 import world.gregs.voidps.engine.entity.character.player.chat.ignore.AddIgnore
 import world.gregs.voidps.engine.entity.character.player.chat.ignore.DeleteIgnore
+import world.gregs.voidps.engine.entity.playerDespawn
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -30,12 +30,12 @@ val accounts: AccountDefinitions by inject()
 
 val maxFriends = 200
 
-on<Registered> { player: Player ->
+playerSpawn { player: Player ->
     player.sendFriends()
     notifyBefriends(player, online = true)
 }
 
-on<Unregistered> { player: Player ->
+playerDespawn { player: Player ->
     notifyBefriends(player, online = false)
 }
 
@@ -106,7 +106,10 @@ on<DeleteIgnore>({ player -> player.privateStatus == "on" }, Priority.LOWER) { p
     }
 }
 
-on<InterfaceOption>({ id == "filter_buttons" && component == "private" && it.privateStatus != "on" && option != "Off" }, Priority.HIGH) { player: Player ->
+interfaceOption(component = "private", id = "filter_buttons") {
+    if (player.privateStatus == "on" || option == "Off") {
+        return@interfaceOption
+    }
     val next = option.lowercase()
     notifyBefriends(player, online = true) { it, current ->
         when {
@@ -118,7 +121,10 @@ on<InterfaceOption>({ id == "filter_buttons" && component == "private" && it.pri
     }
 }
 
-on<InterfaceOption>({ id == "filter_buttons" && component == "private" && it.privateStatus != "off" && option != "On" }, Priority.HIGH) { player: Player ->
+interfaceOption(component = "private", id = "filter_buttons") {
+    if (player.privateStatus == "off" || option == "On") {
+        return@interfaceOption
+    }
     val next = option.lowercase()
     notifyBefriends(player, online = false) { it, current ->
         when {

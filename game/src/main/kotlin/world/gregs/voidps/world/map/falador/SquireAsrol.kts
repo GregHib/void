@@ -2,12 +2,10 @@ package world.gregs.voidps.world.map.falador
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.CharacterContext
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -21,7 +19,7 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
-on<NPCOption>({ operate && target.id == "squire_asrol" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "squire_asrol") {
     when (player.quest("the_knights_sword")) {
         "unstarted" -> {
             npc<Talking>("Hello. I am the squire to Sir Vyvin.")

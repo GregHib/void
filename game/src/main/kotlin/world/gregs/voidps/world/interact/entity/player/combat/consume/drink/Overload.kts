@@ -1,19 +1,19 @@
 package world.gregs.voidps.world.interact.entity.player.combat.consume.drink
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerStop
-import world.gregs.voidps.engine.timer.TimerTick
-import world.gregs.voidps.world.interact.entity.player.combat.consume.Consumable
-import world.gregs.voidps.world.interact.entity.player.combat.consume.Consume
+import world.gregs.voidps.engine.timer.timerStart
+import world.gregs.voidps.engine.timer.timerStop
+import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
+import world.gregs.voidps.world.interact.entity.player.combat.consume.Consumable
+import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
 
 fun inWilderness() = false
 
@@ -27,20 +27,25 @@ on<Consumable>({ item.id.startsWith("overload") }) { player: Player ->
     }
 }
 
-on<Consume>({ item.id.startsWith("overload") }) { player: Player ->
+consume("overload*") { player: Player ->
     player["overload_refreshes_remaining"] = 20
     player.timers.start("overload")
 }
 
-on<Registered>({ it["overload_refreshes_remaining", 0] > 0 }) { player: Player ->
-    player.timers.restart("overload")
+playerSpawn { player: Player ->
+    if (player["overload_refreshes_remaining", 0] > 0) {
+        player.timers.restart("overload")
+    }
 }
 
-on<TimerStart>({ timer == "overload" }) { _: Player ->
+timerStart("overload") { _: Player ->
     interval = 25
 }
 
-on<TimerStart>({ timer == "overload" && !restart }) { player: Player ->
+timerStart("overload") { player: Player ->
+    if (restart) {
+        return@timerStart
+    }
     player.queue(name = "hit") {
         repeat(5) {
             player.directHit(100)
@@ -51,9 +56,10 @@ on<TimerStart>({ timer == "overload" && !restart }) { player: Player ->
     }
 }
 
-on<TimerTick>({ timer == "overload" }) { player: Player ->
+timerTick("overload") { player: Player ->
     if (player.dec("overload_refreshes_remaining") <= 0) {
-        return@on cancel()
+        cancel()
+        return@timerTick
     }
     if (inWilderness()) {
         player.levels.boost(Skill.Attack, 5, 0.15)
@@ -70,7 +76,7 @@ on<TimerTick>({ timer == "overload" }) { player: Player ->
     }
 }
 
-on<TimerStop>({ timer == "overload" }) { player: Player ->
+timerStop("overload") { player: Player ->
     reset(player, Skill.Attack)
     reset(player, Skill.Strength)
     reset(player, Skill.Defence)

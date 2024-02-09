@@ -5,16 +5,13 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.spellSwing
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun isMagicDart(spell: String) = spell == "magic_dart"
-
-on<CombatSwing>({ player -> !swung() && isMagicDart(player.spell) }, Priority.LOW) { player: Player ->
+spellSwing("magic_dart", Priority.LOW) { player: Player ->
     player.setAnimation("magic_dart")
     player.setGraphic("magic_dart_cast")
     player.shoot(id = player.spell, target = target)

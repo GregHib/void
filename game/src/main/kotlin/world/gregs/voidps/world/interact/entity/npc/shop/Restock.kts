@@ -1,17 +1,17 @@
 package world.gregs.voidps.world.interact.entity.npc.shop
 
 import world.gregs.voidps.cache.config.data.InventoryDefinition
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.playerDespawn
+import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.timer.timerStart
+import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
@@ -23,15 +23,15 @@ import kotlin.math.max
 val inventoryDefinitions: InventoryDefinitions by inject()
 val restockTimeTicks = TimeUnit.SECONDS.toTicks(60)
 
-on<Registered> { player: Player ->
+playerSpawn { player: Player ->
     player.softTimers.restart("shop_restock")
 }
 
-on<TimerStart>({ timer == "shop_restock" }) { _: Player ->
+timerStart("shop_restock") { _: Player ->
     interval = restockTimeTicks
 }
 
-on<TimerTick>({ timer == "shop_restock" }) { player: Player ->
+timerTick("shop_restock") { player: Player ->
     for (name in player.inventories.keys) {
         val inventory = player.inventories.inventory(name)
         val def = inventoryDefinitions.get(name)
@@ -43,7 +43,7 @@ on<TimerTick>({ timer == "shop_restock" }) { player: Player ->
 }
 
 // Remove restocked shops to save space
-on<Unregistered> { player: Player ->
+playerDespawn { player: Player ->
     for ((name, inventory) in player.inventories.instances) {
         val def = inventoryDefinitions.get(name)
         if (!def["shop", false]) {
@@ -56,7 +56,7 @@ on<Unregistered> { player: Player ->
     }
 }
 
-on<World, Registered> {
+worldSpawn {
     restock()
 }
 

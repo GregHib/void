@@ -1,17 +1,16 @@
 package world.gregs.voidps.world.map.ardougne
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
+import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.world.interact.dialogue.type.item
 
-on<ObjectOption>({ operate && target.id == "legends_guild_totem_pole" && option == "Look" }) { player: Player ->
+objectOperate("Look", "legends_guild_totem_pole") {
     // TODO proper message
     if (player.inventory.contains("combat_bracelet") && player.inventory.replace("combat_bracelet", "combat_bracelet_4")) {
         combatBracelet(player)
@@ -22,13 +21,13 @@ on<ObjectOption>({ operate && target.id == "legends_guild_totem_pole" && option 
     }
 }
 
-on<ItemOnObject>({ operate && target.id == "legends_guild_totem_pole" && item.id == "combat_bracelet" }) { player: Player ->
+itemOnObjectOperate("combat_bracelet", "legends_guild_totem_pole") {
     if (player.inventory.replace(itemSlot, item.id, "combat_bracelet_4")) {
         combatBracelet(player)
     }
 }
 
-on<ItemOnObject>({ operate && target.id == "legends_guild_totem_pole" && item.id == "skills_necklace" }) { player: Player ->
+itemOnObjectOperate("skills_necklace", "legends_guild_totem_pole") {
     if (player.inventory.replace(itemSlot, item.id, "skills_necklace_4")) {
         skillsNecklace(player)
     }

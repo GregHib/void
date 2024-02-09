@@ -1,25 +1,26 @@
 package world.gregs.voidps.world.interact.entity.player.effect.degrade
 
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.inv.ItemChanged
+import world.gregs.voidps.engine.inv.itemChange
 
 // Switch two tracked items
-on<ItemChanged>({ containsCharge(it, inventory, index, from, fromIndex) }) { player: Player ->
-    val original = Degrade.variable(from, fromIndex)
-    val originalCharge: Int? = player[original]
-    val update = Degrade.variable(inventory, index)
-    val updateCharge: Int? = player[update]
-    player["${original}_${update}"] = true
-    if (originalCharge != null) {
-        player[update] = originalCharge
-    } else {
-        player.clear(update)
-    }
-    if (updateCharge != null) {
-        player[original] = updateCharge
-    } else {
-        player.clear(original)
+itemChange { player: Player ->
+    if (containsCharge(player, inventory, index, from, fromIndex)) {
+        val original = Degrade.variable(from, fromIndex)
+        val originalCharge: Int? = player[original]
+        val update = Degrade.variable(inventory, index)
+        val updateCharge: Int? = player[update]
+        player["${original}_${update}"] = true
+        if (originalCharge != null) {
+            player[update] = originalCharge
+        } else {
+            player.clear(update)
+        }
+        if (updateCharge != null) {
+            player[original] = updateCharge
+        } else {
+            player.clear(original)
+        }
     }
 }
 

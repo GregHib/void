@@ -2,11 +2,10 @@ package world.gregs.voidps.world.community.assist
 
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeMenu
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.community.assist.Assistance.canAssist
 import world.gregs.voidps.world.community.assist.Assistance.redirectSkillExperience
 import world.gregs.voidps.world.community.assist.Assistance.stopRedirectingSkillExp
@@ -15,7 +14,7 @@ import world.gregs.voidps.world.community.assist.Assistance.stopRedirectingSkill
  * Assistance system display interface
  */
 
-on<InterfaceOption>({ id == "assist_xp" && option == "Toggle Skill On / Off" }) { player: Player ->
+interfaceOption(option = "Toggle Skill On / Off", id = "assist_xp") {
     val skill = Skill.valueOf(component.toSentenceCase())
     val assisted: Player? = player["assisted"]
     if (assisted == null) {

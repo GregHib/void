@@ -1,11 +1,10 @@
 package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.world.community.trade.Trade.isTrading
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
@@ -13,27 +12,23 @@ import world.gregs.voidps.world.interact.dialogue.type.intEntry
  * Removing an item from an offer or loan
  */
 
-on<InterfaceOption>({ id == "trade_main" && component == "offer_options" }) { player: Player ->
+interfaceOption(component = "offer_options", id = "trade_main") {
     val amount = when (option) {
         "Remove" -> 1
         "Remove-5" -> 5
         "Remove-10" -> 10
         "Remove-All" -> player.offer.count(item.id)
-        else -> return@on
+        "Remove-X" -> intEntry("Enter amount:")
+        else -> return@interfaceOption
     }
     remove(player, item.id, itemSlot, amount)
 }
 
-on<InterfaceOption>({ id == "trade_main" && component == "offer_options" && option == "Remove-X" }) { player: Player ->
-    val amount = intEntry("Enter amount:")
-    remove(player, item.id, itemSlot, amount)
-}
-
-on<InterfaceOption>({ id == "trade_main" && component == "offer_options" && option == "Value" }) { player: Player ->
+interfaceOption("Value", "offer_options", "trade_main") {
     player.message("${item.def.name} is priceless!", ChatType.Trade)
 }
 
-on<InterfaceOption>({ id == "trade_main" && component == "loan_item" && option == "Remove" }) { player: Player ->
+interfaceOption("Remove", "loan_item", "trade_main") {
     removeLend(player, item.id, 0)
 }
 

@@ -1,35 +1,34 @@
 package world.gregs.voidps.world.activity.bank
 
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.event.Command
-import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.event.adminCommand
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.world.activity.bank.Bank.tabs
 
-on<Command>({ prefix == "bank" }) { player: Player ->
+adminCommand("bank") {
     player.open("bank")
 }
 
-on<ObjectOption>({ operate && option == "Use-quickly" }) { player: Player ->
+objectOperate("Use-quickly") {
     player.open("bank")
 }
 
-on<ObjectOption>({ operate && option == "Collect" }) { player: Player ->
+objectOperate("Collect") {
     player.open("collection_box")
 }
 
-on<InterfaceClosed>({ id == "bank" }) { player: Player ->
+interfaceClose("bank") { player: Player ->
     player.close("bank_side")
 }
 
-on<InterfaceOpened>({ id == "bank" }) { player: Player ->
+interfaceOpen("bank") { player: Player ->
     player.sendInventory("bank")
     player.open("bank_side")
     player.sendVariable("open_bank_tab")
@@ -43,11 +42,13 @@ on<InterfaceOpened>({ id == "bank" }) { player: Player ->
     player.interfaceOptions.unlockAll("bank_side", "inventory", 0 until 28)
 }
 
-on<InterfaceOption>({ id == "bank" && component == "equipment" && option == "Show Equipment Stats" }) { player: Player ->
+interfaceOption("Show Equipment Stats", "equipment", "bank") {
     player.open("equipment_bonuses")
 //    player.setVar("equipment_banking", true)
 }
 
-on<InterfaceOption>({ id == "equipment_bonuses" && component == "bank" && option == "Show bank" && it["equipment_banking", false] }) { player: Player ->
-    player.open("bank")
+interfaceOption("Show bank", "bank", "equipment_bonuses") {
+    if (player["equipment_banking", false]) {
+        player.open("bank")
+    }
 }

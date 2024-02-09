@@ -31,7 +31,7 @@ class ItemBonuses : Pipeline.Modifier<Extras> {
         val (id, _, page, _, rs3, _, _, _, uid) = builder
         val template = page?.getTemplateMap("infobox bonuses") ?: return content
         template.forEach { (key, value) ->
-            if(value is ArrayList<*>) {
+            if (value is ArrayList<*>) {
                 println("Unknown al $value")
                 return@forEach
             }
@@ -64,7 +64,7 @@ class ItemBonuses : Pipeline.Modifier<Extras> {
                     when {
                         v != null -> extras[keys[key]!!] = v
                         text.contains("trimmed") -> {
-                            extras[keys[key]!!] = if(uid.endsWith("_t")) {
+                            extras[keys[key]!!] = if (uid.endsWith("_t")) {
                                 4
                             } else {
                                 text.replace(" (+4 trimmed)", "").toInt()

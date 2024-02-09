@@ -4,10 +4,10 @@ import com.github.michaelbull.logging.InlineLogger
 import net.pearx.kasechange.toSentenceCase
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
+import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -18,12 +18,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 import world.gregs.voidps.world.interact.dialogue.type.statement
@@ -71,24 +69,23 @@ val black = 0
 val orange = 30309
 val green = 992
 
-on<InterfaceOption>({ id == "smithing" }) { player: Player ->
-    val metal: String = player["smithing_metal"] ?: return@on
+interfaceOption(id = "smithing") {
+    val metal: String = player["smithing_metal"] ?: return@interfaceOption
     val type = component.substringBeforeLast('_')
     val amount = when {
         component.endsWith("_1") -> 1
         component.endsWith("_5") -> 5
         component.endsWith("_x") -> intEntry("Enter amount:")
         component.endsWith("_all") -> Int.MAX_VALUE
-        else -> return@on
+        else -> return@interfaceOption
     }
     smith(player, metal, type, amount)
 }
 
-on<ItemOnObject>({ operate && target.id.startsWith("anvil") && item.id.endsWith("_bar") }) { player: Player ->
-    arriveDelay()
+itemOnObjectOperate("*_bar", "anvil*") {
     if (!player.inventory.contains("hammer")) {
         statement("You need a hammer to work the metal with.")
-        return@on
+        return@itemOnObjectOperate
     }
     player.open("smithing")
     val bars = player.inventory.count(item.id)
@@ -121,7 +118,7 @@ on<ItemOnObject>({ operate && target.id.startsWith("anvil") && item.id.endsWith(
 }
 
 
-on<ItemOnObject>({ operate && target.id.startsWith("anvil") && item.id == "hammer" }) { player: Player ->
+itemOnObjectOperate("hammer", "anvil*", arrive = false) {
     player.message("To smith metal equipment, you must use the metal bar on the anvil.")
 }
 

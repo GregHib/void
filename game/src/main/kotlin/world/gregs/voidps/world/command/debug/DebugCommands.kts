@@ -8,21 +8,22 @@ import world.gregs.voidps.bot.path.EdgeTraversal
 import world.gregs.voidps.bot.path.NodeTargetStrategy
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.*
-import world.gregs.voidps.engine.client.ui.event.Command
+import world.gregs.voidps.engine.client.ui.event.adminCommand
+import world.gregs.voidps.engine.client.ui.event.command
+import world.gregs.voidps.engine.client.ui.event.modCommand
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.TimerQueue
-import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.network.encode.clearCamera
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
@@ -41,7 +42,7 @@ val collisions: Collisions by inject()
 val objects: GameObjects by inject()
 val npcs: NPCs by inject()
 
-on<Command>({ prefix == "test" }) { player: Player ->
+adminCommand("test") {
     val obj = objects[player.tile].firstOrNull { it.def.isDoor() }
         ?: objects[player.tile.add(Direction.NORTH)].firstOrNull { it.def.isDoor() }
         ?: objects[player.tile.add(Direction.SOUTH)].firstOrNull { it.def.isDoor() }
@@ -50,11 +51,11 @@ on<Command>({ prefix == "test" }) { player: Player ->
     Door.enter(player, obj!!)
 }
 
-on<Command>({ prefix == "reset_cam" }) { player: Player ->
+command("reset_cam") {
     player.client?.clearCamera()
 }
 
-on<Command>({ prefix == "move_to" }) { player: Player ->
+adminCommand("move_to") {
     val test = content.split(" ")
     val viewport = player.viewport!!
     val result = viewport.lastLoadZone.safeMinus(viewport.zoneRadius, viewport.zoneRadius)
@@ -63,7 +64,7 @@ on<Command>({ prefix == "move_to" }) { player: Player ->
     player.moveCamera(local, test[2].toInt(), test[3].toInt(), test[4].toInt())
 }
 
-on<Command>({ prefix == "look_at" }) { player: Player ->
+adminCommand("look_at") {
     val test = content.split(" ")
     val viewport = player.viewport!!
     val result = viewport.lastLoadZone.safeMinus(viewport.zoneRadius, viewport.zoneRadius)
@@ -72,12 +73,12 @@ on<Command>({ prefix == "look_at" }) { player: Player ->
     player.turnCamera(local, test[2].toInt(), test[3].toInt(), test[4].toInt())
 }
 
-on<Command>({ prefix == "shake" }) { player: Player ->
+adminCommand("shake") {
     val test = content.split(" ")
     player.shakeCamera(test[0].toInt(), test[1].toInt(), test[2].toInt(), test[3].toInt(), test[4].toInt())
 }
 
-on<Command>({ prefix == "timers" }) { player: Player ->
+modCommand("timers") {
     player.message("=== Timers ===", ChatType.Console)
     for (timer in player.timers.queue) {
         player.message("${timer.name}: ${timer.nextTick - GameLoop.tick}", ChatType.Console)
@@ -88,7 +89,7 @@ on<Command>({ prefix == "timers" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "variables" }) { player: Player ->
+modCommand("variables") {
     player.message("=== Variables ===", ChatType.Console)
     for ((variable, value) in (player.variables as PlayerVariables).temp) {
         player.message("$variable: $value", ChatType.Console)
@@ -99,7 +100,7 @@ on<Command>({ prefix == "variables" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "pf_bench" }) { player: Player ->
+adminCommand("pf_bench") {
     val pf = PathFinder(flags = collisions, useRouteBlockerFlags = true)
     val start = Tile(3270, 3331, 0)
     val timeShort = measureTimeMillis {
@@ -133,7 +134,7 @@ on<Command>({ prefix == "pf_bench" }) { player: Player ->
     println("Invalid path: ${timeInvalid}ms")
 }
 
-on<Command>({ prefix == "rights" }) { player: Player ->
+adminCommand("rights") {
     val right = content.split(" ").last()
     val rights = PlayerRights.valueOf(right.toSentenceCase())
     val username = content.removeSuffix(" $right")
@@ -146,7 +147,7 @@ on<Command>({ prefix == "rights" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "expr" }) { player: Player ->
+adminCommand("expr") {
     val id = content.toIntOrNull()
     if (id != null) {
         val npc = id < 1000
@@ -165,7 +166,7 @@ on<Command>({ prefix == "expr" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "showcol" }) { player: Player ->
+adminCommand("showcol") {
     val area = player.tile.toCuboid(10)
     val collisions: Collisions = get()
     for (tile in area) {
@@ -175,11 +176,11 @@ on<Command>({ prefix == "showcol" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "path" }) { player: Player ->
+adminCommand("path") {
     player.softTimers.toggle("show_path")
 }
 
-on<TimerTick>({ timer == "show_path" }) { player: Player ->
+timerTick("show_path") { player: Player ->
     var tile = player.tile
     for (step in player.steps) {
         tile = tile.add(step)
@@ -187,7 +188,7 @@ on<TimerTick>({ timer == "show_path" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "col" }) { player: Player ->
+adminCommand("col") {
     val collisions: Collisions = get()
     println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.level] and (CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER) == 0}")
     println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.level] and CollisionFlag.BLOCK_NORTH == 0}")
@@ -213,7 +214,7 @@ operator fun Array<IntArray?>.get(baseX: Int, baseY: Int, localX: Int, localY: I
     return zone[Tile.index(x, y)]
 }
 
-on<Command>({ prefix == "walkToBank" }) { player: Player ->
+adminCommand("walkToBank") {
     val east = Tile(3179, 3433).toCuboid(15, 14)
     val west = Tile(3250, 3417).toCuboid(7, 8)
     val dijkstra: Dijkstra = get()
@@ -246,7 +247,7 @@ on<Command>({ prefix == "walkToBank" }) { player: Player ->
     }*/
 }
 
-on<Command>({ prefix == "sendItems" }) { player: Player ->
+adminCommand("sendItems") {
     val array = IntArray(28 * 2)
     array[0] = 995
     array[28] = 1
@@ -257,7 +258,7 @@ on<Command>({ prefix == "sendItems" }) { player: Player ->
     player.sendInventoryItems(90, 28, ags, true)
 }
 
-on<Command>({ prefix == "obj" }) { player: Player ->
+adminCommand("obj") {
     if (content.isNotBlank()) {
         val parts = content.split(" ")
         val id = parts.getOrNull(0)
@@ -275,7 +276,7 @@ on<Command>({ prefix == "obj" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "tree" }) { player: Player ->
+adminCommand("tree") {
     val parts = content.split(" ")
     val tree = parts[0]
     val stump = parts[1]

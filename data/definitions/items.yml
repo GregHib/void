@@ -6845,6 +6845,7 @@ iron_hatchet:
   smithing:
     level: 16
     xp: 25.0
+  aka: [ iron_axe ]
   slot: "Weapon"
   examine: "A woodcutter's hatchet."
   kept: "Wilderness"

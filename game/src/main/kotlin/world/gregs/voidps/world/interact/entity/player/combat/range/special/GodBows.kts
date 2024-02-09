@@ -8,31 +8,28 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.*
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.fightStyle
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
+import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.hit.specialAttackHit
+import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
 fun isGodBow(weapon: Item) = weapon.id == "saradomin_bow" || weapon.id == "guthix_bow" || weapon.id == "zamorak_bow"
 
-on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.specialAttack && isGodBow(player.weapon) }, Priority.MEDIUM) { player: Player ->
+specialAttackSwing("saradomin_bow", "guthix_bow", "zamorak_bow", style = "range", priority = Priority.MEDIUM) { player: Player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, 550)) {
         delay = -1
-        return@on
+        return@specialAttackSwing
     }
     player.setAnimation("bow_accurate")
     val ammo = player.ammo
@@ -48,7 +45,10 @@ var Player.restoration: Int
         this["restoration"] = value
     }
 
-on<CombatAttack>({ isGodBow(weapon) && special }) { source: Player ->
+combatAttack { source: Player ->
+    if (!isGodBow(weapon) || !special) {
+        return@combatAttack
+    }
     when (weapon.id) {
         "zamorak_bow" -> target.hit(source, weapon, type, CLIENT_TICKS.toTicks(delay), spell, special, damage)
         "saradomin_bow" -> {
@@ -64,20 +64,20 @@ on<CombatAttack>({ isGodBow(weapon) && special }) { source: Player ->
     }
 }
 
-on<CombatHit>({ source is Player && isGodBow(weapon) && special }) { character: Character ->
-    source as Player
+specialAttackHit("saradomin_bow", "guthix_bow", "zamorak_bow") { character: Character ->
     character.setGraphic("${weapon.id}_special_hit")
     source.playSound("god_bow_special_hit")
 }
 
-on<TimerStart>({ timer == "restorative_shot" || timer == "balanced_shot" }) { _: Player ->
+timerStart("restorative_shot", "balanced_shot") { _: Player ->
     interval = TimeUnit.SECONDS.toTicks(6)
 }
 
-on<TimerTick>({ timer == "restorative_shot" || timer == "balanced_shot" }) { player: Player ->
+timerTick("restorative_shot", "balanced_shot") { player: Player ->
     val amount = player.restoration
     if (amount <= 0) {
-        return@on cancel()
+        cancel()
+        return@timerTick
     }
     val restore = player["restoration_amount", 0]
     player.restoration -= restore
@@ -85,7 +85,7 @@ on<TimerTick>({ timer == "restorative_shot" || timer == "balanced_shot" }) { pla
     player.setGraphic("saradomin_bow_restoration")
 }
 
-on<TimerStop>({ timer == "restorative_shot" || timer == "balanced_shot" }) { player: Player ->
+timerStop("restorative_shot", "balanced_shot") { player: Player ->
     player.clear("restoration")
     player.clear("restoration_amount")
 }

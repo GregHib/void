@@ -2,13 +2,12 @@ package world.gregs.voidps.world.interact.entity.player.display
 
 import net.pearx.kasechange.toSnakeCase
 import net.pearx.kasechange.toTitleCase
-import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
+import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.queue.weakQueue
 
 val list = listOf(
@@ -38,18 +37,18 @@ val list = listOf(
     "area_status_icon"
 )
 
-on<Registered> { player: Player ->
+playerSpawn { player: Player ->
     player.open(player.gameFrame.name)
 }
 
-Tab.values().forEach { tab ->
+Tab.entries.forEach { tab ->
     val name = tab.name.toSnakeCase()
-    on<InterfaceOption>({ id == it.gameFrame.name && component == name && option == name.toTitleCase() }) { player: Player ->
+    interfaceOption(name.toTitleCase(), name, "toplevel*") {
         player["tab", false] = tab.name
     }
 }
 
-on<InterfaceOpened>({ id == it.gameFrame.name }) { player: Player ->
+interfaceOpen("toplevel*") { player: Player ->
     list.forEach { name ->
         if (name.endsWith("_spellbook")) {
             val book = player["spellbook_config", 0] and 0x3
@@ -65,7 +64,7 @@ on<InterfaceOpened>({ id == it.gameFrame.name }) { player: Player ->
     }
 }
 
-on<InterfaceRefreshed>({ id == it.gameFrame.name || id.startsWith("dialogue_npc") }) { player: Player ->
+interfaceRefresh("toplevel*", "dialogue_npc*") { player: Player ->
     player.interfaces.sendVisibility(player.gameFrame.name, "wilderness_level", false)
     player.weakQueue("wild_level", 1) {
         player.interfaces.sendVisibility(player.gameFrame.name, "wilderness_level", false)

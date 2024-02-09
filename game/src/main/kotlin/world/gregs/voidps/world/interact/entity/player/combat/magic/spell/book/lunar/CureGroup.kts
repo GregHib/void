@@ -1,15 +1,13 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.lunar
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 import world.gregs.voidps.world.interact.entity.player.toxin.curePoison
@@ -18,10 +16,10 @@ import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
 val definitions: SpellDefinitions by inject()
 val players: Players by inject()
 
-on<InterfaceOption>({ id == "lunar_spellbook" && component == "cure_group" }) { player: Player ->
+interfaceOption(component = "cure_group", id = "lunar_spellbook") {
     val spell = component
     if (!Spell.removeRequirements(player, spell)) {
-        return@on
+        return@interfaceOption
     }
     val definition = definitions.get(spell)
     player.setAnimation("lunar_cast_group")

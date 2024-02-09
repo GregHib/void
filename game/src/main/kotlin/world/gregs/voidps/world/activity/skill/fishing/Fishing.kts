@@ -13,9 +13,9 @@ import world.gregs.voidps.engine.data.definition.data.Catch
 import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.mode.move.Moved
+import world.gregs.voidps.engine.entity.character.mode.move.npcMove
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -23,29 +23,29 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.type.random
 
 val logger = InlineLogger()
 val itemDefinitions: ItemDefinitions by inject()
 
-on<Moved>({ it.contains("fishers") && it.def.contains("fishing") }) { npc: NPC ->
-    val fishers: Set<Player> = npc.remove("fishers") ?: return@on
+npcMove({ it.contains("fishers") && it.def.contains("fishing") }) { npc: NPC ->
+    val fishers: Set<Player> = npc.remove("fishers") ?: return@npcMove
     for (fisher in fishers) {
         fisher.queue.clearWeak()
     }
 }
 
-on<NPCOption>({ operate && def.contains("fishing") }) { player: Player ->
-    arriveDelay()
+npcOperate("*", "fishing_spot_*", arrive = true) {
+    if (!def.contains("fishing")) {
+        return@npcOperate
+    }
     target.getOrPut("fishers") { mutableSetOf<Player>() }.add(player)
     player.softTimers.start("fishing")
     player.closeDialogue()
@@ -56,7 +56,7 @@ on<NPCOption>({ operate && def.contains("fishing") }) { player: Player ->
             break
         }
 
-        val data = target.spot[option] ?: return@on
+        val data = target.spot[option] ?: return@npcOperate
 
         if (!player.has(Skill.Fishing, data.minimumLevel, true)) {
             break
@@ -86,7 +86,7 @@ on<NPCOption>({ operate && def.contains("fishing") }) { player: Player ->
             player.setAnimation("fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle}")
             pause(5)
         } else if (remaining > 0) {
-            return@on
+            return@npcOperate
         }
         for (item in catches) {
             val catch = itemDefinitions.get(item)["fishing", Catch.EMPTY]

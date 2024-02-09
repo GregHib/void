@@ -5,6 +5,8 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetPlayerContext
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.wildcardEquals
 
 data class ItemOnPlayer(
     override val character: Character,
@@ -16,4 +18,28 @@ data class ItemOnPlayer(
     val inventory: String
 ) : Interaction(), TargetPlayerContext {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
+}
+
+fun itemOnPlayerApproach(item: String, id: String = "*", block: suspend ItemOnPlayer.() -> Unit) {
+    on<ItemOnPlayer>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(id, this.id) }) { _: Player ->
+        block.invoke(this)
+    }
+}
+
+fun itemOnPlayerOperate(item: String, id: String = "*", block: suspend ItemOnPlayer.() -> Unit) {
+    on<ItemOnPlayer>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(id, this.id) }) { _: Player ->
+        block.invoke(this)
+    }
+}
+
+fun spellOnPlayerApproach(id: String, component: String, block: suspend ItemOnPlayer.() -> Unit) {
+    on<ItemOnPlayer>({ approach && wildcardEquals(id, this.id) && wildcardEquals(component, this.component) }) { _: Player ->
+        block.invoke(this)
+    }
+}
+
+fun spellOnPlayerOperate(id: String, component: String, block: suspend ItemOnPlayer.() -> Unit) {
+    on<ItemOnPlayer>({ operate && wildcardEquals(id, this.id) && wildcardEquals(component, this.component) }) { _: Player ->
+        block.invoke(this)
+    }
 }

@@ -118,7 +118,7 @@ internal class EquipTest : WorldTest() {
         val player = createPlayer("player")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_sword")
 
-        player.interfaceOption("worn_equipment", "weapon", "*", 0, Item("bronze_sword"))
+        player.interfaceOption("worn_equipment", "weapon_slot", "*", 0, Item("bronze_sword"))
 
         assertTrue(player.inventory.contains("bronze_sword"))
         assertTrue(player.equipment.isEmpty())

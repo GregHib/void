@@ -1,21 +1,19 @@
 package world.gregs.voidps.world.map.al_kharid
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
+import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.EquipSlot
@@ -29,29 +27,29 @@ import java.util.concurrent.TimeUnit
 
 val objects: GameObjects by inject()
 
-on<NPCOption>({ operate && target.id.endsWith("camel") && option == "Talk-to" && player.equipped(EquipSlot.Amulet).id != "camulet" }) { player: Player ->
-    insult()
-    player.message(when (random.nextInt(3)) {
-        0 -> "The camel turns its head and glares at you."
-        1 -> "The camel spits at you, and you jump back hurriedly.."
-        else -> "The camel tries to stamp on your foot, but you pull it back quickly."
-    })
-}
-
-on<NPCOption>({ operate && target.id == "al_the_camel" && option == "Talk-to" && player.equipped(EquipSlot.Amulet).id == "camulet" }) { player: Player ->
-    choice("What would you like to do?") {
-        option("Ask the camel about its dung.") {
-            dung()
-        }
-        option("Say something unpleasant.") {
-            insult()
-            if (player["al_the_camel", false]) {
-                listenTo()
-            } else {
-                talkingToMe()
+npcOperate("Talk-to", "*camel") {
+    if (player.equipped(EquipSlot.Amulet).id == "camulet") {
+        choice("What would you like to do?") {
+            option("Ask the camel about its dung.") {
+                dung()
             }
+            option("Say something unpleasant.") {
+                insult()
+                if (player["al_the_camel", false]) {
+                    listenTo()
+                } else {
+                    talkingToMe()
+                }
+            }
+            option("Neither - I'm a polite person.")
         }
-        option("Neither - I'm a polite person.")
+    } else {
+        insult()
+        player.message(when (random.nextInt(3)) {
+            0 -> "The camel turns its head and glares at you."
+            1 -> "The camel spits at you, and you jump back hurriedly.."
+            else -> "The camel tries to stamp on your foot, but you pull it back quickly."
+        })
     }
 }
 
@@ -175,20 +173,18 @@ suspend fun NPCOption.talkingToMe() {
     desertsDay(interrupt = true)
 }
 
-on<ObjectOption>({ operate && target.id == "dung" && option == "Pick-up" }) { player: Player ->
-    arriveDelay()
+objectOperate("Pick-up", "dung") {
     if (!player.inventory.contains("bucket")) {
         player<Talk>("I'm not picking that up. I'll need a container...")
-        return@on
+        return@objectOperate
     }
     scoopPoop()
 }
 
-on<ItemOnObject>({ operate && target.id == "dung" }) { _: Player ->
-    arriveDelay()
+itemOnObjectOperate(obj = "dung") {
     if (item.id != "bucket") {
         player<Unsure>("Surely there's something better I could use to pick up the dung.")
-        return@on
+        return@itemOnObjectOperate
     }
     scoopPoop()
 }

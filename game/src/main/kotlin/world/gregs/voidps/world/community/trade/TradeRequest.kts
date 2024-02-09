@@ -2,21 +2,19 @@ package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeType
-import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.playerOperate
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.removeRequest
 import world.gregs.voidps.engine.entity.character.player.req.request
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.moveAll
 import world.gregs.voidps.world.community.friend.friend
 import world.gregs.voidps.world.community.trade.Trade.getPartner
-import world.gregs.voidps.world.community.trade.Trade.isTradeInterface
 import world.gregs.voidps.world.interact.entity.player.display.Tab
 
 /**
@@ -24,10 +22,10 @@ import world.gregs.voidps.world.interact.entity.player.display.Tab
  * When an offer is updated the change is persisted to the other player
  */
 
-on<PlayerOption>({ operate && option == "Trade with" }) { player: Player ->
+playerOperate("Trade with") {
     val filter = target["trade_filter", "on"]
     if (filter == "off" || (filter == "friends" && !target.friend(player))) {
-        return@on
+        return@playerOperate
     }
     if (target.hasRequest(player, "trade")) {
         player.message("Sending trade offer...", ChatType.Trade)
@@ -71,10 +69,10 @@ fun startTrade(player: Player, partner: Player) {
     }
 }
 
-on<InterfaceClosed>({ isTradeInterface(id) }) { player: Player ->
-    val other: Player = getPartner(player) ?: return@on
+interfaceClose("trade_main", "trade_confirm") { player: Player ->
+    val other: Player = getPartner(player) ?: return@interfaceClose
     if (player.hasRequest(other, "accept_trade")) {
-        return@on
+        return@interfaceClose
     }
     reset(player, other)
     reset(other, player)

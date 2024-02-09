@@ -1,14 +1,12 @@
 package world.gregs.voidps.world.map.al_kharid.duel_arena
 
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ operate && target.id == "jaraah" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "jaraah") {
     player<Cheerful>("Hi!")
     npc<Angry>("What? Can't you see I'm busy?!")
     choice {
@@ -29,6 +27,6 @@ on<NPCOption>({ operate && target.id == "jaraah" && option == "Talk-to" }) { pla
     }
 }
 
-on<NPCOption>({ operate && target.id == "jaraah" && option == "Heal" }) { player: Player ->
+npcOperate("Heal", "jaraah") {
     heal()
 }

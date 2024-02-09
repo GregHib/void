@@ -3,10 +3,9 @@ package world.gregs.voidps.world.map.lumbridge
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -18,7 +17,7 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
-on<NPCOption>({ operate && target.id == "cook_lumbridge" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "cook_lumbridge") {
     when (player.quest("cooks_assistant")) {
         "unstarted" -> {
             npc<Sad>("What am I to do?")

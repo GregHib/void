@@ -89,7 +89,7 @@ internal object RunescapeWikiParser {
     fun flatten(map: MutableMap<String, Any>, name: String) {
         val properties = map.remove(name) as? MutableMap<String, String> ?: return
         properties.forEach { (key, value) ->
-            if(map.containsKey(key)) {
+            if (map.containsKey(key)) {
                 println("Overridden key $key")
             }
             map[key] = value

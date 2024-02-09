@@ -3,11 +3,11 @@ package world.gregs.voidps.world.community.ignore
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ignore.AddIgnore
 import world.gregs.voidps.engine.entity.character.player.chat.ignore.DeleteIgnore
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.encode.sendIgnoreList
@@ -16,7 +16,7 @@ val accounts: AccountDefinitions by inject()
 
 val maxIgnores = 100
 
-on<Registered> { player: Player ->
+playerSpawn { player: Player ->
     player.sendIgnores()
 }
 

@@ -36,17 +36,17 @@ object YamlSorter {
             val key2 = o2.first
             if (anchor(key1)) {
                 return -1
-            } else if(anchor(key2)) {
+            } else if (anchor(key2)) {
                 return 1
             }
             if (prioritise.contains(key1)) {
                 return -1
-            } else if(prioritise.contains(key2)) {
+            } else if (prioritise.contains(key2)) {
                 return 1
             }
             if (deprioritise.contains(key1)) {
                 return 1
-            } else if(deprioritise.contains(key2)) {
+            } else if (deprioritise.contains(key2)) {
                 return -1
             }
             return (key1.length + length(o1.second)).compareTo(key2.length + length(o2.second))

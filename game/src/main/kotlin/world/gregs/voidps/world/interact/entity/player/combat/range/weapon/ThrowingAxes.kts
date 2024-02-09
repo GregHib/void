@@ -7,33 +7,31 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.fightStyle
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.combat.weaponSwing
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isThrowingAxe(item: Item) = item.id.contains("_throwing_axe")
 
-on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && isThrowingAxe(player.weapon) }, Priority.HIGH) { player: Player ->
+weaponSwing("*_throwing_axe*", style = "range", priority = Priority.HIGH) { player: Player ->
     val required = player["required_ammo", 1]
     val ammo = player.weapon.id
     player.ammo = ""
     if (!player.equipment.remove(ammo, required)) {
         player.message("That was your last one!")
         delay = -1
-        return@on
+        return@weaponSwing
     }
     player.ammo = ammo
 }
 
-on<CombatSwing>({ player -> !swung() && isThrowingAxe(player.weapon) }, Priority.LOW) { player: Player ->
+weaponSwing("*_throwing_axe*", style = "range", priority = Priority.LOW) { player: Player ->
     val ammo = player.ammo.removePrefix("corrupt_")
     player.setAnimation(if (ammo.contains("morrigans")) "throw_javelin" else "thrown_accurate")
     player.setGraphic("${ammo}_throw")

@@ -3,25 +3,20 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
-fun isDragonClaws(weapon: Item?) = weapon != null && weapon.id == "dragon_claws"
-
-on<CombatSwing>({ !swung() && it.specialAttack && isDragonClaws(it.weapon) }, Priority.LOW) { player: Player ->
+specialAttackSwing("dragon_claws", priority = Priority.LOW) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
         delay = -1
-        return@on
+        return@specialAttackSwing
     }
     player.setAnimation("slice_and_dice")
     player.setGraphic("slice_and_dice")

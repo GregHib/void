@@ -2,40 +2,47 @@ package world.gregs.voidps.world.interact.entity.player.equip
 
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.toInt
-import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
+import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.timer.TimerStart
-import world.gregs.voidps.engine.timer.TimerStop
+import world.gregs.voidps.engine.timer.timerStart
+import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.world.interact.entity.player.effect.skulled
 
 val enums: EnumDefinitions by inject()
 
-on<TimerStart>({ timer == "skull" && it.interfaces.contains("items_kept_on_death") }) { player: Player ->
-    player.open("items_kept_on_death", close = false)
+timerStart("skull") { player: Player ->
+    if (player.interfaces.contains("items_kept_on_death")) {
+        player.open("items_kept_on_death", close = false)
+    }
 }
 
-on<TimerStop>({ timer == "skull" && it.interfaces.contains("items_kept_on_death") }) { player: Player ->
-    player.open("items_kept_on_death", close = false)
+timerStop("skull") { player: Player ->
+    if (player.interfaces.contains("items_kept_on_death")) {
+        player.open("items_kept_on_death", close = false)
+    }
 }
 
-on<TimerStart>({ timer == "prayer_protect_item" && it.interfaces.contains("items_kept_on_death") }) { player: Player ->
-    player.open("items_kept_on_death", close = false)
+timerStart("prayer_protect_item") { player: Player ->
+    if (player.interfaces.contains("items_kept_on_death")) {
+        player.open("items_kept_on_death", close = false)
+    }
 }
 
-on<TimerStop>({ timer == "prayer_protect_item" && it.interfaces.contains("items_kept_on_death") }) { player: Player ->
-    player.open("items_kept_on_death", close = false)
+timerStop("prayer_protect_item") { player: Player ->
+    if (player.interfaces.contains("items_kept_on_death")) {
+        player.open("items_kept_on_death", close = false)
+    }
 }
 
-on<InterfaceRefreshed>({ id == "items_kept_on_death" }) { player: Player ->
+interfaceRefresh("items_kept_on_death") { player: Player ->
     val items = ItemsKeptOnDeath.getAllOrdered(player)
     val savedItems = ItemsKeptOnDeath.kept(player, items, enums)
-    val carriedWealth = items.sumOf { it.def.cost }
-    val savedWealth = savedItems.sumOf { it.def.cost }
+    val carriedWealth = items.sumOf { it.def.cost * it.amount }
+    val savedWealth = savedItems.sumOf { it.def.cost * it.amount }
     player.updateItemsOnDeath(
         savedItems,
         carriedWealth = carriedWealth,
