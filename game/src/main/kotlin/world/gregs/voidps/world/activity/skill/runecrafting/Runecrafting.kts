@@ -20,19 +20,16 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val itemDefinitions: ItemDefinitions by inject()
 val logger = InlineLogger()
 
 itemOnObjectOperate("*_essence", "*_altar") {
-    arriveDelay()
     bindRunes(player, item.id, item.def)
 }
 
 objectOperate("Craft-rune", "*_altar") {
-    arriveDelay()
     val id = target.id.replace("_altar", "_rune")
     bindRunes(player, id, itemDefinitions.get(id))
 }

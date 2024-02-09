@@ -41,7 +41,7 @@ val treeRoots = listOf(
 val Item.spinning: Spinning
     get() = def["spinning"]
 
-objectOperate("Spin", "spinning_wheel*") {
+objectOperate("Spin", "spinning_wheel*", arrive = false) {
     val strings = fibres.map { if (it.id == "tree_roots") "crossbow_string" else it.spinning.to }
     val (index, amount) = makeAmountIndex(
         items = strings,

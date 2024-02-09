@@ -32,7 +32,7 @@ itemOnObjectOperate(obj = "pottery_oven*", def = "pottery") {
     }
 }
 
-objectOperate("Fire", "pottery_oven*") {
+objectOperate("Fire", "pottery_oven*", arrive = false) {
     val item = player.inventory.items.firstOrNull { it.def.contains("pottery") && it.id != "soft_clay" } ?: return@objectOperate
     make("cook_range", item)
 }

@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
@@ -30,7 +29,6 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 objectOperate("Shoot-at", "archery_target") {
     player.closeDialogue()
     player.face(target)
-    arriveDelay()
     swing(player, target, 0)
 }
 

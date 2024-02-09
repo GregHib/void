@@ -33,7 +33,7 @@ npcApproach("Talk-to", "banker*") {
     menu()
 }
 
-objectOperate("Use", "bank_*") {
+objectOperate("Use", "bank_*", arrive = false) {
     val banker = npcs.first { it.def.name == "Banker" }
     player.talkWith(banker)
     menu()

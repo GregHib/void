@@ -30,7 +30,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
@@ -43,7 +42,6 @@ objectOperate("Mine") {
         player.message("There is currently no ore available in this rock.")
         return@objectOperate
     }
-    arriveDelay()
     player.softTimers.start("mining")
     var first = true
     while (true) {

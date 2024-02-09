@@ -32,7 +32,7 @@ val materials = listOf(
 val Item.weaving: Weaving
     get() = def["weaving"]
 
-objectOperate("Weave", "loom_*") {
+objectOperate("Weave", "loom_*", arrive = false) {
     val strings = materials.map { it.weaving.to }
     val (index, amount) = makeAmountIndex(
         items = strings,

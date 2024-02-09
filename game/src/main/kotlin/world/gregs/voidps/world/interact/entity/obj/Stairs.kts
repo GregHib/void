@@ -9,7 +9,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 
 val teleports: Teleports by inject()
 
-objectOperate("Climb") {
+objectOperate("Climb", arrive = false) {
     if (def.options?.filterNotNull()?.any { it.startsWith("Climb-") } != true) {
         return@objectOperate
     }

@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.Chuckle
@@ -32,7 +31,6 @@ objectOperate("Milk", "prized_dairy_cow") {
         player.message("You've already got some top-quality milk; you should take it to the cook.")
         return@objectOperate
     }
-    arriveDelay()
     player.setAnimation("milk_cow")
     player.playSound("milk_cow")
     player.start("delay", 5)
@@ -45,7 +43,6 @@ objectOperate("Milk", "prized_dairy_cow") {
 
 objectOperate("Milk", "dairy_cow") {
     if (player.holdsItem("bucket")) {
-        arriveDelay()
         player.setAnimation("milk_cow")
         player.playSound("milk_cow")
         player.start("delay", 5)

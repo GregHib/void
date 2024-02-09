@@ -25,7 +25,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.type.random
@@ -46,7 +45,6 @@ objectOperate("Chop*") {
         player.message("You do not have a hatchet which you have the woodcutting level to use.")
         return@objectOperate
     }
-    arriveDelay()
     player.closeDialogue()
     player.softTimers.start("woodcutting")
     val ivy = tree.log.isEmpty()

@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.approachRange
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance.nearestTo
@@ -38,7 +37,6 @@ val objects: GameObjects by inject()
 val southGate = Tile(3268, 3227)
 
 objectOperate("Pay-toll(10gp)", "toll_gate_al_kharid*") {
-    arriveDelay()
     if (!payToll(player)) {
         dialogue(player)
     }

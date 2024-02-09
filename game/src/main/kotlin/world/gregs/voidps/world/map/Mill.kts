@@ -19,7 +19,6 @@ objectOperate("Operate", "hopper_controls") {
         player.message("The flour bin downstairs is full, I should empty it first.")
         return@objectOperate
     }
-    arriveDelay()
     if (player["hopper_bin", 0] != 1) {
         player.setAnimation("pull_hopper_controls")
         player.playSound("lever")
@@ -75,7 +74,6 @@ objectOperate("Take-flour", "flour_bin_3") {
         player.message("You need an empty pot to hold the flour in.")
         return@objectOperate
     }
-    arriveDelay()
     if (player.quest("cooks_assistant") == "started" && player["cooks_assistant_talked_to_millie", 0] == 1) {
         player.inventory.remove("empty_pot")
         if (player.holdsItem("extra_fine_flour") || player.bank.contains("extra_fine_flour")) {

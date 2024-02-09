@@ -175,7 +175,6 @@ suspend fun NPCOption.talkingToMe() {
 }
 
 objectOperate("Pick-up", "dung") {
-    arriveDelay()
     if (!player.inventory.contains("bucket")) {
         player<Talk>("I'm not picking that up. I'll need a container...")
         return@objectOperate

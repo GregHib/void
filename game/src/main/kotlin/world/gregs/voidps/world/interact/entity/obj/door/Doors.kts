@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.interact.entity.obj.door.Door.closeDoor
@@ -20,7 +19,6 @@ objectOperate("Close") {
     if (!def.isDoor()) {
         return@objectOperate
     }
-    arriveDelay()
     // Prevent players from trapping one another
     if (stuck(player)) {
         return@objectOperate
@@ -32,7 +30,6 @@ objectOperate("Open") {
     if (!def.isDoor()) {
         return@objectOperate
     }
-    arriveDelay()
     if (openDoor(player, target, def)) {
         pause(1)
         player.events.emit(DoorOpened)

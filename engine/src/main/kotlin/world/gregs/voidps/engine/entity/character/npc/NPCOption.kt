@@ -31,7 +31,7 @@ fun npcApproach(option: String, vararg npcs: String = arrayOf("*"), block: suspe
     }
 }
 
-fun npcOperate(option: String, npc: String = "*", block: suspend NPCOption.() -> Unit) {
+fun npcOperate(option: String = "*", npc: String = "*", block: suspend NPCOption.() -> Unit) {
     on<NPCOption>({ operate && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) { _: Player ->
         block.invoke(this)
     }
