@@ -40,7 +40,7 @@ interfaceOption("Toggle swap/insert", "item_mode", "bank") {
     player["bank_item_mode"] = if (value == "insert") "swap" else "insert"
 }
 
-interfaceSwap("bank", "inventory", "tab_*") { player: Player ->
+interfaceSwap("bank", "inventory", "tab_#") { player: Player ->
     val fromTab = Bank.getTab(player, fromSlot)
     val toTab = toComponent.removePrefix("tab_").toInt() - 1
     val toIndex = if (toTab == Bank.MAIN_TAB) player.bank.freeIndex() else Bank.tabIndex(player, toTab + 1)

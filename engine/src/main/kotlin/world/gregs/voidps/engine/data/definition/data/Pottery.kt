@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.data.definition.data
 
 data class Pottery(
-    val list: Map<String, Ceramic> = emptyMap()
+    val map: Map<String, Ceramic> = emptyMap()
 ) {
 
     data class Ceramic(
