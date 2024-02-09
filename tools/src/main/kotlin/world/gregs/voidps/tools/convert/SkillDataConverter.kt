@@ -66,7 +66,7 @@ object SkillDataConverter {
                 map.replace("animation", string)
                 if (string.isEmpty()) {
                     newAnimations.getOrPut(map["animation"] as Int) { mutableListOf() }.add(name)
-                } else if(string.toIntOrNull() != null) {
+                } else if (string.toIntOrNull() != null) {
                     newAnimations.getOrPut(string.toInt()) { mutableListOf() }.add(name)
                 }
             }
@@ -75,7 +75,7 @@ object SkillDataConverter {
                 map.replace("sound", string)
                 if (string.isEmpty()) {
                     newSounds.getOrPut(map["sound"] as Int) { mutableListOf() }.add(name)
-                } else if(string.toIntOrNull() != null) {
+                } else if (string.toIntOrNull() != null) {
                     newSounds.getOrPut(string.toInt()) { mutableListOf() }.add(name)
                 }
             }

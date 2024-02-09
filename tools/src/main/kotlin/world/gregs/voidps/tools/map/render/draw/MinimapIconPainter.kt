@@ -39,7 +39,7 @@ class MinimapIconPainter(
             val position = buffer.readInt()
             val id = buffer.readShort()
             val skip = buffer.readUnsignedByte()
-            if(skip == 1) {
+            if (skip == 1) {
                 val x = position shr 14 and 0x3fff
                 val y = position and 0x3fff
                 val level = position shr 28 and 0x3

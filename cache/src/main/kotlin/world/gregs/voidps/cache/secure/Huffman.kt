@@ -101,7 +101,7 @@ class Huffman {
 
     fun decompress(message: ByteArray, length: Int): String? {
         return try {
-            if(masks == null) {
+            if (masks == null) {
                 return null
             }
             var charsDecoded = 0
@@ -158,7 +158,7 @@ class Huffman {
      */
     private fun compress(message: ByteArray, builder: BufferWriter) {
         try {
-            if(masks == null) {
+            if (masks == null) {
                 return
             }
             var key = 0

@@ -20,16 +20,16 @@ private object InventoryNames {
 
         file.readLines().map { it.split(",") }.map {
             Data(it[0], it[5].toIntOrNull(), it[6].toIntOrNull(), it[7].toIntOrNull(), it[8].toIntOrNull()) }.forEach {
-            if(it.inventory != null) {
+            if (it.inventory != null) {
                 map[it.inventory] = toIdentifier(it.name)
             }
-            if(it.sampleInventory != null) {
+            if (it.sampleInventory != null) {
                 map[it.sampleInventory] = "${toIdentifier(it.name)}_sample"
             }
-            if(it.skillcapeInventory != null) {
+            if (it.skillcapeInventory != null) {
                 map[it.skillcapeInventory] = "${toIdentifier(it.name)}_skillcape"
             }
-            if(it.trimmedInventory != null) {
+            if (it.trimmedInventory != null) {
                 map[it.trimmedInventory] = "${toIdentifier(it.name)}_trimmed"
             }
         }

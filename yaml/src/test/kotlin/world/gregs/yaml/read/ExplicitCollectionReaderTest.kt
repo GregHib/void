@@ -79,7 +79,7 @@ class ExplicitCollectionReaderTest {
     fun `Parse explicit map indent values`() {
         val config = object : YamlReaderConfiguration() {
             override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
-                assertEquals(if(key == "three" || key == "four") 1 else 0, indent)
+                assertEquals(if (key == "three" || key == "four") 1 else 0, indent)
                 super.set(map, key, value, indent, parentMap)
             }
         }

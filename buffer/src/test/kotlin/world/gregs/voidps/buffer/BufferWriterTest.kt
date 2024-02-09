@@ -277,7 +277,7 @@ internal class BufferWriterTest {
     }
 
     private fun assertByte(value: Int) {
-        if(reader == null) {
+        if (reader == null) {
             reader = BufferReader(buffer.toArray())
         }
         assertEquals(value, reader!!.readByte())

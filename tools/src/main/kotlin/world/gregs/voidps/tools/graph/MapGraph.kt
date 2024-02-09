@@ -226,7 +226,7 @@ class MapGraph(
             val target = link.second
             val targetTargets = map[target] ?: continue
             val intersect = sourceTargets.intersect(targetTargets)
-            if(intersect.isNotEmpty()) {
+            if (intersect.isNotEmpty()) {
                 duplicates.add(link)
                 sourceTargets.remove(target)
                 targetTargets.remove(source)

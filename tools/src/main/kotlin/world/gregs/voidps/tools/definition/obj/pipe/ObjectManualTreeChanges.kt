@@ -185,7 +185,7 @@ class ObjectManualTreeChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
 
     val stumps = File("tree-stumps-667.csv").readLines().mapIndexedNotNull { index, s ->
         val parts = s.split(",")
-        if(index == 0 || parts[1].isEmpty()) {
+        if (index == 0 || parts[1].isEmpty()) {
             null
         } else {
             parts[0].toInt() to parts[1].toInt()
@@ -203,7 +203,7 @@ class ObjectManualTreeChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
             }
             val uid = builder.uid
             stumps.forEach { (tree, stumpId) ->
-                if(id == tree) {
+                if (id == tree) {
                     extras["stump"] = stumpId
                 }
             }

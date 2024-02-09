@@ -16,7 +16,7 @@ class InfoBoxMonster : Pipeline.Modifier<Extras> {
     private fun process(extras: MutableMap<String, Any>, page: WikiPage?) {
         val template = page?.getTemplateMap("infobox monster") ?: return
         template.forEach { (key, value) ->
-            if(value is ArrayList<*>) {
+            if (value is ArrayList<*>) {
                 println("Unknown al $value")
                 return@forEach
             }

@@ -23,7 +23,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 val logger = InlineLogger()
 
 itemOnObjectOperate("steel_bar", "furnace*") {
-    if(player.quest("dwarf_cannon") != "completed") {
+    if (player.quest("dwarf_cannon") != "completed") {
         return@itemOnObjectOperate
     }
     arriveDelay()

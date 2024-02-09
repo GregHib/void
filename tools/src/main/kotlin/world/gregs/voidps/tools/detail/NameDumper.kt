@@ -43,7 +43,7 @@ abstract class NameDumper {
         map.forEach { (name, list) ->
             if (list.size > 1) {
                 list.forEachIndexed { index, id ->
-                    if(index == 0) {
+                    if (index == 0) {
                         unique[toIdentifier(name)] = createData(name, id)
                     } else {
                         unique["${toIdentifier(name)}_${index + 1}"] = createData(name, id)

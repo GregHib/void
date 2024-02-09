@@ -18,7 +18,7 @@ interfaceOpen("prayer_list") { player: Player ->
 
 interfaceRefresh("prayer_list") { player: Player ->
     val quickPrayers = player[SELECTING_QUICK_PRAYERS, false]
-    if(quickPrayers) {
+    if (quickPrayers) {
         player.interfaceOptions.unlockAll(id, "quick_prayers", 0..29)
     } else {
         player.interfaceOptions.unlockAll(id, "regular_prayers", 0..29)

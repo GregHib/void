@@ -12,7 +12,7 @@ class OfflinePageCollector(val wiki: Wiki, infoboxes: List<String>, val function
         wiki.pages.forEach { page ->
             val text = page.revision.text
             infoboxes.forEach {
-                if(text.contains(it, true)) {
+                if (text.contains(it, true)) {
                     appendName(it, page)
                 }
             }
@@ -23,7 +23,7 @@ class OfflinePageCollector(val wiki: Wiki, infoboxes: List<String>, val function
         val map = page.getTemplateMap(title) ?: return
         val name = (map["name"] as? String)?.lowercase()
         val redirectedPage = if (page.redirected) page.getRedirect(wiki) ?: page else page
-        if(name != null) {
+        if (name != null) {
             pageNames.putIfAbsent(name, redirectedPage)
         }
         pageNames.putIfAbsent(page.title.lowercase(), redirectedPage)
@@ -31,13 +31,13 @@ class OfflinePageCollector(val wiki: Wiki, infoboxes: List<String>, val function
     }
 
     fun getPage(rs3: WikiPage?, rs2: WikiPage?, name: String): WikiPage? {
-        if(rs3 != null) {
+        if (rs3 != null) {
             val page = pageNames[rs3.title.lowercase()]
             if (page != null) {
                 return page
             }
         }
-        if(rs2 != null) {
+        if (rs2 != null) {
             val page = pageNames[rs2.title.lowercase()]
             if (page != null) {
                 return page
@@ -54,9 +54,9 @@ class OfflinePageCollector(val wiki: Wiki, infoboxes: List<String>, val function
         val (_, name, page, _, rs3, _) = content
         val newPage = getPage(rs3, page, name)
         if (newPage != null) {
-            if(newPage.redirected) {
+            if (newPage.redirected) {
                 val redirected = newPage.getRedirect(wiki)
-                if(redirected != null) {
+                if (redirected != null) {
                     function.invoke(content, redirected)
                     return content.copy(rs2 = redirected)
                 }

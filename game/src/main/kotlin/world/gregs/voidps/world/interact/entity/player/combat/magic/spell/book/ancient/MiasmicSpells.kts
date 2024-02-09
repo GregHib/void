@@ -32,7 +32,7 @@ spellSwing("miasmic_*", Priority.LOW) { player: Player ->
 fun meleeOrRanged(type: String) = type == "range" || type == "melee"
 
 combatSwing(priority = Priority.LOWEST) { player: Player ->
-    if(delay != null && delay!! > 0 && player.hasClock("miasmic") && meleeOrRanged(player.fightStyle)) {
+    if (delay != null && delay!! > 0 && player.hasClock("miasmic") && meleeOrRanged(player.fightStyle)) {
         delay = delay!! * 2
     }
 }

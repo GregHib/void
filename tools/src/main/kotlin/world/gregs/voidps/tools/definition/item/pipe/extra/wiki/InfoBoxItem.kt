@@ -35,7 +35,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
     private fun processRs3(extras: MutableMap<String, Any>, id: Int, page: WikiPage, builder: PageCollector) {
         splitByVersion(page, "infobox item", id, false) { template, suffix ->
             template.forEach { (key, value) ->
-                if(value is ArrayList<*>) {
+                if (value is ArrayList<*>) {
                     println("Unknown al $value")
                     return@forEach
                 }
@@ -62,7 +62,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
                     }
                     "examine$suffix" -> {
                         val t = value as? String
-                        if(t == null) {
+                        if (t == null) {
                             println("Unknown examine $t")
                         } else {
                             val text = removeLinks(t).replace("adrenaline", "recover special").replace(usedInRegex, "").trim()

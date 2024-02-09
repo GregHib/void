@@ -20,11 +20,11 @@ object RunescapeWikiPagesParser {
 
             page.templates.forEach { (name, obj) ->
                 println("Template: $name")
-                if(obj is List<*>) {
+                if (obj is List<*>) {
                     obj.forEach {
                         println(it)
                     }
-                } else if(obj is Map<*, *>) {
+                } else if (obj is Map<*, *>) {
                     obj.forEach { (key, value) ->
                         println("$key = $value")
                     }

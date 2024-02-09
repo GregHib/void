@@ -35,9 +35,9 @@ internal object RunescapeWikiModifier {
         for ((item, properties) in raw) {
             val ids = properties.getIds()
             val date = properties.getRelease()
-//            if(date == null || date.isBefore(revision)) {
+//            if (date == null || date.isBefore(revision)) {
             for (id in ids) {
-//                    if(id < maxItemId) {
+//                    if (id < maxItemId) {
                 val props = HashMap(properties as MutableMap<String, Any>)
                 props["Item ID"] = id
                 props["String ID"] = item
