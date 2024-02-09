@@ -11175,9 +11175,6 @@ well_2:
 well_3:
   id: 3485
   examine: "An ornately carved well that draws water from the river Salve."
-well_old:
-  id: 3546
-  examine: ""
 sink_2:
   id: 4063
   examine: "Ideal for washing things in."
@@ -11210,16 +11207,16 @@ well_7:
   examine: "Best used with a bucket."
 water_trough:
   id: 12122
-  examine: ""
+  examine: "Filled with tepid water."
 well_8:
   id: 12201
-  examine: ""
+  examine: "A well, it is not safe to climb down."
 sink_8:
   id: 12279
-  examine: ""
+  examine: "Wash your hands!"
 well_9:
   id: 12897
-  examine: ""
+  examine: "It smells stagnant."
 pump_and_drain:
   id: 13559
   examine: "Running water in your own home! Luxury!"
