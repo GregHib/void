@@ -353,9 +353,9 @@ internal class BZIP2Compressor {
     private fun method152(arg0: Int): Int {
         while (true) {
             if (anInt3088 >= arg0) {
-                val i_93_ = anInt3078 shr anInt3088 - arg0 and (1 shl arg0) - 1
+                val i93 = anInt3078 shr anInt3088 - arg0 and (1 shl arg0) - 1
                 anInt3088 -= arg0
-                return i_93_
+                return i93
             }
             anInt3078 = anInt3078 shl 8 or (compressed[startOffset].toInt() and 0xff)
             anInt3088 += 8
@@ -366,111 +366,111 @@ internal class BZIP2Compressor {
 
     private fun method151() {
         var i = aByte3108
-        var i_81_ = anInt3080
-        var i_82_ = anInt3071
-        var i_83_ = anInt3070
+        var i81 = anInt3080
+        var i82 = anInt3071
+        var i83 = anInt3070
         val data = anIntArray5786
-        var i_84_ = anInt3106
-        val is_85_ = decompressed
-        var i_86_ = anInt3100
-        var i_87_ = decompressedLength
-        val i_88_ = i_87_
-        val i_89_ = anInt3077 + 1
+        var i84 = anInt3106
+        val decompressed = decompressed
+        var i86 = anInt3100
+        var length = decompressedLength
+        val i88 = length
+        val i89 = anInt3077 + 1
         while_68_@ while (true) {
-            if (i_81_ > 0) {
+            if (i81 > 0) {
                 while (true) {
-                    if (i_87_ == 0) {
+                    if (length == 0) {
                         break@while_68_
                     }
-                    if (i_81_ == 1) {
+                    if (i81 == 1) {
                         break
                     }
-                    is_85_[i_86_] = i
-                    i_81_--
-                    i_86_++
-                    i_87_--
+                    decompressed[i86] = i
+                    i81--
+                    i86++
+                    length--
                 }
-                if (i_87_ == 0) {
-                    i_81_ = 1
+                if (length == 0) {
+                    i81 = 1
                     break
                 }
-                is_85_[i_86_] = i
-                i_86_++
-                i_87_--
+                decompressed[i86] = i
+                i86++
+                length--
             }
             var bool = true
             while (bool) {
                 bool = false
-                if (i_82_ == i_89_) {
-                    i_81_ = 0
+                if (i82 == i89) {
+                    i81 = 0
                     break@while_68_
                 }
-                i = i_83_.toByte()
-                i_84_ = data[i_84_]
-                val i_90_ = (i_84_ and 0xff).toByte().toInt()
-                i_84_ = i_84_ shr 8
-                i_82_++
-                if (i_90_ != i_83_) {
-                    i_83_ = i_90_
-                    if (i_87_ == 0) {
-                        i_81_ = 1
+                i = i83.toByte()
+                i84 = data[i84]
+                val i90 = (i84 and 0xff).toByte().toInt()
+                i84 = i84 shr 8
+                i82++
+                if (i90 != i83) {
+                    i83 = i90
+                    if (length == 0) {
+                        i81 = 1
                         break@while_68_
                     }
-                    is_85_[i_86_] = i
-                    i_86_++
-                    i_87_--
+                    decompressed[i86] = i
+                    i86++
+                    length--
                     bool = true
-                } else if (i_82_ == i_89_) {
-                    if (i_87_ == 0) {
-                        i_81_ = 1
+                } else if (i82 == i89) {
+                    if (length == 0) {
+                        i81 = 1
                         break@while_68_
                     }
-                    is_85_[i_86_] = i
-                    i_86_++
-                    i_87_--
+                    decompressed[i86] = i
+                    i86++
+                    length--
                     bool = true
                 }
             }
-            i_81_ = 2
-            i_84_ = data[i_84_]
-            var i_91_ = (i_84_ and 0xff).toByte().toInt()
-            i_84_ = i_84_ shr 8
-            if (++i_82_ != i_89_) {
-                if (i_91_ != i_83_) {
-                    i_83_ = i_91_
+            i81 = 2
+            i84 = data[i84]
+            var i91 = (i84 and 0xff).toByte().toInt()
+            i84 = i84 shr 8
+            if (++i82 != i89) {
+                if (i91 != i83) {
+                    i83 = i91
                 } else {
-                    i_81_ = 3
-                    i_84_ = data[i_84_]
-                    i_91_ = (i_84_ and 0xff).toByte().toInt()
-                    i_84_ = i_84_ shr 8
-                    if (++i_82_ != i_89_) {
-                        if (i_91_ != i_83_) {
-                            i_83_ = i_91_
+                    i81 = 3
+                    i84 = data[i84]
+                    i91 = (i84 and 0xff).toByte().toInt()
+                    i84 = i84 shr 8
+                    if (++i82 != i89) {
+                        if (i91 != i83) {
+                            i83 = i91
                         } else {
-                            i_84_ = data[i_84_]
-                            i_91_ = (i_84_ and 0xff).toByte().toInt()
-                            i_84_ = i_84_ shr 8
-                            i_82_++
-                            i_81_ = (i_91_ and 0xff) + 4
-                            i_84_ = data[i_84_]
-                            i_83_ = (i_84_ and 0xff).toByte().toInt()
-                            i_84_ = i_84_ shr 8
-                            i_82_++
+                            i84 = data[i84]
+                            i91 = (i84 and 0xff).toByte().toInt()
+                            i84 = i84 shr 8
+                            i82++
+                            i81 = (i91 and 0xff) + 4
+                            i84 = data[i84]
+                            i83 = (i84 and 0xff).toByte().toInt()
+                            i84 = i84 shr 8
+                            i82++
                         }
                     }
                 }
             }
         }
-        anInt3097 += i_88_ - i_87_
+        anInt3097 += i88 - length
         aByte3108 = i
-        anInt3080 = i_81_
-        anInt3071 = i_82_
-        anInt3070 = i_83_
+        anInt3080 = i81
+        anInt3071 = i82
+        anInt3070 = i83
         anIntArray5786 = data
-        anInt3106 = i_84_
-        decompressed = is_85_
-        anInt3100 = i_86_
-        decompressedLength = i_87_
+        anInt3106 = i84
+        this.decompressed = decompressed
+        anInt3100 = i86
+        decompressedLength = length
     }
 
     private fun method145(arg0: IntArray, arg1: IntArray, arg2: IntArray, arg3: ByteArray, arg4: Int, arg5: Int, arg6: Int) {
