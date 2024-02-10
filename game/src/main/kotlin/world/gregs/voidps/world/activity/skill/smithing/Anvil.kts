@@ -4,8 +4,10 @@ import com.github.michaelbull.logging.InlineLogger
 import net.pearx.kasechange.toSentenceCase
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.closeMenu
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
@@ -120,6 +122,10 @@ itemOnObjectOperate("*_bar", "anvil*") {
 
 itemOnObjectOperate("hammer", "anvil*", arrive = false) {
     player.message("To smith metal equipment, you must use the metal bar on the anvil.")
+}
+
+interfaceClose("smithing") { player: Player ->
+    player.sendScript(571)
 }
 
 suspend fun CharacterContext.smith(player: Player, metal: String, type: String, amount: Int) {

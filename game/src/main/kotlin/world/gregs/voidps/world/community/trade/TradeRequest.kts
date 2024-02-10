@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -105,4 +106,5 @@ fun reset(player: Player, other: Player) {
     player.loan.moveAll(player.inventory)
     player.loan.clear()
     player.otherLoan.clear()
+    player.sendScript(571)
 }

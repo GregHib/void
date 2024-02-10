@@ -2,7 +2,9 @@ package world.gregs.voidps.world.activity.skill.crafting
 
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -77,6 +79,10 @@ interfaceOption(component = "*_button", id = "silver_mould") {
         else -> return@interfaceOption
     }
     player.make(Item(component.removeSuffix("_button")), amount)
+}
+
+interfaceClose("silver_mould") { player: Player ->
+    player.sendScript(571)
 }
 
 fun Player.make(item: Item, amount: Int) {

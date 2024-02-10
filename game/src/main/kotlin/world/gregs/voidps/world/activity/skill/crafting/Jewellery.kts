@@ -2,7 +2,9 @@ package world.gregs.voidps.world.activity.skill.crafting
 
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -66,6 +68,10 @@ interfaceOption("Make *", "make*", "make_mould*") {
         else -> return@interfaceOption
     }
     make(component, amount)
+}
+
+interfaceClose("make_mould*") { player: Player ->
+    player.sendScript(571)
 }
 
 fun CharacterContext.make(component: String, amount: Int) {
