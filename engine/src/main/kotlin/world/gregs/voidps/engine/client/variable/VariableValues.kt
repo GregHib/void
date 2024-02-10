@@ -28,27 +28,27 @@ sealed class VariableValues {
     }
 }
 
-object NoValues : VariableValues() {
+data object NoValues : VariableValues() {
     override fun default() = null
     override fun toInt(value: Any) = value as? Int ?: -1
 }
 
-object IntValues : VariableValues() {
+data object IntValues : VariableValues() {
     override fun default() = 0
     override fun toInt(value: Any) = value as Int
 }
 
-object StringValues : VariableValues() {
+data object StringValues : VariableValues() {
     override fun default() = ""
     override fun toInt(value: Any) = -1
 }
 
-object DoubleValues : VariableValues() {
+data object DoubleValues : VariableValues() {
     override fun default() = 0.0
     override fun toInt(value: Any) = (value as Double).toInt() * 10
 }
 
-object BooleanValues : VariableValues() {
+data object BooleanValues : VariableValues() {
     override fun default() = false
     override fun toInt(value: Any) = (value as Boolean).toInt()
 }

@@ -8,7 +8,7 @@ sealed class TransactionError {
      * An error indicating that an invalid item was encountered during the transaction.
      * Common reasons being index out of bounds or item restriction
      */
-    object Invalid : TransactionError()
+    data object Invalid : TransactionError()
 
     /**
      * An error indicating that the inventory is full and cannot accept any more items.
@@ -25,5 +25,5 @@ sealed class TransactionError {
     /**
      * The transaction completed without error or is no longer in progress.
      */
-    object None : TransactionError()
+    data object None : TransactionError()
 }

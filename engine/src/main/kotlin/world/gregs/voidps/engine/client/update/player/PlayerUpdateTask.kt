@@ -5,11 +5,11 @@ import world.gregs.voidps.engine.client.update.view.PlayerTrackingSet
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.type.Delta
 import world.gregs.voidps.network.encode.updatePlayers
 import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.voidps.network.visual.VisualEncoder
 import world.gregs.voidps.network.visual.VisualMask.APPEARANCE_MASK
+import world.gregs.voidps.type.Delta
 import kotlin.math.abs
 
 class PlayerUpdateTask(
@@ -302,19 +302,19 @@ class PlayerUpdateTask(
     }
 
     private sealed class LocalChange(val id: Int) {
-        object None : LocalChange(-1)
-        object Update : LocalChange(0)
-        object Remove : LocalChange(0)
-        object Walk : LocalChange(1)
-        object Run : LocalChange(2)
-        object Tele : LocalChange(3)
+        data object None : LocalChange(-1)
+        data object Update : LocalChange(0)
+        data object Remove : LocalChange(0)
+        data object Walk : LocalChange(1)
+        data object Run : LocalChange(2)
+        data object Tele : LocalChange(3)
     }
 
     sealed class RegionChange(val id: Int) {
-        object None : RegionChange(-1)
-        object Height : RegionChange(1)
-        object Local : RegionChange(2)
-        object Global : RegionChange(3)
+        data object None : RegionChange(-1)
+        data object Height : RegionChange(1)
+        data object Local : RegionChange(2)
+        data object Global : RegionChange(3)
     }
 
     companion object {
