@@ -2,7 +2,8 @@ package world.gregs.voidps.network.client
 
 import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.network.writeSmart
 
 open class Client(
@@ -13,7 +14,7 @@ open class Client(
 ) {
 
     private val logger = InlineLogger()
-    private val handler = context + CoroutineExceptionHandler { _, throwable ->
+    private val handler = CoroutineExceptionHandler { _, throwable ->
         logger.warn { "Client error: ${throwable.message}" }
         disconnect()
     }
@@ -99,9 +100,6 @@ open class Client(
     }
 
     companion object {
-        @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
-        val context = newSingleThreadContext("Networking")
-
         const val FIXED = 0
         const val BYTE = -1
         const val SHORT = -2

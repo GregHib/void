@@ -8,7 +8,6 @@ import io.ktor.utils.io.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.ClosedReceiveChannelException
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.network.client.Client
 import java.net.SocketException
 import java.util.*
 import java.util.concurrent.Executors
@@ -52,7 +51,7 @@ class GameServer(
                 logger.trace { "New connection accepted ${socket.remoteAddress}" }
                 val read = socket.openReadChannel()
                 val write = socket.openWriteChannel(autoFlush = false)
-                launch(Client.context) {
+                launch(dispatcher) {
                     connect(read, write, socket.remoteAddress.toJavaAddress().hostname)
                 }
             }
