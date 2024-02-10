@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 object InventoryDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache: Cache = CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\")
+        val cache: Cache = CacheDelegate(property("cachePath"))
         val decoder = InventoryDecoder().load(cache)
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue

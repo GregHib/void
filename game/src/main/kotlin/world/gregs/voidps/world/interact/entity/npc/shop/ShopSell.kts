@@ -61,7 +61,7 @@ fun sell(player: Player, item: Item, amount: Int) {
     }
     when (player.inventory.transaction.error) {
         is TransactionError.Full -> {
-            if (player.inventory.isFull()) {
+            if (player.inventory.isFull() && !player.inventory.contains("coins")) {
                 player.inventoryFull()
             } else if (shop.isFull()) {
                 player.message("The shop is currently full.")
