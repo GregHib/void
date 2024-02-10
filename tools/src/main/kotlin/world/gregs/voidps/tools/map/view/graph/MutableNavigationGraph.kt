@@ -87,6 +87,7 @@ class MutableNavigationGraph {
             yaml.save(path, graph.adjacencyList.mapKeys { it.key.id })
         }
 
+        @Suppress("UNCHECKED_CAST")
         fun load(path: String = "./navgraph.json"): MutableNavigationGraph {
             val graph = MutableNavigationGraph()
             val map: Map<String, List<Map<String, Any>>> = yaml.load(path)

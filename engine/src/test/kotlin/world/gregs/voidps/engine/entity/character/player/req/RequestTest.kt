@@ -21,20 +21,20 @@ internal class RequestTest {
 
     @Test
     fun `Player request`() {
-        val request: (Player, Player) -> Unit = { a, b -> }
+        val request: (Player, Player) -> Unit = { _, _ -> }
         assertTrue(player.request(player2, "trade", request))
     }
 
     @Test
     fun `Has player requested`() {
-        val request: (Player, Player) -> Unit = { a, b -> }
+        val request: (Player, Player) -> Unit = { _, _ -> }
         player.request(player2, "trade", request)
         assertTrue(player.hasRequest(player2, "trade"))
     }
 
     @Test
     fun `Get request`() {
-        val request: (Player, Player) -> Unit = { a, b -> }
+        val request: (Player, Player) -> Unit = { _, _ -> }
         player.request(player2, "trade", request)
         assertTrue(player.hasRequest(player2, "trade"))
         assertFalse(player.hasRequest(player3, "trade"))
@@ -43,7 +43,7 @@ internal class RequestTest {
 
     @Test
     fun `Remove request`() {
-        val request: (Player, Player) -> Unit = { a, b -> }
+        val request: (Player, Player) -> Unit = { _, _ -> }
         player.request(player2, "trade", request)
         player.removeRequest(player2, "trade")
         assertFalse(player.hasRequest(player3, "trade"))

@@ -1,3 +1,5 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package world.gregs.voidps.world.command.admin
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap

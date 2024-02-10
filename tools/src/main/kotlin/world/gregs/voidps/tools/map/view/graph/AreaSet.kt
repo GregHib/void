@@ -65,6 +65,7 @@ class AreaSet {
 //            writer.writeValue(File(path), set.areas)
         }
 
+        @Suppress("UNCHECKED_CAST")
         fun load(yaml: Yaml, path: String = "./areas.yml"): AreaSet {
             val set = AreaSet()
             val map = yaml.load<Map<String, Map<String, Any>>>(path)

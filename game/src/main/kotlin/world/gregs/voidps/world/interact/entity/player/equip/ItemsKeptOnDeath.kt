@@ -26,21 +26,21 @@ object ItemsKeptOnDeath {
         if (items.isEmpty()) {
             return emptyList()
         }
-        val items = LinkedList(items)
+        val queue = LinkedList(items)
         val kept = mutableListOf<Item>()
         val alwaysLost = enums.get(616).map!!
         var count = 0
         while (count < save) {
-            val item = items.peek() ?: break
+            val item = queue.peek() ?: break
             if (alwaysLost.getOrDefault(item.def.id, 0) == 1) {
-                items.pop()
+                queue.pop()
                 continue
             }
             if (item.amount == 1) {
-                kept.add(items.pop())
+                kept.add(queue.pop())
             } else if (item.amount > 1) {
-                items.pop()
-                items.addFirst(item.copy(amount = item.amount - 1))
+                queue.pop()
+                queue.addFirst(item.copy(amount = item.amount - 1))
                 kept.add(item.copy(amount = 1))
             }
             count++

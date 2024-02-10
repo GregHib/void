@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.yaml.Yaml
 import java.io.File
 
+@Suppress("UNCHECKED_CAST")
 object SkillDataConverter {
     @Suppress("USELESS_CAST")
     @JvmStatic

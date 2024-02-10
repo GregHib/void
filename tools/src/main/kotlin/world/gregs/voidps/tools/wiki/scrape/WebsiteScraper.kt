@@ -24,6 +24,7 @@ object WebsiteScraper {
         downloadThreaded(folder, "https://chisel.weirdgloop.org/dialogue/", contentPages, 5_000)
     }
 
+    @Suppress("OPT_IN_USAGE")
     private fun downloadThreaded(folder: File, url: String, pages: List<String>, chunkSize: Int) {
         runBlocking {
             supervisorScope {

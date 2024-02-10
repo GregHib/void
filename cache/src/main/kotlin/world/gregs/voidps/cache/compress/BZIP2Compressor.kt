@@ -68,10 +68,10 @@ internal class BZIP2Compressor {
      * Decompress a BZIP2 block entry.
      */
     private fun decompress() {
-        var i = 0
-        var intArray1 = IntArray(0)
-        var intArray2 = IntArray(0)
-        var intArray3 = IntArray(0)
+        var i: Int
+        var intArray1: IntArray
+        var intArray2: IntArray
+        var intArray3: IntArray
         var bool28 = true
         while (bool28) {
             var i29 = method152(8)
@@ -113,9 +113,9 @@ internal class BZIP2Compressor {
                 }
             }
             var anInt3073 = 0
-            for (i in 0..255) {
-                if (aBooleanArray3103[i]) {
-                    aByteArray3107[anInt3073] = i.toByte()
+            for (j in 0..255) {
+                if (aBooleanArray3103[j]) {
+                    aByteArray3107[anInt3073] = j.toByte()
                     anInt3073++
                 }
             }
@@ -187,7 +187,7 @@ internal class BZIP2Compressor {
             }
             val i52 = anInt3073 + 1
             var i53 = 0
-            var i54 = 0
+            var i54: Int
             for (i55 in 0..255) {
                 anIntArray3075[i55] = 0
             }
@@ -231,11 +231,11 @@ internal class BZIP2Compressor {
                         if (i54 == 0) {
                             i53++
                             i54 = 50
-                            val index = aByteArray3076[i53]
-                            i = anIntArray3090[index.toInt()]
-                            intArray1 = anIntArrayArray3095[index.toInt()]
-                            intArray3 = anIntArrayArray3099[index.toInt()]
-                            intArray2 = anIntArrayArray3082[index.toInt()]
+                            val index2 = aByteArray3076[i53]
+                            i = anIntArray3090[index2.toInt()]
+                            intArray1 = anIntArrayArray3095[index2.toInt()]
+                            intArray3 = anIntArrayArray3099[index2.toInt()]
+                            intArray2 = anIntArrayArray3082[index2.toInt()]
                         }
                         i54--
                         i61 = i

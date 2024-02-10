@@ -28,6 +28,7 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
         return true
     }
 
+    @Suppress("UNCHECKED_CAST")
     fun compare(objects: List<GameObject>) {
         val interactiveObjects = objects.filter {
             it.def.options?.first() != null &&

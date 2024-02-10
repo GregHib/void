@@ -7,6 +7,7 @@ import kotlinx.coroutines.runBlocking
 import org.jsoup.Jsoup
 import java.io.File
 import java.net.URLDecoder
+import java.nio.charset.Charset
 import kotlin.system.measureTimeMillis
 
 /**
@@ -78,7 +79,7 @@ internal object RunescapeWikiScraper {
             for (item in ele.select("ul li a")) {
                 val link = item.attr("href")
                 val title = item.attr("title")
-                list.add(Link(URLDecoder.decode(link), title))
+                list.add(Link(URLDecoder.decode(link, Charset.defaultCharset()), title))
             }
         }
         val nextPage = element.select("a:contains(next page)").attr("href")

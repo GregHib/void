@@ -14,6 +14,7 @@ data class Smelting(
     val message: String = ""
 ) {
     companion object {
+        @Suppress("UNCHECKED_CAST")
         operator fun invoke(map: Map<String, Any>) = Smelting(
             level = map["level"] as Int,
             xp = map["xp"] as Double,

@@ -8,6 +8,7 @@ import world.gregs.voidps.network.instruct.QuickChatPublic
 
 class PublicQuickChatDecoder : Decoder(BYTE) {
 
+    @OptIn(ExperimentalUnsignedTypes::class)
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         val script = packet.readByte().toInt()
         val file = packet.readUShort().toInt()

@@ -95,6 +95,7 @@ internal object RunescapeWikiModifier {
         save(output.toSortedMap(), "Items667")
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun identifyMissingIds(
         raw: MutableMap<String, MutableMap<String, String>>,
         decoder: Array<ItemDefinition>,

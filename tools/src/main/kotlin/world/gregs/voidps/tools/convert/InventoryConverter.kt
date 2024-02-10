@@ -18,6 +18,7 @@ import kotlin.collections.set
 /**
  * Converts inventories from one cache into another, dumping the default values into inventories.yml
  */
+@Suppress("UNCHECKED_CAST")
 object InventoryConverter {
 
     fun convert(target: File, provider: File) {

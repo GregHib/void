@@ -14,6 +14,7 @@ data class AreaDefinition(
     companion object {
         val EMPTY = AreaDefinition("", Rectangle(0, 0, 0, 0), emptySet())
 
+        @Suppress("UNCHECKED_CAST")
         fun fromMap(name: String, map: MutableMap<String, Any>): AreaDefinition {
             return AreaDefinition(
                 name = name,

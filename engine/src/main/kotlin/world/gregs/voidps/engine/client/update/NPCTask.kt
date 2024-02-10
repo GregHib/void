@@ -14,18 +14,18 @@ class NPCTask(
     override val characters: CharacterList<NPC>
 ) : CharacterTask<NPC>(iterator) {
 
-    override fun run(npc: NPC) {
-        val delay = npc.delay
-        if (!npc.hasClock("delay") && delay != null) {
-            npc.delay = null
+    override fun run(character: NPC) {
+        val delay = character.delay
+        if (!character.hasClock("delay") && delay != null) {
+            character.delay = null
             delay.resume(Unit)
         }
-        if (npc.mode == EmptyMode && wanders(npc)) {
-            npc.mode = Wander(npc)
+        if (character.mode == EmptyMode && wanders(character)) {
+            character.mode = Wander(character)
         }
-        npc.softTimers.run()
-        npc.queue.tick()
-        npc.mode.tick()
-        checkTileFacing(npc)
+        character.softTimers.run()
+        character.queue.tick()
+        character.mode.tick()
+        checkTileFacing(character)
     }
 }

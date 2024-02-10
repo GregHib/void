@@ -12,18 +12,18 @@ class PlayerTask(
     override val characters: CharacterList<Player>
 ) : CharacterTask<Player>(iterator) {
 
-    override fun run(player: Player) {
-        val delay = player.delay
-        if (!player.hasClock("delay") && delay != null) {
-            player.delay = null
+    override fun run(character: Player) {
+        val delay = character.delay
+        if (!character.hasClock("delay") && delay != null) {
+            character.delay = null
             delay.resume(Unit)
         }
-        player.queue.tick()
-        if (!player.hasClock("delay") && !player.hasMenuOpen()) {
-            player.timers.run()
+        character.queue.tick()
+        if (!character.hasClock("delay") && !character.hasMenuOpen()) {
+            character.timers.run()
         }
-        player.softTimers.run()
-        player.mode.tick()
-        checkTileFacing(player)
+        character.softTimers.run()
+        character.mode.tick()
+        checkTileFacing(character)
     }
 }

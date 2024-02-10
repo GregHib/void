@@ -8,6 +8,7 @@ import world.gregs.voidps.network.instruct.ExamineObject
 
 class ObjectExamineDecoder : Decoder(2) {
 
+    @OptIn(ExperimentalUnsignedTypes::class)
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         val objectId = packet.readUShort().toInt()
         instructions.emit(ExamineObject(objectId))

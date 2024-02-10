@@ -10,6 +10,7 @@ import world.gregs.yaml.write.YamlWriterConfiguration
  * name:
  *   id: 0
  */
+@Suppress("UNCHECKED_CAST")
 object YamlSorter {
 
     private fun anchor(key: String) = key == "<<" || key == "&"

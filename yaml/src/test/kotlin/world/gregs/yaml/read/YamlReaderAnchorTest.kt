@@ -7,6 +7,7 @@ import world.gregs.yaml.Yaml
 
 class YamlReaderAnchorTest {
 
+    @Suppress("UNCHECKED_CAST")
     private val config = object : YamlReaderConfiguration() {
         override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
             when (key) {

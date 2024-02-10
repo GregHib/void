@@ -26,34 +26,34 @@ object DialogueProcessing {
             println(file.nameWithoutExtension)
             val readText = file.readText()
             val doc = Jsoup.parse(readText)
-            val title = doc.select("h2").first().text()
+            val title = doc.select("h2").first()!!.text()
             val type = title.take(title.indexOf(" ("))
 
             val tables = doc.select("table")
-            val nextRows = tables.first().select("a").map {
+            val nextRows = tables.first()!!.select("a").map {
                 it.attr("href").removeSuffix(".html").toIntOrNull() ?: -1
             }
-            val nextCountRows = tables.first().select("a").map {
+            val nextCountRows = tables.first()!!.select("a").map {
                 it.text().toInt()
             }
 
-            val previousRows = tables.last().select("a").map {
+            val previousRows = tables.last()!!.select("a").map {
                 it.attr("href").removeSuffix(".html").toIntOrNull() ?: -1
             }
 
-            val previousCountRows = tables.last().select("a").map {
+            val previousCountRows = tables.last()!!.select("a").map {
                 it.text().toInt()
             }
 
             when (type) {
                 "DIALOGUE_OPTIONS" -> {
-                    val list = doc.select("ol").first().select("li")
+                    val list = doc.select("ol").first()!!.select("li")
                     val options = list.mapNotNull { if (it.hasText()) it.text() else null }
                     val id = file.nameWithoutExtension
                     contents[id] = Dialogue(id.toInt(), type, nextRows, nextCountRows, previousRows, previousCountRows, options)
                 }
                 "DIALOGUE_PLAYER", "DIALOGUE_NPC" -> {
-                    val text = doc.select("p").first()
+                    val text = doc.select("p").first()!!
                     val name = text.select("b").text()
                     val dialogue = text.text().removePrefix("$name:").trim()
                     val id = file.nameWithoutExtension
@@ -75,7 +75,7 @@ object DialogueProcessing {
 
     private fun npcs(folder: File) {
         val yamlFile = folder.resolve("npcs.yaml")
-        val files = folder.resolve("npcs").listFiles()
+        val files = folder.resolve("npcs").listFiles()!!
         val npcs = mutableMapOf<String, List<Int>>()
         for (file in files) {
             npcs[file.nameWithoutExtension] = Jsoup.parse(file.readText()).select("a").map { it.attr("href").removePrefix("../content/").removeSuffix(".html").toInt() }

@@ -37,8 +37,8 @@ class ClientScriptDecoder(private val revision667: Boolean = false) : Definition
 
     override fun ClientScriptDefinition.read(opcode: Int, buffer: Reader) {
         buffer.position(buffer.length - 2)
-        val i = buffer.readShort()
-        val length: Int = buffer.length - 2 - i - (if (revision667) 16 else 12)
+        val offset = buffer.readShort()
+        val length: Int = buffer.length - 2 - offset - (if (revision667) 16 else 12)
         buffer.position(length)
         val instructionCount = buffer.readInt()
         intVariableCount = buffer.readShort()

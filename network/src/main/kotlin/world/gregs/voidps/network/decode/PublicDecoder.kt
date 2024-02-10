@@ -10,6 +10,7 @@ import world.gregs.voidps.network.readSmart
 
 class PublicDecoder(private val huffman: Huffman) : Decoder(BYTE) {
 
+    @OptIn(ExperimentalUnsignedTypes::class)
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         val effects = (packet.readUByte().toInt() shl 8) or packet.readUByte().toInt()
         val message = huffman.decompress(length = packet.readSmart(), message = packet.readBytes(packet.remaining.toInt())) ?: ""

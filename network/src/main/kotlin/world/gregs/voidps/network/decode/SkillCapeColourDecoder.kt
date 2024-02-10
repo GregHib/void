@@ -7,6 +7,7 @@ import world.gregs.voidps.network.Instruction
 
 class SkillCapeColourDecoder : Decoder(2) {
 
+    @OptIn(ExperimentalUnsignedTypes::class)
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         val colour = packet.readUShort().toInt()
     }

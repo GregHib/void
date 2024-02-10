@@ -34,8 +34,8 @@ interfaceOpen("canoe") { player: Player ->
     }
 }
 
-interfaceOpen("canoe_stations_map") { player: Player ->
+interfaceOpen("canoe_stations_map") { _: Player ->
 }
 
-interfaceOpen("canoe_travel") { player: Player ->
+interfaceOpen("canoe_travel") { _: Player ->
 }
