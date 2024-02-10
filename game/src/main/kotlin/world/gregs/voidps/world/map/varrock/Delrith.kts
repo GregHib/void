@@ -231,7 +231,7 @@ combatSwing(priority = Priority.HIGHEST) { player: Player ->
     if (target is NPC && target.id == "delrith" && target.transform == "delrith_weakened") {
         cancel()
         player.strongQueue("banish_delrith", 1) {
-            player.mode = Interact(player, target, NPCOption(player, target as NPC, target.def, "Banish"))
+            player.mode = Interact(player, target, NPCOption(player, target, target.def, "Banish"))
         }
     }
 }
