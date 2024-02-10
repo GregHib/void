@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.entity.character.player
 
 import kotlinx.coroutines.flow.MutableSharedFlow
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
-import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.GameFrame
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
@@ -34,7 +33,6 @@ import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.client.ClientState
 import world.gregs.voidps.network.encode.login
 import world.gregs.voidps.network.encode.logout
 import world.gregs.voidps.network.visual.PlayerVisuals
@@ -119,7 +117,7 @@ class Player(
             this.client = client
             interfaces.client = client
             (variables as PlayerVariables).client = client
-            client.on(Contexts.Game, ClientState.Disconnecting) {
+            client.onDisconnecting {
                 logout(false)
             }
         }

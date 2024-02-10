@@ -6,8 +6,6 @@ import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit5.MockKExtension
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -16,7 +14,6 @@ import world.gregs.voidps.network.client.Client
 import java.math.BigInteger
 
 @ExtendWith(MockKExtension::class)
-@OptIn(ExperimentalCoroutinesApi::class)
 @ExperimentalUnsignedTypes
 internal class LoginServerTest {
     @MockK
@@ -37,15 +34,7 @@ internal class LoginServerTest {
     @BeforeEach
     fun setup() {
         network = spyk(
-            LoginServer(
-                protocol(mockk()),
-                123,
-                BigInteger.ONE,
-                BigInteger.valueOf(2),
-                gatekeeper,
-                loader,
-                UnconfinedTestDispatcher()
-            )
+            LoginServer(protocol(mockk()), 123, BigInteger.ONE, BigInteger.valueOf(2), gatekeeper, loader)
         )
     }
 
