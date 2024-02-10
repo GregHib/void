@@ -1625,3 +1625,4 @@ teleport_pharaohs_sceptre:
   id: 9596
   ticks: 3
 fill_bucket: 895
+altar_pray: 645

@@ -8,7 +8,6 @@ import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoderFull
 import world.gregs.voidps.tools.cache.Xteas
 import world.gregs.voidps.tools.property
-import world.gregs.voidps.tools.propertyOrNull
 import world.gregs.voidps.type.Region
 
 object ObjectUsageFinder {
@@ -16,7 +15,7 @@ object ObjectUsageFinder {
     @JvmStatic
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
-        val xteas: Xteas = Xteas().load(property("xteaPath"), propertyOrNull("xteaJsonKey") ?: Xteas.DEFAULT_KEY, propertyOrNull("xteaJsonValue") ?: Xteas.DEFAULT_VALUE)
+        val xteas = Xteas()
         val decoder = ObjectDecoderFull(members = false, lowDetail = false).load(cache)
         val maps = MapDecoder(xteas).load(cache)
         for (map in maps) {
@@ -30,5 +29,5 @@ object ObjectUsageFinder {
         }
     }
 
-    private fun matches(obj: MapObject, def: ObjectDefinitionFull) = obj.id == 24368 || obj.id == 2397
+    private fun matches(obj: MapObject, def: ObjectDefinitionFull) = obj.id == 30726
 }
