@@ -43,7 +43,6 @@ object InventoryConverter {
             if (otherDef.ids != null) {
                 targetDef.ids = otherDef.ids?.filter { itemDefinitions.getOrNull(it) != null }?.toIntArray()
                 targetDef.amounts = otherDef.amounts!!.take(targetDef.ids!!.size).toIntArray()
-                targetDef.length = targetDef.ids!!.size
                 counter++
                 val writer = BufferWriter(4096)
                 with(encoder) {
@@ -62,8 +61,8 @@ object InventoryConverter {
                     }
                 }
                 val list = mutableListOf<Map<String, Int>>()
-                targetDef.ids!!.forEachIndexed { index, id ->
-                    list.add(mapOf(itemDefinitions.get(id).stringId to targetDef.amounts!![index]))
+                targetDef.ids!!.forEachIndexed { i, id ->
+                    list.add(mapOf(itemDefinitions.get(id).stringId to targetDef.amounts!![i]))
                 }
                 if (found != null) {
                     if (int) {
@@ -78,14 +77,14 @@ object InventoryConverter {
 //                println("$index ${otherDef.ids!!.mapIndexed { index, it -> "${itemDefinitions.getOrNull(it)?.name} ${otherDef.amounts!![index]}" }.joinToString(separator = ", ")}")
             }
         }
-        targetCache.update()
-        println("Updated $counter inventories.")
+        if (targetCache.update()) {
+            println("Updated $counter inventories.")
+        }
 //        yaml.save("inventories.yml", data)
     }
 
     @JvmStatic
     fun main(args: Array<String>) {
-
         val target = File("${System.getProperty("user.home")}/Downloads/rs634_cache/")
         val other = File("${System.getProperty("user.home")}/Downloads/rs718_cache/")
         convert(target, other)
