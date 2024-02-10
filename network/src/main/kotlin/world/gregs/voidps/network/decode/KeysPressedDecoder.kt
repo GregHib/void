@@ -10,6 +10,7 @@ import world.gregs.voidps.network.Instruction
  */
 class KeysPressedDecoder : Decoder(BYTE) {
 
+    @OptIn(ExperimentalUnsignedTypes::class)
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         val keys = ArrayList<Pair<Int, Int>>()
         while (packet.remaining > 0) {

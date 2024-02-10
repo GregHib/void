@@ -37,14 +37,14 @@ data class Cuboid(
         return list
     }
 
-    override fun toZones(l: Int): List<Zone> {
+    override fun toZones(level: Int): List<Zone> {
         val list = mutableListOf<Zone>()
         val max = Tile(maxX, maxY, maxLevel).zone
         val min = Tile(minX, minY, minLevel).zone
-        for (level in min.level..max.level) {
+        for (lvl in min.level..max.level) {
             for (x in min.x..max.x) {
                 for (y in min.y..max.y) {
-                    list.add(Zone(x, y, level))
+                    list.add(Zone(x, y, lvl))
                 }
             }
         }

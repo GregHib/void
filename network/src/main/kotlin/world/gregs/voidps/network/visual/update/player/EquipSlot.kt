@@ -17,11 +17,11 @@ enum class EquipSlot(val index: Int) {
     Ammo(13);
 
     companion object {
-        fun by(index: Int): EquipSlot = values().firstOrNull { it.index == index } ?: None
+        fun by(index: Int): EquipSlot = entries.firstOrNull { it.index == index } ?: None
 
         fun by(name: String): EquipSlot {
-            val name = name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
-            return values().firstOrNull { it.name == name } ?: None
+            val formatted = name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+            return entries.firstOrNull { it.name == formatted } ?: None
         }
 
     }

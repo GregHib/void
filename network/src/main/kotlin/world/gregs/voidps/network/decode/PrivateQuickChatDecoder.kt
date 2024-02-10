@@ -9,6 +9,7 @@ import world.gregs.voidps.network.readString
 
 class PrivateQuickChatDecoder : Decoder(BYTE) {
 
+    @OptIn(ExperimentalUnsignedTypes::class)
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         val name = packet.readString()
         val file = packet.readUShort().toInt()

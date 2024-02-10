@@ -186,7 +186,6 @@ class Hunting(
     /**
      * Checks if [character] meets all the [definition] requirements
      */
-    @Suppress("RedundantIf")
     private fun canHunt(
         npc: NPC,
         character: Character,

@@ -28,11 +28,11 @@ class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinitionFull> {
         writeByte(definition.verticalPositionMode.toInt())
         writeShort(definition.parent)
 
-        var flag = 0
+        var hiddenFlag = 0
         if (definition.hidden) {
-            flag = flag or 0x1
+            hiddenFlag = hiddenFlag or 0x1
         }
-        writeByte(flag)
+        writeByte(hiddenFlag)
 
         when (definition.type) {
             0 -> {
@@ -58,14 +58,14 @@ class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinitionFull> {
             5 -> {
                 writeInt(definition.defaultImage)
                 writeShort(definition.imageRotation)
-                var flag = 0
+                var imageFlag = 0
                 if (definition.aBoolean4861) {
-                    flag = flag or 0x1
+                    imageFlag = imageFlag or 0x1
                 }
                 if (definition.imageRepeat) {
-                    flag = flag or 0x2
+                    imageFlag = imageFlag or 0x2
                 }
-                writeByte(flag)
+                writeByte(imageFlag)
                 writeByte(definition.alpha)
                 writeByte(definition.rotation)
                 writeInt(definition.backgroundColour)
@@ -121,7 +121,7 @@ class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinitionFull> {
         }
 
         writeMedium(definition.setting.setting)
-        var startOffset = 0
+        var startOffset: Int
         val keyRepeat = definition.keyRepeats
         val keyCodes = definition.keyCodes
         val keyModifiers = definition.keyModifiers

@@ -96,7 +96,7 @@ object HashCodeMatcher {
             }
             for (a in spaced) {
                 for (b in spaced) {
-                    check("${a} ${b}", underscore)
+                    check("$a $b", underscore)
                     check("${a}${b}")
                 }
             }
@@ -126,8 +126,8 @@ object HashCodeMatcher {
         writeAll()
     }
 
-    private fun findScripts(keywords: Set<String>, depth: Int) {
-        val keywords = keywords.filter { !it.contains(" ") }
+    private fun findScripts(keywordSet: Set<String>, depth: Int) {
+        val keywords = keywordSet.filter { !it.contains(" ") }
         val underscore = listOf('_')
         if (depth == 1) {
             println("Searching individual keywords")
@@ -172,8 +172,8 @@ object HashCodeMatcher {
         writeAll()
     }
 
-    private fun findSprites(keywords: Set<String>, depth: Int) {
-        val keywords = keywords.filter { !it.contains(" ") }
+    private fun findSprites(keywordSet: Set<String>, depth: Int) {
+        val keywords = keywordSet.filter { !it.contains(" ") }
         val comma = listOf(',')
         if (depth == 1) {
             println("Searching individual keywords")

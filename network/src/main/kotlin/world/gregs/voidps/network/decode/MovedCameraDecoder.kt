@@ -7,6 +7,7 @@ import world.gregs.voidps.network.Instruction
 
 class MovedCameraDecoder : Decoder(4) {
 
+    @OptIn(ExperimentalUnsignedTypes::class)
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         val pitch = packet.readUShort().toInt()
         val yaw = packet.readUShort().toInt()

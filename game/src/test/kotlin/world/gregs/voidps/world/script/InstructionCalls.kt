@@ -97,10 +97,9 @@ fun Player.equipItem(
 fun Player.dialogueOption(
     id: String,
     component: String,
-    type: String = "make",
     option: Int = -1
 ) {
-    events.emit(ContinueDialogue(id, component, /*type, */option))
+    events.emit(ContinueDialogue(id, component, option))
 }
 
 private fun getOptionIndex(id: String, componentId: String, option: String): Int? {

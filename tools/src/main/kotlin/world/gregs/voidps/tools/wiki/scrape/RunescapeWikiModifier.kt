@@ -95,6 +95,7 @@ internal object RunescapeWikiModifier {
         save(output.toSortedMap(), "Items667")
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun identifyMissingIds(
         raw: MutableMap<String, MutableMap<String, String>>,
         decoder: Array<ItemDefinition>,
@@ -128,7 +129,7 @@ internal object RunescapeWikiModifier {
         }
     }
 
-    fun MutableMap<String, Any>.replaceMultilines(key: String) {
+    private fun MutableMap<String, Any>.replaceMultilines(key: String) {
         val value = this[key] as? String ?: "?"
         if (value.contains("•")) {
             val parts = value.split("•")
@@ -143,9 +144,9 @@ internal object RunescapeWikiModifier {
         }
     }
 
-    val exceptions = setOf("incense", "warning", "size:", "village:", "clairvoyance:", "disclaimer:", "bonus:", "incubator:", "parts:", "says:", "pork:", "danger:")
+    private val exceptions = setOf("incense", "warning", "size:", "village:", "clairvoyance:", "disclaimer:", "bonus:", "incubator:", "parts:", "says:", "pork:", "danger:")
 
-    fun MutableMap<String, Any>.replaceBool(key: String, default: Boolean) {
+    private fun MutableMap<String, Any>.replaceBool(key: String, default: Boolean) {
         val value = remove(key) as? String ?: "?"
         if (value != "?") {
             when (value) {
@@ -166,7 +167,7 @@ internal object RunescapeWikiModifier {
         }
     }
 
-    fun MutableMap<String, Any>.trimWeight() {
+    private fun MutableMap<String, Any>.trimWeight() {
         val weight = this["Weight"] as? String ?: "?"
         if (weight != "?") {
             val kg = weight.removeSuffix(" kg").toDoubleOrNull()
@@ -181,7 +182,7 @@ internal object RunescapeWikiModifier {
         }
     }
 
-    fun MutableMap<String, Any>.formatInt(key: String) {
+    private fun MutableMap<String, Any>.formatInt(key: String) {
         val value = this[key] as? String ?: "?"
         if (value != "?") {
             val kg = value.replace(",", "").toIntOrNull()
@@ -196,14 +197,14 @@ internal object RunescapeWikiModifier {
         }
     }
 
-    fun MutableMap<String, Any>.updateDestroy() {
+    private fun MutableMap<String, Any>.updateDestroy() {
         val key = "Destroy"
         var value = this[key] as? String ?: return
         value = value.replace(" (It is immediately removed from your inventory)", "")
         this[key] = value
     }
 
-    fun MutableMap<String, Any>.updateExamines() {
+    private fun MutableMap<String, Any>.updateExamines() {
         val key = "Examine"
         var value = this[key] as? String ?: return
         value = value.replace("improved to be held in the off-hand.", "improved")
@@ -225,7 +226,7 @@ internal object RunescapeWikiModifier {
         this[key] = value.trim()
     }
 
-    val examineExceptions = setOf(
+    private val examineExceptions = setOf(
         "yes",
         "normal",
         "oak",
@@ -272,13 +273,13 @@ internal object RunescapeWikiModifier {
         "clairvoyance",
         "overheat"
     )
-    val regex = "Used (in|with) (.*)\\([0-9,\\s&]+\\)".toRegex()
-    val regex2 = "Requires (.*)\\([0-9,\\s&]+\\)".toRegex()
-    val regex3 = "\\(.*\\)".toRegex()
+    private val regex = "Used (in|with) (.*)\\([0-9,\\s&]+\\)".toRegex()
+    private val regex2 = "Requires (.*)\\([0-9,\\s&]+\\)".toRegex()
+    private val regex3 = "\\(.*\\)".toRegex()
 
-    val gods = setOf("Ancient", "Armadyl", "Bandos", "Gilded", "Guthix", "Saradomin", "Zamorak", "Zaros")
+    private val gods = setOf("Ancient", "Armadyl", "Bandos", "Gilded", "Guthix", "Saradomin", "Zamorak", "Zaros")
 
-    fun MutableMap<String, Any>.updateNames(key: String) {
+    private fun MutableMap<String, Any>.updateNames(key: String) {
         var value = this[key] as? String ?: return
         if (value == "Dragon claw") {
             value = "Dragon claws"
@@ -311,21 +312,21 @@ internal object RunescapeWikiModifier {
         this[key] = value
     }
 
-    fun MutableMap<String, Any>.dropTypes() {
+    private fun MutableMap<String, Any>.dropTypes() {
         val value = this["Destroy"] as? String ?: return
         if (value == "?" || value.startsWith("Drop", true) || value == "Destroy") {
             remove("Destroy")
         }
     }
 
-    fun MutableMap<String, Any>.alch() {
+    private fun MutableMap<String, Any>.alch() {
         val value = remove("Alchemy") as? String ?: return
         if (value == "Not alchemisable") {
             this["Alchable"] = false
         }
     }
 
-    fun MutableMap<String, Any>.onDeathTypes() {
+    private fun MutableMap<String, Any>.onDeathTypes() {
         // Default is "Drop"
         val value = remove("On death") as? String ?: return
         if (value.contains("Reclaimable")) {
@@ -345,19 +346,16 @@ internal object RunescapeWikiModifier {
         }
     }
 
-    fun releasedBefore(map: MutableMap<String, String>, revision: LocalDate): Boolean {
+    private fun releasedBefore(map: MutableMap<String, String>, revision: LocalDate): Boolean {
         val date = map.getRelease()
-        if (date != null && date.isBefore(revision)) {
-            return true
-        }
-        return false
+        return date != null && date.isBefore(revision)
     }
 
-    const val maxItemId = 22323
+    const val MAX_ITEM_ID = 22323
     private val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
     val revision: LocalDate = LocalDate.of(2011, Month.OCTOBER, 4)
 
-    fun Map<String, String>.getRelease(): LocalDate? {
+    private fun Map<String, String>.getRelease(): LocalDate? {
         val release = this["Release"] ?: "?"
         if (release == "?") {
             return null
@@ -365,9 +363,10 @@ internal object RunescapeWikiModifier {
         return LocalDate.parse(release, formatter)
     }
 
-    var spaceCount = 0
-    var commaCount = 0
-    fun Map<String, String>.getIds(): List<Int> {
+    private var spaceCount = 0
+    private var commaCount = 0
+
+    private fun Map<String, String>.getIds(): List<Int> {
         val list = mutableListOf<Int>()
         val property = this["Item ID"] ?: "?"
         if (property != "?") {

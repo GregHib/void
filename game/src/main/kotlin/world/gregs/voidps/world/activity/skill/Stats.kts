@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
 import world.gregs.voidps.engine.inject
 
@@ -18,7 +19,7 @@ val menu = listOf(Attack, Strength, Ranged, Magic, Defence, Constitution, Prayer
 
 interfaceOpen("stats") { player: Player ->
     player.sendVariable("skill_stat_flash")
-    values().forEach {
+    Skill.entries.forEach {
         player.experience.update(it)
     }
 }

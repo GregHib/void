@@ -31,12 +31,12 @@ object MissingMapFinder {
     }
 
     private val results = temp.resolve("results")
-    private const val revision = 634
+    private const val REVISION = 634
 
     /**
      * Prints out only for caches which exist
      */
-    private const val showExistingOnly = false
+    private const val SHOW_EXISTING_ONLY = false
 
     /**
      * Specify compatible revisions to search within
@@ -51,8 +51,8 @@ object MissingMapFinder {
             .filter { c -> c.game == "runescape" && c.language == "en" }
         println("Found ${caches.size} cache revisions.")
         val target = caches
-            .first { c -> c.builds.any { build -> build["major"] == revision } }
-        println("Identified $target for revision $revision")
+            .first { c -> c.builds.any { build -> build["major"] == REVISION } }
+        println("Identified $target for revision $REVISION")
         val xteas = getKeys(target)
         println("Loaded ${xteas.size} keys.")
 
@@ -60,7 +60,7 @@ object MissingMapFinder {
         println("Identified ${invalids.size} invalid maps in cache.")
 
         val index = caches.indexOf(target)
-        println("Target revision: $revision")
+        println("Target revision: $REVISION")
         for (i in caches.indices) {
             search(caches, index + i, invalids)
             search(caches, index - i, invalids)
@@ -68,8 +68,8 @@ object MissingMapFinder {
 
         val directory = temp.resolve("caches/")
         for ((region, list) in found) {
-            val sorted = list.sortedByDescending { majorVersion(it.first).compareTo(revision) }
-            if (showExistingOnly) {
+            val sorted = list.sortedByDescending { majorVersion(it.first).compareTo(REVISION) }
+            if (SHOW_EXISTING_ONLY) {
                 val remaining = sorted.filter { directory.resolve("cache-${it.first.id}/").exists() }
                 print(region, remaining)
             } else {

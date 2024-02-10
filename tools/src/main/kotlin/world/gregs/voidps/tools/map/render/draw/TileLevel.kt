@@ -3,7 +3,7 @@ package world.gregs.voidps.tools.map.render.draw
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapTile
 import world.gregs.voidps.cache.definition.data.TextureDefinition
-import world.gregs.voidps.tools.map.render.load.MapConstants.size
+import world.gregs.voidps.tools.map.render.load.MapConstants.SIZE
 import world.gregs.voidps.tools.map.render.load.MapTileSettings
 import world.gregs.voidps.tools.map.render.model.TextureColours
 import world.gregs.voidps.tools.map.render.model.TileColours
@@ -30,18 +30,18 @@ class TileLevel(
     private var lightZ: Int = 0
     var settings: Int = 0
 
-    private fun setBrightness(f_246_: Float, f_247_: Float, f_248_: Float) {
-        val f_249_ = sqrt((f_246_ * f_246_ + f_247_ * f_247_ + f_248_ * f_248_).toDouble()).toFloat()
-        lightX = (f_246_ * 65535.0f / f_249_).toInt()// -36578
-        lightY = (f_247_ * 65535.0f / f_249_).toInt()// -40235
-        lightZ = (f_248_ * 65535.0f / f_249_).toInt()// -36578
+    private fun setBrightness(brightnessX: Float, brightnessY: Float, brightnessZ: Float) {
+        val total = sqrt((brightnessX * brightnessX + brightnessY * brightnessY + brightnessZ * brightnessZ).toDouble()).toFloat()
+        lightX = (brightnessX * 65535.0f / total).toInt()// -36578
+        lightY = (brightnessY * 65535.0f / total).toInt()// -40235
+        lightZ = (brightnessZ * 65535.0f / total).toInt()// -36578
     }
 
     fun loadBrightness() {
         tileColours = null
         textureColours = null
         setBrightness(-200f, -220f, -200f)
-        val brightness: Int = brightness shr 9
+        val brightness: Int = BRIGHTNESS shr 9
         for (y in 1 until height) {
             for (x in 1 until width) {
                 var intensity = brightness
@@ -150,17 +150,17 @@ class TileLevel(
                         if (colours.textureId.toInt() != -1 && colours.type.toInt() and 0x2 == 0 && colours.initialColourIndex == -1) {
                             val texture = textureColour(colours.textureId.toInt())
                             // water
-                            raster.drawGouraudTriangle(x - size, x - size, x, y + size, y, y + size, light(colours.northEastColourIndex.toInt() and 0xffff, texture), light(colours.northColourIndex.toInt() and 0xffff, texture), light(colours.eastColourIndex.toInt() and 0xffff, texture))
-                            raster.drawGouraudTriangle(x, x, x - size, y, y + size, y, light(colours.middleColourIndex.toInt() and 0xffff, texture), light(colours.eastColourIndex.toInt() and 0xffff, texture), light(colours.northColourIndex.toInt() and 0xffff, texture))
+                            raster.drawGouraudTriangle(x - SIZE, x - SIZE, x, y + SIZE, y, y + SIZE, light(colours.northEastColourIndex.toInt() and 0xffff, texture), light(colours.northColourIndex.toInt() and 0xffff, texture), light(colours.eastColourIndex.toInt() and 0xffff, texture))
+                            raster.drawGouraudTriangle(x, x, x - SIZE, y, y + SIZE, y, light(colours.middleColourIndex.toInt() and 0xffff, texture), light(colours.eastColourIndex.toInt() and 0xffff, texture), light(colours.northColourIndex.toInt() and 0xffff, texture))
                         } else if (colours.initialColourIndex == -1) {
                             // normal tiles
-                            raster.drawGouraudTriangle(x - size, x - size, x, y + size, y, y + size, colours.northEastColourIndex.toInt() and 0xffff, colours.northColourIndex.toInt() and 0xffff, colours.eastColourIndex.toInt() and 0xffff)
-                            raster.drawGouraudTriangle(x, x, x - size, y, y + size, y, colours.middleColourIndex.toInt() and 0xffff, colours.eastColourIndex.toInt() and 0xffff, colours.northColourIndex.toInt() and 0xffff)
+                            raster.drawGouraudTriangle(x - SIZE, x - SIZE, x, y + SIZE, y, y + SIZE, colours.northEastColourIndex.toInt() and 0xffff, colours.northColourIndex.toInt() and 0xffff, colours.eastColourIndex.toInt() and 0xffff)
+                            raster.drawGouraudTriangle(x, x, x - SIZE, y, y + SIZE, y, colours.middleColourIndex.toInt() and 0xffff, colours.eastColourIndex.toInt() and 0xffff, colours.northColourIndex.toInt() and 0xffff)
                         } else {
                             // overlay
                             val brightness = colours.initialColourIndex
-                            raster.drawGouraudTriangle(x - size, x - size, x, y + size, y, y + size, brightness, brightness, brightness)
-                            raster.drawGouraudTriangle(x, x, x - size, y, y + size, y, brightness, brightness, brightness)
+                            raster.drawGouraudTriangle(x - SIZE, x - SIZE, x, y + SIZE, y, y + SIZE, brightness, brightness, brightness)
+                            raster.drawGouraudTriangle(x, x, x - SIZE, y, y + SIZE, y, brightness, brightness, brightness)
                         }
                     } else if (textureColours?.get(localX)?.get(localY) != null) {
                         val colours = textureColours!![localX][localY]!!
@@ -169,8 +169,8 @@ class TileLevel(
                             yOffsets = IntArray(height)
                         }
                         for (index in 0 until colours.size) {
-                            xOffsets[index] = y + colours.xOffsets!![index] * size / tileUnits
-                            yOffsets[index] = x - colours.yOffsets!![index] * size / tileUnits
+                            xOffsets[index] = y + colours.xOffsets!![index] * SIZE / tileUnits
+                            yOffsets[index] = x - colours.yOffsets!![index] * SIZE / tileUnits
                         }
                         for (index in 0 until colours.count) {
                             val i1 = colours.vertexIndices1!![index].toInt()
@@ -229,10 +229,10 @@ class TileLevel(
                         }
                     }
                 }
-                x -= size
+                x -= SIZE
             }
             x = actualWidth
-            y += size
+            y += SIZE
         }
     }
 
@@ -257,9 +257,9 @@ class TileLevel(
         var ignore = false
         if (colours.size == 2 && vertexIndices1.size == 2 && (colours[0] == colours[1] || textures[0] != -1 && textures[0] == textures[1])) {
             ignore = true
-            for (i_326_ in 1..1) {
-                val xOffset = xOffsets[vertexIndices1[i_326_]]
-                val yOffset = yOffsets[vertexIndices1[i_326_]]
+            for (i in 1..1) {
+                val xOffset = xOffsets[vertexIndices1[i]]
+                val yOffset = yOffsets[vertexIndices1[i]]
                 if (xOffset != 0 && xOffset != tileUnits || yOffset != 0 && yOffset != tileUnits) {
                     ignore = false
                     break
@@ -410,6 +410,6 @@ class TileLevel(
             tileScale = scale
         }
 
-        private const val brightness = 75518
+        private const val BRIGHTNESS = 75518
     }
 }

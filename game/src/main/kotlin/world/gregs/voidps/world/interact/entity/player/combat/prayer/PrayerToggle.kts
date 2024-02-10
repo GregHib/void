@@ -1,3 +1,5 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package world.gregs.voidps.world.interact.entity.player.combat.prayer
 
 import net.pearx.kasechange.toSnakeCase

@@ -16,13 +16,14 @@ import world.gregs.yaml.Yaml
 object DropTableDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
-        val koin = startKoin {
+        startKoin {
             fileProperties("/tool.properties")
             modules(module {
+                @Suppress("USELESS_CAST")
                 single { CacheDelegate(getProperty<String>("cachePath")) as Cache }
                 single { ItemDefinitions(ItemDecoder().load(get())).load(Yaml()) }
             })
-        }.koin
+        }
         val decoder = DropTables().load(Yaml())
         val table = decoder.getValue("goblin_drop_table")
 

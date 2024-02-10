@@ -73,6 +73,7 @@ internal data class Dialogue(
             text.replace("%", "").replace("[", "").replace("]", "").replace(";", "").replace("!", "").replace(":", "").replace("(", "").replace(")", "").replace("?", "").replace(",", "").replace("*", "").replace("'", "").toCamelCase()
         }()"
 
+        @Suppress("UNCHECKED_CAST")
         fun fromMap(map: Map<String, Any>, key: String) = Dialogue(
             key.toInt(),
             map["type"] as String,

@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.instruction
 
 import com.github.michaelbull.logging.InlineLogger
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
@@ -35,6 +36,7 @@ class InstructionTask(
         handler
     )
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun run() {
         players.forEach { player ->
             val instructions = player.instructions

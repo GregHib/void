@@ -13,6 +13,7 @@ class YamlReaderScenarioTest {
     }
 
     @Test
+    @Suppress("UNCHECKED_CAST")
     fun `Parse list with modifier`() {
         val config = object : YamlReaderConfiguration() {
             override fun addListItem(reader: YamlReader, list: MutableList<Any>, indentOffset: Int, parentMap: String?) {

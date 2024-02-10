@@ -9,6 +9,7 @@ import world.gregs.voidps.network.readString
 
 class ConsoleCommandDecoder : Decoder(BYTE) {
 
+    @OptIn(ExperimentalUnsignedTypes::class)
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         packet.readUByte()
         packet.readUByte()

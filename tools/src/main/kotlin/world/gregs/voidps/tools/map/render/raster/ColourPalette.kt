@@ -18,42 +18,42 @@ object ColourPalette {
                 var normalisedRed = 0.0f
                 var normalisedGreen = 0.0f
                 var normalisedBlue = 0.0f
-                val f_10_ = hue / 60.0f
-                val i_11_ = f_10_.toInt()
-                val type = i_11_ % 6
-                val f_13_ = f_10_ - i_11_.toFloat()
+                val f10 = hue / 60.0f
+                val i11 = f10.toInt()
+                val type = i11 % 6
+                val f13 = f10 - i11.toFloat()
                 val chroma = value * (-saturation + 1.0f)
-                val f_15_ = value * (-(f_13_ * saturation) + 1.0f)
-                val f_16_ = (1.0f - saturation * (-f_13_ + 1.0f)) * value
+                val f15 = value * (-(f13 * saturation) + 1.0f)
+                val f16 = (1.0f - saturation * (-f13 + 1.0f)) * value
                 when (type) {
                     0 -> {
                         normalisedRed = value
                         normalisedBlue = chroma
-                        normalisedGreen = f_16_
+                        normalisedGreen = f16
                     }
                     1 -> {
                         normalisedBlue = chroma
-                        normalisedRed = f_15_
+                        normalisedRed = f15
                         normalisedGreen = value
                     }
                     2 -> {
                         normalisedRed = chroma
                         normalisedGreen = value
-                        normalisedBlue = f_16_
+                        normalisedBlue = f16
                     }
                     3 -> {
-                        normalisedGreen = f_15_
+                        normalisedGreen = f15
                         normalisedRed = chroma
                         normalisedBlue = value
                     }
                     4 -> {
                         normalisedBlue = value
-                        normalisedRed = f_16_
+                        normalisedRed = f16
                         normalisedGreen = chroma
                     }
                     5 -> {
                         normalisedGreen = chroma
-                        normalisedBlue = f_15_
+                        normalisedBlue = f15
                         normalisedRed = value
                     }
                 }

@@ -86,6 +86,7 @@ internal object RunescapeWikiParser {
         map[key] = value.removeSuffix(" (edit)")
     }
 
+    @Suppress("UNCHECKED_CAST")
     fun flatten(map: MutableMap<String, Any>, name: String) {
         val properties = map.remove(name) as? MutableMap<String, String> ?: return
         properties.forEach { (key, value) ->

@@ -2,6 +2,7 @@ package world.gregs.voidps.tools.wiki.scrape
 
 import world.gregs.voidps.tools.wiki.model.Wiki
 
+@Suppress("UNCHECKED_CAST")
 internal object RunescapeWikiAutoExporter {
 
     @JvmStatic

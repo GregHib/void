@@ -12,6 +12,7 @@ import world.gregs.voidps.network.instruct.ChatTypeChange
  */
 class ChatTypeDecoder : Decoder(1) {
 
+    @OptIn(ExperimentalUnsignedTypes::class)
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         instructions.emit(ChatTypeChange(packet.readUByte().toInt()))
     }

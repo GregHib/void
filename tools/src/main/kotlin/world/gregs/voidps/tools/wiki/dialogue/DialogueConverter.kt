@@ -11,6 +11,7 @@ import world.gregs.yaml.read.YamlReaderConfiguration
 import java.io.File
 import java.util.*
 
+@Suppress("UNCHECKED_CAST")
 object DialogueConverter {
 
     data class DialogueOption(

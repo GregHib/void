@@ -4,14 +4,14 @@ import it.unimi.dsi.fastutil.ints.IntSet
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.LOCAL_NPC_CAP
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.network.encode.updateNPCs
 import world.gregs.voidps.network.visual.NPCVisuals
 import world.gregs.voidps.network.visual.VisualEncoder
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.RegionLevel
 
 class NPCUpdateTask(
     private val npcs: NPCs,
@@ -183,14 +183,14 @@ class NPCUpdateTask(
     }
 
     private sealed class LocalChange(val id: Int) {
-        object None : LocalChange(-1)
-        object Update : LocalChange(0)
+        data object None : LocalChange(-1)
+        data object Update : LocalChange(0)
         sealed class Move(id: Int) : LocalChange(id)
-        object Walk : Move(1)
-        object Crawl : Move(2)
-        object Run : Move(2)
-        object Tele : LocalChange(3)
-        object Remove : LocalChange(3)
+        data object Walk : Move(1)
+        data object Crawl : Move(2)
+        data object Run : Move(2)
+        data object Tele : LocalChange(3)
+        data object Remove : LocalChange(3)
     }
 
     companion object {

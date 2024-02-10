@@ -22,10 +22,9 @@ object DropTableConverter {
         """.trimIndent()
         val all = mutableListOf<DropTable>()
         var builder = DropTable.Builder()
-        var name = ""
         for (line in string.lines()) {
             if (line.startsWith("=")) {
-                name = toIdentifier(line.replace("=", ""))
+                val name = toIdentifier(line.replace("=", ""))
             } else if (line.startsWith("{{DropsLine|")) {
                 process(builder, line)
             } else if (line.startsWith("{{DropsTableBottom")) {

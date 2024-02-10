@@ -107,9 +107,9 @@ object DumpStyles {
         println("""
             ${names[id]}:
               id: $id
-              attack_types: ${types}
-              attack_styles: ${styles}
-              combat_styles: ${combatStyles}
+              attack_types: $types
+              attack_styles: $styles
+              combat_styles: $combatStyles
         """.trimIndent())
 //        return types.mapIndexed { i, s -> Triple(s, styles[i], combatStyle.getOrNull(i) ?: "") }.toTypedArray()
     }

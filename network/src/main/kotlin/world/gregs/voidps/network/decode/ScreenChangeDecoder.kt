@@ -8,6 +8,7 @@ import world.gregs.voidps.network.instruct.ChangeDisplayMode
 
 class ScreenChangeDecoder : Decoder(6) {
 
+    @OptIn(ExperimentalUnsignedTypes::class)
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         instructions.emit(ChangeDisplayMode(
             displayMode = packet.readUByte().toInt(),

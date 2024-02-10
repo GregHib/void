@@ -9,7 +9,7 @@ import world.gregs.voidps.network.client.Client.Companion.smart
 import world.gregs.voidps.network.client.Client.Companion.string
 
 /**
- * Sends an animation to a interface component
+ * Sends an animation to an interface component
  * @param id The id of the parent interface
  * @param component The index of the component
  * @param animation The animation id

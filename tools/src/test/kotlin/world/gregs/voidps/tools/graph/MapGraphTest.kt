@@ -2,7 +2,6 @@ package world.gregs.voidps.tools.graph
 
 import io.mockk.every
 import io.mockk.mockk
-import org.junit.Ignore
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Disabled
@@ -12,7 +11,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-@Ignore
 @Disabled
 internal class MapGraphTest {
 

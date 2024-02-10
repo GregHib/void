@@ -20,15 +20,15 @@ object MapConstants {
         BooleanArray(13)
     )
 
-    const val size = 4
+    const val SIZE = 4
 
-    const val tileWater = false
-    const val tileLighting = false
-    const val sceneryShadows = -1
-    const val groundBlending = -1
-    const val aBoolean8715 = true
-    const val aBoolean10563 = false
-    const val waterMovement = false// method2810
+    const val TILE_WATER = false
+    const val TILE_LIGHTING = false
+    const val SCENERY_SHADOWS = -1
+    const val GROUND_BLENDING = -1
+    const val A_BOOLEAN_8715 = true
+    const val A_BOOLEAN_10563 = false
+    const val WATER_MOVEMENT = false// method2810
 
     val tileYOffsets = intArrayOf(0, 0, 0, 256, 512, 512, 512, 256, 256, 384, 128, 128, 256)
     val tileXOffsets = intArrayOf(0, 256, 512, 512, 512, 256, 0, 0, 128, 256, 128, 384, 256)

@@ -44,7 +44,7 @@ typealias Extras = Pair<PageCollector, MutableMap<String, Any>>
 object ItemDefinitionPipeline {
 
     private val redirectRegex = "#(?:REDIRECT|redirect) ?\\[\\[(.*)]]".toRegex()
-    private const val debugId = -1
+    private const val DEBUG_ID = -1
 
     @JvmStatic
     fun main(args: Array<String>) {
@@ -90,7 +90,7 @@ object ItemDefinitionPipeline {
             add(ItemNoted(decoder))
         }
         for (id in decoder.indices) {
-            if (debugId >= 0 && id != debugId) {
+            if (DEBUG_ID >= 0 && id != DEBUG_ID) {
                 continue
             }
             val def = decoder.getOrNull(id) ?: continue
@@ -130,7 +130,7 @@ object ItemDefinitionPipeline {
         val incomplete = mutableListOf<PageCollector>()
 
         for (id in decoder.indices) {
-            if (debugId >= 0 && id != debugId) {
+            if (DEBUG_ID >= 0 && id != DEBUG_ID) {
                 continue
             }
             val def = decoder.getOrNull(id) ?: continue

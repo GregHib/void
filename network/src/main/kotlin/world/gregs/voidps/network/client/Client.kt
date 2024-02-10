@@ -97,6 +97,7 @@ open class Client(
     }
 
     companion object {
+        @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
         val context = newSingleThreadContext("Networking")
 
         const val FIXED = 0

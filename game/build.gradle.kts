@@ -111,3 +111,6 @@ distributions {
         }
     }
 }
+
+tasks["bundleDistTar"].dependsOn("startScripts")
+tasks["bundleDistZip"].dependsOn("startScripts")

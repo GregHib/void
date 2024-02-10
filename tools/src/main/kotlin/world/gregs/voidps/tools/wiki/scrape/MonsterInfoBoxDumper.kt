@@ -88,7 +88,7 @@ object MonsterInfoBoxDumper {
             }
             val aka = infobox["aka"] as? String
             if (aka != null) {
-                println("  aka: [ ${aka} ]")
+                println("  aka: [ $aka ]")
             }
             val respawn = infobox["respawn"] as? String ?: infobox["respawn$version"] as? String
             if (respawn != null) {

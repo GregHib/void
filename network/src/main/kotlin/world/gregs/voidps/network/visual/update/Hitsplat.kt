@@ -13,17 +13,17 @@ data class Hitsplat(
 ) {
 
     sealed class Mark(val id: Int) {
-        object Melee : Mark(0)
-        object Range : Mark(1)
-        object Magic : Mark(2)
-        object Regular : Mark(3)
-        object Reflected : Mark(4)
-        object Absorb : Mark(5)
-        object Poison : Mark(6)
-        object Diseased : Mark(7)
-        object Missed : Mark(8)
-        object Healed : Mark(9)
-        object Cannon : Mark(13)
+        data object Melee : Mark(0)
+        data object Range : Mark(1)
+        data object Magic : Mark(2)
+        data object Regular : Mark(3)
+        data object Reflected : Mark(4)
+        data object Absorb : Mark(5)
+        data object Poison : Mark(6)
+        data object Diseased : Mark(7)
+        data object Missed : Mark(8)
+        data object Healed : Mark(9)
+        data object Cannon : Mark(13)
     }
 
     fun write(writer: Writer, observer: Int, victim: Int, add: Boolean) {

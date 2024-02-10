@@ -11,6 +11,7 @@ import world.gregs.voidps.network.readShortAddLittle
 
 class ObjectOption1Decoder : Decoder(7) {
 
+    @OptIn(ExperimentalUnsignedTypes::class)
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         val run = packet.readBooleanSubtract()
         val x = packet.readShortAddLittle()

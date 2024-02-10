@@ -59,11 +59,11 @@ class InterfaceDecoder718 {
         if (type == 6) {
             defaultMediaType = 1
             defaultMediaId = reader.readBigSmart()
-            val i_4_: Int = reader.readUnsignedByte()
-            val bool = i_4_ and 0x1 == 1
-            centreType = i_4_ and 0x2 == 2
-            animated = i_4_ and 0x4 == 4
-            ignoreZBuffer = i_4_ and 0x8 == 8
+            val flag: Int = reader.readUnsignedByte()
+            val bool = flag and 0x1 == 1
+            centreType = flag and 0x2 == 2
+            animated = flag and 0x4 == 4
+            ignoreZBuffer = flag and 0x8 == 8
             if (bool) {
                 viewportX = reader.readShort()
                 viewportY = reader.readShort()
@@ -144,14 +144,14 @@ class InterfaceDecoder718 {
             }
         }
         if (iconCount > 0) {
-            val i_14_: Int = reader.readUnsignedByte()
-            mouseIcon = IntArray(i_14_ + 1)
-            for (i_15_ in mouseIcon!!.indices) mouseIcon!![i_15_] = -1
-            mouseIcon!![i_14_] = reader.readUnsignedShort()
+            val size: Int = reader.readUnsignedByte()
+            mouseIcon = IntArray(size + 1)
+            for (index in mouseIcon!!.indices) mouseIcon!![index] = -1
+            mouseIcon!![size] = reader.readUnsignedShort()
         }
         if (iconCount > 1) {
-            val i_16_: Int = reader.readUnsignedByte()
-            mouseIcon!![i_16_] = reader.readUnsignedShort()
+            val index: Int = reader.readUnsignedByte()
+            mouseIcon!![index] = reader.readUnsignedShort()
         }
         optionOverride = reader.readString()
         if (optionOverride == "") optionOverride = null
@@ -159,11 +159,11 @@ class InterfaceDecoder718 {
         anInt4795 = reader.readUnsignedByte()
         anInt4860 = reader.readUnsignedByte()
         useOption = reader.readString()
-        var i_17_ = -1
+        var i17 = -1
         if (setting shr 11 and 0x7f != 0) {
-            i_17_ = reader.readUnsignedShort()
-            if (i_17_ == 65535) {
-                i_17_ = -1
+            i17 = reader.readUnsignedShort()
+            if (i17 == 65535) {
+                i17 = -1
             }
             anInt4698 = reader.readUnsignedShort()
             if (anInt4698 == 65535) {
@@ -182,15 +182,15 @@ class InterfaceDecoder718 {
         }
 //            aClass298_Sub38_1219 = Class298_Sub38(i_5_, i_17_)
         if (flag0 >= 0) {
-            val i_18_: Int = reader.readUnsignedByte()
-            for (i_19_ in 0 until i_18_) {
-                val i_20_: Int = reader.readUnsignedMedium()
-                val i_21_: Int = reader.readInt()
+            val size: Int = reader.readUnsignedByte()
+            for (i19 in 0 until size) {
+                val i20: Int = reader.readUnsignedMedium()
+                val i21: Int = reader.readInt()
 //                    this.aClass437_1279.method5817(Class298_Sub35(i_21_), i_20_.toLong())
             }
-            val i_22_: Int = reader.readUnsignedByte()
-            for (i_23_ in 0 until i_22_) {
-                val i_24_: Int = reader.readUnsignedMedium()
+            val i22: Int = reader.readUnsignedByte()
+            for (index in 0 until i22) {
+                val i24: Int = reader.readUnsignedMedium()
                 val string: String = reader.readString()
 //                    this.aClass437_1279.method5817(string, i_24_.toLong())
             }

@@ -40,6 +40,7 @@ open class YamlReaderConfiguration(
         map[key] = value
     }
 
+    @Suppress("UNCHECKED_CAST")
     open fun anchor(anchor: Any): Any {
         return when (anchor) {
             is List<*> -> createList().apply {

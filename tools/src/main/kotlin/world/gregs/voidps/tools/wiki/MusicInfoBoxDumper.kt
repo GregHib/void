@@ -15,6 +15,7 @@ import java.time.LocalDate
 import java.time.Month
 import java.time.format.DateTimeFormatter
 
+@Suppress("UNCHECKED_CAST")
 object MusicInfoBoxDumper {
 
     @JvmStatic

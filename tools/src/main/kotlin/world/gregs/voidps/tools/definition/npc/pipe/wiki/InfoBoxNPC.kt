@@ -40,7 +40,7 @@ class InfoBoxNPC(val revision: LocalDate, private val infoboxes: List<String>) :
                         val text = (value as String).replace("dg", "dungeoneering")
                         val use = if (text == "removed") {
                             val removal = template["removal"] as? String
-                            if (removal == null || removal.isBlank() || LocalDate.parse(removeLinks(removal), InfoBoxItem.formatter).isBefore(revision)) {
+                            if (removal.isNullOrBlank() || LocalDate.parse(removeLinks(removal), InfoBoxItem.formatter).isBefore(revision)) {
                                 ItemUse.Removed
                             } else {
                                 ItemUse.Surface

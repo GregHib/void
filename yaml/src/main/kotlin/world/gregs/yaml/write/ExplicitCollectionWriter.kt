@@ -30,7 +30,7 @@ class ExplicitCollectionWriter(writer: CharWriter, config: YamlWriterConfigurati
 
     override fun map(map: Map<*, *>, indent: Int, parentMap: String?) {
         if (config.formatExplicitMap) {
-            formattedMap(map, indent, parentMap)
+            formattedMap(map, indent)
             return
         }
         writer.append('{')
@@ -69,7 +69,7 @@ class ExplicitCollectionWriter(writer: CharWriter, config: YamlWriterConfigurati
         writer.append(']')
     }
 
-    private fun formattedMap(map: Map<*, *>, indent: Int, parentMap: String?) {
+    private fun formattedMap(map: Map<*, *>, indent: Int) {
         writer.append('{')
         if (map.isNotEmpty()) {
             writer.appendLine()

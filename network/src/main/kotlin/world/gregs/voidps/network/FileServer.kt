@@ -51,7 +51,7 @@ class FileServer(
     }
 
     /**
-     * If the client is up-to-date and in the correct state send it the [prefetchKeys] list so it knows what indices are available to request
+     * If the client is up-to-date and in the correct state send it the [prefetchKeys] list, so it knows what indices are available to request
      */
     private suspend fun synchronise(read: ByteReadChannel, write: ByteWriteChannel) {
         val revision = read.readInt()

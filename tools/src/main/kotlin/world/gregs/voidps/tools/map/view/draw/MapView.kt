@@ -46,16 +46,16 @@ class MapView(nav: NavigationGraph?, private val areaFile: String) : JPanel() {
     /*
         View bounds
      */
-    val minX = debugBorder
-    val minY = debugBorder
+    val minX = DEBUG_BORDER
+    val minY = DEBUG_BORDER
     val maxX: Int
-        get() = width - debugBorder
+        get() = width - DEBUG_BORDER
     val maxY: Int
-        get() = height - debugBorder
+        get() = height - DEBUG_BORDER
     private val viewWidth: Int
-        get() = width - debugBorder * 2
+        get() = width - DEBUG_BORDER * 2
     private val viewHeight: Int
-        get() = height - debugBorder * 2
+        get() = height - DEBUG_BORDER * 2
 
     init {
         layout = FlowLayout(FlowLayout.LEFT)
@@ -231,7 +231,7 @@ class MapView(nav: NavigationGraph?, private val areaFile: String) : JPanel() {
 //        lc.draw(g)
         area.draw(g)
 
-        if (debugBorder > 0) {
+        if (DEBUG_BORDER > 0) {
             g.color = Color.RED
             g.drawRect(minX, minY, viewWidth, viewHeight)
             g.drawRect(getCentreX(), getCentreY(), 1, 1)
@@ -244,6 +244,6 @@ class MapView(nav: NavigationGraph?, private val areaFile: String) : JPanel() {
     }
 
     companion object {
-        private const val debugBorder = 0
+        private const val DEBUG_BORDER = 0
     }
 }

@@ -8,7 +8,7 @@ import world.gregs.yaml.Yaml
 
 class AreaSet {
     val areas = mutableSetOf<Area>()
-    var changed = false
+    private var changed = false
 
     fun getPointOrNull(x: Int, y: Int, z: Int): Point? {
         for (area in areas) {
@@ -65,6 +65,7 @@ class AreaSet {
 //            writer.writeValue(File(path), set.areas)
         }
 
+        @Suppress("UNCHECKED_CAST")
         fun load(yaml: Yaml, path: String = "./areas.yml"): AreaSet {
             val set = AreaSet()
             val map = yaml.load<Map<String, Map<String, Any>>>(path)

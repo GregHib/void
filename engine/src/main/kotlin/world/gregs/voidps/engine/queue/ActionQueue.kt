@@ -65,8 +65,8 @@ class ActionQueue(private val character: Character) : CoroutineScope {
         }
     }
 
-    fun clear(name: String) {
-        val removed = queue.removeIf {
+    fun clear(name: String): Boolean {
+        return queue.removeIf {
             it.name == name
         }
     }

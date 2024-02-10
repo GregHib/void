@@ -27,6 +27,7 @@ object GrandExchangeDetailDumper {
                     println("Dumping $id")
                     file.appendText("${apiResponse},")
                 } catch (e: FileNotFoundException) {
+                    e.printStackTrace()
                 }
                 delay(100L)
             }

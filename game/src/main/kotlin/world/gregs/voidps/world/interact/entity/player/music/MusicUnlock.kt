@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 
 object MusicUnlock {
+    @Suppress("UNCHECKED_CAST")
     fun unlockTrack(player: Player, trackIndex: Int): Boolean {
         val name = "unlocked_music_${trackIndex / 32}"
         val list = get<VariableDefinitions>().get(name)?.values as? List<Any>

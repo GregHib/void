@@ -8,6 +8,7 @@ import kotlin.test.assertTrue
 internal class EventsTest {
 
     @Test
+    @Suppress("UNCHECKED_CAST")
     fun `Cancelled events stops processing`() {
         val events = Events(mockk())
         val event = object : CancellableEvent() {}

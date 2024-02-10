@@ -45,8 +45,8 @@ internal class VariablesTest {
         every { player.variables } returns variables
         every { player.events } returns events
         every { definitions.get(key) } returns variable
-        (variables as PlayerVariables).definitions = definitions
-        (variables as PlayerVariables).client = client
+        variables.definitions = definitions
+        variables.client = client
     }
 
     @Test

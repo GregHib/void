@@ -24,10 +24,10 @@ class WorldMap(private val view: MapView) {
         val minY = minRegionY
         val maxX = maxRegionX
         val maxY = maxRegionY
-        minRegionX = view.viewToRegionX(view.minX).coerceAtLeast(mapRegionMinX)
-        minRegionY = view.viewToRegionY(view.minY).coerceAtLeast(mapRegionMinY)
-        maxRegionX = view.viewToRegionX(view.maxX).coerceAtMost(mapRegionMaxX)
-        maxRegionY = view.viewToRegionY(view.maxY).coerceAtMost(mapRegionMaxY)
+        minRegionX = view.viewToRegionX(view.minX).coerceAtLeast(MAP_REGION_MIN_X)
+        minRegionY = view.viewToRegionY(view.minY).coerceAtLeast(MAP_REGION_MIN_Y)
+        maxRegionX = view.viewToRegionX(view.maxX).coerceAtMost(MAP_REGION_MAX_X)
+        maxRegionY = view.viewToRegionY(view.maxY).coerceAtMost(MAP_REGION_MAX_Y)
 
         if (minRegionX > minX) {
             regions.remove(minX until min(minRegionX, maxX), minY..maxY)
@@ -69,11 +69,11 @@ class WorldMap(private val view: MapView) {
     }
 
     companion object {
-        private const val mapRegionMinX = 0
-        private const val mapRegionMinY = 0
-        private const val mapRegionMaxX = 256
-        private const val mapRegionMaxY = 256
+        private const val MAP_REGION_MIN_X = 0
+        private const val MAP_REGION_MIN_Y = 0
+        private const val MAP_REGION_MAX_X = 256
+        private const val MAP_REGION_MAX_Y = 256
 
-        fun flipRegionY(regionY: Int) = mapRegionMaxY - regionY
+        fun flipRegionY(regionY: Int) = MAP_REGION_MAX_Y - regionY
     }
 }

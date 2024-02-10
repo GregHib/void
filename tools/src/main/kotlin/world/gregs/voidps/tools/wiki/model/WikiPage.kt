@@ -11,6 +11,7 @@ import org.sweble.wikitext.parser.nodes.*
 import org.w3c.dom.Node
 import world.gregs.voidps.tools.wiki.model.Wiki.Companion.getChildren
 
+@Suppress("UNCHECKED_CAST")
 data class WikiPage(
     val title: String,
     val namespace: WikiNamespace,

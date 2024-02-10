@@ -13,8 +13,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${findProperty("kotlinCoroutinesVersion")}")
 
     implementation("org.apache.commons:commons-compress:1.24.0")
-    implementation("org.jsoup:jsoup:1.13.1")
-    implementation("org.sweble.wikitext:swc-engine:2.0.0")
+    implementation("org.jsoup:jsoup:1.17.2")
+    implementation("org.sweble.wikitext:swc-engine:3.1.9")
     implementation("com.github.weisj:darklaf-core:2.7.3")
     implementation("javax.xml.bind:jaxb-api:2.3.1")
     implementation("net.pearx.kasechange:kasechange:${findProperty("kaseChangeVersion")}")

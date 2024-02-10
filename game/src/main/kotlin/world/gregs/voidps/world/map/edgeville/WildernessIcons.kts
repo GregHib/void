@@ -6,12 +6,9 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.variableClear
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.world.interact.entity.combat.inWilderness
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 
 variableSet("in_wilderness", true) { player: Player ->
     player.options.set(1, "Attack")
@@ -53,11 +50,11 @@ fun resetIcons(player: Player) = player.interfaces.apply {
 }
 
 fun updateIcon(player: Player) {
-    val component = when {
-        player["prayer_protect_item", false] -> "protection_active"
-        player.has(Skill.Prayer, if (player.isCurses()) 50 else 25) -> "protect_disabled"
-        else -> "no_protection"
-    }
+//    val component = when {
+//        player["prayer_protect_item", false] -> "protection_active"
+//        player.has(Skill.Prayer, if (player.isCurses()) 50 else 25) -> "protect_disabled"
+//        else -> "no_protection"
+//    }
     // These icons aren't displayed in this revision.
 //    player.interfaces.sendVisibility("area_status_icon", component, true)
 }
