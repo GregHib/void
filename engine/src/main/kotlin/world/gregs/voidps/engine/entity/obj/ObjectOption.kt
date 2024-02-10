@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetObjectContext
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.wildcardEquals
 import world.gregs.voidps.engine.suspend.arriveDelay
@@ -26,9 +27,9 @@ fun objectApproach(option: String, vararg objects: String = arrayOf("*"), block:
     }
 }
 
-fun objectOperate(option: String, vararg objects: String = arrayOf("*"), arrive: Boolean = true, block: suspend ObjectOption.() -> Unit) {
+fun objectOperate(option: String, vararg objects: String = arrayOf("*"), arrive: Boolean = true, priority: Priority = Priority.MEDIUM, block: suspend ObjectOption.() -> Unit) {
     for (id in objects) {
-        on<ObjectOption>({ operate && wildcardEquals(id, target.id) && wildcardEquals(option, this.option) }) { _: Player ->
+        on<ObjectOption>({ operate && wildcardEquals(id, target.id) && wildcardEquals(option, this.option) }, priority) { _: Player ->
             if (arrive) {
                 arriveDelay()
             }
