@@ -5,16 +5,16 @@ import world.gregs.voidps.cache.config.data.UnderlayDefinition
 import world.gregs.voidps.cache.definition.data.MapTile
 import world.gregs.voidps.cache.definition.data.TextureDefinition
 import world.gregs.voidps.tools.map.render.draw.TileLevel
+import world.gregs.voidps.tools.map.render.load.MapConstants.GROUND_BLENDING
 import world.gregs.voidps.tools.map.render.load.MapConstants.TILE_TYPE_HEIGHT_OVERRIDE
+import world.gregs.voidps.tools.map.render.load.MapConstants.WATER_MOVEMENT
 import world.gregs.voidps.tools.map.render.load.MapConstants.firstTileTypeVertices
-import world.gregs.voidps.tools.map.render.load.MapConstants.groundBlending
 import world.gregs.voidps.tools.map.render.load.MapConstants.overlaySizes
 import world.gregs.voidps.tools.map.render.load.MapConstants.secondTileTypeVertices
 import world.gregs.voidps.tools.map.render.load.MapConstants.thirdTileTypeVertices
 import world.gregs.voidps.tools.map.render.load.MapConstants.tileXOffsets
 import world.gregs.voidps.tools.map.render.load.MapConstants.tileYOffsets
 import world.gregs.voidps.tools.map.render.load.MapConstants.underlaySizes
-import world.gregs.voidps.tools.map.render.load.MapConstants.waterMovement
 import world.gregs.voidps.tools.map.render.raster.ColourPalette
 import world.gregs.voidps.type.Region
 
@@ -62,26 +62,26 @@ class MapTileSettings(
     }
 
     private fun loadSettings() = level.forEach { level ->
-        var i_23_ = 0
+        var flag = 0
         var settings = 0
-        if (!waterMovement) {
-            if (MapConstants.tileWater) {
+        if (!WATER_MOVEMENT) {
+            if (MapConstants.TILE_WATER) {
                 settings = settings or 0x8
             }
-            if (MapConstants.tileLighting) {
-                i_23_ = i_23_ or 0x2
+            if (MapConstants.TILE_LIGHTING) {
+                flag = flag or 0x2
             }
-            if (MapConstants.sceneryShadows != 0) {
-                i_23_ = i_23_ or 0x1
-                if ((level.level == 0) or MapConstants.aBoolean8715) {
+            if (MapConstants.SCENERY_SHADOWS != 0) {
+                flag = flag or 0x1
+                if ((level.level == 0) or MapConstants.A_BOOLEAN_8715) {
                     settings = settings or 0x10
                 }
             }
         }
-        if (MapConstants.tileLighting) {
+        if (MapConstants.TILE_LIGHTING) {
             settings = settings or 0x7
         }
-        if (!MapConstants.aBoolean10563) {
+        if (!MapConstants.A_BOOLEAN_10563) {
             settings = settings or 0x20
         }
         level.loadBrightness()
@@ -161,7 +161,7 @@ class MapTileSettings(
     private fun loadTileVertices(level: Int, parentColours: Array<IntArray>, aboveLevel: TileLevel?, tileLevel: TileLevel) {
         for (x in 0 until width) {
             for (y in 0 until height) {
-                if (groundBlending == -1 || useUnderlay(x, y, groundBlending, level)) {
+                if (GROUND_BLENDING == -1 || useUnderlay(x, y, GROUND_BLENDING, level)) {
                     val tile = tile(level, x, y)
                     var tileType = tile.overlayPath
                     val tileDirection = tile.overlayRotation

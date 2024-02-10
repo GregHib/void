@@ -3,10 +3,10 @@ package world.gregs.voidps.tools.map.obj
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.equals
 import world.gregs.voidps.tools.map.obj.types.*
 import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.equals
 import kotlin.system.exitProcess
 
 class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLinks: List<Pair<Tile, Tile>>, val graph: MutableNavigationGraph) {
@@ -46,7 +46,7 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
         val options = setOf(
             ObjectIdentification(
                 "Ladder",
-                { interactiveOptions.minus(obj.getOptions()) },
+                { interactiveOptions.minus(obj.getOptions().toSet()) },
                 listOf(
                     sizeDifference,
                     differenceBetweenNames,
@@ -59,7 +59,7 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
             ),
             ObjectIdentification(
                 "Stairs",
-                { interactiveOptions.minus(obj.getOptions()) },
+                { interactiveOptions.minus(obj.getOptions().toSet()) },
                 listOf(
                     sizeDifference,
                     differenceBetweenNames,

@@ -96,7 +96,7 @@ object HashCodeMatcher {
             }
             for (a in spaced) {
                 for (b in spaced) {
-                    check("${a} ${b}", underscore)
+                    check("$a $b", underscore)
                     check("${a}${b}")
                 }
             }

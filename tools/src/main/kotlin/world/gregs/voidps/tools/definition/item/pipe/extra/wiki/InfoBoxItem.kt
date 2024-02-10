@@ -63,7 +63,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
                     "examine$suffix" -> {
                         val t = value as? String
                         if (t == null) {
-                            println("Unknown examine $t")
+                            println("Unknown examine")
                         } else {
                             val text = removeLinks(t).replace("adrenaline", "recover special").replace(usedInRegex, "").trim()
                             splitExamine(text, extras, key, suffix, false)
@@ -77,7 +77,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
                         val text = value as String
                         val use = if (text == "removed") {
                             val removal = template["removal"] as? String
-                            if (removal == null || removal.isBlank() || LocalDate.parse(removeLinks(removal), formatter).isBefore(revision)) {
+                            if (removal.isNullOrBlank() || LocalDate.parse(removeLinks(removal), formatter).isBefore(revision)) {
                                 ItemUse.Removed
                             } else {
                                 ItemUse.Surface
@@ -145,7 +145,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
 
         private val linkNameRegex = "\\[\\[(.*?)]]".toRegex()
 
-        private const val linebreak = "<br>"
+        private const val LINE_BREAK = "<br>"
 
         private val removeParentheses = "\\(.*?\\)\\s?".toRegex()
         private val splitByColon = "(?:\\.|<br>|!|\\?)('?.*?:'?(?:\\s+)?)".toRegex()
@@ -183,7 +183,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
 
         fun splitExamine(text: String, extras: MutableMap<String, Any>, key: String, suffix: String, override: Boolean) {
             val text = removeBold(formatLineBreaks(text).replace("\"", ""))
-            if (text.contains(linebreak) || text.contains(":") || text.contains("(")) {
+            if (text.contains(LINE_BREAK) || text.contains(":") || text.contains("(")) {
                 val parts = when {
                     text.contains(":") -> {
                         text
@@ -192,7 +192,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
                                 splitParentheses(line)
                             }
                     }
-                    text.contains(linebreak) -> text.split(linebreak).map { it.trim() }
+                    text.contains(LINE_BREAK) -> text.split(LINE_BREAK).map { it.trim() }
                     text.contains("(") -> splitParentheses(text)
                     else -> throw RuntimeException("Unknown split '$text'")
                 }
@@ -214,14 +214,14 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
         }
 
         fun formatLineBreaks(text: String) = text
-            .replace("<br/>", linebreak)
-            .replace("<br />", linebreak)
+            .replace("<br/>", LINE_BREAK)
+            .replace("<br />", LINE_BREAK)
             .replace("\n", " ")
-            .replace("\\n", linebreak)
-            .replace("*", linebreak)
-            .replace(" / ", linebreak)
-            .replace(" OR ", linebreak)
-            .replace("./", ".$linebreak")
+            .replace("\\n", LINE_BREAK)
+            .replace("*", LINE_BREAK)
+            .replace(" / ", LINE_BREAK)
+            .replace(" OR ", LINE_BREAK)
+            .replace("./", ".$LINE_BREAK")
 
         /**
          * Same as [split] but only splits by captured group not full match
@@ -241,7 +241,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
         }
 
         private fun splitParentheses(text: String) = text
-            .replace(linebreak, "")
+            .replace(LINE_BREAK, "")
             .splitByMatch(splitByParentheses)
             .map { part -> part.split(":").last().trim() }
             .filter { it.isNotBlank() && it != "." }

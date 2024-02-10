@@ -162,7 +162,7 @@ class ObjectPainter(
         }
     }
 
-    internal fun MapSceneDefinition.method1606(i: Int, bool: Boolean): IndexedSprite? {
+    internal fun MapSceneDefinition.method1606(setting: Int, bool: Boolean): IndexedSprite? {
         val image = spriteDefinitions[sprite].sprites?.first()
         if (image != null) {
             image.offsetY = 0
@@ -172,7 +172,7 @@ class ObjectPainter(
             if (bool) {
                 image.method4189()
             }
-            for (i_1_ in 0 until i)
+            for (i in 0 until setting)
                 image.method4198()
         }
         return image
@@ -191,7 +191,7 @@ class ObjectPainter(
         val localY = obj.y
         val rotation = obj.rotation
         val type = obj.shape
-        val bool_65_ = definition.animations == null && definition.transforms == null && !definition.aBoolean2998 && !definition.aBoolean2992
+        val bool65 = definition.animations == null && definition.transforms == null && !definition.aBoolean2998 && !definition.aBoolean2992
         val baseX = (offsetX * 64) + localX
         val baseY = (offsetY * 64) + localY
         if (type == 22) {
@@ -210,7 +210,7 @@ class ObjectPainter(
         } else if (type == 1) {
             drawWall(g, definition, baseX, baseY, type, rotation)
         } else if (type == 2) {
-            drawWall(g, definition, baseX, baseY, type, rotation + if (!bool_65_) 4 else 0)
+            drawWall(g, definition, baseX, baseY, type, rotation + if (!bool65) 4 else 0)
         } else if (type == 3) {
             drawWall(g, definition, baseX, baseY, type, rotation)
         } else if (type == 9) {
@@ -233,30 +233,30 @@ class ObjectPainter(
         val bs = raster
         if (alpha == null) {
             for (i in (height shr 1) - 1 downTo 0) {
-                var i_24_ = i * width
-                var i_25_ = (height - i - 1) * width
-                for (i_26_ in -width..-1) {
-                    val b = bs[i_24_]
-                    bs[i_24_] = bs[i_25_]
-                    bs[i_25_] = b
-                    i_24_++
-                    i_25_++
+                var i24 = i * width
+                var i25 = (height - i - 1) * width
+                for (index in -width..-1) {
+                    val b = bs[i24]
+                    bs[i24] = bs[i25]
+                    bs[i25] = b
+                    i24++
+                    i25++
                 }
             }
         } else {
-            val bs_27_ = alpha
+            val alpha = alpha
             for (i in (height shr 1) - 1 downTo 0) {
-                var i_28_ = i * width
-                var i_29_ = (height - i - 1) * width
-                for (i_30_ in -width..-1) {
-                    var b = bs[i_28_]
-                    bs[i_28_] = bs[i_29_]
-                    bs[i_29_] = b
-                    b = bs_27_!![i_28_]
-                    bs_27_[i_28_] = bs_27_[i_29_]
-                    bs_27_[i_29_] = b
-                    i_28_++
-                    i_29_++
+                var i28 = i * width
+                var i29 = (height - i - 1) * width
+                for (i30 in -width..-1) {
+                    var b = bs[i28]
+                    bs[i28] = bs[i29]
+                    bs[i29] = b
+                    b = alpha!![i28]
+                    alpha[i28] = alpha[i29]
+                    alpha[i29] = b
+                    i28++
+                    i29++
                 }
             }
         }
@@ -269,29 +269,29 @@ class ObjectPainter(
         val bs = ByteArray(width * height)
         var i = 0
         if (alpha == null) {
-            for (i_95_ in 0 until width) {
-                for (i_96_ in height - 1 downTo 0)
-                    bs[i++] = raster[i_95_ + i_96_ * width]
+            for (j in 0 until width) {
+                for (k in height - 1 downTo 0)
+                    bs[i++] = raster[j + k * width]
             }
             raster = bs
         } else {
-            val bs_97_ = ByteArray(width * height)
-            for (i_98_ in 0 until width) {
-                for (i_99_ in height - 1 downTo 0) {
-                    bs[i] = raster[i_98_ + i_99_ * width]
-                    bs_97_[i++] = alpha!![i_98_ + i_99_ * width]
+            val bytes = ByteArray(width * height)
+            for (j in 0 until width) {
+                for (k in height - 1 downTo 0) {
+                    bs[i] = raster[j + k * width]
+                    bytes[i++] = alpha!![j + k * width]
                 }
             }
             raster = bs
-            alpha = bs_97_
+            alpha = bytes
         }
         offsetY = offsetX
         offsetX = deltaHeight
         deltaHeight = deltaWidth
         deltaWidth = offsetY
-        val i_100_: Int = height
+        val temp: Int = height
         height = width
-        width = i_100_
+        width = temp
     }
 
     companion object {

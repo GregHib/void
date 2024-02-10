@@ -20,7 +20,6 @@ import kotlin.collections.set
  */
 object InventoryConverter {
 
-    @Suppress("USELESS_CAST")
     fun convert(target: File, provider: File) {
         val targetCache = CacheDelegate(target.path)
         val otherCache = CacheDelegate(provider.path)

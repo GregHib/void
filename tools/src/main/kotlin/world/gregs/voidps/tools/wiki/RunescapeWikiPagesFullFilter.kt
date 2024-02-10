@@ -130,7 +130,7 @@ object RunescapeWikiPagesFullFilter {
                 XMLStreamConstants.END_ELEMENT -> {
                     when (event.asEndElement().name.localPart) {
                         "namespaces" -> {
-                            namespaces.removeAll(namespacesToDump.map { namespaceIndex[it] })
+                            namespaces.removeAll(namespacesToDump.map { namespaceIndex[it] }.toSet())
                         }
                         "revision" -> {
                             if (validRevision) {
@@ -146,7 +146,7 @@ object RunescapeWikiPagesFullFilter {
                             }
                         }
                         "page" -> {
-                            if (!ignoreEmptyPages || mostRecentRevisionEvents.isNotEmpty()) {
+                            if (!IGNORE_EMTPY_PAGES || mostRecentRevisionEvents.isNotEmpty()) {
                                 val pageClose = pageEvents.removeAt(pageEvents.lastIndex)
                                 var priorRedirect: String? = null
                                 pageEvents.forEach { event ->
@@ -195,7 +195,7 @@ object RunescapeWikiPagesFullFilter {
         }
     }
 
-    private const val ignoreEmptyPages = true
+    private const val IGNORE_EMTPY_PAGES = true
 
     @JvmStatic
     fun main(args: Array<String>) {

@@ -17,7 +17,7 @@ object StructDefinitions {
 //            if (def.params != null) {
 //                set.addAll(def.params!!.keys)
 //            }
-            println("$i ${def}")
+            println("$i $def")
         }
 
         val folder = File("C:\\Users\\Greg\\Documents\\Void\\decompiled-cs2-667\\")

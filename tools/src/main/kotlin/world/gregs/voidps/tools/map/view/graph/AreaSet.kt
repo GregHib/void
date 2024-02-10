@@ -8,7 +8,7 @@ import world.gregs.yaml.Yaml
 
 class AreaSet {
     val areas = mutableSetOf<Area>()
-    var changed = false
+    private var changed = false
 
     fun getPointOrNull(x: Int, y: Int, z: Int): Point? {
         for (area in areas) {

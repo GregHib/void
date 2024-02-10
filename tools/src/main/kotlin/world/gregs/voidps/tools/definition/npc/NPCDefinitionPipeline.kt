@@ -25,7 +25,7 @@ import java.time.Month
 import java.util.concurrent.TimeUnit
 
 object NPCDefinitionPipeline {
-    private const val debugId = -1
+    private const val DEBUG_ID = -1
 
     @JvmStatic
     fun main(args: Array<String>) {
@@ -58,7 +58,7 @@ object NPCDefinitionPipeline {
                     "infobox npc" to "id"
                 ),
                 "oldschool.runescape.wiki",
-                false// OSRS id's are scrambled :(
+                false// OSRS ids are scrambled :(
             ) { content, page, _ ->
                 content.osrs = page
             })
@@ -85,7 +85,7 @@ object NPCDefinitionPipeline {
         val incomplete = mutableListOf<PageCollector>()
 
         for (id in decoder.indices) {
-            if (debugId >= 0 && id != debugId) {
+            if (DEBUG_ID >= 0 && id != DEBUG_ID) {
                 continue
             }
             val def = decoder.getOrNull(id) ?: continue
@@ -123,7 +123,7 @@ object NPCDefinitionPipeline {
             add(InfoBoxNPC(revision, infoboxes))
         }
         for (id in decoder.indices) {
-            if (debugId >= 0 && id != debugId) {
+            if (DEBUG_ID >= 0 && id != DEBUG_ID) {
                 continue
             }
             val def = decoder.getOrNull(id) ?: continue
