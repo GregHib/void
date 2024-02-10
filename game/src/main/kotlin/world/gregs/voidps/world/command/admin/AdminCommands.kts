@@ -274,7 +274,7 @@ adminCommand("pray") {
 }
 
 adminCommand("restore") {
-    Skill.values().forEach {
+    Skill.entries.forEach {
         player.levels.clear(it)
     }
 }

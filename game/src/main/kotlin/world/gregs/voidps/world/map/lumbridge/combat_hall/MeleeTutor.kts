@@ -119,7 +119,7 @@ suspend fun CharacterContext.buySkillcape() {
             player.inventory.transaction {
                 remove("coins", 99000)
                 add("defence_hood")
-                val trimmed = Skill.values().any { it != Skill.Defence && player.levels.getMax(it) >= Level.MAX_LEVEL }
+                val trimmed = Skill.entries.any { it != Skill.Defence && player.levels.getMax(it) >= Level.MAX_LEVEL }
                 add("defence_skillcape${if (trimmed) "_t" else ""}")
             }
             when (player.inventory.transaction.error) {

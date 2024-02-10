@@ -18,10 +18,8 @@ enum class QuickChatType(var id: Int, var bitCount: Int, var length: Int) {
     CombatLevel(15, 0, 0);
 
     companion object {
-        private val types = values()
-
         fun getType(id: Int): QuickChatType? {
-            return types.firstOrNull { it.id == id }
+            return entries.firstOrNull { it.id == id }
         }
     }
 }

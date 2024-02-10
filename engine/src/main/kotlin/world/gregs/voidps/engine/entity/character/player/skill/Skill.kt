@@ -30,7 +30,7 @@ enum class Skill {
     fun maximum(): Int = if (this == Dungeoneering) 120 else if (this == Constitution) 990 else 99
 
     companion object {
-        val all = values()
+        val all = entries.toTypedArray()
         val count = all.size
     }
 }

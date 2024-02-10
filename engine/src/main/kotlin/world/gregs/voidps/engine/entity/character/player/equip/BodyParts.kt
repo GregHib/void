@@ -24,7 +24,7 @@ data class BodyParts(
     }
 
     fun updateAll() {
-        BodyPart.all.forEach {
+        BodyPart.entries.forEach {
             updateConnected(it)
         }
     }

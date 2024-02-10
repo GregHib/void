@@ -50,7 +50,7 @@ object SkillDataConverter {
         for ((name, map) in data) {
             val map = map.toMutableMap()
             if (map.containsKey("skill")) {
-                map.replace("skill", Skill.values()[map["skill"] as Int])
+                map.replace("skill", Skill.entries[map["skill"] as Int])
                 if (map["skill"] != Skill.Crafting) {
                     continue
                 }

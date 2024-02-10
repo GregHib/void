@@ -1,11 +1,11 @@
 package world.gregs.voidps.tools.map.obj
 
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.type.Delta
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
+import world.gregs.voidps.type.Delta
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 
 class ObjectLinker(private val collisions: Collisions) {
     fun deltaBetween(one: GameObject, two: GameObject): Delta? {
@@ -92,7 +92,7 @@ class ObjectLinker(private val collisions: Collisions) {
     }
 
     fun isReachable(obj: GameObject): Boolean {
-        for (dir in Direction.values()) {
+        for (dir in Direction.entries) {
             val tile = getSizedTile(obj, dir)
 
             when (dir) {

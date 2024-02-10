@@ -59,12 +59,12 @@ enum class Direction(deltaX: Int, deltaY: Int) {
     }
 
     companion object {
-        val size = values().size
-        val cardinal = values().filter { it.isCardinal() && it.delta.x != it.delta.y }
-        val ordinal = values().filter { it.isDiagonal() }
-        val values = values()
-        val reversed = values().reversed()
-        val all = values().copyOfRange(0, size - 1)
+        val size = entries.size
+        val cardinal = entries.filter { it.isCardinal() && it.delta.x != it.delta.y }
+        val ordinal = entries.filter { it.isDiagonal() }
+        val values = entries.toTypedArray()
+        val reversed = entries.reversed()
+        val all = entries.toTypedArray().copyOfRange(0, size - 1)
         val clockwise = arrayOf(NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST)
         val westClockwise = arrayOf(WEST, NORTH, EAST, SOUTH)
 

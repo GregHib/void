@@ -18,8 +18,7 @@ enum class BodyPart(
     Beard(EquipSlot.Hat, index = 1);
 
     companion object {
-        val all = values()
-        fun by(index: Int) = all.firstOrNull { it.index == index }
-        fun by(slot: EquipSlot) = all.firstOrNull { it.slot == slot }
+        fun by(index: Int) = entries.firstOrNull { it.index == index }
+        fun by(slot: EquipSlot) = entries.firstOrNull { it.slot == slot }
     }
 }
