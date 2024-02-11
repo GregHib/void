@@ -27,7 +27,7 @@ on<Consumable>({ item.id.startsWith("overload") }) { player: Player ->
     }
 }
 
-consume("overload*") { player: Player ->
+consume("overload_#") { player: Player ->
     player["overload_refreshes_remaining"] = 20
     player.timers.start("overload")
 }
@@ -38,15 +38,12 @@ playerSpawn { player: Player ->
     }
 }
 
-timerStart("overload") { _: Player ->
-    interval = 25
-}
-
 timerStart("overload") { player: Player ->
+    interval = 25
     if (restart) {
         return@timerStart
     }
-    player.queue(name = "hit") {
+    player.queue(name = "overload_hits") {
         repeat(5) {
             player.directHit(100)
             player.setAnimation("overload")
