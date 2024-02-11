@@ -59,8 +59,8 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
             if (GameLoop.tick <= tick) {
                 continue
             }
-            block.invoke()
             iterator.remove()
+            block.invoke()
         }
     }
 

@@ -38,7 +38,7 @@ class InstructionTask(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     override fun run() {
-        players.forEach { player ->
+        for (player in players) {
             val instructions = player.instructions
             for (instruction in instructions.replayCache) {
                 if (player["debug", false]) {

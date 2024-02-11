@@ -8,6 +8,10 @@ class GeneralStoreRestrictions(
 ) : ItemRestrictionRule {
 
     override fun restricted(id: String): Boolean {
-        return id == "coins" || !definitions.get(id)["tradeable", true] || !definitions.contains(id)
+        if (id == "coins") {
+            return false
+        }
+        val def = definitions.getOrNull(id) ?: return false
+        return !def["tradeable", true] || def.lendTemplateId != -1 || def.singleNoteTemplateId != -1 || def.dummyItem != 0
     }
 }

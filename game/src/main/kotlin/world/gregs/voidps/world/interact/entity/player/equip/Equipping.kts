@@ -73,7 +73,7 @@ fun getOtherHandSlot(slot: EquipSlot) = if (slot == EquipSlot.Shield) EquipSlot.
 
 fun updateWeaponEmote(player: Player) {
     val weapon = player.equipped(EquipSlot.Weapon)
-    val anim = weapon.def["render_anim", 1426]
+    val anim = weapon.def["render_animation", 1426]
     player.appearance.emote = anim
     player.flagAppearance()
 }

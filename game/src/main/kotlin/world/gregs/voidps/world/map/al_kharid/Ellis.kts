@@ -2,9 +2,11 @@ package world.gregs.voidps.world.map.al_kharid
 
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toTag
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -76,6 +78,10 @@ interfaceOption(component = "Tan *", id = "tanner") {
         else -> return@interfaceOption
     }
     tan(player, component, amount)
+}
+
+interfaceClose("tanner") { player: Player ->
+    player.sendScript(571)
 }
 
 fun tan(player: Player, type: String, amount: Int) {

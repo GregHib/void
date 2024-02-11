@@ -115,7 +115,7 @@ suspend fun PlayerChoice.skillcapes(): Unit = option("Can you tell me about your
     npc<Talking>("The Cape of Runecrafting has been upgraded with each talisman, allowing you to access all Runecrafting altars. Is there anything else I can help you with?")
     choice {
         option<Cheerful>("I'd like to view your store please.") {
-            player.events.emit(OpenShop("runecrafting_skillcape_skillcape"))
+            player.events.emit(OpenShop("runecrafting_skillcape"))
         }
         noThanks("No thank you.")
     }

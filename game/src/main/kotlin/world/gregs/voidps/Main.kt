@@ -53,7 +53,7 @@ object Main {
         val protocol = protocol(get<Huffman>())
 
         val gatekeeper: ConnectionGatekeeper = get()
-        val loginServer = LoginServer.load(properties, protocol, gatekeeper, accountLoader, Contexts.Game)
+        val loginServer = LoginServer.load(properties, protocol, gatekeeper, accountLoader)
         val server = GameServer.load(cache, properties, gatekeeper, loginServer)
 
         val tickStages = getTickStages(iterator = if (CharacterTask.DEBUG) SequentialIterator() else ParallelIterator())

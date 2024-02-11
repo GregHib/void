@@ -2,10 +2,8 @@ package world.gregs.voidps.network.client
 
 import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.network.writeSmart
 
 open class Client(
@@ -16,18 +14,21 @@ open class Client(
 ) {
 
     private val logger = InlineLogger()
-    private val handler = context + CoroutineExceptionHandler { _, throwable ->
+    private val handler = CoroutineExceptionHandler { _, throwable ->
         logger.warn { "Client error: ${throwable.message}" }
         disconnect()
     }
     var disconnected: Boolean = false
-    private val state = MutableStateFlow<ClientState>(ClientState.Connected)
+    private var disconnect: (() -> Unit)? = null
+    private var disconnecting: (() -> Unit)? = null
+    private var state: ClientState = ClientState.Connected
 
-    fun on(context: CoroutineDispatcher, state: ClientState, block: () -> Unit) = GlobalScope.launch(context) {
-        this@Client.state
-            .filter { it == state }
-            .first()
-        block.invoke()
+    fun onDisconnected(block: () -> Unit) {
+        disconnect = block
+    }
+
+    fun onDisconnecting(block: () -> Unit) {
+        disconnecting = block
     }
 
     suspend fun disconnect(reason: Int) {
@@ -45,12 +46,14 @@ open class Client(
         disconnected = true
         write.flush()
         write.close()
-        state.tryEmit(ClientState.Disconnected)
+        state = ClientState.Disconnected
+        disconnect?.invoke()
     }
 
     fun exit() {
-        if (state.value == ClientState.Connected) {
-            state.tryEmit(ClientState.Disconnecting)
+        if (state == ClientState.Connected) {
+            state = ClientState.Disconnecting
+            disconnecting?.invoke()
         }
     }
 
@@ -97,9 +100,6 @@ open class Client(
     }
 
     companion object {
-        @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
-        val context = newSingleThreadContext("Networking")
-
         const val FIXED = 0
         const val BYTE = -1
         const val SHORT = -2

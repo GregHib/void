@@ -3,12 +3,10 @@ package world.gregs.voidps.network
 import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.cache.secure.RSA
 import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.client.ClientState
 import world.gregs.voidps.network.client.IsaacCipher
 import java.math.BigInteger
 import java.util.*
@@ -23,8 +21,7 @@ class LoginServer(
     private val modulus: BigInteger,
     private val private: BigInteger,
     private val gatekeeper: NetworkGatekeeper,
-    private val loader: AccountLoader,
-    private val disconnectContext: CoroutineDispatcher
+    private val loader: AccountLoader
 ) : Server {
 
     override suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
@@ -109,7 +106,7 @@ class LoginServer(
 
     suspend fun login(read: ByteReadChannel, client: Client, username: String, password: String, displayMode: Int) {
         val index = gatekeeper.connect(username, client.address)
-        client.on(disconnectContext, ClientState.Disconnected) {
+        client.onDisconnected {
             gatekeeper.disconnect(username, client.address)
         }
         if (index == null) {
@@ -146,11 +143,11 @@ class LoginServer(
     companion object {
         private val logger = InlineLogger()
 
-        fun load(properties: Properties, protocol: Array<Decoder?>, gatekeeper: NetworkGatekeeper, loader: AccountLoader, disconnectContext: CoroutineDispatcher): LoginServer {
+        fun load(properties: Properties, protocol: Array<Decoder?>, gatekeeper: NetworkGatekeeper, loader: AccountLoader): LoginServer {
             val gameModulus = BigInteger(properties.getProperty("gameModulus"), 16)
             val gamePrivate = BigInteger(properties.getProperty("gamePrivate"), 16)
             val revision = properties.getProperty("revision").toInt()
-            return LoginServer(protocol, revision, gameModulus, gamePrivate, gatekeeper, loader, disconnectContext)
+            return LoginServer(protocol, revision, gameModulus, gamePrivate, gatekeeper, loader)
         }
     }
 }

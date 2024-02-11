@@ -26,6 +26,7 @@ objectOperate("Collect") {
 
 interfaceClose("bank") { player: Player ->
     player.close("bank_side")
+    player.sendScript(571)
 }
 
 interfaceOpen("bank") { player: Player ->

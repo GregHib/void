@@ -4573,7 +4573,7 @@ aarons_archery_appendages_trimmed:
     - leather_cowl: 10
     - leather_vambraces: 10
     - ranged_cape_t: 1
-runecrafting_skillcape_skillcape:
+runecrafting_skillcape:
   id: 459
   defaults:
     - runecrafting_cape: 1

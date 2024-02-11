@@ -1,6 +1,8 @@
 package world.gregs.voidps.world.community.clan
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -134,6 +136,10 @@ interfaceOption("Set prefix", "name", "clan_chat_setup") {
     player["clan_name"] = name
     player.interfaces.sendText(id, component, name)
     updateUI(clan)
+}
+
+interfaceClose("clan_chat_setup") { player: Player ->
+    player.sendScript(571)
 }
 
 interfaceOption("Disable", "name", "clan_chat_setup") {
