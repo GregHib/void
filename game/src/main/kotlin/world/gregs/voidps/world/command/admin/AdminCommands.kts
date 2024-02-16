@@ -350,6 +350,7 @@ adminCommand("reload") {
         "interfaces" -> get<InterfaceDefinitions>().load()
         "spells" -> get<SpellDefinitions>().load()
         "drops" -> get<DropTables>().load()
+        "cs2", "cs2s", "client scripts" -> get<ClientScriptDefinitions>().load()
     }
 }
 

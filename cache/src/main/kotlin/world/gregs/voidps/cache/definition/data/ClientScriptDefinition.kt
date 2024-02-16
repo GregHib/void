@@ -1,9 +1,11 @@
 package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
+import world.gregs.voidps.cache.definition.Extra
 
 data class ClientScriptDefinition(
     override var id: Int = -1,
+    override var stringId: String = "",
     var intArgumentCount: Int = 0,
     var stringVariableCount: Int = 0,
     var longVariableCount: Int = 0,
@@ -15,8 +17,9 @@ data class ClientScriptDefinition(
     var instructions: IntArray = intArrayOf(),
     var stringOperands: Array<String?>? = null,
     var longOperands: LongArray? = null,
-    var intOperands: IntArray? = null
-) : Definition {
+    var intOperands: IntArray? = null,
+    override var extras: Map<String, Any>? = null
+) : Definition, Extra {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -67,5 +70,9 @@ data class ClientScriptDefinition(
         result = 31 * result + (longOperands?.contentHashCode() ?: 0)
         result = 31 * result + (intOperands?.contentHashCode() ?: 0)
         return result
+    }
+
+    companion object {
+        val EMPTY = ClientScriptDefinition(-1)
     }
 }
