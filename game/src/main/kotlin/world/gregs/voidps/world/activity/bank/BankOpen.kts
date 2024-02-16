@@ -26,7 +26,7 @@ objectOperate("Collect") {
 
 interfaceClose("bank") { player: Player ->
     player.close("bank_side")
-    player.sendScript(571)
+    player.sendScript("clear_dialogues")
 }
 
 interfaceOpen("bank") { player: Player ->
@@ -38,7 +38,7 @@ interfaceOpen("bank") { player: Player ->
         player.sendVariable("bank_tab_$tab")
     }
     player.sendVariable("last_bank_amount")
-    player.sendScript(1465)
+    player.sendScript("update_bank_slots")
     player.interfaceOptions.unlockAll("bank", "inventory", 0 until 516)
     player.interfaceOptions.unlockAll("bank_side", "inventory", 0 until 28)
 }

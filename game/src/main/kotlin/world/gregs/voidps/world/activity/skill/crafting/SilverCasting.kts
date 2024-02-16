@@ -82,7 +82,7 @@ interfaceOption(component = "*_button", id = "silver_mould") {
 }
 
 interfaceClose("silver_mould") { player: Player ->
-    player.sendScript(571)
+    player.sendScript("clear_dialogues")
 }
 
 fun Player.make(item: Item, amount: Int) {

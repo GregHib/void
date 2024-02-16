@@ -59,7 +59,7 @@ internal class InterfaceOptionsTest {
         every { inventoryDefinitions.get(any<String>()) } returns InventoryDefinition(10, extras = mapOf("width" to 2, "height" to 3))
         options.send(name, comp)
         verify {
-            player.sendScript(695, (5 shl 16) or 0, 10, 2, 3, 0, -1, "", "", "", "", "", "", "", "", "")
+            player.sendScript("secondary_options", (5 shl 16) or 0, 10, 2, 3, 0, -1, "", "", "", "", "", "", "", "", "")
         }
     }
 

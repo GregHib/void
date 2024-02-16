@@ -19,7 +19,7 @@ internal class IntEntryTest : DialogueTest() {
         }
         assertTrue(player.dialogueSuspension is IntSuspension)
         verify {
-            player.sendScript(108, "text")
+            player.sendScript("int_entry", "text")
         }
     }
 

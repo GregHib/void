@@ -106,5 +106,5 @@ fun reset(player: Player, other: Player) {
     player.loan.moveAll(player.inventory)
     player.loan.clear()
     player.otherLoan.clear()
-    player.sendScript(571)
+    player.sendScript("clear_dialogues")
 }

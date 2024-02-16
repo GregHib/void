@@ -8,4 +8,14 @@ quest_progress: 2194
 activate_prayer: 2295
 achievement_has_requirements: 3224
 achievement_complete: 3994
-close_dialogue: 571
+clear_dialogues: 571
+primary_options: 150
+secondary_options: 695
+update_bank_slots: 1465
+quest_journal_refresh: 2165
+quest_journal_length: 1207
+trade_warning: 143
+int_entry: 108
+string_entry: 109
+dialogue_item_zoom: 3449
+items_kept_on_death: 118

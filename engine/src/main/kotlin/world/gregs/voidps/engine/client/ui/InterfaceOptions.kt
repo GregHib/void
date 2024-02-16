@@ -23,7 +23,7 @@ class InterfaceOptions(
 
     fun send(id: String, component: String) {
         val comp = definitions.getComponent(id, component) ?: return
-        val script = if (comp["primary", true]) 150 else 695
+        val script = if (comp["primary", true]) "primary_options" else "secondary_options"
         val inventory = inventoryDefinitions.get(comp["inventory", ""])
         if (inventory.id != -1) {
             val combined = (comp["parent", -1] shl 16) or comp.id

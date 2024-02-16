@@ -32,7 +32,7 @@ internal class ItemBoxTest : DialogueTest() {
         (player.dialogueSuspension as ContinueSuspension).resume()
         verify {
             player.open("dialogue_obj_box")
-            player.sendScript(3449, 9009, 650)
+            player.sendScript("dialogue_item_zoom", 9009, 650)
             interfaces.sendSprite("dialogue_obj_box", "sprite", 10)
             interfaces.sendText("dialogue_obj_box", "line1", "An item<br>description")
         }
@@ -72,7 +72,7 @@ internal class ItemBoxTest : DialogueTest() {
             }
         }
         coVerify(exactly = 0) {
-            player.sendScript(3449, 650, 9009)
+            player.sendScript("dialogue_item_zoom", 650, 9009)
         }
     }
 }

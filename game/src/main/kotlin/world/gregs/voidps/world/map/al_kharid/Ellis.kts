@@ -81,7 +81,7 @@ interfaceOption(component = "Tan *", id = "tanner") {
 }
 
 interfaceClose("tanner") { player: Player ->
-    player.sendScript(571)
+    player.sendScript("clear_dialogues")
 }
 
 fun tan(player: Player, type: String, amount: Int) {

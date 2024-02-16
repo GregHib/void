@@ -11,11 +11,10 @@ import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
 
 private const val ITEM_INTERFACE_ID = "dialogue_obj_box"
 private const val DOUBLE_ITEM_INTERFACE_ID = "dialogue_double_obj_box"
-private const val ITEM_SCRIPT_ID = 3449
 
 suspend fun CharacterContext.item(item: String, zoom: Int, text: String, sprite: Int? = null) {
     check(player.open(ITEM_INTERFACE_ID)) { "Unable to open item dialogue for $player" }
-    player.sendScript(ITEM_SCRIPT_ID, get<ItemDefinitions>().get(item).id, zoom)
+    player.sendScript("dialogue_item_zoom", get<ItemDefinitions>().get(item).id, zoom)
     if (sprite != null) {
         player.interfaces.sendSprite(ITEM_INTERFACE_ID, "sprite", sprite)
     }

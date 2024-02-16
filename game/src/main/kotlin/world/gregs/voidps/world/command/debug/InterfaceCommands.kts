@@ -3,7 +3,6 @@ package world.gregs.voidps.world.command.debug
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendInterfaceSettings
 import world.gregs.voidps.engine.client.sendInventoryItems
-import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
@@ -74,7 +73,7 @@ adminCommand("setting") {
 adminCommand("script") {
     val parts = content.split(" ")
     val remainder = parts.subList(1, parts.size).map { it.toIntOrNull() ?: it }.toTypedArray()
-    player.sendScript(parts[0].toInt(), *remainder)
+    player.client?.sendScript(parts[0].toInt(), remainder.toList())
 }
 
 adminCommand("sendItems") {
