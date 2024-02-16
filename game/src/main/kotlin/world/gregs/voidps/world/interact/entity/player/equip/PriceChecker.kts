@@ -94,7 +94,6 @@ itemChange("trade_offer") { player ->
             continue
         }
         val notNoted = if (item.isNote) item.noted ?: item else item
-        println("Item $item ${notNoted} - ${notNoted.def["price", notNoted.def.cost]}")
         val price = notNoted.def["price", notNoted.def.cost]
         player["value_$index"] = price
         total += price * item.amount
