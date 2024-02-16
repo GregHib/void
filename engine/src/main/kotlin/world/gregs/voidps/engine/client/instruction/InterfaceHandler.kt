@@ -67,6 +67,7 @@ class InterfaceHandler(
             itemSlot == -1 && inventoryId == "worn_equipment" -> player.equipment.indexOf(itemId)
             itemSlot == -1 && inventoryId == "item_loan" -> 0
             itemSlot == -1 && inventoryId == "returned_lent_items" -> 0
+            id == "price_checker" -> itemSlot / 2
             inventoryId == "inventory" -> itemSlot
             else -> itemSlot
         }
