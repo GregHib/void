@@ -56,6 +56,7 @@ object CacheBuilder {
         val library = CacheLibrary(path.path)
         RemoveXteas.remove(library, xteas)
 //        RemoveBzip2.remove(library)
+        RemovePriceCheckerTradeLimit.convert(library)
         MoveCameraClientScript.convert(library, cache667)
         println("Rebuilding cache.")
         library.rebuild(target)
