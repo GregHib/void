@@ -28,7 +28,7 @@ jobs:
         if: ${{ env.build_version != github.ref_name }}
         run: exit 1
       - name: Run distribution assembly
-        run: ./gradlew assembleBundleDist
+        run: ./gradlew buildScripts assembleBundleDist
       - name: Upload distribution
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
