@@ -125,7 +125,7 @@ itemOnObjectOperate("hammer", "anvil*", arrive = false) {
 }
 
 interfaceClose("smithing") { player: Player ->
-    player.sendScript(571)
+    player.sendScript("clear_dialogues")
 }
 
 suspend fun CharacterContext.smith(player: Player, metal: String, type: String, amount: Int) {

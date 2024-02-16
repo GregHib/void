@@ -139,7 +139,7 @@ interfaceOption("Set prefix", "name", "clan_chat_setup") {
 }
 
 interfaceClose("clan_chat_setup") { player: Player ->
-    player.sendScript(571)
+    player.sendScript("clear_dialogues")
 }
 
 interfaceOption("Disable", "name", "clan_chat_setup") {

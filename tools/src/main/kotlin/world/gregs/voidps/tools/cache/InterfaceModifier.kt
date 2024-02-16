@@ -24,7 +24,7 @@ abstract class InterfaceModifier {
 
             val mod = modifications[file] ?: continue
             definition.id = file
-            println("Modified $id $file")
+            println("Modified interface $id $file")
             mod.invoke(definition)
 
             // Write

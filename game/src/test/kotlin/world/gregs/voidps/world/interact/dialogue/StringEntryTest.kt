@@ -17,7 +17,7 @@ internal class StringEntryTest : DialogueTest() {
             stringEntry("text")
         }
         verify {
-            player.sendScript(109, "text")
+            player.sendScript("string_entry", "text")
         }
     }
 

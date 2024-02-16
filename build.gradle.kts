@@ -17,7 +17,7 @@ allprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
     group = "world.gregs.void"
-    version = "1.1.3"
+    version = "1.1.4"
 
     java.sourceCompatibility = JavaVersion.VERSION_19
     java.targetCompatibility = java.sourceCompatibility

@@ -71,7 +71,7 @@ interfaceOption("Make *", "make*", "make_mould*") {
 }
 
 interfaceClose("make_mould*") { player: Player ->
-    player.sendScript(571)
+    player.sendScript("clear_dialogues")
 }
 
 fun CharacterContext.make(component: String, amount: Int) {

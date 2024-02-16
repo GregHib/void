@@ -10,7 +10,7 @@ fun Player.quest(name: String): String = this[name, "unstarted"]
 fun Player.questComplete(name: String): Boolean = quest(name) == "completed"
 
 fun Player.refreshQuestJournal() {
-    sendScript(2165)
+    sendScript("quest_journal_refresh")
 }
 
 private const val QUEST_SCROLL_ID = "quest_scroll"
@@ -19,7 +19,7 @@ fun Player.sendQuestJournal(name: String, lines: List<String>) {
     if (!interfaces.open(QUEST_SCROLL_ID)) {
         return
     }
-    sendScript(1207, lines.size + 1)
+    sendScript("quest_journal_length", lines.size + 1)
     interfaces.sendText(QUEST_SCROLL_ID, "quest_name", name)
     interfaces.sendText(QUEST_SCROLL_ID, "line0", "")
     for (i in 0..301) {

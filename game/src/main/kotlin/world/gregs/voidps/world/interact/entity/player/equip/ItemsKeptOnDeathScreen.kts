@@ -52,7 +52,7 @@ interfaceRefresh("items_kept_on_death") { player: Player ->
 }
 
 fun Player.updateItemsOnDeath(items: List<Item>, carriedWealth: Int, riskedWealth: Int, familiar: Boolean = false, gravestone: Boolean = false, skull: Boolean = false) {
-    sendScript(118,
+    sendScript("items_kept_on_death",
         AreaType.Dangerous.ordinal,
         items.size.coerceAtMost(4),
         items.getOrNull(0)?.def?.id ?: 0,

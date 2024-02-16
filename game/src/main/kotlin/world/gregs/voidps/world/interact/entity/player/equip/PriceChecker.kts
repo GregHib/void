@@ -49,7 +49,7 @@ interfaceOption("Remove-*", "items", "price_checker") {
 
 interfaceClose("price_checker") { player ->
     player.close("price_checker_side")
-    player.sendScript(571)
+    player.sendScript("clear_dialogues")
     player.offer.moveAll(player.inventory)
 }
 

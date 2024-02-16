@@ -11,11 +11,13 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.koin.test.mock.declareMock
+import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.data.FontDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
 import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -33,6 +35,7 @@ abstract class DialogueTest : KoinMock() {
     lateinit var continuation: Continuation<Any>
     lateinit var interfaceDefinitions: InterfaceDefinitions
     lateinit var fontDefinitions: FontDefinitions
+    lateinit var clientScriptDefinitions: ClientScriptDefinitions
 
     fun dialogueBlocking(block: suspend CharacterContext.() -> Unit) {
         runTest {
@@ -54,6 +57,7 @@ abstract class DialogueTest : KoinMock() {
         player.interfaces = interfaces
         interfaceDefinitions = declareMock()
         fontDefinitions = declareMock()
+        clientScriptDefinitions = declareMock()
         continuation = object : Continuation<Any> {
             override val context: CoroutineContext
                 get() = UnconfinedTestDispatcher()
@@ -65,6 +69,7 @@ abstract class DialogueTest : KoinMock() {
             override val character: Character = this@DialogueTest.player
             override var onCancel: (() -> Unit)? = null
         })
+        every { clientScriptDefinitions.get("string_entry") } returns ClientScriptDefinition(id = 109)
         every { player.open(any()) } returns true
         every { interfaceDefinitions.get(any<String>()) } returns InterfaceDefinition()
         every { interfaceDefinitions.getComponent(any<String>(), any<String>()) } returns InterfaceComponentDefinition()
