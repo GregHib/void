@@ -357,7 +357,7 @@ dynamic_inventory_option_original: 1264
 dynamic_inventory_option_replacement: 1265
 achievement_name: 1266
 achievement_no_pin: 1267
-achievement_complete_stage: 1268
+achievement_index: 1268
 achievement_can_pin: 1269
 achievement_quest_id: 1270
 achievement_sprite: 1271
