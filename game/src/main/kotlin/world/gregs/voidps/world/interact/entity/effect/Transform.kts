@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.effect
 
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.flagTransform
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
@@ -15,7 +14,7 @@ import world.gregs.voidps.engine.timer.timerStop
 val collision: CollisionStrategyProvider by inject()
 val definitions: NPCDefinitions by inject()
 
-characterTimerStart("transform") { character: Character ->
+characterTimerStart("transform") { character ->
     val def = definitions.get(character["transform_id", ""])
     character["old_collision"] = character.collision
     character.collision = collision.get(def)

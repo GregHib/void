@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.ancient
 
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Priority
@@ -25,7 +24,7 @@ spellSwing("smoke_*", Priority.LOW) { player: Player ->
     delay = 5
 }
 
-characterSpellAttack("smoke_*") { source: Character ->
+characterSpellAttack("smoke_*") { source ->
     if (random.nextDouble() <= 0.2) {
         val damage: Int = definitions.get(spell)["poison_damage"]
         source.poison(target, damage)

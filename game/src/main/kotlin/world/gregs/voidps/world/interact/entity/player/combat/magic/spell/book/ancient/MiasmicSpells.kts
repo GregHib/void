@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -37,7 +36,7 @@ combatSwing(priority = Priority.LOWEST) { player: Player ->
     }
 }
 
-characterSpellAttack("miasmic_*") { _: Character ->
+characterSpellAttack("miasmic_*") { _ ->
     val seconds: Int = definitions.get(spell)["effect_seconds"]
     target.start("miasmic", seconds, epochSeconds())
 }

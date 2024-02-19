@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.ancient
 
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Priority
@@ -24,7 +23,7 @@ spellSwing("ice_*", Priority.LOW) { player: Player ->
     delay = 5
 }
 
-characterSpellAttack("ice_*") { source: Character ->
+characterSpellAttack("ice_*") { source ->
     val ticks: Int = definitions.get(spell)["freeze_ticks"]
     source.freeze(target, ticks)
 }

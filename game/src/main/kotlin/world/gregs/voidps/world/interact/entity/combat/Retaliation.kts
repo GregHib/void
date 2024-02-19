@@ -13,7 +13,7 @@ val Character.retaliates: Boolean
         this["auto_retaliate", false]
     }
 
-characterCombatHit { character: Character ->
+characterCombatHit { character ->
     if (source == character || !character.retaliates) {
         return@characterCombatHit
     }

@@ -18,7 +18,7 @@ fun canDrain(character: Character, target: Character) = character is Player || S
 
 val drainSpells = setOf("confuse", "weaken", "curse", "vulnerability", "enfeeble", "stun")
 
-characterSpellSwing(drainSpells, Priority.LOW) { character: Character ->
+characterSpellSwing(drainSpells, Priority.LOW) { character ->
     if (!canDrain(character, target)) {
         return@characterSpellSwing
     }

@@ -47,7 +47,7 @@ combatAttack { _: Player ->
     target.levels.drain(Skill.Magic, damage / 10)
 }
 
-characterLevelChange(Skill.Magic) { character: Character ->
+characterLevelChange(Skill.Magic) { character ->
     if (character["soulshot", false] && to >= character.levels.getMax(skill)) {
         character.clear("soulshot")
     }

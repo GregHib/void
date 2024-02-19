@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.modern
 
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -26,6 +25,6 @@ spellSwing(bindSpells, Priority.LOW) { player: Player ->
     delay = 5
 }
 
-characterSpellAttack(bindSpells) { character: Character ->
+characterSpellAttack(bindSpells) { character ->
     character.freeze(target, definitions.get(spell)["freeze_ticks"])
 }

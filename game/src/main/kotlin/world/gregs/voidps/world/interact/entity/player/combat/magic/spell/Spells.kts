@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
@@ -9,7 +8,7 @@ import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.player.combat.melee.multiTargetHit
 
-characterCombatHit { character: Character ->
+characterCombatHit { character ->
     if (spell.isNotBlank()) {
         character.setGraphic("${spell}_hit")
     }
@@ -22,7 +21,7 @@ combatSwing(priority = Priority.LOWEST) { player: Player ->
     player.clear("spell")
 }
 
-characterSpellSwing(priority = Priority.LOWEST) { character: Character ->
+characterSpellSwing(priority = Priority.LOWEST) { character ->
     if ((delay ?: -1) >= 0) {
         character.clear("spell")
         if (character is Player && !character.contains("autocast")) {

@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.ancient
 
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Priority
@@ -19,6 +18,6 @@ spellSwing("shadow_*", Priority.LOW) { player: Player ->
     delay = 5
 }
 
-characterSpellAttack("shadow_*") { source: Character ->
+characterSpellAttack("shadow_*") { source ->
     Spell.drain(source, target, spell)
 }

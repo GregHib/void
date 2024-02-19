@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -42,11 +41,11 @@ specialAttackSwing("morrigans_javelin*", style = "range", priority = Priority.ME
     }
 }
 
-characterTimerStart("phantom_strike") { _: Character ->
+characterTimerStart("phantom_strike") { _ ->
     interval = 3
 }
 
-characterTimerTick("phantom_strike") { character: Character ->
+characterTimerTick("phantom_strike") { character ->
     val remaining = character["phantom_damage", 0]
     val damage = remaining.coerceAtMost(50)
     if (remaining - damage <= 0) {

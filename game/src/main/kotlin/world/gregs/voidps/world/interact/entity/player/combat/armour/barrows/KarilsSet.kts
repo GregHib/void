@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.armour.barrows
 
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -32,7 +31,7 @@ fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
     "karils_top",
     "karils_skirt")
 
-characterCombatAttack { character: Character ->
+characterCombatAttack { character ->
     if (type != "range" || damage <= 0 || target !is Player || !weapon.id.startsWith("karils_crossbow") || !character.contains("karils_set_effect") || random.nextInt(4) != 0) {
         return@characterCombatAttack
     }
