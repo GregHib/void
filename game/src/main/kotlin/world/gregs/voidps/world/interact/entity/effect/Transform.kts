@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.effect
 
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.npc.flagTransform
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.inject
@@ -20,7 +19,7 @@ characterTimerStart("transform") { character ->
     character.collision = collision.get(def)
 }
 
-timerStop("transform") { player: Player ->
+timerStop("transform") { player ->
     player.appearance.apply {
         emote = 1426
         transform = -1

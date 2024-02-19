@@ -18,7 +18,7 @@ val quests = setOf(
     // members
 )
 
-interfaceOpen("quest_journals") { player: Player ->
+interfaceOpen("quest_journals") { player ->
     player.interfaceOptions.unlock(id, "journals", 0 until 201, "View")
     player.sendVariable("quest_points")
     player.sendVariable("quest_points_total") //set total quest points available in variables.yml
@@ -32,11 +32,11 @@ variableSet(quests) { player: Player ->
     player.softTimers.start("refresh_quest_journal")
 }
 
-timerStart("refresh_quest_journal") { _: Player ->
+timerStart("refresh_quest_journal") { _ ->
     interval = 1
 }
 
-timerStop("refresh_quest_journal") { player: Player ->
+timerStop("refresh_quest_journal") { player ->
     player.refreshQuestJournal()
 }
 

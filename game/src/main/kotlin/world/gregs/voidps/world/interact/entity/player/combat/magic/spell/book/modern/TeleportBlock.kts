@@ -39,7 +39,7 @@ spellSwing("teleport_block", Priority.LOW) { player: Player ->
     delay = 5
 }
 
-timerStart("teleport_block") { player: Player ->
+timerStart("teleport_block") { player ->
     if (player.teleBlockImmune) {
         cancel()
         return@timerStart
@@ -53,7 +53,7 @@ timerStart("teleport_block") { player: Player ->
     interval = 50
 }
 
-timerTick("teleport_block") { player: Player ->
+timerTick("teleport_block") { player ->
     val blocked = player.teleBlocked
     player.teleBlockCounter -= player.teleBlockCounter.sign
     when (player.teleBlockCounter) {

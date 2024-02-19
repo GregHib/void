@@ -36,11 +36,11 @@ specialAttack("*excalibur*") { player: Player ->
 }
 
 
-timerStart("sanctuary") { _: Player ->
+timerStart("sanctuary") { _ ->
     interval = 4
 }
 
-timerTick("sanctuary") { player: Player ->
+timerTick("sanctuary") { player ->
     val cycle = player["sanctuary", 1] - 1
     player["sanctuary"] = cycle
     if (cycle <= 0) {
@@ -51,6 +51,6 @@ timerTick("sanctuary") { player: Player ->
 }
 
 
-timerStop("sanctuary") { player: Player ->
+timerStop("sanctuary") { player ->
     player.clear("sanctuary")
 }

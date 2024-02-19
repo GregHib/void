@@ -27,15 +27,15 @@ playerSpawn { player ->
     }
 }
 
-timerStart("fire_resistance") { _: Player ->
+timerStart("fire_resistance") { _ ->
     interval = 30
 }
 
-timerStart("fire_immunity") { _: Player ->
+timerStart("fire_immunity") { _ ->
     interval = 20
 }
 
-timerTick("fire_resistance", "fire_immunity") { player: Player ->
+timerTick("fire_resistance", "fire_immunity") { player ->
     val remaining = player.dec(if (timer == "fire_immunity") "super_antifire" else "antifire", 0)
     if (remaining <= 0) {
         cancel()
@@ -46,7 +46,7 @@ timerTick("fire_resistance", "fire_immunity") { player: Player ->
     }
 }
 
-timerStop("fire_resistance", "fire_immunity") { player: Player ->
+timerStop("fire_resistance", "fire_immunity") { player ->
     player.message("<dark_red>Your resistance to dragonfire has run out.")
     player["antifire"] = 0
     player["super_antifire"] = 0

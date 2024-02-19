@@ -36,7 +36,7 @@ itemOnObjectOperate("*_mould", "furnace*", arrive = false) {
     player.open("make_mould${if (World.members) "_slayer" else ""}")
 }
 
-interfaceRefresh("make_mould*") { player: Player ->
+interfaceRefresh("make_mould*") { player ->
     for (type in moulds) {
         val showText = !player.inventory.contains("${type}_mould")
         player.interfaces.sendVisibility(id, "${type}_text", showText)
@@ -70,7 +70,7 @@ interfaceOption("Make *", "make*", "make_mould*") {
     make(component, amount)
 }
 
-interfaceClose("make_mould*") { player: Player ->
+interfaceClose("make_mould*") { player ->
     player.sendScript("clear_dialogues")
 }
 

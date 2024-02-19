@@ -18,18 +18,18 @@ playerSpawn { player ->
     }
 }
 
-levelChange(Skill.Constitution) { player: Player ->
+levelChange(Skill.Constitution) { player ->
     if (to <= 0 || to >= player.levels.getMax(skill) || player.softTimers.contains("restore_hitpoints")) {
         return@levelChange
     }
     player.softTimers.start("restore_hitpoints")
 }
 
-timerStart("restore_hitpoints") { _: Player ->
+timerStart("restore_hitpoints") { _ ->
     interval = TimeUnit.SECONDS.toTicks(6)
 }
 
-timerTick("restore_hitpoints") { player: Player ->
+timerTick("restore_hitpoints") { player ->
     if (player.levels.get(Skill.Constitution) == 0) {
         cancel()
         return@timerTick

@@ -7,24 +7,23 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.interfaceSwap
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.swap
 
 val logger = InlineLogger()
 
-interfaceRefresh("inventory") { player: Player ->
+interfaceRefresh("inventory") { player ->
     player.interfaceOptions.unlockAll(id, "inventory", 0 until 28)
     player.interfaceOptions.unlock(id, "inventory", 28 until 56, "Drag")
     player.sendInventory(id)
 }
 
-interfaceSwap { player: Player ->
+interfaceSwap { player ->
     player.queue.clearWeak()
 }
 
-interfaceSwap("inventory") { player: Player ->
+interfaceSwap("inventory") { player ->
     player.closeInterfaces()
     if (player.mode is CombatMovement) {
         player.mode = EmptyMode

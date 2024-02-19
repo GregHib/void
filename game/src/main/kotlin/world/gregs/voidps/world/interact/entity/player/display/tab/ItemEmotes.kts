@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.clearAnimation
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inv.add
@@ -84,7 +83,7 @@ inventoryItem("Spin", "spinning_plate", "inventory") {
     player.playAnimation("emote_${if (drop) "cry" else "cheer"}")
 }
 
-continueDialogue("snow_globe", "continue") { player: Player ->
+continueDialogue("snow_globe", "continue") { player ->
     player.close("snow_globe")
     player.continueDialogue()
 }

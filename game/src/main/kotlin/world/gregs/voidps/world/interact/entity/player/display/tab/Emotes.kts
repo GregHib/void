@@ -31,7 +31,7 @@ val definitions: InterfaceDefinitions by inject()
 
 val unlockableRange = 26..52
 
-interfaceOpen("emotes") { player: Player ->
+interfaceOpen("emotes") { player ->
     for (compId in unlockableRange) {
         val component = definitions.getComponent(id, compId) ?: continue
         player.sendVariable("unlocked_emote_${component.stringId}")
@@ -39,7 +39,7 @@ interfaceOpen("emotes") { player: Player ->
     player.sendVariable("unlocked_emote_lost_tribe")
 }
 
-interfaceRefresh("emotes") { player: Player ->
+interfaceRefresh("emotes") { player ->
     player.interfaceOptions.unlockAll("emotes", "emotes", 0..190)
 }
 

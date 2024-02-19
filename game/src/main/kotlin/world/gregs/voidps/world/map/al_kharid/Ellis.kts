@@ -80,7 +80,7 @@ interfaceOption(component = "Tan *", id = "tanner") {
     tan(player, component, amount)
 }
 
-interfaceClose("tanner") { player: Player ->
+interfaceClose("tanner") { player ->
     player.sendScript("clear_dialogues")
 }
 

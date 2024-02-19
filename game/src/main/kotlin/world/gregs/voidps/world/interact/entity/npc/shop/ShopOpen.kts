@@ -26,7 +26,7 @@ npcOperate("Trade") {
     }
 }
 
-interfaceClose("shop") { player: Player ->
+interfaceClose("shop") { player ->
     player.close("item_info")
     player.close("shop_side")
     val shop = player.shop()
@@ -58,7 +58,7 @@ on<OpenShop> { player: Player ->
     player.interfaces.sendText("shop", "title", definition["title", "Shop"])
 }
 
-interfaceRefresh("shop_side") { player: Player ->
+interfaceRefresh("shop_side") { player ->
     player.interfaceOptions.send("shop_side", "inventory")
     player.interfaceOptions.unlockAll("shop_side", "inventory", 0 until 28)
 }

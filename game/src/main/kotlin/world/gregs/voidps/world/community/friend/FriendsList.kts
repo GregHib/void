@@ -35,7 +35,7 @@ playerSpawn { player ->
     notifyBefriends(player, online = true)
 }
 
-playerDespawn { player: Player ->
+playerDespawn { player ->
     notifyBefriends(player, online = false)
 }
 

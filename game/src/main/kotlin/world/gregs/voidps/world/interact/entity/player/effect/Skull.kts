@@ -23,20 +23,20 @@ combatSwing { player: Player ->
     }
 }
 
-timerStart("skull") { player: Player ->
+timerStart("skull") { player ->
     interval = 50
     player.appearance.skull = player["skull", 0]
     player.flagAppearance()
 }
 
-timerTick("skull") { player: Player ->
+timerTick("skull") { player ->
     if (--player.skullCounter <= 0) {
         cancel()
         return@timerTick
     }
 }
 
-timerStop("skull") { player: Player ->
+timerStop("skull") { player ->
     player.clear("skull")
     player.clear("skull_duration")
     player.appearance.skull = -1

@@ -69,7 +69,7 @@ suspend fun CharacterContext.startMakeover() {
     openDressingRoom("thessalias_makeovers")
 }
 
-interfaceOpen("thessalias_makeovers") { player: Player ->
+interfaceOpen("thessalias_makeovers") { player ->
     player.interfaces.sendText(id, "confirm_text", "Change")
     player.interfaceOptions.unlockAll(id, "styles", 0 until 100)
     player.interfaceOptions.unlockAll(id, "colours", 0 until enums.get("colour_top").length * 2)
@@ -81,7 +81,7 @@ interfaceOpen("thessalias_makeovers") { player: Player ->
     player["makeover_colour_legs"] = player.body.getColour(BodyColour.Legs)
 }
 
-interfaceClose("thessalias_makeovers") { player: Player ->
+interfaceClose("thessalias_makeovers") { player ->
     player.softTimers.stop("dressing_room")
 }
 

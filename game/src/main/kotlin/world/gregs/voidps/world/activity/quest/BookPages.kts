@@ -14,17 +14,17 @@ inventoryOption("Read") {
     player.openBook(item.def.getOrNull("book") ?: return@inventoryOption)
 }
 
-interfaceRefresh("book") { player: Player ->
+interfaceRefresh("book") { player ->
     refreshBook(player)
 }
 
-continueDialogue("book", "turn_page_right") { player: Player ->
+continueDialogue("book", "turn_page_right") { player ->
     player.inc("book_page")
     player.close("book")
     player.open("book")
 }
 
-continueDialogue("book", "turn_page_left") { player: Player ->
+continueDialogue("book", "turn_page_left") { player ->
     player.dec("book_page")
     player.close("book")
     player.open("book")

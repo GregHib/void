@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
-experience { player: Player ->
+experience { player ->
     val previousLevel = Experience.level(skill, from)
     val currentLevel = Experience.level(skill, to)
     if (currentLevel != previousLevel) {
@@ -25,7 +25,7 @@ experience { player: Player ->
     }
 }
 
-maxLevelUp { player: Player ->
+maxLevelUp { player ->
     if (player["skip_level_up", false]) {
         return@maxLevelUp
     }

@@ -18,14 +18,14 @@ npcSpawn { npc ->
     npc["combat_style"] = npc.def["style", ""]
 }
 
-interfaceOpen("combat_styles") { player: Player ->
+interfaceOpen("combat_styles") { player ->
     player.sendVariable("attack_style_index")
     player.sendVariable("special_attack_energy")
     player.sendVariable("auto_retaliate")
     refreshStyle(player)
 }
 
-interfaceRefresh("combat_styles") { player: Player ->
+interfaceRefresh("combat_styles") { player ->
     player.interfaceOptions.unlockAll(id, "style1")
     player.interfaceOptions.unlockAll(id, "style2")
     player.interfaceOptions.unlockAll(id, "style3")

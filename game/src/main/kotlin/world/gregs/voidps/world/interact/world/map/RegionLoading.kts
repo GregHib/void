@@ -52,7 +52,7 @@ on<RegionRetry>({ it.networked }) { player: Player ->
     Player regions
  */
 
-playerDespawn { player: Player ->
+playerDespawn { player ->
     playerRegions[player.index - 1] = 0
 }
 

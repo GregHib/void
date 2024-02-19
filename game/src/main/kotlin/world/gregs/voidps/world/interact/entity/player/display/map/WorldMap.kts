@@ -11,7 +11,7 @@ import world.gregs.voidps.network.encode.updateInterface
 
 val definitions: InterfaceDefinitions by inject()
 
-interfaceOpen("world_map") { player: Player ->
+interfaceOpen("world_map") { player ->
     updateMap(player)
 }
 

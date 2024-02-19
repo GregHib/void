@@ -53,7 +53,7 @@ timerStart("overload") { player: Player ->
     }
 }
 
-timerTick("overload") { player: Player ->
+timerTick("overload") { player ->
     if (player.dec("overload_refreshes_remaining") <= 0) {
         cancel()
         return@timerTick
@@ -73,7 +73,7 @@ timerTick("overload") { player: Player ->
     }
 }
 
-timerStop("overload") { player: Player ->
+timerStop("overload") { player ->
     reset(player, Skill.Attack)
     reset(player, Skill.Strength)
     reset(player, Skill.Defence)

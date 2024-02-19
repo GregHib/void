@@ -6,11 +6,10 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
-interfaceRefresh("worn_equipment") { player: Player ->
+interfaceRefresh("worn_equipment") { player ->
     player.sendInventory(id)
 }
 

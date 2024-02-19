@@ -88,7 +88,7 @@ move({ exitArea(it, to) }) { player: Player ->
     destroyInstance(player)
 }
 
-playerDespawn { player: Player ->
+playerDespawn { player ->
     if (player.contains("demon_slayer_instance")) {
         destroyInstance(player)
     }

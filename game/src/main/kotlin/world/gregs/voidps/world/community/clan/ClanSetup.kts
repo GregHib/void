@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
@@ -27,7 +26,7 @@ interfaceOption("Clan Setup", "settings", "clan_chat") {
     player.open("clan_chat_setup")
 }
 
-interfaceOpen("clan_chat_setup") { player: Player ->
+interfaceOpen("clan_chat_setup") { player ->
     val clan = player.clan ?: player.ownClan ?: return@interfaceOpen
     player.interfaces.apply {
         sendText(id, "name", clan.name.ifBlank { "Chat disabled" })
@@ -138,7 +137,7 @@ interfaceOption("Set prefix", "name", "clan_chat_setup") {
     updateUI(clan)
 }
 
-interfaceClose("clan_chat_setup") { player: Player ->
+interfaceClose("clan_chat_setup") { player ->
     player.sendScript("clear_dialogues")
 }
 

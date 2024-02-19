@@ -124,11 +124,11 @@ npcOperate("Makeover", "makeover_mage*") {
     openDressingRoom("skin_colour")
 }
 
-interfaceClose("skin_colour") { player: Player ->
+interfaceClose("skin_colour") { player ->
     player.softTimers.stop("dressing_room")
 }
 
-interfaceOpen("skin_colour") { player: Player ->
+interfaceOpen("skin_colour") { player ->
     player["makeover_female"] = !player.male
     player["makeover_colour_skin"] = player.body.getColour(BodyColour.Skin)
     player.interfaces.sendText(id, "confirm", "CONFIRM")

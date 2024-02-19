@@ -17,7 +17,7 @@ fun Inventory.countFreeToPlayItems(): Int {
     return items.count { it.isNotEmpty() && !it.def.members }
 }
 
-interfaceSwap("bank", "inventory") { player: Player ->
+interfaceSwap("bank", "inventory") { player ->
     when (player["bank_item_mode", "swap"]) {
         "swap" -> player.bank.swap(fromSlot, toSlot)
         "insert" -> {
@@ -41,7 +41,7 @@ interfaceOption("Toggle swap/insert", "item_mode", "bank") {
     player["bank_item_mode"] = if (value == "insert") "swap" else "insert"
 }
 
-interfaceSwap("bank", "inventory", "tab_#") { player: Player ->
+interfaceSwap("bank", "inventory", "tab_#") { player ->
     val fromTab = Bank.getTab(player, fromSlot)
     val toTab = toComponent.removePrefix("tab_").toInt() - 1
     val toIndex = if (toTab == Bank.MAIN_TAB) player.bank.freeIndex() else Bank.tabIndex(player, toTab + 1)

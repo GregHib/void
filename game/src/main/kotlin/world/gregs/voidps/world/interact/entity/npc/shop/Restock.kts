@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.npc.shop
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.entity.worldSpawn
@@ -28,11 +27,11 @@ playerSpawn { player ->
     player.softTimers.restart("shop_restock")
 }
 
-timerStart("shop_restock") { _: Player ->
+timerStart("shop_restock") { _ ->
     interval = restockTimeTicks
 }
 
-timerTick("shop_restock") { player: Player ->
+timerTick("shop_restock") { player ->
     for (name in player.inventories.keys) {
         val inventory = player.inventories.inventory(name)
         val def = inventoryDefinitions.get(name)
@@ -44,7 +43,7 @@ timerTick("shop_restock") { player: Player ->
 }
 
 // Remove restocked shops to save space
-playerDespawn { player: Player ->
+playerDespawn { player ->
     for ((name, inventory) in player.inventories.instances) {
         val def = inventoryDefinitions.get(name)
         if (!def["shop", false]) {

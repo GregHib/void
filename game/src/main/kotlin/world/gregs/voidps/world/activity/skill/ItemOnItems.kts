@@ -29,7 +29,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val itemOnItemDefs: ItemOnItemDefinitions by inject()
 
-itemOnItem { player: Player ->
+itemOnItem { player ->
     val overlaps = itemOnItemDefs.getOrNull(fromItem, toItem) ?: return@itemOnItem
     if (overlaps.isEmpty()) {
         return@itemOnItem
@@ -149,11 +149,11 @@ fun replaceItems(
     useItemOnItem(player, skill, def, amount, count + 1)
 }
 
-interfaceClose("dialogue_skill_creation") { player: Player ->
+interfaceClose("dialogue_skill_creation") { player ->
     player.clear("selecting_amount")
 }
 
-interfaceOpen("dialogue_skill_creation") { player: Player ->
+interfaceOpen("dialogue_skill_creation") { player ->
     player["selecting_amount"] = true
 }
 

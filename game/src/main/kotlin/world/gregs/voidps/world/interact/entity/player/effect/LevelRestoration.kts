@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.effect
 
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.levelChange
 import world.gregs.voidps.engine.entity.playerSpawn
@@ -20,7 +19,7 @@ playerSpawn { player ->
     }
 }
 
-levelChange { player: Player ->
+levelChange { player ->
     if (skill == Skill.Prayer || skill == Skill.Summoning || skill == Skill.Constitution) {
         return@levelChange
     }
@@ -30,11 +29,11 @@ levelChange { player: Player ->
     player.softTimers.start("restore_stats")
 }
 
-timerStart("restore_stats") { _: Player ->
+timerStart("restore_stats") { _ ->
     interval = TimeUnit.SECONDS.toTicks(60)
 }
 
-timerTick("restore_stats") { player: Player ->
+timerTick("restore_stats") { player ->
     val berserker = player.praying("berserker") && player.hasClock("berserker_cooldown")
     val skip = player.praying("berserker") && !player.hasClock("berserker_cooldown")
     if (skip) {

@@ -25,18 +25,18 @@ variableClear("in_wilderness") { player: Player ->
     resetIcons(player)
 }
 
-interfaceOpen("wilderness_skull") { player: Player ->
+interfaceOpen("wilderness_skull") { player ->
     player.interfaces.sendSprite(id, "right_skull", 439)
 }
 
-timerStart("prayer_protect_item") { player: Player ->
+timerStart("prayer_protect_item") { player ->
     if (player.inWilderness) {
         resetIcons(player)
         updateIcon(player)
     }
 }
 
-timerStop("prayer_protect_item") { player: Player ->
+timerStop("prayer_protect_item") { player ->
     if (player.inWilderness) {
         resetIcons(player)
         updateIcon(player)

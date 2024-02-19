@@ -29,7 +29,7 @@ specialAttackSwing("*dragon_scimitar") { player: Player ->
     delay = 4
 }
 
-timerStart("sever") { player: Player ->
+timerStart("sever") { player ->
     interval = TimeUnit.SECONDS.toTicks(5)
     val key = player.getActivePrayerVarKey()
     if (player.isCurses()) {
@@ -45,7 +45,7 @@ timerStart("sever") { player: Player ->
     }
 }
 
-timerTick("sever") { _: Player ->
+timerTick("sever") { _ ->
     cancel()
 }
 

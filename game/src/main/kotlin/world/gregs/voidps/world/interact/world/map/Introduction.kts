@@ -31,7 +31,7 @@ playerSpawn(priority = Priority.HIGHER) { player ->
     }
 }
 
-interfaceClose("character_creation") { player: Player ->
+interfaceClose("character_creation") { player ->
     player.flagAppearance()
     setup(player)
 }

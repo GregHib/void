@@ -51,7 +51,7 @@ val y = getIntProperty("homeY", 0)
 val level = getIntProperty("homeLevel", 0)
 val respawnTile = Tile(x, y, level)
 
-playerDeath { player: Player ->
+playerDeath { player ->
     player.dead = true
     player.strongQueue("death") {
         player.steps.clear()

@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.world.activity.bank.Bank.tabs
@@ -24,12 +23,12 @@ objectOperate("Collect") {
     player.open("collection_box")
 }
 
-interfaceClose("bank") { player: Player ->
+interfaceClose("bank") { player ->
     player.close("bank_side")
     player.sendScript("clear_dialogues")
 }
 
-interfaceOpen("bank") { player: Player ->
+interfaceOpen("bank") { player ->
     player.sendInventory("bank")
     player.open("bank_side")
     player.sendVariable("open_bank_tab")

@@ -116,7 +116,7 @@ fun setupAssistant(player: Player, assisted: Player) {
     toggleInventory(player, enabled = false)
 }
 
-interfaceClose("assist_xp") { player: Player ->
+interfaceClose("assist_xp") { player ->
     val assisted: Player = player["assisted"] ?: return@interfaceClose
     cancelAssist(player, assisted)
 }

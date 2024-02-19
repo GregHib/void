@@ -35,7 +35,7 @@ import world.gregs.voidps.type.Tile
 val floorItems: FloorItems by inject()
 val objects: GameObjects by inject()
 
-itemOnItem("tinderbox*", "*logs*") { player: Player ->
+itemOnItem("tinderbox*", "*logs*") { player ->
     val log = if (toItem.burnable) toItem else fromItem
     val logSlot = if (toItem.burnable) toSlot else fromSlot
     player.closeDialogue()

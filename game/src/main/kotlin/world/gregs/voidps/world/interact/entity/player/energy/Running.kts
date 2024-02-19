@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.playerSpawn
 
-interfaceOpen("energy_orb") { player: Player ->
+interfaceOpen("energy_orb") { player ->
     player.sendRunEnergy(player.energyPercent())
 }
 
