@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun usingSoulSplit(player: Player) = player.praying("soul_split") && player.levels.getOffset(Skill.Constitution) < 0
 
-combatAttack { player: Player ->
+combatAttack { player ->
     if (!usingSoulSplit(player) || damage < 5 || type == "deflect" || type == "cannon" || target.isFamiliar) {
         return@combatAttack
     }

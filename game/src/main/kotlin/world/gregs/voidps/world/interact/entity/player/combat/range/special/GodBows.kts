@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
 
 fun isGodBow(weapon: Item) = weapon.id == "saradomin_bow" || weapon.id == "guthix_bow" || weapon.id == "zamorak_bow"
 
-specialAttackSwing("saradomin_bow", "guthix_bow", "zamorak_bow", style = "range", priority = Priority.MEDIUM) { player: Player ->
+specialAttackSwing("saradomin_bow", "guthix_bow", "zamorak_bow", style = "range", priority = Priority.MEDIUM) { player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, 550)) {
@@ -45,7 +45,7 @@ var Player.restoration: Int
         this["restoration"] = value
     }
 
-combatAttack { source: Player ->
+combatAttack { source ->
     if (!isGodBow(weapon) || !special) {
         return@combatAttack
     }

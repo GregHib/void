@@ -17,7 +17,7 @@ characterCombatHit { character ->
 /**
  * Clear one use spell
  */
-combatSwing(priority = Priority.LOWEST) { player: Player ->
+combatSwing(priority = Priority.LOWEST) { player ->
     player.clear("spell")
 }
 

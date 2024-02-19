@@ -64,7 +64,7 @@ fun getLevel(target: Character, skill: Skill): Int {
     return target.levels.getMax(skill)
 }
 
-combatHit { target: Player ->
+combatHit { target ->
     if (source !is Player || !source.praying("sap_spirit")) {
         return@combatHit
     }
@@ -81,7 +81,7 @@ combatHit { target: Player ->
     cast(player, target, true, "spirit")
 }
 
-combatHit { target: Player ->
+combatHit { target ->
     if (source !is Player || !source.praying("special_attack")) {
         return@combatHit
     }
@@ -107,7 +107,7 @@ combatHit { target: Player ->
     boostMessage(player, "Special Attack")
 }
 
-combatHit { target: Player ->
+combatHit { target ->
     if (source !is Player || !source.praying("leech_energy")) {
         return@combatHit
     }

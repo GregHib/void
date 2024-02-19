@@ -227,7 +227,7 @@ suspend fun CharacterContext.cutscene() {
     }
 }
 
-combatSwing(priority = Priority.HIGHEST) { player: Player ->
+combatSwing(priority = Priority.HIGHEST) { player ->
     if (target is NPC && target.id == "delrith" && target.transform == "delrith_weakened") {
         cancel()
         player.strongQueue("banish_delrith", 1) {

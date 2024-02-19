@@ -18,7 +18,7 @@ playerSpawn { player ->
     player.sendVariable("magic_bonus")
 }
 
-prayerStart { player: Player ->
+prayerStart { player ->
     if (!restart) {
         val curses = player.isCurses()
         if (curses) {
@@ -32,7 +32,7 @@ prayerStart { player: Player ->
     player.softTimers.startIfAbsent("prayer_drain")
 }
 
-prayerStop { player: Player ->
+prayerStop { player ->
     player.playSound("deactivate_prayer")
     val curses = player.isCurses()
     stopPrayerDrain(player, curses)

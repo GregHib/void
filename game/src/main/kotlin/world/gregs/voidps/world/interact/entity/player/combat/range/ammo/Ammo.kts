@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AmmoDefinitions
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasUseLevel
@@ -17,7 +16,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.specialAtt
 
 val ammoDefinitions: AmmoDefinitions by inject()
 
-weaponSwing(style = "range", priority = Priority.HIGHEST) { player: Player ->
+weaponSwing(style = "range", priority = Priority.HIGHEST) { player ->
     if (!player.hasUseLevel(Skill.Ranged, player.weapon, message = true)) {
         delay = -1
         player.specialAttack = false
@@ -27,14 +26,14 @@ weaponSwing(style = "range", priority = Priority.HIGHEST) { player: Player ->
     }
 }
 
-weaponSwing("*bow", "seercull", "*longbow_sighted", style = "range", priority = Priority.HIGHEST) { player: Player ->
+weaponSwing("*bow", "seercull", "*longbow_sighted", style = "range", priority = Priority.HIGHEST) { player ->
     if (!Ammo.required(player.weapon)) {
         return@weaponSwing
     }
     player["required_ammo"] = player.weapon.def["ammo_required", 1]
 }
 
-weaponSwing("*bow", "seercull", "*longbow_sighted", style = "range", priority = Priority.HIGH) { player: Player ->
+weaponSwing("*bow", "seercull", "*longbow_sighted", style = "range", priority = Priority.HIGH) { player ->
     if (!Ammo.required(player.weapon)) {
         return@weaponSwing
     }
@@ -70,7 +69,7 @@ weaponSwing("*bow", "seercull", "*longbow_sighted", style = "range", priority = 
     }
 }
 
-weaponSwing("*", style = "range", priority = Priority.HIGH) { player: Player ->
+weaponSwing("*", style = "range", priority = Priority.HIGH) { player ->
     if (Ammo.required(player.weapon)) {
         return@weaponSwing
     }

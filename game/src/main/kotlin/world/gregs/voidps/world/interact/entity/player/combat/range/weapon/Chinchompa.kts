@@ -23,7 +23,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 fun isChinchompa(item: Item) = item.id.endsWith("chinchompa")
 
-weaponSwing("*chinchompa", style = "range", priority = Priority.HIGH) { player: Player ->
+weaponSwing("*chinchompa", style = "range", priority = Priority.HIGH) { player ->
     val required = player["required_ammo", 1]
     val ammo = player.weapon.id
     player.ammo = ""
@@ -35,7 +35,7 @@ weaponSwing("*chinchompa", style = "range", priority = Priority.HIGH) { player: 
     player.ammo = ammo
 }
 
-weaponSwing("*chinchompa", style = "range", priority = Priority.LOW) { player: Player ->
+weaponSwing("*chinchompa", style = "range", priority = Priority.LOW) { player ->
     val ammo = player.ammo
     player.setAnimation("chinchompa_short_fuse")
     player.shoot(id = ammo, target = target)

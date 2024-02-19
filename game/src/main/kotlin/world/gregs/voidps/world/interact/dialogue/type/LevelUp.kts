@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.exp.experience
@@ -47,7 +46,7 @@ maxLevelUp { player ->
     }
 }
 
-combatHit { player: Player ->
+combatHit { player ->
     if (!(player.menu ?: player.dialogue).isNullOrBlank()) {
         player.closeInterfaces()
     }

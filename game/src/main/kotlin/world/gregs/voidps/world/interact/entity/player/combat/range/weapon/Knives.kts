@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.weapon
 
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
@@ -14,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.range.Ammo
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-weaponSwing("*_knife*", style = "range", priority = Priority.HIGH) { player: Player ->
+weaponSwing("*_knife*", style = "range", priority = Priority.HIGH) { player ->
     val required = player["required_ammo", 1]
     val ammo = player.weapon.id
     player.ammo = ""
@@ -22,7 +21,7 @@ weaponSwing("*_knife*", style = "range", priority = Priority.HIGH) { player: Pla
     player.ammo = ammo
 }
 
-weaponSwing("*_knife*", style = "range", priority = Priority.LOW) { player: Player ->
+weaponSwing("*_knife*", style = "range", priority = Priority.LOW) { player ->
     val ammo = player.ammo.removeSuffix("_p++").removeSuffix("_p+").removeSuffix("_p")
     player.setAnimation("thrown_accurate")
     player.setGraphic("${ammo}_throw")

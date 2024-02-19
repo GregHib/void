@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.forceChat
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -40,7 +39,7 @@ interfaceOption("Cast", "vengeance", "lunar_spellbook") {
     player.start("vengeance_delay", definition["delay_seconds"], epochSeconds())
 }
 
-combatHit { player: Player ->
+combatHit { player ->
     if (!player.contains("vengeance") || type == "damage" || damage < 4) {
         return@combatHit
     }

@@ -20,7 +20,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpeci
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-specialAttackSwing("vestas_spear*", "corrupt_vestas_spear*") { player: Player ->
+specialAttackSwing("vestas_spear*", "corrupt_vestas_spear*") { player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
         delay = -1
         return@specialAttackSwing

@@ -33,7 +33,7 @@ fun isHandCannon(item: Item) = item.id == "hand_cannon"
 
 val ammoDefinitions: AmmoDefinitions by inject()
 
-weaponSwing("hand_cannon", style = "range", priority = Priority.HIGH) { player: Player ->
+weaponSwing("hand_cannon", style = "range", priority = Priority.HIGH) { player ->
     val ammo = player.equipped(EquipSlot.Ammo)
     val weapon = player.weapon
     if (!player.hasUseLevel(Skill.Ranged, ammo)) {
@@ -56,7 +56,7 @@ weaponSwing("hand_cannon", style = "range", priority = Priority.HIGH) { player: 
     player.ammo = ammo.id
 }
 
-weaponSwing("hand_cannon", style = "range", priority = Priority.LOW) { player: Player ->
+weaponSwing("hand_cannon", style = "range", priority = Priority.LOW) { player ->
     player.setAnimation("hand_cannon_shoot")
     player.setGraphic("hand_cannon_shoot")
     player.shoot(id = player.ammo, target = target)
@@ -65,7 +65,7 @@ weaponSwing("hand_cannon", style = "range", priority = Priority.LOW) { player: P
     explode(player, 0.005)
 }
 
-specialAttackSwing("hand_cannon", style = "range", priority = Priority.HIGHISH) { player: Player ->
+specialAttackSwing("hand_cannon", style = "range", priority = Priority.HIGHISH) { player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
         delay = -1
         return@specialAttackSwing

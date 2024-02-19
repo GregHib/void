@@ -17,7 +17,7 @@ playerSpawn { player ->
     }
 }
 
-combatSwing { player: Player ->
+combatSwing { player ->
     if (player.inWilderness && target is Player && player.get<List<Character>>("attackers")?.contains(target) != true) {
         player.skull()
     }

@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.weapon
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.Item
@@ -18,7 +17,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isToktz(item: Item) = item.id == "toktz_xil_ul"
 
-weaponSwing("toktz_xil_ul", style = "range", priority = Priority.HIGH) { player: Player ->
+weaponSwing("toktz_xil_ul", style = "range", priority = Priority.HIGH) { player ->
     val required = player["required_ammo", 1]
     val ammo = player.weapon.id
     player.ammo = ""
@@ -30,7 +29,7 @@ weaponSwing("toktz_xil_ul", style = "range", priority = Priority.HIGH) { player:
     player.ammo = ammo
 }
 
-weaponSwing("toktz_xil_ul", style = "range", priority = Priority.LOW) { player: Player ->
+weaponSwing("toktz_xil_ul", style = "range", priority = Priority.LOW) { player ->
     val ammo = player.ammo
     player.setAnimation(ammo)
     player.shoot(id = ammo, target = target)

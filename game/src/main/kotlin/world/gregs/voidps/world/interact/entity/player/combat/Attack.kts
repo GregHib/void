@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.characterApproachNPC
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.characterApproachPlayer
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.suspend.approachRange
@@ -44,7 +43,7 @@ spellOnNPCApproach("*_spellbook", priority = Priority.HIGH) {
     cancel()
 }
 
-combatSwing { player: Player ->
+combatSwing { player ->
     if (player.contains("one_time")) {
         player.mode = EmptyMode
         player.clear("one_time")

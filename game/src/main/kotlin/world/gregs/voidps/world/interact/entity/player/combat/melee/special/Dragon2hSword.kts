@@ -18,7 +18,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpeci
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-specialAttackSwing("dragon_2h_sword*") { player: Player ->
+specialAttackSwing("dragon_2h_sword*") { player ->
     if (!drainSpecialEnergy(player, 600)) {
         delay = -1
         return@specialAttackSwing

@@ -22,7 +22,7 @@ itemRemoved("staff_of_light*", EquipSlot.Weapon, "worn_equipment") { player ->
     player.softTimers.stop("power_of_light")
 }
 
-combatHit { player: Player ->
+combatHit { player ->
     if (player.softTimers.contains("power_of_light")) {
         player.setGraphic("power_of_light_hit")
     }

@@ -17,7 +17,7 @@ specialAttack("brine_sabre") { player: Player ->
     }
 }
 
-specialAttackSwing("brine_sabre") { player: Player ->
+specialAttackSwing("brine_sabre") { player ->
     if (!drainSpecialEnergy(player, 750)) {
         delay = -1
         return@specialAttackSwing

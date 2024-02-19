@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.weapon
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
@@ -19,7 +18,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isThrowingAxe(item: Item) = item.id.contains("_throwing_axe")
 
-weaponSwing("*_throwing_axe*", style = "range", priority = Priority.HIGH) { player: Player ->
+weaponSwing("*_throwing_axe*", style = "range", priority = Priority.HIGH) { player ->
     val required = player["required_ammo", 1]
     val ammo = player.weapon.id
     player.ammo = ""
@@ -31,7 +30,7 @@ weaponSwing("*_throwing_axe*", style = "range", priority = Priority.HIGH) { play
     player.ammo = ammo
 }
 
-weaponSwing("*_throwing_axe*", style = "range", priority = Priority.LOW) { player: Player ->
+weaponSwing("*_throwing_axe*", style = "range", priority = Priority.LOW) { player ->
     val ammo = player.ammo.removePrefix("corrupt_")
     player.setAnimation(if (ammo.contains("morrigans")) "throw_javelin" else "thrown_accurate")
     player.setGraphic("${ammo}_throw")

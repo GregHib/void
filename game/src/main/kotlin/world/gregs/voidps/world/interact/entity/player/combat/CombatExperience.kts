@@ -16,7 +16,7 @@ import kotlin.math.floor
 
 val definitions: SpellDefinitions by inject()
 
-combatAttack { player: Player ->
+combatAttack { player ->
     if (damage <= 0) {
         return@combatAttack
     }

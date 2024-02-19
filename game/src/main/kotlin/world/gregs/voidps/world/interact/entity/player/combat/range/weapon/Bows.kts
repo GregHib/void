@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.weapon
 
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
@@ -12,7 +11,7 @@ import world.gregs.voidps.world.interact.entity.combat.weaponSwing
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-weaponSwing("*bow", "seercull", "longbow_sighted", style = "range", priority = Priority.LOW) { player: Player ->
+weaponSwing("*bow", "seercull", "longbow_sighted", style = "range", priority = Priority.LOW) { player ->
     if (player.weapon.id.endsWith("crossbow")) {
         return@weaponSwing
     }
