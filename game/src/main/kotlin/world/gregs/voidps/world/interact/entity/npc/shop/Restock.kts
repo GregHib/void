@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.timer.timerStart
@@ -70,7 +71,7 @@ fun restock() {
     }
 }
 
-fun restock(def: InventoryDefinition, inventory: world.gregs.voidps.engine.inv.Inventory) {
+fun restock(def: InventoryDefinition, inventory: Inventory) {
     val defaults = def.getOrNull<List<Map<String, Int>>>("defaults")
     for (index in 0 until def.length) {
         val map = defaults?.getOrNull(index)
