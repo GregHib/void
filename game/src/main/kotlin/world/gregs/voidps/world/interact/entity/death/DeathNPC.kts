@@ -37,7 +37,7 @@ val npcs: NPCs by inject()
 val floorItems: FloorItems by inject()
 val tables: DropTables by inject()
 
-npcDeath { npc: NPC ->
+npcDeath { npc ->
     npc.mode = PauseMode
     npc.dead = true
     npc.steps.clear()

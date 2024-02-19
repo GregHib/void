@@ -35,7 +35,7 @@ import world.gregs.voidps.type.random
 val logger = InlineLogger()
 val itemDefinitions: ItemDefinitions by inject()
 
-npcMove({ it.contains("fishers") && it.def.contains("fishing") }) { npc: NPC ->
+npcMove({ it.contains("fishers") && it.def.contains("fishing") }) { npc ->
     val fishers: Set<Player> = npc.remove("fishers") ?: return@npcMove
     for (fisher in fishers) {
         fisher.queue.clearWeak()

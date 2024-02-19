@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.move.walkTo
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.combatLevel
@@ -162,11 +161,11 @@ suspend fun PlayerChoice.notBeliever(): Unit = option<Talk>("No, I don't believe
     npc<Upset>("Ok suit yourself.")
 }
 
-npcTimerStart("demon_slayer_crystal_ball", "gypsy_aris") { _: NPC ->
+npcTimerStart("demon_slayer_crystal_ball", "gypsy_aris") { _ ->
     interval = 2
 }
 
-npcTimerTick("demon_slayer_crystal_ball") { npc: NPC ->
+npcTimerTick("demon_slayer_crystal_ball") { npc ->
     if (npc.mode !is Face) {
         cancel()
         return@npcTimerTick

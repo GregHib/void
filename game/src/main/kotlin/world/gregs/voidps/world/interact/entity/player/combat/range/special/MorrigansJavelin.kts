@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -60,7 +59,7 @@ characterTimerTick("phantom_strike") { character: Character ->
     (character as? Player)?.message("You ${character.remove("phantom_first") ?: "continue"} to bleed as a result of the javelin strike.")
 }
 
-npcTimerStop("phantom_strike") { npc: NPC ->
+npcTimerStop("phantom_strike") { npc ->
     npc.clear("phantom")
     npc.clear("phantom_damage")
     npc.clear("phantom_first")

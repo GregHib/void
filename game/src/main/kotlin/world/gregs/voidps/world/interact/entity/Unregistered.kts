@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity
 
 import world.gregs.voidps.engine.data.PlayerAccounts
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.npcDespawn
 import world.gregs.voidps.engine.entity.playerDespawn
@@ -17,6 +16,6 @@ playerDespawn(priority = Priority.LOWEST) { player: Player ->
     accounts.queueSave(player)
 }
 
-npcDespawn(priority = Priority.LOWEST) { npc: NPC ->
+npcDespawn(priority = Priority.LOWEST) { npc ->
     npc.softTimers.stopAll()
 }

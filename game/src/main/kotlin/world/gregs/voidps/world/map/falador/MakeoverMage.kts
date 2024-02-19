@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.forceChat
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -210,11 +209,11 @@ npcSpawn("makeover_mage*") { npc ->
     npc.softTimers.start("makeover")
 }
 
-npcTimerStart("makeover") { _: NPC ->
+npcTimerStart("makeover") { _ ->
     interval = TimeUnit.SECONDS.toTicks(250)
 }
 
-npcTimerTick("makeover") { npc: NPC ->
+npcTimerTick("makeover") { npc ->
     val current: String = npc["transform_id", "makeover_mage_male"]
     val toFemale = current == "makeover_mage_male"
     npc.transform = if (toFemale) "makeover_mage_female" else "makeover_mage_male"

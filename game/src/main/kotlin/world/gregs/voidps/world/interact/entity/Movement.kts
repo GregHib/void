@@ -4,7 +4,6 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.move.characterMove
 import world.gregs.voidps.engine.entity.character.mode.move.npcMove
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -50,7 +49,7 @@ characterMove({ active }) { character: Character ->
     collisions.move(character, from, to)
 }
 
-npcMove { npc: NPC ->
+npcMove { npc ->
     npcs.update(from, to, npc)
 }
 

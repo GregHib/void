@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.npc.combat.type
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.size
@@ -20,7 +19,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val specials = listOf("toxic", "ice", "shock")
 
-npcSwing("king_black_dragon", Priority.HIGHEST) { npc: NPC ->
+npcSwing("king_black_dragon", Priority.HIGHEST) { npc ->
     val canMelee = CharacterTargetStrategy(npc).reached(target)
     when (random.nextInt(if (canMelee) 3 else 2)) {
         0 -> {
@@ -56,7 +55,7 @@ fun nearestTile(source: Character, target: Character): Tile {
     return centre.add(direction).add(direction)
 }
 
-npcCombatAttack("king_black_dragon") { npc: NPC ->
+npcCombatAttack("king_black_dragon") { npc ->
     when (spell) {
         "toxic" -> npc.poison(target, 80)
         "ice" -> npc.freeze(target, 10)

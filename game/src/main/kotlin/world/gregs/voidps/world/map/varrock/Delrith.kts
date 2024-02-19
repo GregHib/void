@@ -283,7 +283,7 @@ npcOperate("*", "delrith") {
 }
 
 
-npcLevelChange("delrith", Skill.Constitution, Priority.HIGH) { npc: NPC ->
+npcLevelChange("delrith", Skill.Constitution, Priority.HIGH) { npc ->
     if (to > 0) {
         return@npcLevelChange
     }
