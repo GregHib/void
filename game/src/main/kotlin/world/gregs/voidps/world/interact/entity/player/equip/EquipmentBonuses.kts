@@ -24,7 +24,7 @@ val definitions: ItemDefinitions by inject()
 
 fun Player.equipping() = menu == "equipment_bonuses"
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     updateStats(player)
 }
 

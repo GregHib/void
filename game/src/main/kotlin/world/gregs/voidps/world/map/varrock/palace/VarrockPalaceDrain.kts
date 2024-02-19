@@ -3,7 +3,6 @@ package world.gregs.voidps.world.map.varrock.palace
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.obj.objectOperate
@@ -35,7 +34,7 @@ objectOperate("Search", "varrock_palace_drain") {
     }
 }
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     if (player["demon_slayer_drain_dislodged", false]) {
         player.sendVariable("demon_slayer_drain_dislodged")
     }

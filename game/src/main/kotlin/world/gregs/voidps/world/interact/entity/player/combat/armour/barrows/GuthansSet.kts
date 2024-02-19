@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     if (player.hasFullSet()) {
         player["guthans_set_effect"] = true
     }

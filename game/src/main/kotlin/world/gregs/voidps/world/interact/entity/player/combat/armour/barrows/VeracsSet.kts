@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     if (player.hasFullSet()) {
         player["veracs_set_effect"] = true
     }

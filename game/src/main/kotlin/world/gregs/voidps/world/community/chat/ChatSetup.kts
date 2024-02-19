@@ -2,10 +2,9 @@ package world.gregs.voidps.world.community.chat
 
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.playerSpawn
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     player.sendVariable("clan_chat_colour")
     player.sendVariable("private_chat_colour")
 }

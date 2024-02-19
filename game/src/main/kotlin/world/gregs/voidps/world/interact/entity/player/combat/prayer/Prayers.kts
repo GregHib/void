@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfi
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     player.sendVariable("attack_bonus")
     player.sendVariable("strength_bonus")
     player.sendVariable("defence_bonus")

@@ -56,7 +56,7 @@ itemChange(EquipSlot.Weapon, "worn_equipment") { player ->
     updateWeaponEmote(player)
 }
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     updateWeaponEmote(player)
 }
 

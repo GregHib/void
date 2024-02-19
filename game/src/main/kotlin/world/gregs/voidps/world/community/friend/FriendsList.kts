@@ -30,7 +30,7 @@ val accounts: AccountDefinitions by inject()
 
 val maxFriends = 200
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     player.sendFriends()
     notifyBefriends(player, online = true)
 }

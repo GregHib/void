@@ -12,7 +12,7 @@ itemChange("worn_equipment", "inventory") { player ->
     updateWeight(player)
 }
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     updateWeight(player)
 }
 

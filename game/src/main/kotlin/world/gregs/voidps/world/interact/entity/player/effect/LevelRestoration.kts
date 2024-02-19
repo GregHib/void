@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit
 
 val skills = Skill.all.filterNot { it == Skill.Prayer || it == Skill.Summoning || it == Skill.Constitution }
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     if (skills.any { player.levels.getOffset(it) != 0 }) {
         player.softTimers.start("restore_stats")
     }

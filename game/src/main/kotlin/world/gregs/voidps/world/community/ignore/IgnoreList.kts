@@ -16,7 +16,7 @@ val accounts: AccountDefinitions by inject()
 
 val maxIgnores = 100
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     player.sendIgnores()
 }
 

@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
  */
 val toleranceTime = TimeUnit.MINUTES.toSeconds(10)
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     if (!player.contains("tolerance")) {
         player.start("tolerance", toleranceTime.toInt(), epochSeconds())
     }

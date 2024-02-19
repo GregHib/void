@@ -10,7 +10,7 @@ import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     if (player.hasFullSet()) {
         player["torags_set_effect"] = true
     }

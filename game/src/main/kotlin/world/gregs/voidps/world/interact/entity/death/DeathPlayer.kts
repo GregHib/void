@@ -38,7 +38,7 @@ import world.gregs.voidps.world.interact.entity.sound.playJingle
 val floorItems: FloorItems by inject()
 val enums: EnumDefinitions by inject()
 
-characterSpawn { character: Character ->
+characterSpawn { character ->
     character["damage_dealers"] = Object2IntOpenHashMap<Character>(1)
     character["attackers"] = ObjectArrayList<Character>(1)
 }

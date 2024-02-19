@@ -37,7 +37,7 @@ val list = listOf(
     "area_status_icon"
 )
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     player.open(player.gameFrame.name)
 }
 

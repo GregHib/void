@@ -22,13 +22,13 @@ val npcs: NPCs by inject()
 val players: Players by inject()
 val active = getProperty("characterCollision") == "true"
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     if (players.add(player) && active) {
         collisions.add(player)
     }
 }
 
-npcSpawn { npc: NPC ->
+npcSpawn { npc ->
     if (!active) {
         return@npcSpawn
     }

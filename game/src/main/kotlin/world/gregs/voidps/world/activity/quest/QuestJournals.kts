@@ -40,6 +40,6 @@ timerStop("refresh_quest_journal") { player: Player ->
     player.refreshQuestJournal()
 }
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     player.clearCamera()
 }

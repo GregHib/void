@@ -69,7 +69,7 @@ val accumulator = setOf(
 
 val floorItems: FloorItems by inject()
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     update(player)
 }
 

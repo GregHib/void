@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     if (player.hasFullSet("")) {
         player["void_set_effect"] = true
     } else if (player.hasFullSet("elite_")) {

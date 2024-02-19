@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.interact.dialogue.type.statement
 
-playerSpawn(priority = Priority.HIGHER) { player: Player ->
+playerSpawn(priority = Priority.HIGHER) { player ->
     player.message("Welcome to Void.", ChatType.Welcome)
     if (!player.contains("creation")) {
         if (!player.isBot) {

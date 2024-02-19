@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelCha
 import world.gregs.voidps.engine.entity.playerSpawn
 import kotlin.math.max
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     player.combatLevel = calculateCombatLevel(player.levels)
 }
 

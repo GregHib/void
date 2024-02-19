@@ -15,7 +15,7 @@ interfaceOpen("energy_orb") { player: Player ->
     player.sendRunEnergy(player.energyPercent())
 }
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     player.sendVariable("movement")
 }
 

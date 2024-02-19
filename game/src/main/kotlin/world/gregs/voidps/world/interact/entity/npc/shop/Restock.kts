@@ -24,7 +24,7 @@ import kotlin.math.max
 val inventoryDefinitions: InventoryDefinitions by inject()
 val restockTimeTicks = TimeUnit.SECONDS.toTicks(60)
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     player.softTimers.restart("shop_restock")
 }
 

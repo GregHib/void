@@ -3,10 +3,9 @@ package world.gregs.voidps.world.community.chat
 import world.gregs.voidps.engine.client.privateStatus
 import world.gregs.voidps.engine.client.publicStatus
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.playerSpawn
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     player.privateStatus(player.privateStatus)
     player.publicStatus(player.publicStatus, player.tradeStatus)
     player.sendVariable("game_status")

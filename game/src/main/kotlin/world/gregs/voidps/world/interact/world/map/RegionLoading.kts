@@ -32,7 +32,7 @@ val playerRegions = IntArray(MAX_PLAYERS - 1)
 
 private val blankXtea = IntArray(4)
 
-playerSpawn(priority = Priority.HIGHEST) { player: Player ->
+playerSpawn(priority = Priority.HIGHEST) { player ->
     player.viewport?.seen(player)
     playerRegions[player.index - 1] = player.tile.regionLevel.id
     val viewport = player.viewport ?: return@playerSpawn

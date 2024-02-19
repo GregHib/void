@@ -14,7 +14,7 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import kotlin.math.sign
 
-characterSpawn { character: Character ->
+characterSpawn { character ->
     if (character.diseaseCounter != 0) {
         val timers = if (character is Player) character.timers else character.softTimers
         timers.restart("disease")

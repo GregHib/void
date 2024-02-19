@@ -18,7 +18,7 @@ consume("super_antifire*") { player: Player ->
     player.superAntifire(6)
 }
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     if (player.antifire) {
         player.timers.restart("fire_resistance")
     }

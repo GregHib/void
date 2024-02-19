@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
  */
 val players: Players by inject()
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     checkBorrowComplete(player)
     checkLoanComplete(player)
 }

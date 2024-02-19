@@ -24,7 +24,7 @@ val objectDefinitions: ObjectDefinitions by inject()
 
 val omni = listOf("air", "mind", "water", "earth", "fire", "body", "cosmic", "law", "nature", "chaos", "death", "blood")
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     if (player.equipped(EquipSlot.Hat).id.endsWith("_tiara")) {
         toggleAltar(player, player.equipped(EquipSlot.Hat), true)
     }

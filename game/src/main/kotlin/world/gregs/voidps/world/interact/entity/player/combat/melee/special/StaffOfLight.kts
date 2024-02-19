@@ -41,7 +41,7 @@ specialAttack("staff_of_light*") { player: Player ->
     player.specialAttack = false
 }
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     if (player.contains("power_of_light")) {
         player.softTimers.restart("power_of_light")
     }

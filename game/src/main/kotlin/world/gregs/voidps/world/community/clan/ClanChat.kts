@@ -32,7 +32,7 @@ val maxMembers = 100
 val maxAttempts = 10
 val players: Players by inject()
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     val current = player["clan_chat", ""]
     if (current.isNotEmpty()) {
         val account = accountDefinitions.getByAccount(current)

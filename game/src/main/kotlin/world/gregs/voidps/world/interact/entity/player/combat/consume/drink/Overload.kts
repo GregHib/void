@@ -32,7 +32,7 @@ consume("overload_#") { player: Player ->
     player.timers.start("overload")
 }
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     if (player["overload_refreshes_remaining", 0] > 0) {
         player.timers.restart("overload")
     }

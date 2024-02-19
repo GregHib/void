@@ -16,7 +16,7 @@ interfaceOpen("*_spellbook") { player: Player ->
     player["spellbook_config"] = id or (player["defensive_cast", false].toInt() shl 8)
 }
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     player.sendVariable("spellbook_sort")
 }
 
