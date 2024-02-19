@@ -18,7 +18,7 @@ import world.gregs.voidps.world.community.trade.returnedItems
 val logger = InlineLogger()
 val players: Players by inject()
 
-interfaceOpen("returned_items") { player: Player ->
+interfaceOpen("returned_items") { player ->
     player.sendInventory(player.returnedItems)
 }
 

@@ -14,7 +14,7 @@ val safeZones = areas.getTagged("safe_zone")
 
 fun inWilderness(tile: Tile) = tile in wilderness && safeZones.none { tile in it.area }
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     if (inWilderness(player.tile)) {
         player["in_wilderness"] = true
     }

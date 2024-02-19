@@ -25,11 +25,11 @@ import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-timerStart("prayer_bonus_drain") { _: Player ->
+timerStart("prayer_bonus_drain") { _ ->
     interval = 50
 }
 
-timerTick("prayer_bonus_drain") { player: Player ->
+timerTick("prayer_bonus_drain") { player ->
     val attack = player.getLeech(Skill.Attack)
     val strength = player.getLeech(Skill.Strength)
     val defence = player.getLeech(Skill.Defence)
@@ -64,7 +64,7 @@ fun getLevel(target: Character, skill: Skill): Int {
     return target.levels.getMax(skill)
 }
 
-combatHit { target: Player ->
+combatHit { target ->
     if (source !is Player || !source.praying("sap_spirit")) {
         return@combatHit
     }
@@ -81,7 +81,7 @@ combatHit { target: Player ->
     cast(player, target, true, "spirit")
 }
 
-combatHit { target: Player ->
+combatHit { target ->
     if (source !is Player || !source.praying("special_attack")) {
         return@combatHit
     }
@@ -107,7 +107,7 @@ combatHit { target: Player ->
     boostMessage(player, "Special Attack")
 }
 
-combatHit { target: Player ->
+combatHit { target ->
     if (source !is Player || !source.praying("leech_energy")) {
         return@combatHit
     }

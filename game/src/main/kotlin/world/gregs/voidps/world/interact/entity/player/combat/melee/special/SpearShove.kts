@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIA
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import java.util.concurrent.TimeUnit
 
-specialAttackSwing("dragon_spear", "zamorakian_spear") { player: Player ->
+specialAttackSwing("dragon_spear", "zamorakian_spear") { player ->
     if (target.size > 1) {
         player.message("That creature is too large to knock back!")
         delay = -1

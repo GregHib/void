@@ -88,7 +88,7 @@ move({ exitArea(it, to) }) { player: Player ->
     destroyInstance(player)
 }
 
-playerDespawn { player: Player ->
+playerDespawn { player ->
     if (player.contains("demon_slayer_instance")) {
         destroyInstance(player)
     }
@@ -227,7 +227,7 @@ suspend fun CharacterContext.cutscene() {
     }
 }
 
-combatSwing(priority = Priority.HIGHEST) { player: Player ->
+combatSwing(priority = Priority.HIGHEST) { player ->
     if (target is NPC && target.id == "delrith" && target.transform == "delrith_weakened") {
         cancel()
         player.strongQueue("banish_delrith", 1) {
@@ -283,7 +283,7 @@ npcOperate("*", "delrith") {
 }
 
 
-npcLevelChange("delrith", Skill.Constitution, Priority.HIGH) { npc: NPC ->
+npcLevelChange("delrith", Skill.Constitution, Priority.HIGH) { npc ->
     if (to > 0) {
         return@npcLevelChange
     }

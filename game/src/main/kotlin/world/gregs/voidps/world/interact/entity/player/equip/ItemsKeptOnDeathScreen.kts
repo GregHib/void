@@ -14,31 +14,31 @@ import world.gregs.voidps.world.interact.entity.player.effect.skulled
 
 val enums: EnumDefinitions by inject()
 
-timerStart("skull") { player: Player ->
+timerStart("skull") { player ->
     if (player.interfaces.contains("items_kept_on_death")) {
         player.open("items_kept_on_death", close = false)
     }
 }
 
-timerStop("skull") { player: Player ->
+timerStop("skull") { player ->
     if (player.interfaces.contains("items_kept_on_death")) {
         player.open("items_kept_on_death", close = false)
     }
 }
 
-timerStart("prayer_protect_item") { player: Player ->
+timerStart("prayer_protect_item") { player ->
     if (player.interfaces.contains("items_kept_on_death")) {
         player.open("items_kept_on_death", close = false)
     }
 }
 
-timerStop("prayer_protect_item") { player: Player ->
+timerStop("prayer_protect_item") { player ->
     if (player.interfaces.contains("items_kept_on_death")) {
         player.open("items_kept_on_death", close = false)
     }
 }
 
-interfaceRefresh("items_kept_on_death") { player: Player ->
+interfaceRefresh("items_kept_on_death") { player ->
     val items = ItemsKeptOnDeath.getAllOrdered(player)
     val savedItems = ItemsKeptOnDeath.kept(player, items, enums)
     val carriedWealth = items.sumOf { it.def.cost * it.amount }

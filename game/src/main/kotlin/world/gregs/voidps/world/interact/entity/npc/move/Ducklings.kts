@@ -17,23 +17,23 @@ import world.gregs.voidps.world.interact.entity.death.npcDeath
 
 val npcs: NPCs by inject()
 
-npcSpawn("ducklings") { npc: NPC ->
+npcSpawn("ducklings") { npc ->
     followParent(npc)
 }
 
 fun isDuck(it: NPC) = it.id.startsWith("duck") && it.id.endsWith("swim")
 
-npcDeath("duck*swim") { npc: NPC ->
+npcDeath("duck*swim") { npc ->
     val ducklings: NPC = npc["ducklings"] ?: return@npcDeath
     ducklings.forceChat = "Eek!"
     followParent(ducklings)
 }
 
-npcTimerStart("follow_parent") { _: NPC ->
+npcTimerStart("follow_parent") { _ ->
     interval = 0
 }
 
-npcTimerTick("follow_parent") { npc: NPC ->
+npcTimerTick("follow_parent") { npc ->
     if (npc.mode != EmptyMode && npc.mode !is Wander) {
         return@npcTimerTick
     }

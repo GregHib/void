@@ -24,16 +24,16 @@ val definitions: ItemDefinitions by inject()
 
 fun Player.equipping() = menu == "equipment_bonuses"
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     updateStats(player)
 }
 
-itemChange("worn_equipment") { player: Player ->
+itemChange("worn_equipment") { player ->
     updateStats(player, oldItem, false)
     updateStats(player, item, true)
 }
 
-interfaceOpen("equipment_bonuses") { player: Player ->
+interfaceOpen("equipment_bonuses") { player ->
     player.interfaces.sendVisibility("equipment_bonuses", "close", !player["equipment_banking", false])
     updateEmote(player)
     player.open("equipment_side")
@@ -41,11 +41,11 @@ interfaceOpen("equipment_bonuses") { player: Player ->
     updateStats(player)
 }
 
-interfaceClose("equipment_bonuses") { player: Player ->
+interfaceClose("equipment_bonuses") { player ->
     player.open("inventory")
 }
 
-interfaceRefresh("equipment_side") { player: Player ->
+interfaceRefresh("equipment_side") { player ->
     player.interfaceOptions.send("equipment_side", "inventory")
     player.interfaceOptions.unlockAll("equipment_side", "inventory", 0 until 28)
 }

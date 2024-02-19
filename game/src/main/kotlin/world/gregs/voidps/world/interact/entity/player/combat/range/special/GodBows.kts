@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
 
 fun isGodBow(weapon: Item) = weapon.id == "saradomin_bow" || weapon.id == "guthix_bow" || weapon.id == "zamorak_bow"
 
-specialAttackSwing("saradomin_bow", "guthix_bow", "zamorak_bow", style = "range", priority = Priority.MEDIUM) { player: Player ->
+specialAttackSwing("saradomin_bow", "guthix_bow", "zamorak_bow", style = "range", priority = Priority.MEDIUM) { player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, 550)) {
@@ -45,7 +45,7 @@ var Player.restoration: Int
         this["restoration"] = value
     }
 
-combatAttack { source: Player ->
+combatAttack { source ->
     if (!isGodBow(weapon) || !special) {
         return@combatAttack
     }
@@ -69,11 +69,11 @@ specialAttackHit("saradomin_bow", "guthix_bow", "zamorak_bow") { character: Char
     source.playSound("god_bow_special_hit")
 }
 
-timerStart("restorative_shot", "balanced_shot") { _: Player ->
+timerStart("restorative_shot", "balanced_shot") { _ ->
     interval = TimeUnit.SECONDS.toTicks(6)
 }
 
-timerTick("restorative_shot", "balanced_shot") { player: Player ->
+timerTick("restorative_shot", "balanced_shot") { player ->
     val amount = player.restoration
     if (amount <= 0) {
         cancel()
@@ -85,7 +85,7 @@ timerTick("restorative_shot", "balanced_shot") { player: Player ->
     player.setGraphic("saradomin_bow_restoration")
 }
 
-timerStop("restorative_shot", "balanced_shot") { player: Player ->
+timerStop("restorative_shot", "balanced_shot") { player ->
     player.clear("restoration")
     player.clear("restoration_amount")
 }

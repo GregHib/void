@@ -78,7 +78,7 @@ on<CombatSwing> { character: Character ->
     target.attackers.add(character)
 }
 
-characterDeath { character: Character ->
+characterDeath { character ->
     for (attacker in character.attackers) {
         if (attacker.target == character) {
             attacker.stop("under_attack")

@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.sex
@@ -56,11 +55,11 @@ suspend fun CharacterContext.startShoeShopping() {
     openDressingRoom("yrsas_shoe_store")
 }
 
-interfaceClose("yrsas_shoe_store") { player: Player ->
+interfaceClose("yrsas_shoe_store") { player ->
     player.softTimers.stop("dressing_room")
 }
 
-interfaceOpen("yrsas_shoe_store") { player: Player ->
+interfaceOpen("yrsas_shoe_store") { player ->
     player.interfaces.sendText(id, "confirm_text", "Change")
     player.interfaceOptions.unlockAll(id, "styles", 0 until 40)
     val colours = enums.get("colour_shoes")

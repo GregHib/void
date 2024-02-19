@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.event.Priority
@@ -12,7 +11,7 @@ import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-specialAttackSwing("dorgeshuun_crossbow", style = "range", priority = Priority.HIGHISH) { player: Player ->
+specialAttackSwing("dorgeshuun_crossbow", style = "range", priority = Priority.HIGHISH) { player ->
     if (!drainSpecialEnergy(player, 750)) {
         delay = -1
         return@specialAttackSwing

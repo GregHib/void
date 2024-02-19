@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
@@ -8,7 +7,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 
-combatAttack { source: Player ->
+combatAttack { source ->
     if (type != "range" || source.ammo != "saradomin_arrows") {
         return@combatAttack
     }
@@ -20,7 +19,7 @@ combatAttack { source: Player ->
     }
 }
 
-combatAttack { source: Player ->
+combatAttack { source ->
     if (type != "range" || source.ammo != "guthix_arrows") {
         return@combatAttack
     }
@@ -32,7 +31,7 @@ combatAttack { source: Player ->
     }
 }
 
-combatAttack { source: Player ->
+combatAttack { source ->
     if (type != "range" || source.ammo != "zamorak_arrows") {
         return@combatAttack
     }

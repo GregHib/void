@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.modern
 
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
@@ -12,7 +11,7 @@ import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-characterSpellSwing("water_*", Priority.LOW) { character: Character ->
+characterSpellSwing("water_*", Priority.LOW) { character ->
     val spell = character.spell
     val staff = if (character.weapon.def["category", ""] == "staff") "_staff" else ""
     character.setAnimation("water_spell${staff}")

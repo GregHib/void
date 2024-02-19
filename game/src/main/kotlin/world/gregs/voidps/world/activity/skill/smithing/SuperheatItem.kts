@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnItemInterface
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smelting
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -23,7 +22,7 @@ val spellDefinitions: SpellDefinitions by inject()
 val itemDefinitions: ItemDefinitions by inject()
 val logger = InlineLogger()
 
-itemOnItemInterface("modern_spellbook", "superheat_item") { player: Player ->
+itemOnItemInterface("modern_spellbook", "superheat_item") { player ->
     if (!toItem.id.endsWith("_ore")) {
         player.message("You need to cast superheat item on ore.")
         return@itemOnItemInterface

@@ -3,8 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
@@ -20,7 +18,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val definitions: SpellDefinitions by inject()
 
-spellSwing("miasmic_*", Priority.LOW) { player: Player ->
+spellSwing("miasmic_*", Priority.LOW) { player ->
     val spell = player.spell
     player.setAnimation("${spell}_cast")
     player.setGraphic("${spell}_cast")
@@ -31,13 +29,13 @@ spellSwing("miasmic_*", Priority.LOW) { player: Player ->
 
 fun meleeOrRanged(type: String) = type == "range" || type == "melee"
 
-combatSwing(priority = Priority.LOWEST) { player: Player ->
+combatSwing(priority = Priority.LOWEST) { player ->
     if (delay != null && delay!! > 0 && player.hasClock("miasmic") && meleeOrRanged(player.fightStyle)) {
         delay = delay!! * 2
     }
 }
 
-characterSpellAttack("miasmic_*") { _: Character ->
+characterSpellAttack("miasmic_*") { _ ->
     val seconds: Int = definitions.get(spell)["effect_seconds"]
     target.start("miasmic", seconds, epochSeconds())
 }

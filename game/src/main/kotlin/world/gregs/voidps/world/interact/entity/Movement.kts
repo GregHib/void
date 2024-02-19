@@ -4,7 +4,6 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.move.characterMove
 import world.gregs.voidps.engine.entity.character.mode.move.npcMove
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -22,13 +21,13 @@ val npcs: NPCs by inject()
 val players: Players by inject()
 val active = getProperty("characterCollision") == "true"
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     if (players.add(player) && active) {
         collisions.add(player)
     }
 }
 
-npcSpawn { npc: NPC ->
+npcSpawn { npc ->
     if (!active) {
         return@npcSpawn
     }
@@ -40,17 +39,17 @@ npcSpawn { npc: NPC ->
     }
 }
 
-characterDespawn { character: Character ->
+characterDespawn { character ->
     if (active) {
         collisions.remove(character)
     }
 }
 
-characterMove({ active }) { character: Character ->
+characterMove({ active }) { character ->
     collisions.move(character, from, to)
 }
 
-npcMove { npc: NPC ->
+npcMove { npc ->
     npcs.update(from, to, npc)
 }
 

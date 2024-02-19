@@ -3,7 +3,6 @@ package world.gregs.voidps.world.activity.transport
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.objectOperate
@@ -19,7 +18,7 @@ adminCommand("canoe") {
     player.open("canoe")
 }
 
-interfaceOpen("canoe") { player: Player ->
+interfaceOpen("canoe") { player ->
     if (player.levels.get(Skill.Woodcutting) > 26) {
         player.interfaces.sendVisibility(id, "visible_dugout", true)
         player.interfaces.sendVisibility(id, "invisible_dugout", false)
@@ -34,8 +33,8 @@ interfaceOpen("canoe") { player: Player ->
     }
 }
 
-interfaceOpen("canoe_stations_map") { _: Player ->
+interfaceOpen("canoe_stations_map") { _ ->
 }
 
-interfaceOpen("canoe_travel") { _: Player ->
+interfaceOpen("canoe_travel") { _ ->
 }

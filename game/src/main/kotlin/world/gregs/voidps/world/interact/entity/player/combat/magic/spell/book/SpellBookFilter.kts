@@ -3,10 +3,9 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.playerSpawn
 
-interfaceOpen("*_spellbook") { player: Player ->
+interfaceOpen("*_spellbook") { player ->
     val id = when (id) {
         "ancient_spellbook" -> 1
         "lunar_spellbook" -> 2
@@ -16,7 +15,7 @@ interfaceOpen("*_spellbook") { player: Player ->
     player["spellbook_config"] = id or (player["defensive_cast", false].toInt() shl 8)
 }
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     player.sendVariable("spellbook_sort")
 }
 

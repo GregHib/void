@@ -14,7 +14,7 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import kotlin.math.sign
 
-characterSpawn { character: Character ->
+characterSpawn { character ->
     if (character.diseaseCounter != 0) {
         val timers = if (character is Player) character.timers else character.softTimers
         timers.restart("disease")
@@ -24,7 +24,7 @@ characterSpawn { character: Character ->
 fun immune(character: Character) = character is NPC && character.def["immune_disease", false] ||
         character is Player && character.equipped(EquipSlot.Hands).id == "inoculation_brace"
 
-characterTimerStart("disease") { character: Character ->
+characterTimerStart("disease") { character ->
     if (character.antiDisease || immune(character)) {
         cancel()
         return@characterTimerStart
@@ -36,7 +36,7 @@ characterTimerStart("disease") { character: Character ->
     interval = 30
 }
 
-characterTimerTick("disease") { character: Character ->
+characterTimerTick("disease") { character ->
     val diseased = character.diseased
     character.diseaseCounter -= character.diseaseCounter.sign
     when {
@@ -52,7 +52,7 @@ characterTimerTick("disease") { character: Character ->
     }
 }
 
-characterTimerStop("disease") { character: Character ->
+characterTimerStop("disease") { character ->
     character.diseaseCounter = 0
     character.clear("disease_damage")
     character.clear("disease_source")

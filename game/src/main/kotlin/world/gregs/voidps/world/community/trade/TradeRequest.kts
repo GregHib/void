@@ -70,7 +70,7 @@ fun startTrade(player: Player, partner: Player) {
     }
 }
 
-interfaceClose("trade_main", "trade_confirm") { player: Player ->
+interfaceClose("trade_main", "trade_confirm") { player ->
     val other: Player = getPartner(player) ?: return@interfaceClose
     if (player.hasRequest(other, "accept_trade")) {
         return@interfaceClose

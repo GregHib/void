@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
  */
 val players: Players by inject()
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     checkBorrowComplete(player)
     checkLoanComplete(player)
 }
@@ -49,7 +49,7 @@ fun checkLoanComplete(player: Player) {
     }
 }
 
-playerDespawn { player: Player ->
+playerDespawn { player ->
     checkBorrowUntilLogout(player)
     checkLoanUntilLogout(player)
 }
@@ -72,22 +72,22 @@ fun checkLoanUntilLogout(player: Player) {
     }
 }
 
-timerStart("loan_message") { player: Player ->
+timerStart("loan_message") { player ->
     val remaining = player.remaining("lend_timeout", epochSeconds())
     interval = TimeUnit.SECONDS.toTicks(remaining)
 }
 
-timerStop("loan_message") { player: Player ->
+timerStop("loan_message") { player ->
     if (!logout) {
         stopLending(player)
     }
 }
 
-timerStart("borrow_message") { _: Player ->
+timerStart("borrow_message") { _ ->
     interval = TimeUnit.MINUTES.toTicks(1)
 }
 
-timerTick("borrow_message") { player: Player ->
+timerTick("borrow_message") { player ->
     val remaining = player.remaining("borrow_timeout", epochSeconds())
     if (remaining <= 0) {
         player.message("Your loan has expired; the item you borrowed will now be returned to its owner.")
@@ -97,7 +97,7 @@ timerTick("borrow_message") { player: Player ->
     }
 }
 
-timerStop("borrow_message") { player: Player ->
+timerStop("borrow_message") { player ->
     if (!logout) {
         returnLoan(player)
     }

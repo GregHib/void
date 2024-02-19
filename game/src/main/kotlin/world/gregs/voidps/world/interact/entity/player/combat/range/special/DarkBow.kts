@@ -18,7 +18,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpeci
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-specialAttackSwing("dark_bow*", style = "range", priority = Priority.HIGHISH) { player: Player ->
+specialAttackSwing("dark_bow*", style = "range", priority = Priority.HIGHISH) { player ->
     val dragon = player.ammo == "dragon_arrow"
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
@@ -52,7 +52,7 @@ specialAttackHit("dark_bow*", "range") { character: Character ->
     character.setGraphic("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_hit")
 }
 
-weaponSwing("dark_bow*", style = "range", priority = Priority.MEDIUM) { player: Player ->
+weaponSwing("dark_bow*", style = "range", priority = Priority.MEDIUM) { player ->
     player.setAnimation("bow_accurate")
     val ammo = player.ammo
     player.setGraphic("${ammo}_double_shot")

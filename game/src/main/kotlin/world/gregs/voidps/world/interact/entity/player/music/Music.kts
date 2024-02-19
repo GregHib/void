@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inject
 val tracks: MusicTracks by inject()
 val enums: EnumDefinitions by inject()
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     if (!player.isBot) {
         unlockDefaultTracks(player)
         playAreaTrack(player)

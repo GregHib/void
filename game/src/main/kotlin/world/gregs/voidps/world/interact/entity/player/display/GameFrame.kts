@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.queue.weakQueue
 
@@ -37,7 +36,7 @@ val list = listOf(
     "area_status_icon"
 )
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     player.open(player.gameFrame.name)
 }
 
@@ -48,7 +47,7 @@ Tab.entries.forEach { tab ->
     }
 }
 
-interfaceOpen("toplevel*") { player: Player ->
+interfaceOpen("toplevel*") { player ->
     list.forEach { name ->
         if (name.endsWith("_spellbook")) {
             val book = player["spellbook_config", 0] and 0x3
@@ -64,7 +63,7 @@ interfaceOpen("toplevel*") { player: Player ->
     }
 }
 
-interfaceRefresh("toplevel*", "dialogue_npc*") { player: Player ->
+interfaceRefresh("toplevel*", "dialogue_npc*") { player ->
     player.interfaces.sendVisibility(player.gameFrame.name, "wilderness_level", false)
     player.weakQueue("wild_level", 1) {
         player.interfaces.sendVisibility(player.gameFrame.name, "wilderness_level", false)

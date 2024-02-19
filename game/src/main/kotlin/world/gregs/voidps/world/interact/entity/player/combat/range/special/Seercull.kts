@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.characterLevelChange
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -20,7 +19,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpeci
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-specialAttackSwing("seercull", style = "range", priority = Priority.MEDIUM) { player: Player ->
+specialAttackSwing("seercull", style = "range", priority = Priority.MEDIUM) { player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {
@@ -39,7 +38,7 @@ specialAttackHit("seercull", "range") { character: Character ->
     character.setGraphic("seercull_special_hit")
 }
 
-combatAttack { _: Player ->
+combatAttack { _ ->
     if (weapon.id != "seercull" || !special || target["soulshot", false]) {
         return@combatAttack
     }
@@ -47,7 +46,7 @@ combatAttack { _: Player ->
     target.levels.drain(Skill.Magic, damage / 10)
 }
 
-characterLevelChange(Skill.Magic) { character: Character ->
+characterLevelChange(Skill.Magic) { character ->
     if (character["soulshot", false] && to >= character.levels.getMax(skill)) {
         character.clear("soulshot")
     }

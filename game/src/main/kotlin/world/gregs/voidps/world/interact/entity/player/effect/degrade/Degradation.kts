@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.itemChange
 
 // Switch two tracked items
-itemChange { player: Player ->
+itemChange { player ->
     if (containsCharge(player, inventory, index, from, fromIndex)) {
         val original = Degrade.variable(from, fromIndex)
         val originalCharge: Int? = player[original]

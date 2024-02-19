@@ -5,17 +5,17 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     if (player.hasFullSet()) {
         player["veracs_set_effect"] = true
     }
 }
 
-itemRemoved("veracs_*", BarrowsArmour.slots, "worn_equipment") { player: Player ->
+itemRemoved("veracs_*", BarrowsArmour.slots, "worn_equipment") { player ->
     player.clear("veracs_set_effect")
 }
 
-itemAdded("veracs_*", BarrowsArmour.slots, "worn_equipment") { player: Player ->
+itemAdded("veracs_*", BarrowsArmour.slots, "worn_equipment") { player ->
     if (player.hasFullSet()) {
         player["veracs_set_effect"] = true
     }

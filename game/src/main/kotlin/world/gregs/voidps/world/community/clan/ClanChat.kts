@@ -32,7 +32,7 @@ val maxMembers = 100
 val maxAttempts = 10
 val players: Players by inject()
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     val current = player["clan_chat", ""]
     if (current.isNotEmpty()) {
         val account = accountDefinitions.getByAccount(current)
@@ -44,7 +44,7 @@ playerSpawn { player: Player ->
     ownClan.ignores = player.ignores
 }
 
-playerDespawn { player: Player ->
+playerDespawn { player ->
     val clan = player.clan ?: return@playerDespawn
     clan.members.remove(player)
     updateMembers(player, clan, ClanRank.Anyone)

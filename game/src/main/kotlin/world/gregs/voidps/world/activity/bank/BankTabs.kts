@@ -3,20 +3,21 @@ package world.gregs.voidps.world.activity.bank
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.interfaceSwap
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.engine.inv.shift
 import world.gregs.voidps.engine.inv.swap
 
-itemChange("bank") { player: Player ->
-    player["bank_spaces_used_free"] = player.bank.getFreeToPlayItemCount()
+itemChange("bank") { player ->
+    player["bank_spaces_used_free"] = player.bank.countFreeToPlayItems()
     player["bank_spaces_used_member"] = player.bank.count
 }
 
-fun world.gregs.voidps.engine.inv.Inventory.getFreeToPlayItemCount(): Int {
+fun Inventory.countFreeToPlayItems(): Int {
     return items.count { it.isNotEmpty() && !it.def.members }
 }
 
-interfaceSwap("bank", "inventory") { player: Player ->
+interfaceSwap("bank", "inventory") { player ->
     when (player["bank_item_mode", "swap"]) {
         "swap" -> player.bank.swap(fromSlot, toSlot)
         "insert" -> {
@@ -40,7 +41,7 @@ interfaceOption("Toggle swap/insert", "item_mode", "bank") {
     player["bank_item_mode"] = if (value == "insert") "swap" else "insert"
 }
 
-interfaceSwap("bank", "inventory", "tab_#") { player: Player ->
+interfaceSwap("bank", "inventory", "tab_#") { player ->
     val fromTab = Bank.getTab(player, fromSlot)
     val toTab = toComponent.removePrefix("tab_").toInt() - 1
     val toIndex = if (toTab == Bank.MAIN_TAB) player.bank.freeIndex() else Bank.tabIndex(player, toTab + 1)

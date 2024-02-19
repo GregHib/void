@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.forceChat
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -125,11 +124,11 @@ npcOperate("Makeover", "makeover_mage*") {
     openDressingRoom("skin_colour")
 }
 
-interfaceClose("skin_colour") { player: Player ->
+interfaceClose("skin_colour") { player ->
     player.softTimers.stop("dressing_room")
 }
 
-interfaceOpen("skin_colour") { player: Player ->
+interfaceOpen("skin_colour") { player ->
     player["makeover_female"] = !player.male
     player["makeover_colour_skin"] = player.body.getColour(BodyColour.Skin)
     player.interfaces.sendText(id, "confirm", "CONFIRM")
@@ -206,15 +205,15 @@ fun swapLook(player: Player, male: Boolean, bodyPart: BodyPart, name: String) {
     player.body.setLook(bodyPart, new.getInt(key))
 }
 
-npcSpawn("makeover_mage*") { npc: NPC ->
+npcSpawn("makeover_mage*") { npc ->
     npc.softTimers.start("makeover")
 }
 
-npcTimerStart("makeover") { _: NPC ->
+npcTimerStart("makeover") { _ ->
     interval = TimeUnit.SECONDS.toTicks(250)
 }
 
-npcTimerTick("makeover") { npc: NPC ->
+npcTimerTick("makeover") { npc ->
     val current: String = npc["transform_id", "makeover_mage_male"]
     val toFemale = current == "makeover_mage_male"
     npc.transform = if (toFemale) "makeover_mage_female" else "makeover_mage_male"

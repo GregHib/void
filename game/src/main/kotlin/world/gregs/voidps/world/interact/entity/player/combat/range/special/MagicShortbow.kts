@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import world.gregs.voidps.engine.client.ui.chat.toInt
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
@@ -17,11 +16,11 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.specialAtt
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-weaponSwing("magic_shortbow*", style = "range", priority = Priority.HIGHER) { player: Player ->
+weaponSwing("magic_shortbow*", style = "range", priority = Priority.HIGHER) { player ->
     player["required_ammo"] = player.specialAttack.toInt() + 1
 }
 
-specialAttackSwing("magic_shortbow*", style = "range", priority = Priority.MEDIUM) { player: Player ->
+specialAttackSwing("magic_shortbow*", style = "range", priority = Priority.MEDIUM) { player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, 550)) {

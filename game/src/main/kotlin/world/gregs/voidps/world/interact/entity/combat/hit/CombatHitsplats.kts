@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.combat.hit
 
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.hit
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inject
@@ -12,7 +11,7 @@ import kotlin.math.floor
 
 val definitions: SpellDefinitions by inject()
 
-characterCombatHit { character: Character ->
+characterCombatHit { character ->
     if (damage < 0 || type == "magic" && definitions.get(spell).maxHit == -1 || type == "healed") {
         return@characterCombatHit
     }
@@ -50,7 +49,7 @@ characterCombatHit { character: Character ->
     character.levels.drain(Skill.Constitution, damage)
 }
 
-characterCombatHit { character: Character ->
+characterCombatHit { character ->
     if (damage < 0) {
         character.hit(
             source = source,

@@ -11,11 +11,11 @@ import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePr
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-timerStart("prayer_drain") { _: Player ->
+timerStart("prayer_drain") { _ ->
     interval = 1
 }
 
-timerTick("prayer_drain") { player: Player ->
+timerTick("prayer_drain") { player ->
     val equipmentBonus = player["prayer", 0]
     var prayerDrainCounter = player["prayer_drain_counter", 0]
 
@@ -34,7 +34,7 @@ timerTick("prayer_drain") { player: Player ->
     player["prayer_drain_counter"] = prayerDrainCounter
 }
 
-timerStop("prayer_drain") { player: Player ->
+timerStop("prayer_drain") { player ->
     player.clear(player.getActivePrayerVarKey())
     player[PrayerConfigs.USING_QUICK_PRAYERS] = false
 }

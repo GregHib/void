@@ -38,7 +38,7 @@ import world.gregs.voidps.world.interact.entity.sound.playJingle
 val floorItems: FloorItems by inject()
 val enums: EnumDefinitions by inject()
 
-characterSpawn { character: Character ->
+characterSpawn { character ->
     character["damage_dealers"] = Object2IntOpenHashMap<Character>(1)
     character["attackers"] = ObjectArrayList<Character>(1)
 }
@@ -51,7 +51,7 @@ val y = getIntProperty("homeY", 0)
 val level = getIntProperty("homeLevel", 0)
 val respawnTile = Tile(x, y, level)
 
-playerDeath { player: Player ->
+playerDeath { player ->
     player.dead = true
     player.strongQueue("death") {
         player.steps.clear()

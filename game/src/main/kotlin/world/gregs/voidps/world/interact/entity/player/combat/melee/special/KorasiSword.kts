@@ -20,7 +20,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.hit.specialAttackHit
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 
-weaponSwing("korasis_sword", Priority.LOW) { player: Player ->
+weaponSwing("korasis_sword", Priority.LOW) { player ->
     player.setAnimation("korasis_sword_${
         when (player.attackType) {
             "chop" -> "chop"
@@ -42,7 +42,7 @@ val players: Players by inject()
 val npcs: NPCs by inject()
 val lineOfSight: LineValidator by inject()
 
-specialAttackSwing("korasis_sword") { player: Player ->
+specialAttackSwing("korasis_sword") { player ->
     if (!drainSpecialEnergy(player, 600)) {
         delay = -1
         return@specialAttackSwing

@@ -29,7 +29,7 @@ val players: Players by inject()
 val npcs: NPCs by inject()
 val lineOfSight: LineValidator by inject()
 
-specialAttackSwing("rune_throwing_axe", style = "range", priority = Priority.MEDIUM) { player: Player ->
+specialAttackSwing("rune_throwing_axe", style = "range", priority = Priority.MEDIUM) { player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 10)) {

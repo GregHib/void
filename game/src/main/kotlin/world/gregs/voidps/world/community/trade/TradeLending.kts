@@ -22,7 +22,7 @@ val lendRestriction = object : ItemRestrictionRule {
     override fun restricted(id: String) = definitions.get(id).lendId == -1
 }
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     player.loan.itemRule = lendRestriction
 }
 

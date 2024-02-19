@@ -124,7 +124,7 @@ itemOnObjectOperate("hammer", "anvil*", arrive = false) {
     player.message("To smith metal equipment, you must use the metal bar on the anvil.")
 }
 
-interfaceClose("smithing") { player: Player ->
+interfaceClose("smithing") { player ->
     player.sendScript("clear_dialogues")
 }
 

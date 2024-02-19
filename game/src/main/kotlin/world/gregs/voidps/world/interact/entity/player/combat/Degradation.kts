@@ -9,11 +9,11 @@ import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.player.effect.degrade.Degrade
 
-combatHit { player: Player ->
+combatHit { player ->
     degrade(player)
 }
 
-combatAttack { player: Player ->
+combatAttack { player ->
     degrade(player)
 }
 

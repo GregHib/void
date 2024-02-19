@@ -18,7 +18,7 @@ import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.on
 val enums: EnumDefinitions by inject()
 val structs: StructDefinitions by inject()
 
-interfaceOpen("character_creation") { player: Player ->
+interfaceOpen("character_creation") { player ->
     player.interfaceOptions.unlockAll(id, "skin_colour", 0 until enums.get("character_skin_interfaces").length)
     player.interfaceOptions.unlockAll(id, "colours", 0 until enums.get("character_top_interfaces").length)
     player.interfaceOptions.unlockAll(id, "styles", 0 until enums.get("character_top_styles_female").length)
@@ -32,7 +32,7 @@ interfaceOpen("character_creation") { player: Player ->
     }
 }
 
-interfaceClose("character_creation") { player: Player ->
+interfaceClose("character_creation") { player ->
     for (i in 1 until 20) {
         player.inventories.clear("character_creation_${i}")
     }
@@ -129,7 +129,7 @@ interfaceOption(component = "styles", id = "character_creation") {
     player["makeover_${part}"] = value
 }
 
-interfaceOpen("character_creation") { player: Player ->
+interfaceOpen("character_creation") { player ->
     player["makeover_female"] = !player.body.male
     player["makeover_hair"] = player.body.getLook(BodyPart.Hair)
     player["makeover_beard"] = player.body.getLook(BodyPart.Beard)

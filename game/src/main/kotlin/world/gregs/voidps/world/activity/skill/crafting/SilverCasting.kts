@@ -43,7 +43,7 @@ val moulds = listOf(
 val Item.silver: Silver?
     get() = def.getOrNull("silver_jewellery")
 
-interfaceOpen("silver_mould") { player: Player ->
+interfaceOpen("silver_mould") { player ->
     for (mould in moulds) {
         val silver = mould.silver ?: continue
         val item = silver.item
@@ -81,7 +81,7 @@ interfaceOption(component = "*_button", id = "silver_mould") {
     player.make(Item(component.removeSuffix("_button")), amount)
 }
 
-interfaceClose("silver_mould") { player: Player ->
+interfaceClose("silver_mould") { player ->
     player.sendScript("clear_dialogues")
 }
 

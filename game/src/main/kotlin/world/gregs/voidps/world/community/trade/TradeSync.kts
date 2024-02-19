@@ -22,7 +22,7 @@ val inventoryDefinitions: InventoryDefinitions by inject()
 /*
     Offer
  */
-itemChange("trade_offer") { player: Player ->
+itemChange("trade_offer") { player ->
     val other: Player = Trade.getPartner(player) ?: return@itemChange
     applyUpdates(other.otherOffer, this)
     val warn = player.hasRequest(other, "accept_trade") && removedAnyItems(this)
@@ -55,7 +55,7 @@ fun updateValue(player: Player, other: Player) {
 /*
     Loan
  */
-itemChange("item_loan") { player: Player ->
+itemChange("item_loan") { player ->
     val other: Player = Trade.getPartner(player) ?: return@itemChange
     applyUpdates(other.otherLoan, this)
     val warn = player.hasRequest(other, "accept_trade") && removedAnyItems(this)
@@ -81,7 +81,7 @@ fun modified(player: Player, other: Player, warned: Boolean) {
 /*
     Item count
  */
-itemChange("inventory") { player: Player ->
+itemChange("inventory") { player ->
     val other: Player = Trade.getPartner(player) ?: return@itemChange
     updateInventorySpaces(other, player)
 }

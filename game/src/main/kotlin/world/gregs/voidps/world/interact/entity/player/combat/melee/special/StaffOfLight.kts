@@ -18,11 +18,11 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpeci
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import java.util.concurrent.TimeUnit
 
-itemRemoved("staff_of_light*", EquipSlot.Weapon, "worn_equipment") { player: Player ->
+itemRemoved("staff_of_light*", EquipSlot.Weapon, "worn_equipment") { player ->
     player.softTimers.stop("power_of_light")
 }
 
-combatHit { player: Player ->
+combatHit { player ->
     if (player.softTimers.contains("power_of_light")) {
         player.setGraphic("power_of_light_hit")
     }
@@ -41,23 +41,23 @@ specialAttack("staff_of_light*") { player: Player ->
     player.specialAttack = false
 }
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     if (player.contains("power_of_light")) {
         player.softTimers.restart("power_of_light")
     }
 }
 
-timerStart("power_of_light") { _: Player ->
+timerStart("power_of_light") { _ ->
     interval = 1
 }
 
-timerTick("power_of_light") { player: Player ->
+timerTick("power_of_light") { player ->
     if (player.dec("power_of_light") <= 0) {
         cancel()
     }
 }
 
-timerStop("power_of_light") { player: Player ->
+timerStop("power_of_light") { player ->
     player.message("<red>The power of the light fades. Your resistance to melee attacks returns to normal.")
     player.clear("power_of_light")
 }

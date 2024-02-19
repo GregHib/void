@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
@@ -21,7 +20,7 @@ import kotlin.math.sign
 
 val definitions: SpellDefinitions by inject()
 
-spellSwing("teleport_block", Priority.LOW) { player: Player ->
+spellSwing("teleport_block", Priority.LOW) { player ->
     if (target is NPC) {
         delay = -1
         player.message("You can't use that against an NPC.")
@@ -39,7 +38,7 @@ spellSwing("teleport_block", Priority.LOW) { player: Player ->
     delay = 5
 }
 
-timerStart("teleport_block") { player: Player ->
+timerStart("teleport_block") { player ->
     if (player.teleBlockImmune) {
         cancel()
         return@timerStart
@@ -53,7 +52,7 @@ timerStart("teleport_block") { player: Player ->
     interval = 50
 }
 
-timerTick("teleport_block") { player: Player ->
+timerTick("teleport_block") { player ->
     val blocked = player.teleBlocked
     player.teleBlockCounter -= player.teleBlockCounter.sign
     when (player.teleBlockCounter) {

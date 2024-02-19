@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpeci
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 
-weaponSwing("abyssal_whip*", Priority.LOW) { player: Player ->
+weaponSwing("abyssal_whip*", Priority.LOW) { player ->
     if (player.specialAttack && !drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
         delay = -1
         return@weaponSwing

@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.exp.experience
@@ -16,7 +15,7 @@ import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
-experience { player: Player ->
+experience { player ->
     val previousLevel = Experience.level(skill, from)
     val currentLevel = Experience.level(skill, to)
     if (currentLevel != previousLevel) {
@@ -25,7 +24,7 @@ experience { player: Player ->
     }
 }
 
-maxLevelUp { player: Player ->
+maxLevelUp { player ->
     if (player["skip_level_up", false]) {
         return@maxLevelUp
     }
@@ -47,7 +46,7 @@ maxLevelUp { player: Player ->
     }
 }
 
-combatHit { player: Player ->
+combatHit { player ->
     if (!(player.menu ?: player.dialogue).isNullOrBlank()) {
         player.closeInterfaces()
     }

@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.timer.timerStart
@@ -16,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import java.util.concurrent.TimeUnit
 
-specialAttackSwing("*dragon_scimitar") { player: Player ->
+specialAttackSwing("*dragon_scimitar") { player ->
     if (!drainSpecialEnergy(player, 550)) {
         delay = -1
         return@specialAttackSwing
@@ -29,7 +28,7 @@ specialAttackSwing("*dragon_scimitar") { player: Player ->
     delay = 4
 }
 
-timerStart("sever") { player: Player ->
+timerStart("sever") { player ->
     interval = TimeUnit.SECONDS.toTicks(5)
     val key = player.getActivePrayerVarKey()
     if (player.isCurses()) {
@@ -45,7 +44,7 @@ timerStart("sever") { player: Player ->
     }
 }
 
-timerTick("sever") { _: Player ->
+timerTick("sever") { _ ->
     cancel()
 }
 

@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -13,7 +12,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.melee.drainByDamag
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 
-weaponSwing("barrelchest_anchor", Priority.LOW) { player: Player ->
+weaponSwing("barrelchest_anchor", Priority.LOW) { player ->
     player.setAnimation("anchor_attack")
     player.hit(target)
     delay = 6
@@ -24,7 +23,7 @@ block("barrelchest_anchor") {
     blocked = true
 }
 
-specialAttackSwing("barrelchest_anchor") { player: Player ->
+specialAttackSwing("barrelchest_anchor") { player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
         delay = -1
         return@specialAttackSwing

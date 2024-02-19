@@ -30,17 +30,17 @@ consume("recover_special*") { player: Player ->
     player.softTimers.start("recover_special")
 }
 
-timerStart("recover_special") { _: Player ->
+timerStart("recover_special") { _ ->
     interval = 10
 }
 
-timerTick("recover_special") { player: Player ->
+timerTick("recover_special") { player ->
     if (player.dec("recover_special_delay") <= 0) {
         cancel()
         return@timerTick
     }
 }
 
-timerStop("recover_special") { player: Player ->
+timerStop("recover_special") { player ->
     player.clear("recover_special_delay")
 }

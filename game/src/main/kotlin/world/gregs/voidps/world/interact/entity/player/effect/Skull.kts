@@ -11,32 +11,32 @@ import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.inWilderness
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     if (player.skulled) {
         player.softTimers.restart("skull")
     }
 }
 
-combatSwing { player: Player ->
+combatSwing { player ->
     if (player.inWilderness && target is Player && player.get<List<Character>>("attackers")?.contains(target) != true) {
         player.skull()
     }
 }
 
-timerStart("skull") { player: Player ->
+timerStart("skull") { player ->
     interval = 50
     player.appearance.skull = player["skull", 0]
     player.flagAppearance()
 }
 
-timerTick("skull") { player: Player ->
+timerTick("skull") { player ->
     if (--player.skullCounter <= 0) {
         cancel()
         return@timerTick
     }
 }
 
-timerStop("skull") { player: Player ->
+timerStop("skull") { player ->
     player.clear("skull")
     player.clear("skull_duration")
     player.appearance.skull = -1

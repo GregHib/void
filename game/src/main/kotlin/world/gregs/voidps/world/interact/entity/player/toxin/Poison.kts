@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import kotlin.math.sign
 
-characterSpawn { character: Character ->
+characterSpawn { character ->
     if (character.poisonCounter != 0) {
         val timers = if (character is Player) character.timers else character.softTimers
         timers.restart("poison")
@@ -26,7 +26,7 @@ characterSpawn { character: Character ->
 
 fun immune(character: Character) = character is NPC && character.def["immune_poison", false] || character is Player && character.equipped(EquipSlot.Shield).id == "anti_poison_totem"
 
-characterTimerStart("poison") { character: Character ->
+characterTimerStart("poison") { character ->
     if (character.antiPoison || immune(character)) {
         cancel()
         return@characterTimerStart
@@ -38,7 +38,7 @@ characterTimerStart("poison") { character: Character ->
     interval = 30
 }
 
-characterTimerTick("poison") { character: Character ->
+characterTimerTick("poison") { character ->
     val poisoned = character.poisoned
     character.poisonCounter -= character.poisonCounter.sign
     when {
@@ -54,7 +54,7 @@ characterTimerTick("poison") { character: Character ->
     }
 }
 
-characterTimerStop("poison") { character: Character ->
+characterTimerStop("poison") { character ->
     character.poisonCounter = 0
     character.clear("poison_damage")
     character.clear("poison_source")
@@ -75,7 +75,7 @@ fun isPoisoned(id: String) = id.endsWith("_p") || id.endsWith("_p+") || id.endsW
 
 fun poisonous(source: Character, weapon: Item) = source is Player && isPoisoned(weapon.id)
 
-characterCombatAttack { source: Character ->
+characterCombatAttack { source ->
     if (damage <= 0 || !poisonous(source, weapon)) {
         return@characterCombatAttack
     }

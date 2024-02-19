@@ -26,7 +26,7 @@ val tradeRestriction = object : ItemRestrictionRule {
     }
 }
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     player.offer.itemRule = tradeRestriction
 }
 

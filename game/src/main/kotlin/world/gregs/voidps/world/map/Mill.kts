@@ -2,7 +2,6 @@ package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.playerSpawn
@@ -89,6 +88,6 @@ objectOperate("Take-flour", "flour_bin_3") {
     }
 }
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     player.sendVariable("flour_bin")
 }

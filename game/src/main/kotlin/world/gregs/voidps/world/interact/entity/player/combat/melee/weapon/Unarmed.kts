@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.combat.weaponSwing
 
 val definitions: WeaponStyleDefinitions by inject()
 
-weaponSwing(priority = Priority.LOWEST) { player: Player ->
+weaponSwing(priority = Priority.LOWEST) { player ->
     val id = player.weapon.def["weapon_style", 0]
     val style = definitions.get(id)
     player.setAnimation("${style.stringId}_${player.attackType}")

@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.beastOfBurden
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -30,7 +31,7 @@ interfaceOption("Deposit-*", "inventory", "bank_side") {
     deposit(player, player.inventory, item, amount)
 }
 
-fun deposit(player: Player, inventory: world.gregs.voidps.engine.inv.Inventory, item: Item, amount: Int): Boolean {
+fun deposit(player: Player, inventory: Inventory, item: Item, amount: Int): Boolean {
     if (player.menu != "bank" || amount < 1) {
         return true
     }
@@ -96,7 +97,7 @@ interfaceOption("Deposit beast of burden inventory", "burden", "bank") {
     }
 }
 
-fun bankAll(player: Player, inventory: world.gregs.voidps.engine.inv.Inventory) {
+fun bankAll(player: Player, inventory: Inventory) {
     for (index in inventory.indices) {
         val item = inventory[index]
         if (item.isNotEmpty()) {

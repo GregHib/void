@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfi
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-playerSpawn { player: Player ->
+playerSpawn { player ->
     player.sendVariable("attack_bonus")
     player.sendVariable("strength_bonus")
     player.sendVariable("defence_bonus")
@@ -18,7 +18,7 @@ playerSpawn { player: Player ->
     player.sendVariable("magic_bonus")
 }
 
-prayerStart { player: Player ->
+prayerStart { player ->
     if (!restart) {
         val curses = player.isCurses()
         if (curses) {
@@ -32,7 +32,7 @@ prayerStart { player: Player ->
     player.softTimers.startIfAbsent("prayer_drain")
 }
 
-prayerStop { player: Player ->
+prayerStop { player ->
     player.playSound("deactivate_prayer")
     val curses = player.isCurses()
     stopPrayerDrain(player, curses)
