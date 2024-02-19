@@ -23,12 +23,12 @@ val slots = setOf(
     EquipSlot.Hands.index
 )
 
-itemRemoved("void_*", slots, "worn_equipment") { player: Player ->
+itemRemoved("void_*", slots, "worn_equipment") { player ->
     player.clear("void_set_effect")
     player.clear("elite_void_set_effect")
 }
 
-itemAdded("void_*", slots, "worn_equipment") { player: Player ->
+itemAdded("void_*", slots, "worn_equipment") { player ->
     if (player.hasFullSet("")) {
         player["void_set_effect"] = true
     } else if (player.hasFullSet("elite_")) {
@@ -36,11 +36,11 @@ itemAdded("void_*", slots, "worn_equipment") { player: Player ->
     }
 }
 
-itemRemoved("elite_void_*", slots, "worn_equipment") { player: Player ->
+itemRemoved("elite_void_*", slots, "worn_equipment") { player ->
     player.clear("elite_void_set_effect")
 }
 
-itemAdded("elite_void_*", slots, "worn_equipment") { player: Player ->
+itemAdded("elite_void_*", slots, "worn_equipment") { player ->
     if (player.hasFullSet("elite_")) {
         player["elite_void_set_effect"] = true
     }

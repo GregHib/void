@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.armour
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.itemAdded
@@ -27,13 +26,13 @@ exitArea("castle_wars") {
     }
 }
 
-itemAdded("castle_wars_brace*", EquipSlot.Hands, "worn_equipment") { player: Player ->
+itemAdded("castle_wars_brace*", EquipSlot.Hands, "worn_equipment") { player ->
     if (player.tile in area) {
         player["castle_wars_brace"] = true
     }
 }
 
-itemRemoved("castle_wars_brace*", EquipSlot.Hands, "worn_equipment") { player: Player ->
+itemRemoved("castle_wars_brace*", EquipSlot.Hands, "worn_equipment") { player ->
     if (player.tile in area) {
         player.clear("castle_wars_brace")
     }

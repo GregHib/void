@@ -28,7 +28,7 @@ playerSpawn { player: Player ->
     updateStats(player)
 }
 
-itemChange("worn_equipment") { player: Player ->
+itemChange("worn_equipment") { player ->
     updateStats(player, oldItem, false)
     updateStats(player, item, true)
 }

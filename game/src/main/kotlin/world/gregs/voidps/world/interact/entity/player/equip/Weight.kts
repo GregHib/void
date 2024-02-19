@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.network.encode.weight
 
-itemChange("worn_equipment", "inventory") { player: Player ->
+itemChange("worn_equipment", "inventory") { player ->
     updateWeight(player)
 }
 

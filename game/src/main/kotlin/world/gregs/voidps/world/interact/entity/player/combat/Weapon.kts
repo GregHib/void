@@ -17,7 +17,7 @@ playerSpawn(priority = Priority.HIGH) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
 }
 
-itemChange(EquipSlot.Weapon, "worn_equipment", Priority.HIGH) { player: Player ->
+itemChange(EquipSlot.Weapon, "worn_equipment", Priority.HIGH) { player ->
     updateWeapon(player, item)
 }
 

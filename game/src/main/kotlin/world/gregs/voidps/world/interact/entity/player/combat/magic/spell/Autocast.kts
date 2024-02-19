@@ -26,6 +26,6 @@ variableClear("autocast") { player: Player ->
     player.clear("autocast_spell")
 }
 
-itemChange(EquipSlot.Weapon, "worn_equipment") { player: Player ->
+itemChange(EquipSlot.Weapon, "worn_equipment") { player ->
     player.clear("autocast")
 }

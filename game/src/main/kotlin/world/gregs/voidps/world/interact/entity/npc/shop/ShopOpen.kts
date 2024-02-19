@@ -91,7 +91,7 @@ fun fillShop(inventory: Inventory, shopId: String) {
     }
 }
 
-itemChange { player: Player ->
+itemChange { player ->
     if (player.contains("shop") && player["shop", ""] == inventory) {
         player["amount_${index}"] = item.amount
     }
