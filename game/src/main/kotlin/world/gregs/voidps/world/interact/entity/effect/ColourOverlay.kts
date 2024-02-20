@@ -9,7 +9,7 @@ characterTimerStart("colour_overlay") { character ->
     interval = (overlay.delay + overlay.duration) / 30
 }
 
-characterTimerTick("colour_overlay") { _ ->
+characterTimerTick("colour_overlay") {
     cancel()
 }
 

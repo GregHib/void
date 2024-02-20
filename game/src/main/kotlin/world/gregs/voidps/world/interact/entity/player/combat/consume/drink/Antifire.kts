@@ -27,11 +27,11 @@ playerSpawn { player ->
     }
 }
 
-timerStart("fire_resistance") { _ ->
+timerStart("fire_resistance") {
     interval = 30
 }
 
-timerStart("fire_immunity") { _ ->
+timerStart("fire_immunity") {
     interval = 20
 }
 

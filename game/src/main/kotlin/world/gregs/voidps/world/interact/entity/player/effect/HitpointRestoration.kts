@@ -25,7 +25,7 @@ levelChange(Skill.Constitution) { player ->
     player.softTimers.start("restore_hitpoints")
 }
 
-timerStart("restore_hitpoints") { _ ->
+timerStart("restore_hitpoints") {
     interval = TimeUnit.SECONDS.toTicks(6)
 }
 

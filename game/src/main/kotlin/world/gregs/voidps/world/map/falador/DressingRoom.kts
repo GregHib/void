@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
 
-timerStart("dressing_room") { _ ->
+timerStart("dressing_room") {
     interval = 1
 }
 

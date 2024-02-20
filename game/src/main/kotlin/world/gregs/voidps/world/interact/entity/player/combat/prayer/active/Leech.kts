@@ -25,7 +25,7 @@ import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-timerStart("prayer_bonus_drain") { _ ->
+timerStart("prayer_bonus_drain") {
     interval = 50
 }
 

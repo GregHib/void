@@ -37,7 +37,7 @@ specialAttackHit("seercull", "range") { character ->
     character.setGraphic("seercull_special_hit")
 }
 
-combatAttack { _ ->
+combatAttack {
     if (weapon.id != "seercull" || !special || target["soulshot", false]) {
         return@combatAttack
     }

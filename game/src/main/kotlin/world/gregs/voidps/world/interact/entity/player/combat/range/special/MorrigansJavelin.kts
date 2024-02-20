@@ -41,7 +41,7 @@ specialAttackSwing("morrigans_javelin*", style = "range", priority = Priority.ME
     }
 }
 
-characterTimerStart("phantom_strike") { _ ->
+characterTimerStart("phantom_strike") {
     interval = 3
 }
 

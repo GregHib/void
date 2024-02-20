@@ -47,7 +47,7 @@ playerSpawn { player ->
     }
 }
 
-timerStart("power_of_light") { _ ->
+timerStart("power_of_light") {
     interval = 1
 }
 

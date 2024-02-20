@@ -30,7 +30,7 @@ consume("recover_special*") { player: Player ->
     player.softTimers.start("recover_special")
 }
 
-timerStart("recover_special") { _ ->
+timerStart("recover_special") {
     interval = 10
 }
 

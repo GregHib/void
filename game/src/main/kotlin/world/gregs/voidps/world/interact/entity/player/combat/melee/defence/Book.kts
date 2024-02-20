@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.block
 
-block(Priority.HIGH) { _ ->
+block(Priority.HIGH) {
     if (target is Player && target.equipped(EquipSlot.Shield).id.endsWith("book")) {
         target.setAnimation("book_block", delay)
         blocked = true

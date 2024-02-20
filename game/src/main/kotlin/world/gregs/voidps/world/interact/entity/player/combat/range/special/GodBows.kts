@@ -68,7 +68,7 @@ specialAttackHit("saradomin_bow", "guthix_bow", "zamorak_bow") { character ->
     source.playSound("god_bow_special_hit")
 }
 
-timerStart("restorative_shot", "balanced_shot") { _ ->
+timerStart("restorative_shot", "balanced_shot") {
     interval = TimeUnit.SECONDS.toTicks(6)
 }
 

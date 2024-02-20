@@ -12,7 +12,7 @@ weaponSwing("banner*", "rat_pole*", "*flag", priority = Priority.LOWER) { player
     delay = 4
 }
 
-block("banner*", "rat_pole*", "*flag", priority = Priority.LOW) { _ ->
+block("banner*", "rat_pole*", "*flag", priority = Priority.LOW) {
     target.setAnimation("banner_hit", delay)
     blocked = true
 }
