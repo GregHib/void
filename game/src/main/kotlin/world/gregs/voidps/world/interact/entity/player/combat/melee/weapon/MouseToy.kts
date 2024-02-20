@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.weapon
 
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.world.interact.entity.combat.hit.block
@@ -13,7 +12,7 @@ weaponSwing("mouse_toy*", Priority.LOWER) { player ->
     delay = 4
 }
 
-block("mouse_toy*") { _: Character ->
+block("mouse_toy*") {
     target.setAnimation("whip_block", delay)
     blocked = true
 }

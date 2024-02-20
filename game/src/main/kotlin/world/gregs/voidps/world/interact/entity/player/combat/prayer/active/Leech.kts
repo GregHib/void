@@ -158,7 +158,7 @@ fun set(prayer: String, skill: Skill) {
         player.clear("${skill.name.lowercase()}_leech_msg")
     }
 
-    prayerHit(prayer, Priority.HIGHER) { target: Character ->
+    prayerHit(prayer, Priority.HIGHER) { target ->
         if (random.nextDouble() >= if (sap) 0.25 else 0.15) {
             return@prayerHit
         }

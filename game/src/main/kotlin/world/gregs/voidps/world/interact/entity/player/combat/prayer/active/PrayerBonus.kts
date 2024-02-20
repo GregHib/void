@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
 
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -61,7 +60,7 @@ set("turmoil", "attack_bonus", 15)
 set("turmoil", "strength_bonus", 23)
 set("turmoil", "defence_bonus", 15)
 
-block(Priority.MEDIUM) { character: Character ->
+block(Priority.MEDIUM) { character ->
     if (!Prayer.usingDeflectPrayer(character, target, type)) {
         return@block
     }

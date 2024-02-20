@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.weapon
 
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.world.interact.entity.combat.attackType
@@ -19,7 +18,7 @@ weaponSwing("zamorakian_spear*", Priority.LOW) { player ->
     delay = 4
 }
 
-block("zamorakian_spear*") { _: Character ->
+block("zamorakian_spear*") {
     target.setAnimation("zamorakian_spear_block", delay)
     blocked = true
 }
