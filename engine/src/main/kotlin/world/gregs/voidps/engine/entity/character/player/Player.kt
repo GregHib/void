@@ -74,8 +74,6 @@ class Player(
     lateinit var interfaceOptions: InterfaceOptions
     override lateinit var collision: CollisionStrategy
 
-    var changeValue: Int = -1
-
     val networked: Boolean
         get() = client != null && viewport != null
 
