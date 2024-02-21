@@ -1,10 +1,12 @@
 package world.gregs.voidps.engine.entity.character.mode
 
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
+import world.gregs.voidps.engine.entity.character.move.followTile
 import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.equals
 import world.gregs.voidps.type.random
 
 /**
@@ -18,14 +20,16 @@ class Wander(
 ) : Movement(npc) {
 
     private var stuckCounter = 0
+    private var lastTile = Tile.EMPTY
 
     override fun tick() {
-        if (npc.tile != npc.previousTile) {
+        if (npc.tile == lastTile) {
             stuckCounter = 0
         } else if (stuckCounter++ >= stuckLimit) {
             npc.tele(spawn)
             stuckCounter = 0
         }
+        lastTile = npc.tile
         if (random.nextInt(8) != 0) {
             super.tick()
             return
@@ -38,6 +42,9 @@ class Wander(
         val tile = spawn.toCuboid(radius).random()
         character.steps.queueStep(tile)
         super.tick()
+    }
+
+    override fun onCompletion() {
     }
 
     companion object {
