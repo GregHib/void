@@ -23,7 +23,7 @@ specialAttackSwing("granite_maul*")  { player ->
     delay = 1
 }
 
-specialAttack("granite_maul*") { player: Player ->
+specialAttack("granite_maul*") { player ->
     if (!player.underAttack) {
         return@specialAttack
     }

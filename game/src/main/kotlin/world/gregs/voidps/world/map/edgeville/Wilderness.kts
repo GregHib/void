@@ -20,10 +20,10 @@ playerSpawn { player ->
     }
 }
 
-move({ !inWilderness(from) && inWilderness(to) }) { player: Player ->
+move({ !inWilderness(from) && inWilderness(to) }) { player ->
     player["in_wilderness"] = true
 }
 
-move({ inWilderness(from) && !inWilderness(to) }) { player: Player ->
+move({ inWilderness(from) && !inWilderness(to) }) { player ->
     player.clear("in_wilderness")
 }

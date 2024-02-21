@@ -28,7 +28,7 @@ interfaceOpen("quest_journals") { player ->
     }
 }
 
-variableSet(quests) { player: Player ->
+variableSet(quests) { player ->
     player.softTimers.start("refresh_quest_journal")
 }
 

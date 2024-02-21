@@ -22,7 +22,7 @@ interfaceOption("Autocast", id = "*_spellbook") {
     }
 }
 
-variableClear("autocast") { player: Player ->
+variableClear("autocast") { player ->
     player.clear("autocast_spell")
 }
 

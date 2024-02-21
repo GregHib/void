@@ -30,7 +30,7 @@ combatHit { player ->
 
 // Special attack
 
-specialAttack("staff_of_light*") { player: Player ->
+specialAttack("staff_of_light*") { player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {
         return@specialAttack
     }

@@ -19,7 +19,7 @@ playerSpawn { player ->
     player["tolerance_area"] = player.tile.toCuboid(10)
 }
 
-move({ to !in it.getOrPut("tolerance_area") { player.tile.toCuboid(10) } }) { player: Player ->
+move({ to !in it.getOrPut("tolerance_area") { player.tile.toCuboid(10) } }) { player ->
     player["tolerance_area"] = player.tile.toCuboid(10)
     player.start("tolerance", toleranceTime.toInt(), epochSeconds())
 }

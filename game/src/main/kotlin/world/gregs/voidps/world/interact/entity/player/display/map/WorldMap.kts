@@ -25,7 +25,7 @@ interfaceOption(component = "close", id = "world_map") {
     player.open(player.interfaces.gameFrame, close = false)
 }
 
-move({ it.interfaces.contains("world_map") }) { player: Player ->
+move({ it.interfaces.contains("world_map") }) { player ->
     updateMap(player)
 }
 

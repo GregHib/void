@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIA
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
-specialAttack("*dragon_battleaxe") { player: Player ->
+specialAttack("*dragon_battleaxe") { player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {
         return@specialAttack
     }

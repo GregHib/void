@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
-specialAttack("brine_sabre") { player: Player ->
+specialAttack("brine_sabre") { player ->
     if (player.tile.region.id != 11924) {
         player.message("You can only use this special attack under water.")
         player.specialAttack = false

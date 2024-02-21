@@ -13,10 +13,10 @@ import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStop
 
 fun set(name: String, bonus: String, value: Int) {
-    prayerStart(name) { player: Player ->
+    prayerStart(name) { player ->
         player["base_${bonus}"] = player["base_${bonus}", 1.0] + value / 100.0
     }
-    prayerStop(name) { player: Player ->
+    prayerStop(name) { player ->
         player["base_${bonus}"] = player["base_${bonus}", 1.0] - value / 100.0
     }
 }

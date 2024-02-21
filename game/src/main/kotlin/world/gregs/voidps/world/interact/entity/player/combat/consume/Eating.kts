@@ -56,7 +56,7 @@ inventoryOptions("Eat", "Drink", "Heal") {
     player.events.emit(Consume(item, slot))
 }
 
-consume(priority = Priority.LOW) { player: Player ->
+consume(priority = Priority.LOW) { player ->
     val range: IntRange = item.def.getOrNull("heals") ?: return@consume
     val amount = range.random()
     if (amount > 0) {

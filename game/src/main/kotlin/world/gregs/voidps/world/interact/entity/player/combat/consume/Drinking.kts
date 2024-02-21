@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
-consume("*_4", "*_3", "*_2", "*_1", priority = Priority.LOWER) { player: Player ->
+consume("*_4", "*_3", "*_2", "*_1", priority = Priority.LOWER) { player ->
     val doses = item.id.last().digitToInt()
     if (doses != 1) {
         player.message("You have ${doses - 1} ${"dose".plural(doses - 1)} of the potion left.")

@@ -153,7 +153,7 @@ set("leech_magic", Skill.Magic)
 
 fun set(prayer: String, skill: Skill) {
     val sap = prayer.startsWith("sap")
-    variableSet("under_attack", 0) { player: Player ->
+    variableSet("under_attack", 0) { player ->
         player.clear("${skill.name.lowercase()}_drain_msg")
         player.clear("${skill.name.lowercase()}_leech_msg")
     }

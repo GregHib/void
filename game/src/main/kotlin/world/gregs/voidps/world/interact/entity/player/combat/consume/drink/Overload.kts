@@ -27,7 +27,7 @@ on<Consumable>({ item.id.startsWith("overload") }) { player: Player ->
     }
 }
 
-consume("overload_#") { player: Player ->
+consume("overload_#") { player ->
     player["overload_refreshes_remaining"] = 20
     player.timers.start("overload")
 }
@@ -38,7 +38,7 @@ playerSpawn { player ->
     }
 }
 
-timerStart("overload") { player: Player ->
+timerStart("overload") { player ->
     interval = 25
     if (restart) {
         return@timerStart
