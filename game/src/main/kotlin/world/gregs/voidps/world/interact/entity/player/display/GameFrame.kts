@@ -37,7 +37,7 @@ val list = listOf(
 )
 
 playerSpawn { player ->
-    player.open(player.gameFrame.name)
+    player.open(player.interfaces.gameFrame)
 }
 
 Tab.entries.forEach { tab ->
@@ -64,8 +64,8 @@ interfaceOpen("toplevel*") { player ->
 }
 
 interfaceRefresh("toplevel*", "dialogue_npc*") { player ->
-    player.interfaces.sendVisibility(player.gameFrame.name, "wilderness_level", false)
+    player.interfaces.sendVisibility(player.interfaces.gameFrame, "wilderness_level", false)
     player.weakQueue("wild_level", 1) {
-        player.interfaces.sendVisibility(player.gameFrame.name, "wilderness_level", false)
+        player.interfaces.sendVisibility(player.interfaces.gameFrame, "wilderness_level", false)
     }
 }

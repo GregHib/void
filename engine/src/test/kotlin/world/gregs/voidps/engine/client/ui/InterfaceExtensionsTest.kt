@@ -23,7 +23,6 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
     override fun setup() {
         super.setup()
         player = mockk(relaxed = true)
-        every { player.gameFrame } returns gameframe
         every { player.interfaces } returns interfaces
         every { definitions.get(name) } returns InterfaceDefinition(id = 0)
     }

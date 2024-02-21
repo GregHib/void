@@ -35,7 +35,7 @@ combatSwing(priority = Priority.LOWEST) { player ->
     }
 }
 
-characterSpellAttack("miasmic_*") { _ ->
+characterSpellAttack("miasmic_*") {
     val seconds: Int = definitions.get(spell)["effect_seconds"]
     target.start("miasmic", seconds, epochSeconds())
 }

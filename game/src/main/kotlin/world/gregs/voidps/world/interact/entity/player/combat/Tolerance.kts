@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat
 
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.mode.move.move
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.timer.epochSeconds
 import java.util.concurrent.TimeUnit
@@ -19,7 +18,7 @@ playerSpawn { player ->
     player["tolerance_area"] = player.tile.toCuboid(10)
 }
 
-move({ to !in it.getOrPut("tolerance_area") { player.tile.toCuboid(10) } }) { player: Player ->
+move({ to !in it.getOrPut("tolerance_area") { player.tile.toCuboid(10) } }) { player ->
     player["tolerance_area"] = player.tile.toCuboid(10)
     player.start("tolerance", toleranceTime.toInt(), epochSeconds())
 }

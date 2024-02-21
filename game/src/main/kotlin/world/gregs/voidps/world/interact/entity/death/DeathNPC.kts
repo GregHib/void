@@ -65,7 +65,7 @@ npcDeath { npc ->
             npc.dead = false
             npc.mode = EmptyMode
         } else {
-            World.run("remove_npc", 0) {
+            World.queue("remove_npc") {
                 npcs.remove(npc)
                 npcs.releaseIndex(npc)
             }

@@ -50,7 +50,7 @@ fun sendUnlocks(player: Player) {
     player.interfaceOptions.unlockAll("music_player", "tracks", 0..2048) // 837.cs2
 }
 
-move({ !it.isBot }) { player: Player ->
+move({ !it.isBot }) { player ->
     val tracks = tracks[player.tile.region]
     for (track in tracks) {
         if (!track.area.contains(from) && track.area.contains(to)) {

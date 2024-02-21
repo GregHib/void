@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.variable.specialAttack
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
@@ -23,7 +22,7 @@ specialAttackSwing("granite_maul*")  { player ->
     delay = 1
 }
 
-specialAttack("granite_maul*") { player: Player ->
+specialAttack("granite_maul*") { player ->
     if (!player.underAttack) {
         return@specialAttack
     }

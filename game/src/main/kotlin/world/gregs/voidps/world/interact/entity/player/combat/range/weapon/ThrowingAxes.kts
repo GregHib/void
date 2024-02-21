@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
@@ -15,8 +14,6 @@ import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.combat.weaponSwing
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.proj.shoot
-
-fun isThrowingAxe(item: Item) = item.id.contains("_throwing_axe")
 
 weaponSwing("*_throwing_axe*", style = "range", priority = Priority.HIGH) { player ->
     val required = player["required_ammo", 1]

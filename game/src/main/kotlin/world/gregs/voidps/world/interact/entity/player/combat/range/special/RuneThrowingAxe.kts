@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import org.rsmod.game.pathfinder.LineValidator
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -9,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
@@ -22,8 +20,6 @@ import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
-
-fun isThrowingAxe(weapon: Item) = weapon.id == "rune_throwing_axe"
 
 val players: Players by inject()
 val npcs: NPCs by inject()
@@ -45,7 +41,7 @@ specialAttackSwing("rune_throwing_axe", style = "range", priority = Priority.MED
     player.hit(target, delay = Hit.throwDelay(distance))
 }
 
-specialAttackHit("rune_throwing_axe", "range") { target: Character ->
+specialAttackHit("rune_throwing_axe", "range") { target ->
     if (source !is Player || !target.inMultiCombat) {
         return@specialAttackHit
     }

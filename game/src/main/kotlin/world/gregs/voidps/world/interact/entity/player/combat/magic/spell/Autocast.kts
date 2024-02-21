@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.variable.variableClear
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.network.visual.update.player.EquipSlot
@@ -22,7 +21,7 @@ interfaceOption("Autocast", id = "*_spellbook") {
     }
 }
 
-variableClear("autocast") { player: Player ->
+variableClear("autocast") { player ->
     player.clear("autocast_spell")
 }
 

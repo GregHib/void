@@ -31,7 +31,7 @@ for (type in listOf("magic", "melee")) {
         cancel()
     }
 
-    combatSwing(priority = Priority.HIGHER) { player: Player ->
+    combatSwing(priority = Priority.HIGHER) { player ->
         if (target is NPC && target.id == "${type}_dummy" && player.fightStyle != type) {
             player.message("You can only use ${type.toTitleCase()} against this dummy.")
             player.mode = EmptyMode

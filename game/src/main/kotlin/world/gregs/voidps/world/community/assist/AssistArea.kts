@@ -13,7 +13,7 @@ import world.gregs.voidps.type.Tile
 
 val maximumTileDistance = 20
 
-move({ it.contains("assistant") }) { player: Player ->
+move({ it.contains("assistant") }) { player ->
     when (player.movementType) {
         MoveType.Teleport -> player["assist_point"] = player.tile
         else -> {
