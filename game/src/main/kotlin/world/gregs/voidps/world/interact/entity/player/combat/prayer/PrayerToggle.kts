@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.variable.variableAdded
 import world.gregs.voidps.engine.client.variable.variableRemoved
 import world.gregs.voidps.engine.client.variable.variableSet
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.ACTIVE_CURSES
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS
 

@@ -1,14 +1,12 @@
 package world.gregs.voidps.engine.client.ui
 
 import io.mockk.every
-import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_ID
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_INDEX
-import world.gregs.voidps.engine.entity.character.player.Player
 
 internal class GameFrameTest : InterfaceTest() {
 

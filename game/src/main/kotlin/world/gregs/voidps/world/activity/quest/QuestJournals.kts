@@ -3,7 +3,6 @@ package world.gregs.voidps.world.activity.quest
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.variable.variableSet
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop

@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
 
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
