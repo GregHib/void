@@ -11,7 +11,7 @@ private val logger = InlineLogger("ScriptLoader")
 fun loadScripts() {
     var scriptCount = 0
     val found = mutableSetOf<String>()
-    val isJar = Main::class.java.getResource("Main.class")?.protocol == "jar"
+    val isJar = Main::class.java.getResource("${Main::class.simpleName}.class")?.protocol == "jar"
     val arguments = emptyArray<String>()
     val time = measureTimeMillis {
         ClassGraph()
