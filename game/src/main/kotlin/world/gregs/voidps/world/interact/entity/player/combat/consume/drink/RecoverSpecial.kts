@@ -20,7 +20,7 @@ on<Consumable>({ item.id.startsWith("recover_special") }) { player: Player ->
     }
 }
 
-consume("recover_special*") { player: Player ->
+consume("recover_special*") { player ->
     player.specialAttackEnergy = (MAX_SPECIAL_ATTACK / 100) * 25
     val percentage = (player.specialAttackEnergy / MAX_SPECIAL_ATTACK) * 100
     if (percentage == 0) {
@@ -30,7 +30,7 @@ consume("recover_special*") { player: Player ->
     player.softTimers.start("recover_special")
 }
 
-timerStart("recover_special") { _ ->
+timerStart("recover_special") {
     interval = 10
 }
 

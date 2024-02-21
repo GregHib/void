@@ -21,11 +21,11 @@ interfaceOption(component = "world_map", id = "toplevel*") {
 
 interfaceOption(component = "close", id = "world_map") {
     // Mechanics are unknown, would need tracking last interface to handle inside Interfaces.kt
-    player.client?.updateInterface(definitions.get(player.gameFrame.name).id, 2)
-    player.open(player.gameFrame.name, close = false)
+    player.client?.updateInterface(definitions.get(player.interfaces.gameFrame).id, 2)
+    player.open(player.interfaces.gameFrame, close = false)
 }
 
-move({ it.interfaces.contains("world_map") }) { player: Player ->
+move({ it.interfaces.contains("world_map") }) { player ->
     updateMap(player)
 }
 

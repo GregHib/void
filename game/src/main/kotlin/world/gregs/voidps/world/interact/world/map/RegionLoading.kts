@@ -59,11 +59,11 @@ playerDespawn { player ->
 /*
     Region updating
  */
-move({ from.regionLevel != to.regionLevel }) { player: Player ->
+move({ from.regionLevel != to.regionLevel }) { player ->
     playerRegions[player.index - 1] = to.regionLevel.id
 }
 
-move({ it.networked && needsRegionChange(it) }, Priority.HIGH) { player: Player ->
+move({ it.networked && needsRegionChange(it) }, Priority.HIGH) { player ->
     updateRegion(player, false, crossedDynamicBoarder(player))
 }
 

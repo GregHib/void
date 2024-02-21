@@ -46,7 +46,7 @@ specialAttackSwing("dark_bow*", style = "range", priority = Priority.HIGHISH) { 
     player.hit(target)
 }
 
-specialAttackHit("dark_bow*", "range") { character: Character ->
+specialAttackHit("dark_bow*", "range") { character ->
     source.playSound("descent_of_darkness")
     source.playSound("descent_of_darkness", delay = 20)
     character.setGraphic("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_hit")

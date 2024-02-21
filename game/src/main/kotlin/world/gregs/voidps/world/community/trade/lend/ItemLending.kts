@@ -83,7 +83,7 @@ timerStop("loan_message") { player ->
     }
 }
 
-timerStart("borrow_message") { _ ->
+timerStart("borrow_message") {
     interval = TimeUnit.MINUTES.toTicks(1)
 }
 

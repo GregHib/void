@@ -21,19 +21,19 @@ itemChange(EquipSlot.Weapon, "worn_equipment", Priority.HIGH) { player ->
     updateWeapon(player, item)
 }
 
-variableClear("autocast") { player: Player ->
+variableClear("autocast") { player ->
     updateWeapon(player, player.weapon)
 }
 
-variableClear("spell") { player: Player ->
+variableClear("spell") { player ->
     updateWeapon(player, player.weapon)
 }
 
-variableSet("attack_style", "long_range") { player: Player ->
+variableSet("attack_style", "long_range") { player ->
     updateWeapon(player, player.weapon, 2)
 }
 
-variableUnset("attack_style", "long_range") { player: Player ->
+variableUnset("attack_style", "long_range") { player ->
     updateWeapon(player, player.weapon)
 }
 

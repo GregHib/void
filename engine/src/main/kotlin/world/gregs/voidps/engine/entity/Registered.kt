@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
@@ -27,6 +28,10 @@ fun npcSpawn(npc: String = "*", block: suspend (NPC) -> Unit) {
 }
 
 fun characterSpawn(block: suspend Registered.(Character) -> Unit) {
+    on<Registered>(block = block)
+}
+
+fun floorItemSpawn(block: suspend Registered.(FloorItem) -> Unit) {
     on<Registered>(block = block)
 }
 

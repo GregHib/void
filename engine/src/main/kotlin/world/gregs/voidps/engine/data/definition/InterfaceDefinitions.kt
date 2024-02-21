@@ -5,8 +5,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
-import world.gregs.voidps.engine.client.ui.GameFrame.Companion.GAME_FRAME_NAME
-import world.gregs.voidps.engine.client.ui.GameFrame.Companion.GAME_FRAME_RESIZE_NAME
+import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
@@ -15,15 +14,14 @@ import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
 
 private const val DEFAULT_TYPE = "main_screen"
-private const val DEFAULT_FIXED_PARENT = GAME_FRAME_NAME
-private const val DEFAULT_RESIZE_PARENT = GAME_FRAME_RESIZE_NAME
+private const val DEFAULT_FIXED_PARENT = Interfaces.GAME_FRAME_NAME
+private const val DEFAULT_RESIZE_PARENT = Interfaces.GAME_FRAME_RESIZE_NAME
 private const val DEFAULT_PERMANENT = true
 
 @Suppress("UNCHECKED_CAST")
 class InterfaceDefinitions(
     override var definitions: Array<InterfaceDefinition>
 ) : DefinitionsDecoder<InterfaceDefinition> {
-
 
     override lateinit var ids: Map<String, Int>
     private lateinit var componentIds: Map<String, Int>

@@ -161,7 +161,7 @@ suspend fun PlayerChoice.notBeliever(): Unit = option<Talk>("No, I don't believe
     npc<Upset>("Ok suit yourself.")
 }
 
-npcTimerStart("demon_slayer_crystal_ball", "gypsy_aris") { _ ->
+npcTimerStart("demon_slayer_crystal_ball", "gypsy_aris") {
     interval = 2
 }
 

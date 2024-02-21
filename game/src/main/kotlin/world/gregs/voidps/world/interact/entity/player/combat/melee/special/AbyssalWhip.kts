@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -35,7 +34,7 @@ weaponSwing("abyssal_whip*", Priority.LOW) { player ->
     delay = 4
 }
 
-block("abyssal_whip*") { _: Character ->
+block("abyssal_whip*") {
     target.setAnimation("whip_block", delay)
     blocked = true
 }

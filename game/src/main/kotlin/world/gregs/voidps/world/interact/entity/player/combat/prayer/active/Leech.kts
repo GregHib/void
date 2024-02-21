@@ -25,7 +25,7 @@ import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-timerStart("prayer_bonus_drain") { _ ->
+timerStart("prayer_bonus_drain") {
     interval = 50
 }
 
@@ -153,12 +153,12 @@ set("leech_magic", Skill.Magic)
 
 fun set(prayer: String, skill: Skill) {
     val sap = prayer.startsWith("sap")
-    variableSet("under_attack", 0) { player: Player ->
+    variableSet("under_attack", 0) { player ->
         player.clear("${skill.name.lowercase()}_drain_msg")
         player.clear("${skill.name.lowercase()}_leech_msg")
     }
 
-    prayerHit(prayer, Priority.HIGHER) { target: Character ->
+    prayerHit(prayer, Priority.HIGHER) { target ->
         if (random.nextDouble() >= if (sap) 0.25 else 0.15) {
             return@prayerHit
         }

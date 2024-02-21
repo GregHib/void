@@ -57,7 +57,7 @@ internal class InterfacesTest : InterfaceTest() {
     @ParameterizedTest
     @ValueSource(booleans = [false, true])
     fun `Invalid interface`(resizable: Boolean) {
-        gameframe.resizable = resizable
+        interfaces.resizable = resizable
         val name = "zero"
         every { definitions.get(name) } returns InterfaceDefinition()
         assertFalse(interfaces.open(name))

@@ -12,7 +12,7 @@ playerSpawn { player ->
     }
 }
 
-timerStart("restore_special_energy") { _ ->
+timerStart("restore_special_energy") {
     interval = 50
 }
 

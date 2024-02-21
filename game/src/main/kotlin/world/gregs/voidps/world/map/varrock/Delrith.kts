@@ -84,7 +84,7 @@ fun CharacterContext.endCutscene(instance: Region, tile: Tile? = null) {
     destroyInstance(player)
 }
 
-move({ exitArea(it, to) }) { player: Player ->
+move({ exitArea(it, to) }) { player ->
     destroyInstance(player)
 }
 

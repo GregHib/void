@@ -161,7 +161,7 @@ interfaceOption(component = "confirm", id = "character_creation") {
     player.body.setColour(BodyColour.Feet, player["makeover_colour_shoes", 0])
     player.body.setColour(BodyColour.Skin, player["makeover_colour_skin", 0])
     player.flagAppearance()
-    player.open(player.gameFrame.name)
+    player.open(player.interfaces.gameFrame)
 }
 
 fun setStyle(player: Player, id: Int) {

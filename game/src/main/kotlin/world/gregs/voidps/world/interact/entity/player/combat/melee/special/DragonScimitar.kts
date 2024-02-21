@@ -44,7 +44,7 @@ timerStart("sever") { player ->
     }
 }
 
-timerTick("sever") { _ ->
+timerTick("sever") {
     cancel()
 }
 

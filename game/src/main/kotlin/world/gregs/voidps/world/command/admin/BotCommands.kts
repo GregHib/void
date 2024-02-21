@@ -66,7 +66,7 @@ adminCommand("bots") {
         repeat(count) {
             if (it % 25 == 0) {
                 suspendCancellableCoroutine { cont ->
-                    World.run("bot_${counter}", 0) {
+                    World.queue("bot_${counter}") {
                         cont.resume(Unit)
                     }
                 }

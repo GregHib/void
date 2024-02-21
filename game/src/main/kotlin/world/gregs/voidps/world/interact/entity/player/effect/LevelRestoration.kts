@@ -29,7 +29,7 @@ levelChange { player ->
     player.softTimers.start("restore_stats")
 }
 
-timerStart("restore_stats") { _ ->
+timerStart("restore_stats") {
     interval = TimeUnit.SECONDS.toTicks(60)
 }
 
