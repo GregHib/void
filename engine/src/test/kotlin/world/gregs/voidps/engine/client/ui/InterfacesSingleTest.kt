@@ -25,7 +25,7 @@ internal class InterfacesSingleTest : InterfaceTest() {
             "parent_fixed" to ROOT_ID,
             "index_fixed" to ROOT_INDEX
         ))
-        gameframe.resizable = false
+        interfaces.resizable = false
     }
 
     @Test

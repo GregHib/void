@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.character.player
 import kotlinx.coroutines.flow.MutableSharedFlow
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.engine.client.ConnectionQueue
-import world.gregs.voidps.engine.client.ui.GameFrame
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.update.view.Viewport
@@ -69,7 +68,6 @@ class Player(
     val instructions = MutableSharedFlow<Instruction>(replay = 20)
     override val events: Events = Events(this)
     lateinit var options: PlayerOptions
-    val gameFrame = GameFrame()
     lateinit var interfaces: Interfaces
     lateinit var interfaceOptions: InterfaceOptions
     override lateinit var collision: CollisionStrategy
@@ -108,7 +106,7 @@ class Player(
     override val steps = Steps(this)
 
     fun login(client: Client? = null, displayMode: Int = 0) {
-        gameFrame.displayMode = displayMode
+        interfaces.displayMode = displayMode
         if (client != null) {
             this.viewport = Viewport()
             client.login(name, index, rights.ordinal, membersWorld = World.members)

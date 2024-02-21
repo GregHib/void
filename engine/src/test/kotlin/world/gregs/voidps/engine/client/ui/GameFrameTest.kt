@@ -12,14 +12,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 
 internal class GameFrameTest : InterfaceTest() {
 
-    private lateinit var player: Player
-
     @BeforeEach
     override fun setup() {
         super.setup()
-        player = mockk(relaxed = true)
-        every { player.gameFrame } returns gameframe
-        every { player.interfaces } returns interfaces
+        interfaces = Interfaces(events, client, definitions, open)
         every { definitions.get("") } returns InterfaceDefinition()
         every { definitions.get("toplevel_full") } returns InterfaceDefinition(id = -1, extras = mapOf("parent_resize" to ROOT_ID, "index_resize" to ROOT_INDEX))
         every { definitions.get("toplevel") } returns InterfaceDefinition(extras = mapOf("parent_fixed" to ROOT_ID, "index_fixed" to ROOT_INDEX))
@@ -27,35 +23,31 @@ internal class GameFrameTest : InterfaceTest() {
 
     @Test
     fun `Don't set top level size if full not open`() {
-        val result = player.setDisplayMode(GameFrame.FIXED_SCREEN)
-        assertFalse(result)
+        assertFalse(interfaces.setDisplayMode(Interfaces.FIXED_SCREEN))
     }
 
     @Test
     fun `Don't set full if top level not open`() {
-        val result = player.setDisplayMode(GameFrame.RESIZABLE_SCREEN)
-        assertFalse(result)
+        assertFalse(interfaces.setDisplayMode(Interfaces.RESIZABLE_SCREEN))
     }
 
     @Test
     fun `Size set top level if full open`() {
-        gameframe.resizable = true
+        interfaces.resizable = true
         open.add("toplevel_full")
-        val result = player.setDisplayMode(GameFrame.FIXED_SCREEN)
-        assertTrue(result)
-        assertEquals(false, gameframe.resizable)
+        assertTrue(interfaces.setDisplayMode(Interfaces.FIXED_SCREEN))
+        assertEquals(false, interfaces.resizable)
     }
 
     @Test
     fun `Size set full if top level open`() {
         open.add("toplevel")
-        val result = player.setDisplayMode(GameFrame.RESIZABLE_SCREEN)
-        assertTrue(result)
-        assertEquals(true, gameframe.resizable)
+        assertTrue(interfaces.setDisplayMode(Interfaces.RESIZABLE_SCREEN))
+        assertEquals(true, interfaces.resizable)
     }
 
     @Test
     fun `Fixed screen`() {
-        assertFalse(gameframe.resizable)
+        assertFalse(interfaces.resizable)
     }
 }
