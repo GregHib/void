@@ -3969,8 +3969,99 @@ fire_green:
 fire_blue:
   id: 11406
   examine: "Hot!"
+crashed_star_tier_9:
+  id: 38660
+  star: true
+  collect_for_next_layer: 15
+  mining:
+    level: 90
+    life: -1
+    ores: [ stardust ]
+    gems: true
+  examine: "Tier 9 Star"
+crashed_star_tier_8:
+  id: 38661
+  star: true
+  collect_for_next_layer: 40
+  mining:
+    level: 80
+    life: -1
+    ores: [ stardust ]
+    gems: true
+  examine: "Tier 8 Star"
+crashed_star_tier_7:
+  id: 38662
+  star: true
+  collect_for_next_layer: 40
+  mining:
+    level: 70
+    life: -1
+    ores: [ stardust ]
+    gems: true
+  examine: "Tier 7 Star"
+crashed_star_tier_6:
+  id: 38663
+  star: true
+  collect_for_next_layer: 80
+  mining:
+    level: 60
+    life: -1
+    ores: [ stardust ]
+    gems: true
+  examine: "Tier 6 Star"
+crashed_star_tier_5:
+  id: 38664
+  star: true
+  collect_for_next_layer: 175
+  mining:
+    level: 50
+    life: -1
+    ores: [ stardust ]
+    gems: true
+  examine: "Tier 5 Star"
+crashed_star_tier_4:
+  id: 38665
+  star: true
+  collect_for_next_layer: 250
+  mining:
+    level: 40
+    life: -1
+    ores: [ stardust ]
+    gems: true
+  examine: "Tier 4 Star"
+crashed_star_tier_3:
+  id: 38666
+  star: true
+  collect_for_next_layer: 450
+  mining:
+    level: 30
+    life: -1
+    ores: [ stardust ]
+    gems: true
+  examine: "Tier 3 Star"
+crashed_star_tier_2:
+  id: 38667
+  star: true
+  collect_for_next_layer: 700
+  mining:
+    level: 20
+    life: -1
+    ores: [ stardust ]
+    gems: true
+  examine: "Tier 2 Star"
+crashed_star_tier_1:
+  id: 38668
+  star: true
+  collect_for_next_layer: 1200
+  mining:
+    level: 10
+    life: -1
+    ores: [ stardust ]
+    gems: true
+  examine: "Tier 1 Star"
 evil_tree:
   id: 11434
+  upgrade_time: 50
   examine: "This looks like a challenge anyone can deal with."
 evil_tree_stump:
   id: 11435

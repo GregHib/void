@@ -38,6 +38,11 @@ val objects: GameObjects by inject()
 val itemDefinitions: ItemDefinitions by inject()
 
 objectOperate("Mine") {
+    val isStar: Boolean = target.def["star", false]
+    if(isStar){
+        println("That's a star")
+        return@objectOperate
+    }
     if (target.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
         return@objectOperate
