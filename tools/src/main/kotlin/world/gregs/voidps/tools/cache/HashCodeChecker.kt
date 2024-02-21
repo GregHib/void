@@ -42,7 +42,11 @@ object HashCodeChecker {
                 if (parts.getOrNull(4).isNullOrBlank()) {
                     val id = parts[3].toInt()
                     if (matches.containsKey(id)) {
-                        parts[4] = matches.getValue(id)
+                        if (parts.size == 4) {
+                            parts.add(matches.getValue(id))
+                        } else {
+                            parts[4] = matches.getValue(id)
+                        }
                     }
                 }
                 parts.joinToString("\t")
