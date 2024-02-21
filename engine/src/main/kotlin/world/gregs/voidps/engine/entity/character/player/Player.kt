@@ -147,7 +147,7 @@ class Player(
         val queue: ConnectionQueue = get()
         queue.disconnect {
             val players: Players = get()
-            World.run("logout", 1) {
+            World.queue("logout", 1) {
                 players.remove(this@Player)
                 players.removeIndex(this@Player)
                 players.releaseIndex(this@Player)

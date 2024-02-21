@@ -10,9 +10,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.timer.timerStart
-import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 import kotlin.math.max
@@ -57,16 +55,17 @@ playerDespawn { player ->
 }
 
 worldSpawn {
-    restock()
+    World.timers.start("general_store_restock")
 }
 
-fun restock() {
-    World.run("general_store_restock", restockTimeTicks) {
-        for ((key, inventory) in GeneralStores.stores) {
-            val def = inventoryDefinitions.get(key)
-            restock(def, inventory)
-        }
-        restock()
+worldTimerStart("general_store_restock") {
+    interval = restockTimeTicks
+}
+
+worldTimerTick("general_store_restock") {
+    for ((key, inventory) in GeneralStores.stores) {
+        val def = inventoryDefinitions.get(key)
+        restock(def, inventory)
     }
 }
 
