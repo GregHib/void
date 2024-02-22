@@ -105,7 +105,7 @@ class PlayerAccounts(
         store.populate(player)
         player.index = index
         player.visuals = PlayerVisuals(index, player.body)
-        player.interfaces = Interfaces(player.events, player.client, interfaceDefinitions, player.gameFrame)
+        player.interfaces = Interfaces(player.events, player.client, interfaceDefinitions)
         player.interfaceOptions = InterfaceOptions(player, interfaceDefinitions, inventoryDefinitions)
         player.options = PlayerOptions(player)
         (player.variables as PlayerVariables).definitions = variableDefinitions

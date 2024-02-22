@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.characterLevelChange
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -34,11 +33,11 @@ specialAttackSwing("seercull", style = "range", priority = Priority.MEDIUM) { pl
     player.hit(target, delay = Hit.bowDelay(distance))
 }
 
-specialAttackHit("seercull", "range") { character: Character ->
+specialAttackHit("seercull", "range") { character ->
     character.setGraphic("seercull_special_hit")
 }
 
-combatAttack { _ ->
+combatAttack {
     if (weapon.id != "seercull" || !special || target["soulshot", false]) {
         return@combatAttack
     }

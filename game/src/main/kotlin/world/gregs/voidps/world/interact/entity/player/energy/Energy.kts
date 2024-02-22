@@ -34,7 +34,7 @@ fun getRestoreAmount(player: Player): Int {
     }
 }
 
-move({ it.visuals.runStep != -1 }) { player: Player ->
+move({ it.visuals.runStep != -1 }) { player ->
     if (player["last_energy_drain", -1] == GameLoop.tick) {
         return@move
     }

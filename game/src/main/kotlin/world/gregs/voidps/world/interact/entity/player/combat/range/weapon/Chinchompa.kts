@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.weapon
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -44,7 +43,7 @@ weaponSwing("*chinchompa", style = "range", priority = Priority.LOW) { player ->
     delay = player["attack_speed", 4] - if (player.attackType == "medium_fuse") 1 else 0
 }
 
-weaponHit("*chinchompa", "range") { character: Character ->
+weaponHit("*chinchompa", "range") { character ->
     source as Player
     source.playSound("chinchompa_explode", delay = 40)
     character.setGraphic("chinchompa_hit")

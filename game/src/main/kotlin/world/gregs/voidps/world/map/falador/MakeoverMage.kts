@@ -209,7 +209,7 @@ npcSpawn("makeover_mage*") { npc ->
     npc.softTimers.start("makeover")
 }
 
-npcTimerStart("makeover") { _ ->
+npcTimerStart("makeover") {
     interval = TimeUnit.SECONDS.toTicks(250)
 }
 

@@ -22,12 +22,12 @@ adminCommand("inter") {
         player.interfaces.open(name)
     } else if (id != -1 || !closeInterface(player)) {
         val inter = definitions.get(content)
-        var parent = if (player.gameFrame.resizable) 746 else 548
-        var index = if (player.gameFrame.resizable) 12 else 8
-        val p = inter["parent_${if (player.gameFrame.resizable) "resize" else "fixed"}", ""]
+        var parent = if (player.interfaces.resizable) 746 else 548
+        var index = if (player.interfaces.resizable) 12 else 8
+        val p = inter["parent_${if (player.interfaces.resizable) "resize" else "fixed"}", ""]
         if (p.isNotBlank()) {
             parent = definitions.get(p).id
-            index = inter["index_${if (player.gameFrame.resizable) "resize" else "fixed"}", -1]
+            index = inter["index_${if (player.interfaces.resizable) "resize" else "fixed"}", -1]
         }
         if (id == -1) {
             player.client?.closeInterface(parent, index)

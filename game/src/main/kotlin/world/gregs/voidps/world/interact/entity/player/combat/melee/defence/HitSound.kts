@@ -10,7 +10,7 @@ import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-combatAttack(priority = Priority.LOWER) { player ->
+combatAttack(Priority.LOWER) { player ->
     player.playSound(calculateHitSound(target), delay)
 }
 

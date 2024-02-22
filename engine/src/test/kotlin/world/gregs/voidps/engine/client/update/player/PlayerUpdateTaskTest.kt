@@ -141,10 +141,8 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val viewport = mockk<Viewport>(relaxed = true)
         val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
-        val value = 1
 
         every { player.index } returns 1
-        every { player.changeValue } returns value
         every { players.indexed(1) } returns player
         every { player.visuals.walkStep } returns 0 // North
         every { entities.localCount } returns 1

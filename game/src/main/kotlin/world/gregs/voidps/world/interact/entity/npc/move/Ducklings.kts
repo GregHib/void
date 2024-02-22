@@ -29,7 +29,7 @@ npcDeath("duck*swim") { npc ->
     followParent(ducklings)
 }
 
-npcTimerStart("follow_parent") { _ ->
+npcTimerStart("follow_parent") {
     interval = 0
 }
 

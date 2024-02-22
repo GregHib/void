@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.specialAttack
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.playerSpawn
@@ -30,7 +29,7 @@ combatHit { player ->
 
 // Special attack
 
-specialAttack("staff_of_light*") { player: Player ->
+specialAttack("staff_of_light*") { player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {
         return@specialAttack
     }
@@ -47,7 +46,7 @@ playerSpawn { player ->
     }
 }
 
-timerStart("power_of_light") { _ ->
+timerStart("power_of_light") {
     interval = 1
 }
 

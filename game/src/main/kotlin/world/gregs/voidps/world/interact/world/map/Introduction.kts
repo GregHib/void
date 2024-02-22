@@ -24,7 +24,7 @@ playerSpawn(priority = Priority.HIGHER) { player ->
     if (!player.contains("creation")) {
         if (!player.isBot) {
             player.start("delay", -1)
-            World.run("welcome_${player.name}", 1) {
+            World.queue("welcome_${player.name}", 1) {
                 player.open("character_creation")
             }
         }

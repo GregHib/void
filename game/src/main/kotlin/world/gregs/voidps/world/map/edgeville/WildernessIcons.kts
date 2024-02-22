@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.world.interact.entity.combat.inWilderness
 
-variableSet("in_wilderness", true) { player: Player ->
+variableSet("in_wilderness", true) { player ->
     player.options.set(1, "Attack")
     player.open("wilderness_skull")
 //    player.setVar("no_pvp_zone", false)
@@ -18,7 +18,7 @@ variableSet("in_wilderness", true) { player: Player ->
     updateIcon(player)
 }
 
-variableClear("in_wilderness") { player: Player ->
+variableClear("in_wilderness") { player ->
     player.options.remove("Attack")
     player.close("wilderness_skull")
 //    player.setVar("no_pvp_zone", true)

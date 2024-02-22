@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.consume.drink
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
@@ -10,11 +9,11 @@ import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
 import world.gregs.voidps.world.interact.entity.player.effect.antifire
 import world.gregs.voidps.world.interact.entity.player.effect.superAntifire
 
-consume("antifire*", "antifire_mix*") { player: Player ->
+consume("antifire*", "antifire_mix*") { player ->
     player.antifire(6)
 }
 
-consume("super_antifire*") { player: Player ->
+consume("super_antifire*") { player ->
     player.superAntifire(6)
 }
 
@@ -27,11 +26,11 @@ playerSpawn { player ->
     }
 }
 
-timerStart("fire_resistance") { _ ->
+timerStart("fire_resistance") {
     interval = 30
 }
 
-timerStart("fire_immunity") { _ ->
+timerStart("fire_immunity") {
     interval = 20
 }
 

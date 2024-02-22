@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -64,12 +63,12 @@ combatAttack { source ->
     }
 }
 
-specialAttackHit("saradomin_bow", "guthix_bow", "zamorak_bow") { character: Character ->
+specialAttackHit("saradomin_bow", "guthix_bow", "zamorak_bow") { character ->
     character.setGraphic("${weapon.id}_special_hit")
     source.playSound("god_bow_special_hit")
 }
 
-timerStart("restorative_shot", "balanced_shot") { _ ->
+timerStart("restorative_shot", "balanced_shot") {
     interval = TimeUnit.SECONDS.toTicks(6)
 }
 

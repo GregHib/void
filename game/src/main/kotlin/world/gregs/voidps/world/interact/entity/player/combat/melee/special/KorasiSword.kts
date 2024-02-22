@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import org.rsmod.game.pathfinder.LineValidator
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -56,11 +55,11 @@ specialAttackSwing("korasis_sword") { player ->
     delay = 5
 }
 
-specialAttackHit("korasis_sword") { character: Character ->
+specialAttackHit("korasis_sword") { character ->
     character.setGraphic("disrupt_hit")
 }
 
-specialAttackHit("korasis_sword") { target: Character ->
+specialAttackHit("korasis_sword") { target ->
     if (!target.inMultiCombat) {
         return@specialAttackHit
     }

@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.timer.toTicks
@@ -25,6 +24,6 @@ specialAttackSwing("zamorak_godsword*") { player ->
     delay = 6
 }
 
-specialAttackHit("zamorak_godsword*") { character: Character ->
+specialAttackHit("zamorak_godsword*") { character ->
     character.setGraphic("ice_cleave_hit")
 }

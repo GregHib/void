@@ -17,16 +17,14 @@ abstract class InterfaceTest : KoinMock() {
     internal lateinit var interfaces: Interfaces
     internal lateinit var open: MutableSet<String>
     internal lateinit var definitions: InterfaceDefinitions
-    internal lateinit var gameframe: GameFrame
 
     @BeforeEach
     open fun setup() {
         client = mockk(relaxed = true)
         events = mockk(relaxed = true)
         definitions = declare { mockk(relaxed = true) }
-        gameframe = spyk(GameFrame())
         open = mutableSetOf()
-        interfaces = spyk(Interfaces(events, client, definitions, gameframe, open))
+        interfaces = spyk(Interfaces(events, client, definitions, open))
         mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
         mockkStatic("world.gregs.voidps.engine.client.ui.InterfacesKt")
     }

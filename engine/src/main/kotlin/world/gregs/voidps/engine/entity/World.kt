@@ -8,6 +8,8 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.timer.TimerQueue
+import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.type.Tile
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
@@ -45,14 +47,17 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
         events.emit(Registered)
     }
 
-    private val timers = ConcurrentHashMap<String, Pair<Int, () -> Unit>>()
+    val timers: Timers = TimerQueue(events)
 
-    fun run(name: String, delay: Int, block: () -> Unit) {
-        timers[name] = (GameLoop.tick + delay) to block
+    private val actions = ConcurrentHashMap<String, Pair<Int, () -> Unit>>()
+
+    fun queue(name: String, initialDelay: Int = 0, block: () -> Unit) {
+        actions[name] = (GameLoop.tick + initialDelay) to block
     }
 
     override fun run() {
-        val iterator = timers.iterator()
+        timers.run()
+        val iterator = actions.iterator()
         while (iterator.hasNext()) {
             val (_, pair) = iterator.next()
             val (tick, block) = pair
@@ -64,16 +69,12 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
         }
     }
 
-    fun stopTimer(name: String) {
-        val (_, block) = timers.remove(name) ?: return
-        block.invoke()
-    }
-
-    fun clearTimers() {
-        for ((_, block) in timers.values) {
+    fun clear() {
+        timers.clearAll()
+        for ((_, block) in actions.values) {
             block.invoke()
         }
-        timers.clear()
+        actions.clear()
     }
 
     fun shutdown() {

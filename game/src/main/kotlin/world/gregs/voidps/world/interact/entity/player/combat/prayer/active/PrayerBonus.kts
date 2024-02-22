@@ -1,7 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
 
-import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
@@ -14,10 +12,10 @@ import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStop
 
 fun set(name: String, bonus: String, value: Int) {
-    prayerStart(name) { player: Player ->
+    prayerStart(name) { player ->
         player["base_${bonus}"] = player["base_${bonus}", 1.0] + value / 100.0
     }
-    prayerStop(name) { player: Player ->
+    prayerStop(name) { player ->
         player["base_${bonus}"] = player["base_${bonus}", 1.0] - value / 100.0
     }
 }
@@ -61,7 +59,7 @@ set("turmoil", "attack_bonus", 15)
 set("turmoil", "strength_bonus", 23)
 set("turmoil", "defence_bonus", 15)
 
-block(Priority.MEDIUM) { character: Character ->
+block(Priority.MEDIUM) { character ->
     if (!Prayer.usingDeflectPrayer(character, target, type)) {
         return@block
     }

@@ -29,8 +29,6 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.specialAtt
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.random.nextInt
 
-fun isHandCannon(item: Item) = item.id == "hand_cannon"
-
 val ammoDefinitions: AmmoDefinitions by inject()
 
 weaponSwing("hand_cannon", style = "range", priority = Priority.HIGH) { player ->
