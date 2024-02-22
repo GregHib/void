@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.inv
 
+import world.gregs.voidps.engine.entity.item.Item
+
 fun Inventory.replace(id: String, with: String) = transaction { replace(id, with) }
 
 fun Inventory.replace(index: Int, id: String, with: String) = transaction { replace(index, id, with) }
@@ -27,6 +29,8 @@ fun Inventory.moveToLimit(id: String, amount: Int, target: Inventory): Int {
 fun Inventory.shift(fromIndex: Int, toIndex: Int) = transaction { shift(fromIndex, toIndex) }
 
 fun Inventory.add(id: String, amount: Int = 1) = transaction { add(id, amount) }
+
+fun Inventory.addAll(vararg items: Item) = transaction { items.forEach { item -> add(item.id, item.amount) } }
 
 fun Inventory.remove(id: String, amount: Int = 1) = transaction { remove(id, amount) }
 

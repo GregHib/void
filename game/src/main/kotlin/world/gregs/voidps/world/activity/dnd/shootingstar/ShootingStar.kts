@@ -11,6 +11,8 @@ import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -27,22 +29,30 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
+import world.gregs.voidps.world.activity.bank.bank
+import world.gregs.voidps.world.interact.dialogue.Cheerful
+import world.gregs.voidps.world.interact.dialogue.Sad
+import world.gregs.voidps.world.interact.dialogue.type.npc
+import kotlin.math.roundToInt
 import kotlin.random.Random
 
-//TODO: check to make sure that theres no one around that star before spawning a new star
 val itemDefinitions: ItemDefinitions by inject()
 val objects: GameObjects by inject()
+val npcs: NPCs by inject()
 
 var totalCollected: Int = 0
 var currentStarTile = Tile(-1, -1) // same as below I don't know if this is a good way to init this var
 var currentActiveObject = GameObject(-1,-1,-1,-1,-1,-1) // I don't know if this is a good way to init this var
 val startEvent = Random.nextInt(from = 1 * 60 * 60 * 1000, until = 2 * 60 * 60 * 1000) // get a random time between 1h - 2h
 val initialStar: IntArray = intArrayOf(38660, 38661, 38662, 38663, 38664, 38665, 38666, 38667, 38668) // array of all tiers of stars to be picked randomly
+val ownedStarDustThreshold = 200 // the max amount of star dust a player is allowed to own in both inventory and bank
 
 worldSpawn {
     eventUpdate()
@@ -50,19 +60,20 @@ worldSpawn {
 
 fun eventUpdate() {
     World.run("shooting_star_event_timer", startEvent) {
-        if(isPlayersPresent()) {
+       if(isPlayersPresent()) {
             eventUpdate()
             return@run
-        }
-        if(currentStarTile != Tile(-1, -1)) { //there's already an active event
-            cleanseEvent()
+       }
+       if(currentStarTile != Tile(-1, -1)) { //there's already an active event
+            cleanseEvent(true) // force stop even meaning - don't spawn the npc because the server stopped the event.
             println("There was already an active star, deleted it and started a new event")
-        }
-        startCrashedStarEvent()
-        eventUpdate()
+       }
+       startCrashedStarEvent()
+       eventUpdate()
     }
+
 }
-//TODO: add a check to make sure that theres no players in x tiles of the star want to make sure that it get's removed with elegance and not infront of a player
+
 fun isPlayersPresent(): Boolean {
     return false
 }
@@ -82,7 +93,7 @@ fun handleMinedStarDust(currentMinedStar: GameObject) {
         val stage = currentMinedStar.id.takeLast(1)
         if(stage.equals("1")){ //if is the lowest tier star just delete the star and clean the event
             currentMinedStar.remove(currentMinedStar.intId, true)
-            cleanseEvent()
+            cleanseEvent(false)
             return
         }
         val nextStage = currentMinedStar.id.replace(stage, (stage.toInt() - 1).toString())
@@ -106,10 +117,16 @@ fun getInitialStar(): Int {
     return initialStar[Random.nextInt(initialStar.size)]
 }
 
-fun cleanseEvent(){
+fun cleanseEvent(forceStopped: Boolean) {
     val existing = objects.get(currentStarTile, currentActiveObject.id) //get the current start
     if (existing != null) {
         existing.remove(existing.intId, true) // delete the start object
+    }
+    if(!forceStopped){
+        val starSprite = npcs.add("star_sprite", currentStarTile, Direction.NONE, 0)
+        World.run("start_sprite_despawn_timer", 600) { // 10 minutes
+            npcs.remove(starSprite)
+        }
     }
     totalCollected = 0
     this.currentStarTile = Tile(-1, -1)
@@ -156,7 +173,7 @@ fun hasRequirements(player: Player, pickaxe: Item?, message: Boolean = false): B
     return player.hasRequirementsToUse(pickaxe, message, setOf(Skill.Mining, Skill.Firemaking))
 }
 
-fun addOre(player: Player, ore: String): Boolean {
+fun addStarDust(player: Player, ore: String): Boolean {
     val added = player.inventory.add(ore)
     if (added) {
         player.message("You manage to mine some ${ore.toLowerSpaceCase()}.")
@@ -166,10 +183,34 @@ fun addOre(player: Player, ore: String): Boolean {
     return added
 }
 
+fun getLayerPercentage(totalCollected: Int, totalNeeded: Int): String {
+    val remaining = totalNeeded - totalCollected
+    val percentageRemaining = (remaining.toDouble() / totalNeeded.toDouble()) * 100
+    return String.format("%.2f", percentageRemaining)
+}
+
+fun calculateRewards(stardust: Int): Map<String, Int> {
+    val coinsPerStardust = 50002.0 / 200
+    val astralRunesPerStardust = 52.0 / 200
+    val cosmicRunesPerStardust = 152.0 / 200
+    val goldOresPerStardust = 20.0 / 200
+
+    val coins = (coinsPerStardust * stardust).toInt()
+    val astralRunes = (astralRunesPerStardust * stardust).roundToInt()
+    val cosmicRunes = (cosmicRunesPerStardust * stardust).roundToInt()
+    val goldOres = (goldOresPerStardust * stardust).roundToInt()
+
+    return mapOf(
+            "coins" to coins,
+            "astral_rune" to astralRunes,
+            "cosmic_rune" to cosmicRunes,
+            "gold_ore_noted" to goldOres
+    )
+}
+
 objectOperate("Mine") {
     val isStar: Boolean = target.def["star", false]
     if(!isStar){
-        println("That's not a star")
         return@objectOperate
     }
     if (target.id.startsWith("depleted")) {
@@ -192,12 +233,10 @@ objectOperate("Mine") {
         if (rock == null || !player.has(Skill.Mining, rock.level, true)) {
             break
         }
-
         val pickaxe = getBestPickaxe(player)
         if (!hasRequirements(player, pickaxe, true) || pickaxe == null) {
             break
         }
-
         val delay = if (pickaxe.id == "dragon_pickaxe" && random.nextInt(6) == 0) 2 else pickaxe.def["mining_delay", 8]
         if (first) {
             player.message("You swing your pickaxe at the rock.", ChatType.Filter)
@@ -215,7 +254,7 @@ objectOperate("Mine") {
         if (rock.gems) {
             val glory = player.equipped(EquipSlot.Amulet).id.startsWith("amulet_of_glory_")
             if (Level.success(player.levels.get(Skill.Mining), if (glory) 3..3 else 1..1)) {
-                addOre(player, gems.random())
+                addStarDust(player, gems.random())
                 continue
             }
         }
@@ -230,9 +269,14 @@ objectOperate("Mine") {
                 player.experience.add(Skill.Mining, ore.xp)
                 totalCollected++
                 handleMinedStarDust(target)
-                if (!addOre(player, item)) {
-                    player.clearAnimation()
-                    break
+                val totalStarDust = player.inventory.count(item) + player.bank.count(item)
+                if(totalStarDust >= ownedStarDustThreshold){
+                    player.message("You have the maximum amount of star dust but was still rewarded experience.")
+                } else {
+                    if (!addStarDust(player, item)) {
+                        player.clearAnimation()
+                        break
+                    }
                 }
             }
         }
@@ -263,8 +307,26 @@ objectApproach("Prospect") {
     }
 }
 
-fun getLayerPercentage(totalCollected: Int, totalNeeded: Int): String {
-    val remaining = totalNeeded - totalCollected
-    val percentageRemaining = (remaining.toDouble() / totalNeeded.toDouble()) * 100
-    return String.format("%.2f", percentageRemaining)
+npcOperate("Talk-to", "star_sprite") {
+    npc<Cheerful>("Thank you for helping me out of here")
+    val isInventoryFull = player.inventory.isFull()
+    val starDustCount = player.inventory.count("stardust")
+    val messageBuilder = StringBuilder("Also, ")
+    if(isInventoryFull){
+        player.message("Inventory full. To make more room, sell, drop or bank something.", ChatType.Game)
+    } else if(starDustCount == 0) {
+        npc<Sad>("You don't seem to have any star dust that I can exchange for a reward")
+    } else if(starDustCount > 0) {
+        val rewards = calculateRewards(player.inventory.count("stardust"))
+        player.inventory.remove("stardust", starDustCount)
+        rewards.entries.forEachIndexed { index, (reward, amount) ->
+            player.inventory.add(reward, amount)
+            if (index == 0) {
+                messageBuilder.append("have $amount $reward")
+            } else {
+                messageBuilder.append(", $amount ${reward.replace("_", " ").replace("noted", "") + "s"}")
+            }
+        }
+        npc<Cheerful>("I have rewarded you by making it so you can mine extra ore for the next 15 minutes, ${messageBuilder}.")
+    }
 }

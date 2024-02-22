@@ -3978,7 +3978,7 @@ crashed_star_tier_9:
     life: -1
     ores: [ stardust ]
     gems: true
-  examine: "Tier 9 Star"
+  examine: "This is a size-9 star"
 crashed_star_tier_8:
   id: 38661
   star: true
@@ -3988,7 +3988,7 @@ crashed_star_tier_8:
     life: -1
     ores: [ stardust ]
     gems: true
-  examine: "Tier 8 Star"
+  examine: "This is a size-8 star"
 crashed_star_tier_7:
   id: 38662
   star: true
@@ -3998,7 +3998,7 @@ crashed_star_tier_7:
     life: -1
     ores: [ stardust ]
     gems: true
-  examine: "Tier 7 Star"
+  examine: "This is a size-7 star"
 crashed_star_tier_6:
   id: 38663
   star: true
@@ -4008,7 +4008,7 @@ crashed_star_tier_6:
     life: -1
     ores: [ stardust ]
     gems: true
-  examine: "Tier 6 Star"
+  examine: "This is a size-6 star"
 crashed_star_tier_5:
   id: 38664
   star: true
@@ -4018,7 +4018,7 @@ crashed_star_tier_5:
     life: -1
     ores: [ stardust ]
     gems: true
-  examine: "Tier 5 Star"
+  examine: "This is a size-5 star"
 crashed_star_tier_4:
   id: 38665
   star: true
@@ -4028,37 +4028,37 @@ crashed_star_tier_4:
     life: -1
     ores: [ stardust ]
     gems: true
-  examine: "Tier 4 Star"
+  examine: "This is a size-4 star"
 crashed_star_tier_3:
   id: 38666
   star: true
-  collect_for_next_layer: 450
+  collect_for_next_layer: 20
   mining:
     level: 30
     life: -1
     ores: [ stardust ]
     gems: true
-  examine: "Tier 3 Star"
+  examine: "This is a size-3 star"
 crashed_star_tier_2:
   id: 38667
   star: true
-  collect_for_next_layer: 700
+  collect_for_next_layer: 10
   mining:
     level: 20
     life: -1
     ores: [ stardust ]
     gems: true
-  examine: "Tier 2 Star"
+  examine: "This is a size-2 star"
 crashed_star_tier_1:
   id: 38668
   star: true
-  collect_for_next_layer: 1200
+  collect_for_next_layer: 20
   mining:
     level: 10
     life: -1
     ores: [ stardust ]
     gems: true
-  examine: "Tier 1 Star"
+  examine: "This is a size-1 star"
 evil_tree:
   id: 11434
   upgrade_time: 50
