@@ -59,10 +59,10 @@ worldSpawn {
 }
 
 fun eventUpdate() {
-    World.run("shooting_star_event_timer", startEvent) {
+    World.queue("shooting_star_event_timer", startEvent) {
        if(isPlayersPresent()) {
             eventUpdate()
-            return@run
+            return@queue
        }
        if(currentStarTile != Tile(-1, -1)) { //there's already an active event
             cleanseEvent(true) // force stop even meaning - don't spawn the npc because the server stopped the event.
@@ -124,7 +124,7 @@ fun cleanseEvent(forceStopped: Boolean) {
     }
     if(!forceStopped){
         val starSprite = npcs.add("star_sprite", currentStarTile, Direction.NONE, 0)
-        World.run("start_sprite_despawn_timer", 600) { // 10 minutes
+        World.queue("start_sprite_despawn_timer", 600) { // 10 minutes
             npcs.remove(starSprite)
         }
     }
