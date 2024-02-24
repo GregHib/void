@@ -29,6 +29,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.event.EventHandler
+import world.gregs.voidps.engine.event.EventStore
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.suspend.TickSuspension
@@ -91,9 +92,9 @@ internal class InteractTest : KoinMock() {
         interaction = NPCOption(player, target, NPCDefinition.EMPTY, "interact")
         interact = Interact(player, target, interaction)
         player.mode = interact
-        val handlers = mutableListOf<EventHandler>()
+        EventStore.events.clear()
         if (operate) {
-            handlers.add(EventHandler(NPCOption::class, { (this as NPCOption).operate }, block = {
+            EventStore.events.add(Player::class, NPCOption::class, EventHandler(NPCOption::class, { (this as NPCOption).operate }, block = {
                 if (suspend) {
                     this as NPCOption
                     TickSuspension(2)
@@ -102,7 +103,7 @@ internal class InteractTest : KoinMock() {
             }))
         }
         if (approach) {
-            handlers.add(EventHandler(NPCOption::class, { (this as NPCOption).approach }, block = {
+            EventStore.events.add(Player::class, NPCOption::class, EventHandler(NPCOption::class, { (this as NPCOption).approach }, block = {
                 if (suspend) {
                     this as NPCOption
                     TickSuspension(2)
@@ -110,7 +111,6 @@ internal class InteractTest : KoinMock() {
                 approached = true
             }))
         }
-        player.events.set(mapOf(NPCOption::class to handlers))
     }
 
     @ParameterizedTest
