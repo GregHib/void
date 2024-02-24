@@ -20,9 +20,10 @@ inline fun <reified T : EventDispatcher, reified E : Event> addEvent(noinline co
 }
 
 fun add(dispatcher: KClass<out EventDispatcher>, event: KClass<out Event>, condition: Event.(EventDispatcher) -> Boolean, priority: Priority, block: suspend Event.(EventDispatcher) -> Unit) {
-    EventStore.events.add(dispatcher, event, EventHandler(event, condition, priority, block))
+    val handler = EventHandler(event, condition, priority, block)
+    EventStore.events.add(dispatcher, event, handler)
     for (parent in parents[dispatcher] ?: return) {
-        EventStore.events.add(parent, event, EventHandler(event, condition, priority, block))
+        EventStore.events.add(parent, event, handler)
     }
 }
 
