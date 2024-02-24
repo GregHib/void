@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.event.EventStore
 import world.gregs.voidps.engine.getIntProperty
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -117,10 +118,10 @@ fun Player.initBot(): Bot {
     this["bot"] = bot
     val e = ConcurrentLinkedQueue<Event>()
     this["events"] = e
-//    events.all = { event ->
-//        e.add(event)
-//        handleSuspensions(bot.player, event)
-//    }
+    EventStore.events.botListeners.add { event ->
+        e.add(event)
+        handleSuspensions(bot.player, event)
+    }
     return bot
 }
 
