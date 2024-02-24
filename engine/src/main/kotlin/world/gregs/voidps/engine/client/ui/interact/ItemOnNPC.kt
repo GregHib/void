@@ -24,7 +24,7 @@ data class ItemOnNPC(
 }
 
 fun itemOnNPCApproach(item: String, npc: String, block: suspend ItemOnNPC.() -> Unit) {
-    onCharacter<ItemOnNPC>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(npc, this.target.id) }) { _: Character ->
+    onCharacter<ItemOnNPC>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(npc, this.target.id) }) {
         block.invoke(this)
     }
 }

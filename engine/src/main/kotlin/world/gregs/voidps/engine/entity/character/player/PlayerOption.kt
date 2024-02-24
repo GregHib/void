@@ -28,13 +28,13 @@ fun playerOperate(option: String, block: suspend PlayerOption.() -> Unit) {
 }
 
 fun characterApproachPlayer(option: String, block: suspend PlayerOption.() -> Unit) {
-    onCharacter<PlayerOption>({ approach && wildcardEquals(option, this.option) }) { _: Character ->
+    onCharacter<PlayerOption>({ approach && wildcardEquals(option, this.option) }) {
         block.invoke(this)
     }
 }
 
 fun characterOperatePlayer(option: String, block: suspend PlayerOption.() -> Unit) {
-    onCharacter<PlayerOption>({ operate && wildcardEquals(option, this.option) }) { _: Character ->
+    onCharacter<PlayerOption>({ operate && wildcardEquals(option, this.option) }) {
         block.invoke(this)
     }
 }

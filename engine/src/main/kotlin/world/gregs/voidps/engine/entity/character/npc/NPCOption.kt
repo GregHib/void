@@ -51,13 +51,13 @@ fun npcOperate(option: String, vararg npcs: String = arrayOf("*"), block: suspen
 }
 
 fun characterApproachNPC(option: String, npc: String = "*", block: suspend NPCOption.() -> Unit) {
-    onCharacter<NPCOption>({ approach && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) { _: Character ->
+    onCharacter<NPCOption>({ approach && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) {
         block.invoke(this)
     }
 }
 
 fun characterOperateNPC(option: String, npc: String = "*", block: suspend NPCOption.() -> Unit) {
-    onCharacter<NPCOption>({ operate && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) { _: Character ->
+    onCharacter<NPCOption>({ operate && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) {
         block.invoke(this)
     }
 }
