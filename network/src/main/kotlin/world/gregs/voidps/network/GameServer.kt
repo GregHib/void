@@ -26,7 +26,7 @@ class GameServer(
     private lateinit var dispatcher: ExecutorCoroutineDispatcher
     private var running = false
 
-    fun start(port: Int) = runBlocking {
+    fun start(port: Int) {
         Runtime.getRuntime().addShutdownHook(thread(start = false) { stop() })
         val executor = Executors.newCachedThreadPool()
         dispatcher = executor.asCoroutineDispatcher()
@@ -41,9 +41,8 @@ class GameServer(
                 logger.error(throwable) { "Connection error" }
             }
         }
-        val scope = CoroutineScope(coroutineContext + supervisor + exceptionHandler)
-        with(scope) {
-            val server = aSocket(selector).tcp().bind(port = port)
+        val server = aSocket(selector).tcp().bind(port = port)
+        runBlocking(supervisor + exceptionHandler) {
             running = true
             logger.info { "Listening for requests on port ${port}..." }
             while (running) {
