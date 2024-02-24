@@ -61,10 +61,10 @@ object Main {
         val engine = GameLoop(tickStages)
         World.start(properties)
         engine.start()
+        logger.info { "$name loaded in ${System.currentTimeMillis() - startTime}ms" }
 
         try {
             server.start(getIntProperty("port"))
-            logger.info { "$name loaded in ${System.currentTimeMillis() - startTime}ms" }
         } catch (e: BindException) {
             logger.error(e) { "Error starting server." }
         } finally {
