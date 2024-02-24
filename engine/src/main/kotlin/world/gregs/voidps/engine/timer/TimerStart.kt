@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onWorld
 import world.gregs.voidps.engine.event.onCharacter
 import world.gregs.voidps.engine.event.onNPC
 import world.gregs.voidps.engine.event.wildcardEquals
@@ -33,7 +34,7 @@ fun characterTimerStart(timer: String, block: suspend TimerStart.(Character) -> 
 }
 
 fun worldTimerStart(timer: String, block: suspend TimerStart.() -> Unit) {
-    on<TimerStart>({ wildcardEquals(timer, this.timer) }) { _: World ->
+    onWorld<TimerStart>({ wildcardEquals(timer, this.timer) }) { _: World ->
         block.invoke(this)
     }
 }
