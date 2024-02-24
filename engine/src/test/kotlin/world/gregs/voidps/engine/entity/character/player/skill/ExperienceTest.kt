@@ -47,6 +47,15 @@ internal class ExperienceTest {
     }
 
     @Test
+    fun `Add experience with 10x rate`() {
+        experience = Experience(maximum = 500.0, rate = 10.0)
+        experience.events = events
+        experience.add(Skill.Attack, 10.0)
+        experience.add(Skill.Attack, 10.0)
+        assertEquals(200.0, experience.get(Skill.Attack))
+    }
+
+    @Test
     fun `Can't set negative experience`() {
         experience.set(Skill.Attack, -10.0)
         assertEquals(0.0, experience.get(Skill.Attack))
