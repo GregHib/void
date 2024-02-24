@@ -11,8 +11,6 @@ import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems.Companion.MAX_TILE_ITEMS
-import world.gregs.voidps.engine.event.EventHandlerStore
-import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.network.encode.send
 import world.gregs.voidps.network.encode.zone.FloorItemAddition
 import world.gregs.voidps.network.encode.zone.FloorItemRemoval
@@ -25,8 +23,7 @@ import world.gregs.voidps.type.Zone
  */
 class FloorItems(
     private val batches: ZoneBatchUpdates,
-    private val definitions: ItemDefinitions,
-    private val store: EventHandlerStore
+    private val definitions: ItemDefinitions
 ) : ZoneBatchUpdates.Sender {
 
     internal val data = Int2ObjectOpenHashMap<MutableMap<Int, MutableList<FloorItem>>>()
@@ -48,7 +45,6 @@ class FloorItems(
         }
         val item = FloorItem(tile, id, amount, revealTicks, disappearTicks, if (revealTicks == 0) null else owner)
         item.def = definition
-        store.populate(item)
         add(item)
         return item
     }

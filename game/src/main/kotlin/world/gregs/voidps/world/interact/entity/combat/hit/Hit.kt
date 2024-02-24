@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.type.random

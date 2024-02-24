@@ -12,12 +12,12 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.BlockedExperi
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.exp.GrantExp
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.EventDispatcher
 
 internal class ExperienceTest {
 
     private lateinit var experience: Experience
-    private lateinit var events: Events
+    private lateinit var events: EventDispatcher
 
     @BeforeEach
     fun setup() {

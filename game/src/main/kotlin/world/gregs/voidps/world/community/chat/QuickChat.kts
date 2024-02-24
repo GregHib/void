@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.friend.PrivateQuic
 import world.gregs.voidps.engine.entity.character.player.chat.global.PublicQuickChat
 import world.gregs.voidps.engine.entity.character.player.chat.global.PublicQuickChatMessage
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.encode.clanQuickChat

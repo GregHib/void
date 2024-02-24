@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.script.KoinMock
 
 internal class CharacterUpdateTaskTest : KoinMock() {
@@ -27,8 +26,7 @@ internal class CharacterUpdateTaskTest : KoinMock() {
     private lateinit var batches: ZoneBatchUpdates
     override val modules = listOf(
         module {
-            single { EventHandlerStore() }
-            single { NPCs(get(), get(), get(), get()) }
+            single { NPCs(get(), get(), get()) }
             single { Players() }
         }
     )

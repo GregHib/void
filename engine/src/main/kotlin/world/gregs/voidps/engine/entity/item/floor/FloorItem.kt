@@ -4,7 +4,6 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.EventDispatcher
-import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.type.Tile
 
 /**
@@ -20,7 +19,6 @@ class FloorItem(
     var owner: String? = null
 ) : Entity, EventDispatcher {
 
-    override val events: Events = Events(this)
     lateinit var def: ItemDefinition
 
     val value: Long

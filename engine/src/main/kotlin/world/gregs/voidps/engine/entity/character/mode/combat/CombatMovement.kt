@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.character.watch
-import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 

@@ -1,10 +1,10 @@
 package world.gregs.voidps.engine.timer
 
-import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.EventDispatcher
 import java.util.*
 
 class TimerQueue(
-    private val events: Events
+    private val events: EventDispatcher
 ) : Timers {
 
     val queue = PriorityQueue<Timer>()

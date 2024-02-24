@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.global.PublicChat
 import world.gregs.voidps.engine.entity.character.player.chat.global.PublicChatMessage
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
-import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.encode.clanChat

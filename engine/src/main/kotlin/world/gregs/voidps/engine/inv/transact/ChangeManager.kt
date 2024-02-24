@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.inv.transact
 
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.InventoryUpdate
 import world.gregs.voidps.engine.inv.ItemChanged
@@ -14,7 +14,7 @@ class ChangeManager(
     private val inventory: Inventory
 ) {
     private val changes: Stack<ItemChanged> = Stack()
-    private val events = mutableSetOf<Events>()
+    private val events = mutableSetOf<EventDispatcher>()
 
     /**
      * Track a change of an item in the inventory.
@@ -31,14 +31,14 @@ class ChangeManager(
     /**
      * Adds [events] to the list of recipients of [ItemChanged] updates in this inventory.
      */
-    fun bind(events: Events) {
+    fun bind(events: EventDispatcher) {
         this.events.add(events)
     }
 
     /**
      * Removes [events] to the list of recipients of [ItemChanged] updates in this inventory.
      */
-    fun unbind(events: Events) {
+    fun unbind(events: EventDispatcher) {
         this.events.remove(events)
     }
 

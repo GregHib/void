@@ -20,7 +20,7 @@ class FloorItemTrackingTest {
     fun setup() {
         players = mockk(relaxed = true)
         batches = mockk(relaxed = true)
-        items = FloorItems(batches, mockk(relaxed = true), mockk(relaxed = true))
+        items = FloorItems(batches, mockk(relaxed = true))
         tracking = FloorItemTracking(items, players, batches)
     }
 

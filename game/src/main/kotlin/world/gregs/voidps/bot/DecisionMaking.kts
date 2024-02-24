@@ -38,7 +38,7 @@ onWorld<AiTick> {
             val events: ConcurrentLinkedQueue<Event> = player["events"]!!
             while (events.isNotEmpty()) {
                 val event = events.poll()
-                bot.botEvents.emit(event)
+                bot.emit(event)
             }
             bot.resume("tick")
         }

@@ -5,10 +5,6 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.event.EventDispatcher
-import world.gregs.voidps.engine.event.EventHandlerStore
-import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.event.emit
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.type.Tile
@@ -20,9 +16,8 @@ const val MAX_NPCS = 0x8000 // 32768
 
 object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
     override var tile = Tile.EMPTY
-    override val events: Events = Events(this)
 
-    override val variables = Variables(events)
+    override val variables = Variables(this)
 
     var id = 0
         private set(value) {
@@ -43,12 +38,10 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
     fun start(members: Boolean = true, id: Int = 16) {
         this.members = members
         this.id = id
-        val store: EventHandlerStore = get()
-        store.populate(World)
         emit(Registered)
     }
 
-    val timers: Timers = TimerQueue(events)
+    val timers: Timers = TimerQueue(this)
 
     private val actions = ConcurrentHashMap<String, Pair<Int, () -> Unit>>()
 

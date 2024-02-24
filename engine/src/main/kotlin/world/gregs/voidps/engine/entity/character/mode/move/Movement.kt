@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.engine.entity.character.size
-import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.region.RegionRetry
@@ -199,7 +198,7 @@ open class Movement(
             val from = character.tile
             character.tile = character.tile.add(delta)
             character.visuals.moved = true
-            character.events.emit(Moved(character, from, character.tile))
+            character.emit(Moved(character, from, character.tile))
             if (character is Player) {
                 val definitions = get<AreaDefinitions>()
                 val to = character.tile

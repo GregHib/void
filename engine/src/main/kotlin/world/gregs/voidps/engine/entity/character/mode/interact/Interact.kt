@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.watch
-import world.gregs.voidps.engine.event.emit
+import world.gregs.voidps.engine.event.EventStore
 import world.gregs.voidps.engine.suspend.resumeSuspension
 
 /**
@@ -137,8 +137,8 @@ class Interact(
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
         when {
-            withinMelee && character.events.contains(operate) -> if (launch(operate) && afterMovement) updateRange = false
-            withinRange && character.events.contains(approach) -> if (launch(approach) && afterMovement) updateRange = false
+            withinMelee && EventStore.events.contains(character, operate) -> if (launch(operate) && afterMovement) updateRange = false
+            withinRange && EventStore.events.contains(character, approach) -> if (launch(approach) && afterMovement) updateRange = false
             withinMelee -> {
                 character.noInterest()
                 clear()

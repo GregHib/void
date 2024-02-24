@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.mode.combat.CombatReached
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatStop
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.event.onCharacter
 import world.gregs.voidps.world.interact.entity.death.characterDeath
 

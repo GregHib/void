@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.voidps.type.Direction
@@ -31,7 +30,6 @@ import world.gregs.yaml.Yaml
 import java.io.File
 
 class PlayerAccounts(
-    private val store: EventHandlerStore,
     private val interfaceDefinitions: InterfaceDefinitions,
     private val inventoryDefinitions: InventoryDefinitions,
     private val itemDefinitions: ItemDefinitions,
@@ -103,10 +101,9 @@ class PlayerAccounts(
     }
 
     fun initPlayer(player: Player, index: Int) {
-        store.populate(player)
         player.index = index
         player.visuals = PlayerVisuals(index, player.body)
-        player.interfaces = Interfaces(player.events, player.client, interfaceDefinitions)
+        player.interfaces = Interfaces(player, player.client, interfaceDefinitions)
         player.interfaceOptions = InterfaceOptions(player, interfaceDefinitions, inventoryDefinitions)
         player.options = PlayerOptions(player)
         (player.variables as PlayerVariables).definitions = variableDefinitions
@@ -114,10 +111,10 @@ class PlayerAccounts(
         player.inventories.itemDefinitions = itemDefinitions
         player.inventories.validItemRule = validItems
         player.inventories.normalStack = DependentOnItem(itemDefinitions)
-        player.inventories.events = player.events
+        player.inventories.events = player
         player.previousTile = player.tile.add(Direction.WEST.delta)
-        player.experience.events = player.events
-        player.levels.link(player.events, PlayerLevels(player.experience))
+        player.experience.events = player
+        player.levels.link(player, PlayerLevels(player.experience))
         player.body.link(player.equipment)
         player.body.updateAll()
         player.appearance.displayName = player.name
