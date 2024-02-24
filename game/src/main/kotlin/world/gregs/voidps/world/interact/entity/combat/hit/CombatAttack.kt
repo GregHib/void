@@ -56,14 +56,14 @@ fun characterSpellAttack(spells: Set<String>, priority: Priority = Priority.MEDI
 
 fun block(vararg weapons: String, priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Character) -> Unit) {
     for (weapon in weapons) {
-        onCharacter<CombatAttack>({ !blocked && wildcardEquals(weapon, target.weapon.id) }, priority) { character: Character ->
+        onCharacter<CombatAttack>({ !blocked && wildcardEquals(weapon, target.weapon.id) }, priority) { character ->
             block.invoke(this, character)
         }
     }
 }
 
 fun block(weapon: String, priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Character) -> Unit) {
-    onCharacter<CombatAttack>({ !blocked && wildcardEquals(weapon, target.weapon.id) }, priority) { character: Character ->
+    onCharacter<CombatAttack>({ !blocked && wildcardEquals(weapon, target.weapon.id) }, priority) { character ->
         block.invoke(this, character)
     }
 }

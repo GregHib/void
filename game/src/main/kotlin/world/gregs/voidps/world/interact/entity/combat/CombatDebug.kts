@@ -53,12 +53,12 @@ val logger = InlineLogger()
 val Character.charName: String
     get() = (this as? Player)?.name ?: (this as NPC).id
 
-onCharacter<CombatSwing>({ it["debug", false] || target["debug", false] }, Priority.HIGHEST) { character: Character ->
+onCharacter<CombatSwing>({ it["debug", false] || target["debug", false] }, Priority.HIGHEST) { character ->
     val player = if (character["debug", false] && character is Player) character else target as Player
     player.message("---- Swing (${character.charName}) -> (${target.charName}) -----")
 }
 
-onCharacter<CombatHit>({ debug(source, it) }, Priority.LOWEST) { character: Character ->
+onCharacter<CombatHit>({ debug(source, it) }, Priority.LOWEST) { character ->
     val player = if (character["debug", false] && character is Player) character else source as Player
     val message = "Damage: $damage ($type, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
     player.message(message)

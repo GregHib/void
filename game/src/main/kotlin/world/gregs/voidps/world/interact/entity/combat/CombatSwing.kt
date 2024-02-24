@@ -63,7 +63,7 @@ fun weaponSwing(vararg weapons: String = arrayOf("*"), style: String = "*", prio
 }
 
 fun characterSpellSwing(spell: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Character) -> Unit) {
-    onCharacter<CombatSwing>({ char -> !swung() && char.fightStyle == "magic" && char.spell.isNotBlank() && wildcardEquals(spell, char.spell) }, priority) { character: Character ->
+    onCharacter<CombatSwing>({ char -> !swung() && char.fightStyle == "magic" && char.spell.isNotBlank() && wildcardEquals(spell, char.spell) }, priority) { character ->
         block.invoke(this, character)
     }
 }
@@ -72,7 +72,7 @@ fun characterSpellSwing(spells: Set<String>, priority: Priority = Priority.MEDIU
     if (spells.any { it.contains("*") || it.contains("#") }) {
         throw IllegalArgumentException("Spell collections cannot contain wildcards.")
     }
-    onCharacter<CombatSwing>({ player -> !swung() && spells.contains(player.spell) }, priority) { character: Character ->
+    onCharacter<CombatSwing>({ player -> !swung() && spells.contains(player.spell) }, priority) { character ->
         block.invoke(this, character)
     }
 }

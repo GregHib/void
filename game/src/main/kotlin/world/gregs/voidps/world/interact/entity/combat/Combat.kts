@@ -20,14 +20,14 @@ import world.gregs.voidps.world.interact.entity.death.characterDeath
  * to allow movement & [Interact] to complete and start [combat] on the same tick
  * After [Interact] is complete switch to using [CombatMovement]
  */
-onCharacter<CombatInteraction> { character: Character ->
+onCharacter<CombatInteraction> { character ->
     combat(character, target)
 }
 
 /**
  * [CombatReached] is emitted by [CombatMovement] every tick the [Character] is within range of the target
  */
-onCharacter<CombatReached> { character: Character ->
+onCharacter<CombatReached> { character ->
     combat(character, target)
 }
 
@@ -61,7 +61,7 @@ fun combat(character: Character, target: Character) {
     character.start("hit_delay", nextDelay)
 }
 
-onCharacter<CombatStop> { character: Character ->
+onCharacter<CombatStop> { character ->
     if (target.dead) {
         character["face_entity"] = target
     } else {
@@ -70,7 +70,7 @@ onCharacter<CombatStop> { character: Character ->
     character.target = null
 }
 
-onCharacter<CombatSwing> { character: Character ->
+onCharacter<CombatSwing> { character ->
     target.start("under_attack", 16)
     if (target.inSingleCombat) {
         target.attackers.clear()
