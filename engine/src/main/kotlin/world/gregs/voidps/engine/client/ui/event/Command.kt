@@ -18,7 +18,7 @@ data class Command(
 
 fun adminCommand(vararg commands: String, block: suspend Command.() -> Unit) {
     for (command in commands) {
-        on<Command>({ wildcardEquals(command, prefix) && it.isAdmin() }) { _: Player ->
+        on<Command>({ wildcardEquals(command, prefix) && it.isAdmin() }) {
             block.invoke(this)
         }
     }
@@ -26,7 +26,7 @@ fun adminCommand(vararg commands: String, block: suspend Command.() -> Unit) {
 
 fun modCommand(vararg commands: String, block: suspend Command.() -> Unit) {
     for (command in commands) {
-        on<Command>({ wildcardEquals(command, prefix) && it.isMod() }) { _: Player ->
+        on<Command>({ wildcardEquals(command, prefix) && it.isMod() }) {
             block.invoke(this)
         }
     }

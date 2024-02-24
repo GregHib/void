@@ -20,13 +20,13 @@ data class FloorItemOption(
 }
 
 fun floorItemApproach(option: String, item: String = "*", block: suspend FloorItemOption.() -> Unit) {
-    on<FloorItemOption>({ approach && wildcardEquals(item, target.id) && wildcardEquals(option, this.option) }) { _: Player ->
+    on<FloorItemOption>({ approach && wildcardEquals(item, target.id) && wildcardEquals(option, this.option) }) {
         block.invoke(this)
     }
 }
 
 fun floorItemOperate(option: String, item: String = "*", priority: Priority = Priority.MEDIUM, arrive: Boolean = true, block: suspend FloorItemOption.() -> Unit) {
-    on<FloorItemOption>({ operate && wildcardEquals(item, target.id) && wildcardEquals(option, this.option) }, priority) { _: Player ->
+    on<FloorItemOption>({ operate && wildcardEquals(item, target.id) && wildcardEquals(option, this.option) }, priority) {
         if (arrive) {
             arriveDelay()
         }

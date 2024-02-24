@@ -21,25 +21,25 @@ data class ItemOnPlayer(
 }
 
 fun itemOnPlayerApproach(item: String, id: String = "*", block: suspend ItemOnPlayer.() -> Unit) {
-    on<ItemOnPlayer>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(id, this.id) }) { _: Player ->
+    on<ItemOnPlayer>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(id, this.id) }) {
         block.invoke(this)
     }
 }
 
 fun itemOnPlayerOperate(item: String, id: String = "*", block: suspend ItemOnPlayer.() -> Unit) {
-    on<ItemOnPlayer>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(id, this.id) }) { _: Player ->
+    on<ItemOnPlayer>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(id, this.id) }) {
         block.invoke(this)
     }
 }
 
 fun spellOnPlayerApproach(id: String, component: String, block: suspend ItemOnPlayer.() -> Unit) {
-    on<ItemOnPlayer>({ approach && wildcardEquals(id, this.id) && wildcardEquals(component, this.component) }) { _: Player ->
+    on<ItemOnPlayer>({ approach && wildcardEquals(id, this.id) && wildcardEquals(component, this.component) }) {
         block.invoke(this)
     }
 }
 
 fun spellOnPlayerOperate(id: String, component: String, block: suspend ItemOnPlayer.() -> Unit) {
-    on<ItemOnPlayer>({ operate && wildcardEquals(id, this.id) && wildcardEquals(component, this.component) }) { _: Player ->
+    on<ItemOnPlayer>({ operate && wildcardEquals(id, this.id) && wildcardEquals(component, this.component) }) {
         block.invoke(this)
     }
 }

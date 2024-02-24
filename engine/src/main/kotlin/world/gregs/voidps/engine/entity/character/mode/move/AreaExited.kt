@@ -18,7 +18,7 @@ data class AreaExited(
 }
 
 fun exitArea(area: String = "*", tag: String = "*", block: suspend AreaExited.() -> Unit) {
-    on<AreaExited>({ wildcardEquals(area, name) && (tag == "*" || tags.any { wildcardEquals(tag, it) }) }) { _: Player ->
+    on<AreaExited>({ wildcardEquals(area, name) && (tag == "*" || tags.any { wildcardEquals(tag, it) }) }) {
         block.invoke(this)
     }
 }

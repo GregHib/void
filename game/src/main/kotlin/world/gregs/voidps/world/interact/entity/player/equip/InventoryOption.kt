@@ -20,20 +20,20 @@ data class InventoryOption(
 
 fun inventoryOptions(vararg options: String = arrayOf("*"), item: String = "*", inventory: String = "*", block: suspend InventoryOption.() -> Unit) {
     for (option in options) {
-        on<InventoryOption>({ wildcardEquals(inventory, this.inventory) && wildcardEquals(item, this.item.id) && wildcardEquals(option, this.option) }) { _: Player ->
+        on<InventoryOption>({ wildcardEquals(inventory, this.inventory) && wildcardEquals(item, this.item.id) && wildcardEquals(option, this.option) }) {
             block.invoke(this)
         }
     }
 }
 
 fun inventoryOption(option: String = "*", inventory: String = "*", block: suspend InventoryOption.() -> Unit) {
-    on<InventoryOption>({ wildcardEquals(inventory, this.inventory) && wildcardEquals(option, this.option) }) { _: Player ->
+    on<InventoryOption>({ wildcardEquals(inventory, this.inventory) && wildcardEquals(option, this.option) }) {
         block.invoke(this)
     }
 }
 
 fun inventoryItem(option: String = "*", item: String = "*", inventory: String = "*", priority: Priority = Priority.MEDIUM, block: suspend InventoryOption.() -> Unit) {
-    on<InventoryOption>({ wildcardEquals(inventory, this.inventory) && wildcardEquals(item, this.item.id) && wildcardEquals(option, this.option) }, priority) { _: Player ->
+    on<InventoryOption>({ wildcardEquals(inventory, this.inventory) && wildcardEquals(item, this.item.id) && wildcardEquals(option, this.option) }, priority) {
         block.invoke(this)
     }
 }

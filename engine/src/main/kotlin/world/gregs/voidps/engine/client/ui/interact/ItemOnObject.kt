@@ -24,7 +24,7 @@ data class ItemOnObject(
 }
 
 fun itemOnObjectApproach(item: String, obj: String, block: suspend ItemOnObject.() -> Unit) {
-    on<ItemOnObject>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(obj, this.target.id) }) { _: Player ->
+    on<ItemOnObject>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(obj, this.target.id) }) { _ ->
         block.invoke(this)
     }
 }
