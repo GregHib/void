@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.global.PublicChat
 import world.gregs.voidps.engine.entity.character.player.chat.global.PublicChatMessage
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.encode.clanChat
@@ -28,7 +29,7 @@ val huffman: Huffman by inject()
 on<PublicChat>({ it.chatType == "public" }) { player ->
     val message = PublicChatMessage(player, effects, text, huffman)
     players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
-        it.events.emit(message)
+        it.emit(message)
     }
 }
 
@@ -44,7 +45,7 @@ on<PrivateChat> { player ->
     }
     val message = PrivateChatMessage(player, message, huffman)
     player.client?.privateChatTo(target.name, message.compressed)
-    target.events.emit(message)
+    target.emit(message)
 }
 
 on<PrivateChatMessage>({ it.networked }) { player ->
@@ -63,7 +64,7 @@ on<PublicChat>({ it.chatType == "clan" }) { player ->
     }
     val message = ClanChatMessage(player, effects, text, huffman)
     clan.members.filterNot { it.ignores(player) }.forEach {
-        it.events.emit(message)
+        it.emit(message)
     }
 }
 

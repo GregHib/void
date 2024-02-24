@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.character.watch
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
@@ -75,7 +76,7 @@ class CombatMovement(
         val attackRange = attackRange()
         if (arrived(if (attackRange == 1) -1 else attackRange)) {
             clearSteps()
-            character.events.emit(CombatReached(target))
+            character.emit(CombatReached(target))
             return true
         }
         return false
@@ -103,6 +104,6 @@ class CombatMovement(
     }
 
     override fun stop() {
-        character.events.emit(CombatStop(target))
+        character.emit(CombatStop(target))
     }
 }

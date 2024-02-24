@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.inventory
@@ -36,7 +37,7 @@ fun Player.interfaceOption(
     inventory: String = ""
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    events.emit(InterfaceOption(this, id = id, component = component, optionIndex = optionIndex, option = option, item = item, itemSlot = slot, inventory = inventory))
+    emit(InterfaceOption(this, id = id, component = component, optionIndex = optionIndex, option = option, item = item, itemSlot = slot, inventory = inventory))
 }
 
 fun Player.interfaceUse(
@@ -49,7 +50,7 @@ fun Player.interfaceUse(
     toSlot: Int = -1
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    events.emit(ItemOnItem(
+    emit(ItemOnItem(
         fromItem = fromItem,
         toItem = toItem,
         fromSlot = fromSlot,
@@ -73,7 +74,7 @@ fun Player.interfaceSwitch(
     toSlot: Int = -1
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    events.emit(InterfaceSwitch(
+    emit(InterfaceSwitch(
         id = id,
         component = component,
         fromItem = fromItem,
@@ -99,7 +100,7 @@ fun Player.dialogueOption(
     component: String,
     option: Int = -1
 ) {
-    events.emit(ContinueDialogue(id, component, option))
+    emit(ContinueDialogue(id, component, option))
 }
 
 private fun getOptionIndex(id: String, componentId: String, option: String): Int? {
@@ -119,13 +120,13 @@ fun Player.walk(toTile: Tile) = runTest {
 
 fun Player.itemOnObject(obj: GameObject, itemSlot: Int, id: String, component: String = "inventory", inventory: String = "inventory") {
     val item = inventories.inventory(inventory)[itemSlot]
-    events.emit(ItemOnObject(this, obj, id, component, item, itemSlot, inventory))
+    emit(ItemOnObject(this, obj, id, component, item, itemSlot, inventory))
 }
 
 fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstInventory: String = "inventory", firstComponent: String = "inventory", secondInventory: String = firstInventory, secondComponent: String = firstComponent) {
     val one = inventories.inventory(firstInventory)
     val two = inventories.inventory(secondInventory)
-    events.emit(ItemOnItem(
+    emit(ItemOnItem(
         one[firstSlot],
         two[secondSlot],
         firstSlot,

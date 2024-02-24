@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.Inventories
 import world.gregs.voidps.engine.queue.ActionQueue
@@ -117,11 +118,11 @@ class Player(
                 logout(false)
             }
         }
-        events.emit(Registered)
+        emit(Registered)
         val definitions = get<AreaDefinitions>()
         for (def in definitions.get(tile.zone)) {
             if (tile in def.area) {
-                events.emit(AreaEntered(this, def.name, def.tags, def.area))
+                emit(AreaEntered(this, def.name, def.tags, def.area))
             }
         }
     }
@@ -153,10 +154,10 @@ class Player(
             val definitions = get<AreaDefinitions>()
             for (def in definitions.get(tile.zone)) {
                 if (tile in def.area) {
-                    events.emit(AreaExited(this@Player, def.name, def.tags, def.area))
+                    emit(AreaExited(this@Player, def.name, def.tags, def.area))
                 }
             }
-            events.emit(Unregistered)
+            emit(Unregistered)
         }
     }
 

@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
@@ -56,22 +57,22 @@ class Hunting(
                 "player" -> {
                     val targets = getCharacters(npc, players, range, definition)
                     val target = targets.randomOrNull() ?: continue
-                    npc.events.emit(HuntPlayer(mode, target))
+                    npc.emit(HuntPlayer(mode, target))
                 }
                 "npc" -> {
                     val targets = getCharacters(npc, npcs, range, definition)
                     val target = targets.randomOrNull() ?: continue
-                    npc.events.emit(HuntNPC(mode, target))
+                    npc.emit(HuntNPC(mode, target))
                 }
                 "object" -> {
                     val targets = getObjects(npc, definition)
                     val target = targets.randomOrNull() ?: continue
-                    npc.events.emit(HuntObject(mode, target))
+                    npc.emit(HuntObject(mode, target))
                 }
                 "floor_item" -> {
                     val targets = getItems(npc, range, definition)
                     val target = targets.randomOrNull() ?: continue
-                    npc.events.emit(HuntFloorItem(mode, target))
+                    npc.emit(HuntFloorItem(mode, target))
                 }
             }
         }

@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.watch
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.suspend.resumeSuspension
 
 /**
@@ -155,7 +156,7 @@ class Interact(
             character.resumeSuspension()
             return true
         }
-        if (!event.launched && character.events.emit(event)) {
+        if (!event.launched && character.emit(event)) {
             event.launched = true
             return true
         }

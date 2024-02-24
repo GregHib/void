@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.type.random
@@ -130,7 +131,7 @@ fun Character.hit(
 ): Int {
     val actualDamage = Damage.modify(this, target, type, damage, weapon, spell, special)
         .coerceAtMost(target.levels.get(Skill.Constitution))
-    events.emit(CombatAttack(target, type, actualDamage, weapon, spell, special, TICKS.toClientTicks(delay)))
+    emit(CombatAttack(target, type, actualDamage, weapon, spell, special, TICKS.toClientTicks(delay)))
     target.strongQueue("hit", delay) {
         target.directHit(this@hit, actualDamage, type, weapon, spell, special)
     }
@@ -150,5 +151,5 @@ fun Character.directHit(source: Character, damage: Int, type: String = "damage",
     if (source.dead) {
         return
     }
-    events.emit(CombatHit(source, type, damage, weapon, spell, special))
+    emit(CombatHit(source, type, damage, weapon, spell, special))
 }

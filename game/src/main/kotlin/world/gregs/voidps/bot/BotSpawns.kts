@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventHandlerStore
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.getIntProperty
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -88,7 +89,7 @@ adminCommand("bot") {
         if (content.isNotBlank()) {
             player["task"] = content
         }
-        bot.events.emit(StartBot)
+        bot.emit(StartBot)
     }
 }
 
@@ -105,7 +106,7 @@ fun spawn() {
         val client = if (TaskManager.DEBUG) DummyClient() else null
         bot.initBot()
         bot.login(client, 0)
-        bot.events.emit(StartBot)
+        bot.emit(StartBot)
         bot.viewport?.loaded = true
         delay(3)
         bots.add(bot)

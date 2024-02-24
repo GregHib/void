@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -72,7 +73,7 @@ internal class LendTest : WorldTest() {
         acceptTrade(lender, borrower)
 
         assertTrue(borrower.inventory.contains("abyssal_whip_lent"))
-        lender.events.emit(Unregistered)
+        lender.emit(Unregistered)
         assertFalse(lender.softTimers.contains("loan_message"))
         assertFalse(borrower.inventory.contains("abyssal_whip_lent"))
     }
@@ -84,7 +85,7 @@ internal class LendTest : WorldTest() {
         acceptTrade(lender, borrower)
 
         assertTrue(borrower.inventory.contains("abyssal_whip_lent"))
-        borrower.events.emit(Unregistered)
+        borrower.emit(Unregistered)
         assertFalse(lender.softTimers.contains("loan_message"))
         assertFalse(borrower.inventory.contains("abyssal_whip_lent"))
     }
@@ -94,7 +95,7 @@ internal class LendTest : WorldTest() {
         val (lender, borrower) = setupTradeWithLend()
         lender.interfaceOption("trade_side", "offer", "Lend", item = Item("abyssal_whip"), slot = 0)
         lender.interfaceOption("trade_main", "loan_time", option = "Specify")
-        lender.events.emit(IntEntered(1))
+        lender.emit(IntEntered(1))
         acceptTrade(lender, borrower)
         assertTrue(borrower.inventory.contains("abyssal_whip_lent"))
         assertTrue(borrower.softTimers.contains("borrow_message"))
@@ -112,7 +113,7 @@ internal class LendTest : WorldTest() {
         val (lender, borrower) = setupTradeWithLend()
         lender.interfaceOption("trade_side", "offer", "Lend", item = Item("abyssal_whip"), slot = 0)
         lender.interfaceOption("trade_main", "loan_time", option = "Specify")
-        lender.events.emit(IntEntered(1))
+        lender.emit(IntEntered(1))
         acceptTrade(lender, borrower)
         assertTrue(borrower.inventory.contains("abyssal_whip_lent"))
         assertTrue(borrower.softTimers.contains("borrow_message"))
@@ -138,7 +139,7 @@ internal class LendTest : WorldTest() {
         val (lender, borrower) = setupTradeWithLend()
         lender.interfaceOption("trade_side", "offer", "Lend", item = Item("abyssal_whip"), slot = 0)
         lender.interfaceOption("trade_main", "loan_time", option = "Specify")
-        lender.events.emit(IntEntered(1))
+        lender.emit(IntEntered(1))
         acceptTrade(lender, borrower)
         assertTrue(borrower.inventory.contains("abyssal_whip_lent"))
         assertTrue(borrower.softTimers.contains("borrow_message"))
@@ -181,7 +182,7 @@ internal class LendTest : WorldTest() {
         val item = Item("abyssal_whip", 1)
         lender.interfaceOption("trade_side", "offer", "Lend", item = item, slot = 0)
         lender.interfaceOption("trade_main", "loan_time", option = "Specify")
-        lender.events.emit(IntEntered(1))
+        lender.emit(IntEntered(1))
         acceptTrade(lender, borrower)
         assertTrue(borrower.inventory.contains("abyssal_whip_lent"))
 
@@ -213,7 +214,7 @@ internal class LendTest : WorldTest() {
         val item = Item("abyssal_whip", 1)
         lender.interfaceOption("trade_side", "offer", "Lend", item = item, slot = 0)
         lender.interfaceOption("trade_main", "loan_time", option = "Specify")
-        lender.events.emit(IntEntered(1))
+        lender.emit(IntEntered(1))
         acceptTrade(lender, borrower)
         borrower["borrow_timeout"] = epochSeconds()
         lender["lend_timeout"] = epochSeconds()
@@ -228,11 +229,11 @@ internal class LendTest : WorldTest() {
 
     private fun login(lender: Player) {
         players.add(lender)
-        lender.events.emit(Registered)
+        lender.emit(Registered)
     }
 
     private fun logout(borrower: Player) {
-        borrower.events.emit(Unregistered)
+        borrower.emit(Unregistered)
         players.remove(borrower)
     }
 

@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.network.encode.Member
 import world.gregs.voidps.network.encode.leaveClanChat
 import world.gregs.voidps.network.encode.updateClanChat
@@ -53,7 +54,7 @@ interfaceOption(component = "enter", id = "clan_chat_setup") {
     player.interfaces.sendText(id, component, option)
     for (member in clan.members) {
         if (!clan.hasRank(member, rank)) {
-            member.events.emit(LeaveClanChat(forced = true))
+            member.emit(LeaveClanChat(forced = true))
         }
     }
 }

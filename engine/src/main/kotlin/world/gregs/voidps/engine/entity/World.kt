@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.Timers
@@ -44,7 +45,7 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
         this.id = id
         val store: EventHandlerStore = get()
         store.populate(World)
-        events.emit(Registered)
+        emit(Registered)
     }
 
     val timers: Timers = TimerQueue(events)
@@ -78,6 +79,6 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
     }
 
     fun shutdown() {
-        events.emit(Unregistered)
+        emit(Unregistered)
     }
 }

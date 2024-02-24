@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.obj
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.obj.ObjectOption
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.suspend.delay
@@ -27,7 +28,7 @@ class Teleports {
         }
         val player = objectOption.player
         val teleport = Teleport(player, definition.id, definition.tile, objectOption.def, definition.option)
-        player.events.emit(teleport)
+        player.emit(teleport)
         if (teleport.cancelled) {
             return false
         }
@@ -42,7 +43,7 @@ class Teleports {
         }
         player.tele(tile)
         teleport.land = true
-        player.events.emit(teleport)
+        player.emit(teleport)
         return true
     }
 

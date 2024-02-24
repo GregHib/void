@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
@@ -69,7 +70,7 @@ npcDeath { npc ->
                 npcs.remove(npc)
                 npcs.releaseIndex(npc)
             }
-            npc.events.emit(Unregistered)
+            npc.emit(Unregistered)
         }
     }
 }
@@ -96,7 +97,7 @@ fun dropLoot(npc: NPC, killer: Character?, name: String, tile: Tile) {
         .map { it.toItem() }
         .filter { World.members || !it.def.members }
         .toMutableList()
-    npc.events.emit(DropItems(killer, drops))
+    npc.emit(DropItems(killer, drops))
     if (npc.inMultiCombat && killer is Player && killer["loot_share", false]) {
         shareLoot(killer, npc, tile, drops)
     } else {

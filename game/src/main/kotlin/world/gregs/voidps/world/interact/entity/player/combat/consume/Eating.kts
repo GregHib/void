@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Priority
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
@@ -34,7 +35,7 @@ inventoryOptions("Eat", "Drink", "Heal") {
     }
     player.start(delay, ticks)
     val consumable = Consumable(item)
-    player.events.emit(consumable)
+    player.emit(consumable)
     if (consumable.cancelled) {
         return@inventoryOptions
     }
@@ -52,7 +53,7 @@ inventoryOptions("Eat", "Drink", "Heal") {
         player.message("You ${if (drink) "drink" else "eat"} the ${item.def.name.lowercase()}.")
     }
     player.playSound(if (drink) "pour_tea" else "eat")
-    player.events.emit(Consume(item, slot))
+    player.emit(Consume(item, slot))
 }
 
 consume(priority = Priority.LOW) { player ->

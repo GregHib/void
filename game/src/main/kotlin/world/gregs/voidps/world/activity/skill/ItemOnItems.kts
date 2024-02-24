@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -137,7 +138,7 @@ fun replaceItems(
         for (add in def.add) {
             player.inventory.add(add.id, add.amount)
         }
-        player.events.emit(ItemUsedOnItem(def))
+        player.emit(ItemUsedOnItem(def))
     } else {
         if (def.failure.isNotEmpty()) {
             player.message(def.failure, ChatType.Filter)

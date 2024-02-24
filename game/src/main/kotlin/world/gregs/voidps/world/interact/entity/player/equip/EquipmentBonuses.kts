@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.itemChange
@@ -71,14 +72,14 @@ interfaceOption("Done", "stats_done", "equipment_*") {
 
 interfaceOption("Equip", "inventory", "equipment_side") {
     if (player.equipping()) {
-        player.events.emit(InventoryOption(player, "inventory", item, itemSlot, "Wield"))
+        player.emit(InventoryOption(player, "inventory", item, itemSlot, "Wield"))
         checkEmoteUpdate(player)
     }
 }
 
 interfaceOption("Remove", "inventory", "equipment_bonuses") {
     if (player.equipping()) {
-        player.events.emit(InventoryOption(player, "worn_equipment", item, itemSlot, "Remove"))
+        player.emit(InventoryOption(player, "worn_equipment", item, itemSlot, "Remove"))
         checkEmoteUpdate(player)
     }
 }

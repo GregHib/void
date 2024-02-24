@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
@@ -36,7 +37,7 @@ interfaceOption(component = "*_slot", id = "worn_equipment") {
     }
     val slot = EquipSlot.by(component.removeSuffix("_slot"))
     player.closeInterfaces()
-    player.events.emit(InventoryOption(player, id, item, slot.index, equipOption))
+    player.emit(InventoryOption(player, id, item, slot.index, equipOption))
 }
 
 fun getEquipmentOption(itemDef: ItemDefinition, optionId: Int): String? {

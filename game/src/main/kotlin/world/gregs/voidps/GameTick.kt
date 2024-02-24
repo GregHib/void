@@ -28,6 +28,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.NetworkQueue
 import world.gregs.voidps.network.visual.NPCVisuals
@@ -91,7 +92,7 @@ fun getTickStages(
 
 private class AiTick : Runnable {
     override fun run() {
-        World.events.emit(AiTick)
+        World.emit(AiTick)
     }
 }
 

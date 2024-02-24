@@ -51,6 +51,14 @@ class EventHandlerStore {
     }
 }
 
+fun <E : Event> EventDispatcher.emit(event: E): Boolean {
+    return events.emit(event)
+}
+
+fun <E : SuspendableEvent> EventDispatcher.emit(event: E): Boolean {
+    return events.emit(event)
+}
+
 @Suppress("UNCHECKED_CAST")
 inline fun <reified T : EventDispatcher, reified E : Event> addEvent(noinline condition: E.(T) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(T) -> Unit) {
     get<EventHandlerStore>().add(T::class, E::class, condition as Event.(EventDispatcher) -> Boolean, priority, block as suspend Event.(EventDispatcher) -> Unit)

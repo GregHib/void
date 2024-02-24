@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.engine.entity.character.size
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.region.RegionRetry
@@ -56,7 +57,7 @@ open class Movement(
     override fun tick() {
         if (character is Player && character.viewport?.loaded == false) {
             if (character.viewport != null && character.inc("fail_load_count") > 10) {
-                character.events.emit(RegionRetry)
+                character.emit(RegionRetry)
                 character.clear("fail_load_count")
             }
             return
@@ -204,12 +205,12 @@ open class Movement(
                 val to = character.tile
                 for (def in definitions.get(from.zone)) {
                     if (from in def.area && to !in def.area) {
-                        character.events.emit(AreaExited(character, def.name, def.tags, def.area))
+                        character.emit(AreaExited(character, def.name, def.tags, def.area))
                     }
                 }
                 for (def in definitions.get(to.zone)) {
                     if (to in def.area && from !in def.area) {
-                        character.events.emit(AreaEntered(character, def.name, def.tags, def.area))
+                        character.emit(AreaEntered(character, def.name, def.tags, def.area))
                     }
                 }
             }

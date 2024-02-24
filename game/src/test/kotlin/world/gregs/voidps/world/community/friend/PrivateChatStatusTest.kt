@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.encode.Friend
 import world.gregs.voidps.network.encode.sendFriendsList
@@ -48,7 +49,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         player["private_status"] = "off"
 
         runBlocking(Dispatchers.Default) {
-            player.events.emit(Registered)
+            player.emit(Registered)
         }
 
         verify {
@@ -67,7 +68,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         player["private_status"] = "friends"
 
         runBlocking(Dispatchers.Default) {
-            player.events.emit(Registered)
+            player.emit(Registered)
         }
 
         verify {
@@ -86,7 +87,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         player["private_status"] = "on"
 
         runBlocking(Dispatchers.Default) {
-            player.events.emit(Registered)
+            player.emit(Registered)
         }
 
         verify {

@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.EventHandlerStore
+import world.gregs.voidps.engine.event.emit
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -88,7 +89,7 @@ data class NPCs(
             npc["respawn_delay"] = respawnDelay
             npc["respawn_direction"] = direction
         }
-        npc.events.emit(Registered)
+        npc.emit(Registered)
         return npc
     }
 
@@ -122,7 +123,7 @@ data class NPCs(
 
     override fun clear() {
         for (npc in this) {
-            npc.events.emit(Unregistered)
+            npc.emit(Unregistered)
         }
         super.clear()
     }
