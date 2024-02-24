@@ -29,6 +29,10 @@ continueDialogue("dialogue_obj_box", "continue") { player ->
     player.continueDialogue()
 }
 
+continueDialogue("dialogue_double_obj_box", "continue") { player ->
+    player.continueDialogue()
+}
+
 continueDialogue("dialogue_multi*", "line*") { player ->
     val choice = component.substringAfter("line").toIntOrNull() ?: -1
     val suspension = player.dialogueSuspension as? IntSuspension ?: return@continueDialogue

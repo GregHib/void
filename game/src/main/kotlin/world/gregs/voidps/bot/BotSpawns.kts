@@ -1,18 +1,12 @@
-package world.gregs.voidps.world.command.admin
+package world.gregs.voidps.bot
 
-import kotlinx.coroutines.CancellableContinuation
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.suspendCancellableCoroutine
-import world.gregs.voidps.bot.Bot
-import world.gregs.voidps.bot.StartBot
-import world.gregs.voidps.bot.TaskManager
-import world.gregs.voidps.bot.isBot
+import kotlinx.coroutines.*
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.data.PlayerAccounts
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.entity.World
@@ -20,29 +14,71 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.sex
+import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventHandlerStore
-import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.getIntProperty
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.engine.timer.worldTimerStart
+import world.gregs.voidps.engine.timer.worldTimerTick
 import world.gregs.voidps.network.client.DummyClient
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
-import world.gregs.voidps.type.area.Rectangle
 import world.gregs.voidps.type.random
 import java.util.concurrent.ConcurrentLinkedQueue
+import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.reflect.KClass
 
-val bots = mutableListOf<Player>()
+val areas: AreaDefinitions by inject()
+val lumbridge = areas["lumbridge_teleport"]
+val botCount = getIntProperty("bots", 0)
 
+val bots = mutableListOf<Player>()
 val queue: ConnectionQueue by inject()
 val gatekeeper: ConnectionGatekeeper by inject()
 val accounts: PlayerAccounts by inject()
 val enums: EnumDefinitions by inject()
 val structs: StructDefinitions by inject()
+
+var counter = 0
+
+worldSpawn {
+    if (botCount > 0) {
+        World.timers.start("bot_spawn")
+    }
+}
+
+worldTimerStart("bot_spawn") {
+    interval = TimeUnit.MINUTES.toTicks(1)
+}
+
+worldTimerTick("bot_spawn") {
+    if (counter > botCount) {
+        cancel()
+        return@worldTimerTick
+    }
+    spawn()
+}
+
+adminCommand("bots") {
+    val count = content.toIntOrNull() ?: 1
+    GlobalScope.launch {
+        repeat(count) {
+            if (it % 25 == 0) {
+                suspendCancellableCoroutine { cont ->
+                    World.queue("bot_${counter}") {
+                        cont.resume(Unit)
+                    }
+                }
+                spawn()
+            }
+        }
+    }
+}
 
 adminCommand("bot") {
     if (player.isBot) {
@@ -56,46 +92,30 @@ adminCommand("bot") {
     }
 }
 
-var counter = 0
-
-adminCommand("bots") {
-    val count = content.toIntOrNull() ?: 1
-    val lumbridge = Rectangle(3221, 3217, 3222, 3220)
-    val tile = lumbridge.random()
-    GlobalScope.launch {
-        repeat(count) {
-            if (it % 25 == 0) {
-                suspendCancellableCoroutine { cont ->
-                    World.queue("bot_${counter}") {
-                        cont.resume(Unit)
-                    }
-                }
-            }
-            GlobalScope.launch(Contexts.Game) {
-                val name = "Bot ${++counter}"
-                val index = gatekeeper.connect(name)!!
-                val bot = accounts.getOrElse(name, index) { Player(index = index, tile = tile, accountName = name) }
-                setAppearance(bot)
-                queue.await()
-                if (bot.inventory.isEmpty()) {
-                    bot.inventory.add("coins", 10000)
-                }
-                val client = if (TaskManager.DEBUG) DummyClient() else null
-                bot.initBot()
-                bot.login(client, 0)
-                bot.events.emit(StartBot)
-                bot.viewport?.loaded = true
-                pause(3)
-                bots.add(bot)
-                bot.running = true
-            }
+fun spawn() {
+    GlobalScope.launch(Contexts.Game) {
+        val name = "Bot ${++counter}"
+        val index = gatekeeper.connect(name)!!
+        val bot = accounts.getOrElse(name, index) { Player(index = index, tile = lumbridge.random(), accountName = name) }
+        setAppearance(bot)
+        queue.await()
+        if (bot.inventory.isEmpty()) {
+            bot.inventory.add("coins", 10000)
         }
+        val client = if (TaskManager.DEBUG) DummyClient() else null
+        bot.initBot()
+        bot.login(client, 0)
+        bot.events.emit(StartBot)
+        bot.viewport?.loaded = true
+        delay(3)
+        bots.add(bot)
+        bot.running = true
     }
 }
 
 fun Player.initBot(): Bot {
     val bot = Bot(this)
-    get<EventHandlerStore>().populate(Bot::class, bot.botEvents)
+    world.gregs.voidps.engine.get<EventHandlerStore>().populate(Bot::class, bot.botEvents)
     this["bot"] = bot
     val e = ConcurrentLinkedQueue<Event>()
     this["events"] = e

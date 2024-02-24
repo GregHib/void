@@ -27,6 +27,7 @@ import world.gregs.voidps.network.LoginServer
 import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.loadScripts
 import java.io.File
+import java.net.BindException
 import java.util.*
 
 /**
@@ -61,8 +62,15 @@ object Main {
         World.start(properties)
         engine.start()
 
-        logger.info { "$name loaded in ${System.currentTimeMillis() - startTime}ms" }
-        server.start(getIntProperty("port"))
+        try {
+            server.start(getIntProperty("port"))
+            logger.info { "$name loaded in ${System.currentTimeMillis() - startTime}ms" }
+        } catch (e: BindException) {
+            logger.error(e) { "Error starting server." }
+        } finally {
+            server.stop()
+            engine.stop()
+        }
     }
 
     private fun properties(): Properties = timed("properties") {

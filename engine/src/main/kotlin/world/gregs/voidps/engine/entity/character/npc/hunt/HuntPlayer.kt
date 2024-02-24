@@ -15,7 +15,7 @@ fun huntPlayer(npc: String = "*", mode: String = "*", block: suspend HuntPlayer.
     on<HuntPlayer>({ wildcardEquals(npc, it.id) && wildcardEquals(mode, this.mode) }, block = block)
 }
 
-fun huntPlayer(vararg modes: String, block: suspend HuntPlayer.(npc: NPC) -> Unit) {
+fun huntPlayerModes(vararg modes: String, block: suspend HuntPlayer.(npc: NPC) -> Unit) {
     for (mode in modes) {
         on<HuntPlayer>({ wildcardEquals(mode, this.mode) }, block = block)
     }

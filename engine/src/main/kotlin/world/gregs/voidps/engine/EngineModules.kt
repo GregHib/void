@@ -37,7 +37,7 @@ val engineModule = module {
     single {
         PlayerAccounts(get(), get(), get(), get(), get(), get(), getProperty("savePath"), get(), get(), Tile(
             getIntProperty("homeX", 0), getIntProperty("homeY", 0), getIntProperty("homeLevel", 0)
-        ))
+        ), getProperty("experienceRate", "1.0").toDouble())
     }
     // IO
     single { Yaml(YamlReaderConfiguration(2, 8, VERY_FAST_LOAD_FACTOR)) }

@@ -16,14 +16,6 @@ data class Command(
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 }
 
-fun command(vararg commands: String, block: suspend Command.() -> Unit) {
-    for (command in commands) {
-        on<Command>({ wildcardEquals(command, prefix) }) { _: Player ->
-            block.invoke(this)
-        }
-    }
-}
-
 fun adminCommand(vararg commands: String, block: suspend Command.() -> Unit) {
     for (command in commands) {
         on<Command>({ wildcardEquals(command, prefix) && it.isAdmin() }) { _: Player ->

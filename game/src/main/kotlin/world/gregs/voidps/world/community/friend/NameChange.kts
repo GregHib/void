@@ -2,7 +2,7 @@ package world.gregs.voidps.world.community.friend
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.event.command
+import world.gregs.voidps.engine.client.ui.event.modCommand
 import world.gregs.voidps.engine.client.updateFriend
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
@@ -19,19 +19,19 @@ import java.util.concurrent.TimeUnit
 
 val players: Players by inject()
 
-command("rename") {
+modCommand("rename") {
     val remaining = player.remaining("rename_delay", epochSeconds()).toLong()
     if (remaining > 0 && !player.isAdmin()) {
         player.message("You've already changed your name this month.")
         val days = TimeUnit.SECONDS.toDays(remaining)
         val hours = TimeUnit.SECONDS.toHours(remaining).rem(24)
         player.message("You can change your name again in $days ${"day".plural(days)} and $hours ${"hour".plural(hours)}.")
-        return@command
+        return@modCommand
     }
     val toName = stringEntry("Enter a new name")
     if (toName.length !in 1..12) {
         player.message("Name too long, a username must be less than 12 characters.")
-        return@command
+        return@modCommand
     }
     choice("Change your name to '$toName'?") {
         option("Yes, call me $toName") {

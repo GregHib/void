@@ -40,12 +40,13 @@ class PlayerAccounts(
     private val path: String,
     private val collisionStrategyProvider: CollisionStrategyProvider,
     private val variableDefinitions: VariableDefinitions,
-    private val homeTile: Tile
+    private val homeTile: Tile,
+    experienceRate: Double
 ) : Runnable {
 
     private val validItems = ValidItemRestriction(itemDefinitions)
     private val writeConfig = PlayerYamlWriterConfig()
-    private val readerConfig = PlayerYamlReaderConfig(itemDefinitions)
+    private val readerConfig = PlayerYamlReaderConfig(itemDefinitions, experienceRate)
     private val saveQueue = mutableMapOf<String, PlayerSave>()
 
     private fun path(name: String) = "$path${name}.json"
