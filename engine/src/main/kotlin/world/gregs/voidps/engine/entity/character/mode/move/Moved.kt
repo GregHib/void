@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onCharacter
 import world.gregs.voidps.engine.event.onNPC
 import world.gregs.voidps.type.Tile
 
@@ -31,5 +32,5 @@ fun npcMove(filter: Moved.(NPC) -> Boolean = { true}, block: suspend Moved.(NPC)
 }
 
 fun characterMove(filter: Moved.(Character) -> Boolean = { true}, block: suspend Moved.(Character) -> Unit) {
-    on<Moved>(filter, block = block)
+    onCharacter<Moved>(filter, block = block)
 }

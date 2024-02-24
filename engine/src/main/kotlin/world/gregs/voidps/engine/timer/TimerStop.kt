@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onCharacter
 import world.gregs.voidps.engine.event.onNPC
 import world.gregs.voidps.engine.event.wildcardEquals
 
@@ -26,7 +27,7 @@ fun npcTimerStop(timer: String, npc: String = "*", block: suspend TimerStop.(NPC
 }
 
 fun characterTimerStop(timer: String, block: suspend TimerStop.(Character) -> Unit) {
-    on<TimerStop>({ wildcardEquals(timer, this.timer) }, block = block)
+    onCharacter<TimerStop>({ wildcardEquals(timer, this.timer) }, block = block)
 }
 
 fun worldTimerStop(timer: String, block: suspend TimerStop.() -> Unit) {

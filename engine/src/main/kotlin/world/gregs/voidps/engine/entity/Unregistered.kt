@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onCharacter
 import world.gregs.voidps.engine.event.onNPC
 
 object Unregistered : Event
@@ -20,7 +21,7 @@ fun npcDespawn(priority: Priority = Priority.MEDIUM, block: suspend Unregistered
 }
 
 fun characterDespawn(block: suspend Unregistered.(Character) -> Unit) {
-    on<Unregistered>(block = block)
+    onCharacter<Unregistered>(block = block)
 }
 
 fun floorItemDespawn(block: suspend Unregistered.(FloorItem) -> Unit) {

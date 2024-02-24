@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onCharacter
 import world.gregs.voidps.engine.event.wildcardEquals
 import world.gregs.voidps.engine.suspend.arriveDelay
 
@@ -50,13 +51,13 @@ fun npcOperate(option: String, vararg npcs: String = arrayOf("*"), block: suspen
 }
 
 fun characterApproachNPC(option: String, npc: String = "*", block: suspend NPCOption.() -> Unit) {
-    on<NPCOption>({ approach && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) { _: Character ->
+    onCharacter<NPCOption>({ approach && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) { _: Character ->
         block.invoke(this)
     }
 }
 
 fun characterOperateNPC(option: String, npc: String = "*", block: suspend NPCOption.() -> Unit) {
-    on<NPCOption>({ operate && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) { _: Character ->
+    onCharacter<NPCOption>({ operate && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) { _: Character ->
         block.invoke(this)
     }
 }

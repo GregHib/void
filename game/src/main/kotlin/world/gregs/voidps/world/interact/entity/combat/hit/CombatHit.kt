@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onCharacter
 import world.gregs.voidps.engine.event.onNPC
 import world.gregs.voidps.engine.event.wildcardEquals
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
@@ -38,23 +39,23 @@ fun npcCombatHit(block: suspend CombatHit.(NPC) -> Unit) {
 }
 
 fun characterCombatHit(block: suspend CombatHit.(Character) -> Unit) {
-    on<CombatHit>(block = block)
+    onCharacter<CombatHit>(block = block)
 }
 
 fun weaponHit(weapon: String = "*", type: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatHit.(Character) -> Unit) {
-    on<CombatHit>({ wildcardEquals(weapon, this.weapon.id) && wildcardEquals(type, this.type) }, priority, block)
+    onCharacter<CombatHit>({ wildcardEquals(weapon, this.weapon.id) && wildcardEquals(type, this.type) }, priority, block)
 }
 
 fun specialAttackHit(weapon: String = "*", type: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatHit.(Character) -> Unit) {
-    on<CombatHit>({ special && wildcardEquals(weapon, this.weapon.id) && wildcardEquals(type, this.type) }, priority, block)
+    onCharacter<CombatHit>({ special && wildcardEquals(weapon, this.weapon.id) && wildcardEquals(type, this.type) }, priority, block)
 }
 
 fun specialAttackHit(vararg weapons: String, type: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatHit.(Character) -> Unit) {
     for (weapon in weapons) {
-        on<CombatHit>({ special && wildcardEquals(weapon, this.weapon.id) && wildcardEquals(type, this.type) }, priority, block)
+        onCharacter<CombatHit>({ special && wildcardEquals(weapon, this.weapon.id) && wildcardEquals(type, this.type) }, priority, block)
     }
 }
 
 fun prayerHit(prayer: String, priority: Priority = Priority.MEDIUM, block: suspend CombatHit.(Character) -> Unit) {
-    on<CombatHit>({ source.praying(prayer) }, priority, block)
+    onCharacter<CombatHit>({ source.praying(prayer) }, priority, block)
 }

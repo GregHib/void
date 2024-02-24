@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetPlayerContext
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onCharacter
 import world.gregs.voidps.engine.event.wildcardEquals
 
 data class PlayerOption(
@@ -27,13 +28,13 @@ fun playerOperate(option: String, block: suspend PlayerOption.() -> Unit) {
 }
 
 fun characterApproachPlayer(option: String, block: suspend PlayerOption.() -> Unit) {
-    on<PlayerOption>({ approach && wildcardEquals(option, this.option) }) { _: Character ->
+    onCharacter<PlayerOption>({ approach && wildcardEquals(option, this.option) }) { _: Character ->
         block.invoke(this)
     }
 }
 
 fun characterOperatePlayer(option: String, block: suspend PlayerOption.() -> Unit) {
-    on<PlayerOption>({ operate && wildcardEquals(option, this.option) }) { _: Character ->
+    onCharacter<PlayerOption>({ operate && wildcardEquals(option, this.option) }) { _: Character ->
         block.invoke(this)
     }
 }

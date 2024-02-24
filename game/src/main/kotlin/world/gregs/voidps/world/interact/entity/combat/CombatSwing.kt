@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onCharacter
 import world.gregs.voidps.engine.event.onNPC
 import world.gregs.voidps.engine.event.wildcardEquals
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
@@ -62,7 +63,7 @@ fun weaponSwing(vararg weapons: String = arrayOf("*"), style: String = "*", prio
 }
 
 fun characterSpellSwing(spell: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Character) -> Unit) {
-    on<CombatSwing>({ char -> !swung() && char.fightStyle == "magic" && char.spell.isNotBlank() && wildcardEquals(spell, char.spell) }, priority) { character: Character ->
+    onCharacter<CombatSwing>({ char -> !swung() && char.fightStyle == "magic" && char.spell.isNotBlank() && wildcardEquals(spell, char.spell) }, priority) { character: Character ->
         block.invoke(this, character)
     }
 }
@@ -71,7 +72,7 @@ fun characterSpellSwing(spells: Set<String>, priority: Priority = Priority.MEDIU
     if (spells.any { it.contains("*") || it.contains("#") }) {
         throw IllegalArgumentException("Spell collections cannot contain wildcards.")
     }
-    on<CombatSwing>({ player -> !swung() && spells.contains(player.spell) }, priority) { character: Character ->
+    onCharacter<CombatSwing>({ player -> !swung() && spells.contains(player.spell) }, priority) { character: Character ->
         block.invoke(this, character)
     }
 }

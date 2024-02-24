@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onCharacter
 import world.gregs.voidps.engine.event.wildcardEquals
 
 data class ItemOnNPC(
@@ -23,7 +24,7 @@ data class ItemOnNPC(
 }
 
 fun itemOnNPCApproach(item: String, npc: String, block: suspend ItemOnNPC.() -> Unit) {
-    on<ItemOnNPC>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(npc, this.target.id) }) { _: Character ->
+    onCharacter<ItemOnNPC>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(npc, this.target.id) }) { _: Character ->
         block.invoke(this)
     }
 }
