@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.client.ui.chat.toSILong
 import world.gregs.voidps.engine.client.ui.chat.toSIPrefix
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.adminCommand
-import world.gregs.voidps.engine.client.ui.event.command
 import world.gregs.voidps.engine.client.ui.event.modCommand
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.playTrack
@@ -123,7 +122,7 @@ adminCommand("npc") {
     npc?.start("movement_delay", -1)
 }
 
-command("save") {
+modCommand("save") {
     val account: PlayerAccounts = get()
     players.forEach(account::queueSave)
 }
