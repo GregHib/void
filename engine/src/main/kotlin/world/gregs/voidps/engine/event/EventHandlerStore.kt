@@ -56,10 +56,6 @@ inline fun <reified T : EventDispatcher, reified E : Event> addEvent(noinline co
     get<EventHandlerStore>().add(T::class, E::class, condition as Event.(EventDispatcher) -> Boolean, priority, block as suspend Event.(EventDispatcher) -> Unit)
 }
 
-inline fun <reified T : EventDispatcher, reified E : Event> on(noinline condition: E.(T) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(T) -> Unit) =
-    addEvent(condition, priority, block)
-
-@JvmName("onPlayer")
 inline fun <reified E : Event> on(noinline condition: E.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(Player) -> Unit) =
     addEvent(condition, priority, block)
 
