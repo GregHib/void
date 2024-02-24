@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
 import world.gregs.voidps.engine.client.ui.event.IntEntered
 import world.gregs.voidps.engine.client.ui.event.StringEntered
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
 import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
