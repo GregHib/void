@@ -40,7 +40,7 @@ fun floorItemSpawn(block: suspend Registered.(FloorItem) -> Unit) {
 }
 
 fun worldSpawn(block: suspend () -> Unit) {
-    onWorld<Registered> { _: World ->
+    onWorld<Registered> {
         block.invoke()
     }
 }

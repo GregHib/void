@@ -25,7 +25,7 @@ import world.gregs.voidps.world.interact.entity.death.weightedSample
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 
-onBot<TimerStop>({ timer == "woodcutting" }) { bot: Bot ->
+onBot<TimerStop>({ timer == "woodcutting" }) { bot ->
     bot.resume(timer)
 }
 

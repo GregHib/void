@@ -34,7 +34,7 @@ fun characterTimerStart(timer: String, block: suspend TimerStart.(Character) -> 
 }
 
 fun worldTimerStart(timer: String, block: suspend TimerStart.() -> Unit) {
-    onWorld<TimerStart>({ wildcardEquals(timer, this.timer) }) { _: World ->
+    onWorld<TimerStart>({ wildcardEquals(timer, this.timer) }) {
         block.invoke(this)
     }
 }

@@ -32,7 +32,7 @@ fun characterTimerStop(timer: String, block: suspend TimerStop.(Character) -> Un
 }
 
 fun worldTimerStop(timer: String, block: suspend TimerStop.() -> Unit) {
-    onWorld<TimerStop>({ wildcardEquals(timer, this.timer) }) { _: World ->
+    onWorld<TimerStop>({ wildcardEquals(timer, this.timer) }) {
         block.invoke(this)
     }
 }

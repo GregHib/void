@@ -41,7 +41,7 @@ fun itemOnObjectOperate(
     on<ItemOnObject>({
         operate && wildcardEquals(item, this.item.id) && wildcardEquals(obj, this.target.id) && (def == "*" || this.item.def.contains(def)) && wildcardEquals(inventory,
             this.inventory)
-    }, priority) { _: Player ->
+    }, priority) {
         if (arrive) {
             arriveDelay()
         }
@@ -61,7 +61,7 @@ fun itemOnObjectOperate(
         for (item in items) {
             on<ItemOnObject>({
                 operate && wildcardEquals(item, this.item.id) && wildcardEquals(obj, this.target.id) && wildcardEquals(inventory, this.inventory) && (def == "*" || this.item.def.contains(def))
-            }) { _: Player ->
+            }) {
                 if (arrive) {
                     arriveDelay()
                 }

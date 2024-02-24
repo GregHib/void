@@ -34,7 +34,7 @@ fun characterTimerTick(timer: String, block: suspend TimerTick.(Character) -> Un
 }
 
 fun worldTimerTick(timer: String, block: suspend TimerTick.() -> Unit) {
-    onWorld<TimerTick>({ wildcardEquals(timer, this.timer) }) { _: World ->
+    onWorld<TimerTick>({ wildcardEquals(timer, this.timer) }) {
         block.invoke(this)
     }
 }
