@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onNPC
 import world.gregs.voidps.engine.event.wildcardEquals
 
 data class TimerStart(val timer: String, val restart: Boolean = false) : CancellableEvent() {
@@ -20,9 +21,9 @@ fun timerStart(vararg timers: String, block: suspend TimerStart.(Player) -> Unit
 
 fun npcTimerStart(timer: String, npc: String = "*", block: suspend TimerStart.(NPC) -> Unit) {
     if (npc == "*") {
-        on<TimerStart>({ wildcardEquals(timer, this.timer) }, block = block)
+        onNPC<TimerStart>({ wildcardEquals(timer, this.timer) }, block = block)
     } else {
-        on<TimerStart>({ wildcardEquals(timer, this.timer) && wildcardEquals(npc, it.id) }, block = block)
+        onNPC<TimerStart>({ wildcardEquals(timer, this.timer) && wildcardEquals(npc, it.id) }, block = block)
     }
 }
 

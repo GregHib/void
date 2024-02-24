@@ -63,8 +63,7 @@ inline fun <reified T : EventDispatcher, reified E : Event> on(noinline conditio
 inline fun <reified E : Event> on(noinline condition: E.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(Player) -> Unit) =
     addEvent(condition, priority, block)
 
-@JvmName("onNPC")
-inline fun <reified E : Event> on(noinline condition: E.(NPC) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(NPC) -> Unit) =
+inline fun <reified E : Event> onNPC(noinline condition: E.(NPC) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(NPC) -> Unit) =
     addEvent(condition, priority, block)
 
 @JvmName("onCharacter")

@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onNPC
 import world.gregs.voidps.engine.event.wildcardEquals
 
 /**
@@ -22,7 +23,7 @@ fun levelChange(skill: Skill? = null, block: suspend CurrentLevelChanged.(Player
 }
 
 fun npcLevelChange(npc: String = "*", skill: Skill, priority: Priority = Priority.MEDIUM, block: suspend CurrentLevelChanged.(NPC) -> Unit) {
-    on<CurrentLevelChanged>({ wildcardEquals(npc, it.id) && skill == this.skill }, priority, block)
+    onNPC<CurrentLevelChanged>({ wildcardEquals(npc, it.id) && skill == this.skill }, priority, block)
 }
 
 fun characterLevelChange(skill: Skill, block: suspend CurrentLevelChanged.(Character) -> Unit) {

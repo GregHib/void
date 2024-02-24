@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onNPC
 import world.gregs.voidps.engine.event.wildcardEquals
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
@@ -30,11 +31,11 @@ fun combatSwing(priority: Priority = Priority.MEDIUM, block: suspend CombatSwing
 
 fun npcSwing(npc: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(NPC) -> Unit) {
     if (npc == "*") {
-        on<CombatSwing>({ !swung() }, priority) { character: NPC ->
+        onNPC<CombatSwing>({ !swung() }, priority) { character: NPC ->
             block.invoke(this, character)
         }
     } else {
-        on<CombatSwing>({ !swung() && wildcardEquals(npc, it.id) }, priority) { character: NPC ->
+        onNPC<CombatSwing>({ !swung() && wildcardEquals(npc, it.id) }, priority) { character: NPC ->
             block.invoke(this, character)
         }
     }

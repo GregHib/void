@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onNPC
 import world.gregs.voidps.engine.event.wildcardEquals
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
@@ -34,7 +35,7 @@ fun combatAttack(priority: Priority = Priority.MEDIUM, block: suspend CombatAtta
 }
 
 fun npcCombatAttack(npc: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(NPC) -> Unit) {
-    on<CombatAttack>({ wildcardEquals(npc, it.id) }, priority, block)
+    onNPC<CombatAttack>({ wildcardEquals(npc, it.id) }, priority, block)
 }
 
 fun characterCombatAttack(priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Character) -> Unit) {

@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onNPC
 import world.gregs.voidps.engine.event.wildcardEquals
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
 
@@ -33,7 +34,7 @@ fun combatHit(block: suspend CombatHit.(Player) -> Unit) {
 }
 
 fun npcCombatHit(block: suspend CombatHit.(NPC) -> Unit) {
-    on<CombatHit>(block = block)
+    onNPC<CombatHit>(block = block)
 }
 
 fun characterCombatHit(block: suspend CombatHit.(Character) -> Unit) {
