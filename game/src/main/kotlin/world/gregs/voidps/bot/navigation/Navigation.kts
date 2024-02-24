@@ -12,10 +12,10 @@ onBot<Moved>({ (it.player.mode is Movement && it.player.steps.size <= 1) || it.p
     bot.resume("move")
 }
 
-onBot<DoorOpened> { bot: Bot ->
+onBot<DoorOpened> { bot ->
     bot.resume("move")
 }
 
-onBot<Teleport> { bot: Bot ->
+onBot<Teleport> { bot ->
     bot.resume("move")
 }

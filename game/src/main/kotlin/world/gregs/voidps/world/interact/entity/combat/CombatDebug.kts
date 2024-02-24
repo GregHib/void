@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onCharacter
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
@@ -53,12 +53,12 @@ val logger = InlineLogger()
 val Character.charName: String
     get() = (this as? Player)?.name ?: (this as NPC).id
 
-on<CombatSwing>({ it["debug", false] || target["debug", false] }, Priority.HIGHEST) { character: Character ->
+onCharacter<CombatSwing>({ it["debug", false] || target["debug", false] }, Priority.HIGHEST) { character ->
     val player = if (character["debug", false] && character is Player) character else target as Player
     player.message("---- Swing (${character.charName}) -> (${target.charName}) -----")
 }
 
-on<CombatHit>({ debug(source, it) }, Priority.LOWEST) { character: Character ->
+onCharacter<CombatHit>({ debug(source, it) }, Priority.LOWEST) { character ->
     val player = if (character["debug", false] && character is Player) character else source as Player
     val message = "Damage: $damage ($type, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
     player.message(message)

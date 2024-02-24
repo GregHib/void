@@ -68,7 +68,7 @@ timerTick("clan_coin_share_update") { player ->
     }
 }
 
-on<LeaveClanChat>(priority = Priority.HIGH) { player: Player ->
+on<LeaveClanChat>(priority = Priority.HIGH) { player ->
     val clan: Clan = player.clan ?: return@on
     update(player, clan, lootShare = false)
 }

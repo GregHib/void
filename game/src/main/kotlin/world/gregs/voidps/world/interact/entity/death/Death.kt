@@ -5,6 +5,8 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onCharacter
+import world.gregs.voidps.engine.event.onNPC
 import world.gregs.voidps.engine.event.wildcardEquals
 
 object Death : Event
@@ -15,12 +17,12 @@ fun playerDeath(block: suspend Death.(Player) -> Unit) {
 
 fun npcDeath(npc: String = "*", block: suspend Death.(NPC) -> Unit) {
     if (npc == "*") {
-        on<Death>(block = block)
+        onNPC<Death>(block = block)
     } else {
-        on<Death>({ wildcardEquals(npc, it.id) }, block = block)
+        onNPC<Death>({ wildcardEquals(npc, it.id) }, block = block)
     }
 }
 
 fun characterDeath(block: suspend Death.(Character) -> Unit) {
-    on<Death>(block = block)
+    onCharacter<Death>(block = block)
 }

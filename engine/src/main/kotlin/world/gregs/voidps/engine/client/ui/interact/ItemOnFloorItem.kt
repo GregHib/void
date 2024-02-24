@@ -22,13 +22,13 @@ data class ItemOnFloorItem(
 }
 
 fun itemOnFloorItemApproach(item: String, floorItem: String, block: suspend ItemOnFloorItem.() -> Unit) {
-    on<ItemOnFloorItem>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(floorItem, this.floorItem.id) }) { _: Player ->
+    on<ItemOnFloorItem>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(floorItem, this.floorItem.id) }) {
         block.invoke(this)
     }
 }
 
 fun itemOnFloorItemOperate(item: String, floorItem: String, arrive: Boolean = true, block: suspend ItemOnFloorItem.() -> Unit) {
-    on<ItemOnFloorItem>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(floorItem, this.floorItem.id) }) { _: Player ->
+    on<ItemOnFloorItem>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(floorItem, this.floorItem.id) }) {
         if (arrive) {
             arriveDelay()
         }

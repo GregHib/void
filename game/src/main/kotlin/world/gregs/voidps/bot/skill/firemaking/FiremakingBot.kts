@@ -29,7 +29,7 @@ val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 val objects: GameObjects by inject()
 
-onBot<TimerStop>({ timer == "firemaking" }) { bot: Bot ->
+onBot<TimerStop>({ timer == "firemaking" }) { bot ->
     bot.resume(timer)
 }
 

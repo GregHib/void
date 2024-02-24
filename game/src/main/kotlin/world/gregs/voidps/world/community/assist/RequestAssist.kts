@@ -159,7 +159,7 @@ fun cancelAssist(assistant: Player?, assisted: Player?) {
     }
 }
 
-on<BlockedExperience>({ it.contains("assistant") }) { assisted: Player ->
+on<BlockedExperience>({ it.contains("assistant") }) { assisted ->
     val player: Player = assisted["assistant"] ?: return@on
     val active = player["assist_toggle_${skill.name.lowercase()}", false]
     var gained = player["total_xp_earned", 0].toDouble()

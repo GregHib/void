@@ -94,7 +94,7 @@ consume("sanfew_serum*") { player ->
     }
 }
 
-on<Consumable>({ item.id.startsWith("zamorak_brew") || item.id.startsWith("zamorak_mix") }) { player: Player ->
+on<Consumable>({ item.id.startsWith("zamorak_brew") || item.id.startsWith("zamorak_mix") }) { player ->
     val health = player.levels.get(Skill.Constitution)
     val damage = ((health / 100) * 10) + 20
     if (health - damage < 0) {

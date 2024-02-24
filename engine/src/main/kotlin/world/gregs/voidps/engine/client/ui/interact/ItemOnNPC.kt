@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onCharacter
 import world.gregs.voidps.engine.event.wildcardEquals
 
 data class ItemOnNPC(
@@ -23,25 +24,25 @@ data class ItemOnNPC(
 }
 
 fun itemOnNPCApproach(item: String, npc: String, block: suspend ItemOnNPC.() -> Unit) {
-    on<ItemOnNPC>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(npc, this.target.id) }) { _: Character ->
+    onCharacter<ItemOnNPC>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(npc, this.target.id) }) {
         block.invoke(this)
     }
 }
 
 fun itemOnNPCOperate(item: String, npc: String, block: suspend ItemOnNPC.() -> Unit) {
-    on<ItemOnNPC>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(npc, this.target.id) }) { _: Player ->
+    on<ItemOnNPC>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(npc, this.target.id) }) {
         block.invoke(this)
     }
 }
 
 fun spellOnNPCApproach(id: String, component: String = "*", priority: Priority = Priority.MEDIUM, block: suspend ItemOnNPC.() -> Unit) {
-    on<ItemOnNPC>({ approach && wildcardEquals(component, this.component) && wildcardEquals(id, this.id) }, priority) { _: Player ->
+    on<ItemOnNPC>({ approach && wildcardEquals(component, this.component) && wildcardEquals(id, this.id) }, priority) {
         block.invoke(this)
     }
 }
 
 fun spellOnNPCOperate(id: String, component: String = "*", block: suspend ItemOnNPC.() -> Unit) {
-    on<ItemOnNPC>({ operate && wildcardEquals(component, this.component) && wildcardEquals(id, this.id) }) { _: Player ->
+    on<ItemOnNPC>({ operate && wildcardEquals(component, this.component) && wildcardEquals(id, this.id) }) {
         block.invoke(this)
     }
 }

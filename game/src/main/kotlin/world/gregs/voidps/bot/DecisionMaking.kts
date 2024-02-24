@@ -6,10 +6,9 @@ import kotlinx.coroutines.launch
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.entity.AiTick
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onWorld
 import world.gregs.voidps.engine.inject
 import java.util.concurrent.ConcurrentLinkedQueue
 
@@ -29,7 +28,7 @@ onBot<StartBot>({ it.contains("task") && !it.contains("task_started") }) { bot: 
     }
 }
 
-on<World, AiTick> {
+onWorld<AiTick> {
     players.forEach { player ->
         if (player.isBot) {
             val bot: Bot = player["bot"]!!

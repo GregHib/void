@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
 
 fun inWilderness() = false
 
-on<Consumable>({ item.id.startsWith("overload") }) { player: Player ->
+on<Consumable>({ item.id.startsWith("overload") }) { player ->
     if (player.timers.contains("overload")) {
         player.message("You may only use this potion every five minutes.")
         cancel()

@@ -26,7 +26,7 @@ val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 val itemDefinitions: ItemDefinitions by inject()
 
-onBot<TimerStop>({ timer == "smelting" }) { bot: Bot ->
+onBot<TimerStop>({ timer == "smelting" }) { bot ->
     bot.resume(timer)
 }
 

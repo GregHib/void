@@ -44,11 +44,11 @@ val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 val floorItems: FloorItems by inject()
 
-onBot<VariableSet>({ key == "under_attack" && to == 0 }) { bot: Bot ->
+onBot<VariableSet>({ key == "under_attack" && to == 0 }) { bot ->
     bot.resume("combat")
 }
 
-onBot<CombatSwing> { bot: Bot ->
+onBot<CombatSwing> { bot ->
     val player = bot.player
     if (player.levels.getPercent(Skill.Constitution) < 50.0) {
         val food = player.inventory.items.firstOrNull { it.def.contains("heals") } ?: return@onBot
@@ -56,7 +56,7 @@ onBot<CombatSwing> { bot: Bot ->
     }
 }
 
-onBot<Death> { bot: Bot ->
+onBot<Death> { bot ->
     bot.clear("area")
     bot.cancel()
 }

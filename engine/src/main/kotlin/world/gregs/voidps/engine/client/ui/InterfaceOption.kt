@@ -21,7 +21,7 @@ data class InterfaceOption(
 }
 
 fun interfaceOption(option: String = "*", component: String = "*", id: String, itemSlot: Int = -1, block: suspend InterfaceOption.() -> Unit) {
-    on<InterfaceOption>({ wildcardEquals(id, this.id) && wildcardEquals(component, this.component) && wildcardEquals(option, this.option) && (itemSlot == -1 || this.itemSlot == itemSlot) }) { _: Player ->
+    on<InterfaceOption>({ wildcardEquals(id, this.id) && wildcardEquals(component, this.component) && wildcardEquals(option, this.option) && (itemSlot == -1 || this.itemSlot == itemSlot) }) {
         block.invoke(this)
     }
 }

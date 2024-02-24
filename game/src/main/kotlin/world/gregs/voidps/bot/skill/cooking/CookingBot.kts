@@ -26,7 +26,7 @@ import world.gregs.voidps.network.instruct.InteractInterfaceObject
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 
-onBot<TimerStop>({ timer == "cooking" }) { bot: Bot ->
+onBot<TimerStop>({ timer == "cooking" }) { bot ->
     bot.resume(timer)
 }
 

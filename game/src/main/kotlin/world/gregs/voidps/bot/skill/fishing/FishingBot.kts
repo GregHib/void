@@ -34,7 +34,7 @@ val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 val gear: GearDefinitions by inject()
 
-onBot<TimerStop>({ timer == "fishing" }) { bot: Bot ->
+onBot<TimerStop>({ timer == "fishing" }) { bot ->
     bot.resume(timer)
 }
 
