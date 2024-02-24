@@ -69,8 +69,7 @@ inline fun <reified E : Event> onNPC(noinline condition: E.(NPC) -> Boolean = { 
 inline fun <reified E : Event> onCharacter(noinline condition: E.(Character) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(Character) -> Unit) =
     addEvent(condition, priority, block)
 
-@JvmName("onItem")
-inline fun <reified E : Event> on(noinline condition: E.(FloorItem) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(FloorItem) -> Unit) =
+inline fun <reified E : Event> onFloorItem(noinline condition: E.(FloorItem) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(FloorItem) -> Unit) =
     addEvent(condition, priority, block)
 
 @JvmName("onWorld")
