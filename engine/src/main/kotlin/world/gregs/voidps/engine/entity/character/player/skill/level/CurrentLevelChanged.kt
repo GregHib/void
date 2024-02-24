@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.event.wildcardEquals
 data class CurrentLevelChanged(val skill: Skill, val from: Int, val to: Int) : CancellableEvent()
 
 fun levelChange(skill: Skill? = null, block: suspend CurrentLevelChanged.(Player) -> Unit) {
-    on<CurrentLevelChanged>({ skill == null || this.skill == skill }) { player: Player ->
+    on<CurrentLevelChanged>({ skill == null || this.skill == skill }) { player ->
         block.invoke(this, player)
     }
 }

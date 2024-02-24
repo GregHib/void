@@ -39,7 +39,7 @@ playerDespawn { player ->
     notifyBefriends(player, online = false)
 }
 
-on<AddFriend> { player: Player ->
+on<AddFriend> { player ->
     val account = accounts.get(friend)
     if (account == null) {
         player.message("Unable to find player with name '$friend'.")
@@ -78,7 +78,7 @@ on<AddFriend> { player: Player ->
     player.sendFriend(account)
 }
 
-on<DeleteFriend> { player: Player ->
+on<DeleteFriend> { player ->
     val account = accounts.get(friend)
     if (account == null || !player.friends.contains(account.accountName)) {
         player.message("Unable to find player with name '$friend'.")
@@ -92,14 +92,14 @@ on<DeleteFriend> { player: Player ->
     }
 }
 
-on<AddIgnore>(priority = Priority.LOWER) { player: Player ->
+on<AddIgnore>(priority = Priority.LOWER) { player ->
     val other = players.get(name)
     if (other != null && other.friend(player) && !other.isAdmin()) {
         other.updateFriend(Friend(player.name, player.previousName, world = 0))
     }
 }
 
-on<DeleteIgnore>({ player -> player.privateStatus == "on" }, Priority.LOWER) { player: Player ->
+on<DeleteIgnore>({ player -> player.privateStatus == "on" }, Priority.LOWER) { player ->
     val other = players.get(name)
     if (other != null && (other.friend(player) || other.isAdmin())) {
         other.updateFriend(Friend(player.name, player.previousName, world = World.id, worldName = World.name))
@@ -136,7 +136,7 @@ interfaceOption(component = "private", id = "filter_buttons") {
     }
 }
 
-on<LeaveClanChat>(priority = Priority.HIGH) { player: Player ->
+on<LeaveClanChat>(priority = Priority.HIGH) { player ->
     val clan: Clan = player.clan ?: return@on
     if (player.accountName != clan.owner || player.isAdmin()) {
         player.sendFriends()

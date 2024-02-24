@@ -29,31 +29,31 @@ fun variableSet(variables: Set<String>, block: suspend VariableSet.(Player) -> U
 }
 
 fun variableSet(id: String, block: suspend VariableSet.(Player) -> Unit) {
-    on<VariableSet>({ wildcardEquals(id, key) }) { player: Player ->
+    on<VariableSet>({ wildcardEquals(id, key) }) { player ->
         block.invoke(this, player)
     }
 }
 
 fun variableSet(id: String, to: Any, block: suspend VariableSet.(Player) -> Unit) {
-    on<VariableSet>({ wildcardEquals(id, key) && to == this.to && from != to }) { player: Player ->
+    on<VariableSet>({ wildcardEquals(id, key) && to == this.to && from != to }) { player ->
         block.invoke(this, player)
     }
 }
 
 fun variableUnset(id: String, from: Any, block: suspend VariableSet.(Player) -> Unit) {
-    on<VariableSet>({ wildcardEquals(id, key) && from == this.from && to != from }) { player: Player ->
+    on<VariableSet>({ wildcardEquals(id, key) && from == this.from && to != from }) { player ->
         block.invoke(this, player)
     }
 }
 
 fun specialAttack(id: String, block: suspend VariableSet.(Player) -> Unit) {
-    on<VariableSet>({ key == "special_attack" && to == true && from != true && wildcardEquals(id, it["weapon", Item.EMPTY].id) }) { player: Player ->
+    on<VariableSet>({ key == "special_attack" && to == true && from != true && wildcardEquals(id, it["weapon", Item.EMPTY].id) }) { player ->
         block.invoke(this, player)
     }
 }
 
 fun variableSet(id: String, from: Any?, to: Any?, block: suspend VariableSet.(Player) -> Unit) {
-    on<VariableSet>({ wildcardEquals(id, key) && from == this.from && to == this.to }) { player: Player ->
+    on<VariableSet>({ wildcardEquals(id, key) && from == this.from && to == this.to }) { player ->
         block.invoke(this, player)
     }
 }

@@ -35,7 +35,7 @@ interfaceClose("shop") { player ->
     }
 }
 
-on<OpenShop> { player: Player ->
+on<OpenShop> { player ->
     val definition = inventoryDefinitions.getOrNull(id) ?: return@on
     val currency: String = definition["currency", "coins"]
     player["shop_currency"] = currency

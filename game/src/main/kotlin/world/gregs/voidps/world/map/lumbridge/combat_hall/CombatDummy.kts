@@ -17,14 +17,14 @@ import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
 
 for (type in listOf("magic", "melee")) {
-    on<NPCOption>({ target.id == "${type}_dummy" && option == "Attack" && it.fightStyle != type }, Priority.HIGH) { player: Player ->
+    on<NPCOption>({ target.id == "${type}_dummy" && option == "Attack" && it.fightStyle != type }, Priority.HIGH) { player ->
         player.message("You can only use ${type.toTitleCase()} against this dummy.")
         player.approachRange(10, false)
         player.mode = EmptyMode
         cancel()
     }
 
-    on<ItemOnNPC>({ approach && target.id == "${type}_dummy" && it.fightStyle != type }) { player: Player ->
+    on<ItemOnNPC>({ approach && target.id == "${type}_dummy" && it.fightStyle != type }) { player ->
         player.message("You can only use ${type.toTitleCase()} against this dummy.")
         player.approachRange(10, false)
         player.mode = EmptyMode

@@ -43,7 +43,7 @@ playerSpawn(priority = Priority.HIGHEST) { player ->
     viewport.players.addSelf(player)
 }
 
-on<RegionRetry>({ it.networked }) { player: Player ->
+on<RegionRetry>({ it.networked }) { player ->
     println("Failed to load region. Retrying...")
     updateRegion(player, initial = false, force = true)
 }

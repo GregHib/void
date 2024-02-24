@@ -20,7 +20,7 @@ playerSpawn { player ->
     player.sendIgnores()
 }
 
-on<AddIgnore> { player: Player ->
+on<AddIgnore> { player ->
     val account = accounts.get(name)
     if (account == null) {
         player.message("Unable to find player with name '$name'.")
@@ -56,7 +56,7 @@ on<AddIgnore> { player: Player ->
     player.sendIgnore(account)
 }
 
-on<DeleteIgnore> { player: Player ->
+on<DeleteIgnore> { player ->
     val accountName = player.ignores.firstOrNull {
         val account = accounts.getByAccount(it) ?: return@firstOrNull false
         name.equals(account.displayName, true) // This packet ignores case for some reason.

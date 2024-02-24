@@ -40,13 +40,13 @@ continueDialogue("dialogue_multi*", "line*") { player ->
     player.resumeDialogueSuspension()
 }
 
-on<IntEntered> { player: Player ->
+on<IntEntered> { player ->
     val suspension = player.dialogueSuspension as? IntSuspension ?: return@on
     suspension.int = value
     player.resumeDialogueSuspension()
 }
 
-on<StringEntered> { player: Player ->
+on<StringEntered> { player ->
     val suspension = player.dialogueSuspension as? StringSuspension ?: return@on
     suspension.string = value
     player.resumeDialogueSuspension()

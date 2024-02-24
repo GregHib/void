@@ -43,20 +43,20 @@ fun npcSwing(npc: String = "*", priority: Priority = Priority.MEDIUM, block: sus
 }
 
 fun spellSwing(spell: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Player) -> Unit) {
-    on<CombatSwing>({ player -> !swung() && player.fightStyle == "magic" && player.spell.isNotBlank() && wildcardEquals(spell, player.spell) }, priority) { character: Player ->
+    on<CombatSwing>({ player -> !swung() && player.fightStyle == "magic" && player.spell.isNotBlank() && wildcardEquals(spell, player.spell) }, priority) { character ->
         block.invoke(this, character)
     }
 }
 
 fun weaponSwing(weapon: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Player) -> Unit) {
-    on<CombatSwing>({ player -> !swung() && !player.specialAttack && wildcardEquals(weapon, player.weapon.id) }, priority) { character: Player ->
+    on<CombatSwing>({ player -> !swung() && !player.specialAttack && wildcardEquals(weapon, player.weapon.id) }, priority) { character ->
         block.invoke(this, character)
     }
 }
 
 fun weaponSwing(vararg weapons: String = arrayOf("*"), style: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Player) -> Unit) {
     for (weapon in weapons) {
-        on<CombatSwing>({ player -> !swung() && !player.specialAttack && wildcardEquals(style, player.fightStyle) && wildcardEquals(weapon, player.weapon.id) }, priority) { character: Player ->
+        on<CombatSwing>({ player -> !swung() && !player.specialAttack && wildcardEquals(style, player.fightStyle) && wildcardEquals(weapon, player.weapon.id) }, priority) { character ->
             block.invoke(this, character)
         }
     }
@@ -81,14 +81,14 @@ fun spellSwing(spells: Set<String>, priority: Priority = Priority.MEDIUM, block:
     if (spells.any { it.contains("*") || it.contains("#") }) {
         throw IllegalArgumentException("Spell collections cannot contain wildcards.")
     }
-    on<CombatSwing>({ player -> !swung() && spells.contains(player.spell) }, priority) { character: Player ->
+    on<CombatSwing>({ player -> !swung() && spells.contains(player.spell) }, priority) { character ->
         block.invoke(this, character)
     }
 }
 
 fun specialAttackSwing(vararg weapons: String = arrayOf("*"), style: String = "melee", priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Player) -> Unit) {
     for (weapon in weapons) {
-        on<CombatSwing>({ player -> !swung() && player.specialAttack && player.fightStyle == style && wildcardEquals(weapon, player.weapon.id) }, priority) { character: Player ->
+        on<CombatSwing>({ player -> !swung() && player.specialAttack && player.fightStyle == style && wildcardEquals(weapon, player.weapon.id) }, priority) { character ->
             block.invoke(this, character)
         }
     }

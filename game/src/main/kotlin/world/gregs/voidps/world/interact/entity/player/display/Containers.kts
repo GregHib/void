@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inv.InventoryUpdate
 val inventoryDefinitions: InventoryDefinitions by inject()
 val itemDefs: ItemDefinitions by inject()
 
-on<InventoryUpdate> { player: Player ->
+on<InventoryUpdate> { player ->
     val secondary = inventory.startsWith("_")
     val id = if (secondary) inventory.removePrefix("_") else inventory
     player.sendInterfaceItemUpdate(

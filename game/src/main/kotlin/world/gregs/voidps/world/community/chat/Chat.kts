@@ -26,18 +26,18 @@ import world.gregs.voidps.world.community.ignore.ignores
 val players: Players by inject()
 val huffman: Huffman by inject()
 
-on<PublicChat>({ it.chatType == "public" }) { player: Player ->
+on<PublicChat>({ it.chatType == "public" }) { player ->
     val message = PublicChatMessage(player, effects, text, huffman)
     players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
         it.events.emit(message)
     }
 }
 
-on<PublicChatMessage>({ it.networked }) { player: Player ->
+on<PublicChatMessage>({ it.networked }) { player ->
     player.client?.publicChat(source.index, effects, source.rights.ordinal, compressed)
 }
 
-on<PrivateChat> { player: Player ->
+on<PrivateChat> { player ->
     val target = players.get(friend)
     if (target == null || target.ignores(player)) {
         player.message("Unable to send message - player unavailable.")
@@ -48,11 +48,11 @@ on<PrivateChat> { player: Player ->
     target.events.emit(message)
 }
 
-on<PrivateChatMessage>({ it.networked }) { player: Player ->
+on<PrivateChatMessage>({ it.networked }) { player ->
     player.client?.privateChatFrom(source.name, source.rights.ordinal, compressed)
 }
 
-on<PublicChat>({ it.chatType == "clan" }) { player: Player ->
+on<PublicChat>({ it.chatType == "clan" }) { player ->
     val clan = player.clan
     if (clan == null) {
         player.message("You must be in a clan chat to talk.", ChatType.ClanChat)
@@ -68,6 +68,6 @@ on<PublicChat>({ it.chatType == "clan" }) { player: Player ->
     }
 }
 
-on<ClanChatMessage>({ it.networked }) { player: Player ->
+on<ClanChatMessage>({ it.networked }) { player ->
     player.client?.clanChat(source.name, player.clan!!.name, source.rights.ordinal, compressed)
 }

@@ -13,7 +13,7 @@ data class InterfaceRefreshed(val id: String) : Event
 
 fun interfaceRefresh(vararg ids: String, block: suspend InterfaceRefreshed.(Player) -> Unit) {
     for (id in ids) {
-        on<InterfaceRefreshed>({ wildcardEquals(id, this.id) }) { player: Player ->
+        on<InterfaceRefreshed>({ wildcardEquals(id, this.id) }) { player ->
             block.invoke(this, player)
         }
     }

@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIA
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
 import java.util.concurrent.TimeUnit
 
-on<Consumable>({ item.id.startsWith("recover_special") }) { player: Player ->
+on<Consumable>({ item.id.startsWith("recover_special") }) { player ->
     if (player.softTimers.contains("recover_special_delay")) {
         player.message("You may only use this pot once every 30 seconds.")
         cancel()

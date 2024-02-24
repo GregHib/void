@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.world.activity.skill.ItemUsedOnItem
 
-on<ItemUsedOnItem>({ def.skill == Skill.Crafting && def.requires.any { it.id == "thread" } }) { player: Player ->
+on<ItemUsedOnItem>({ def.skill == Skill.Crafting && def.requires.any { it.id == "thread" } }) { player ->
     val value = player.inc("thread_used")
     if (value == 5) {
         player.clear("thread_used")
