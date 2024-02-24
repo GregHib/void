@@ -41,17 +41,20 @@ class GameServer(
                 logger.error(throwable) { "Connection error" }
             }
         }
-        val server = aSocket(selector).tcp().bind(port = port)
-        runBlocking(supervisor + exceptionHandler) {
-            running = true
-            logger.info { "Listening for requests on port ${port}..." }
-            while (running) {
-                val socket = server.accept()
-                logger.trace { "New connection accepted ${socket.remoteAddress}" }
-                val read = socket.openReadChannel()
-                val write = socket.openWriteChannel(autoFlush = false)
-                launch(dispatcher) {
-                    connect(read, write, socket.remoteAddress.toJavaAddress().hostname)
+        runBlocking {
+            val scope = CoroutineScope(supervisor + exceptionHandler)
+            with(scope) {
+                val server = aSocket(selector).tcp().bind(port = port)
+                running = true
+                logger.info { "Listening for requests on port ${port}..." }
+                while (running) {
+                    val socket = server.accept()
+                    logger.trace { "New connection accepted ${socket.remoteAddress}" }
+                    val read = socket.openReadChannel()
+                    val write = socket.openWriteChannel(autoFlush = false)
+                    launch(dispatcher) {
+                        connect(read, write, socket.remoteAddress.toJavaAddress().hostname)
+                    }
                 }
             }
         }
