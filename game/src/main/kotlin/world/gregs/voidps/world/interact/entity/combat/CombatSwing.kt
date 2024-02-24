@@ -32,11 +32,11 @@ fun combatSwing(priority: Priority = Priority.MEDIUM, block: suspend CombatSwing
 
 fun npcSwing(npc: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(NPC) -> Unit) {
     if (npc == "*") {
-        onNPC<CombatSwing>({ !swung() }, priority) { character: NPC ->
+        onNPC<CombatSwing>({ !swung() }, priority) { character ->
             block.invoke(this, character)
         }
     } else {
-        onNPC<CombatSwing>({ !swung() && wildcardEquals(npc, it.id) }, priority) { character: NPC ->
+        onNPC<CombatSwing>({ !swung() && wildcardEquals(npc, it.id) }, priority) { character ->
             block.invoke(this, character)
         }
     }

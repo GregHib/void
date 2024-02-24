@@ -59,19 +59,19 @@ fun variableSet(id: String, from: Any?, to: Any?, block: suspend VariableSet.(Pl
 }
 
 fun npcVariableSet(id: String, block: suspend VariableSet.(NPC) -> Unit) {
-    onNPC<VariableSet>({ wildcardEquals(id, key) }) { npc: NPC ->
+    onNPC<VariableSet>({ wildcardEquals(id, key) }) { npc ->
         block.invoke(this, npc)
     }
 }
 
 fun npcVariableSet(id: String, to: Any?, block: suspend VariableSet.(NPC) -> Unit) {
-    onNPC<VariableSet>({ wildcardEquals(id, key) && to == this.to }) { npc: NPC ->
+    onNPC<VariableSet>({ wildcardEquals(id, key) && to == this.to }) { npc ->
         block.invoke(this, npc)
     }
 }
 
 fun npcVariableSet(id: String, from: Any?, to: Any?, block: suspend VariableSet.(NPC) -> Unit) {
-    onNPC<VariableSet>({ wildcardEquals(id, key) && from == this.from && to == this.to }) { npc: NPC ->
+    onNPC<VariableSet>({ wildcardEquals(id, key) && from == this.from && to == this.to }) { npc ->
         block.invoke(this, npc)
     }
 }

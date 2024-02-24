@@ -21,11 +21,11 @@ fun playerSpawn(priority: Priority = Priority.MEDIUM, block: suspend Registered.
 
 fun npcSpawn(npc: String = "*", block: suspend (NPC) -> Unit) {
     if (npc == "*") {
-        onNPC<Registered> { character: NPC ->
+        onNPC<Registered> { character ->
             block.invoke(character)
         }
     } else {
-        onNPC<Registered>({ wildcardEquals(npc, it.id) }) { character: NPC ->
+        onNPC<Registered>({ wildcardEquals(npc, it.id) }) { character ->
             block.invoke(character)
         }
     }
