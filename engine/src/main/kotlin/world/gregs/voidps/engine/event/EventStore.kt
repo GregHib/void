@@ -13,18 +13,16 @@ import kotlin.reflect.KClass
 
 class EventStore : CoroutineScope {
     override val coroutineContext: CoroutineContext = Dispatchers.Unconfined + errorHandler
-    private val handlers: MutableMap<KClass<out EventDispatcher>, MutableMap<KClass<out Event>, MutableList<EventHandler>>> = Object2ObjectOpenHashMap()
+    private val handlers: MutableMap<String, MutableList<EventHandler>> = Object2ObjectOpenHashMap()
     val botListeners = mutableListOf<(Event) -> Unit>()
 
     fun add(dispatcher: KClass<out EventDispatcher>, event: KClass<out Event>, handler: EventHandler) {
-        handlers.getOrPut(dispatcher) { Object2ObjectOpenHashMap(2) }.getOrPut(event) { mutableListOf() }.add(handler)
+        handlers.getOrPut("${dispatcher.simpleName}_${event.simpleName}") { mutableListOf() }.add(handler)
     }
 
     fun init() {
-        for ((_, map) in handlers) {
-            for ((_, list) in map) {
-                list.sort()
-            }
+        for ((_, list) in handlers) {
+            list.sort()
         }
     }
 
@@ -35,7 +33,7 @@ class EventStore : CoroutineScope {
     var all: ((Event) -> Unit)? = null
 
     fun <E : Event> emit(dispatcher: EventDispatcher, event: E): Boolean {
-        val handlers = handlers[dispatcher::class]?.get(event::class) ?: return false
+        val handlers = handlers["${dispatcher::class.simpleName}_${event::class.simpleName}"] ?: return false
         for (listener in botListeners) {
             listener.invoke(event)
         }
@@ -56,7 +54,7 @@ class EventStore : CoroutineScope {
     }
 
     fun <E : SuspendableEvent> emit(dispatcher: EventDispatcher, event: E): Boolean {
-        val handlers = handlers[dispatcher::class]?.get(event::class) ?: return false
+        val handlers = handlers["${dispatcher::class.simpleName}_${event::class.simpleName}"] ?: return false
         if (handlers.none { it.condition(event, dispatcher) }) {
             return false
         }
@@ -77,7 +75,7 @@ class EventStore : CoroutineScope {
     }
 
     fun <E : SuspendableEvent> contains(dispatcher: EventDispatcher, event: E): Boolean {
-        val eventHandlers = handlers[dispatcher::class]?.get(event::class)
+        val eventHandlers = handlers["${dispatcher::class.simpleName}_${event::class.simpleName}"]
         return eventHandlers != null && eventHandlers.any { it.condition(event, dispatcher) }
     }
 
