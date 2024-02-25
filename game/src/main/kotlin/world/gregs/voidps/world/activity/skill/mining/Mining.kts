@@ -33,19 +33,25 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
+import world.gregs.voidps.world.activity.bank.bank
+import world.gregs.voidps.world.activity.dnd.shootingstar.StarDustHandler
 
 val objects: GameObjects by inject()
 val itemDefinitions: ItemDefinitions by inject()
 
 objectOperate("Mine") {
-    val isStar: Boolean = target.def["star", false]
-    if(isStar){
-        println("That's a star")
-        return@objectOperate
-    }
     if (target.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
         return@objectOperate
+    }
+    val isStar = target.id.startsWith("crashed_star")
+    if(isStar){
+        val isEarlyBird = StarDustHandler.invokeIsEarlyBird(player)
+        if(isEarlyBird!!){
+            player.message("Congratulations!, You were the first person to find this star!")
+            val xpToAdd:Double = player.levels.get(Skill.Mining) * 75.0
+            player.experience.add(Skill.Mining, xpToAdd)
+        }
     }
     player.softTimers.start("mining")
     var first = true
@@ -147,20 +153,32 @@ fun hasRequirements(player: Player, pickaxe: Item?, message: Boolean = false): B
 }
 
 fun addOre(player: Player, ore: String): Boolean {
+    if (ore == "stardust") {
+        StarDustHandler.invokeCollectedStarDust()
+        val totalStarDust = player.inventory.count(ore) + player.bank.count(ore)
+        if (totalStarDust >= 200) {
+            player.message("You have the maximum amount of stardust but was still rewarded experience.")
+            return true
+        }
+    }
     val added = player.inventory.add(ore)
-    if (added) {
-        player.message("You manage to mine some ${ore.toLowerSpaceCase()}.")
+    if (added) { player.message("You manage to mine some ${ore.toLowerSpaceCase()}.")
     } else {
         player.inventoryFull()
     }
+    println(added)
     return added
 }
 
 fun deplete(rock: Rock, obj: GameObject): Boolean {
-    if (rock.life >= 0) {
-        objects.replace(obj, "depleted${obj.id.dropWhile { it != '_' }}", ticks = rock.life)
-        return true
+    if (obj.id.startsWith("crashed_star_tier_")) {
+        StarDustHandler.invokeHandleMinedStarDust(obj)
+        return false
     }
+    if (rock.life >= 0) {
+            objects.replace(obj, "depleted${obj.id.dropWhile { it != '_' }}", ticks = rock.life)
+        return true
+        }
     return false
 }
 
