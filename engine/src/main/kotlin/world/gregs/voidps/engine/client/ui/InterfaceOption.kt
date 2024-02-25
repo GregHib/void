@@ -20,8 +20,14 @@ data class InterfaceOption(
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 }
 
-fun interfaceOption(option: String = "*", component: String = "*", id: String, itemSlot: Int = -1, block: suspend InterfaceOption.() -> Unit) {
-    on<InterfaceOption>({ wildcardEquals(id, this.id) && wildcardEquals(component, this.component) && wildcardEquals(option, this.option) && (itemSlot == -1 || this.itemSlot == itemSlot) }) {
+fun interfaceOption(option: String = "*", component: String = "*", id: String, block: suspend InterfaceOption.() -> Unit) {
+    on<InterfaceOption>({ wildcardEquals(id, this.id) && wildcardEquals(component, this.component) && wildcardEquals(option, this.option) }) {
+        block.invoke(this)
+    }
+}
+
+fun interfaceSlot(component: String = "*", id: String, itemSlot: Int = -1, block: suspend InterfaceOption.() -> Unit) {
+    on<InterfaceOption>({ wildcardEquals(id, this.id) && wildcardEquals(component, this.component) && (itemSlot == -1 || this.itemSlot == itemSlot) }) {
         block.invoke(this)
     }
 }
