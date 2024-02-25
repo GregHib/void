@@ -92,25 +92,28 @@ fun addStarDustCollected(){
 
 fun startCrashedStarEvent() {
     currentStarTile = StarLocationData.entries.random().location
-    println(currentStarTile)
     val shootingStarShadow: NPC? = npcs.add("shooting_star_shadow", Tile(currentStarTile.x, currentStarTile.y + 6), Direction.NONE)
     shootingStarShadow?.walkTo(currentStarTile, true, true)
     World.queue("awaiting_shadow_walk", 6) {
-        currentActiveObject = objects.add("crashed_star_tier_${random.nextInt(1, 9)}", currentStarTile)
-        players.forEach { player -> // theres probably a way to iterate through players in a region by id
-            if(player.tile.region == currentStarTile.region){ // make sure that the player is in the same region as the rock
-                if(player.tile.equals(currentStarTile)){ // if the player tile is the same as rock tile
-                    val actual = currentStarTile
-                    val direction = player.tile.delta(actual.add(1,1)).toDirection()
-                    val delta = direction.delta
-                    player.damage(random.nextInt(10, 50))
-                    if (!player.blocked(direction)) {
-                        player.walkTo(Tile(currentStarTile.x + delta.x, currentStarTile.y + delta.y), true) // had to set 'noCollision' to true otherwise the star object itself was blocking the walk and forceWalk didn't look good.
+        val shootingStarObjectFalling: GameObject = objects.add("crashed_star_falling_object", currentStarTile)
+        World.queue("falling_star_object_removal", 1) {
+            players.forEach { player -> // theres probably a way to iterate through players in a region by id
+                if(player.tile.region == currentStarTile.region){ // make sure that the player is in the same region as the rock
+                    if(player.tile.equals(currentStarTile)){ // if the player tile is the same as rock tile
+                        val actual = currentStarTile
+                        val direction = player.tile.delta(actual.add(1,1)).toDirection()
+                        val delta = direction.delta
+                        player.damage(random.nextInt(10, 50))
+                        if (!player.blocked(direction)) {
+                            player.walkTo(Tile(currentStarTile.x + delta.x, currentStarTile.y + delta.y), true) // had to set 'noCollision' to true otherwise the star object itself was blocking the walk and forceWalk didn't look good.
+                        }
                     }
                 }
             }
+            currentActiveObject = shootingStarObjectFalling.replace("crashed_star_tier_${random.nextInt(1, 9)}")
+
+            npcs.remove(shootingStarShadow)
         }
-        npcs.remove(shootingStarShadow)
     }
 }
 

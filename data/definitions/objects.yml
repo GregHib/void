@@ -3969,6 +3969,9 @@ fire_green:
 fire_blue:
   id: 11406
   examine: "Hot!"
+crashed_star_falling_object:
+  id: 38659
+  examine: "It's a crashed star"
 crashed_star_tier_9:
   id: 38660
   collect_for_next_layer: 15
