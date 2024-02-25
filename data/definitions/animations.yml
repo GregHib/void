@@ -1371,6 +1371,7 @@ ice_cleave: 7070
 sweep: 1203
 powerstab: 7078
 shove: 1064
+fall_back_on_butt: 4172
 quick_smash: 1667
 clobber: 2876
 disrupt: 14788

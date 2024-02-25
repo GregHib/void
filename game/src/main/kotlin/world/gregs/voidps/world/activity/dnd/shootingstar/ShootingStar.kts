@@ -4,14 +4,18 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.forceWalk
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.obj.*
+import world.gregs.voidps.engine.entity.character.setAnimation
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.objectApproach
+import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -19,26 +23,24 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
+import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.cleanseEvent
+import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.currentActiveObject
+import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.currentStarTile
+import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.startEvent
+import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.totalCollected
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Sad
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
-import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 
 val objects: GameObjects by inject()
 val npcs: NPCs by inject()
 val players: Players by inject()
 
-var totalCollected: Int = 0
-var currentStarTile = Tile.EMPTY
-var currentActiveObject: GameObject? = null
-val startEvent = TimeUnit.HOURS.toTicks(random.nextInt(1, 2))
-var earlyBird: Player? = null
 worldSpawn {
     eventUpdate()
 }
@@ -62,34 +64,6 @@ fun isPlayersPresent(): Boolean {
     return false
 }
 
-fun handleMinedStarDust(currentMinedStar: GameObject) {
-    val starPayout = currentMinedStar.def["collect_for_next_layer", -1]
-    if (totalCollected >= starPayout) {
-        val stage = currentMinedStar.id.takeLast(1)
-        if (stage.equals("1")) {
-            currentMinedStar.remove()
-            cleanseEvent(false)
-            return
-        }
-        val nextStage = currentMinedStar.id.replace(stage, (stage.toInt() - 1).toString())
-        val nextStar = currentMinedStar.replace(nextStage)
-        totalCollected = 0
-        changeStar(currentMinedStar.id, nextStar.id)
-    }
-}
-
-fun checkIfEarlyBird(player: Player): Boolean {
-    if(earlyBird == null){
-        earlyBird = player
-        return true
-    }
-    return false
-}
-
-fun addStarDustCollected(){
-    totalCollected ++
-}
-
 fun startCrashedStarEvent() {
     currentStarTile = StarLocationData.entries.random().location
     val shootingStarShadow: NPC? = npcs.add("shooting_star_shadow", Tile(currentStarTile.x, currentStarTile.y + 6), Direction.NONE)
@@ -97,50 +71,20 @@ fun startCrashedStarEvent() {
     World.queue("awaiting_shadow_walk", 6) {
         val shootingStarObjectFalling: GameObject = objects.add("crashed_star_falling_object", currentStarTile)
         World.queue("falling_star_object_removal", 1) {
-            players.forEach { player -> // theres probably a way to iterate through players in a region by id
-                if(player.tile.region == currentStarTile.region){ // make sure that the player is in the same region as the rock
-                    if(player.tile.equals(currentStarTile)){ // if the player tile is the same as rock tile
-                        val actual = currentStarTile
-                        val direction = player.tile.delta(actual.add(1,1)).toDirection()
-                        val delta = direction.delta
-                        player.damage(random.nextInt(10, 50))
-                        if (!player.blocked(direction)) {
-                            player.walkTo(Tile(currentStarTile.x + delta.x, currentStarTile.y + delta.y), true) // had to set 'noCollision' to true otherwise the star object itself was blocking the walk and forceWalk didn't look good.
-                        }
+              for (tile in currentStarTile.toCuboid(2, 2)) {
+                 for (player in players[tile]) {
+                     player.damage(random.nextInt(10, 50))
+                     val direction = if (player.tile == currentStarTile) Direction.SOUTH else currentStarTile.delta(player.tile).toDirection()
+                     if (!player.blocked(direction)) {
+                         player.forceWalk(direction.delta, 1, direction.inverse())
                     }
-                }
-            }
+                     player.setAnimation("fall_back_on_butt")
+                 }
+              }
             currentActiveObject = shootingStarObjectFalling.replace("crashed_star_tier_${random.nextInt(1, 9)}")
-
             npcs.remove(shootingStarShadow)
         }
     }
-}
-
-fun changeStar(oldStar: String, newStar: String): Boolean {
-    val existing = objects.get(currentStarTile, oldStar)
-    if (existing != null) {
-        currentActiveObject = existing.replace(newStar)
-        return true
-    }
-    return false
-}
-
-fun cleanseEvent(forceStopped: Boolean) {
-    val existing = currentActiveObject?.let { objects.get(currentStarTile, it.id) }
-    if (existing != null) {
-        existing.remove(existing.intId, true)
-    }
-    if(!forceStopped){
-        val starSprite = npcs.add("star_sprite", currentStarTile, Direction.NONE, 0)
-        World.queue("start_sprite_despawn_timer", TimeUnit.MINUTES.toTicks(10)) {
-            npcs.remove(starSprite)
-        }
-    }
-    totalCollected = 0
-    currentStarTile = Tile.EMPTY
-    currentActiveObject = null
-    earlyBird = null
 }
 
 fun getLayerPercentage(totalCollected: Int, totalNeeded: Int): String {
@@ -208,7 +152,3 @@ npcOperate("Talk-to", "star_sprite") {
         npc<Cheerful>("I have rewarded you by making it so you can mine extra ore for the next 15 minutes, ${messageBuilder}.")
     }
 }
-
-StarDustHandler.collectedDustHandler = ::addStarDustCollected
-StarDustHandler.handleMinedStarDust = ::handleMinedStarDust
-StarDustHandler.isEarlyBird = ::checkIfEarlyBird

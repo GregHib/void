@@ -34,7 +34,7 @@ import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.bank.bank
-import world.gregs.voidps.world.activity.dnd.shootingstar.StarDustHandler
+import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler
 
 val objects: GameObjects by inject()
 val itemDefinitions: ItemDefinitions by inject()
@@ -46,8 +46,8 @@ objectOperate("Mine") {
     }
     val isStar = target.id.startsWith("crashed_star")
     if(isStar){
-        val isEarlyBird = StarDustHandler.invokeIsEarlyBird(player)
-        if(isEarlyBird!!){
+        val isEarlyBird = ShootingStarHandler.isEarlyBird(player)
+        if(isEarlyBird){
             player.message("Congratulations!, You were the first person to find this star!")
             val xpToAdd:Double = player.levels.get(Skill.Mining) * 75.0
             player.experience.add(Skill.Mining, xpToAdd)
@@ -154,7 +154,7 @@ fun hasRequirements(player: Player, pickaxe: Item?, message: Boolean = false): B
 
 fun addOre(player: Player, ore: String): Boolean {
     if (ore == "stardust") {
-        StarDustHandler.invokeCollectedStarDust()
+        ShootingStarHandler.addStarDustCollected()
         val totalStarDust = player.inventory.count(ore) + player.bank.count(ore)
         if (totalStarDust >= 200) {
             player.message("You have the maximum amount of stardust but was still rewarded experience.")
@@ -172,7 +172,7 @@ fun addOre(player: Player, ore: String): Boolean {
 
 fun deplete(rock: Rock, obj: GameObject): Boolean {
     if (obj.id.startsWith("crashed_star_tier_")) {
-        StarDustHandler.invokeHandleMinedStarDust(obj)
+        ShootingStarHandler.handleMinedStarDust(obj)
         return false
     }
     if (rock.life >= 0) {
