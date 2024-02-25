@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCLevels
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.onCharacter
 import world.gregs.voidps.engine.inject
@@ -20,7 +19,6 @@ import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 
 val npcDefinitions: NPCDefinitions by inject()
-val eventHandler: EventHandlerStore by inject()
 
 modCommand("maxhit") {
     val debug = player["debug", false]
@@ -37,8 +35,7 @@ modCommand("maxhit") {
     player.message("Hit Chance")
     val target = NPC(npcName).apply {
         def = npcDefinitions.get(npcName)
-        eventHandler.populate(this)
-        levels.link(events, NPCLevels(def))
+        levels.link(this, NPCLevels(def))
         levels.clear()
     }
     val rangeChance = Hit.chance(player, target, "range", weapon)

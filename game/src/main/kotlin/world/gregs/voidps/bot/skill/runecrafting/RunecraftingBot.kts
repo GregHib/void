@@ -1,9 +1,6 @@
 package world.gregs.voidps.bot.skill.runecrafting
 
-import world.gregs.voidps.bot.Bot
-import world.gregs.voidps.bot.Task
-import world.gregs.voidps.bot.TaskManager
-import world.gregs.voidps.bot.getObjects
+import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.awaitInteract
 import world.gregs.voidps.bot.navigation.goToArea
@@ -29,15 +26,15 @@ worldSpawn {
         val task = Task(
             name = "craft $type runes at ${area.name}",
             block = {
-                while (player.levels.getMax(Skill.Runecrafting) < range.last + 1) {
-                    craftRunes(area)
+                while (levels.getMax(Skill.Runecrafting) < range.last + 1) {
+                    bot.craftRunes(area)
                 }
             },
             area = area.area,
             spaces = spaces,
             requirements = listOf(
-                { player.levels.getMax(Skill.Runecrafting) in range },
-                { hasExactGear(Skill.Runecrafting) }
+                { levels.getMax(Skill.Runecrafting) in range },
+                { bot.hasExactGear(Skill.Runecrafting) }
             )
         )
         tasks.register(task)

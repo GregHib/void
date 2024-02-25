@@ -39,12 +39,12 @@ object GeneralStores {
     }
 
     fun bind(player: Player, key: String): Inventory = get(key).apply {
-        this.transaction.changes.bind(player.events)
+        this.transaction.changes.bind(player)
         player.sendInventory(this, false)
     }
 
     fun unbind(player: Player, key: String): Inventory = get(key).apply {
-        this.transaction.changes.unbind(player.events)
+        this.transaction.changes.unbind(player)
     }
 
 }

@@ -8,7 +8,7 @@ import world.gregs.voidps.network.instruct.ChatPublic
 class ChatPublicHandler : InstructionHandler<ChatPublic>() {
 
     override fun validate(player: Player, instruction: ChatPublic) {
-        player.events.emit(PublicChat(instruction.message, instruction.effects))
+        player.emit(PublicChat(instruction.message, instruction.effects))
     }
 
 }

@@ -15,19 +15,19 @@ variableSet("activated_*") { player ->
     val from = (from as? List<String>)?.toSet() ?: emptySet()
     val to = (to as? List<String>)?.toSet() ?: emptySet()
     for (prayer in from.subtract(to)) {
-        player.events.emit(PrayerStop(prayer))
+        player.emit(PrayerStop(prayer))
     }
     for (prayer in to.subtract(from)) {
-        player.events.emit(PrayerStart(prayer))
+        player.emit(PrayerStart(prayer))
     }
 }
 
 variableAdded(ACTIVE_PRAYERS, ACTIVE_CURSES) { player ->
     player.closeInterfaces()
-    player.events.emit(PrayerStart((value as String).toSnakeCase()))
+    player.emit(PrayerStart((value as String).toSnakeCase()))
 }
 
 variableRemoved(ACTIVE_PRAYERS, ACTIVE_CURSES) { player ->
     player.closeInterfaces()
-    player.events.emit(PrayerStop((value as String).toSnakeCase()))
+    player.emit(PrayerStop((value as String).toSnakeCase()))
 }

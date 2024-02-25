@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.CharacterMap
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -22,7 +21,6 @@ import world.gregs.voidps.type.Zone
 data class NPCs(
     private val definitions: NPCDefinitions,
     private val collisions: Collisions,
-    private val store: EventHandlerStore,
     private val collision: CollisionStrategyProvider
 ) : CharacterList<NPC>(MAX_NPCS) {
     override val indexArray: Array<NPC?> = arrayOfNulls(MAX_NPCS)
@@ -88,7 +86,7 @@ data class NPCs(
             npc["respawn_delay"] = respawnDelay
             npc["respawn_direction"] = direction
         }
-        npc.events.emit(Registered)
+        npc.emit(Registered)
         return npc
     }
 
@@ -100,7 +98,7 @@ data class NPCs(
         }
         val npc = NPC(id, tile)
         npc.def = def
-        npc.levels.link(npc.events, NPCLevels(def))
+        npc.levels.link(npc, NPCLevels(def))
         npc.levels.clear(Skill.Constitution)
         npc.levels.clear(Skill.Attack)
         npc.levels.clear(Skill.Strength)
@@ -111,7 +109,6 @@ data class NPCs(
         if (Wander.wanders(npc)) {
             npc.mode = Wander(npc, tile)
         }
-        store.populate(npc)
         val dir = if (direction == Direction.NONE) Direction.all.random() else direction
         npc.index = indexer.obtain() ?: return null
         npc.face(dir)
@@ -122,7 +119,7 @@ data class NPCs(
 
     override fun clear() {
         for (npc in this) {
-            npc.events.emit(Unregistered)
+            npc.emit(Unregistered)
         }
         super.clear()
     }

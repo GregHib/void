@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
@@ -33,8 +32,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
     private lateinit var viewport: Viewport
     override val modules = listOf(
         module {
-            single { EventHandlerStore() }
-            single { NPCs(get(), get(), get(), get()) }
+            single { NPCs(get(), get(), get()) }
         }
     )
     private lateinit var encoder: VisualEncoder<NPCVisuals>

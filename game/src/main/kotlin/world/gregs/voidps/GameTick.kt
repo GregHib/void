@@ -91,7 +91,7 @@ fun getTickStages(
 
 private class AiTick : Runnable {
     override fun run() {
-        World.events.emit(AiTick)
+        World.emit(AiTick)
     }
 }
 

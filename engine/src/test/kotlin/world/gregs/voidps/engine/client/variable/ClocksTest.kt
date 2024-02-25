@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Events
 
 internal class ClocksTest {
 
@@ -15,7 +14,7 @@ internal class ClocksTest {
     @BeforeEach
     fun setup() {
         player = Player()
-        variables = Variables(Events(player), mutableMapOf())
+        variables = Variables(player, mutableMapOf())
         player.variables = variables
         GameLoop.tick = 0
     }

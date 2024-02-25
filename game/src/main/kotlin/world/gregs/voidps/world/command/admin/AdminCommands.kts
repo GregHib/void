@@ -354,7 +354,7 @@ adminCommand("reload") {
 }
 
 adminCommand("shop") {
-    player.events.emit(OpenShop(content))
+    player.emit(OpenShop(content))
 }
 
 adminCommand("debug") {

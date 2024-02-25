@@ -45,14 +45,14 @@ worldSpawn {
         val task = Task(
             name = "train ${if (melee) "melee" else skill.name} at ${area.name}".toLowerSpaceCase(),
             block = {
-                val actualSkill = if (melee) melees.filter { player.levels.getMax(it) in range }.random() else skill
-                train(area, actualSkill, range)
+                val actualSkill = if (melee) melees.filter { levels.getMax(it) in range }.random() else skill
+                bot.train(area, actualSkill, range)
             },
             area = area.area,
             spaces = if (melee) 3 else 2,
             requirements = listOf(
-                { if (melee) melees.any { player.levels.getMax(it) in range } else player.levels.getMax(skill) in range },
-                { canGetGearAndAmmo(skill) }
+                { if (melee) melees.any { levels.getMax(it) in range } else levels.getMax(skill) in range },
+                { bot.canGetGearAndAmmo(skill) }
             )
         )
         tasks.register(task)

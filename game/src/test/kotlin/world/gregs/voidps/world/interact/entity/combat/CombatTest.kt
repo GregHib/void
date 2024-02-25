@@ -132,7 +132,7 @@ internal class CombatTest : WorldTest() {
         player.levels.set(Skill.Constitution, 990)
         player.levels.set(Skill.Prayer, 99)
         val npc = createNPC("rat", emptyTile.addY(1))
-        npc.levels.link(npc.events, object : Levels.Level {
+        npc.levels.link(npc, object : Levels.Level {
             override fun getMaxLevel(skill: Skill): Int {
                 return if (skill == Skill.Constitution) 10000 else 1
             }

@@ -18,15 +18,17 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.timer.TimerStop
+import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.world.interact.entity.death.weightedSample
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 
-onBot<TimerStop>({ timer == "woodcutting" }) { bot ->
-    bot.resume(timer)
+timerStop("woodcutting") { player ->
+    if (player.isBot) {
+        player.bot.resume(timer)
+    }
 }
 
 worldSpawn {
@@ -37,15 +39,15 @@ worldSpawn {
         val task = Task(
             name = "cut ${(type ?: "tree").plural(2).lowercase()} at ${area.name}",
             block = {
-                while (player.levels.getMax(Skill.Woodcutting) < range.last + 1) {
-                    cutTrees(area, type)
+                while (levels.getMax(Skill.Woodcutting) < range.last + 1) {
+                    bot.cutTrees(area, type)
                 }
             },
             area = area.area,
             spaces = spaces,
             requirements = listOf(
-                { player.levels.getMax(Skill.Woodcutting) in range },
-                { hasExactGear(Skill.Woodcutting) || hasCoins(1000) }
+                { levels.getMax(Skill.Woodcutting) in range },
+                { bot.hasExactGear(Skill.Woodcutting) || bot.hasCoins(1000) }
             )
         )
         tasks.register(task)

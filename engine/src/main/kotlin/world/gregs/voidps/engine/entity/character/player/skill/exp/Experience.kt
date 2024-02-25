@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.entity.character.player.skill.exp
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
-import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.EventDispatcher
 
 class Experience(
     val experience: DoubleArray = defaultExperience.clone(),
@@ -12,7 +12,7 @@ class Experience(
     private val rate: Double = DEFAULT_EXPERIENCE_RATE
 ) {
 
-    lateinit var events: Events
+    lateinit var events: EventDispatcher
 
     fun get(skill: Skill): Double {
         return experience[skill.ordinal]

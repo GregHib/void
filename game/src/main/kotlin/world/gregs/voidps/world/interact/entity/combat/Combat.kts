@@ -52,7 +52,7 @@ fun combat(character: Character, target: Character) {
         return
     }
     val swing = CombatSwing(target)
-    character.events.emit(swing)
+    character.emit(swing)
     val nextDelay = swing.delay
     if (nextDelay == null || nextDelay < 0) {
         character.mode = EmptyMode
@@ -79,6 +79,7 @@ onCharacter<CombatSwing> { character ->
 }
 
 characterDeath { character ->
+    character.stop("under_attack")
     for (attacker in character.attackers) {
         if (attacker.target == character) {
             attacker.stop("under_attack")

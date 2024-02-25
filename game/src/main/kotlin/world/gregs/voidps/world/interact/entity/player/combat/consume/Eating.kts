@@ -34,7 +34,7 @@ inventoryOptions("Eat", "Drink", "Heal") {
     }
     player.start(delay, ticks)
     val consumable = Consumable(item)
-    player.events.emit(consumable)
+    player.emit(consumable)
     if (consumable.cancelled) {
         return@inventoryOptions
     }
@@ -52,7 +52,7 @@ inventoryOptions("Eat", "Drink", "Heal") {
         player.message("You ${if (drink) "drink" else "eat"} the ${item.def.name.lowercase()}.")
     }
     player.playSound(if (drink) "pour_tea" else "eat")
-    player.events.emit(Consume(item, slot))
+    player.emit(Consume(item, slot))
 }
 
 consume(priority = Priority.LOW) { player ->

@@ -12,10 +12,10 @@ worldSpawn {
         name = "walk randomly",
         block = {
             while (true) {
-                val tile = player.tile.toCuboid(10).random()
-//                clickInterface(271, 8, 0, itemSlot = 19)
-                player.instructions.emit(Walk(tile.x, tile.y))
-                await("tick")
+                val tile = tile.toCuboid(10).random()
+//                bot.clickInterface(271, 8, 0, itemSlot = 19)
+                instructions.emit(Walk(tile.x, tile.y))
+                bot.await("tick")
             }
         },
         area = null,

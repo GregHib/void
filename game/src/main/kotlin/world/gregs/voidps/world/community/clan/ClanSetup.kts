@@ -53,7 +53,7 @@ interfaceOption(component = "enter", id = "clan_chat_setup") {
     player.interfaces.sendText(id, component, option)
     for (member in clan.members) {
         if (!clan.hasRank(member, rank)) {
-            member.events.emit(LeaveClanChat(forced = true))
+            member.emit(LeaveClanChat(forced = true))
         }
     }
 }

@@ -32,7 +32,7 @@ objectOperate("Open") {
     }
     if (openDoor(player, target, def)) {
         pause(1)
-        player.events.emit(DoorOpened)
+        player.emit(DoorOpened)
     }
 }
 

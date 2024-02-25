@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.inv.remove.DefaultItemRemovalChecker
 import world.gregs.voidps.engine.inv.remove.ItemRemovalChecker
 import world.gregs.voidps.engine.inv.remove.ShopItemRemovalChecker
@@ -22,7 +22,7 @@ internal class InventoryTest {
     private lateinit var inventory: Inventory
     private lateinit var items: Array<Item>
     private lateinit var minimumAmounts: IntArray
-    private lateinit var events: Events
+    private lateinit var events: EventDispatcher
 
     @BeforeEach
     fun setup() {

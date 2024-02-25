@@ -22,7 +22,7 @@ class InterfaceOnInterfaceOptionHandler(
         val (toId, toComponent, toItem, toInventory) = handler.getInterfaceItem(player, toInterfaceId, toComponentId, toItemId, toSlot) ?: return
 
         player.closeInterfaces()
-        player.events.emit(
+        player.emit(
             ItemOnItem(
                 fromItem,
                 toItem,

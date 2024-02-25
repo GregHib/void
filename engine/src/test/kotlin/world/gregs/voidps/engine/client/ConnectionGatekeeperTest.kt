@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.getIntProperty
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.NetworkGatekeeper
@@ -21,7 +20,6 @@ internal class ConnectionGatekeeperTest : KoinMock() {
 
     override val modules = listOf(
         module {
-            single { EventHandlerStore() }
             single {
                 ConnectionQueue(getIntProperty("connectionPerTickCap", 1))
             }

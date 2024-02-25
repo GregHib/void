@@ -1,9 +1,9 @@
 package world.gregs.voidps.engine.timer
 
-import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.EventDispatcher
 
 class TimerSlot(
-    private val events: Events
+    private val events: EventDispatcher
 ) : Timers {
 
     private var timer: Timer? = null

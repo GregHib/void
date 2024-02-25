@@ -8,7 +8,7 @@ import world.gregs.voidps.network.instruct.ClanChatRank
 class ClanChatRankHandler : InstructionHandler<ClanChatRank>() {
 
     override fun validate(player: Player, instruction: ClanChatRank) {
-        player.events.emit(UpdateClanChatRank(instruction.name, instruction.rank))
+        player.emit(UpdateClanChatRank(instruction.name, instruction.rank))
     }
 
 }

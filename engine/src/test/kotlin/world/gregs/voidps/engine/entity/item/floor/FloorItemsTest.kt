@@ -21,7 +21,7 @@ class FloorItemsTest {
     @BeforeEach
     fun setup() {
         batches = mockk(relaxed = true)
-        items = FloorItems(batches, mockk(relaxed = true), mockk())
+        items = FloorItems(batches, mockk(relaxed = true))
     }
 
     @Test

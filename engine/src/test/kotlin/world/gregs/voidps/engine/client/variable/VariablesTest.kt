@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.network.client.Client
 
 internal class VariablesTest {
@@ -17,7 +17,7 @@ internal class VariablesTest {
     private lateinit var variable: VariableDefinition
     private lateinit var player: Player
     private lateinit var client: Client
-    private lateinit var events: Events
+    private lateinit var events: EventDispatcher
     private lateinit var map: MutableMap<String, Any>
     private lateinit var defs: MutableMap<String, Any>
 
@@ -43,7 +43,6 @@ internal class VariablesTest {
         player = mockk(relaxed = true)
         client = mockk(relaxed = true)
         every { player.variables } returns variables
-        every { player.events } returns events
         every { definitions.get(key) } returns variable
         variables.definitions = definitions
         variables.client = client

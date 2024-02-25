@@ -36,7 +36,7 @@ playerSpawn { player ->
     val current = player["clan_chat", ""]
     if (current.isNotEmpty()) {
         val account = accountDefinitions.getByAccount(current)
-        player.events.emit(JoinClanChat(account?.displayName ?: ""))
+        player.emit(JoinClanChat(account?.displayName ?: ""))
     }
     val ownClan = accounts.clan(player.name) ?: return@playerSpawn
     player.ownClan = ownClan
@@ -74,7 +74,7 @@ on<KickClanChat> { player ->
     }
 
     if (clan.members.contains(target)) {
-        target.events.emit(LeaveClanChat(forced = true))
+        target.emit(LeaveClanChat(forced = true))
     }
     player.message("Your request to kick/ban this user was successful.", ChatType.ClanChat)
 }
@@ -135,7 +135,7 @@ fun join(player: Player, clan: Clan) {
         if (clan.hasRank(player, ClanRank.Recruit)) {
             val victim = clan.members.minByOrNull { clan.getRank(it).value }
             if (victim != null) {
-                victim.events.emit(LeaveClanChat(forced = true))
+                victim.emit(LeaveClanChat(forced = true))
                 space = true
             }
         }
@@ -229,7 +229,7 @@ on<DeleteFriend>(priority = Priority.LOWER) { player ->
             member.client?.appendClanChat(toMember(target, ClanRank.None))
         }
         if (!clan.hasRank(target, clan.joinRank)) {
-            target.events.emit(LeaveClanChat(forced = true))
+            target.emit(LeaveClanChat(forced = true))
         }
     }
 }

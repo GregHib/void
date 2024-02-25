@@ -19,15 +19,17 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.timer.TimerStop
+import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.instruct.InteractDialogue
 import world.gregs.voidps.network.instruct.InteractInterfaceObject
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 
-onBot<TimerStop>({ timer == "cooking" }) { bot ->
-    bot.resume(timer)
+timerStop("cooking") { player ->
+    if (player.isBot) {
+        player.bot.resume(timer)
+    }
 }
 
 worldSpawn {
@@ -37,15 +39,15 @@ worldSpawn {
         val task = Task(
             name = "cook on ${type.plural(2)} at ${area.name}".toLowerSpaceCase(),
             block = {
-                val gear = getGear(Skill.Cooking) ?: return@Task
-                val item = getSuitableItem(gear.inventory.first())
-                while (player.levels.getMax(Skill.Cooking) < gear.levels.last + 1) {
-                    cook(area, item, gear)
+                val gear = bot.getGear(Skill.Cooking) ?: return@Task
+                val item = bot.getSuitableItem(gear.inventory.first())
+                while (levels.getMax(Skill.Cooking) < gear.levels.last + 1) {
+                    bot.cook(area, item, gear)
                 }
             },
             area = area.area,
             spaces = spaces,
-            requirements = listOf { hasExactGear(Skill.Cooking) }
+            requirements = listOf { bot.hasExactGear(Skill.Cooking) }
         )
         tasks.register(task)
     }

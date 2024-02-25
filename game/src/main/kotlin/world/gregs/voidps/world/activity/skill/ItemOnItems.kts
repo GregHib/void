@@ -137,7 +137,7 @@ fun replaceItems(
         for (add in def.add) {
             player.inventory.add(add.id, add.amount)
         }
-        player.events.emit(ItemUsedOnItem(def))
+        player.emit(ItemUsedOnItem(def))
     } else {
         if (def.failure.isNotEmpty()) {
             player.message(def.failure, ChatType.Filter)

@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.encode.*
@@ -21,7 +21,7 @@ import world.gregs.voidps.network.encode.*
  * API for the interacting and tracking of client interfaces
  */
 class Interfaces(
-    private val events: Events,
+    private val events: EventDispatcher,
     internal var client: Client? = null,
     internal val definitions: InterfaceDefinitions,
     private val openInterfaces: MutableSet<String> = ObjectOpenHashSet()

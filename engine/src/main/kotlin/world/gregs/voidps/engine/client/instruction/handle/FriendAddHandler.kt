@@ -8,7 +8,7 @@ import world.gregs.voidps.network.instruct.FriendAdd
 class FriendAddHandler : InstructionHandler<FriendAdd>() {
 
     override fun validate(player: Player, instruction: FriendAdd) {
-        player.events.emit(AddFriend(instruction.friendsName))
+        player.emit(AddFriend(instruction.friendsName))
     }
 
 }

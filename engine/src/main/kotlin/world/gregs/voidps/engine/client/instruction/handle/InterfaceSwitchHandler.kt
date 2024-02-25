@@ -21,7 +21,7 @@ class InterfaceSwitchHandler(
         val (fromId, fromComponent, fromItem, fromInventory) = handler.getInterfaceItem(player, fromInterfaceId, fromComponentId, fromItemId, fromSlot) ?: return
         val (toId, toComponent, toItem, toInventory) = handler.getInterfaceItem(player, toInterfaceId, toComponentId, toItemId, toSlot) ?: return
 
-        player.events.emit(
+        player.emit(
             InterfaceSwitch(
                 id = fromId,
                 component = fromComponent,

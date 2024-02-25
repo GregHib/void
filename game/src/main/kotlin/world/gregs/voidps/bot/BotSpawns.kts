@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.EventHandlerStore
+import world.gregs.voidps.engine.event.EventStore
 import world.gregs.voidps.engine.getIntProperty
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -28,7 +28,6 @@ import world.gregs.voidps.network.client.DummyClient
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.type.random
-import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.reflect.KClass
@@ -49,6 +48,9 @@ var counter = 0
 worldSpawn {
     if (botCount > 0) {
         World.timers.start("bot_spawn")
+    }
+    EventStore.events.all = { player, event ->
+        handleSuspensions(player, event)
     }
 }
 
@@ -88,7 +90,7 @@ adminCommand("bot") {
         if (content.isNotBlank()) {
             player["task"] = content
         }
-        bot.events.emit(StartBot)
+        bot.emit(StartBot)
     }
 }
 
@@ -105,7 +107,7 @@ fun spawn() {
         val client = if (TaskManager.DEBUG) DummyClient() else null
         bot.initBot()
         bot.login(client, 0)
-        bot.events.emit(StartBot)
+        bot.emit(StartBot)
         bot.viewport?.loaded = true
         delay(3)
         bots.add(bot)
@@ -115,14 +117,7 @@ fun spawn() {
 
 fun Player.initBot(): Bot {
     val bot = Bot(this)
-    world.gregs.voidps.engine.get<EventHandlerStore>().populate(Bot::class, bot.botEvents)
     this["bot"] = bot
-    val e = ConcurrentLinkedQueue<Event>()
-    this["events"] = e
-    events.all = { event ->
-        e.add(event)
-        handleSuspensions(bot.player, event)
-    }
     return bot
 }
 

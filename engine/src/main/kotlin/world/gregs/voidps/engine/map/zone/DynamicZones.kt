@@ -72,7 +72,7 @@ class DynamicZones(
                 regions.remove(region.id)
             }
         }
-        World.events.emit(ReloadZone(to))
+        World.emit(ReloadZone(to))
     }
 
     companion object {

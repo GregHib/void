@@ -48,7 +48,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         player["private_status"] = "off"
 
         runBlocking(Dispatchers.Default) {
-            player.events.emit(Registered)
+            player.emit(Registered)
         }
 
         verify {
@@ -67,7 +67,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         player["private_status"] = "friends"
 
         runBlocking(Dispatchers.Default) {
-            player.events.emit(Registered)
+            player.emit(Registered)
         }
 
         verify {
@@ -86,7 +86,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         player["private_status"] = "on"
 
         runBlocking(Dispatchers.Default) {
-            player.events.emit(Registered)
+            player.emit(Registered)
         }
 
         verify {

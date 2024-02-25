@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.timer.TimerStop
+import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.instruct.InteractDialogue
 import world.gregs.voidps.world.activity.skill.smithing.oreToBar
 
@@ -26,8 +26,10 @@ val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 val itemDefinitions: ItemDefinitions by inject()
 
-onBot<TimerStop>({ timer == "smelting" }) { bot ->
-    bot.resume(timer)
+timerStop("smelting") { player ->
+    if (player.isBot) {
+        player.bot.resume(timer)
+    }
 }
 
 worldSpawn {
@@ -36,14 +38,14 @@ worldSpawn {
         val task = Task(
             name = "smelt bars at ${area.name}".toLowerSpaceCase(),
             block = {
-                val gear = getGear("smelting", Skill.Smithing) ?: return@Task
-                while (player.levels.getMax(Skill.Smithing) < gear.levels.last + 1) {
-                    smelt(area, gear)
+                val gear = bot.getGear("smelting", Skill.Smithing) ?: return@Task
+                while (levels.getMax(Skill.Smithing) < gear.levels.last + 1) {
+                    bot.smelt(area, gear)
                 }
             },
             area = area.area,
             spaces = spaces,
-            requirements = listOf { hasExactGear("smelting", Skill.Smithing) }
+            requirements = listOf { bot.hasExactGear("smelting", Skill.Smithing) }
         )
         tasks.register(task)
     }

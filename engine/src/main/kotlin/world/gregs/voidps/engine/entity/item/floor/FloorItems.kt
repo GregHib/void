@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems.Companion.MAX_TILE_ITEMS
-import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.network.encode.send
 import world.gregs.voidps.network.encode.zone.FloorItemAddition
 import world.gregs.voidps.network.encode.zone.FloorItemRemoval
@@ -24,8 +23,7 @@ import world.gregs.voidps.type.Zone
  */
 class FloorItems(
     private val batches: ZoneBatchUpdates,
-    private val definitions: ItemDefinitions,
-    private val store: EventHandlerStore
+    private val definitions: ItemDefinitions
 ) : ZoneBatchUpdates.Sender {
 
     internal val data = Int2ObjectOpenHashMap<MutableMap<Int, MutableList<FloorItem>>>()
@@ -47,7 +45,6 @@ class FloorItems(
         }
         val item = FloorItem(tile, id, amount, revealTicks, disappearTicks, if (revealTicks == 0) null else owner)
         item.def = definition
-        store.populate(item)
         add(item)
         return item
     }
@@ -62,7 +59,7 @@ class FloorItems(
         }
         if (list.add(item)) {
             batches.add(item.tile.zone, FloorItemAddition(item.tile.id, item.def.id, item.amount, item.owner))
-            item.events.emit(Registered)
+            item.emit(Registered)
         }
     }
 
@@ -115,7 +112,7 @@ class FloorItems(
                     zonePool.recycle(zone)
                 }
             }
-            item.events.emit(Unregistered)
+            item.emit(Unregistered)
             return true
         }
         return false
@@ -126,7 +123,7 @@ class FloorItems(
             for ((_, items) in zone) {
                 for (item in items) {
                     batches.add(item.tile.zone, FloorItemRemoval(item.tile.id, item.def.id, item.owner))
-                    item.events.emit(Unregistered)
+                    item.emit(Unregistered)
                 }
                 tilePool.recycle(items)
             }
