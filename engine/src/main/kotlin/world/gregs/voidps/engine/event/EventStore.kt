@@ -18,6 +18,9 @@ class EventStore : CoroutineScope {
 
     fun add(dispatcher: KClass<out EventDispatcher>, event: KClass<out Event>, handler: EventHandler) {
         handlers.getOrPut("${dispatcher.simpleName}_${event.simpleName}") { mutableListOf() }.add(handler)
+        for (parent in parents[dispatcher] ?: return) {
+            handlers.getOrPut("${parent}_${event.simpleName}") { mutableListOf() }.add(handler)
+        }
     }
 
     fun init() {
@@ -30,14 +33,11 @@ class EventStore : CoroutineScope {
         handlers.clear()
     }
 
-    var all: ((Event) -> Unit)? = null
-
     fun <E : Event> emit(dispatcher: EventDispatcher, event: E): Boolean {
         val handlers = handlers["${dispatcher::class.simpleName}_${event::class.simpleName}"] ?: return false
         for (listener in botListeners) {
             listener.invoke(event)
         }
-        all?.invoke(event)
         var called = false
         for (handler in handlers) {
             if (event is CancellableEvent && event.cancelled) {
@@ -88,9 +88,8 @@ class EventStore : CoroutineScope {
         }
         var events = EventStore()
             private set
-        val parents = Object2ObjectOpenHashMap(mapOf<KClass<out EventDispatcher>, List<KClass<out EventDispatcher>>>(
-            EventDispatcher::class to listOf(World::class, FloorItem::class, Character::class),
-            Character::class to listOf(Player::class, NPC::class)
+        private val parents = Object2ObjectOpenHashMap(mapOf(
+            Character::class to listOf(Player::class.simpleName, NPC::class.simpleName)
         ))
     }
 }
@@ -99,11 +98,8 @@ class EventStore : CoroutineScope {
 inline fun <reified T : EventDispatcher, reified E : Event> addEvent(noinline condition: E.(T) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(T) -> Unit) {
     val dispatcher = T::class
     val event = E::class
-    val handler = EventHandler(event, condition as Event.(EventDispatcher) -> Boolean, priority, block as suspend Event.(EventDispatcher) -> Unit)
+    val handler = EventHandler(condition as Event.(EventDispatcher) -> Boolean, priority, block as suspend Event.(EventDispatcher) -> Unit)
     EventStore.events.add(dispatcher, event, handler)
-    for (parent in EventStore.parents[dispatcher] ?: return) {
-        EventStore.events.add(parent, event, handler)
-    }
 }
 
 inline fun <reified E : Event> on(noinline condition: E.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(Player) -> Unit) =

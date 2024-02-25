@@ -94,7 +94,7 @@ internal class InteractTest : KoinMock() {
         player.mode = interact
         EventStore.events.clear()
         if (operate) {
-            EventStore.events.add(Player::class, NPCOption::class, EventHandler(NPCOption::class, { (this as NPCOption).operate }, block = {
+            EventStore.events.add(Player::class, NPCOption::class, EventHandler({ (this as NPCOption).operate }, block = {
                 if (suspend) {
                     this as NPCOption
                     TickSuspension(2)
@@ -103,7 +103,7 @@ internal class InteractTest : KoinMock() {
             }))
         }
         if (approach) {
-            EventStore.events.add(Player::class, NPCOption::class, EventHandler(NPCOption::class, { (this as NPCOption).approach }, block = {
+            EventStore.events.add(Player::class, NPCOption::class, EventHandler({ (this as NPCOption).approach }, block = {
                 if (suspend) {
                     this as NPCOption
                     TickSuspension(2)
