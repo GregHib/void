@@ -13,7 +13,7 @@ huntFloorItem("ash_cleaner", mode = "ash_finder") { npc ->
     npc.mode = Interact(npc, target, FloorItemOption(npc, target, "Take"))
 }
 
-npcFloorItemOperate("Take", "ash_cleaner", Priority.LOW) {
+npcFloorItemOperate("Take", "ash", "ash_cleaner", Priority.LOW) {
     npc.setAnimation("cleaner_sweeping")
     delay(2)
     npc.clearAnimation()

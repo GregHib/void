@@ -34,8 +34,8 @@ fun floorItemOperate(option: String, item: String = "*", priority: Priority = Pr
     }
 }
 
-fun npcFloorItemOperate(option: String, item: String = "*", priority: Priority = Priority.MEDIUM, arrive: Boolean = true, block: suspend FloorItemOption.() -> Unit) {
-    onNPC<FloorItemOption>({ operate && wildcardEquals(item, target.id) && wildcardEquals(option, this.option) }, priority) {
+fun npcFloorItemOperate(option: String, item: String = "*", npc: String = "*", priority: Priority = Priority.MEDIUM, arrive: Boolean = true, block: suspend FloorItemOption.() -> Unit) {
+    onNPC<FloorItemOption>({ operate && wildcardEquals(item, target.id) && wildcardEquals(option, this.option) && wildcardEquals(npc, it.id) }, priority) {
         if (arrive) {
             arriveDelay()
         }
