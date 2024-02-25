@@ -8,7 +8,7 @@ import world.gregs.voidps.network.instruct.IgnoreAdd
 class IgnoreAddHandler : InstructionHandler<IgnoreAdd>() {
 
     override fun validate(player: Player, instruction: IgnoreAdd) {
-        player.events.emit(AddIgnore(instruction.name))
+        player.emit(AddIgnore(instruction.name))
     }
 
 }

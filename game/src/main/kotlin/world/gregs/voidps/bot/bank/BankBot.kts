@@ -1,10 +1,12 @@
 package world.gregs.voidps.bot.bank
 
-import world.gregs.voidps.bot.Bot
+import world.gregs.voidps.bot.bot
+import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.bot.navigation.resume
-import world.gregs.voidps.bot.onBot
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 
-onBot<InterfaceOpened>({ id == "bank" }) { bot: Bot ->
-    bot.resume("bank")
+interfaceOpen("bank") { player ->
+    if (player.isBot) {
+        player.bot.resume("bank")
+    }
 }

@@ -27,7 +27,7 @@ class DialogueContinueHandler(
             return
         }
 
-        player.events.emit(
+        player.emit(
             ContinueDialogue(
                 id,
                 component.stringId,

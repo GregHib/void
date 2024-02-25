@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.InventoryUpdate
 import world.gregs.voidps.engine.inv.ItemChanged
@@ -25,7 +25,7 @@ internal class ChangeManagerTest {
 
     @Test
     fun `Track and send changes`() {
-        val events = mockk<Events>(relaxed = true)
+        val events = mockk<EventDispatcher>(relaxed = true)
         change.bind(events)
         change.track("inventory", 1, Item.EMPTY, 1, Item("item", 1, def = ItemDefinition.EMPTY))
         change.send()
@@ -37,7 +37,7 @@ internal class ChangeManagerTest {
 
     @Test
     fun `Clear tracked changes`() {
-        val events = mockk<Events>(relaxed = true)
+        val events = mockk<EventDispatcher>(relaxed = true)
         change.bind(events)
         change.track("inventory", 1, Item.EMPTY, 1, Item("item", 1, def = ItemDefinition.EMPTY))
         change.clear()

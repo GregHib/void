@@ -62,7 +62,7 @@ class InstructionHandlers(
 
     fun handle(player: Player, instruction: Instruction) {
         when (instruction) {
-            is Event -> player.events.emit(instruction)
+            is Event -> player.emit(instruction)
             is InteractInterfaceItem -> interactInterfaceItem.validate(player, instruction)
             is InteractInterfacePlayer -> interactInterfacePlayer.validate(player, instruction)
             is InteractInterfaceObject -> interactInterfaceObject.validate(player, instruction)

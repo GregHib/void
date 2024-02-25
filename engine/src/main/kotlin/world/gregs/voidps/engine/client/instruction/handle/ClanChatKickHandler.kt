@@ -8,7 +8,7 @@ import world.gregs.voidps.network.instruct.ClanChatKick
 class ClanChatKickHandler : InstructionHandler<ClanChatKick>() {
 
     override fun validate(player: Player, instruction: ClanChatKick) {
-        player.events.emit(KickClanChat(instruction.name))
+        player.emit(KickClanChat(instruction.name))
     }
 
 }

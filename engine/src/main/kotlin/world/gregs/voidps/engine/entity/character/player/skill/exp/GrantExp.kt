@@ -12,7 +12,7 @@ data class GrantExp(
 ) : Event
 
 fun experience(skill: Skill? = null, block: suspend GrantExp.(Player) -> Unit) {
-    on<GrantExp>({ skill == null || this.skill == skill }) { player: Player ->
+    on<GrantExp>({ skill == null || this.skill == skill }) { player ->
         block.invoke(this, player)
     }
 }

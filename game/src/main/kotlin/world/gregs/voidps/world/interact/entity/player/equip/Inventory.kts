@@ -49,7 +49,7 @@ interfaceOption(component = "inventory", id = "inventory") {
     if (player.mode is CombatMovement) {
         player.mode = EmptyMode
     }
-    player.events.emit(
+    player.emit(
         InventoryOption(
             player,
             id,

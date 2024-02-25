@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onNPC
 import world.gregs.voidps.engine.event.wildcardEquals
 import world.gregs.voidps.engine.suspend.arriveDelay
 
@@ -19,13 +20,13 @@ data class FloorItemOption(
 }
 
 fun floorItemApproach(option: String, item: String = "*", block: suspend FloorItemOption.() -> Unit) {
-    on<FloorItemOption>({ approach && wildcardEquals(item, target.id) && wildcardEquals(option, this.option) }) { _: Player ->
+    on<FloorItemOption>({ approach && wildcardEquals(item, target.id) && wildcardEquals(option, this.option) }) {
         block.invoke(this)
     }
 }
 
 fun floorItemOperate(option: String, item: String = "*", priority: Priority = Priority.MEDIUM, arrive: Boolean = true, block: suspend FloorItemOption.() -> Unit) {
-    on<FloorItemOption>({ operate && wildcardEquals(item, target.id) && wildcardEquals(option, this.option) }, priority) { _: Player ->
+    on<FloorItemOption>({ operate && wildcardEquals(item, target.id) && wildcardEquals(option, this.option) }, priority) {
         if (arrive) {
             arriveDelay()
         }
@@ -34,7 +35,7 @@ fun floorItemOperate(option: String, item: String = "*", priority: Priority = Pr
 }
 
 fun npcFloorItemOperate(option: String, item: String = "*", priority: Priority = Priority.MEDIUM, arrive: Boolean = true, block: suspend FloorItemOption.() -> Unit) {
-    on<FloorItemOption>({ operate && wildcardEquals(item, target.id) && wildcardEquals(option, this.option) }, priority) { _: NPC ->
+    onNPC<FloorItemOption>({ operate && wildcardEquals(item, target.id) && wildcardEquals(option, this.option) }, priority) {
         if (arrive) {
             arriveDelay()
         }

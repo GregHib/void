@@ -19,15 +19,17 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.timer.TimerStop
+import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.world.interact.entity.death.weightedSample
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 
-onBot<TimerStop>({ timer == "mining" }) { bot: Bot ->
-    bot.resume(timer)
+timerStop("mining") { player ->
+    if (player.isBot) {
+        player.bot.resume(timer)
+    }
 }
 
 worldSpawn {
@@ -38,15 +40,15 @@ worldSpawn {
         val task = Task(
             name = "mine ${type.plural(2)} at ${area.name}".toLowerSpaceCase(),
             block = {
-                while (player.levels.getMax(Skill.Mining) < range.last + 1) {
-                    mineRocks(area, type)
+                while (levels.getMax(Skill.Mining) < range.last + 1) {
+                    bot.mineRocks(area, type)
                 }
             },
             area = area.area,
             spaces = spaces,
             requirements = listOf(
-                { player.levels.getMax(Skill.Mining) in range },
-                { hasExactGear(Skill.Woodcutting) || hasCoins(1000) }
+                { levels.getMax(Skill.Mining) in range },
+                { bot.hasExactGear(Skill.Woodcutting) || bot.hasCoins(1000) }
             )
         )
         tasks.register(task)

@@ -36,7 +36,7 @@ playerSpawn { player ->
     val current = player["clan_chat", ""]
     if (current.isNotEmpty()) {
         val account = accountDefinitions.getByAccount(current)
-        player.events.emit(JoinClanChat(account?.displayName ?: ""))
+        player.emit(JoinClanChat(account?.displayName ?: ""))
     }
     val ownClan = accounts.clan(player.name) ?: return@playerSpawn
     player.ownClan = ownClan
@@ -50,7 +50,7 @@ playerDespawn { player ->
     updateMembers(player, clan, ClanRank.Anyone)
 }
 
-on<KickClanChat> { player: Player ->
+on<KickClanChat> { player ->
     val clan = player.clan
     if (clan == null || !clan.hasRank(player, clan.kickRank)) {
         player.message("You are not allowed to kick in this clan chat channel.", ChatType.ClanChat)
@@ -74,12 +74,12 @@ on<KickClanChat> { player: Player ->
     }
 
     if (clan.members.contains(target)) {
-        target.events.emit(LeaveClanChat(forced = true))
+        target.emit(LeaveClanChat(forced = true))
     }
     player.message("Your request to kick/ban this user was successful.", ChatType.ClanChat)
 }
 
-on<JoinClanChat> { player: Player ->
+on<JoinClanChat> { player ->
     if (player.remaining("clan_join_spam", epochSeconds()) > 0) {
         player.message("You are temporarily blocked from joining channels - please try again later!", ChatType.ClanChat)
         return@on
@@ -135,7 +135,7 @@ fun join(player: Player, clan: Clan) {
         if (clan.hasRank(player, ClanRank.Recruit)) {
             val victim = clan.members.minByOrNull { clan.getRank(it).value }
             if (victim != null) {
-                victim.events.emit(LeaveClanChat(forced = true))
+                victim.emit(LeaveClanChat(forced = true))
                 space = true
             }
         }
@@ -152,7 +152,7 @@ fun join(player: Player, clan: Clan) {
     display(player, clan)
 }
 
-on<LeaveClanChat> { player: Player ->
+on<LeaveClanChat> { player ->
     val clan: Clan? = player.remove("clan")
     player.clear("clan_chat")
     player.message("You have ${if (forced) "been kicked from" else "left"} the channel.", ChatType.ClanChat)
@@ -189,7 +189,7 @@ val list = listOf(ClanRank.None, ClanRank.Recruit, ClanRank.Corporeal, ClanRank.
 
 val accountDefinitions: AccountDefinitions by inject()
 
-on<UpdateClanChatRank> { player: Player ->
+on<UpdateClanChatRank> { player ->
     val clan = player.clan ?: player.ownClan ?: return@on
     if (!clan.hasRank(player, ClanRank.Owner)) {
         return@on
@@ -203,7 +203,7 @@ on<UpdateClanChatRank> { player: Player ->
     }
 }
 
-on<AddFriend>(priority = Priority.LOWER) { player: Player ->
+on<AddFriend>(priority = Priority.LOWER) { player ->
     val clan = player.clan ?: player.ownClan ?: return@on
     if (!clan.hasRank(player, ClanRank.Owner)) {
         return@on
@@ -217,7 +217,7 @@ on<AddFriend>(priority = Priority.LOWER) { player: Player ->
     }
 }
 
-on<DeleteFriend>(priority = Priority.LOWER) { player: Player ->
+on<DeleteFriend>(priority = Priority.LOWER) { player ->
     val clan = player.clan ?: player.ownClan ?: return@on
     if (!clan.hasRank(player, ClanRank.Owner)) {
         return@on
@@ -229,7 +229,7 @@ on<DeleteFriend>(priority = Priority.LOWER) { player: Player ->
             member.client?.appendClanChat(toMember(target, ClanRank.None))
         }
         if (!clan.hasRank(target, clan.joinRank)) {
-            target.events.emit(LeaveClanChat(forced = true))
+            target.emit(LeaveClanChat(forced = true))
         }
     }
 }

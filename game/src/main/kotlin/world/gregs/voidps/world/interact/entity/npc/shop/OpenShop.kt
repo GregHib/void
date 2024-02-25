@@ -6,5 +6,5 @@ import world.gregs.voidps.engine.event.Event
 data class OpenShop(val id: String): Event
 
 fun Player.openShop(id: String) {
-    events.emit(OpenShop(id))
+    emit(OpenShop(id))
 }

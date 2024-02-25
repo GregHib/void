@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.command.debug
 
-import net.pearx.kasechange.toSentenceCase
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.bot.path.Dijkstra
@@ -9,15 +8,11 @@ import world.gregs.voidps.bot.path.NodeTargetStrategy
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.*
 import world.gregs.voidps.engine.client.ui.event.adminCommand
-import world.gregs.voidps.engine.client.ui.event.command
 import world.gregs.voidps.engine.client.ui.event.modCommand
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.PlayerRights
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
@@ -30,14 +25,11 @@ import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.network.encode.clearCamera
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
-import world.gregs.voidps.world.interact.entity.obj.door.Door
-import world.gregs.voidps.world.interact.entity.obj.door.Door.isDoor
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 
@@ -45,16 +37,11 @@ val collisions: Collisions by inject()
 val objects: GameObjects by inject()
 val npcs: NPCs by inject()
 
-adminCommand("test") {
-    val obj = objects[player.tile].firstOrNull { it.def.isDoor() }
-        ?: objects[player.tile.add(Direction.NORTH)].firstOrNull { it.def.isDoor() }
-        ?: objects[player.tile.add(Direction.SOUTH)].firstOrNull { it.def.isDoor() }
-        ?: objects[player.tile.add(Direction.EAST)].firstOrNull { it.def.isDoor() }
-        ?: objects[player.tile.add(Direction.WEST)].firstOrNull { it.def.isDoor() }
-    Door.enter(player, obj!!)
+modCommand("test") {
+    println(player.rights)
 }
 
-command("reset_cam") {
+modCommand("reset_cam") {
     player.client?.clearCamera()
 }
 
@@ -135,19 +122,6 @@ adminCommand("pf_bench") {
     println("Medium path: ${timeMedium}ms")
     println("Long path: ${timeLong}ms")
     println("Invalid path: ${timeInvalid}ms")
-}
-
-adminCommand("rights") {
-    val right = content.split(" ").last()
-    val rights = PlayerRights.valueOf(right.toSentenceCase())
-    val username = content.removeSuffix(" $right")
-    val target = get<Players>().get(username)
-    if (target == null) {
-        player.message("Unable to find player '$username'.")
-    } else {
-        target.rights = rights
-        player.message("${player.name} rights set to $rights.")
-    }
 }
 
 adminCommand("expr") {

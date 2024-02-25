@@ -74,7 +74,7 @@ internal class MagicCombatFormulaTest : CombatFormulaTest() {
         player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val potion = Item("super_magic_potion_4")
         player.inventory.add(potion.id)
-        player.events.emit(InventoryOption(player, "inventory", potion, 0, "Drink"))
+        player.emit(InventoryOption(player, "inventory", potion, 0, "Drink"))
         val npc = createNPC("giant_rat")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "magic", weapon, "water_blast")
@@ -107,7 +107,7 @@ internal class MagicCombatFormulaTest : CombatFormulaTest() {
         player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val potion = Item("super_magic_potion_4")
         player.inventory.add(potion.id)
-        player.events.emit(InventoryOption(player, "inventory", potion, 0, "Drink"))
+        player.emit(InventoryOption(player, "inventory", potion, 0, "Drink"))
         val npc = createNPC("giant_rat")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "magic", weapon, "fire_wave")

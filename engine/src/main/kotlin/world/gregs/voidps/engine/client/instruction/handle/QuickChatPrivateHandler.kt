@@ -8,7 +8,7 @@ import world.gregs.voidps.network.instruct.QuickChatPrivate
 class QuickChatPrivateHandler : InstructionHandler<QuickChatPrivate>() {
 
     override fun validate(player: Player, instruction: QuickChatPrivate) {
-        player.events.emit(PrivateQuickChat(instruction.name, instruction.file, instruction.data))
+        player.emit(PrivateQuickChat(instruction.name, instruction.file, instruction.data))
     }
 
 }

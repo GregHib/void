@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
@@ -28,23 +27,22 @@ import world.gregs.yaml.read.YamlReaderConfiguration
 
 val engineModule = module {
     // Entities
-    single { NPCs(get(), get(), get(), get()) }
+    single { NPCs(get(), get(), get()) }
     single { Players() }
     single { GameObjects(get(), get(), get(), getProperty<String>("loadUnusedObjects") == "true").apply { get<ZoneBatchUpdates>().register(this) } }
-    single { FloorItems(get(), get(), get()).apply { get<ZoneBatchUpdates>().register(this) } }
+    single { FloorItems(get(), get()).apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItemTracking(get(), get(), get()) }
     single { Hunting(get(), get(), get(), get(), get(), get()) }
     single {
-        PlayerAccounts(get(), get(), get(), get(), get(), get(), getProperty("savePath"), get(), get(), Tile(
+        PlayerAccounts(get(), get(), get(), get(), get(), getProperty("savePath"), get(), get(), Tile(
             getIntProperty("homeX", 0), getIntProperty("homeY", 0), getIntProperty("homeLevel", 0)
-        ))
+        ), getProperty("experienceRate", "1.0").toDouble())
     }
     // IO
     single { Yaml(YamlReaderConfiguration(2, 8, VERY_FAST_LOAD_FACTOR)) }
     // Map
     single { ZoneBatchUpdates() }
     single { DynamicZones(get(), get(), get()) }
-    single { EventHandlerStore() }
     single(createdAtStart = true) { AreaDefinitions().load() }
     // Network
     single {

@@ -8,7 +8,7 @@ import world.gregs.voidps.network.instruct.EnterInt
 class EnterIntHandler : InstructionHandler<EnterInt>() {
 
     override fun validate(player: Player, instruction: EnterInt) {
-        player.events.emit(IntEntered(instruction.value))
+        player.emit(IntEntered(instruction.value))
     }
 
 }

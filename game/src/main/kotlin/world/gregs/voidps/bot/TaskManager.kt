@@ -20,7 +20,7 @@ class TaskManager {
 
     fun assign(bot: Bot): Task {
         return queue
-            .filter { !it.full() && it.requirements.all { req -> req(bot) } }
+            .filter { !it.full() && it.requirements.all { req -> req(bot.player) } }
             .minByOrNull { it.distanceTo(bot.tile) } ?: idle
     }
 
@@ -29,7 +29,7 @@ class TaskManager {
             name = "do nothing",
             block = {
                 repeat(random.nextInt(10, 100)) {
-                    await("tick")
+                    bot.await("tick")
                 }
             },
             spaces = Int.MAX_VALUE

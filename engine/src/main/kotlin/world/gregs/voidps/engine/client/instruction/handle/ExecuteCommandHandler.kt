@@ -8,7 +8,7 @@ import world.gregs.voidps.network.instruct.ExecuteCommand
 class ExecuteCommandHandler : InstructionHandler<ExecuteCommand>() {
 
     override fun validate(player: Player, instruction: ExecuteCommand) {
-        player.events.emit(Command(player, instruction.prefix, instruction.content))
+        player.emit(Command(player, instruction.prefix, instruction.content))
     }
 
 }

@@ -3,27 +3,35 @@ package world.gregs.voidps.engine.timer
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.SuspendableEvent
 import java.util.*
 
 abstract class TimersTest {
 
     lateinit var emitted: LinkedList<Event>
-    lateinit var events: Events
+    lateinit var events: EventDispatcher
     lateinit var timers: Timers
     internal var block: ((Event) -> Unit)? = null
 
     open fun setup() {
         GameLoop.tick = 0
         emitted = LinkedList()
-        events = Events(Player())
-        block = null
-        events.all = {
-            block?.invoke(it)
-            this.emitted.add(it)
+        events = object : EventDispatcher {
+            override fun <E : Event> emit(event: E): Boolean {
+                block?.invoke(event)
+                emitted.add(event)
+                return super.emit(event)
+            }
+
+            override fun <E : SuspendableEvent> emit(event: E): Boolean {
+                block?.invoke(event)
+                emitted.add(event)
+                return super.emit(event)
+            }
         }
+        block = null
     }
 
     @Test

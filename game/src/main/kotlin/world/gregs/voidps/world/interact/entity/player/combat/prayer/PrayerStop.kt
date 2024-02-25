@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.event.wildcardEquals
 data class PrayerStop(val prayer: String) : Event
 
 fun prayerStop(prayer: String = "*", block: suspend PrayerStop.(Player) -> Unit) {
-    on<PrayerStop>({ wildcardEquals(prayer, this.prayer) }) { character: Player ->
+    on<PrayerStop>({ wildcardEquals(prayer, this.prayer) }) { character ->
         block.invoke(this, character)
     }
 }

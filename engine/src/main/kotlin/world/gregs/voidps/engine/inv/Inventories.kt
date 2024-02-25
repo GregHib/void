@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.remove.DefaultItemRemovalChecker
 import world.gregs.voidps.engine.inv.remove.ShopItemRemovalChecker
@@ -25,7 +25,7 @@ class Inventories(
     lateinit var definitions: InventoryDefinitions
     lateinit var itemDefinitions: ItemDefinitions
     lateinit var validItemRule: ItemRestrictionRule
-    lateinit var events: Events
+    lateinit var events: EventDispatcher
     lateinit var normalStack: DependentOnItem
 
     fun inventory(definition: InventoryDefinition, secondary: Boolean = false): Inventory {

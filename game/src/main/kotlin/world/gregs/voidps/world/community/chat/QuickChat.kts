@@ -30,7 +30,7 @@ val variables: VariableDefinitions by inject()
 val enums: EnumDefinitions by inject()
 val items: ItemDefinitions by inject()
 
-on<PrivateQuickChat> { player: Player ->
+on<PrivateQuickChat> { player ->
     val target = players.get(friend)
     if (target == null || target.ignores(player)) {
         player.message("Unable to send message - player unavailable.")
@@ -42,28 +42,28 @@ on<PrivateQuickChat> { player: Player ->
 
     val text = definition.buildString(enums.definitions, items.definitions, data)
     val message = PrivateQuickChatMessage(player, file, text, data)
-    target.events.emit(message)
+    target.emit(message)
 }
 
-on<PrivateQuickChatMessage>({ it.networked }) { player: Player ->
+on<PrivateQuickChatMessage>({ it.networked }) { player ->
     player.client?.privateQuickChatFrom(source.name, source.rights.ordinal, file, data)
 }
 
-on<PublicQuickChat>({ chatType == 0 }) { player: Player ->
+on<PublicQuickChat>({ chatType == 0 }) { player ->
     val definition = phrases.get(file)
     val data = generateData(player, file, data)
     val text = definition.buildString(enums.definitions, items.definitions, data)
     val message = PublicQuickChatMessage(player, chatType, file, text, data)
     players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
-        it.events.emit(message)
+        it.emit(message)
     }
 }
 
-on<PublicQuickChatMessage>({ it.networked }) { player: Player ->
+on<PublicQuickChatMessage>({ it.networked }) { player ->
     player.client?.publicQuickChat(source.index, 0x8000, source.rights.ordinal, file, data)
 }
 
-on<PublicQuickChat>({ chatType == 1 }) { player: Player ->
+on<PublicQuickChat>({ chatType == 1 }) { player ->
     val clan = player.clan
     if (clan == null) {
         player.message("You must be in a clan chat to talk.", ChatType.ClanChat)
@@ -78,11 +78,11 @@ on<PublicQuickChat>({ chatType == 1 }) { player: Player ->
     val text = definition.buildString(enums.definitions, items.definitions, data)
     val message = ClanQuickChatMessage(player, chatType, file, text, data)
     clan.members.filterNot { it.ignores(player) }.forEach {
-        it.events.emit(message)
+        it.emit(message)
     }
 }
 
-on<ClanQuickChatMessage>({ it.networked }) { player: Player ->
+on<ClanQuickChatMessage>({ it.networked }) { player ->
     player.client?.clanQuickChat(source.name, player.clan!!.name, source.rights.ordinal, file, data)
 }
 

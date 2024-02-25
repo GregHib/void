@@ -17,7 +17,7 @@ import kotlin.random.nextInt
 fun multiTargetHit(check: CombatAttack.() -> Boolean, remaining: (target: Character) -> Int) {
     val players: Players by inject()
     val npcs: NPCs by inject()
-    combatAttack { player: Player ->
+    combatAttack { player ->
         if (special || !target.inMultiCombat || !check()) {
             return@combatAttack
         }

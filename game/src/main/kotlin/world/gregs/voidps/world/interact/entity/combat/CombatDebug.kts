@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.combat
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.command
+import world.gregs.voidps.engine.client.ui.event.modCommand
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -10,9 +10,8 @@ import world.gregs.voidps.engine.entity.character.npc.NPCLevels
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onCharacter
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
@@ -20,9 +19,8 @@ import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 
 val npcDefinitions: NPCDefinitions by inject()
-val eventHandler: EventHandlerStore by inject()
 
-command("maxhit") {
+modCommand("maxhit") {
     val debug = player["debug", false]
     player["debug"] = false
     val parts = content.split(" ")
@@ -37,8 +35,7 @@ command("maxhit") {
     player.message("Hit Chance")
     val target = NPC(npcName).apply {
         def = npcDefinitions.get(npcName)
-        eventHandler.populate(this)
-        levels.link(events, NPCLevels(def))
+        levels.link(this, NPCLevels(def))
         levels.clear()
     }
     val rangeChance = Hit.chance(player, target, "range", weapon)
@@ -53,12 +50,12 @@ val logger = InlineLogger()
 val Character.charName: String
     get() = (this as? Player)?.name ?: (this as NPC).id
 
-on<CombatSwing>({ it["debug", false] || target["debug", false] }, Priority.HIGHEST) { character: Character ->
+onCharacter<CombatSwing>({ it["debug", false] || target["debug", false] }, Priority.HIGHEST) { character ->
     val player = if (character["debug", false] && character is Player) character else target as Player
     player.message("---- Swing (${character.charName}) -> (${target.charName}) -----")
 }
 
-on<CombatHit>({ debug(source, it) }, Priority.LOWEST) { character: Character ->
+onCharacter<CombatHit>({ debug(source, it) }, Priority.LOWEST) { character ->
     val player = if (character["debug", false] && character is Player) character else source as Player
     val message = "Damage: $damage ($type, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
     player.message(message)

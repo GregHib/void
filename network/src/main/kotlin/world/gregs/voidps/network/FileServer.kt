@@ -112,15 +112,19 @@ class FileServer(
         fun load(cache: Cache, properties: Properties): Server {
             val fileServer = properties.getProperty("fileServer").toBoolean()
             if (!fileServer) {
-                return object : Server {
-                    override suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
-                    }
-                }
+                return offlineFileServer()
             }
             val fileProvider: FileProvider = FileProvider.load(cache, properties)
             val revision = properties.getProperty("revision").toInt()
             val prefetchKeys = prefetchKeys(cache, properties)
             return FileServer(revision, prefetchKeys, fileProvider)
+        }
+
+        private fun offlineFileServer() = object : Server {
+            override suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
+                write.writeByte(Response.LOGIN_SERVER_OFFLINE)
+                write.close()
+            }
         }
     }
 }

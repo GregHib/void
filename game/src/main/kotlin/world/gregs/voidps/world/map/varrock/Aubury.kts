@@ -35,7 +35,7 @@ npcOperate("Talk-to", "aubury") {
 }
 
 fun PlayerChoice.openShop(): Unit = option<Cheerful>("Yes please!") {
-    player.events.emit(OpenShop("auburys_rune_shop"))
+    player.emit(OpenShop("auburys_rune_shop"))
 }
 
 suspend fun PlayerChoice.noThanks(message: String = "Oh, it's a rune shop. No thank you, then."): Unit = option<Talking>(message) {
@@ -115,7 +115,7 @@ suspend fun PlayerChoice.skillcapes(): Unit = option("Can you tell me about your
     npc<Talking>("The Cape of Runecrafting has been upgraded with each talisman, allowing you to access all Runecrafting altars. Is there anything else I can help you with?")
     choice {
         option<Cheerful>("I'd like to view your store please.") {
-            player.events.emit(OpenShop("runecrafting_skillcape"))
+            player.emit(OpenShop("runecrafting_skillcape"))
         }
         noThanks("No thank you.")
     }

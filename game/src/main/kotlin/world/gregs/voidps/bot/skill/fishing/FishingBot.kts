@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.timer.TimerStop
+import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.instruct.InteractNPC
 import world.gregs.voidps.world.interact.entity.death.weightedSample
 
@@ -34,8 +34,10 @@ val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 val gear: GearDefinitions by inject()
 
-onBot<TimerStop>({ timer == "fishing" }) { bot: Bot ->
-    bot.resume(timer)
+timerStop("fishing") { player ->
+    if (player.isBot) {
+        player.bot.resume(timer)
+    }
 }
 
 worldSpawn {
@@ -49,15 +51,15 @@ worldSpawn {
             val task = Task(
                 name = "fish ${type.plural(2)} at ${area.name}".toLowerSpaceCase(),
                 block = {
-                    while (player.levels.getMax(Skill.Fishing) < set.levels.last + 1) {
-                        fish(area, option, bait, set)
+                    while (levels.getMax(Skill.Fishing) < set.levels.last + 1) {
+                        bot.fish(area, option, bait, set)
                     }
                 },
                 area = area.area,
                 spaces = spaces,
                 requirements = listOf(
-                    { player.levels.getMax(Skill.Fishing) in set.levels },
-                    { hasExactGear(set) || hasCoins(2000) }
+                    { levels.getMax(Skill.Fishing) in set.levels },
+                    { bot.hasExactGear(set) || bot.hasCoins(2000) }
                 )
             )
             tasks.register(task)

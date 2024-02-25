@@ -1,10 +1,10 @@
 package world.gregs.voidps.engine.client.variable
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.EventDispatcher
 
 open class Variables(
-    private var events: Events,
+    private var events: EventDispatcher,
     val data: MutableMap<String, Any> = Object2ObjectOpenHashMap(2)
 ) {
 

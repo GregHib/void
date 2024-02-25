@@ -93,7 +93,6 @@ fun Bot.hasExactGear(gear: GearDefinition): Boolean {
 }
 
 private suspend fun Bot.setupGearAndInv(gear: GearDefinition, buy: Boolean) {
-    println("Setup $gear")
     // Pick one of each item to equip for each required slot
     for ((_, equipmentList) in gear.equipment) {
         val items = equipmentList

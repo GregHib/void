@@ -8,7 +8,7 @@ import world.gregs.voidps.network.instruct.ChatPrivate
 class ChatPrivateHandler : InstructionHandler<ChatPrivate>() {
 
     override fun validate(player: Player, instruction: ChatPrivate) {
-        player.events.emit(PrivateChat(instruction.friend, instruction.message))
+        player.emit(PrivateChat(instruction.friend, instruction.message))
     }
 
 }

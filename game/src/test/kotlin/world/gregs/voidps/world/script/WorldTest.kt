@@ -38,7 +38,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.engine.event.EventHandlerStore
+import world.gregs.voidps.engine.event.EventStore
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -63,7 +63,6 @@ abstract class WorldTest : KoinTest {
 
     private val logger = InlineLogger()
     private lateinit var engine: GameLoop
-    private lateinit var store: EventHandlerStore
     lateinit var players: Players
     private lateinit var gatekeeper: NetworkGatekeeper
     lateinit var npcs: NPCs
@@ -169,7 +168,6 @@ abstract class WorldTest : KoinTest {
         MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache()
         saves = File(getProperty("savePath"))
         saves?.mkdirs()
-        store = get()
         val millis = measureTimeMillis {
             val handler = InterfaceHandler(get(), get(), get())
             val tickStages = getTickStages(get(),
@@ -188,7 +186,6 @@ abstract class WorldTest : KoinTest {
                 handler,
                 iterator = SequentialIterator())
             engine = GameLoop(tickStages, mockk(relaxed = true))
-            store.populate(World)
             World.start(true)
         }
         gatekeeper = get<ConnectionGatekeeper>()
@@ -224,7 +221,7 @@ abstract class WorldTest : KoinTest {
     @AfterAll
     fun afterAll() {
         saves?.deleteRecursively()
-        store.clear()
+        EventStore.events.clear()
         World.shutdown()
         stopKoin()
     }

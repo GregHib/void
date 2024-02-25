@@ -12,12 +12,12 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.BlockedExperi
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.exp.GrantExp
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.EventDispatcher
 
 internal class ExperienceTest {
 
     private lateinit var experience: Experience
-    private lateinit var events: Events
+    private lateinit var events: EventDispatcher
 
     @BeforeEach
     fun setup() {
@@ -44,6 +44,15 @@ internal class ExperienceTest {
         experience.add(Skill.Attack, 10.0)
         experience.add(Skill.Attack, 10.0)
         assertEquals(20.0, experience.get(Skill.Attack))
+    }
+
+    @Test
+    fun `Add experience with 10x rate`() {
+        experience = Experience(maximum = 500.0, rate = 10.0)
+        experience.events = events
+        experience.add(Skill.Attack, 10.0)
+        experience.add(Skill.Attack, 10.0)
+        assertEquals(200.0, experience.get(Skill.Attack))
     }
 
     @Test

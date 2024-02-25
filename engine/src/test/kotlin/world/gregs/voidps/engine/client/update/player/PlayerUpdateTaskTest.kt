@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.client.update.view.PlayerTrackingSet
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.client.Client
@@ -29,12 +28,11 @@ import world.gregs.voidps.type.Tile
 
 internal class PlayerUpdateTaskTest : KoinMock() {
 
-    lateinit var task: PlayerUpdateTask
-    lateinit var players: Players
+    private lateinit var task: PlayerUpdateTask
+    private lateinit var players: Players
     private lateinit var encoder: VisualEncoder<PlayerVisuals>
     override val modules = listOf(
         module {
-            single { EventHandlerStore() }
             single { Players() }
         }
     )

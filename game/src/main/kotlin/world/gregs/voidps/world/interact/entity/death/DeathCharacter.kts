@@ -5,6 +5,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.characterLe
 
 characterLevelChange(Skill.Constitution) { character ->
     if (to <= 0 && !character.queue.contains("death")) {
-        character.events.emit(Death)
+        character.emit(Death)
     }
 }

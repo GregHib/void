@@ -13,7 +13,7 @@ data class InterfaceOpened(val id: String) : Event
 
 fun interfaceOpen(vararg ids: String, block: suspend InterfaceOpened.(Player) -> Unit) {
     for (id in ids) {
-        on<InterfaceOpened>({ wildcardEquals(id, this.id) }) { player: Player ->
+        on<InterfaceOpened>({ wildcardEquals(id, this.id) }) { player ->
             block.invoke(this, player)
         }
     }

@@ -22,7 +22,7 @@ class Players : CharacterList<Player>(MAX_PLAYERS) {
 
     override fun clear() {
         for (player in this) {
-            player.events.emit(Unregistered)
+            player.emit(Unregistered)
         }
         super.clear()
     }

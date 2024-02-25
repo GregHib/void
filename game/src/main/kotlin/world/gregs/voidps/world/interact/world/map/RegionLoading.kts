@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.world.map
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -11,6 +10,7 @@ import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onWorld
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.engine.map.zone.DynamicZones
@@ -43,7 +43,7 @@ playerSpawn(priority = Priority.HIGHEST) { player ->
     viewport.players.addSelf(player)
 }
 
-on<RegionRetry>({ it.networked }) { player: Player ->
+on<RegionRetry>({ it.networked }) { player ->
     println("Failed to load region. Retrying...")
     updateRegion(player, initial = false, force = true)
 }
@@ -67,7 +67,7 @@ move({ it.networked && needsRegionChange(it) }, Priority.HIGH) { player ->
     updateRegion(player, false, crossedDynamicBoarder(player))
 }
 
-on<World, ReloadZone> {
+onWorld<ReloadZone> {
     players.forEach { player ->
         if (player.networked && inViewOfZone(player, zone)) {
             updateRegion(player, initial = false, force = true)

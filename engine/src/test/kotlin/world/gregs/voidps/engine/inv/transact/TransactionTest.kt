@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.ItemChanged
 import world.gregs.voidps.engine.inv.transact.operation.TransactionOperationTest
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.EventDispatcher
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -18,7 +18,7 @@ class TransactionTest : TransactionOperationTest() {
     @Test
     fun `Set tracks changes`() {
         val inventory = Inventory.debug(1)
-        val events: Events = mockk(relaxed = true)
+        val events: EventDispatcher = mockk(relaxed = true)
         val transaction = inventory.transaction
         transaction.changes.bind(events)
         transaction.set(0, Item("item", 1, def = ItemDefinition.EMPTY))

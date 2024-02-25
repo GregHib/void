@@ -21,7 +21,7 @@ data class ObjectOption(
 
 fun objectApproach(option: String, vararg objects: String = arrayOf("*"), block: suspend ObjectOption.() -> Unit) {
     for (id in objects) {
-        on<ObjectOption>({ approach && wildcardEquals(id, target.id) && wildcardEquals(option, this.option) }) { _: Player ->
+        on<ObjectOption>({ approach && wildcardEquals(id, target.id) && wildcardEquals(option, this.option) }) {
             block.invoke(this)
         }
     }
@@ -29,7 +29,7 @@ fun objectApproach(option: String, vararg objects: String = arrayOf("*"), block:
 
 fun objectOperate(option: String, vararg objects: String = arrayOf("*"), arrive: Boolean = true, priority: Priority = Priority.MEDIUM, block: suspend ObjectOption.() -> Unit) {
     for (id in objects) {
-        on<ObjectOption>({ operate && wildcardEquals(id, target.id) && wildcardEquals(option, this.option) }, priority) { _: Player ->
+        on<ObjectOption>({ operate && wildcardEquals(id, target.id) && wildcardEquals(option, this.option) }, priority) {
             if (arrive) {
                 arriveDelay()
             }

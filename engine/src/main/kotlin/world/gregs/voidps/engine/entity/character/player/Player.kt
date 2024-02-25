@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
-import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.Inventories
 import world.gregs.voidps.engine.queue.ActionQueue
@@ -66,7 +65,6 @@ class Player(
 
     override lateinit var visuals: PlayerVisuals
     val instructions = MutableSharedFlow<Instruction>(replay = 20)
-    override val events: Events = Events(this)
     lateinit var options: PlayerOptions
     lateinit var interfaces: Interfaces
     lateinit var interfaceOptions: InterfaceOptions
@@ -94,14 +92,14 @@ class Player(
     /**
      * Always ticks
      */
-    override var softTimers: Timers = TimerQueue(events)
+    override var softTimers: Timers = TimerQueue(this)
 
     /**
      * Ticks while not delayed or has interface open
      */
-    var timers = TimerQueue(events)
+    var timers = TimerQueue(this)
 
-    override var variables: Variables = PlayerVariables(events, variables)
+    override var variables: Variables = PlayerVariables(this, variables)
 
     override val steps = Steps(this)
 
@@ -117,11 +115,11 @@ class Player(
                 logout(false)
             }
         }
-        events.emit(Registered)
+        emit(Registered)
         val definitions = get<AreaDefinitions>()
         for (def in definitions.get(tile.zone)) {
             if (tile in def.area) {
-                events.emit(AreaEntered(this, def.name, def.tags, def.area))
+                emit(AreaEntered(this, def.name, def.tags, def.area))
             }
         }
     }
@@ -153,10 +151,10 @@ class Player(
             val definitions = get<AreaDefinitions>()
             for (def in definitions.get(tile.zone)) {
                 if (tile in def.area) {
-                    events.emit(AreaExited(this@Player, def.name, def.tags, def.area))
+                    emit(AreaExited(this@Player, def.name, def.tags, def.area))
                 }
             }
-            events.emit(Unregistered)
+            emit(Unregistered)
         }
     }
 

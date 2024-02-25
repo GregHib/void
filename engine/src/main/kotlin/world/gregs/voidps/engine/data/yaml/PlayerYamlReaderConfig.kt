@@ -10,7 +10,8 @@ import world.gregs.voidps.type.Tile
 import world.gregs.yaml.read.YamlReaderConfiguration
 
 internal class PlayerYamlReaderConfig(
-    private val itemDefinitions: ItemDefinitions
+    private val itemDefinitions: ItemDefinitions,
+    private val experienceRate: Double
 ) : YamlReaderConfiguration() {
     override fun add(list: MutableList<Any>, value: Any, parentMap: String?) {
         if (value is Map<*, *> && value.containsKey("id")) {
@@ -35,7 +36,8 @@ internal class PlayerYamlReaderConfig(
             value as Map<String, Any>
             val exp = Experience(
                 experience = (value["experience"] as List<Double>).toDoubleArray(),
-                blocked = (value["blocked"] as List<Skill>).toMutableSet()
+                blocked = (value["blocked"] as List<Skill>).toMutableSet(),
+                rate = experienceRate
             )
             super.set(map, key, exp, indent, parentMap)
         } else if (key == "levels") {

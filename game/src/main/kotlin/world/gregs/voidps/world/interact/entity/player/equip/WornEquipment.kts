@@ -36,7 +36,7 @@ interfaceOption(component = "*_slot", id = "worn_equipment") {
     }
     val slot = EquipSlot.by(component.removeSuffix("_slot"))
     player.closeInterfaces()
-    player.events.emit(InventoryOption(player, id, item, slot.index, equipOption))
+    player.emit(InventoryOption(player, id, item, slot.index, equipOption))
 }
 
 fun getEquipmentOption(itemDef: ItemDefinition, optionId: Int): String? {

@@ -18,7 +18,7 @@ data class AreaEntered(
 }
 
 fun enterArea(area: String = "*", tag: String = "*", block: suspend AreaEntered.() -> Unit) {
-    on<AreaEntered>({ wildcardEquals(area, name) && (tag == "*" || tags.any { wildcardEquals(tag, it) }) }) { _: Player ->
+    on<AreaEntered>({ wildcardEquals(area, name) && (tag == "*" || tags.any { wildcardEquals(tag, it) }) }) {
         block.invoke(this)
     }
 }

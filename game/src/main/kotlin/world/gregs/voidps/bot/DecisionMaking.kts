@@ -6,12 +6,11 @@ import kotlinx.coroutines.launch
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.entity.AiTick
-import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onWorld
 import world.gregs.voidps.engine.inject
-import java.util.concurrent.ConcurrentLinkedQueue
 
 val players: Players by inject()
 val tasks: TaskManager by inject()
@@ -19,7 +18,7 @@ val tasks: TaskManager by inject()
 val scope = CoroutineScope(Contexts.Game)
 val logger = InlineLogger("Bot")
 
-onBot<StartBot>({ it.contains("task") && !it.contains("task_started") }) { bot: Bot ->
+on<StartBot>({ it.contains("task") && !it.contains("task_started") }) { bot ->
     val name: String = bot["task"]!!
     val task = tasks.get(name)
     if (task == null) {
@@ -29,26 +28,21 @@ onBot<StartBot>({ it.contains("task") && !it.contains("task_started") }) { bot: 
     }
 }
 
-on<World, AiTick> {
+onWorld<AiTick> {
     players.forEach { player ->
         if (player.isBot) {
             val bot: Bot = player["bot"]!!
             if (!bot.contains("task")) {
-                assign(bot, tasks.assign(bot))
+                assign(player, tasks.assign(bot))
             }
-            val events: ConcurrentLinkedQueue<Event> = player["events"]!!
-            while (events.isNotEmpty()) {
-                val event = events.poll()
-                bot.botEvents.emit(event)
-            }
-            bot.resume("tick")
+            player.bot.resume("tick")
         }
     }
 }
 
-fun assign(bot: Bot, task: Task) {
+fun assign(bot: Player, task: Task) {
     if (bot["debug", false]) {
-        logger.debug { "Task assigned: ${bot.player.accountName} - ${task.name}" }
+        logger.debug { "Task assigned: ${bot.accountName} - ${task.name}" }
     }
     bot["task"] = task.name
     bot["task_started"] = true
@@ -57,7 +51,7 @@ fun assign(bot: Bot, task: Task) {
         try {
             task.block.invoke(bot)
         } catch (t: Throwable) {
-            logger.warn(t) { "Task cancelled for ${bot.player}" }
+            logger.warn(t) { "Task cancelled for $bot" }
         }
         bot.clear("task")
         task.spaces++

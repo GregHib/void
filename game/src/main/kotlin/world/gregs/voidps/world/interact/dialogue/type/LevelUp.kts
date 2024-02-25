@@ -20,7 +20,7 @@ experience { player ->
     val currentLevel = Experience.level(skill, to)
     if (currentLevel != previousLevel) {
         player.levels.restore(skill, 1)
-        player.events.emit(MaxLevelChanged(skill, previousLevel, currentLevel))
+        player.emit(MaxLevelChanged(skill, previousLevel, currentLevel))
     }
 }
 

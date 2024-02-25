@@ -2,12 +2,15 @@ package world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AmmoDefinitions
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasUseLevel
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.combat.weaponSwing
 import world.gregs.voidps.world.interact.entity.player.combat.range.Ammo
@@ -17,12 +20,20 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.specialAtt
 val ammoDefinitions: AmmoDefinitions by inject()
 
 weaponSwing(style = "range", priority = Priority.HIGHEST) { player ->
+    check(player)
+}
+
+specialAttackSwing(style = "range", priority = Priority.HIGHEST) { player ->
+    check(player)
+}
+
+fun CombatSwing.check(player: Player) {
     if (!player.hasUseLevel(Skill.Ranged, player.weapon, message = true)) {
         delay = -1
         player.specialAttack = false
         player.message("You are not high enough level to use this weapon.")
         player.message("You need to have a Ranged level of ${player.weapon.def.get<Int>("secondary_use_level")}.")
-        return@weaponSwing
+        return
     }
 }
 

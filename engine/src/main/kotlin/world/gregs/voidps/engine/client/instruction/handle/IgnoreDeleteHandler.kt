@@ -8,7 +8,7 @@ import world.gregs.voidps.network.instruct.IgnoreDelete
 class IgnoreDeleteHandler : InstructionHandler<IgnoreDelete>() {
 
     override fun validate(player: Player, instruction: IgnoreDelete) {
-        player.events.emit(DeleteIgnore(instruction.name))
+        player.emit(DeleteIgnore(instruction.name))
     }
 
 }

@@ -130,7 +130,7 @@ fun Character.hit(
 ): Int {
     val actualDamage = Damage.modify(this, target, type, damage, weapon, spell, special)
         .coerceAtMost(target.levels.get(Skill.Constitution))
-    events.emit(CombatAttack(target, type, actualDamage, weapon, spell, special, TICKS.toClientTicks(delay)))
+    emit(CombatAttack(target, type, actualDamage, weapon, spell, special, TICKS.toClientTicks(delay)))
     target.strongQueue("hit", delay) {
         target.directHit(this@hit, actualDamage, type, weapon, spell, special)
     }
@@ -150,5 +150,5 @@ fun Character.directHit(source: Character, damage: Int, type: String = "damage",
     if (source.dead) {
         return
     }
-    events.emit(CombatHit(source, type, damage, weapon, spell, special))
+    emit(CombatHit(source, type, damage, weapon, spell, special))
 }
