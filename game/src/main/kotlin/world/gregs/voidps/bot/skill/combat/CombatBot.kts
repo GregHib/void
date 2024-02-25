@@ -4,13 +4,10 @@ import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.item.pickup
-import world.gregs.voidps.bot.navigation.await
-import world.gregs.voidps.bot.navigation.cancel
-import world.gregs.voidps.bot.navigation.goToArea
-import world.gregs.voidps.bot.navigation.resume
+import world.gregs.voidps.bot.navigation.*
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.client.variable.VariableSet
+import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.AmmoDefinitions
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -25,6 +22,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRe
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.worldSpawn
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
@@ -32,8 +30,8 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.skill.slayer.race
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.attackers
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.underAttack
 import world.gregs.voidps.world.interact.entity.death.Death
 import world.gregs.voidps.world.interact.entity.death.weightedSample
@@ -44,21 +42,24 @@ val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 val floorItems: FloorItems by inject()
 
-onBot<VariableSet>({ key == "under_attack" && to == 0 }) { bot ->
-    bot.resume("combat")
-}
-
-onBot<CombatSwing> { bot ->
-    val player = bot.player
-    if (player.levels.getPercent(Skill.Constitution) < 50.0) {
-        val food = player.inventory.items.firstOrNull { it.def.contains("heals") } ?: return@onBot
-        bot.inventoryOption(food.id, "Eat")
+variableSet("under_attack", 1) { player ->
+    if (player.isBot) {
+        player.bot.resume("combat")
     }
 }
 
-onBot<Death> { bot ->
-    bot.clear("area")
-    bot.cancel()
+combatSwing { player ->
+    if (player.levels.getPercent(Skill.Constitution) < 50.0) {
+        val food = player.inventory.items.firstOrNull { it.def.contains("heals") } ?: return@combatSwing
+        player.bot.inventoryOption(food.id, "Eat")
+    }
+}
+
+on<Death> { player ->
+    if(player.isBot) {
+        player.clear("area")
+        player.bot.cancel()
+    }
 }
 
 worldSpawn {
@@ -71,15 +72,15 @@ worldSpawn {
             val task = Task(
                 name = "train ${skill.name} killing ${types.joinToString(", ")} at ${area.name}".toLowerSpaceCase(),
                 block = {
-                    while (player.levels.getMax(skill) < range.last + 1) {
-                        fight(area, skill, types)
+                    while (levels.getMax(skill) < range.last + 1) {
+                        bot.fight(area, skill, types)
                     }
                 },
                 area = area.area,
                 spaces = 1,
                 requirements = listOf(
-                    { player.levels.getMax(skill) in range },
-                    { hasExactGear(skill) || hasCoins(2000) }
+                    { levels.getMax(skill) in range },
+                    { bot.hasExactGear(skill) || bot.hasCoins(2000) }
                 )
             )
             tasks.register(task)

@@ -29,6 +29,9 @@ import world.gregs.voidps.world.activity.bank.bank
 val Player.isBot: Boolean
     get() = contains("bot")
 
+val Player.bot: Bot
+    get() = get("bot")!!
+
 fun Bot.hasCoins(amount: Int, bank: Boolean = true): Boolean {
     if (player.inventory.contains("coins") && player.inventory.count("coins") >= amount) {
         return true

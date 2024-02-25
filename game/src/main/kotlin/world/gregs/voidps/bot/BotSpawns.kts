@@ -124,7 +124,6 @@ fun Player.initBot(): Bot {
 fun handleSuspensions(player: Player, event: Event) {
     val suspensions: MutableMap<KClass<*>, Pair<Event.(Player) -> Boolean, CancellableContinuation<Unit>>> = player["bot_suspensions"] ?: return
     val pair = suspensions[event::class] ?: return
-    println("Suspensions $pair")
     val (condition, continuation) = pair
     if (condition(event, player)) {
         suspensions.remove(event::class)

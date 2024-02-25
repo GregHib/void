@@ -1,14 +1,15 @@
 package world.gregs.voidps.bot
 
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Area
 
 data class Task(
     val name: String,
-    val block: suspend Bot.() -> Unit,
+    val block: suspend Player.() -> Unit,
     val area: Area? = null,
     var spaces: Int = 1,
-    val requirements: Collection<Bot.() -> Boolean> = emptySet()
+    val requirements: Collection<Player.() -> Boolean> = emptySet()
 ) {
     fun full() = spaces <= 0
 
