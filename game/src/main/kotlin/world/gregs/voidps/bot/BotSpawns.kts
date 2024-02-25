@@ -28,7 +28,6 @@ import world.gregs.voidps.network.client.DummyClient
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.type.random
-import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.reflect.KClass
@@ -49,6 +48,9 @@ var counter = 0
 worldSpawn {
     if (botCount > 0) {
         World.timers.start("bot_spawn")
+    }
+    EventStore.events.all = { player, event ->
+        handleSuspensions(player, event)
     }
 }
 
@@ -116,18 +118,13 @@ fun spawn() {
 fun Player.initBot(): Bot {
     val bot = Bot(this)
     this["bot"] = bot
-    val e = ConcurrentLinkedQueue<Event>()
-    this["events"] = e
-    EventStore.events.botListeners.add { event ->
-        e.add(event)
-        handleSuspensions(bot.player, event)
-    }
     return bot
 }
 
 fun handleSuspensions(player: Player, event: Event) {
     val suspensions: MutableMap<KClass<*>, Pair<Event.(Player) -> Boolean, CancellableContinuation<Unit>>> = player["bot_suspensions"] ?: return
     val pair = suspensions[event::class] ?: return
+    println("Suspensions $pair")
     val (condition, continuation) = pair
     if (condition(event, player)) {
         suspensions.remove(event::class)

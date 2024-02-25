@@ -14,7 +14,7 @@ import kotlin.reflect.KClass
 class EventStore : CoroutineScope {
     override val coroutineContext: CoroutineContext = Dispatchers.Unconfined + errorHandler
     private val handlers: MutableMap<String, MutableList<EventHandler>> = Object2ObjectOpenHashMap()
-    val botListeners = mutableListOf<(Event) -> Unit>()
+    var all: ((Player, Event) -> Unit)? = null
 
     fun add(dispatcher: KClass<out EventDispatcher>, event: KClass<out Event>, handler: EventHandler) {
         handlers.getOrPut("${dispatcher.simpleName}_${event.simpleName}") { mutableListOf() }.add(handler)
@@ -35,8 +35,8 @@ class EventStore : CoroutineScope {
 
     fun <E : Event> emit(dispatcher: EventDispatcher, event: E): Boolean {
         val handlers = handlers["${dispatcher::class.simpleName}_${event::class.simpleName}"] ?: return false
-        for (listener in botListeners) {
-            listener.invoke(event)
+        if (dispatcher is Player && dispatcher.contains("bot")) {
+            all?.invoke(dispatcher, event)
         }
         var called = false
         for (handler in handlers) {
@@ -58,8 +58,8 @@ class EventStore : CoroutineScope {
         if (handlers.none { it.condition(event, dispatcher) }) {
             return false
         }
-        for (listener in botListeners) {
-            listener.invoke(event)
+        if (dispatcher is Player && dispatcher.contains("bot")) {
+            all?.invoke(dispatcher, event)
         }
         launch {
             for (handler in handlers) {

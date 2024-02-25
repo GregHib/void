@@ -7,10 +7,8 @@ import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.entity.AiTick
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.onWorld
 import world.gregs.voidps.engine.inject
-import java.util.concurrent.ConcurrentLinkedQueue
 
 val players: Players by inject()
 val tasks: TaskManager by inject()
@@ -34,11 +32,6 @@ onWorld<AiTick> {
             val bot: Bot = player["bot"]!!
             if (!bot.contains("task")) {
                 assign(bot, tasks.assign(bot))
-            }
-            val events: ConcurrentLinkedQueue<Event> = player["events"]!!
-            while (events.isNotEmpty()) {
-                val event = events.poll()
-                bot.emit(event)
             }
             bot.resume("tick")
         }
