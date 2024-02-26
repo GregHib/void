@@ -1,3 +1,7 @@
 package world.gregs.voidps.engine.event
 
-interface Event
+interface Event {
+    open fun key(): String {
+        return ""
+    }
+}
