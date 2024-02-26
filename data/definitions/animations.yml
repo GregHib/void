@@ -78,10 +78,6 @@ expression_evil_grin2: 9799
 expression_evil_grin3: 9800
 expression_evil_grin4: 9801
 expression_asleep: 9802
-expression_asleep_old1: 600
-expression_asleep_old2: 601
-expression_asleep_old3: 602
-expression_asleep_old4: 603
 expression_talking1: 9803
 expression_talking2: 9804
 expression_talking3: 9805
@@ -132,7 +128,10 @@ expression_roll_eyes_old2: 563
 expression_roll_eyes_old3: 564
 expression_roll_eyes_old4: 565
 expression_drunk: 9835
-expression_drunk_old: 600
+expression_drunk_old1: 600
+expression_drunk_old2: 601
+expression_drunk_old3: 602
+expression_drunk_old4: 603
 expression_suspicious1: 9836
 expression_suspicious2: 9837
 expression_suspicious3: 9838
