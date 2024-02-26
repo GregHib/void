@@ -5,17 +5,17 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.forceWalk
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.objectApproach
-import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.entity.obj.*
+import world.gregs.voidps.engine.entity.objectDespawn
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -23,10 +23,11 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.timer.timerStart
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.cleanseEvent
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.currentActiveObject
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.currentStarTile
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.startEvent
@@ -35,6 +36,7 @@ import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Sad
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
+import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 
 val objects: GameObjects by inject()
@@ -47,10 +49,9 @@ worldSpawn {
 
 fun eventUpdate() {
     World.queue("shooting_star_event_timer", startEvent) {
-       if (isPlayersPresent()) {
-            eventUpdate()
-            return@queue
-       }
+        if(isPlayersPresent()){
+            eventUpdate() // theres players present so skip this event removal
+        }
        if (currentStarTile != Tile.EMPTY) {
             cleanseEvent(true)
             println("There was already an active star, deleted it and started a new event")
@@ -61,7 +62,9 @@ fun eventUpdate() {
 }
 
 fun isPlayersPresent(): Boolean {
-    return false
+    return currentStarTile.toCuboid(5, 5).any { tile ->
+        players[tile].isNotEmpty()
+    }
 }
 
 fun startCrashedStarEvent() {
@@ -87,6 +90,23 @@ fun startCrashedStarEvent() {
     }
 }
 
+fun cleanseEvent(forceStopped: Boolean) {
+    val existing = currentActiveObject?.let { objects.get(currentStarTile, it.id) }
+    if (existing != null) {
+        existing.remove(existing.intId, true)
+    }
+    if (!forceStopped) {
+        val starSprite = npcs.add("star_sprite", currentStarTile, Direction.NONE, 0)
+        World.queue("start_sprite_despawn_timer", TimeUnit.MINUTES.toTicks(10)) {
+            npcs.remove(starSprite)
+        }
+    }
+    totalCollected = 0
+    currentStarTile = Tile.EMPTY
+    currentActiveObject = null
+    ShootingStarHandler.earlyBird = false
+}
+
 fun getLayerPercentage(totalCollected: Int, totalNeeded: Int): String {
     val remaining = totalNeeded - totalCollected
     val percentageRemaining = (remaining.toDouble() / totalNeeded.toDouble()) * 100
@@ -110,6 +130,25 @@ fun calculateRewards(stardust: Int): Map<String, Int> {
             "cosmic_rune" to cosmicRunes,
             "gold_ore_noted" to goldOres
     )
+}
+
+objectDespawn { obj ->
+    if (obj.id == "shooting_star_tier_1") {
+        cleanseEvent(false)
+    }
+}
+
+timerStart("mining") { player ->
+    val target = (player.mode as? Interact)?.target as GameObject
+    val isStar = target.id.startsWith("crashed_star")
+    if (isStar) {
+        val isEarlyBird = ShootingStarHandler.isEarlyBird()
+        if (isEarlyBird){
+            player.message("Congratulations!, You were the first person to find this star!")
+            val xpToAdd:Double = player.levels.get(Skill.Mining) * 75.0
+            player.experience.add(Skill.Mining, xpToAdd)
+        }
+    }
 }
 
 objectApproach("Prospect", "crashed_star_tier_#") {

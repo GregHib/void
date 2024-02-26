@@ -44,15 +44,6 @@ objectOperate("Mine") {
         player.message("There is currently no ore available in this rock.")
         return@objectOperate
     }
-    val isStar = target.id.startsWith("crashed_star")
-    if(isStar){
-        val isEarlyBird = ShootingStarHandler.isEarlyBird(player)
-        if(isEarlyBird){
-            player.message("Congratulations!, You were the first person to find this star!")
-            val xpToAdd:Double = player.levels.get(Skill.Mining) * 75.0
-            player.experience.add(Skill.Mining, xpToAdd)
-        }
-    }
     player.softTimers.start("mining")
     var first = true
     while (true) {
