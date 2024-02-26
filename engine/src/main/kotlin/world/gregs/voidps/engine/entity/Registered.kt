@@ -29,12 +29,12 @@ fun characterSpawn(block: suspend Registered.(Character) -> Unit) {
     onCharacter<Registered>(block = block)
 }
 
-fun floorItemSpawn(block: suspend Registered.(FloorItem) -> Unit) {
-    onFloorItem<Registered>(block = block)
+fun floorItemSpawn(item: String = "*", block: suspend Registered.(FloorItem) -> Unit) {
+    onFloorItem<Registered>({ wildcardEquals(item, it.id) }, block = block)
 }
 
-fun objectSpawn(block: suspend Registered.(GameObject) -> Unit) {
-    onObject<Registered>(block = block)
+fun objectSpawn(obj: String = "*", block: suspend Registered.(GameObject) -> Unit) {
+    onObject<Registered>({ wildcardEquals(obj, it.id) }, block = block)
 }
 
 fun worldSpawn(block: suspend () -> Unit) {
