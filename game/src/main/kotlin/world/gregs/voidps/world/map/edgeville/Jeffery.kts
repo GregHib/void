@@ -1,22 +1,21 @@
 package world.gregs.voidps.world.map.edgeville
 
-import world.gregs.voidps.engine.entity.character.CharacterContext
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
+import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.activity.quest.quest
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 
-on<NPCOption>({ operate && target.id == "jeffery" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "jeffery") {
     npc<Unsure>("Keep it quick. What do you want?")
     choice {
-         if (player.quest("gunnars_ground") != "unstarted" && player.quest("gunnars_ground") != "started" && player.quest("gunnars_ground") != "love_poem") {
+        if (player.quest("gunnars_ground") != "unstarted" && player.quest("gunnars_ground") != "started" && player.quest("gunnars_ground") != "love_poem") {
             option<Talk>("Who was that love poem for?") {
                 if (player.quest("gunnars_ground") == "completed") {
                     npc<Sad>("It, er, it didn't work out well.")
@@ -45,18 +44,18 @@ on<NPCOption>({ operate && target.id == "jeffery" && option == "Talk-to" }) { pl
                             player<Talk>("Er...I meant to bring a poem as a trade, but I seem to have mislaid it. I'll go and find it.")
                         }
                     }
-                    option<Talk>("Actually, forget it.") {
-                    }
+                    option<Talk>("Actually, forget it.")
                 }
             }
         }
         option<Talk>("I want to use the furnace.") {
-            //if has not done tasks to get Varrock armour
-          //  npc<Talk>("You want to use my furnace? I only let exceptional people use my furnace. You don't look exceptional to me.")
-          //  player<Unsure>("How do I become exceptional?")
-          //  npc<Cheerful>("Exceptional people have earned exceptional items; earning Varrock armour would impress me.")
-          //  player<Happy>("Alright!")
-            //else
+            if (!player.ownsItem("varrock_armour_4") && !player.ownsItem("varrock_armour_3") && !player.ownsItem("varrock_armour_2") && !player.ownsItem("varrock_armour_1")) {
+                npc<Talk>("You want to use my furnace? I only let exceptional people use my furnace. You don't look exceptional to me.")
+                player<Unsure>("How do I become exceptional?")
+                npc<Cheerful>("Exceptional people have earned exceptional items; earning Varrock armour would impress me.")
+                player<Happy>("Alright!")
+                return@option
+            }
             npc<Cheerful>("You seem exceptional enough. Go ahead.")
             player<Unsure>("What can I make here, exactly?")
             npc<Cheerful>("Well, depending on your skill as a blacksmith, you can use this furnace to smelt ore into metal bars.")
@@ -84,12 +83,11 @@ on<NPCOption>({ operate && target.id == "jeffery" && option == "Talk-to" }) { pl
                 player<Surprised>("Oh, right. Yes I see. Okay, thanks.")
             }
         }
-        option<Talk>("Er, nothing.") {
-        }
+        option<Talk>("Er, nothing.")
     }
 }
 
-suspend fun CharacterContext.lovePoem() {
+suspend fun TargetNPCContext.lovePoem() {
     npc<Surprised>("A love poem? What?")
     npc<Unsure>("Wait...that dwarf put you up to this, didn't he?")
     choice {
@@ -103,26 +101,26 @@ suspend fun CharacterContext.lovePoem() {
     }
 }
 
-suspend fun CharacterContext.cheekyLittle() {
+suspend fun TargetNPCContext.cheekyLittle() {
     npc<Angry>("That cheeky little...")
     npc<Angry>("He just can't leave it alone, can he? Fine! I'll trade you for the poem. What is it you want?")
     choice {
         option<Talk>("Just a plain, gold ring.") {
-            goldring()
+            goldRing()
         }
         option<Talk>("The most valuable diamond ring you have.") {
             npc<Happy>("Well, all I have is this plain, gold ring.")
             player<Upset>("That will have to do.")
-            goldring()
+            goldRing()
         }
     }
 }
 
-suspend fun CharacterContext.goldring() {
+suspend fun TargetNPCContext.goldRing() {
     player.inventory.replace("love_poem", "ring_from_jeffery")
     player["gunnars_ground"] = "jeffery_ring"
-    player.setAnimation("14737")
-   // npc.setAnimation("14738")//todo not working
-    items( "love_poem","ring_from_jeffery","Jeffery trades you a gold ring for the poem.")
+    player.setAnimation("hand_over_item")
+    target.setAnimation("exchange_pocket")
+    items("love_poem", "ring_from_jeffery", "Jeffery trades you a gold ring for the poem.")
     npc<Angry>("Now, leave me in peace!")
 }
