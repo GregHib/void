@@ -810,8 +810,13 @@ chieftain_gunthor_cutscene:
   examine: "A heavily built barbarian with an air of power and authority."
 haakon_the_champion:
   id: 3090
-  max_hit_melee: 42
   hitpoints: 360
+  att: 22
+  str: 22
+  def: 25
+  mage: 240
+  attack_bonus: 8
+  max_hit_melee: 42
   immune_poison: true
   wander_radius: 4
   respawn_delay: 75
