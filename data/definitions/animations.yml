@@ -1307,7 +1307,7 @@ rat_hit: 2706
 giant_rat_attack: 14859
 giant_rat_death: 14860
 giant_rat_hit: 14861
-player_death: 836
+human_death: 836
 sap: 12569
 leech: 12575
 deflect: 12573
