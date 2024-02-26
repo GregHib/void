@@ -1,10 +1,12 @@
 package world.gregs.voidps.engine.entity.obj
 
+import org.koin.mp.KoinPlatformTools
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Entity
+import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.encode.zone.ObjectAnimation
 import world.gregs.voidps.type.Distance
@@ -14,7 +16,7 @@ import world.gregs.voidps.type.Tile
  * Interactive Object
  */
 @JvmInline
-value class GameObject(internal val packed: Long) : Entity {
+value class GameObject(internal val packed: Long) : Entity, EventDispatcher {
 
     constructor(id: Int, x: Int, y: Int, level: Int, shape: Int, rotation: Int) : this(pack(id, x, y, level, shape, rotation))
 
@@ -53,7 +55,11 @@ value class GameObject(internal val packed: Long) : Entity {
     )
 
     override fun toString(): String {
-        return "GameObject(id=$id, intId=$intId, tile=$tile, shape=$shape, rotation=$rotation)"
+        return if (KoinPlatformTools.defaultContext().getOrNull() == null) {
+            "GameObject(intId=$intId, tile=$tile, shape=$shape, rotation=$rotation)"
+        } else {
+            "GameObject(id=$id, intId=$intId, tile=$tile, shape=$shape, rotation=$rotation)"
+        }
     }
 
     companion object {
