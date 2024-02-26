@@ -238,19 +238,19 @@ suspend fun NPCOption.giveSilverlight() {
     target.face(cupboard)
     player.face(target)
     cupboard.animate("silverlight_sword_case_open")
-    target.setAnimation("silverlight_open_sword_case")
+    target.setAnimation("silverlight_unlock_sword_case")
     player.playSound("cupboard_open", delay = 19)
     delay(3)
     player.playSound("cupboard_open")
     delay(2)
     player.playSound("cupboard_open", delay = 10)
     delay(2)
-    target.setAnimation("silverlight_remove_sword")
+    target.setAnimation("silverlight_open_sword_case")
     cupboard.animate("silverlight_sword_removed")
     delay(8)
     player["demon_slayer_silverlight_case"] = "open"
     player.playSound("casket_open")
-    target.setAnimation("12628")
+    target.setAnimation("silverlight_remove_sword")
     delay()
     player["demon_slayer_sir_prysin_sword"] = true
     player["demon_slayer_silverlight_case"] = "empty"
