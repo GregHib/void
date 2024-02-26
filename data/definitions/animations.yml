@@ -1474,8 +1474,9 @@ delrith_appear: 4623
 delrith_death: 4624
 wally_demon_slay: 4603
 silverlight_sword_case_open: 12630
-silverlight_open_sword_case: 12629
-silverlight_remove_sword: 12616
+silverlight_unlock_sword_case: 12629
+silverlight_open_sword_case: 12616
+silverlight_remove_sword: 12628
 silverlight_sword_removed: 12617
 silverlight_hand_over: 12618
 silverlight_take: 12615
