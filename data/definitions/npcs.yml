@@ -815,6 +815,7 @@ haakon_the_champion:
   immune_poison: true
   wander_radius: 4
   respawn_delay: 75
+  weapon_style: 2h
   style: crush
   race: human
   examine: "A mighty warrior, Haakon is powerfully concerned for his tribe."
