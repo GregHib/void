@@ -1497,6 +1497,9 @@ unarmed_punch: 422
 unarmed_kick: 423
 unarmed_block: 422
 unarmed_hit: 424
+human_attack: 422
+human_block: 422
+human_hit: 424
 staff_bash: 419
 staff_pound: 419
 staff_focus: 419
