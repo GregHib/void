@@ -79,8 +79,8 @@ suspend fun CharacterContext.cutscene() {
     delay(4)
     player.tele(Tile(3078, 3435).add(offset), clearInterfaces = false)
     val dororan = npcs.add("dororan_cutscene", Tile(3079, 3435).add(offset), Direction.SOUTH) ?: return
-    dororan.setAnimation("14725")
-    player.setAnimation("14724")
+    dororan.setAnimation("dororan_lean_on_door")
+    player.setAnimation("player_lean_on_door")
     dororan.face(Direction.NORTH)
     player.face(Direction.NORTH)
     player.moveCamera(Tile(3079, 3430).add(offset), 280)
@@ -88,7 +88,7 @@ suspend fun CharacterContext.cutscene() {
     delay(2)
     player.open("fade_in")
     npc<Talk>("dororan_cutscene", "How long have they been in there?")
-    player.setAnimation("6709")
+    player.setAnimation("player_calm_doroan")
     choice {
         option<Talking>("They're just starting.") {
             cutsceneMenu()
@@ -103,11 +103,11 @@ suspend fun CharacterContext.cutsceneMenu() {
     npc<Sad>("dororan_cutscene", "This isn't going to work.")
     choice {
         option<Talking>("Why's that?") {
-            player.setAnimation("6709")
+            player.setAnimation("player_calm_doroan")
             cutsceneMenu2()
         }
         option<Talking>("You're so pessimistic.") {
-            player.setAnimation("6709")
+            player.setAnimation("player_calm_doroan")
             cutsceneMenu2()
         }
     }
@@ -117,12 +117,12 @@ suspend fun CharacterContext.cutsceneMenu2() {
     npc<Unknown_expression>("dororan_cutscene", "What was I thinking? You should go in there and stop them before Gudrun makes a fool of herself.")
     choice {
         option<Talking>("Okay, I will.") {
-            player.setAnimation("6709")
+            player.setAnimation("player_calm_doroan")
             npc<Sad>("dororan_cutscene", "No! Wait, stay here, it's too late now. We'll just have to see how it turns out.")
             cutsceneMenu3()
         }
         option<Talking>("Don't be silly.") {
-            player.setAnimation("6709")
+            player.setAnimation("player_calm_doroan")
             npc<Sad>("dororan_cutscene", "You're right, it's too late now. We'll just have to see how it turns out.")
             cutsceneMenu3()
         }
@@ -131,10 +131,10 @@ suspend fun CharacterContext.cutsceneMenu2() {
 
 suspend fun CharacterContext.cutsceneMenu3() {
     npc<Sad>("dororan_cutscene", "I can't hear what's happening. Can you hear what's happening?")
-    player.setAnimation("6709")
+    player.setAnimation("player_calm_doroan")
     player<Talk>("Gunthor is laughing at something.")
     npc<Upset>("dororan_cutscene", "He's probably considering the various tortures he has planned for me.")
-    player.setAnimation("6709")
+    player.setAnimation("player_calm_doroan")
     choice {
         option<Talking>("Why would he do that?") {
             cutsceneMenu4()
@@ -148,7 +148,7 @@ suspend fun CharacterContext.cutsceneMenu3() {
 suspend fun CharacterContext.cutsceneMenu4() {
     npc<Talk>("dororan_cutscene", "The poem says you can honour your ancestors by settling peacefully on the land they conquered.")
     npc<Sad>("dororan_cutscene", "He'll probably just find it insulting.")
-    player.setAnimation("6709")
+    player.setAnimation("player_calm_doroan")
     choice {
         option<Talking>("Now's your chance to find out.") {
             cutscenePart2()
@@ -178,7 +178,7 @@ suspend fun CharacterContext.cutscenePart2() {
     delay(2)
     player.open("fade_in")
     npc<Upset>("dororan_cutscene", "I hope they at least give me a decent burial.")
-    gunthor.setAnimation("14734")
+    gunthor.setAnimation("gunthor_announcement")
     npc<Angry>("chieftain_gunthor_cutscene", "Freemen! Freemen! I have an announcement!")
     npc<Angry>("kjell_cutscene", "Hear the chieftain speak! Hear him!")
     npc<Angry>("chieftain_gunthor_cutscene", "We have always borne the legacy of our ancestors, and we have borne it with honour!")
@@ -187,8 +187,8 @@ suspend fun CharacterContext.cutscenePart2() {
     npc<Unknown_expression>("haakon_the_champion_cutscene", "FOR GUNNAR!")
     npc<Angry>("chieftain_gunthor_cutscene", "Gunthor says: This is Gunnar's ground, bought with blood! Let it remain Gunnar's ground forever! Here we settle!")
     npc<Angry>("chieftain_gunthor_cutscene", "GUNNAR'S GROUND!")
-    kjell.setAnimation("1531")
-    haakon.setAnimation("14739")
+    kjell.setAnimation("kjell_cheer")
+    haakon.setAnimation("haakon_cheer")
     npc<Unknown_expression>("haakon_the_champion_cutscene", "GUNNAR'S GROUND!")
     player.open("fade_out")
     delay(4)
@@ -283,7 +283,7 @@ suspend fun CharacterContext.poem() {
         npc<Unsure>("A scroll?")
         player<Talk>("It's a poem; a story to convince your father to settle down. You could recite it to him.")
         npc<Amazed>("Let me see that.")
-        player.setAnimation("14737")
+        player.setAnimation("hand_over_item")
         item("gunnars_ground", 400, "You show Gudrun the poem")
         npc<Talk>("'Gunnar's Ground'")
         npc<Happy>("Yes! I think this could work. I'll go to the longhouse right away!")
@@ -355,7 +355,7 @@ suspend fun CharacterContext.showGudrun() {
     npc<Talk>("Yes.")
     if (player.holdsItem("dororans_engraved_ring")) {
         player<Happy>("This is for you.")
-        player.setAnimation("14737")
+        player.setAnimation("hand_over_item")
         item("dororans_engraved_ring", 400, "You show Gudrun the ring.")
         npc<Cheerful>("It's lovely! There's something written on it:")
         npc<Happy>("'Gudrun the Fair, Gudrun the Fiery.' Is it about me?")
