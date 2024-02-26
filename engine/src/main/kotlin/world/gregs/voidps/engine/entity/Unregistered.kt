@@ -13,18 +13,18 @@ fun playerDespawn(priority: Priority = Priority.MEDIUM, block: suspend Unregiste
     on<Unregistered>(priority = priority, block = block)
 }
 
-fun npcDespawn(priority: Priority = Priority.MEDIUM, block: suspend Unregistered.(NPC) -> Unit) {
-    onNPC<Unregistered>(priority = priority, block = block)
+fun npcDespawn(npc: String = "*", priority: Priority = Priority.MEDIUM, block: suspend Unregistered.(NPC) -> Unit) {
+    onNPC<Unregistered>({ wildcardEquals(npc, it.id) }, priority = priority, block = block)
 }
 
 fun characterDespawn(block: suspend Unregistered.(Character) -> Unit) {
     onCharacter<Unregistered>(block = block)
 }
 
-fun floorItemDespawn(block: suspend Unregistered.(FloorItem) -> Unit) {
-    onFloorItem<Unregistered>(block = block)
+fun floorItemDespawn(item: String = "*", block: suspend Unregistered.(FloorItem) -> Unit) {
+    onFloorItem<Unregistered>({ wildcardEquals(item, it.id) }, block = block)
 }
 
-fun objectDespawn(block: suspend Unregistered.(GameObject) -> Unit) {
-    onObject<Unregistered>(block = block)
+fun objectDespawn(obj: String = "*", block: suspend Unregistered.(GameObject) -> Unit) {
+    onObject<Unregistered>({ wildcardEquals(obj, it.id) }, block = block)
 }
