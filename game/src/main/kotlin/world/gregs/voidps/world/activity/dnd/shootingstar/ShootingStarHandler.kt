@@ -1,5 +1,7 @@
 package world.gregs.voidps.world.activity.dnd.shootingstar
 
+import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.remove
@@ -8,6 +10,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
+import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
 object ShootingStarHandler {
@@ -42,9 +45,19 @@ object ShootingStarHandler {
         val existing = objects.get(currentStarTile, oldStar)
         if (existing != null) {
             currentActiveObject = existing.replace(newStar)
+            playSoundForPlayers("star_meteor_change")
             return true
         }
         return false
+    }
+
+    fun playSoundForPlayers(soundId: String) {
+        val players: Players = get()
+        for (player in players.get(currentStarTile.zone)) {
+            if (currentStarTile.distanceTo(player) <= 5) { // make sure that the players are within 5 tiles to play sound?
+                player.playSound(soundId)
+            }
+        }
     }
 
     fun isEarlyBird(): Boolean {

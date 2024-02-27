@@ -31,6 +31,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.currentActiveObject
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.currentStarTile
+import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.playSoundForPlayers
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.startEvent
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler.totalCollected
 import world.gregs.voidps.world.interact.dialogue.Cheerful
@@ -63,6 +64,7 @@ fun startCrashedStarEvent() {
     logger.info { "Crashed star event has started: cmd -> tele " + currentStarTile.x + " " + currentStarTile.y}
     val shootingStarShadow: NPC? = npcs.add("shooting_star_shadow",Tile(currentStarTile.x, currentStarTile.y + 6),Direction.NONE)
     shootingStarShadow?.walkTo(currentStarTile, true, true)
+    playSoundForPlayers("star_meteor_falling")
     World.queue("awaiting_shadow_walk", 6) {
         val shootingStarObjectFalling: GameObject = objects.add("crashed_star_falling_object", currentStarTile)
         World.queue("falling_star_object_removal", 1) {
@@ -73,7 +75,7 @@ fun startCrashedStarEvent() {
                     if (!player.blocked(direction)) {
                         player.forceWalk(direction.delta, 1, direction.inverse())
                     }
-                    player.setAnimation("fall_back_on_butt")
+                    player.setAnimation("step_back_startled")
                 }
             }
             currentActiveObject = shootingStarObjectFalling.replace("crashed_star_tier_${random.nextInt(1, 9)}")
@@ -88,6 +90,7 @@ fun cleanseEvent(forceStopped: Boolean) {
         existing.remove()
     }
     if (!forceStopped) {
+        playSoundForPlayers("star_sprite_appear")
         val starSprite = npcs.add("star_sprite", currentStarTile, Direction.NONE, 0)
         World.queue("start_sprite_despawn_timer", TimeUnit.MINUTES.toTicks(10)) {
             npcs.remove(starSprite)
@@ -126,6 +129,7 @@ fun calculateRewards(stardust: Int): Map<String, Int> {
 
 objectDespawn { obj ->
     if (obj.id == "shooting_star_tier_1") {
+        playSoundForPlayers("star_meteor_despawn")
         cleanseEvent(false)
     }
 }
