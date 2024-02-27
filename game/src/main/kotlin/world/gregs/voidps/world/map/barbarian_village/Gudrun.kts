@@ -215,6 +215,7 @@ suspend fun CharacterContext.cutscenePart2() {
     delay(2)
     //anim 17513 - Gudrun Hugging Dororan (Gunnar’s Ground) ?
     gudrun.setAnimation("17513")
+    dororan.setAnimation("dororan_hug")
     player.queue.clear("gunnars_ground_cutscene_end")
     endCutscene(instance)
     player["gunnars_ground"] = "gunnars_ground"

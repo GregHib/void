@@ -23,13 +23,12 @@ import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 
-
 itemOnItem("chisel", "ring_from_jeffery") { player: Player ->
     if (player.quest("gunnars_ground") == "jeffery_ring") {
         player.message("Nothing interesting happens.")
     } else {
         player.softQueue("engraving") {
-            item("dororans_engraved_ring", 400, "You engrave 'Gudrun the Fair, Gudrun the Fiery' onto the ring.")//todo fix
+            item("dororans_engraved_ring", 400, "You engrave 'Gudrun the Fair, Gudrun the Fiery' onto the ring.")
             player.setAnimation("engrave")
             player.experience.add(Skill.Crafting, 125.0)
             player.inventory.replace("ring_from_jeffery", "dororans_engraved_ring")
