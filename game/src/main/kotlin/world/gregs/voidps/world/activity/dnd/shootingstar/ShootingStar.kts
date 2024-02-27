@@ -61,23 +61,15 @@ fun eventUpdate() {
 fun startCrashedStarEvent() {
     currentStarTile = StarLocationData.entries.random().location
     logger.info { "Crashed star event has started: cmd -> tele " + currentStarTile.x + " " + currentStarTile.y}
-    val shootingStarShadow: NPC? =
-            npcs.add(
-                    "shooting_star_shadow",
-                    Tile(currentStarTile.x, currentStarTile.y + 6),
-                    Direction.NONE
-            )
+    val shootingStarShadow: NPC? = npcs.add("shooting_star_shadow",Tile(currentStarTile.x, currentStarTile.y + 6),Direction.NONE)
     shootingStarShadow?.walkTo(currentStarTile, true, true)
     World.queue("awaiting_shadow_walk", 6) {
-        val shootingStarObjectFalling: GameObject =
-                objects.add("crashed_star_falling_object", currentStarTile)
+        val shootingStarObjectFalling: GameObject = objects.add("crashed_star_falling_object", currentStarTile)
         World.queue("falling_star_object_removal", 1) {
             for (tile in currentStarTile.toCuboid(2, 2)) {
                 for (player in players[tile]) {
                     player.damage(random.nextInt(10, 50))
-                    val direction =
-                            if (player.tile == currentStarTile) Direction.SOUTH
-                            else currentStarTile.delta(player.tile).toDirection()
+                    val direction = if (player.tile == currentStarTile) Direction.SOUTH else currentStarTile.delta(player.tile).toDirection()
                     if (!player.blocked(direction)) {
                         player.forceWalk(direction.delta, 1, direction.inverse())
                     }
