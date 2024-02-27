@@ -5,15 +5,19 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.bot.path.Dijkstra
 import world.gregs.voidps.bot.path.EdgeTraversal
 import world.gregs.voidps.bot.path.NodeTargetStrategy
+import world.gregs.voidps.cache.FileCache
+import world.gregs.voidps.cache.config.decoder.RenderAnimationDecoder
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.*
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.event.modCommand
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.PlayerVariables
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.rights
+import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
@@ -30,15 +34,54 @@ import world.gregs.voidps.type.Zone
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
+import java.io.File
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 
 val collisions: Collisions by inject()
 val objects: GameObjects by inject()
+val animationDefinitions: AnimationDefinitions by inject()
+val renderDefinitions = RenderAnimationDecoder().load(FileCache("./data/cache/"))
 val npcs: NPCs by inject()
+
+val map = mutableMapOf<Int, String>()
+for (index in renderDefinitions.indices) {
+    val renderDef = renderDefinitions[index]
+    map[renderDef.primaryIdle] = "render_def_primary_idle_${index}"
+    map[renderDef.primaryWalk] = "render_def_primary_walk_${index}"
+    map[renderDef.run] = "render_def_run_${index}"
+    map[renderDef.turning] = "render_def_turning_${index}"
+    map[renderDef.secondaryWalk] = "render_def_secondary_walk_${index}"
+    map[renderDef.walkBackwards] = "render_def_walk_backwards_${index}"
+    map[renderDef.sideStepLeft] = "render_def_side_step_left_${index}"
+    map[renderDef.sideStepRight] = "render_def_side_step_right_${index}"
+}
 
 modCommand("test") {
     println(player.rights)
+}
+
+val list = File("C:\\Users\\Greg\\Documents\\Void\\data\\633-animation-skeletons.txt")
+    .readLines()[1].substring(20)
+        .removeSuffix("]")
+        .split(",")
+        .map { it.trim().toInt() }
+    .filter { !map.keys.contains(it) }
+    .filter { !animationDefinitions.ids.values.contains(it) }
+var index = list.indexOf(8693)
+val output = File("./human-animations.yml")
+println(list.size)
+
+modCommand("next") {
+    if (content.isNotBlank()) {
+        output.appendText("${content.replace(" ", "_")}: ${list[index]}\n")
+    }
+    player.setAnimation(list[++index].toString())
+    println(index)
+}
+
+modCommand("repeat") {
+    player.setAnimation(list[index].toString())
 }
 
 modCommand("reset_cam") {

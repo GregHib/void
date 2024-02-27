@@ -12,7 +12,7 @@ object Index {
     const val SPRITES = 8
     const val TEXTURES = 9
     const val HUFFMAN = 10
-    const val MUSIC_EFFECTS = 11
+    const val MUSIC_EFFECTS = 11 // jingles
     const val CLIENT_SCRIPTS = 12
     const val FONT_METRICS = 13
     const val MIDI_INSTRUMENTS = 14
