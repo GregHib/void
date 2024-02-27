@@ -7,6 +7,9 @@ dependencies {
     implementation(project(":yaml"))
     implementation(project(":types"))
 
+// https://mvnrepository.com/artifact/io.netty/netty-buffer
+    implementation("io.netty:netty-buffer:4.1.107.Final")
+
     implementation("org.seleniumhq.selenium:selenium-java:4.16.1")
 
     implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:${findProperty("kotlinIoVersion")}")
