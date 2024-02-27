@@ -157,7 +157,6 @@ fun addOre(player: Player, ore: String): Boolean {
     } else {
         player.inventoryFull()
     }
-    println(added)
     return added
 }
 
@@ -167,9 +166,9 @@ fun deplete(rock: Rock, obj: GameObject): Boolean {
         return false
     }
     if (rock.life >= 0) {
-            objects.replace(obj, "depleted${obj.id.dropWhile { it != '_' }}", ticks = rock.life)
+        objects.replace(obj, "depleted${obj.id.dropWhile { it != '_' }}", ticks = rock.life)
         return true
-        }
+    }
     return false
 }
 

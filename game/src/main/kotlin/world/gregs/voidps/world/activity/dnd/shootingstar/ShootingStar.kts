@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.activity.dnd.shootingstar
 
+import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.data.Rock
@@ -42,48 +43,47 @@ import kotlin.math.roundToInt
 val objects: GameObjects by inject()
 val npcs: NPCs by inject()
 val players: Players by inject()
+val logger = InlineLogger()
 
-worldSpawn {
-    eventUpdate()
-}
+worldSpawn { eventUpdate() }
 
 fun eventUpdate() {
     World.queue("shooting_star_event_timer", startEvent) {
-        if(isPlayersPresent()){
-            eventUpdate() // theres players present so skip this event removal
-        }
-       if (currentStarTile != Tile.EMPTY) {
+        if (currentStarTile != Tile.EMPTY) {
             cleanseEvent(true)
-            println("There was already an active star, deleted it and started a new event")
-       }
-       startCrashedStarEvent()
-       eventUpdate()
-    }
-}
-
-fun isPlayersPresent(): Boolean {
-    return currentStarTile.toCuboid(5, 5).any { tile ->
-        players[tile].isNotEmpty()
+            logger.info { "There was already an active star, deleted it and started a new event" }
+        }
+        startCrashedStarEvent()
+        eventUpdate()
     }
 }
 
 fun startCrashedStarEvent() {
     currentStarTile = StarLocationData.entries.random().location
-    val shootingStarShadow: NPC? = npcs.add("shooting_star_shadow", Tile(currentStarTile.x, currentStarTile.y + 6), Direction.NONE)
+    logger.info { "Crashed star event has started: cmd -> tele " + currentStarTile.x + " " + currentStarTile.y}
+    val shootingStarShadow: NPC? =
+            npcs.add(
+                    "shooting_star_shadow",
+                    Tile(currentStarTile.x, currentStarTile.y + 6),
+                    Direction.NONE
+            )
     shootingStarShadow?.walkTo(currentStarTile, true, true)
     World.queue("awaiting_shadow_walk", 6) {
-        val shootingStarObjectFalling: GameObject = objects.add("crashed_star_falling_object", currentStarTile)
+        val shootingStarObjectFalling: GameObject =
+                objects.add("crashed_star_falling_object", currentStarTile)
         World.queue("falling_star_object_removal", 1) {
-              for (tile in currentStarTile.toCuboid(2, 2)) {
-                 for (player in players[tile]) {
-                     player.damage(random.nextInt(10, 50))
-                     val direction = if (player.tile == currentStarTile) Direction.SOUTH else currentStarTile.delta(player.tile).toDirection()
-                     if (!player.blocked(direction)) {
-                         player.forceWalk(direction.delta, 1, direction.inverse())
+            for (tile in currentStarTile.toCuboid(2, 2)) {
+                for (player in players[tile]) {
+                    player.damage(random.nextInt(10, 50))
+                    val direction =
+                            if (player.tile == currentStarTile) Direction.SOUTH
+                            else currentStarTile.delta(player.tile).toDirection()
+                    if (!player.blocked(direction)) {
+                        player.forceWalk(direction.delta, 1, direction.inverse())
                     }
-                     player.setAnimation("fall_back_on_butt")
-                 }
-              }
+                    player.setAnimation("fall_back_on_butt")
+                }
+            }
             currentActiveObject = shootingStarObjectFalling.replace("crashed_star_tier_${random.nextInt(1, 9)}")
             npcs.remove(shootingStarShadow)
         }
@@ -93,7 +93,7 @@ fun startCrashedStarEvent() {
 fun cleanseEvent(forceStopped: Boolean) {
     val existing = currentActiveObject?.let { objects.get(currentStarTile, it.id) }
     if (existing != null) {
-        existing.remove(existing.intId, true)
+        existing.remove()
     }
     if (!forceStopped) {
         val starSprite = npcs.add("star_sprite", currentStarTile, Direction.NONE, 0)
@@ -143,9 +143,9 @@ timerStart("mining") { player ->
     val isStar = target.id.startsWith("crashed_star")
     if (isStar) {
         val isEarlyBird = ShootingStarHandler.isEarlyBird()
-        if (isEarlyBird){
+        if (isEarlyBird) {
             player.message("Congratulations!, You were the first person to find this star!")
-            val xpToAdd:Double = player.levels.get(Skill.Mining) * 75.0
+            val xpToAdd: Double = player.levels.get(Skill.Mining) * 75.0
             player.experience.add(Skill.Mining, xpToAdd)
         }
     }
@@ -162,7 +162,7 @@ objectApproach("Prospect", "crashed_star_tier_#") {
         val star = def.getOrNull<Rock>("mining")?.ores?.firstOrNull()
         if (star == null) {
             player.message("Star has been mined...")
-        } else {
+        } else if (starPayout != -1) {
             val percentageCollected = getLayerPercentage(totalCollected, starPayout)
             player.message("There is $percentageCollected% left of this layer.")
         }
@@ -173,7 +173,7 @@ npcOperate("Talk-to", "star_sprite") {
     npc<Cheerful>("Thank you for helping me out of here")
     val starDustCount = player.inventory.count("stardust")
     if (player.inventory.isFull()) {
-        player.message("Inventory full. To make more room, sell, drop or bank something.", ChatType.Game)
+        player.message("Inventory full. To make more room, sell, drop or bank something.",ChatType.Game)
     } else if (starDustCount == 0) {
         npc<Sad>("You don't seem to have any stardust that I can exchange for a reward")
     } else if (starDustCount > 0) {
