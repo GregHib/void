@@ -462,6 +462,7 @@ suspend fun CharacterContext.aboutRing() {
 }
 
 suspend fun CharacterContext.mostCruel() {
+    player<Talk>("Gudrun's father won't let her be with someone from outside the village.")
     npc<Amazed>("Most cruel is fate! Most cruel! Why not?")
     player<Talk>("He's obsessed with the stories of his ancestors. He says his people are still at war.")
     npc<Upset>("This village has stood for a hundred years!")
