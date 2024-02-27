@@ -14,6 +14,9 @@ import world.gregs.voidps.engine.client.ui.event.modCommand
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
+import world.gregs.voidps.engine.entity.character.clearAnimation
+import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.rights
@@ -25,6 +28,7 @@ import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.TimerQueue
+import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.network.encode.clearCamera
 import world.gregs.voidps.network.encode.npcDialogueHead
@@ -33,6 +37,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
+import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import java.io.File
 import kotlin.system.measureNanoTime
@@ -61,26 +66,50 @@ modCommand("test") {
     println(player.rights)
 }
 
-val list = File("C:\\Users\\Greg\\Documents\\Void\\data\\633-animation-skeletons.txt")
+var list = File("C:\\Users\\Greg\\Documents\\Void\\data\\633-animation-skeletons.txt")
     .readLines()[1].substring(20)
         .removeSuffix("]")
         .split(",")
         .map { it.trim().toInt() }
-    .filter { !map.keys.contains(it) }
-    .filter { !animationDefinitions.ids.values.contains(it) }
-var index = list.indexOf(8693)
+//    .filter { !map.keys.contains(it) }
+//    .filter { !animationDefinitions.ids.values.contains(it) }
+var index = list.indexOf(9701)
 val output = File("./human-animations.yml")
 println(list.size)
 
-modCommand("next") {
-    if (content.isNotBlank()) {
-        output.appendText("${content.replace(" ", "_")}: ${list[index]}\n")
+timerStart("anim_timer") {
+    interval = 1
+    it["anim_count"] = 0
+}
+
+timerTick("anim_timer") { player ->
+    val count = player.inc("anim_count")
+    if (count.rem(4) == 0) {
+        player.clearAnimation()
+    } else if (count.rem(3) == 0) {
+        dororan?.setAnimation("dororan_hug")
+        player.setAnimation(list[++index].toString())
+        println(list[index])
     }
-    player.setAnimation(list[++index].toString())
-    println(index)
+}
+
+var dororan: NPC? = null
+
+modCommand("start") {
+    dororan = npcs.add("2863", player.tile.addX(1))
+    player.transform("gudrun")
+    dororan?.face(player)
+    player.face(dororan!!)
+    player.softTimers.start("anim_timer")
+}
+
+modCommand("stop") {
+    player.softTimers.stop("anim_timer")
+    player.message("Stopped $index ${list[index]}")
 }
 
 modCommand("repeat") {
+    println(list[index])
     player.setAnimation(list[index].toString())
 }
 

@@ -9,13 +9,17 @@ object AnimationDefinitions {
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val decoder = AnimationDecoderFull().load(cache)
+        val search = decoder.get(12185).durations!!.sum()
+        println(search)
         loop@ for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.aBoolean691) {
-                println("$i $def")
+            val duration = def.durations?.sum() ?: continue
+            if (duration == search) {
+                println("$i")
             }
         }
-        println(convertOsrs(589))
+        //14152
+//        println(convertOsrs(589))
     }
 
     fun convertOsrs(id: Int): String {
