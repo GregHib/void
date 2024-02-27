@@ -20,7 +20,7 @@ object StructDefinitions {
             println("$i $def")
         }
 
-        val folder = File("C:\\Users\\Greg\\Documents\\Void\\decompiled-cs2-667\\")
+        val folder = File("${System.getProperty("user.home")}\\Documents\\Void\\decompiled-cs2-667\\")
         val map = mutableMapOf<Int, MutableSet<String>>()
         for (file in folder.listFiles()!!) {
             val pattern = "getAttributeMapValue\\(.*, ([0-9]+)\\)".toRegex().toPattern()
