@@ -3,10 +3,12 @@ package world.gregs.voidps
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
+import world.gregs.voidps.engine.client.update.CharacterTask
 import world.gregs.voidps.engine.client.update.CharacterUpdateTask
 import world.gregs.voidps.engine.client.update.NPCTask
 import world.gregs.voidps.engine.client.update.PlayerTask
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
+import world.gregs.voidps.engine.client.update.iterator.ParallelIterator
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.client.update.npc.NPCResetTask
@@ -58,10 +60,11 @@ fun getTickStages(
     interfaceDefinitions: InterfaceDefinitions = get(),
     hunting: Hunting = get(),
     handler: InterfaceHandler = InterfaceHandler(get(), get(), get()),
-    iterator: TaskIterator<Player>
+    sequential: Boolean = CharacterTask.DEBUG
 ): List<Runnable> {
     val sequentialNpc: TaskIterator<NPC> = SequentialIterator()
     val sequentialPlayer: TaskIterator<Player> = SequentialIterator()
+    val iterator: TaskIterator<Player> = if (sequential) SequentialIterator() else ParallelIterator()
     return listOf(
         PlayerResetTask(sequentialPlayer, players, batches),
         NPCResetTask(sequentialNpc, npcs),

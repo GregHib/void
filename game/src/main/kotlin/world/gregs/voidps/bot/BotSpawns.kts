@@ -2,8 +2,8 @@ package world.gregs.voidps.bot
 
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.Contexts
-import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
+import world.gregs.voidps.engine.client.LoginManager
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -38,7 +38,7 @@ val botCount = getIntProperty("bots", 0)
 
 val bots = mutableListOf<Player>()
 val queue: ConnectionQueue by inject()
-val gatekeeper: ConnectionGatekeeper by inject()
+val manager: LoginManager by inject()
 val accounts: PlayerAccounts by inject()
 val enums: EnumDefinitions by inject()
 val structs: StructDefinitions by inject()
@@ -97,7 +97,7 @@ adminCommand("bot") {
 fun spawn() {
     GlobalScope.launch(Contexts.Game) {
         val name = "Bot ${++counter}"
-        val index = gatekeeper.connect(name)!!
+        val index = manager.add(name)!!
         val bot = accounts.getOrElse(name, index) { Player(index = index, tile = lumbridge.random(), accountName = name) }
         setAppearance(bot)
         queue.await()

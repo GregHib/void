@@ -5,8 +5,8 @@ import org.koin.dsl.module
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
-import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
+import world.gregs.voidps.engine.client.LoginManager
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
@@ -48,7 +48,7 @@ val engineModule = module {
     single {
         ConnectionQueue(getIntProperty("connectionPerTickCap", 1))
     }
-    single { ConnectionGatekeeper(get()) }
+    single { LoginManager(get<Players>().indexer) }
     single(createdAtStart = true) { GameObjectCollision(get()) }
     // Collision
     single { Collisions() }

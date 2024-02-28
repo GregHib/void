@@ -8,6 +8,7 @@ import io.ktor.utils.io.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.ClosedReceiveChannelException
 import world.gregs.voidps.cache.Cache
+import java.net.BindException
 import java.net.SocketException
 import java.util.*
 import java.util.concurrent.Executors
@@ -17,16 +18,16 @@ import kotlin.concurrent.thread
  * A network server for client's to connect to the game with
  */
 class GameServer(
-    private val gatekeeper: NetworkGatekeeper,
+    private val clients: SessionManager,
     private val loginLimit: Int,
-    private val loginServer: Server,
     private val fileServer: Server
 ) {
 
     private lateinit var dispatcher: ExecutorCoroutineDispatcher
     private var running = false
+    var loginServer: Server? = null
 
-    fun start(port: Int) {
+    fun start(port: Int): Job {
         Runtime.getRuntime().addShutdownHook(thread(start = false) { stop() })
         val executor = Executors.newCachedThreadPool()
         dispatcher = executor.asCoroutineDispatcher()
@@ -41,10 +42,15 @@ class GameServer(
                 logger.error(throwable) { "Connection error" }
             }
         }
-        runBlocking {
-            val scope = CoroutineScope(supervisor + exceptionHandler)
-            with(scope) {
-                val server = aSocket(selector).tcp().bind(port = port)
+        val scope = CoroutineScope(supervisor + exceptionHandler)
+        val server = try {
+            aSocket(selector).tcp().bind(port = port)
+        } catch (exception: BindException) {
+            stop()
+            throw exception
+        }
+        return scope.launch {
+            try {
                 running = true
                 logger.info { "Listening for requests on port ${port}..." }
                 while (running) {
@@ -56,22 +62,30 @@ class GameServer(
                         connect(read, write, socket.remoteAddress.toJavaAddress().hostname)
                     }
                 }
+            } finally {
+                stop()
             }
         }
     }
 
     suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
-        if (gatekeeper.connections(hostname) >= loginLimit) {
+        if (clients.count(hostname) >= loginLimit) {
             write.finish(Response.LOGIN_LIMIT_EXCEEDED)
             return
         }
-        when (val opcode = read.readByte().toInt()) {
-            Request.CONNECT_LOGIN -> loginServer.connect(read, write, hostname)
-            Request.CONNECT_JS5 -> fileServer.connect(read, write, hostname)
-            else -> {
-                logger.trace { "Invalid sync session id: $opcode" }
-                write.finish(Response.INVALID_LOGIN_SERVER)
+        try {
+            clients.add(hostname)
+            when (val opcode = read.readByte().toInt()) {
+                Request.CONNECT_LOGIN -> loginServer?.connect(read, write, hostname)
+                    ?: write.respond(Response.LOGIN_SERVER_OFFLINE)
+                Request.CONNECT_JS5 -> fileServer.connect(read, write, hostname)
+                else -> {
+                    logger.trace { "Invalid sync session id: $opcode" }
+                    write.finish(Response.INVALID_LOGIN_SERVER)
+                }
             }
+        } finally {
+            clients.remove(hostname)
         }
     }
 
@@ -83,10 +97,10 @@ class GameServer(
     companion object {
 
         @ExperimentalUnsignedTypes
-        fun load(cache: Cache, properties: Properties, gatekeeper: NetworkGatekeeper, loginServer: LoginServer): GameServer {
+        fun load(cache: Cache, properties: Properties, clients: SessionManager): GameServer {
             val limit = properties.getProperty("loginLimit").toInt()
             val fileServer = FileServer.load(cache, properties)
-            return GameServer(gatekeeper, limit, loginServer, fileServer)
+            return GameServer(clients, limit, fileServer)
         }
 
         private val logger = InlineLogger()
