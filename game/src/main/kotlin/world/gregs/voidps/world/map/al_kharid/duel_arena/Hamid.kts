@@ -16,8 +16,8 @@ npcOperate("Talk-to", "hamid") {
         }
         option<Uncertain>("What's a Monk doing in a place such as this?") {
             npc<Suspicious>("Well don't tell anyone but I came here because of the nurses!")
-            player<Laugh>("Really?")
-            npc<Laugh>("It beats being stuck in the monastery!")
+            player<Chuckle>("Really?")
+            npc<Chuckle>("It beats being stuck in the monastery!")
         }
         option<Uncertain>("Which monastery do you come from?") {
             npc<Talking>("I belong to the monastery north of Falador.")
