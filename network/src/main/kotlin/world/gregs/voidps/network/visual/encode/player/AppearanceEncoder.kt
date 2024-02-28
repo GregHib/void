@@ -6,7 +6,7 @@ import world.gregs.voidps.network.visual.VisualEncoder
 import world.gregs.voidps.network.visual.VisualMask.APPEARANCE_MASK
 import world.gregs.voidps.network.visual.update.player.Appearance
 
-class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial = true, appearance = true) {
+class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial = true) {
 
     override fun encode(writer: Writer, visuals: PlayerVisuals) {
         val (showSkillLevel,
