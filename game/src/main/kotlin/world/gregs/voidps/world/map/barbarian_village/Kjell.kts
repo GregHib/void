@@ -36,6 +36,7 @@ suspend fun CharacterContext.completed() {
     choice {
         option<Talking>("Having trouble there?") {
             npc<Furious>("I don't need the advice of an outerlander.")
+            advice()
         }
         option<Talking>("I'll leave you in peace.") {
         }
