@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -63,24 +64,27 @@ fun eventUpdate() {
 fun startCrashedStarEvent() {
     val location = StarLocationData.entries.random()
     currentStarTile = location.tile
-    logger.info { "Crashed star event has started at: $location (${currentStarTile.x}, ${currentStarTile.y})" }
+    val tier = random.nextInt(1, 9)
+    logger.info { "Crashed star event has started at: $location (${currentStarTile.x}, ${currentStarTile.y}) tier ${tier}." }
     val shootingStarShadow: NPC? = npcs.add("shooting_star_shadow", Tile(currentStarTile.x, currentStarTile.y + 6), Direction.NONE)
     shootingStarShadow?.walkTo(currentStarTile, noCollision = true, noRun = true)
     areaSound("star_meteor_falling", currentStarTile, radius = 15, delay = 20)
     World.queue("awaiting_shadow_walk", 6) {
         val shootingStarObjectFalling: GameObject = objects.add("crashed_star_falling_object", currentStarTile)
-        World.queue("falling_star_object_removal", 1) {
-            for (tile in currentStarTile.toCuboid(2, 2)) {
-                for (player in players[tile]) {
-                    player.damage(random.nextInt(10, 50))
-                    val direction = if (player.tile == currentStarTile) Direction.SOUTH else currentStarTile.delta(player.tile).toDirection()
-                    if (!player.blocked(direction)) {
-                        player.forceWalk(direction.delta, 1, direction.inverse())
-                    }
-                    player.setAnimation("step_back_startled")
-                }
+        val under = mutableListOf<Player>()
+        for (tile in currentStarTile.toCuboid(2, 2)) {
+            for (player in players[tile]) {
+                under.add(player)
             }
-            currentActiveObject = shootingStarObjectFalling.replace("crashed_star_tier_${random.nextInt(1, 9)}")
+        }
+        for (player in under) {
+            player.damage(random.nextInt(10, 50))
+            val direction = Direction.all.first { !player.blocked(it) }
+            player.forceWalk(direction.delta, 1, direction = direction.inverse())
+            player.setAnimation("step_back_startled")
+        }
+        World.queue("falling_star_object_removal", 1) {
+            currentActiveObject = shootingStarObjectFalling.replace("crashed_star_tier_${tier}")
             npcs.remove(shootingStarShadow)
         }
     }
