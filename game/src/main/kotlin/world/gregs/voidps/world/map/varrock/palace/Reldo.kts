@@ -23,7 +23,7 @@ npcOperate("Talk-to", "reldo") {
 suspend fun PlayerChoice.anythingToTrade() = option<Unsure>("Do you have anything to trade?") {
     npc<Talking>("Only knowledge.")
     player<Unsure>("How much do you want for that then?")
-    npc<Laugh>("No, sorry, that was just my little joke. I'm not the trading type.")
+    npc<Chuckle>("No, sorry, that was just my little joke. I'm not the trading type.")
     player<Talking>("Ah well.")
 }
 
