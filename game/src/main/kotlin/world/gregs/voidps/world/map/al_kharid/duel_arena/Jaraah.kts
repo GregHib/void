@@ -15,11 +15,11 @@ npcOperate("Talk-to", "jaraah") {
         }
         option<Uncertain>("You must see some gruesome things?") {
             npc<Angry>("It's a gruesome business and with the tools they give me it gets more gruesome before it gets better!")
-            player<Laugh>("Really?")
-            npc<Laugh>("It beats being stuck in the monastery!")
+            player<Chuckle>("Really?")
+            npc<Chuckle>("It beats being stuck in the monastery!")
         }
         option<Uncertain>("Why do they call you 'The Butcher'?") {
-            npc<Laugh>("'The Butcher'?")
+            npc<Chuckle>("'The Butcher'?")
             npc<Angry>("Ha!")
             npc<Angry>("Would you like me to demonstrate?")
             player<Surprised>("Er...I'll give it a miss, thanks.")

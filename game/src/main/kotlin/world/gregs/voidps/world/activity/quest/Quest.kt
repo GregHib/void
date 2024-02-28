@@ -38,3 +38,15 @@ fun Player.sendQuestComplete(name: String, lines: List<String>, item: Item = Ite
         interfaces.sendText("quest_complete", "line${i + 1}", lines.getOrNull(i) ?: "")
     }
 }
+
+fun Player.sendScroll(name: String, lines: List<String>) {
+    if (!interfaces.open("message_scroll")) {
+        return
+    }
+    sendScript("message_scroll_max", lines.size + 1)
+    interfaces.sendText("message_scroll", "title", name)
+    interfaces.sendText("message_scroll", "line0", "")
+    for (i in 0..87) {
+        interfaces.sendText("message_scroll", "line${i + 1}", lines.getOrNull(i) ?: "")
+    }
+}

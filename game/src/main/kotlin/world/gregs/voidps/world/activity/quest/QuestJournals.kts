@@ -12,6 +12,7 @@ val quests = setOf(
     "cooks_assistant",
     "demon_slayer",
     "dorics_quest",
+	"gunnars_ground",
     "the_knights_sword",
     "rune_mysteries"
     // members
@@ -20,7 +21,7 @@ val quests = setOf(
 interfaceOpen("quest_journals") { player ->
     player.interfaceOptions.unlock(id, "journals", 0 until 201, "View")
     player.sendVariable("quest_points")
-    player.sendVariable("quest_points_total") //set total quest points available in variables.yml
+    player.sendVariable("quest_points_total") //set total quest points available in variables-player.yml
     player.sendVariable("unstable_foundations")
     for (quest in quests) {
         player.sendVariable(quest)

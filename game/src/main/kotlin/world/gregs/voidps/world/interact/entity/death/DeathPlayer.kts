@@ -63,7 +63,7 @@ playerDeath { player ->
         retribution(player)
         wrath(player)
         player.message("Oh dear, you are dead!")
-        player.setAnimation("player_death")
+        player.setAnimation("human_death")
         pause(5)
         player.clearAnimation()
         player.attackers.clear()

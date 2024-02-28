@@ -5,10 +5,7 @@ import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.world.interact.dialogue.Cheerful
-import world.gregs.voidps.world.interact.dialogue.Laugh
-import world.gregs.voidps.world.interact.dialogue.Talking
-import world.gregs.voidps.world.interact.dialogue.Uncertain
+import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -35,5 +32,5 @@ internal suspend fun TargetNPCContext.heal() {
 
 internal suspend fun PlayerChoice.often(): Unit = option<Uncertain>("Do you come here often?") {
     npc<Cheerful>("I work here, so yes!")
-    npc<Laugh>("You're silly!")
+    npc<Chuckle>("You're silly!")
 }

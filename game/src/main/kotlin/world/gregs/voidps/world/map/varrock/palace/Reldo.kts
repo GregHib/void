@@ -2,10 +2,7 @@ package world.gregs.voidps.world.map.varrock.palace
 
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.world.activity.quest.quest
-import world.gregs.voidps.world.interact.dialogue.Laugh
-import world.gregs.voidps.world.interact.dialogue.Suspicious
-import world.gregs.voidps.world.interact.dialogue.Talking
-import world.gregs.voidps.world.interact.dialogue.Unsure
+import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.PlayerChoice
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -23,7 +20,7 @@ npcOperate("Talk-to", "reldo") {
 suspend fun PlayerChoice.anythingToTrade() = option<Unsure>("Do you have anything to trade?") {
     npc<Talking>("Only knowledge.")
     player<Unsure>("How much do you want for that then?")
-    npc<Laugh>("No, sorry, that was just my little joke. I'm not the trading type.")
+    npc<Chuckle>("No, sorry, that was just my little joke. I'm not the trading type.")
     player<Talking>("Ah well.")
 }
 

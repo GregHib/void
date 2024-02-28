@@ -645,3 +645,37 @@ king_black_dragon_drop_table:
           - type: all
             drops:
             - id: clue_scroll_hard
+haakon_the_champion_drop_table:
+  type: all
+  drops:
+    - type: all
+      drops:
+        - id: bones
+    - roll: 512
+      drops:
+        - id: coins
+          amount: 5-32
+          chance: 32
+        - id: cooked_meat
+          chance: 32
+        - id: amulet_mould
+          chance: 8
+        - id: bear_fur
+          chance: 8
+        - id: beer
+          chance: 8
+        - id: flier
+          chance: 8
+        - id: clue_scroll_easy
+          chance: 2
+        - id: uncut_sapphire
+          chance: 2
+        - id: uncut_emerald
+          chance: 2
+        - id: uncut_ruby
+          chance: 2
+        - id: uncut_diamond
+          chance: 2
+        - id: uncut_dragonstone
+          chance: 2
+        - id: loop_half_of_a_key
