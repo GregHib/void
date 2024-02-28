@@ -52,6 +52,13 @@ adminCommand("anim") {
     }
 }
 
+adminCommand("emote") {
+    when (content) {
+        "-1", "" -> player.emote = "human_stand"
+        else -> player.emote = content
+    }
+}
+
 adminCommand("gfx") {
     when (content) {
         "-1", "" -> player.clearGraphic()
