@@ -114,7 +114,7 @@ suspend fun CharacterContext.cutsceneMenu() {
 }
 
 suspend fun CharacterContext.cutsceneMenu2() {
-    npc<Unknown_expression>("dororan_cutscene", "What was I thinking? You should go in there and stop them before Gudrun makes a fool of herself.")
+    npc<Cry>("dororan_cutscene", "What was I thinking? You should go in there and stop them before Gudrun makes a fool of herself.")
     choice {
         option<Talking>("Okay, I will.") {
             player.setAnimation("player_calm_doroan")
@@ -182,14 +182,14 @@ suspend fun CharacterContext.cutscenePart2() {
     npc<Angry>("chieftain_gunthor_cutscene", "Freemen! Freemen! I have an announcement!")
     npc<Angry>("kjell_cutscene", "Hear the chieftain speak! Hear him!")
     npc<Angry>("chieftain_gunthor_cutscene", "We have always borne the legacy of our ancestors, and we have borne it with honour!")
-    npc<Unknown_expression>("kjell_cutscene", "FOR GUNNAR!")
+    npc<Mad>("kjell_cutscene", "FOR GUNNAR!")
     npc<Angry>("chieftain_gunthor_cutscene", "And though we honour them still, the time of our ancestors is past. this is the time of Gunthor!")
-    npc<Unknown_expression>("haakon_the_champion_cutscene", "FOR GUNNAR!")
+    npc<Mad>("haakon_the_champion_cutscene", "FOR GUNNAR!")
     npc<Angry>("chieftain_gunthor_cutscene", "Gunthor says: This is Gunnar's ground, bought with blood! Let it remain Gunnar's ground forever! Here we settle!")
     npc<Angry>("chieftain_gunthor_cutscene", "GUNNAR'S GROUND!")
     kjell.setAnimation("kjell_cheer")
     haakon.setAnimation("haakon_cheer")
-    npc<Unknown_expression>("haakon_the_champion_cutscene", "GUNNAR'S GROUND!")
+    npc<Mad>("haakon_the_champion_cutscene", "GUNNAR'S GROUND!")
     player.open("fade_out")
     delay(4)
     dororan.tele(Tile(3082, 3426).add(offset))
@@ -210,7 +210,7 @@ suspend fun CharacterContext.cutscenePart2() {
     npc<Happy>("gudrun_cutscene", "That line about beauty was for me, wasn't it?")
     npc<Upset>("dororan_cutscene", "Uh, Yes.")
     npc<Cheerful>("gudrun_cutscene", "You're the mystery poet who sent me the gold ring!")
-    npc<Unknown_expression>("dororan_cutscene", "Sorry.")
+    npc<Cry>("dororan_cutscene", "Sorry.")
     npc<Cheerful>("gudrun_cutscene", "I had no idea dwarves could be so romantic! Come here! ")
     delay(2)
     //anim 17513 - Gudrun Hugging Dororan (Gunnar’s Ground) ?
@@ -231,7 +231,7 @@ suspend fun CharacterContext.gunnarsGround() {
     npc<Cheerful>("Papa was so impressed by Dororan's poem, he's made him the village poet!")
     npc<Cheerful>("dororan_after_cutscene2", "I'm more then a little surprised! He even gave me a house to live in!")
     npc<Happy>("Our people's tradition is that the tribe provides lodging for the poet.")
-    npc<Unknown_expression>("dororan_after_cutscene2", "It's huge!")
+    npc<Mad>("dororan_after_cutscene2", "It's huge!")
     npc<Cheerful>("It's not in the village. It's east of here: across the river and north of the road on the way to Varrock. It's a big house with roses outside.")
     npc<Happy>("dororan_after_cutscene2", "I think Gunthor wants to keep me close, but not too close. Oh, I found something there for you!")
     npc<Cheerful>("dororan_after_cutscene2", "Whoever lived there before left a dozen pairs of boots in the attic.")

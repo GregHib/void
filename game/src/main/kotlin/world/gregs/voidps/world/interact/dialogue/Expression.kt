@@ -2,8 +2,6 @@ package world.gregs.voidps.world.interact.dialogue
 
 sealed class Expression
 
-object Unknown_expression : Expression()
-
 object Talk : Expression()
 object Talking : Expression()
 object Laugh : Expression()
@@ -25,6 +23,8 @@ object Upset : Expression()
 object Amazed : Expression()
 object Chuckle : Expression()
 object EvilLaugh : Expression()
+object Mad : Expression()
+object Cry : Expression()
 
 object SurprisedOld : Expression()
 object SadOld : Expression()

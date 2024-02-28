@@ -82,7 +82,7 @@ suspend fun CharacterContext.poem() {
 }
 
 suspend fun CharacterContext.poemDone() {
-    npc<Unknown_expression>("At last! It's done! It's finished! My finest work! Thank you so much for your help!")
+    npc<Laugh>("At last! It's done! It's finished! My finest work! Thank you so much for your help!")
     player<Happy>("Are you ready to present it to Chieftain?!")
     npc<Surprised>("What? No! I'm a writer, not a performer.")
     npc<Talk>("I think the Chieftain would respond best to one of his people. Perhaps you could ask Gudrun to recite it to hew father?")
@@ -448,7 +448,7 @@ suspend fun CharacterContext.dangerPoemMenu2() {
 suspend fun CharacterContext.aboutRing() {
     npc<Unsure>("Did you give Gudrun the ring? What did she think? Did it capture her heart?")
     player<Talk>("There's a problem.")
-    npc<Unknown_expression>("It's because I'm a dwarf, isn't it? Or because I'm a poet? I knew it! I'm completely worthless!")
+    npc<Cry>("It's because I'm a dwarf, isn't it? Or because I'm a poet? I knew it! I'm completely worthless!")
     choice {
         option<Talk>("No, she liked the ring.") {
             npc<Amazed>("Oh! Then what's the problem?")
@@ -497,7 +497,7 @@ suspend fun CharacterContext.writePoem() {
     npc<Talk>("'Even the bloodiest rose must settle.' Mixed metaphor. Whats settles? Detritus. That's hardly flattering.")
     npc<Talk>("'Even the rolliest boulder...'")
     player<Talk>("How is the poem going?")
-    npc<Unknown_expression>("I'm stuck! I'm a worthless wordsmith! My work is pointless! My life is pointless!")
+    npc<Cry>("I'm stuck! I'm a worthless wordsmith! My work is pointless! My life is pointless!")
     choice {
         option<Talk>("I'm sure that's not true.") {
             stuckOnWord()
@@ -509,7 +509,7 @@ suspend fun CharacterContext.writePoem() {
 }
 
 suspend fun CharacterContext.stuckOnWord() {
-    npc<Unknown_expression>("I'm stuck on a word. By the colossus of King Alvis! I can't find the words!")
+    npc<Cry>("I'm stuck on a word. By the colossus of King Alvis! I can't find the words!")
     player<Talk>("Maybe I can help. What sort of word?")
     npc<Upset>("I don't know! I'm not some kind of word scientist. I just feel it out as I go.")
     npc<Talk>("Maybe you could suggest some words to get me started. Then I can tell you more.")
@@ -995,7 +995,7 @@ suspend fun CharacterContext.poet() {
 }
 
 suspend fun CharacterContext.identify() {
-    npc<Unknown_expression>("My heart is stricken with that most audacious of maladies!")
+    npc<Cry>("My heart is stricken with that most audacious of maladies!")
     choice {
         option<Talking>("Angina?") {
             love()
@@ -1040,7 +1040,7 @@ suspend fun CharacterContext.getToThePoint() {
             helpMe()
         }
         option<Talking>("Not to mention low stature.") {
-            npc<Unknown_expression>("You see!")
+            npc<Cry>("You see!")
             helpMe()
         }
     }

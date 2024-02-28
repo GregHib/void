@@ -37,7 +37,7 @@ suspend fun CharacterContext.meetChieftain() {
 suspend fun CharacterContext.makeItShort() {
     npc<Angry>("Make it short.")
     player<Talk>("Your daughter seeks permission to court an outerlander.")
-    npc<Unknown_expression>("WHAT??")
+    npc<Mad>("WHAT??")
     choice {
         option<Talking>("Your daughter seeks permission to court an outerlander.") {
             barbarians()
@@ -84,9 +84,9 @@ suspend fun CharacterContext.campOfWar() {
     npc<Angry>("Then why do you dishonour his name by abandoning what he fought for?")
     npc<Furious>("We will honour our fathers and we will honour Gunnar!")
     npc<Angry>("haakon_the_champion", "Yes, Chieftain. You are wise. I am sorry.")
-    npc<Unknown_expression>("You! Outerlander!")
+    npc<Mad>("You! Outerlander!")
     player<Unsure>("What?")
-    npc<Unknown_expression>("We are not friends, you and I! We are not allies!")
+    npc<Mad>("We are not friends, you and I! We are not allies!")
     npc<Angry>("Run back to Gudrun and tell her to remember her forefathers!")
     player["gunnars_ground"] = "tell_gudrun"
     npc<Angry>("Tell her to think of Gunnar and what he would think of this insult! Now go before I have Haakon dismember you.")

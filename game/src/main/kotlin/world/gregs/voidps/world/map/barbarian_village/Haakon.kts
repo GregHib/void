@@ -46,6 +46,6 @@ suspend fun TargetNPCContext.menu() {
 }
 
 suspend fun TargetNPCContext.attack() {
-    npc<Unknown_expression>("Make peace with your god, outerlander!")
+    npc<Mad>("Make peace with your god, outerlander!")
     target.mode = Interact(target, player, PlayerOption(target, player, "Attack"))
 }
