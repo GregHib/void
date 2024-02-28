@@ -19,3 +19,4 @@ int_entry: 108
 string_entry: 109
 dialogue_item_zoom: 3449
 items_kept_on_death: 118
+message_scroll_max: 677

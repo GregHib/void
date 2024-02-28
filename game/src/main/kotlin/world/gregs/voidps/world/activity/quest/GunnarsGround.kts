@@ -7,19 +7,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
 
-
-fun Player.sendScroll(name: String, lines: List<String>) {
-    if (!interfaces.open("messagescrol")) {
-        return
-    }
-  //  sendScript(1207, lines.size + 1)//todo
-    interfaces.sendText("messagescrol", "title", name)
-    interfaces.sendText("messagescrol", "line0", "")
-    for (i in 0..87) {
-        interfaces.sendText("messagescrol", "line${i + 1}", lines.getOrNull(i) ?: "")
-    }
-}
-
 on<Registered> { player: Player ->
     player.sendVariable("gudrun_after_quest")
     player.sendVariable("dororan_after_quest")
@@ -286,11 +273,11 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
         )
         "love_poem", "jeffery_ring" -> {
             val list = mutableListOf(
-                    "<str>I met an unhappy dwarf named Dororan just outside the",
-                    "<str>barbarian village.",
-                    "<maroon>Dororan <navy>outside the <maroon>barbarian village, <navy>wants me to bring him a",
-                    "<maroon>Gold ring <navy>he Specifically wants a ring from <maroon>Jeffery <navy>in <maroon>Edgeville.",
-                    "<navy>Items I need:",
+                "<str>I met an unhappy dwarf named Dororan just outside the",
+                "<str>barbarian village.",
+                "<maroon>Dororan <navy>outside the <maroon>barbarian village, <navy>wants me to bring him a",
+                "<maroon>Gold ring <navy>he Specifically wants a ring from <maroon>Jeffery <navy>in <maroon>Edgeville.",
+                "<navy>Items I need:",
             )
             if (player.holdsItem("ring_from_jeffery")) {
                 list.add("<str>Ring from Jeffery")

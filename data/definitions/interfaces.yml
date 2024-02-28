@@ -226,7 +226,7 @@ inventory:
         Option12: 17
         Drag: 20
         Option13: 21
-messagescrol:
+message_scroll:
   id: 156
   type: wide_screen
   components:  
