@@ -106,7 +106,7 @@ suspend fun PlayerChoice.yesVeryPowerful(): Unit = option<Upset>("Yes, very.") {
     }
 }
 
-suspend fun PlayerChoice.palaceGuardsAreRubbish(): Unit = option<Laugh>("Yeah, the palace guards are rubbish!") {
+suspend fun PlayerChoice.palaceGuardsAreRubbish(): Unit = option<Chuckle>("Yeah, the palace guards are rubbish!") {
     npc<Chuckle>("Yeah, they're--")
     npc<Furious>("Wait! How dare you insult the palace guards? Get out of my sight!")
 }
