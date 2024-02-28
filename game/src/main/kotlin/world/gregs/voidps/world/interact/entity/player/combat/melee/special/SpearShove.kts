@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.character.forceWalk
+import world.gregs.voidps.engine.entity.character.exactMove
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -43,7 +43,7 @@ specialAttackSwing("dragon_spear", "zamorakian_spear") { player ->
     val direction = target.tile.delta(actual).toDirection()
     val delta = direction.delta
     if (!target.blocked(direction)) {
-        target.forceWalk(delta, 30, direction.inverse())
+        target.exactMove(delta, 30, direction.inverse())
     }
     delay = 4
 }
