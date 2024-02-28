@@ -5,6 +5,17 @@ chest_open: 52
 casket_open: 50
 cupboard_close: 57
 cupboard_open: 58
+star_meteor_falling: 5206
+star_meteor_landing: 5188
+star_meteor_change: 5189
+star_sprite_shake: 5193
+star_sprite_appear: 5195
+star_sprite_twinkle: 5197
+star_sprite_yawn: 5200
+star_sprite_wipe: 5201
+star_sprite_yawn_end1: 5202
+star_sprite_blink: 5205
+star_meteor_despawn: 5207
 destroy_object: 2381
 coffin_open: 54
 demon_slayer_crystal_ball_anim: 2971

@@ -33,6 +33,8 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
+import world.gregs.voidps.world.activity.bank.bank
+import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler
 
 val objects: GameObjects by inject()
 val itemDefinitions: ItemDefinitions by inject()
@@ -142,9 +144,16 @@ fun hasRequirements(player: Player, pickaxe: Item?, message: Boolean = false): B
 }
 
 fun addOre(player: Player, ore: String): Boolean {
+    if (ore == "stardust") {
+        ShootingStarHandler.addStarDustCollected()
+        val totalStarDust = player.inventory.count(ore) + player.bank.count(ore)
+        if (totalStarDust >= 200) {
+            player.message("You have the maximum amount of stardust but was still rewarded experience.")
+            return true
+        }
+    }
     val added = player.inventory.add(ore)
-    if (added) {
-        player.message("You manage to mine some ${ore.toLowerSpaceCase()}.")
+    if (added) { player.message("You manage to mine some ${ore.toLowerSpaceCase()}.")
     } else {
         player.inventoryFull()
     }
@@ -152,6 +161,10 @@ fun addOre(player: Player, ore: String): Boolean {
 }
 
 fun deplete(rock: Rock, obj: GameObject): Boolean {
+    if (obj.id.startsWith("crashed_star_tier_")) {
+        ShootingStarHandler.handleMinedStarDust(obj)
+        return false
+    }
     if (rock.life >= 0) {
         objects.replace(obj, "depleted${obj.id.dropWhile { it != '_' }}", ticks = rock.life)
         return true

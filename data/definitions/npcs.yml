@@ -196,6 +196,12 @@ cook_lumbridge:
   race: human
   wander_radius: 4
   examine: "Lumbridge Castle's head cook."
+star_sprite:
+  id: 8091
+  examine: "A shiny, happy star sprite."
+shooting_star_shadow:
+  id: 8092
+  examine: "The shadow of a shooting star"
 doric:
   id: 284
   race: dwarf

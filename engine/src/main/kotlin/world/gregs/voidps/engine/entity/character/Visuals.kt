@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
+import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectShape
@@ -18,6 +19,8 @@ import world.gregs.voidps.network.visual.VisualMask
 import world.gregs.voidps.network.visual.Visuals
 import world.gregs.voidps.network.visual.update.Hitsplat
 import world.gregs.voidps.network.visual.update.Turn
+import world.gregs.voidps.network.visual.update.player.MoveType
+import world.gregs.voidps.network.visual.update.player.TemporaryMoveType
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance
@@ -192,24 +195,16 @@ fun Character.setForceMovement(
     flagForceMovement()
 }
 
-fun Character.forceWalk(delta: Delta, delay: Int = 0, direction: Direction = Direction.NONE, block: () -> Unit = {}) {
-    setForceMovement(delta, delay, direction = direction)
-    this["force_walk"] = block
-    if (this is Player) {
-        strongQueue("force_walk", delay / 30) {
-            tele(delta)
-            clearAnimation()
-        }
-    } else if (this is NPC) {
-        strongQueue("force_walk", delay / 30) {
-            tele(delta)
-            clearAnimation()
-        }
-    }
+fun Character.forceWalk(delta: Delta, delay: Int = tile.distanceTo(tile.add(delta)) * 30, direction: Direction = Direction.NONE) {
+    val start = tile
+    tele(delta)
+    setForceMovement(Delta.EMPTY, delay, start.delta(tile), direction = direction)
 }
 
-fun Character.forceWalk(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE, block: () -> Unit = {}) {
-    forceWalk(target.delta(tile), delay, direction, block)
+fun Character.forceWalk(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE) {
+    val start = tile
+    tele(target)
+    setForceMovement(Delta.EMPTY, delay, start.delta(tile), direction = direction)
 }
 
 val Character.turn: Delta
