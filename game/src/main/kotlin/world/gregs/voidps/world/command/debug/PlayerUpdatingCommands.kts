@@ -83,7 +83,7 @@ adminCommand("chat") {
 }
 
 adminCommand("move") {
-    player.setForceMovement(Delta(0, -2), 120, startDelay = 60, direction = Direction.SOUTH)
+    player.setExactMovement(Delta(0, -2), 120, startDelay = 60, direction = Direction.SOUTH)
 }
 
 adminCommand("hit") {

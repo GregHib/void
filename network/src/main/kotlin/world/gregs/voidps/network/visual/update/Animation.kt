@@ -3,8 +3,8 @@ package world.gregs.voidps.network.visual.update
 import world.gregs.voidps.network.Visual
 
 /**
- * @param stand animate only while stationary (or during force movement)
- * @param force animate after force movement
+ * @param stand animate only while stationary (or during exact movement)
+ * @param force animate after exact movement
  * @param walk can animate while walking
  * @param run can animate while running
  */

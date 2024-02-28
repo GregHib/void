@@ -15,7 +15,7 @@ abstract class Visuals(index: Int) {
     val primaryGraphic = Graphic()
     val secondaryGraphic = Graphic()
     val colourOverlay = ColourOverlay()
-    val forceMovement = ForceMovement()
+    val exactMovement = ExactMovement()
     val timeBar = TimeBar()
     val turn = Turn()
     val watch = Watch()
@@ -37,7 +37,7 @@ abstract class Visuals(index: Int) {
         flag = 0
         animation.clear()
         primaryGraphic.clear()
-        forceMovement.clear()
+        exactMovement.clear()
         colourOverlay.clear()
         hits.clear()
         turn.clear()
