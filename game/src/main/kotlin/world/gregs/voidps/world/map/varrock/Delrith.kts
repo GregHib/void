@@ -204,7 +204,7 @@ suspend fun CharacterContext.cutscene() {
         wizard.clearAnimation()
         wizard.face(delrith)
     }
-    npc<Laugh>("denath", """
+    npc<Chuckle>("denath", """
         Ha ha ha! At last you are free, my demonic brother!
         Rest now, and then have your revenge on this pitiful
         city!
