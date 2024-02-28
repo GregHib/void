@@ -65,7 +65,7 @@ interfaceOpen("toplevel*") { player ->
 
 interfaceRefresh("toplevel*", "dialogue_npc*") { player ->
     player.interfaces.sendVisibility(player.interfaces.gameFrame, "wilderness_level", false)
-    player.weakQueue("wild_level", 1) {
+    player.weakQueue("wild_level", 1, onCancel = null) {
         player.interfaces.sendVisibility(player.interfaces.gameFrame, "wilderness_level", false)
     }
 }

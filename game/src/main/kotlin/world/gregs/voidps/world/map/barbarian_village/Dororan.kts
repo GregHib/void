@@ -1181,7 +1181,7 @@ suspend fun CharacterContext.someThingElse() {
         }
         option<Talking>("I'd like to see the poem you wrote for Gunthor.") {
             if (player.inventory.isFull()) {
-                statement("you don't have room for the poem.")
+                statement("You don't have room for the poem. Speak to Dororan again when you have room.")
                 return@option
             }
             player.inventory.add("gunnars_ground")

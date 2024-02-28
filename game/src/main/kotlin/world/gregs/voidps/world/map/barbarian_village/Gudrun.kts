@@ -6,7 +6,9 @@ import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -91,45 +93,45 @@ suspend fun CharacterContext.cutscene() {
     player.setAnimation("player_calm_doroan")
     choice {
         option<Talking>("They're just starting.") {
-            cutsceneMenu()
+            cutsceneMenu(instance)
         }
         option<Talking>("You're late.") {
-            cutsceneMenu()
+            cutsceneMenu(instance)
         }
     }
 }
 
-suspend fun CharacterContext.cutsceneMenu() {
+suspend fun CharacterContext.cutsceneMenu(instance: Region) {
     npc<Sad>("dororan_cutscene", "This isn't going to work.")
     choice {
         option<Talking>("Why's that?") {
             player.setAnimation("player_calm_doroan")
-            cutsceneMenu2()
+            cutsceneMenu2(instance)
         }
         option<Talking>("You're so pessimistic.") {
             player.setAnimation("player_calm_doroan")
-            cutsceneMenu2()
+            cutsceneMenu2(instance)
         }
     }
 }
 
-suspend fun CharacterContext.cutsceneMenu2() {
+suspend fun CharacterContext.cutsceneMenu2(instance: Region) {
     npc<Cry>("dororan_cutscene", "What was I thinking? You should go in there and stop them before Gudrun makes a fool of herself.")
     choice {
         option<Talking>("Okay, I will.") {
             player.setAnimation("player_calm_doroan")
             npc<Sad>("dororan_cutscene", "No! Wait, stay here, it's too late now. We'll just have to see how it turns out.")
-            cutsceneMenu3()
+            cutsceneMenu3(instance)
         }
         option<Talking>("Don't be silly.") {
             player.setAnimation("player_calm_doroan")
             npc<Sad>("dororan_cutscene", "You're right, it's too late now. We'll just have to see how it turns out.")
-            cutsceneMenu3()
+            cutsceneMenu3(instance)
         }
     }
 }
 
-suspend fun CharacterContext.cutsceneMenu3() {
+suspend fun CharacterContext.cutsceneMenu3(instance: Region) {
     npc<Sad>("dororan_cutscene", "I can't hear what's happening. Can you hear what's happening?")
     player.setAnimation("player_calm_doroan")
     player<Talk>("Gunthor is laughing at something.")
@@ -137,35 +139,35 @@ suspend fun CharacterContext.cutsceneMenu3() {
     player.setAnimation("player_calm_doroan")
     choice {
         option<Talking>("Why would he do that?") {
-            cutsceneMenu4()
+            cutsceneMenu4(instance)
         }
         option<Talking>("Now you're just being ridiculous.") {
-            cutsceneMenu4()
+            cutsceneMenu4(instance)
         }
     }
 }
 
-suspend fun CharacterContext.cutsceneMenu4() {
+suspend fun CharacterContext.cutsceneMenu4(instance: Region) {
     npc<Talk>("dororan_cutscene", "The poem says you can honour your ancestors by settling peacefully on the land they conquered.")
     npc<Sad>("dororan_cutscene", "He'll probably just find it insulting.")
     player.setAnimation("player_calm_doroan")
     choice {
         option<Talking>("Now's your chance to find out.") {
-            cutscenePart2()
+            cutscenePart2(instance)
         }
         option<Talking>("You're doomed.") {
-            cutscenePart2()
+            cutscenePart2(instance)
         }
     }
 }
 
-suspend fun CharacterContext.cutscenePart2() {
-    player.queue.clear("gunnars_ground_cutscene_end")
+suspend fun CharacterContext.cutscenePart2(instance: Region) {
     player.open("fade_out")
-    val instance = startCutscene(region)
+    delay(3)
+    npcs.clear(instance.toLevel(0))
+    player.clearAnimation()
+    delay(1)
     val offset = instance.offset(region)
-    setCutsceneEnd(instance)
-    delay(4)
     player.tele(Tile(3083, 3426).add(offset), clearInterfaces = false)
     player.face(Direction.WEST)
     val dororan = npcs.add("dororan_cutscene", Tile(3082, 3428).add(offset), Direction.SOUTH) ?: return
@@ -173,6 +175,7 @@ suspend fun CharacterContext.cutscenePart2() {
     val kjell = npcs.add("kjell_cutscene", Tile(3077, 3426).add(offset), Direction.SOUTH) ?: return
     val gunthor = npcs.add("chieftain_gunthor_cutscene", Tile(3079, 3425).add(offset), Direction.SOUTH) ?: return
     val haakon = npcs.add("haakon_the_champion_cutscene", Tile(3078, 3425).add(offset), Direction.SOUTH) ?: return
+    dororan.face(gudrun)
     player.moveCamera(Tile(3079, 3419).add(offset), 400)
     player.turnCamera(Tile(3079, 3426).add(offset), 150)
     delay(2)
@@ -223,14 +226,19 @@ suspend fun CharacterContext.cutscenePart2() {
     player["dororan_after_cutscene"] = "shown"
     player["gudrun"] = "hidden"
     player["gudrun_after_cutscene"] = "shown"
-    gunnarsGround()
+    val gudrunAfter = npcs[Tile(3082, 3417)].firstOrNull { it.id == "gudrun_after_cutscene" }
+    if (gudrunAfter != null) {
+        player.mode = Interact(player, gudrunAfter, NPCOption(player, gudrunAfter, gudrunAfter.def, "Talk-to"))
+    } else {
+        gunnarsGround()
+    }
 }
 
 suspend fun CharacterContext.gunnarsGround() {
     npc<Cheerful>("Papa was so impressed by Dororan's poem, he's made him the village poet!")
     npc<Cheerful>("dororan_after_cutscene2", "I'm more then a little surprised! He even gave me a house to live in!")
     npc<Happy>("Our people's tradition is that the tribe provides lodging for the poet.")
-    npc<Mad>("dororan_after_cutscene2", "It's huge!")
+    npc<Chuckle>("dororan_after_cutscene2", "It's huge!")
     npc<Cheerful>("It's not in the village. It's east of here: across the river and north of the road on the way to Varrock. It's a big house with roses outside.")
     npc<Happy>("dororan_after_cutscene2", "I think Gunthor wants to keep me close, but not too close. Oh, I found something there for you!")
     npc<Cheerful>("dororan_after_cutscene2", "Whoever lived there before left a dozen pairs of boots in the attic.")
@@ -274,6 +282,7 @@ suspend fun CharacterContext.endCutscene(instance: Region) {
     player.tele(3081, 3416)
     stopCutscene(instance)
     player.clearCamera()
+    player.clearAnimation()
 }
 
 suspend fun CharacterContext.poem() {
