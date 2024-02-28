@@ -35,5 +35,5 @@ internal suspend fun TargetNPCContext.heal() {
 
 internal suspend fun PlayerChoice.often(): Unit = option<Uncertain>("Do you come here often?") {
     npc<Cheerful>("I work here, so yes!")
-    npc<Laugh>("You're silly!")
+    npc<Chuckle>("You're silly!")
 }
