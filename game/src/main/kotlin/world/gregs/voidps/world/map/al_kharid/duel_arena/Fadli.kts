@@ -37,7 +37,7 @@ npcOperate("Talk-to", "fadli") {
             npc<Cheerful>("Most aren't any good so I throw rotten fruit at them!")
             player<Cheerful>("Heh. Can I buy some?")
             if (World.members) {
-                npc<Laugh>("Sure.")
+                npc<Chuckle>("Sure.")
                 player.openShop("shop_of_distaste")
                 return@option
             }
