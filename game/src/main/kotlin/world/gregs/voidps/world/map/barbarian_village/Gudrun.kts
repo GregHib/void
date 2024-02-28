@@ -35,10 +35,7 @@ import world.gregs.voidps.world.activity.quest.sendQuestComplete
 import world.gregs.voidps.world.activity.quest.startCutscene
 import world.gregs.voidps.world.activity.quest.stopCutscene
 import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.item
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.player
+import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
 npcOperate("Talk-to", "gudrun*") {
@@ -255,20 +252,6 @@ suspend fun CharacterContext.gunnarsGround() {
         }
     }
 }
-
-suspend fun CharacterContext.finishQuest() {
-    npc<Cheerful>("dororan_after_cutscene2", "Goodbye!")
-    npc<Cheerful>("Goodbye!")
-    player.open("fade_out")
-    delay(4)
-    player["dororan_after_cutscene"] = "hidden"
-    player["gudrun_after_cutscene"] = "hidden"
-    player["dororan_after_quest"] = "shown"
-    player["gudrun_after_quest"] = "shown"
-    player.open("fade_in")
-    questComplete()
-}
-
 
 fun CharacterContext.setCutsceneEnd(instance: Region) {
     player.queue("gunnars_ground_cutscene_end", 1, LogoutBehaviour.Accelerate) {
@@ -493,6 +476,23 @@ suspend fun CharacterContext.whatIsThisPlace() {
         option<Happy>("Goodbye.") {
         }
     }
+}
+
+suspend fun CharacterContext.finishQuest() {
+    npc<Cheerful>("dororan_after_cutscene2", "Goodbye!")
+    npc<Cheerful>("Goodbye!")
+    if (player.inventory.spaces < 2) {
+        statement("You don't have room for the two reward items. Speak to Gudrun or Dororan again when you have room.")
+        return
+    }
+    player.open("fade_out")
+    delay(4)
+    player["dororan_after_cutscene"] = "hidden"
+    player["gudrun_after_cutscene"] = "hidden"
+    player["dororan_after_quest"] = "shown"
+    player["gudrun_after_quest"] = "shown"
+    player.open("fade_in")
+    questComplete()
 }
 
 fun CharacterContext.questComplete() {
