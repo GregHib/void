@@ -147,7 +147,7 @@ internal class PlayerChatTest : DialogueTest() {
         player.accountName = "Jim"
         var resumed = false
         dialogue {
-            player<Laugh>(text = "text", largeHead = true)
+            player<Chuckle>(text = "text", largeHead = true)
             resumed = true
         }
         (player.dialogueSuspension as ContinueSuspension).resume()
