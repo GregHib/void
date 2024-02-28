@@ -1,10 +1,8 @@
 package world.gregs.voidps.world.activity.dnd.shootingstar
 
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
@@ -34,19 +32,9 @@ object ShootingStarHandler {
             val nextStage = currentMinedStar.id.replace(stage, (stage.toInt() - 1).toString())
             val nextStar = currentMinedStar.replace(nextStage)
             totalCollected = 0
-            changeStar(currentMinedStar.id, nextStar.id)
+            currentActiveObject = nextStar
+            areaSound("star_meteor_change", currentStarTile, radius = 10)
         }
-    }
-
-    private fun changeStar(oldStar: String, newStar: String): Boolean {
-        val objects: GameObjects = get()
-        val existing = objects[currentStarTile, oldStar]
-        if (existing != null) {
-            currentActiveObject = existing.replace(newStar)
-            areaSound("star_meteor_change", currentActiveObject!!.tile, radius = 10)
-            return true
-        }
-        return false
     }
 
     fun isEarlyBird(): Boolean {
