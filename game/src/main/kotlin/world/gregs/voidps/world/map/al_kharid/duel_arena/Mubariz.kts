@@ -84,7 +84,7 @@ suspend fun PlayerChoice.options(): Unit = option<Uncertain>("What kind of optio
 }
 
 suspend fun PlayerChoice.advice(): Unit = option<Unsure>("Do you have any advice for me?") {
-    npc<Laugh>("Win. And if you ever stop having fun, stop dueling.")
+    npc<Chuckle>("Win. And if you ever stop having fun, stop dueling.")
 }
 
 suspend fun PlayerChoice.exit(): Unit = option<RollEyes>("I'll be off.") {
