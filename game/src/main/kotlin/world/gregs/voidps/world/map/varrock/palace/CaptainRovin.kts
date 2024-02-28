@@ -107,7 +107,7 @@ suspend fun PlayerChoice.yesVeryPowerful(): Unit = option<Upset>("Yes, very.") {
 }
 
 suspend fun PlayerChoice.palaceGuardsAreRubbish(): Unit = option<Laugh>("Yeah, the palace guards are rubbish!") {
-    npc<Laugh>("Yeah, they're--")
+    npc<Chuckle>("Yeah, they're--")
     npc<Furious>("Wait! How dare you insult the palace guards? Get out of my sight!")
 }
 
@@ -151,9 +151,9 @@ suspend fun PlayerChoice.prysinSaidSo(): Unit = option<Talk>("Sir Prysin said yo
 suspend fun PlayerChoice.whyDidHeGiveKeyToYou(): Unit = option<Unsure>("Why did he give you one of the keys then?") {
     npc<Furious>("Only because the king ordered him to! The king couldn't get Sir Prysin to part with his precious ancestral sword, but he made him lock it up so he couldn't lose it.")
     npc<Unsure>("I got one key and I think some wizard got another. Now what happened to the third one?")
-    player<Laugh>("Sir Prysin dropped it down a drain!")
-    npc<Laugh>("Ha ha ha! The idiot!")
-    npc<Laugh>("Okay, I'll give you the key, just so that it's you that kills the demon and not Sir Prysin!")
+    player<Chuckle>("Sir Prysin dropped it down a drain!")
+    npc<Chuckle>("Ha ha ha! The idiot!")
+    npc<Chuckle>("Okay, I'll give you the key, just so that it's you that kills the demon and not Sir Prysin!")
     if (player.inventory.add("silverlight_key_captain_rovin")) {
         item("silverlight_key_captain_rovin", 400, "Captain Rovin hands you a key.")
     }
