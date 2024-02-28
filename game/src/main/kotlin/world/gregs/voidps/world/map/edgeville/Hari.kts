@@ -51,7 +51,7 @@ suspend fun CharacterContext.canoeing() {
         in 27..41 -> {
             npc<Talking>("You are an average woodcutter. You should be able to make a Dugout canoe quite easily. It will take you 2 stops along the river.")
             player<Unsure>("Can I take a dugout canoe to reach the Wilderness?")
-            npc<Laugh>("You would never make it there alive.")
+            npc<Chuckle>("You would never make it there alive.")
             player<Sad>("Best not to try then.")
         }
         in 42..56 -> {
