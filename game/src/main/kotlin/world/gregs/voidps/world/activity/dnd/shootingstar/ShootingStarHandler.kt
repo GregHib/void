@@ -1,7 +1,5 @@
 package world.gregs.voidps.world.activity.dnd.shootingstar
 
-import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.remove
@@ -11,7 +9,6 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.sound.areaSound
-import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
 object ShootingStarHandler {
@@ -20,7 +17,7 @@ object ShootingStarHandler {
     var totalCollected: Int = 0
     var currentStarTile = Tile.EMPTY
     var currentActiveObject: GameObject? = null
-    val startEvent = TimeUnit.SECONDS.toTicks(random.nextInt(1, 2))
+    val startEvent = TimeUnit.HOURS.toTicks(random.nextInt(1, 2))
 
     fun addStarDustCollected() {
         totalCollected++
@@ -46,19 +43,10 @@ object ShootingStarHandler {
         val existing = objects[currentStarTile, oldStar]
         if (existing != null) {
             currentActiveObject = existing.replace(newStar)
-            playSoundForPlayers("star_meteor_change")
+            areaSound("star_meteor_change", currentActiveObject!!.tile, radius = 10)
             return true
         }
         return false
-    }
-
-    fun playSoundForPlayers(soundId: String) {
-        val players: Players = get()
-        for (player in players[currentStarTile.zone]) {
-            if (currentStarTile.distanceTo(player) <= 5) { // make sure that the players are within 5 tiles to play sound?
-                player.playSound(soundId)
-            }
-        }
     }
 
     fun isEarlyBird(): Boolean {
