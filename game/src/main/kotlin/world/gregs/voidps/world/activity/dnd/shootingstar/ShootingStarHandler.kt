@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
+import world.gregs.voidps.world.interact.entity.sound.areaSound
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
@@ -19,7 +20,7 @@ object ShootingStarHandler {
     var totalCollected: Int = 0
     var currentStarTile = Tile.EMPTY
     var currentActiveObject: GameObject? = null
-    val startEvent = TimeUnit.HOURS.toTicks(random.nextInt(1, 2))
+    val startEvent = TimeUnit.SECONDS.toTicks(random.nextInt(1, 2))
 
     fun addStarDustCollected() {
         totalCollected++
@@ -29,7 +30,7 @@ object ShootingStarHandler {
         val starPayout = currentMinedStar.def["collect_for_next_layer", -1]
         if (totalCollected >= starPayout) {
             val stage = currentMinedStar.id.takeLast(1)
-            if (stage.equals("1")) {
+            if (stage == "1") {
                 currentMinedStar.remove()
                 return
             }
@@ -40,9 +41,9 @@ object ShootingStarHandler {
         }
     }
 
-    fun changeStar(oldStar: String, newStar: String): Boolean {
+    private fun changeStar(oldStar: String, newStar: String): Boolean {
         val objects: GameObjects = get()
-        val existing = objects.get(currentStarTile, oldStar)
+        val existing = objects[currentStarTile, oldStar]
         if (existing != null) {
             currentActiveObject = existing.replace(newStar)
             playSoundForPlayers("star_meteor_change")
@@ -53,7 +54,7 @@ object ShootingStarHandler {
 
     fun playSoundForPlayers(soundId: String) {
         val players: Players = get()
-        for (player in players.get(currentStarTile.zone)) {
+        for (player in players[currentStarTile.zone]) {
             if (currentStarTile.distanceTo(player) <= 5) { // make sure that the players are within 5 tiles to play sound?
                 player.playSound(soundId)
             }

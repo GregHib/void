@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.dnd.shootingstar
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.entity.World
@@ -60,10 +61,11 @@ fun eventUpdate() {
 }
 
 fun startCrashedStarEvent() {
-    currentStarTile = StarLocationData.entries.random().location
-    logger.info { "Crashed star event has started: cmd -> tele " + currentStarTile.x + " " + currentStarTile.y}
-    val shootingStarShadow: NPC? = npcs.add("shooting_star_shadow",Tile(currentStarTile.x, currentStarTile.y + 6),Direction.NONE)
-    shootingStarShadow?.walkTo(currentStarTile, true, true)
+    val location = StarLocationData.entries.random()
+    currentStarTile = location.tile
+    logger.info { "Crashed star event has started at: $location (${currentStarTile.x}, ${currentStarTile.y})" }
+    val shootingStarShadow: NPC? = npcs.add("shooting_star_shadow", Tile(currentStarTile.x, currentStarTile.y + 6), Direction.NONE)
+    shootingStarShadow?.walkTo(currentStarTile, noCollision = true, noRun = true)
     playSoundForPlayers("star_meteor_falling")
     World.queue("awaiting_shadow_walk", 6) {
         val shootingStarObjectFalling: GameObject = objects.add("crashed_star_falling_object", currentStarTile)
@@ -85,10 +87,7 @@ fun startCrashedStarEvent() {
 }
 
 fun cleanseEvent(forceStopped: Boolean) {
-    val existing = currentActiveObject?.let { objects.get(currentStarTile, it.id) }
-    if (existing != null) {
-        existing.remove()
-    }
+    currentActiveObject?.let { current -> objects[currentStarTile, current.id] }?.remove()
     if (!forceStopped) {
         playSoundForPlayers("star_sprite_appear")
         val starSprite = npcs.add("star_sprite", currentStarTile, Direction.NONE, 0)
@@ -120,18 +119,16 @@ fun calculateRewards(stardust: Int): Map<String, Int> {
     val goldOres = (goldOresPerStardust * stardust).roundToInt()
 
     return mapOf(
-            "coins" to coins,
-            "astral_rune" to astralRunes,
-            "cosmic_rune" to cosmicRunes,
-            "gold_ore_noted" to goldOres
+        "coins" to coins,
+        "astral_rune" to astralRunes,
+        "cosmic_rune" to cosmicRunes,
+        "gold_ore_noted" to goldOres
     )
 }
 
-objectDespawn { obj ->
-    if (obj.id == "shooting_star_tier_1") {
-        playSoundForPlayers("star_meteor_despawn")
-        cleanseEvent(false)
-    }
+objectDespawn("shooting_star_tier_1") {
+    playSoundForPlayers("star_meteor_despawn")
+    cleanseEvent(false)
 }
 
 timerStart("mining") { player ->
@@ -169,7 +166,7 @@ npcOperate("Talk-to", "star_sprite") {
     npc<Cheerful>("Thank you for helping me out of here")
     val starDustCount = player.inventory.count("stardust")
     if (player.inventory.isFull()) {
-        player.message("Inventory full. To make more room, sell, drop or bank something.",ChatType.Game)
+        player.message("Inventory full. To make more room, sell, drop or bank something.", ChatType.Game)
     } else if (starDustCount == 0) {
         npc<Sad>("You don't seem to have any stardust that I can exchange for a reward")
     } else if (starDustCount > 0) {
@@ -181,7 +178,7 @@ npcOperate("Talk-to", "star_sprite") {
             if (index == 0) {
                 messageBuilder.append("have $amount $reward")
             } else {
-                messageBuilder.append(", $amount ${reward.replace("_", " ").replace("noted", "") + "s"}")
+                messageBuilder.append(", $amount ${reward.replace("_", " ").replace("noted", "").plural(amount)}")
             }
         }
         npc<Cheerful>("I have rewarded you by making it so you can mine extra ore for the next 15 minutes, ${messageBuilder}.")
