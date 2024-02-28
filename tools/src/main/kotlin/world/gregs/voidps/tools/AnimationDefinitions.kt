@@ -9,10 +9,11 @@ object AnimationDefinitions {
     fun main(args: Array<String>) {
         val cache: Cache = CacheDelegate(property("cachePath"))
         val decoder = AnimationDecoderFull().load(cache)
-        loop@ for (i in decoder.indices) {
+        val match = decoder[12185].frames
+        for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.aBoolean691) {
-                println("$i $def")
+            if (def.frames.contentEquals(match)) {
+                println("$i")
             }
         }
         println(convertOsrs(589))
