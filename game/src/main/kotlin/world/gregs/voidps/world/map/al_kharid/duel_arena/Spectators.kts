@@ -14,7 +14,7 @@ npcOperate("Talk-to", "afrah", "dalal", "jadid", "jeed", "ima", "sabeil") {
             player<Talking>("Who's there?")
             npc<Cheerful>("Boo.")
             player<Uncertain>("Boo who?")
-            npc<Laugh>("Don't cry, it's just me!")
+            npc<Chuckle>("Don't cry, it's just me!")
         }
         1 -> {
             npc<Sad>("I wouldn't want to be the poor guy that has to clean up after the duels.")
@@ -36,7 +36,7 @@ npcOperate("Talk-to", "afrah", "dalal", "jadid", "jeed", "ima", "sabeil") {
         5 -> {
             npc<Cheerful>("Why did the skeleton burp?")
             player<Uncertain>("I don't know?")
-            npc<Laugh>("'Cause it didn't have the guts to fart!")
+            npc<Chuckle>("'Cause it didn't have the guts to fart!")
         }
         6 -> {
             npc<Talking>("Did you know they think this place dates back to the second age?!")
@@ -46,7 +46,7 @@ npcOperate("Talk-to", "afrah", "dalal", "jadid", "jeed", "ima", "sabeil") {
         7 -> {
             npc<Cheerful>("What did the skeleton say before it ate?")
             player<Uncertain>("I don't know?")
-            npc<Laugh>("Bone-appetit.")
+            npc<Chuckle>("Bone-appetit.")
         }
         8 -> {
             npc<Cheerful>("Ooh. This is exciting!")
