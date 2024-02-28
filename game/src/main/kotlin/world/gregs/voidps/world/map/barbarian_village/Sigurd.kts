@@ -23,7 +23,7 @@ npcOperate("Talk-To", "sigurd") {
             npc<Drunk>("It's a game were you take it in turnsh shmacking a tree. First one to uproot the tree winsh!")
             npc<Drunk>("Anyway, I won the game with a flying tackle. The tree came loose and down the river bank I went, still holding the tree.")
             npc<Drunk>("I woke up a few hours later and found myself several miles down river. And thatsh how I invented the log canoe!")
-            player<Laugh>("So you invented the 'Log Canoe' by falling into a river hugging a tree?")
+            player<Chuckle>("So you invented the 'Log Canoe' by falling into a river hugging a tree?")
             npc<Angry>("Well I refined the design from the original you know!")
             npc<Drunk>("I cut all the branches off to make it more comfortable. I could tell you how to if you like?")
             choice {
