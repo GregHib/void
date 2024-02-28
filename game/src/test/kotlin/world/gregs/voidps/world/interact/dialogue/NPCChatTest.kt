@@ -154,7 +154,7 @@ internal class NPCChatTest : DialogueTest() {
     fun `Send npc chat`() {
         var resumed = false
         dialogue {
-            npc<Chuckle>(text = "text", largeHead = true)
+            npc<Laugh>(text = "text", largeHead = true)
             resumed = true
         }
         (player.dialogueSuspension as ContinueSuspension).resume()
