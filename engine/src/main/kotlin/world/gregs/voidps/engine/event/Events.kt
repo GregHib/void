@@ -148,11 +148,11 @@ class Events : CoroutineScope {
                 logger.warn(throwable) { "Error in event." }
             }
         }
-        var handlers = Events()
+        var events = Events()
             private set
 
-        fun setHandlers(handlers: Events) {
-            this.handlers = handlers
+        fun setEvents(events: Events) {
+            this.events = events
         }
 
         @Suppress("UNCHECKED_CAST")
@@ -160,12 +160,12 @@ class Events : CoroutineScope {
             val handler = block as suspend Event.(EventDispatcher) -> Unit
             if (skipDefault != null) {
                 check(skipDefault.size == parameters.size) { "Skip default array must be the same size as parameters: ${parameters.size}." }
-                handlers.insert(parameters) { entity ->
+                events.insert(parameters) { entity ->
                     handler.invoke(this, entity)
                     if (this is CancellableEvent && this.cancelled) {
                         return@insert
                     }
-                    val handlers = Events.handlers.search(entity, this, skipDefault) ?: return@insert
+                    val handlers = Events.events.search(entity, this, skipDefault) ?: return@insert
                     for (h in handlers) {
                         if (entity is CancellableEvent && entity.cancelled) {
                             break
@@ -174,7 +174,7 @@ class Events : CoroutineScope {
                     }
                 }
             } else {
-                handlers.insert(parameters, handler)
+                events.insert(parameters, handler)
             }
         }
     }

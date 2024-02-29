@@ -4,8 +4,8 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
 
 data class InterfaceOption(
     override val character: Character,
@@ -18,16 +18,27 @@ data class InterfaceOption(
     val inventory: String
 ) : Interaction() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
+
+    override fun size() = 5
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> "interface_option"
+        1 -> id
+        2 -> component
+        3 -> option
+        4 -> itemSlot.toString()
+        else -> ""
+    }
 }
 
 fun interfaceOption(option: String = "*", component: String = "*", id: String, block: suspend InterfaceOption.() -> Unit) {
-    on<InterfaceOption>({ wildcardEquals(id, this.id) && wildcardEquals(component, this.component) && wildcardEquals(option, this.option) }) {
+    Events.handle<Player, InterfaceOption>("interface_option", id, component, option, "*") {
         block.invoke(this)
     }
 }
 
 fun interfaceSlot(component: String = "*", id: String, itemSlot: Int = -1, block: suspend InterfaceOption.() -> Unit) {
-    on<InterfaceOption>({ wildcardEquals(id, this.id) && wildcardEquals(component, this.component) && (itemSlot == -1 || this.itemSlot == itemSlot) }) {
+    Events.handle<Player, InterfaceOption>("interface_option", id, component, "*", if (itemSlot == -1) "*" else itemSlot.toString()) {
         block.invoke(this)
     }
 }

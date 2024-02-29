@@ -6,10 +6,9 @@ import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.onCharacter
-import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.suspend.arriveDelay
 
 data class ItemOnNPC(
     override val character: Character,
@@ -21,28 +20,30 @@ data class ItemOnNPC(
     val inventory: String
 ) : Interaction(), TargetNPCContext {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
+
+    override fun size() = 5
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> if (approach) "item_on_approach_npc" else "item_on_operate_npc"
+        1 -> item.id
+        2 -> target.id
+        3 -> id
+        4 -> component
+        else -> ""
+    }
 }
 
-fun itemOnNPCApproach(item: String, npc: String, block: suspend ItemOnNPC.() -> Unit) {
-    onCharacter<ItemOnNPC>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(npc, this.target.id) }) {
+fun itemOnNPCOperate(item: String = "*", npc: String = "*", id: String = "*", component: String = "*", arrive: Boolean = false, block: suspend ItemOnNPC.() -> Unit) {
+    Events.handle<Player, ItemOnNPC>("item_on_operate_npc", item, npc, id, component) {
+        if (arrive) {
+            arriveDelay()
+        }
         block.invoke(this)
     }
 }
 
-fun itemOnNPCOperate(item: String, npc: String, block: suspend ItemOnNPC.() -> Unit) {
-    on<ItemOnNPC>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(npc, this.target.id) }) {
-        block.invoke(this)
-    }
-}
-
-fun spellOnNPCApproach(id: String, component: String = "*", priority: Priority = Priority.MEDIUM, block: suspend ItemOnNPC.() -> Unit) {
-    on<ItemOnNPC>({ approach && wildcardEquals(component, this.component) && wildcardEquals(id, this.id) }, priority) {
-        block.invoke(this)
-    }
-}
-
-fun spellOnNPCOperate(id: String, component: String = "*", block: suspend ItemOnNPC.() -> Unit) {
-    on<ItemOnNPC>({ operate && wildcardEquals(component, this.component) && wildcardEquals(id, this.id) }) {
+fun itemOnNPCApproach(item: String = "*", npc: String = "*", id: String = "*", component: String = "*", block: suspend ItemOnNPC.() -> Unit) {
+    Events.handle<Player, ItemOnNPC>("item_on_approach_npc", item, npc, id, component) {
         block.invoke(this)
     }
 }

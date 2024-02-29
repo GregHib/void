@@ -19,6 +19,6 @@ objectApproach("Examine") {
     player.message(def.getOrNull("examine") ?: return@objectApproach, ChatType.ObjectExamine)
 }
 
-npcApproach("Examine") {
+npcApproach("Examine", arrive = false) {
     player.message(def.getOrNull("examine") ?: return@npcApproach, ChatType.NPCExamine)
 }

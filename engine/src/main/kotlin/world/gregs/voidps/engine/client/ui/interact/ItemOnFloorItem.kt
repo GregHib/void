@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.suspend.arriveDelay
 
 data class ItemOnFloorItem(
@@ -19,19 +19,30 @@ data class ItemOnFloorItem(
     val inventory: String
 ) : Interaction() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
+
+    override fun size() = 5
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> if (approach) "item_approach_floor_item" else "item_operate_floor_item"
+        1 -> item.id
+        2 -> floorItem.id
+        3 -> id
+        4 -> component
+        else -> ""
+    }
 }
 
-fun itemOnFloorItemApproach(item: String, floorItem: String, block: suspend ItemOnFloorItem.() -> Unit) {
-    on<ItemOnFloorItem>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(floorItem, this.floorItem.id) }) {
+fun itemOnFloorItemOperate(item: String = "*", floorItem: String = "*", id: String = "*", component: String = "*", arrive: Boolean = true, block: suspend ItemOnFloorItem.() -> Unit) {
+    Events.handle<Player, ItemOnFloorItem>("item_approach_floor_item", item, floorItem, id, component) {
+        if (arrive) {
+            arriveDelay()
+        }
         block.invoke(this)
     }
 }
 
-fun itemOnFloorItemOperate(item: String, floorItem: String, arrive: Boolean = true, block: suspend ItemOnFloorItem.() -> Unit) {
-    on<ItemOnFloorItem>({ operate && wildcardEquals(item, this.item.id) && wildcardEquals(floorItem, this.floorItem.id) }) {
-        if (arrive) {
-            arriveDelay()
-        }
+fun itemOnFloorItemApproach(item: String = "*", floorItem: String = "*", id: String = "*", component: String = "*", block: suspend ItemOnFloorItem.() -> Unit) {
+    Events.handle<Player, ItemOnFloorItem>("item_approach_floor_item", item, floorItem, id, component) {
         block.invoke(this)
     }
 }

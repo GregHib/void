@@ -3,9 +3,9 @@ package world.gregs.voidps.engine.client.ui.interact
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetObjectContext
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.wildcardEquals
@@ -21,6 +21,13 @@ data class ItemOnObject(
     val inventory: String
 ) : Interaction(), TargetObjectContext {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
+
+    override fun size() = 0
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> ""
+        else -> ""
+    }
 }
 
 fun itemOnObjectApproach(item: String, obj: String, block: suspend ItemOnObject.() -> Unit) {
@@ -39,8 +46,7 @@ fun itemOnObjectOperate(
     block: suspend ItemOnObject.() -> Unit
 ) {
     on<ItemOnObject>({
-        operate && wildcardEquals(item, this.item.id) && wildcardEquals(obj, this.target.id) && (def == "*" || this.item.def.contains(def)) && wildcardEquals(inventory,
-            this.inventory)
+        operate && wildcardEquals(item, this.item.id) && wildcardEquals(obj, this.target.id) && (def == "*" || this.item.def.contains(def)) && wildcardEquals(inventory, this.inventory)
     }, priority) {
         if (arrive) {
             arriveDelay()
