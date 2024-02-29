@@ -66,7 +66,7 @@ itemOnObjectOperate("silver_bar", "furnace*", arrive = false) {
     player.open("silver_mould")
 }
 
-itemOnObjectOperate(obj = "furnace*", def = "silver_jewellery") {
+itemOnObjectOperate(obj = "furnace*", itemDef = "silver_jewellery") {
     player.make(item, 1)
 }
 
