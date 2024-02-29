@@ -29,30 +29,30 @@ data class NPCOption(
     }
 }
 
-fun npcOperate(option: String, vararg npcs: String = arrayOf("*"), continueOn: Boolean = false, block: suspend NPCOption.() -> Unit) {
-    npcOption<Player>("player_operate_npc", continueOn, npcs, option, block)
+fun npcOperate(option: String, vararg npcs: String = arrayOf("*"), arrive: Boolean = false, continueOn: Boolean = false, block: suspend NPCOption.() -> Unit) {
+    npcOption<Player>("player_operate_npc", continueOn, npcs, option, block, arrive)
 }
 
-fun npcApproach(option: String, vararg npcs: String = arrayOf("*"), arrive: Boolean = false, continueOn: Boolean = false, block: suspend NPCOption.() -> Unit) {
-    npcOption<Player>("player_approach_npc", continueOn, npcs, option, block, arrive)
+fun npcApproach(option: String, vararg npcs: String = arrayOf("*"), continueOn: Boolean = false, block: suspend NPCOption.() -> Unit) {
+    npcOption<Player>("player_approach_npc", continueOn, npcs, option, block)
 }
 
-fun npcOperateNPC(option: String, vararg npcs: String = arrayOf("*"), continueOn: Boolean = false, block: suspend NPCOption.() -> Unit) {
-    npcOption<NPC>("npc_operate_npc", continueOn, npcs, option, block)
+fun npcOperateNPC(option: String, vararg npcs: String = arrayOf("*"), arrive: Boolean = false, continueOn: Boolean = false, block: suspend NPCOption.() -> Unit) {
+    npcOption<NPC>("npc_operate_npc", continueOn, npcs, option, block, arrive)
 }
 
-fun npcApproachNPC(option: String, vararg npcs: String = arrayOf("*"), arrive: Boolean = false, continueOn: Boolean = false, block: suspend NPCOption.() -> Unit) {
-    npcOption<NPC>("npc_approach_npc", continueOn, npcs, option, block, arrive)
+fun npcApproachNPC(option: String, vararg npcs: String = arrayOf("*"), continueOn: Boolean = false, block: suspend NPCOption.() -> Unit) {
+    npcOption<NPC>("npc_approach_npc", continueOn, npcs, option, block)
 }
 
-fun characterOperateNPC(option: String, vararg npcs: String = arrayOf("*"), continueOn: Boolean = false, block: suspend NPCOption.() -> Unit) {
-    npcOption<Player>("player_operate_npc", continueOn, npcs, option, block)
-    npcOption<NPC>("npc_operate_npc", continueOn, npcs, option, block)
+fun characterOperateNPC(option: String, vararg npcs: String = arrayOf("*"), arrive: Boolean = false, continueOn: Boolean = false, block: suspend NPCOption.() -> Unit) {
+    npcOption<Player>("player_operate_npc", continueOn, npcs, option, block, arrive)
+    npcOption<NPC>("npc_operate_npc", continueOn, npcs, option, block, arrive)
 }
 
-fun characterApproachNPC(option: String, vararg npcs: String = arrayOf("*"), arrive: Boolean = false, continueOn: Boolean = false, block: suspend NPCOption.() -> Unit) {
-    npcOption<Player>("player_approach_npc", continueOn, npcs, option, block, arrive)
-    npcOption<NPC>("npc_approach_npc", continueOn, npcs, option, block, arrive)
+fun characterApproachNPC(option: String, vararg npcs: String = arrayOf("*"), continueOn: Boolean = false, block: suspend NPCOption.() -> Unit) {
+    npcOption<Player>("player_approach_npc", continueOn, npcs, option, block)
+    npcOption<NPC>("npc_approach_npc", continueOn, npcs, option, block)
 }
 
 private fun <D : EventDispatcher> npcOption(
