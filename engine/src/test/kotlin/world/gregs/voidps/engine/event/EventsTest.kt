@@ -6,13 +6,15 @@ import kotlin.test.Test
 
 class EventsTest {
 
+    private val entity = object : EventDispatcher {}
+
     @Test
     fun `Exact match`() {
         val trie = Events()
         val handler: suspend Event.(EventDispatcher) -> Unit = {}
         trie.insert(arrayOf("param1", "param2"), handler)
 
-        val result = trie.search(arrayOf("param1", "param2"))
+        val result = trie.search(entity, event("param1", "param2"))
 
         assertEquals(listOf(handler), result)
     }
@@ -23,7 +25,7 @@ class EventsTest {
         val handler: suspend Event.(EventDispatcher) -> Unit = {}
         trie.insert(arrayOf("param1", "param#"), handler)
 
-        val result = trie.search(arrayOf("param1", "param2"))
+        val result = trie.search(entity, event("param1", "param2"))
 
         assertEquals(listOf(handler), result)
     }
@@ -34,7 +36,7 @@ class EventsTest {
         val handler: suspend Event.(EventDispatcher) -> Unit = {}
         trie.insert(arrayOf("*", "*"), handler)
 
-        val result = trie.search(arrayOf("param1", "param2"))
+        val result = trie.search(entity, event("param1", "param2"))
 
         assertEquals(listOf(handler), result)
     }
@@ -46,7 +48,7 @@ class EventsTest {
         trie.insert(arrayOf("param1", "param2"), handler)
         trie.insert(arrayOf("param1", "param#")) {}
 
-        val result = trie.search(arrayOf("param1", "param2"))
+        val result = trie.search(entity, event("param1", "param2"))
 
         assertEquals(listOf(handler), result)
     }
@@ -58,7 +60,7 @@ class EventsTest {
         trie.insert(arrayOf("param1", "param2", "param3"), handler)
         trie.insert(arrayOf("param1", "*", "param#")) {}
 
-        val result = trie.search(arrayOf("param1", "param2", "param3"))
+        val result = trie.search(entity, event("param1", "param2", "param3"))
 
         assertEquals(listOf(handler), result)
     }
@@ -70,7 +72,7 @@ class EventsTest {
         trie.insert(arrayOf("param1", "param#"), handler)
         trie.insert(arrayOf("param1", "*")) {}
 
-        val result = trie.search(arrayOf("param1", "param2"))
+        val result = trie.search(entity, event("param1", "param2"))
 
         assertEquals(listOf(handler), result)
     }
@@ -83,7 +85,7 @@ class EventsTest {
         trie.insert(arrayOf("*", "param_#")) {}
         trie.insert(arrayOf("*", "*"), handler)
 
-        val result = trie.search(arrayOf("param1", "param2"))
+        val result = trie.search(entity, event("param1", "param2"))
 
         assertEquals(listOf(handler), result)
     }
@@ -91,7 +93,7 @@ class EventsTest {
     @Test
     fun `No match`() {
         val trie = Events()
-        val result = trie.search(arrayOf("param1", "param2"))
+        val result = trie.search(entity, event("param1", "param2"))
 
         assertNull(result)
     }
@@ -102,7 +104,7 @@ class EventsTest {
         trie.insert(arrayOf("*", "*", "*")) {}
         trie.insert(arrayOf("*")) {}
 
-        val result = trie.search(arrayOf("param1", "param2"))
+        val result = trie.search(entity, event("param1", "param2"))
         assertNull(result)
     }
 
@@ -112,7 +114,13 @@ class EventsTest {
         trie.insert(arrayOf("*", "*")) {}
         trie.clear()
 
-        val result = trie.search(arrayOf("param1", "param2"))
+        val result = trie.search(entity, event("param1", "param2"))
         assertNull(result)
+    }
+
+    private fun event(vararg params: String) = object : Event {
+        override fun size() = params.size
+
+        override fun parameter(dispatcher: EventDispatcher, index: Int) = params[index]
     }
 }

@@ -11,7 +11,8 @@ import kotlin.coroutines.CoroutineContext
  * Handlers are looked up by matching the number of search parameters with stored parameters.
  * A parameter matches on one of three conditions:
  * - Exact match; the strings are identical
- * - Wildcard match; Most of the string matches and any "*" wildcards match any characters, "#" wildcard matches a single digit 0-9
+ * - Wildcard match; All characters in the string match except the "*" wildcard which matches
+ *   any characters, and the "#" wildcard which matches a single digit 0-9
  * - Default match; Always matches every input
  */
 class Events : CoroutineScope {
@@ -50,7 +51,7 @@ class Events : CoroutineScope {
      * @return any handlers were found and executed
      */
     fun emit(dispatcher: EventDispatcher, event: Event): Boolean {
-        val handlers = search(event.parameters(dispatcher)) ?: return false
+        val handlers = search(dispatcher, event) ?: return false
         if (dispatcher is Player && dispatcher.contains("bot")) {
             all?.invoke(dispatcher, event)
         }
@@ -70,7 +71,7 @@ class Events : CoroutineScope {
      * @return any handlers were found and executed
      */
     fun emit(dispatcher: EventDispatcher, event: SuspendableEvent): Boolean {
-        val handlers = search(event.parameters(dispatcher)) ?: return false
+        val handlers = search(dispatcher, event) ?: return false
         if (dispatcher is Player && dispatcher.contains("bot")) {
             all?.invoke(dispatcher, event)
         }
@@ -85,29 +86,34 @@ class Events : CoroutineScope {
         return true
     }
 
+    fun contains(dispatcher: EventDispatcher, event: Event): Boolean {
+        val root = roots[event.size()] ?: return false
+        return search(dispatcher, event, root, 0, BooleanArray(event.size()) { false }) != null
+    }
+
     /**
-     * Searches for a handler based on the provided parameters. It traverses the trie based on the
+     * Searches for a handler based on the [event] parameters. It traverses the trie based on the
      * parameters, considering exact, wildcard, and default matches. Returns the
      * handlers associated with the matching parameter combination, or null if no match is found.
      *
-     * @param parameters An array of strings representing the parameters to search for.
+     * @param event An event which can look up strings representing the parameters to search for.
      * @return The handler functions associated with the matching parameter combination, or null if
      * no match is found.
      */
-    internal fun search(parameters: Array<out String>, skipExact: BooleanArray = BooleanArray(parameters.size) { false }): List<suspend Event.(EventDispatcher) -> Unit>? {
-        val root = roots[parameters.size] ?: return null
-        return search(parameters, root, 0, skipExact)
+    internal fun search(dispatcher: EventDispatcher, event: Event, skipExact: BooleanArray = BooleanArray(event.size()) { false }): List<suspend Event.(EventDispatcher) -> Unit>? {
+        val root = roots[event.size()] ?: return null
+        return search(dispatcher, event, root, 0, skipExact)
     }
 
-    private fun search(parameters: Array<out String>, node: TrieNode, depth: Int, skipExact: BooleanArray): List<suspend Event.(EventDispatcher) -> Unit>? {
-        if (depth == parameters.size) {
+    private fun search(dispatcher: EventDispatcher, event: Event, node: TrieNode, depth: Int, skipExact: BooleanArray): List<suspend Event.(EventDispatcher) -> Unit>? {
+        if (depth == event.size()) {
             return node.handler
         }
-        val param = parameters[depth]
+        val param = event.parameter(dispatcher, depth)
         if (!skipExact[depth]) {
             val exact = node.children[param]
             if (exact != null) {
-                val result = search(parameters, exact, depth + 1, skipExact)
+                val result = search(dispatcher, event, exact, depth + 1, skipExact)
                 if (result != null) {
                     return result
                 }
@@ -118,7 +124,7 @@ class Events : CoroutineScope {
                 continue
             }
             if (wildcardEquals(key, param)) {
-                val result = search(parameters, child, depth + 1, skipExact)
+                val result = search(dispatcher, event, child, depth + 1, skipExact)
                 if (result != null) {
                     return result
                 }
@@ -126,7 +132,7 @@ class Events : CoroutineScope {
         }
         val default = node.children["*"]
         if (default != null) {
-            return search(parameters, default, depth + 1, skipExact)
+            return search(dispatcher, event, default, depth + 1, skipExact)
         }
         return null
     }
@@ -153,18 +159,18 @@ class Events : CoroutineScope {
         fun <T : EventDispatcher, E : Event> handle(vararg parameters: String, skipDefault: BooleanArray? = null, block: suspend E.(T) -> Unit) {
             val handler = block as suspend Event.(EventDispatcher) -> Unit
             if (skipDefault != null) {
-                check(skipDefault.size == parameters.size) { "Skip default array must be the same size as parameters: ${parameters.size}."}
-                handlers.insert(parameters) { event ->
-                    handler.invoke(this, event)
-                    if (event is CancellableEvent && event.cancelled) {
+                check(skipDefault.size == parameters.size) { "Skip default array must be the same size as parameters: ${parameters.size}." }
+                handlers.insert(parameters) { entity ->
+                    handler.invoke(this, entity)
+                    if (this is CancellableEvent && this.cancelled) {
                         return@insert
                     }
-                    val handlers = Events.handlers.search(parameters, skipDefault) ?: return@insert
+                    val handlers = Events.handlers.search(entity, this, skipDefault) ?: return@insert
                     for (h in handlers) {
-                        if (event is CancellableEvent && event.cancelled) {
+                        if (entity is CancellableEvent && entity.cancelled) {
                             break
                         }
-                        h.invoke(this, event)
+                        h.invoke(this, entity)
                     }
                 }
             } else {
