@@ -16,7 +16,7 @@ class EventsTest {
 
         val result = trie.search(entity, event("param1", "param2"))
 
-        assertEquals(listOf(handler), result)
+        assertEquals(setOf(handler), result)
     }
 
     @Test
@@ -27,7 +27,7 @@ class EventsTest {
 
         val result = trie.search(entity, event("param1", "param2"))
 
-        assertEquals(listOf(handler), result)
+        assertEquals(setOf(handler), result)
     }
 
     @Test
@@ -38,7 +38,7 @@ class EventsTest {
 
         val result = trie.search(entity, event("param1", "param2"))
 
-        assertEquals(listOf(handler), result)
+        assertEquals(setOf(handler), result)
     }
 
     @Test
@@ -50,7 +50,7 @@ class EventsTest {
 
         val result = trie.search(entity, event("param1", "param2"))
 
-        assertEquals(listOf(handler), result)
+        assertEquals(setOf(handler), result)
     }
 
     @Test
@@ -62,7 +62,7 @@ class EventsTest {
 
         val result = trie.search(entity, event("param1", "param2", "param3"))
 
-        assertEquals(listOf(handler), result)
+        assertEquals(setOf(handler), result)
     }
 
     @Test
@@ -74,7 +74,7 @@ class EventsTest {
 
         val result = trie.search(entity, event("param1", "param2"))
 
-        assertEquals(listOf(handler), result)
+        assertEquals(setOf(handler), result)
     }
 
     @Test
@@ -87,7 +87,20 @@ class EventsTest {
 
         val result = trie.search(entity, event("param1", "param2"))
 
-        assertEquals(listOf(handler), result)
+        assertEquals(setOf(handler), result)
+    }
+
+    @Test
+    fun `Match ignoring exact`() {
+        val trie = Events()
+        val handler: suspend Event.(EventDispatcher) -> Unit = {}
+        val exactHandler: suspend Event.(EventDispatcher) -> Unit = {}
+        trie.insert(arrayOf("*", "param2"), handler)
+        trie.insert(arrayOf("param1", "param2"), exactHandler)
+
+        val result = trie.search(entity, event("param1", "param2"), skip = exactHandler)
+
+        assertEquals(setOf(handler), result)
     }
 
     @Test

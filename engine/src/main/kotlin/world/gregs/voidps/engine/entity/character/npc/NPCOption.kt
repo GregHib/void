@@ -63,7 +63,6 @@ private fun <D : EventDispatcher> npcOption(
     block: suspend NPCOption.() -> Unit,
     arrive: Boolean = false
 ) {
-    val skip = if (continueOn) booleanArrayOf(false, false, false, true) else null
     val handler: suspend NPCOption.(D) -> Unit = {
         if (arrive) {
             arriveDelay()
@@ -71,6 +70,6 @@ private fun <D : EventDispatcher> npcOption(
         block.invoke(this)
     }
     for (npc in npcs) {
-        Events.handle(type, option, npc, skipDefault = skip, block = handler)
+        Events.handle(type, option, npc, skipSelf = continueOn, block = handler)
     }
 }

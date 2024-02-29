@@ -22,7 +22,7 @@ class Events : CoroutineScope {
 
     private class TrieNode {
         val children: MutableMap<String, TrieNode> = Object2ObjectOpenHashMap()
-        var handler: MutableList<suspend Event.(EventDispatcher) -> Unit>? = null
+        var handler: MutableSet<suspend Event.(EventDispatcher) -> Unit>? = null
     }
 
     /**
@@ -41,7 +41,7 @@ class Events : CoroutineScope {
             node = node.children[param]!!
         }
         if (node.handler == null) {
-            node.handler = mutableListOf()
+            node.handler = mutableSetOf()
         }
         node.handler!!.add(handler)
     }
@@ -88,7 +88,7 @@ class Events : CoroutineScope {
 
     fun contains(dispatcher: EventDispatcher, event: Event): Boolean {
         val root = roots[event.size()] ?: return false
-        return search(dispatcher, event, root, 0, BooleanArray(event.size()) { false }) != null
+        return search(dispatcher, event, root, 0, null) != null
     }
 
     /**
@@ -100,23 +100,24 @@ class Events : CoroutineScope {
      * @return The handler functions associated with the matching parameter combination, or null if
      * no match is found.
      */
-    internal fun search(dispatcher: EventDispatcher, event: Event, skipExact: BooleanArray = BooleanArray(event.size()) { false }): List<suspend Event.(EventDispatcher) -> Unit>? {
+    internal fun search(dispatcher: EventDispatcher, event: Event, skip: (suspend Event.(EventDispatcher) -> Unit)? = null): Set<suspend Event.(EventDispatcher) -> Unit>? {
         val root = roots[event.size()] ?: return null
-        return search(dispatcher, event, root, 0, skipExact)
+        return search(dispatcher, event, root, 0, skip)
     }
 
-    private fun search(dispatcher: EventDispatcher, event: Event, node: TrieNode, depth: Int, skipExact: BooleanArray): List<suspend Event.(EventDispatcher) -> Unit>? {
+    private fun search(dispatcher: EventDispatcher, event: Event, node: TrieNode, depth: Int, skip: (suspend Event.(EventDispatcher) -> Unit)? = null): Set<suspend Event.(EventDispatcher) -> Unit>? {
         if (depth == event.size()) {
+            if (node.handler!!.contains(skip)) {
+                return null
+            }
             return node.handler
         }
         val param = event.parameter(dispatcher, depth)
-        if (!skipExact[depth]) {
-            val exact = node.children[param]
-            if (exact != null) {
-                val result = search(dispatcher, event, exact, depth + 1, skipExact)
-                if (result != null) {
-                    return result
-                }
+        val exact = node.children[param]
+        if (exact != null) {
+            val result = search(dispatcher, event, exact, depth + 1, skip)
+            if (result != null) {
+                return result
             }
         }
         for ((key, child) in node.children) {
@@ -124,7 +125,7 @@ class Events : CoroutineScope {
                 continue
             }
             if (wildcardEquals(key, param)) {
-                val result = search(dispatcher, event, child, depth + 1, skipExact)
+                val result = search(dispatcher, event, child, depth + 1, skip)
                 if (result != null) {
                     return result
                 }
@@ -132,7 +133,10 @@ class Events : CoroutineScope {
         }
         val default = node.children["*"]
         if (default != null) {
-            return search(dispatcher, event, default, depth + 1, skipExact)
+            val result = search(dispatcher, event, default, depth + 1, skip)
+            if (result != null) {
+                return result
+            }
         }
         return null
     }
@@ -156,16 +160,17 @@ class Events : CoroutineScope {
         }
 
         @Suppress("UNCHECKED_CAST")
-        fun <T : EventDispatcher, E : Event> handle(vararg parameters: String, skipDefault: BooleanArray? = null, block: suspend E.(T) -> Unit) {
+        fun <T : EventDispatcher, E : Event> handle(vararg parameters: String, skipSelf: Boolean = false, block: suspend E.(T) -> Unit) {
             val handler = block as suspend Event.(EventDispatcher) -> Unit
-            if (skipDefault != null) {
-                check(skipDefault.size == parameters.size) { "Skip default array must be the same size as parameters: ${parameters.size}." }
-                events.insert(parameters) { entity ->
+            if (skipSelf) {
+                // Continue onto the next handler after the current by searching handlers again but skipping itself
+                var self: (suspend Event.(EventDispatcher) -> Unit)? = null
+                self = handler@{ entity ->
                     handler.invoke(this, entity)
                     if (this is CancellableEvent && this.cancelled) {
-                        return@insert
+                        return@handler
                     }
-                    val handlers = Events.events.search(entity, this, skipDefault) ?: return@insert
+                    val handlers = events.search(entity, this, self!!) ?: return@handler
                     for (h in handlers) {
                         if (entity is CancellableEvent && entity.cancelled) {
                             break
@@ -173,6 +178,7 @@ class Events : CoroutineScope {
                         h.invoke(this, entity)
                     }
                 }
+                events.insert(parameters, self)
             } else {
                 events.insert(parameters, handler)
             }
