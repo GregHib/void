@@ -3,11 +3,9 @@ package world.gregs.voidps.engine.event
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import kotlinx.coroutines.*
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import kotlin.coroutines.CoroutineContext
 import kotlin.reflect.KClass
 
@@ -114,10 +112,4 @@ inline fun <reified E : Event> onNPC(noinline condition: E.(NPC) -> Boolean = { 
     addEvent(condition, priority, block)
 
 inline fun <reified E : Event> onCharacter(noinline condition: E.(Character) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(Character) -> Unit) =
-    addEvent(condition, priority, block)
-
-inline fun <reified E : Event> onFloorItem(noinline condition: E.(FloorItem) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(FloorItem) -> Unit) =
-    addEvent(condition, priority, block)
-
-inline fun <reified E : Event> onWorld(noinline condition: E.(World) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(World) -> Unit) =
     addEvent(condition, priority, block)
