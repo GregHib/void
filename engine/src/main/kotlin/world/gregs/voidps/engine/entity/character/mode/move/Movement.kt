@@ -198,6 +198,9 @@ open class Movement(
             val from = character.tile
             character.tile = character.tile.add(delta)
             character.visuals.moved = true
+            if (character is Player) {
+                character.emit(ReloadRegion)
+            }
             character.emit(Moved(character, from, character.tile))
             if (character is Player) {
                 val definitions = get<AreaDefinitions>()

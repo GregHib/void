@@ -3,11 +3,11 @@ package world.gregs.voidps.world.interact.world.map
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
+import world.gregs.voidps.engine.entity.character.mode.move.ReloadRegion
 import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.playerDespawn
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
@@ -63,8 +63,10 @@ move({ from.regionLevel != to.regionLevel }) { player ->
     playerRegions[player.index - 1] = to.regionLevel.id
 }
 
-move({ it.networked && needsRegionChange(it) }, Priority.HIGH) { player ->
-    updateRegion(player, false, crossedDynamicBoarder(player))
+onEvent<Player, ReloadRegion> { player ->
+    if (player.networked && needsRegionChange(player)) {
+        updateRegion(player, false, crossedDynamicBoarder(player))
+    }
 }
 
 onEvent<ReloadZone> {

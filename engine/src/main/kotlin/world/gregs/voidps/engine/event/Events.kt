@@ -68,7 +68,7 @@ class Events : CoroutineScope {
             } catch (e: ClassCastException) {
                 println(event)
                 println(event.size())
-                println(Array<String>(event.size()) { event.parameter(dispatcher, it) }.contentToString())
+                println(Array(event.size()) { event.parameter(dispatcher, it) }.contentToString())
                 throw e
             }
         }
