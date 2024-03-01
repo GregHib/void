@@ -120,6 +120,7 @@ data class NPCs(
     override fun clear() {
         for (npc in this) {
             npc.emit(Unregistered)
+            npc.softTimers.stopAll()
         }
         super.clear()
     }

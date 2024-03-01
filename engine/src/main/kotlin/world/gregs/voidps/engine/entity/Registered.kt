@@ -37,7 +37,7 @@ object Registered : Event {
 }
 
 fun playerSpawn(priority: Boolean = true, block: suspend Registered.(Player) -> Unit) {
-    Events.handle("player_spawn", if (priority) "player" else "*", block = block)
+    Events.handle("player_spawn", if (priority) "player" else "*", skipSelf = priority, block = block)
 }
 
 fun npcSpawn(npc: String = "*", block: suspend Registered.(NPC) -> Unit) {

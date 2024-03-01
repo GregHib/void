@@ -5,26 +5,54 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.event.*
+import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
 
-object Unregistered : Event
+object Unregistered : Event {
 
-fun playerDespawn(priority: Priority = Priority.MEDIUM, block: suspend Unregistered.(Player) -> Unit) {
-    on<Unregistered>(priority = priority, block = block)
+    override fun size() = 2
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> "${
+            when (dispatcher) {
+                is NPC -> "npc"
+                is FloorItem -> "floor_item"
+                is GameObject -> "object"
+                is Player -> "player"
+                is World -> "world"
+                else -> ""
+            }
+        }_despawn"
+        1 -> when (dispatcher) {
+            is NPC -> dispatcher.id
+            is FloorItem -> dispatcher.id
+            is GameObject -> dispatcher.id
+            is Player -> "player"
+            is World -> "world"
+            else -> ""
+        }
+        else -> ""
+    }
 }
 
-fun npcDespawn(npc: String = "*", priority: Priority = Priority.MEDIUM, block: suspend Unregistered.(NPC) -> Unit) {
-    onNPC<Unregistered>({ wildcardEquals(npc, it.id) }, priority = priority, block = block)
+fun playerDespawn(block: suspend Unregistered.(Player) -> Unit) {
+    Events.handle("player_despawn", "player", block = block)
+}
+
+fun npcDespawn(npc: String = "*", block: suspend Unregistered.(NPC) -> Unit) {
+    Events.handle("npc_despawn", npc, block = block)
 }
 
 fun characterDespawn(block: suspend Unregistered.(Character) -> Unit) {
-    onCharacter<Unregistered>(block = block)
+    Events.handle("player_despawn", "player", block = block)
+    Events.handle("npc_despawn", "*", block = block)
 }
 
 fun floorItemDespawn(item: String = "*", block: suspend Unregistered.(FloorItem) -> Unit) {
-    onFloorItem<Unregistered>({ wildcardEquals(item, it.id) }, block = block)
+    Events.handle("floor_item_despawn", item, block = block)
 }
 
 fun objectDespawn(obj: String = "*", block: suspend Unregistered.(GameObject) -> Unit) {
-    onObject<Unregistered>({ wildcardEquals(obj, it.id) }, block = block)
+    Events.handle("object_despawn", obj, block = block)
 }

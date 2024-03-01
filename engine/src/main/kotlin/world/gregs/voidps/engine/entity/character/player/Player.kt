@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.client.variable.Variables
+import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
@@ -157,6 +158,10 @@ class Player(
                 }
             }
             emit(Unregistered)
+            this.queue.logout()
+            softTimers.stopAll()
+            timers.stopAll()
+            get<PlayerAccounts>().queueSave(this)
         }
     }
 
