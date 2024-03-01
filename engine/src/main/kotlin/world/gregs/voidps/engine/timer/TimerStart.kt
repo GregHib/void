@@ -17,7 +17,7 @@ data class TimerStart(val timer: String, val restart: Boolean = false) : Cancell
         0 -> "${dispatcher.key}_timer_start"
         1 -> timer
         2 -> dispatcher.identifier
-        else -> ""
+        else -> null
     }
 }
 

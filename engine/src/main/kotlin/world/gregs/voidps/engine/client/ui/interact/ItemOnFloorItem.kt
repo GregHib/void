@@ -27,7 +27,7 @@ data class ItemOnFloorItem(
         2 -> floorItem.id
         3 -> id
         4 -> component
-        else -> ""
+        else -> null
     }
 }
 

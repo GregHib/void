@@ -27,7 +27,7 @@ data class ItemOnPlayer(
         1 -> item.id
         2 -> id
         3 -> component
-        else -> ""
+        else -> null
     }
 }
 

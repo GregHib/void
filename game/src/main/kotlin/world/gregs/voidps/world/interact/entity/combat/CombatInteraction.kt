@@ -21,6 +21,6 @@ data class CombatInteraction(
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "combat_interact"
-        else -> ""
+        else -> null
     }
 }

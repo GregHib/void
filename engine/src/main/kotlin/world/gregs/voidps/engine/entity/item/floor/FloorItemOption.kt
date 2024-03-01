@@ -22,7 +22,7 @@ data class FloorItemOption(
         1 -> option
         2 -> target.id
         3 -> if (character is NPC) character.id else "player"
-        else -> ""
+        else -> null
     }
 }
 

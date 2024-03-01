@@ -21,7 +21,7 @@ data class PlayerOption(
         0 -> "${if (character is NPC) "npc" else "player"}_${if (approach) "approach" else "operate"}_player"
         1 -> option
         2 -> if (character is NPC) character.id else "player"
-        else -> ""
+        else -> null
     }
 }
 

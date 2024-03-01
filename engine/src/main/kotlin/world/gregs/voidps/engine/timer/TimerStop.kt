@@ -16,7 +16,7 @@ data class TimerStop(val timer: String, val logout: Boolean) : Event {
         0 -> "${dispatcher.key}_timer_stop"
         1 -> timer
         2 -> dispatcher.identifier
-        else -> ""
+        else -> null
     }
 }
 

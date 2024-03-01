@@ -27,7 +27,7 @@ data class Moved(
         1 -> dispatcher.identifier
         2 -> from.id.toString()
         3 -> to.id.toString()
-        else -> ""
+        else -> null
     }
 }
 

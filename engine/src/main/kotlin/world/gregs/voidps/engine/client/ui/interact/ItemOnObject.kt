@@ -29,7 +29,7 @@ data class ItemOnObject(
         2 -> target.id
         3 -> id
         4 -> component
-        else -> ""
+        else -> null
     }
 }
 

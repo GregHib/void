@@ -22,7 +22,7 @@ data class InventoryOption(
         1 -> option
         2 -> item.id
         3 -> inventory
-        else -> ""
+        else -> null
     }
 }
 

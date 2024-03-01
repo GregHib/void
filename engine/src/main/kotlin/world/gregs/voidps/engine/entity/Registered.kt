@@ -16,7 +16,7 @@ object Registered : Event {
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "${dispatcher.key}_spawn"
         1 -> dispatcher.identifier
-        else -> ""
+        else -> null
     }
 }
 

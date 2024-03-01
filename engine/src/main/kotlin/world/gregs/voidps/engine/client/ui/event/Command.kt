@@ -19,7 +19,7 @@ data class Command(
         0 -> "command"
         1 -> prefix
         2 -> character["rights", "none"]
-        else -> ""
+        else -> null
     }
 }
 

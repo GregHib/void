@@ -16,7 +16,7 @@ object Unregistered : Event {
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "${dispatcher.key}_despawn"
         1 -> dispatcher.identifier
-        else -> ""
+        else -> null
     }
 }
 

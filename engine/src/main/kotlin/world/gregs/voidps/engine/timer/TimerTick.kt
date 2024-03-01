@@ -17,7 +17,7 @@ data class TimerTick(val timer: String) : CancellableEvent() {
         0 -> "${dispatcher.key}_timer_tick"
         1 -> timer
         2 -> dispatcher.identifier
-        else -> ""
+        else -> null
     }
 }
 

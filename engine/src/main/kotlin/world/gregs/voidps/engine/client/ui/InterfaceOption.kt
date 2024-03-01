@@ -26,7 +26,7 @@ data class InterfaceOption(
         2 -> component
         3 -> option
         4 -> itemSlot.toString()
-        else -> ""
+        else -> null
     }
 }
 
