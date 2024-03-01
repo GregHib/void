@@ -283,11 +283,10 @@ npcOperate("*", "delrith") {
 }
 
 
-npcLevelChange("delrith", Skill.Constitution, Priority.HIGH) { npc ->
+npcLevelChange("delrith", Skill.Constitution) { npc ->
     if (to > 0) {
         return@npcLevelChange
     }
-    cancel()
 //    player.playSound("demon_slayer_portal_open")
     npc.transform = "delrith_weakened"
     npc.mode = PauseMode

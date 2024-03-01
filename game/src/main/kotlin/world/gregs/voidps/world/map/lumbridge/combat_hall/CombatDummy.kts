@@ -38,7 +38,7 @@ for (type in listOf("magic", "melee")) {
         }
     }
 
-    npcLevelChange("${type}_dummy", Skill.Constitution, Priority.HIGH) { npc ->
+    npcLevelChange("${type}_dummy", Skill.Constitution) { npc ->
         if (to > 10) {
             return@npcLevelChange
         }
