@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.onEvent
-import world.gregs.voidps.engine.event.onWorld
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.engine.map.zone.DynamicZones
@@ -68,7 +67,7 @@ move({ it.networked && needsRegionChange(it) }, Priority.HIGH) { player ->
     updateRegion(player, false, crossedDynamicBoarder(player))
 }
 
-onWorld<ReloadZone> {
+onEvent<ReloadZone> {
     players.forEach { player ->
         if (player.networked && inViewOfZone(player, zone)) {
             updateRegion(player, initial = false, force = true)

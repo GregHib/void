@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
-import world.gregs.voidps.engine.entity.obj.GameObject
 import kotlin.coroutines.CoroutineContext
 import kotlin.reflect.KClass
 
@@ -121,7 +120,4 @@ inline fun <reified E : Event> onFloorItem(noinline condition: E.(FloorItem) -> 
     addEvent(condition, priority, block)
 
 inline fun <reified E : Event> onWorld(noinline condition: E.(World) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(World) -> Unit) =
-    addEvent(condition, priority, block)
-
-inline fun <reified E : Event> onObject(noinline condition: E.(GameObject) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(GameObject) -> Unit) =
     addEvent(condition, priority, block)

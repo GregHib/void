@@ -5,36 +5,37 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.CancellableEvent
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.onWorld
-import world.gregs.voidps.engine.event.onCharacter
-import world.gregs.voidps.engine.event.onNPC
-import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
 
 data class TimerTick(val timer: String) : CancellableEvent() {
     var nextInterval: Int = -1
+
+    override fun size() = 3
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> "${dispatcher.key}_timer_tick"
+        1 -> timer
+        2 -> dispatcher.identifier
+        else -> ""
+    }
 }
 
-fun timerTick(vararg timers: String, block: suspend TimerTick.(Player) -> Unit) {
+fun timerTick(vararg timers: String, override: Boolean = true, block: suspend TimerTick.(Player) -> Unit) {
     for (timer in timers) {
-        on<TimerTick>({ wildcardEquals(timer, this.timer) }, block = block)
+        Events.handle("player_timer_tick", timer, "player", override = override, handler = block)
     }
 }
 
-fun npcTimerTick(timer: String, npc: String = "*", block: suspend TimerTick.(NPC) -> Unit) {
-    if (npc == "*") {
-        onNPC<TimerTick>({ wildcardEquals(timer, this.timer) }, block = block)
-    } else {
-        onNPC<TimerTick>({ wildcardEquals(timer, this.timer) && wildcardEquals(npc, it.id) }, block = block)
-    }
+fun npcTimerTick(timer: String, npc: String = "*", override: Boolean = true, block: suspend TimerTick.(NPC) -> Unit) {
+    Events.handle("npc_timer_tick", timer, npc, override = override, handler = block)
 }
 
-fun characterTimerTick(timer: String, block: suspend TimerTick.(Character) -> Unit) {
-    onCharacter<TimerTick>({ wildcardEquals(timer, this.timer) }, block = block)
+fun characterTimerTick(timer: String, override: Boolean = true, block: suspend TimerTick.(Character) -> Unit) {
+    Events.handle("player_timer_tick", timer, "player", override = override, handler = block)
+    Events.handle("npc_timer_tick", timer, "*", override = override, handler = block)
 }
 
-fun worldTimerTick(timer: String, block: suspend TimerTick.() -> Unit) {
-    onWorld<TimerTick>({ wildcardEquals(timer, this.timer) }) {
-        block.invoke(this)
-    }
+fun worldTimerTick(timer: String, override: Boolean = true, block: suspend TimerTick.(World) -> Unit) {
+    Events.handle("world_timer_tick", timer, "world", override = override, handler = block)
 }

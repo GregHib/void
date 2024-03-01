@@ -14,24 +14,8 @@ object Registered : Event {
     override fun size() = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "${
-            when (dispatcher) {
-                is NPC -> "npc"
-                is FloorItem -> "floor_item"
-                is GameObject -> "object"
-                is Player -> "player"
-                is World -> "world"
-                else -> ""
-            }
-        }_spawn"
-        1 -> when (dispatcher) {
-            is NPC -> dispatcher.id
-            is FloorItem -> dispatcher.id
-            is GameObject -> dispatcher.id
-            is Player -> "player"
-            is World -> "world"
-            else -> ""
-        }
+        0 -> "${dispatcher.key}_spawn"
+        1 -> dispatcher.identifier
         else -> ""
     }
 }
