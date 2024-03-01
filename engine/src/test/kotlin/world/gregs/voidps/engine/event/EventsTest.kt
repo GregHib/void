@@ -20,6 +20,17 @@ class EventsTest {
     }
 
     @Test
+    fun `Exact match non string values`() {
+        val trie = Events()
+        val handler: suspend Event.(EventDispatcher) -> Unit = {}
+        trie.insert(arrayOf("param1", 2), handler)
+
+        val result = trie.search(entity, event("param1", 2))
+
+        assertEquals(setOf(handler), result)
+    }
+
+    @Test
     fun `Wildcard match`() {
         val trie = Events()
         val handler: suspend Event.(EventDispatcher) -> Unit = {}
@@ -131,7 +142,7 @@ class EventsTest {
         assertNull(result)
     }
 
-    private fun event(vararg params: String) = object : Event {
+    private fun event(vararg params: Any) = object : Event {
         override fun size() = params.size
 
         override fun parameter(dispatcher: EventDispatcher, index: Int) = params[index]

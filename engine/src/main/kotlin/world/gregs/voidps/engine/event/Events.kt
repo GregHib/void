@@ -11,8 +11,8 @@ import kotlin.coroutines.CoroutineContext
  * Events is a Trie used for efficient storage and retrieval of handlers based on an arbitrary list of parameters.
  * Handlers are looked up by matching the number of search parameters with stored parameters.
  * A parameter matches on one of three conditions:
- * - Exact match; the strings are identical
- * - Wildcard match; All characters in the string match except the "*" wildcard which matches
+ * - Exact match; the values are equal
+ * - Wildcard match; All characters in two strings match except the "*" wildcard which matches
  *   any characters, and the "#" wildcard which matches a single digit 0-9
  * - Default match; Always matches every input
  */
@@ -22,7 +22,7 @@ class Events : CoroutineScope {
     var all: ((Player, Event) -> Unit)? = null
 
     private class TrieNode {
-        val children: MutableMap<String, TrieNode> = Object2ObjectOpenHashMap()
+        val children: MutableMap<Any, TrieNode> = Object2ObjectOpenHashMap()
         var handler: MutableSet<suspend Event.(EventDispatcher) -> Unit>? = null
     }
 
@@ -30,10 +30,10 @@ class Events : CoroutineScope {
      * Inserts a handler into the trie based on the provided parameters. If a node for a parameter
      * does not exist, it creates a new node. The handler is added to a list within the leaf node.
      *
-     * @param parameters An array of strings representing the parameters associated with the handler.
+     * @param parameters An array of values representing the parameters associated with the handler.
      * @param handler The handler function to be associated with the provided parameters.
      */
-    fun insert(parameters: Array<out String>, handler: suspend Event.(EventDispatcher) -> Unit) {
+    fun insert(parameters: Array<out Any>, handler: suspend Event.(EventDispatcher) -> Unit) {
         var node = roots.getOrPut(parameters.size) { TrieNode() }
         for (param in parameters) {
             if (!node.children.containsKey(param)) {
@@ -57,19 +57,11 @@ class Events : CoroutineScope {
             all?.invoke(dispatcher, event)
         }
         runBlocking {
-            try {
-
-                for (handler in handlers) {
-                    if (event is CancellableEvent && event.cancelled) {
-                        break
-                    }
-                    handler.invoke(event, dispatcher)
+            for (handler in handlers) {
+                if (event is CancellableEvent && event.cancelled) {
+                    break
                 }
-            } catch (e: ClassCastException) {
-                println(event)
-                println(event.size())
-                println(Array(event.size()) { event.parameter(dispatcher, it) }.contentToString())
-                throw e
+                handler.invoke(event, dispatcher)
             }
         }
         return true
@@ -108,7 +100,7 @@ class Events : CoroutineScope {
      * parameters, considering exact, wildcard, and default matches. Returns the
      * handlers associated with the matching parameter combination, or null if no match is found.
      *
-     * @param event An event which can look up strings representing the parameters to search for.
+     * @param event An event which can look up values representing the parameters to search for.
      * @return The handler functions associated with the matching parameter combination, or null if
      * no match is found.
      */
@@ -139,7 +131,7 @@ class Events : CoroutineScope {
             if (key == "*" || key == param) {
                 continue
             }
-            if (wildcardEquals(key, param)) {
+            if (matches(key, param)) {
                 val result = search(dispatcher, event, child, depth + 1, skip)
                 if (result != null) {
                     return result
@@ -154,6 +146,13 @@ class Events : CoroutineScope {
             }
         }
         return null
+    }
+
+    private fun matches(key: Any, param: Any?): Boolean {
+        return when (key) {
+            is String -> param is String && wildcardEquals(key, param)
+            else -> false
+        }
     }
 
     fun clear() {
@@ -176,16 +175,16 @@ class Events : CoroutineScope {
         }
 
         @JvmName("handleDispatcher")
-        fun <D : EventDispatcher, E : Event> handle(vararg parameters: String, override: Boolean = true, handler: suspend E.(D) -> Unit) {
+        fun <D : EventDispatcher, E : Event> handle(vararg parameters: Any, override: Boolean = true, handler: suspend E.(D) -> Unit) {
             handle(parameters, override, handler as suspend Event.(EventDispatcher) -> Unit)
         }
 
         @JvmName("handleEvent")
-        fun <E : Event> handle(vararg parameters: String, override: Boolean = true, handler: suspend E.(EventDispatcher) -> Unit) {
+        fun <E : Event> handle(vararg parameters: Any, override: Boolean = true, handler: suspend E.(EventDispatcher) -> Unit) {
             handle(parameters, override, handler as suspend Event.(EventDispatcher) -> Unit)
         }
 
-        private fun handle(parameters: Array<out String>, override: Boolean = true, handler: suspend Event.(EventDispatcher) -> Unit) {
+        private fun handle(parameters: Array<out Any>, override: Boolean = true, handler: suspend Event.(EventDispatcher) -> Unit) {
             if (!override) {
                 // Handlers override by default so find and continue onto the next handler
                 // after the current is finished by searching again but skipping itself
@@ -212,11 +211,11 @@ class Events : CoroutineScope {
 }
 
 @JvmName("onEventDispatcher")
-inline fun <D : EventDispatcher, reified E : Event> onEvent(vararg parameters: String = arrayOf(E::class.simpleName!!.toSnakeCase()), override: Boolean = true, noinline block: suspend E.(D) -> Unit) {
+inline fun <D : EventDispatcher, reified E : Event> onEvent(vararg parameters: Any = arrayOf(E::class.simpleName!!.toSnakeCase()), override: Boolean = true, noinline block: suspend E.(D) -> Unit) {
     Events.handle(parameters = parameters, override, block)
 }
 
 @JvmName("onEvent")
-inline fun <reified E : Event> onEvent(vararg parameters: String = arrayOf(E::class.simpleName!!.toSnakeCase()), override: Boolean = true, noinline block: suspend E.(EventDispatcher) -> Unit) {
+inline fun <reified E : Event> onEvent(vararg parameters: Any = arrayOf(E::class.simpleName!!.toSnakeCase()), override: Boolean = true, noinline block: suspend E.(EventDispatcher) -> Unit) {
     Events.handle(parameters = parameters, override, block)
 }

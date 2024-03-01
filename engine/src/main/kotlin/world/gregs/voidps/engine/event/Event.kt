@@ -6,7 +6,7 @@ interface Event {
         return 0
     }
 
-    open fun parameter(dispatcher: EventDispatcher, index: Int): String {
-        return ""
+    open fun parameter(dispatcher: EventDispatcher, index: Int): Any? {
+        return null
     }
 }
