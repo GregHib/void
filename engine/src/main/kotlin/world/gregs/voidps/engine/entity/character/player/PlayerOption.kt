@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.character.player
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetPlayerContext
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.suspend.arriveDelay
@@ -18,9 +17,9 @@ data class PlayerOption(
     override fun size() = 3
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "${if (character is NPC) "npc" else "player"}_${if (approach) "approach" else "operate"}_player"
+        0 -> "${character.key}_${if (approach) "approach" else "operate"}_player"
         1 -> option
-        2 -> if (character is NPC) character.id else "player"
+        2 -> character.identifier
         else -> null
     }
 }

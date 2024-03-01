@@ -22,7 +22,7 @@ data class NPCOption(
     }
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "${if (character is NPC) "npc" else "player"}_${if (approach) "approach" else "operate"}_npc"
+        0 -> "${character.key}_${if (approach) "approach" else "operate"}_npc"
         1 -> option
         2 -> target.id
         else -> null

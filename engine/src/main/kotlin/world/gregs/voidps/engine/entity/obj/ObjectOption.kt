@@ -21,10 +21,10 @@ data class ObjectOption(
     override fun size() = 4
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "${if (character is NPC) "npc" else "player"}_${if (approach) "approach" else "operate"}_object"
+        0 -> "${character.key}_${if (approach) "approach" else "operate"}_object"
         1 -> option
         2 -> target.id
-        3 -> if (character is NPC) character.id else "player"
+        3 -> character.identifier
         else -> null
     }
 }

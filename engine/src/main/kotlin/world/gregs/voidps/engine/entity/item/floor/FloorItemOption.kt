@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.item.floor
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetFloorItemContext
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.suspend.arriveDelay
@@ -18,10 +17,10 @@ data class FloorItemOption(
     override fun size() = 4
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "${if (character is NPC) "npc" else "player"}_${if (approach) "approach" else "operate"}_floor_item"
+        0 -> "${character.key}_${if (approach) "approach" else "operate"}_floor_item"
         1 -> option
         2 -> target.id
-        3 -> if (character is NPC) character.id else "player"
+        3 -> character.identifier
         else -> null
     }
 }

@@ -20,7 +20,7 @@ data class CombatInteraction(
     override fun size() = 1
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "combat_interact"
+        0 -> "combat_interaction"
         else -> null
     }
 }
