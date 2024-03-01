@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.event
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import kotlinx.coroutines.*
-import world.gregs.voidps.engine.entity.character.CharacterContext
+import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.entity.character.player.Player
 import kotlin.coroutines.CoroutineContext
 
@@ -57,11 +57,19 @@ class Events : CoroutineScope {
             all?.invoke(dispatcher, event)
         }
         runBlocking {
-            for (handler in handlers) {
-                if (event is CancellableEvent && event.cancelled) {
-                    break
+            try {
+
+                for (handler in handlers) {
+                    if (event is CancellableEvent && event.cancelled) {
+                        break
+                    }
+                    handler.invoke(event, dispatcher)
                 }
-                handler.invoke(event, dispatcher)
+            } catch (e: ClassCastException) {
+                println(event)
+                println(event.size())
+                println(Array<String>(event.size()) { event.parameter(dispatcher, it) }.contentToString())
+                throw e
             }
         }
         return true
@@ -88,6 +96,9 @@ class Events : CoroutineScope {
     }
 
     fun contains(dispatcher: EventDispatcher, event: Event): Boolean {
+        if (event.size() <= 0) {
+            return false
+        }
         val root = roots[event.size()] ?: return false
         return search(dispatcher, event, root, 0, null) != null
     }
@@ -102,6 +113,9 @@ class Events : CoroutineScope {
      * no match is found.
      */
     internal fun search(dispatcher: EventDispatcher, event: Event, skip: (suspend Event.(EventDispatcher) -> Unit)? = null): Set<suspend Event.(EventDispatcher) -> Unit>? {
+        if (event.size() <= 0) {
+            return null
+        }
         val root = roots[event.size()] ?: return null
         return search(dispatcher, event, root, 0, skip)
     }
@@ -146,6 +160,7 @@ class Events : CoroutineScope {
         roots.clear()
     }
 
+    @Suppress("UNCHECKED_CAST")
     companion object {
         private val logger = InlineLogger()
         private val errorHandler = CoroutineExceptionHandler { _, throwable ->
@@ -160,21 +175,17 @@ class Events : CoroutineScope {
             this.events = events
         }
 
-        @Suppress("UNCHECKED_CAST")
         @JvmName("handleDispatcher")
-        fun <D : EventDispatcher, E> handle(vararg parameters: String, skipSelf: Boolean = false, block: suspend E.(D) -> Unit) where E : Event, E : CharacterContext {
-            val handler = block as suspend Event.(EventDispatcher) -> Unit
-            handle(parameters, skipSelf, handler)
+        fun <D : EventDispatcher, E : Event> handle(vararg parameters: String, skipSelf: Boolean = false, block: suspend E.(D) -> Unit) {
+            handle(parameters, skipSelf, block as suspend Event.(EventDispatcher) -> Unit)
         }
 
-        @Suppress("UNCHECKED_CAST")
         @JvmName("handleEvent")
-        fun <E> handle(vararg parameters: String, skipSelf: Boolean = false, block: suspend E.(EventDispatcher) -> Unit) where E : Event, E : CharacterContext {
-            val handler = block as suspend Event.(EventDispatcher) -> Unit
-            handle(parameters, skipSelf, handler)
+        fun <E : Event> handle(vararg parameters: String, skipSelf: Boolean = false, block: suspend E.(EventDispatcher) -> Unit) {
+            handle(parameters, skipSelf, block as suspend Event.(EventDispatcher) -> Unit)
         }
 
-        internal fun handle(parameters: Array<out String>, skipSelf: Boolean = false, handler: suspend Event.(EventDispatcher) -> Unit) {
+        private fun handle(parameters: Array<out String>, skipSelf: Boolean = false, handler: suspend Event.(EventDispatcher) -> Unit) {
             if (skipSelf) {
                 // Continue onto the next handler after the current by searching handlers again but skipping itself
                 var self: (suspend Event.(EventDispatcher) -> Unit)? = null
@@ -199,16 +210,12 @@ class Events : CoroutineScope {
     }
 }
 
-@Suppress("UNCHECKED_CAST")
-@JvmName("handleDispatcher")
-fun <D : EventDispatcher, E> onEvent(vararg parameters: String, skipSelf: Boolean = false, block: suspend E.(D) -> Unit) where E : Event, E : CharacterContext {
-    val handler = block as suspend Event.(EventDispatcher) -> Unit
-    Events.handle(parameters, skipSelf, handler)
+@JvmName("onEventDispatcher")
+inline fun <D : EventDispatcher, reified E : Event> onEvent(vararg parameters: String = arrayOf(E::class.simpleName!!.toSnakeCase()), skipSelf: Boolean = false, noinline block: suspend E.(D) -> Unit) {
+    Events.handle(parameters = parameters, skipSelf, block)
 }
 
-@Suppress("UNCHECKED_CAST")
-@JvmName("handleEvent")
-fun <E> onEvent(vararg parameters: String, skipSelf: Boolean = false, block: suspend E.(EventDispatcher) -> Unit) where E : Event, E : CharacterContext {
-    val handler = block as suspend Event.(EventDispatcher) -> Unit
-    Events.handle(parameters, skipSelf, handler)
+@JvmName("onEvent")
+inline fun <reified E : Event> onEvent(vararg parameters: String = arrayOf(E::class.simpleName!!.toSnakeCase()), skipSelf: Boolean = false, noinline block: suspend E.(EventDispatcher) -> Unit) {
+    Events.handle(parameters = parameters, skipSelf, block)
 }

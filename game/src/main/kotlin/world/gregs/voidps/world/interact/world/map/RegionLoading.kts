@@ -7,13 +7,14 @@ import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.playerDespawn
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.event.onWorld
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.engine.map.zone.DynamicZones
+import world.gregs.voidps.engine.map.zone.RegionLoad
 import world.gregs.voidps.engine.map.zone.ReloadZone
 import world.gregs.voidps.network.encode.dynamicMapRegion
 import world.gregs.voidps.network.encode.mapRegion
@@ -32,10 +33,10 @@ val playerRegions = IntArray(MAX_PLAYERS - 1)
 
 private val blankXtea = IntArray(4)
 
-playerSpawn(priority = Priority.HIGHEST) { player ->
+onEvent<Player, RegionLoad> { player ->
     player.viewport?.seen(player)
     playerRegions[player.index - 1] = player.tile.regionLevel.id
-    val viewport = player.viewport ?: return@playerSpawn
+    val viewport = player.viewport ?: return@onEvent
     players.forEach { other ->
         viewport.seen(other)
     }

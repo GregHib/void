@@ -12,14 +12,13 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.interact.dialogue.type.statement
 
-playerSpawn(priority = Priority.HIGHER) { player ->
+playerSpawn(priority = true) { player ->
     player.message("Welcome to Void.", ChatType.Welcome)
     if (!player.contains("creation")) {
         if (!player.isBot) {

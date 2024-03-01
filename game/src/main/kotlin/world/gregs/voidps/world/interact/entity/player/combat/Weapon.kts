@@ -13,7 +13,7 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.attackRange
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
-playerSpawn(priority = Priority.HIGH) { player ->
+playerSpawn { player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
 }
 

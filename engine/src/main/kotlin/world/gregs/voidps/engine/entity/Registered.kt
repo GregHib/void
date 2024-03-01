@@ -5,40 +5,58 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.event.*
+import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
 
-object Registered : Event
+object Registered : Event {
 
-fun playerSpawn(priority: Priority = Priority.MEDIUM, block: suspend Registered.(Player) -> Unit) {
-    on<Registered>(priority = priority, block = block)
+    override fun size() = 2
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> "${
+            when (dispatcher) {
+                is NPC -> "npc"
+                is FloorItem -> "floor_item"
+                is GameObject -> "object"
+                is Player -> "player"
+                is World -> "world"
+                else -> ""
+            }
+        }_spawn"
+        1 -> when (dispatcher) {
+            is NPC -> dispatcher.id
+            is FloorItem -> dispatcher.id
+            is GameObject -> dispatcher.id
+            is Player -> "player"
+            is World -> "world"
+            else -> ""
+        }
+        else -> ""
+    }
 }
 
-fun npcSpawn(npc: String = "*", block: suspend (NPC) -> Unit) {
-    if (npc == "*") {
-        onNPC<Registered> { character ->
-            block.invoke(character)
-        }
-    } else {
-        onNPC<Registered>({ wildcardEquals(npc, it.id) }) { character ->
-            block.invoke(character)
-        }
-    }
+fun playerSpawn(priority: Boolean = true, block: suspend Registered.(Player) -> Unit) {
+    Events.handle("player_spawn", if (priority) "player" else "*", block = block)
+}
+
+fun npcSpawn(npc: String = "*", block: suspend Registered.(NPC) -> Unit) {
+    Events.handle("npc_spawn", npc, block = block)
 }
 
 fun characterSpawn(block: suspend Registered.(Character) -> Unit) {
-    onCharacter<Registered>(block = block)
+    Events.handle("player_spawn", "*", block = block)
+    Events.handle("npc_spawn", "*", block = block)
 }
 
 fun floorItemSpawn(item: String = "*", block: suspend Registered.(FloorItem) -> Unit) {
-    onFloorItem<Registered>({ wildcardEquals(item, it.id) }, block = block)
+    Events.handle("floor_item_spawn", item, block = block)
 }
 
 fun objectSpawn(obj: String = "*", block: suspend Registered.(GameObject) -> Unit) {
-    onObject<Registered>({ wildcardEquals(obj, it.id) }, block = block)
+    Events.handle("object_spawn", obj, block = block)
 }
 
-fun worldSpawn(block: suspend () -> Unit) {
-    onWorld<Registered> {
-        block.invoke()
-    }
+fun worldSpawn(block: suspend Registered.(World) -> Unit) {
+    Events.handle("world_spawn", "world", block = block)
 }
