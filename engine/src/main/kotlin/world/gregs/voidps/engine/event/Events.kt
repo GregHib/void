@@ -174,7 +174,7 @@ class Events : CoroutineScope {
             handle(parameters, skipSelf, handler)
         }
 
-        private fun handle(parameters: Array<out String>, skipSelf: Boolean = false, handler: suspend Event.(EventDispatcher) -> Unit) {
+        internal fun handle(parameters: Array<out String>, skipSelf: Boolean = false, handler: suspend Event.(EventDispatcher) -> Unit) {
             if (skipSelf) {
                 // Continue onto the next handler after the current by searching handlers again but skipping itself
                 var self: (suspend Event.(EventDispatcher) -> Unit)? = null
@@ -197,4 +197,18 @@ class Events : CoroutineScope {
             }
         }
     }
+}
+
+@Suppress("UNCHECKED_CAST")
+@JvmName("handleDispatcher")
+fun <D : EventDispatcher, E> onEvent(vararg parameters: String, skipSelf: Boolean = false, block: suspend E.(D) -> Unit) where E : Event, E : CharacterContext {
+    val handler = block as suspend Event.(EventDispatcher) -> Unit
+    Events.handle(parameters, skipSelf, handler)
+}
+
+@Suppress("UNCHECKED_CAST")
+@JvmName("handleEvent")
+fun <E> onEvent(vararg parameters: String, skipSelf: Boolean = false, block: suspend E.(EventDispatcher) -> Unit) where E : Event, E : CharacterContext {
+    val handler = block as suspend Event.(EventDispatcher) -> Unit
+    Events.handle(parameters, skipSelf, handler)
 }
