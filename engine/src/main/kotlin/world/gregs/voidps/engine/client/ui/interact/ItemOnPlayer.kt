@@ -32,7 +32,7 @@ data class ItemOnPlayer(
 }
 
 fun itemOnPlayerOperate(item: String = "*", id: String = "*", component: String = "*", arrive: Boolean = true, continueOn: Boolean = false, block: suspend ItemOnPlayer.() -> Unit) {
-    Events.handle<Player, ItemOnPlayer>("item_on_operate_player", item, id, component, skipSelf = continueOn) {
+    Events.handle<ItemOnPlayer>("item_on_operate_player", item, id, component, skipSelf = continueOn) {
         if (arrive) {
             arriveDelay()
         }
@@ -41,7 +41,7 @@ fun itemOnPlayerOperate(item: String = "*", id: String = "*", component: String 
 }
 
 fun itemOnPlayerApproach(item: String = "*", id: String = "*", component: String = "*", continueOn: Boolean = false, block: suspend ItemOnPlayer.() -> Unit) {
-    Events.handle<Player, ItemOnPlayer>("item_on_approach_player", item, id, component, skipSelf = continueOn) {
+    Events.handle<ItemOnPlayer>("item_on_approach_player", item, id, component, skipSelf = continueOn) {
         block.invoke(this)
     }
 }

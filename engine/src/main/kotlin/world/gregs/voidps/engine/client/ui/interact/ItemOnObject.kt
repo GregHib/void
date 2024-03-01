@@ -44,7 +44,7 @@ fun itemOnObjectOperate(
     block: suspend ItemOnObject.() -> Unit
 ) {
     if (itemDef != "*") {
-        Events.handle<Player, ItemOnObject>("item_on_operate_object", "*", obj, id, component, skipSelf = continueOn) {
+        Events.handle<ItemOnObject>("item_on_operate_object", "*", obj, id, component, skipSelf = continueOn) {
             if (this.item.def.contains(itemDef)) {
                 if (arrive) {
                     arriveDelay()
@@ -53,7 +53,7 @@ fun itemOnObjectOperate(
             }
         }
     } else {
-        Events.handle<Player, ItemOnObject>("item_on_operate_object", item, obj, id, component, skipSelf = continueOn){
+        Events.handle<ItemOnObject>("item_on_operate_object", item, obj, id, component, skipSelf = continueOn){
             if (arrive) {
                 arriveDelay()
             }
@@ -63,7 +63,7 @@ fun itemOnObjectOperate(
 }
 
 fun itemOnObjectApproach(item: String = "*", obj: String = "*", id: String = "*", component: String = "*", continueOn: Boolean = false, block: suspend ItemOnObject.() -> Unit) {
-    Events.handle<Player, ItemOnObject>("item_on_approach_object", item, obj, id, component, skipSelf = continueOn) {
+    Events.handle<ItemOnObject>("item_on_approach_object", item, obj, id, component, skipSelf = continueOn) {
         block.invoke(this)
     }
 }

@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.statement
@@ -16,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.obj.teleportLand
 import world.gregs.voidps.world.interact.entity.obj.teleportTakeOff
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-objectOperate("Pull", "lever_*", priority = Priority.HIGH) {
+objectOperate("Pull", "lever_*", continueOn = true) {
     if (target.id == "lever_ardougne_edgeville" && player["wilderness_lever_warning", true]) {
         statement("Warning! Pulling the lever will teleport you deep into the Wilderness.")
         choice("Are you sure you wish to pull it?") {

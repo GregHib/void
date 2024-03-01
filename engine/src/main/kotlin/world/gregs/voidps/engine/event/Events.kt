@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.event
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import kotlinx.coroutines.*
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.player.Player
 import kotlin.coroutines.CoroutineContext
 
@@ -160,8 +161,20 @@ class Events : CoroutineScope {
         }
 
         @Suppress("UNCHECKED_CAST")
-        fun <T : EventDispatcher, E : Event> handle(vararg parameters: String, skipSelf: Boolean = false, block: suspend E.(T) -> Unit) {
+        @JvmName("handleDispatcher")
+        fun <D : EventDispatcher, E> handle(vararg parameters: String, skipSelf: Boolean = false, block: suspend E.(D) -> Unit) where E : Event, E : CharacterContext {
             val handler = block as suspend Event.(EventDispatcher) -> Unit
+            handle(parameters, skipSelf, handler)
+        }
+
+        @Suppress("UNCHECKED_CAST")
+        @JvmName("handleEvent")
+        fun <E> handle(vararg parameters: String, skipSelf: Boolean = false, block: suspend E.(EventDispatcher) -> Unit) where E : Event, E : CharacterContext {
+            val handler = block as suspend Event.(EventDispatcher) -> Unit
+            handle(parameters, skipSelf, handler)
+        }
+
+        private fun handle(parameters: Array<out String>, skipSelf: Boolean = false, handler: suspend Event.(EventDispatcher) -> Unit) {
             if (skipSelf) {
                 // Continue onto the next handler after the current by searching handlers again but skipping itself
                 var self: (suspend Event.(EventDispatcher) -> Unit)? = null

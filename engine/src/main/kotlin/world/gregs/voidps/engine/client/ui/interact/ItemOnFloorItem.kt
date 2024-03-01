@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.client.ui.interact
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.event.EventDispatcher
@@ -33,7 +32,7 @@ data class ItemOnFloorItem(
 }
 
 fun itemOnFloorItemOperate(item: String = "*", floorItem: String = "*", id: String = "*", component: String = "*", arrive: Boolean = true, block: suspend ItemOnFloorItem.() -> Unit) {
-    Events.handle<Player, ItemOnFloorItem>("item_approach_floor_item", item, floorItem, id, component) {
+    Events.handle<ItemOnFloorItem>("item_approach_floor_item", item, floorItem, id, component) {
         if (arrive) {
             arriveDelay()
         }
@@ -42,7 +41,7 @@ fun itemOnFloorItemOperate(item: String = "*", floorItem: String = "*", id: Stri
 }
 
 fun itemOnFloorItemApproach(item: String = "*", floorItem: String = "*", id: String = "*", component: String = "*", block: suspend ItemOnFloorItem.() -> Unit) {
-    Events.handle<Player, ItemOnFloorItem>("item_approach_floor_item", item, floorItem, id, component) {
+    Events.handle<ItemOnFloorItem>("item_approach_floor_item", item, floorItem, id, component) {
         block.invoke(this)
     }
 }

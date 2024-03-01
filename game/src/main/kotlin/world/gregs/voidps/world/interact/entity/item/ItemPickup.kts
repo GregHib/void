@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.turn
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.floorItemOperate
-import world.gregs.voidps.engine.entity.item.floor.npcFloorItemOperate
+import world.gregs.voidps.engine.entity.item.floor.npcOperateFloorItem
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -44,7 +44,7 @@ floorItemOperate("Take") {
     }
 }
 
-npcFloorItemOperate("Take") {
+npcOperateFloorItem("Take") {
     if (!floorItems.remove(target)) {
         logger.warn { "$npc unable to pick up $target." }
     }

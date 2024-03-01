@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
@@ -34,7 +33,7 @@ data class ItemOnNPC(
 }
 
 fun itemOnNPCOperate(item: String = "*", npc: String = "*", id: String = "*", component: String = "*", arrive: Boolean = false, block: suspend ItemOnNPC.() -> Unit) {
-    Events.handle<Player, ItemOnNPC>("item_on_operate_npc", item, npc, id, component) {
+    Events.handle<ItemOnNPC>("item_on_operate_npc", item, npc, id, component) {
         if (arrive) {
             arriveDelay()
         }
@@ -43,7 +42,7 @@ fun itemOnNPCOperate(item: String = "*", npc: String = "*", id: String = "*", co
 }
 
 fun itemOnNPCApproach(item: String = "*", npc: String = "*", id: String = "*", component: String = "*", block: suspend ItemOnNPC.() -> Unit) {
-    Events.handle<Player, ItemOnNPC>("item_on_approach_npc", item, npc, id, component) {
+    Events.handle<ItemOnNPC>("item_on_approach_npc", item, npc, id, component) {
         block.invoke(this)
     }
 }
