@@ -28,7 +28,7 @@ fun adminCommand(vararg commands: String, block: suspend Command.() -> Unit) {
         block.invoke(this)
     }
     for (command in commands) {
-        Events.handle("command", command, "admin", block = handler)
+        Events.handle("command", command, "admin", handler = handler)
     }
 }
 
@@ -37,7 +37,7 @@ fun modCommand(vararg commands: String, block: suspend Command.() -> Unit) {
         block.invoke(this)
     }
     for (command in commands) {
-        Events.handle("command", command, "mod", block = handler)
-        Events.handle("command", command, "admin", block = handler)
+        Events.handle("command", command, "mod", handler = handler)
+        Events.handle("command", command, "admin", handler = handler)
     }
 }

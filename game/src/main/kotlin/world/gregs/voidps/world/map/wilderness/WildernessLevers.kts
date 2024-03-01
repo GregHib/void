@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.obj.teleportLand
 import world.gregs.voidps.world.interact.entity.obj.teleportTakeOff
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-objectOperate("Pull", "lever_*", continueOn = true) {
+objectOperate("Pull", "lever_*", override = false) {
     if (target.id == "lever_ardougne_edgeville" && player["wilderness_lever_warning", true]) {
         statement("Warning! Pulling the lever will teleport you deep into the Wilderness.")
         choice("Are you sure you wish to pull it?") {

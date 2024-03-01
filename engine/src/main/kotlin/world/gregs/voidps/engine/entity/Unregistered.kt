@@ -37,22 +37,22 @@ object Unregistered : Event {
 }
 
 fun playerDespawn(block: suspend Unregistered.(Player) -> Unit) {
-    Events.handle("player_despawn", "player", block = block)
+    Events.handle("player_despawn", "player", handler = block)
 }
 
 fun npcDespawn(npc: String = "*", block: suspend Unregistered.(NPC) -> Unit) {
-    Events.handle("npc_despawn", npc, block = block)
+    Events.handle("npc_despawn", npc, handler = block)
 }
 
 fun characterDespawn(block: suspend Unregistered.(Character) -> Unit) {
-    Events.handle("player_despawn", "player", block = block)
-    Events.handle("npc_despawn", "*", block = block)
+    Events.handle("player_despawn", "player", handler = block)
+    Events.handle("npc_despawn", "*", handler = block)
 }
 
 fun floorItemDespawn(item: String = "*", block: suspend Unregistered.(FloorItem) -> Unit) {
-    Events.handle("floor_item_despawn", item, block = block)
+    Events.handle("floor_item_despawn", item, handler = block)
 }
 
 fun objectDespawn(obj: String = "*", block: suspend Unregistered.(GameObject) -> Unit) {
-    Events.handle("object_despawn", obj, block = block)
+    Events.handle("object_despawn", obj, handler = block)
 }

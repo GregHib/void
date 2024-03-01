@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val items: FloorItems by inject()
 
-floorItemOperate("Take", "white_apron_port_sarim", continueOn = true) {
+floorItemOperate("Take", "white_apron_port_sarim", override = false) {
     if (player.holdsItem("white_apron")) {
         player.message("You already have one of those.")
         cancel()

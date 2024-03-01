@@ -31,8 +31,8 @@ data class ItemOnPlayer(
     }
 }
 
-fun itemOnPlayerOperate(item: String = "*", id: String = "*", component: String = "*", arrive: Boolean = true, continueOn: Boolean = false, block: suspend ItemOnPlayer.() -> Unit) {
-    Events.handle<ItemOnPlayer>("item_on_operate_player", item, id, component, skipSelf = continueOn) {
+fun itemOnPlayerOperate(item: String = "*", id: String = "*", component: String = "*", arrive: Boolean = true, override: Boolean = true, block: suspend ItemOnPlayer.() -> Unit) {
+    Events.handle<ItemOnPlayer>("item_on_operate_player", item, id, component, override = override) {
         if (arrive) {
             arriveDelay()
         }
@@ -40,8 +40,8 @@ fun itemOnPlayerOperate(item: String = "*", id: String = "*", component: String 
     }
 }
 
-fun itemOnPlayerApproach(item: String = "*", id: String = "*", component: String = "*", continueOn: Boolean = false, block: suspend ItemOnPlayer.() -> Unit) {
-    Events.handle<ItemOnPlayer>("item_on_approach_player", item, id, component, skipSelf = continueOn) {
+fun itemOnPlayerApproach(item: String = "*", id: String = "*", component: String = "*", override: Boolean = true, block: suspend ItemOnPlayer.() -> Unit) {
+    Events.handle<ItemOnPlayer>("item_on_approach_player", item, id, component, override = override) {
         block.invoke(this)
     }
 }

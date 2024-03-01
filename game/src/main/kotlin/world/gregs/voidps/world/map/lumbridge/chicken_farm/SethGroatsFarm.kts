@@ -21,7 +21,7 @@ objectOperate("Take-hatchet", "hatchet_logs") {
     }
 }
 
-floorItemOperate("Take", "super_large_egg", continueOn = true) {
+floorItemOperate("Take", "super_large_egg", override = false) {
     if (player.questComplete("cooks_assistant")) {
         player.message("You've no reason to pick that up; eggs of that size are only useful for royal cakes.")
         cancel()

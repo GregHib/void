@@ -176,18 +176,19 @@ class Events : CoroutineScope {
         }
 
         @JvmName("handleDispatcher")
-        fun <D : EventDispatcher, E : Event> handle(vararg parameters: String, skipSelf: Boolean = false, block: suspend E.(D) -> Unit) {
-            handle(parameters, skipSelf, block as suspend Event.(EventDispatcher) -> Unit)
+        fun <D : EventDispatcher, E : Event> handle(vararg parameters: String, override: Boolean = true, handler: suspend E.(D) -> Unit) {
+            handle(parameters, override, handler as suspend Event.(EventDispatcher) -> Unit)
         }
 
         @JvmName("handleEvent")
-        fun <E : Event> handle(vararg parameters: String, skipSelf: Boolean = false, block: suspend E.(EventDispatcher) -> Unit) {
-            handle(parameters, skipSelf, block as suspend Event.(EventDispatcher) -> Unit)
+        fun <E : Event> handle(vararg parameters: String, override: Boolean = true, handler: suspend E.(EventDispatcher) -> Unit) {
+            handle(parameters, override, handler as suspend Event.(EventDispatcher) -> Unit)
         }
 
-        private fun handle(parameters: Array<out String>, skipSelf: Boolean = false, handler: suspend Event.(EventDispatcher) -> Unit) {
-            if (skipSelf) {
-                // Continue onto the next handler after the current by searching handlers again but skipping itself
+        private fun handle(parameters: Array<out String>, override: Boolean = true, handler: suspend Event.(EventDispatcher) -> Unit) {
+            if (!override) {
+                // Handlers override by default so find and continue onto the next handler
+                // after the current is finished by searching again but skipping itself
                 var self: (suspend Event.(EventDispatcher) -> Unit)? = null
                 self = handler@{ entity ->
                     handler.invoke(this, entity)
@@ -211,11 +212,11 @@ class Events : CoroutineScope {
 }
 
 @JvmName("onEventDispatcher")
-inline fun <D : EventDispatcher, reified E : Event> onEvent(vararg parameters: String = arrayOf(E::class.simpleName!!.toSnakeCase()), skipSelf: Boolean = false, noinline block: suspend E.(D) -> Unit) {
-    Events.handle(parameters = parameters, skipSelf, block)
+inline fun <D : EventDispatcher, reified E : Event> onEvent(vararg parameters: String = arrayOf(E::class.simpleName!!.toSnakeCase()), override: Boolean = true, noinline block: suspend E.(D) -> Unit) {
+    Events.handle(parameters = parameters, override, block)
 }
 
 @JvmName("onEvent")
-inline fun <reified E : Event> onEvent(vararg parameters: String = arrayOf(E::class.simpleName!!.toSnakeCase()), skipSelf: Boolean = false, noinline block: suspend E.(EventDispatcher) -> Unit) {
-    Events.handle(parameters = parameters, skipSelf, block)
+inline fun <reified E : Event> onEvent(vararg parameters: String = arrayOf(E::class.simpleName!!.toSnakeCase()), override: Boolean = true, noinline block: suspend E.(EventDispatcher) -> Unit) {
+    Events.handle(parameters = parameters, override, block)
 }

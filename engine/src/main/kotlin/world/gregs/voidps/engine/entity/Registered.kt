@@ -37,26 +37,26 @@ object Registered : Event {
 }
 
 fun playerSpawn(priority: Boolean = true, block: suspend Registered.(Player) -> Unit) {
-    Events.handle("player_spawn", if (priority) "player" else "*", skipSelf = priority, block = block)
+    Events.handle("player_spawn", if (priority) "player" else "*", override = priority, handler = block)
 }
 
 fun npcSpawn(npc: String = "*", block: suspend Registered.(NPC) -> Unit) {
-    Events.handle("npc_spawn", npc, block = block)
+    Events.handle("npc_spawn", npc, handler = block)
 }
 
 fun characterSpawn(block: suspend Registered.(Character) -> Unit) {
-    Events.handle("player_spawn", "*", block = block)
-    Events.handle("npc_spawn", "*", block = block)
+    Events.handle("player_spawn", "*", handler = block)
+    Events.handle("npc_spawn", "*", handler = block)
 }
 
 fun floorItemSpawn(item: String = "*", block: suspend Registered.(FloorItem) -> Unit) {
-    Events.handle("floor_item_spawn", item, block = block)
+    Events.handle("floor_item_spawn", item, handler = block)
 }
 
 fun objectSpawn(obj: String = "*", block: suspend Registered.(GameObject) -> Unit) {
-    Events.handle("object_spawn", obj, block = block)
+    Events.handle("object_spawn", obj, handler = block)
 }
 
 fun worldSpawn(block: suspend Registered.(World) -> Unit) {
-    Events.handle("world_spawn", "world", block = block)
+    Events.handle("world_spawn", "world", handler = block)
 }
