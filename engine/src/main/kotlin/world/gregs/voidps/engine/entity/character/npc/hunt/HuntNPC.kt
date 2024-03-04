@@ -2,20 +2,25 @@ package world.gregs.voidps.engine.entity.character.npc.hunt
 
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.onNPC
-import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
 
 data class HuntNPC(
     val mode: String,
     val target: NPC
-) : Event
+) : Event {
 
-fun huntNPC(npc: String = "*", targetNpc: String = "*", mode: String = "*", block: suspend HuntNPC.(npc: NPC) -> Unit) {
-    onNPC<HuntNPC>({ wildcardEquals(npc, it.id) && wildcardEquals(targetNpc, target.id) && wildcardEquals(mode, this.mode) }, block = block)
+    override fun size() = 4
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> "hunt_npc"
+        1 -> mode
+        2 -> dispatcher.identifier
+        3 -> target.id
+        else -> null
+    }
 }
 
-fun huntNPCModes(vararg modes: String, block: suspend HuntNPC.(npc: NPC) -> Unit) {
-    for(mode in modes) {
-        onNPC<HuntNPC>({ wildcardEquals(mode, this.mode) }, block = block)
-    }
+fun huntNPC(npc: String = "*", targetNpc: String = "*", mode: String = "*", override: Boolean = true, block: suspend HuntNPC.(npc: NPC) -> Unit) {
+    Events.handle("hunt_npc", mode, npc, targetNpc, override = override, handler = block)
 }
