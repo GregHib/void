@@ -1,8 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat
 
-import world.gregs.voidps.engine.client.variable.variableClear
 import world.gregs.voidps.engine.client.variable.variableSet
-import world.gregs.voidps.engine.client.variable.variableUnset
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
@@ -21,11 +19,11 @@ itemChange(EquipSlot.Weapon, "worn_equipment", Priority.HIGH) { player ->
     updateWeapon(player, item)
 }
 
-variableClear("autocast") { player ->
+variableSet("autocast", to = null) { player ->
     updateWeapon(player, player.weapon)
 }
 
-variableClear("spell") { player ->
+variableSet("spell", to = null) { player ->
     updateWeapon(player, player.weapon)
 }
 
@@ -33,7 +31,7 @@ variableSet("attack_style", "long_range") { player ->
     updateWeapon(player, player.weapon, 2)
 }
 
-variableUnset("attack_style", "long_range") { player ->
+variableSet("attack_style", from = "long_range") { player ->
     updateWeapon(player, player.weapon)
 }
 

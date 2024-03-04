@@ -4,7 +4,10 @@ import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.item.pickup
-import world.gregs.voidps.bot.navigation.*
+import world.gregs.voidps.bot.navigation.await
+import world.gregs.voidps.bot.navigation.cancel
+import world.gregs.voidps.bot.navigation.goToArea
+import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.variableSet
@@ -42,7 +45,7 @@ val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 val floorItems: FloorItems by inject()
 
-variableSet("under_attack", 1) { player ->
+variableSet("under_attack", to = 1) { player ->
     if (player.isBot) {
         player.bot.resume("combat")
     }

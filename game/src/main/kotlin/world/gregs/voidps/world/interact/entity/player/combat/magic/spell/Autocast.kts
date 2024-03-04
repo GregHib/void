@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.client.variable.variableClear
+import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.itemChange
@@ -21,7 +21,7 @@ interfaceOption("Autocast", id = "*_spellbook") {
     }
 }
 
-variableClear("autocast") { player ->
+variableSet("autocast", to = null) { player ->
     player.clear("autocast_spell")
 }
 

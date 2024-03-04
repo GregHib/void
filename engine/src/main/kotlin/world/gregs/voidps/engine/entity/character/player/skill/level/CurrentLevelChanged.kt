@@ -25,7 +25,6 @@ data class CurrentLevelChanged(val skill: Skill, val from: Int, val to: Int) : C
         else -> null
     }
 
-    fun debug(dispatcher: EventDispatcher): String = Array(size()) { parameter(dispatcher, it) }.contentToString()
 }
 
 fun levelChange(skill: Skill? = null, from: Int? = null, to: Int? = null, override: Boolean = true, block: suspend CurrentLevelChanged.(Player) -> Unit) {
