@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.exp.experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.MaxLevelChanged
-import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelUp
+import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelChange
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
@@ -24,9 +24,12 @@ experience { player ->
     }
 }
 
-maxLevelUp { player ->
+maxLevelChange { player ->
+    if (from <= to) {
+        return@maxLevelChange
+    }
     if (player["skip_level_up", false]) {
-        return@maxLevelUp
+        return@maxLevelChange
     }
     player.weakQueue(name = "level_up") {
         val unlock = when (skill) {
