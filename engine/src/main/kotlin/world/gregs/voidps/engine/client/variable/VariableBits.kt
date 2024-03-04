@@ -19,7 +19,7 @@ class VariableBits(
             if (refresh) {
                 variables.send(key)
             }
-            events.emit(VariableAdded(key, value))
+            events.emit(VariableBitAdded(key, value))
             return true
         }
         return false
@@ -31,7 +31,7 @@ class VariableBits(
             if (refresh) {
                 variables.send(key)
             }
-            events.emit(VariableRemoved(key, value))
+            events.emit(VariableBitRemoved(key, value))
             return true
         }
         return false
@@ -44,7 +44,7 @@ class VariableBits(
             variables.send(key)
         }
         for (value in values) {
-            events.emit(VariableRemoved(key, value))
+            events.emit(VariableBitRemoved(key, value))
         }
     }
 }
