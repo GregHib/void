@@ -2,7 +2,7 @@ package world.gregs.voidps.world.activity.skill.smithing
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnItemInterface
+import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smelting
@@ -22,10 +22,10 @@ val spellDefinitions: SpellDefinitions by inject()
 val itemDefinitions: ItemDefinitions by inject()
 val logger = InlineLogger()
 
-itemOnItemInterface("modern_spellbook", "superheat_item") { player ->
+itemOnItem(fromInterface = "modern_spellbook", fromComponent = "superheat_item") { player ->
     if (!toItem.id.endsWith("_ore")) {
         player.message("You need to cast superheat item on ore.")
-        return@itemOnItemInterface
+        return@itemOnItem
     }
     var bar = toItem.id.replace("_ore", "_bar")
     if (bar == "iron_bar" && player.inventory.count("coal") >= 2) {
@@ -33,13 +33,13 @@ itemOnItemInterface("modern_spellbook", "superheat_item") { player ->
     }
     val smelting: Smelting = itemDefinitions.get(bar)["smelting"]
     if (!player.has(Skill.Smithing, smelting.level, message = true)) {
-        return@itemOnItemInterface
+        return@itemOnItem
     }
     val runes = mutableListOf<Item>()
     val items = mutableListOf<Item>()
     val spell = fromComponent
     if (!Spell.hasRequirements(player, spell, runes, items)) {
-        return@itemOnItemInterface
+        return@itemOnItem
     }
     player.inventory.transaction {
         remove(runes)

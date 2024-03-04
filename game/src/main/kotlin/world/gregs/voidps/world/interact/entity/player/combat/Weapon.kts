@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.attackRange
@@ -15,7 +14,7 @@ playerSpawn { player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
 }
 
-itemChange(EquipSlot.Weapon, "worn_equipment", Priority.HIGH) { player ->
+itemChange("worn_equipment", EquipSlot.Weapon) { player ->
     updateWeapon(player, item)
 }
 

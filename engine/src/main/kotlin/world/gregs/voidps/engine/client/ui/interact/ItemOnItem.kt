@@ -3,8 +3,8 @@ package world.gregs.voidps.engine.client.ui.interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
 
 data class ItemOnItem(
     val fromItem: Item,
@@ -17,15 +17,35 @@ data class ItemOnItem(
     val toComponent: String,
     val fromInventory: String,
     val toInventory: String
-) : Event
+) : Event {
 
-fun itemOnItem(fromItem: String = "*", toItem: String = "*", block: suspend ItemOnItem.(Player) -> Unit) {
-    on<ItemOnItem>({
-        ((wildcardEquals(fromItem, this.fromItem.id) && wildcardEquals(toItem, this.toItem.id)) || (wildcardEquals(toItem, this.fromItem.id) && wildcardEquals(fromItem,
-            this.toItem.id)))
-    }, block = block)
+    override fun size() = 7
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> "item_on_item"
+        1 -> fromItem.id
+        2 -> fromInterface
+        3 -> fromComponent
+        4 -> toItem.id
+        5 -> toInterface
+        6 -> toComponent
+        else -> null
+    }
 }
 
-fun itemOnItemInterface(fromInterface: String = "*", fromComponent: String = "*", block: suspend ItemOnItem.(Player) -> Unit) {
-    on<ItemOnItem>({ wildcardEquals(fromInterface, this.fromInterface) && wildcardEquals(fromComponent, this.fromComponent) }, block = block)
+fun itemOnItem(
+    fromItem: String = "*",
+    toItem: String = "*",
+    fromInterface: String = "*",
+    fromComponent: String = "*",
+    toInterface: String = fromInterface,
+    toComponent: String = fromComponent,
+    override: Boolean = true,
+    bidirectional: Boolean = true,
+    block: suspend ItemOnItem.(Player) -> Unit
+) {
+    Events.handle("item_on_item", fromItem, fromInterface, fromComponent, toItem, toInterface, toComponent, override = override, handler = block)
+    if (bidirectional) {
+        Events.handle("item_on_item", toItem, toInterface, toComponent, fromItem, fromInterface, fromComponent, override = override, handler = block)
+    }
 }
