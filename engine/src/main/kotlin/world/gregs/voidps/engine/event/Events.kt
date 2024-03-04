@@ -22,7 +22,7 @@ class Events : CoroutineScope {
     var all: ((Player, Event) -> Unit)? = null
 
     private class TrieNode {
-        val children: MutableMap<Any, TrieNode> = Object2ObjectOpenHashMap()
+        val children: MutableMap<Any?, TrieNode> = Object2ObjectOpenHashMap()
         var handler: MutableSet<suspend Event.(EventDispatcher) -> Unit>? = null
     }
 
@@ -33,7 +33,7 @@ class Events : CoroutineScope {
      * @param parameters An array of values representing the parameters associated with the handler.
      * @param handler The handler function to be associated with the provided parameters.
      */
-    fun insert(parameters: Array<out Any>, handler: suspend Event.(EventDispatcher) -> Unit) {
+    fun insert(parameters: Array<out Any?>, handler: suspend Event.(EventDispatcher) -> Unit) {
         var node = roots.getOrPut(parameters.size) { TrieNode() }
         for (param in parameters) {
             if (!node.children.containsKey(param)) {
@@ -148,7 +148,7 @@ class Events : CoroutineScope {
         return null
     }
 
-    private fun matches(key: Any, param: Any?): Boolean {
+    private fun matches(key: Any?, param: Any?): Boolean {
         return when (key) {
             is String -> param is String && wildcardEquals(key, param)
             else -> false
@@ -175,16 +175,16 @@ class Events : CoroutineScope {
         }
 
         @JvmName("handleDispatcher")
-        fun <D : EventDispatcher, E : Event> handle(vararg parameters: Any, override: Boolean = true, handler: suspend E.(D) -> Unit) {
+        fun <D : EventDispatcher, E : Event> handle(vararg parameters: Any?, override: Boolean = true, handler: suspend E.(D) -> Unit) {
             handle(parameters, override, handler as suspend Event.(EventDispatcher) -> Unit)
         }
 
         @JvmName("handleEvent")
-        fun <E : Event> handle(vararg parameters: Any, override: Boolean = true, handler: suspend E.(EventDispatcher) -> Unit) {
+        fun <E : Event> handle(vararg parameters: Any?, override: Boolean = true, handler: suspend E.(EventDispatcher) -> Unit) {
             handle(parameters, override, handler as suspend Event.(EventDispatcher) -> Unit)
         }
 
-        private fun handle(parameters: Array<out Any>, override: Boolean = true, handler: suspend Event.(EventDispatcher) -> Unit) {
+        private fun handle(parameters: Array<out Any?>, override: Boolean = true, handler: suspend Event.(EventDispatcher) -> Unit) {
             if (!override) {
                 // Handlers override by default so find and continue onto the next handler
                 // after the current is finished by searching again but skipping itself
