@@ -28,7 +28,7 @@ onEvent<CombatInteraction> {
 /**
  * [CombatReached] is emitted by [CombatMovement] every tick the [Character] is within range of the target
  */
-onCharacter<CombatReached> { character ->
+onEvent<Character, CombatReached> { character ->
     combat(character, target)
 }
 
@@ -62,7 +62,7 @@ fun combat(character: Character, target: Character) {
     character.start("hit_delay", nextDelay)
 }
 
-onCharacter<CombatStop> { character ->
+onEvent<Character, CombatStop> { character ->
     if (target.dead) {
         character["face_entity"] = target
     } else {
