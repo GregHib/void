@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
@@ -55,7 +54,7 @@ inventoryOptions("Eat", "Drink", "Heal") {
     player.emit(Consume(item, slot))
 }
 
-consume(priority = Priority.LOW) { player ->
+consume { player ->
     val range: IntRange = item.def.getOrNull("heals") ?: return@consume
     val amount = range.random()
     if (amount > 0) {
