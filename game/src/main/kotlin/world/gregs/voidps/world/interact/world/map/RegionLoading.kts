@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.playerDespawn
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.region.RegionRetry
@@ -43,9 +42,11 @@ onEvent<Player, RegionLoad> { player ->
     viewport.players.addSelf(player)
 }
 
-on<RegionRetry>({ it.networked }) { player ->
-    println("Failed to load region. Retrying...")
-    updateRegion(player, initial = false, force = true)
+onEvent<Player, RegionRetry> { player ->
+    if (player.networked) {
+        println("Failed to load region. Retrying...")
+        updateRegion(player, initial = false, force = true)
+    }
 }
 
 /*
