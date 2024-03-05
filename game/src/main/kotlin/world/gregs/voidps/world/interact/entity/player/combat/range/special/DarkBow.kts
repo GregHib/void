@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
+import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.hit.specialAttackHit
 import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.combat.weaponSwing
@@ -46,7 +46,7 @@ specialAttackSwing("dark_bow*", style = "range", priority = Priority.HIGHISH) { 
     player.hit(target)
 }
 
-specialAttackHit("dark_bow*", "range") { character ->
+characterCombatHit(weapon = "dark_bow*", type = "range") { character ->
     source.playSound("descent_of_darkness")
     source.playSound("descent_of_darkness", delay = 20)
     character.setGraphic("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_hit")

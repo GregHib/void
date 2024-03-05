@@ -15,8 +15,8 @@ import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.block
+import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.hit.specialAttackHit
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 
 weaponSwing("korasis_sword", Priority.LOW) { player ->
@@ -55,17 +55,17 @@ specialAttackSwing("korasis_sword") { player ->
     delay = 5
 }
 
-specialAttackHit("korasis_sword") { character ->
+characterCombatHit(weapon = "korasis_sword", special = true) { character ->
     character.setGraphic("disrupt_hit")
 }
 
-specialAttackHit("korasis_sword") { target ->
+characterCombatHit(weapon = "korasis_sword") { target ->
     if (!target.inMultiCombat) {
-        return@specialAttackHit
+        return@characterCombatHit
     }
     val chain: MutableSet<Int> = source["korasi_chain", mutableSetOf()]
     if (chain.size >= 3) {
-        return@specialAttackHit
+        return@characterCombatHit
     }
     val characters = if (target is Player) players else npcs
     for (tile in target.tile.spiral(4)) {
@@ -80,10 +80,10 @@ specialAttackHit("korasis_sword") { target ->
             val hit = damage / when (chain.size) {
                 2 -> 2
                 3 -> 4
-                else -> return@specialAttackHit
+                else -> return@characterCombatHit
             }
             source.hit(character, damage = hit, weapon = weapon, type = type, special = true)
-            return@specialAttackHit
+            return@characterCombatHit
         }
     }
 }

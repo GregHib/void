@@ -3,8 +3,8 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.hit.specialAttackHit
 import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.effect.freeze
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
@@ -24,6 +24,6 @@ specialAttackSwing("zamorak_godsword*") { player ->
     delay = 6
 }
 
-specialAttackHit("zamorak_godsword*") { character ->
+characterCombatHit(weapon = "zamorak_godsword*", special = true) { character ->
     character.setGraphic("ice_cleave_hit")
 }

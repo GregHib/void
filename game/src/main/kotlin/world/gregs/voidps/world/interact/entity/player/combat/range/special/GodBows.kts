@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -9,10 +10,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.hit.Hit
-import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.hit.specialAttackHit
+import world.gregs.voidps.world.interact.entity.combat.hit.*
 import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
@@ -63,10 +61,13 @@ combatAttack { source ->
     }
 }
 
-specialAttackHit("saradomin_bow", "guthix_bow", "zamorak_bow") { character ->
+val handler: suspend CombatHit.(Character) -> Unit = { character ->
     character.setGraphic("${weapon.id}_special_hit")
     source.playSound("god_bow_special_hit")
 }
+combatHit(weapon = "saradomin_bow", special = true, block = handler)
+combatHit(weapon = "guthix_bow", special = true, block = handler)
+combatHit(weapon = "zamorak_bow", special = true, block = handler)
 
 timerStart("restorative_shot", "balanced_shot") {
     interval = TimeUnit.SECONDS.toTicks(6)

@@ -3,8 +3,8 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
+import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.hit.specialAttackHit
 import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
@@ -25,6 +25,6 @@ specialAttackSwing("saradomin_sword*") { player ->
     delay = 4
 }
 
-specialAttackHit("saradomin_sword*", "melee") { character ->
+characterCombatHit(weapon = "saradomin_sword*", type = "melee", special = true) { character ->
     character.setGraphic("saradomins_lightning")
 }
