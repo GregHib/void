@@ -25,7 +25,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRe
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.worldSpawn
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
@@ -36,7 +35,7 @@ import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.underAttack
-import world.gregs.voidps.world.interact.entity.death.Death
+import world.gregs.voidps.world.interact.entity.death.playerDeath
 import world.gregs.voidps.world.interact.entity.death.weightedSample
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
@@ -58,7 +57,7 @@ combatSwing { player ->
     }
 }
 
-on<Death> { player ->
+playerDeath { player ->
     if(player.isBot) {
         player.clear("area")
         player.bot.cancel()

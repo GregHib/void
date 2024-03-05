@@ -5,6 +5,8 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import kotlinx.coroutines.*
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.type.Area
+import world.gregs.voidps.type.Tile
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -151,6 +153,8 @@ class Events : CoroutineScope {
     private fun matches(key: Any?, param: Any?): Boolean {
         return when (key) {
             is String -> param is String && wildcardEquals(key, param)
+            is Set<*> -> key.contains(param)
+            is Area -> param is Tile && key.contains(param)
             else -> false
         }
     }
