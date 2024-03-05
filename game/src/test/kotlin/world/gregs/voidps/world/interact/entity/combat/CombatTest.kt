@@ -5,10 +5,11 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.FakeRandom
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
-import world.gregs.voidps.engine.event.onNPC
+import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -103,7 +104,7 @@ internal class CombatTest : WorldTest() {
     @Test
     fun `Dragon dagger special attack`() {
         var hits = 0
-        onNPC<CombatHit> {
+        onEvent<NPC, CombatHit> {
             hits++
         }
         val player = createPlayer("player", emptyTile)

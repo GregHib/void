@@ -1,12 +1,18 @@
 package world.gregs.voidps.engine.event
 
+import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
+import world.gregs.voidps.engine.entity.obj.GameObject
+
 interface EventDispatcher {
     fun <E: Event> emit(event: E): Boolean {
-        return EventStore.events.emit(this, event)
+        return Events.events.emit(this, event)
     }
 
     fun <E: SuspendableEvent> emit(event: E): Boolean {
-        return EventStore.events.emit(this, event)
+        return Events.events.emit(this, event)
     }
 
     val key: String

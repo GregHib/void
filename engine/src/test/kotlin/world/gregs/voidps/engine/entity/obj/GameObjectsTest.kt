@@ -8,10 +8,10 @@ import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
-import world.gregs.voidps.engine.event.EventStore
-import world.gregs.voidps.type.Tile
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.network.encode.zone.ObjectAddition
 import world.gregs.voidps.network.encode.zone.ObjectRemoval
+import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
@@ -21,7 +21,7 @@ class GameObjectsTest {
 
     private lateinit var objects: GameObjects
     private lateinit var updates: ZoneBatchUpdates
-    private lateinit var events: EventStore
+    private lateinit var events: Events
 
     @BeforeEach
     fun setup() {
@@ -31,8 +31,8 @@ class GameObjectsTest {
         every { definitions.get("test2") } returns ObjectDefinition(456)
         updates = mockk(relaxed = true)
         objects = GameObjects(mockk(relaxed = true), updates, definitions, storeUnused = true)
-        events = spyk(EventStore())
-        EventStore.setEvents(events)
+        events = spyk(Events())
+        Events.setEvents(events)
     }
 
     @Test

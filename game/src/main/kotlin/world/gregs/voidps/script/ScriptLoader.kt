@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import io.github.classgraph.ClassGraph
 import world.gregs.voidps.Main
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.event.EventStore
 import world.gregs.voidps.engine.getProperty
 import kotlin.system.measureTimeMillis
 
@@ -37,6 +36,5 @@ fun loadScripts(scriptPackage: String = getProperty("scriptPackage"), botScriptP
     if (scriptCount == 0) {
         logger.warn { "No scripts found." }
     }
-    EventStore.events.init()
     logger.info { "Loaded $scriptCount ${"script".plural(scriptCount)} in ${time}ms" }
 }

@@ -9,4 +9,6 @@ interface Event {
     open fun parameter(dispatcher: EventDispatcher, index: Int): Any? {
         return null
     }
+
+    fun debug(dispatcher: EventDispatcher): String = Array(size()) { parameter(dispatcher, it) }.contentToString()
 }
