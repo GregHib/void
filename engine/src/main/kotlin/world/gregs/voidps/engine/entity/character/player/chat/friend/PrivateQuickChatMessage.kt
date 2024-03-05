@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.player.chat.friend
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.event.EventDispatcher
 
 /**
  * A direct quick-chat message sent from [source].
@@ -12,6 +13,13 @@ data class PrivateQuickChatMessage(
     val message: String,
     val data: ByteArray
 ) : Event {
+    override fun size() = 1
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when(index) {
+        0 -> "private_quick_chat_message"
+        else -> null
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
