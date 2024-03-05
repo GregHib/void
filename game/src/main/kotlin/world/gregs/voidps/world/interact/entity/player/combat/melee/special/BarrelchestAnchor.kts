@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.world.interact.entity.combat.hit.block
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.combat.weaponSwing
@@ -16,11 +15,6 @@ weaponSwing("barrelchest_anchor", Priority.LOW) { player ->
     player.setAnimation("anchor_attack")
     player.hit(target)
     delay = 6
-}
-
-block("barrelchest_anchor") {
-    target.setAnimation("anchor_block", delay)
-    blocked = true
 }
 
 specialAttackSwing("barrelchest_anchor") { player ->

@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.hit.block
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.combat.weaponSwing
@@ -19,11 +18,6 @@ weaponSwing("*vestas_longsword", Priority.LOW) { player ->
     }")
     player.hit(target)
     delay = 5
-}
-
-block("*vestas_longsword") {
-    target.setAnimation("vestas_longsword_block", delay)
-    blocked = true
 }
 
 // Special attack

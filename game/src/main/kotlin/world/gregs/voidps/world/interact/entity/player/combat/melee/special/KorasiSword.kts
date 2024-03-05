@@ -14,7 +14,6 @@ import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
-import world.gregs.voidps.world.interact.entity.combat.hit.block
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
@@ -28,11 +27,6 @@ weaponSwing("korasis_sword", Priority.LOW) { player ->
     }")
     player.hit(target)
     delay = 5
-}
-
-block("korasis_sword") {
-    target.setAnimation("korasis_sword_block", delay)
-    blocked = true
 }
 
 // Special attack
@@ -55,11 +49,11 @@ specialAttackSwing("korasis_sword") { player ->
     delay = 5
 }
 
-characterCombatHit(weapon = "korasis_sword", special = true) { character ->
+characterCombatHit("korasis_sword", special = true) { character ->
     character.setGraphic("disrupt_hit")
 }
 
-characterCombatHit(weapon = "korasis_sword") { target ->
+characterCombatHit("korasis_sword") { target ->
     if (!target.inMultiCombat) {
         return@characterCombatHit
     }

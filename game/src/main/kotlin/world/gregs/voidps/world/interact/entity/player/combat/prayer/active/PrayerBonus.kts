@@ -2,10 +2,9 @@ package world.gregs.voidps.world.interact.entity.player.combat.prayer.active
 
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.hit.block
+import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.Prayer
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
@@ -59,9 +58,9 @@ set("turmoil", "attack_bonus", 15)
 set("turmoil", "strength_bonus", 23)
 set("turmoil", "defence_bonus", 15)
 
-block(Priority.MEDIUM) { character ->
+characterCombatAttack { character ->
     if (!Prayer.usingDeflectPrayer(character, target, type)) {
-        return@block
+        return@characterCombatAttack
     }
     val damage = target["protected_damage", 0]
     if (damage > 0) {

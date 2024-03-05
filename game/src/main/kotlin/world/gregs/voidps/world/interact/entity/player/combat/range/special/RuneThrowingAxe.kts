@@ -41,7 +41,7 @@ specialAttackSwing("rune_throwing_axe", style = "range", priority = Priority.MED
     player.hit(target, delay = Hit.throwDelay(distance))
 }
 
-characterCombatHit(weapon = "rune_throwing_axe", type = "range", special = true) { target ->
+characterCombatHit("rune_throwing_axe", "range", special = true) { target ->
     if (source !is Player || !target.inMultiCombat) {
         return@characterCombatHit
     }

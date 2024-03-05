@@ -65,9 +65,9 @@ val handler: suspend CombatHit.(Character) -> Unit = { character ->
     character.setGraphic("${weapon.id}_special_hit")
     source.playSound("god_bow_special_hit")
 }
-combatHit(weapon = "saradomin_bow", special = true, block = handler)
-combatHit(weapon = "guthix_bow", special = true, block = handler)
-combatHit(weapon = "zamorak_bow", special = true, block = handler)
+combatHit("saradomin_bow", special = true, block = handler)
+combatHit("guthix_bow", special = true, block = handler)
+combatHit("zamorak_bow", special = true, block = handler)
 
 timerStart("restorative_shot", "balanced_shot") {
     interval = TimeUnit.SECONDS.toTicks(6)

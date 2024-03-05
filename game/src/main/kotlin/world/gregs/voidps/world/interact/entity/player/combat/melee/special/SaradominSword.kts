@@ -25,6 +25,6 @@ specialAttackSwing("saradomin_sword*") { player ->
     delay = 4
 }
 
-characterCombatHit(weapon = "saradomin_sword*", type = "melee", special = true) { character ->
+characterCombatHit("saradomin_sword*", "melee", special = true) { character ->
     character.setGraphic("saradomins_lightning")
 }

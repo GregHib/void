@@ -33,7 +33,7 @@ specialAttackSwing("seercull", style = "range", priority = Priority.MEDIUM) { pl
     player.hit(target, delay = Hit.bowDelay(distance))
 }
 
-characterCombatHit(weapon = "seercull", type = "range") { character ->
+characterCombatHit("seercull", "range") { character ->
     character.setGraphic("seercull_special_hit")
 }
 

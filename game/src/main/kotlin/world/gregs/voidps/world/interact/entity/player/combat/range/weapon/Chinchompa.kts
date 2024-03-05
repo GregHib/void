@@ -43,7 +43,7 @@ weaponSwing("*chinchompa", style = "range", priority = Priority.LOW) { player ->
     delay = player["attack_speed", 4] - if (player.attackType == "medium_fuse") 1 else 0
 }
 
-characterCombatHit(weapon = "*chinchompa", type = "range") { character ->
+characterCombatHit("*chinchompa", "range") { character ->
     source as Player
     source.playSound("chinchompa_explode", delay = 40)
     character.setGraphic("chinchompa_hit")

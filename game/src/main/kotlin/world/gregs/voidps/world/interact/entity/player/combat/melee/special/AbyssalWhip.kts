@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.world.interact.entity.combat.hit.block
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
@@ -30,9 +29,4 @@ specialAttackSwing("abyssal_whip*", priority = Priority.LOW) { player ->
         target.setGraphic("energy_drain")
     }
     delay = 4
-}
-
-block("abyssal_whip*") {
-    target.setAnimation("whip_block", delay)
-    blocked = true
 }

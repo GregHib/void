@@ -24,6 +24,6 @@ specialAttackSwing("zamorak_godsword*") { player ->
     delay = 6
 }
 
-characterCombatHit(weapon = "zamorak_godsword*", special = true) { character ->
+characterCombatHit("zamorak_godsword*", special = true) { character ->
     character.setGraphic("ice_cleave_hit")
 }

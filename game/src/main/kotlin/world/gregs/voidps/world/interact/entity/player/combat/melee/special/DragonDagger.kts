@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.hit.block
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.combat.weaponSwing
@@ -20,11 +19,6 @@ weaponSwing("dragon_dagger*", "corrupt_dragon_dagger*", priority = Priority.LOW)
     }")
     player.hit(target)
     delay = 4
-}
-
-block("dragon_dagger*", "corrupt_dragon_dagger*") {
-    target.setAnimation("dragon_dagger_block", delay)
-    blocked = true
 }
 
 specialAttackSwing("dragon_dagger*", "corrupt_dragon_dagger*") { player ->
