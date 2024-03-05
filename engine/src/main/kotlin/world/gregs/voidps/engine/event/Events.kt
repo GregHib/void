@@ -25,7 +25,7 @@ class Events : CoroutineScope {
     private val logger = InlineLogger()
 
     private class TrieNode {
-        val children: MutableMap<Any?, TrieNode> = Object2ObjectOpenHashMap()
+        val children: MutableMap<Any?, TrieNode> = Object2ObjectOpenHashMap(1, 0.5f)
         var handler: MutableSet<suspend Event.(EventDispatcher) -> Unit>? = null
     }
 
