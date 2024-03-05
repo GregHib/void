@@ -25,7 +25,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.npcLevelCha
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.playerDespawn
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.clear
@@ -42,7 +41,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.dialogue.type.statement
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
+import world.gregs.voidps.world.interact.entity.combat.combatPrepare
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import world.gregs.voidps.world.interact.entity.player.music.playTrack
@@ -227,7 +226,7 @@ suspend fun CharacterContext.cutscene() {
     }
 }
 
-combatSwing(priority = Priority.HIGHEST) { player ->
+combatPrepare { player ->
     if (target is NPC && target.id == "delrith" && target.transform == "delrith_weakened") {
         cancel()
         player.strongQueue("banish_delrith", 1) {

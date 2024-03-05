@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.world.interact.entity.death.characterDeath
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 /**
  * When triggered via [Interact] replace the Interaction with [CombatInteraction]
@@ -52,12 +53,19 @@ fun combat(character: Character, target: Character) {
     if (character.hasClock("hit_delay")) {
         return
     }
+    val prepare = CombatPrepare(target)
+    character.emit(prepare)
+    if (prepare.cancelled) {
+        character.mode = EmptyMode
+        return
+    }
     val swing = CombatSwing(target)
     if (character["debug", false] || target["debug", false]) {
         val player = if (character["debug", false] && character is Player) character else target as Player
         player.message("---- Swing (${character.identifier}) -> (${target.identifier}) -----")
     }
     character.emit(swing)
+    (character as? Player)?.specialAttack = false
     val nextDelay = swing.delay
     if (nextDelay == null || nextDelay < 0) {
         character.mode = EmptyMode

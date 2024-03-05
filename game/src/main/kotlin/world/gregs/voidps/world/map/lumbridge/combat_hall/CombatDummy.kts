@@ -10,10 +10,9 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.CurrentLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.level.npcLevelChange
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.world.interact.entity.combat.attackers
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
+import world.gregs.voidps.world.interact.entity.combat.combatPrepare
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
 
 npcOperate("Attack", "magic_dummy", "melee_dummy", override = false) {
@@ -53,12 +52,16 @@ val levelHandler: suspend CurrentLevelChanged.(NPC) -> Unit = handler@{ npc ->
 npcLevelChange("melee_dummy", Skill.Constitution, block = levelHandler)
 npcLevelChange("magic_dummy", Skill.Constitution, block = levelHandler)
 
-for (type in listOf("magic", "melee")) {
-    combatSwing(priority = Priority.HIGHER) { player ->
-        if (target is NPC && target.id == "${type}_dummy" && player.fightStyle != type) {
-            player.message("You can only use ${type.toTitleCase()} against this dummy.")
-            player.mode = EmptyMode
-            delay = -1
-        }
+combatPrepare("magic") { player ->
+    if (target is NPC && target.id == "magic_dummy" && player.fightStyle != "magic") {
+        player.message("You can only use Magic against this dummy.")
+        cancel()
+    }
+}
+
+combatPrepare("melee") { player ->
+    if (target is NPC && target.id == "melee_dummy" && player.fightStyle != "melee") {
+        player.message("You can only use Melee against this dummy.")
+        cancel()
     }
 }

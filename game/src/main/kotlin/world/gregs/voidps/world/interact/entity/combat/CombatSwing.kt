@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
@@ -36,13 +35,12 @@ fun combatSwing(
     weapon: String = "*",
     style: String = "*",
     spell: String = "*",
-    priority: Priority = Priority.MEDIUM,
     swung: Boolean? = false,
     special: Boolean? = false,
     override: Boolean = true,
     block: suspend CombatSwing.(Player) -> Unit
 ) {
-    Events.handle("player_combat_swing", "player", weapon, style, spell, swung, special, priority, override = override, handler = block)
+    Events.handle("player_combat_swing", "player", weapon, style, spell, swung, special, override = override, handler = block)
 }
 
 fun npcCombatSwing(
@@ -50,23 +48,21 @@ fun npcCombatSwing(
     weapon: String = "*",
     style: String = "*",
     spell: String = "*",
-    priority: Priority = Priority.MEDIUM,
     swung: Boolean? = false,
     override: Boolean = true,
     block: suspend CombatSwing.(NPC) -> Unit
 ) {
-    Events.handle("npc_combat_swing", npc, weapon, style, spell, swung, "*", priority, override = override, handler = block)
+    Events.handle("npc_combat_swing", npc, weapon, style, spell, swung, "*", override = override, handler = block)
 }
 
 fun characterCombatSwing(
     weapon: String = "*",
     style: String = "*",
     spell: String = "*",
-    priority: Priority = Priority.MEDIUM,
     swung: Boolean? = false,
     override: Boolean = true,
     block: suspend CombatSwing.(Character) -> Unit
 ) {
-    combatSwing(weapon, style, spell, priority, swung, null, override, block)
-    npcCombatSwing("*", weapon, style, spell, priority, swung, override, block)
+    combatSwing(weapon, style, spell, swung, null, override, block)
+    npcCombatSwing("*", weapon, style, spell, swung, override, block)
 }

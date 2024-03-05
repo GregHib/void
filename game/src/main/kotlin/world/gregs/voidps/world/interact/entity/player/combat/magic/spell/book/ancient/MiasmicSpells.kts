@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
@@ -28,7 +27,7 @@ combatSwing(spell = "miasmic_*", style = "magic") { player ->
 
 fun meleeOrRanged(type: String) = type == "range" || type == "melee"
 
-combatSwing(priority = Priority.LOWEST) { player ->
+combatSwing { player ->
     if (delay != null && delay!! > 0 && player.hasClock("miasmic") && meleeOrRanged(player.fightStyle)) {
         delay = delay!! * 2
     }
