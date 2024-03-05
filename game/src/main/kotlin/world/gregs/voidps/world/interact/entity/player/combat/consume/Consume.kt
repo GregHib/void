@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 
 data class Consume(val item: Item, val slot: Int) : CancellableEvent() {
-    override fun size() = 2
+    override fun size() = 3
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "consume"

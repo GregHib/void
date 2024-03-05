@@ -4,11 +4,10 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
-import world.gregs.voidps.world.interact.entity.player.combat.consume.Consumable
+import world.gregs.voidps.world.interact.entity.player.combat.consume.canConsume
 import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 import world.gregs.voidps.world.interact.entity.player.toxin.antiDisease
@@ -94,7 +93,7 @@ consume("sanfew_serum*") { player ->
     }
 }
 
-on<Consumable>({ item.id.startsWith("zamorak_brew") || item.id.startsWith("zamorak_mix") }) { player ->
+canConsume("zamorak_brew*", "zamorak_mix*") { player ->
     val health = player.levels.get(Skill.Constitution)
     val damage = ((health / 100) * 10) + 20
     if (health - damage < 0) {

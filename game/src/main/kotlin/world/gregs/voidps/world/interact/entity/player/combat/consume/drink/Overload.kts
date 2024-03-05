@@ -6,18 +6,17 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
-import world.gregs.voidps.world.interact.entity.player.combat.consume.Consumable
+import world.gregs.voidps.world.interact.entity.player.combat.consume.canConsume
 import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
 
 fun inWilderness() = false
 
-on<Consumable>({ item.id.startsWith("overload") }) { player ->
+canConsume("overload*") { player ->
     if (player.timers.contains("overload")) {
         player.message("You may only use this potion every five minutes.")
         cancel()
