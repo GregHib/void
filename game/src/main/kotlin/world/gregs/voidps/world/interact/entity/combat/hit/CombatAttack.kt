@@ -65,7 +65,7 @@ fun characterCombatAttack(
     spell: String = "*",
     special: Boolean = false,
     override: Boolean = true,
-    block: suspend CombatAttack.(Player) -> Unit
+    block: suspend CombatAttack.(Character) -> Unit
 ) {
     combatAttack(weapon, type, spell, special, override, block)
     npcCombatAttack("*", weapon, type, spell, special, override, block)

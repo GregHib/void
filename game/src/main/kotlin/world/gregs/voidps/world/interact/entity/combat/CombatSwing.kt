@@ -3,7 +3,10 @@ package world.gregs.voidps.world.interact.entity.combat
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.*
+import world.gregs.voidps.engine.event.CancellableEvent
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
@@ -14,13 +17,8 @@ class CombatSwing(
     val target: Character
 ) : CancellableEvent() {
     var delay: Int? = null
-    var priority: Priority = Priority.HIGHEST
 
-    fun swung(): Boolean {
-        return delay != null
-    }
-
-    override fun size() = 8
+    override fun size() = 7
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "${dispatcher.key}_combat_swing"
@@ -29,8 +27,7 @@ class CombatSwing(
         3 -> if (dispatcher is Character) dispatcher.fightStyle else "melee"
         4 -> if (dispatcher is Character) dispatcher.spell else ""
         5 -> if (dispatcher is Player) dispatcher.specialAttack else false
-        6 -> delay != null
-        7 -> priority
+        6 -> delay != null // swung
         else -> null
     }
 }
@@ -72,20 +69,4 @@ fun characterCombatSwing(
 ) {
     combatSwing(weapon, style, spell, priority, swung, null, override, block)
     npcCombatSwing("*", weapon, style, spell, priority, swung, override, block)
-}
-
-fun weaponSwing(vararg weapons: String = arrayOf("*"), style: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Player) -> Unit) {
-    for (weapon in weapons) {
-        on<CombatSwing>({ player -> !swung() && !player.specialAttack && wildcardEquals(style, player.fightStyle) && wildcardEquals(weapon, player.weapon.id) }, priority) { character ->
-            block.invoke(this, character)
-        }
-    }
-}
-
-fun specialAttackSwing(vararg weapons: String = arrayOf("*"), style: String = "melee", priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Player) -> Unit) {
-    for (weapon in weapons) {
-        on<CombatSwing>({ player -> !swung() && player.specialAttack && player.fightStyle == style && wildcardEquals(weapon, player.weapon.id) }, priority) { character ->
-            block.invoke(this, character)
-        }
-    }
 }

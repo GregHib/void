@@ -1,19 +1,20 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.weapon
 
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.event.Priority
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.attackType
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.combat.weaponSwing
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-weaponSwing("*bow", "seercull", "longbow_sighted", style = "range", priority = Priority.LOW) { player ->
+val handler: suspend CombatSwing.(Player) -> Unit = handler@{ player ->
     if (player.weapon.id.endsWith("crossbow")) {
-        return@weaponSwing
+        return@handler
     }
     player.setAnimation("bow_accurate")
     val ammo = player.ammo
@@ -24,3 +25,6 @@ weaponSwing("*bow", "seercull", "longbow_sighted", style = "range", priority = P
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
 }
+combatSwing("*bow", "range", block = handler)
+combatSwing("seercull", "range", block = handler)
+combatSwing("longbow_sighted", "range", block = handler)
