@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.combat.weaponSwing
 import world.gregs.voidps.world.interact.entity.player.combat.range.Ammo
@@ -19,11 +19,11 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.specialAtt
 
 val ammoDefinitions: AmmoDefinitions by inject()
 
-weaponSwing(style = "range", priority = Priority.HIGHEST) { player ->
+combatSwing(style = "range", override = false) { player ->
     check(player)
 }
 
-specialAttackSwing(style = "range", priority = Priority.HIGHEST) { player ->
+combatSwing(style = "range", override = false) { player ->
     check(player)
 }
 
@@ -48,7 +48,7 @@ weaponSwing("*bow", "seercull", "*longbow_sighted", style = "range", priority = 
     if (!Ammo.required(player.weapon)) {
         return@weaponSwing
     }
-    val required = player["required_ammo", 1]
+    val required = if (player.specialAttack && player.weapon.id.startsWith("magic_shortbow")) 2 else player["required_ammo", 1]
     val ammo = player.equipped(EquipSlot.Ammo)
     player.ammo = ""
     if (ammo.amount < required) {

@@ -11,6 +11,6 @@ val handler: suspend CombatSwing.(Player) -> Unit = { player ->
     player.hit(target, delay = 2)
     delay = 5
 }
-combatSwing(spell = "claws_of_guthix", type = "magic", block = handler)
-combatSwing(spell = "flames_of_zamorak", type = "magic", block = handler)
-combatSwing(spell = "saradomin_strike", type = "magic", block = handler)
+combatSwing(spell = "claws_of_guthix", style = "magic", block = handler)
+combatSwing(spell = "flames_of_zamorak", style = "magic", block = handler)
+combatSwing(spell = "saradomin_strike", style = "magic", block = handler)

@@ -5,26 +5,24 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.world.interact.entity.combat.attackType
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.combat.weaponSwing
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-specialAttackSwing("dark_bow*", style = "range", priority = Priority.HIGHISH) { player ->
+combatSwing("dark_bow*", style = "range", special = true) { player ->
     val dragon = player.ammo == "dragon_arrow"
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, 550)) {
         delay = -1
-        return@specialAttackSwing
+        return@combatSwing
     }
     player.setAnimation("bow_accurate")
     player.setGraphic("${player.ammo}_double_shot")
@@ -52,7 +50,7 @@ characterCombatHit("dark_bow*", "range") { character ->
     character.setGraphic("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_hit")
 }
 
-weaponSwing("dark_bow*", style = "range", priority = Priority.MEDIUM) { player ->
+combatSwing("dark_bow*", "range") { player ->
     player.setAnimation("bow_accurate")
     val ammo = player.ammo
     player.setGraphic("${ammo}_double_shot")

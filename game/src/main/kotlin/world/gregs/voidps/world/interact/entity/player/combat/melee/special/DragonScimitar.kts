@@ -7,18 +7,18 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePrayerVarKey
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import java.util.concurrent.TimeUnit
 
-specialAttackSwing("*dragon_scimitar") { player ->
+combatSwing("*dragon_scimitar", "melee", special = true) { player ->
     if (!drainSpecialEnergy(player, 550)) {
         delay = -1
-        return@specialAttackSwing
+        return@combatSwing
     }
     player.setAnimation("sever")
     player.setGraphic("sever")

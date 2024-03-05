@@ -10,27 +10,28 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.effect.freeze
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import java.util.concurrent.TimeUnit
 
-specialAttackSwing("dragon_spear", "zamorakian_spear") { player ->
+val handler: suspend CombatSwing.(Player) -> Unit = handler@{ player ->
     if (target.size > 1) {
         player.message("That creature is too large to knock back!")
         delay = -1
-        return@specialAttackSwing
+        return@handler
     }
     if (target.hasClock("movement_delay")) {
         player.message("That ${if (target is Player) "player" else "creature"} is already stunned!")
         delay = -1
-        return@specialAttackSwing
+        return@handler
     }
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 4)) {
         delay = -1
-        return@specialAttackSwing
+        return@handler
     }
     player.setAnimation("shove")
     player.setGraphic("shove")
@@ -47,3 +48,5 @@ specialAttackSwing("dragon_spear", "zamorakian_spear") { player ->
     }
     delay = 4
 }
+combatSwing("dragon_spear", "melee", special = true, block = handler)
+combatSwing("zamorakian_spear", "melee", special = true, block = handler)

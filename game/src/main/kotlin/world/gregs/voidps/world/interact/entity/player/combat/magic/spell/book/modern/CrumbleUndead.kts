@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-combatSwing(spell = "crumble_undead", type = "magic", priority = Priority.HIGHEST) { player ->
+combatSwing(spell = "crumble_undead", style = "magic", priority = Priority.HIGHEST) { player ->
     if (target is NPC && !target.undead) {
         player.clear("autocast")
         player.message("This spell only affects skeletons, zombies, ghosts and shades")
@@ -22,7 +22,7 @@ combatSwing(spell = "crumble_undead", type = "magic", priority = Priority.HIGHES
     }
 }
 
-combatSwing(spell = "crumble_undead", type = "magic", priority = Priority.LOW) { player ->
+combatSwing(spell = "crumble_undead", style = "magic", priority = Priority.LOW) { player ->
     player.setAnimation("crumble_undead")
     player.setGraphic("crumble_undead_cast")
     player.shoot(id = player.spell, target = target)

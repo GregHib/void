@@ -9,7 +9,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-combatSwing(spell = "iban_blast", type = "magic") { player ->
+combatSwing(spell = "iban_blast", style = "magic") { player ->
     player.setAnimation("iban_blast")
     player.setGraphic("iban_blast_cast")
     player.shoot(id = player.spell, target = target)

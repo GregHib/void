@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val definitions: SpellDefinitions by inject()
 
-combatSwing(spell = "miasmic_*", type = "magic") { player ->
+combatSwing(spell = "miasmic_*", style = "magic") { player ->
     val spell = player.spell
     player.setAnimation("${spell}_cast")
     player.setGraphic("${spell}_cast")

@@ -19,7 +19,7 @@ import kotlin.math.sign
 
 val definitions: SpellDefinitions by inject()
 
-combatSwing(spell = "teleport_block", type = "magic") { player ->
+combatSwing(spell = "teleport_block", style = "magic") { player ->
     if (target is NPC) {
         delay = -1
         player.message("You can't use that against an NPC.")

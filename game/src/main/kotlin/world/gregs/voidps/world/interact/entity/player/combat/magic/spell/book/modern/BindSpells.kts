@@ -24,9 +24,9 @@ val swingHandler: suspend CombatSwing.(Player) -> Unit = { player ->
     player.hit(target)
     delay = 5
 }
-combatSwing(spell = "bind", type = "magic", block = swingHandler)
-combatSwing(spell = "snare", type = "magic", block = swingHandler)
-combatSwing(spell = "entangle", type = "magic", block = swingHandler)
+combatSwing(spell = "bind", style = "magic", block = swingHandler)
+combatSwing(spell = "snare", style = "magic", block = swingHandler)
+combatSwing(spell = "entangle", style = "magic", block = swingHandler)
 
 
 val attackHandler: suspend CombatAttack.(Character) -> Unit = { character ->

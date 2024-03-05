@@ -17,9 +17,9 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.attackType
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.damage
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.combat.weaponSwing
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
@@ -63,10 +63,10 @@ weaponSwing("hand_cannon", style = "range", priority = Priority.LOW) { player ->
     explode(player, 0.005)
 }
 
-specialAttackSwing("hand_cannon", style = "range", priority = Priority.HIGHISH) { player ->
+combatSwing("hand_cannon", style = "range", special = true) { player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
         delay = -1
-        return@specialAttackSwing
+        return@combatSwing
     }
     player.setAnimation("hand_cannon_shoot")
     player.setGraphic("hand_cannon_shoot")

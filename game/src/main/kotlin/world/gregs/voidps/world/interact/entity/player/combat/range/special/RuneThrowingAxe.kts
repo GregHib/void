@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.world.interact.entity.combat.*
@@ -25,12 +24,12 @@ val players: Players by inject()
 val npcs: NPCs by inject()
 val lineOfSight: LineValidator by inject()
 
-specialAttackSwing("rune_throwing_axe", style = "range", priority = Priority.MEDIUM) { player ->
+combatSwing("rune_throwing_axe", style = "range", special = true) { player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 10)) {
         delay = -1
-        return@specialAttackSwing
+        return@combatSwing
     }
     val ammo = player.ammo
     player["chain_hits"] = mutableSetOf(target.index)

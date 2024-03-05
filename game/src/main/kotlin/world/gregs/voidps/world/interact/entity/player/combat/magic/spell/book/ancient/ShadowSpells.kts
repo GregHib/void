@@ -8,7 +8,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-combatSwing(spell = "shadow_*", type = "magic") { player ->
+combatSwing(spell = "shadow_*", style = "magic") { player ->
     val spell = player.spell
     player.setAnimation("ancient_spell${if (Spell.isMultiTarget(spell)) "_multi" else ""}")
     player.shoot(spell, target)

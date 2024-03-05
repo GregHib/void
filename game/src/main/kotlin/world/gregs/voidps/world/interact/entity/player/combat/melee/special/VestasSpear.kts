@@ -10,20 +10,21 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.Target
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
-import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-specialAttackSwing("vestas_spear*", "corrupt_vestas_spear*") { player ->
+val handler: suspend CombatSwing.(Player) -> Unit = handler@{ player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
         delay = -1
-        return@specialAttackSwing
+        return@handler
     }
     player.start("spear_wall", duration = 8)
     player.setAnimation("spear_wall")
@@ -46,3 +47,5 @@ specialAttackSwing("vestas_spear*", "corrupt_vestas_spear*") { player ->
     }
     delay = 5
 }
+combatSwing("vestas_spear*", "melee", special = true, block = handler)
+combatSwing("corrupt_vestas_spear*", "melee", special = true, block = handler)

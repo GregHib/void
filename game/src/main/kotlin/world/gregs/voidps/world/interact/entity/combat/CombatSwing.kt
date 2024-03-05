@@ -20,7 +20,7 @@ class CombatSwing(
         return delay != null
     }
 
-    override fun size() = 7
+    override fun size() = 8
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "${dispatcher.key}_combat_swing"
@@ -28,60 +28,50 @@ class CombatSwing(
         2 -> if (dispatcher is Character) dispatcher.weapon.id else ""
         3 -> if (dispatcher is Character) dispatcher.fightStyle else "melee"
         4 -> if (dispatcher is Character) dispatcher.spell else ""
-        5 -> delay != null
-        6 -> priority
+        5 -> if (dispatcher is Player) dispatcher.specialAttack else false
+        6 -> delay != null
+        7 -> priority
         else -> null
     }
 }
 
 fun combatSwing(
     weapon: String = "*",
-    type: String = "*",
+    style: String = "*",
     spell: String = "*",
     priority: Priority = Priority.MEDIUM,
     swung: Boolean? = false,
+    special: Boolean? = false,
     override: Boolean = true,
     block: suspend CombatSwing.(Player) -> Unit
 ) {
-    Events.handle("player_combat_swing", "player", weapon, type, spell, swung, priority, override = override, handler = block)
+    Events.handle("player_combat_swing", "player", weapon, style, spell, swung, special, priority, override = override, handler = block)
 }
 
 fun npcCombatSwing(
     npc: String = "*",
     weapon: String = "*",
-    type: String = "*",
+    style: String = "*",
     spell: String = "*",
     priority: Priority = Priority.MEDIUM,
     swung: Boolean? = false,
     override: Boolean = true,
     block: suspend CombatSwing.(NPC) -> Unit
 ) {
-    Events.handle("npc_combat_swing", npc, weapon, type, spell, swung, priority, override = override, handler = block)
+    Events.handle("npc_combat_swing", npc, weapon, style, spell, swung, "*", priority, override = override, handler = block)
 }
 
 fun characterCombatSwing(
     weapon: String = "*",
-    type: String = "*",
+    style: String = "*",
     spell: String = "*",
     priority: Priority = Priority.MEDIUM,
     swung: Boolean? = false,
     override: Boolean = true,
     block: suspend CombatSwing.(Character) -> Unit
 ) {
-    combatSwing(weapon, type, spell, priority, swung, override, block)
-    npcCombatSwing("*", weapon, type, spell, priority, swung, override, block)
-}
-
-fun spellSwing(spell: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Player) -> Unit) {
-    on<CombatSwing>({ player -> !swung() && player.fightStyle == "magic" && player.spell.isNotBlank() && wildcardEquals(spell, player.spell) }, priority) { character ->
-        block.invoke(this, character)
-    }
-}
-
-fun weaponSwing(weapon: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Player) -> Unit) {
-    on<CombatSwing>({ player -> !swung() && !player.specialAttack && wildcardEquals(weapon, player.weapon.id) }, priority) { character ->
-        block.invoke(this, character)
-    }
+    combatSwing(weapon, style, spell, priority, swung, null, override, block)
+    npcCombatSwing("*", weapon, style, spell, priority, swung, override, block)
 }
 
 fun weaponSwing(vararg weapons: String = arrayOf("*"), style: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Player) -> Unit) {
@@ -89,30 +79,6 @@ fun weaponSwing(vararg weapons: String = arrayOf("*"), style: String = "*", prio
         on<CombatSwing>({ player -> !swung() && !player.specialAttack && wildcardEquals(style, player.fightStyle) && wildcardEquals(weapon, player.weapon.id) }, priority) { character ->
             block.invoke(this, character)
         }
-    }
-}
-
-fun characterSpellSwing(spell: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Character) -> Unit) {
-    onCharacter<CombatSwing>({ char -> !swung() && char.fightStyle == "magic" && char.spell.isNotBlank() && wildcardEquals(spell, char.spell) }, priority) { character ->
-        block.invoke(this, character)
-    }
-}
-
-fun characterSpellSwing(spells: Set<String>, priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Character) -> Unit) {
-    if (spells.any { it.contains("*") || it.contains("#") }) {
-        throw IllegalArgumentException("Spell collections cannot contain wildcards.")
-    }
-    onCharacter<CombatSwing>({ player -> !swung() && spells.contains(player.spell) }, priority) { character ->
-        block.invoke(this, character)
-    }
-}
-
-fun spellSwing(spells: Set<String>, priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Player) -> Unit) {
-    if (spells.any { it.contains("*") || it.contains("#") }) {
-        throw IllegalArgumentException("Spell collections cannot contain wildcards.")
-    }
-    on<CombatSwing>({ player -> !swung() && spells.contains(player.spell) }, priority) { character ->
-        block.invoke(this, character)
     }
 }
 

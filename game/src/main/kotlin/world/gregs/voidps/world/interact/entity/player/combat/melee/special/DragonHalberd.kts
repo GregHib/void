@@ -9,17 +9,17 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-specialAttackSwing("dragon_halberd") { player ->
+combatSwing("dragon_halberd", "melee", special = true) { player ->
     if (!drainSpecialEnergy(player, 300)) {
         delay = -1
-        return@specialAttackSwing
+        return@combatSwing
     }
     player.setAnimation("sweep")
     player.setGraphic("sweep")

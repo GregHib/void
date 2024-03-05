@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val definitions: SpellDefinitions by inject()
 
-combatSwing(spell = "ice_*", type = "magic") { player ->
+combatSwing(spell = "ice_*", style = "magic") { player ->
     val spell = player.spell
     player.setAnimation("ancient_spell${if (Spell.isMultiTarget(spell)) "_multi" else ""}")
     player.shoot(spell, target)

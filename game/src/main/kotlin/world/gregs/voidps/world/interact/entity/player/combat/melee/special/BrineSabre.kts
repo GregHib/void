@@ -3,8 +3,8 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAttack
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
@@ -16,10 +16,10 @@ specialAttack("brine_sabre") { player ->
     }
 }
 
-specialAttackSwing("brine_sabre") { player ->
+combatSwing("brine_sabre", "melee", special = true) { player ->
     if (!drainSpecialEnergy(player, 750)) {
         delay = -1
-        return@specialAttackSwing
+        return@combatSwing
     }
     player.setAnimation("liquify")
     player.setGraphic("liquify")

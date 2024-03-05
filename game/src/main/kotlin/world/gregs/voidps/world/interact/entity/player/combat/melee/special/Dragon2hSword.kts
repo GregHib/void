@@ -10,18 +10,18 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.world.interact.entity.combat.Target
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
-import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-specialAttackSwing("dragon_2h_sword*") { player ->
+combatSwing("dragon_2h_sword*", "melee", special = true) { player ->
     if (!drainSpecialEnergy(player, 600)) {
         delay = -1
-        return@specialAttackSwing
+        return@combatSwing
     }
     player.setAnimation("powerstab")
     player.setGraphic("powerstab")

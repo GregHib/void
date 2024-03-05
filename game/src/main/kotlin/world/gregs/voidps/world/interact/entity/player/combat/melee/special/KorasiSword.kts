@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.type.random
@@ -18,7 +17,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 
-weaponSwing("korasis_sword", Priority.LOW) { player ->
+combatSwing("korasis_sword", "melee") { player ->
     player.setAnimation("korasis_sword_${
         when (player.attackType) {
             "chop" -> "chop"
@@ -35,10 +34,10 @@ val players: Players by inject()
 val npcs: NPCs by inject()
 val lineOfSight: LineValidator by inject()
 
-specialAttackSwing("korasis_sword") { player ->
+combatSwing("korasis_sword", "melee", special = true) { player ->
     if (!drainSpecialEnergy(player, 600)) {
         delay = -1
-        return@specialAttackSwing
+        return@combatSwing
     }
     player["korasi_chain"] = mutableSetOf(target.index)
     player.setAnimation("disrupt")

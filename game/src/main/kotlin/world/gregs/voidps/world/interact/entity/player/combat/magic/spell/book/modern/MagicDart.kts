@@ -9,7 +9,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-combatSwing(spell = "magic_dart", type = "magic") { player ->
+combatSwing(spell = "magic_dart", style = "magic") { player ->
     player.setAnimation("magic_dart")
     player.setGraphic("magic_dart_cast")
     player.shoot(id = player.spell, target = target)
