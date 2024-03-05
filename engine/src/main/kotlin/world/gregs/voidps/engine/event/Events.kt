@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.event
 
 import com.github.michaelbull.logging.InlineLogger
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import kotlinx.coroutines.*
 import net.pearx.kasechange.toSnakeCase
@@ -20,7 +21,7 @@ import kotlin.coroutines.CoroutineContext
  */
 class Events : CoroutineScope {
     override val coroutineContext: CoroutineContext = Dispatchers.Unconfined + errorHandler
-    private val roots = mutableMapOf<Int, TrieNode>()
+    private val roots: MutableMap<Int, TrieNode> = Int2ObjectOpenHashMap(8)
     var all: ((Player, Event) -> Unit)? = null
     private val logger = InlineLogger()
 
@@ -45,7 +46,7 @@ class Events : CoroutineScope {
             node = node.children[param]!!
         }
         if (node.handler == null) {
-            node.handler = mutableSetOf()
+            node.handler = HashSet(1)
         }
         node.handler!!.add(handler)
     }
