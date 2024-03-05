@@ -11,7 +11,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.hit.npcCombatAttack
-import world.gregs.voidps.world.interact.entity.combat.npcSwing
+import world.gregs.voidps.world.interact.entity.combat.npcCombatSwing
 import world.gregs.voidps.world.interact.entity.effect.freeze
 import world.gregs.voidps.world.interact.entity.player.toxin.poison
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -19,7 +19,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val specials = listOf("toxic", "ice", "shock")
 
-npcSwing("king_black_dragon", Priority.HIGHEST) { npc ->
+npcCombatSwing("king_black_dragon", priority = Priority.HIGHEST) { npc ->
     val canMelee = CharacterTargetStrategy(npc).reached(target)
     when (random.nextInt(if (canMelee) 3 else 2)) {
         0 -> {

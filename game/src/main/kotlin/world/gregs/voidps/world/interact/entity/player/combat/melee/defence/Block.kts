@@ -1,20 +1,26 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.defence
 
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
 import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val definitions: WeaponStyleDefinitions by inject()
 
 characterCombatAttack { character ->
+    character.playSound(calculateHitSound(target), delay)
     if (target is Player) {
+        target.playSound(calculateHitSound(target), delay)
         val shield = target.equipped(EquipSlot.Shield).id
         if (shield.startsWith("boxing_gloves")) {
             target.setAnimation("boxing_gloves_block", delay)
@@ -57,4 +63,19 @@ characterCombatAttack { character ->
         target.setAnimation(animation)
         blocked = true
     }
+}
+
+fun calculateHitSound(target: Character): String {
+    if (target is NPC) {
+        return "${target.race}_hit"
+    }
+
+    if (target is Player) {
+        return if (target.male) {
+            "male_hit_${random.nextInt(0, 3)}"
+        } else {
+            "female_hit_${random.nextInt(0, 1)}"
+        }
+    }
+    return "human_hit"
 }

@@ -1,15 +1,14 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.ancient
 
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.world.interact.entity.combat.hit.characterSpellAttack
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
+import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.spellSwing
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-spellSwing("shadow_*", Priority.LOW) { player ->
+combatSwing(spell = "shadow_*", type = "magic") { player ->
     val spell = player.spell
     player.setAnimation("ancient_spell${if (Spell.isMultiTarget(spell)) "_multi" else ""}")
     player.shoot(spell, target)
@@ -17,6 +16,9 @@ spellSwing("shadow_*", Priority.LOW) { player ->
     delay = 5
 }
 
-characterSpellAttack("shadow_*") { source ->
+characterCombatAttack(spell = "shadow_*", type = "magic") { source ->
+    if (damage <= 0) {
+        return@characterCombatAttack
+    }
     Spell.drain(source, target, spell)
 }

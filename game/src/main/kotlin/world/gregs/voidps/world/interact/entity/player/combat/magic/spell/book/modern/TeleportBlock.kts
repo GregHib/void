@@ -6,13 +6,12 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.spellSwing
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.protectMagic
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -20,11 +19,11 @@ import kotlin.math.sign
 
 val definitions: SpellDefinitions by inject()
 
-spellSwing("teleport_block", Priority.LOW) { player ->
+combatSwing(spell = "teleport_block", type = "magic") { player ->
     if (target is NPC) {
         delay = -1
         player.message("You can't use that against an NPC.")
-        return@spellSwing
+        return@combatSwing
     }
     val spell = player.spell
     player.setAnimation("${spell}_cast")

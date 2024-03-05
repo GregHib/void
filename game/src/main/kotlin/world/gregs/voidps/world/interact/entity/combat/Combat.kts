@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.mode.combat.CombatReached
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatStop
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.onCharacter
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.world.interact.entity.death.characterDeath
@@ -53,7 +54,10 @@ fun combat(character: Character, target: Character) {
         return
     }
     val swing = CombatSwing(target)
-    character.emit(swing)
+    for (priority in Priority.entries.reversed()) {
+        swing.priority = priority
+        character.emit(swing)
+    }
     val nextDelay = swing.delay
     if (nextDelay == null || nextDelay < 0) {
         character.mode = EmptyMode

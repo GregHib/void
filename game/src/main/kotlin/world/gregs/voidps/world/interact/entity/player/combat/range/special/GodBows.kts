@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.world.interact.entity.combat.attackType
@@ -18,8 +17,6 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpeci
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
-
-fun isGodBow(weapon: Item) = weapon.id == "saradomin_bow" || weapon.id == "guthix_bow" || weapon.id == "zamorak_bow"
 
 specialAttackSwing("saradomin_bow", "guthix_bow", "zamorak_bow", style = "range", priority = Priority.MEDIUM) { player ->
     val speed = player.weapon.def["attack_speed", 4]
@@ -42,10 +39,7 @@ var Player.restoration: Int
         this["restoration"] = value
     }
 
-combatAttack { source ->
-    if (!isGodBow(weapon) || !special) {
-        return@combatAttack
-    }
+val specialHandler: suspend CombatAttack.(Player) -> Unit = combatAttack@{ source ->
     when (weapon.id) {
         "zamorak_bow" -> target.hit(source, weapon, type, CLIENT_TICKS.toTicks(delay), spell, special, damage)
         "saradomin_bow" -> {
@@ -60,6 +54,9 @@ combatAttack { source ->
         }
     }
 }
+combatAttack("saradomin_bow", special = true, block = specialHandler)
+combatAttack("guthix_bow", special = true, block = specialHandler)
+combatAttack("zamorak_bow", special = true, block = specialHandler)
 
 val handler: suspend CombatHit.(Character) -> Unit = { character ->
     character.setGraphic("${weapon.id}_special_hit")

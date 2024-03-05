@@ -3,12 +3,7 @@ package world.gregs.voidps.world.interact.entity.combat
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.CancellableEvent
-import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.onCharacter
-import world.gregs.voidps.engine.event.onNPC
-import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.engine.event.*
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
@@ -19,27 +14,62 @@ class CombatSwing(
     val target: Character
 ) : CancellableEvent() {
     var delay: Int? = null
+    var priority: Priority = Priority.HIGHEST
 
     fun swung(): Boolean {
         return delay != null
     }
 
-}
+    override fun size() = 7
 
-fun combatSwing(priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Player) -> Unit) {
-    on<CombatSwing>(priority = priority, block = block)
-}
-
-fun npcSwing(npc: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(NPC) -> Unit) {
-    if (npc == "*") {
-        onNPC<CombatSwing>({ !swung() }, priority) { character ->
-            block.invoke(this, character)
-        }
-    } else {
-        onNPC<CombatSwing>({ !swung() && wildcardEquals(npc, it.id) }, priority) { character ->
-            block.invoke(this, character)
-        }
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> "${dispatcher.key}_combat_swing"
+        1 -> dispatcher.identifier
+        2 -> if (dispatcher is Character) dispatcher.weapon.id else ""
+        3 -> if (dispatcher is Character) dispatcher.fightStyle else "melee"
+        4 -> if (dispatcher is Character) dispatcher.spell else ""
+        5 -> delay != null
+        6 -> priority
+        else -> null
     }
+}
+
+fun combatSwing(
+    weapon: String = "*",
+    type: String = "*",
+    spell: String = "*",
+    priority: Priority = Priority.MEDIUM,
+    swung: Boolean? = false,
+    override: Boolean = true,
+    block: suspend CombatSwing.(Player) -> Unit
+) {
+    Events.handle("player_combat_swing", "player", weapon, type, spell, swung, priority, override = override, handler = block)
+}
+
+fun npcCombatSwing(
+    npc: String = "*",
+    weapon: String = "*",
+    type: String = "*",
+    spell: String = "*",
+    priority: Priority = Priority.MEDIUM,
+    swung: Boolean? = false,
+    override: Boolean = true,
+    block: suspend CombatSwing.(NPC) -> Unit
+) {
+    Events.handle("npc_combat_swing", npc, weapon, type, spell, swung, priority, override = override, handler = block)
+}
+
+fun characterCombatSwing(
+    weapon: String = "*",
+    type: String = "*",
+    spell: String = "*",
+    priority: Priority = Priority.MEDIUM,
+    swung: Boolean? = false,
+    override: Boolean = true,
+    block: suspend CombatSwing.(Character) -> Unit
+) {
+    combatSwing(weapon, type, spell, priority, swung, override, block)
+    npcCombatSwing("*", weapon, type, spell, priority, swung, override, block)
 }
 
 fun spellSwing(spell: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatSwing.(Player) -> Unit) {

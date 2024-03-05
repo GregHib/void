@@ -9,18 +9,18 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.npcSwing
+import world.gregs.voidps.world.interact.entity.combat.npcCombatSwing
 
 val definitions: WeaponStyleDefinitions by inject()
 
-npcSwing(priority = Priority.LOWEST) { npc ->
+npcCombatSwing(priority = Priority.LOWEST) { npc ->
     npc.setAnimation(attackAnimation(npc))
 //    (target as? Player)?.playSound(attackSound(npc))
     npc.hit(target, delay = 1)
     delay = npc.def["attack_speed", 4]
 }
 
-npcSwing(priority = Priority.HIGHER) { npc ->
+npcCombatSwing(priority = Priority.HIGHER) { npc ->
     if (npc.tile.distanceTo(target) > npc.def["attack_radius", 8]) {
         delay = -1
         npc.mode = Retreat(npc, target)

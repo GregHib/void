@@ -50,7 +50,7 @@ variableSet("under_attack", to = 1) { player ->
     }
 }
 
-combatSwing { player ->
+combatSwing(swung = null) { player ->
     if (player.levels.getPercent(Skill.Constitution) < 50.0) {
         val food = player.inventory.items.firstOrNull { it.def.contains("heals") } ?: return@combatSwing
         player.bot.inventoryOption(food.id, "Eat")

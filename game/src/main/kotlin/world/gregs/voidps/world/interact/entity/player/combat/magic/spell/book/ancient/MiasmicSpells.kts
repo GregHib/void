@@ -10,15 +10,14 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
-import world.gregs.voidps.world.interact.entity.combat.hit.characterSpellAttack
+import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.spellSwing
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val definitions: SpellDefinitions by inject()
 
-spellSwing("miasmic_*", Priority.LOW) { player ->
+combatSwing(spell = "miasmic_*", type = "magic") { player ->
     val spell = player.spell
     player.setAnimation("${spell}_cast")
     player.setGraphic("${spell}_cast")
@@ -35,7 +34,10 @@ combatSwing(priority = Priority.LOWEST) { player ->
     }
 }
 
-characterSpellAttack("miasmic_*") {
+characterCombatAttack(spell = "miasmic_*", type = "magic") {
+    if (damage <= 0) {
+        return@characterCombatAttack
+    }
     val seconds: Int = definitions.get(spell)["effect_seconds"]
     target.start("miasmic", seconds, epochSeconds())
 }

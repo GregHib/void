@@ -1,14 +1,16 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.modern
 
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.event.Priority
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.spellSwing
 
-val godSpells = setOf("claws_of_guthix", "flames_of_zamorak", "saradomin_strike")
-
-spellSwing(godSpells, Priority.LOW) { player ->
+val handler: suspend CombatSwing.(Player) -> Unit = { player ->
     player.setAnimation("cast_god_spell")
     player.hit(target, delay = 2)
     delay = 5
 }
+combatSwing(spell = "claws_of_guthix", type = "magic", block = handler)
+combatSwing(spell = "flames_of_zamorak", type = "magic", block = handler)
+combatSwing(spell = "saradomin_strike", type = "magic", block = handler)

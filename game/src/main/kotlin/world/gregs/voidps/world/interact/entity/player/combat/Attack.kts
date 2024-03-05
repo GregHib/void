@@ -42,7 +42,7 @@ itemOnNPCApproach(id = "*_spellbook") {
     cancel()
 }
 
-combatSwing { player ->
+combatSwing(swung = null) { player ->
     if (player.contains("one_time")) {
         player.mode = EmptyMode
         player.clear("one_time")
