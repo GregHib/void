@@ -5,7 +5,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 
 combatPrepare(style = "magic") { player ->
-    if (player.spell.isNotBlank() && !Spell.removeRequirements(player, player.spell)) {
+    if (player.spell.isNotBlank() && !Spell.hasRequirements(player, player.spell)) {
         player.clear("autocast")
         cancel()
         return@combatPrepare

@@ -84,7 +84,7 @@ object Spell {
         return true
     }
 
-    fun hasRequirements(player: Player, spell: String, runes: MutableList<Item>, items: MutableList<Item>): Boolean {
+    fun hasRequirements(player: Player, spell: String, runes: MutableList<Item> = mutableListOf(), items: MutableList<Item> = mutableListOf()): Boolean {
         val component = get<InterfaceDefinitions>().getComponent(player.spellBook, spell) ?: return false
         if (!player.has(Skill.Magic, component.magicLevel, message = true)) {
             return false

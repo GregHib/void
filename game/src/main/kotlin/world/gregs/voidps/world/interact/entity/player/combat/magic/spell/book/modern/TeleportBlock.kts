@@ -1,40 +1,19 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.modern
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
-import world.gregs.voidps.world.interact.entity.combat.hit.Hit
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.combatPrepare
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.protectMagic
-import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.math.sign
 
-val definitions: SpellDefinitions by inject()
-
-combatSwing(spell = "teleport_block", style = "magic") { player ->
-    if (target is NPC) {
-        delay = -1
+combatPrepare("magic") { player ->
+    if (player.spell == "teleport_block" && target is NPC) {
         player.message("You can't use that against an NPC.")
-        return@combatSwing
+        cancel()
     }
-    val spell = player.spell
-    player.setAnimation("${spell}_cast")
-    player.setGraphic("${spell}_cast")
-    player.shoot(id = player.spell, target = target)
-    val distance = player.tile.distanceTo(target)
-    if (player.hit(target, delay = Hit.magicDelay(distance)) != -1) {
-        val duration: Int = definitions.get(player.spell)["block_ticks"]
-        player.teleBlock(target, duration)
-    }
-    delay = 5
 }
 
 timerStart("teleport_block") { player ->
