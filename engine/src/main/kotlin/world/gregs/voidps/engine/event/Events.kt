@@ -22,6 +22,7 @@ class Events : CoroutineScope {
     override val coroutineContext: CoroutineContext = Dispatchers.Unconfined + errorHandler
     private val roots = mutableMapOf<Int, TrieNode>()
     var all: ((Player, Event) -> Unit)? = null
+    private val logger = InlineLogger()
 
     private class TrieNode {
         val children: MutableMap<Any?, TrieNode> = Object2ObjectOpenHashMap()
@@ -55,8 +56,12 @@ class Events : CoroutineScope {
      */
     fun emit(dispatcher: EventDispatcher, event: Event): Boolean {
         val handlers = search(dispatcher, event) ?: return false
-        if (dispatcher is Player && dispatcher.contains("bot")) {
-            all?.invoke(dispatcher, event)
+        if (dispatcher is Player) {
+            if (dispatcher.contains("bot")) {
+                all?.invoke(dispatcher, event)
+            } else if (dispatcher["debug", false]) {
+                logger.debug { "Event: $dispatcher - ${event.debug(dispatcher)}" }
+            }
         }
         runBlocking {
             for (handler in handlers) {

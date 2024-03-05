@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.combat
 
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
@@ -53,6 +54,10 @@ fun combat(character: Character, target: Character) {
         return
     }
     val swing = CombatSwing(target)
+    if (character["debug", false] || target["debug", false]) {
+        val player = if (character["debug", false] && character is Player) character else target as Player
+        player.message("---- Swing (${character.identifier}) -> (${target.identifier}) -----")
+    }
     character.emit(swing)
     val nextDelay = swing.delay
     if (nextDelay == null || nextDelay < 0) {

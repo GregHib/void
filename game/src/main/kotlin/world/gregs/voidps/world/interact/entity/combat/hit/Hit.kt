@@ -151,4 +151,9 @@ fun Character.directHit(source: Character, damage: Int, type: String = "damage",
         return
     }
     emit(CombatHit(source, type, damage, weapon, spell, special))
+    if (source["debug", false] || this["debug", false]) {
+        val player = if (this["debug", false] && this is Player) this else source as Player
+        val message = "Damage: $damage ($type, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
+        player.message(message)
+    }
 }
