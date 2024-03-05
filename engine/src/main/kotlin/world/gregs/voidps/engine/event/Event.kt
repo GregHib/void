@@ -2,13 +2,9 @@ package world.gregs.voidps.engine.event
 
 interface Event {
 
-    open fun size(): Int {
-        return 0
-    }
+    fun size(): Int
 
-    open fun parameter(dispatcher: EventDispatcher, index: Int): Any? {
-        return null
-    }
+    fun parameter(dispatcher: EventDispatcher, index: Int): Any?
 
     fun debug(dispatcher: EventDispatcher): String = Array(size()) { parameter(dispatcher, it) }.contentToString()
 }
