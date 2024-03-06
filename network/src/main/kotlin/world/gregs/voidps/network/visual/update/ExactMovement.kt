@@ -2,7 +2,7 @@ package world.gregs.voidps.network.visual.update
 
 import world.gregs.voidps.network.Visual
 
-data class ForceMovement(
+data class ExactMovement(
     var startX: Int = 0,
     var startY: Int = 0,
     var startDelay: Int = 0,

@@ -71,7 +71,7 @@ suspend fun CharacterContext.pauseForever() {
 }
 
 /**
- * Movement delay, typically used by interactions that perform animations or force movements
+ * Movement delay, typically used by interactions that perform animations or exact movements
  */
 suspend fun CharacterContext.arriveDelay() {
     val delay = character.remaining("last_movement")

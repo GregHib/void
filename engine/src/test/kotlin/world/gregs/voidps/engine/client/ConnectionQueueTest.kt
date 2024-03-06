@@ -22,7 +22,6 @@ internal class ConnectionQueueTest : KoinMock() {
             single {
                 ConnectionQueue(getIntProperty("connectionPerTickCap", 1))
             }
-            single { ConnectionGatekeeper(get()) }
         }
     )
 

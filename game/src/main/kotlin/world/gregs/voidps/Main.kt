@@ -1,6 +1,7 @@
 package world.gregs.voidps
 
 import com.github.michaelbull.logging.InlineLogger
+import kotlinx.coroutines.*
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import org.koin.dsl.module
@@ -13,29 +14,26 @@ import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
-import world.gregs.voidps.engine.client.ConnectionGatekeeper
-import world.gregs.voidps.engine.client.ConnectionQueue
-import world.gregs.voidps.engine.client.PlayerAccountLoader
-import world.gregs.voidps.engine.client.update.CharacterTask
-import world.gregs.voidps.engine.client.update.iterator.ParallelIterator
-import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
+import world.gregs.voidps.engine.client.*
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
 import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.loadScripts
 import java.io.File
-import java.net.BindException
 import java.util.*
+import kotlin.coroutines.CoroutineContext
 
 /**
  * @author GregHib <greg@gregs.world>
  * @since April 18, 2020
  */
-object Main {
+object Main : CoroutineScope {
 
+    override val coroutineContext: CoroutineContext = Contexts.Game
     lateinit var name: String
     private val logger = InlineLogger()
     private const val PROPERTY_FILE_NAME = "game.properties"
@@ -47,29 +45,33 @@ object Main {
         val properties = properties()
         name = properties.getProperty("name")
 
+        // File server
         val cache = timed("cache") { Cache.load(properties) }
+        val server = GameServer.load(cache, properties, ClientManager())
+        val job = server.start(properties.getProperty("port").toInt())
+
+        // Content
         preload(cache, properties)
 
-        val accountLoader = PlayerAccountLoader(get<ConnectionQueue>(), get(), Contexts.Game)
+        // Login server
         val protocol = protocol(get<Huffman>())
+        val accounts: LoginManager = get()
+        val accountLoader = PlayerAccountLoader(get<ConnectionQueue>(), get(), Contexts.Game)
+        val loginServer = LoginServer.load(properties, protocol, accounts, accountLoader)
 
-        val gatekeeper: ConnectionGatekeeper = get()
-        val loginServer = LoginServer.load(properties, protocol, gatekeeper, accountLoader)
-        val server = GameServer.load(cache, properties, gatekeeper, loginServer)
-
-        val tickStages = getTickStages(iterator = if (CharacterTask.DEBUG) SequentialIterator() else ParallelIterator())
-        val engine = GameLoop(tickStages)
+        // Game world
+        val stages = getTickStages()
+        val engine = GameLoop(stages)
         World.start(properties)
         engine.start()
+        server.loginServer = loginServer
         logger.info { "$name loaded in ${System.currentTimeMillis() - startTime}ms" }
-
-        try {
-            server.start(getIntProperty("port"))
-        } catch (e: BindException) {
-            logger.error(e) { "Error starting server." }
-        } finally {
-            server.stop()
-            engine.stop()
+        runBlocking {
+            try {
+                job.join()
+            } finally {
+                engine.stop()
+            }
         }
     }
 

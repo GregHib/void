@@ -20,7 +20,7 @@ class LoginServer(
     private val revision: Int,
     private val modulus: BigInteger,
     private val private: BigInteger,
-    private val gatekeeper: NetworkGatekeeper,
+    private val accounts: SessionManager,
     private val loader: AccountLoader
 ) : Server {
 
@@ -78,7 +78,7 @@ class LoginServer(
         val xtea = decryptXtea(packet, isaacKeys)
 
         val username = xtea.readString()
-        if (gatekeeper.connected(username)) {
+        if (accounts.count(username) > 0) {
             write.finish(Response.ACCOUNT_ONLINE)
             return
         }
@@ -105,9 +105,9 @@ class LoginServer(
     }
 
     suspend fun login(read: ByteReadChannel, client: Client, username: String, password: String, displayMode: Int) {
-        val index = gatekeeper.connect(username, client.address)
+        val index = accounts.add(username)
         client.onDisconnected {
-            gatekeeper.disconnect(username, client.address)
+            accounts.remove(username)
         }
         if (index == null) {
             client.disconnect(Response.WORLD_FULL)
@@ -143,11 +143,11 @@ class LoginServer(
     companion object {
         private val logger = InlineLogger()
 
-        fun load(properties: Properties, protocol: Array<Decoder?>, gatekeeper: NetworkGatekeeper, loader: AccountLoader): LoginServer {
+        fun load(properties: Properties, protocol: Array<Decoder?>, accounts: SessionManager, loader: AccountLoader): LoginServer {
             val gameModulus = BigInteger(properties.getProperty("gameModulus"), 16)
             val gamePrivate = BigInteger(properties.getProperty("gamePrivate"), 16)
             val revision = properties.getProperty("revision").toInt()
-            return LoginServer(protocol, revision, gameModulus, gamePrivate, gatekeeper, loader)
+            return LoginServer(protocol, revision, gameModulus, gamePrivate, accounts, loader)
         }
     }
 }
