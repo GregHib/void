@@ -4093,7 +4093,7 @@ rune_throwing_axe:
   price: 292
   limit: 1000
   attack_range: 4
-  special_amount: 100
+  special_energy: 100
   slot: "Weapon"
   aka: [ rune_thrownaxe, rune_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4426,7 +4426,7 @@ magic_longbow:
   limit: 5000
   weight: 1.814
   attack_range: 10
-  special_amount: 350
+  special_energy: 350
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -4439,7 +4439,7 @@ magic_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
-  special_amount: 550
+  special_energy: 550
   aka: [ msb, magic_sb ]
   examine: "Short and magical, but still effective."
 magic_shortbow_noted: 862
@@ -10141,7 +10141,7 @@ cocktail_glass:
   weight: 0.1
   examine: "For sipping cocktails."
 cocktail_glass_noted: 2027
-premade_blurberry_special_amount:
+premade_blurberry_special_energy:
   id: 2028
   price: 41
   limit: 1000
@@ -10265,7 +10265,7 @@ unfinished_cocktail_blurberry_special_lime:
   <<: *unfinished_cocktail_pineapple_punch_mixed
   id: 2062
 picture_noted_9: 2063
-blurberry_special_amount:
+blurberry_special_energy:
   id: 2064
   price: 2047
   limit: 1000
@@ -28680,7 +28680,7 @@ seercull:
   limit: 100
   weight: 1.36
   attack_range: 8
-  special_amount: 1000
+  special_energy: 1000
   slot: "Weapon"
   type: "TwoHanded"
   examine: "An ancient Fremennik bow that was once used to battle the Moon Clan."
@@ -37306,7 +37306,7 @@ dorgeshuun_crossbow:
   weight: 2.267
   attack_range: 6
   slot: "Weapon"
-  special_amount: 750
+  special_energy: 750
   aka: [ dorg_cb, dorg_cbow, dorg_crossbow ]
   examine: "This fires crossbow bolts."
 dorgeshuun_cbow_noted: 8881
@@ -39383,7 +39383,7 @@ mixed_punch:
   weight: 0.15
   examine: "This Pineapple Punch needs pouring, lime and pineapple chunks and an orange slice."
   kept: "Reclaim"
-mixed_blurberry_special_amount:
+mixed_blurberry_special_energy:
   id: 9570
   tradeable: false
   weight: 0.15
@@ -47590,7 +47590,7 @@ dark_bow:
   limit: 10
   weight: 1.814
   attack_range: 10
-  special_amount: 550
+  special_energy: 550
   ammo_required: 2
   aka: [ dbow, d_bow ]
   slot: "Weapon"
@@ -58805,28 +58805,28 @@ morrigans_javelin:
   price: 271900
   limit: 100
   attack_range: 5
-  special_amount: 500
+  special_energy: 500
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p:
   id: 13880
   limit: 100
   attack_range: 5
-  special_amount: 500
+  special_energy: 500
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p+:
   id: 13881
   limit: 100
   attack_range: 5
-  special_amount: 500
+  special_energy: 500
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p++:
   id: 13882
   limit: 100
   attack_range: 5
-  special_amount: 500
+  special_energy: 500
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_throwing_axe:
@@ -58835,7 +58835,7 @@ morrigans_throwing_axe:
   limit: 500
   attack_range: 4
   special_damage_mod_1: 1.2
-  special_amount: 500
+  special_energy: 500
   slot: "Weapon"
   examine: "A vicious throwing axe."
 statiuss_platebody:
@@ -59404,7 +59404,7 @@ corrupt_morrigans_throwing_axe:
   price: 58800
   limit: 500
   attack_range: 4
-  special_amount: 500
+  special_energy: 500
   slot: "Weapon"
   examine: "A vicious throwing axe."
 corrupt_dragon_chainbody:
@@ -62217,7 +62217,7 @@ zaniks_crossbow:
   tradeable: false
   weight: 0.001
   attack_range: 6
-  special_amount: 500
+  special_energy: 500
   slot: "Weapon"
   examine: "The crossbow that defeated the avatar of Bandos."
   kept: "Reclaim"
@@ -64826,7 +64826,7 @@ hand_cannon:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 9
-  special_amount: 500
+  special_energy: 500
   examine: "A miniature dwarven cannon."
 hand_cannon_noted: 15242
 hand_cannon_shot:
@@ -77485,7 +77485,7 @@ magic_longbow_sighted:
   tradeable: false
   weight: 1.814
   attack_range: 10
-  special_amount: 350
+  special_energy: 350
   slot: "Weapon"
   type: "TwoHanded"
   examine: "It has a sight on it that should improve its performance."
@@ -79824,7 +79824,7 @@ saradomin_bow:
   limit: 2
   weight: 1.814
   attack_range: 10
-  special_amount: 550
+  special_energy: 550
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Saradomin."
@@ -79837,7 +79837,7 @@ guthix_bow:
   weight: 1.814
   attack_range: 10
   special_damage_mod_1: 1.5
-  special_amount: 550
+  special_energy: 550
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Guthix."
@@ -79849,7 +79849,7 @@ zamorak_bow:
   limit: 2
   weight: 1.814
   attack_range: 10
-  special_amount: 550
+  special_energy: 550
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Zamorak."

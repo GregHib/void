@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import org.rsmod.game.pathfinder.LineValidator
+import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -25,8 +26,6 @@ val npcs: NPCs by inject()
 val lineOfSight: LineValidator by inject()
 
 combatSwing("rune_throwing_axe", style = "range", special = true) { player ->
-    val speed = player.weapon.def["attack_speed", 4]
-    delay = if (player.attackType == "rapid") speed - 1 else speed
     val ammo = player.ammo
     player["chain_hits"] = mutableSetOf(target.index)
     player.setAnimation("rune_throwing_axe_special")
@@ -34,6 +33,7 @@ combatSwing("rune_throwing_axe", style = "range", special = true) { player ->
     player.shoot(id = "${ammo}_special", target = target)
     val distance = player.tile.distanceTo(target)
     player.hit(target, delay = Hit.throwDelay(distance))
+    delay = player.weapon.def["attack_speed", 4] - (player.attackType == "rapid").toInt()
 }
 
 characterCombatHit("rune_throwing_axe", "range", special = true) { target ->

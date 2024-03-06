@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
+import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -20,6 +21,5 @@ combatSwing("zaniks_crossbow", style = "range", special = true) { player ->
     if (damage != -1) {
         target.levels.drain(Skill.Defence, damage / 10)
     }
-    val speed = player.weapon.def["attack_speed", 4]
-    delay = if (player.attackType == "rapid") speed - 1 else speed
+    delay = player.weapon.def["attack_speed", 4] - (player.attackType == "rapid").toInt()
 }

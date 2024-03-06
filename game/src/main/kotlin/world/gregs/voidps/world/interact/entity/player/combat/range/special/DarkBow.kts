@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
+import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -17,8 +18,6 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 combatSwing("dark_bow*", style = "range", special = true) { player ->
     val dragon = player.ammo == "dragon_arrow"
-    val speed = player.weapon.def["attack_speed", 4]
-    delay = if (player.attackType == "rapid") speed - 1 else speed
     player.setAnimation("bow_accurate")
     player.setGraphic("${player.ammo}_double_shot")
     player.playSound("dark_bow_special")
@@ -37,6 +36,7 @@ combatSwing("dark_bow*", style = "range", special = true) { player ->
     }
     player.hit(target)
     player.hit(target)
+    delay = player.weapon.def["attack_speed", 4] - (player.attackType == "rapid").toInt()
 }
 
 characterCombatHit("dark_bow*", "range") { character ->

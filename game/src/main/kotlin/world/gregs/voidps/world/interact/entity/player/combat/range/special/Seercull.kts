@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
+import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.characterLevelChange
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -16,14 +17,13 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 combatSwing("seercull", style = "range", special = true) { player ->
-    val speed = player.weapon.def["attack_speed", 4]
-    delay = if (player.attackType == "rapid") speed - 1 else speed
     player.setAnimation("bow_accurate")
     player.setGraphic("seercull_special_shoot")
     player.playSound("seercull_special")
     player.shoot(id = "seercull_special_arrow", target = target)
     val distance = player.tile.distanceTo(target)
     player.hit(target, delay = Hit.bowDelay(distance))
+    delay = player.weapon.def["attack_speed", 4] - (player.attackType == "rapid").toInt()
 }
 
 characterCombatHit("seercull", "range") { character ->

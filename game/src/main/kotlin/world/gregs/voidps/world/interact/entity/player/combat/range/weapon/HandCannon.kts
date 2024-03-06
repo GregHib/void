@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.weapon
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -37,7 +38,7 @@ combatSwing("hand_cannon", "range") { player ->
         }
     }
     explode(player, if (player.specialAttack) 0.05 else 0.005)
-    delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0
+    delay = player.weapon.def["attack_speed", 4] - (player.attackType == "rapid").toInt()
 }
 
 fun explode(player: Player, chance: Double) {
