@@ -21,7 +21,7 @@ object ItemDefinitions {
         val decoder = ItemDefinitions(ItemDecoder(parameters).load(cache)).load(yaml, property("itemDefinitionsPath"))
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if(def.stringId.contains("zamorakian_spear"))
+            if(def.stringId.contains("anchor"))
 //            if (def.get("category", "") != "")
 //            if (/*def.get("category", "") == "throwable" &&*/ def.contains("secondary_use_level"))
                 println("${def.stringId} ${def.extras}")

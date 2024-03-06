@@ -29,6 +29,8 @@ data class ItemChanged(
 
     val removed = oldItem.isNotEmpty() && item.isEmpty()
 
+    override fun findAll() = true
+
     override fun size() = 7
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
@@ -76,8 +78,8 @@ fun itemChange(inventory: String = "*", slot: EquipSlot, override: Boolean = tru
     itemChange(inventory, slot.index, override = override, block = block)
 }
 
-fun itemChange(inventory: String = "*", index: Int? = null, override: Boolean = true, block: suspend ItemChanged.(Player) -> Unit) {
-    Events.handle("item_change", "*", index ?: "*", inventory, "*", index ?: "*", inventory, override = override, handler = block)
+fun itemChange(inventory: String = "*", index: Int? = null, fromInventory: String = "*", fromIndex: Int? = null, override: Boolean = true, block: suspend ItemChanged.(Player) -> Unit) {
+    Events.handle("item_change", "*", index ?: "*", inventory, "*", fromIndex ?: "*", fromInventory, override = override, handler = block)
 }
 
 fun itemChange(vararg inventories: String = arrayOf("*"), override: Boolean = true, block: suspend ItemChanged.(Player) -> Unit) {
