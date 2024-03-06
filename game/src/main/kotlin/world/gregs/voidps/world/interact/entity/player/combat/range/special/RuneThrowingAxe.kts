@@ -8,12 +8,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.Target
-import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
@@ -30,9 +28,8 @@ combatSwing("rune_throwing_axe", style = "range", special = true) { player ->
     player["chain_hits"] = mutableSetOf(target.index)
     player.setAnimation("rune_throwing_axe_special")
     player.setGraphic("${ammo}_special_throw")
-    player.shoot(id = "${ammo}_special", target = target)
-    val distance = player.tile.distanceTo(target)
-    player.hit(target, delay = Hit.throwDelay(distance))
+    val time = player.shoot(id = "${ammo}_special", target = target)
+    player.hit(target, delay = time)
     delay = player.weapon.def["attack_speed", 4] - (player.attackType == "rapid").toInt()
 }
 
@@ -55,8 +52,8 @@ characterCombatHit("rune_throwing_axe", "range", special = true) { target ->
                 return@characterCombatHit
             }
             chain.add(character.index)
-            target.shoot(id = "rune_throwing_axe_special", target = character)
-            source.hit(character, weapon, type, special = true, delay = 1)
+            val time = target.shoot(id = "rune_throwing_axe_special", target = character)
+            source.hit(character, weapon, type, special = true, delay = time)
             return@characterCombatHit
         }
     }

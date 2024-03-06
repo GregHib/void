@@ -5,13 +5,11 @@ import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.timer.characterTimerStart
 import world.gregs.voidps.engine.timer.characterTimerTick
 import world.gregs.voidps.engine.timer.npcTimerStop
 import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
-import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
@@ -22,9 +20,8 @@ combatSwing("morrigans_javelin*", style = "range", special = true) { player ->
     val ammo = player.ammo
     player.setAnimation("throw_javelin")
     player.setGraphic("${ammo}_special")
-    player.shoot(id = ammo, target = target)
-    val distance = player.tile.distanceTo(target)
-    val damage = player.hit(target, delay = Hit.throwDelay(distance))
+    val time = player.shoot(id = ammo, target = target)
+    val damage = player.hit(target, delay = time)
     if (damage != -1) {
         target["phantom_damage"] = damage
         target["phantom"] = player

@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.attackType
@@ -27,14 +27,15 @@ combatSwing("hand_cannon", "range") { player ->
     player.ammo = ammo.id
     player.setAnimation("hand_cannon_shoot")
     player.setGraphic("hand_cannon_shoot")
-    player.shoot(id = player.ammo, target = target)
-    player.hit(target)
+    val time = player.shoot(id = player.ammo, target = target)
+    player.hit(target, delay = time)
     if (player.specialAttack) {
-        player.softQueue("hit", 2) {
+        val rapid = player.attackType == "rapid"
+        player.strongQueue("hit", 2) {
             player.setAnimation("hand_cannon_special")
             player.setGraphic("hand_cannon_special")
             player.shoot(id = player.ammo, target = target)
-            player.hit(target, delay = if (player.attackType == "rapid") 1 else 2)
+            player.hit(target, delay = if (rapid) 30 else 60)
         }
     }
     explode(player, if (player.specialAttack) 0.05 else 0.005)

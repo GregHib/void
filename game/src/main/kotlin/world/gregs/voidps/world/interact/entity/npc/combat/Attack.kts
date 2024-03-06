@@ -20,7 +20,7 @@ npcCombatSwing { npc ->
     }
     npc.setAnimation(attackAnimation(npc))
 //    (target as? Player)?.playSound(attackSound(npc))
-    npc.hit(target, delay = 1)
+    npc.hit(target, delay = 30)
     delay = npc.def["attack_speed", 4]
 }
 

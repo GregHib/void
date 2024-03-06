@@ -37,7 +37,7 @@ combatSwing("dragon_claws", "melee", special = true) { player ->
 
     player.hit(target, damage = hit1)
     player.hit(target, damage = hit2)
-    player.hit(target, damage = hit3, delay = 1)
-    player.hit(target, damage = hit4, delay = 1)
+    player.hit(target, damage = hit3, delay = 30)
+    player.hit(target, damage = hit4, delay = 30)
     delay = 4
 }

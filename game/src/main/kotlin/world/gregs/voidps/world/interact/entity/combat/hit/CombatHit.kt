@@ -45,7 +45,7 @@ fun npcCombatHit(npc: String = "*", weapon: String = "*", type: String = "*", sp
     Events.handle("npc_combat_hit${if (special) "_special" else ""}", npc, weapon, type, spell, if (override) "*" else true, override = override, handler = block)
 }
 
-fun characterCombatHit(weapon: String = "*", type: String = "*", spell: String = "*", special: Boolean = false, override: Boolean = true, block: suspend CombatHit.(Player) -> Unit) {
+fun characterCombatHit(weapon: String = "*", type: String = "*", spell: String = "*", special: Boolean = false, override: Boolean = true, block: suspend CombatHit.(Character) -> Unit) {
     combatHit(weapon, type, spell, special, override, block)
     npcCombatHit("*", weapon, type, spell, special, override, block)
 }

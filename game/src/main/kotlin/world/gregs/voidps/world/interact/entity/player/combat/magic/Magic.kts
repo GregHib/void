@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
@@ -29,7 +28,7 @@ combatSwing(style = "magic") { player ->
     val graphic: String = if (staff && definition.contains("graphic_staff")) definition["graphic_staff"] else definition["graphic", ""]
     player.setAnimation(animation)
     player.setGraphic(graphic)
-    var flight = -1
+    var time = -1
     if (definition.contains("projectiles")) {
         val projectiles: List<Map<String, Any>> = definition["projectiles"]
         for (projectile in projectiles) {
@@ -37,15 +36,15 @@ combatSwing(style = "magic") { player ->
             val delay = projectile["delay"] as? Int
             val curve = projectile["curve"] as? Int
             val end = projectile["end_height"] as? Int
-            val time = player.shoot(id = id, target = target, delay = delay, curve = curve, endHeight = end)
-            if (flight == -1) {
-                flight = time
+            val flightTime = player.shoot(id = id, target = target, delay = delay, curve = curve, endHeight = end)
+            if (time == -1) {
+                time = flightTime
             }
         }
     } else {
-        flight = player.shoot(id = spell, target = target)
+        time = player.shoot(id = spell, target = target)
     }
-    val damage = player.hit(target, delay = if (flight == -1) 2 else CLIENT_TICKS.toTicks(flight))
+    val damage = player.hit(target, delay = if (time == -1) 64 else time)
     if (damage != -1) {
         if (definition.contains("drain_multiplier")) {
             Spell.drain(player, target, spell)

@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.combat.combatPrepare
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
@@ -85,6 +84,6 @@ combatSwing(style = "range") { player ->
             flight = player.shoot(id = ammo, target = target)
         }
     }
-    player.hit(target, delay = if (flight == -1) 2 else CLIENT_TICKS.toTicks(flight))
+    player.hit(target, delay = if (flight == -1) 64 else flight)
     delay = player.weapon.def["attack_speed", 4] - if (player.attackType == "rapid" || player.attackType == "medium_fuse") 1 else 0
 }

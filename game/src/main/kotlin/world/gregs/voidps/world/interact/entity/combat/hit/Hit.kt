@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.engine.timer.TICKS
+import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
@@ -118,20 +118,21 @@ object Hit {
 
 /**
  * Hits player during combat
+ * @param delay Hit delay in client ticks
  */
 fun Character.hit(
     target: Character,
     weapon: Item = this.weapon,
     type: String = Weapon.type(this, weapon),
-    delay: Int = if (type == "melee") 0 else 2,
+    delay: Int = if (type == "melee") 0 else 64,
     spell: String = this.spell,
     special: Boolean = (this as? Player)?.specialAttack ?: false,
     damage: Int = Damage.roll(this, target, type, weapon, spell)
 ): Int {
     val actualDamage = Damage.modify(this, target, type, damage, weapon, spell, special)
         .coerceAtMost(target.levels.get(Skill.Constitution))
-    emit(CombatAttack(target, type, actualDamage, weapon, spell, special, TICKS.toClientTicks(delay)))
-    target.strongQueue("hit", delay) {
+    emit(CombatAttack(target, type, actualDamage, weapon, spell, special, delay))
+    target.strongQueue("hit", CLIENT_TICKS.toTicks(delay)) {
         target.directHit(this@hit, actualDamage, type, weapon, spell, special)
     }
     return actualDamage
