@@ -27,10 +27,6 @@ val lineOfSight: LineValidator by inject()
 combatSwing("rune_throwing_axe", style = "range", special = true) { player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
-    if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 10)) {
-        delay = -1
-        return@combatSwing
-    }
     val ammo = player.ammo
     player["chain_hits"] = mutableSetOf(target.index)
     player.setAnimation("rune_throwing_axe_special")

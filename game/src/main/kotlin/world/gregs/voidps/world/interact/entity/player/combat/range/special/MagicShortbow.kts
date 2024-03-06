@@ -8,17 +8,12 @@ import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 combatSwing("magic_shortbow*", style = "range", special = true) { player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
-    if (!drainSpecialEnergy(player, 550)) {
-        delay = -1
-        return@combatSwing
-    }
     player.setAnimation("magic_shortbow_special")
     player.setGraphic("magic_shortbow_special")
     player.setGraphic("magic_shortbow_special", delay = 30)

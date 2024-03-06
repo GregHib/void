@@ -8,14 +8,24 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.world.interact.entity.combat.attackType
+import world.gregs.voidps.world.interact.entity.combat.combatPrepare
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val weaponStyles: WeaponStyleDefinitions by inject()
+
+combatPrepare("range") { player ->
+    val amount: Int? = player.weapon.def.getOrNull("special_amount")
+    if (player.specialAttack && amount != null && !drainSpecialEnergy(player, amount)) {
+        player.specialAttack = false
+        cancel()
+    }
+}
 
 combatSwing(style = "range") { player ->
     val ammo = player.ammo

@@ -9,14 +9,9 @@ import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 combatSwing("zaniks_crossbow", style = "range", special = true) { player ->
-    if (!drainSpecialEnergy(player, 500)) {
-        delay = -1
-        return@combatSwing
-    }
     player.setAnimation("zaniks_crossbow_special")
     player.setGraphic("zaniks_crossbow_special")
     player.shoot(id = "zaniks_crossbow_bolt", target = target)

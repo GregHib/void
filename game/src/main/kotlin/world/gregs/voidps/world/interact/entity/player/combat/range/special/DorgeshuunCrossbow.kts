@@ -7,14 +7,9 @@ import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 combatSwing("dorgeshuun_crossbow", style = "range", special = true) { player ->
-    if (!drainSpecialEnergy(player, 750)) {
-        delay = -1
-        return@combatSwing
-    }
     player.setAnimation("crossbow_accurate")
     player.shoot(id = "bone_bolts_spec", target = target)
     val distance = player.tile.distanceTo(target)

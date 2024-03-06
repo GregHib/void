@@ -3,38 +3,11 @@ package world.gregs.voidps.world.interact.entity.player.combat.range.special
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.timer.*
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.*
-import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
-
-val swingHandler: suspend CombatSwing.(Player) -> Unit = handler@{ player ->
-    val speed = player.weapon.def["attack_speed", 4]
-    delay = if (player.attackType == "rapid") speed - 1 else speed
-    if (!drainSpecialEnergy(player, 550)) {
-        delay = -1
-        return@handler
-    }
-    player.setAnimation("bow_accurate")
-    val ammo = player.ammo
-    player.setGraphic("${ammo}_shoot")
-    player.shoot(id = ammo, target = target)
-    val distance = player.tile.distanceTo(target)
-    player.hit(target, delay = Hit.bowDelay(distance))
-}
-combatSwing("saradomin_bow", style = "range", special = true, block = swingHandler)
-combatSwing("guthix_bow", style = "range", special = true, block = swingHandler)
-combatSwing("zamorak_bow", style = "range", special = true, block = swingHandler)
 
 var Player.restoration: Int
     get() = this["restoration", 0]

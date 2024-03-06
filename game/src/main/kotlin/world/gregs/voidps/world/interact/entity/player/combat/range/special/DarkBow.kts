@@ -12,7 +12,6 @@ import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
@@ -20,10 +19,6 @@ combatSwing("dark_bow*", style = "range", special = true) { player ->
     val dragon = player.ammo == "dragon_arrow"
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
-    if (!drainSpecialEnergy(player, 550)) {
-        delay = -1
-        return@combatSwing
-    }
     player.setAnimation("bow_accurate")
     player.setGraphic("${player.ammo}_double_shot")
     player.playSound("dark_bow_special")

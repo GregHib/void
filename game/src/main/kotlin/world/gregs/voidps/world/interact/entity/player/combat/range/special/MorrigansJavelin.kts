@@ -15,17 +15,11 @@ import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
-import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 combatSwing("morrigans_javelin*", style = "range", special = true) { player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
-    if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
-        delay = -1
-        return@combatSwing
-    }
     val ammo = player.ammo
     player.setAnimation("throw_javelin")
     player.setGraphic("${ammo}_special")

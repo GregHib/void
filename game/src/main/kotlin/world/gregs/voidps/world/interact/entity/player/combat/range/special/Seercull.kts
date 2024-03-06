@@ -12,18 +12,12 @@ import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 combatSwing("seercull", style = "range", special = true) { player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
-    if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {
-        delay = -1
-        return@combatSwing
-    }
     player.setAnimation("bow_accurate")
     player.setGraphic("seercull_special_shoot")
     player.playSound("seercull_special")
