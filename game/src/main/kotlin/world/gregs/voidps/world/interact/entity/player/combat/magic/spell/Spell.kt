@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.data.config.SpellDefinition
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -26,6 +27,13 @@ object Spell {
 
     fun canDrain(target: Character, spell: String): Boolean {
         val def = get<SpellDefinitions>().get(spell)
+        val skill = Skill.valueOf(def["drain_skill"])
+        val multiplier: Double = def["drain_multiplier"]
+        val maxDrain = multiplier * target.levels.getMax(skill)
+        return target.levels.getOffset(skill) > -maxDrain
+    }
+
+    fun canDrain(target: Character, def: SpellDefinition): Boolean {
         val skill = Skill.valueOf(def["drain_skill"])
         val multiplier: Double = def["drain_multiplier"]
         val maxDrain = multiplier * target.levels.getMax(skill)

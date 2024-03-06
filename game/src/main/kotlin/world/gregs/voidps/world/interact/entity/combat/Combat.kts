@@ -66,10 +66,13 @@ fun combat(character: Character, target: Character) {
     }
     character.emit(swing)
     (character as? Player)?.specialAttack = false
-    val nextDelay = swing.delay
+    var nextDelay = swing.delay
     if (nextDelay == null || nextDelay < 0) {
         character.mode = EmptyMode
         return
+    }
+    if (nextDelay > 0 && character.hasClock("miasmic") && (character.fightStyle == "range" || character.fightStyle == "melee")) {
+        nextDelay *= 2
     }
     character.start("hit_delay", nextDelay)
 }

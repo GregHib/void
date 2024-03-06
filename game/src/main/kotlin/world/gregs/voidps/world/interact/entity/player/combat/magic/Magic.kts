@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic
 
-import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -8,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.combat.characterCombatSwing
-import world.gregs.voidps.world.interact.entity.combat.fightStyle
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
@@ -73,14 +71,7 @@ characterCombatSwing(style = "magic") { character ->
                 character.hit(target)
                 delay = 5
             }
-            if (spell.startsWith("miasmic_")) {
-                if (delay != null && delay!! > 0 && character.hasClock("miasmic") && (character.fightStyle == "range" || character.fightStyle == "melee")) {
-                    delay = delay!! * 2
-                }
-            }
         }
-        "lunar_spellbook" -> {}
-        "dungeoneering_spellbook" -> {}
     }
     character.clear("spell")
     if ((delay ?: -1) >= 0) {
