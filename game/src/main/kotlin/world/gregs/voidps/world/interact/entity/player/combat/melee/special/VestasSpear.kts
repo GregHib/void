@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
@@ -19,7 +18,7 @@ import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-val handler: suspend CombatSwing.(Player) -> Unit = handler@{ player ->
+combatSwing("vestas_spear*", "melee", special = true) { player ->
     player.start("spear_wall", duration = 8)
     player.setAnimation("spear_wall")
     player.setGraphic("spear_wall")
@@ -41,5 +40,3 @@ val handler: suspend CombatSwing.(Player) -> Unit = handler@{ player ->
     }
     delay = 5
 }
-combatSwing("vestas_spear*", "melee", special = true, block = handler)
-combatSwing("corrupt_vestas_spear*", "melee", special = true, block = handler)

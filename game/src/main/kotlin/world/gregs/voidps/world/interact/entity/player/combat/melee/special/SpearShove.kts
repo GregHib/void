@@ -26,6 +26,7 @@ combatPrepare("melee") { player ->
         cancel()
     }
 }
+
 val handler: suspend CombatSwing.(Player) -> Unit = handler@{ player ->
     player.setAnimation("shove")
     player.setGraphic("shove")

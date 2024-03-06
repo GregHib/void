@@ -7,12 +7,6 @@ import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.melee.drainByDamage
 
-combatSwing("barrelchest_anchor", style = "melee") { player ->
-    player.setAnimation("anchor_attack")
-    player.hit(target)
-    delay = 6
-}
-
 combatSwing("barrelchest_anchor", "melee", special = true) { player ->
     player.setAnimation("sunder")
     player.setGraphic("sunder")

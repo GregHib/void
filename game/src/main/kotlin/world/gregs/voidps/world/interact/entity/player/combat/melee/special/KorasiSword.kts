@@ -10,24 +10,13 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.Target
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-
-combatSwing("korasis_sword*", "melee") { player ->
-    player.setAnimation("korasis_sword_${
-        when (player.attackType) {
-            "chop" -> "chop"
-            else -> "slash"
-        }
-    }")
-    player.hit(target)
-    delay = 5
-}
-
-// Special attack
+import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
+import world.gregs.voidps.world.interact.entity.combat.weapon
 
 val players: Players by inject()
 val npcs: NPCs by inject()
