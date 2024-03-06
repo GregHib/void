@@ -3,14 +3,12 @@ package world.gregs.voidps.world.interact.entity.player.combat
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.characterApproachNPC
 import world.gregs.voidps.engine.entity.character.player.characterApproachPlayer
 import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.world.interact.entity.combat.CombatInteraction
 import world.gregs.voidps.world.interact.entity.combat.attackRange
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 
 characterApproachNPC("Attack") {
@@ -40,13 +38,6 @@ itemOnNPCApproach(id = "*_spellbook") {
     player.face(target)
     combatInteraction(player, target)
     cancel()
-}
-
-combatSwing(swung = null) { player ->
-    if (player.contains("one_time")) {
-        player.mode = EmptyMode
-        player.clear("one_time")
-    }
 }
 
 /**

@@ -64,6 +64,15 @@ fun combat(character: Character, target: Character) {
         val player = if (character["debug", false] && character is Player) character else target as Player
         player.message("---- Swing (${character.identifier}) -> (${target.identifier}) -----")
     }
+    target.start("under_attack", 16)
+    if (target.inSingleCombat) {
+        target.attackers.clear()
+    }
+    target.attackers.add(character)
+    if (character.contains("one_time")) {
+        character.mode = EmptyMode
+        character.clear("one_time")
+    }
     character.emit(swing)
     (character as? Player)?.specialAttack = false
     var nextDelay = swing.delay
@@ -84,14 +93,6 @@ onEvent<Character, CombatStop> { character ->
         character.clearWatch()
     }
     character.target = null
-}
-
-characterCombatSwing { character ->
-    target.start("under_attack", 16)
-    if (target.inSingleCombat) {
-        target.attackers.clear()
-    }
-    target.attackers.add(character)
 }
 
 characterDeath { character ->

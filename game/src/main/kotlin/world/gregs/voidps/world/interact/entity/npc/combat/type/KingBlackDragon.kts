@@ -11,7 +11,6 @@ import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.hit.npcCombatAttack
 import world.gregs.voidps.world.interact.entity.combat.npcCombatPrepare
-import world.gregs.voidps.world.interact.entity.combat.npcCombatSwing
 import world.gregs.voidps.world.interact.entity.effect.freeze
 import world.gregs.voidps.world.interact.entity.player.toxin.poison
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -41,10 +40,6 @@ npcCombatPrepare("king_black_dragon") { npc ->
             npc.hit(target, type = "melee")
         }
     }
-}
-
-npcCombatSwing("king_black_dragon") { npc ->
-    delay = npc.def["attack_speed", 4]
 }
 
 /**
