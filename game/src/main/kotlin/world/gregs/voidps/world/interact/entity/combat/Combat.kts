@@ -8,9 +8,7 @@ import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
-import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
-import world.gregs.voidps.engine.entity.character.mode.combat.CombatReached
-import world.gregs.voidps.engine.entity.character.mode.combat.CombatStop
+import world.gregs.voidps.engine.entity.character.mode.combat.*
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.onEvent
@@ -64,15 +62,10 @@ fun combat(character: Character, target: Character) {
         val player = if (character["debug", false] && character is Player) character else target as Player
         player.message("---- Swing (${character.identifier}) -> (${target.identifier}) -----")
     }
+    if (!target.hasClock("under_attack")) {
+        character.emit(CombatStart(target))
+    }
     target.start("under_attack", 16)
-    if (target.inSingleCombat) {
-        target.attackers.clear()
-    }
-    target.attackers.add(character)
-    if (character.contains("one_time")) {
-        character.mode = EmptyMode
-        character.clear("one_time")
-    }
     character.emit(swing)
     (character as? Player)?.specialAttack = false
     var nextDelay = character.attackSpeed
@@ -82,7 +75,14 @@ fun combat(character: Character, target: Character) {
     character.start("hit_delay", nextDelay)
 }
 
-onEvent<Character, CombatStop> { character ->
+characterCombatStart { character ->
+    if (target.inSingleCombat) {
+        target.attackers.clear()
+    }
+    target.attackers.add(character)
+}
+
+characterCombatStop { character ->
     if (target.dead) {
         character["face_entity"] = target
     } else {

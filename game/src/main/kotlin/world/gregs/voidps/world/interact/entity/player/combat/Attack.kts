@@ -3,6 +3,8 @@ package world.gregs.voidps.world.interact.entity.player.combat
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.combat.combatStart
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.characterApproachNPC
 import world.gregs.voidps.engine.entity.character.player.characterApproachPlayer
@@ -38,6 +40,13 @@ itemOnNPCApproach(id = "*_spellbook") {
     player.face(target)
     combatInteraction(player, target)
     cancel()
+}
+
+combatStart { player ->
+    if (player.contains("one_time")) {
+        player.mode = EmptyMode
+        player.clear("one_time")
+    }
 }
 
 /**
