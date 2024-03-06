@@ -2,86 +2,109 @@ blood_rush:
   max_hit: 150
   exp: 33.0
   max_heal: 40
+  animation: ancient_spell
 blood_burst:
   max_hit: 210
   exp: 39.0
   max_heal: 50
+  animation: ancient_spell_multi
 blood_blitz:
   max_hit: 250
   exp: 45.0
   max_heal: 60
+  animation: ancient_spell
 blood_barrage:
   max_hit: 290
   exp: 51.0
   max_heal: 119
+  animation: ancient_spell_multi
 ice_rush:
   max_hit: 160
   exp: 34.0
   freeze_ticks: 3
+  animation: ancient_spell
 ice_burst:
   max_hit: 220
   exp: 40.0
   freeze_ticks: 6
+  animation: ancient_spell_multi
 ice_blitz:
   max_hit: 260
   exp: 46.0
   freeze_ticks: 9
+  animation: ancient_spell
 ice_barrage:
   max_hit: 300
   exp: 52.0
   freeze_ticks: 12
+  animation: ancient_spell_multi
+  projectiles:
+    - id: ice_barrage
+      end_height: 0
 miasmic_rush:
   max_hit: 180
   exp: 36.0
   effect_seconds: 12
+  animation: miasmic_rush_cast
 miasmic_burst:
   max_hit: 240
   exp: 42.0
   effect_seconds: 24
+  animation: miasmic_burst_cast
 miasmic_blitz:
   max_hit: 280
   exp: 48.0
   effect_seconds: 36
+  animation: miasmic_blitz_cast
 miasmic_barrage:
   max_hit: 320
   exp: 54.0
   effect_seconds: 48
+  animation: miasmic_barrage_cast
 shadow_rush:
   max_hit: 140
   exp: 31.0
   drain_skill: Attack
   drain_multiplier: 0.1
+  animation: ancient_spell
 shadow_burst:
   max_hit: 180
   exp: 37.0
   drain_skill: Attack
   drain_multiplier: 0.1
+  animation: ancient_spell_multi
 shadow_blitz:
   max_hit: 240
   exp: 43.0
   drain_skill: Attack
   drain_multiplier: 0.1
+  animation: ancient_spell
 shadow_barrage:
   max_hit: 280
   exp: 48.0
   drain_skill: Attack
   drain_multiplier: 0.15
+  animation: ancient_spell_multi
 smoke_rush:
   max_hit: 130
   exp: 30.0
   poison_damage: 20
+  animation: ancient_spell
 smoke_burst:
   max_hit: 170
   exp: 36.0
   poison_damage: 20
+  animation: ancient_spell_multi
 smoke_blitz:
   max_hit: 230
   exp: 42.0
   poison_damage: 48
+  animation: ancient_spell
 smoke_barrage:
   max_hit: 270
   exp: 48.0
   poison_damage: 40
+  animation: ancient_spell_multi
 bind:
   &bind
   damage: -1.0
@@ -255,17 +278,14 @@ claws_of_guthix:
   max_hit: 200
   exp: 35.0
   animation: cast_god_spell
-  hit_delay: 2
 flames_of_zamorak:
   max_hit: 200
   exp: 35.0
   animation: cast_god_spell
-  hit_delay: 2
 saradomin_strike:
   max_hit: 200
   exp: 35.0
   animation: cast_god_spell
-  hit_delay: 2
 iban_blast:
   max_hit: 250
   exp: 35.0
