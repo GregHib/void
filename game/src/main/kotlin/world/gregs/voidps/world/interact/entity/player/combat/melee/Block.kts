@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.melee.defence
+package world.gregs.voidps.world.interact.entity.player.combat.melee
 
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
