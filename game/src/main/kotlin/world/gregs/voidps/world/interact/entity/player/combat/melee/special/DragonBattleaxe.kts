@@ -4,15 +4,10 @@ import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAttack
-import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.specialAttackPrepare
 
-specialAttack("*dragon_battleaxe") { player ->
-    if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {
-        return@specialAttack
-    }
+specialAttackPrepare("*dragon_battleaxe") { player ->
     player.setAnimation("rampage")
     player.setGraphic("rampage")
     player.forceChat = "Raarrrrrgggggghhhhhhh!"

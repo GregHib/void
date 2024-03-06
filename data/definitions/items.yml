@@ -202,6 +202,7 @@ excalibur:
   weight: 2.267
   aka: [ excaliber ]
   special_energy: 1000
+  special: sanctuary
   slot: "Weapon"
   examine: "This used to belong to King Arthur."
   kept: "Reclaim"
@@ -4095,6 +4096,7 @@ rune_throwing_axe:
   limit: 1000
   attack_range: 4
   special_energy: 100
+  special: chainhit
   slot: "Weapon"
   aka: [ rune_thrownaxe, rune_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4428,6 +4430,7 @@ magic_longbow:
   weight: 1.814
   attack_range: 10
   special_energy: 350
+  special: powershot
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -4441,6 +4444,7 @@ magic_shortbow:
   type: "TwoHanded"
   attack_range: 7
   special_energy: 550
+  special: snapshot
   aka: [ msb, magic_sb ]
   examine: "Short and magical, but still effective."
 magic_shortbow_noted: 862
@@ -6093,6 +6097,7 @@ dragon_dagger:
   special_damage_mod_1: 1.15
   special_accuracy_mod: 1.15
   special_energy: 250
+  special: puncture
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -6165,6 +6170,7 @@ dragon_dagger_p:
   special_damage_mod_1: 1.15
   special_accuracy_mod: 1.15
   special_energy: 250
+  special: puncture
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -6262,6 +6268,7 @@ dragon_spear:
   limit: 10
   weight: 2.267
   special_energy: 250
+  special: shove
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon tipped spear."
@@ -6322,6 +6329,7 @@ dragon_spear_p:
   limit: 10
   weight: 2.267
   special_energy: 250
+  special: shove
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon tipped spear."
@@ -6582,6 +6590,7 @@ dragon_longsword:
   weight: 1.814
   special_damage_mod_1: 1.25
   special_energy: 250
+  special: cleave
   slot: "Weapon"
   material: "metal"
   examine: "A very powerful sword."
@@ -7020,6 +7029,7 @@ dragon_battleaxe:
   weight: 2.721
   aka: [ d_baxe, dragon_baxe ]
   special_energy: 1000
+  special: rampage
   slot: "Weapon"
   examine: "A vicious looking axe."
 dragon_battleaxe_noted: 1378
@@ -7309,6 +7319,7 @@ dragon_mace:
   special_damage_mod_1: 1.5
   special_accuracy_mod: 1.25
   special_energy: 250
+  special: shatter
   slot: "Weapon"
   examine: "A spiky mace."
 dragon_mace_noted: 1435
@@ -14477,6 +14488,7 @@ rune_claws:
   special_damage_mod_1: 1.1
   special_accuracy_mod: 1.1
   special_energy: 250
+  special: impale
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pair of rune claws."
@@ -14888,6 +14900,7 @@ dragon_spear_kp:
   limit: 10
   tradeable: false
   special_energy: 250
+  special: shove
   weight: 2.267
   slot: "Weapon"
   type: "TwoHanded"
@@ -15045,6 +15058,7 @@ dragon_halberd:
   attack_range: 2
   special_damage_mod_1: 1.1
   special_energy: 300
+  special: sweep
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon halberd."
@@ -18146,6 +18160,7 @@ abyssal_whip:
   aka: [ whip, abby_whip, red_whip, whip_red, red_abyssal_whip, abyssal_whip_red ]
   special_accuracy_mod: 1.25
   special_energy: 500
+  special: energy_drain
   slot: "Weapon"
   examine: "A weapon from the Abyss."
 abyssal_whip_noted: 4152
@@ -18156,6 +18171,7 @@ granite_maul:
   weight: 4.535
   aka: [ gmaul ]
   special_energy: 500
+  special: quick_smash
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Simplicity is the best weapon."
@@ -20286,6 +20302,7 @@ dragon_scimitar:
   aka: [ d_scimmy, dragon_scimmy, d_scimitar ]
   special_accuracy_mod: 1.15
   special_energy: 550
+  special: sever
   slot: "Weapon"
   material: "metal"
   examine: "A vicious, curved sword."
@@ -24563,6 +24580,7 @@ dragon_dagger_p+:
   special_damage_mod_1: 1.15
   special_accuracy_mod: 1.15
   special_energy: 250
+  special: puncture
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -24634,6 +24652,7 @@ dragon_dagger_p++:
   special_damage_mod_1: 1.15
   special_accuracy_mod: 1.15
   special_energy: 250
+  special: puncture
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -24702,6 +24721,7 @@ dragon_spear_p+:
   limit: 10
   weight: 2.267
   special_energy: 250
+  special: shove
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon tipped spear."
@@ -24762,6 +24782,7 @@ dragon_spear_p++:
   limit: 10
   weight: 2.267
   special_energy: 250
+  special: shove
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon tipped spear."
@@ -28700,6 +28721,7 @@ seercull:
   weight: 1.36
   attack_range: 8
   special_energy: 1000
+  special: soulshot
   slot: "Weapon"
   type: "TwoHanded"
   examine: "An ancient Fremennik bow that was once used to battle the Moon Clan."
@@ -28760,6 +28782,7 @@ dragon_hatchet:
   weight: 1.36
   aka: [ dragon_axe, daxe ]
   special_energy: 1000
+  special: clobber
   rank: 7
   slot: "Weapon"
   examine: "A very powerful hatchet."
@@ -28788,6 +28811,7 @@ darklight:
   tradeable: false
   weight: 1.814
   special_energy: 500
+  special: weaken
   slot: "Weapon"
   material: "metal"
   destroy: "You can reclaim it from Gideon Bede in the Saradomin churchist"
@@ -30742,6 +30766,7 @@ dragon_2h_sword:
   weight: 3.628
   aka: [ d2h, dragon_2h ]
   special_energy: 600
+  special: powerstab
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -37298,6 +37323,7 @@ bone_dagger:
   limit: 100
   weight: 0.453
   special_energy: 750
+  special: backstab
   slot: "Weapon"
   examine: "A powerful dagger."
 bone_dagger_noted: 8873
@@ -37333,6 +37359,7 @@ dorgeshuun_crossbow:
   attack_range: 6
   slot: "Weapon"
   special_energy: 750
+  special: snipe
   aka: [ dorg_cb, dorg_cbow, dorg_crossbow ]
   examine: "This fires crossbow bolts."
 dorgeshuun_cbow_noted: 8881
@@ -45980,6 +46007,7 @@ barrelchest_anchor:
   special_damage_mod_1: 1.1
   special_accuracy_mod: 2.0
   special_energy: 500
+  special: sunder
   examine: "This is likely to put my back out..."
   destroy2: "If you drop the Anchor it will be destroyed, and you will need to get a new one from Brother Tranquillity, then pay Smith to re-forge it."
   kept: "Reclaim"
@@ -46801,6 +46829,7 @@ brine_sabre:
   weight: 1.814
   special_accuracy_mod: 2.0
   special_energy: 750
+  special: liquify
   slot: "Weapon"
   material: "metal"
   examine: "A salty sword."
@@ -46921,6 +46950,7 @@ ancient_mace:
   limit: 100
   weight: 1.814
   special_energy: 1000
+  special: favour_of_the_war_god
   slot: "Weapon"
   examine: "It has ancient goblin symbols on it."
 zanik_slice:
@@ -47620,6 +47650,7 @@ dark_bow:
   weight: 1.814
   attack_range: 10
   special_energy: 550
+  special: descent_of_darkness
   ammo_required: 2
   aka: [ dbow, d_bow ]
   slot: "Weapon"
@@ -48985,6 +49016,7 @@ armadyl_godsword:
   special_damage_mod_2: 1.25
   special_accuracy_mod: 2.0
   special_energy: 500
+  special: the_judgement
   aka: [ ags, arma_gs, arma_sword, armadyl_sword, arma_godsword, armadyl_god_sword ]
   slot: "Weapon"
   material: "metal"
@@ -49000,6 +49032,7 @@ bandos_godsword:
   special_damage_mod_2: 1.1
   special_accuracy_mod: 2.0
   special_energy: 500
+  special: warstrike
   aka: [ bgs, bandos_sword, bandos_god_sword ]
   slot: "Weapon"
   material: "metal"
@@ -49015,6 +49048,7 @@ saradomin_godsword:
   special_damage_mod_1: 1.1
   special_accuracy_mod: 2.0
   special_energy: 500
+  special: healing_blade
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -49029,6 +49063,7 @@ zamorak_godsword:
   special_damage_mod_1: 1.1
   special_accuracy_mod: 2.0
   special_energy: 500
+  special: ice_cleave
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -49091,6 +49126,7 @@ zamorakian_spear:
   weight: 3.0
   aka: [ zs, zammy_spear, zamorak_spear ]
   special_energy: 250
+  special: shove
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A versatile spear wielded by agents of chaos."
@@ -49162,6 +49198,7 @@ saradomin_sword:
   special_damage_mod_1: 1.1
   special_accuracy_mod: 2.0
   special_energy: 1000
+  special: saradomins_lightning
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -58841,6 +58878,7 @@ morrigans_javelin:
   limit: 100
   attack_range: 5
   special_energy: 500
+  special: phantom_strike
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p:
@@ -58855,6 +58893,7 @@ morrigans_javelin_p+:
   limit: 100
   attack_range: 5
   special_energy: 500
+  special: phantom_strike
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p++:
@@ -58862,6 +58901,7 @@ morrigans_javelin_p++:
   limit: 100
   attack_range: 5
   special_energy: 500
+  special: phantom_strike
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_throwing_axe:
@@ -58871,6 +58911,7 @@ morrigans_throwing_axe:
   attack_range: 4
   special_damage_mod_1: 1.2
   special_energy: 500
+  special: hamstring
   slot: "Weapon"
   examine: "A vicious throwing axe."
 statiuss_platebody:
@@ -58999,6 +59040,7 @@ vestas_longsword:
   aka: [ vls, vestas_long_sword ]
   special_damage_mod_1: 1.2
   special_energy: 250
+  special: feint
   charges: 1
   degrade: vestas_longsword_degraded
   deplete: combat
@@ -59013,6 +59055,7 @@ vestas_longsword_degraded:
   tradeable: false
   special_damage_mod_1: 1.2
   special_energy: 250
+  special: feint
   charges: 6000
   degrade: destroy
   deplete: combat
@@ -59027,6 +59070,7 @@ statiuss_warhammer:
   aka: [ stat_ham, stat_hammer, statius_hammer, statiuss_hammer, statius_warhammer ]
   special_damage_mod_1: 1.25
   special_energy: 350
+  special: smash
   charges: 1
   degrade: statiuss_warhammer_degraded
   deplete: combat
@@ -59040,6 +59084,7 @@ statiuss_warhammer_degraded:
   tradeable: false
   special_damage_mod_1: 1.25
   special_energy: 350
+  special: smash
   charges: 6000
   degrade: destroy
   deplete: combat
@@ -59051,6 +59096,7 @@ vestas_spear:
   price: 4100000
   limit: 10
   special_energy: 500
+  special: spear_wall
   charges: 1
   degrade: vestas_spear_degraded
   deplete: combat
@@ -59062,6 +59108,8 @@ vestas_spear_noted: 13906
 vestas_spear_degraded:
   id: 13907
   limit: 10
+  special_energy: 500
+  special: spear_wall
   tradeable: false
   charges: 6000
   degrade: destroy
@@ -61292,6 +61340,7 @@ dragon_claws:
   weight: 5.0
   aka: [ dclaws, d_claws, claws ]
   special_energy: 500
+  special: slice_and_dice
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A set of fighting claws."
@@ -61930,6 +61979,7 @@ enhanced_excalibur:
   weight: 2.267
   aka: [ ee ]
   special_energy: 1000
+  special: sanctuary
   slot: "Weapon"
   destroy: "You can retrieve the Enhanced Excalibur from the Lady of the Lake for 500 coins."
   examine: "This used to belong to King Arthur and has since been improved to be held in the off-hand."
@@ -62260,6 +62310,7 @@ zaniks_crossbow:
   weight: 0.001
   attack_range: 6
   special_energy: 500
+  special: defiance
   slot: "Weapon"
   examine: "The crossbow that defeated the avatar of Bandos."
   kept: "Reclaim"
@@ -66330,6 +66381,8 @@ staff_of_light:
   limit: 10
   weight: 2.267
   category: "staff"
+  special_energy: 1000
+  special: power_of_light
   aka: [ sol ]
   slot: "Weapon"
   examine: "Humming with power."
@@ -79863,6 +79916,7 @@ saradomin_bow:
   weight: 1.814
   attack_range: 10
   special_energy: 550
+  special: restorative_shot
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Saradomin."
@@ -79876,6 +79930,7 @@ guthix_bow:
   attack_range: 10
   special_damage_mod_1: 1.5
   special_energy: 550
+  special: balanced_shot
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Guthix."
@@ -79888,6 +79943,7 @@ zamorak_bow:
   weight: 1.814
   attack_range: 10
   special_energy: 550
+  special: twin_shot
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Zamorak."
@@ -82288,6 +82344,7 @@ korasis_sword_the_void_stares_back:
   tradeable: false
   weight: 1.814
   special_energy: 600
+  special: disrupt
   slot: "Weapon"
   material: "metal"
   examine: "The sword of a Void Knight."
@@ -82330,6 +82387,7 @@ korasis_sword:
   weight: 0.907
   aka: [ korasi, korasi_sword ]
   special_energy: 600
+  special: disrupt
   slot: "Weapon"
   material: "metal"
   examine: "The sword of a Void Knight."

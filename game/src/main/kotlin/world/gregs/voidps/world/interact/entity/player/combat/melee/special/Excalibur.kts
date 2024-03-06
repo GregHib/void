@@ -10,17 +10,17 @@ import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAttack
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.specialAttackPrepare
 import java.util.concurrent.TimeUnit
 
 fun seersVillageEliteTasks(player: Player) = false
 
-specialAttack("*excalibur") { player ->
+specialAttackPrepare("*excalibur") { player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {
-        return@specialAttack
+        return@specialAttackPrepare
     }
     player.setAnimation("sanctuary")
     player.setGraphic("sanctuary")

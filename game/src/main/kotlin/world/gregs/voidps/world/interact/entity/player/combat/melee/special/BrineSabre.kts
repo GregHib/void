@@ -5,10 +5,10 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAttack
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.specialAttackPrepare
 
-specialAttack("brine_sabre") { player ->
+specialAttackPrepare("brine_sabre") { player ->
     if (player.tile.region.id != 11924) {
         player.message("You can only use this special attack under water.")
         player.specialAttack = false
