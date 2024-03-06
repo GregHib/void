@@ -42793,6 +42793,8 @@ magic_composite_bow:
   limit: 2
   weight: 1.8
   attack_range: 10
+  special_energy: 350
+  special: powershot
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow made from magic logs."

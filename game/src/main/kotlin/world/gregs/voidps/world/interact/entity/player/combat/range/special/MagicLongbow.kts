@@ -1,20 +1,16 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-val handler: suspend CombatSwing.(Player) -> Unit = handler@{ player ->
+specialAttack("powershot") { player ->
     player.setAnimation("bow_accurate")
     player.setGraphic("special_arrow_shoot")
     player.playSound("magic_longbow_special")
     val time = player.shoot(id = "special_arrow", target = target)
     player.hit(target, delay = time)
 }
-combatSwing("magic_longbow*", style = "range", special = true, block = handler)
-combatSwing("magic_composite_bow*", style = "range", special = true, block = handler)

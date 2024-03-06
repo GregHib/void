@@ -32,8 +32,8 @@ specialAttack("*") { player ->
 }
 
 combatSwing(special = true) { player ->
-    val id: String = player.weapon.def.getOrNull("special") ?: return@combatSwing
     if (SpecialAttack.drain(player)) {
+        val id: String = player.weapon.def.getOrNull("special") ?: return@combatSwing
         player.emit(SpecialAttack(id, target))
     }
 }

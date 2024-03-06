@@ -9,10 +9,11 @@ import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-combatSwing("dark_bow*", "range", special = true) { player ->
+specialAttack("descent_of_darkness") { player ->
     val dragon = player.ammo == "dragon_arrow"
     player.setAnimation("bow_accurate")
     player.setGraphic("${player.ammo}_double_shot")

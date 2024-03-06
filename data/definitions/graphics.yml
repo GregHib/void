@@ -598,7 +598,7 @@ zaryte_arrow:
   flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 descent_of_darkness_hit: 1103
 descent_of_dragons_hit: 1100
-bone_bolts_spec:
+bone_bolt_snipe:
   id: 698
   delay: 41
   height: 3

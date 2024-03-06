@@ -7,13 +7,13 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.timer.characterTimerStart
 import world.gregs.voidps.engine.timer.characterTimerTick
 import world.gregs.voidps.engine.timer.npcTimerStop
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-combatSwing("morrigans_javelin*", style = "range", special = true) { player ->
+specialAttack("phantom_strike") { player ->
     val ammo = player.ammo
     player.setAnimation("throw_javelin")
     player.setGraphic("${ammo}_special")
@@ -23,7 +23,7 @@ combatSwing("morrigans_javelin*", style = "range", special = true) { player ->
         target["phantom_damage"] = damage
         target["phantom"] = player
         target["phantom_first"] = "start"
-        target.softTimers.start("phantom_strike")
+        target.softTimers.start(id)
     }
 }
 
