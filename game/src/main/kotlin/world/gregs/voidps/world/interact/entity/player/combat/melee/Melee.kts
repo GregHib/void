@@ -8,6 +8,7 @@ import world.gregs.voidps.world.interact.entity.combat.combatPrepare
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.player.combat.special.SpecialAttack
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
@@ -20,6 +21,11 @@ combatPrepare("melee") { player ->
 val definitions: WeaponStyleDefinitions by inject()
 
 combatSwing(style = "melee") { player ->
+    if (SpecialAttack.drain(player)) {
+        val id: String = player.weapon.def["special"]
+        player.emit(SpecialAttack(id, target))
+        return@combatSwing
+    }
     val weapon = player.weapon.id
     when {
         weapon == "barrelchest_anchor" -> {

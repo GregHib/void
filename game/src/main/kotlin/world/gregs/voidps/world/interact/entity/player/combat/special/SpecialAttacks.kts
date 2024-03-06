@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.special
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
@@ -29,12 +28,5 @@ specialAttack("*") { player ->
     player.setAnimation(id)
     player.setGraphic(id)
     player.hit(target)
-}
-
-combatSwing(special = true) { player ->
-    if (SpecialAttack.drain(player)) {
-        val id: String = player.weapon.def.getOrNull("special") ?: return@combatSwing
-        player.emit(SpecialAttack(id, target))
-    }
 }
 

@@ -10,6 +10,7 @@ import world.gregs.voidps.world.interact.entity.combat.combatPrepare
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.player.combat.special.SpecialAttack
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -26,7 +27,12 @@ combatSwing(style = "range") { player ->
     val ammo = player.ammo
     val required = Ammo.requiredAmount(player.weapon, player.specialAttack)
     val style = weaponStyles.get(player.weapon.def["weapon_style", 0])
-    var flight = -1
+    if (SpecialAttack.drain(player)) {
+        val id: String = player.weapon.def.getOrNull("special") ?: return@combatSwing
+        player.emit(SpecialAttack(id, target))
+        return@combatSwing
+    }
+    var time = -1
     when (style.stringId) {
         "chinchompa" -> {
             Ammo.remove(player, target, ammo, required)
@@ -40,7 +46,7 @@ combatSwing(style = "range") { player ->
             }
             player.ammo = ""
             player.setAnimation("mud_pie")
-            flight = player.shoot(id = ammo, target = target)
+            time = player.shoot(id = ammo, target = target)
         }
         "thrown" -> {
             Ammo.remove(player, target, ammo, required)
@@ -53,19 +59,19 @@ combatSwing(style = "range") { player ->
                 else -> ammoName
             })
             player.setGraphic("${ammoName}_throw")
-            flight = player.shoot(id = ammo, target = target)
+            time = player.shoot(id = ammo, target = target)
         }
         "bow" -> {
             Ammo.remove(player, target, ammo, required)
             player.setAnimation("bow_accurate")
             player.setGraphic("${if (ammo.endsWith("brutal")) "brutal" else ammo}_shoot")
-            flight = player.shoot(id = if (ammo.endsWith("brutal")) "brutal_arrow" else ammo, target = target)
+            time = player.shoot(id = if (ammo.endsWith("brutal")) "brutal_arrow" else ammo, target = target)
         }
         "crossbow" -> {
             Ammo.remove(player, target, ammo, required)
             player.setAnimation(if (player.weapon.id == "karils_crossbow") "karils_crossbow_shoot" else "crossbow_accurate")
             val bolt = if (ammo == "barbed_bolts" || ammo == "bone_bolts" || ammo == "hand_cannon_shot") ammo else "crossbow_bolt"
-            flight = player.shoot(id = bolt, target = target)
+            time = player.shoot(id = bolt, target = target)
         }
         "fixed_device" -> {
             Ammo.remove(player, target, ammo, required)
@@ -77,8 +83,8 @@ combatSwing(style = "range") { player ->
         }
         "sling" -> {
             player.setAnimation(ammo)
-            flight = player.shoot(id = ammo, target = target)
+            time = player.shoot(id = ammo, target = target)
         }
     }
-    player.hit(target, delay = if (flight == -1) 64 else flight)
+    player.hit(target, delay = if (time == -1) 64 else time)
 }
