@@ -100,7 +100,7 @@ class Events : CoroutineScope {
             return false
         }
         val root = roots[event.size()] ?: return false
-        return search(dispatcher, event, root, 0, null) != null
+        return first(dispatcher, event, root, 0, null) != null
     }
 
     /**
@@ -117,10 +117,10 @@ class Events : CoroutineScope {
             return null
         }
         val root = roots[event.size()] ?: return null
-        return search(dispatcher, event, root, 0, skip)
+        return if (event.findAll()) all(dispatcher, event, root, 0, skip) else first(dispatcher, event, root, 0, skip)
     }
 
-    private fun search(dispatcher: EventDispatcher, event: Event, node: TrieNode, depth: Int, skip: (suspend Event.(EventDispatcher) -> Unit)? = null): Set<suspend Event.(EventDispatcher) -> Unit>? {
+    private fun first(dispatcher: EventDispatcher, event: Event, node: TrieNode, depth: Int, skip: (suspend Event.(EventDispatcher) -> Unit)? = null): Set<suspend Event.(EventDispatcher) -> Unit>? {
         if (depth == event.size()) {
             if (node.handler!!.contains(skip)) {
                 return null
@@ -130,7 +130,7 @@ class Events : CoroutineScope {
         val param = event.parameter(dispatcher, depth)
         val exact = node.children[param]
         if (exact != null) {
-            val result = search(dispatcher, event, exact, depth + 1, skip)
+            val result = first(dispatcher, event, exact, depth + 1, skip)
             if (result != null) {
                 return result
             }
@@ -140,7 +140,7 @@ class Events : CoroutineScope {
                 continue
             }
             if (matches(key, param)) {
-                val result = search(dispatcher, event, child, depth + 1, skip)
+                val result = first(dispatcher, event, child, depth + 1, skip)
                 if (result != null) {
                     return result
                 }
@@ -148,7 +148,7 @@ class Events : CoroutineScope {
         }
         val default = node.children["*"]
         if (default != null) {
-            val result = search(dispatcher, event, default, depth + 1, skip)
+            val result = first(dispatcher, event, default, depth + 1, skip)
             if (result != null) {
                 return result
             }
@@ -156,12 +156,43 @@ class Events : CoroutineScope {
         return null
     }
 
+    private fun all(
+        dispatcher: EventDispatcher,
+        event: Event,
+        node: TrieNode,
+        depth: Int,
+        skip: (suspend Event.(EventDispatcher) -> Unit)? = null,
+        output: MutableSet<suspend Event.(EventDispatcher) -> Unit> = mutableSetOf()
+    ): Set<suspend Event.(EventDispatcher) -> Unit> {
+        if (depth == event.size()) {
+            if (node.handler!!.contains(skip)) {
+                return output
+            }
+            output.addAll(node.handler ?: return output)
+            return output
+        }
+        val param = event.parameter(dispatcher, depth)
+        for ((key, child) in node.children) {
+            if (key == "*") {
+                continue
+            }
+            if (matches(key, param)) {
+                all(dispatcher, event, child, depth + 1, skip, output)
+            }
+        }
+        val default = node.children["*"]
+        if (default != null) {
+            all(dispatcher, event, default, depth + 1, skip, output)
+        }
+        return output
+    }
+
     private fun matches(key: Any?, param: Any?): Boolean {
         return when (key) {
             is String -> param is String && wildcardEquals(key, param)
             is Set<*> -> key.contains(param)
             is Area -> param is Tile && key.contains(param)
-            else -> false
+            else -> key == param
         }
     }
 

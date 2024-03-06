@@ -64,6 +64,21 @@ class EventsTest {
     }
 
     @Test
+    fun `Match multiple layers when find all`() {
+        val trie = Events()
+        val handler1: suspend Event.(EventDispatcher) -> Unit = {}
+        trie.insert(arrayOf("*", "*"), handler1)
+        val handler2: suspend Event.(EventDispatcher) -> Unit = {}
+        trie.insert(arrayOf("param1", "*"), handler2)
+        val handler3: suspend Event.(EventDispatcher) -> Unit = {}
+        trie.insert(arrayOf("param1", "param2"), handler3)
+
+        val result = trie.search(entity, event("param1", "param2", findAll = true))
+
+        assertEquals(setOf(handler1, handler2, handler3), result)
+    }
+
+    @Test
     fun `Exact takes priority over wildcards`() {
         val trie = Events()
         val handler: suspend Event.(EventDispatcher) -> Unit = {}
@@ -153,7 +168,11 @@ class EventsTest {
         assertNull(result)
     }
 
-    private fun event(vararg params: Any?) = object : Event {
+    private fun event(vararg params: Any?, findAll: Boolean = false) = object : Event {
+        override fun findAll(): Boolean {
+            return findAll
+        }
+
         override fun size() = params.size
 
         override fun parameter(dispatcher: EventDispatcher, index: Int) = params[index]
