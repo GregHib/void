@@ -1,5 +1,6 @@
 bolt:
   id: 63
+  name: "crossbow"
   items:
     - bronze_bolts
     - bronze_bolts_p
@@ -50,6 +51,7 @@ bolt:
     - broad-tipped_bolts
 arrow:
   id: 62
+  name: "bow"
   items:
     - bronze_arrow
     - bronze_fire_arrows_lit
@@ -164,6 +166,7 @@ arrow:
     - sagittarian_arrows_p++_bound
 ogre:
   id: 71
+  name: "bow"
   items:
     - bronze_brutal
     - iron_brutal
@@ -177,38 +180,47 @@ none:
   id: 106
 bolt_rack:
   id: 38
+  name: "crossbow"
   items:
     - bolt_rack
 training:
   id: 555
+  name: "bow"
   items:
     - training_arrows
 guam_tar:
   id: 582
+  name: "salamander"
   items:
     - guam_tar
 marrentill_tar:
   id: 583
+  name: "salamander"
   items:
     - marrentill_tar
 tarromin_tar:
   id: 584
+  name: "salamander"
   items:
     - tarromin_tar
 harralander_tar:
   id: 585
+  name: "salamander"
   items:
     - harralander_tar
 kebbit_bolts:
   id: 587
+  name: "crossbow"
   items:
     - kebbit_bolts
     - long_kebbit_bolts
 performance:
   id: 1038
+  name: "bow"
   items:
     - performance_arrow
 hand_cannon_shot:
   id: 1289
+  name: "cannon"
   items:
     - hand_cannon_shot
