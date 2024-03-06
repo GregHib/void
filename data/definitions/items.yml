@@ -4055,6 +4055,7 @@ bronze_throwing_axe:
   price: 3
   limit: 1000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   aka: [ bronze_thrownaxe, bronze_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4063,6 +4064,7 @@ iron_throwing_axe:
   price: 11
   limit: 1000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   aka: [ iron_thrownaxe, iron_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4071,6 +4073,7 @@ steel_throwing_axe:
   price: 48
   limit: 1000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   aka: [ steel_thrownaxe, steel_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4079,6 +4082,7 @@ mithril_throwing_axe:
   price: 127
   limit: 1000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   aka: [ mithril_thrownaxe, mithril_thrown_axe, mith_throwing_axe, mith_thrownaxe, mith_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4087,6 +4091,7 @@ adamant_throwing_axe:
   price: 118
   limit: 1000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   aka: [ adamant_thrownaxe, adamant_thrown_axe, addy_throwing_axe, addy_thrownaxe, addy_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4095,6 +4100,7 @@ rune_throwing_axe:
   price: 292
   limit: 1000
   attack_range: 4
+  weapon_type: knife
   special_energy: 100
   special: chainhit
   slot: "Weapon"
@@ -4105,6 +4111,7 @@ bronze_dart:
   price: 26
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart:
@@ -4112,6 +4119,7 @@ iron_dart:
   price: 24
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart:
@@ -4119,6 +4127,7 @@ steel_dart:
   price: 25
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 mithril_dart:
@@ -4126,6 +4135,7 @@ mithril_dart:
   price: 39
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart:
@@ -4133,6 +4143,7 @@ adamant_dart:
   price: 65
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart:
@@ -4140,47 +4151,55 @@ rune_dart:
   price: 108
   limit: 1000
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 bronze_dart_p:
   id: 812
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart_p:
   id: 813
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart_p:
   id: 814
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 mithril_dart_p:
   id: 815
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart_p:
   id: 816
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart_p:
   id: 817
   limit: 1000
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 poisoned_dart_p:
   id: 818
   slot: "Weapon"
+  weapon_type: dart
 bronze_dart_tip:
   id: 819
   price: 28
@@ -4234,6 +4253,7 @@ bronze_javelin:
   price: 3
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A bronze tipped javelin."
 iron_javelin:
@@ -4241,6 +4261,7 @@ iron_javelin:
   price: 3
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin:
@@ -4248,6 +4269,7 @@ steel_javelin:
   price: 20
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin:
@@ -4255,6 +4277,7 @@ mithril_javelin:
   price: 22
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin:
@@ -4262,6 +4285,7 @@ adamant_javelin:
   price: 22
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin:
@@ -4269,42 +4293,49 @@ rune_javelin:
   price: 249
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A rune tipped javelin."
 bronze_javelin_p:
   id: 831
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A bronze tipped javelin."
 iron_javelin_p:
   id: 832
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin_p:
   id: 833
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin_p:
   id: 834
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin_p:
   id: 835
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin_p:
   id: 836
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A rune tipped javelin."
 crossbow:
@@ -4453,6 +4484,7 @@ iron_knife:
   price: 41
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   smithing:
     level: 22
     xp: 25.0
@@ -4463,6 +4495,7 @@ bronze_knife:
   price: 37
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   smithing:
     level: 7
     xp: 12.5
@@ -4473,6 +4506,7 @@ steel_knife:
   price: 102
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   smithing:
     level: 37
     xp: 37.5
@@ -4483,6 +4517,7 @@ mithril_knife:
   price: 160
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   smithing:
     level: 57
     xp: 50.0
@@ -4493,6 +4528,7 @@ adamant_knife:
   price: 351
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   smithing:
     level: 77
     xp: 62.5
@@ -4503,6 +4539,7 @@ rune_knife:
   price: 959
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   smithing:
     level: 92
     xp: 75.0
@@ -4513,48 +4550,56 @@ black_knife:
   price: 69
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_knife_p:
   id: 870
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_knife_p:
   id: 871
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife_p:
   id: 872
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife_p:
   id: 873
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife_p:
   id: 874
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife_p:
   id: 875
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife_p:
   id: 876
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_bolts:
@@ -14408,12 +14453,14 @@ black_dart:
   price: 631
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 black_dart_p:
   id: 3094
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 bronze_claws:
@@ -21057,6 +21104,7 @@ karils_crossbow:
   charges: 1
   degrade: karils_crossbow_100
   deplete: combat
+  weapon_type: karils_crossbow
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -24298,240 +24346,280 @@ bronze_dart_p+:
   id: 5628
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart_p+:
   id: 5629
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart_p+:
   id: 5630
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 black_dart_p+:
   id: 5631
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 mithril_dart_p+:
   id: 5632
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart_p+:
   id: 5633
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart_p+:
   id: 5634
   limit: 1000
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 bronze_dart_p++:
   id: 5635
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart_p++:
   id: 5636
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart_p++:
   id: 5637
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 black_dart_p++:
   id: 5638
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 mithril_dart_p++:
   id: 5639
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart_p++:
   id: 5640
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart_p++:
   id: 5641
   limit: 1000
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 bronze_javelin_p+:
   id: 5642
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A bronze tipped javelin."
 iron_javelin_p+:
   id: 5643
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin_p+:
   id: 5644
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin_p+:
   id: 5645
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin_p+:
   id: 5646
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin_p+:
   id: 5647
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A rune tipped javelin."
 bronze_javelin_p++:
   id: 5648
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A bronze-tipped javelin."
 iron_javelin_p++:
   id: 5649
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin_p++:
   id: 5650
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin_p++:
   id: 5651
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin_p++:
   id: 5652
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin_p++:
   id: 5653
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A rune tipped javelin."
 bronze_knife_p+:
   id: 5654
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_knife_p+:
   id: 5655
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife_p+:
   id: 5656
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife_p+:
   id: 5657
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife_p+:
   id: 5658
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife_p+:
   id: 5659
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife_p+:
   id: 5660
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_knife_p++:
   id: 5661
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_knife_p++:
   id: 5662
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife_p++:
   id: 5663
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife_p++:
   id: 5664
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife_p++:
   id: 5665
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife_p++:
   id: 5666
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife_p++:
   id: 5667
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_dagger_p+:
@@ -30849,6 +30937,7 @@ mud_pie:
   price: 1304
   limit: 1000
   weight: 0.001
+  weapon_type: pie
   slot: "Weapon"
   examine: "All the good of the earth."
 mud_pie_noted: 7171
@@ -41875,6 +41964,7 @@ chinchompa:
   price: 322
   limit: 20000
   aka: [ grey_chinchompa, grey_chin, chin, chins ]
+  weapon_type: chinchompa
   slot: "Weapon"
   destroy: "Release"
   attack_range: 9
@@ -41885,6 +41975,7 @@ red_chinchompa:
   price: 665
   limit: 20000
   aka: [ red_chin, red_chin, red_chins ]
+  weapon_type: chinchompa
   slot: "Weapon"
   destroy: "Release"
   attack_range: 9
@@ -47671,11 +47762,15 @@ dragon_dart:
   id: 11230
   price: 287
   limit: 1500
+  attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a dragon tip."
 dragon_dart_p:
   id: 11231
   limit: 1500
+  attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a dragon tip."
 dragon_dart_tip:
@@ -47686,11 +47781,15 @@ dragon_dart_tip:
 dragon_dart_p+:
   id: 11233
   limit: 1500
+  attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a dragon tip."
 dragon_dart_p++:
   id: 11234
   limit: 1500
+  attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a dragon tip."
 dark_bow:
@@ -58391,6 +58490,7 @@ performance_knife:
   id: 13720
   tradeable: false
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   destroy: "You can get another one from the equipment box for this performance."
   examine: "A finely balanced throwing knife."
@@ -58400,6 +58500,7 @@ performance_throwing_axe:
   id: 13721
   tradeable: false
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   destroy: "You can get another one from the equipment box for this performance."
   examine: "A finely balanced throwing axe."
@@ -58935,6 +59036,7 @@ morrigans_javelin:
   attack_range: 5
   special_energy: 500
   special: phantom_strike
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p:
@@ -58942,6 +59044,8 @@ morrigans_javelin_p:
   limit: 100
   attack_range: 5
   special_energy: 500
+  special: phantom_strike
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p+:
@@ -58950,6 +59054,7 @@ morrigans_javelin_p+:
   attack_range: 5
   special_energy: 500
   special: phantom_strike
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p++:
@@ -58958,6 +59063,7 @@ morrigans_javelin_p++:
   attack_range: 5
   special_energy: 500
   special: phantom_strike
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_throwing_axe:
@@ -58965,6 +59071,7 @@ morrigans_throwing_axe:
   price: 189500
   limit: 500
   attack_range: 4
+  weapon_type: knife
   special_damage_mod_1: 1.2
   special_energy: 500
   special: hamstring
@@ -59527,24 +59634,28 @@ corrupt_morrigans_javelin:
   price: 57500
   limit: 100
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A vicious javelin."
 c_morrigans_javelin_p:
   id: 13954
   limit: 100
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A vicious javelin."
 c_morrigans_javelin_p+:
   id: 13955
   limit: 100
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A vicious javelin."
 c_morrigans_javelin_p++:
   id: 13956
   limit: 100
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A vicious javelin."
 corrupt_morrigans_throwing_axe:
@@ -59552,6 +59663,7 @@ corrupt_morrigans_throwing_axe:
   price: 58800
   limit: 500
   attack_range: 4
+  weapon_type: knife
   special_energy: 500
   slot: "Weapon"
   examine: "A vicious throwing axe."

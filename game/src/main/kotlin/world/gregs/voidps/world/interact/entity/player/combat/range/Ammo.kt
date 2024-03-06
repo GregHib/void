@@ -36,6 +36,9 @@ object Ammo {
     fun remove(player: Player, target: Character, ammo: String, required: Int) {
         if (ammo == "" || ammo == "zaryte_arrow" || ammo == "sling_rock" || ammo == "special_arrow") {
             return
+        } else if(ammo == "mud_pie") {
+            player.equipment.remove(ammo, required)
+            return
         } else if (ammo == "bolt_rack" || ammo == "hand_cannon_shot" || ammo.endsWith("chinchompa")) {
             player.softQueue("ammo") {
                 player.equipment.remove(ammo, required)
