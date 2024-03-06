@@ -34,4 +34,3 @@ specialAttack { player ->
         player.emit(SpecialAttackHit(id, target, damage))
     }
 }
-

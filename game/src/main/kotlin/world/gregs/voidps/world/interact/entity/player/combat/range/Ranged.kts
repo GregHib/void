@@ -58,9 +58,9 @@ combatSwing(style = "range") { player ->
     } else if(style.stringId == "bow" && ammo.endsWith("brutal")) {
         ammo = "brutal_arrow"
     }
-    val type: String? = player.weapon.def.getOrNull("weapon_type") ?: style.stringId
-    val definition = if (type != null) animationDefinitions.get(type) else null
-    var animation = definition?.attackTypes?.getOrDefault(player.attackType, definition.attackTypes["default"])
+    val type = player.weapon.def.getOrNull("weapon_type") ?: style.stringId
+    val definition = animationDefinitions.get(type)
+    var animation = definition.attackTypes.getOrDefault(player.attackType, definition.attackTypes["default"])
     if (animation == null) {
         animation = "${style.stringId}_${player.attackType}"
     }

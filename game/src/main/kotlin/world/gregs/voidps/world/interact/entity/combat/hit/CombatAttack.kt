@@ -24,6 +24,11 @@ data class CombatAttack(
     val delay: Int
 ) : Event {
     var blocked = false
+
+    override fun findAll(): Boolean {
+        return true
+    }
+
     override fun size() = 5
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
