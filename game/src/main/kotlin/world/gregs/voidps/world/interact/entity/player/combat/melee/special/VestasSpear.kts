@@ -11,17 +11,17 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.world.interact.entity.combat.Target
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-combatSwing("vestas_spear*", "melee", special = true) { player ->
-    player.start("spear_wall", duration = 8)
-    player.setAnimation("spear_wall")
-    player.setGraphic("spear_wall")
+specialAttack("spear_wall") { player ->
+    player.start(id, duration = 8)
+    player.setAnimation(id)
+    player.setGraphic(id)
     if (player.inMultiCombat) {
         val list = mutableListOf<Character>()
         list.add(target)

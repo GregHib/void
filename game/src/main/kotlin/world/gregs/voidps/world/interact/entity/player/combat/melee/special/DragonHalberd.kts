@@ -9,15 +9,15 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-combatSwing("dragon_halberd", "melee", special = true) { player ->
-    player.setAnimation("sweep")
-    player.setGraphic("sweep")
+specialAttack("sweep") { player ->
+    player.setAnimation(id)
+    player.setGraphic(id)
     val dir = target.tile.delta(player.tile).toDirection()
     val firstTile = target.tile.add(if (dir.isDiagonal()) dir.horizontal() else dir.rotate(2))
     val secondTile = target.tile.add(if (dir.isDiagonal()) dir.vertical() else dir.rotate(-2))

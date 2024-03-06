@@ -10,14 +10,17 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.combatPrepare
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.effect.freeze
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import java.util.concurrent.TimeUnit
 
 combatPrepare("melee") { player ->
+    if (!player.specialAttack || player.weapon.def["special", ""] != "shove") {
+        return@combatPrepare
+    }
     if (target.size > 1) {
         player.message("That creature is too large to knock back!")
         cancel()
@@ -27,14 +30,14 @@ combatPrepare("melee") { player ->
     }
 }
 
-val handler: suspend CombatSwing.(Player) -> Unit = handler@{ player ->
-    player.setAnimation("shove")
-    player.setGraphic("shove")
+specialAttack("shove") { player ->
+    player.setAnimation(id)
+    player.setGraphic(id)
     val duration = TimeUnit.SECONDS.toTicks(3)
     target.setGraphic("shove_stun")
     target.freeze(duration)
     player.start("delay", duration)
-    player.hit(target, damage = -1)// Hit with no damage so target can auto-retaliate
+    player.hit(target, damage = -1) // Hit with no damage so target can auto-retaliate
     val actual = player.tile
     val direction = target.tile.delta(actual).toDirection()
     val delta = direction.delta
@@ -42,5 +45,3 @@ val handler: suspend CombatSwing.(Player) -> Unit = handler@{ player ->
         target.exactMove(delta, 30, direction.inverse())
     }
 }
-combatSwing("dragon_spear", "melee", special = true, block = handler)
-combatSwing("zamorakian_spear", "melee", special = true, block = handler)

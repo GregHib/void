@@ -15,7 +15,6 @@ import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
-import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
@@ -46,7 +45,7 @@ characterCombatHit("rune_throwing_axe", "range", special = true) { target ->
             if (!lineOfSight.hasLineOfSight(target, character)) {
                 return@forEach
             }
-            if (!drainSpecialEnergy(source, MAX_SPECIAL_ATTACK / 10)) {
+            if (!drainSpecialEnergy(source)) {
                 source.clear("chain_hits")
                 return@characterCombatHit
             }

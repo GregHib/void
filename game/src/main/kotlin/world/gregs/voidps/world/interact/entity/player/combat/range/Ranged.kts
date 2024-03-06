@@ -17,9 +17,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 val weaponStyles: WeaponStyleDefinitions by inject()
 
 combatPrepare("range") { player ->
-    val amount: Int? = player.weapon.def.getOrNull("special_energy")
-    if (player.specialAttack && amount != null && !drainSpecialEnergy(player, amount)) {
-        player.specialAttack = false
+    if (player.specialAttack && !drainSpecialEnergy(player)) {
         cancel()
     }
 }

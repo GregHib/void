@@ -1350,8 +1350,8 @@ puncture: 1062
 defender_block: 4177
 book_block: 420
 shield_block: 1156
-statius_warhammer_smash: 10505
-vestas_longsword_feint: 10502
+smash: 10505
+feint: 10502
 rampage: 1056
 slice_and_dice: 10961
 cleave: 12033
@@ -1550,7 +1550,7 @@ hammer_hit: 403
 whip_flick: 11968 # needs verification
 whip_lash: 11969 # needs verification
 whip_deflect: 11970 # needs verification
-whip_special: 11971 # needs verification
+energy_drain: 11971 # needs verification
 whip_block: 11974 # needs verification
 fun_pound: 400
 fun_pummel: 400

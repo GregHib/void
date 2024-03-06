@@ -907,7 +907,7 @@ rune_throwing_axe_special:
 energy_drain:
   id: 2108
   height: 60
-statius_warhammer_smash: 1840
+smash: 1840
 rampage: 246
 slice_and_dice: 1950
 puncture:

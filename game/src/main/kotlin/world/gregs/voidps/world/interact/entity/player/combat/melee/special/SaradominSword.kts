@@ -2,14 +2,14 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
-combatSwing("saradomin_sword*", "melee", special = true) { player ->
-    player.setAnimation("saradomins_lightning")
+specialAttack("saradomins_lightning") { player ->
+    player.setAnimation(id)
     val weapon = player.weapon
     val damage = Damage.roll(player, target, "melee", weapon)
     player.hit(target, damage = damage)

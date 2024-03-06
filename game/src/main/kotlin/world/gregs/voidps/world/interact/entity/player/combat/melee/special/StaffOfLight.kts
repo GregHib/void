@@ -11,8 +11,8 @@ import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttackPrepare
+import world.gregs.voidps.world.interact.entity.player.combat.special.SpecialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackPrepare
 import java.util.concurrent.TimeUnit
 
 itemRemoved("staff_of_light*", EquipSlot.Weapon, "worn_equipment") { player ->
@@ -25,14 +25,15 @@ combatHit { player ->
     }
 }
 
-// Special attack
-
-specialAttackPrepare("staff_of_light*") { player ->
-    player.setAnimation("power_of_light")
-    player.setGraphic("power_of_light")
-    player["power_of_light"] = TimeUnit.MINUTES.toTicks(1)
-    player.softTimers.start("power_of_light")
-    player.specialAttack = false
+specialAttackPrepare("power_of_light") { player ->
+    cancel()
+    if (!SpecialAttack.drain(player)) {
+        return@specialAttackPrepare
+    }
+    player.setAnimation(id)
+    player.setGraphic(id)
+    player[id] = TimeUnit.MINUTES.toTicks(1)
+    player.softTimers.start(id)
 }
 
 playerSpawn { player ->
