@@ -10284,7 +10284,7 @@ unfinished_cocktail_blurberry_special_lime:
   <<: *unfinished_cocktail_pineapple_punch_mixed
   id: 2062
 picture_noted_9: 2063
-blurberry_special_energy:
+blurberry_special:
   id: 2064
   price: 2047
   limit: 1000
@@ -39436,7 +39436,7 @@ mixed_punch:
   weight: 0.15
   examine: "This Pineapple Punch needs pouring, lime and pineapple chunks and an orange slice."
   kept: "Reclaim"
-mixed_blurberry_special_energy:
+mixed_blurberry_special:
   id: 9570
   tradeable: false
   weight: 0.15
