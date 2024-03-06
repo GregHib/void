@@ -598,7 +598,7 @@ zaryte_arrow:
   flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 descent_of_darkness_hit: 1103
 descent_of_dragons_hit: 1100
-bone_bolt_snipe:
+snipe_special:
   id: 698
   delay: 41
   height: 3
@@ -908,25 +908,25 @@ energy_drain_hit:
   id: 2108
   height: 60
 smash_special: 1840
-rampage: 246
+rampage_special: 246
 slice_and_dice_special: 1950
 puncture_special:
   id: 252
   height: 60
-cleave:
+cleave_special:
   id: 2117
   height: 60
-shatter:
+shatter_special:
   id: 251
   height: 60
-the_judgement: 2113
-sanctuary: 247
+the_judgement_special: 2113
+sanctuary_special: 247
 sever_special:
   id: 2118
   height: 60
 saradomins_lightning_special: 1194
 favour_of_the_war_god_special: 1052
-liquify:
+liquify_special:
   id: 1048
   height: 60
 backstab_special: 704
@@ -943,18 +943,18 @@ shove_special:
   id: 253
   height: 60
 shove_hit: 254
-quick_smash:
+quick_smash_special:
   id: 340
   height: 60
 clobber_special: 479
 disrupt_special: 1729
 disrupt_hit: 1730
 weaken_special: 483
-impale:
+impale_special:
   id: 274
   height: 60
 spear_wall_special: 1835
-power_of_light: 2319
+power_of_light_special: 2319
 power_of_light_hit: 2320
 wind_spell_cast: 457
 wind_rush:

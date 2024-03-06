@@ -12,8 +12,8 @@ specialAttackPrepare("rampage") { player ->
     if (!SpecialAttack.drain(player)) {
         return@specialAttackPrepare
     }
-    player.setAnimation(id)
-    player.setGraphic(id)
+    player.setAnimation("${id}_special")
+    player.setGraphic("${id}_special")
     player.forceChat = "Raarrrrrgggggghhhhhhh!"
     player.levels.drain(Skill.Attack, multiplier = 0.10)
     player.levels.drain(Skill.Defence, multiplier = 0.10)

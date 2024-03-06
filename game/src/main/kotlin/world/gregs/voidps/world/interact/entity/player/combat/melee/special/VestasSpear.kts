@@ -15,20 +15,21 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.specialAtt
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-specialAttackHit("spear_wall", hasHit = false) { player ->
+specialAttackHit("spear_wall", noHit = false) { player ->
     player.start(id, duration = 8)
-    if (player.inMultiCombat) {
-        var remaining = 15
-        val characters: CharacterList<*> = if (target is Player) players else npcs
-        for (tile in player.tile.spiral(1)) {
-            for (char in characters[tile]) {
-                if (char == player || char == target || !char.inMultiCombat || !Target.attackable(player, char)) {
-                    continue
-                }
-                player.hit(char)
-                if (--remaining <= 0) {
-                    return@specialAttackHit
-                }
+    if (!player.inMultiCombat) {
+        return@specialAttackHit
+    }
+    var remaining = 15
+    val characters: CharacterList<*> = if (target is Player) players else npcs
+    for (tile in player.tile.spiral(1)) {
+        for (char in characters[tile]) {
+            if (char == player || char == target || !char.inMultiCombat || !Target.attackable(player, char)) {
+                continue
+            }
+            player.hit(char)
+            if (--remaining <= 0) {
+                return@specialAttackHit
             }
         }
     }

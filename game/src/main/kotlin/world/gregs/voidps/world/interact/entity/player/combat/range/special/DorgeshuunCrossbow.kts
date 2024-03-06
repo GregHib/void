@@ -7,6 +7,6 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 specialAttack("snipe") { player ->
     player.setAnimation("crossbow_accurate")
-    val time = player.shoot(id = "bone_bolt_snipe", target = target)
+    val time = player.shoot(id = "snipe_special", target = target)
     player.hit(target, delay = time)
 }

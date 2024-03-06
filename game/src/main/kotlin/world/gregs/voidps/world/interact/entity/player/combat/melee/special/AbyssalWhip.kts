@@ -6,12 +6,13 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.specialAtt
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 
 specialAttackHit("energy_drain") { player ->
-    if (target is Player) {
-        val tenPercent = (target.runEnergy / 100) * 10
-        if (tenPercent > 0) {
-            target.runEnergy -= tenPercent
-            player.runEnergy += tenPercent
-            target.message("You feel drained!")
-        }
+    if (target !is Player) {
+        return@specialAttackHit
+    }
+    val tenPercent = (target.runEnergy / 100) * 10
+    if (tenPercent > 0) {
+        target.runEnergy -= tenPercent
+        player.runEnergy += tenPercent
+        target.message("You feel drained!")
     }
 }

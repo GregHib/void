@@ -8,7 +8,6 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.specialAtt
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-
 specialAttack("snapshot") { player ->
     player.setAnimation("magic_shortbow_special")
     player.setGraphic("magic_shortbow_special")

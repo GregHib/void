@@ -21,8 +21,8 @@ specialAttackPrepare("sanctuary") { player ->
     if (!SpecialAttack.drain(player)) {
         return@specialAttackPrepare
     }
-    player.setAnimation(id)
-    player.setGraphic(id)
+    player.setAnimation("${id}_special")
+    player.setGraphic("${id}_special")
     player.forceChat = "For Camelot!"
     if (player.weapon.id.startsWith("enhanced")) {
         player.levels.boost(Skill.Defence, multiplier = 0.15)
