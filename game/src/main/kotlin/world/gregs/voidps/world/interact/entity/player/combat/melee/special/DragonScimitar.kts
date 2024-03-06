@@ -20,7 +20,6 @@ combatSwing("*dragon_scimitar", "melee", special = true) { player ->
     if (player.hit(target) > 0) {
         target.softTimers.start("sever")
     }
-    delay = 4
 }
 
 timerStart("sever") { player ->

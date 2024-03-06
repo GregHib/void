@@ -12,5 +12,4 @@ combatSwing("statiuss_warhammer*", "melee", special = true) { player ->
     if (player.hit(target) != -1) {
         target.levels.drain(Skill.Defence, multiplier = 0.30)
     }
-    delay = 6
 }

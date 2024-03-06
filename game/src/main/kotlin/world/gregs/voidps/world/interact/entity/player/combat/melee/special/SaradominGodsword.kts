@@ -15,5 +15,4 @@ combatSwing("saradomin_godsword*", "melee", special = true) { player ->
         player.levels.restore(Skill.Constitution, max(100, damage / 20))
         player.levels.restore(Skill.Prayer, max(50, damage / 40))
     }
-    delay = 6
 }

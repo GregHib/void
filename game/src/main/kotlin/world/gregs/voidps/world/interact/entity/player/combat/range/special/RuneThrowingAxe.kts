@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import org.rsmod.game.pathfinder.LineValidator
-import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -10,10 +9,11 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
-import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.combat.Target
+import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
@@ -30,7 +30,6 @@ combatSwing("rune_throwing_axe", style = "range", special = true) { player ->
     player.setGraphic("${ammo}_special_throw")
     val time = player.shoot(id = "${ammo}_special", target = target)
     player.hit(target, delay = time)
-    delay = player.weapon.def["attack_speed", 4] - (player.attackType == "rapid").toInt()
 }
 
 characterCombatHit("rune_throwing_axe", "range", special = true) { target ->

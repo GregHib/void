@@ -19,5 +19,4 @@ combatSwing("brine_sabre", "melee", special = true) { player ->
     player.setAnimation("liquify")
     player.setGraphic("liquify")
     player.hit(target)
-    delay = 4
 }

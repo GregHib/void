@@ -12,6 +12,5 @@ val special: suspend CombatSwing.(Player) -> Unit = special@{ player ->
     player.setGraphic("puncture")
     player.hit(target)
     player.hit(target)
-    delay = 4
 }
 combatSwing("dragon_dagger*", "melee", special = true, block = special)

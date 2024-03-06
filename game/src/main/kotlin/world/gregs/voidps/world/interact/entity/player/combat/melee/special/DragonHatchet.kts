@@ -17,5 +17,4 @@ combatSwing("dragon_hatchet", "melee", special = true)  { player ->
             target.levels.drain(Skill.Magic, drain)
         }
     }
-    delay = 5
 }

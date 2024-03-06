@@ -29,7 +29,6 @@ combatSwing("korasis_sword*", "melee", special = true) { player ->
     val maxHit = Damage.maximum(player, target, "melee", player.weapon)
     val hit = random.nextInt(maxHit / 2, (maxHit * 1.5).toInt())
     player.hit(target, damage = hit, type = "magic", delay = 0)
-    delay = 5
 }
 
 characterCombatHit("korasis_sword", special = true) { character ->

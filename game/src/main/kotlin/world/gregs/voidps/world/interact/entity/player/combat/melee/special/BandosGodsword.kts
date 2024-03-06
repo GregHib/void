@@ -12,5 +12,4 @@ combatSwing("bandos_godsword*", "melee", special = true) { player ->
     player.setGraphic("warstrike")
     val damage = player.hit(target)
     target.drainByDamage(damage, Skill.Defence, Skill.Strength, Skill.Prayer, Skill.Attack, Skill.Magic, Skill.Ranged)
-    delay = 6
 }

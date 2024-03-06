@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.combat
 
+import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
@@ -15,6 +16,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.Prayer
 import world.gregs.voidps.world.interact.entity.player.combat.range.Ammo
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import kotlin.random.nextInt
 
 object Weapon {
@@ -170,6 +172,14 @@ val Character.fightStyle: String
 var Character.weapon: Item
     get() = get("weapon", Item.EMPTY)
     set(value) = set("weapon", value)
+
+val Character.attackSpeed: Int
+    get() = when {
+        this is NPC -> def["attack_speed", 4]
+        fightStyle == "magic" -> 5
+        this is Player && specialAttack && weapon.id.startsWith("granite_maul") -> 1
+        else -> weapon.def["attack_speed", 4] - (attackType == "rapid" || attackType == "medium_fuse").toInt()
+    }
 
 var Character.attackRange: Int
     get() = get("attack_range", if (this is NPC) def["attack_range", 1] else 1)

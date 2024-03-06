@@ -16,7 +16,6 @@ combatSwing("saradomin_sword*", "melee", special = true) { player ->
     if (damage > 0) {
         player.hit(target, type = "magic")
     }
-    delay = 4
 }
 
 characterCombatHit("saradomin_sword*", "melee", special = true) { character ->

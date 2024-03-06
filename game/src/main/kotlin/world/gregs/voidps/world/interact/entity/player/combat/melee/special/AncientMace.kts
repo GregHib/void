@@ -17,5 +17,4 @@ combatSwing("ancient_mace", "melee", special = true) { player ->
             player.levels.restore(Skill.Prayer, drain)
         }
     }
-    delay = 5
 }

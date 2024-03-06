@@ -12,5 +12,4 @@ combatSwing("bone_dagger*", "melee", special = true) { player ->
     player.setGraphic("backstab")
     val damage = player.hit(target)
     target.drainByDamage(damage, Skill.Defence)
-    delay = 4
 }

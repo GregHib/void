@@ -9,5 +9,4 @@ combatSwing("dragon_longsword*", "melee", special = true) { player ->
     player.setAnimation("cleave")
     player.setGraphic("cleave")
     player.hit(target)
-    delay = 5
 }

@@ -14,14 +14,13 @@ val definitions: WeaponStyleDefinitions by inject()
 
 npcCombatSwing { npc ->
     if (npc.tile.distanceTo(target) > npc.def["attack_radius", 8]) {
-        delay = -1
+        cancel()
         npc.mode = Retreat(npc, target)
         return@npcCombatSwing
     }
     npc.setAnimation(attackAnimation(npc))
 //    (target as? Player)?.playSound(attackSound(npc))
     npc.hit(target, delay = 30)
-    delay = npc.def["attack_speed", 4]
 }
 
 fun attackAnimation(npc: NPC): String {

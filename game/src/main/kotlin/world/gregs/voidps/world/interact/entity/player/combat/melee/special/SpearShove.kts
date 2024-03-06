@@ -41,7 +41,6 @@ val handler: suspend CombatSwing.(Player) -> Unit = handler@{ player ->
     if (!target.blocked(direction)) {
         target.exactMove(delta, 30, direction.inverse())
     }
-    delay = 4
 }
 combatSwing("dragon_spear", "melee", special = true, block = handler)
 combatSwing("zamorakian_spear", "melee", special = true, block = handler)

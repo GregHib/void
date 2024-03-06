@@ -21,5 +21,4 @@ combatSwing("abyssal_whip", "melee", special = true) { player ->
         }
         target.setGraphic("energy_drain")
     }
-    delay = 4
 }

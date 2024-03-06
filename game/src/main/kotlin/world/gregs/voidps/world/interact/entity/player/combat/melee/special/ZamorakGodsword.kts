@@ -15,7 +15,6 @@ combatSwing("zamorak_godsword*", "melee", special = true) { player ->
     if (player.hit(target) != -1) {
         player.freeze(target, TimeUnit.SECONDS.toTicks(20))
     }
-    delay = 6
 }
 
 characterCombatHit("zamorak_godsword*", special = true) { character ->

@@ -9,5 +9,4 @@ combatSwing("dragon_mace*", "melee", special = true) { player ->
     player.setAnimation("shatter")
     player.setGraphic("shatter")
     player.hit(target)
-    delay = 4
 }

@@ -9,12 +9,11 @@ import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 /**
- * A turn in a combat scenario resulting one or many hits and a [delay] until the next turn
+ * A turn in a combat scenario resulting one or many hits
  */
 class CombatSwing(
     val target: Character
 ) : CancellableEvent() {
-    var delay: Int? = null
 
     override fun size() = 4
 

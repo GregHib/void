@@ -36,5 +36,4 @@ combatSwing("dragon_halberd", "melee", special = true) { player ->
         player.hit(target)
         player.clear("second_hit")
     }
-    delay = 7
 }

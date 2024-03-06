@@ -53,9 +53,8 @@ combatSwing(style = "magic") { player ->
             (player as? Player)?.teleBlock(target, duration)
         }
     }
-    delay = 5
     player.clear("spell")
-    if (delay != null && delay!! >= 0 && !player.contains("autocast")) {
+    if (!player.contains("autocast")) {
         player.queue.clearWeak()
     }
 }

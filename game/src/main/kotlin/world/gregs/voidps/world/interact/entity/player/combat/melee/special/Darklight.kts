@@ -17,5 +17,4 @@ combatSwing("darklight", "melee", special = true) { player ->
         target.levels.drain(Skill.Strength, multiplier = amount)
         target.levels.drain(Skill.Defence, multiplier = amount)
     }
-    delay = 5
 }

@@ -9,5 +9,4 @@ combatSwing("rune_claws*", "melee", special = true) { player ->
     player.setAnimation("impale")
     player.setGraphic("impale")
     player.hit(target)
-    delay = 5
 }

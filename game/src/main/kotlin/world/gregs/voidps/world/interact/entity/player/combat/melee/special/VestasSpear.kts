@@ -38,5 +38,4 @@ combatSwing("vestas_spear*", "melee", special = true) { player ->
     } else {
         player.hit(target)
     }
-    delay = 5
 }

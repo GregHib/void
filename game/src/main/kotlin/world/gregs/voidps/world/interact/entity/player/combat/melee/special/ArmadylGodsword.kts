@@ -9,5 +9,4 @@ combatSwing("armadyl_godsword*", "melee", special = true) { player ->
     player.setAnimation("the_judgement")
     player.setGraphic("the_judgement")
     player.hit(target)
-    delay = 6
 }

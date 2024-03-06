@@ -12,5 +12,4 @@ combatSwing("barrelchest_anchor", "melee", special = true) { player ->
     player.setGraphic("sunder")
     val damage = player.hit(target)
     target.drainByDamage(damage, Skill.Defence, Skill.Strength, Skill.Prayer, Skill.Attack, Skill.Magic, Skill.Ranged)
-    delay = 6
 }

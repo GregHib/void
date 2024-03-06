@@ -15,7 +15,6 @@ combatSwing("granite_maul*", "melee", special = true)  { player ->
     player.setAnimation("quick_smash")
     player.setGraphic("quick_smash")
     player.hit(target)
-    delay = 1
 }
 
 specialAttack("granite_maul*") { player ->

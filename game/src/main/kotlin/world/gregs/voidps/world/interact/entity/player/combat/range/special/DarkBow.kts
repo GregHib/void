@@ -1,16 +1,13 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
-import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -35,7 +32,6 @@ combatSwing("dark_bow*", "range", special = true) { player ->
     }
     player.hit(target, delay = time1)
     player.hit(target, delay = time2)
-    delay = player.weapon.def["attack_speed", 4] - (player.attackType == "rapid").toInt()
 }
 
 characterCombatHit("dark_bow*", "range") { character ->
@@ -52,8 +48,6 @@ combatSwing("dark_bow*", "range") { player ->
     val time2 = player.shoot(ammo, target, false)
     player.hit(target, delay = time1)
     player.hit(target, delay = time2)
-    val speed = player.weapon.def["attack_speed", 4]
-    delay = if (player.attackType == "rapid") speed - 1 else speed
 }
 
 fun Player.shoot(id: String, target: Character, high: Boolean): Int {
