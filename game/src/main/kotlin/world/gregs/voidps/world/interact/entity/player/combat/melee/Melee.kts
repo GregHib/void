@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee
 
+import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.inject
@@ -18,7 +19,8 @@ combatPrepare("melee") { player ->
     }
 }
 
-val definitions: WeaponStyleDefinitions by inject()
+val styleDefinitions: WeaponStyleDefinitions by inject()
+val animationDefinitions: WeaponAnimationDefinitions by inject()
 
 combatSwing(style = "melee") { player ->
     if (SpecialAttack.drain(player)) {
@@ -26,107 +28,14 @@ combatSwing(style = "melee") { player ->
         player.emit(SpecialAttack(id, target))
         return@combatSwing
     }
-    val weapon = player.weapon.id
-    when {
-        weapon == "barrelchest_anchor" -> {
-            player.setAnimation("anchor_attack")
-            player.hit(target)
-        }
-        weapon.startsWith("dragon_dagger") || weapon.startsWith("corrupt_dragon_dagger") -> {
-            player.setAnimation("dragon_dagger_${
-                when (player.attackType) {
-                    "slash" -> "slash"
-                    else -> "attack"
-                }
-            }")
-            player.hit(target)
-        }
-        weapon.startsWith("korasis_sword") -> {
-            player.setAnimation("korasis_sword_${
-                when (player.attackType) {
-                    "chop" -> "chop"
-                    else -> "slash"
-                }
-            }")
-            player.hit(target)
-        }
-        weapon.startsWith("vestas_longsword") || weapon.startsWith("corrupt_vestas_longsword") -> {
-            player.setAnimation("vestas_longsword_${
-                when (player.attackType) {
-                    "lunge" -> "lunge"
-                    else -> "attack"
-                }
-            }")
-            player.hit(target)
-        }
-        weapon.startsWith("banner") || weapon.startsWith("rat_pole") || weapon.endsWith("flag") -> {
-            player.setAnimation("banner_attack")
-            player.hit(target)
-        }
-        weapon.startsWith("boxing_gloves") -> {
-            player.setAnimation("boxing_gloves_attack")
-            player.hit(target)
-        }
-        weapon.startsWith("dharoks_greataxe") || weapon == "balmung" -> {
-            player.setAnimation("dharoks_greataxe_${
-                when (player.attackType) {
-                    "smash" -> "smash"
-                    else -> "attack"
-                }
-            }")
-            player.hit(target)
-        }
-        weapon.startsWith("easter_carrot") -> {
-            player.setAnimation("easter_carrot_whack")
-            player.hit(target)
-        }
-        weapon.endsWith("godsword") || weapon.startsWith("saradomin_sword") -> {
-            player.setAnimation("godsword_${player.attackType}")
-            player.hit(target)
-        }
-        weapon == "golden_hammer" -> {
-            player.setAnimation("tzhaar_ket_om_attack")
-            player.hit(target)
-        }
-        weapon.startsWith("granite_maul") -> {
-            player.setAnimation("granite_maul_attack")
-            player.hit(target)
-        }
-        weapon.startsWith("guthans_warspear") -> {
-            player.setAnimation("guthans_spear_${
-                when (player.attackType) {
-                    "swipe" -> "swipe"
-                    else -> "attack"
-                }
-            }")
-            player.hit(target)
-        }
-        weapon.startsWith("mouse_toy") -> {
-            player.setAnimation("mouse_toy_attack")
-            player.hit(target)
-        }
-        weapon.startsWith("torags_hammers") -> {
-            player.setAnimation("torags_hammers_attack")
-            player.hit(target)
-        }
-        weapon.startsWith("veracs_flail") -> {
-            player.setAnimation("veracs_flail_attack")
-            player.hit(target)
-        }
-        weapon.startsWith("zamorakian_spear") -> {
-            player.setAnimation("zamorakian_spear_${
-                when (player.attackType) {
-                    "block" -> "lunge"
-                    else -> player.attackType
-                }
-            }")
-            player.hit(target)
-        }
-        else -> {
-            val id = player.weapon.def["weapon_style", 0]
-            val style = definitions.get(id)
-            player.setAnimation("${style.stringId}_${player.attackType}")
-            player.hit(target)
-        }
+    val type: String? = player.weapon.def.getOrNull("weapon_type")
+    val definition = if (type != null) animationDefinitions.get(type) else null
+    var animation = definition?.attackTypes?.getOrDefault(player.attackType, definition.attackTypes["default"])
+    if (animation == null) {
+        val id = player.weapon.def["weapon_style", 0]
+        val style = styleDefinitions.get(id)
+        animation = "${style.stringId}_${player.attackType}"
     }
+    player.setAnimation(animation)
+    player.hit(target)
 }

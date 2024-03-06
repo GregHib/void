@@ -6098,6 +6098,7 @@ dragon_dagger:
   special_accuracy_mod: 1.15
   special_energy: 250
   special: puncture
+  weapon_type: dragon_dagger
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -6171,6 +6172,7 @@ dragon_dagger_p:
   special_accuracy_mod: 1.15
   special_energy: 250
   special: puncture
+  weapon_type: dragon_dagger
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -17715,6 +17717,7 @@ saradomin_flag:
   id: 4037
   weight: 2.267
   aka: [ saradomin_standard ]
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The Saradomin team's flag."
@@ -17723,6 +17726,7 @@ zamorak_flag:
   id: 4039
   weight: 2.267
   aka: [ zamorak_standard ]
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The Zamorak team's flag."
@@ -18172,6 +18176,7 @@ granite_maul:
   aka: [ gmaul ]
   special_energy: 500
   special: quick_smash
+  weapon_type: granite_maul
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Simplicity is the best weapon."
@@ -20945,6 +20950,7 @@ dharoks_greataxe:
   charges: 1
   degrade: dharoks_greataxe_100
   deplete: combat
+  weapon_type: dharoks_greataxe
   aka: [ dhaxe, dhgaxe, dh_axe, dh_gaxe, dh_g_axe, dharocks_greataxe, dharoks_great_axe ]
   slot: "Weapon"
   type: "TwoHanded"
@@ -20999,6 +21005,7 @@ guthans_warspear:
   charges: 1
   degrade: guthans_warspear_100
   deplete: combat
+  weapon_type: guthans_warspear
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Guthan The Infested's Warspear."
@@ -21106,6 +21113,7 @@ torags_hammers:
   charges: 1
   degrade: torags_hammers_100
   deplete: combat
+  weapon_type: torags_hammers
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Torag the Corrupted's twin hammers."
@@ -21155,6 +21163,7 @@ veracs_flail:
   charges: 1
   degrade: veracs_flail_100
   deplete: combat
+  weapon_type: veracs_flail
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Verac the Defiled's Flail."
@@ -21656,6 +21665,7 @@ dharoks_greataxe_100:
   charges: 22500
   degrade: dharoks_greataxe_75
   deplete: combat
+  weapon_type: dharoks_greataxe
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Dharok the Wretched's Greataxe."
@@ -21789,6 +21799,7 @@ guthans_warspear_100:
   charges: 22500
   degrade: guthans_warspear_75
   deplete: combat
+  weapon_type: guthans_warspear
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Guthan The Infested's Warspear."
@@ -22051,6 +22062,7 @@ torags_hammers_100:
   charges: 22500
   degrade: torags_hammers_75
   deplete: combat
+  weapon_type: torags_hammers
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Torag the Corrupted's twin hammers."
@@ -22181,6 +22193,7 @@ veracs_flail_100:
   charges: 22500
   degrade: veracs_flail_75
   deplete: combat
+  weapon_type: veracs_flail
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Verac the Defiled's Flail."
@@ -24581,6 +24594,7 @@ dragon_dagger_p+:
   special_accuracy_mod: 1.15
   special_energy: 250
   special: puncture
+  weapon_type: dragon_dagger
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -24653,6 +24667,7 @@ dragon_dagger_p++:
   special_accuracy_mod: 1.15
   special_energy: 250
   special: puncture
+  weapon_type: dragon_dagger
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -27797,6 +27812,7 @@ mouse_toy:
   id: 6541
   tradeable: false
   weight: 0.1
+  weapon_type: mouse_toy
   slot: "Weapon"
   destroy: "You can get a replacement mouse toy by speaking to Bob, the Jagex cat. You can also reclaim it from the quest storage chest."
   examine: "An Advanced Combat Training Device."
@@ -28991,44 +29007,51 @@ smouldering_pot:
   examine: "Contains slowly burning garden weeds."
   use: "Quest"
   kept: "Wilderness"
-rat_pole:
+rat_pole_0:
   id: 6773
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pole for putting rats on."
   weight: 2.267
-rat_pole_2:
+rat_pole_1:
   id: 6774
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pole with one rat on it."
   weight: 2.267
-rat_pole_3:
+rat_pole_2:
   id: 6775
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pole with two rats on it."
   weight: 2.267
-rat_pole_4:
+rat_pole_3:
   id: 6776
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pole with three rats on it."
   weight: 2.267
-rat_pole_5:
+rat_pole_4:
   id: 6777
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pole with four rats on it."
   weight: 2.267
-rat_pole_6:
+rat_pole_5:
   id: 6778
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pole with five rats on it."
   weight: 2.267
-rat_pole_7:
+rat_pole_6:
   id: 6779
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pole with six rats on it."
@@ -33059,6 +33082,7 @@ boxing_gloves_red:
   id: 7671
   tradeable: false
   weight: 0.453
+  weapon_type: boxing_gloves
   slot: "Weapon"
   type: "TwoHanded"
   examine: "I think they look a bit silly."
@@ -33070,6 +33094,7 @@ boxing_gloves_blue:
   id: 7673
   tradeable: false
   weight: 0.453
+  weapon_type: boxing_gloves
   slot: "Weapon"
   type: "TwoHanded"
   examine: "I think they look a bit silly."
@@ -36508,6 +36533,7 @@ banner_arrav:
   id: 8650
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with the symbol of Arrav."
   kept: "Reclaim"
@@ -36515,6 +36541,7 @@ banner_asgarnia:
   id: 8652
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with the symbol of Asgarnia."
   kept: "Reclaim"
@@ -36522,6 +36549,7 @@ banner_dorgeshuun:
   id: 8654
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with a picture of the Dorgeshuun brooch."
   kept: "Reclaim"
@@ -36529,6 +36557,7 @@ banner_dragon:
   id: 8656
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with a picture of a dragon."
   kept: "Reclaim"
@@ -36536,6 +36565,7 @@ banner_fairy:
   id: 8658
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with a picture of a fairy."
   kept: "Reclaim"
@@ -36543,6 +36573,7 @@ banner_guthix:
   id: 8660
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with the symbol of Guthix."
   kept: "Reclaim"
@@ -36550,6 +36581,7 @@ banner_ham:
   id: 8662
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with the symbol of the HAM cult."
   kept: "Reclaim"
@@ -36557,6 +36589,7 @@ banner_horse:
   id: 8664
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with a picture of the mythical 'horse'."
   kept: "Reclaim"
@@ -36564,6 +36597,7 @@ banner_jogre:
   id: 8666
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with a picture of a Jogre."
   kept: "Reclaim"
@@ -36571,6 +36605,7 @@ banner_kandarin:
   id: 8668
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with the symbol of Kandarin."
   kept: "Reclaim"
@@ -36578,6 +36613,7 @@ banner_misthalin:
   id: 8670
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with the symbol of Misthalin."
   kept: "Reclaim"
@@ -36585,6 +36621,7 @@ banner_money:
   id: 8672
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with a picture of a money-bag."
   kept: "Reclaim"
@@ -36592,6 +36629,7 @@ banner_saradomin:
   id: 8674
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with the symbol of Saradomin."
   kept: "Reclaim"
@@ -36599,6 +36637,7 @@ banner_skull:
   id: 8676
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with a picture of a skull."
   kept: "Reclaim"
@@ -36606,6 +36645,7 @@ banner_varrock:
   id: 8678
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with the symbol of Varrock."
   kept: "Reclaim"
@@ -36613,6 +36653,7 @@ banner_zamorak:
   id: 8680
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with the symbol of Zamorak."
   kept: "Reclaim"
@@ -37700,6 +37741,7 @@ cutthroat_flag:
   id: 8966
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The flag of The Cutthroat."
@@ -37708,6 +37750,7 @@ guilded_smile_flag:
   id: 8967
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The flag of The Guilded Smile."
@@ -37716,6 +37759,7 @@ bronze_fist_flag:
   id: 8968
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The flag of The Bronze Fist."
@@ -37724,6 +37768,7 @@ lucky_shot_flag:
   id: 8969
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The flag of The Lucky Shot."
@@ -37732,6 +37777,7 @@ treasure_flag:
   id: 8970
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The flag of The Treasure Trove."
@@ -37740,6 +37786,7 @@ phasmatys_flag:
   id: 8971
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The flag of The Phasmatys Pride."
@@ -46010,6 +46057,8 @@ barrelchest_anchor:
   special_accuracy_mod: 2.0
   special_energy: 500
   special: sunder
+  aka: [ anchor, bchest_anchor, barrel_chest_anchor ]
+  weapon_type: anchor
   examine: "This is likely to put my back out..."
   destroy2: "If you drop the Anchor it will be destroyed, and you will need to get a new one from Brother Tranquillity, then pay Smith to re-forge it."
   kept: "Reclaim"
@@ -49019,6 +49068,7 @@ armadyl_godsword:
   special_accuracy_mod: 2.0
   special_energy: 500
   special: the_judgement
+  weapon_type: godsword
   aka: [ ags, arma_gs, arma_sword, armadyl_sword, arma_godsword, armadyl_god_sword ]
   slot: "Weapon"
   material: "metal"
@@ -49035,6 +49085,7 @@ bandos_godsword:
   special_accuracy_mod: 2.0
   special_energy: 500
   special: warstrike
+  weapon_type: godsword
   aka: [ bgs, bandos_sword, bandos_god_sword ]
   slot: "Weapon"
   material: "metal"
@@ -49046,11 +49097,12 @@ saradomin_godsword:
   price: 27900000
   limit: 10
   weight: 10.0
-  aka: [ sgs, sara_gs, sara_godsword, saradomin_god_sword ]
   special_damage_mod_1: 1.1
   special_accuracy_mod: 2.0
   special_energy: 500
   special: healing_blade
+  weapon_type: godsword
+  aka: [ sgs, sara_gs, sara_godsword, saradomin_god_sword ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -49061,11 +49113,12 @@ zamorak_godsword:
   price: 8700000
   limit: 10
   weight: 10.0
-  aka: [ zgs, zammy_godsword, zammy_gs, zammy_sword, zamorak_god_sword ]
   special_damage_mod_1: 1.1
   special_accuracy_mod: 2.0
   special_energy: 500
   special: ice_cleave
+  weapon_type: godsword
+  aka: [ zgs, zammy_godsword, zammy_gs, zammy_sword, zamorak_god_sword ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -49201,6 +49254,7 @@ saradomin_sword:
   special_accuracy_mod: 2.0
   special_energy: 1000
   special: saradomins_lightning
+  weapon_type: godsword
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -59046,6 +59100,7 @@ vestas_longsword:
   charges: 1
   degrade: vestas_longsword_degraded
   deplete: combat
+  weapon_type: vestas_longsword
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -59061,6 +59116,7 @@ vestas_longsword_degraded:
   charges: 6000
   degrade: destroy
   deplete: combat
+  weapon_type: vestas_longsword
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -59246,6 +59302,7 @@ corrupt_vestas_longsword:
   charges: 1
   degrade: corrupt_vestas_longsword_degraded
   deplete: combat
+  weapon_type: vestas_longsword
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59258,6 +59315,7 @@ corrupt_vestas_longsword_degraded:
   charges: 1500
   degrade: destroy
   deplete: combat
+  weapon_type: vestas_longsword
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59642,6 +59700,7 @@ corrupt_dragon_dagger:
   charges: 1
   degrade: corrupt_dragon_dagger_degraded
   deplete: combat
+  weapon_type: dragon_dagger
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59654,6 +59713,7 @@ corrupt_dragon_dagger_degraded:
   charges: 1500
   degrade: destroy
   deplete: combat
+  weapon_type: dragon_dagger
   slot: "Weapon"
   material: "metal"
   destroy: "Your dagger is fragile and will disappear if you drop it. Are you sure you want to drop it?"
@@ -62632,6 +62692,7 @@ easter_carrot:
   id: 14728
   tradeable: false
   weight: 0.453
+  weapon_type: easter_carrot
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "You can claim this item from Diango."
@@ -65794,6 +65855,7 @@ balmung:
   id: 15403
   tradeable: false
   weight: 2.721
+  weapon_type: dharoks_greataxe
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "If you destroy Balmung, perhaps Brundt the Chieftain, Queen Sigrid, or Kharshai can help you."
@@ -79086,6 +79148,7 @@ korasis_sword_quiet_before_the_swarm:
   id: 18786
   tradeable: false
   weight: 1.814
+  weapon_type: korasis_sword
   slot: "Weapon"
   material: "metal"
   examine: "A sword of a Void Knight."
@@ -82347,6 +82410,7 @@ korasis_sword_the_void_stares_back:
   weight: 1.814
   special_energy: 600
   special: disrupt
+  weapon_type: korasis_sword
   slot: "Weapon"
   material: "metal"
   examine: "The sword of a Void Knight."
@@ -82390,6 +82454,7 @@ korasis_sword:
   aka: [ korasi, korasi_sword ]
   special_energy: 600
   special: disrupt
+  weapon_type: korasis_sword
   slot: "Weapon"
   material: "metal"
   examine: "The sword of a Void Knight."
@@ -83605,6 +83670,7 @@ golden_hammer:
   id: 20084
   tradeable: false
   weight: 0.907
+  weapon_type: tzhaar_ket_om
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "You can get another one from a cracker by speaking to Diango in Draynor."

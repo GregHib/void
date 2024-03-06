@@ -1,0 +1,59 @@
+anchor:
+  default: anchor_attack
+dragon_dagger:
+  slash: dragon_dagger_slash
+  default: dragon_dagger_attack
+korasis_sword:
+  chop: korasis_sword_chop
+  default: korasis_sword_slash
+vestas_longsword:
+  lunge: vestas_longsword_lunge
+  default: vestas_longsword_attack
+banner:
+  default: banner_attack
+boxing_gloves:
+  default: boxing_gloves_attack
+dharoks_greataxe:
+  smash: dharoks_greataxe_smash
+  default: dharoks_greataxe_attack
+easter_carrot:
+  default: easter_carrot_whack
+godsword:
+  pound: godsword_pound
+  pummel: godsword_pummel
+  spike: godsword_spike
+  block: godsword_block
+tzhaar_ket_om:
+  default: tzhaar_ket_om_attack
+granite_maul:
+  default: granite_maul_attack
+guthans_warspear:
+  swipe: guthans_spear_swipe
+  default: guthans_spear_attack
+mouse_toy:
+  default: mouse_toy_attack
+torags_hammers:
+  default: torags_hammers_attack
+veracs_flail:
+  default: veracs_flail_attack
+zamorakian_spear:
+  lunge: zamorakian_spear_lunge
+  swipe: zamorakian_spear_swipe
+  pound: zamorakian_spear_pound
+  block: zamorakian_spear_lunge
+chinchompa:
+  default: chinchompa_short_fuse
+pie:
+  default: mud_pie
+javelin:
+  default: throw_javelin
+dart:
+  default: throw_dart
+knife:
+  default: thrown_accurate
+bow:
+  default: bow_accurate
+crossbow:
+  default: crossbow_accurate
+karils_crossbow:
+  default: karils_crossbow_shoot

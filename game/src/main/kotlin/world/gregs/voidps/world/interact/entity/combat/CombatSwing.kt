@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 /**
  * A turn in a combat scenario resulting one or many hits
@@ -18,7 +17,7 @@ class CombatSwing(
     override fun size() = 4
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "${dispatcher.key}_combat_swing${if (dispatcher is Player && dispatcher.specialAttack) "_special" else ""}"
+        0 -> "${dispatcher.key}_combat_swing"
         1 -> dispatcher.identifier
         2 -> if (dispatcher is Character) dispatcher.weapon.id else ""
         3 -> if (dispatcher is Character) dispatcher.fightStyle else "melee"
@@ -29,11 +28,10 @@ class CombatSwing(
 fun combatSwing(
     weapon: String = "*",
     style: String = "*",
-    special: Boolean = false,
     override: Boolean = true,
     block: suspend CombatSwing.(Player) -> Unit
 ) {
-    Events.handle("player_combat_swing${if (special) "_special" else ""}", "player", weapon, style, override = override, handler = block)
+    Events.handle("player_combat_swing", "player", weapon, style, override = override, handler = block)
 }
 
 fun npcCombatSwing(
@@ -52,6 +50,6 @@ fun characterCombatSwing(
     override: Boolean = true,
     block: suspend CombatSwing.(Character) -> Unit
 ) {
-    combatSwing(weapon, style, false, override, block)
+    combatSwing(weapon, style, override, block)
     npcCombatSwing("*", weapon, style, override, block)
 }
