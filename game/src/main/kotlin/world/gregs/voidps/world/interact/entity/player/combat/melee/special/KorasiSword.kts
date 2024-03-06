@@ -24,8 +24,8 @@ val lineOfSight: LineValidator by inject()
 
 specialAttack("disrupt") { player ->
     player["korasi_chain"] = mutableSetOf(target.index)
-    player.setAnimation(id)
-    player.setGraphic(id)
+    player.setAnimation("${id}_special")
+    player.setGraphic("${id}_special")
     val maxHit = Damage.maximum(player, target, "melee", player.weapon)
     val hit = random.nextInt(maxHit / 2, (maxHit * 1.5).toInt())
     player.hit(target, damage = hit, type = "magic", delay = 0)

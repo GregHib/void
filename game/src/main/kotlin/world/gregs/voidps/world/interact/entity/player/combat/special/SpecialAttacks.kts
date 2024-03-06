@@ -24,9 +24,14 @@ variableSet("special_attack", to = true) { player ->
     }
 }
 
-specialAttack("*") { player ->
-    player.setAnimation(id)
+specialAttack { player ->
+    player.setAnimation("${id}_special")
     player.setGraphic(id)
-    player.hit(target)
+    val damage = player.hit(target)
+    if (damage >= 0) {
+        target.setAnimation("${id}_hit")
+        target.setGraphic("${id}_hit")
+        player.emit(SpecialAttackHit(id, target, damage))
+    }
 }
 

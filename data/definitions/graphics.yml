@@ -904,13 +904,13 @@ rune_throwing_axe_special:
   delay: 41
   curve: 0
   flight_time: [ 10, 15, 20, 25, 30 ]
-energy_drain:
+energy_drain_hit:
   id: 2108
   height: 60
-smash: 1840
+smash_special: 1840
 rampage: 246
-slice_and_dice: 1950
-puncture:
+slice_and_dice_special: 1950
+puncture_special:
   id: 252
   height: 60
 cleave:
@@ -921,39 +921,39 @@ shatter:
   height: 60
 the_judgement: 2113
 sanctuary: 247
-sever:
+sever_special:
   id: 2118
   height: 60
-saradomins_lightning: 1194
-favour_of_the_war_god: 1052
+saradomins_lightning_special: 1194
+favour_of_the_war_god_special: 1052
 liquify:
   id: 1048
   height: 60
-backstab: 704
-sunder: 1027
-warstrike: 2114
-healing_blade: 2109
-ice_cleave: 1221
+backstab_special: 704
+sunder_special: 1027
+warstrike_special: 2114
+healing_blade_special: 2109
+ice_cleave_special: 1221
 ice_cleave_hit: 2104
-sweep:
+sweep_special:
   id: 282
   height: 60
-powerstab: 1225
-shove:
+powerstab_special: 1225
+shove_special:
   id: 253
   height: 60
-shove_stun: 254
+shove_hit: 254
 quick_smash:
   id: 340
   height: 60
-clobber: 479
-disrupt: 1729
+clobber_special: 479
+disrupt_special: 1729
 disrupt_hit: 1730
-darklight_weaken: 483
+weaken_special: 483
 impale:
   id: 274
   height: 60
-spear_wall: 1835
+spear_wall_special: 1835
 power_of_light: 2319
 power_of_light_hit: 2320
 wind_spell_cast: 457

@@ -1,0 +1,22 @@
+package world.gregs.voidps.world.interact.entity.player.combat.special
+
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
+
+data class SpecialAttackHit(val id: String, val target: Character, val damage: Int) : Event {
+    override fun size() = 3
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> "${dispatcher.key}_special_attack_hit"
+        1 -> id
+        2 -> damage >= 0
+        else -> null
+    }
+}
+
+fun specialAttackHit(id: String, hasHit: Boolean = true, override: Boolean = true, block: suspend SpecialAttackHit.(Player) -> Unit) {
+    Events.handle("special_attack_hit", id, if (hasHit) true else "*", override = override, handler = block)
+}

@@ -9,7 +9,7 @@ import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 specialAttack("saradomins_lightning") { player ->
-    player.setAnimation(id)
+    player.setAnimation("${id}_special")
     val weapon = player.weapon
     val damage = Damage.roll(player, target, "melee", weapon)
     player.hit(target, damage = damage)

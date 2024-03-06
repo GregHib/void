@@ -1346,38 +1346,38 @@ korasis_sword_block: 12030
 dragon_dagger_attack: 376
 dragon_dagger_slash: 377
 dragon_dagger_block: 403
-puncture: 1062
+puncture_special: 1062
 defender_block: 4177
 book_block: 420
 shield_block: 1156
-smash: 10505
+smash_special: 10505
 feint: 10502
 rampage: 1056
-slice_and_dice: 10961
+slice_and_dice_special: 10961
 cleave: 12033
 shatter: 1060
 the_judgement: 11989
 sanctuary: 1168
-sever: 12031
-saradomins_lightning: 11993
-favour_of_the_war_god: 6147
+sever_special: 12031
+saradomins_lightning_special: 11993
+favour_of_the_war_god_special: 6147
 liquify: 6118
-backstab: 4198
-sunder: 5870
-warstrike: 11991
-healing_blade: 12019
-ice_cleave: 7070
-sweep: 1203
-powerstab: 7078
-shove: 1064
+backstab_special: 4198
+sunder_special: 5870
+warstrike_special: 11991
+healing_blade_special: 12019
+ice_cleave_special: 7070
+sweep_special: 1203
+powerstab_special: 7078
+shove_special: 1064
 fall_back_on_butt: 4172
 step_back_startled: 4835
 quick_smash: 1667
-clobber: 2876
-disrupt: 14788
-darklight_weaken: 2890
+clobber_special: 2876
+disrupt_special: 14788
+weaken_special: 2890
 impale: 923
-spear_wall: 10499
+spear_wall_special: 10499
 easter_carrot_whack: 11547
 banner_attack: 1428
 banner_hit: 1429
@@ -1550,7 +1550,7 @@ hammer_hit: 403
 whip_flick: 11968 # needs verification
 whip_lash: 11969 # needs verification
 whip_deflect: 11970 # needs verification
-energy_drain: 11971 # needs verification
+energy_drain_special: 11971 # needs verification
 whip_block: 11974 # needs verification
 fun_pound: 400
 fun_pummel: 400

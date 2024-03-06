@@ -17,7 +17,7 @@ data class SpecialAttack(val id: String, val target: Character) : Event {
     override fun size() = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "${dispatcher.key}_special_attack"
+        0 -> "special_attack"
         1 -> id
         else -> null
     }
@@ -52,7 +52,7 @@ data class SpecialAttack(val id: String, val target: Character) : Event {
     }
 }
 
-fun specialAttack(id: String, override: Boolean = true, block: suspend SpecialAttack.(Player) -> Unit) {
+fun specialAttack(id: String = "*", override: Boolean = true, block: suspend SpecialAttack.(Player) -> Unit) {
     Events.handle("special_attack", id, override = override, handler = block)
 }
 

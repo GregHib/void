@@ -31,10 +31,10 @@ combatPrepare("melee") { player ->
 }
 
 specialAttack("shove") { player ->
-    player.setAnimation(id)
-    player.setGraphic(id)
+    player.setAnimation("${id}_special")
+    player.setGraphic("${id}_special")
     val duration = TimeUnit.SECONDS.toTicks(3)
-    target.setGraphic("shove_stun")
+    target.setGraphic("shove_hit")
     target.freeze(duration)
     player.start("delay", duration)
     player.hit(target, damage = -1) // Hit with no damage so target can auto-retaliate

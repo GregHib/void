@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
-import world.gregs.voidps.world.interact.entity.player.combat.special.SpecialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.SpecialAttackHit
 import kotlin.random.nextInt
 
 fun multiTargetHit(check: CombatAttack.() -> Boolean, remaining: (target: Character) -> Int) {
@@ -41,7 +41,7 @@ fun multiTargetHit(check: CombatAttack.() -> Boolean, remaining: (target: Charac
     }
 }
 
-fun SpecialAttack.drainByDamage(damage: Int, vararg skills: Skill) {
+fun SpecialAttackHit.drainByDamage(damage: Int, vararg skills: Skill) {
     if (damage == -1) {
         return
     }

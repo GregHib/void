@@ -2,24 +2,17 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePrayerVarKey
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackHit
 import java.util.concurrent.TimeUnit
 
-specialAttack("sever") { player ->
-    player.setAnimation(id)
-    player.setGraphic(id)
-    if (player.hit(target) > 0) {
-        target.softTimers.start(id)
-    }
+specialAttackHit("sever") {
+    target.softTimers.start(id)
 }
 
 timerStart("sever") { player ->
