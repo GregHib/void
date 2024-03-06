@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit
 
 fun seersVillageEliteTasks(player: Player) = false
 
-specialAttack("*excalibur*") { player ->
+specialAttack("*excalibur") { player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {
         return@specialAttack
     }

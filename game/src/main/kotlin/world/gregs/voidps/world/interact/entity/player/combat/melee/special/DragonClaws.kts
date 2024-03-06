@@ -8,14 +8,8 @@ import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 
 combatSwing("dragon_claws", "melee", special = true) { player ->
-    if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
-        delay = -1
-        return@combatSwing
-    }
     player.setAnimation("slice_and_dice")
     player.setGraphic("slice_and_dice")
 

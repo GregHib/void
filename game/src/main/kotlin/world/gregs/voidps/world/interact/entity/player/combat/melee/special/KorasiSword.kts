@@ -15,9 +15,8 @@ import world.gregs.voidps.world.interact.entity.combat.Target
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 
-combatSwing("korasis_sword", "melee") { player ->
+combatSwing("korasis_sword*", "melee") { player ->
     player.setAnimation("korasis_sword_${
         when (player.attackType) {
             "chop" -> "chop"
@@ -34,11 +33,7 @@ val players: Players by inject()
 val npcs: NPCs by inject()
 val lineOfSight: LineValidator by inject()
 
-combatSwing("korasis_sword", "melee", special = true) { player ->
-    if (!drainSpecialEnergy(player, 600)) {
-        delay = -1
-        return@combatSwing
-    }
+combatSwing("korasis_sword*", "melee", special = true) { player ->
     player["korasi_chain"] = mutableSetOf(target.index)
     player.setAnimation("disrupt")
     player.setGraphic("disrupt")

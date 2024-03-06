@@ -201,6 +201,7 @@ excalibur:
   tradeable: false
   weight: 2.267
   aka: [ excaliber ]
+  special_energy: 1000
   slot: "Weapon"
   examine: "This used to belong to King Arthur."
   kept: "Reclaim"
@@ -6091,6 +6092,7 @@ dragon_dagger:
   aka: [ dd ]
   special_damage_mod_1: 1.15
   special_accuracy_mod: 1.15
+  special_energy: 250
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -6162,6 +6164,7 @@ dragon_dagger_p:
   aka: [ ddp ]
   special_damage_mod_1: 1.15
   special_accuracy_mod: 1.15
+  special_energy: 250
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -6258,6 +6261,7 @@ dragon_spear:
   price: 37700
   limit: 10
   weight: 2.267
+  special_energy: 250
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon tipped spear."
@@ -6317,6 +6321,7 @@ dragon_spear_p:
   id: 1263
   limit: 10
   weight: 2.267
+  special_energy: 250
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon tipped spear."
@@ -6576,6 +6581,7 @@ dragon_longsword:
   limit: 10
   weight: 1.814
   special_damage_mod_1: 1.25
+  special_energy: 250
   slot: "Weapon"
   material: "metal"
   examine: "A very powerful sword."
@@ -7013,6 +7019,7 @@ dragon_battleaxe:
   limit: 10
   weight: 2.721
   aka: [ d_baxe, dragon_baxe ]
+  special_energy: 1000
   slot: "Weapon"
   examine: "A vicious looking axe."
 dragon_battleaxe_noted: 1378
@@ -7301,6 +7308,7 @@ dragon_mace:
   weight: 1.814
   special_damage_mod_1: 1.5
   special_accuracy_mod: 1.25
+  special_energy: 250
   slot: "Weapon"
   examine: "A spiky mace."
 dragon_mace_noted: 1435
@@ -14468,6 +14476,7 @@ rune_claws:
     xp: 150.0
   special_damage_mod_1: 1.1
   special_accuracy_mod: 1.1
+  special_energy: 250
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pair of rune claws."
@@ -14878,6 +14887,7 @@ dragon_spear_kp:
   id: 3176
   limit: 10
   tradeable: false
+  special_energy: 250
   weight: 2.267
   slot: "Weapon"
   type: "TwoHanded"
@@ -15034,6 +15044,7 @@ dragon_halberd:
   weight: 3.175
   attack_range: 2
   special_damage_mod_1: 1.1
+  special_energy: 300
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon halberd."
@@ -18127,12 +18138,14 @@ broad_arrows:
   id: 4150
   examine: "Arrows with a wider than normal tip."
 abyssal_whip:
+  &whip
   id: 4151
   price: 865326
   limit: 10
   weight: 0.453
   aka: [ whip, abby_whip, red_whip, whip_red, red_abyssal_whip, abyssal_whip_red ]
   special_accuracy_mod: 1.25
+  special_energy: 500
   slot: "Weapon"
   examine: "A weapon from the Abyss."
 abyssal_whip_noted: 4152
@@ -18142,6 +18155,7 @@ granite_maul:
   limit: 10
   weight: 4.535
   aka: [ gmaul ]
+  special_energy: 500
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Simplicity is the best weapon."
@@ -20271,6 +20285,7 @@ dragon_scimitar:
   weight: 1.814
   aka: [ d_scimmy, dragon_scimmy, d_scimitar ]
   special_accuracy_mod: 1.15
+  special_energy: 550
   slot: "Weapon"
   material: "metal"
   examine: "A vicious, curved sword."
@@ -24547,6 +24562,7 @@ dragon_dagger_p+:
   aka: [ ddp, dd+ ]
   special_damage_mod_1: 1.15
   special_accuracy_mod: 1.15
+  special_energy: 250
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -24617,6 +24633,7 @@ dragon_dagger_p++:
   aka: [ dds, ddpp, dd++ ]
   special_damage_mod_1: 1.15
   special_accuracy_mod: 1.15
+  special_energy: 250
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -24684,6 +24701,7 @@ dragon_spear_p+:
   id: 5716
   limit: 10
   weight: 2.267
+  special_energy: 250
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon tipped spear."
@@ -24743,6 +24761,7 @@ dragon_spear_p++:
   id: 5730
   limit: 10
   weight: 2.267
+  special_energy: 250
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon tipped spear."
@@ -28740,6 +28759,7 @@ dragon_hatchet:
   limit: 10
   weight: 1.36
   aka: [ dragon_axe, daxe ]
+  special_energy: 1000
   rank: 7
   slot: "Weapon"
   examine: "A very powerful hatchet."
@@ -28767,6 +28787,7 @@ darklight:
   id: 6746
   tradeable: false
   weight: 1.814
+  special_energy: 500
   slot: "Weapon"
   material: "metal"
   destroy: "You can reclaim it from Gideon Bede in the Saradomin churchist"
@@ -30720,6 +30741,7 @@ dragon_2h_sword:
   limit: 10
   weight: 3.628
   aka: [ d2h, dragon_2h ]
+  special_energy: 600
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -37275,6 +37297,7 @@ bone_dagger:
   price: 2662
   limit: 100
   weight: 0.453
+  special_energy: 750
   slot: "Weapon"
   examine: "A powerful dagger."
 bone_dagger_noted: 8873
@@ -37282,6 +37305,7 @@ bone_dagger_p:
   id: 8874
   limit: 100
   weight: 0.453
+  special_energy: 750
   slot: "Weapon"
   examine: "A powerful dagger."
 bone_dagger_p_noted: 8875
@@ -37289,6 +37313,7 @@ bone_dagger_p+:
   id: 8876
   limit: 100
   weight: 0.453
+  special_energy: 750
   slot: "Weapon"
   examine: "A powerful dagger."
 bone_dagger_p+_noted: 8877
@@ -37296,6 +37321,7 @@ bone_dagger_p++:
   id: 8878
   limit: 100
   weight: 0.453
+  special_energy: 750
   slot: "Weapon"
   examine: "A powerful dagger."
 bone_dagger_p++_noted: 8879
@@ -45953,6 +45979,7 @@ barrelchest_anchor:
   type: "TwoHanded"
   special_damage_mod_1: 1.1
   special_accuracy_mod: 2.0
+  special_energy: 500
   examine: "This is likely to put my back out..."
   destroy2: "If you drop the Anchor it will be destroyed, and you will need to get a new one from Brother Tranquillity, then pay Smith to re-forge it."
   kept: "Reclaim"
@@ -46773,6 +46800,7 @@ brine_sabre:
   limit: 100
   weight: 1.814
   special_accuracy_mod: 2.0
+  special_energy: 750
   slot: "Weapon"
   material: "metal"
   examine: "A salty sword."
@@ -46892,6 +46920,7 @@ ancient_mace:
   price: 1102
   limit: 100
   weight: 1.814
+  special_energy: 1000
   slot: "Weapon"
   examine: "It has ancient goblin symbols on it."
 zanik_slice:
@@ -48955,6 +48984,7 @@ armadyl_godsword:
   special_damage_mod_1: 1.1
   special_damage_mod_2: 1.25
   special_accuracy_mod: 2.0
+  special_energy: 500
   aka: [ ags, arma_gs, arma_sword, armadyl_sword, arma_godsword, armadyl_god_sword ]
   slot: "Weapon"
   material: "metal"
@@ -48969,6 +48999,7 @@ bandos_godsword:
   special_damage_mod_1: 1.1
   special_damage_mod_2: 1.1
   special_accuracy_mod: 2.0
+  special_energy: 500
   aka: [ bgs, bandos_sword, bandos_god_sword ]
   slot: "Weapon"
   material: "metal"
@@ -48983,6 +49014,7 @@ saradomin_godsword:
   aka: [ sgs, sara_gs, sara_godsword, saradomin_god_sword ]
   special_damage_mod_1: 1.1
   special_accuracy_mod: 2.0
+  special_energy: 500
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -48996,6 +49028,7 @@ zamorak_godsword:
   aka: [ zgs, zammy_godsword, zammy_gs, zammy_sword, zamorak_god_sword ]
   special_damage_mod_1: 1.1
   special_accuracy_mod: 2.0
+  special_energy: 500
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -49057,6 +49090,7 @@ zamorakian_spear:
   limit: 10
   weight: 3.0
   aka: [ zs, zammy_spear, zamorak_spear ]
+  special_energy: 250
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A versatile spear wielded by agents of chaos."
@@ -49127,6 +49161,7 @@ saradomin_sword:
   aka: [ ss, sara_sword ]
   special_damage_mod_1: 1.1
   special_accuracy_mod: 2.0
+  special_energy: 1000
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -58963,6 +58998,7 @@ vestas_longsword:
   limit: 10
   aka: [ vls, vestas_long_sword ]
   special_damage_mod_1: 1.2
+  special_energy: 250
   charges: 1
   degrade: vestas_longsword_degraded
   deplete: combat
@@ -58976,6 +59012,7 @@ vestas_longsword_degraded:
   limit: 10
   tradeable: false
   special_damage_mod_1: 1.2
+  special_energy: 250
   charges: 6000
   degrade: destroy
   deplete: combat
@@ -58989,6 +59026,7 @@ statiuss_warhammer:
   limit: 10
   aka: [ stat_ham, stat_hammer, statius_hammer, statiuss_hammer, statius_warhammer ]
   special_damage_mod_1: 1.25
+  special_energy: 350
   charges: 1
   degrade: statiuss_warhammer_degraded
   deplete: combat
@@ -59001,6 +59039,7 @@ statiuss_warhammer_degraded:
   limit: 10
   tradeable: false
   special_damage_mod_1: 1.25
+  special_energy: 350
   charges: 6000
   degrade: destroy
   deplete: combat
@@ -59011,6 +59050,7 @@ vestas_spear:
   id: 13905
   price: 4100000
   limit: 10
+  special_energy: 500
   charges: 1
   degrade: vestas_spear_degraded
   deplete: combat
@@ -61251,6 +61291,7 @@ dragon_claws:
   limit: 10
   weight: 5.0
   aka: [ dclaws, d_claws, claws ]
+  special_energy: 500
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A set of fighting claws."
@@ -61888,6 +61929,7 @@ enhanced_excalibur:
   tradeable: false
   weight: 2.267
   aka: [ ee ]
+  special_energy: 1000
   slot: "Weapon"
   destroy: "You can retrieve the Enhanced Excalibur from the Lady of the Lake for 500 coins."
   examine: "This used to belong to King Arthur and has since been improved to be held in the off-hand."
@@ -65970,34 +66012,30 @@ penance_master_horn:
   examine: "An ornate horn with a fading inscription."
   weight: 0.453
 abyssal_whip_yellow:
+  <<: *whip
   id: 15441
   tradeable: false
-  weight: 0.453
-  slot: "Weapon"
   aka: [ yellow_whip, whip_yellow, yellow_abyssal_whip ]
   examine: "A weapon from the Abyss, painted yellow from the yolk of a Penance egg."
   kept: "Reclaim"
 abyssal_whip_blue:
+  <<: *whip
   id: 15442
   tradeable: false
-  weight: 0.453
-  slot: "Weapon"
   aka: [ blue_whip, whip_blue, blue_abyssal_whip ]
   examine: "A weapon from the Abyss, painted blue from the yolk of a Penance egg."
   kept: "Reclaim"
 abyssal_whip_white:
+  <<: *whip
   id: 15443
   tradeable: false
-  weight: 0.453
-  slot: "Weapon"
   aka: [ white_whip, whip_white, white_abyssal_whip ]
   examine: "A weapon from the Abyss, painted white from the egg white of a Penance egg."
   kept: "Reclaim"
 abyssal_whip_green:
+  <<: *whip
   id: 15444
   tradeable: false
-  weight: 0.453
-  slot: "Weapon"
   aka: [ green_whip, whip_green, green_abyssal_whip ]
   examine: "A weapon from the Abyss, painted green from the yolk of a Penance egg."
   kept: "Reclaim"
@@ -82249,6 +82287,7 @@ korasis_sword_the_void_stares_back:
   id: 19780
   tradeable: false
   weight: 1.814
+  special_energy: 600
   slot: "Weapon"
   material: "metal"
   examine: "The sword of a Void Knight."
@@ -82290,6 +82329,7 @@ korasis_sword:
   tradeable: false
   weight: 0.907
   aka: [ korasi, korasi_sword ]
+  special_energy: 600
   slot: "Weapon"
   material: "metal"
   examine: "The sword of a Void Knight."

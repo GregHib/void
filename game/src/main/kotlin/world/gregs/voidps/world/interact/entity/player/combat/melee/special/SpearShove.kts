@@ -11,28 +11,22 @@ import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.combatPrepare
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.effect.freeze
-import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import java.util.concurrent.TimeUnit
 
-val handler: suspend CombatSwing.(Player) -> Unit = handler@{ player ->
+combatPrepare("melee") { player ->
     if (target.size > 1) {
         player.message("That creature is too large to knock back!")
-        delay = -1
-        return@handler
-    }
-    if (target.hasClock("movement_delay")) {
+        cancel()
+    } else if (target.hasClock("movement_delay")) {
         player.message("That ${if (target is Player) "player" else "creature"} is already stunned!")
-        delay = -1
-        return@handler
+        cancel()
     }
-    if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 4)) {
-        delay = -1
-        return@handler
-    }
+}
+val handler: suspend CombatSwing.(Player) -> Unit = handler@{ player ->
     player.setAnimation("shove")
     player.setGraphic("shove")
     val duration = TimeUnit.SECONDS.toTicks(3)

@@ -12,14 +12,9 @@ import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.getActivePrayerVarKey
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import java.util.concurrent.TimeUnit
 
 combatSwing("*dragon_scimitar", "melee", special = true) { player ->
-    if (!drainSpecialEnergy(player, 550)) {
-        delay = -1
-        return@combatSwing
-    }
     player.setAnimation("sever")
     player.setGraphic("sever")
     if (player.hit(target) > 0) {

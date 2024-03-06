@@ -7,14 +7,8 @@ import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 
 combatSwing("saradomin_sword*", "melee", special = true) { player ->
-    if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {
-        delay = -1
-        return@combatSwing
-    }
     player.setAnimation("saradomins_lightning")
     val weapon = player.weapon
     val damage = Damage.roll(player, target, "melee", weapon)

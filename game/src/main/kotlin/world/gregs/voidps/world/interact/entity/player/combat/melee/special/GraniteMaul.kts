@@ -12,10 +12,6 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpeci
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 combatSwing("granite_maul*", "melee", special = true)  { player ->
-    if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
-        delay = -1
-        return@combatSwing
-    }
     player.setAnimation("quick_smash")
     player.setGraphic("quick_smash")
     player.hit(target)

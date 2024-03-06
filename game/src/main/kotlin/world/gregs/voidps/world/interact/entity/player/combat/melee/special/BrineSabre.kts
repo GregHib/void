@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAttack
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 specialAttack("brine_sabre") { player ->
@@ -17,10 +16,6 @@ specialAttack("brine_sabre") { player ->
 }
 
 combatSwing("brine_sabre", "melee", special = true) { player ->
-    if (!drainSpecialEnergy(player, 750)) {
-        delay = -1
-        return@combatSwing
-    }
     player.setAnimation("liquify")
     player.setGraphic("liquify")
     player.hit(target)
