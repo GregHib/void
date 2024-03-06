@@ -104,16 +104,6 @@ object Hit {
         }
         return level
     }
-
-    fun bowDelay(distance: Int) = 1 + (distance + 3) / 6
-
-    fun throwDelay(distance: Int) = 1 + distance / 6
-
-    fun magicDelay(distance: Int) = 1 + (distance + 1) / 3
-
-    fun darkBowDelay(distance: Int) = 1 + (distance + 2) / 3
-
-    fun dfsDelay(distance: Int) = 2 + (distance + 4) / 6
 }
 
 /**
