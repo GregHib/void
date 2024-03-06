@@ -10207,7 +10207,7 @@ cocktail_glass:
   weight: 0.1
   examine: "For sipping cocktails."
 cocktail_glass_noted: 2027
-premade_blurberry_special_energy:
+premade_blurberry_special:
   id: 2028
   price: 41
   limit: 1000
