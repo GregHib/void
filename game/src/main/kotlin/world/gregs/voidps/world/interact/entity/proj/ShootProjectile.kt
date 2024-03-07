@@ -130,19 +130,20 @@ private fun projectile(
     if (time == -1) {
         return -1
     }
+    val startDelay = delay ?: definition["delay", DEFAULT_DELAY]
     sendProjectile(
         id = id,
         tile = sourceTile,
         direction = targetTile.delta(sourceTile),
         target = target,
-        delay = delay ?: definition["delay", DEFAULT_DELAY],
+        delay = startDelay,
         flightTime = time,
         startHeight = startHeight ?: (sourceHeight + definition["height", 0]),
         endHeight = endHeight ?: (targetHeight + definition["end_height", 0]),
         curve = curve ?: definition["curve", DEFAULT_CURVE],
         offset = (width * 64) + (offset ?: definition["offset", DEFAULT_OFFSET])
     )
-    return time
+    return time + startDelay
 }
 
 
@@ -182,6 +183,7 @@ private fun getFlightTime(definition: GraphicDefinition, tile: Tile, target: Til
     if (flightTime != null) {
         return flightTime
     }
+    println("Distance: ${tile.distanceTo(target)}")
     return definition.getOrNull<List<Int>>("flight_time")?.getOrNull(tile.distanceTo(target) - 1) ?: -1
 }
 
