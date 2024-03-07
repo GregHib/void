@@ -3,7 +3,8 @@ package world.gregs.voidps.world.interact.entity.death
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.Despawn
+import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
@@ -64,12 +65,13 @@ npcDeath { npc ->
             npcs.index(npc)
             npc.dead = false
             npc.mode = EmptyMode
+            npc.emit(Spawn)
         } else {
             World.queue("remove_npc") {
                 npcs.remove(npc)
                 npcs.releaseIndex(npc)
             }
-            npc.emit(Unregistered)
+            npc.emit(Despawn)
         }
     }
 }
