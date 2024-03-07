@@ -6650,6 +6650,7 @@ bronze_2h_sword:
   smithing:
     level: 14
     xp: 37.5
+  aka: [ bronze_2h ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -6664,6 +6665,7 @@ iron_2h_sword:
   smithing:
     level: 29
     xp: 75.0
+  aka: [ iron_2h ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -6678,6 +6680,7 @@ steel_2h_sword:
   smithing:
     level: 44
     xp: 112.5
+  aka: [ steel_2h ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -6689,6 +6692,7 @@ black_2h_sword:
   price: 1027
   limit: 1000
   weight: 3.628
+  aka: [ black_2h ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -6702,6 +6706,7 @@ mithril_2h_sword:
   smithing:
     level: 64
     xp: 150.0
+  aka: [ mithril_2h, mith_2h ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -6715,6 +6720,7 @@ adamant_2h_sword:
   smithing:
     level: 84
     xp: 187.5
+  aka: [ adamant_2h, addy_2h ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -6728,6 +6734,7 @@ rune_2h_sword:
   smithing:
     level: 99
     xp: 225.0
+  aka: [ rune_2h ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"

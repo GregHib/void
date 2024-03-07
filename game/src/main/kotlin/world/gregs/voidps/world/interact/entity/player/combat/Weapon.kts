@@ -26,7 +26,7 @@ variableSet("spell", to = null) { player ->
     updateWeapon(player, player.weapon)
 }
 
-variableSet("attack_style", "long_range") { player ->
+variableSet("attack_style", to = "long_range") { player ->
     updateWeapon(player, player.weapon, 2)
 }
 
