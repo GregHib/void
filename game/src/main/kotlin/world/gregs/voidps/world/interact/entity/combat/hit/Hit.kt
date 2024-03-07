@@ -8,13 +8,13 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.Prayer
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import kotlin.math.floor
+import kotlin.math.round
 
 object Hit {
     private val logger = InlineLogger()
@@ -122,7 +122,7 @@ fun Character.hit(
     val actualDamage = Damage.modify(this, target, type, damage, weapon, spell, special)
         .coerceAtMost(target.levels.get(Skill.Constitution))
     emit(CombatAttack(target, type, actualDamage, weapon, spell, special, delay))
-    target.strongQueue("hit", CLIENT_TICKS.toTicks(delay)) {
+    target.strongQueue("hit", round(delay / 30.0).toInt()) {
         target.directHit(this@hit, actualDamage, type, weapon, spell, special)
     }
     return actualDamage
