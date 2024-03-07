@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 
-object Unregistered : Event {
+object Despawn : Event {
 
     override val all = true
 
@@ -22,23 +22,23 @@ object Unregistered : Event {
     }
 }
 
-fun playerDespawn(block: suspend Unregistered.(Player) -> Unit) {
+fun playerDespawn(block: suspend Despawn.(Player) -> Unit) {
     Events.handle("player_despawn", "player", handler = block)
 }
 
-fun npcDespawn(npc: String = "*", block: suspend Unregistered.(NPC) -> Unit) {
+fun npcDespawn(npc: String = "*", block: suspend Despawn.(NPC) -> Unit) {
     Events.handle("npc_despawn", npc, handler = block)
 }
 
-fun characterDespawn(block: suspend Unregistered.(Character) -> Unit) {
+fun characterDespawn(block: suspend Despawn.(Character) -> Unit) {
     Events.handle("player_despawn", "player", handler = block)
     Events.handle("npc_despawn", "*", handler = block)
 }
 
-fun floorItemDespawn(item: String = "*", block: suspend Unregistered.(FloorItem) -> Unit) {
+fun floorItemDespawn(item: String = "*", block: suspend Despawn.(FloorItem) -> Unit) {
     Events.handle("floor_item_despawn", item, handler = block)
 }
 
-fun objectDespawn(obj: String = "*", block: suspend Unregistered.(GameObject) -> Unit) {
+fun objectDespawn(obj: String = "*", block: suspend Despawn.(GameObject) -> Unit) {
     Events.handle("object_despawn", obj, handler = block)
 }

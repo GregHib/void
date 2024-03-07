@@ -5,8 +5,8 @@ import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.Despawn
+import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
@@ -21,7 +21,7 @@ import world.gregs.voidps.type.Zone
  * "original" objects refer to those [set] on game load from the cache or map file
  * "temporary" objects are [add]ed or [remove]ed with a reset timer
  * "permanent" objects are [add]ed or [remove]ed without a reset timer (but don't persist after server restart)
- * Note: [Registered] and [Unregistered] events are only emitted for temporary and permanent objects, original objects that are added or removed do not emit events.
+ * Note: [Spawn] and [Despawn] events are only emitted for temporary and permanent objects, original objects that are added or removed do not emit events.
  * @param storeUnused store non-interactive and objects without configs for debugging and content dev (uses ~240MB more ram).
  */
 class GameObjects(
@@ -72,7 +72,7 @@ class GameObjects(
                 val current = replacements[obj.index]
                 if (current != null) {
                     val currentObj = remove(current, obj, collision)
-                    currentObj.emit(Unregistered)
+                    currentObj.emit(Despawn)
                 }
             } else if (original > 0) {
                 // Remove original (if exists)
@@ -86,7 +86,7 @@ class GameObjects(
                 collisions.modify(obj, add = true)
             }
             size++
-            obj.emit(Registered)
+            obj.emit(Spawn)
         }
     }
 
@@ -146,7 +146,7 @@ class GameObjects(
                 collisions.modify(obj, add = false)
             }
             size--
-            obj.emit(Unregistered)
+            obj.emit(Despawn)
             // Re-add original (if exists)
             map.remove(obj, REPLACED)
             if (original > 1) {

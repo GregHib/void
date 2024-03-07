@@ -6,8 +6,8 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import kotlinx.io.pool.DefaultPool
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.Despawn
+import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems.Companion.MAX_TILE_ITEMS
@@ -59,7 +59,7 @@ class FloorItems(
         }
         if (list.add(item)) {
             batches.add(item.tile.zone, FloorItemAddition(item.tile.id, item.def.id, item.amount, item.owner))
-            item.emit(Registered)
+            item.emit(Spawn)
         }
     }
 
@@ -112,7 +112,7 @@ class FloorItems(
                     zonePool.recycle(zone)
                 }
             }
-            item.emit(Unregistered)
+            item.emit(Despawn)
             return true
         }
         return false
@@ -123,7 +123,7 @@ class FloorItems(
             for ((_, items) in zone) {
                 for (item in items) {
                     batches.add(item.tile.zone, FloorItemRemoval(item.tile.id, item.def.id, item.owner))
-                    item.emit(Unregistered)
+                    item.emit(Despawn)
                 }
                 tilePool.recycle(items)
             }

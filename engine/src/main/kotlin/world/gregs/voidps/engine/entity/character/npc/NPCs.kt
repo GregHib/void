@@ -2,9 +2,9 @@ package world.gregs.voidps.engine.entity.character.npc
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.MAX_NPCS
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.CharacterMap
 import world.gregs.voidps.engine.entity.character.face
@@ -86,7 +86,7 @@ data class NPCs(
             npc["respawn_delay"] = respawnDelay
             npc["respawn_direction"] = direction
         }
-        npc.emit(Registered)
+        npc.emit(Spawn)
         return npc
     }
 
@@ -119,7 +119,7 @@ data class NPCs(
 
     override fun clear() {
         for (npc in this) {
-            npc.emit(Unregistered)
+            npc.emit(Despawn)
             npc.softTimers.stopAll()
         }
         super.clear()
