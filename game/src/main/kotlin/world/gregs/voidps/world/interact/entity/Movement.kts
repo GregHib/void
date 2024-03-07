@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.world.interact.entity.death.npcDeath
 
 val collisions: Collisions by inject()
 val npcs: NPCs by inject()
@@ -37,6 +38,10 @@ npcSpawn { npc ->
             collisions.add(x, y, npc.tile.level, mask)
         }
     }
+}
+
+npcDeath { npc ->
+    collisions.remove(npc)
 }
 
 characterDespawn { character ->
