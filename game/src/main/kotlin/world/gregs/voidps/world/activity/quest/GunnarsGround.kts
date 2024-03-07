@@ -1,13 +1,11 @@
 package world.gregs.voidps.world.activity.quest
 
-import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.client.ui.interfaceSlot
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.holdsItem
-import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption
+import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 
-on<Registered> { player: Player ->
+playerSpawn { player ->
     player.sendVariable("gudrun_after_quest")
     player.sendVariable("dororan_after_quest")
     player.sendVariable("kjell")
@@ -20,7 +18,7 @@ on<Registered> { player: Player ->
     player.sendVariable("dororan_onyx_amulet")
 }
 
-on<InventoryOption>({ inventory == "inventory" && item.id == "gunnars_ground" && option == "Read" }) { player: Player ->
+inventoryItem("Read", "gunnars_ground", "inventory") {
     player.sendScroll("Gunnar's Ground", listOf(
         "Our people dwelt on mountains steeped in lore,",
         "A mighty tribe as harsh as any beast",
@@ -42,7 +40,7 @@ on<InventoryOption>({ inventory == "inventory" && item.id == "gunnars_ground" &&
     ))
 }
 
-on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemSlot == 17 }) { player: Player ->
+interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 17) {
     val lines = when (player.quest("gunnars_ground")) {
         "completed" -> listOf(
             "<str>I met an unhappy dwarf named Dororan just outside the",

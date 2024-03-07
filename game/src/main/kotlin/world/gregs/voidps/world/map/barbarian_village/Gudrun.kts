@@ -13,11 +13,9 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -512,7 +510,7 @@ fun CharacterContext.questComplete() {
     player.inventory.add("swanky_boots")
 }
 
-on<NPCOption>({ operate && target.id == "gudrun_after_quest" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "gudrun_after_quest") {
     when (player.quest("gunnars_ground")) {
         "completed" -> {
             npc<Cheerful>("Hello!")
