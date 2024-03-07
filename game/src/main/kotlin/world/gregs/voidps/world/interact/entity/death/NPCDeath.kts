@@ -57,10 +57,10 @@ npcDeath { npc ->
         npcs.removeIndex(npc)
         val respawn = npc.get<Tile>("respawn_tile")
         if (respawn != null) {
+            npc.tele(respawn)
             pause(npc["respawn_delay", 60])
             npc.damageDealers.clear()
             npc.levels.clear()
-            npc.tele(respawn)
             npc.face(npc["respawn_direction", Direction.NORTH], update = false)
             npcs.index(npc)
             npc.dead = false
