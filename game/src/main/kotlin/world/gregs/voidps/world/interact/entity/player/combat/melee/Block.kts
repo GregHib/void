@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee
 
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -18,7 +19,8 @@ import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val styleDefinitions: WeaponStyleDefinitions by inject()
-val animationDefinitions: WeaponAnimationDefinitions by inject()
+val weaponDefinitions: WeaponAnimationDefinitions by inject()
+val animationDefinitions: AnimationDefinitions by inject()
 
 characterCombatAttack { character ->
     character.playSound(calculateHitSound(target), delay)
@@ -33,12 +35,12 @@ characterCombatAttack { character ->
             target.setAnimation("book_block", delay)
         } else {
             val type: String? = target.weapon.def.getOrNull("weapon_type")
-            val definition = if (type != null) animationDefinitions.get(type) else null
+            val definition = if (type != null) weaponDefinitions.get(type) else null
             var animation = definition?.attackTypes?.getOrDefault(target.attackType, definition.attackTypes["default"])
             if (animation == null) {
                 val id = target.weapon.def["weapon_style", -1]
                 val style = styleDefinitions.get(id)
-                animation = if (id == -1) "player_block" else "${style.stringId}_hit"
+                animation = if (id != -1 && animationDefinitions.contains("${style.stringId}_hit")) "${style.stringId}_hit" else "human_hit"
             }
             target.setAnimation(animation)
         }
