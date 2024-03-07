@@ -42,12 +42,12 @@ characterCombatAttack { character ->
                 val style = styleDefinitions.get(id)
                 animation = if (id != -1 && animationDefinitions.contains("${style.stringId}_hit")) "${style.stringId}_hit" else "human_hit"
             }
-            target.setAnimation(animation)
+            target.setAnimation(animation, delay)
         }
         blocked = true
     } else if (target is NPC) {
         val animation = if (target.race.isNotEmpty()) "${target.race}_hit" else target.def.getOrNull("hit_anim") ?: return@characterCombatAttack
-        target.setAnimation(animation)
+        target.setAnimation(animation, delay)
         blocked = true
     }
 }
