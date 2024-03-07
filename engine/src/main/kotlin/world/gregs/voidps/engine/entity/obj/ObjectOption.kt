@@ -18,7 +18,7 @@ data class ObjectOption(
 ) : Interaction(), TargetObjectContext {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 
-    override fun size() = 4
+    override val size = 4
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "${character.key}_${if (approach) "approach" else "operate"}_object"

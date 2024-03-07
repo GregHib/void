@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.type.Zone
 
 data class ReloadZone(val zone: Zone) : Event {
-    override fun size() = 1
+    override val size = 1
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = if (index == 0) "reload_zone" else ""
 }

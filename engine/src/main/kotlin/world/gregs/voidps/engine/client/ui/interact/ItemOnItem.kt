@@ -19,7 +19,7 @@ data class ItemOnItem(
     val toInventory: String
 ) : Event {
 
-    override fun size() = 7
+    override val size = 7
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "item_on_item"

@@ -51,15 +51,15 @@ combatPrepare("range") { player ->
         cancel()
         return@combatPrepare
     }
-    val definition = ammoDefinitions.get(group)
-    if (!definition.items.contains(ammo.id)) {
-        player.message("You can't use that ammo with your ${definition["name", "bow"]}.")
-        cancel()
-        return@combatPrepare
-    }
     val required = Ammo.requiredAmount(player.weapon, player.specialAttack)
     if (ammo.amount < required) {
         player.message("There is no ammo left in your quiver.")
+        cancel()
+        return@combatPrepare
+    }
+    val definition = ammoDefinitions.get(group)
+    if (!definition.items.contains(ammo.id)) {
+        player.message("You can't use that ammo with your ${definition["name", "bow"]}.")
         cancel()
         return@combatPrepare
     }

@@ -96,10 +96,10 @@ class Events : CoroutineScope {
     }
 
     fun contains(dispatcher: EventDispatcher, event: Event): Boolean {
-        if (event.size() <= 0) {
+        if (event.size <= 0) {
             return false
         }
-        val root = roots[event.size()] ?: return false
+        val root = roots[event.size] ?: return false
         return first(dispatcher, event, root, 0, null) != null
     }
 
@@ -113,15 +113,15 @@ class Events : CoroutineScope {
      * no match is found.
      */
     internal fun search(dispatcher: EventDispatcher, event: Event, skip: (suspend Event.(EventDispatcher) -> Unit)? = null): Set<suspend Event.(EventDispatcher) -> Unit>? {
-        if (event.size() <= 0) {
+        if (event.size <= 0) {
             return null
         }
-        val root = roots[event.size()] ?: return null
-        return if (event.findAll()) all(dispatcher, event, root, 0, skip) else first(dispatcher, event, root, 0, skip)
+        val root = roots[event.size] ?: return null
+        return if (event.all) all(dispatcher, event, root, 0, skip) else first(dispatcher, event, root, 0, skip)
     }
 
     private fun first(dispatcher: EventDispatcher, event: Event, node: TrieNode, depth: Int, skip: (suspend Event.(EventDispatcher) -> Unit)? = null): Set<suspend Event.(EventDispatcher) -> Unit>? {
-        if (depth == event.size()) {
+        if (depth == event.size) {
             if (node.handler!!.contains(skip)) {
                 return null
             }
@@ -164,7 +164,7 @@ class Events : CoroutineScope {
         skip: (suspend Event.(EventDispatcher) -> Unit)? = null,
         output: MutableSet<suspend Event.(EventDispatcher) -> Unit> = mutableSetOf()
     ): Set<suspend Event.(EventDispatcher) -> Unit> {
-        if (depth == event.size()) {
+        if (depth == event.size) {
             if (node.handler!!.contains(skip)) {
                 return output
             }

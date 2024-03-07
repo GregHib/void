@@ -25,11 +25,9 @@ data class CombatAttack(
 ) : Event {
     var blocked = false
 
-    override fun findAll(): Boolean {
-        return true
-    }
+    override val all = true
 
-    override fun size() = 5
+    override val size = 5
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "${dispatcher.key}_combat_attack${if (special) "_special" else ""}"

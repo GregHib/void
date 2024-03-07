@@ -19,7 +19,7 @@ data class ItemOnFloorItem(
 ) : Interaction() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 
-    override fun size() = 5
+    override val size = 5
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> if (approach) "item_approach_floor_item" else "item_operate_floor_item"

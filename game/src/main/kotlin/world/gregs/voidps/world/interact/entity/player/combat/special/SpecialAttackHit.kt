@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 
 data class SpecialAttackHit(val id: String, val target: Character, val damage: Int) : Event {
-    override fun size() = 3
+    override val size = 3
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "${dispatcher.key}_special_attack_hit"

@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.event.Events
  * Combat has started
  */
 data class CombatStart(val target: Character) : Event {
-    override fun size() = 2
+    override val size = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "${dispatcher.key}_combat_start"

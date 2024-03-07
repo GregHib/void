@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 
 data class LeaveClanChat(val forced: Boolean) : Event {
-    override fun size() = 2
+    override val size = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when(index) {
         0 -> "leave_clan_chat"

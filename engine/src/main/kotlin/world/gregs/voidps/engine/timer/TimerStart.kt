@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.event.Events
 data class TimerStart(val timer: String, val restart: Boolean = false) : CancellableEvent() {
     var interval: Int = -1
 
-    override fun size() = 3
+    override val size = 3
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "${dispatcher.key}_timer_start"

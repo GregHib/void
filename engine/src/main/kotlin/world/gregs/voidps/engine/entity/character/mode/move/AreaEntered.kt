@@ -16,7 +16,7 @@ data class AreaEntered(
 ) : SuspendableEvent, CharacterContext {
     override var onCancel: (() -> Unit)? = null
 
-    override fun size() = 5
+    override val size = 5
 
     override fun parameter(dispatcher: EventDispatcher, index: Int): Any? = when (index) {
         0 -> "${dispatcher.key}_enter"

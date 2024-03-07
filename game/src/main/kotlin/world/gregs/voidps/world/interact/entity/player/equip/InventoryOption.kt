@@ -15,7 +15,7 @@ data class InventoryOption(
 ) : Interaction() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 
-    override fun size() = 4
+    override val size = 4
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "inventory_option"

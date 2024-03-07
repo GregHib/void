@@ -9,7 +9,9 @@ import world.gregs.voidps.engine.event.Events
 
 object Death : Event {
 
-    override fun size() = 2
+    override val all = true
+
+    override val size = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "${dispatcher.key}_death"

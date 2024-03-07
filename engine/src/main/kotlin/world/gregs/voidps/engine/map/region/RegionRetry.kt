@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.EventDispatcher
  * Resend region load when FinishRegionLoad wasn't received
  */
 object RegionRetry : Event {
-    override fun size() = 1
+    override val size = 1
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "region_retry"

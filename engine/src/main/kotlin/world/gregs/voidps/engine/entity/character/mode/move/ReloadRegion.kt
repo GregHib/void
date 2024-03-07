@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
 
 object ReloadRegion : Event {
-    override fun size() = 1
+    override val size = 1
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = if (index == 0) "reload_region" else ""
 }

@@ -11,7 +11,7 @@ data class HuntObject(
     val target: GameObject
 ) : Event {
 
-    override fun size() = 4
+    override val size = 4
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "hunt_object"

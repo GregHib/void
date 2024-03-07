@@ -15,7 +15,7 @@ data class PrivateChatMessage(
 ) : Event {
     constructor(source: Player, message: String, huffman: Huffman) : this(source, message, huffman.compress(message))
 
-    override fun size() = 1
+    override val size = 1
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when(index) {
         0 -> "private_chat_message"

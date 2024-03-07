@@ -20,7 +20,7 @@ data class Moved(
 ) : CancellableEvent(), CharacterContext, SuspendableEvent {
     override var onCancel: (() -> Unit)? = null
 
-    override fun size() = 4
+    override val size = 4
 
     override fun parameter(dispatcher: EventDispatcher, index: Int): Any? = when (index) {
         0 -> "${dispatcher.key}_move"

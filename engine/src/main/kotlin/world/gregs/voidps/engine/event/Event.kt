@@ -5,13 +5,12 @@ interface Event {
     /**
      * Search for all handlers matching, not just the first.
      */
-    open fun findAll(): Boolean {
-        return false
-    }
+    val all: Boolean
+        get() = false
 
-    fun size(): Int
+    val size: Int
 
     fun parameter(dispatcher: EventDispatcher, index: Int): Any?
 
-    fun debug(dispatcher: EventDispatcher): String = Array(size()) { parameter(dispatcher, it) }.contentToString()
+    fun debug(dispatcher: EventDispatcher): String = Array(size) { parameter(dispatcher, it) }.contentToString()
 }

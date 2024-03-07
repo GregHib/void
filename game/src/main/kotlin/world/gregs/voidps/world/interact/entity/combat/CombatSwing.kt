@@ -14,7 +14,7 @@ class CombatSwing(
     val target: Character
 ) : CancellableEvent() {
 
-    override fun size() = 4
+    override val size = 4
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "${dispatcher.key}_combat_swing"

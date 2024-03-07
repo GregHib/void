@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
 
 data class ItemUsedOnItem(val def: ItemOnItemDefinition) : Event {
-    override fun size() = 2
+    override val size = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when(index) {
         0 -> "item_used_on_item"

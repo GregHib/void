@@ -19,7 +19,7 @@ data class InterfaceSwitch(
     val toInventory: String
 ) : Event {
 
-    override fun size() = 5
+    override val size = 5
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "interface_switch"

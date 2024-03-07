@@ -12,7 +12,7 @@ data class GrantExp(
     val to: Double
 ) : Event {
 
-    override fun size() = 2
+    override val size = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int): Any? = when (index) {
         0 -> "grant_experience"

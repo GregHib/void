@@ -24,7 +24,7 @@ data class CombatHit(
     val spell: String,
     val special: Boolean
 ) : Event {
-    override fun size() = 6
+    override val size = 6
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "${dispatcher.key}_combat_hit${if (special) "_special" else ""}"

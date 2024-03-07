@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 
 data class AddFriend(val friend: String) : CancellableEvent() {
-    override fun size() = 2
+    override val size = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "add_friend"

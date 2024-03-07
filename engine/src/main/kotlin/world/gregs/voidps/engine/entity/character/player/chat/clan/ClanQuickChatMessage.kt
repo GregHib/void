@@ -14,7 +14,7 @@ data class ClanQuickChatMessage(
     val message: String,
     val data: ByteArray
 ) : Event {
-    override fun size() = 1
+    override val size = 1
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when(index) {
         0 -> "clan_quick_chat_message"

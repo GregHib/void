@@ -11,7 +11,7 @@ data class HuntPlayer(
     val target: Player
 ) : Event {
 
-    override fun size() = 3
+    override val size = 3
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "hunt_player"
