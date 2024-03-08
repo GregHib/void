@@ -23,14 +23,12 @@ data class CombatAttack(
     val special: Boolean,
     val delay: Int
 ) : Event {
-    var blocked = false
-
     override val all = true
 
     override val size = 5
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "${dispatcher.key}_combat_attack${if (special) "_special" else ""}"
+        0 -> "${dispatcher.key}_combat_attack"
         1 -> dispatcher.identifier
         2 -> weapon.id
         3 -> type
@@ -43,11 +41,10 @@ fun combatAttack(
     weapon: String = "*",
     type: String = "*",
     spell: String = "*",
-    special: Boolean = false,
     override: Boolean = true,
     block: suspend CombatAttack.(Player) -> Unit
 ) {
-    Events.handle("player_combat_attack${if (special) "_special" else ""}", "player", weapon, type, spell, override = override, handler = block)
+    Events.handle("player_combat_attack", "player", weapon, type, spell, override = override, handler = block)
 }
 
 fun npcCombatAttack(
@@ -55,21 +52,19 @@ fun npcCombatAttack(
     weapon: String = "*",
     type: String = "*",
     spell: String = "*",
-    special: Boolean = false,
     override: Boolean = true,
     block: suspend CombatAttack.(Player) -> Unit
 ) {
-    Events.handle("npc_combat_attack${if (special) "_special" else ""}", npc, weapon, type, spell, override = override, handler = block)
+    Events.handle("npc_combat_attack", npc, weapon, type, spell, override = override, handler = block)
 }
 
 fun characterCombatAttack(
     weapon: String = "*",
     type: String = "*",
     spell: String = "*",
-    special: Boolean = false,
     override: Boolean = true,
     block: suspend CombatAttack.(Character) -> Unit
 ) {
-    combatAttack(weapon, type, spell, special, override, block)
-    npcCombatAttack("*", weapon, type, spell, special, override, block)
+    combatAttack(weapon, type, spell, override, block)
+    npcCombatAttack("*", weapon, type, spell, override, block)
 }

@@ -68,6 +68,5 @@ characterCombatAttack { character ->
         if (random.nextDouble() >= 0.4) {
             target.hit(target = character, type = "deflect", delay = delay, damage = (damage * 0.10).toInt())
         }
-        blocked = true
     }
 }

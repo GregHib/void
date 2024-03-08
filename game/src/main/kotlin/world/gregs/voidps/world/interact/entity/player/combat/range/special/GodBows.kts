@@ -16,6 +16,9 @@ var Player.restoration: Int
     }
 
 val specialHandler: suspend CombatAttack.(Player) -> Unit = combatAttack@{ source ->
+    if (!special) {
+        return@combatAttack
+    }
     when (weapon.id) {
         "zamorak_bow" -> target.hit(source, weapon, type, CLIENT_TICKS.toTicks(delay), spell, special, damage)
         "saradomin_bow" -> {
@@ -30,9 +33,9 @@ val specialHandler: suspend CombatAttack.(Player) -> Unit = combatAttack@{ sourc
         }
     }
 }
-combatAttack("saradomin_bow", special = true, block = specialHandler)
-combatAttack("guthix_bow", special = true, block = specialHandler)
-combatAttack("zamorak_bow", special = true, block = specialHandler)
+combatAttack("saradomin_bow", block = specialHandler)
+combatAttack("guthix_bow", block = specialHandler)
+combatAttack("zamorak_bow", block = specialHandler)
 
 val hitHandler: suspend CombatHit.(Character) -> Unit = { character ->
     if (special) {

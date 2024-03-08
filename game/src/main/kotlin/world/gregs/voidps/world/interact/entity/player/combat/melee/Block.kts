@@ -44,11 +44,9 @@ characterCombatAttack { character ->
             }
             target.setAnimation(animation, delay)
         }
-        blocked = true
     } else if (target is NPC) {
         val animation = if (target.race.isNotEmpty()) "${target.race}_hit" else target.def.getOrNull("hit_anim") ?: return@characterCombatAttack
         target.setAnimation(animation, delay)
-        blocked = true
     }
 }
 
