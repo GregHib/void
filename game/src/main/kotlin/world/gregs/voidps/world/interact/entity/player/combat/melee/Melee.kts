@@ -10,11 +10,10 @@ import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.SpecialAttack
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 combatPrepare("melee") { player ->
-    if (player.specialAttack && !drainSpecialEnergy(player)) {
+    if (player.specialAttack && !SpecialAttack.drain(player)) {
         cancel()
     }
 }

@@ -183,7 +183,6 @@ private fun getFlightTime(definition: GraphicDefinition, tile: Tile, target: Til
     if (flightTime != null) {
         return flightTime
     }
-    println("Distance: ${tile.distanceTo(target)}")
     return definition.getOrNull<List<Int>>("flight_time")?.getOrNull(tile.distanceTo(target) - 1) ?: -1
 }
 

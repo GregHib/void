@@ -39,11 +39,11 @@ data class CombatHit(
 }
 
 fun combatHit(weapon: String = "*", type: String = "*", spell: String = "*", override: Boolean = true, block: suspend CombatHit.(Player) -> Unit) {
-    Events.handle("player_combat_hit", "player", weapon, type, spell, if (override) "*" else true, override = override, handler = block)
+    Events.handle("player_combat_hit", "player", weapon, type, spell, override = override, handler = block)
 }
 
 fun npcCombatHit(npc: String = "*", weapon: String = "*", type: String = "*", spell: String = "*", override: Boolean = true, block: suspend CombatHit.(Player) -> Unit) {
-    Events.handle("npc_combat_hit", npc, weapon, type, spell, if (override) "*" else true, override = override, handler = block)
+    Events.handle("npc_combat_hit", npc, weapon, type, spell, override = override, handler = block)
 }
 
 fun characterCombatHit(weapon: String = "*", type: String = "*", spell: String = "*", override: Boolean = true, block: suspend CombatHit.(Character) -> Unit) {

@@ -68,25 +68,3 @@ var Player.specialAttackEnergy: Int
             softTimers.startIfAbsent("restore_special_energy")
         }
     }
-
-fun drainSpecialEnergy(player: Player, drain: Boolean = true): Boolean {
-    val amount: Int? = player.weapon.def.getOrNull("special_energy")
-    if (amount == null) {
-        player.message("This weapon does not have a special attack.")
-        player.specialAttack = false
-        return false
-    }
-    var energy = amount
-    if (player.equipped(EquipSlot.Ring).id == "ring_of_vigour") {
-        energy = floor(energy * 0.9).toInt()
-    }
-    if (player.specialAttackEnergy < energy) {
-        player.message("You don't have enough power left.")
-        player.specialAttack = false
-        return false
-    }
-    if (drain) {
-        player.specialAttackEnergy -= energy
-    }
-    return true
-}

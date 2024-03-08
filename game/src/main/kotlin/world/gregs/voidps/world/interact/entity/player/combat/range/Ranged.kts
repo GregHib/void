@@ -11,7 +11,6 @@ import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.SpecialAttack
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
@@ -19,7 +18,7 @@ val weaponStyles: WeaponStyleDefinitions by inject()
 val animationDefinitions: WeaponAnimationDefinitions by inject()
 
 combatPrepare("range") { player ->
-    if (player.specialAttack && !drainSpecialEnergy(player)) {
+    if (player.specialAttack && !SpecialAttack.drain(player)) {
         cancel()
     }
 }
