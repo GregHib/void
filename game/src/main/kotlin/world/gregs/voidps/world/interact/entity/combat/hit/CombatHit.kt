@@ -24,28 +24,29 @@ data class CombatHit(
     val spell: String,
     val special: Boolean
 ) : Event {
-    override val size = 6
+    override val all: Boolean = true
+
+    override val size = 5
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "${dispatcher.key}_combat_hit${if (special) "_special" else ""}"
+        0 -> "${dispatcher.key}_combat_hit"
         1 -> dispatcher.identifier
         2 -> weapon.id
         3 -> type
         4 -> spell
-        5 -> true // prioritise non-overrides
         else -> null
     }
 }
 
-fun combatHit(weapon: String = "*", type: String = "*", spell: String = "*", special: Boolean = false, override: Boolean = true, block: suspend CombatHit.(Player) -> Unit) {
-    Events.handle("player_combat_hit${if (special) "_special" else ""}", "player", weapon, type, spell, if (override) "*" else true, override = override, handler = block)
+fun combatHit(weapon: String = "*", type: String = "*", spell: String = "*", override: Boolean = true, block: suspend CombatHit.(Player) -> Unit) {
+    Events.handle("player_combat_hit", "player", weapon, type, spell, if (override) "*" else true, override = override, handler = block)
 }
 
-fun npcCombatHit(npc: String = "*", weapon: String = "*", type: String = "*", spell: String = "*", special: Boolean = false, override: Boolean = true, block: suspend CombatHit.(Player) -> Unit) {
-    Events.handle("npc_combat_hit${if (special) "_special" else ""}", npc, weapon, type, spell, if (override) "*" else true, override = override, handler = block)
+fun npcCombatHit(npc: String = "*", weapon: String = "*", type: String = "*", spell: String = "*", override: Boolean = true, block: suspend CombatHit.(Player) -> Unit) {
+    Events.handle("npc_combat_hit", npc, weapon, type, spell, if (override) "*" else true, override = override, handler = block)
 }
 
-fun characterCombatHit(weapon: String = "*", type: String = "*", spell: String = "*", special: Boolean = false, override: Boolean = true, block: suspend CombatHit.(Character) -> Unit) {
-    combatHit(weapon, type, spell, special, override, block)
-    npcCombatHit("*", weapon, type, spell, special, override, block)
+fun characterCombatHit(weapon: String = "*", type: String = "*", spell: String = "*", override: Boolean = true, block: suspend CombatHit.(Character) -> Unit) {
+    combatHit(weapon, type, spell, override, block)
+    npcCombatHit("*", weapon, type, spell, override, block)
 }

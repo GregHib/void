@@ -31,19 +31,19 @@ specialAttack("chainhit") { player ->
     player.hit(target, delay = time)
 }
 
-characterCombatHit("rune_throwing_axe", "range", special = true) { target ->
-    if (source !is Player || !target.inMultiCombat) {
+characterCombatHit("rune_throwing_axe", "range") { target ->
+    if (source !is Player || !target.inMultiCombat || !special) {
         return@characterCombatHit
     }
     val chain: MutableSet<Int> = source.getOrPut("chain_hits") { mutableSetOf() }
     val characters = if (target is Player) players else npcs
     for (tile in target.tile.spiral(4)) {
-        characters[tile].forEach { character ->
+        for (character in characters[tile]) {
             if (character == target || chain.contains(character.index) || !Target.attackable(source, character)) {
-                return@forEach
+                continue
             }
             if (!lineOfSight.hasLineOfSight(target, character)) {
-                return@forEach
+                continue
             }
             if (!drainSpecialEnergy(source)) {
                 source.clear("chain_hits")

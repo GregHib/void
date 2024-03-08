@@ -31,11 +31,11 @@ specialAttack("disrupt") { player ->
     player.hit(target, damage = hit, type = "magic", delay = 0)
 }
 
-characterCombatHit("korasis_sword", special = true) { character ->
-    character.setGraphic("disrupt_hit")
-}
-
 characterCombatHit("korasis_sword") { target ->
+    if (!special) {
+        return@characterCombatHit
+    }
+    target.setGraphic("disrupt_hit")
     if (!target.inMultiCombat) {
         return@characterCombatHit
     }
@@ -45,12 +45,12 @@ characterCombatHit("korasis_sword") { target ->
     }
     val characters = if (target is Player) players else npcs
     for (tile in target.tile.spiral(4)) {
-        characters[tile].forEach { character ->
+        for (character in characters[tile]) {
             if (character == target || chain.contains(character.index) || !Target.attackable(source, character)) {
-                return@forEach
+                continue
             }
             if (!lineOfSight.hasLineOfSight(target, character)) {
-                return@forEach
+                continue
             }
             chain.add(character.index)
             val hit = damage / when (chain.size) {

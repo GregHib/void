@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.melee.multiTargets
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import kotlin.random.nextInt
 
-characterCombatHit("*chinchompa", "range", override = false) { character ->
+characterCombatHit("*chinchompa", "range") { character ->
     source as Player
     source.playSound("chinchompa_explode", delay = 40)
     character.setGraphic("chinchompa_hit")

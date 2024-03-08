@@ -924,7 +924,7 @@ sanctuary_special: 247
 sever_special:
   id: 2118
   height: 60
-saradomins_lightning_special: 1194
+saradomins_lightning_hit: 1194
 favour_of_the_war_god_special: 1052
 liquify_special:
   id: 1048
