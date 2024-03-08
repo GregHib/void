@@ -20,7 +20,7 @@ val weaponStyles: WeaponStyleDefinitions by inject()
 val animationDefinitions: WeaponAnimationDefinitions by inject()
 
 combatPrepare("range") { player ->
-    if (player.specialAttack && !SpecialAttack.drain(player)) {
+    if (player.specialAttack && !SpecialAttack.hasEnergy(player)) {
         cancel()
     }
 }

@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.SpecialAtt
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
 combatPrepare("melee") { player ->
-    if (player.specialAttack && !SpecialAttack.drain(player)) {
+    if (player.specialAttack && !SpecialAttack.hasEnergy(player)) {
         cancel()
     }
 }
