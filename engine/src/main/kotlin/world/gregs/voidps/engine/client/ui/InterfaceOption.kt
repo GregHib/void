@@ -18,6 +18,8 @@ data class InterfaceOption(
 ) : Interaction() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 
+    override val all = true
+
     override val size = 5
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {

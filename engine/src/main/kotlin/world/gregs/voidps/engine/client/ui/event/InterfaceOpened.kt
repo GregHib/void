@@ -11,6 +11,8 @@ import world.gregs.voidps.engine.event.Events
  */
 data class InterfaceOpened(val id: String) : Event {
 
+    override val all: Boolean = true
+
     override val size = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
