@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
 import world.gregs.voidps.world.interact.entity.player.combat.consume.canConsume
-import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
 
 fun inWilderness() = false
 
@@ -24,11 +23,6 @@ canConsume("overload*") { player ->
         player.message("You need more than 500 life points to survive the power of overload.")
         cancel()
     }
-}
-
-consume("overload_#") { player ->
-    player["overload_refreshes_remaining"] = 20
-    player.timers.start("overload")
 }
 
 playerSpawn { player ->

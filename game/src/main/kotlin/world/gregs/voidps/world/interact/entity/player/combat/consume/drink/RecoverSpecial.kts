@@ -4,28 +4,13 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.interact.entity.player.combat.consume.canConsume
-import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
-import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
-import java.util.concurrent.TimeUnit
 
 canConsume("recover_special*") { player ->
     if (player.softTimers.contains("recover_special_delay")) {
         player.message("You may only use this pot once every 30 seconds.")
         cancel()
     }
-}
-
-consume("recover_special*") { player ->
-    player.specialAttackEnergy = (MAX_SPECIAL_ATTACK / 100) * 25
-    val percentage = (player.specialAttackEnergy / MAX_SPECIAL_ATTACK) * 100
-    if (percentage == 0) {
-        player.message("Your special attack energy is now $percentage%.")
-    }
-    player["recover_special_delay"] = TimeUnit.SECONDS.toTicks(30) / 10
-    player.softTimers.start("recover_special")
 }
 
 timerStart("recover_special") {
