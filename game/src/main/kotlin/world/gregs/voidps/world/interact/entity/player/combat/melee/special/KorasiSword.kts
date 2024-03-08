@@ -17,6 +17,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import world.gregs.voidps.world.interact.entity.sound.areaSound
 
 val players: Players by inject()
 val npcs: NPCs by inject()
@@ -26,6 +27,8 @@ specialAttack("disrupt") { player ->
     player["korasi_chain"] = mutableSetOf(target.index)
     player.setAnimation("${id}_special")
     player.setGraphic("${id}_special")
+    areaSound("godwars_saradomin_magic_impact", player.tile, 10)
+    areaSound("godwars_godsword_special_attack", player.tile, 5)
     val maxHit = Damage.maximum(player, target, "melee", player.weapon)
     val hit = random.nextInt(maxHit / 2, (maxHit * 1.5).toInt())
     player.hit(target, damage = hit, type = "magic", delay = 0)
@@ -35,6 +38,7 @@ characterCombatHit("korasis_sword") { target ->
     if (!special) {
         return@characterCombatHit
     }
+    areaSound("godwars_saradomin_magic_impact", target.tile, 10)
     target.setGraphic("disrupt_hit")
     if (!target.inMultiCombat) {
         return@characterCombatHit
