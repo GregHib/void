@@ -45,6 +45,8 @@ suspend fun CharacterContext.delay(ticks: Int = 1) {
 
 /**
  * Interrupt-able pausing
+ * Note: can't be used after a dialogue suspension in an interaction as the
+ * interaction will have finished and there will be nothing to resume the suspension
  */
 suspend fun CharacterContext.pause(ticks: Int = 1) {
     TickSuspension(ticks)

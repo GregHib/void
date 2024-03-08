@@ -51,14 +51,14 @@ variableSet("under_attack", to = 1) { player ->
 }
 
 levelChange(Skill.Constitution) { player ->
-    if (player.levels.getPercent(Skill.Constitution) < 50.0) {
+    if (player.isBot && player.levels.getPercent(Skill.Constitution) < 50.0) {
         val food = player.inventory.items.firstOrNull { it.def.contains("heals") } ?: return@levelChange
         player.bot.inventoryOption(food.id, "Eat")
     }
 }
 
 playerDeath { player ->
-    if(player.isBot) {
+    if (player.isBot) {
         player.clear("area")
         player.bot.cancel()
     }

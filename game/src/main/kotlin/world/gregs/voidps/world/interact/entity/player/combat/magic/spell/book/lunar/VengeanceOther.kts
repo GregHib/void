@@ -36,6 +36,6 @@ itemOnPlayerApproach(id = "lunar_spellbook", component = "vengeance_other") {
     player.setAnimation("lunar_cast")
     target.setGraphic(spell)
     player.experience.add(Skill.Magic, definition.experience)
-    player["vengeance"] = true
+    target["vengeance"] = true
     player.start("vengeance_delay", definition["delay_seconds"], epochSeconds())
 }

@@ -8900,6 +8900,7 @@ chisel:
   price: 94
   limit: 100
   weight: 0.453
+  aka: [ chissel, chissle ]
   examine: "Good for detailed crafting."
   kept: "Wilderness"
 chisel_noted: 1756
