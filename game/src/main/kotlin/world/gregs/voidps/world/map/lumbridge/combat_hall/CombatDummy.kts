@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.CurrentLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.level.npcLevelChange
@@ -15,10 +15,10 @@ import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.combatPrepare
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
 
-npcOperate("Attack", "magic_dummy", "melee_dummy", override = false) {
-    val type = npc.id.removeSuffix("_dummy")
+npcApproach("Attack", "magic_dummy", "melee_dummy", override = false) {
+    val type = target.id.removeSuffix("_dummy")
     if (player.fightStyle == type) {
-        return@npcOperate
+        return@npcApproach
     }
     player.message("You can only use ${type.toTitleCase()} against this dummy.")
     player.approachRange(10, false)
@@ -27,7 +27,7 @@ npcOperate("Attack", "magic_dummy", "melee_dummy", override = false) {
 }
 
 val itemOnHandler: suspend ItemOnNPC.() -> Unit = handler@{
-    val type = npc.id.removeSuffix("_dummy")
+    val type = target.id.removeSuffix("_dummy")
     if (player.fightStyle == type) {
         return@handler
     }
