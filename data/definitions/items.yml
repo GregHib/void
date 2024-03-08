@@ -1417,6 +1417,7 @@ raw_shrimps:
     burnt: burnt_shrimp
     cooked_message: "You successfully cook some shrimps."
     burnt_message: "You accidentally burn the shrimps."
+  aka: [ raw_shrimp ]
   examine: "I should try cooking this."
 raw_shrimps_noted: 318
 anchovies:
@@ -7760,6 +7761,7 @@ magic_logs:
     level: 75
     xp: 303.8
     life: 180
+  aka: [ magic_log ]
   examine: "Logs cut from a magic tree."
 magic_logs_noted: 1514
 yew_logs:
@@ -7771,6 +7773,7 @@ yew_logs:
     level: 60
     xp: 202.5
     life: 160
+  aka: [ yew_log ]
   examine: "Logs cut from a yew tree."
 yew_logs_noted: 1516
 maple_logs:
@@ -7782,6 +7785,7 @@ maple_logs:
     level: 45
     xp: 135.0
     life: 100
+  aka: [ maple_log ]
   examine: "Logs cut from a maple tree."
 maple_logs_noted: 1518
 willow_logs:
@@ -7793,6 +7797,7 @@ willow_logs:
     level: 30
     xp: 90.0
     life: 90
+  aka: [ willow_log ]
   examine: "Logs cut from a willow tree."
 willow_logs_noted: 1520
 oak_logs:
@@ -7804,6 +7809,7 @@ oak_logs:
     level: 15
     xp: 60.0
     life: 90
+  aka: [ oak_log ]
   examine: "Logs cut from an oak tree."
   kept: "Wilderness"
 oak_logs_noted: 1522

@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.npcCombatSwing
 
@@ -20,7 +20,7 @@ npcCombatSwing { npc ->
     }
     npc.setAnimation(attackAnimation(npc))
 //    (target as? Player)?.playSound(attackSound(npc))
-    npc.hit(target, delay = 30)
+    npc.hit(target)
 }
 
 fun attackAnimation(npc: NPC): String {

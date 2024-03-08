@@ -36,12 +36,11 @@ fun combatSwing(
 
 fun npcCombatSwing(
     npc: String = "*",
-    weapon: String = "*",
     style: String = "*",
     override: Boolean = true,
     block: suspend CombatSwing.(NPC) -> Unit
 ) {
-    Events.handle("npc_combat_swing", npc, weapon, style, override = override, handler = block)
+    Events.handle("npc_combat_swing", npc, "*", style, override = override, handler = block)
 }
 
 fun characterCombatSwing(
@@ -51,5 +50,5 @@ fun characterCombatSwing(
     block: suspend CombatSwing.(Character) -> Unit
 ) {
     combatSwing(weapon, style, override, block)
-    npcCombatSwing("*", weapon, style, override, block)
+    npcCombatSwing("*", style, override, block)
 }
