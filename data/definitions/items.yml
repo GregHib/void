@@ -38607,6 +38607,7 @@ blurite_bolts:
   &blurite_bolts
   id: 9139
   tradeable: false
+  aka: [ blurite_bolt ]
   slot: "Ammo"
   material: "metal"
   examine: "Blurite crossbow bolts."
@@ -38615,6 +38616,7 @@ iron_bolts:
   id: 9140
   price: 40
   limit: 25000
+  aka: [ iron_bolt ]
   slot: "Ammo"
   material: "metal"
   examine: "Iron ammunition for crossbows."
@@ -38622,6 +38624,7 @@ steel_bolts:
   id: 9141
   price: 85
   limit: 10000
+  aka: [ steel_bolt ]
   slot: "Ammo"
   material: "metal"
   examine: "Steel ammunition for crossbows."
@@ -38629,6 +38632,7 @@ mithril_bolts:
   id: 9142
   price: 125
   limit: 10000
+  aka: [ mithril_bolt, mith_bolts, mith_bolt ]
   slot: "Ammo"
   material: "metal"
   examine: "Mithril crossbow bolts."
@@ -38636,6 +38640,7 @@ adamant_bolts:
   id: 9143
   price: 202
   limit: 10000
+  aka: [ adamant_bolt, addy_bolts, addy_bolt ]
   slot: "Ammo"
   material: "metal"
   examine: "Adamantite crossbow bolts."
@@ -38643,6 +38648,7 @@ runite_bolts:
   id: 9144
   price: 894
   limit: 10000
+  aka: [ rune_bolt, rune_bolts, runite_bolt ]
   slot: "Ammo"
   material: "metal"
   examine: "Runite crossbow bolts."
@@ -38650,6 +38656,7 @@ silver_bolts:
   id: 9145
   price: 10
   limit: 10000
+  aka: [ silver_bolt ]
   slot: "Ammo"
   material: "metal"
   examine: "Silver crossbow bolts."
@@ -38659,6 +38666,7 @@ bronze_crossbow:
   limit: 1000
   weight: 2.0
   attack_range: 7
+  aka: [ bronze_cbow, bronze_cb ]
   slot: "Weapon"
   examine: "A bronze crossbow."
   kept: "Wilderness"
@@ -38668,6 +38676,7 @@ blurite_crossbow:
   tradeable: false
   weight: 2.0
   attack_range: 7
+  aka: [ blurite_cbow, blurite_cb ]
   slot: "Weapon"
   examine: "A blurite crossbow."
   kept: "Wilderness"
@@ -38677,6 +38686,7 @@ iron_crossbow:
   limit: 1000
   weight: 2.0
   attack_range: 7
+  aka: [ iron_cbow, iron_cb ]
   slot: "Weapon"
   examine: "An iron crossbow."
 iron_crossbow_noted: 9178
@@ -38686,6 +38696,7 @@ steel_crossbow:
   limit: 1000
   weight: 2.0
   attack_range: 7
+  aka: [ steel_cbow, steel_cb ]
   slot: "Weapon"
   examine: "A steel crossbow."
 steel_crossbow_noted: 9180
@@ -38695,6 +38706,7 @@ mithril_crossbow:
   limit: 1000
   weight: 2.0
   attack_range: 7
+  aka: [ mithril_cbow, mith_cbow, mithril_cb, mith_cb ]
   slot: "Weapon"
   examine: "A mithril crossbow."
 mith_crossbow_noted: 9182
@@ -38704,6 +38716,7 @@ adamant_crossbow:
   limit: 1000
   weight: 2.0
   attack_range: 7
+  aka: [ adamant_cbow, addy_cbow, adamant_cb, addy_cb ]
   slot: "Weapon"
   examine: "An adamant crossbow."
 adamant_crossbow_noted: 9184
@@ -38713,7 +38726,7 @@ rune_crossbow:
   limit: 100
   weight: 2.0
   attack_range: 7
-  aka: [ rcb, rune_cb ]
+  aka: [ rcb, rune_cb, rune_cbow ]
   slot: "Weapon"
   examine: "A rune crossbow."
 rune_crossbow_noted: 9186

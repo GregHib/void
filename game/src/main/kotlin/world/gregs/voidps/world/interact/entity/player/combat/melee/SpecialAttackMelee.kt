@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
-import world.gregs.voidps.world.interact.entity.player.combat.special.SpecialAttackHit
 
 fun multiTargets(target: Character, hits: Int): List<Character> {
     val group = if (target is Player) get<Players>() else get<NPCs>()
@@ -28,7 +27,7 @@ fun multiTargets(target: Character, hits: Int): List<Character> {
     return targets
 }
 
-fun SpecialAttackHit.drainByDamage(damage: Int, vararg skills: Skill) {
+fun drainByDamage(target: Character, damage: Int, vararg skills: Skill) {
     if (damage == -1) {
         return
     }

@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 specialAttack("powershot") { player ->
     player.setAnimation("bow_accurate")
     player.setGraphic("special_arrow_shoot")
-    player.playSound("magic_longbow_special")
+    player.playSound("${id}_special")
     val time = player.shoot(id = "special_arrow", target = target)
     player.hit(target, delay = time)
 }

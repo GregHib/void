@@ -10,7 +10,7 @@ data class SpecialAttackHit(val id: String, val target: Character, val damage: I
     override val size = 3
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "${dispatcher.key}_special_attack_hit"
+        0 -> "special_attack_hit"
         1 -> id
         2 -> damage >= 0
         else -> null

@@ -5,5 +5,5 @@ import world.gregs.voidps.world.interact.entity.player.combat.melee.drainByDamag
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackHit
 
 specialAttackHit("warstrike") {
-    drainByDamage(damage, Skill.Defence, Skill.Strength, Skill.Prayer, Skill.Attack, Skill.Magic, Skill.Ranged)
+    drainByDamage(target, damage, Skill.Defence, Skill.Strength, Skill.Prayer, Skill.Attack, Skill.Magic, Skill.Ranged)
 }

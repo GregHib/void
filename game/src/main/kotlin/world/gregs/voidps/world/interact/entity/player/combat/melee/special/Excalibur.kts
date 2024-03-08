@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.SpecialAttack
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackPrepare
+import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
 fun seersVillageEliteTasks(player: Player) = false
@@ -23,6 +24,7 @@ specialAttackPrepare("sanctuary") { player ->
     }
     player.setAnimation("${id}_special")
     player.setGraphic("${id}_special")
+    player.playSound("${id}_special")
     player.forceChat = "For Camelot!"
     if (player.weapon.id.startsWith("enhanced")) {
         player.levels.boost(Skill.Defence, multiplier = 0.15)

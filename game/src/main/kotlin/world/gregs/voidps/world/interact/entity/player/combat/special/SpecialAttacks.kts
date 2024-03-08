@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.sound.playSound
 
 specialAttackPrepare("*") { player ->
     if (!SpecialAttack.hasEnergy(player)) {
@@ -26,11 +27,12 @@ variableSet("special_attack", to = true) { player ->
 
 specialAttack { player ->
     player.setAnimation("${id}_special")
-    player.setGraphic(id)
+    player.setGraphic("${id}_special")
+    player.playSound("${id}_special")
     val damage = player.hit(target)
     if (damage >= 0) {
         target.setAnimation("${id}_hit")
         target.setGraphic("${id}_hit")
-        player.emit(SpecialAttackHit(id, target, damage))
     }
+    player.emit(SpecialAttackHit(id, target, damage))
 }

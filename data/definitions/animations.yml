@@ -1576,7 +1576,7 @@ bow_accurate: 426
 bow_rapid: 426
 bow_long_range: 426
 bow_hit: 424
-magic_shortbow_special: 1074
+snapshot_special: 1074
 crossbow_accurate: 4230
 crossbow_rapid: 4230
 crossbow_long_range: 4230

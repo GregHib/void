@@ -5,5 +5,5 @@ import world.gregs.voidps.world.interact.entity.player.combat.melee.drainByDamag
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackHit
 
 specialAttackHit("backstab") {
-    drainByDamage(damage, Skill.Defence)
+    drainByDamage(target, damage, Skill.Defence)
 }
