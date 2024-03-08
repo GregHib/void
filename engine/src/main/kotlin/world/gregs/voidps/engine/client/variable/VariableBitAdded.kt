@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.variable
 
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
@@ -31,7 +32,7 @@ fun variableBitAdd(vararg ids: String = arrayOf("*"), value: Any? = "*", overrid
     }
 }
 
-fun npcVariableBitAdd(npc: String = "*", vararg ids: String, value: Any? = "*", override: Boolean = true, block: suspend VariableBitAdded.(Player) -> Unit) {
+fun npcVariableBitAdd(npc: String = "*", vararg ids: String, value: Any? = "*", override: Boolean = true, block: suspend VariableBitAdded.(NPC) -> Unit) {
     for (id in ids) {
         Events.handle("npc_add_variable", id, npc, value, override = override, handler = block)
     }

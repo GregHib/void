@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.player.skill.level
 
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Event
@@ -34,7 +35,7 @@ fun maxLevelChange(vararg skills: Skill, from: Int? = null, to: Int? = null, ove
     }
 }
 
-fun npcMaxLevelChange(npc: String = "*", vararg skills: Skill, from: Int? = null, to: Int? = null, override: Boolean = true, block: suspend MaxLevelChanged.(Player) -> Unit) {
+fun npcMaxLevelChange(npc: String = "*", vararg skills: Skill, from: Int? = null, to: Int? = null, override: Boolean = true, block: suspend MaxLevelChanged.(NPC) -> Unit) {
     if (skills.isEmpty()) {
         Events.handle("npc_max_level_change", "*", npc, from ?: "*", to ?: "*", override = override, handler = block)
     } else {

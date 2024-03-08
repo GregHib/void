@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.mode.combat
 
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
@@ -23,7 +24,7 @@ fun combatStop(override: Boolean = true, handler: suspend CombatStop.(Player) ->
     Events.handle("player_combat_stop", "player", override = override, handler = handler)
 }
 
-fun npcCombatStop(npc: String = "*", override: Boolean = true, handler: suspend CombatStop.(Player) -> Unit) {
+fun npcCombatStop(npc: String = "*", override: Boolean = true, handler: suspend CombatStop.(NPC) -> Unit) {
     Events.handle("npc_combat_stop", npc, override = override, handler = handler)
 }
 

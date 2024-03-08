@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.mode.combat
 
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
@@ -23,7 +24,7 @@ fun combatStart(override: Boolean = true, handler: suspend CombatStart.(Player) 
     Events.handle("player_combat_start", "player", override = override, handler = handler)
 }
 
-fun npcCombatStart(npc: String = "*", override: Boolean = true, handler: suspend CombatStart.(Player) -> Unit) {
+fun npcCombatStart(npc: String = "*", override: Boolean = true, handler: suspend CombatStart.(NPC) -> Unit) {
     Events.handle("npc_combat_start", npc, override = override, handler = handler)
 }
 

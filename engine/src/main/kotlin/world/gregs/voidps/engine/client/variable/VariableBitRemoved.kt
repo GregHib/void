@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.variable
 
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
@@ -30,7 +31,7 @@ fun variableBitRemove(vararg ids: String = arrayOf("*"), value: Any? = "*", over
     }
 }
 
-fun npcVariableBitRemove(npc: String = "*", vararg ids: String = arrayOf("*"), value: Any? = "*", override: Boolean = true, block: suspend VariableBitRemoved.(Player) -> Unit) {
+fun npcVariableBitRemove(npc: String = "*", vararg ids: String = arrayOf("*"), value: Any? = "*", override: Boolean = true, block: suspend VariableBitRemoved.(NPC) -> Unit) {
     for (variable in ids) {
         Events.handle("player_remove_variable", variable, npc, value, override = override, handler = block)
     }

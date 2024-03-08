@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.variable
 
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
@@ -34,7 +35,7 @@ fun variableSet(vararg ids: String = arrayOf("*"), from: Any? = "*", to: Any? = 
     }
 }
 
-fun npcVariableSet(npc: String = "*", vararg variables: String = arrayOf("*"), from: Any? = "*", to: Any? = "*", override: Boolean = true, block: suspend VariableSet.(Player) -> Unit) {
+fun npcVariableSet(npc: String = "*", vararg variables: String = arrayOf("*"), from: Any? = "*", to: Any? = "*", override: Boolean = true, block: suspend VariableSet.(NPC) -> Unit) {
     for (variable in variables) {
         Events.handle("npc_set_variable", variable, npc, from, to, override = override, handler = block)
     }
