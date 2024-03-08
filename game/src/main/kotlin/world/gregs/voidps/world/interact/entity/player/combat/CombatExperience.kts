@@ -28,14 +28,7 @@ combatAttack { player ->
         } else {
             grant(player, target, Skill.Magic, base + damage / 5.0)
         }
-    } else if (type == "range") {
-        if (player.attackType == "long_range") {
-            grant(player, target, Skill.Ranged, damage / 5.0)
-            grant(player, target, Skill.Defence, damage / 5.0)
-        } else {
-            grant(player, target, Skill.Ranged, damage / 2.5)
-        }
-    } else if (type == "melee") {
+    } else if (type == "melee" || type == "scorch") {
         when (player.attackStyle) {
             "accurate" -> grant(player, target, Skill.Attack, damage / 2.5)
             "aggressive" -> grant(player, target, Skill.Strength, damage / 2.5)
@@ -45,6 +38,13 @@ combatAttack { player ->
                 grant(player, target, Skill.Defence, damage / 7.5)
             }
             "defensive" -> grant(player, target, Skill.Defence, damage / 2.5)
+        }
+    } else if (type == "range") {
+        if (player.attackType == "long_range") {
+            grant(player, target, Skill.Ranged, damage / 5.0)
+            grant(player, target, Skill.Defence, damage / 5.0)
+        } else {
+            grant(player, target, Skill.Ranged, damage / 2.5)
         }
     }
     if (target is NPC && player.isTask(target)) {

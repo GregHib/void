@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.skill.slayer.race
-import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -36,7 +35,7 @@ characterCombatAttack { character ->
         } else {
             val type: String? = target.weapon.def.getOrNull("weapon_type")
             val definition = if (type != null) weaponDefinitions.get(type) else null
-            var animation = definition?.attackTypes?.getOrDefault(target.attackType, definition.attackTypes["default"])
+            var animation = definition?.attackTypes?.get("hit")
             if (animation == null) {
                 val id = target.weapon.def["weapon_style", -1]
                 val style = styleDefinitions.get(id)

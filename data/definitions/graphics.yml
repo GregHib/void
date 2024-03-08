@@ -1434,9 +1434,15 @@ ahrims_effect:
 karils_effect:
   id: 401
   height: 50
-salamander_scorch: 953
-salamander_flare: 953
-salamander_blaze: 953
+salamander_scorch:
+  id: 953
+  height: 40
+salamander_flare:
+  id: 953
+  height: 40
+salamander_blaze:
+  id: 953
+  height: 40
 retribution: 437
 retribution_splash:
   id: 438

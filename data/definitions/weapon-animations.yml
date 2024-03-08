@@ -71,3 +71,5 @@ crossbow:
   default: crossbow_accurate
 karils_crossbow:
   default: karils_crossbow_shoot
+salamander:
+  default: salamander_scorch

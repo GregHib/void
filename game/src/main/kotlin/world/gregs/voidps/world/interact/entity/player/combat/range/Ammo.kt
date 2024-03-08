@@ -36,7 +36,7 @@ object Ammo {
     fun remove(player: Player, target: Character, ammo: String, required: Int) {
         if (ammo == "" || ammo == "zaryte_arrow" || ammo == "sling_rock" || ammo == "special_arrow") {
             return
-        } else if(ammo == "mud_pie") {
+        } else if(ammo == "mud_pie" || ammo.endsWith("_tar")) {
             player.equipment.remove(ammo, required)
             return
         } else if (ammo == "bolt_rack" || ammo == "hand_cannon_shot" || ammo.endsWith("chinchompa")) {

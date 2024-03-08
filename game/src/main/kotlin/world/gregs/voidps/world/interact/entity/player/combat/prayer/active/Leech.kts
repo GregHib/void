@@ -152,7 +152,7 @@ val map = mapOf(
 
 characterCombatHit { target ->
     for ((prayer, skill) in map) {
-        if (!target.praying(prayer)) {
+        if (!source.praying(prayer)) {
             continue
         }
         val sap = prayer.startsWith("sap")

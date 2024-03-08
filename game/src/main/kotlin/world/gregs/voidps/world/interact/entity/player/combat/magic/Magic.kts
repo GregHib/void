@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic
 
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -13,21 +14,27 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.m
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-val definitions: SpellDefinitions by inject()
+val spellDefinitions: SpellDefinitions by inject()
+
+combatSwing(style = "blaze") { player ->
+    if (!castSpell(player, target)) {
+        cancel()
+    }
+}
 
 combatSwing(style = "magic") { player ->
+    if (!castSpell(player, target)) {
+        cancel()
+    }
+}
+
+fun castSpell(player: Player, target: Character): Boolean {
     if (player.spell.isNotBlank() && !Spell.removeRequirements(player, player.spell)) {
         player.clear("autocast")
-        cancel()
-        return@combatSwing
+        return false
     }
     val spell = player.spell
-    val definition = definitions.get(spell)
-    val staff = player.weapon.def["category", ""] == "staff"
-    val animation: String = if (staff && definition.contains("animation_staff")) definition["animation_staff"] else definition["animation", ""]
-    val graphic: String = if (staff && definition.contains("graphic_staff")) definition["graphic_staff"] else definition["graphic", ""]
-    player.setAnimation(animation)
-    player.setGraphic(graphic)
+    val definition = spellDefinitions.get(spell)
     var time = -1
     if (definition.contains("projectiles")) {
         val projectiles: List<Map<String, Any>> = definition["projectiles"]
@@ -44,6 +51,17 @@ combatSwing(style = "magic") { player ->
     } else {
         time = player.shoot(id = spell, target = target)
     }
+    if (player.weapon.def["weapon_type", ""] == "salamander" && player.spell.isBlank()) {
+        player.setAnimation("salamander_scorch")
+        player.setGraphic("salamander_blaze")
+        time = 0
+    } else {
+        val staff = player.weapon.def["category", ""] == "staff"
+        val animation: String = if (staff && definition.contains("animation_staff")) definition["animation_staff"] else definition["animation", ""]
+        val graphic: String = if (staff && definition.contains("graphic_staff")) definition["graphic_staff"] else definition["graphic", ""]
+        player.setAnimation(animation)
+        player.setGraphic(graphic)
+    }
     val damage = player.hit(target, delay = if (time == -1) 64 else time)
     if (damage != -1) {
         if (definition.contains("drain_multiplier")) {
@@ -57,4 +75,5 @@ combatSwing(style = "magic") { player ->
     if (!player.contains("autocast")) {
         player.queue.clearWeak()
     }
+    return true
 }

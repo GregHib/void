@@ -87,16 +87,16 @@ object Weapon {
             13, 16, 17, 18, 19, 24 -> "range"
             20 -> if (character.attackType == "aim_and_fire") "range" else "melee"
             21 -> when (character.attackType) {
-                "flare" -> "range"
                 "blaze" -> "blaze"
-                else -> "melee"
+                "scorch" -> "scorch"
+                else -> "range"
             }
             else -> "melee"
         }
     }
 
     fun strengthBonus(source: Character, type: String, weapon: Item?) = when {
-        type == "blaze" -> weapon?.def?.getOrNull("magic_strength") ?: 0
+        type == "blaze" -> weapon?.def?.getOrNull<Double>("magic_strength")?.toInt() ?: 0
         // Is thrown or no ammo required
         type == "range" && source is Player && weapon != null && (weapon.id == source.ammo || !Ammo.required(weapon)) -> weapon.def["ranged_strength", 0]
         else -> source[if (type == "range") "ranged_strength" else "strength", 0]

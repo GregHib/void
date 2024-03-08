@@ -2,6 +2,8 @@ package world.gregs.voidps.world.interact.entity.player.combat.range
 
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
@@ -23,30 +25,23 @@ combatPrepare("range") { player ->
     }
 }
 
+combatSwing(style = "scorch") { player ->
+    extracted(player, target)
+}
+
 combatSwing(style = "range") { player ->
+    extracted(player, target)
+}
+
+fun extracted(player: Player, target: Character) {
     var ammo = player.ammo
     val required = Ammo.requiredAmount(player.weapon, player.specialAttack)
     if (SpecialAttack.drain(player)) {
-        val id: String = player.weapon.def.getOrNull("special") ?: return@combatSwing
+        val id: String = player.weapon.def.getOrNull("special") ?: return
         player.emit(SpecialAttack(id, target))
-        return@combatSwing
+        return
     }
     val style = weaponStyles.get(player.weapon.def["weapon_style", 0])
-    when (style.stringId) {
-        "thrown" -> {
-            val ammoName = player.ammo.removePrefix("corrupt_").removeSuffix("_p++").removeSuffix("_p+").removeSuffix("_p")
-            player.setGraphic("${ammoName}_throw")
-        }
-        "bow" -> {
-            player.setGraphic("${if (ammo.endsWith("brutal")) "brutal" else ammo}_shoot")
-        }
-        "fixed_device" -> {
-            // TODO
-        }
-        "salamander" -> {
-            // TODO
-        }
-    }
     if (style.stringId != "sling") {
         Ammo.remove(player, target, ammo, required)
     } else {
@@ -54,8 +49,23 @@ combatSwing(style = "range") { player ->
     }
     if (style.stringId == "crossbow") {
         ammo = if (ammo == "barbed_bolts" || ammo == "bone_bolts" || ammo == "hand_cannon_shot") ammo else "crossbow_bolt"
-    } else if(style.stringId == "bow" && ammo.endsWith("brutal")) {
+    } else if (style.stringId == "bow" && ammo.endsWith("brutal")) {
         ammo = "brutal_arrow"
+    }
+    var time = player.shoot(id = ammo, target = target)
+    when (style.stringId) {
+        "thrown" -> {
+            val ammoName = player.ammo.removePrefix("corrupt_").removeSuffix("_p++").removeSuffix("_p+").removeSuffix("_p")
+            player.setGraphic("${ammoName}_throw")
+        }
+        "bow" -> player.setGraphic("${if (ammo.endsWith("brutal")) "brutal" else ammo}_shoot")
+        "fixed_device" -> {
+            // TODO
+        }
+        "salamander" -> {
+            time = 0
+            player.setGraphic("salamander_${player.attackType}")
+        }
     }
     val type = player.weapon.def.getOrNull("weapon_type") ?: style.stringId
     val definition = animationDefinitions.get(type)
@@ -63,7 +73,6 @@ combatSwing(style = "range") { player ->
     if (animation == null) {
         animation = "${style.stringId}_${player.attackType}"
     }
-    val time = player.shoot(id = ammo, target = target)
     player.setAnimation(animation)
     player.hit(target, delay = if (time == -1) 64 else time)
 }

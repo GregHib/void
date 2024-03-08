@@ -4489,6 +4489,7 @@ iron_knife:
   smithing:
     level: 22
     xp: 25.0
+  aka: [ iron_knives ]
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_knife:
@@ -4500,6 +4501,7 @@ bronze_knife:
   smithing:
     level: 7
     xp: 12.5
+  aka: [ bronze_knives ]
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife:
@@ -4511,6 +4513,7 @@ steel_knife:
   smithing:
     level: 37
     xp: 37.5
+  aka: [ steel_knives ]
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife:
@@ -4522,6 +4525,7 @@ mithril_knife:
   smithing:
     level: 57
     xp: 50.0
+  aka: [ mithril_knives, mith_knife, mith_knives ]
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife:
@@ -4533,6 +4537,7 @@ adamant_knife:
   smithing:
     level: 77
     xp: 62.5
+  aka: [ adamant_knives, addy_knife, addy_knives ]
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife:
@@ -4544,6 +4549,7 @@ rune_knife:
   smithing:
     level: 92
     xp: 75.0
+  aka: [ rune_knives ]
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife:
@@ -4552,6 +4558,7 @@ black_knife:
   limit: 10000
   attack_range: 4
   weapon_type: knife
+  aka: [ black_knives ]
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_knife_p:
@@ -42476,6 +42483,8 @@ orange_salamander:
   price: 12
   limit: 1000
   weight: 4.0
+  weapon_type: salamander
+  attack_range: 1
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "Release"
@@ -42486,6 +42495,8 @@ red_salamander:
   price: 27
   limit: 1000
   weight: 4.0
+  weapon_type: salamander
+  attack_range: 1
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "Release"
@@ -42496,6 +42507,8 @@ black_salamander:
   price: 93
   limit: 1000
   weight: 4.0
+  weapon_type: salamander
+  attack_range: 1
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "Release"
@@ -42506,6 +42519,8 @@ green_salamander:
   limit: 2000
   weight: 4.0
   aka: [ swamp_lizard ]
+  weapon_type: salamander
+  attack_range: 1
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "Release"
