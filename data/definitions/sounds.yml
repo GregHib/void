@@ -122,9 +122,9 @@ chicken_attack: 355
 goblin_hit: 470
 goblin_death: 471
 goblin_attack: 469
-big_spider_attack: 3605
-big_spider_hit: 3607
-big_spider_death: 3606
+giant_spider_attack: 3605
+giant_spider_hit: 3607
+giant_spider_death: 3606
 rat_attack: 710
 rat_hit: 713
 rat_death: 711

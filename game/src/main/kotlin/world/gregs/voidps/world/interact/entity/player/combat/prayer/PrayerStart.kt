@@ -6,6 +6,9 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 
 data class PrayerStart(val prayer: String, val restart: Boolean = false) : Event {
+
+    override val all: Boolean = true
+
     override val size = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
