@@ -22,7 +22,7 @@ val styleDefinitions: WeaponStyleDefinitions by inject()
 val animationDefinitions: WeaponAnimationDefinitions by inject()
 
 combatSwing(style = "melee") { player ->
-    if (SpecialAttack.drain(player)) {
+    if (player.specialAttack && SpecialAttack.drain(player)) {
         val id: String = player.weapon.def["special"]
         player.emit(SpecialAttack(id, target))
         return@combatSwing

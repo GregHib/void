@@ -36,7 +36,7 @@ combatSwing(style = "range") { player ->
 fun extracted(player: Player, target: Character) {
     var ammo = player.ammo
     val required = Ammo.requiredAmount(player.weapon, player.specialAttack)
-    if (SpecialAttack.drain(player)) {
+    if (player.specialAttack && SpecialAttack.drain(player)) {
         val id: String = player.weapon.def.getOrNull("special") ?: return
         player.emit(SpecialAttack(id, target))
         return

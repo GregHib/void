@@ -26,9 +26,6 @@ data class SpecialAttack(val id: String, val target: Character) : Event {
         fun hasEnergy(player: Player) = drain(player, drain = false)
 
         fun drain(player: Player, drain: Boolean = true): Boolean {
-            if (!player.specialAttack) {
-                return false
-            }
             val amount: Int? = player.weapon.def.getOrNull("special_energy")
             if (amount == null) {
                 player.message("This weapon does not have a special attack.")
