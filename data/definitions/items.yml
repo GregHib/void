@@ -67060,6 +67060,7 @@ kayles_sling:
   tradeable: false
   weight: 0.25
   attack_range: 4
+  weapon_style: 24
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "You can get another from Xenia/Ilona in Lumbridge."
@@ -82765,6 +82766,7 @@ sling:
   limit: 10
   weight: 0.25
   attack_range: 4
+  weapon_style: 24
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow to fire magical arrows at your enemies with."

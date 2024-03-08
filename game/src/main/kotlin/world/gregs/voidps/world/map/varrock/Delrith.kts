@@ -226,7 +226,7 @@ suspend fun CharacterContext.cutscene() {
     }
 }
 
-combatPrepare { player ->
+combatPrepare("melee") { player ->
     if (target is NPC && target.id == "delrith" && target.transform == "delrith_weakened") {
         cancel()
         player.strongQueue("banish_delrith", 1) {

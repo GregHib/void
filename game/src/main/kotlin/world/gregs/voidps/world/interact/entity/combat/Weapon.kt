@@ -79,14 +79,12 @@ object Weapon {
 
     private fun isOutlier(special: Boolean, id: String): Boolean = (special && id.startsWith("magic") || id == "seercull" || id == "rune_thrownaxe") || id == "ogre_bow"
 
-    fun isBowOrCrossbow(item: Item) = item.id.endsWith("bow") || item.id == "seercull" || item.id.endsWith("longbow_sighted")
-
     fun type(character: Character, weapon: Item = character.weapon): String {
         if (character.spell.isNotBlank()) {
             return "magic"
         }
         return when (weapon.def["weapon_style", 0]) {
-            13, 16, 17, 18, 19 -> "range"
+            13, 16, 17, 18, 19, 24 -> "range"
             20 -> if (character.attackType == "aim_and_fire") "range" else "melee"
             21 -> when (character.attackType) {
                 "flare" -> "range"
