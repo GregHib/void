@@ -17,7 +17,7 @@ internal class AncientSpellEffectsTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Constitution to 990)
 
         player.hit(target, type = "magic", spell = "smoke_blitz", damage = 100)
-        tick(2)
+        tick(3)
 
         assertEquals(890, target.levels.get(Skill.Constitution))
         assertTrue(target.poisoned)
@@ -29,7 +29,7 @@ internal class AncientSpellEffectsTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Constitution to 990, Skill.Attack to 99)
 
         player.hit(target, type = "magic", spell = "shadow_blitz", damage = 100)
-        tick(2)
+        tick(3)
 
         assertEquals(890, target.levels.get(Skill.Constitution))
         assertEquals(90, target.levels.get(Skill.Attack))
@@ -41,7 +41,7 @@ internal class AncientSpellEffectsTest : CombatFormulaTest() {
         player.levels.set(Skill.Constitution, 500)
         val target = createPlayer(Skill.Constitution to 990)
         player.hit(target, type = "magic", spell = "blood_blitz", damage = 100)
-        tick(2)
+        tick(3)
 
         assertEquals(890, target.levels.get(Skill.Constitution))
         assertEquals(525, player.levels.get(Skill.Constitution))
@@ -52,7 +52,7 @@ internal class AncientSpellEffectsTest : CombatFormulaTest() {
         val player = createPlayer(Skill.Magic to 99)
         val target = createPlayer(Skill.Constitution to 990)
         player.hit(target, type = "magic", spell = "ice_blitz", damage = 100)
-        tick(2)
+        tick(3)
 
         assertEquals(890, target.levels.get(Skill.Constitution))
         assertTrue(target.frozen)
@@ -63,7 +63,7 @@ internal class AncientSpellEffectsTest : CombatFormulaTest() {
         val player = createPlayer(Skill.Magic to 99)
         val target = createPlayer(Skill.Constitution to 990)
         player.hit(target, type = "magic", spell = "miasmic_blitz", damage = 100)
-        tick(2)
+        tick(3)
 
         assertEquals(890, target.levels.get(Skill.Constitution))
         assertTrue(target.hasClock("miasmic"))

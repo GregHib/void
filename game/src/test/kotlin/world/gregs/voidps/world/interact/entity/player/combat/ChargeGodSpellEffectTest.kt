@@ -22,7 +22,7 @@ internal class ChargeGodSpellEffectTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Constitution to 990)
 
         player.hit(target, type = "magic", spell = "saradomin_strike", damage = 100)
-        tick(2)
+        tick(3)
 
         assertEquals(890, target.levels.get(Skill.Constitution))
     }
@@ -40,7 +40,7 @@ internal class ChargeGodSpellEffectTest : CombatFormulaTest() {
         player.interfaceOption("modern_spellbook", "charge")
         assertTrue(player.hasClock("charge"))
         player.hit(target, type = "magic", spell = "saradomin_strike", damage = 100)
-        tick(2)
+        tick(3)
 
         assertEquals(790, target.levels.get(Skill.Constitution))
     }
@@ -58,7 +58,7 @@ internal class ChargeGodSpellEffectTest : CombatFormulaTest() {
         player.interfaceOption("modern_spellbook", "charge")
         assertTrue(player.hasClock("charge"))
         player.hit(target, type = "magic", spell = "saradomin_strike", damage = 100)
-        tick(2)
+        tick(3)
 
         assertEquals(890, target.levels.get(Skill.Constitution))
     }
