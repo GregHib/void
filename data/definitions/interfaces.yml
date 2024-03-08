@@ -322,7 +322,9 @@ modern_spellbook:
       id: 45
       cast_id: 17
     falador_teleport: 46
-    crumble_undead: 47
+    crumble_undead:
+      id: 47
+      cast_id: 35
     teleport_to_house: 48
     wind_blast:
       id: 49
