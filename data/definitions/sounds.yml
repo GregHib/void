@@ -182,3 +182,12 @@ slice_and_dice_special_3: 7465
 slice_and_dice_special_1: 7466
 slice_and_dice_special_2: 7467
 dark_bow_special: 3731
+crossbow_shoot: 2695
+dart_throw: 2696
+javelin_throw: 2699
+longbow_shoot: 2700
+out_of_ammo: 2701
+shortbow_shoot: 2702
+axe_throw: 2706
+knife_throw: 2707
+thrown: 2708

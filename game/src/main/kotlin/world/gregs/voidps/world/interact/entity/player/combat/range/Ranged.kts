@@ -15,6 +15,7 @@ import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.special.SpecialAttack
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
+import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val weaponStyles: WeaponStyleDefinitions by inject()
 val animationDefinitions: WeaponAnimationDefinitions by inject()
@@ -53,12 +54,31 @@ fun extracted(player: Player, target: Character) {
         ammo = "brutal_arrow"
     }
     var time = player.shoot(id = ammo, target = target)
+    val weapon = player.weapon.id
     when (style.stringId) {
         "thrown" -> {
             val ammoName = player.ammo.removePrefix("corrupt_").removeSuffix("_p++").removeSuffix("_p+").removeSuffix("_p")
             player.setGraphic("${ammoName}_throw")
+            if (weapon.contains("dart")) {
+                player.playSound("dart_throw")
+            } else if (weapon.contains("javelin")) {
+                player.playSound("javelin_throw")
+            } else if (weapon.contains("knife")) {
+                player.playSound("knife_throw")
+            } else if (weapon.contains("axe")) {
+                player.playSound("axe_throw")
+            } else {
+                player.playSound("thrown")
+            }
         }
-        "bow" -> player.setGraphic("${if (ammo.endsWith("brutal")) "brutal" else ammo}_shoot")
+        "bow" -> {
+            player.setGraphic("${if (ammo.endsWith("brutal")) "brutal" else ammo}_shoot")
+            if (weapon.contains("shortbow")) {
+                player.playSound("shortbow_shoot")
+            } else {
+                player.playSound("longbow_shoot")
+            }
+        }
         "fixed_device" -> {
             // TODO
         }
@@ -66,6 +86,7 @@ fun extracted(player: Player, target: Character) {
             time = 0
             player.setGraphic("salamander_${player.attackType}")
         }
+        "crossbow" -> player.playSound("crossbow_shoot")
     }
     val type = player.weapon.def.getOrNull("weapon_type") ?: style.stringId
     val definition = animationDefinitions.get(type)

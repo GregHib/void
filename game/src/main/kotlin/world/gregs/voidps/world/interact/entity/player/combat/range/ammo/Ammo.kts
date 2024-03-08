@@ -17,6 +17,7 @@ import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.range.Ammo
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val ammoDefinitions: AmmoDefinitions by inject()
 val weaponStyles: WeaponStyleDefinitions by inject()
@@ -41,6 +42,7 @@ combatSwing(style = "melee") { player ->
 
 combatPrepare("range") { player ->
     if (!checkAmmo(player)) {
+        player.playSound("out_of_ammo")
         cancel()
     }
 }
