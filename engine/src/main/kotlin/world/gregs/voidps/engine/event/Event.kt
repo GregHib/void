@@ -6,7 +6,7 @@ interface Event {
      * Event gets sent to all applicable handlers not just the first
      */
     val notification: Boolean
-        get() = true
+        get() = false
 
     val size: Int
 

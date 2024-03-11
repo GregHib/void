@@ -11,6 +11,8 @@ import world.gregs.voidps.engine.event.Events
 
 object Despawn : Event {
 
+    override val notification: Boolean = true
+
     override val size = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {

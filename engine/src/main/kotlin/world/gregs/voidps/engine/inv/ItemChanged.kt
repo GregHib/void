@@ -29,6 +29,8 @@ data class ItemChanged(
 
     val removed = oldItem.isNotEmpty() && item.isEmpty()
 
+    override val notification = true
+
     override val size = 7
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {

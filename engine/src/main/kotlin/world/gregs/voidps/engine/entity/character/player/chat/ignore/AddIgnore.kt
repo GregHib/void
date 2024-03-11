@@ -6,8 +6,6 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 
 data class AddIgnore(val name: String) : CancellableEvent() {
-    override val notification = false
-
     override val size = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when(index) {
