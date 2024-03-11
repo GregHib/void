@@ -16,25 +16,13 @@ val enums: EnumDefinitions by inject()
 
 timerStart("skull") { player ->
     if (player.interfaces.contains("items_kept_on_death")) {
-        player.open("items_kept_on_death", close = false)
+        player.open("items_kept_on_death", close = true)
     }
 }
 
 timerStop("skull") { player ->
     if (player.interfaces.contains("items_kept_on_death")) {
-        player.open("items_kept_on_death", close = false)
-    }
-}
-
-timerStart("prayer_protect_item") { player ->
-    if (player.interfaces.contains("items_kept_on_death")) {
-        player.open("items_kept_on_death", close = false)
-    }
-}
-
-timerStop("prayer_protect_item") { player ->
-    if (player.interfaces.contains("items_kept_on_death")) {
-        player.open("items_kept_on_death", close = false)
+        player.open("items_kept_on_death", close = true)
     }
 }
 

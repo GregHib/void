@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
 import world.gregs.voidps.world.interact.entity.player.effect.skulled
 import java.util.*
 
@@ -20,7 +21,7 @@ object ItemsKeptOnDeath {
 
     fun kept(player: Player, items: List<Item>, enums: EnumDefinitions = get()): List<Item> {
         var save = if (player.skulled) 0 else 3
-        if (player.softTimers.contains("prayer_protect_item")) {
+        if (player.praying("protect_item")) {
             save++
         }
         if (items.isEmpty()) {

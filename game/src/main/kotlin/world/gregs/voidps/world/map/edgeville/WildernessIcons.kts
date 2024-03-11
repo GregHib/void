@@ -5,9 +5,9 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.timer.timerStart
-import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.world.interact.entity.combat.inWilderness
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStart
+import world.gregs.voidps.world.interact.entity.player.combat.prayer.prayerStop
 
 variableSet("in_wilderness", to = true) { player ->
     player.options.set(1, "Attack")
@@ -28,14 +28,14 @@ interfaceOpen("wilderness_skull") { player ->
     player.interfaces.sendSprite(id, "right_skull", 439)
 }
 
-timerStart("prayer_protect_item") { player ->
+prayerStart("protect_item") { player ->
     if (player.inWilderness) {
         resetIcons(player)
         updateIcon(player)
     }
 }
 
-timerStop("prayer_protect_item") { player ->
+prayerStop("protect_item") { player ->
     if (player.inWilderness) {
         resetIcons(player)
         updateIcon(player)
