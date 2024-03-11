@@ -13,8 +13,10 @@ import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
+import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
@@ -41,7 +43,7 @@ class CombatMovement(
             return
         }
         if (!attack()) {
-            if (character.steps.destination == character.tile) {
+            if (character.steps.destination == character.tile || Overlap.isUnder(character.tile, character.size, target.tile, target.size)) {
                 stepOut()
             } else {
                 character.steps.clearDestination()
