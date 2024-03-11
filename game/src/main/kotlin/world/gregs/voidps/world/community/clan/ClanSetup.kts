@@ -99,6 +99,7 @@ interfaceOption(component = "loot", id = "clan_chat_setup") {
     if (rank == ClanRank.Anyone || rank == ClanRank.Owner) {
         return@interfaceOption
     }
+    clan.lootRank = rank
     player["clan_loot_rank"] = rank.name
     player.interfaces.sendText(id, component, option)
     player.softTimers.start("clan_loot_rank_update")
