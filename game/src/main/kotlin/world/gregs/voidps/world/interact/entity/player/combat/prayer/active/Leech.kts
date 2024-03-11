@@ -55,6 +55,7 @@ fun restore(player: Player, skill: Skill, leech: Int) {
     } else if (leech < 0) {
         player.setLeech(skill, leech + 1)
     }
+    player.updateBonus(skill)
 }
 
 fun getLevel(target: Character, skill: Skill): Int {
