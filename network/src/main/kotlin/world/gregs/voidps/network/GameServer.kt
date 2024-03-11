@@ -32,7 +32,6 @@ class GameServer(
         val executor = Executors.newCachedThreadPool()
         dispatcher = executor.asCoroutineDispatcher()
         val selector = ActorSelectorManager(dispatcher)
-        val supervisor = SupervisorJob()
         val exceptionHandler = CoroutineExceptionHandler { context, throwable ->
             if (throwable is SocketException && throwable.message == "Connection reset") {
                 logger.trace { "Connection reset: ${context.job}" }
@@ -42,28 +41,30 @@ class GameServer(
                 logger.error(throwable) { "Connection error" }
             }
         }
-        val scope = CoroutineScope(supervisor + exceptionHandler)
         val server = try {
             aSocket(selector).tcp().bind(port = port)
         } catch (exception: BindException) {
             stop()
             throw exception
         }
+        val scope = CoroutineScope(dispatcher)
         return scope.launch {
-            try {
-                running = true
-                logger.info { "Listening for requests on port ${port}..." }
-                while (running) {
-                    val socket = server.accept()
-                    logger.trace { "New connection accepted ${socket.remoteAddress}" }
-                    val read = socket.openReadChannel()
-                    val write = socket.openWriteChannel(autoFlush = false)
-                    launch(dispatcher) {
-                        connect(read, write, socket.remoteAddress.toJavaAddress().hostname)
+            supervisorScope {
+                try {
+                    running = true
+                    logger.info { "Listening for requests on port ${port}..." }
+                    while (running) {
+                        val socket = server.accept()
+                        launch(dispatcher + exceptionHandler) {
+                            logger.trace { "New connection accepted ${socket.remoteAddress}" }
+                            val read = socket.openReadChannel()
+                            val write = socket.openWriteChannel(autoFlush = false)
+                            connect(read, write, socket.remoteAddress.toJavaAddress().hostname)
+                        }
                     }
+                } finally {
+                    stop()
                 }
-            } finally {
-                stop()
             }
         }
     }
