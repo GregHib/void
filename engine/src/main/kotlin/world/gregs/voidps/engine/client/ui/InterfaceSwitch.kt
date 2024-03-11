@@ -31,6 +31,6 @@ data class InterfaceSwitch(
     }
 }
 
-fun interfaceSwap(fromId: String = "*", fromComponent: String = "*", toId: String = fromId, toComponent: String = fromComponent, override: Boolean = true, block: suspend InterfaceSwitch.(Player) -> Unit) {
-    Events.handle("interface_switch", fromId, fromComponent, toId, toComponent, override = override, handler = block)
+fun interfaceSwap(fromId: String = "*", fromComponent: String = "*", toId: String = fromId, toComponent: String = fromComponent, handler: suspend InterfaceSwitch.(Player) -> Unit) {
+    Events.handle("interface_switch", fromId, fromComponent, toId, toComponent, handler = handler)
 }

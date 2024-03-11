@@ -23,7 +23,6 @@ data class CombatAttack(
     val special: Boolean,
     val delay: Int
 ) : Event {
-    override val all = true
 
     override val size = 5
 

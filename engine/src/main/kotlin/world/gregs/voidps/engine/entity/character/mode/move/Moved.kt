@@ -31,19 +31,19 @@ data class Moved(
     }
 }
 
-fun move(from: Tile = Tile.EMPTY, to: Tile = Tile.EMPTY, override: Boolean = true, block: suspend Moved.(Player) -> Unit) {
-    Events.handle("player_move", "player", if (from == Tile.EMPTY) "*" else from, if (to == Tile.EMPTY) "*" else to, override = override, handler = block)
+fun move(from: Tile = Tile.EMPTY, to: Tile = Tile.EMPTY, handler: suspend Moved.(Player) -> Unit) {
+    Events.handle("player_move", "player", if (from == Tile.EMPTY) "*" else from, if (to == Tile.EMPTY) "*" else to, handler = handler)
 }
 
-fun npcMove(npc: String = "*", from: Tile = Tile.EMPTY, to: Tile = Tile.EMPTY, override: Boolean = true, block: suspend Moved.(NPC) -> Unit) {
-    Events.handle("npc_move", npc, if (from == Tile.EMPTY) "*" else from, if (to == Tile.EMPTY) "*" else to, override = override, handler = block)
+fun npcMove(npc: String = "*", from: Tile = Tile.EMPTY, to: Tile = Tile.EMPTY, handler: suspend Moved.(NPC) -> Unit) {
+    Events.handle("npc_move", npc, if (from == Tile.EMPTY) "*" else from, if (to == Tile.EMPTY) "*" else to, handler = handler)
 }
 
-fun characterMove(from: Tile = Tile.EMPTY, to: Tile = Tile.EMPTY, override: Boolean = true, block: suspend Moved.(Character) -> Unit) {
+fun characterMove(from: Tile = Tile.EMPTY, to: Tile = Tile.EMPTY, handler: suspend Moved.(Character) -> Unit) {
     val fromTile: Any = if (from == Tile.EMPTY) "*" else from
     val toTile: Any = if (to == Tile.EMPTY) "*" else to
-    Events.handle("player_move", "player", fromTile, toTile, override = override, handler = block)
-    Events.handle("npc_move", "*", fromTile, toTile, override = override, handler = block)
+    Events.handle("player_move", "player", fromTile, toTile, handler = handler)
+    Events.handle("npc_move", "*", fromTile, toTile, handler = handler)
 }
 
 fun move(filter: Moved.(Player) -> Boolean = { true }, block: suspend Moved.(Player) -> Unit) {

@@ -25,7 +25,6 @@ data class CombatHit(
     val spell: String,
     val special: Boolean
 ) : Event {
-    override val all: Boolean = true
 
     override val size = 5
 

@@ -22,6 +22,6 @@ data class HuntObject(
     }
 }
 
-fun huntObject(npc: String = "*", gameObject: String = "*", mode: String = "*", override: Boolean = true, block: suspend HuntObject.(npc: NPC) -> Unit) {
-    Events.handle("hunt_object", mode, npc, gameObject, override = override, handler = block)
+fun huntObject(npc: String = "*", gameObject: String = "*", mode: String = "*", handler: suspend HuntObject.(npc: NPC) -> Unit) {
+    Events.handle("hunt_object", mode, npc, gameObject, handler = handler)
 }

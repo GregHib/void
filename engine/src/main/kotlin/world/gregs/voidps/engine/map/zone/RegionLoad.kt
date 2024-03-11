@@ -7,5 +7,5 @@ object RegionLoad : Event {
     override val size = 1
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) =
-        if (index == 0) "region_load" else ""
+        if (index == 0) "region_load" else null
 }

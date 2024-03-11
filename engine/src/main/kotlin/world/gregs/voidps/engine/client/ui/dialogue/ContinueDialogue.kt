@@ -22,6 +22,6 @@ data class ContinueDialogue(
     }
 }
 
-fun continueDialogue(id: String = "*", component: String = "*", option: String = "*", override: Boolean = true, block: suspend ContinueDialogue.(Player) -> Unit) {
-    Events.handle("continue_dialogue", id, component, option, override = override, handler = block)
+fun continueDialogue(id: String = "*", component: String = "*", option: String = "*", handler: suspend ContinueDialogue.(Player) -> Unit) {
+    Events.handle("continue_dialogue", id, component, option, handler = handler)
 }

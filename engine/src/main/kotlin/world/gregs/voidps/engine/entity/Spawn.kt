@@ -11,8 +11,6 @@ import world.gregs.voidps.engine.event.Events
 
 object Spawn : Event {
 
-    override val all = true
-
     override val size = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
@@ -22,27 +20,27 @@ object Spawn : Event {
     }
 }
 
-fun playerSpawn(priority: Boolean = true, block: suspend Spawn.(Player) -> Unit) {
-    Events.handle("player_spawn", if (priority) "player" else "*", override = priority, handler = block)
+fun playerSpawn(priority: Boolean = true, handler: suspend Spawn.(Player) -> Unit) {
+    Events.handle("player_spawn", if (priority) "player" else "*", handler = handler)
 }
 
-fun npcSpawn(npc: String = "*", block: suspend Spawn.(NPC) -> Unit) {
-    Events.handle("npc_spawn", npc, handler = block)
+fun npcSpawn(npc: String = "*", handler: suspend Spawn.(NPC) -> Unit) {
+    Events.handle("npc_spawn", npc, handler = handler)
 }
 
-fun characterSpawn(block: suspend Spawn.(Character) -> Unit) {
-    Events.handle("player_spawn", "*", handler = block)
-    Events.handle("npc_spawn", "*", handler = block)
+fun characterSpawn(handler: suspend Spawn.(Character) -> Unit) {
+    Events.handle("player_spawn", "*", handler = handler)
+    Events.handle("npc_spawn", "*", handler = handler)
 }
 
-fun floorItemSpawn(item: String = "*", block: suspend Spawn.(FloorItem) -> Unit) {
-    Events.handle("floor_item_spawn", item, handler = block)
+fun floorItemSpawn(item: String = "*", handler: suspend Spawn.(FloorItem) -> Unit) {
+    Events.handle("floor_item_spawn", item, handler = handler)
 }
 
-fun objectSpawn(obj: String = "*", block: suspend Spawn.(GameObject) -> Unit) {
-    Events.handle("object_spawn", obj, handler = block)
+fun objectSpawn(obj: String = "*", handler: suspend Spawn.(GameObject) -> Unit) {
+    Events.handle("object_spawn", obj, handler = handler)
 }
 
-fun worldSpawn(block: suspend Spawn.(World) -> Unit) {
-    Events.handle("world_spawn", "world", handler = block)
+fun worldSpawn(handler: suspend Spawn.(World) -> Unit) {
+    Events.handle("world_spawn", "world", handler = handler)
 }

@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.event.EventDispatcher
  * Successfully closed interfaces will also emit [InterfaceClosed]
  */
 object CloseInterface : Event {
+
     override val size = 1
 
     override fun parameter(dispatcher: EventDispatcher, index: Int): Any? = when (index) {

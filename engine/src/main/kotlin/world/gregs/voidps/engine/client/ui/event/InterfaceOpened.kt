@@ -11,8 +11,6 @@ import world.gregs.voidps.engine.event.Events
  */
 data class InterfaceOpened(val id: String) : Event {
 
-    override val all: Boolean = true
-
     override val size = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
@@ -22,8 +20,8 @@ data class InterfaceOpened(val id: String) : Event {
     }
 }
 
-fun interfaceOpen(vararg ids: String = arrayOf("*"), override: Boolean = true, block: suspend InterfaceOpened.(Player) -> Unit) {
+fun interfaceOpen(vararg ids: String = arrayOf("*"), handler: suspend InterfaceOpened.(Player) -> Unit) {
     for (id in ids) {
-        Events.handle("interface_open", id, override = override, handler = block)
+        Events.handle("interface_open", id, handler = handler)
     }
 }

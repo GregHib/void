@@ -20,21 +20,21 @@ data class TimerStop(val timer: String, val logout: Boolean) : Event {
     }
 }
 
-fun timerStop(vararg timers: String, override: Boolean = true, block: suspend TimerStop.(Player) -> Unit) {
+fun timerStop(vararg timers: String, handler: suspend TimerStop.(Player) -> Unit) {
     for (timer in timers) {
-        Events.handle("player_timer_stop", timer, "player", override = override, handler = block)
+        Events.handle("player_timer_stop", timer, "player", handler = handler)
     }
 }
 
-fun npcTimerStop(timer: String, npc: String = "*", override: Boolean = true, block: suspend TimerStop.(NPC) -> Unit) {
-    Events.handle("npc_timer_stop", timer, npc, override = override, handler = block)
+fun npcTimerStop(timer: String, npc: String = "*", handler: suspend TimerStop.(NPC) -> Unit) {
+    Events.handle("npc_timer_stop", timer, npc, handler = handler)
 }
 
-fun characterTimerStop(timer: String, override: Boolean = true, block: suspend TimerStop.(Character) -> Unit) {
-    Events.handle("player_timer_stop", timer, "player", override = override, handler = block)
-    Events.handle("npc_timer_stop", timer, "*", override = override, handler = block)
+fun characterTimerStop(timer: String, handler: suspend TimerStop.(Character) -> Unit) {
+    Events.handle("player_timer_stop", timer, "player", handler = handler)
+    Events.handle("npc_timer_stop", timer, "*", handler = handler)
 }
 
-fun worldTimerStop(timer: String, override: Boolean = true, block: suspend TimerStop.(World) -> Unit) {
-    Events.handle("world_timer_stop", timer, "world", override = override, handler = block)
+fun worldTimerStop(timer: String, handler: suspend TimerStop.(World) -> Unit) {
+    Events.handle("world_timer_stop", timer, "world", handler = handler)
 }

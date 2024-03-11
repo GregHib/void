@@ -26,14 +26,14 @@ data class VariableBitAdded(
 
 }
 
-fun variableBitAdd(vararg ids: String = arrayOf("*"), value: Any? = "*", override: Boolean = true, block: suspend VariableBitAdded.(Player) -> Unit) {
+fun variableBitAdd(vararg ids: String = arrayOf("*"), value: Any? = "*", handler: suspend VariableBitAdded.(Player) -> Unit) {
     for (id in ids) {
-        Events.handle("player_add_variable", id, "player", value, override = override, handler = block)
+        Events.handle("player_add_variable", id, "player", value, handler = handler)
     }
 }
 
-fun npcVariableBitAdd(npc: String = "*", vararg ids: String, value: Any? = "*", override: Boolean = true, block: suspend VariableBitAdded.(NPC) -> Unit) {
+fun npcVariableBitAdd(npc: String = "*", vararg ids: String, value: Any? = "*", handler: suspend VariableBitAdded.(NPC) -> Unit) {
     for (id in ids) {
-        Events.handle("npc_add_variable", id, npc, value, override = override, handler = block)
+        Events.handle("npc_add_variable", id, npc, value, handler = handler)
     }
 }

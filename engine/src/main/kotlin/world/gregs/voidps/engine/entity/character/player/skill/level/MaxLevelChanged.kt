@@ -25,22 +25,22 @@ data class MaxLevelChanged(val skill: Skill, val from: Int, val to: Int) : Event
     }
 }
 
-fun maxLevelChange(vararg skills: Skill, from: Int? = null, to: Int? = null, override: Boolean = true, block: suspend MaxLevelChanged.(Player) -> Unit) {
+fun maxLevelChange(vararg skills: Skill, from: Int? = null, to: Int? = null, handler: suspend MaxLevelChanged.(Player) -> Unit) {
     if (skills.isEmpty()) {
-        Events.handle("player_max_level_change", "*", "player", from ?: "*", to ?: "*", override = override, handler = block)
+        Events.handle("player_max_level_change", "*", "player", from ?: "*", to ?: "*", handler = handler)
     } else {
         for (skill in skills) {
-            Events.handle("player_max_level_change", skill, "player", from ?: "*", to ?: "*", override = override, handler = block)
+            Events.handle("player_max_level_change", skill, "player", from ?: "*", to ?: "*", handler = handler)
         }
     }
 }
 
-fun npcMaxLevelChange(npc: String = "*", vararg skills: Skill, from: Int? = null, to: Int? = null, override: Boolean = true, block: suspend MaxLevelChanged.(NPC) -> Unit) {
+fun npcMaxLevelChange(npc: String = "*", vararg skills: Skill, from: Int? = null, to: Int? = null, handler: suspend MaxLevelChanged.(NPC) -> Unit) {
     if (skills.isEmpty()) {
-        Events.handle("npc_max_level_change", "*", npc, from ?: "*", to ?: "*", override = override, handler = block)
+        Events.handle("npc_max_level_change", "*", npc, from ?: "*", to ?: "*", handler = handler)
     } else {
         for (skill in skills) {
-            Events.handle("npc_max_level_change", skill, npc, from ?: "*", to ?: "*", override = override, handler = block)
+            Events.handle("npc_max_level_change", skill, npc, from ?: "*", to ?: "*",  handler = handler)
         }
     }
 }

@@ -3,10 +3,10 @@ package world.gregs.voidps.engine.event
 interface Event {
 
     /**
-     * Search for all handlers matching, not just the first.
+     * Event gets sent to all applicable handlers not just the first
      */
-    val all: Boolean
-        get() = false
+    val notification: Boolean
+        get() = true
 
     val size: Int
 

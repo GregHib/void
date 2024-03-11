@@ -20,15 +20,15 @@ data class CombatStart(val target: Character) : Event {
     }
 }
 
-fun combatStart(override: Boolean = true, handler: suspend CombatStart.(Player) -> Unit) {
-    Events.handle("player_combat_start", "player", override = override, handler = handler)
+fun combatStart(handler: suspend CombatStart.(Player) -> Unit) {
+    Events.handle("player_combat_start", "player", handler = handler)
 }
 
-fun npcCombatStart(npc: String = "*", override: Boolean = true, handler: suspend CombatStart.(NPC) -> Unit) {
-    Events.handle("npc_combat_start", npc, override = override, handler = handler)
+fun npcCombatStart(npc: String = "*", handler: suspend CombatStart.(NPC) -> Unit) {
+    Events.handle("npc_combat_start", npc, handler = handler)
 }
 
-fun characterCombatStart(override: Boolean = true, handler: suspend CombatStart.(Character) -> Unit) {
-    combatStart(override, handler)
-    npcCombatStart("*", override, handler)
+fun characterCombatStart(handler: suspend CombatStart.(Character) -> Unit) {
+    combatStart(handler)
+    npcCombatStart("*", handler)
 }

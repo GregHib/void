@@ -21,6 +21,6 @@ data class HuntNPC(
     }
 }
 
-fun huntNPC(npc: String = "*", targetNpc: String = "*", mode: String = "*", override: Boolean = true, block: suspend HuntNPC.(npc: NPC) -> Unit) {
-    Events.handle("hunt_npc", mode, npc, targetNpc, override = override, handler = block)
+fun huntNPC(npc: String = "*", targetNpc: String = "*", mode: String = "*", handler: suspend HuntNPC.(npc: NPC) -> Unit) {
+    Events.handle("hunt_npc", mode, npc, targetNpc, handler = handler)
 }

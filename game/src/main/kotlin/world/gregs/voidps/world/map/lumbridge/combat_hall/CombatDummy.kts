@@ -49,8 +49,8 @@ val levelHandler: suspend CurrentLevelChanged.(NPC) -> Unit = handler@{ npc ->
         attacker.mode = EmptyMode
     }
 }
-npcLevelChange("melee_dummy", Skill.Constitution, block = levelHandler)
-npcLevelChange("magic_dummy", Skill.Constitution, block = levelHandler)
+npcLevelChange("melee_dummy", Skill.Constitution, handler = levelHandler)
+npcLevelChange("magic_dummy", Skill.Constitution, handler = levelHandler)
 
 combatPrepare("magic") { player ->
     if (target is NPC && target.id == "magic_dummy" && player.fightStyle != "magic") {

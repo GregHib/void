@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.event.CancellableEvent
 import world.gregs.voidps.engine.event.SuspendableEvent
 
 abstract class Interaction : CancellableEvent(), SuspendableEvent, CharacterContext {
+    override val notification: Boolean = false
     var approach = false
     val operate: Boolean
         get() = !approach

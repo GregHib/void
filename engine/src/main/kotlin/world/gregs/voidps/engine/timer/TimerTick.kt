@@ -21,21 +21,21 @@ data class TimerTick(val timer: String) : CancellableEvent() {
     }
 }
 
-fun timerTick(vararg timers: String, override: Boolean = true, block: suspend TimerTick.(Player) -> Unit) {
+fun timerTick(vararg timers: String, handler: suspend TimerTick.(Player) -> Unit) {
     for (timer in timers) {
-        Events.handle("player_timer_tick", timer, "player", override = override, handler = block)
+        Events.handle("player_timer_tick", timer, "player", handler = handler)
     }
 }
 
-fun npcTimerTick(timer: String, npc: String = "*", override: Boolean = true, block: suspend TimerTick.(NPC) -> Unit) {
-    Events.handle("npc_timer_tick", timer, npc, override = override, handler = block)
+fun npcTimerTick(timer: String, npc: String = "*", handler: suspend TimerTick.(NPC) -> Unit) {
+    Events.handle("npc_timer_tick", timer, npc, handler = handler)
 }
 
-fun characterTimerTick(timer: String, override: Boolean = true, block: suspend TimerTick.(Character) -> Unit) {
-    Events.handle("player_timer_tick", timer, "player", override = override, handler = block)
-    Events.handle("npc_timer_tick", timer, "*", override = override, handler = block)
+fun characterTimerTick(timer: String, handler: suspend TimerTick.(Character) -> Unit) {
+    Events.handle("player_timer_tick", timer, "player", handler = handler)
+    Events.handle("npc_timer_tick", timer, "*", handler = handler)
 }
 
-fun worldTimerTick(timer: String, override: Boolean = true, block: suspend TimerTick.(World) -> Unit) {
-    Events.handle("world_timer_tick", timer, "world", override = override, handler = block)
+fun worldTimerTick(timer: String, handler: suspend TimerTick.(World) -> Unit) {
+    Events.handle("world_timer_tick", timer, "world", handler = handler)
 }

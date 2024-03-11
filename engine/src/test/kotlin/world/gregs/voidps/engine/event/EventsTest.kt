@@ -169,7 +169,7 @@ class EventsTest {
     }
 
     private fun event(vararg params: Any?, findAll: Boolean = false) = object : Event {
-        override val all = findAll
+        override val notification = findAll
 
         override val size = params.size
 

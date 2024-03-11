@@ -22,6 +22,6 @@ data class HuntFloorItem(
     }
 }
 
-fun huntFloorItem(npc: String = "*", floorItem: String = "*", mode: String = "*", override: Boolean = true, block: suspend HuntFloorItem.(npc: NPC) -> Unit) {
-    Events.handle("hunt_floor_item", mode, npc, floorItem, override = override, handler = block)
+fun huntFloorItem(npc: String = "*", floorItem: String = "*", mode: String = "*", handler: suspend HuntFloorItem.(npc: NPC) -> Unit) {
+    Events.handle("hunt_floor_item", mode, npc, floorItem, handler = handler)
 }

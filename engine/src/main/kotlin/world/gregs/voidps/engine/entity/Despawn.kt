@@ -11,8 +11,6 @@ import world.gregs.voidps.engine.event.Events
 
 object Despawn : Event {
 
-    override val all = true
-
     override val size = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
@@ -22,23 +20,23 @@ object Despawn : Event {
     }
 }
 
-fun playerDespawn(block: suspend Despawn.(Player) -> Unit) {
-    Events.handle("player_despawn", "player", handler = block)
+fun playerDespawn(handler: suspend Despawn.(Player) -> Unit) {
+    Events.handle("player_despawn", "player", handler = handler)
 }
 
-fun npcDespawn(npc: String = "*", block: suspend Despawn.(NPC) -> Unit) {
-    Events.handle("npc_despawn", npc, handler = block)
+fun npcDespawn(npc: String = "*", handler: suspend Despawn.(NPC) -> Unit) {
+    Events.handle("npc_despawn", npc, handler = handler)
 }
 
-fun characterDespawn(block: suspend Despawn.(Character) -> Unit) {
-    Events.handle("player_despawn", "player", handler = block)
-    Events.handle("npc_despawn", "*", handler = block)
+fun characterDespawn(handler: suspend Despawn.(Character) -> Unit) {
+    Events.handle("player_despawn", "player", handler = handler)
+    Events.handle("npc_despawn", "*", handler = handler)
 }
 
-fun floorItemDespawn(item: String = "*", block: suspend Despawn.(FloorItem) -> Unit) {
-    Events.handle("floor_item_despawn", item, handler = block)
+fun floorItemDespawn(item: String = "*", handler: suspend Despawn.(FloorItem) -> Unit) {
+    Events.handle("floor_item_despawn", item, handler = handler)
 }
 
-fun objectDespawn(obj: String = "*", block: suspend Despawn.(GameObject) -> Unit) {
-    Events.handle("object_despawn", obj, handler = block)
+fun objectDespawn(obj: String = "*", handler: suspend Despawn.(GameObject) -> Unit) {
+    Events.handle("object_despawn", obj, handler = handler)
 }

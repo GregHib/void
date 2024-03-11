@@ -117,7 +117,7 @@ class Events : CoroutineScope {
             return null
         }
         val root = roots[event.size] ?: return null
-        return if (event.all) all(dispatcher, event, root, 0, skip) else first(dispatcher, event, root, 0, skip)
+        return if (event.notification) all(dispatcher, event, root, 0, skip) else first(dispatcher, event, root, 0, skip)
     }
 
     private fun first(dispatcher: EventDispatcher, event: Event, node: TrieNode, depth: Int, skip: (suspend Event.(EventDispatcher) -> Unit)? = null): Set<suspend Event.(EventDispatcher) -> Unit>? {

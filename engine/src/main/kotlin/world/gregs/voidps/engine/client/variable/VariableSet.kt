@@ -15,7 +15,6 @@ data class VariableSet(
     val from: Any?,
     val to: Any?
 ) : Event {
-
     override val size = 5
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
@@ -29,14 +28,14 @@ data class VariableSet(
 
 }
 
-fun variableSet(vararg ids: String = arrayOf("*"), from: Any? = "*", to: Any? = "*", override: Boolean = true, block: suspend VariableSet.(Player) -> Unit) {
+fun variableSet(vararg ids: String = arrayOf("*"), from: Any? = "*", to: Any? = "*", handler: suspend VariableSet.(Player) -> Unit) {
     for (id in ids) {
-        Events.handle("player_set_variable", id, "player", from, to, override = override, handler = block)
+        Events.handle("player_set_variable", id, "player", from, to, handler = handler)
     }
 }
 
-fun npcVariableSet(npc: String = "*", vararg variables: String = arrayOf("*"), from: Any? = "*", to: Any? = "*", override: Boolean = true, block: suspend VariableSet.(NPC) -> Unit) {
+fun npcVariableSet(npc: String = "*", vararg variables: String = arrayOf("*"), from: Any? = "*", to: Any? = "*", handler: suspend VariableSet.(NPC) -> Unit) {
     for (variable in variables) {
-        Events.handle("npc_set_variable", variable, npc, from, to, override = override, handler = block)
+        Events.handle("npc_set_variable", variable, npc, from, to, handler = handler)
     }
 }

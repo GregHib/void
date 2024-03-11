@@ -27,15 +27,15 @@ data class CurrentLevelChanged(val skill: Skill, val from: Int, val to: Int) : C
 
 }
 
-fun levelChange(skill: Skill? = null, from: Int? = null, to: Int? = null, override: Boolean = true, block: suspend CurrentLevelChanged.(Player) -> Unit) {
-    Events.handle("player_level_change", skill ?: "*", "player", from ?: "*", to ?: "*", override = override, handler = block)
+fun levelChange(skill: Skill? = null, from: Int? = null, to: Int? = null, handler: suspend CurrentLevelChanged.(Player) -> Unit) {
+    Events.handle("player_level_change", skill ?: "*", "player", from ?: "*", to ?: "*", handler = handler)
 }
 
-fun npcLevelChange(npc: String = "*", skill: Skill? = null, from: Int? = null, to: Int? = null, override: Boolean = true, block: suspend CurrentLevelChanged.(NPC) -> Unit) {
-    Events.handle("npc_level_change", skill ?: "*", npc, from ?: "*", to ?: "*", override = override, handler = block)
+fun npcLevelChange(npc: String = "*", skill: Skill? = null, from: Int? = null, to: Int? = null, handler: suspend CurrentLevelChanged.(NPC) -> Unit) {
+    Events.handle("npc_level_change", skill ?: "*", npc, from ?: "*", to ?: "*", handler = handler)
 }
 
-fun characterLevelChange(skill: Skill? = null, from: Int? = null, to: Int? = null, override: Boolean = true, block: suspend CurrentLevelChanged.(Character) -> Unit) {
-    Events.handle("player_level_change", skill ?: "*", "player", from ?: "*", to ?: "*", override = override, handler = block)
-    Events.handle("npc_level_change", skill ?: "*", "*", from ?: "*", to ?: "*", override = override, handler = block)
+fun characterLevelChange(skill: Skill? = null, from: Int? = null, to: Int? = null, handler: suspend CurrentLevelChanged.(Character) -> Unit) {
+    levelChange(skill, from, to, handler)
+    npcLevelChange("*", skill, from, to, handler)
 }

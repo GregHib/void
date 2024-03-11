@@ -21,6 +21,6 @@ data class GrantExp(
     }
 }
 
-fun experience(skill: Skill? = null, override: Boolean = true, block: suspend GrantExp.(Player) -> Unit) {
-    Events.handle("grant_experience", skill ?: "*", override = override, handler = block)
+fun experience(skill: Skill? = null, handler: suspend GrantExp.(Player) -> Unit) {
+    Events.handle("grant_experience", skill ?: "*", handler = handler)
 }
