@@ -12,6 +12,8 @@ import world.gregs.voidps.engine.event.Events
  */
 class CombatPrepare(val target: Character) : CancellableEvent() {
 
+    override val notification: Boolean = true
+
     override val size = 3
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {

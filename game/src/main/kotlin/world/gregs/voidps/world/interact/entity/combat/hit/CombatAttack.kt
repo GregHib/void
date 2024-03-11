@@ -24,6 +24,8 @@ data class CombatAttack(
     val delay: Int
 ) : Event {
 
+    override val notification: Boolean = true
+
     override val size = 5
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {

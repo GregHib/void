@@ -7,6 +7,8 @@ import world.gregs.voidps.engine.event.Events
 
 data class PrayerStart(val prayer: String, val restart: Boolean = false) : Event {
 
+    override val notification: Boolean = true
+
     override val size = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
@@ -16,8 +18,8 @@ data class PrayerStart(val prayer: String, val restart: Boolean = false) : Event
     }
 }
 
-fun prayerStart(vararg prayers: String = arrayOf("*"), override: Boolean = true, block: suspend PrayerStart.(Player) -> Unit) {
+fun prayerStart(vararg prayers: String = arrayOf("*"), handler: suspend PrayerStart.(Player) -> Unit) {
     for (prayer in prayers) {
-        Events.handle("prayer_start", prayer, override = override, handler = block)
+        Events.handle("prayer_start", prayer, handler = handler)
     }
 }
