@@ -28,7 +28,7 @@ object Target {
         if (source.tile.level != target.tile.level) {
             return false
         }
-        if (source.dead || target.dead) {
+        if (source.dead || target.dead || source["logged_out", false] || target["logged_out", false]) {
             return false
         }
         if (source is Player && target is Player) {

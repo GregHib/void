@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.combat.*
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.characterDespawn
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.world.interact.entity.death.characterDeath
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
@@ -73,6 +74,12 @@ fun combat(character: Character, target: Character) {
         nextDelay *= 2
     }
     character.start("hit_delay", nextDelay)
+}
+
+characterDespawn { character ->
+    for (attacker in character.attackers) {
+        attacker.mode = EmptyMode
+    }
 }
 
 characterCombatStart { character ->
