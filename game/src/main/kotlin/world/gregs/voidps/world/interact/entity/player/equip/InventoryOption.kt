@@ -26,23 +26,23 @@ data class InventoryOption(
     }
 }
 
-fun inventoryOptions(vararg options: String = arrayOf("*"), item: String = "*", inventory: String = "*", override: Boolean = true, block: suspend InventoryOption.() -> Unit) {
+fun inventoryOptions(vararg options: String = arrayOf("*"), item: String = "*", inventory: String = "*", block: suspend InventoryOption.() -> Unit) {
     val handler: suspend InventoryOption.(EventDispatcher) -> Unit = {
         block.invoke(this)
     }
     for (option in options) {
-        Events.handle("inventory_option", option, item, inventory, override = override, handler = handler)
+        Events.handle("inventory_option", option, item, inventory, handler = handler)
     }
 }
 
-fun inventoryOption(option: String = "*", inventory: String = "*", override: Boolean = true, block: suspend InventoryOption.() -> Unit) {
-    Events.handle<InventoryOption>("inventory_option", option, "*", inventory, override = override) {
-        block.invoke(this)
+fun inventoryOption(option: String = "*", inventory: String = "*", handler: suspend InventoryOption.() -> Unit) {
+    Events.handle<InventoryOption>("inventory_option", option, "*", inventory) {
+        handler.invoke(this)
     }
 }
 
-fun inventoryItem(option: String = "*", item: String = "*", inventory: String = "*", override: Boolean = true, block: suspend InventoryOption.() -> Unit) {
-    Events.handle<InventoryOption>("inventory_option", option, item, inventory, override = override) {
-        block.invoke(this)
+fun inventoryItem(option: String = "*", item: String = "*", inventory: String = "*", handler: suspend InventoryOption.() -> Unit) {
+    Events.handle<InventoryOption>("inventory_option", option, item, inventory) {
+        handler.invoke(this)
     }
 }

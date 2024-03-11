@@ -31,17 +31,17 @@ data class ItemOnPlayer(
     }
 }
 
-fun itemOnPlayerOperate(item: String = "*", id: String = "*", component: String = "*", arrive: Boolean = true, override: Boolean = true, block: suspend ItemOnPlayer.() -> Unit) {
+fun itemOnPlayerOperate(item: String = "*", id: String = "*", component: String = "*", arrive: Boolean = true, override: Boolean = true, handler: suspend ItemOnPlayer.() -> Unit) {
     Events.handle<ItemOnPlayer>("item_on_operate_player", item, id, component, override = override) {
         if (arrive) {
             arriveDelay()
         }
-        block.invoke(this)
+        handler.invoke(this)
     }
 }
 
-fun itemOnPlayerApproach(item: String = "*", id: String = "*", component: String = "*", override: Boolean = true, block: suspend ItemOnPlayer.() -> Unit) {
+fun itemOnPlayerApproach(item: String = "*", id: String = "*", component: String = "*", override: Boolean = true, handler: suspend ItemOnPlayer.() -> Unit) {
     Events.handle<ItemOnPlayer>("item_on_approach_player", item, id, component, override = override) {
-        block.invoke(this)
+        handler.invoke(this)
     }
 }

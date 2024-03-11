@@ -17,6 +17,6 @@ data class SpecialAttackHit(val id: String, val target: Character, val damage: I
     }
 }
 
-fun specialAttackHit(id: String, noHit: Boolean = true, override: Boolean = true, block: suspend SpecialAttackHit.(Player) -> Unit) {
-    Events.handle("special_attack_hit", id, if (noHit) true else "*", override = override, handler = block)
+fun specialAttackHit(id: String, noHit: Boolean = true, handler: suspend SpecialAttackHit.(Player) -> Unit) {
+    Events.handle("special_attack_hit", id, if (noHit) true else "*", handler = handler)
 }

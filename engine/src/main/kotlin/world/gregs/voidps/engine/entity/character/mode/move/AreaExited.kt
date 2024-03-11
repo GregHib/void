@@ -28,14 +28,14 @@ data class AreaExited(
     }
 }
 
-fun exitArea(area: String = "*", tag: String = "*", override: Boolean = true, block: suspend AreaExited.() -> Unit) {
-    Events.handle<Player, AreaExited>("player_exit", area, "player", tag, "*", override = override) {
-        block.invoke(this)
+fun exitArea(area: String = "*", tag: String = "*", handler: suspend AreaExited.() -> Unit) {
+    Events.handle<Player, AreaExited>("player_exit", area, "player", tag, "*") {
+        handler.invoke(this)
     }
 }
 
-fun npcExitArea(npc: String = "*", area: String = "*", tag: String = "*", override: Boolean = true, block: suspend AreaExited.() -> Unit) {
-    Events.handle<Player, AreaExited>("npc_exit", area, npc, tag, "*", override = override) {
-        block.invoke(this)
+fun npcExitArea(npc: String = "*", area: String = "*", tag: String = "*", handler: suspend AreaExited.() -> Unit) {
+    Events.handle<Player, AreaExited>("npc_exit", area, npc, tag, "*") {
+        handler.invoke(this)
     }
 }

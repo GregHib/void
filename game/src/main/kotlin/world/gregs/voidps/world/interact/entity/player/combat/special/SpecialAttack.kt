@@ -49,8 +49,8 @@ data class SpecialAttack(val id: String, val target: Character) : Event {
     }
 }
 
-fun specialAttack(id: String = "*", override: Boolean = true, block: suspend SpecialAttack.(Player) -> Unit) {
-    Events.handle("special_attack", id, override = override, handler = block)
+fun specialAttack(id: String = "*", handler: suspend SpecialAttack.(Player) -> Unit) {
+    Events.handle("special_attack", id, handler = handler)
 }
 
 var Player.specialAttack: Boolean

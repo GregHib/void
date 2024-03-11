@@ -74,8 +74,8 @@ fun itemRemoved(item: String = "*", index: Int? = null, inventory: String, handl
     Events.handle("item_change", "*", index ?: "*", inventory, item, "*", "*", handler = handler)
 }
 
-fun itemChange(inventory: String = "*", slot: EquipSlot, block: suspend ItemChanged.(Player) -> Unit) {
-    itemChange(inventory, slot.index, handler = block)
+fun itemChange(inventory: String = "*", slot: EquipSlot, handler: suspend ItemChanged.(Player) -> Unit) {
+    itemChange(inventory, slot.index, handler = handler)
 }
 
 fun itemChange(inventory: String = "*", index: Int? = null, fromInventory: String = "*", fromIndex: Int? = null, handler: suspend ItemChanged.(Player) -> Unit) {

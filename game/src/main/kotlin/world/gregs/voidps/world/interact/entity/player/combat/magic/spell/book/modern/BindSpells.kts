@@ -14,6 +14,6 @@ val attackHandler: suspend CombatAttack.(Character) -> Unit = { character ->
         character.freeze(target, definitions.get(spell)["freeze_ticks"])
     }
 }
-characterCombatAttack(spell = "bind", type = "magic", block = attackHandler)
-characterCombatAttack(spell = "snare", type = "magic", block = attackHandler)
-characterCombatAttack(spell = "entangle", type = "magic", block = attackHandler)
+characterCombatAttack(spell = "bind", type = "magic", handler = attackHandler)
+characterCombatAttack(spell = "snare", type = "magic", handler = attackHandler)
+characterCombatAttack(spell = "entangle", type = "magic", handler = attackHandler)

@@ -17,8 +17,8 @@ data class Consume(val item: Item, val slot: Int) : CancellableEvent() {
     }
 }
 
-fun consume(vararg items: String = arrayOf("*"), slot: Int? = null, override: Boolean = true, block: Consume.(Player) -> Unit) {
+fun consume(vararg items: String = arrayOf("*"), slot: Int? = null, handler: Consume.(Player) -> Unit) {
     for (item in items) {
-        Events.handle("consume", item, slot ?: "*", override = override, handler = block)
+        Events.handle("consume", item, slot ?: "*", handler = handler)
     }
 }

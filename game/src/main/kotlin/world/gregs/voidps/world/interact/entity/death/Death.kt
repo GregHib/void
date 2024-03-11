@@ -19,15 +19,15 @@ object Death : Event {
 
 }
 
-fun playerDeath(override: Boolean = true, block: suspend Death.(Player) -> Unit) {
-    Events.handle("player_death", "player", override = override, handler = block)
+fun playerDeath(handler: suspend Death.(Player) -> Unit) {
+    Events.handle("player_death", "player", handler = handler)
 }
 
-fun npcDeath(npc: String = "*", override: Boolean = true, block: suspend Death.(NPC) -> Unit) {
-    Events.handle("npc_death", npc, override = override, handler = block)
+fun npcDeath(npc: String = "*", handler: suspend Death.(NPC) -> Unit) {
+    Events.handle("npc_death", npc, handler = handler)
 }
 
-fun characterDeath(override: Boolean = true, block: suspend Death.(Character) -> Unit) {
-    Events.handle("player_death", "player", override = override, handler = block)
-    Events.handle("npc_death", "*", override = override, handler = block)
+fun characterDeath(handler: suspend Death.(Character) -> Unit) {
+    Events.handle("player_death", "player", handler = handler)
+    Events.handle("npc_death", "*", handler = handler)
 }

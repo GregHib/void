@@ -31,8 +31,8 @@ fun npcTimerStart(timer: String, npc: String = "*", handler: suspend TimerStart.
     Events.handle("npc_timer_start", timer, npc, handler = handler)
 }
 
-fun characterTimerStart(timer: String, override: Boolean = true, handler: suspend TimerStart.(Character) -> Unit) {
-    Events.handle("player_timer_start", timer, "player", override = override, handler = handler)
+fun characterTimerStart(timer: String, handler: suspend TimerStart.(Character) -> Unit) {
+    Events.handle("player_timer_start", timer, "player", handler = handler)
     Events.handle("npc_timer_start", timer, "*", handler = handler)
 }
 

@@ -32,17 +32,17 @@ data class ItemOnNPC(
     }
 }
 
-fun itemOnNPCOperate(item: String = "*", npc: String = "*", id: String = "*", component: String = "*", arrive: Boolean = false, override: Boolean = true, block: suspend ItemOnNPC.() -> Unit) {
+fun itemOnNPCOperate(item: String = "*", npc: String = "*", id: String = "*", component: String = "*", arrive: Boolean = false, override: Boolean = true, handler: suspend ItemOnNPC.() -> Unit) {
     Events.handle<ItemOnNPC>("item_on_operate_npc", item, npc, id, component, override = override) {
         if (arrive) {
             arriveDelay()
         }
-        block.invoke(this)
+        handler.invoke(this)
     }
 }
 
-fun itemOnNPCApproach(item: String = "*", npc: String = "*", id: String = "*", component: String = "*", override: Boolean = true, block: suspend ItemOnNPC.() -> Unit) {
+fun itemOnNPCApproach(item: String = "*", npc: String = "*", id: String = "*", component: String = "*", override: Boolean = true, handler: suspend ItemOnNPC.() -> Unit) {
     Events.handle<ItemOnNPC>("item_on_approach_npc", item, npc, id, component, override = override) {
-        block.invoke(this)
+        handler.invoke(this)
     }
 }

@@ -30,14 +30,14 @@ data class InterfaceOption(
     }
 }
 
-fun interfaceOption(option: String = "*", component: String = "*", id: String, block: suspend InterfaceOption.() -> Unit) {
+fun interfaceOption(option: String = "*", component: String = "*", id: String, handler: suspend InterfaceOption.() -> Unit) {
     Events.handle<InterfaceOption>("interface_option", id, component, option, "*") {
-        block.invoke(this)
+        handler.invoke(this)
     }
 }
 
-fun interfaceSlot(component: String = "*", id: String, itemSlot: Int = -1, block: suspend InterfaceOption.() -> Unit) {
+fun interfaceSlot(component: String = "*", id: String, itemSlot: Int = -1, handler: suspend InterfaceOption.() -> Unit) {
     Events.handle<InterfaceOption>("interface_option", id, component, "*", if (itemSlot == -1) "*" else itemSlot.toString()) {
-        block.invoke(this)
+        handler.invoke(this)
     }
 }

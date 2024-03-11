@@ -252,11 +252,11 @@ class Events : CoroutineScope {
 }
 
 @JvmName("onEventDispatcher")
-inline fun <D : EventDispatcher, reified E : Event> onEvent(vararg parameters: Any = arrayOf(E::class.simpleName!!.toSnakeCase()), override: Boolean = true, noinline block: suspend E.(D) -> Unit) {
-    Events.handle(parameters = parameters, override, block)
+inline fun <D : EventDispatcher, reified E : Event> onEvent(vararg parameters: Any = arrayOf(E::class.simpleName!!.toSnakeCase()), override: Boolean = true, noinline handler: suspend E.(D) -> Unit) {
+    Events.handle(parameters = parameters, override, handler)
 }
 
 @JvmName("onEvent")
-inline fun <reified E : Event> onEvent(vararg parameters: Any = arrayOf(E::class.simpleName!!.toSnakeCase()), override: Boolean = true, noinline block: suspend E.(EventDispatcher) -> Unit) {
-    Events.handle(parameters = parameters, override, block)
+inline fun <reified E : Event> onEvent(vararg parameters: Any = arrayOf(E::class.simpleName!!.toSnakeCase()), override: Boolean = true, noinline handler: suspend E.(EventDispatcher) -> Unit) {
+    Events.handle(parameters = parameters, override, handler)
 }

@@ -32,26 +32,26 @@ data class Teleport(
     }
 }
 
-fun teleportTakeOff(option: String = "*", vararg ids: String = arrayOf("*"), override: Boolean = true, block: suspend Teleport.() -> Unit) {
+fun teleportTakeOff(option: String = "*", vararg ids: String = arrayOf("*"), block: suspend Teleport.() -> Unit) {
     val handler: suspend Teleport.(Player) -> Unit = {
         block.invoke(this)
     }
     for (id in ids) {
-        Events.handle("player_teleport_takeoff", "player", "*", id, option, override = override, handler = handler)
+        Events.handle("player_teleport_takeoff", "player", "*", id, option, handler = handler)
     }
 }
 
-fun teleportLand(option: String = "*", vararg ids: String = arrayOf("*"), override: Boolean = true, block: suspend Teleport.() -> Unit) {
+fun teleportLand(option: String = "*", vararg ids: String = arrayOf("*"), block: suspend Teleport.() -> Unit) {
     val handler: suspend Teleport.(Player) -> Unit = {
         block.invoke(this)
     }
     for (id in ids) {
-        Events.handle("player_teleport_land", "player", "*", id, option, override = override, handler = handler)
+        Events.handle("player_teleport_land", "player", "*", id, option, handler = handler)
     }
 }
 
-fun teleport(option: String = "*", obj: String = "*", id: String = "*", land: Boolean = true, override: Boolean = true, block: suspend Teleport.() -> Unit) {
-    Events.handle<Player, Teleport>("player_teleport_${if (land) "land" else "takeoff"}", "player", id, obj, option, override = override) {
-        block.invoke(this)
+fun teleport(option: String = "*", obj: String = "*", id: String = "*", land: Boolean = true, handler: suspend Teleport.() -> Unit) {
+    Events.handle<Player, Teleport>("player_teleport_${if (land) "land" else "takeoff"}", "player", id, obj, option) {
+        handler.invoke(this)
     }
 }

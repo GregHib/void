@@ -38,34 +38,15 @@ data class CombatAttack(
     }
 }
 
-fun combatAttack(
-    weapon: String = "*",
-    type: String = "*",
-    spell: String = "*",
-    override: Boolean = true,
-    block: suspend CombatAttack.(Player) -> Unit
-) {
-    Events.handle("player_combat_attack", "player", weapon, type, spell, override = override, handler = block)
+fun combatAttack(weapon: String = "*", type: String = "*", spell: String = "*", handler: suspend CombatAttack.(Player) -> Unit) {
+    Events.handle("player_combat_attack", "player", weapon, type, spell, handler = handler)
 }
 
-fun npcCombatAttack(
-    npc: String = "*",
-    weapon: String = "*",
-    type: String = "*",
-    spell: String = "*",
-    override: Boolean = true,
-    block: suspend CombatAttack.(Player) -> Unit
-) {
-    Events.handle("npc_combat_attack", npc, weapon, type, spell, override = override, handler = block)
+fun npcCombatAttack(npc: String = "*", weapon: String = "*", type: String = "*", spell: String = "*", handler: suspend CombatAttack.(Player) -> Unit) {
+    Events.handle("npc_combat_attack", npc, weapon, type, spell, handler = handler)
 }
 
-fun characterCombatAttack(
-    weapon: String = "*",
-    type: String = "*",
-    spell: String = "*",
-    override: Boolean = true,
-    block: suspend CombatAttack.(Character) -> Unit
-) {
-    combatAttack(weapon, type, spell, override, block)
-    npcCombatAttack("*", weapon, type, spell, override, block)
+fun characterCombatAttack(weapon: String = "*", type: String = "*", spell: String = "*", handler: suspend CombatAttack.(Character) -> Unit) {
+    combatAttack(weapon, type, spell, handler)
+    npcCombatAttack("*", weapon, type, spell, handler)
 }

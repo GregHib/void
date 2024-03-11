@@ -27,38 +27,38 @@ data class NPCOption(
     }
 }
 
-fun npcOperate(option: String, vararg npcs: String = arrayOf("*"), arrive: Boolean = false, override: Boolean = true, block: suspend NPCOption.() -> Unit) {
-    npcOption<Player>("player_operate_npc", npcs, option, block, override, arrive)
+fun npcOperate(option: String, vararg npcs: String = arrayOf("*"), arrive: Boolean = false, override: Boolean = true, handler: suspend NPCOption.() -> Unit) {
+    npcOption<Player>("player_operate_npc", npcs, option, override, handler, arrive)
 }
 
-fun npcApproach(option: String, vararg npcs: String = arrayOf("*"), override: Boolean = true, block: suspend NPCOption.() -> Unit) {
-    npcOption<Player>("player_approach_npc", npcs, option, block, override)
+fun npcApproach(option: String, vararg npcs: String = arrayOf("*"), override: Boolean = true, handler: suspend NPCOption.() -> Unit) {
+    npcOption<Player>("player_approach_npc", npcs, option, override, handler)
 }
 
-fun npcOperateNPC(option: String, vararg npcs: String = arrayOf("*"), arrive: Boolean = false, override: Boolean = true, block: suspend NPCOption.() -> Unit) {
-    npcOption<NPC>("npc_operate_npc", npcs, option, block, override, arrive)
+fun npcOperateNPC(option: String, vararg npcs: String = arrayOf("*"), arrive: Boolean = false, override: Boolean = true, handler: suspend NPCOption.() -> Unit) {
+    npcOption<NPC>("npc_operate_npc", npcs, option, override, handler, arrive)
 }
 
-fun npcApproachNPC(option: String, vararg npcs: String = arrayOf("*"), override: Boolean = true, block: suspend NPCOption.() -> Unit) {
-    npcOption<NPC>("npc_approach_npc", npcs, option, block, override)
+fun npcApproachNPC(option: String, vararg npcs: String = arrayOf("*"), override: Boolean = true, handler: suspend NPCOption.() -> Unit) {
+    npcOption<NPC>("npc_approach_npc", npcs, option, override, handler)
 }
 
-fun characterOperateNPC(option: String, vararg npcs: String = arrayOf("*"), arrive: Boolean = false, override: Boolean = true, block: suspend NPCOption.() -> Unit) {
-    npcOption<Player>("player_operate_npc", npcs, option, block, override, arrive)
-    npcOption<NPC>("npc_operate_npc", npcs, option, block, override, arrive)
+fun characterOperateNPC(option: String, vararg npcs: String = arrayOf("*"), arrive: Boolean = false, override: Boolean = true, handler: suspend NPCOption.() -> Unit) {
+    npcOption<Player>("player_operate_npc", npcs, option, override, handler, arrive)
+    npcOption<NPC>("npc_operate_npc", npcs, option, override, handler, arrive)
 }
 
-fun characterApproachNPC(option: String, vararg npcs: String = arrayOf("*"), override: Boolean = true, block: suspend NPCOption.() -> Unit) {
-    npcOption<Player>("player_approach_npc", npcs, option, block, override)
-    npcOption<NPC>("npc_approach_npc", npcs, option, block, override)
+fun characterApproachNPC(option: String, vararg npcs: String = arrayOf("*"), override: Boolean = true, handler: suspend NPCOption.() -> Unit) {
+    npcOption<Player>("player_approach_npc", npcs, option, override, handler)
+    npcOption<NPC>("npc_approach_npc", npcs, option, override, handler)
 }
 
 private fun <D : EventDispatcher> npcOption(
     type: String,
     npcs: Array<out String>,
     option: String,
-    block: suspend NPCOption.() -> Unit,
     override: Boolean,
+    block: suspend NPCOption.() -> Unit,
     arrive: Boolean = false
 ) {
     val handler: suspend NPCOption.(D) -> Unit = {

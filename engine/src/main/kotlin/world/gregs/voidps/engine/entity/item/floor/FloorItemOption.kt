@@ -25,33 +25,33 @@ data class FloorItemOption(
     }
 }
 
-fun floorItemOperate(option: String, item: String = "*", arrive: Boolean = true, override: Boolean = true, block: suspend FloorItemOption.() -> Unit) {
+fun floorItemOperate(option: String, item: String = "*", arrive: Boolean = true, override: Boolean = true, handler: suspend FloorItemOption.() -> Unit) {
     Events.handle<FloorItemOption>("player_operate_floor_item", option, item, "player", override = override) {
         if (arrive) {
             arriveDelay()
         }
-        block.invoke(this)
+        handler.invoke(this)
     }
 }
 
-fun floorItemApproach(option: String, item: String = "*", override: Boolean = true, block: suspend FloorItemOption.() -> Unit) {
+fun floorItemApproach(option: String, item: String = "*", override: Boolean = true, handler: suspend FloorItemOption.() -> Unit) {
     Events.handle<FloorItemOption>("player_approach_floor_item", option, item, "player", override = override) {
-        block.invoke(this)
+        handler.invoke(this)
     }
 }
 
-fun npcOperateFloorItem(option: String, item: String = "*", npc: String = "*", arrive: Boolean = true, override: Boolean = true, block: suspend FloorItemOption.() -> Unit) {
+fun npcOperateFloorItem(option: String, item: String = "*", npc: String = "*", arrive: Boolean = true, override: Boolean = true, handler: suspend FloorItemOption.() -> Unit) {
     Events.handle<FloorItemOption>("npc_operate_floor_item", option, item, npc, override = override) {
         if (arrive) {
             arriveDelay()
         }
-        block.invoke(this)
+        handler.invoke(this)
     }
 }
 
-fun npcApproachFloorItem(option: String, item: String = "*", npc: String = "*", override: Boolean = true, block: suspend FloorItemOption.() -> Unit) {
+fun npcApproachFloorItem(option: String, item: String = "*", npc: String = "*", override: Boolean = true, handler: suspend FloorItemOption.() -> Unit) {
     Events.handle<FloorItemOption>("npc_approach_floor_item", option, item, npc, override = override) {
-        block.invoke(this)
+        handler.invoke(this)
     }
 }
 

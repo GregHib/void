@@ -46,18 +46,18 @@ fun characterMove(from: Tile = Tile.EMPTY, to: Tile = Tile.EMPTY, handler: suspe
     Events.handle("npc_move", "*", fromTile, toTile, handler = handler)
 }
 
-fun move(filter: Moved.(Player) -> Boolean = { true }, block: suspend Moved.(Player) -> Unit) {
+fun move(filter: Moved.(Player) -> Boolean = { true }, handler: suspend Moved.(Player) -> Unit) {
     Events.handle<Player, Moved>("player_move", "player", "*", "*") {
         if (filter.invoke(this, it)) {
-            block.invoke(this, it)
+            handler.invoke(this, it)
         }
     }
 }
 
-fun npcMove(filter: Moved.(NPC) -> Boolean = { true }, block: suspend Moved.(NPC) -> Unit) {
+fun npcMove(filter: Moved.(NPC) -> Boolean = { true }, handler: suspend Moved.(NPC) -> Unit) {
     Events.handle<NPC, Moved>("npc_move", "*", "*", "*") {
         if (filter.invoke(this, it)) {
-            block.invoke(this, it)
+            handler.invoke(this, it)
         }
     }
 }

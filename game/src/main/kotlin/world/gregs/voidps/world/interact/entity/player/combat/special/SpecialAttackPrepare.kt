@@ -18,6 +18,6 @@ data class SpecialAttackPrepare(val id: String) : CancellableEvent() {
     }
 }
 
-fun specialAttackPrepare(id: String, override: Boolean = true, block: suspend SpecialAttackPrepare.(Player) -> Unit) {
-    Events.handle("special_attack_prepare", id, override = override, handler = block)
+fun specialAttackPrepare(id: String, handler: suspend SpecialAttackPrepare.(Player) -> Unit) {
+    Events.handle("special_attack_prepare", id, handler = handler)
 }

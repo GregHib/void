@@ -17,8 +17,8 @@ data class Consumable(val item: Item) : CancellableEvent() {
     }
 }
 
-fun canConsume(vararg items: String = arrayOf("*"), override: Boolean = true, block: Consumable.(Player) -> Unit) {
+fun canConsume(vararg items: String = arrayOf("*"), handler: Consumable.(Player) -> Unit) {
     for (item in items) {
-        Events.handle("can_consume", item, override = override, handler = block)
+        Events.handle("can_consume", item, handler = handler)
     }
 }

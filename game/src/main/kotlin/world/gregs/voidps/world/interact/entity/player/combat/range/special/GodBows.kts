@@ -33,9 +33,9 @@ val specialHandler: suspend CombatAttack.(Player) -> Unit = combatAttack@{ sourc
         }
     }
 }
-combatAttack("saradomin_bow", block = specialHandler)
-combatAttack("guthix_bow", block = specialHandler)
-combatAttack("zamorak_bow", block = specialHandler)
+combatAttack("saradomin_bow", handler = specialHandler)
+combatAttack("guthix_bow", handler = specialHandler)
+combatAttack("zamorak_bow", handler = specialHandler)
 
 val hitHandler: suspend CombatHit.(Character) -> Unit = { character ->
     if (special) {
@@ -43,9 +43,9 @@ val hitHandler: suspend CombatHit.(Character) -> Unit = { character ->
         source.playSound("god_bow_special_hit")
     }
 }
-combatHit("saradomin_bow", block = hitHandler)
-combatHit("guthix_bow", block = hitHandler)
-combatHit("zamorak_bow", block = hitHandler)
+combatHit("saradomin_bow", handler = hitHandler)
+combatHit("guthix_bow", handler = hitHandler)
+combatHit("zamorak_bow", handler = hitHandler)
 
 timerStart("restorative_shot", "balanced_shot") {
     interval = TimeUnit.SECONDS.toTicks(6)

@@ -41,7 +41,7 @@ fun itemOnObjectOperate(
     itemDef: String = "*",
     arrive: Boolean = true,
     override: Boolean = true,
-    block: suspend ItemOnObject.() -> Unit
+    handler: suspend ItemOnObject.() -> Unit
 ) {
     if (itemDef != "*") {
         Events.handle<ItemOnObject>("item_on_operate_object", "*", obj, id, component, override = override) {
@@ -49,7 +49,7 @@ fun itemOnObjectOperate(
                 if (arrive) {
                     arriveDelay()
                 }
-                block.invoke(this)
+                handler.invoke(this)
             }
         }
     } else {
@@ -57,14 +57,14 @@ fun itemOnObjectOperate(
             if (arrive) {
                 arriveDelay()
             }
-            block.invoke(this)
+            handler.invoke(this)
         }
     }
 }
 
-fun itemOnObjectApproach(item: String = "*", obj: String = "*", id: String = "*", component: String = "*", override: Boolean = true, block: suspend ItemOnObject.() -> Unit) {
+fun itemOnObjectApproach(item: String = "*", obj: String = "*", id: String = "*", component: String = "*", override: Boolean = true, handler: suspend ItemOnObject.() -> Unit) {
     Events.handle<ItemOnObject>("item_on_approach_object", item, obj, id, component, override = override) {
-        block.invoke(this)
+        handler.invoke(this)
     }
 }
 

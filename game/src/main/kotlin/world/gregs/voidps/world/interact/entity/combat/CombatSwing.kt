@@ -25,30 +25,15 @@ class CombatSwing(
     }
 }
 
-fun combatSwing(
-    weapon: String = "*",
-    style: String = "*",
-    override: Boolean = true,
-    block: suspend CombatSwing.(Player) -> Unit
-) {
-    Events.handle("player_combat_swing", "player", weapon, style, override = override, handler = block)
+fun combatSwing(weapon: String = "*", style: String = "*", handler: suspend CombatSwing.(Player) -> Unit) {
+    Events.handle("player_combat_swing", "player", weapon, style, handler = handler)
 }
 
-fun npcCombatSwing(
-    npc: String = "*",
-    style: String = "*",
-    override: Boolean = true,
-    block: suspend CombatSwing.(NPC) -> Unit
-) {
-    Events.handle("npc_combat_swing", npc, "*", style, override = override, handler = block)
+fun npcCombatSwing(npc: String = "*", style: String = "*", handler: suspend CombatSwing.(NPC) -> Unit) {
+    Events.handle("npc_combat_swing", npc, "*", style, handler = handler)
 }
 
-fun characterCombatSwing(
-    weapon: String = "*",
-    style: String = "*",
-    override: Boolean = true,
-    block: suspend CombatSwing.(Character) -> Unit
-) {
-    combatSwing(weapon, style, override, block)
-    npcCombatSwing("*", style, override, block)
+fun characterCombatSwing(weapon: String = "*", style: String = "*", handler: suspend CombatSwing.(Character) -> Unit) {
+    combatSwing(weapon, style, handler)
+    npcCombatSwing("*", style, handler)
 }

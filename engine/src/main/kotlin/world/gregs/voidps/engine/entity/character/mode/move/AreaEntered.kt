@@ -28,14 +28,14 @@ data class AreaEntered(
     }
 }
 
-fun enterArea(area: String = "*", tag: String = "*", override: Boolean = true, block: suspend AreaEntered.() -> Unit) {
-    Events.handle<Player, AreaEntered>("player_enter", area, "player", tag, "*", override = override) {
-        block.invoke(this)
+fun enterArea(area: String = "*", tag: String = "*", handler: suspend AreaEntered.() -> Unit) {
+    Events.handle<Player, AreaEntered>("player_enter", area, "player", tag, "*") {
+        handler.invoke(this)
     }
 }
 
-fun npcEnterArea(npc: String = "*", area: String = "*", tag: String = "*", override: Boolean = true, block: suspend AreaEntered.() -> Unit) {
-    Events.handle<Player, AreaEntered>("npc_enter", area, npc, tag, "*", override = override) {
-        block.invoke(this)
+fun npcEnterArea(npc: String = "*", area: String = "*", tag: String = "*", handler: suspend AreaEntered.() -> Unit) {
+    Events.handle<Player, AreaEntered>("npc_enter", area, npc, tag, "*") {
+        handler.invoke(this)
     }
 }

@@ -31,17 +31,17 @@ data class ItemOnFloorItem(
     }
 }
 
-fun itemOnFloorItemOperate(item: String = "*", floorItem: String = "*", id: String = "*", component: String = "*", arrive: Boolean = true, block: suspend ItemOnFloorItem.() -> Unit) {
+fun itemOnFloorItemOperate(item: String = "*", floorItem: String = "*", id: String = "*", component: String = "*", arrive: Boolean = true, handler: suspend ItemOnFloorItem.() -> Unit) {
     Events.handle<ItemOnFloorItem>("item_approach_floor_item", item, floorItem, id, component) {
         if (arrive) {
             arriveDelay()
         }
-        block.invoke(this)
+        handler.invoke(this)
     }
 }
 
-fun itemOnFloorItemApproach(item: String = "*", floorItem: String = "*", id: String = "*", component: String = "*", block: suspend ItemOnFloorItem.() -> Unit) {
+fun itemOnFloorItemApproach(item: String = "*", floorItem: String = "*", id: String = "*", component: String = "*", handler: suspend ItemOnFloorItem.() -> Unit) {
     Events.handle<ItemOnFloorItem>("item_approach_floor_item", item, floorItem, id, component) {
-        block.invoke(this)
+        handler.invoke(this)
     }
 }

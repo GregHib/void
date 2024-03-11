@@ -42,10 +42,10 @@ fun itemOnItem(
     toComponent: String = fromComponent,
     override: Boolean = true,
     bidirectional: Boolean = true,
-    block: suspend ItemOnItem.(Player) -> Unit
+    handler: suspend ItemOnItem.(Player) -> Unit
 ) {
-    Events.handle("item_on_item", fromItem, fromInterface, fromComponent, toItem, toInterface, toComponent, override = override, handler = block)
+    Events.handle("item_on_item", fromItem, fromInterface, fromComponent, toItem, toInterface, toComponent, override = override, handler = handler)
     if (bidirectional) {
-        Events.handle("item_on_item", toItem, toInterface, toComponent, fromItem, fromInterface, fromComponent, override = override, handler = block)
+        Events.handle("item_on_item", toItem, toInterface, toComponent, fromItem, fromInterface, fromComponent, override = override, handler = handler)
     }
 }

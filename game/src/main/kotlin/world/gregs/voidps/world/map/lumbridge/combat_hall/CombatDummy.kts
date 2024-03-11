@@ -36,8 +36,8 @@ val itemOnHandler: suspend ItemOnNPC.() -> Unit = handler@{
     player.mode = EmptyMode
     cancel()
 }
-itemOnNPCApproach(npc = "melee_dummy", override = false, block = itemOnHandler)
-itemOnNPCApproach(npc = "magic_dummy", override = false, block = itemOnHandler)
+itemOnNPCApproach(npc = "melee_dummy", override = false, handler = itemOnHandler)
+itemOnNPCApproach(npc = "magic_dummy", override = false, handler = itemOnHandler)
 
 
 val levelHandler: suspend CurrentLevelChanged.(NPC) -> Unit = handler@{ npc ->
