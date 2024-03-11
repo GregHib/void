@@ -17,6 +17,7 @@ interfaceOpen("*_spellbook") { player ->
 
 playerSpawn { player ->
     player.sendVariable("spellbook_sort")
+    player.sendVariable("spellbook_config")
 }
 
 interfaceOption(component = "filter_*", id = "*_spellbook") {
