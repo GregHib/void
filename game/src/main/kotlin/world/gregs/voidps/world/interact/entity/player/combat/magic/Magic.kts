@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.world.interact.entity.combat.characterCombatSwing
 import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
@@ -22,18 +23,18 @@ combatSwing(style = "blaze") { player ->
     }
 }
 
-combatSwing(style = "magic") { player ->
-    if (!castSpell(player, target)) {
+characterCombatSwing(style = "magic") { source ->
+    if (!castSpell(source, target)) {
         cancel()
     }
 }
 
-fun castSpell(player: Player, target: Character): Boolean {
-    if (player.spell.isNotBlank() && !Spell.removeRequirements(player, player.spell)) {
-        player.clear("autocast")
+fun castSpell(source: Character, target: Character): Boolean {
+    if (source.spell.isNotBlank() && source is Player && !Spell.removeRequirements(source, source.spell)) {
+        source.clear("autocast")
         return false
     }
-    val spell = player.spell
+    val spell = source.spell
     val definition = spellDefinitions.get(spell)
     var time = -1
     if (definition.contains("projectiles")) {
@@ -43,37 +44,37 @@ fun castSpell(player: Player, target: Character): Boolean {
             val delay = projectile["delay"] as? Int
             val curve = projectile["curve"] as? Int
             val end = projectile["end_height"] as? Int
-            val flightTime = player.shoot(id = id, target = target, delay = delay, curve = curve, endHeight = end)
+            val flightTime = source.shoot(id = id, target = target, delay = delay, curve = curve, endHeight = end)
             if (time == -1) {
                 time = flightTime
             }
         }
     } else {
-        time = player.shoot(id = spell, target = target)
+        time = source.shoot(id = spell, target = target)
     }
-    if (player.weapon.def["weapon_type", ""] == "salamander" && player.spell.isBlank()) {
-        player.setAnimation("salamander_scorch")
-        player.setGraphic("salamander_blaze")
+    if (source.weapon.def["weapon_type", ""] == "salamander" && source.spell.isBlank()) {
+        source.setAnimation("salamander_scorch")
+        source.setGraphic("salamander_blaze")
         time = 0
     } else {
-        val staff = player.weapon.def["category", ""] == "staff"
+        val staff = source.weapon.def["category", ""] == "staff"
         val animation: String = if (staff && definition.contains("animation_staff")) definition["animation_staff"] else definition["animation", ""]
         val graphic: String = if (staff && definition.contains("graphic_staff")) definition["graphic_staff"] else definition["graphic", ""]
-        player.setAnimation(animation)
-        player.setGraphic(graphic)
+        source.setAnimation(animation)
+        source.setGraphic(graphic)
     }
-    val damage = player.hit(target, delay = if (time == -1) 64 else time)
+    val damage = source.hit(target, delay = if (time == -1) 64 else time)
     if (damage != -1) {
         if (definition.contains("drain_multiplier")) {
-            Spell.drain(player, target, spell)
+            Spell.drain(source, target, spell)
         } else if (definition.contains("block_ticks")) {
             val duration: Int = definition["block_ticks"]
-            (player as? Player)?.teleBlock(target, duration)
+            (source as? Player)?.teleBlock(target, duration)
         }
     }
-    player.clear("spell")
-    if (!player.contains("autocast")) {
-        player.queue.clearWeak()
+    source.clear("spell")
+    if (!source.contains("autocast")) {
+        source.queue.clearWeak()
     }
     return true
 }
