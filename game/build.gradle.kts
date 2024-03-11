@@ -112,5 +112,5 @@ distributions {
     }
 }
 
-tasks["bundleDistTar"].dependsOn("startScripts")
-tasks["bundleDistZip"].dependsOn("startScripts")
+tasks["bundleDistTar"].dependsOn("buildScripts")
+tasks["bundleDistZip"].dependsOn("buildScripts")
