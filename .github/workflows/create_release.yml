@@ -35,4 +35,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run:
-          gh release create ${{ github.ref_name }} ./game/build/distributions/void-${{ github.ref_name }}.zip
+          gh release create ${{ github.ref_name }} ./game/build/distributions/void-${{ env.build_version }}.zip
