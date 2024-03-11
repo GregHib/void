@@ -3,9 +3,10 @@ package world.gregs.voidps.world.interact.entity.obj
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterContext
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.CancellableEvent
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.type.Tile
 
 data class Teleport(
@@ -18,20 +19,39 @@ data class Teleport(
     var delay: Int? = null
     override var onCancel: (() -> Unit)? = null
     var land: Boolean = false
-    val takeoff: Boolean
-        get() = !land
-}
 
-fun teleportTakeOff(option: String = "*", vararg ids: String = arrayOf("*"), block: suspend Teleport.() -> Unit) {
-    for (id in ids) {
-        on<Teleport>({ takeoff && wildcardEquals(option, this.option) && wildcardEquals(id, obj.stringId) }) {
-            block.invoke(this)
-        }
+    override val size = 5
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> "${dispatcher.key}_teleport_${if (land) "land" else "takeoff"}"
+        1 -> dispatcher.identifier
+        2 -> id
+        3 -> obj.stringId
+        4 -> option
+        else -> null
     }
 }
 
-fun teleportLand(option: String = "*", id: String = "*", block: suspend Teleport.() -> Unit) {
-    on<Teleport>({ land && wildcardEquals(option, this.option) && wildcardEquals(id, obj.stringId) }) {
+fun teleportTakeOff(option: String = "*", vararg ids: String = arrayOf("*"), block: suspend Teleport.() -> Unit) {
+    val handler: suspend Teleport.(Player) -> Unit = {
         block.invoke(this)
+    }
+    for (id in ids) {
+        Events.handle("player_teleport_takeoff", "player", "*", id, option, handler = handler)
+    }
+}
+
+fun teleportLand(option: String = "*", vararg ids: String = arrayOf("*"), block: suspend Teleport.() -> Unit) {
+    val handler: suspend Teleport.(Player) -> Unit = {
+        block.invoke(this)
+    }
+    for (id in ids) {
+        Events.handle("player_teleport_land", "player", "*", id, option, handler = handler)
+    }
+}
+
+fun teleport(option: String = "*", obj: String = "*", id: String = "*", land: Boolean = true, handler: suspend Teleport.() -> Unit) {
+    Events.handle<Player, Teleport>("player_teleport_${if (land) "land" else "takeoff"}", "player", id, obj, option) {
+        handler.invoke(this)
     }
 }

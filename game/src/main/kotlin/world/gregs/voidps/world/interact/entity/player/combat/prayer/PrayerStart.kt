@@ -2,21 +2,24 @@ package world.gregs.voidps.world.interact.entity.player.combat.prayer
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
 
-data class PrayerStart(val prayer: String, val restart: Boolean = false) : Event
+data class PrayerStart(val prayer: String, val restart: Boolean = false) : Event {
 
-fun prayerStart(prayer: String = "*", block: suspend PrayerStart.(Player) -> Unit) {
-    on<PrayerStart>({ wildcardEquals(prayer, this.prayer) }) { character ->
-        block.invoke(this, character)
+    override val notification: Boolean = true
+
+    override val size = 2
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> "prayer_start"
+        1 -> prayer
+        else -> null
     }
 }
 
-fun prayerStart(vararg prayers: String, block: suspend PrayerStart.(Player) -> Unit) {
+fun prayerStart(vararg prayers: String = arrayOf("*"), handler: suspend PrayerStart.(Player) -> Unit) {
     for (prayer in prayers) {
-        on<PrayerStart>({ wildcardEquals(prayer, this.prayer) }) { character ->
-            block.invoke(this, character)
-        }
+        Events.handle("prayer_start", prayer, handler = handler)
     }
 }

@@ -4,6 +4,8 @@ import world.gregs.voidps.type.Tile
 
 object Overlap {
 
+    fun isUnder(tile: Tile, size: Int, target: Tile, targetSize: Int) = isUnder(tile.x, tile.y, size, size, target.x, target.y, targetSize, targetSize)
+
     fun isUnder(tile: Tile, width: Int, height: Int, target: Tile, targetWidth: Int, targetHeight: Int) = isUnder(tile.x, tile.y, width, height, target.x, target.y, targetWidth, targetHeight)
 
     fun isUnder(x: Int, y: Int, width: Int, height: Int, targetX: Int, targetY: Int, targetWidth: Int, targetHeight: Int): Boolean {

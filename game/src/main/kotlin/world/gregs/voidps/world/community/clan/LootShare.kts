@@ -6,9 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
-import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
-import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.character.player.chat.clan.clanChatLeave
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
@@ -68,8 +66,8 @@ timerTick("clan_coin_share_update") { player ->
     }
 }
 
-on<LeaveClanChat>(priority = Priority.HIGH) { player ->
-    val clan: Clan = player.clan ?: return@on
+clanChatLeave { player ->
+    val clan: Clan = player.clan ?: return@clanChatLeave
     update(player, clan, lootShare = false)
 }
 

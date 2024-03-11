@@ -48,7 +48,7 @@ Tab.entries.forEach { tab ->
 }
 
 interfaceOpen("toplevel*") { player ->
-    list.forEach { name ->
+    for (name in list) {
         if (name.endsWith("_spellbook")) {
             val book = player["spellbook_config", 0] and 0x3
             player.open(when (book) {

@@ -8,9 +8,10 @@ import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.client.variable.Variables
+import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.Despawn
+import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -24,6 +25,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.Inventories
+import world.gregs.voidps.engine.map.zone.RegionLoad
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.Suspension
@@ -115,7 +117,8 @@ class Player(
                 logout(false)
             }
         }
-        emit(Registered)
+        emit(RegionLoad)
+        emit(Spawn)
         val definitions = get<AreaDefinitions>()
         for (def in definitions.get(tile.zone)) {
             if (tile in def.area) {
@@ -154,7 +157,11 @@ class Player(
                     emit(AreaExited(this@Player, def.name, def.tags, def.area))
                 }
             }
-            emit(Unregistered)
+            emit(Despawn)
+            this.queue.logout()
+            softTimers.stopAll()
+            timers.stopAll()
+            get<PlayerAccounts>().queueSave(this)
         }
     }
 

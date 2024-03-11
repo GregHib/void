@@ -13,7 +13,10 @@ import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
+import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.entity.character.watch
+import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
@@ -40,7 +43,7 @@ class CombatMovement(
             return
         }
         if (!attack()) {
-            if (character.steps.destination == character.tile) {
+            if (character.steps.destination == character.tile || Overlap.isUnder(character.tile, character.size, target.tile, target.size)) {
                 stepOut()
             } else {
                 character.steps.clearDestination()
@@ -73,7 +76,8 @@ class CombatMovement(
 
     private fun attack(): Boolean {
         val attackRange = attackRange()
-        if (arrived(if (attackRange == 1) -1 else attackRange)) {
+        val melee = attackRange == 1 && character["weapon", Item.EMPTY].def["weapon_type", ""] != "salamander"
+        if (arrived(if (melee) -1 else attackRange)) {
             clearSteps()
             character.emit(CombatReached(target))
             return true

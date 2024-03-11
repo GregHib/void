@@ -24,7 +24,7 @@ internal class EnchantedBoltsEffectTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Constitution to 990)
 
         player.hit(target, weapon, "range", damage = 10)
-        tick(2)
+        tick(3)
 
         assertEquals(970, target.levels.get(Skill.Constitution))
     }
@@ -38,7 +38,7 @@ internal class EnchantedBoltsEffectTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Constitution to 990)
 
         player.hit(target, weapon, "range", damage = 10)
-        tick(2)
+        tick(3)
 
         assertEquals(980, target.levels.get(Skill.Constitution))
         assertTrue(target.frozen)
@@ -53,7 +53,7 @@ internal class EnchantedBoltsEffectTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Constitution to 990)
 
         player.hit(target, weapon, "range", damage = 10)
-        tick(2)
+        tick(3)
 
         assertEquals(976, target.levels.get(Skill.Constitution))
     }
@@ -67,7 +67,7 @@ internal class EnchantedBoltsEffectTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Constitution to 990, Skill.Magic to 99)
 
         player.hit(target, weapon, "range", damage = 10)
-        tick(2)
+        tick(3)
 
         assertEquals(980, target.levels.get(Skill.Constitution))
         assertEquals(98, target.levels.get(Skill.Magic))
@@ -83,7 +83,7 @@ internal class EnchantedBoltsEffectTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Constitution to 990, Skill.Prayer to 99)
 
         player.hit(target, weapon, "range", damage = 10)
-        tick(2)
+        tick(3)
 
         assertEquals(980, target.levels.get(Skill.Constitution))
         assertEquals(95, target.levels.get(Skill.Prayer))
@@ -99,7 +99,7 @@ internal class EnchantedBoltsEffectTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Constitution to 990)
 
         player.hit(target, weapon, "range", damage = 10)
-        tick(2)
+        tick(3)
 
         assertEquals(980, target.levels.get(Skill.Constitution))
         assertTrue(target.poisoned)
@@ -114,7 +114,7 @@ internal class EnchantedBoltsEffectTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Constitution to 990)
 
         player.hit(target, weapon, "range", damage = 10)
-        tick(2)
+        tick(3)
 
         assertEquals(792, target.levels.get(Skill.Constitution))
         assertEquals(891, player.levels.get(Skill.Constitution))
@@ -129,7 +129,7 @@ internal class EnchantedBoltsEffectTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Constitution to 990)
 
         player.hit(target, weapon, "range", damage = 10)
-        tick(2)
+        tick(3)
 
         assertEquals(979, target.levels.get(Skill.Constitution))
     }
@@ -143,7 +143,7 @@ internal class EnchantedBoltsEffectTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Constitution to 990)
 
         player.hit(target, weapon, "range", damage = 10)
-        tick(2)
+        tick(3)
 
         assertEquals(782, target.levels.get(Skill.Constitution))
     }
@@ -158,7 +158,7 @@ internal class EnchantedBoltsEffectTest : CombatFormulaTest() {
         target.antifire(1)
 
         player.hit(target, weapon, "range", damage = 10)
-        tick(2)
+        tick(3)
 
         assertEquals(980, target.levels.get(Skill.Constitution))
     }
@@ -173,7 +173,7 @@ internal class EnchantedBoltsEffectTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Constitution to 990)
 
         player.hit(target, weapon, "range", damage = 10)
-        tick(2)
+        tick(3)
 
         assertEquals(978, target.levels.get(Skill.Constitution))
         assertEquals(503, player.levels.get(Skill.Constitution))

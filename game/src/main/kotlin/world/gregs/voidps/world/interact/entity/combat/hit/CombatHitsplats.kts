@@ -28,21 +28,22 @@ characterCombatHit { character ->
     val dealers = character.damageDealers
     dealers[source] = dealers.getOrDefault(source, 0) + damage
     val maxHit = source["max_hit", 0]
-    val critical = (type == "melee" || type == "magic" || type == "range") && damage > 10 && maxHit > 0 && damage > (maxHit * 0.9)
+    val mark = when (type) {
+        "range" -> Hitsplat.Mark.Range
+        "melee", "scorch" -> Hitsplat.Mark.Melee
+        "magic", "blaze" -> Hitsplat.Mark.Magic
+        "poison" -> Hitsplat.Mark.Poison
+        "disease" -> Hitsplat.Mark.Diseased
+        "dragonfire", "damage" -> Hitsplat.Mark.Regular
+        "deflect" -> Hitsplat.Mark.Reflected
+        "healed" -> Hitsplat.Mark.Healed
+        else -> Hitsplat.Mark.Missed
+    }
+    val critical = mark.id < 3 && damage > 10 && maxHit > 0 && damage > (maxHit * 0.9)
     character.hit(
         source = source,
         amount = damage,
-        mark = when (type) {
-            "range" -> Hitsplat.Mark.Range
-            "melee" -> Hitsplat.Mark.Melee
-            "magic" -> Hitsplat.Mark.Magic
-            "poison" -> Hitsplat.Mark.Poison
-            "disease" -> Hitsplat.Mark.Diseased
-            "dragonfire", "damage" -> Hitsplat.Mark.Regular
-            "deflect" -> Hitsplat.Mark.Reflected
-            "healed" -> Hitsplat.Mark.Healed
-            else -> Hitsplat.Mark.Missed
-        },
+        mark = mark,
         critical = critical,
         soak = soak
     )

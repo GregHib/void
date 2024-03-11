@@ -5,9 +5,8 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetNPCContext
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.onCharacter
-import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.suspend.arriveDelay
 
 data class NPCOption(
@@ -17,47 +16,58 @@ data class NPCOption(
     val option: String
 ) : Interaction(), TargetNPCContext {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
-}
 
-fun npcApproach(option: String, npc: String = "*", block: suspend NPCOption.() -> Unit) {
-    on<NPCOption>({ approach && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) {
-        block.invoke(this)
+    override val size = 3
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> "${character.key}_${if (approach) "approach" else "operate"}_npc"
+        1 -> option
+        2 -> target.id
+        else -> null
     }
 }
 
-fun npcApproach(option: String, vararg npcs: String = arrayOf("*"), block: suspend NPCOption.() -> Unit) {
-    for (npc in npcs) {
-        on<NPCOption>({ approach && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) {
-            block.invoke(this)
-        }
-    }
+fun npcOperate(option: String, vararg npcs: String = arrayOf("*"), arrive: Boolean = false, override: Boolean = true, handler: suspend NPCOption.() -> Unit) {
+    npcOption<Player>("player_operate_npc", npcs, option, override, handler, arrive)
 }
 
-fun npcOperate(option: String = "*", npc: String = "*", arrive: Boolean = false, block: suspend NPCOption.() -> Unit) {
-    on<NPCOption>({ operate && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) {
+fun npcApproach(option: String, vararg npcs: String = arrayOf("*"), override: Boolean = true, handler: suspend NPCOption.() -> Unit) {
+    npcOption<Player>("player_approach_npc", npcs, option, override, handler)
+}
+
+fun npcOperateNPC(option: String, vararg npcs: String = arrayOf("*"), arrive: Boolean = false, override: Boolean = true, handler: suspend NPCOption.() -> Unit) {
+    npcOption<NPC>("npc_operate_npc", npcs, option, override, handler, arrive)
+}
+
+fun npcApproachNPC(option: String, vararg npcs: String = arrayOf("*"), override: Boolean = true, handler: suspend NPCOption.() -> Unit) {
+    npcOption<NPC>("npc_approach_npc", npcs, option, override, handler)
+}
+
+fun characterOperateNPC(option: String, vararg npcs: String = arrayOf("*"), arrive: Boolean = false, override: Boolean = true, handler: suspend NPCOption.() -> Unit) {
+    npcOption<Player>("player_operate_npc", npcs, option, override, handler, arrive)
+    npcOption<NPC>("npc_operate_npc", npcs, option, override, handler, arrive)
+}
+
+fun characterApproachNPC(option: String, vararg npcs: String = arrayOf("*"), override: Boolean = true, handler: suspend NPCOption.() -> Unit) {
+    npcOption<Player>("player_approach_npc", npcs, option, override, handler)
+    npcOption<NPC>("npc_approach_npc", npcs, option, override, handler)
+}
+
+private fun <D : EventDispatcher> npcOption(
+    type: String,
+    npcs: Array<out String>,
+    option: String,
+    override: Boolean,
+    block: suspend NPCOption.() -> Unit,
+    arrive: Boolean = false
+) {
+    val handler: suspend NPCOption.(D) -> Unit = {
         if (arrive) {
             arriveDelay()
         }
         block.invoke(this)
     }
-}
-
-fun npcOperate(option: String, vararg npcs: String = arrayOf("*"), block: suspend NPCOption.() -> Unit) {
     for (npc in npcs) {
-        on<NPCOption>({ operate && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) {
-            block.invoke(this)
-        }
-    }
-}
-
-fun characterApproachNPC(option: String, npc: String = "*", block: suspend NPCOption.() -> Unit) {
-    onCharacter<NPCOption>({ approach && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) {
-        block.invoke(this)
-    }
-}
-
-fun characterOperateNPC(option: String, npc: String = "*", block: suspend NPCOption.() -> Unit) {
-    onCharacter<NPCOption>({ operate && wildcardEquals(npc, target.id) && wildcardEquals(option, this.option) }) {
-        block.invoke(this)
+        Events.handle(type, option, npc, override = override, handler = handler)
     }
 }

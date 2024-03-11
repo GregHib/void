@@ -1,25 +1,14 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
-import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
+import world.gregs.voidps.world.interact.entity.sound.playSound
 
-specialAttackSwing("dorgeshuun_crossbow", style = "range", priority = Priority.HIGHISH) { player ->
-    if (!drainSpecialEnergy(player, 750)) {
-        delay = -1
-        return@specialAttackSwing
-    }
+specialAttack("snipe") { player ->
     player.setAnimation("crossbow_accurate")
-    player.shoot(id = "bone_bolts_spec", target = target)
-    val distance = player.tile.distanceTo(target)
-    player.hit(target, delay = Hit.bowDelay(distance))
-    val speed = player.weapon.def["attack_speed", 4]
-    delay = if (player.attackType == "rapid") speed - 1 else speed
+    player.playSound("${id}_special")
+    val time = player.shoot(id = "snipe_special", target = target)
+    player.hit(target, delay = time)
 }

@@ -9,15 +9,12 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.type.random
-import world.gregs.voidps.world.interact.entity.combat.hit.Hit
+import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
-import world.gregs.voidps.world.interact.entity.combat.hit.prayerHit
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.*
 import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
@@ -58,6 +55,7 @@ fun restore(player: Player, skill: Skill, leech: Int) {
     } else if (leech < 0) {
         player.setLeech(skill, leech + 1)
     }
+    player.updateBonus(skill)
 }
 
 fun getLevel(target: Character, skill: Skill): Int {
@@ -138,35 +136,36 @@ fun cast(source: Character, target: Character, sap: Boolean, name: String) {
         val type = if (sap) "sap" else "leech"
         source.setAnimation(type)
         source.setGraphic("cast_${type}_${name}")
-        source.shoot("proj_${type}_${name}", target)
-        target.setGraphic("land_${type}_${name}", delay = Hit.magicDelay(source.tile.distanceTo(target)) * 30)
+        val time = source.shoot("proj_${type}_${name}", target)
+        target.setGraphic("land_${type}_${name}", delay = time)
     }
 }
 
-set("sap_warrior", Skill.Attack)
-set("sap_ranger", Skill.Ranged)
-set("sap_mage", Skill.Magic)
-set("leech_attack", Skill.Attack)
-set("leech_ranged", Skill.Ranged)
-set("leech_defence", Skill.Defence)
-set("leech_magic", Skill.Magic)
+val map = mapOf(
+    "sap_warrior" to Skill.Attack,
+    "sap_ranger" to Skill.Ranged,
+    "sap_mage" to Skill.Magic,
+    "leech_attack" to Skill.Attack,
+    "leech_ranged" to Skill.Ranged,
+    "leech_defence" to Skill.Defence,
+    "leech_magic" to Skill.Magic
+)
 
-fun set(prayer: String, skill: Skill) {
-    val sap = prayer.startsWith("sap")
-    variableSet("under_attack", 0) { player ->
-        player.clear("${skill.name.lowercase()}_drain_msg")
-        player.clear("${skill.name.lowercase()}_leech_msg")
-    }
+characterCombatHit { target ->
+    for ((prayer, skill) in map) {
+        if (!source.praying(prayer)) {
+            continue
+        }
+        val sap = prayer.startsWith("sap")
 
-    prayerHit(prayer, Priority.HIGHER) { target ->
         if (random.nextDouble() >= if (sap) 0.25 else 0.15) {
-            return@prayerHit
+            continue
         }
         val name = skill.name.lowercase()
         val drain = target.getDrain(skill) + 1
         if (drain * 100.0 / getLevel(target, skill) > if (sap) 10 else 15) {
             weakMessage(source, sap, name)
-            return@prayerHit
+            continue
         }
 
         cast(source, target, sap, name)
@@ -187,13 +186,20 @@ fun set(prayer: String, skill: Skill) {
             val leech = source.getLeech(skill) + 1
             if (leech * 100.0 / source.levels.getMax(skill) > 5) {
                 drainMessage(source, name)
-                return@prayerHit
+                continue
             }
             boostMessage(source, skill.name)
             source.setLeech(skill, leech)
             source.updateBonus(skill)
             source.softTimers.startIfAbsent("prayer_bonus_drain")
         }
+    }
+}
+
+variableSet("under_attack", to = 0) { player ->
+    for ((_, skill) in map) {
+        player.clear("${skill.name.lowercase()}_drain_msg")
+        player.clear("${skill.name.lowercase()}_leech_msg")
     }
 }
 

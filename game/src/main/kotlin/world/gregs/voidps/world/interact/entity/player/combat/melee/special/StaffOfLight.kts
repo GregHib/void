@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.specialAttack
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.playerSpawn
@@ -12,9 +11,8 @@ import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
-import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.SpecialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackPrepare
 import java.util.concurrent.TimeUnit
 
 itemRemoved("staff_of_light*", EquipSlot.Weapon, "worn_equipment") { player ->
@@ -27,17 +25,15 @@ combatHit { player ->
     }
 }
 
-// Special attack
-
-specialAttack("staff_of_light*") { player ->
-    if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {
-        return@specialAttack
+specialAttackPrepare("power_of_light") { player ->
+    cancel()
+    if (!SpecialAttack.drain(player)) {
+        return@specialAttackPrepare
     }
-    player.setAnimation("power_of_light")
-    player.setGraphic("power_of_light")
-    player["power_of_light"] = TimeUnit.MINUTES.toTicks(1)
-    player.softTimers.start("power_of_light")
-    player.specialAttack = false
+    player.setAnimation("${id}_special")
+    player.setGraphic("${id}_special")
+    player[id] = TimeUnit.MINUTES.toTicks(1)
+    player.softTimers.start(id)
 }
 
 playerSpawn { player ->

@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.player.chat.friend
 
 import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.event.EventDispatcher
 
 /**
  * A freeform [message] a player wants (but has yet) to send directly to a [friend].
@@ -8,4 +9,12 @@ import world.gregs.voidps.engine.event.Event
 data class PrivateChat(
     val friend: String,
     val message: String
-) : Event
+) : Event {
+
+    override val size = 1
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when(index) {
+        0 -> "private_chat"
+        else -> null
+    }
+}

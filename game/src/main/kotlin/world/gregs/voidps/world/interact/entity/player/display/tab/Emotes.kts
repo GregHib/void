@@ -139,7 +139,7 @@ fun areaClear(player: Player): Boolean {
     return true
 }
 
-itemChange(EquipSlot.Cape, "worn_equipment") { player ->
+itemChange("worn_equipment", EquipSlot.Cape) { player ->
     player["unlocked_emote_skillcape"] = item.def.contains("skill_cape") || item.def.contains("skill_cape_t") || item.id == "quest_point_cape"
 }
 

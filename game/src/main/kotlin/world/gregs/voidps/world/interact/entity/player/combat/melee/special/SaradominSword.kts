@@ -1,30 +1,20 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.hit.specialAttackHit
-import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import world.gregs.voidps.world.interact.entity.sound.areaSound
 
-specialAttackSwing("saradomin_sword*") { player ->
-    if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {
-        delay = -1
-        return@specialAttackSwing
-    }
-    player.setAnimation("saradomins_lightning")
+specialAttack("saradomins_lightning") { player ->
+    player.setAnimation("${id}_special")
+    areaSound("godwars_godsword_special_attack", player.tile)
     val weapon = player.weapon
     val damage = Damage.roll(player, target, "melee", weapon)
     player.hit(target, damage = damage)
     if (damage > 0) {
+        areaSound("godwars_saradomin_magic_impact", target.tile, 10)
         player.hit(target, type = "magic")
     }
-    delay = 4
-}
-
-specialAttackHit("saradomin_sword*", "melee") { character ->
-    character.setGraphic("saradomins_lightning")
 }

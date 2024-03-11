@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.BlockedExperience
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.world.community.assist.Assistance.MAX_EXPERIENCE
 import world.gregs.voidps.world.community.assist.Assistance.canAssist
@@ -159,8 +159,8 @@ fun cancelAssist(assistant: Player?, assisted: Player?) {
     }
 }
 
-on<BlockedExperience>({ it.contains("assistant") }) { assisted ->
-    val player: Player = assisted["assistant"] ?: return@on
+onEvent<Player, BlockedExperience> { assisted ->
+    val player: Player = assisted["assistant"] ?: return@onEvent
     val active = player["assist_toggle_${skill.name.lowercase()}", false]
     var gained = player["total_xp_earned", 0].toDouble()
     if (active && !exceededMaximum(gained)) {

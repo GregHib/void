@@ -67,6 +67,7 @@ class Interfaces(
         if (openInterfaces.remove(id)) {
             sendClose(id)
             events.emit(InterfaceClosed(id))
+            (events as? Player)?.queue?.clearWeak()
             return true
         }
         return false
@@ -112,6 +113,7 @@ class Interfaces(
                 it.remove()
                 sendClose(id)
                 events.emit(InterfaceClosed(id))
+                (events as? Player)?.queue?.clearWeak()
                 children.add(id)
             }
         }

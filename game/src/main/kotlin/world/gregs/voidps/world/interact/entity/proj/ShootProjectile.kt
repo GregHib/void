@@ -124,24 +124,26 @@ private fun projectile(
     width: Int = 1,
     sourceHeight: Int = 0,
     targetHeight: Int = 0
-) {
-    val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
+) : Int {
+    val definition = get<GraphicDefinitions>().getOrNull(id) ?: return -1
     val time = getFlightTime(definition, sourceTile, targetTile, flightTime)
     if (time == -1) {
-        return
+        return -1
     }
+    val startDelay = delay ?: definition["delay", DEFAULT_DELAY]
     sendProjectile(
         id = id,
         tile = sourceTile,
         direction = targetTile.delta(sourceTile),
         target = target,
-        delay = delay ?: definition["delay", DEFAULT_DELAY],
+        delay = startDelay,
         flightTime = time,
         startHeight = startHeight ?: (sourceHeight + definition["height", 0]),
         endHeight = endHeight ?: (targetHeight + definition["end_height", 0]),
         curve = curve ?: definition["curve", DEFAULT_CURVE],
         offset = (width * 64) + (offset ?: definition["offset", DEFAULT_OFFSET])
     )
+    return time + startDelay
 }
 
 

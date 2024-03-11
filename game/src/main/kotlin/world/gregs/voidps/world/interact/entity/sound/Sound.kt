@@ -25,7 +25,7 @@ fun Character.playSound(
 
 fun Player.playGlobalSound(
     id: String,
-    radius: Int = 10,
+    radius: Int = 5,
     delay: Int = 0,
     volume: Int = 255,
     speed: Int = 255,

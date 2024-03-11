@@ -1,10 +1,10 @@
 package world.gregs.voidps.world.activity.quest
 
-import world.gregs.voidps.engine.client.ui.interfaceOption
+import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.world.activity.bank.bank
 
-interfaceOption(component = "journals", id = "quest_journals", itemSlot = 1) {
+interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 1) {
     val lines = when (player.quest("cooks_assistant")) {
         "completed" -> listOf(
             "<str>It was the Duke of Lumbridge's birthday, but his cook had",

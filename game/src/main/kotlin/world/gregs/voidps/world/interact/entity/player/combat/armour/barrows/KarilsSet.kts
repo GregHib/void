@@ -31,8 +31,8 @@ fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
     "karils_top",
     "karils_skirt")
 
-characterCombatAttack { character ->
-    if (type != "range" || damage <= 0 || target !is Player || !weapon.id.startsWith("karils_crossbow") || !character.contains("karils_set_effect") || random.nextInt(4) != 0) {
+characterCombatAttack("karils_crossbow*", "range") { character ->
+    if (damage <= 0 || target !is Player || !character.contains("karils_set_effect") || random.nextInt(4) != 0) {
         return@characterCombatAttack
     }
     if (target.levels.drain(Skill.Agility, multiplier = 0.20) < 0) {

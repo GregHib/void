@@ -6,7 +6,7 @@ import world.gregs.voidps.network.visual.update.player.Body
 import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
-itemChange("worn_equipment") { player ->
+itemChange { player ->
     if (needsUpdate(index, player.body)) {
         player.flagAppearance()
     }

@@ -116,6 +116,7 @@ object Main : CoroutineScope {
         single(createdAtStart = true) { StructDefinitions(StructDecoder(get<ParameterDefinitions>()).load(cache)).load() }
         single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
         single(createdAtStart = true) { WeaponStyleDefinitions().load() }
+        single(createdAtStart = true) { WeaponAnimationDefinitions().load() }
         single(createdAtStart = true) { AmmoDefinitions().load() }
         single(createdAtStart = true) { ParameterDefinitions(CategoryDefinitions().load(), get()).load() }
         single(createdAtStart = true) { FontDefinitions(FontDecoder().load(cache)).load() }

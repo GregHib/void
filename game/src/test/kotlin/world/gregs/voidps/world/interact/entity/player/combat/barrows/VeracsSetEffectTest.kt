@@ -37,7 +37,7 @@ internal class VeracsSetEffectTest : CombatFormulaTest() {
 
         val chance = Hit.chance(player, target, "magic", Item("veracs_flail"), false)
         player.hit(target, Item("veracs_flail"), "magic", damage = 10)
-        tick(2)
+        tick(3)
 
         assertNotEquals(1.0, chance)
         assertEquals(980, target.levels.get(Skill.Constitution))

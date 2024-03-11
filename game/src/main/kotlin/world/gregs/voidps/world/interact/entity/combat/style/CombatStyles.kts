@@ -32,7 +32,7 @@ interfaceRefresh("combat_styles") { player ->
     player.interfaceOptions.unlockAll(id, "style4")
 }
 
-itemChange(EquipSlot.Weapon) { player ->
+itemChange("worn_equipment", EquipSlot.Weapon) { player ->
     refreshStyle(player)
 }
 

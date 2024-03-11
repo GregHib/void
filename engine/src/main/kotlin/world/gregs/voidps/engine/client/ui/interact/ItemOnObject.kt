@@ -6,9 +6,8 @@ import world.gregs.voidps.engine.entity.character.mode.interact.TargetObjectCont
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.suspend.arriveDelay
 
 data class ItemOnObject(
@@ -21,31 +20,51 @@ data class ItemOnObject(
     val inventory: String
 ) : Interaction(), TargetObjectContext {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
-}
 
-fun itemOnObjectApproach(item: String, obj: String, block: suspend ItemOnObject.() -> Unit) {
-    on<ItemOnObject>({ approach && wildcardEquals(item, this.item.id) && wildcardEquals(obj, this.target.id) }) { _ ->
-        block.invoke(this)
+    override val size = 5
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> if (approach) "item_on_approach_object" else "item_on_operate_object"
+        1 -> item.id
+        2 -> target.id
+        3 -> id
+        4 -> component
+        else -> null
     }
 }
 
 fun itemOnObjectOperate(
     item: String = "*",
     obj: String = "*",
-    def: String = "*",
-    inventory: String = "*",
+    id: String = "*",
+    component: String = "*",
+    itemDef: String = "*",
     arrive: Boolean = true,
-    priority: Priority = Priority.MEDIUM,
-    block: suspend ItemOnObject.() -> Unit
+    override: Boolean = true,
+    handler: suspend ItemOnObject.() -> Unit
 ) {
-    on<ItemOnObject>({
-        operate && wildcardEquals(item, this.item.id) && wildcardEquals(obj, this.target.id) && (def == "*" || this.item.def.contains(def)) && wildcardEquals(inventory,
-            this.inventory)
-    }, priority) {
-        if (arrive) {
-            arriveDelay()
+    if (itemDef != "*") {
+        Events.handle<ItemOnObject>("item_on_operate_object", "*", obj, id, component, override = override) {
+            if (this.item.def.contains(itemDef)) {
+                if (arrive) {
+                    arriveDelay()
+                }
+                handler.invoke(this)
+            }
         }
-        block.invoke(this)
+    } else {
+        Events.handle<ItemOnObject>("item_on_operate_object", item, obj, id, component, override = override){
+            if (arrive) {
+                arriveDelay()
+            }
+            handler.invoke(this)
+        }
+    }
+}
+
+fun itemOnObjectApproach(item: String = "*", obj: String = "*", id: String = "*", component: String = "*", override: Boolean = true, handler: suspend ItemOnObject.() -> Unit) {
+    Events.handle<ItemOnObject>("item_on_approach_object", item, obj, id, component, override = override) {
+        handler.invoke(this)
     }
 }
 
@@ -53,19 +72,26 @@ fun itemOnObjectOperate(
     items: Set<String> = setOf("*"),
     objects: Set<String> = setOf("*"),
     def: String = "*",
-    inventory: String = "*",
+    id: String = "*",
+    component: String = "*",
     arrive: Boolean = true,
+    override: Boolean = true,
     block: suspend ItemOnObject.() -> Unit
 ) {
-    for (obj in objects) {
-        for (item in items) {
-            on<ItemOnObject>({
-                operate && wildcardEquals(item, this.item.id) && wildcardEquals(obj, this.target.id) && wildcardEquals(inventory, this.inventory) && (def == "*" || this.item.def.contains(def))
-            }) {
-                if (arrive) {
-                    arriveDelay()
-                }
-                block.invoke(this)
+    val handler: suspend ItemOnObject.(Player) -> Unit = {
+        if (arrive) {
+            arriveDelay()
+        }
+        block.invoke(this)
+    }
+    if (def != "*") {
+        for (obj in objects) {
+            Events.handle("item_on_operate_object", "*", obj, id, component, handler = handler, override = override)
+        }
+    } else {
+        for (obj in objects) {
+            for (item in items) {
+                Events.handle("item_on_approach_object", item, obj, id, component, handler = handler, override = override)
             }
         }
     }

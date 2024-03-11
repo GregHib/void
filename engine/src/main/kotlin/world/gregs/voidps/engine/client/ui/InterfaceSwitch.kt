@@ -3,8 +3,8 @@ package world.gregs.voidps.engine.client.ui
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
 
 data class InterfaceSwitch(
     val id: String,
@@ -17,16 +17,20 @@ data class InterfaceSwitch(
     val toItem: Item,
     val toSlot: Int,
     val toInventory: String
-) : Event
+) : Event {
 
-fun interfaceSwap(id: String, component: String = "*", block: suspend InterfaceSwitch.(Player) -> Unit) {
-    on<InterfaceSwitch>({ wildcardEquals(id, this.id) && this.id == this.toId && wildcardEquals(component, this.component) && this.component == this.toComponent }) { player ->
-        block.invoke(this, player)
+    override val size = 5
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> "interface_switch"
+        1 -> id
+        2 -> component
+        3 -> toId
+        4 -> toComponent
+        else -> null
     }
 }
 
-fun interfaceSwap(id: String = "*", fromComponent: String = "*", toComponent: String = "*", block: suspend InterfaceSwitch.(Player) -> Unit) {
-    on<InterfaceSwitch>({ wildcardEquals(id, this.id) && this.id == this.toId && wildcardEquals(fromComponent, component) && wildcardEquals(toComponent, this.toComponent) }) { player ->
-        block.invoke(this, player)
-    }
+fun interfaceSwap(fromId: String = "*", fromComponent: String = "*", toId: String = fromId, toComponent: String = fromComponent, handler: suspend InterfaceSwitch.(Player) -> Unit) {
+    Events.handle("interface_switch", fromId, fromComponent, toId, toComponent, handler = handler)
 }

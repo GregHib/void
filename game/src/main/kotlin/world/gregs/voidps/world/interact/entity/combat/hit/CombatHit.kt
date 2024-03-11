@@ -5,12 +5,8 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.onCharacter
-import world.gregs.voidps.engine.event.onNPC
-import world.gregs.voidps.engine.event.wildcardEquals
-import world.gregs.voidps.world.interact.entity.player.combat.prayer.praying
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
 
 /**
  * Damage done by [source] to the emitter
@@ -28,34 +24,31 @@ data class CombatHit(
     val weapon: Item,
     val spell: String,
     val special: Boolean
-) : Event
+) : Event {
 
-fun combatHit(block: suspend CombatHit.(Player) -> Unit) {
-    on<CombatHit>(block = block)
-}
+    override val notification: Boolean = true
 
-fun npcCombatHit(block: suspend CombatHit.(NPC) -> Unit) {
-    onNPC<CombatHit>(block = block)
-}
+    override val size = 5
 
-fun characterCombatHit(block: suspend CombatHit.(Character) -> Unit) {
-    onCharacter<CombatHit>(block = block)
-}
-
-fun weaponHit(weapon: String = "*", type: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatHit.(Character) -> Unit) {
-    onCharacter<CombatHit>({ wildcardEquals(weapon, this.weapon.id) && wildcardEquals(type, this.type) }, priority, block)
-}
-
-fun specialAttackHit(weapon: String = "*", type: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatHit.(Character) -> Unit) {
-    onCharacter<CombatHit>({ special && wildcardEquals(weapon, this.weapon.id) && wildcardEquals(type, this.type) }, priority, block)
-}
-
-fun specialAttackHit(vararg weapons: String, type: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatHit.(Character) -> Unit) {
-    for (weapon in weapons) {
-        onCharacter<CombatHit>({ special && wildcardEquals(weapon, this.weapon.id) && wildcardEquals(type, this.type) }, priority, block)
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> "${dispatcher.key}_combat_hit"
+        1 -> dispatcher.identifier
+        2 -> weapon.id
+        3 -> type
+        4 -> spell
+        else -> null
     }
 }
 
-fun prayerHit(prayer: String, priority: Priority = Priority.MEDIUM, block: suspend CombatHit.(Character) -> Unit) {
-    onCharacter<CombatHit>({ source.praying(prayer) }, priority, block)
+fun combatHit(weapon: String = "*", type: String = "*", spell: String = "*", handler: suspend CombatHit.(Player) -> Unit) {
+    Events.handle("player_combat_hit", "player", weapon, type, spell, handler = handler)
+}
+
+fun npcCombatHit(npc: String = "*", weapon: String = "*", type: String = "*", spell: String = "*", handler: suspend CombatHit.(NPC) -> Unit) {
+    Events.handle("npc_combat_hit", npc, weapon, type, spell, handler = handler)
+}
+
+fun characterCombatHit(weapon: String = "*", type: String = "*", spell: String = "*", handler: suspend CombatHit.(Character) -> Unit) {
+    combatHit(weapon, type, spell, handler)
+    npcCombatHit("*", weapon, type, spell, handler)
 }

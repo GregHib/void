@@ -130,7 +130,7 @@ internal class VariablesTest {
         assertEquals(arrayListOf("First"), map[key])
         verify {
             variables.send(key)
-            events.emit(VariableAdded(key, "First"))
+            events.emit(VariableBitAdded(key, "First"))
         }
     }
 
@@ -146,7 +146,7 @@ internal class VariablesTest {
         assertEquals(arrayListOf("First", "Second"), map[key])
         verify {
             variables.send(key)
-            events.emit(VariableAdded(key, "Second"))
+            events.emit(VariableBitAdded(key, "Second"))
         }
     }
 
@@ -188,7 +188,7 @@ internal class VariablesTest {
         assertEquals(emptyList<Any>(), map[key])
         verify {
             variables.send(key)
-            events.emit(VariableRemoved(key, "First"))
+            events.emit(VariableBitRemoved(key, "First"))
         }
     }
 

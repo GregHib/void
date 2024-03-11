@@ -31,8 +31,8 @@ fun Player.hasFullSet() = BarrowsArmour.hasSet(this,
     "torags_platebody",
     "torags_platelegs")
 
-characterCombatAttack { character ->
-    if (type != "melee" || damage <= 0 || target !is Player || !weapon.id.startsWith("torags_hammers") || !character.contains("torags_set_effect") || random.nextInt(4) != 0) {
+characterCombatAttack("torags_hammers*", "melee") { character ->
+    if (damage <= 0 || target !is Player || !character.contains("torags_set_effect") || random.nextInt(4) != 0) {
         return@characterCombatAttack
     }
     if (target.runEnergy > 0) {

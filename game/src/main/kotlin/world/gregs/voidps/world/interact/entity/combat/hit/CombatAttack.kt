@@ -1,16 +1,11 @@
 package world.gregs.voidps.world.interact.entity.combat.hit
 
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.onCharacter
-import world.gregs.voidps.engine.event.onNPC
-import world.gregs.voidps.engine.event.wildcardEquals
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
 
 /**
  * Damage done to a [target]
@@ -28,46 +23,30 @@ data class CombatAttack(
     val special: Boolean,
     val delay: Int
 ) : Event {
-    var blocked = false
-}
 
-fun combatAttack(priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Player) -> Unit) {
-    on<CombatAttack>(priority = priority, block = block)
-}
+    override val notification: Boolean = true
 
-fun npcCombatAttack(npc: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(NPC) -> Unit) {
-    onNPC<CombatAttack>({ wildcardEquals(npc, it.id) }, priority, block)
-}
+    override val size = 5
 
-fun characterCombatAttack(priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Character) -> Unit) {
-    onCharacter<CombatAttack>(priority = priority, block = block)
-}
-
-fun characterSpellAttack(spell: String = "*", priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Character) -> Unit) {
-    onCharacter<CombatAttack>({ damage > 0 && type == "magic" && wildcardEquals(spell, this.spell) }, priority, block)
-}
-
-fun characterSpellAttack(spells: Set<String>, priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Character) -> Unit) {
-    if (spells.any { it.contains("*") || it.contains("#") }) {
-        throw IllegalArgumentException("Spell collections cannot contain wildcards.")
-    }
-    onCharacter<CombatAttack>({ damage > 0 && type == "magic" && spells.contains(spell) }, priority, block)
-}
-
-fun block(vararg weapons: String, priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Character) -> Unit) {
-    for (weapon in weapons) {
-        onCharacter<CombatAttack>({ !blocked && wildcardEquals(weapon, target.weapon.id) }, priority) { character ->
-            block.invoke(this, character)
-        }
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> "${dispatcher.key}_combat_attack"
+        1 -> dispatcher.identifier
+        2 -> weapon.id
+        3 -> type
+        4 -> spell
+        else -> null
     }
 }
 
-fun block(weapon: String, priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Character) -> Unit) {
-    onCharacter<CombatAttack>({ !blocked && wildcardEquals(weapon, target.weapon.id) }, priority) { character ->
-        block.invoke(this, character)
-    }
+fun combatAttack(weapon: String = "*", type: String = "*", spell: String = "*", handler: suspend CombatAttack.(Player) -> Unit) {
+    Events.handle("player_combat_attack", "player", weapon, type, spell, handler = handler)
 }
 
-fun block(priority: Priority = Priority.MEDIUM, block: suspend CombatAttack.(Character) -> Unit) {
-    onCharacter<CombatAttack>({ !blocked }, priority, block)
+fun npcCombatAttack(npc: String = "*", weapon: String = "*", type: String = "*", spell: String = "*", handler: suspend CombatAttack.(Player) -> Unit) {
+    Events.handle("npc_combat_attack", npc, weapon, type, spell, handler = handler)
+}
+
+fun characterCombatAttack(weapon: String = "*", type: String = "*", spell: String = "*", handler: suspend CombatAttack.(Character) -> Unit) {
+    combatAttack(weapon, type, spell, handler)
+    npcCombatAttack("*", weapon, type, spell, handler)
 }

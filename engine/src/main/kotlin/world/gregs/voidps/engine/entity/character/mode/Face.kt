@@ -7,9 +7,6 @@ import world.gregs.voidps.engine.entity.distanceTo
 
 /**
  * Faces target when within [distance]
- *
- * playerface - uses max_range - default 5
- * playerfaceclose - distance 1
  */
 class Face(
     val character: Character,

@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
-import world.gregs.voidps.engine.client.variable.specialAttack
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -11,28 +10,29 @@ import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.SpecialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackPrepare
+import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
 fun seersVillageEliteTasks(player: Player) = false
 
-specialAttack("*excalibur*") { player ->
-    if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {
-        return@specialAttack
+specialAttackPrepare("sanctuary") { player ->
+    cancel()
+    if (!SpecialAttack.drain(player)) {
+        return@specialAttackPrepare
     }
-    player.setAnimation("sanctuary")
-    player.setGraphic("sanctuary")
+    player.setAnimation("${id}_special")
+    player.setGraphic("${id}_special")
+    player.playSound("${id}_special")
     player.forceChat = "For Camelot!"
     if (player.weapon.id.startsWith("enhanced")) {
         player.levels.boost(Skill.Defence, multiplier = 0.15)
-        player["sanctuary"] = TimeUnit.SECONDS.toTicks(if (seersVillageEliteTasks(player)) 24 else 12) / 4
-        player.softTimers.start("sanctuary")
+        player[id] = TimeUnit.SECONDS.toTicks(if (seersVillageEliteTasks(player)) 24 else 12) / 4
+        player.softTimers.start(id)
     } else {
         player.levels.boost(Skill.Defence, amount = 8)
     }
-    player.specialAttack = false
 }
 
 

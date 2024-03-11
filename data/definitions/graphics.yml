@@ -550,7 +550,7 @@ special_arrow:
   height: 3
   curve: 15
   flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
-magic_shortbow_special:
+snapshot_special:
   id: 256
   height: 60
 bronze_arrow_double_shot:
@@ -598,7 +598,7 @@ zaryte_arrow:
   flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 descent_of_darkness_hit: 1103
 descent_of_dragons_hit: 1100
-bone_bolts_spec:
+snipe_special:
   id: 698
   delay: 41
   height: 3
@@ -732,7 +732,7 @@ morrigans_javelin:
   flight_time: [ 5, 10, 15, 20, 25, 30, 35 ]
 morrigans_javelin_special:
   id: 1836
-  height: 60
+  height: 0
 bronze_throwing_axe_throw:
   id: 43
   height: 60
@@ -904,57 +904,57 @@ rune_throwing_axe_special:
   delay: 41
   curve: 0
   flight_time: [ 10, 15, 20, 25, 30 ]
-energy_drain:
+energy_drain_hit:
   id: 2108
   height: 60
-statius_warhammer_smash: 1840
-rampage: 246
-slice_and_dice: 1950
-puncture:
+smash_special: 1840
+rampage_special: 246
+slice_and_dice_special: 1950
+puncture_special:
   id: 252
   height: 60
-cleave:
+cleave_special:
   id: 2117
   height: 60
-shatter:
+shatter_special:
   id: 251
   height: 60
-the_judgement: 2113
-sanctuary: 247
-sever:
+the_judgement_special: 2113
+sanctuary_special: 247
+sever_special:
   id: 2118
   height: 60
-saradomins_lightning: 1194
-favour_of_the_war_god: 1052
-liquify:
+saradomins_lightning_hit: 1194
+favour_of_the_war_god_special: 1052
+liquify_special:
   id: 1048
   height: 60
-backstab: 704
-sunder: 1027
-warstrike: 2114
-healing_blade: 2109
-ice_cleave: 1221
+backstab_special: 704
+sunder_special: 1027
+warstrike_special: 2114
+healing_blade_special: 2109
+ice_cleave_special: 1221
 ice_cleave_hit: 2104
-sweep:
+sweep_special:
   id: 282
   height: 60
-powerstab: 1225
-shove:
+powerstab_special: 1225
+shove_special:
   id: 253
   height: 60
-shove_stun: 254
-quick_smash:
+shove_hit: 254
+quick_smash_special:
   id: 340
   height: 60
-clobber: 479
-disrupt: 1729
+clobber_special: 479
+disrupt_special: 1729
 disrupt_hit: 1730
-darklight_weaken: 483
-impale:
+weaken_special: 483
+impale_special:
   id: 274
   height: 60
-spear_wall: 1835
-power_of_light: 2319
+spear_wall_special: 1835
+power_of_light_special: 2319
 power_of_light_hit: 2320
 wind_spell_cast: 457
 wind_rush:
@@ -1434,9 +1434,15 @@ ahrims_effect:
 karils_effect:
   id: 401
   height: 50
-salamander_scorch: 953
-salamander_flare: 953
-salamander_blaze: 953
+salamander_scorch:
+  id: 953
+  height: 40
+salamander_flare:
+  id: 953
+  height: 40
+salamander_blaze:
+  id: 953
+  height: 40
 retribution: 437
 retribution_splash:
   id: 438

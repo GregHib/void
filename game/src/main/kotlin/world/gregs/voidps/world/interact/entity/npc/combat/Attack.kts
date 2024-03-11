@@ -5,26 +5,22 @@ import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.npcSwing
+import world.gregs.voidps.world.interact.entity.combat.npcCombatSwing
 
 val definitions: WeaponStyleDefinitions by inject()
 
-npcSwing(priority = Priority.LOWEST) { npc ->
+npcCombatSwing { npc ->
+    if (npc.tile.distanceTo(target) > npc.def["attack_radius", 8]) {
+        cancel()
+        npc.mode = Retreat(npc, target)
+        return@npcCombatSwing
+    }
     npc.setAnimation(attackAnimation(npc))
 //    (target as? Player)?.playSound(attackSound(npc))
-    npc.hit(target, delay = 1)
-    delay = npc.def["attack_speed", 4]
-}
-
-npcSwing(priority = Priority.HIGHER) { npc ->
-    if (npc.tile.distanceTo(target) > npc.def["attack_radius", 8]) {
-        delay = -1
-        npc.mode = Retreat(npc, target)
-    }
+    npc.hit(target)
 }
 
 fun attackAnimation(npc: NPC): String {

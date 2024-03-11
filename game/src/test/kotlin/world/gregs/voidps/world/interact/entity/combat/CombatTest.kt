@@ -8,7 +8,6 @@ import world.gregs.voidps.FakeRandom
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
-import world.gregs.voidps.engine.event.onNPC
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -16,7 +15,7 @@ import world.gregs.voidps.network.instruct.InteractPlayer
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.hit.npcCombatHit
 import world.gregs.voidps.world.script.*
 import kotlin.random.Random
 
@@ -103,7 +102,7 @@ internal class CombatTest : WorldTest() {
     @Test
     fun `Dragon dagger special attack`() {
         var hits = 0
-        onNPC<CombatHit> {
+        npcCombatHit {
             hits++
         }
         val player = createPlayer("player", emptyTile)

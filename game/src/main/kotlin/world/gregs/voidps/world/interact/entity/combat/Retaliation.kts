@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.combat
 
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -24,5 +25,6 @@ characterCombatHit { character ->
         val target = source
         character.mode = CombatMovement(character, target)
         character.target = target
+        character.start("hit_delay", 1)
     }
 }

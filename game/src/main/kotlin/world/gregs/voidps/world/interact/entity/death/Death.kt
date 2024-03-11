@@ -4,25 +4,30 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.onCharacter
-import world.gregs.voidps.engine.event.onNPC
-import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
 
-object Death : Event
+object Death : Event {
 
-fun playerDeath(block: suspend Death.(Player) -> Unit) {
-    on<Death>(block = block)
-}
+    override val size = 2
 
-fun npcDeath(npc: String = "*", block: suspend Death.(NPC) -> Unit) {
-    if (npc == "*") {
-        onNPC<Death>(block = block)
-    } else {
-        onNPC<Death>({ wildcardEquals(npc, it.id) }, block = block)
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> "${dispatcher.key}_death"
+        1 -> dispatcher.identifier
+        else -> null
     }
+
 }
 
-fun characterDeath(block: suspend Death.(Character) -> Unit) {
-    onCharacter<Death>(block = block)
+fun playerDeath(handler: suspend Death.(Player) -> Unit) {
+    Events.handle("player_death", "player", handler = handler)
+}
+
+fun npcDeath(npc: String = "*", handler: suspend Death.(NPC) -> Unit) {
+    Events.handle("npc_death", npc, handler = handler)
+}
+
+fun characterDeath(handler: suspend Death.(Character) -> Unit) {
+    Events.handle("player_death", "player", handler = handler)
+    Events.handle("npc_death", "*", handler = handler)
 }

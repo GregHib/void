@@ -6,18 +6,16 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit
-import world.gregs.voidps.world.interact.entity.player.combat.consume.Consumable
-import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
+import world.gregs.voidps.world.interact.entity.player.combat.consume.canConsume
 
 fun inWilderness() = false
 
-on<Consumable>({ item.id.startsWith("overload") }) { player ->
+canConsume("overload*") { player ->
     if (player.timers.contains("overload")) {
         player.message("You may only use this potion every five minutes.")
         cancel()
@@ -25,11 +23,6 @@ on<Consumable>({ item.id.startsWith("overload") }) { player ->
         player.message("You need more than 500 life points to survive the power of overload.")
         cancel()
     }
-}
-
-consume("overload_#") { player ->
-    player["overload_refreshes_remaining"] = 20
-    player.timers.start("overload")
 }
 
 playerSpawn { player ->

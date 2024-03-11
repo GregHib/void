@@ -5,34 +5,36 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.onWorld
-import world.gregs.voidps.engine.event.onCharacter
-import world.gregs.voidps.engine.event.onNPC
-import world.gregs.voidps.engine.event.wildcardEquals
+import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.event.Events
 
-data class TimerStop(val timer: String, val logout: Boolean) : Event
+data class TimerStop(val timer: String, val logout: Boolean) : Event {
 
-fun timerStop(vararg timers: String, block: suspend TimerStop.(Player) -> Unit) {
+    override val size = 3
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
+        0 -> "${dispatcher.key}_timer_stop"
+        1 -> timer
+        2 -> dispatcher.identifier
+        else -> null
+    }
+}
+
+fun timerStop(vararg timers: String, handler: suspend TimerStop.(Player) -> Unit) {
     for (timer in timers) {
-        on<TimerStop>({ wildcardEquals(timer, this.timer) }, block = block)
+        Events.handle("player_timer_stop", timer, "player", handler = handler)
     }
 }
 
-fun npcTimerStop(timer: String, npc: String = "*", block: suspend TimerStop.(NPC) -> Unit) {
-    if (npc == "*") {
-        onNPC<TimerStop>({ wildcardEquals(timer, this.timer) }, block = block)
-    } else {
-        onNPC<TimerStop>({ wildcardEquals(timer, this.timer) && wildcardEquals(npc, it.id) }, block = block)
-    }
+fun npcTimerStop(timer: String, npc: String = "*", handler: suspend TimerStop.(NPC) -> Unit) {
+    Events.handle("npc_timer_stop", timer, npc, handler = handler)
 }
 
-fun characterTimerStop(timer: String, block: suspend TimerStop.(Character) -> Unit) {
-    onCharacter<TimerStop>({ wildcardEquals(timer, this.timer) }, block = block)
+fun characterTimerStop(timer: String, handler: suspend TimerStop.(Character) -> Unit) {
+    Events.handle("player_timer_stop", timer, "player", handler = handler)
+    Events.handle("npc_timer_stop", timer, "*", handler = handler)
 }
 
-fun worldTimerStop(timer: String, block: suspend TimerStop.() -> Unit) {
-    onWorld<TimerStop>({ wildcardEquals(timer, this.timer) }) {
-        block.invoke(this)
-    }
+fun worldTimerStop(timer: String, handler: suspend TimerStop.(World) -> Unit) {
+    Events.handle("world_timer_stop", timer, "world", handler = handler)
 }

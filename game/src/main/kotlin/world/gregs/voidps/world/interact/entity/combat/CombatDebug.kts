@@ -1,20 +1,13 @@
 package world.gregs.voidps.world.interact.entity.combat
 
-import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.modCommand
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCLevels
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.onCharacter
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.interact.entity.combat.hit.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
 import world.gregs.voidps.world.interact.entity.combat.hit.Hit
 
@@ -44,22 +37,3 @@ modCommand("maxhit") {
     player.message("Ranged: $rangeChance Melee: $meleeChance Magic: $magicChance")
     player["debug"] = debug
 }
-
-val logger = InlineLogger()
-
-val Character.charName: String
-    get() = (this as? Player)?.name ?: (this as NPC).id
-
-onCharacter<CombatSwing>({ it["debug", false] || target["debug", false] }, Priority.HIGHEST) { character ->
-    val player = if (character["debug", false] && character is Player) character else target as Player
-    player.message("---- Swing (${character.charName}) -> (${target.charName}) -----")
-}
-
-onCharacter<CombatHit>({ debug(source, it) }, Priority.LOWEST) { character ->
-    val player = if (character["debug", false] && character is Player) character else source as Player
-    val message = "Damage: $damage ($type, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
-    player.message(message)
-    logger.debug { message }
-}
-
-fun debug(player: Character, target: Character?) = player["debug", false] || target?.get("debug", false) == true

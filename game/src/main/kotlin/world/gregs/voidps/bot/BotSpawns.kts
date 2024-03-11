@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.EventStore
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.getIntProperty
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -49,7 +49,7 @@ worldSpawn {
     if (botCount > 0) {
         World.timers.start("bot_spawn")
     }
-    EventStore.events.all = { player, event ->
+    Events.events.all = { player, event ->
         handleSuspensions(player, event)
     }
 }
