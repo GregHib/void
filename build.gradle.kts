@@ -17,7 +17,7 @@ allprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
     group = "world.gregs.void"
-    version = "1.1.6"
+    version = System.getenv("GITHUB_REF")?.split('/')?.lastOrNull() ?: "dev"
 
     java.sourceCompatibility = JavaVersion.VERSION_19
     java.targetCompatibility = java.sourceCompatibility
