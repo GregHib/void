@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.floorItemOperate
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -14,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val items: FloorItems by inject()
 
-floorItemOperate("Take", "white_apron_port_sarim", Priority.HIGH) {
+floorItemOperate("Take", "white_apron_port_sarim", override = false) {
     if (player.holdsItem("white_apron")) {
         player.message("You already have one of those.")
         cancel()

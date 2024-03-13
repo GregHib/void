@@ -25,7 +25,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.npcLevelCha
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.playerDespawn
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.clear
@@ -42,7 +41,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.dialogue.type.statement
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
+import world.gregs.voidps.world.interact.entity.combat.combatPrepare
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import world.gregs.voidps.world.interact.entity.player.music.playTrack
@@ -65,7 +64,7 @@ val targets = listOf(
 )
 
 enterArea("demon_slayer_stone_circle") {
-    if (player["demon_slayer_silverlight", false] && !player.hasClock("demon_slayer_instance_exit")) {
+    if (!player.questComplete("demon_slayer") && player["demon_slayer_silverlight", false] && !player.hasClock("demon_slayer_instance_exit")) {
         cutscene()
     }
 }
@@ -227,7 +226,7 @@ suspend fun CharacterContext.cutscene() {
     }
 }
 
-combatSwing(priority = Priority.HIGHEST) { player ->
+combatPrepare("melee") { player ->
     if (target is NPC && target.id == "delrith" && target.transform == "delrith_weakened") {
         cancel()
         player.strongQueue("banish_delrith", 1) {
@@ -283,11 +282,10 @@ npcOperate("*", "delrith") {
 }
 
 
-npcLevelChange("delrith", Skill.Constitution, Priority.HIGH) { npc ->
+npcLevelChange("delrith", Skill.Constitution) { npc ->
     if (to > 0) {
         return@npcLevelChange
     }
-    cancel()
 //    player.playSound("demon_slayer_portal_open")
     npc.transform = "delrith_weakened"
     npc.mode = PauseMode

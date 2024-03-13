@@ -37,7 +37,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.engine.event.EventStore
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -152,6 +152,7 @@ abstract class WorldTest : KoinTest {
                 single(createdAtStart = true) { structDefinitions }
                 single(createdAtStart = true) { quickChatPhraseDefinitions }
                 single(createdAtStart = true) { weaponStyleDefinitions }
+                single(createdAtStart = true) { weaponAnimationDefinitions }
                 single(createdAtStart = true) { enumDefinitions }
                 single(createdAtStart = true) { fontDefinitions }
                 single { ammoDefinitions }
@@ -219,7 +220,7 @@ abstract class WorldTest : KoinTest {
     @AfterAll
     fun afterAll() {
         saves?.deleteRecursively()
-        EventStore.events.clear()
+        Events.events.clear()
         World.shutdown()
         stopKoin()
     }
@@ -239,6 +240,7 @@ abstract class WorldTest : KoinTest {
         private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(parameterDefinitions).load(cache)).load() }
         private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
         private val weaponStyleDefinitions: WeaponStyleDefinitions by lazy { WeaponStyleDefinitions().load() }
+        private val weaponAnimationDefinitions: WeaponAnimationDefinitions by lazy { WeaponAnimationDefinitions().load() }
         private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(cache), structDefinitions).load() }
         private val collisions: Collisions by lazy { Collisions() }
         private val objectCollision: GameObjectCollision by lazy { GameObjectCollision(collisions) }

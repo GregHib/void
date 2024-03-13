@@ -9,15 +9,13 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
-import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
-import world.gregs.voidps.engine.entity.character.player.chat.friend.AddFriend
-import world.gregs.voidps.engine.entity.character.player.chat.friend.DeleteFriend
-import world.gregs.voidps.engine.entity.character.player.chat.ignore.AddIgnore
-import world.gregs.voidps.engine.entity.character.player.chat.ignore.DeleteIgnore
+import world.gregs.voidps.engine.entity.character.player.chat.clan.clanChatLeave
+import world.gregs.voidps.engine.entity.character.player.chat.friend.friendsAdd
+import world.gregs.voidps.engine.entity.character.player.chat.friend.friendsDelete
+import world.gregs.voidps.engine.entity.character.player.chat.ignore.ignoresAdd
+import world.gregs.voidps.engine.entity.character.player.chat.ignore.ignoresDelete
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.encode.Friend
 import world.gregs.voidps.network.encode.sendFriendsList
@@ -39,36 +37,36 @@ playerDespawn { player ->
     notifyBefriends(player, online = false)
 }
 
-on<AddFriend> { player ->
+friendsAdd { player ->
     val account = accounts.get(friend)
     if (account == null) {
         player.message("Unable to find player with name '$friend'.")
         cancel()
-        return@on
+        return@friendsAdd
     }
 
     if (player.name == friend) {
         player.message("You are already your own best friend!")
         cancel()
-        return@on
+        return@friendsAdd
     }
 
     if (player.ignores.contains(account.accountName)) {
         player.message("Please remove $friend from your ignore list first.")
         cancel()
-        return@on
+        return@friendsAdd
     }
 
     if (player.friends.size >= maxFriends) {
         player.message("Your friends list is full. Max of 100 for free users, and $maxFriends for members.")
         cancel()
-        return@on
+        return@friendsAdd
     }
 
     if (player.friends.contains(account.accountName)) {
         player.message("$friend is already on your friends list.")
         cancel()
-        return@on
+        return@friendsAdd
     }
 
     player.friends[account.accountName] = ClanRank.Friend
@@ -78,12 +76,12 @@ on<AddFriend> { player ->
     player.sendFriend(account)
 }
 
-on<DeleteFriend> { player ->
+friendsDelete(override = false) { player ->
     val account = accounts.get(friend)
     if (account == null || !player.friends.contains(account.accountName)) {
         player.message("Unable to find player with name '$friend'.")
         cancel()
-        return@on
+        return@friendsDelete
     }
 
     player.friends.remove(account.accountName)
@@ -92,14 +90,17 @@ on<DeleteFriend> { player ->
     }
 }
 
-on<AddIgnore>(priority = Priority.LOWER) { player ->
+ignoresAdd { player ->
     val other = players.get(name)
     if (other != null && other.friend(player) && !other.isAdmin()) {
         other.updateFriend(Friend(player.name, player.previousName, world = 0))
     }
 }
 
-on<DeleteIgnore>({ player -> player.privateStatus == "on" }, Priority.LOWER) { player ->
+ignoresDelete { player ->
+    if(player.privateStatus != "on") {
+        return@ignoresDelete
+    }
     val other = players.get(name)
     if (other != null && (other.friend(player) || other.isAdmin())) {
         other.updateFriend(Friend(player.name, player.previousName, world = World.id, worldName = World.name))
@@ -136,8 +137,8 @@ interfaceOption(component = "private", id = "filter_buttons") {
     }
 }
 
-on<LeaveClanChat>(priority = Priority.HIGH) { player ->
-    val clan: Clan = player.clan ?: return@on
+clanChatLeave { player ->
+    val clan: Clan = player.clan ?: return@clanChatLeave
     if (player.accountName != clan.owner || player.isAdmin()) {
         player.sendFriends()
     }

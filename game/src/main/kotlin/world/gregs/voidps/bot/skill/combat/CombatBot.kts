@@ -4,7 +4,10 @@ import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.item.pickup
-import world.gregs.voidps.bot.navigation.*
+import world.gregs.voidps.bot.navigation.await
+import world.gregs.voidps.bot.navigation.cancel
+import world.gregs.voidps.bot.navigation.goToArea
+import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.variableSet
@@ -19,10 +22,10 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.equip.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
+import world.gregs.voidps.engine.entity.character.player.skill.level.levelChange
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.worldSpawn
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
@@ -31,9 +34,8 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.combat.attackers
-import world.gregs.voidps.world.interact.entity.combat.combatSwing
 import world.gregs.voidps.world.interact.entity.combat.underAttack
-import world.gregs.voidps.world.interact.entity.death.Death
+import world.gregs.voidps.world.interact.entity.death.playerDeath
 import world.gregs.voidps.world.interact.entity.death.weightedSample
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
@@ -42,21 +44,21 @@ val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 val floorItems: FloorItems by inject()
 
-variableSet("under_attack", 1) { player ->
+variableSet("under_attack", to = 1) { player ->
     if (player.isBot) {
         player.bot.resume("combat")
     }
 }
 
-combatSwing { player ->
-    if (player.levels.getPercent(Skill.Constitution) < 50.0) {
-        val food = player.inventory.items.firstOrNull { it.def.contains("heals") } ?: return@combatSwing
+levelChange(Skill.Constitution) { player ->
+    if (player.isBot && player.levels.getPercent(Skill.Constitution) < 50.0) {
+        val food = player.inventory.items.firstOrNull { it.def.contains("heals") } ?: return@levelChange
         player.bot.inventoryOption(food.id, "Eat")
     }
 }
 
-on<Death> { player ->
-    if(player.isBot) {
+playerDeath { player ->
+    if (player.isBot) {
         player.clear("area")
         player.bot.cancel()
     }

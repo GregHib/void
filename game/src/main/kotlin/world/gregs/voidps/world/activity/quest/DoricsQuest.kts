@@ -1,11 +1,11 @@
 package world.gregs.voidps.world.activity.quest
 
 import net.pearx.kasechange.toTitleCase
-import world.gregs.voidps.engine.client.ui.interfaceOption
+import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 
-interfaceOption(component = "journals", id = "quest_journals", itemSlot = 3) {
+interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 3) {
     val lines = when (player.quest("dorics_quest")) {
         "completed" -> listOf(
             "<str>I have spoken to Doric.",

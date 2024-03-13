@@ -1,41 +1,22 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
-import world.gregs.voidps.engine.client.variable.specialAttack
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
-import world.gregs.voidps.world.interact.entity.combat.underAttack
-import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import world.gregs.voidps.world.interact.entity.combat.target
+import world.gregs.voidps.world.interact.entity.player.combat.special.SpecialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackPrepare
 
-specialAttackSwing("granite_maul*")  { player ->
-    if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
-        delay = -1
-        return@specialAttackSwing
+specialAttackPrepare("quick_smash") { player ->
+    if (player.target == null) {
+        return@specialAttackPrepare
     }
-    player.setAnimation("quick_smash")
-    player.setGraphic("quick_smash")
+    cancel()
+    if (!SpecialAttack.drain(player)) {
+        return@specialAttackPrepare
+    }
+    val target = player.target ?: return@specialAttackPrepare
+    player.setAnimation("${id}_special")
+    player.setGraphic("${id}_special")
     player.hit(target)
-    delay = 1
-}
-
-specialAttack("granite_maul*") { player ->
-    if (!player.underAttack) {
-        return@specialAttack
-    }
-    val target: Character? = player["target"]
-    if (target == null) {
-        player.specialAttack = false
-        return@specialAttack
-    }
-    if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
-        return@specialAttack
-    }
-    player.setAnimation("quick_smash")
-    player.setGraphic("quick_smash")
-    player.hit(target)
-    player.specialAttack = false
 }

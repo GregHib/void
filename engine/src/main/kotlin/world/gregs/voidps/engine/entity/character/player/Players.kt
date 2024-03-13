@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.character.player
 
+import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
-import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
@@ -22,7 +22,7 @@ class Players : CharacterList<Player>(MAX_PLAYERS) {
 
     override fun clear() {
         for (player in this) {
-            player.emit(Unregistered)
+            player.emit(Despawn)
         }
         super.clear()
     }

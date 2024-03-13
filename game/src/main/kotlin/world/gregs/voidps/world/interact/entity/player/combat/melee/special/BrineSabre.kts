@@ -1,28 +1,11 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.specialAttack
-import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackPrepare
 
-specialAttack("brine_sabre") { player ->
+specialAttackPrepare("brine_sabre") { player ->
     if (player.tile.region.id != 11924) {
         player.message("You can only use this special attack under water.")
-        player.specialAttack = false
+        cancel()
     }
-}
-
-specialAttackSwing("brine_sabre") { player ->
-    if (!drainSpecialEnergy(player, 750)) {
-        delay = -1
-        return@specialAttackSwing
-    }
-    player.setAnimation("liquify")
-    player.setGraphic("liquify")
-    player.hit(target)
-    delay = 4
 }

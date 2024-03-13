@@ -11,9 +11,9 @@ playerSpawn { player ->
     player.combatLevel = calculateCombatLevel(player.levels)
 }
 
-val combatSkills = Skill.entries.filter { it.ordinal <= 6 || it.ordinal == 23 }.toSet()
+val combatSkills = Skill.entries.filter { it.ordinal <= 6 || it.ordinal == 23 }.toTypedArray()
 
-maxLevelChange(combatSkills) { player ->
+maxLevelChange(skills = combatSkills) { player ->
     player.combatLevel = calculateCombatLevel(player.levels)
 }
 

@@ -1,9 +1,9 @@
 package world.gregs.voidps.world.activity.quest
 
-import world.gregs.voidps.engine.client.ui.interfaceOption
+import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.inv.holdsItem
 
-interfaceOption(component = "journals", id = "quest_journals", itemSlot = 13) {
+interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 13) {
     val lines = when (player.quest("rune_mysteries")) {
         "completed" -> listOf(
             "<str>I spoke to Duke Horacio in Lumbridge Castle. He told me",

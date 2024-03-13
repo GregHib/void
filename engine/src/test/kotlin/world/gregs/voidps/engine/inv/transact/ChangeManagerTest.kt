@@ -27,7 +27,7 @@ internal class ChangeManagerTest {
     fun `Track and send changes`() {
         val events = mockk<EventDispatcher>(relaxed = true)
         change.bind(events)
-        change.track("inventory", 1, Item.EMPTY, 1, Item("item", 1, def = ItemDefinition.EMPTY))
+        change.track(from = "inventory", index = 1, previous = Item.EMPTY, fromIndex = 1, item = Item("item", 1, def = ItemDefinition.EMPTY))
         change.send()
         verify {
             events.emit(any<ItemChanged>())

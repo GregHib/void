@@ -3,7 +3,8 @@ package world.gregs.voidps.world.interact.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
 import world.gregs.voidps.engine.client.ui.event.IntEntered
 import world.gregs.voidps.engine.client.ui.event.StringEntered
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
 import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
 import world.gregs.voidps.engine.suspend.resumeDialogueSuspension
@@ -39,14 +40,14 @@ continueDialogue("dialogue_multi*", "line*") { player ->
     player.resumeDialogueSuspension()
 }
 
-on<IntEntered> { player ->
-    val suspension = player.dialogueSuspension as? IntSuspension ?: return@on
+onEvent<Player, IntEntered> { player ->
+    val suspension = player.dialogueSuspension as? IntSuspension ?: return@onEvent
     suspension.int = value
     player.resumeDialogueSuspension()
 }
 
-on<StringEntered> { player ->
-    val suspension = player.dialogueSuspension as? StringSuspension ?: return@on
+onEvent<Player, StringEntered> { player ->
+    val suspension = player.dialogueSuspension as? StringSuspension ?: return@onEvent
     suspension.string = value
     player.resumeDialogueSuspension()
 }

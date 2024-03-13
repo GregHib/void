@@ -4,12 +4,10 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.CharacterContext
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -37,7 +35,7 @@ itemOnItem("chisel", "ring_from_jeffery") { player: Player ->
     }
 }
 
-on<NPCOption>({ operate && target.id == "dororan" && option == "Talk-to" }) { player: Player ->
+npcOperate("Talk-to", "dororan") {
     when (player.quest("gunnars_ground")) {
         "started" -> started()
         "love_poem", "jeffery_ring" -> lovePoem()

@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.engine.timer.TICKS
+import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spell
@@ -104,34 +104,25 @@ object Hit {
         }
         return level
     }
-
-    fun bowDelay(distance: Int) = 1 + (distance + 3) / 6
-
-    fun throwDelay(distance: Int) = 1 + distance / 6
-
-    fun magicDelay(distance: Int) = 1 + (distance + 1) / 3
-
-    fun darkBowDelay(distance: Int) = 1 + (distance + 2) / 3
-
-    fun dfsDelay(distance: Int) = 2 + (distance + 4) / 6
 }
 
 /**
  * Hits player during combat
+ * @param delay Hit delay in client ticks
  */
 fun Character.hit(
     target: Character,
     weapon: Item = this.weapon,
     type: String = Weapon.type(this, weapon),
-    delay: Int = if (type == "melee") 0 else 2,
+    delay: Int = if (type == "melee") 0 else 64,
     spell: String = this.spell,
     special: Boolean = (this as? Player)?.specialAttack ?: false,
     damage: Int = Damage.roll(this, target, type, weapon, spell)
 ): Int {
     val actualDamage = Damage.modify(this, target, type, damage, weapon, spell, special)
         .coerceAtMost(target.levels.get(Skill.Constitution))
-    emit(CombatAttack(target, type, actualDamage, weapon, spell, special, TICKS.toClientTicks(delay)))
-    target.strongQueue("hit", delay) {
+    emit(CombatAttack(target, type, actualDamage, weapon, spell, special, delay))
+    target.strongQueue("hit", if (delay == 0) 0 else CLIENT_TICKS.toTicks(delay) + 1) {
         target.directHit(this@hit, actualDamage, type, weapon, spell, special)
     }
     return actualDamage
@@ -151,4 +142,9 @@ fun Character.directHit(source: Character, damage: Int, type: String = "damage",
         return
     }
     emit(CombatHit(source, type, damage, weapon, spell, special))
+    if (source["debug", false] || this["debug", false]) {
+        val player = if (this["debug", false] && this is Player) this else source as Player
+        val message = "Damage: $damage ($type, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
+        player.message(message)
+    }
 }

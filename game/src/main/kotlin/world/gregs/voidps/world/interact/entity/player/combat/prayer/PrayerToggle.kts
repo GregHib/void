@@ -4,8 +4,8 @@ package world.gregs.voidps.world.interact.entity.player.combat.prayer
 
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.variable.variableAdded
-import world.gregs.voidps.engine.client.variable.variableRemoved
+import world.gregs.voidps.engine.client.variable.variableBitAdd
+import world.gregs.voidps.engine.client.variable.variableBitRemove
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.ACTIVE_CURSES
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS
@@ -22,12 +22,12 @@ variableSet("activated_*") { player ->
     }
 }
 
-variableAdded(ACTIVE_PRAYERS, ACTIVE_CURSES) { player ->
+variableBitAdd(ACTIVE_PRAYERS, ACTIVE_CURSES) { player ->
     player.closeInterfaces()
     player.emit(PrayerStart((value as String).toSnakeCase()))
 }
 
-variableRemoved(ACTIVE_PRAYERS, ACTIVE_CURSES) { player ->
+variableBitRemove(ACTIVE_PRAYERS, ACTIVE_CURSES) { player ->
     player.closeInterfaces()
     player.emit(PrayerStop((value as String).toSnakeCase()))
 }

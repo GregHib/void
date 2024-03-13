@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.friend.PrivateQuic
 import world.gregs.voidps.engine.entity.character.player.chat.global.PublicQuickChat
 import world.gregs.voidps.engine.entity.character.player.chat.global.PublicQuickChatMessage
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.encode.clanQuickChat
 import world.gregs.voidps.network.encode.privateQuickChatFrom
@@ -30,11 +30,11 @@ val variables: VariableDefinitions by inject()
 val enums: EnumDefinitions by inject()
 val items: ItemDefinitions by inject()
 
-on<PrivateQuickChat> { player ->
+onEvent<Player, PrivateQuickChat> { player ->
     val target = players.get(friend)
     if (target == null || target.ignores(player)) {
         player.message("Unable to send message - player unavailable.")
-        return@on
+        return@onEvent
     }
     val definition = phrases.get(file)
     val data = generateData(player, file, data)
@@ -45,11 +45,11 @@ on<PrivateQuickChat> { player ->
     target.emit(message)
 }
 
-on<PrivateQuickChatMessage>({ it.networked }) { player ->
+onEvent<Player, PrivateQuickChatMessage> { player ->
     player.client?.privateQuickChatFrom(source.name, source.rights.ordinal, file, data)
 }
 
-on<PublicQuickChat>({ chatType == 0 }) { player ->
+onEvent<Player, PublicQuickChat>("public_quick_chat", 0) { player ->
     val definition = phrases.get(file)
     val data = generateData(player, file, data)
     val text = definition.buildString(enums.definitions, items.definitions, data)
@@ -59,19 +59,19 @@ on<PublicQuickChat>({ chatType == 0 }) { player ->
     }
 }
 
-on<PublicQuickChatMessage>({ it.networked }) { player ->
+onEvent<Player, PublicQuickChatMessage> { player ->
     player.client?.publicQuickChat(source.index, 0x8000, source.rights.ordinal, file, data)
 }
 
-on<PublicQuickChat>({ chatType == 1 }) { player ->
+onEvent<Player, PublicQuickChat>("public_quick_chat", 1) { player ->
     val clan = player.clan
     if (clan == null) {
         player.message("You must be in a clan chat to talk.", ChatType.ClanChat)
-        return@on
+        return@onEvent
     }
     if (!clan.hasRank(player, clan.talkRank) || !clan.members.contains(player)) {
         player.message("You are not allowed to talk in this clan chat channel.", ChatType.ClanChat)
-        return@on
+        return@onEvent
     }
     val definition = phrases.get(file)
     val data = generateData(player, file, data)
@@ -82,7 +82,7 @@ on<PublicQuickChat>({ chatType == 1 }) { player ->
     }
 }
 
-on<ClanQuickChatMessage>({ it.networked }) { player ->
+onEvent<Player, ClanQuickChatMessage> { player ->
     player.client?.clanQuickChat(source.name, player.clan!!.name, source.rights.ordinal, file, data)
 }
 

@@ -22,7 +22,7 @@ internal class KarilsSetEffectTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Agility to 99, Skill.Constitution to 990)
 
         player.hit(target, Item("karils_crossbow"), "range", damage = 10)
-        tick(2)
+        tick(3)
 
         assertEquals(980, target.levels.get(Skill.Constitution))
         assertEquals(99, target.levels.get(Skill.Agility))
@@ -48,7 +48,7 @@ internal class KarilsSetEffectTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Agility to 99, Skill.Constitution to 990)
 
         player.hit(target, Item("karils_crossbow"), "range", damage = 10)
-        tick(2)
+        tick(3)
 
         assertNotEquals(990, target.levels.get(Skill.Constitution))
         assertEquals(80, target.levels.get(Skill.Agility))

@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 
-val quests = setOf(
+val quests = arrayOf(
     // free
     "cooks_assistant",
     "demon_slayer",
@@ -28,7 +28,7 @@ interfaceOpen("quest_journals") { player ->
     }
 }
 
-variableSet(quests) { player ->
+variableSet(ids = quests) { player ->
     player.softTimers.start("refresh_quest_journal")
 }
 

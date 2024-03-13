@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
@@ -22,8 +21,7 @@ import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 val areas: AreaDefinitions by inject()
 val objects: GameObjects by inject()
 
-inventoryItem("Empty", "ectophial", "inventory", priority = Priority.HIGH) {
-    cancel()
+inventoryItem("Empty", "ectophial", "inventory") {
     player.strongQueue("ectophial") {
         player.setAnimation("empty_ectophial")
         player.setGraphic("empty_ectophial")

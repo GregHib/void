@@ -38,7 +38,7 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
     fun start(members: Boolean = true, id: Int = 16) {
         this.members = members
         this.id = id
-        emit(Registered)
+        emit(Spawn)
     }
 
     val timers: Timers = TimerQueue(this)
@@ -72,6 +72,6 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
     }
 
     fun shutdown() {
-        emit(Unregistered)
+        emit(Despawn)
     }
 }

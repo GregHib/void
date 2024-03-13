@@ -24,13 +24,10 @@ jobs:
         run: chmod +x gradlew
       - name: Get build version
         run: echo "build_version=$(./gradlew -q printVersion)" >> $GITHUB_ENV
-      - name: Check tag matches project version
-        if: ${{ env.build_version != github.ref_name }}
-        run: exit 1
       - name: Run distribution assembly
         run: ./gradlew buildScripts assembleBundleDist
       - name: Upload distribution
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run:
-          gh release create ${{ github.ref_name }} ./game/build/distributions/void-${{ github.ref_name }}.zip
+          gh release create ${{ github.ref_name }} ./game/build/distributions/void-${{ env.build_version }}.zip

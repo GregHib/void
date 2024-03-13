@@ -1,42 +1,13 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.timer.*
-import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.hit.Hit
-import world.gregs.voidps.world.interact.entity.combat.hit.combatAttack
-import world.gregs.voidps.world.interact.entity.combat.hit.hit
-import world.gregs.voidps.world.interact.entity.combat.hit.specialAttackHit
-import world.gregs.voidps.world.interact.entity.combat.specialAttackSwing
-import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
-import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.proj.shoot
+import world.gregs.voidps.world.interact.entity.combat.hit.*
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
-
-fun isGodBow(weapon: Item) = weapon.id == "saradomin_bow" || weapon.id == "guthix_bow" || weapon.id == "zamorak_bow"
-
-specialAttackSwing("saradomin_bow", "guthix_bow", "zamorak_bow", style = "range", priority = Priority.MEDIUM) { player ->
-    val speed = player.weapon.def["attack_speed", 4]
-    delay = if (player.attackType == "rapid") speed - 1 else speed
-    if (!drainSpecialEnergy(player, 550)) {
-        delay = -1
-        return@specialAttackSwing
-    }
-    player.setAnimation("bow_accurate")
-    val ammo = player.ammo
-    player.setGraphic("${ammo}_shoot")
-    player.shoot(id = ammo, target = target)
-    val distance = player.tile.distanceTo(target)
-    player.hit(target, delay = Hit.bowDelay(distance))
-}
 
 var Player.restoration: Int
     get() = this["restoration", 0]
@@ -44,8 +15,8 @@ var Player.restoration: Int
         this["restoration"] = value
     }
 
-combatAttack { source ->
-    if (!isGodBow(weapon) || !special) {
+val specialHandler: suspend CombatAttack.(Player) -> Unit = combatAttack@{ source ->
+    if (!special) {
         return@combatAttack
     }
     when (weapon.id) {
@@ -62,11 +33,19 @@ combatAttack { source ->
         }
     }
 }
+combatAttack("saradomin_bow", handler = specialHandler)
+combatAttack("guthix_bow", handler = specialHandler)
+combatAttack("zamorak_bow", handler = specialHandler)
 
-specialAttackHit("saradomin_bow", "guthix_bow", "zamorak_bow") { character ->
-    character.setGraphic("${weapon.id}_special_hit")
-    source.playSound("god_bow_special_hit")
+val hitHandler: suspend CombatHit.(Character) -> Unit = { character ->
+    if (special) {
+        character.setGraphic("${weapon.id}_special_hit")
+        source.playSound("god_bow_special_hit")
+    }
 }
+combatHit("saradomin_bow", handler = hitHandler)
+combatHit("guthix_bow", handler = hitHandler)
+combatHit("zamorak_bow", handler = hitHandler)
 
 timerStart("restorative_shot", "balanced_shot") {
     interval = TimeUnit.SECONDS.toTicks(6)

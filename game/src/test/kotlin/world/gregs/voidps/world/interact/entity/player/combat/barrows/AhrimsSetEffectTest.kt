@@ -21,7 +21,7 @@ internal class AhrimsSetEffectTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Strength to 99, Skill.Constitution to 990)
 
         player.hit(target, Item("ahrims_staff"), "magic", damage = 100)
-        tick(2)
+        tick(3)
 
         assertEquals(880, target.levels.get(Skill.Constitution))
         assertEquals(99, target.levels.get(Skill.Strength))
@@ -47,7 +47,7 @@ internal class AhrimsSetEffectTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Strength to 99, Skill.Constitution to 990)
 
         player.hit(target, Item("ahrims_staff"), "magic", damage = 100)
-        tick(2)
+        tick(3)
 
         assertEquals(880, target.levels.get(Skill.Constitution))
         assertEquals(94, target.levels.get(Skill.Strength))

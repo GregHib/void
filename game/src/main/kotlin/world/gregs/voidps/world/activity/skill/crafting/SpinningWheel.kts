@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.engine.suspend.delay
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.dialogue.type.makeAmountIndex
 
@@ -53,7 +53,7 @@ objectOperate("Spin", "spinning_wheel*", arrive = false) {
         text = "How many would you like to make?"
     )
 
-    pause()
+    delay()
     var fibre = fibres[index]
     if (fibre.id == "tree_roots") {
         val root = treeRoots.firstOrNull { player.inventory.contains(it.id) }
@@ -66,7 +66,7 @@ objectOperate("Spin", "spinning_wheel*", arrive = false) {
     start(player, target, fibre, amount)
 }
 
-itemOnObjectOperate(obj = "spinning_wheel*", def = "spinning", arrive = false) {
+itemOnObjectOperate(obj = "spinning_wheel*", itemDef = "spinning", arrive = false) {
     val (_, amount) = makeAmount(
         items = listOf(item.spinning.to),
         type = "Make",

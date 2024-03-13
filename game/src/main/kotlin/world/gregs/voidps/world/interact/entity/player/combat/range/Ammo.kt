@@ -31,10 +31,20 @@ import java.util.concurrent.TimeUnit
 object Ammo {
     fun required(item: Item) = item.def["ammo_group", "none"] != "none" && !item.id.endsWith("chinchompa")
 
+    fun requiredAmount(weapon: Item, special: Boolean) = if (weapon.id.startsWith("dark_bow") || (weapon.id.startsWith("magic_shortbow") && special)) 2 else 1
+
     fun remove(player: Player, target: Character, ammo: String, required: Int) {
-        if (ammo == "bolt_rack") {
+        if (ammo == "" || ammo == "zaryte_arrow" || ammo == "sling_rock" || ammo == "special_arrow") {
+            return
+        } else if(ammo == "mud_pie" || ammo.endsWith("_tar")) {
+            player.equipment.remove(ammo, required)
+            return
+        } else if (ammo == "bolt_rack" || ammo == "hand_cannon_shot" || ammo.endsWith("chinchompa")) {
             player.softQueue("ammo") {
                 player.equipment.remove(ammo, required)
+                if (!player.equipment.contains(ammo)) {
+                    player.message("That was your last one!")
+                }
             }
             return
         }

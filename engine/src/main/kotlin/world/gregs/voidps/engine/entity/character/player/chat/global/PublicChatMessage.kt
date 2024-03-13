@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.character.player.chat.global
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.event.EventDispatcher
 
 /**
  * A freeform [message] sent nearby from [source].
@@ -14,6 +15,13 @@ data class PublicChatMessage(
     val compressed: ByteArray
 ) : Event {
     constructor(source: Player, effects: Int, message: String, huffman: Huffman) : this(source, effects, message, huffman.compress(message))
+
+    override val size = 1
+
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when(index) {
+        0 -> "public_chat_message"
+        else -> null
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

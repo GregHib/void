@@ -5,17 +5,8 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.world.interact.entity.player.combat.consume.consume
 import world.gregs.voidps.world.interact.entity.player.effect.antifire
 import world.gregs.voidps.world.interact.entity.player.effect.superAntifire
-
-consume("antifire*", "antifire_mix*") { player ->
-    player.antifire(6)
-}
-
-consume("super_antifire*") { player ->
-    player.superAntifire(6)
-}
 
 playerSpawn { player ->
     if (player.antifire) {

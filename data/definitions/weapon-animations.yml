@@ -1,0 +1,75 @@
+anchor:
+  default: anchor_attack
+  hit: anchor_block
+dragon_dagger:
+  slash: dragon_dagger_slash
+  default: dragon_dagger_attack
+  hit: dragon_dagger_block
+korasis_sword:
+  chop: korasis_sword_chop
+  default: korasis_sword_slash
+  hit: korasis_sword_block
+vestas_longsword:
+  lunge: vestas_longsword_lunge
+  default: vestas_longsword_attack
+  hit: vestas_longsword_block
+banner:
+  default: banner_attack
+  hit: banner_hit
+boxing_gloves:
+  default: boxing_gloves_attack
+  hit: boxing_gloves_block
+dharoks_greataxe:
+  smash: dharoks_greataxe_smash
+  default: dharoks_greataxe_attack
+  hit: dharoks_greataxe_block
+easter_carrot:
+  default: easter_carrot_whack
+godsword:
+  pound: godsword_pound
+  pummel: godsword_pummel
+  spike: godsword_spike
+  block: godsword_block
+  hit: godsword_hit
+tzhaar_ket_om:
+  default: tzhaar_ket_om_attack
+  hit: tzhaar_ket_om_block
+granite_maul:
+  default: granite_maul_attack
+  hit: granite_maul_block
+guthans_warspear:
+  swipe: guthans_spear_swipe
+  default: guthans_spear_attack
+  hit: guthans_spear_block
+mouse_toy:
+  default: mouse_toy_attack
+  hit: whip_block
+torags_hammers:
+  default: torags_hammers_attack
+veracs_flail:
+  default: veracs_flail_attack
+  hit: veracs_flail_block
+zamorakian_spear:
+  lunge: zamorakian_spear_lunge
+  swipe: zamorakian_spear_swipe
+  pound: zamorakian_spear_pound
+  block: zamorakian_spear_lunge
+  hit: zamorakian_spear_block
+chinchompa:
+  default: chinchompa_short_fuse
+pie:
+  default: mud_pie
+javelin:
+  default: throw_javelin
+dart:
+  default: throw_dart
+knife:
+  default: thrown_accurate
+bow:
+  default: bow_accurate
+crossbow:
+  default: crossbow_accurate
+karils_crossbow:
+  default: karils_crossbow_shoot
+salamander:
+  default: salamander_scorch

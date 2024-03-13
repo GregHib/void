@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell.book.lunar
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.spellOnPlayerApproach
+import world.gregs.voidps.engine.client.ui.interact.itemOnPlayerApproach
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.name
@@ -17,16 +17,16 @@ import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
 
 val definitions: SpellDefinitions by inject()
 
-spellOnPlayerApproach("lunar_spellbook", "cure_other") {
+itemOnPlayerApproach(id = "lunar_spellbook", component = "cure_other") {
     player.approachRange(2)
     pause()
     val spell = component
     if (!target.poisoned) {
         player.message("This player is not poisoned.")
-        return@spellOnPlayerApproach
+        return@itemOnPlayerApproach
     }
     if (!Spell.removeRequirements(player, spell)) {
-        return@spellOnPlayerApproach
+        return@itemOnPlayerApproach
     }
     val definition = definitions.get(spell)
     player.start("movement_delay", 2)

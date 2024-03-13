@@ -1,10 +1,10 @@
 package world.gregs.voidps.world.activity.quest
 
-import world.gregs.voidps.engine.client.ui.interfaceOption
+import world.gregs.voidps.engine.client.ui.interfaceSlot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 
-interfaceOption(component = "journals", id = "quest_journals", itemSlot = 2) {
+interfaceSlot(component = "journals", id = "quest_journals", itemSlot = 2) {
     val lines = when (player.quest("demon_slayer")) {
         "unstarted" -> listOf(
             "<navy>I can start this quest by speaking to the <maroon>Gypsy<navy> in the <maroon>tent",

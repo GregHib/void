@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.itemChange
@@ -35,8 +35,8 @@ interfaceClose("shop") { player ->
     }
 }
 
-on<OpenShop> { player ->
-    val definition = inventoryDefinitions.getOrNull(id) ?: return@on
+onEvent<Player, OpenShop> { player ->
+    val definition = inventoryDefinitions.getOrNull(id) ?: return@onEvent
     val currency: String = definition["currency", "coins"]
     player["shop_currency"] = currency
     player["item_info_currency"] = currency

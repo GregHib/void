@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.entity.objectDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.entity.worldSpawn
+import world.gregs.voidps.engine.getPropertyOrNull
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -50,8 +51,13 @@ val objects: GameObjects by inject()
 val npcs: NPCs by inject()
 val players: Players by inject()
 val logger = InlineLogger()
+val active = getPropertyOrNull("shootingStars") == "true"
 
-worldSpawn { eventUpdate() }
+worldSpawn {
+    if (active) {
+        eventUpdate()
+    }
+}
 
 fun eventUpdate() {
     World.queue("shooting_star_event_timer", startEvent) {

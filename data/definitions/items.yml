@@ -201,6 +201,8 @@ excalibur:
   tradeable: false
   weight: 2.267
   aka: [ excaliber ]
+  special_energy: 1000
+  special: sanctuary
   slot: "Weapon"
   examine: "This used to belong to King Arthur."
   kept: "Reclaim"
@@ -1415,6 +1417,7 @@ raw_shrimps:
     burnt: burnt_shrimp
     cooked_message: "You successfully cook some shrimps."
     burnt_message: "You accidentally burn the shrimps."
+  aka: [ raw_shrimp ]
   examine: "I should try cooking this."
 raw_shrimps_noted: 318
 anchovies:
@@ -4053,6 +4056,7 @@ bronze_throwing_axe:
   price: 3
   limit: 1000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   aka: [ bronze_thrownaxe, bronze_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4061,6 +4065,7 @@ iron_throwing_axe:
   price: 11
   limit: 1000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   aka: [ iron_thrownaxe, iron_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4069,6 +4074,7 @@ steel_throwing_axe:
   price: 48
   limit: 1000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   aka: [ steel_thrownaxe, steel_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4077,6 +4083,7 @@ mithril_throwing_axe:
   price: 127
   limit: 1000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   aka: [ mithril_thrownaxe, mithril_thrown_axe, mith_throwing_axe, mith_thrownaxe, mith_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4085,6 +4092,7 @@ adamant_throwing_axe:
   price: 118
   limit: 1000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   aka: [ adamant_thrownaxe, adamant_thrown_axe, addy_throwing_axe, addy_thrownaxe, addy_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4093,6 +4101,9 @@ rune_throwing_axe:
   price: 292
   limit: 1000
   attack_range: 4
+  weapon_type: knife
+  special_energy: 100
+  special: chainhit
   slot: "Weapon"
   aka: [ rune_thrownaxe, rune_thrown_axe ]
   examine: "A finely balanced throwing axe."
@@ -4101,6 +4112,7 @@ bronze_dart:
   price: 26
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart:
@@ -4108,6 +4120,7 @@ iron_dart:
   price: 24
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart:
@@ -4115,6 +4128,7 @@ steel_dart:
   price: 25
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 mithril_dart:
@@ -4122,6 +4136,7 @@ mithril_dart:
   price: 39
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart:
@@ -4129,6 +4144,7 @@ adamant_dart:
   price: 65
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart:
@@ -4136,47 +4152,55 @@ rune_dart:
   price: 108
   limit: 1000
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 bronze_dart_p:
   id: 812
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart_p:
   id: 813
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart_p:
   id: 814
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 mithril_dart_p:
   id: 815
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart_p:
   id: 816
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart_p:
   id: 817
   limit: 1000
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 poisoned_dart_p:
   id: 818
   slot: "Weapon"
+  weapon_type: dart
 bronze_dart_tip:
   id: 819
   price: 28
@@ -4230,6 +4254,7 @@ bronze_javelin:
   price: 3
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A bronze tipped javelin."
 iron_javelin:
@@ -4237,6 +4262,7 @@ iron_javelin:
   price: 3
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin:
@@ -4244,6 +4270,7 @@ steel_javelin:
   price: 20
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin:
@@ -4251,6 +4278,7 @@ mithril_javelin:
   price: 22
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin:
@@ -4258,6 +4286,7 @@ adamant_javelin:
   price: 22
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin:
@@ -4265,42 +4294,49 @@ rune_javelin:
   price: 249
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A rune tipped javelin."
 bronze_javelin_p:
   id: 831
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A bronze tipped javelin."
 iron_javelin_p:
   id: 832
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin_p:
   id: 833
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin_p:
   id: 834
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin_p:
   id: 835
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin_p:
   id: 836
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A rune tipped javelin."
 crossbow:
@@ -4425,6 +4461,8 @@ magic_longbow:
   limit: 5000
   weight: 1.814
   attack_range: 10
+  special_energy: 350
+  special: powershot
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -4437,6 +4475,8 @@ magic_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 7
+  special_energy: 550
+  special: snapshot
   aka: [ msb, magic_sb ]
   examine: "Short and magical, but still effective."
 magic_shortbow_noted: 862
@@ -4445,9 +4485,11 @@ iron_knife:
   price: 41
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   smithing:
     level: 22
     xp: 25.0
+  aka: [ iron_knives ]
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_knife:
@@ -4455,9 +4497,11 @@ bronze_knife:
   price: 37
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   smithing:
     level: 7
     xp: 12.5
+  aka: [ bronze_knives ]
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife:
@@ -4465,9 +4509,11 @@ steel_knife:
   price: 102
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   smithing:
     level: 37
     xp: 37.5
+  aka: [ steel_knives ]
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife:
@@ -4475,9 +4521,11 @@ mithril_knife:
   price: 160
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   smithing:
     level: 57
     xp: 50.0
+  aka: [ mithril_knives, mith_knife, mith_knives ]
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife:
@@ -4485,9 +4533,11 @@ adamant_knife:
   price: 351
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   smithing:
     level: 77
     xp: 62.5
+  aka: [ adamant_knives, addy_knife, addy_knives ]
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife:
@@ -4495,9 +4545,11 @@ rune_knife:
   price: 959
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   smithing:
     level: 92
     xp: 75.0
+  aka: [ rune_knives ]
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife:
@@ -4505,48 +4557,57 @@ black_knife:
   price: 69
   limit: 10000
   attack_range: 4
+  weapon_type: knife
+  aka: [ black_knives ]
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_knife_p:
   id: 870
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_knife_p:
   id: 871
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife_p:
   id: 872
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife_p:
   id: 873
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife_p:
   id: 874
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife_p:
   id: 875
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife_p:
   id: 876
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_bolts:
@@ -6088,6 +6149,9 @@ dragon_dagger:
   aka: [ dd ]
   special_damage_mod_1: 1.15
   special_accuracy_mod: 1.15
+  special_energy: 250
+  special: puncture
+  weapon_type: dragon_dagger
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -6159,6 +6223,9 @@ dragon_dagger_p:
   aka: [ ddp ]
   special_damage_mod_1: 1.15
   special_accuracy_mod: 1.15
+  special_energy: 250
+  special: puncture
+  weapon_type: dragon_dagger
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -6255,6 +6322,8 @@ dragon_spear:
   price: 37700
   limit: 10
   weight: 2.267
+  special_energy: 250
+  special: shove
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon tipped spear."
@@ -6314,6 +6383,8 @@ dragon_spear_p:
   id: 1263
   limit: 10
   weight: 2.267
+  special_energy: 250
+  special: shove
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon tipped spear."
@@ -6573,6 +6644,8 @@ dragon_longsword:
   limit: 10
   weight: 1.814
   special_damage_mod_1: 1.25
+  special_energy: 250
+  special: cleave
   slot: "Weapon"
   material: "metal"
   examine: "A very powerful sword."
@@ -6585,6 +6658,7 @@ bronze_2h_sword:
   smithing:
     level: 14
     xp: 37.5
+  aka: [ bronze_2h ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -6599,6 +6673,7 @@ iron_2h_sword:
   smithing:
     level: 29
     xp: 75.0
+  aka: [ iron_2h ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -6613,6 +6688,7 @@ steel_2h_sword:
   smithing:
     level: 44
     xp: 112.5
+  aka: [ steel_2h ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -6624,6 +6700,7 @@ black_2h_sword:
   price: 1027
   limit: 1000
   weight: 3.628
+  aka: [ black_2h ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -6637,6 +6714,7 @@ mithril_2h_sword:
   smithing:
     level: 64
     xp: 150.0
+  aka: [ mithril_2h, mith_2h ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -6650,6 +6728,7 @@ adamant_2h_sword:
   smithing:
     level: 84
     xp: 187.5
+  aka: [ adamant_2h, addy_2h ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -6663,6 +6742,7 @@ rune_2h_sword:
   smithing:
     level: 99
     xp: 225.0
+  aka: [ rune_2h ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -7010,6 +7090,8 @@ dragon_battleaxe:
   limit: 10
   weight: 2.721
   aka: [ d_baxe, dragon_baxe ]
+  special_energy: 1000
+  special: rampage
   slot: "Weapon"
   examine: "A vicious looking axe."
 dragon_battleaxe_noted: 1378
@@ -7298,6 +7380,8 @@ dragon_mace:
   weight: 1.814
   special_damage_mod_1: 1.5
   special_accuracy_mod: 1.25
+  special_energy: 250
+  special: shatter
   slot: "Weapon"
   examine: "A spiky mace."
 dragon_mace_noted: 1435
@@ -7684,6 +7768,7 @@ magic_logs:
     level: 75
     xp: 303.8
     life: 180
+  aka: [ magic_log ]
   examine: "Logs cut from a magic tree."
 magic_logs_noted: 1514
 yew_logs:
@@ -7695,6 +7780,7 @@ yew_logs:
     level: 60
     xp: 202.5
     life: 160
+  aka: [ yew_log ]
   examine: "Logs cut from a yew tree."
 yew_logs_noted: 1516
 maple_logs:
@@ -7706,6 +7792,7 @@ maple_logs:
     level: 45
     xp: 135.0
     life: 100
+  aka: [ maple_log ]
   examine: "Logs cut from a maple tree."
 maple_logs_noted: 1518
 willow_logs:
@@ -7717,6 +7804,7 @@ willow_logs:
     level: 30
     xp: 90.0
     life: 90
+  aka: [ willow_log ]
   examine: "Logs cut from a willow tree."
 willow_logs_noted: 1520
 oak_logs:
@@ -7728,6 +7816,7 @@ oak_logs:
     level: 15
     xp: 60.0
     life: 90
+  aka: [ oak_log ]
   examine: "Logs cut from an oak tree."
   kept: "Wilderness"
 oak_logs_noted: 1522
@@ -8811,6 +8900,7 @@ chisel:
   price: 94
   limit: 100
   weight: 0.453
+  aka: [ chissel, chissle ]
   examine: "Good for detailed crafting."
   kept: "Wilderness"
 chisel_noted: 1756
@@ -14384,12 +14474,14 @@ black_dart:
   price: 631
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 black_dart_p:
   id: 3094
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 bronze_claws:
@@ -14465,6 +14557,8 @@ rune_claws:
     xp: 150.0
   special_damage_mod_1: 1.1
   special_accuracy_mod: 1.1
+  special_energy: 250
+  special: impale
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pair of rune claws."
@@ -14875,6 +14969,8 @@ dragon_spear_kp:
   id: 3176
   limit: 10
   tradeable: false
+  special_energy: 250
+  special: shove
   weight: 2.267
   slot: "Weapon"
   type: "TwoHanded"
@@ -15031,6 +15127,8 @@ dragon_halberd:
   weight: 3.175
   attack_range: 2
   special_damage_mod_1: 1.1
+  special_energy: 300
+  special: sweep
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon halberd."
@@ -17687,6 +17785,7 @@ saradomin_flag:
   id: 4037
   weight: 2.267
   aka: [ saradomin_standard ]
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The Saradomin team's flag."
@@ -17695,6 +17794,7 @@ zamorak_flag:
   id: 4039
   weight: 2.267
   aka: [ zamorak_standard ]
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The Zamorak team's flag."
@@ -18124,12 +18224,15 @@ broad_arrows:
   id: 4150
   examine: "Arrows with a wider than normal tip."
 abyssal_whip:
+  &whip
   id: 4151
   price: 865326
   limit: 10
   weight: 0.453
   aka: [ whip, abby_whip, red_whip, whip_red, red_abyssal_whip, abyssal_whip_red ]
   special_accuracy_mod: 1.25
+  special_energy: 500
+  special: energy_drain
   slot: "Weapon"
   examine: "A weapon from the Abyss."
 abyssal_whip_noted: 4152
@@ -18139,6 +18242,9 @@ granite_maul:
   limit: 10
   weight: 4.535
   aka: [ gmaul ]
+  special_energy: 500
+  special: quick_smash
+  weapon_type: granite_maul
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Simplicity is the best weapon."
@@ -20268,6 +20374,8 @@ dragon_scimitar:
   weight: 1.814
   aka: [ d_scimmy, dragon_scimmy, d_scimitar ]
   special_accuracy_mod: 1.15
+  special_energy: 550
+  special: sever
   slot: "Weapon"
   material: "metal"
   examine: "A vicious, curved sword."
@@ -20910,6 +21018,7 @@ dharoks_greataxe:
   charges: 1
   degrade: dharoks_greataxe_100
   deplete: combat
+  weapon_type: dharoks_greataxe
   aka: [ dhaxe, dhgaxe, dh_axe, dh_gaxe, dh_g_axe, dharocks_greataxe, dharoks_great_axe ]
   slot: "Weapon"
   type: "TwoHanded"
@@ -20964,6 +21073,7 @@ guthans_warspear:
   charges: 1
   degrade: guthans_warspear_100
   deplete: combat
+  weapon_type: guthans_warspear
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Guthan The Infested's Warspear."
@@ -21015,6 +21125,7 @@ karils_crossbow:
   charges: 1
   degrade: karils_crossbow_100
   deplete: combat
+  weapon_type: karils_crossbow
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -21071,6 +21182,7 @@ torags_hammers:
   charges: 1
   degrade: torags_hammers_100
   deplete: combat
+  weapon_type: torags_hammers
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Torag the Corrupted's twin hammers."
@@ -21120,6 +21232,7 @@ veracs_flail:
   charges: 1
   degrade: veracs_flail_100
   deplete: combat
+  weapon_type: veracs_flail
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Verac the Defiled's Flail."
@@ -21621,6 +21734,7 @@ dharoks_greataxe_100:
   charges: 22500
   degrade: dharoks_greataxe_75
   deplete: combat
+  weapon_type: dharoks_greataxe
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Dharok the Wretched's Greataxe."
@@ -21754,6 +21868,7 @@ guthans_warspear_100:
   charges: 22500
   degrade: guthans_warspear_75
   deplete: combat
+  weapon_type: guthans_warspear
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Guthan The Infested's Warspear."
@@ -22016,6 +22131,7 @@ torags_hammers_100:
   charges: 22500
   degrade: torags_hammers_75
   deplete: combat
+  weapon_type: torags_hammers
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Torag the Corrupted's twin hammers."
@@ -22146,6 +22262,7 @@ veracs_flail_100:
   charges: 22500
   degrade: veracs_flail_75
   deplete: combat
+  weapon_type: veracs_flail
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Verac the Defiled's Flail."
@@ -24250,240 +24367,280 @@ bronze_dart_p+:
   id: 5628
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart_p+:
   id: 5629
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart_p+:
   id: 5630
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 black_dart_p+:
   id: 5631
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 mithril_dart_p+:
   id: 5632
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart_p+:
   id: 5633
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart_p+:
   id: 5634
   limit: 1000
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 bronze_dart_p++:
   id: 5635
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart_p++:
   id: 5636
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart_p++:
   id: 5637
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 black_dart_p++:
   id: 5638
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 mithril_dart_p++:
   id: 5639
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart_p++:
   id: 5640
   limit: 1500
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart_p++:
   id: 5641
   limit: 1000
   attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 bronze_javelin_p+:
   id: 5642
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A bronze tipped javelin."
 iron_javelin_p+:
   id: 5643
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin_p+:
   id: 5644
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin_p+:
   id: 5645
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin_p+:
   id: 5646
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin_p+:
   id: 5647
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A rune tipped javelin."
 bronze_javelin_p++:
   id: 5648
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A bronze-tipped javelin."
 iron_javelin_p++:
   id: 5649
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin_p++:
   id: 5650
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin_p++:
   id: 5651
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin_p++:
   id: 5652
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin_p++:
   id: 5653
   limit: 1000
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A rune tipped javelin."
 bronze_knife_p+:
   id: 5654
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_knife_p+:
   id: 5655
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife_p+:
   id: 5656
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife_p+:
   id: 5657
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife_p+:
   id: 5658
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife_p+:
   id: 5659
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife_p+:
   id: 5660
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_knife_p++:
   id: 5661
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_knife_p++:
   id: 5662
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife_p++:
   id: 5663
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife_p++:
   id: 5664
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife_p++:
   id: 5665
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife_p++:
   id: 5666
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife_p++:
   id: 5667
   limit: 10000
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_dagger_p+:
@@ -24544,6 +24701,9 @@ dragon_dagger_p+:
   aka: [ ddp, dd+ ]
   special_damage_mod_1: 1.15
   special_accuracy_mod: 1.15
+  special_energy: 250
+  special: puncture
+  weapon_type: dragon_dagger
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -24614,6 +24774,9 @@ dragon_dagger_p++:
   aka: [ dds, ddpp, dd++ ]
   special_damage_mod_1: 1.15
   special_accuracy_mod: 1.15
+  special_energy: 250
+  special: puncture
+  weapon_type: dragon_dagger
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -24681,6 +24844,8 @@ dragon_spear_p+:
   id: 5716
   limit: 10
   weight: 2.267
+  special_energy: 250
+  special: shove
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon tipped spear."
@@ -24740,6 +24905,8 @@ dragon_spear_p++:
   id: 5730
   limit: 10
   weight: 2.267
+  special_energy: 250
+  special: shove
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon tipped spear."
@@ -27754,6 +27921,7 @@ mouse_toy:
   id: 6541
   tradeable: false
   weight: 0.1
+  weapon_type: mouse_toy
   slot: "Weapon"
   destroy: "You can get a replacement mouse toy by speaking to Bob, the Jagex cat. You can also reclaim it from the quest storage chest."
   examine: "An Advanced Combat Training Device."
@@ -28677,6 +28845,8 @@ seercull:
   limit: 100
   weight: 1.36
   attack_range: 8
+  special_energy: 1000
+  special: soulshot
   slot: "Weapon"
   type: "TwoHanded"
   examine: "An ancient Fremennik bow that was once used to battle the Moon Clan."
@@ -28736,6 +28906,8 @@ dragon_hatchet:
   limit: 10
   weight: 1.36
   aka: [ dragon_axe, daxe ]
+  special_energy: 1000
+  special: clobber
   rank: 7
   slot: "Weapon"
   examine: "A very powerful hatchet."
@@ -28763,6 +28935,8 @@ darklight:
   id: 6746
   tradeable: false
   weight: 1.814
+  special_energy: 500
+  special: weaken
   slot: "Weapon"
   material: "metal"
   destroy: "You can reclaim it from Gideon Bede in the Saradomin churchist"
@@ -28942,44 +29116,51 @@ smouldering_pot:
   examine: "Contains slowly burning garden weeds."
   use: "Quest"
   kept: "Wilderness"
-rat_pole:
+rat_pole_0:
   id: 6773
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pole for putting rats on."
   weight: 2.267
-rat_pole_2:
+rat_pole_1:
   id: 6774
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pole with one rat on it."
   weight: 2.267
-rat_pole_3:
+rat_pole_2:
   id: 6775
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pole with two rats on it."
   weight: 2.267
-rat_pole_4:
+rat_pole_3:
   id: 6776
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pole with three rats on it."
   weight: 2.267
-rat_pole_5:
+rat_pole_4:
   id: 6777
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pole with four rats on it."
   weight: 2.267
-rat_pole_6:
+rat_pole_5:
   id: 6778
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pole with five rats on it."
   weight: 2.267
-rat_pole_7:
+rat_pole_6:
   id: 6779
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pole with six rats on it."
@@ -30716,6 +30897,8 @@ dragon_2h_sword:
   limit: 10
   weight: 3.628
   aka: [ d2h, dragon_2h ]
+  special_energy: 600
+  special: powerstab
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -30775,6 +30958,7 @@ mud_pie:
   price: 1304
   limit: 1000
   weight: 0.001
+  weapon_type: pie
   slot: "Weapon"
   examine: "All the good of the earth."
 mud_pie_noted: 7171
@@ -33008,6 +33192,7 @@ boxing_gloves_red:
   id: 7671
   tradeable: false
   weight: 0.453
+  weapon_type: boxing_gloves
   slot: "Weapon"
   type: "TwoHanded"
   examine: "I think they look a bit silly."
@@ -33019,6 +33204,7 @@ boxing_gloves_blue:
   id: 7673
   tradeable: false
   weight: 0.453
+  weapon_type: boxing_gloves
   slot: "Weapon"
   type: "TwoHanded"
   examine: "I think they look a bit silly."
@@ -36457,6 +36643,7 @@ banner_arrav:
   id: 8650
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with the symbol of Arrav."
   kept: "Reclaim"
@@ -36464,6 +36651,7 @@ banner_asgarnia:
   id: 8652
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with the symbol of Asgarnia."
   kept: "Reclaim"
@@ -36471,6 +36659,7 @@ banner_dorgeshuun:
   id: 8654
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with a picture of the Dorgeshuun brooch."
   kept: "Reclaim"
@@ -36478,6 +36667,7 @@ banner_dragon:
   id: 8656
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with a picture of a dragon."
   kept: "Reclaim"
@@ -36485,6 +36675,7 @@ banner_fairy:
   id: 8658
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with a picture of a fairy."
   kept: "Reclaim"
@@ -36492,6 +36683,7 @@ banner_guthix:
   id: 8660
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with the symbol of Guthix."
   kept: "Reclaim"
@@ -36499,6 +36691,7 @@ banner_ham:
   id: 8662
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with the symbol of the HAM cult."
   kept: "Reclaim"
@@ -36506,6 +36699,7 @@ banner_horse:
   id: 8664
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with a picture of the mythical 'horse'."
   kept: "Reclaim"
@@ -36513,6 +36707,7 @@ banner_jogre:
   id: 8666
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with a picture of a Jogre."
   kept: "Reclaim"
@@ -36520,6 +36715,7 @@ banner_kandarin:
   id: 8668
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with the symbol of Kandarin."
   kept: "Reclaim"
@@ -36527,6 +36723,7 @@ banner_misthalin:
   id: 8670
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with the symbol of Misthalin."
   kept: "Reclaim"
@@ -36534,6 +36731,7 @@ banner_money:
   id: 8672
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with a picture of a money-bag."
   kept: "Reclaim"
@@ -36541,6 +36739,7 @@ banner_saradomin:
   id: 8674
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with the symbol of Saradomin."
   kept: "Reclaim"
@@ -36548,6 +36747,7 @@ banner_skull:
   id: 8676
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with a picture of a skull."
   kept: "Reclaim"
@@ -36555,6 +36755,7 @@ banner_varrock:
   id: 8678
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with the symbol of Varrock."
   kept: "Reclaim"
@@ -36562,6 +36763,7 @@ banner_zamorak:
   id: 8680
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   examine: "A banner with the symbol of Zamorak."
   kept: "Reclaim"
@@ -37271,6 +37473,8 @@ bone_dagger:
   price: 2662
   limit: 100
   weight: 0.453
+  special_energy: 750
+  special: backstab
   slot: "Weapon"
   examine: "A powerful dagger."
 bone_dagger_noted: 8873
@@ -37278,6 +37482,7 @@ bone_dagger_p:
   id: 8874
   limit: 100
   weight: 0.453
+  special_energy: 750
   slot: "Weapon"
   examine: "A powerful dagger."
 bone_dagger_p_noted: 8875
@@ -37285,6 +37490,7 @@ bone_dagger_p+:
   id: 8876
   limit: 100
   weight: 0.453
+  special_energy: 750
   slot: "Weapon"
   examine: "A powerful dagger."
 bone_dagger_p+_noted: 8877
@@ -37292,6 +37498,7 @@ bone_dagger_p++:
   id: 8878
   limit: 100
   weight: 0.453
+  special_energy: 750
   slot: "Weapon"
   examine: "A powerful dagger."
 bone_dagger_p++_noted: 8879
@@ -37302,6 +37509,8 @@ dorgeshuun_crossbow:
   weight: 2.267
   attack_range: 6
   slot: "Weapon"
+  special_energy: 750
+  special: snipe
   aka: [ dorg_cb, dorg_cbow, dorg_crossbow ]
   examine: "This fires crossbow bolts."
 dorgeshuun_cbow_noted: 8881
@@ -37642,6 +37851,7 @@ cutthroat_flag:
   id: 8966
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The flag of The Cutthroat."
@@ -37650,6 +37860,7 @@ guilded_smile_flag:
   id: 8967
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The flag of The Guilded Smile."
@@ -37658,6 +37869,7 @@ bronze_fist_flag:
   id: 8968
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The flag of The Bronze Fist."
@@ -37666,6 +37878,7 @@ lucky_shot_flag:
   id: 8969
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The flag of The Lucky Shot."
@@ -37674,6 +37887,7 @@ treasure_flag:
   id: 8970
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The flag of The Treasure Trove."
@@ -37682,6 +37896,7 @@ phasmatys_flag:
   id: 8971
   tradeable: false
   weight: 2.267
+  weapon_type: banner
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The flag of The Phasmatys Pride."
@@ -38393,6 +38608,7 @@ blurite_bolts:
   &blurite_bolts
   id: 9139
   tradeable: false
+  aka: [ blurite_bolt ]
   slot: "Ammo"
   material: "metal"
   examine: "Blurite crossbow bolts."
@@ -38401,6 +38617,7 @@ iron_bolts:
   id: 9140
   price: 40
   limit: 25000
+  aka: [ iron_bolt ]
   slot: "Ammo"
   material: "metal"
   examine: "Iron ammunition for crossbows."
@@ -38408,6 +38625,7 @@ steel_bolts:
   id: 9141
   price: 85
   limit: 10000
+  aka: [ steel_bolt ]
   slot: "Ammo"
   material: "metal"
   examine: "Steel ammunition for crossbows."
@@ -38415,6 +38633,7 @@ mithril_bolts:
   id: 9142
   price: 125
   limit: 10000
+  aka: [ mithril_bolt, mith_bolts, mith_bolt ]
   slot: "Ammo"
   material: "metal"
   examine: "Mithril crossbow bolts."
@@ -38422,6 +38641,7 @@ adamant_bolts:
   id: 9143
   price: 202
   limit: 10000
+  aka: [ adamant_bolt, addy_bolts, addy_bolt ]
   slot: "Ammo"
   material: "metal"
   examine: "Adamantite crossbow bolts."
@@ -38429,6 +38649,7 @@ runite_bolts:
   id: 9144
   price: 894
   limit: 10000
+  aka: [ rune_bolt, rune_bolts, runite_bolt ]
   slot: "Ammo"
   material: "metal"
   examine: "Runite crossbow bolts."
@@ -38436,6 +38657,7 @@ silver_bolts:
   id: 9145
   price: 10
   limit: 10000
+  aka: [ silver_bolt ]
   slot: "Ammo"
   material: "metal"
   examine: "Silver crossbow bolts."
@@ -38445,6 +38667,7 @@ bronze_crossbow:
   limit: 1000
   weight: 2.0
   attack_range: 7
+  aka: [ bronze_cbow, bronze_cb ]
   slot: "Weapon"
   examine: "A bronze crossbow."
   kept: "Wilderness"
@@ -38454,6 +38677,7 @@ blurite_crossbow:
   tradeable: false
   weight: 2.0
   attack_range: 7
+  aka: [ blurite_cbow, blurite_cb ]
   slot: "Weapon"
   examine: "A blurite crossbow."
   kept: "Wilderness"
@@ -38463,6 +38687,7 @@ iron_crossbow:
   limit: 1000
   weight: 2.0
   attack_range: 7
+  aka: [ iron_cbow, iron_cb ]
   slot: "Weapon"
   examine: "An iron crossbow."
 iron_crossbow_noted: 9178
@@ -38472,6 +38697,7 @@ steel_crossbow:
   limit: 1000
   weight: 2.0
   attack_range: 7
+  aka: [ steel_cbow, steel_cb ]
   slot: "Weapon"
   examine: "A steel crossbow."
 steel_crossbow_noted: 9180
@@ -38481,6 +38707,7 @@ mithril_crossbow:
   limit: 1000
   weight: 2.0
   attack_range: 7
+  aka: [ mithril_cbow, mith_cbow, mithril_cb, mith_cb ]
   slot: "Weapon"
   examine: "A mithril crossbow."
 mith_crossbow_noted: 9182
@@ -38490,6 +38717,7 @@ adamant_crossbow:
   limit: 1000
   weight: 2.0
   attack_range: 7
+  aka: [ adamant_cbow, addy_cbow, adamant_cb, addy_cb ]
   slot: "Weapon"
   examine: "An adamant crossbow."
 adamant_crossbow_noted: 9184
@@ -38499,7 +38727,7 @@ rune_crossbow:
   limit: 100
   weight: 2.0
   attack_range: 7
-  aka: [ rcb, rune_cb ]
+  aka: [ rcb, rune_cb, rune_cbow ]
   slot: "Weapon"
   examine: "A rune crossbow."
 rune_crossbow_noted: 9186
@@ -41770,6 +41998,7 @@ chinchompa:
   price: 322
   limit: 20000
   aka: [ grey_chinchompa, grey_chin, chin, chins ]
+  weapon_type: chinchompa
   slot: "Weapon"
   destroy: "Release"
   attack_range: 9
@@ -41780,6 +42009,7 @@ red_chinchompa:
   price: 665
   limit: 20000
   aka: [ red_chin, red_chin, red_chins ]
+  weapon_type: chinchompa
   slot: "Weapon"
   destroy: "Release"
   attack_range: 9
@@ -42267,6 +42497,8 @@ orange_salamander:
   price: 12
   limit: 1000
   weight: 4.0
+  weapon_type: salamander
+  attack_range: 1
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "Release"
@@ -42277,6 +42509,8 @@ red_salamander:
   price: 27
   limit: 1000
   weight: 4.0
+  weapon_type: salamander
+  attack_range: 1
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "Release"
@@ -42287,6 +42521,8 @@ black_salamander:
   price: 93
   limit: 1000
   weight: 4.0
+  weapon_type: salamander
+  attack_range: 1
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "Release"
@@ -42297,6 +42533,8 @@ green_salamander:
   limit: 2000
   weight: 4.0
   aka: [ swamp_lizard ]
+  weapon_type: salamander
+  attack_range: 1
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "Release"
@@ -42735,6 +42973,8 @@ magic_composite_bow:
   limit: 2
   weight: 1.8
   attack_range: 10
+  special_energy: 350
+  special: powershot
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow made from magic logs."
@@ -45948,6 +46188,10 @@ barrelchest_anchor:
   type: "TwoHanded"
   special_damage_mod_1: 1.1
   special_accuracy_mod: 2.0
+  special_energy: 500
+  special: sunder
+  aka: [ anchor, bchest_anchor, barrel_chest_anchor ]
+  weapon_type: anchor
   examine: "This is likely to put my back out..."
   destroy2: "If you drop the Anchor it will be destroyed, and you will need to get a new one from Brother Tranquillity, then pay Smith to re-forge it."
   kept: "Reclaim"
@@ -46768,6 +47012,8 @@ brine_sabre:
   limit: 100
   weight: 1.814
   special_accuracy_mod: 2.0
+  special_energy: 750
+  special: liquify
   slot: "Weapon"
   material: "metal"
   examine: "A salty sword."
@@ -46887,6 +47133,8 @@ ancient_mace:
   price: 1102
   limit: 100
   weight: 1.814
+  special_energy: 1000
+  special: favour_of_the_war_god
   slot: "Weapon"
   examine: "It has ancient goblin symbols on it."
 zanik_slice:
@@ -47556,11 +47804,15 @@ dragon_dart:
   id: 11230
   price: 287
   limit: 1500
+  attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a dragon tip."
 dragon_dart_p:
   id: 11231
   limit: 1500
+  attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a dragon tip."
 dragon_dart_tip:
@@ -47571,24 +47823,31 @@ dragon_dart_tip:
 dragon_dart_p+:
   id: 11233
   limit: 1500
+  attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a dragon tip."
 dragon_dart_p++:
   id: 11234
   limit: 1500
+  attack_range: 3
+  weapon_type: dart
   slot: "Weapon"
   examine: "A deadly throwing dart with a dragon tip."
 dark_bow:
+  &dark_bow
   id: 11235
   price: 279300
   limit: 10
   weight: 1.814
   attack_range: 10
+  special_energy: 550
+  special: descent_of_darkness
+  ammo_required: 2
   aka: [ dbow, d_bow ]
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow from a darker dimension."
-  ammo_required: 2
 dark_bow_noted: 11236
 dragon_arrowtips:
   id: 11237
@@ -48948,6 +49207,9 @@ armadyl_godsword:
   special_damage_mod_1: 1.1
   special_damage_mod_2: 1.25
   special_accuracy_mod: 2.0
+  special_energy: 500
+  special: the_judgement
+  weapon_type: godsword
   aka: [ ags, arma_gs, arma_sword, armadyl_sword, arma_godsword, armadyl_god_sword ]
   slot: "Weapon"
   material: "metal"
@@ -48962,6 +49224,9 @@ bandos_godsword:
   special_damage_mod_1: 1.1
   special_damage_mod_2: 1.1
   special_accuracy_mod: 2.0
+  special_energy: 500
+  special: warstrike
+  weapon_type: godsword
   aka: [ bgs, bandos_sword, bandos_god_sword ]
   slot: "Weapon"
   material: "metal"
@@ -48973,9 +49238,12 @@ saradomin_godsword:
   price: 27900000
   limit: 10
   weight: 10.0
-  aka: [ sgs, sara_gs, sara_godsword, saradomin_god_sword ]
   special_damage_mod_1: 1.1
   special_accuracy_mod: 2.0
+  special_energy: 500
+  special: healing_blade
+  weapon_type: godsword
+  aka: [ sgs, sara_gs, sara_godsword, saradomin_god_sword ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -48986,9 +49254,12 @@ zamorak_godsword:
   price: 8700000
   limit: 10
   weight: 10.0
-  aka: [ zgs, zammy_godsword, zammy_gs, zammy_sword, zamorak_god_sword ]
   special_damage_mod_1: 1.1
   special_accuracy_mod: 2.0
+  special_energy: 500
+  special: ice_cleave
+  weapon_type: godsword
+  aka: [ zgs, zammy_godsword, zammy_gs, zammy_sword, zamorak_god_sword ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -49050,6 +49321,8 @@ zamorakian_spear:
   limit: 10
   weight: 3.0
   aka: [ zs, zammy_spear, zamorak_spear ]
+  special_energy: 250
+  special: shove
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A versatile spear wielded by agents of chaos."
@@ -49120,6 +49393,9 @@ saradomin_sword:
   aka: [ ss, sara_sword ]
   special_damage_mod_1: 1.1
   special_accuracy_mod: 2.0
+  special_energy: 1000
+  special: saradomins_lightning
+  weapon_type: godsword
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -58256,6 +58532,7 @@ performance_knife:
   id: 13720
   tradeable: false
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   destroy: "You can get another one from the equipment box for this performance."
   examine: "A finely balanced throwing knife."
@@ -58265,6 +58542,7 @@ performance_throwing_axe:
   id: 13721
   tradeable: false
   attack_range: 4
+  weapon_type: knife
   slot: "Weapon"
   destroy: "You can get another one from the equipment box for this performance."
   examine: "A finely balanced throwing axe."
@@ -58798,24 +59076,36 @@ morrigans_javelin:
   price: 271900
   limit: 100
   attack_range: 5
+  special_energy: 500
+  special: phantom_strike
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p:
   id: 13880
   limit: 100
   attack_range: 5
+  special_energy: 500
+  special: phantom_strike
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p+:
   id: 13881
   limit: 100
   attack_range: 5
+  special_energy: 500
+  special: phantom_strike
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p++:
   id: 13882
   limit: 100
   attack_range: 5
+  special_energy: 500
+  special: phantom_strike
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_throwing_axe:
@@ -58823,7 +59113,10 @@ morrigans_throwing_axe:
   price: 189500
   limit: 500
   attack_range: 4
+  weapon_type: knife
   special_damage_mod_1: 1.2
+  special_energy: 500
+  special: hamstring
   slot: "Weapon"
   examine: "A vicious throwing axe."
 statiuss_platebody:
@@ -58951,9 +59244,12 @@ vestas_longsword:
   limit: 10
   aka: [ vls, vestas_long_sword ]
   special_damage_mod_1: 1.2
+  special_energy: 250
+  special: feint
   charges: 1
   degrade: vestas_longsword_degraded
   deplete: combat
+  weapon_type: vestas_longsword
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -58964,9 +59260,12 @@ vestas_longsword_degraded:
   limit: 10
   tradeable: false
   special_damage_mod_1: 1.2
+  special_energy: 250
+  special: feint
   charges: 6000
   degrade: destroy
   deplete: combat
+  weapon_type: vestas_longsword
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -58977,6 +59276,8 @@ statiuss_warhammer:
   limit: 10
   aka: [ stat_ham, stat_hammer, statius_hammer, statiuss_hammer, statius_warhammer ]
   special_damage_mod_1: 1.25
+  special_energy: 350
+  special: smash
   charges: 1
   degrade: statiuss_warhammer_degraded
   deplete: combat
@@ -58989,6 +59290,8 @@ statiuss_warhammer_degraded:
   limit: 10
   tradeable: false
   special_damage_mod_1: 1.25
+  special_energy: 350
+  special: smash
   charges: 6000
   degrade: destroy
   deplete: combat
@@ -58999,6 +59302,8 @@ vestas_spear:
   id: 13905
   price: 4100000
   limit: 10
+  special_energy: 500
+  special: spear_wall
   charges: 1
   degrade: vestas_spear_degraded
   deplete: combat
@@ -59010,6 +59315,8 @@ vestas_spear_noted: 13906
 vestas_spear_degraded:
   id: 13907
   limit: 10
+  special_energy: 500
+  special: spear_wall
   tradeable: false
   charges: 6000
   degrade: destroy
@@ -59144,6 +59451,7 @@ corrupt_vestas_longsword:
   charges: 1
   degrade: corrupt_vestas_longsword_degraded
   deplete: combat
+  weapon_type: vestas_longsword
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59156,6 +59464,7 @@ corrupt_vestas_longsword_degraded:
   charges: 1500
   degrade: destroy
   deplete: combat
+  weapon_type: vestas_longsword
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59367,24 +59676,28 @@ corrupt_morrigans_javelin:
   price: 57500
   limit: 100
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A vicious javelin."
 c_morrigans_javelin_p:
   id: 13954
   limit: 100
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A vicious javelin."
 c_morrigans_javelin_p+:
   id: 13955
   limit: 100
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A vicious javelin."
 c_morrigans_javelin_p++:
   id: 13956
   limit: 100
   attack_range: 5
+  weapon_type: javelin
   slot: "Weapon"
   examine: "A vicious javelin."
 corrupt_morrigans_throwing_axe:
@@ -59392,6 +59705,8 @@ corrupt_morrigans_throwing_axe:
   price: 58800
   limit: 500
   attack_range: 4
+  weapon_type: knife
+  special_energy: 500
   slot: "Weapon"
   examine: "A vicious throwing axe."
 corrupt_dragon_chainbody:
@@ -59539,6 +59854,7 @@ corrupt_dragon_dagger:
   charges: 1
   degrade: corrupt_dragon_dagger_degraded
   deplete: combat
+  weapon_type: dragon_dagger
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
@@ -59551,6 +59867,7 @@ corrupt_dragon_dagger_degraded:
   charges: 1500
   degrade: destroy
   deplete: combat
+  weapon_type: dragon_dagger
   slot: "Weapon"
   material: "metal"
   destroy: "Your dagger is fragile and will disappear if you drop it. Are you sure you want to drop it?"
@@ -61238,6 +61555,8 @@ dragon_claws:
   limit: 10
   weight: 5.0
   aka: [ dclaws, d_claws, claws ]
+  special_energy: 500
+  special: slice_and_dice
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A set of fighting claws."
@@ -61875,6 +62194,8 @@ enhanced_excalibur:
   tradeable: false
   weight: 2.267
   aka: [ ee ]
+  special_energy: 1000
+  special: sanctuary
   slot: "Weapon"
   destroy: "You can retrieve the Enhanced Excalibur from the Lady of the Lake for 500 coins."
   examine: "This used to belong to King Arthur and has since been improved to be held in the off-hand."
@@ -62204,6 +62525,8 @@ zaniks_crossbow:
   tradeable: false
   weight: 0.001
   attack_range: 6
+  special_energy: 500
+  special: defiance
   slot: "Weapon"
   examine: "The crossbow that defeated the avatar of Bandos."
   kept: "Reclaim"
@@ -62523,6 +62846,7 @@ easter_carrot:
   id: 14728
   tradeable: false
   weight: 0.453
+  weapon_type: easter_carrot
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "You can claim this item from Diango."
@@ -64812,6 +65136,7 @@ hand_cannon:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 9
+  special_energy: 500
   examine: "A miniature dwarven cannon."
 hand_cannon_noted: 15242
 hand_cannon_shot:
@@ -65684,6 +66009,7 @@ balmung:
   id: 15403
   tradeable: false
   weight: 2.721
+  weapon_type: dharoks_greataxe
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "If you destroy Balmung, perhaps Brundt the Chieftain, Queen Sigrid, or Kharshai can help you."
@@ -65955,34 +66281,30 @@ penance_master_horn:
   examine: "An ornate horn with a fading inscription."
   weight: 0.453
 abyssal_whip_yellow:
+  <<: *whip
   id: 15441
   tradeable: false
-  weight: 0.453
-  slot: "Weapon"
   aka: [ yellow_whip, whip_yellow, yellow_abyssal_whip ]
   examine: "A weapon from the Abyss, painted yellow from the yolk of a Penance egg."
   kept: "Reclaim"
 abyssal_whip_blue:
+  <<: *whip
   id: 15442
   tradeable: false
-  weight: 0.453
-  slot: "Weapon"
   aka: [ blue_whip, whip_blue, blue_abyssal_whip ]
   examine: "A weapon from the Abyss, painted blue from the yolk of a Penance egg."
   kept: "Reclaim"
 abyssal_whip_white:
+  <<: *whip
   id: 15443
   tradeable: false
-  weight: 0.453
-  slot: "Weapon"
   aka: [ white_whip, whip_white, white_abyssal_whip ]
   examine: "A weapon from the Abyss, painted white from the egg white of a Penance egg."
   kept: "Reclaim"
 abyssal_whip_green:
+  <<: *whip
   id: 15444
   tradeable: false
-  weight: 0.453
-  slot: "Weapon"
   aka: [ green_whip, whip_green, green_abyssal_whip ]
   examine: "A weapon from the Abyss, painted green from the yolk of a Penance egg."
   kept: "Reclaim"
@@ -66277,6 +66599,8 @@ staff_of_light:
   limit: 10
   weight: 2.267
   category: "staff"
+  special_energy: 1000
+  special: power_of_light
   aka: [ sol ]
   slot: "Weapon"
   examine: "Humming with power."
@@ -66765,6 +67089,7 @@ kayles_sling:
   tradeable: false
   weight: 0.25
   attack_range: 4
+  weapon_style: 24
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "You can get another from Xenia/Ilona in Lumbridge."
@@ -67254,37 +67579,29 @@ bowl_of_magenta_glaze:
   kept: "Vanish"
   use: "Removed"
 dark_bow_yellow:
+  <<: *dark_bow
   id: 15701
   tradeable: false
-  weight: 1.814
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "A bow from a darker dimension, painted yellow from the yolk of a Penance egg."
   kept: "Reclaim"
+  examine: "A bow from a darker dimension, painted yellow from the yolk of a Penance egg."
 dark_bow_blue:
+  <<: *dark_bow
   id: 15702
   tradeable: false
-  weight: 1.814
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "A bow from a darker dimension, painted blue from the yolk of a Penance egg."
   kept: "Reclaim"
+  examine: "A bow from a darker dimension, painted blue from the yolk of a Penance egg."
 dark_bow_white:
+  <<: *dark_bow
   id: 15703
   tradeable: false
-  weight: 1.814
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "A bow from a darker dimension, painted white from the egg white of a Penance egg."
   kept: "Reclaim"
+  examine: "A bow from a darker dimension, painted white from the egg white of a Penance egg."
 dark_bow_green:
+  <<: *dark_bow
   id: 15704
   tradeable: false
-  weight: 1.814
-  slot: "Weapon"
-  type: "TwoHanded"
-  examine: "A bow from a darker dimension, painted green from the yolk of a Penance egg."
   kept: "Reclaim"
+  examine: "A bow from a darker dimension, painted green from the yolk of a Penance egg."
 dungeoneering_cape_2:
   id: 15706
   tradeable: false
@@ -77478,6 +77795,7 @@ magic_longbow_sighted:
   tradeable: false
   weight: 1.814
   attack_range: 10
+  special_energy: 350
   slot: "Weapon"
   type: "TwoHanded"
   examine: "It has a sight on it that should improve its performance."
@@ -78985,6 +79303,7 @@ korasis_sword_quiet_before_the_swarm:
   id: 18786
   tradeable: false
   weight: 1.814
+  weapon_type: korasis_sword
   slot: "Weapon"
   material: "metal"
   examine: "A sword of a Void Knight."
@@ -79816,6 +80135,8 @@ saradomin_bow:
   limit: 2
   weight: 1.814
   attack_range: 10
+  special_energy: 550
+  special: restorative_shot
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Saradomin."
@@ -79828,6 +80149,8 @@ guthix_bow:
   weight: 1.814
   attack_range: 10
   special_damage_mod_1: 1.5
+  special_energy: 550
+  special: balanced_shot
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Guthix."
@@ -79839,6 +80162,8 @@ zamorak_bow:
   limit: 2
   weight: 1.814
   attack_range: 10
+  special_energy: 550
+  special: twin_shot
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Zamorak."
@@ -82238,6 +82563,9 @@ korasis_sword_the_void_stares_back:
   id: 19780
   tradeable: false
   weight: 1.814
+  special_energy: 600
+  special: disrupt
+  weapon_type: korasis_sword
   slot: "Weapon"
   material: "metal"
   examine: "The sword of a Void Knight."
@@ -82279,6 +82607,9 @@ korasis_sword:
   tradeable: false
   weight: 0.907
   aka: [ korasi, korasi_sword ]
+  special_energy: 600
+  special: disrupt
+  weapon_type: korasis_sword
   slot: "Weapon"
   material: "metal"
   examine: "The sword of a Void Knight."
@@ -82464,6 +82795,7 @@ sling:
   limit: 10
   weight: 0.25
   attack_range: 4
+  weapon_style: 24
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow to fire magical arrows at your enemies with."
@@ -83494,6 +83826,7 @@ golden_hammer:
   id: 20084
   tradeable: false
   weight: 0.907
+  weapon_type: tzhaar_ket_om
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "You can get another one from a cracker by speaking to Diango in Draynor."
