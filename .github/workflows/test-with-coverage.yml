@@ -1,4 +1,4 @@
-name: JUnit Tests
+name: Run Tests
 on:
   pull_request:
 
@@ -21,16 +21,20 @@ jobs:
           cache: 'gradle'
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
+      - name: Create cache folder
+        run: mkdir -p /data/cache
       - name: Cache game files
         id: cache-files
         uses: actions/cache@v3
         with:
           key: cache-${{ env.CACHE_VERSION }}-${{ hashFiles('data/cache/main_file_cache.idx255') }}
-          path: data/cache
+          path: data/cache/
           enableCrossOsArchive: 'true'
           restore-keys:
             cache-${{ env.CACHE_VERSION }}
             cache-
+      - name: List cache contents
+        run: ls data/cache/
       - if: ${{ steps.cache-files.outputs.cache-hit != 'true' }}
         uses: keithweaver/aws-s3-github-action@v1.0.0
         with:
@@ -40,8 +44,6 @@ jobs:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: eu-west-2
-      - name: Grant Permissions to gradlew
-        run: ls data/cache/
       - name: Grant Permissions to gradlew
         run: chmod +x gradlew
       - name: Run unit tests
