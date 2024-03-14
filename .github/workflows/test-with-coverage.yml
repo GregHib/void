@@ -36,14 +36,11 @@ jobs:
       - name: List cache contents
         run: ls data/cache/
       - if: ${{ steps.cache-files.outputs.cache-hit != 'true' }}
-        uses: keithweaver/aws-s3-github-action@v1.0.0
-        with:
-          command: cp
-          source: s3://void-rsps/caches/${{ env.CACHE_VERSION }}/
-          destination: data/cache/
-          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_region: eu-west-2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: eu-west-2
+        run: aws cp --recursive s3://void-rsps/caches/${{ env.CACHE_VERSION }}/ data/cache/
       - name: Grant Permissions to gradlew
         run: chmod +x gradlew
       - name: Run unit tests
