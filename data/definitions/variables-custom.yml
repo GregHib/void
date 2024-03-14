@@ -289,6 +289,10 @@ skull_sceptre_charges:
   format: int
   default: 10
   persist: true
+shooting_star_bonus_ore:
+  format: int
+  default: 0
+  persist: true
 al_the_camel:
   format: boolean
   persist: true

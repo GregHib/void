@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.entity.objectDespawn
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.getPropertyOrNull
 import world.gregs.voidps.engine.inject
@@ -28,6 +29,8 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.timerStart
+import world.gregs.voidps.engine.timer.timerStop
+import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -136,6 +139,32 @@ fun calculateRewards(stardust: Int): Map<String, Int> {
     )
 }
 
+fun givePlayerBonusOreReward(player: Player) {
+    player["shooting_star_bonus_ore"] = 900
+    player.timers.start("shooting_star_bonus_ore_timer")
+}
+
+playerSpawn { player ->
+    if (player["shooting_star_bonus_ore", 0] > 0) {
+        player.timers.restart("shooting_star_bonus_ore_timer")
+    }
+}
+
+timerStart("shooting_star_bonus_ore_timer") { player ->
+    interval = TimeUnit.SECONDS.toTicks(1)
+}
+
+timerTick("shooting_star_bonus_ore_timer") { player ->
+    if (player.dec("shooting_star_bonus_ore") <= 0) {
+        cancel()
+        return@timerTick
+    }
+}
+
+timerStop("shooting_star_bonus_ore_timer") { player ->
+    player.message("<dark_red>The ability to mine an extra ore has worn off.")
+}
+
 objectDespawn("shooting_star_tier_1") {
     areaSound("star_meteor_despawn", it.tile, radius = 15)
     cleanseEvent(false)
@@ -191,6 +220,11 @@ npcOperate("Talk-to", "star_sprite") {
                 messageBuilder.append(", $amount ${reward.replace("_", " ").replace("noted", "").plural(amount)}")
             }
         }
-        npc<Cheerful>("I have rewarded you by making it so you can mine extra ore for the next 15 minutes, ${messageBuilder}.")
+        if(!ShootingStarHandler.rewardPlayerBonusOre(player)) {
+            npc<Cheerful>("I have rewarded you by making it so you can mine extra ore for the next 15 minutes, ${messageBuilder}.")
+            givePlayerBonusOreReward(player)
+        } else {
+            npc<Cheerful>("You already have the ability to mine an extra ore, ${messageBuilder.replace(0, 4, "However")}.")
+        }
     }
 }

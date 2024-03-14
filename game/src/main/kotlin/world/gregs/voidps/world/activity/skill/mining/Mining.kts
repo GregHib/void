@@ -96,7 +96,7 @@ objectOperate("Mine") {
             val ore = itemDefinitions.get(item)["mining", Ore.EMPTY]
             if (success(player.levels.get(Skill.Mining), ore.chance)) {
                 player.experience.add(Skill.Mining, ore.xp)
-
+                ShootingStarHandler.extraOreHandler(player, item, ore.xp)
                 if (!addOre(player, item) || deplete(rock, target)) {
                     player.clearAnimation()
                     break
