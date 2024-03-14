@@ -1,0 +1,45 @@
+name: JUnit Tests
+on:
+  pull_request:
+jobs:
+  build-test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '19'
+          distribution: 'temurin'
+          architecture: x64
+          cache: 'gradle'
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+      - name: Cache game files
+        id: cache-files
+        uses: actions/cache@v3
+        env:
+          cache-version: 1.2.0
+        with:
+          key: cache-${{ env.cache-version }}-${{ hashFiles('data/cache/main_file_cache.idx255') }}
+          path: data/cache
+          enableCrossOsArchive: 'true'
+          restore-keys:
+            cache-${{ env.cache-version }}
+            cache-
+      - if: ${{ steps.cache-files.outputs.cache-hit != 'true' }}
+        uses: keithweaver/aws-s3-github-action@v1.0.0
+        with:
+          command: cp
+          source: s3://void-rsps/caches/${{ env.cache-version }}/
+          destination: data/cache/
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: eu-west-2
+      - name: Grant Permissions to gradlew
+        run: ls data/cache/
+      - name: Grant Permissions to gradlew
+        run: chmod +x gradlew
+      - name: Run unit tests
+        run: ./gradlew test
