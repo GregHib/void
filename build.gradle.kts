@@ -9,12 +9,14 @@ buildscript {
 
 plugins {
     kotlin("jvm") version "1.9.22"
+    id("jacoco-report-aggregation")
 }
 
 allprojects {
     apply(plugin = "kotlin")
     apply(plugin = "idea")
     apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "jacoco")
 
     group = "world.gregs.void"
     version = System.getenv("GITHUB_REF_NAME") ?: "dev"
@@ -44,15 +46,23 @@ allprojects {
             kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility", "-Xallow-any-scripts-in-source-roots")
         }
     }
-    if (name != "game") {
-        tasks.test {
-            maxHeapSize = "4096m"
-            useJUnitPlatform()
-            failFast = true
-            testLogging {
-                events("passed", "skipped", "failed")
-                exceptionFormat = TestExceptionFormat.FULL
-            }
+
+    tasks.test {
+        maxHeapSize = "4096m"
+        useJUnitPlatform()
+        failFast = true
+        testLogging {
+            events("passed", "skipped", "failed")
+            exceptionFormat = TestExceptionFormat.FULL
+        }
+        finalizedBy(tasks.jacocoTestReport)
+    }
+
+    tasks.jacocoTestReport {
+        dependsOn(tasks.test)
+        reports {
+            xml.required = true
+            csv.required = false
         }
     }
 }
@@ -60,5 +70,20 @@ allprojects {
 tasks.register("printVersion") {
     doLast {
         println(project.version)
+    }
+}
+
+
+reporting {
+    reports {
+        create("jacocoMergedReport", JacocoCoverageReport::class) {
+            testType = TestSuiteType.UNIT_TEST
+        }
+    }
+}
+
+dependencies {
+    allprojects.filter { it.name != "tools" }.forEach {
+        jacocoAggregation(it)
     }
 }
