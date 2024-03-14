@@ -139,7 +139,7 @@ fun calculateRewards(stardust: Int): Map<String, Int> {
     )
 }
 
-fun givePlayerBonusOreReward(player: Player){
+fun givePlayerBonusOreReward(player: Player) {
     player["shooting_star_bonus_ore"] = 900
     player.timers.start("shooting_star_bonus_ore_timer")
 }
@@ -152,9 +152,6 @@ playerSpawn { player ->
 
 timerStart("shooting_star_bonus_ore_timer") { player ->
     interval = TimeUnit.SECONDS.toTicks(1)
-    if (restart) {
-        return@timerStart
-    }
 }
 
 timerTick("shooting_star_bonus_ore_timer") { player ->
