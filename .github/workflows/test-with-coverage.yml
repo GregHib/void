@@ -13,6 +13,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      - name: Create cache folder
+        run: mkdir -p data/cache/
       - uses: actions/setup-java@v3
         with:
           java-version: '19'
@@ -21,8 +23,6 @@ jobs:
           cache: 'gradle'
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
-      - name: Create cache folder
-        run: sudo mkdir -p /data/cache
       - name: Cache game files
         id: cache-files
         uses: actions/cache@v3
