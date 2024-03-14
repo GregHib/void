@@ -21,13 +21,11 @@ inventoryOption("Clean", "inventory") {
         return@inventoryOption
     }
     cleanHerb(slot, player, item, herb)
-    player.softTimers.start("cleaning")
     player.clean(item, player, herb)
 }
 
 fun Player.clean(item: Item, player: Player, herb: Cleaning) {
     if(!player.inventory.contains(item.id)) {
-        softTimers.stop("cleaning")
         return
     }
     weakQueue("cleaning", 3) {
