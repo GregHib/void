@@ -32,7 +32,7 @@ object ShootingStarHandler {
     }
 
     fun extraOreHandler(player: Player, ore: String, xpReward: Double) {
-        if(getChance()) {
+        if(getChance() && rewardPlayerBonusOre(player)) {
             player.message("<dark_green>You managed to mine an extra ore from the rock.")
             player.inventory.add(ore)
             player.experience.add(Skill.Mining, xpReward)
