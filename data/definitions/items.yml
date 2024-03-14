@@ -1085,6 +1085,9 @@ clean_guam:
   id: 249
   price: 161
   limit: 10000
+  potion_unf:
+    level: 3
+    make: "guam_potion_unf"
   weight: 0.007
   examine: "A fresh herb."
   kept: "Wilderness"
