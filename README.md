@@ -1,10 +1,16 @@
 <div align="center">
 <h1>Void</h1>
 <a href="https://github.com/GregHib/void">
-  <img src="https://i.imgur.com/N8RhzRY.png" alt="void">
+  <img src="https://i.imgur.com/X0OdMTf.png" alt="void">
 </a>
+  
+[![Release](https://github.com/GregHib/void/actions/workflows/create_release.yml/badge.svg)](https://github.com/GregHib/void/actions/workflows/create_release.yml)
+[![Kotlin](https://img.shields.io/badge/kotlin-1.9.22-blue.svg?logo=kotlin)](http://kotlinlang.org)
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
-<p>Void is a lightweight, high-performance back-end game server emulating the 2011 MMORPG RuneScape (revision 634). It serves as a modern and user-friendly base for others to built-off of.</p>
+<h1>RuneScape Revived</h1>
+
+<p>Rediscover 2011 RuneScape with modern server emulation at your fingertips.</p>
 
 <a href="#features">Features</a> &nbsp;&bull;&nbsp;
 <a href="#quick-setup">Quick setup</a> &nbsp;&bull;&nbsp;
@@ -12,17 +18,21 @@
 <a href="https://rune-server.org/runescape-development/rs-503-client-and-server/projects/697260-void-634-a.html" target="_blank">Blog</a> &nbsp;&bull;&nbsp;
 <a href="https://github.com/GregHib/void/wiki">Documentation</a> &nbsp;&bull;&nbsp;
 <a href="https://github.com/GregHib/void/issues">Bugs</a>
+
+![void in game picture](https://i.imgur.com/OZ317on.png)
+
 </div>
+
 
 ## Features
 
-* Capable of handling thousands of concurrent players
-* Wide range of emulated content
-* AI driven player bots
-* Developer friendly content creation
-* Low memory usage
+* **High-performance**: Capable of supporting thousands of concurrent players.
+* **Rich content**: Offers a wide range of emulated content.
+* **AI player characters**: Introduced intelligent player bots to enhance immersion.
+* **User-friendly**: Simplifies content creation with [kotlin scripting](https://github.com/GregHib/void/wiki/scripts) eliminating the need for complex integration.
+* **Lighweight**: Memory usage under 300MB in low-memory mode.
+* **Customisable**: Personalise your gameplay by tweaking settings in the `game.properties` file or modifying the code to suit your preferences.
 
-![void in game picture](https://i.imgur.com/OZ317on.png)
 
 
 ## Quick setup
@@ -31,11 +41,8 @@
 2. Extract the [latest void.zip released bundle](https://github.com/GregHib/void/releases) into a directory.
 3. Extract the [latest pre-modified game files cache.zip](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A) into `/void/data/cache/`.
 4. Run either the `run-server.bat` on Windows, or `run-server.sh` on Linux.
-    ```
-    [Main] - Void loaded in 2349ms
-    [GameServer] - Listening for requests on port 43594...
-    ```
-   You should see these two messages followed by many `[GameLoop]` to know the server is up and running correctly.
+    
+   You should see `[Main] - Void loaded in 2349ms` to show the server is up and running correctly.
 
    > Ctrl + C to exit and shutdown the server when running from a command line terminal.
 
