@@ -40,7 +40,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: eu-west-2
-        run: aws cp --recursive s3://void-rsps/caches/${{ env.CACHE_VERSION }}/ data/cache/
+        run: aws s3 cp --recursive s3://void-rsps/caches/${{ env.CACHE_VERSION }}/ data/cache/
       - name: Grant Permissions to gradlew
         run: chmod +x gradlew
       - name: Run unit tests
