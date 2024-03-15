@@ -112,6 +112,7 @@ class ItemDefinitions(
                     "silver_jewellery" -> Silver(value as Map<String, Any>)
                     "runecrafting" -> Rune(value as Map<String, Any>)
                     "ammo" -> ObjectOpenHashSet(value as List<String>)
+                    "cleaning" -> Cleaning(value as Map<String, Any>)
                     "skill_req" -> (value as MutableMap<String, Any>).mapKeys { Skill.valueOf(it.key.toSentenceCase()) }
                     else -> value
                 }, indent, parentMap)

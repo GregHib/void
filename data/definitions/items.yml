@@ -864,6 +864,9 @@ grimy_guam:
   id: 199
   price: 140
   limit: 10000
+  cleaning:
+    level: 1
+    clean_xp: 2.5
   weight: 0.007
   examine: "I need to clean this herb before I can use it."
   kept: "Wilderness"
@@ -872,6 +875,9 @@ grimy_marrentill:
   id: 201
   price: 29
   limit: 10000
+  cleaning:
+    level: 9
+    clean_xp: 5
   weight: 0.007
   examine: "I need to clean this herb before I can use it."
   kept: "Wilderness"
@@ -880,6 +886,9 @@ grimy_tarromin:
   id: 203
   price: 307
   limit: 10000
+  cleaning:
+    level: 5
+    clean_xp: 3.8
   weight: 0.007
   examine: "I need to clean this herb before I can use it."
   kept: "Wilderness"
@@ -888,6 +897,9 @@ grimy_harralander:
   id: 205
   price: 237
   limit: 10000
+  cleaning:
+    level: 20
+    clean_xp: 6.3
   weight: 0.007
   examine: "I need to clean this herb before I can use it."
   kept: "Wilderness"
@@ -896,6 +908,9 @@ grimy_ranarr:
   id: 207
   price: 3423
   limit: 10000
+  cleaning:
+    level: 25
+    clean_xp: 7.5
   weight: 0.007
   examine: "I need to clean this herb before I can use it."
 grimy_ranarr_noted: 208
@@ -903,6 +918,9 @@ grimy_irit:
   id: 209
   price: 1877
   limit: 10000
+  cleaning:
+    level: 40
+    clean_xp: 8.8
   weight: 0.007
   examine: "I need to clean this herb before I can use it."
 grimy_irit_noted: 210
@@ -910,6 +928,9 @@ grimy_avantoe:
   id: 211
   price: 3886
   limit: 10000
+  cleaning:
+    level: 48
+    clean_xp: 10
   weight: 0.007
   examine: "I need to clean this herb before I can use it."
 grimy_avantoe_noted: 212
@@ -917,6 +938,9 @@ grimy_kwuarm:
   id: 213
   price: 2232
   limit: 10000
+  cleaning:
+    level: 54
+    clean_xp: 11.3
   weight: 0.007
   examine: "I need to clean this herb before I can use it."
 grimy_kwuarm_noted: 214
@@ -924,6 +948,9 @@ grimy_cadantine:
   id: 215
   price: 1184
   limit: 10000
+  cleaning:
+    level: 65
+    clean_xp: 12.5
   weight: 0.007
   examine: "I need to clean this herb before I can use it."
 grimy_cadantine_noted: 216
@@ -931,6 +958,9 @@ grimy_dwarf_weed:
   id: 217
   price: 4755
   limit: 10000
+  cleaning:
+    level: 70
+    clean_xp: 13.8
   weight: 0.007
   examine: "I need to clean this herb before I can use it."
 grimy_dwarf_weed_noted: 218
@@ -938,6 +968,9 @@ grimy_torstol:
   id: 219
   price: 43973
   limit: 10000
+  cleaning:
+    level: 75
+    clean_xp: 15
   weight: 0.007
   examine: "I need to clean this herb before I can use it."
 grimy_torstol_noted: 220
@@ -12198,6 +12231,9 @@ grimy_lantadyme:
   id: 2485
   price: 6738
   limit: 10000
+  cleaning:
+    level: 67
+    clean_xp: 13.1
   weight: 0.007
   examine: "I need to clean this herb before I can use it."
 grimy_lantadyme_noted: 2486
@@ -14397,6 +14433,9 @@ grimy_toadflax:
   id: 3049
   price: 4067
   limit: 10000
+  cleaning:
+    level: 30
+    clean_xp: 8
   weight: 0.007
   examine: "I need to clean this herb before I can use it."
 grimy_toadflax_noted: 3050
@@ -14404,6 +14443,9 @@ grimy_snapdragon:
   id: 3051
   price: 7266
   limit: 10000
+  cleaning:
+    level: 59
+    clean_xp: 11.8
   weight: 0.007
   examine: "I need to clean this herb before I can use it."
 grimy_snapdragon_noted: 3052
@@ -51278,6 +51320,9 @@ grimy_spirit_weed:
   id: 12174
   price: 4511
   limit: 10000
+  cleaning:
+    level: 35
+    clean_xp: 7.8
   weight: 0.001
   examine: "I need to clean this herb before I can use it."
 grimy_spirit_weed_noted: 12175
@@ -63493,6 +63538,9 @@ grimy_wergali:
   id: 14836
   price: 3146
   limit: 10000
+  cleaning:
+    level: 41
+    clean_xp: 9.5
   weight: 0.007
   examine: "I need to clean this herb before I can use it."
 grimy_wergali_noted: 14837
