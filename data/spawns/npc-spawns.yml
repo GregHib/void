@@ -1651,6 +1651,8 @@
 - { id: musician_cooks_guild, x: 3153, y: 3422, direction: SOUTH }
 - { id: dororan_after_quest, x: 3159, y: 3434 }
 - { id: gudrun_after_quest, x: 3162, y: 3434 }
+# 12598
+- { id: bob_barter_herbs, x: 3156, y: 3481 }
 # 12600
 - { id: goblin_musician, x: 3143, y: 3642, direction: WEST }
 - { id: rat, x: 3160, y: 3639 }
