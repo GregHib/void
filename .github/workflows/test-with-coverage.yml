@@ -1,11 +1,8 @@
 name: Run Tests
 on:
   pull_request:
-
-
 env:
   CACHE_VERSION: 1.2.0
-
 jobs:
   build-test:
     name: Build & Test
@@ -33,8 +30,6 @@ jobs:
           restore-keys:
             cache-${{ env.CACHE_VERSION }}
             cache-
-      - name: List cache contents
-        run: ls data/cache/
       - if: ${{ steps.cache-files.outputs.cache-hit != 'true' }}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
