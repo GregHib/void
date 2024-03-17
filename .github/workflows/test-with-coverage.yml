@@ -1,5 +1,5 @@
 name: Run Tests
-on: [push, pull_request]
+on: [ push, pull_request ]
 env:
   CACHE_VERSION: 1.2.0
 jobs:
@@ -19,7 +19,11 @@ jobs:
           cache: 'gradle'
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
+      - name: Check if secrets exists
+        id: check_secret
+        run: echo ::set-output name=exists::$(if [ -n "${{ secrets.AWS_ACCESS_KEY_ID }}" ]; then echo "true"; else echo "false"; fi)
       - name: Cache game files
+        if: steps.check_secret.outputs.exists == 'true'
         id: cache-files
         uses: actions/cache@v3
         with:
@@ -29,7 +33,7 @@ jobs:
           restore-keys:
             cache-${{ env.CACHE_VERSION }}
             cache-
-      - if: ${{ steps.cache-files.outputs.cache-hit != 'true' }}
+      - if: steps.check_secret.outputs.exists == 'true' && steps.cache-files.outputs.cache-hit != 'true'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -37,9 +41,14 @@ jobs:
         run: aws s3 cp --recursive s3://void-rsps/caches/${{ env.CACHE_VERSION }}/ data/cache/
       - name: Grant Permissions to gradlew
         run: chmod +x gradlew
-      - name: Run tests
+      - name: Run all tests
+        if: steps.check_secret.outputs.exists == 'true'
         run: ./gradlew test
+      - name: Run unit tests
+        if: steps.check_secret.outputs.exists != 'true'
+        run: ./gradlew test -x :game:test
       - name: Upload coverage report to Codecov
+        if: steps.check_secret.outputs.exists == 'true'
         uses: codecov/codecov-action@v4.1.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
