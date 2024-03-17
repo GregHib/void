@@ -82,7 +82,7 @@ fun useItemOnItem(
     if (!hasItems(player, def)) {
         return
     }
-    player.weakQueue("item_on_item_start", 1) {
+    player.weakQueue("item_on_item_start", if (count == 0) def.delay else 0) {
         if (def.animation.isNotEmpty()) {
             player.setAnimation(def.animation)
         }
@@ -92,16 +92,13 @@ fun useItemOnItem(
         if (def.sound.isNotEmpty()) {
             player.playSound(def.sound)
         }
-        if (count == 0 && def.delay > 0) {
-            player.weakQueue("item_on_item_first", def.delay) {
-                replaceItems(def, player, skill, amount, count)
-            }
-        } else if (count != 0 || def.delay != -1) {
+        if (count == 0) {
+            replaceItems(def, player, skill, amount, count)
+        } else {
             player.weakQueue("item_on_item_delay", def.ticks) {
                 replaceItems(def, player, skill, amount, count)
             }
         }
-        replaceItems(def, player, skill, amount, count)
     }
 }
 
