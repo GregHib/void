@@ -74,7 +74,7 @@ fun useItemOnItem(
         return
     }
 
-    if (player.inventory.spaces - def.remove.size - (if (def.one.isEmpty()) 0 else 1) + def.add.size < 0) {
+    if (player.inventory.spaces + def.remove.size - (if (def.one.isEmpty()) 0 else 1) - def.add.size < 0) {
         player.inventoryFull()
         return
     }
