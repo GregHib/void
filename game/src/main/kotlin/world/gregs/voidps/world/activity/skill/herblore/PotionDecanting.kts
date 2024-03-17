@@ -3,17 +3,12 @@ package world.gregs.voidps.world.activity.skill.herblore
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
-
-val logger = InlineLogger()
 
 // prefix of potions that can be decanted.
 val potions = setOf(
@@ -64,25 +59,20 @@ fun decantPotions(player: Player): Boolean {
         return false
     }
 
-    // Backup players inventory in case of an error we can restore the players items
-    val originalItems = player.inventory.items.toList()
-
-    try {
+    player.inventory.transaction {
         val potionMap = mutableMapOf<String, Int>()
 
         // Remove potions and calculate total doses for each type
-        player.inventory.items.filter { item -> potions.any { potion -> item.id.contains(potion) } }
-                .toList().forEach { potion ->
-            val baseId = potion.id.substringBeforeLast('_')
-            potionMap[baseId] = potionMap.getOrDefault(baseId, 0) +
-                    Integer.parseInt(potion.id.takeLast(1)) * potion.amount
-            player.inventory.remove(potion.id)
-        }
-
-        // No Potion were decanted return false
-        if (potionMap.isEmpty()) {
-            return false
-        }
+        player.inventory.items
+                .filter { item -> potions.any { potion -> item.id.contains(potion) } }
+                .toList()
+                .forEach { potion ->
+                    val baseId = potion.id.substringBeforeLast('_')
+                    potionMap[baseId] =
+                            potionMap.getOrDefault(baseId, 0) +
+                                    Integer.parseInt(potion.id.takeLast(1)) * potion.amount
+                    remove(potion.id)
+                }
 
         // Add decanted potions back into the players inventory
         potionMap.forEach { (baseId, totalDoses) ->
@@ -90,25 +80,9 @@ fun decantPotions(player: Player): Boolean {
             while (dosesLeft > 0) {
                 val dose = if (dosesLeft >= 4) 4 else dosesLeft
                 dosesLeft -= dose
-                player.inventory.add("${baseId}_$dose", 1)
+                add("${baseId}_$dose", 1)
             }
         }
-
-        // If the players inventory isn't changed return false
-        if (originalItems.size == player.inventory.items.size && originalItems.containsAll(player.inventory.items.toList())) {
-            return false
-        }
-
-        return true
-    } catch (e: Exception) {
-        logger.error { "Error while decanting potions for player ${player.name}" }
-        // Restore the player's inventory in case of an error
-        player.inventory.clear()
-        player.inventory.transaction {
-            for (item in originalItems) {
-                player.inventory.add(item.id, item.amount)
-            }
-        }
-        return false
     }
+    return player.inventory.transaction.error == TransactionError.None
 }
