@@ -47,22 +47,24 @@ allprojects {
         }
     }
 
-    tasks.test {
-        maxHeapSize = "4096m"
-        useJUnitPlatform()
-        failFast = true
-        testLogging {
-            events("passed", "skipped", "failed")
-            exceptionFormat = TestExceptionFormat.FULL
+    if (name != "tools") {
+        tasks.test {
+            maxHeapSize = "4096m"
+            useJUnitPlatform()
+            failFast = true
+            testLogging {
+                events("passed", "skipped", "failed")
+                exceptionFormat = TestExceptionFormat.FULL
+            }
+            finalizedBy(tasks.jacocoTestReport)
         }
-        finalizedBy(tasks.jacocoTestReport)
-    }
 
-    tasks.jacocoTestReport {
-        dependsOn(tasks.test)
-        reports {
-            xml.required = true
-            csv.required = false
+        tasks.jacocoTestReport {
+            dependsOn(tasks.test)
+            reports {
+                xml.required = true
+                csv.required = false
+            }
         }
     }
 }
@@ -76,6 +78,7 @@ tasks.register("printVersion") {
 
 reporting {
     reports {
+        @Suppress("UnstableApiUsage")
         create("jacocoMergedReport", JacocoCoverageReport::class) {
             testType = TestSuiteType.UNIT_TEST
         }
