@@ -1,6 +1,5 @@
 name: Run Tests
-on:
-  pull_request:
+on: [push, pull_request]
 env:
   CACHE_VERSION: 1.2.0
 jobs:
