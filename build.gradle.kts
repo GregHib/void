@@ -47,7 +47,7 @@ allprojects {
         }
     }
 
-    if (name != "tools") {
+    if (name != "tools" && name != "game") {
         tasks.test {
             maxHeapSize = "4096m"
             useJUnitPlatform()
@@ -86,7 +86,7 @@ reporting {
 }
 
 dependencies {
-    allprojects.filter { it.name != "tools" }.forEach {
+    allprojects.filter { it.name != "tools" && it.name != "ame" }.forEach {
         jacocoAggregation(it)
     }
 }
