@@ -45,3 +45,8 @@ jobs:
         run: chmod +x gradlew
       - name: Run tests
         run: ./gradlew test
+      - name: Upload coverage report to Codecov
+        uses: codecov/codecov-action@v4.1.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: GregHib/void
