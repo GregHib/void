@@ -43,5 +43,5 @@ jobs:
         run: aws s3 cp --recursive s3://void-rsps/caches/${{ env.CACHE_VERSION }}/ data/cache/
       - name: Grant Permissions to gradlew
         run: chmod +x gradlew
-      - name: Run unit tests
+      - name: Run tests
         run: ./gradlew test
