@@ -1,5 +1,10 @@
 name: Run Tests
-on: [ push, pull_request ]
+on:
+  push:
+    branches:
+      - 'main'
+      - 'release/**'
+  pull_request:
 env:
   CACHE_VERSION: 1.2.0
 jobs:
