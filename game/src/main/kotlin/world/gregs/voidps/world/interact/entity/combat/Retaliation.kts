@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.combat
 
-import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
@@ -26,14 +25,13 @@ characterCombatHit { character ->
     if (character.levels.get(Skill.Constitution) <= 0 || character.inCombat && character.target == source) {
         return@characterCombatHit
     }
-    character.start("in_combat", 8)
-    if (character.mode is CombatMovement) {
-        return@characterCombatHit
-    }
-    val target = source
-    character.mode = CombatMovement(character, target)
-    character.target = target
-    if (character.hasClock("action_delay", if (character is NPC) GameLoop.tick - 8 else GameLoop.tick)) {
-        character.start("action_delay", character.attackSpeed / 2)
+    if (!character.hasClock("in_combat") || character.mode is CombatMovement) {
+        character.mode = CombatMovement(character, source)
+        character.target = source
+        val delay = character.attackSpeed / 2
+        character.start("action_delay", delay)
+        character.start("in_combat", delay + 8)
+    } else {
+        character.start("in_combat", 8)
     }
 }
