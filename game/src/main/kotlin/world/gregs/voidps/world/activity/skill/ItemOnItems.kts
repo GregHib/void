@@ -24,7 +24,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
-import world.gregs.voidps.world.interact.entity.combat.underAttack
+import world.gregs.voidps.world.interact.entity.combat.inCombat
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val itemOnItemDefs: ItemOnItemDefinitions by inject()
@@ -155,7 +155,7 @@ interfaceOpen("dialogue_skill_creation") { player ->
 }
 
 fun makeImmediately(player: Player, overlaps: List<ItemOnItemDefinition>, maximum: Int): Boolean {
-    return (overlaps.size == 1 && maximum == 1) || player["selecting_amount", false] || player.underAttack
+    return (overlaps.size == 1 && maximum == 1) || player["selecting_amount", false] || player.inCombat
 }
 
 fun getMaximum(overlaps: List<ItemOnItemDefinition>, player: Player): Int {

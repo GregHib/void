@@ -99,10 +99,10 @@ characterCombatStop { character ->
 }
 
 characterDeath { character ->
-    character.stop("under_attack")
+    character.stop("in_combat")
     for (attacker in character.attackers) {
         if (attacker.target == character) {
-            attacker.stop("under_attack")
+            attacker.stop("in_combat")
         }
     }
 }

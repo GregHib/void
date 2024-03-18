@@ -47,7 +47,7 @@ object Target {
                 return false
             }
         }
-        if (target.inSingleCombat && target.underAttack && !target.attackers.contains(source)) {
+        if (target.inSingleCombat && target.inCombat && !target.attackers.contains(source)) {
             if (target is NPC) {
                 (source as? Player)?.message("Someone else is fighting that.")
             } else {
@@ -55,7 +55,7 @@ object Target {
             }
             return false
         }
-        if (source.inSingleCombat && source.underAttack && !source.attackers.contains(target)) {
+        if (source.inSingleCombat && source.inCombat && !source.attackers.contains(target)) {
             (source as? Player)?.message("You are already in combat.")
             return false
         }
@@ -117,8 +117,8 @@ internal var Character.target: Character?
         }
     }
 
-val Character.underAttack: Boolean
-    get() = hasClock("under_attack")
+val Character.inCombat: Boolean
+    get() = hasClock("in_combat")
 
 var Character.attackers: MutableList<Character>
     get() = getOrPut("attackers") { ObjectArrayList() }

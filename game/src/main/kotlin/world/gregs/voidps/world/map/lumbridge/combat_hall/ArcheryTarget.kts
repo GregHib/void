@@ -21,7 +21,7 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
 import world.gregs.voidps.world.interact.entity.combat.hit.Damage
-import world.gregs.voidps.world.interact.entity.combat.underAttack
+import world.gregs.voidps.world.interact.entity.combat.inCombat
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -43,7 +43,7 @@ fun swing(player: Player, obj: GameObject, delay: Int) {
             player.message("You can only use a Training bow and arrows against this target.")
             return@weakQueue
         }
-        if (player.underAttack) {
+        if (player.inCombat) {
             player.message("You are already in combat.")
             return@weakQueue
         }

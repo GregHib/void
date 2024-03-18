@@ -18,7 +18,7 @@ characterCombatHit { character ->
     if (source == character || !character.retaliates) {
         return@characterCombatHit
     }
-    if (character.levels.get(Skill.Constitution) <= 0 || character.underAttack && character.target == source) {
+    if (character.levels.get(Skill.Constitution) <= 0 || character.inCombat && character.target == source) {
         return@characterCombatHit
     }
     if (character.mode !is CombatMovement) {
