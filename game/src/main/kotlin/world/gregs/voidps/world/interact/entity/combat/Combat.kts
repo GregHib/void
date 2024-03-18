@@ -10,9 +10,12 @@ import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.combat.*
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.characterDespawn
 import world.gregs.voidps.engine.event.onEvent
+import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatHit
 import world.gregs.voidps.world.interact.entity.death.characterDeath
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
@@ -58,15 +61,15 @@ fun combat(character: Character, target: Character) {
         character.mode = EmptyMode
         return
     }
-    val swing = CombatSwing(target)
     if (character["debug", false] || target["debug", false]) {
         val player = if (character["debug", false] && character is Player) character else target as Player
         player.message("---- Swing (${character.identifier}) -> (${target.identifier}) -----")
     }
-    if (!target.hasClock("under_attack")) {
+    if (!target.hasClock("in_combat")) {
         character.emit(CombatStart(target))
     }
-    target.start("under_attack", 16)
+    target.start("in_combat", 8)
+    val swing = CombatSwing(target)
     character.emit(swing)
     (character as? Player)?.specialAttack = false
     var nextDelay = character.attackSpeed
@@ -105,4 +108,32 @@ characterDeath { character ->
             attacker.stop("in_combat")
         }
     }
+}
+
+characterCombatHit { character ->
+    if (source == character || type == "poison" || type == "disease" || type == "healed") {
+        return@characterCombatHit
+    }
+    val inCombat = character.hasClock("in_combat")
+    character.start("in_combat", 8)
+    if (!inCombat || character.mode !is CombatMovement) {
+        retaliate(character, source)
+    }
+}
+
+fun retaliates(character: Character) = if (character is NPC) {
+    character.def["retaliates", true]
+} else {
+    character["auto_retaliate", false]
+}
+
+fun retaliate(character: Character, source: Character) {
+    if (character.dead || character.levels.get(Skill.Constitution) <= 0 || !retaliates(character)) {
+        return
+    }
+    character.mode = CombatMovement(character, source)
+    character.target = source
+    val delay = character.attackSpeed / 2
+    character.start("action_delay", delay)
+    character.start("in_combat", delay + 8)
 }
