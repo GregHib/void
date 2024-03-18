@@ -140,7 +140,7 @@ internal class CombatTest : WorldTest() {
 
         player.interfaceOption("prayer_list", "regular_prayers", "Activate", slot = 19, optionIndex = 0)
         player.npcOption(npc, "Attack")
-        tick(2)
+        tick(4)
 
         assertEquals(990, player.levels.get(Skill.Constitution))
         assertNotEquals(0, player["protected_damage", 0])
