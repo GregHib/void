@@ -90,6 +90,7 @@ characterCombatStart { character ->
         target.attackers.clear()
     }
     target.attackers.add(character)
+    retaliate(target, character)
 }
 
 characterCombatStop { character ->
