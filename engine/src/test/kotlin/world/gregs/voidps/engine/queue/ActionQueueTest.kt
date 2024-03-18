@@ -5,7 +5,6 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import kotlin.test.assertEquals
@@ -20,7 +19,6 @@ internal class ActionQueueTest {
 
     @BeforeEach
     fun setup() {
-        GameLoop.tick = 0
         player = Player()
         queue = ActionQueue(player)
         player.queue = queue
@@ -32,7 +30,7 @@ internal class ActionQueueTest {
     fun `Queue an action for immediate use`() {
         val action = action(delay = 0)
         queue.add(action)
-        assertEquals(-1, action.tick)
+        assertEquals(-1, action.remaining)
         assertTrue(action.removed)
     }
 
@@ -90,7 +88,6 @@ internal class ActionQueueTest {
 
     @Test
     fun `Queues can be suspended and resume`() {
-        GameLoop.tick = 10
         var resumed = false
         val action = action {
             pause(4)
@@ -98,7 +95,7 @@ internal class ActionQueueTest {
         }
         queue.add(action)
         tick()
-        assertEquals(14, action.tick)
+        assertEquals(3, action.remaining)
         assertNotNull(action.suspension)
         repeat(4) {
             tick()
@@ -119,7 +116,6 @@ internal class ActionQueueTest {
 
     private fun tick() {
         queue.tick()
-        GameLoop.tick++
     }
 
     private fun action(priority: ActionPriority = ActionPriority.Normal, delay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, action: suspend Action.() -> Unit = {}): Action {
