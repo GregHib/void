@@ -110,7 +110,7 @@ private fun getOptionIndex(id: String, componentId: String, option: String): Int
 }
 
 fun Player.playerOption(player: Player, option: String) = runTest {
-    instructions.emit(InteractPlayer(player.index, player.options.indexOf(option)))
+    instructions.emit(InteractPlayer(player.index, options.indexOf(option)))
 }
 
 fun Player.walk(toTile: Tile) = runTest {

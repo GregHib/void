@@ -114,9 +114,7 @@ characterCombatHit { character ->
     if (source == character || type == "poison" || type == "disease" || type == "healed") {
         return@characterCombatHit
     }
-    val inCombat = character.hasClock("in_combat")
-    character.start("in_combat", 8)
-    if (!inCombat || character.mode !is CombatMovement) {
+    if (character.mode !is CombatMovement) {
         retaliate(character, source)
     }
 }
