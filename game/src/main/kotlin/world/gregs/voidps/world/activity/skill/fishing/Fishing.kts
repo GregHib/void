@@ -79,7 +79,7 @@ npcOperate("*", "fishing_spot_*", arrive = true) {
             first = false
         }
 
-        val remaining = player.remaining("skill_delay")
+        val remaining = player.remaining("action_delay")
         if (remaining < 0) {
             player.face(target)
             val rod = tackle == "fishing_rod" || tackle == "fly_fishing_rod" || tackle == "barbarian_rod"
@@ -100,7 +100,7 @@ npcOperate("*", "fishing_spot_*", arrive = true) {
                 break
             }
         }
-        player.stop("skill_delay")
+        player.stop("action_delay")
     }
     target["fishers", mutableSetOf<Player>()].remove(player)
     player.softTimers.stop("fishing")

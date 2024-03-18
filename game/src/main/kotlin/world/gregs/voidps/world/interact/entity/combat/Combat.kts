@@ -49,7 +49,7 @@ fun combat(character: Character, target: Character) {
     if (!movement.arrived(if (attackRange == 1 && character.weapon.def["weapon_type", ""] != "salamander") -1 else attackRange)) {
         return
     }
-    if (character.hasClock("hit_delay")) {
+    if (character.hasClock("action_delay")) {
         return
     }
     val prepare = CombatPrepare(target)
@@ -73,7 +73,7 @@ fun combat(character: Character, target: Character) {
     if (character.hasClock("miasmic") && (character.fightStyle == "range" || character.fightStyle == "melee")) {
         nextDelay *= 2
     }
-    character.start("hit_delay", nextDelay)
+    character.start("action_delay", nextDelay)
 }
 
 characterDespawn { character ->

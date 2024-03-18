@@ -33,7 +33,7 @@ characterCombatHit { character ->
     val target = source
     character.mode = CombatMovement(character, target)
     character.target = target
-    if (character.hasClock("hit_delay", if (character is NPC) GameLoop.tick - 8 else GameLoop.tick)) {
-        character.start("hit_delay", character.attackSpeed / 2)
+    if (character.hasClock("action_delay", if (character is NPC) GameLoop.tick - 8 else GameLoop.tick)) {
+        character.start("action_delay", character.attackSpeed / 2)
     }
 }

@@ -53,7 +53,7 @@ fun swing(player: Player, obj: GameObject, delay: Int) {
             player.message("There is no ammo left in your quiver.")
             return@weakQueue
         }
-        val remaining = player.remaining("hit_delay")
+        val remaining = player.remaining("action_delay")
         if (remaining <= 0) {
             player.ammo = "training_arrows"
             player.equipment.remove(player.ammo)
@@ -72,7 +72,7 @@ fun swing(player: Player, obj: GameObject, delay: Int) {
                 player.message("That was your last one!")
             }
             val attackDelay = weapon.def["attack_speed", 4]
-            player.start("hit_delay", attackDelay)
+            player.start("action_delay", attackDelay)
             swing(player, obj, attackDelay)
         } else {
             swing(player, obj, remaining)

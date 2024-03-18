@@ -71,11 +71,11 @@ objectOperate("Mine") {
             player.message("You swing your pickaxe at the rock.", ChatType.Filter)
             first = false
         }
-        val remaining = player.remaining("skill_delay")
+        val remaining = player.remaining("action_delay")
         if (remaining < 0) {
             player.face(target)
             player.setAnimation("${pickaxe.id}_swing_low")
-            player.start("skill_delay", delay)
+            player.start("action_delay", delay)
             pause(delay)
         } else if (remaining > 0) {
             pause(delay)
@@ -103,7 +103,7 @@ objectOperate("Mine") {
                 }
             }
         }
-        player.stop("skill_delay")
+        player.stop("action_delay")
     }
     player.softTimers.stop("mining")
 }
