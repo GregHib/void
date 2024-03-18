@@ -23,6 +23,7 @@ internal class ToragsSetEffectTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Constitution to 990)
 
         player.hit(target, Item("torags_hammers"), "melee", damage = 10)
+        tick()
 
         assertEquals(980, target.levels.get(Skill.Constitution))
         assertEquals(100, target.energyPercent())

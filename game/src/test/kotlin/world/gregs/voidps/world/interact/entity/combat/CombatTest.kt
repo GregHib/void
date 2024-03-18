@@ -73,6 +73,13 @@ internal class CombatTest : WorldTest() {
 
     @Test
     fun `Kill rat with range`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(from: Int, until: Int): Int {
+                return until / 2
+            }
+
+            override fun nextBits(bitCount: Int) = 100
+        })
         val player = createPlayer("player", emptyTile)
         val npc = createNPC("rat", emptyTile.addY(4))
 
@@ -93,7 +100,7 @@ internal class CombatTest : WorldTest() {
         assertEquals(emptyTile, player.tile)
         assertTrue(player.equipment[EquipSlot.Ammo.index].amount < 100)
         assertTrue(drops.any { it.id == "bones" })
-        assertTrue(floorItems[emptyTile.addY(4)].any { it.id == "rune_arrow" })
+        assertTrue(floorItems[emptyTile.addY(3)].any { it.id == "rune_arrow" })
         assertTrue(player.experience.get(Skill.Ranged) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
         assertTrue(player.inventory.count("rune_arrow") < 100)
@@ -140,7 +147,7 @@ internal class CombatTest : WorldTest() {
 
         player.interfaceOption("prayer_list", "regular_prayers", "Activate", slot = 19, optionIndex = 0)
         player.npcOption(npc, "Attack")
-        tick(2)
+        tick(4)
 
         assertEquals(990, player.levels.get(Skill.Constitution))
         assertNotEquals(0, player["protected_damage", 0])

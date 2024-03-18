@@ -71,14 +71,14 @@ suspend fun CharacterContext.lightFire(
         if (!player.canLight(log.id, fire, floorItem)) {
             break
         }
-        val remaining = player.remaining("skill_delay")
+        val remaining = player.remaining("action_delay")
         if (remaining < 0) {
             if (first) {
                 player.message("You attempt to light the logs.", ChatType.Filter)
                 first = false
             }
             player.setAnimation("light_fire")
-            player.start("skill_delay", 4)
+            player.start("action_delay", 4)
             pause(4)
         } else if (remaining > 0) {
             pause(remaining)
@@ -90,7 +90,7 @@ suspend fun CharacterContext.lightFire(
             break
         }
     }
-    player.start("skill_delay", 1)
+    player.start("action_delay", 1)
     player.softTimers.stop("firemaking")
 }
 

@@ -23,6 +23,7 @@ internal class GuthansSetEffectTest : CombatFormulaTest() {
         val target = createPlayer(Skill.Constitution to 990)
 
         player.hit(target, Item("guthans_warspear"), "melee", damage = 10)
+        tick()
 
         assertEquals(980, target.levels.get(Skill.Constitution))
         assertEquals(500, player.levels.get(Skill.Constitution))

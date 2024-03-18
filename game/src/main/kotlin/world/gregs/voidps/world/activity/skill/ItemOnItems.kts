@@ -24,7 +24,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
-import world.gregs.voidps.world.interact.entity.combat.underAttack
+import world.gregs.voidps.world.interact.entity.combat.inCombat
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val itemOnItemDefs: ItemOnItemDefinitions by inject()
@@ -82,23 +82,17 @@ fun useItemOnItem(
     if (!hasItems(player, def)) {
         return
     }
-    player.weakQueue("item_on_item_start", if (count == 0) def.delay else 0) {
-        if (def.animation.isNotEmpty()) {
-            player.setAnimation(def.animation)
-        }
-        if (def.graphic.isNotEmpty()) {
-            player.setGraphic(def.graphic)
-        }
-        if (def.sound.isNotEmpty()) {
-            player.playSound(def.sound)
-        }
-        if (count == 0) {
-            replaceItems(def, player, skill, amount, count)
-        } else {
-            player.weakQueue("item_on_item_delay", def.ticks) {
-                replaceItems(def, player, skill, amount, count)
-            }
-        }
+    if (def.animation.isNotEmpty()) {
+        player.setAnimation(def.animation)
+    }
+    if (def.graphic.isNotEmpty()) {
+        player.setGraphic(def.graphic)
+    }
+    if (def.sound.isNotEmpty()) {
+        player.playSound(def.sound)
+    }
+    player.weakQueue("item_on_item_delay", if (count == 0) def.delay else def.ticks) {
+        replaceItems(def, player, skill, amount, count)
     }
 }
 
@@ -155,7 +149,7 @@ interfaceOpen("dialogue_skill_creation") { player ->
 }
 
 fun makeImmediately(player: Player, overlaps: List<ItemOnItemDefinition>, maximum: Int): Boolean {
-    return (overlaps.size == 1 && maximum == 1) || player["selecting_amount", false] || player.underAttack
+    return (overlaps.size == 1 && maximum == 1) || player["selecting_amount", false] || player.inCombat
 }
 
 fun getMaximum(overlaps: List<ItemOnItemDefinition>, player: Player): Int {

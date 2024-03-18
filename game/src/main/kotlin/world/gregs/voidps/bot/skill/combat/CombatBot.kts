@@ -34,7 +34,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.skill.slayer.race
 import world.gregs.voidps.world.interact.entity.combat.attackers
-import world.gregs.voidps.world.interact.entity.combat.underAttack
+import world.gregs.voidps.world.interact.entity.combat.inCombat
 import world.gregs.voidps.world.interact.entity.death.playerDeath
 import world.gregs.voidps.world.interact.entity.death.weightedSample
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.Spell
@@ -44,7 +44,7 @@ val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
 val floorItems: FloorItems by inject()
 
-variableSet("under_attack", to = 1) { player ->
+variableSet("in_combat", to = 1) { player ->
     if (player.isBot) {
         player.bot.resume("combat")
     }
@@ -152,7 +152,7 @@ fun Bot.isAvailableTarget(map: AreaDefinition, npc: NPC, races: Set<String>): Bo
     if (player.attackers.isNotEmpty()) {
         return player.attackers.contains(npc)
     }
-    if (npc.underAttack) {
+    if (npc.inCombat) {
         return false
     }
     if (!npc.def.options.contains("Attack")) {
