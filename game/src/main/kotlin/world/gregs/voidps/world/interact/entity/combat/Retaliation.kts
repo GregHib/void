@@ -26,6 +26,7 @@ characterCombatHit { character ->
     if (character.levels.get(Skill.Constitution) <= 0 || character.inCombat && character.target == source) {
         return@characterCombatHit
     }
+    character.start("in_combat", 8)
     if (character.mode is CombatMovement) {
         return@characterCombatHit
     }
