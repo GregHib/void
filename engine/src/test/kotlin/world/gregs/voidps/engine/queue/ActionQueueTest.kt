@@ -28,10 +28,17 @@ internal class ActionQueueTest {
 
     @Test
     fun `Queue an action for immediate use`() {
-        val action = action(delay = 0)
+        var resumed = false
+        val action = action(delay = 0) {
+            resumed = true
+        }
         queue.add(action)
+        assertEquals(0, action.remaining)
+        assertFalse(action.removed)
+        assertFalse(resumed)
+        queue.tick()
         assertEquals(-1, action.remaining)
-        assertTrue(action.removed)
+        assertTrue(resumed)
     }
 
     @Test
@@ -95,7 +102,7 @@ internal class ActionQueueTest {
         }
         queue.add(action)
         tick()
-        assertEquals(3, action.remaining)
+        assertEquals(4, action.remaining)
         assertNotNull(action.suspension)
         repeat(4) {
             tick()
