@@ -3,6 +3,7 @@ package world.gregs.voidps.world.activity.skill.herblore
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.world.interact.dialogue.*
@@ -15,7 +16,8 @@ val potions = setOf(
         "potion",
         "antipoison",
         "brew",
-        "antidote"
+        "antidote",
+        "antiposion"
 )
 
 npcOperate("Decant", "bob_barter_herbs") {
@@ -61,28 +63,26 @@ fun decantPotions(player: Player): Boolean {
 
     player.inventory.transaction {
         val potionMap = mutableMapOf<String, Int>()
-
-        // Remove potions and calculate total doses for each type
-        player.inventory.items
-                .filter { item -> potions.any { potion -> item.id.contains(potion) } }
-                .toList()
-                .forEach { potion ->
-                    val baseId = potion.id.substringBeforeLast('_')
-                    potionMap[baseId] =
-                            potionMap.getOrDefault(baseId, 0) +
-                                    Integer.parseInt(potion.id.takeLast(1)) * potion.amount
-                    remove(potion.id)
-                }
-
-        // Add decanted potions back into the players inventory
-        potionMap.forEach { (baseId, totalDoses) ->
-            var dosesLeft = totalDoses
-            while (dosesLeft > 0) {
-                val dose = if (dosesLeft >= 4) 4 else dosesLeft
-                dosesLeft -= dose
-                add("${baseId}_$dose", 1)
+        for (index in inventory.items.indices) {
+            val item = inventory.items[index]
+            if (isPotion(item)) {
+                clear(index)
+                val type = item.id.substringBeforeLast("_")
+                val doses = item.id.substringAfterLast("_").toInt()
+                potionMap[type] = potionMap.getOrDefault(type, 0) + doses
+            }
+        }
+        for ((type, doses) in potionMap) {
+            add("${type}_4", doses / 4)
+            val remaining = doses.rem(4)
+            if (remaining > 0) {
+                add("${type}_${remaining}")
             }
         }
     }
     return player.inventory.transaction.error == TransactionError.None
+}
+
+fun isPotion(item: Item): Boolean {
+    return potions.any { potion -> item.id.contains(potion, ignoreCase = true) }
 }
