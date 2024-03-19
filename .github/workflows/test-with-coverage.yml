@@ -8,8 +8,6 @@ on:
 env:
   CACHE_VERSION: 1.2.0
 jobs:
-  build:
-    uses: ./.github/workflows/build.yml
   test:
     name: Test
     runs-on: ubuntu-latest
