@@ -8,8 +8,8 @@ on:
 env:
   CACHE_VERSION: 1.2.0
 jobs:
-  build-test:
-    name: Build & Test
+  test:
+    name: Test
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -18,25 +18,34 @@ jobs:
         run: mkdir -p data/cache/
       - uses: actions/setup-java@v3
         with:
-          java-version: '19'
-          distribution: 'temurin'
+          java-version: "19"
+          distribution: "temurin"
           architecture: x64
-          cache: 'gradle'
+          cache: "gradle"
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
       - name: Check if secrets exists
         id: check_secret
-        run: echo ::set-output name=exists::$(if [ -n "${{ secrets.AWS_ACCESS_KEY_ID }}" ]; then echo "true"; else echo "false"; fi)
+        run: |
+          if [ -n "${{ secrets.AWS_ACCESS_KEY_ID }}" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Grant Permissions to gradlew
+        run: chmod +x gradlew
+      - name: Get cache version
+        run: echo "cache_version=$(./gradlew -q printCacheVersion)" >> $GITHUB_ENV
       - name: Cache game files
         if: steps.check_secret.outputs.exists == 'true'
         id: cache-files
         uses: actions/cache@v3
         with:
-          key: cache-${{ env.CACHE_VERSION }}-${{ hashFiles('data/cache/main_file_cache.idx255') }}
+          key: cache-${{ env.cache_version }}-${{ hashFiles('data/cache/main_file_cache.idx255') }}
           path: data/cache/
           enableCrossOsArchive: 'true'
           restore-keys:
-            cache-${{ env.CACHE_VERSION }}
+            cache-${{ env.cache_version }}
             cache-
       - if: steps.check_secret.outputs.exists == 'true' && steps.cache-files.outputs.cache-hit != 'true'
         env:
@@ -44,8 +53,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: eu-west-2
         run: aws s3 cp --recursive s3://void-rsps/caches/${{ env.CACHE_VERSION }}/ data/cache/
-      - name: Grant Permissions to gradlew
-        run: chmod +x gradlew
       - name: Run all tests
         if: steps.check_secret.outputs.exists == 'true'
         run: ./gradlew test

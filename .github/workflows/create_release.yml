@@ -12,22 +12,69 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Create cache folder
+        run: mkdir -p data/cache/
       - uses: actions/setup-java@v3
         with:
-          java-version: '19'
-          distribution: 'temurin'
+          java-version: "19"
+          distribution: "temurin"
           architecture: x64
-          cache: 'gradle'
+          cache: "gradle"
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
-      - name: Grant permissions to gradlew
+      - name: Check if secrets exists
+        id: check_secret
+        run: |
+          if [ -n "${{ secrets.AWS_ACCESS_KEY_ID }}" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Grant Permissions to gradlew
         run: chmod +x gradlew
+      - name: Get cache version
+        run: echo "cache_version=$(./gradlew -q printCacheVersion)" >> $GITHUB_ENV
       - name: Get build version
         run: echo "build_version=$(./gradlew -q printVersion)" >> $GITHUB_ENV
+      - name: Cache game files
+        if: steps.check_secret.outputs.exists == 'true'
+        id: cache-files
+        uses: actions/cache@v3
+        with:
+          key: cache-${{ env.cache_version }}-${{ hashFiles('data/cache/main_file_cache.idx255') }}
+          path: data/cache/
+          enableCrossOsArchive: 'true'
+          restore-keys:
+            cache-${{ env.cache_version }}
+            cache-
+      - if: steps.check_secret.outputs.exists == 'true' && steps.cache-files.outputs.cache-hit != 'true'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: eu-west-2
+        run: aws s3 cp --recursive s3://void-rsps/caches/${{ env.CACHE_VERSION }}/ data/cache/
       - name: Run distribution assembly
-        run: ./gradlew buildScripts assembleBundleDist
+        run: ./gradlew assembleBundleDist
       - name: Upload distribution
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run:
           gh release create -d ${{ github.ref_name }} ./game/build/distributions/void-${{ env.build_version }}.zip
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: greghib/void
+      - name: Build and push Docker image
+        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
