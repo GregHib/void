@@ -27,7 +27,12 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
       - name: Check if secrets exists
         id: check_secret
-        run: echo ::set-output name=exists::$(if [ -n "${{ secrets.AWS_ACCESS_KEY_ID }}" ]; then echo "true"; else echo "false"; fi)
+        run: |
+          if [ -n "${{ secrets.AWS_ACCESS_KEY_ID }}" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
       - name: Cache game files
         if: steps.check_secret.outputs.exists == 'true'
         id: cache-files
@@ -48,4 +53,4 @@ jobs:
       - name: Grant Permissions to gradlew
         run: chmod +x gradlew
       - name: Build game jar
-        run: ./gradlew build
+        run: ./gradlew shadowJar
