@@ -4211,3 +4211,1210 @@ string_onyx_amulet:
   remove: [ onyx_amulet_unstrung, ball_of_wool ]
   add: [ onyx_amulet ]
   message: "You put some string on your amulet."
+# Herblore unfinished potions
+guam_unf_potion:
+  skill: herblore
+  level: 3
+  xp: 0.0
+  ticks: 1
+  remove: [ clean_guam, vial_of_water ]
+  add: [ guam_potion_unf ]
+  animation: mixing_potion
+  message: "You put the Guam leaf into the vial of water."
+ardrigal_mixture_unf_potion:
+  skill: herblore
+  level: 3
+  xp: 0.0
+  ticks: 1
+  remove: [ clean_ardrigal, vial_of_water ]
+  add: [ ardrigal_mixture ]
+  animation: mixing_potion
+  message: "You put the Ardrigal leaf into the vial of water."
+snakeweed_unf_potion:
+  skill: herblore
+  level: 3
+  xp: 0.0
+  ticks: 1
+  remove: [ clean_snake_weed, vial_of_water ]
+  add: [ snakeweed_mixture ]
+  animation: mixing_potion
+  message: "You put the Snake weed leaf into the vial of water."
+tarromin_unf_potion:
+  skill: herblore
+  level: 12
+  xp: 0.0
+  ticks: 1
+  remove: [ clean_tarromin, vial_of_water ]
+  add: [ tarromin_potion_unf ]
+  animation: mixing_potion
+  message: "You put the Tarromin leaf into the vial of water."
+rogues_purse_unf_potion:
+  skill: herblore
+  level: 5
+  xp: 1.0
+  ticks: 1
+  remove: [ clean_rogues_purse, vial_of_water ]
+  add: [ rogues_purse_potion_unf ]
+  animation: mixing_potion
+  message: "You put the Rogues purse leaf into the vial of water."
+marrentill_unf_potion:
+  skill: herblore
+  level: 5
+  xp: 0.0
+  ticks: 1
+  remove: [ clean_marrentill, vial_of_water ]
+  add: [ marrentill_potion_unf ]
+  animation: mixing_potion
+  message: "You put the Marrentill leaf into the vial of water."
+harralander_unf_potion:
+  skill: herblore
+  level: 22
+  xp: 0.0
+  ticks: 1
+  remove: [ clean_harralander, vial_of_water ]
+  add: [ harralander_potion_unf ]
+  animation: mixing_potion
+  message: "You put the Harralander leaf into the vial of water."
+ranarr_unf_potion:
+  skill: herblore
+  level: 30
+  xp: 0.0
+  ticks: 1
+  remove: [ clean_ranarr, vial_of_water ]
+  add: [ ranarr_potion_unf ]
+  animation: mixing_potion
+  message: "You put the Ranarr leaf into the vial of water."
+toadflax_unf_potion:
+  skill: herblore
+  level: 34
+  xp: 0.0
+  ticks: 1
+  remove: [ clean_toadflax, vial_of_water ]
+  add: [ toadflax_potion_unf ]
+  animation: mixing_potion
+  message: "You put the Toadflax leaf into the vial of water."
+spirit_weed_unf_potion:
+  skill: herblore
+  level: 35
+  xp: 0.0
+  ticks: 1
+  remove: [ clean_spirit_weed, vial_of_water ]
+  add: [ spirit_weed_potion_unf ]
+  animation: mixing_potion
+  message: "You put the Spirit weed leaf into the vial of water."
+irit_unf_potion:
+  skill: herblore
+  level: 45
+  xp: 0.0
+  ticks: 1
+  remove: [ clean_irit, vial_of_water ]
+  add: [ irit_potion_unf ]
+  animation: mixing_potion
+  message: "You put the Irit leaf into the vial of water."
+wergali_unf_potion:
+  skill: herblore
+  level: 5
+  xp: 1.0
+  ticks: 1
+  remove: [ clean_wergali, vial_of_water ]
+  add: [ wergali_potion_unf ]
+  animation: mixing_potion
+  message: "You put the Wergali leaf into the vial of water."
+avantoe_unf_potion:
+  skill: herblore
+  level: 50
+  xp: 0.0
+  ticks: 1
+  remove: [ clean_avantoe, vial_of_water ]
+  add: [ avantoe_potion_unf ]
+  animation: mixing_potion
+  message: "You put the Avantoe leaf into the vial of water."
+kwuarm_unf_potion:
+  skill: herblore
+  level: 55
+  xp: 0.0
+  ticks: 1
+  remove: [ clean_kwuarm, vial_of_water ]
+  add: [ kwuarm_potion_unf ]
+  animation: mixing_potion
+  message: "You put the Kwuarm leaf into the vial of water."
+magic_essence_unf_potion:
+  skill: herblore
+  level: 57
+  xp: 1.0
+  ticks: 1
+  remove: [ star_flower, vial_of_water ]
+  add: [ magic_essence_unf ]
+  animation: mixing_potion
+  message: "You put the Star flower into the vial of water."
+snapdragon_unf_potion:
+  skill: herblore
+  level: 30
+  xp: 0.0
+  ticks: 1
+  remove: [ clean_snapdragon, vial_of_water ]
+  add: [ snapdragon_potion_unf ]
+  animation: mixing_potion
+  message: "You put the Snapdragon leaf into the vial of water."
+cadantine_unf_potion:
+  skill: herblore
+  level: 66
+  xp: 0.0
+  ticks: 1
+  remove: [ clean_cadantine, vial_of_water ]
+  add: [ cadantine_potion_unf ]
+  animation: mixing_potion
+  message: "You put the Cadantine leaf into the vial of water."
+lantadyme_unf_potion:
+  skill: herblore
+  level: 69
+  xp: 0.0
+  ticks: 1
+  remove: [ clean_lantadyme, vial_of_water ]
+  add: [ lantadyme_potion_unf ]
+  animation: mixing_potion
+  message: "You put the Lantadyme leaf into the vial of water."
+dwarf_weed_unf_potion:
+  skill: herblore
+  level: 72
+  xp: 0.0
+  ticks: 1
+  remove: [ clean_dwarf_weed, vial_of_water ]
+  add: [ dwarf_weed_potion_unf ]
+  animation: mixing_potion
+  message: "You put the Dwarf weed leaf into the vial of water."
+torstol_unf_potion:
+  skill: herblore
+  level: 78
+  xp: 0.0
+  ticks: 1
+  remove: [ clean_torstol, vial_of_water ]
+  add: [ torstol_potion_unf ]
+  animation: mixing_potion
+  message: "You put the Torstol leaf into the vial of water."
+guthix_balance_potion_unf:
+  skill: herblore
+  level: 22
+  xp: 25.0
+  ticks: 2
+  remove: [ restore_potion_3, garlic, silver_dust]
+  add: [ guthix_balance_unf_3 ]
+  animation: mixing_potion
+  message: "You mix the garlic into your potion."
+antipoison+_potion_unf:
+  skill: herblore
+  level: 68
+  xp: 1.0
+  ticks: 2
+  remove: [ coconut_milk, clean_toadflax]
+  add: [ antipoison+_unf ]
+  animation: mixing_potion
+  message: "You mix the toadflax leaf into your potion."
+antipoison++_potion_unf:
+  skill: herblore
+  level: 79
+  xp: 1.0
+  ticks: 2
+  remove: [ coconut_milk, clean_irit]
+  add: [ antipoison++_unf ]
+  animation: mixing_potion
+  message: "You mix the irit leaf into your potion."
+weaponpoison+_potion_unf:
+  skill: herblore
+  level: 73
+  xp: 1.0
+  ticks: 2
+  remove: [ coconut_milk, cactus_spine]
+  add: [ weapon_poison+_unf ]
+  animation: mixing_potion
+  message: "You mix the cactus spine into your potion."
+weaponpoison++_potion_unf:
+  skill: herblore
+  level: 73
+  xp: 1.0
+  ticks: 2
+  remove: [ coconut_milk, cave_nightshade]
+  add: [ weapon_poison++_unf ]
+  animation: mixing_potion
+  message: "You mix the cave nightshade into your potion."
+# Herblore finished potions
+attack_potion_finished:
+  skill: herblore
+  level: 3
+  xp: 1.0
+  ticks: 2
+  remove: [ guam_potion_unf, eye_of_newt ]
+  add: [ attack_potion_3 ]
+  animation: mixing_potion
+  message: "You mix the eye of newt into your potion."
+anti_poison_finished:
+  skill: herblore
+  level: 5
+  xp: 37.5
+  ticks: 2
+  remove: [ marrentill_potion_unf, unicorn_horn_dust]
+  add: [ antipoison_3 ]
+  animation: mixing_potion
+  message: "You mix the unicorn dust into your potion."
+strength_potion_finished:
+  skill: herblore
+  level: 12
+  xp: 50.0
+  ticks: 2
+  remove: [ tarromin_potion_unf, limpwurt_root]
+  add: [ strength_potion_3 ]
+  animation: mixing_potion
+  message: "You mix the limpwurt root into your potion."
+stat_restore_potion_finished:
+  skill: herblore
+  level: 12
+  xp: 50.0
+  ticks: 2
+  remove: [ harralander_potion_unf, red_spiders_eggs]
+  add: [ strength_potion_3 ]
+  animation: mixing_potion
+  message: "You mix the limpwurt root into your potion."
+guthix_balance_potion_finished:
+  skill: herblore
+  level: 22
+  xp: 25.0
+  ticks: 2
+  remove: [ guthix_balance_unf_3, silver_dust]
+  add: [ guthix_balance_3 ]
+  animation: mixing_potion
+  message: "You mix the silver dust into your potion."
+blamish_oil_finished:
+  skill: herblore
+  level: 25
+  xp: 80.0
+  ticks: 2
+  remove: [ harralander_potion_unf, blamish_snail_slime]
+  add: [ blamish_oil ]
+  animation: mixing_potion
+  message: "You mix the blamish snail slime into your potion."
+energy_potion_finished:
+  skill: herblore
+  level: 26
+  xp: 67.5
+  ticks: 2
+  remove: [ harralander_potion_unf, chocolate_dust]
+  add: [ energy_potion_3 ]
+  animation: mixing_potion
+  message: "You mix the chocolate dust into your potion."
+defence_potion_finished:
+  skill: herblore
+  level: 30
+  xp: 75.0
+  ticks: 2
+  remove: [ ranarr_potion_unf, white_berries]
+  add: [ defence_potion_3 ]
+  animation: mixing_potion
+  message: "You mix the white berries into your potion."
+super_fishing_explosive_finished:
+  skill: herblore
+  level: 31
+  xp: 55.0
+  ticks: 2
+  remove: [ guam_potion_unf, rubium]
+  add: [ super_fishing_explosive ]
+  animation: mixing_potion
+  message: "You mix the rubium into your potion."
+agility_potion_finished:
+  skill: herblore
+  level: 34
+  xp: 80.0
+  ticks: 2
+  remove: [ toadflax_potion_unf, toads_legs]
+  add: [ agility_potion_3 ]
+  animation: mixing_potion
+  message: "You mix the toads legs into your potion."
+combat_potion_finished_finished:
+  skill: herblore
+  level: 36
+  xp: 84.0
+  ticks: 2
+  remove: [ harralander_potion_unf, desert_goat_horn]
+  add: [ combat_potion_3 ]
+  animation: mixing_potion
+  message: "You mix the desert goat horn into your potion."
+prayer_potion_finished:
+  skill: herblore
+  level: 38
+  xp: 87.5
+  ticks: 2
+  remove: [ ranarr_potion_unf, snape_grass]
+  add: [ prayer_potion_3 ]
+  animation: mixing_potion
+  message: "You mix the snape grass into your potion."
+summoning_potion_finished:
+  skill: herblore
+  level: 40
+  xp: 92.0
+  ticks: 2
+  remove: [ spirit_weed_potion_unf, cockatrice_egg]
+  add: [ summoning_potion_3 ]
+  animation: mixing_potion
+  message: "You mix the cockatrice egg into your potion."
+crafting_potion_finished:
+  skill: herblore
+  level: 42
+  xp: 95.0
+  ticks: 2
+  remove: [ wergali_potion_unf, frog_spawn]
+  add: [ summoning_potion_3 ]
+  animation: mixing_potion
+  message: "You mix the frog spawn into your potion."
+super_attack_potion_finished:
+  skill: herblore
+  level: 45
+  xp: 100.0
+  ticks: 2
+  remove: [ irit_potion_unf, eye_of_newt]
+  add: [ super_attack_potion_3 ]
+  animation: mixing_potion
+  message: "You mix the eye of newt into your potion."
+vial_of_stench_finished:
+  skill: herblore
+  level: 46
+  xp: 0.0
+  ticks: 2
+  remove: [ irit_potion_unf, chopped_onion]
+  add: [ vial_of_stench ]
+  animation: mixing_potion
+  message: "You mix the chopped onion into your potion."
+super_antipoison_potion_finished:
+  skill: herblore
+  level: 48
+  xp: 106.3
+  ticks: 2
+  remove: [ irit_potion_unf, unicorn_horn_dust]
+  add: [ super_antipoison_3 ]
+  animation: mixing_potion
+  message: "You mix the unicorn horn dust into your potion."
+fishing_potion_finished:
+  skill: herblore
+  level: 50
+  xp: 112.5
+  ticks: 2
+  remove: [ avantoe_potion_unf, snape_grass]
+  add: [ fishing_potion_3 ]
+  animation: mixing_potion
+  message: "You mix the snape grass into your potion."
+super_energy_potion_finished:
+  skill: herblore
+  level: 52
+  xp: 117.5
+  ticks: 2
+  remove: [ avantoe_potion_unf, mort_myre_fungus]
+  add: [ super_energy_potion_3 ]
+  animation: mixing_potion
+  message: "You mix the mort myre fungus into your potion."
+hunter_potion_finished:
+  skill: herblore
+  level: 53
+  xp: 120.0
+  ticks: 2
+  remove: [ avantoe_potion_unf, kebbit_teeth_dust]
+  add: [ hunter_potion_3 ]
+  animation: mixing_potion
+  message: "You mix the kebbit teeth dust into your potion."
+super_strength_potion_finished:
+  skill: herblore
+  level: 55
+  xp: 125.0
+  ticks: 2
+  remove: [ kwuarm_potion_unf, limpwurt_root]
+  add: [ super_strength_potion_3 ]
+  animation: mixing_potion
+  message: "You mix the limpwurt root into your potion."
+magic_essence_finished:
+  skill: herblore
+  level: 57
+  xp: 130.0
+  ticks: 2
+  remove: [ magic_essence_unf, gorak_claw_powder]
+  add: [ magic_essence_3 ]
+  animation: mixing_potion
+  message: "You mix the gorak claw powder into your potion."
+fletching_potion_finished_finished:
+  skill: herblore
+  level: 58
+  xp: 132.0
+  ticks: 2
+  remove: [ wergali_potion_unf, wimpy_feather]
+  add: [ fletching_potion_3 ]
+  animation: mixing_potion
+  message: "You mix the wimpy feather into your potion."
+weapon_poison_finished:
+  skill: herblore
+  level: 60
+  xp: 137.5
+  ticks: 2
+  remove: [ kwuarm_potion_unf, dragon_scale_dust]
+  add: [ weapon_poison_3 ]
+  animation: mixing_potion
+  message: "You mix the dragon scale dust into your potion."
+super_restore_finished:
+  skill: herblore
+  level: 63
+  xp: 142.5
+  ticks: 2
+  remove: [ snapdragon_potion_unf, red_spiders_eggs]
+  add: [ super_restore_3 ]
+  animation: mixing_potion
+  message: "You mix the red spiderss eggs into your potion."
+sanfew_mixture_1_of_4_finished:
+  skill: herblore
+  level: 65
+  xp: 57.0
+  ticks: 2
+  remove: [ super_restore_4, unicorn_horn_dust]
+  add: [ mixture_step_1_4 ]
+  animation: mixing_potion
+  message: "You mix the unicorn horn dust into your potion."
+sanfew_serum_1_finished:
+  skill: herblore
+  level: 65
+  xp: 36.0
+  ticks: 2
+  remove: [ mixture_step_2_1, nail_beast_nails]
+  add: [ sanfew_serum_1 ]
+  animation: mixing_potion
+  message: "You mix the nail beast nails into your potion"
+sanfew_serum_2_finished:
+  skill: herblore
+  level: 65
+  xp: 48.0
+  ticks: 2
+  remove: [ mixture_step_2_2, nail_beast_nails]
+  add: [ sanfew_serum_2 ]
+  animation: mixing_potion
+  message: "You mix the nail beast nails into your potion"
+sanfew_serum_3_finished:
+  skill: herblore
+  level: 65
+  xp: 48.0
+  ticks: 2
+  remove: [ mixture_step_2_3, nail_beast_nails]
+  add: [ sanfew_serum_3 ]
+  animation: mixing_potion
+  message: "You mix the nail beast nails into your potion"
+super_defence_potion_finished:
+  skill: herblore
+  level: 66
+  xp: 150.0
+  ticks: 2
+  remove: [ cadantine_potion_unf, white_berries]
+  add: [ cw_super_defence_potion_3 ]
+  animation: mixing_potion
+  message: "You mix the white berries into your potion"
+antipoison+_potion_finished:
+  skill: herblore
+  level: 68
+  xp: 155.0
+  ticks: 2
+  remove: [ antipoison+_unf, yew_roots]
+  add: [ antipoison+_3 ]
+  animation: mixing_potion
+  message: "You mix the yew roots into your potion"
+anti_fire_potion_finished:
+  skill: herblore
+  level: 69
+  xp: 157.5
+  ticks: 2
+  remove: [lantadyme_potion_unf, dragon_scale_dust]
+  add: [anti_fire_potion_3]
+  animation: mixing_potion
+  message: "You mix the dragon scale dust into your potion."
+ranging_potion_finished:
+  skill: herblore
+  level: 72
+  xp: 162.5
+  ticks: 2
+  remove: [dwarf_weed_potion_unf, wine_of_zamorak]
+  add: [ranging_potion_3]
+  animation: mixing_potion
+  message: "You mix the wine of zamorak into your potion"
+weapon_poison+_finished:
+  skill: herblore
+  level: 73
+  xp: 137.5
+  ticks: 2
+  remove: [ weapon_poison+_unf, red_spiders_eggs]
+  add: [ weapon_poison+_3 ]
+  animation: mixing_potion
+  message: "You mix the wine of red spiders eggs into your potion"
+magic_potion_finished:
+  skill: herblore
+  level: 76
+  xp: 172.5
+  ticks: 2
+  remove: [lantadyme_potion_unf, potato_cactus]
+  add: [magic_potion_3]
+  animation: mixing_potion
+  message: "You mix the potato cactus into your potion"
+zamorak_brew_finished:
+  skill: herblore
+  level: 78
+  xp: 175.0
+  ticks: 2
+  remove: [torstol_potion_unf, jangerberries]
+  add: [zamorak_brew_3]
+  animation: mixing_potion
+  message: "You mix the janger berries into your potion"
+saradomin_brew_finished:
+  skill: herblore
+  level: 81
+  xp: 180.0
+  ticks: 2
+  remove: [toadflax_potion_unf, crushed_nest]
+  add: [saradomin_brew_3]
+  animation: mixing_potion
+  message: "You mix the crushed nest into your potion"
+weapon_poison++_finished:
+  skill: herblore
+  level: 82
+  xp: 190.0
+  ticks: 2
+  remove: [weapon_poison++_unf, poison_ivy_berries]
+  add: [saradomin_brew_3]
+  animation: mixing_potion
+  message: "You mix the poison ivy berries into your potion"
+recover_special_potion_finished:
+  skill: herblore
+  level: 84
+  xp: 200.0
+  ticks: 2
+  remove: [cw_super_energy_potion_3, papaya_fruit]
+  add: [recover_special_3]
+  animation: mixing_potion
+  message: "You mix the papaya fruit into your potion"
+super_anti_fire_finished:
+  skill: herblore
+  level: 85
+  xp: 200.0
+  ticks: 2
+  remove: [antifire_3, phoenix_feather]
+  add: [super_antifire_3]
+  animation: mixing_potion
+  message: "You mix the phoenix feather into your potion"
+extreme_attack_potion_finished:
+  skill: herblore
+  level: 88
+  xp: 220.0
+  ticks: 2
+  remove: [super_attack_3, clean_avantoe]
+  add: [extreme_attack_3]
+  animation: mixing_potion
+  message: "You mix the avantoe leaf into your potion"
+extreme_strength_potion_finished:
+  skill: herblore
+  level: 89
+  xp: 230.0
+  ticks: 2
+  remove: [super_strength_3, clean_dwarf_weed]
+  add: [extreme_strength_3]
+  animation: mixing_potion
+  message: "You mix the dwarf weed into your potion"
+extreme_defence_potion_finished:
+  skill: herblore
+  level: 90
+  xp: 240.0
+  ticks: 2
+  remove: [super_defence_3, clean_lantadyme]
+  add: [extreme_defence_3]
+  animation: mixing_potion
+  message: "You mix the lantadyme leaf into your potion"
+extreme_magic_potion_finished:
+  skill: herblore
+  level: 91
+  xp: 250.0
+  ticks: 2
+  remove: [super_magic_3, ground_mud_runes]
+  add: [extreme_magic_3]
+  animation: mixing_potion
+  message: "You mix the ground mud runes into your potion"
+extreme_ranging_potion_finished:
+  skill: herblore
+  level: 92
+  xp: 250.0
+  ticks: 2
+  remove: [super_ranging_3, grenwall_spikes]
+  add: [extreme_ranging_3]
+  animation: mixing_potion
+  message: "You mix the grenwall spikes into your potion"
+super_prayer_potion_finished:
+  skill: herblore
+  level: 94
+  xp: 270.0
+  ticks: 2
+  remove: [prayer_potion_3, wyvern_bonemeal]
+  add: [super_prayer_3]
+  animation: mixing_potion
+  message: "You mix the wyvern bonemeal into your potion"
+overload_potion_finished:
+  skill: herblore
+  level: 96
+  xp: 1000.0
+  ticks: 2
+  remove: [extreme_attack_3, extreme_strength_3, extreme_defence_3, extreme_magic_3, extreme_ranging_3, clean_torstol]
+  add: [overload_3]
+  animation: mixing_potion
+  message: "You combine all of your potions together to make an overload potion"
+# potion mixes
+agility_mix:
+  skill: herblore
+  level: 37
+  xp: 27.0
+  ticks: 2
+  remove: [agility_potion_2, caviar]
+  add: [agility_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your agility potion."
+antifire_mix:
+  skill: herblore
+  level: 75
+  xp: 53.0
+  ticks: 2
+  remove: [antifire_potion_2, caviar]
+  add: [antifire_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your antifire potion."
+antipoison_mix_r:
+  skill: herblore
+  level: 15
+  xp: 1.2
+  ticks: 2
+  remove: [antipoison_potion_2, roe]
+  add: [antipoison_mix_2]
+  animation: mixing_potion
+  message: "You mix the roe into your antipoison potion."
+antipoison_mix_c:
+  skill: herblore
+  level: 15
+  xp: 1.2
+  ticks: 2
+  remove: [antipoison_potion_2, caviar]
+  add: [antipoison_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your antipoison potion."
+antipoison_plus_mix:
+  skill: herblore
+  level: 74
+  xp: 52.0
+  ticks: 2
+  remove: [antipoison_plus_potion_2, caviar]
+  add: [antipoison_plus_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your antipoison+ potion."
+attack_mix_r:
+  skill: herblore
+  level: 4
+  xp: 8.0
+  ticks: 2
+  remove: [attack_potion_2, roe]
+  add: [attack_mix_2]
+  animation: mixing_potion
+  message: "You mix the roe into your attack potion."
+attack_mix_c:
+  skill: herblore
+  level: 4
+  xp: 8.0
+  ticks: 2
+  remove: [attack_potion_2", caviar]
+  add: [attack_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your attack potion."
+combat_mix:
+  skill: herblore
+  level: 40
+  xp: 28.0
+  ticks: 2
+  remove: [combat_potion_2, caviar]
+  add: [combat_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your combat potion."
+defence_mix:
+  skill: herblore
+  level: 11
+  xp: 25.0
+  ticks: 2
+  remove: [defence_potion_2, caviar]
+  add: [defence_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your defence potion."
+energy_mix:
+  skill: herblore
+  level: 29
+  xp: 23.0
+  ticks: 2
+  remove: [energy_potion_2, caviar]
+  add: [energy_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your energy potion."
+fishing_mix:
+  skill: herblore
+  level: 53
+  xp: 38.0
+  ticks: 2
+  remove: [fishing_potion_2, caviar]
+  add: [fishing_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your fishing potion."
+hunting_mix:
+  skill: herblore
+  level: 58
+  xp: 40.0
+  ticks: 2
+  remove: [hunting_potion_2, caviar]
+  add: [hunting_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your hunting potion."
+magic_mix_r:
+  skill: herblore
+  level: 7
+  xp: 8.0
+  ticks: 2
+  remove: [magic_potion_2, roe]
+  add: [magic_mix_2]
+  animation: mixing_potion
+  message: "You mix the roe into your magic potion."
+magic_mix_c:
+  skill: herblore
+  level: 7
+  xp: 8.0
+  ticks: 2
+  remove: [magic_potion_2, caviar]
+  add: [magic_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your magic potion."
+magic_essence_mix:
+  skill: herblore
+  level: 61
+  xp: 43.0
+  ticks: 2
+  remove: [magic_essence_potion, caviar]
+  add: [magic_essence_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your magic essence potion."
+ranging_mix_c:
+  skill: herblore
+  level: 5
+  xp: 8.0
+  ticks: 2
+  remove: [ranging_potion_2", caviar]
+  add: [ranging_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your ranging potion."
+ranging_mix_r:
+  skill: herblore
+  level: 5
+  xp: 8.0
+  ticks: 2
+  remove: [ranging_potion_2, roe]
+  add: [ranging_mix_2]
+  animation: mixing_potion
+  message: "You mix the roe into your ranging potion."
+relicyms_mix_r:
+  skill: herblore
+  level: 9
+  xp: 14.0
+  ticks: 2
+  remove: [relicyms_potion_2, roe]
+  add: [relicyms_mix_2]
+  animation: mixing_potion
+  message: "You mix the roe into your Relicym's potion."
+relicyms_mix_c:
+  skill: herblore
+  level: 9
+  xp: 14.0
+  ticks: 2
+  remove: [relicyms_potion_2, caviar]
+  add: [relicyms_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your Relicym's potion."
+restore_mix_r:
+  skill: herblore
+  level: 24
+  xp: 21.0
+  ticks: 2
+  remove: [restore_potion_2, roe]
+  add: [restore_mix_2]
+  animation: mixing_potion
+  message: "You mix the roe into your restore potion."
+restore_mix_c:
+  skill: herblore
+  level: 24
+  xp: 21.0
+  ticks: 2
+  remove: [restore_potion_2, caviar]
+  add: [restore_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your restore potion."
+strength_mix_r:
+  skill: herblore
+  level: 9
+  xp: 17.0
+  ticks: 2
+  remove: [strength_potion_2, roe]
+  add: [strength_mix_2]
+  animation: mixing_potion
+  message: "You mix the roe into your strength potion."
+strength_mix_c:
+  skill: herblore
+  level: 9
+  xp: 17.0
+  ticks: 2
+  remove: [strength_potion_2, caviar]
+  add: [strength_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your strength potion."
+prayer_mix:
+  skill: herblore
+  level: 42
+  xp: 29.0
+  ticks: 2
+  remove: [prayer_potion_2, caviar]
+  add: [prayer_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your prayer potion."
+super_antipoison_mix:
+  skill: herblore
+  level: 51
+  xp: 35.0
+  ticks: 2
+  remove: [super_antipoison_potion_2, caviar]
+  add: [super_antipoison_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your super antipoison potion."
+super_attack_mix:
+  skill: herblore
+  level: 47
+  xp: 33.0
+  ticks: 2
+  remove: [super_attack_potion_2, caviar]
+  add: [super_attack_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your super attack potion."
+super_defence_mix:
+  skill: herblore
+  level: 71
+  xp: 50.0
+  ticks: 2
+  remove: [super_defence_potion_2, caviar]
+  add: [super_defence_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your super defence potion."
+super_energy_mix:
+  skill: herblore
+  level: 56
+  xp: 39.0
+  ticks: 2
+  remove: [super_energy_potion_2, caviar]
+  add: [super_energy_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your super energy potion."
+super_magic_mix:
+  skill: herblore
+  level: 83
+  xp: 57.0
+  ticks: 2
+  remove: [super_magic_potion_2, caviar]
+  add: [super_magic_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your super magic potion."
+super_ranging_mix:
+  skill: herblore
+  level: 80
+  xp: 54.0
+  ticks: 2
+  remove: [super_ranging_potion_2, caviar]
+  add: [super_ranging_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your super ranging potion."
+super_restore_mix:
+  skill: herblore
+  level: 67
+  xp: 48.0
+  ticks: 2
+  remove: [super_restore_potion_2, caviar]
+  add: [super_restore_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your super restore potion."
+super_strength_mix:
+  skill: herblore
+  level: 59
+  xp: 42.0
+  ticks: 2
+  remove: [super_strength_potion_2, caviar]
+  add: [super_strength_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your super strength potion."
+zamorak_mix:
+  skill: herblore
+  level: 85
+  xp: 58.0
+  ticks: 2
+  remove: [zamorak_potion_2, caviar]
+  add: [zamorak_mix_2]
+  animation: mixing_potion
+  message: "You mix the caviar into your Zamorak potion."
+#juju potions
+erzilla_potion_unf:
+  skill: herblore
+  level: 54
+  xp: 1.0
+  ticks: 2
+  remove: [juju_vial_of_water, clean_erzille]
+  add: [erzille_potion_unf]
+  animation: mixing_potion
+  message: "You mix the erzille into your vial of water."
+argway_potion_unf:
+  skill: herblore
+  level: 56
+  xp: 1.0
+  ticks: 2
+  remove: [juju_vial_of_water, clean_argway]
+  add: [argway_potion_unf]
+  animation: mixing_potion
+  message: "You mix the argway into your vial of water."
+ugune_potion_unf:
+  skill: herblore
+  level: 55
+  xp: 1.0
+  ticks: 2
+  remove: [juju_vial_of_water, clean_ugune]
+  add: [ugune_potion_unf]
+  animation: mixing_potion
+  message: "You mix the ugune into your vial of water."
+shengo_potion_unf:
+  skill: herblore
+  level: 57
+  xp: 1.0
+  ticks: 2
+  remove: [juju_vial_of_water, clean_shengo]
+  add: [shengo_potion_unf]
+  animation: mixing_potion
+  message: "You mix the shengo into your vial of water."
+samaden_potion_unf:
+  skill: herblore
+  level: 58
+  xp: 1.0
+  ticks: 2
+  remove: [juju_vial_of_water, clean_samaden]
+  add: [samaden_potion_unf]
+  animation: mixing_potion
+  message: "You mix the samaden into your vial of water."
+juju_mining_potion_finished:
+  skill: herblore
+  level: 74
+  xp: 168.0
+  ticks: 2
+  remove: [samaden_potion_unf, draconic_vine]
+  add: [juju_mining_potion_3]
+  animation: mixing_potion
+  message: "You mix the draconic vine into your potion."
+juju_guthix_gift_potion_finished:
+  skill: herblore
+  level: 75
+  xp: 179.0
+  ticks: 2
+  remove: [samaden_potion_unf, guthix_vine]
+  add: [guthixs_gift_3]
+  animation: mixing_potion
+  message: "You mix the guthix vine into your potion."
+juju_zamorak_favour_potion_finished:
+  skill: herblore
+  level: 75
+  xp: 179.0
+  ticks: 2
+  remove: [samaden_potion_unf, zamorak_vine]
+  add: [guthixs_gift_3]
+  animation: mixing_potion
+  message: "You mix the zamorak vine into your potion."
+juju_saradomin_potion_finished:
+  skill: herblore
+  level: 75
+  xp: 179.0
+  ticks: 2
+  remove: [samaden_potion_unf, saradomin_vine]
+  add: [saradomins_blessing_3]
+  animation: mixing_potion
+  message: "You mix the saradomin vine into your potion."
+juju_woodcutting_potion_finished:
+  skill: herblore
+  level: 71
+  xp: 160.0
+  ticks: 2
+  remove: [samaden_potion_unf, oily_vine]
+  add: [juju_woodcutting_potion_3]
+  animation: mixing_potion
+  message: "You mix the oily vine into your potion."
+juju_fishing_potion_finished:
+  skill: herblore
+  level: 70
+  xp: 158.0
+  ticks: 2
+  remove: [shengo_potion_unf, aquatic_vine]
+  add: [juju_fishing_potion_3]
+  animation: mixing_potion
+  message: "You mix the aquatic vine into your potion."
+juju_cooking_potion_finished:
+  skill: herblore
+  level: 67
+  xp: 152.0
+  ticks: 2
+  remove: [shengo_potion_unf, plant_teeth]
+  add: [juju_cooking_potion_3]
+  animation: mixing_potion
+  message: "You mix the plant teeth into your potion."
+juju_farming_potion_finished:
+  skill: herblore
+  level: 64
+  xp: 146.0
+  ticks: 2
+  remove: [ugune_potion_unf, marble_vine]
+  add: [juju_farming_potion_3]
+  animation: mixing_potion
+  message: "You mix the ugune into your potion."
+juju_hunter_potion_finished:
+  skill: herblore
+  level: 54
+  xp: 123.0
+  ticks: 2
+  remove: [erzille_potion_unf, corrupt_vine]
+  add: [juju_hunter_potion_3]
+  animation: mixing_potion
+  message: "You mix the corrupt vine into your potion."
+juju_scentless_potion_finished:
+  skill: herblore
+  level: 54
+  xp: 123.0
+  ticks: 2
+  remove: [argway_potion_unf, shadow_vine]
+  add: [scentless_potion_3]
+  animation: mixing_potion
+  message: "You mix the erzille into your potion."
+#swamp tar
+guam_tar:
+  skill: herblore
+  level: 19
+  xp: 30.0
+  ticks: 3
+  requires: [ pestle_and_mortar ]
+  remove:
+    - item: clean_guam
+    - item: swamp_tar
+      amount: 15
+  add:
+    - item: guam_tar
+      amount: 15
+  animation: pestle_and_mortar
+  message: "You mix the guam leaf into the swamp tar."
+marrentill_tar:
+  skill: herblore
+  level: 31
+  xp: 42.5
+  ticks: 3
+  requires: [ pestle_and_mortar ]
+  remove:
+    - item: clean_marrentill
+    - item: swamp_tar
+      amount: 15
+  add:
+    - item: marrentill_tar
+      amount: 15
+  animation: pestle_and_mortar
+  message: "You mix the marrentill leaf into the swamp tar."
+tarromin_tar:
+  skill: herblore
+  level: 39
+  xp: 55.0
+  ticks: 3
+  requires: [ pestle_and_mortar ]
+  remove:
+    - item: clean_tarromin
+    - item: swamp_tar
+      amount: 15
+  add:
+    - item: tarromin_tar
+      amount: 15
+  animation: pestle_and_mortar
+  message: "You mix the tarromin leaf into the swamp tar."
+harralander_tar:
+  skill: herblore
+  level: 44
+  xp: 72.5
+  ticks: 3
+  requires: [ pestle_and_mortar ]
+  remove:
+    - item: clean_harralander
+    - item: swamp_tar
+      amount: 15
+  add:
+    - item: harralander_tar
+      amount: 15
+
+  animation: pestle_and_mortar
+  message: "You mix the harralander leaf into the swamp tar."
+#crushing items
+unicorn_dust:
+  skill: herblore
+  level: 1
+  xp: 1.0
+  ticks: 1
+  requires: [ pestle_and_mortar ]
+  remove: [ unicorn_horn ]
+  add: [ unicorn_horn_dust ]
+  animation: pestle_and_mortar
+  message: "You crush the unicorn horn."
+silver_dust:
+  skill: herblore
+  level: 1
+  xp: 1.0
+  ticks: 1
+  requires: [ pestle_and_mortar ]
+  remove: [ silver_bar ]
+  add: [ silver_dust ]
+  animation: pestle_and_mortar
+  message: "You crush the silver bar."
+kebbit_teeth_dust:
+  skill: herblore
+  level: 1
+  xp: 1.0
+  ticks: 1
+  requires: [ pestle_and_mortar ]
+  remove: [ kebbit_teeth ]
+  add: [ kebbit_teeth_dust ]
+  animation: pestle_and_mortar
+  message: "You crush the kebbit teeth."
+dragon_scale_dust:
+  skill: herblore
+  level: 1
+  xp: 1.0
+  ticks: 1
+  requires: [ pestle_and_mortar ]
+  remove: [ blue_dragon_scale ]
+  add: [ dragon_scale_dust ]
+  animation: pestle_and_mortar
+  message: "You crush the blue dragon scales."
+crushed_nest:
+  skill: herblore
+  level: 1
+  xp: 1.0
+  ticks: 1
+  requires: [ pestle_and_mortar ]
+  remove: [ birds_nest_empty ]
+  add: [ crushed_nest ]
+  animation: pestle_and_mortar
+  message: "You crush the birds nest."
+crushed_gem:
+  skill: herblore
+  level: 1
+  xp: 1.0
+  ticks: 1
+  requires: [ pestle_and_mortar ]
+  remove: [ uncut_opal ]
+  add: [ crushed_gem ]
+  animation: pestle_and_mortar
+  message: "You crush the uncut opal."
