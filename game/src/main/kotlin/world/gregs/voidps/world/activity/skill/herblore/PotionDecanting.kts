@@ -16,8 +16,7 @@ val potions = setOf(
         "potion",
         "antipoison",
         "brew",
-        "antidote",
-        "antiposion"
+        "antidote"
 )
 
 npcOperate("Decant", "bob_barter_herbs") {
