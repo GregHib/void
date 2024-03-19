@@ -62,7 +62,6 @@ class PrayerDefinitions {
             }
             this.prayers = Array(prayers.size) { prayers[it] }
             this.curses = Array(curses.size) { curses[it] }
-            println(this.prayers.mapIndexed { index, prayerDefinition -> index to prayerDefinition.stringId })
             this.groups = groups
             this.definitions = definitions
             this.definitions.size
