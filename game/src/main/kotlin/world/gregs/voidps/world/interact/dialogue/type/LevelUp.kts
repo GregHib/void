@@ -25,7 +25,7 @@ experience { player ->
 }
 
 maxLevelChange { player ->
-    if (from <= to) {
+    if (from >= to) {
         return@maxLevelChange
     }
     if (player["skip_level_up", false]) {
