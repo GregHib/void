@@ -1,0 +1,45 @@
+name: Build game files
+on:
+  workflow_call:
+    secrets: inherit
+jobs:
+  build:
+    name: Build game
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create cache folder
+        run: mkdir -p data/cache/
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '19'
+          distribution: 'temurin'
+          architecture: x64
+          cache: 'gradle'
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+      - name: Check if secrets exists
+        id: check_secret
+        run: echo ::set-output name=exists::$(if [ -n "${{ secrets.AWS_ACCESS_KEY_ID }}" ]; then echo "true"; else echo "false"; fi)
+      - name: Cache game files
+        if: steps.check_secret.outputs.exists == 'true'
+        id: cache-files
+        uses: actions/cache@v3
+        with:
+          key: cache-${{ env.CACHE_VERSION }}-${{ hashFiles('data/cache/main_file_cache.idx255') }}
+          path: data/cache/
+          enableCrossOsArchive: 'true'
+          restore-keys:
+            cache-${{ env.CACHE_VERSION }}
+            cache-
+      - if: steps.check_secret.outputs.exists == 'true' && steps.cache-files.outputs.cache-hit != 'true'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: eu-west-2
+        run: aws s3 cp --recursive s3://void-rsps/caches/${{ env.CACHE_VERSION }}/ data/cache/
+      - name: Grant Permissions to gradlew
+        run: chmod +x gradlew
+      - name: Build game jar
+        run: ./gradlew build
