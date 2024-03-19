@@ -1,13 +1,8 @@
 name: "Build game"
 description: "Downloads game files and code"
-outputs:
-  random-number:
-    description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-number }}
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v4
     - name: Create cache folder
       run: mkdir -p data/cache/
     - uses: actions/setup-java@v3

@@ -11,6 +11,7 @@ jobs:
     permissions:
       contents: write
     steps:
+      - uses: actions/checkout@v4
       - name: Build
         uses: ./.github/actions/build-action
       - name: Get build version
