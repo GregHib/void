@@ -1,11 +1,11 @@
 package world.gregs.voidps
 
 import com.github.michaelbull.logging.InlineLogger
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.runBlocking
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import org.koin.dsl.module
-import org.koin.fileProperties
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
@@ -14,10 +14,12 @@ import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
-import world.gregs.voidps.engine.client.*
+import world.gregs.voidps.engine.client.ClientManager
+import world.gregs.voidps.engine.client.ConnectionQueue
+import world.gregs.voidps.engine.client.LoginManager
+import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
@@ -87,11 +89,12 @@ object Main : CoroutineScope {
         return@timed properties
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun preload(cache: Cache, properties: Properties) {
         val module = cache(cache, properties)
         startKoin {
             slf4jLogger(level = Level.ERROR)
-            fileProperties("/game.properties")
+            properties(properties.toMap() as Map<String, Any>)
             modules(engineModule, gameModule, module)
         }
         val saves = File(getProperty("savePath"))
