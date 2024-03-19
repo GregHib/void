@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  void:
+    image: greghib/void
+    volumes:
+      - ./data/saves/:/app/data/saves
+    ports:
+      - "43594:43594"
