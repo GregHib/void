@@ -11,21 +11,12 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v3
-        with:
-          java-version: "19"
-          distribution: "temurin"
-          architecture: x64
-          cache: "gradle"
-      - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@v1
-      - name: Grant permissions to gradlew
-        run: chmod +x gradlew
+      - name: Build
+        uses: ./.github/actions/build-action
       - name: Get build version
         run: echo "build_version=$(./gradlew -q printVersion)" >> $GITHUB_ENV
       - name: Run distribution assembly
-        run: ./gradlew buildScripts assembleBundleDist
+        run: ./gradlew assembleBundleDist
       - name: Upload distribution
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

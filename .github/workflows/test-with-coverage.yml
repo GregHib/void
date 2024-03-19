@@ -16,6 +16,8 @@ jobs:
     needs: [ build ]
     timeout-minutes: 10
     steps:
+      - name: Build
+        uses: ./.github/actions/build-action
       - name: Run all tests
         if: steps.check_secret.outputs.exists == 'true'
         run: ./gradlew test
