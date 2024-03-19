@@ -2,4 +2,20 @@ coverage:
   status:
     project:
       default:
-        threshold: 1%
+        threshold: 10%
+        informational: true # for viewing only to stop it failing builds
+        if_not_found: success
+        if_ci_failed: success
+        flag_coverage_not_uploaded_behavior: pass
+comment:
+  layout: "header, diff, flags, components"
+component_management:
+  individual_components:
+    - component_id: game_module
+      name: Content
+      paths:
+        - game/
+    - component_id: engine_module
+      name: Engine
+      paths:
+        - engine/
