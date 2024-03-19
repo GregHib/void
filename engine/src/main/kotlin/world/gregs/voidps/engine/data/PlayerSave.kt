@@ -31,7 +31,7 @@ internal fun Player.copy() = PlayerSave(
     looks = body.looks.copyOf(),
     colours = body.colours.copyOf(),
     variables = variables.data.toMap(),
-    inventories = inventories.inventories.mapValues { it.value.copyOf() },
+    inventories = inventories.inventories.mapValues { (inventories.instances[it.key]?.items ?: it.value).map { itm -> itm.copy() }.toTypedArray() },
     friends = friends.mapValues { it.value.name },
     ignores = ignores.toList()
 )
