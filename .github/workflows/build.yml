@@ -1,7 +1,13 @@
-name: Build game files
+name: Build game
 on:
   workflow_call:
-    secrets: inherit
+    secrets:
+      AWS_ACCESS_KEY_ID:
+        required: false
+      AWS_SECRET_ACCESS_KEY:
+        required: false
+      CODECOV_TOKEN:
+        required: false
 jobs:
   build:
     name: Build game
