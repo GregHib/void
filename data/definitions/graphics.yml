@@ -498,7 +498,7 @@ deflect_defence: 2227
 deflect_magic: 2228
 deflect_range: 2229
 deflect_strength: 2229
-deflect_attack: 2230
+deflect_melee: 2230
 proj_leech_attack:
   id: 2231
   delay: 40

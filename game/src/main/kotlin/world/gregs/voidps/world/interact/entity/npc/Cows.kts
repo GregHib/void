@@ -20,8 +20,10 @@ npcTimerStart("eat_grass") { npc ->
 }
 
 npcTimerTick("eat_grass") { npc ->
-    npc.forceChat = "Moo"
-    npc.setAnimation("cow_eat_grass")
+    if (npc.mode == EmptyMode) {
+        npc.forceChat = "Moo"
+        npc.setAnimation("cow_eat_grass")
+    }
 }
 
 itemOnNPCOperate("*", "cow*") {
