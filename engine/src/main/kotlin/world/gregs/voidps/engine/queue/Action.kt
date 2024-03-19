@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.queue
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import net.pearx.kasechange.toSnakeCase
-import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.clearAnimation
@@ -18,7 +17,7 @@ class Action(
     var action: suspend Action.() -> Unit = {}
 ) : CharacterContext {
     var suspension: CancellableContinuation<Unit>? = null
-    var tick: Int = GameLoop.tick + delay
+    var remaining: Int = delay
         private set
 
     var count = 0
@@ -32,12 +31,12 @@ class Action(
      * @return if action was executed this call
      */
     fun process(): Boolean {
-        return !removed && this.tick != -1 && GameLoop.tick >= this.tick
+        return !removed && this.remaining != -1 && --this.remaining <= 0
     }
 
     suspend fun pause(ticks: Int = 1) {
         suspendCancellableCoroutine {
-            tick = GameLoop.tick + ticks
+            remaining = ticks
             removed = false
             count++
             suspension = it
@@ -45,7 +44,7 @@ class Action(
     }
 
     fun cancel(invoke: Boolean = true) {
-        tick = -1
+        remaining = -1
         removed = true
         if (invoke) {
             onCancel?.invoke()

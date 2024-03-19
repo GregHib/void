@@ -196,7 +196,7 @@ characterCombatHit { target ->
     }
 }
 
-variableSet("under_attack", to = 0) { player ->
+variableSet("in_combat", to = 0) { player ->
     for ((_, skill) in map) {
         player.clear("${skill.name.lowercase()}_drain_msg")
         player.clear("${skill.name.lowercase()}_leech_msg")

@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.queue
 
 import kotlinx.coroutines.*
-import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
@@ -22,17 +21,16 @@ class ActionQueue(private val character: Character) : CoroutineScope {
     }
     override val coroutineContext = Dispatchers.Unconfined + errorHandler
 
+    private val pending = ConcurrentLinkedQueue<Action>()
     private val queue = ConcurrentLinkedQueue<Action>()
     private var action: Action? = null
 
     fun add(action: Action): Boolean {
-        if (action.tick <= GameLoop.tick && processed(action)) {
-            return true
-        }
-        return queue.add(action)
+        return pending.add(action)
     }
 
     fun tick() {
+        queuePending()
         if (queue.any { it.priority == ActionPriority.Strong }) {
             (character as? Player)?.closeMenu()
             clearWeak()
@@ -47,9 +45,18 @@ class ActionQueue(private val character: Character) : CoroutineScope {
         }
     }
 
-    fun contains(priority: ActionPriority): Boolean = queue.any { it.priority == priority }
+    private fun queuePending() {
+        if (pending.isNotEmpty()) {
+            for (action in pending) {
+                queue.add(action)
+            }
+            pending.clear()
+        }
+    }
 
-    fun contains(name: String): Boolean = queue.any { it.name == name }
+    fun contains(priority: ActionPriority): Boolean = queue.any { it.priority == priority } || pending.any { it.priority == priority }
+
+    fun contains(name: String): Boolean = queue.any { it.name == name } || pending.any { it.name == name }
 
     fun clearWeak() {
         if (action?.priority == ActionPriority.Weak) {
@@ -66,9 +73,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
     }
 
     fun clear(name: String): Boolean {
-        return queue.removeIf {
-            it.name == name
-        }
+        return queue.removeIf { it.name == name } || pending.removeIf { it.name == name }
     }
 
     fun clear() {
@@ -76,6 +81,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
             it.cancel()
             true
         }
+        pending.clear()
     }
 
     private fun processed(action: Action): Boolean {
@@ -119,6 +125,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
         if (action?.behaviour == LogoutBehaviour.Accelerate) {
             character.suspension?.resume()
         }
+        queuePending()
         queue.removeIf {
             if (it.behaviour == LogoutBehaviour.Accelerate) {
                 launch(it)

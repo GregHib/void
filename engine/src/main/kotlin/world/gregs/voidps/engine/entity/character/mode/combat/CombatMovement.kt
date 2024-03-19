@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.mode.combat
 
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Retreat
@@ -90,6 +91,7 @@ class CombatMovement(
         val spawn: Tile = character["respawn_tile"] ?: return false
         if (!character.tile.within(spawn, wanderRadius)) {
             character.walkTo(spawn)
+            character.stop("in_combat")
             return true
         }
         val attackRadius = character.def["attack_radius", 8]

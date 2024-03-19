@@ -59,6 +59,10 @@ banker_2:
   interact_distance: 2
   race: human
   examine: "She can look after my money."
+bob_barter_herbs:
+  id: 6524
+  race: human
+  examine: "He's probably seen better days."
 duck_swim:
   &duck_swim
   id: 46

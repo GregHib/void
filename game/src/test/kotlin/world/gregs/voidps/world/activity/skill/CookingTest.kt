@@ -23,7 +23,7 @@ internal class CookingTest : WorldTest() {
         tick()
         player.interfaceOption("skill_creation_amount", "increment")
         player.dialogueOption("dialogue_skill_creation", "choice1")
-        tick(5) // First is instant + 4 ticks for the second
+        tick(8)
 
         assertEquals(1, player.inventory.count("raw_shrimps"))
         assertEquals(2, player.inventory.count("shrimps"))

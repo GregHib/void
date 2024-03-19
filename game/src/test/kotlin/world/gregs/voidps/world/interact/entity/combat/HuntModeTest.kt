@@ -21,13 +21,13 @@ internal class HuntModeTest : WorldTest() {
     fun `Cowardly attack low level player when in range`() {
         val player = createPlayer("player", emptyTile)
         val npc = createNPC("giant_spider", emptyTile.addY(2))
-        assertFalse(player.underAttack)
+        assertFalse(player.inCombat)
 
         player.walkTo(emptyTile.addY(1))
         tick(6)
 
         assertTrue(npc.mode is CombatMovement)
-        assertTrue(player.underAttack)
+        assertTrue(player.inCombat)
     }
 
     @Test
@@ -35,12 +35,12 @@ internal class HuntModeTest : WorldTest() {
         val player = createPlayer("player", emptyTile)
         val npc = createNPC("giant_spider", emptyTile.addY(1))
         player.combatLevel = 5
-        assertFalse(player.underAttack)
+        assertFalse(player.inCombat)
 
         tick(6)
 
         assertFalse(npc.mode is CombatMovement)
-        assertFalse(player.underAttack)
+        assertFalse(player.inCombat)
     }
 
     @Test
