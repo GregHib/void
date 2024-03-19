@@ -29,7 +29,7 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.bank.ownsItem
 import world.gregs.voidps.world.interact.entity.combat.attackRange
 import world.gregs.voidps.world.interact.entity.combat.attackers
-import world.gregs.voidps.world.interact.entity.combat.underAttack
+import world.gregs.voidps.world.interact.entity.combat.inCombat
 import world.gregs.voidps.world.interact.entity.player.combat.magic.spell.spellBook
 
 val areas: AreaDefinitions by inject()
@@ -158,7 +158,7 @@ fun Bot.isAvailableTarget(map: AreaDefinition, npc: NPC, skill: Skill): Boolean 
     if (!npc.tile.within(player.tile, Viewport.VIEW_RADIUS)) {
         return false
     }
-    if (npc.underAttack && !npc.attackers.contains(player)) {
+    if (npc.inCombat && !npc.attackers.contains(player)) {
         return false
     }
     if (!npc.def.options.contains("Attack")) {

@@ -70,10 +70,10 @@ objectOperate("Chop*") {
             player.message("You swing your hatchet at the ${if (ivy) "ivy" else "tree"}.")
             first = false
         }
-        val remaining = player.remaining("skill_delay")
+        val remaining = player.remaining("action_delay")
         if (remaining < 0) {
             player.setAnimation("${hatchet.id}_chop${if (ivy) "_ivy" else ""}")
-            player.start("skill_delay", 3)
+            player.start("action_delay", 3)
             pause(3)
         } else if (remaining > 0) {
             pause(remaining)
@@ -88,7 +88,7 @@ objectOperate("Chop*") {
                 player.message("You successfully chop away some ivy.")
             }
         }
-        player.stop("skill_delay")
+        player.stop("action_delay")
     }
     player.softTimers.stop("woodcutting")
 }

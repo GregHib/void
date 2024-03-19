@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.activity.skill.cooking
 
 import net.pearx.kasechange.toSentenceCase
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
@@ -33,6 +34,7 @@ val objects: GameObjects by inject()
 val GameObject.cookingRange: Boolean get() = id.startsWith("cooking_range")
 
 itemOnObjectOperate(objects = setOf("fire_*", "cooking_range*"), def = "cooking") {
+    val start = GameLoop.tick
     val definition = if (player["sinew", false]) definitions.get("sinew") else if (item.id == "sinew") return@itemOnObjectOperate else item.def
     player["sinew"] = false
     val cooking: Uncooked = definition.getOrNull("cooking") ?: return@itemOnObjectOperate
@@ -45,12 +47,13 @@ itemOnObjectOperate(objects = setOf("fire_*", "cooking_range*"), def = "cooking"
             text = "How many would you like to ${cooking.type}?"
         ).second
     }
+    val offset = (4 - (GameLoop.tick - start)).coerceAtLeast(0)
     player.closeDialogue()
     player.softTimers.start("cooking")
-    player.cook(item, amount, target, cooking, true)
+    player.cook(item, amount, target, cooking, offset)
 }
 
-fun Player.cook(item: Item, count: Int, obj: GameObject, cooking: Uncooked, first: Boolean = false) {
+fun Player.cook(item: Item, count: Int, obj: GameObject, cooking: Uncooked, offset: Int? = null) {
     if (count <= 0 || objects[obj.tile, obj.id] == null) {
         softTimers.stop("cooking")
         return
@@ -74,7 +77,7 @@ fun Player.cook(item: Item, count: Int, obj: GameObject, cooking: Uncooked, firs
     }
     face(obj)
     setAnimation("cook_${if (obj.id.startsWith("fire_")) "fire" else "range"}")
-    weakQueue("cooking", if (first) 0 else 4) {
+    weakQueue("cooking", offset ?: 4) {
         val level = levels.get(Skill.Cooking)
         val chance = when {
             obj.id == "cooking_range_lumbridge_castle" -> cooking.cooksRangeChance

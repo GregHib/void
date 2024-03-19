@@ -202,10 +202,10 @@ class Hunting(
         if (definition.checkNotTooStrong && targetTooStrong(npc, character)) {
             return false
         }
-        if (definition.checkNotCombat && character.hasClock("under_attack")) {
+        if (definition.checkNotCombat && character.hasClock("in_combat")) {
             return false
         }
-        if (definition.checkNotCombatSelf && npc.hasClock("under_attack")) {
+        if (definition.checkNotCombatSelf && npc.hasClock("in_combat")) {
             return false
         }
         if (definition.checkTolerance && !character.hasClock("tolerance")) {
