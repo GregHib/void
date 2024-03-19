@@ -12,6 +12,8 @@ plugins {
     id("jacoco-report-aggregation")
 }
 
+val cacheVersion = "1.2.0"
+
 allprojects {
     apply(plugin = "kotlin")
     apply(plugin = "idea")
@@ -72,6 +74,12 @@ allprojects {
 tasks.register("printVersion") {
     doLast {
         println(project.version)
+    }
+}
+
+tasks.register("printCacheVersion") {
+    doLast {
+        println(cacheVersion)
     }
 }
 
