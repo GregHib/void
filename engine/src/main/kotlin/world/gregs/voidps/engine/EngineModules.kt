@@ -66,6 +66,7 @@ val engineModule = module {
     single(createdAtStart = true) { VariableDefinitions().load() }
     single(createdAtStart = true) { JingleDefinitions().load() }
     single(createdAtStart = true) { SpellDefinitions().load() }
+    single(createdAtStart = true) { PrayerDefinitions().load() }
     single(createdAtStart = true) { GearDefinitions().load() }
     single(createdAtStart = true) { ItemOnItemDefinitions().load() }
     single(createdAtStart = true) { AccountDefinitions().load() }
