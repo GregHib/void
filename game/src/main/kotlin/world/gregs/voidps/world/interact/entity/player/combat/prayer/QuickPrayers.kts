@@ -1,10 +1,9 @@
 package world.gregs.voidps.world.interact.entity.player.combat.prayer
 
-import com.github.michaelbull.logging.InlineLogger
-import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.PrayerDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -25,32 +24,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
  * Handles the activation of prayers and selection of quick prayers
  */
 val enums: EnumDefinitions by inject()
-val nameRegex = "<br>(.*?)<br>".toRegex()
-
-val logger = InlineLogger()
-
-val prayerGroups = setOf(
-    setOf("steel_skin", "piety", "thick_skin", "chivalry", "rock_skin", "augury", "rigour"),
-    setOf("burst_of_strength", "piety", "chivalry", "ultimate_strength", "superhuman_strength"),
-    setOf("improved_reflexes", "incredible_reflexes", "piety", "clarity_of_thought", "chivalry"),
-    setOf("rigour", "sharp_eye", "hawk_eye", "eagle_eye"),
-    setOf("mystic_will", "mystic_might", "mystic_lore", "augury"),
-    setOf("rapid_renewal", "rapid_heal"),
-    setOf("smite", "protect_from_missiles", "protect_from_melee", "redemption", "protect_from_magic", "retribution"),
-    setOf("redemption", "retribution", "smite", "protect_from_summoning")
-)
-
-val cursesGroups = setOf(
-    setOf("wrath", "soul_split"),
-    setOf("soul_split", "deflect_summoning", "wrath"),
-    setOf("leech_strength", "turmoil"),
-    setOf("leech_attack", "turmoil", "sap_warrior"),
-    setOf("soul_split", "deflect_missiles", "wrath", "deflect_melee", "deflect_magic"),
-    setOf("turmoil", "sap_mage", "leech_magic"),
-    setOf("turmoil", "sap_ranger", "leech_ranged"),
-    setOf("turmoil", "leech_defence"),
-    setOf("sap_spirit", "leech_special_attack", "turmoil")
-)
+val definitions: PrayerDefinitions by inject()
 
 interfaceOption(component = "regular_prayers", id = "prayer_list") {
     val prayers = player.getActivePrayerVarKey()
@@ -63,9 +37,8 @@ interfaceOption(component = "quick_prayers", id = "prayer_list") {
 
 fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
     val curses = isCurses()
-    val enum = if (curses) "curses" else "prayers"
-    val description = enums.getStruct(enum, index, "prayer_description", "")
-    val name = getPrayerName(description)?.toSnakeCase() ?: return logger.warn { "Unable to find prayer button $index $listKey $description" }
+    val definition = if (curses) definitions.getCurse(index) else definitions.getPrayer(index)
+    val name = definition.stringId
     val activated = containsVarbit(listKey, name)
     if (activated) {
         removeVarbit(listKey, name)
@@ -74,17 +47,16 @@ fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
             message("You need to recharge your Prayer at an altar.")
             return
         }
-        val requiredLevel = enums.getStruct(enum, index, "prayer_required_level", 0)
+        val requiredLevel = definition.level
         if (!hasMax(Skill.Prayer, requiredLevel)) {
+            val enum = if (curses) "curses" else "prayers"
             val message = enums.getStruct(enum, index, "prayer_requirement_text", "You need a prayer level of $requiredLevel to use $name.")
             message(message)
             return
         }
-        for (group in if (curses) cursesGroups else prayerGroups) {
-            if (group.contains(name)) {
-                group.forEach {
-                    removeVarbit(listKey, it, refresh = false)
-                }
+        for (group in definition.groups) {
+            for (key in definitions.getGroup(group) ?: continue) {
+                removeVarbit(listKey, key, refresh = false)
             }
         }
         addVarbit(listKey, name, refresh = false)
@@ -158,10 +130,6 @@ fun Player.saveQuickPrayers() {
 fun Player.cancelQuickPrayers() {
     set(getQuickVarKey(), get(TEMP_QUICK_PRAYERS, 0))
     clear(TEMP_QUICK_PRAYERS)
-}
-
-fun getPrayerName(description: String): String? {
-    return nameRegex.find(description)?.groupValues?.lastOrNull()
 }
 
 fun Player.getQuickVarKey(): String = if (isCurses()) QUICK_CURSES else QUICK_PRAYERS

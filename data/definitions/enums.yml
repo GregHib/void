@@ -46,8 +46,14 @@ colour_hair: 2345
 curses:
   id: 863
   struct: prayers
+quick_curses:
+  id: 862
+  struct: prayers
 prayers:
   id: 2279
+  struct: prayers
+quick_prayers:
+  id: 1446
   struct: prayers
 item_info_titles: 1434
 item_info_requirement_titles: 1435
