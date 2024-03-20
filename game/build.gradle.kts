@@ -43,42 +43,13 @@ application {
 }
 
 tasks {
-    val name = "void-server-${version}"
     named<ShadowJar>("shadowJar") {
         minimize {
             exclude(dependency("ch.qos.logback:logback-classic:.*"))
         }
-        archiveBaseName.set(name)
+        archiveBaseName.set("void-server-${version}")
         archiveClassifier.set("")
         archiveVersion.set("")
-    }
-    register("buildScripts") {
-        var file = layout.buildDirectory.get().file("scripts/run-server.bat").asFile
-        file.parentFile.mkdirs()
-        file.writeText("""
-            @echo off
-            title Void Game Sever
-            java -jar $name.jar
-            pause
-        """.trimIndent())
-        file = layout.buildDirectory.get().file("scripts/run-server.sh").asFile
-        file.writeText("""
-            #!/usr/bin/env bash
-            title="Void Game Server"
-            echo -e '\033]2;'${'$'}title'\007'
-            # Early exit on cancel
-            cleanup() {
-            	echo ""
-                exit 1
-            }
-            trap cleanup INT
-            java -jar $name.jar
-            # Stop console closing
-            if [ ${'$'}? -ne 0 ]; then
-                echo "Error: The Java application exited with a non-zero status."
-                read -p "Press enter to continue..."
-            fi 
-        """.trimIndent())
     }
 }
 
@@ -87,7 +58,6 @@ distributions {
         distributionBaseName = "void"
         contents {
             from(tasks["shadowJar"])
-            from(tasks["buildScripts"])
             from("../data/definitions/") {
                 into("data/definitions")
             }
@@ -105,14 +75,14 @@ distributions {
             from(layout.buildDirectory.dir("tmp/empty/")) {
                 into("data")
             }
-            from(layout.projectDirectory.dir("src/main/resources/game.properties"))
-            from(layout.buildDirectory.dir("scripts/run-server.bat"))
-            from(layout.buildDirectory.dir("scripts/run-server.sh"))
+            val resourcesDir = layout.projectDirectory.dir("src/main/resources")
+            from(resourcesDir.file("game.properties"))
+            val bat = resourcesDir.file("run-server.bat").asFile
+            bat.writeText(bat.readText().replace("-dev.jar", "-${version}.jar"))
+            from(bat)
+            val shell = resourcesDir.file("run-server.sh").asFile
+            shell.writeText(shell.readText().replace("-dev.jar", "-${version}.jar"))
+            from(shell)
         }
     }
 }
-
-tasks["bundleDistTar"].dependsOn("buildScripts")
-tasks["bundleDistZip"].dependsOn("buildScripts")
-tasks["bundleDistTar"].dependsOn("startScripts")
-tasks["bundleDistZip"].dependsOn("startScripts")
