@@ -129,7 +129,7 @@ fun main() {
 
 
     // Example of saving PlayerSave object to the database
-    val playerSave = PlayerSave(
+    val playerSaves = mapOf("John" to PlayerSave(
         name = "John",
         password = "123",
         tile = Tile(123, 456, 1),
@@ -147,51 +147,67 @@ fun main() {
         male = true,
         looks = intArrayOf(1, 2, 3),
         colours = intArrayOf(1, 2, 3),
-        variables = mapOf("variable1" to "value1", "variable2" to 123, "variable3" to true, "variable4" to listOf(1, 2, 3), "variable5" to listOf("one", "two", "three")),
+        variables = mapOf("clan_name" to "value1", "display_name" to "test", "variable2" to 123, "variable3" to true, "variable4" to listOf(1, 2, 3), "variable5" to listOf("one", "two", "three")),
         inventories = mapOf("inventory1" to arrayOf(Item("item1", 5, def = ItemDefinition.EMPTY), Item.EMPTY, Item("item2", 3, def = ItemDefinition.EMPTY))),
         friends = mapOf("friend1" to "12345", "friend2" to "54321"),
         ignores = listOf()
-    )
+    ))
 
     var start = System.currentTimeMillis()
-    val clans = loadClans()
-    println("Clans took: ${System.currentTimeMillis() - start}ms")
-    println(clans)
-    repeat(50) {
+    val clans = loadClans() // 2000 - 5s
+    println(clans.first())
+    println("${clans.size} clans took: ${System.currentTimeMillis() - start}ms")
+    start = System.currentTimeMillis()
+//    savePlayers(Array(2000) { playerSaves["John"]!!.copy(name = "John${it}") }.associateBy { it.name })
+//    println("Save 2000 took: ${System.currentTimeMillis() - start}ms")
+    // insert - 22.6s, update - 22.7s
+//    repeat(50) {
         start = System.currentTimeMillis()
-        savePlayer(playerSave)
+        savePlayers(playerSaves)
         println("Save took: ${System.currentTimeMillis() - start}ms")
-    }
+//    }
 
     // Example of loading PlayerSave object from the database
-    repeat(50) {
+//    repeat(50) {
         start = System.currentTimeMillis()
         val loadedPlayer = loadPlayer("John5")
         println("Load took: ${System.currentTimeMillis() - start}ms")
 //    println(loadedPlayer)
-    }
+//    }
 }
 
-fun savePlayer(playerSave: PlayerSave) {
+fun savePlayers(playerSaves: Map<String, PlayerSave>) {
     transaction {
-        val existing = PlayerSaves.select(PlayerSaves.id).where { PlayerSaves.name eq playerSave.name }.firstOrNull()
-        val playerId = if (existing == null) {
-            PlayerSaves.insert {
-                it[name] = playerSave.name
-                updatePlayer(it, playerSave)
-            } get PlayerSaves.id
-        } else {
-            val playerId = existing[PlayerSaves.id]
+        // Update existing players
+        val updated = PlayerSaves.select(PlayerSaves.id, PlayerSaves.name).where {
+            PlayerSaves.name inList playerSaves.keys
+        }.mapNotNull { result ->
+            val name = result[PlayerSaves.name]
+            val playerSave = playerSaves[name] ?: return@mapNotNull null
+            val playerId = result[PlayerSaves.id]
             PlayerSaves.update({ PlayerSaves.id eq playerId }) {
                 updatePlayer(it, playerSave)
             }
-            playerId
+            saveExperience(playerId, playerSave.experience)
+            saveLevels(playerId, playerSave.levels)
+            saveVariables(playerId, playerSave.variables)
+            saveInventories(playerId, playerSave.inventories)
+            saveFriends(playerId, playerSave.friends)
+            name
+        }.toSet()
+        // Insert new players
+        playerSaves.keys.subtract(updated).forEach { name ->
+            val playerSave = playerSaves[name] ?: return@forEach
+            val playerId = PlayerSaves.insert {
+                it[this.name] = playerSave.name
+                updatePlayer(it, playerSave)
+            } get PlayerSaves.id
+            saveExperience(playerId, playerSave.experience)
+            saveLevels(playerId, playerSave.levels)
+            saveVariables(playerId, playerSave.variables)
+            saveInventories(playerId, playerSave.inventories)
+            saveFriends(playerId, playerSave.friends)
         }
-        saveExperience(playerId, playerSave.experience)
-        saveLevels(playerId, playerSave.levels)
-        saveVariables(playerId, playerSave.variables)
-        saveInventories(playerId, playerSave.inventories)
-        saveFriends(playerId, playerSave.friends)
     }
 }
 
@@ -302,28 +318,32 @@ fun saveFriends(playerId: Int, friends: Map<String, String>) {
 }
 
 fun loadClans(): List<Clan> {
-    return transaction {
-        PlayerSaves.selectAll().map { playerRow ->
-            val playerId = playerRow[PlayerSaves.id]
-            val variableNames = listOf("clan_name", "display_name", "clan_join_rank", "clan_talk_rank", "clan_kick_rank", "clan_loot_rank", "coin_share_setting")
-            val variables = Variables.selectAll().where {
-                (Variables.playerId eq playerId) and (Variables.variableName inList variableNames)
-            }.associateBy({ it[Variables.variableName] }, { it[Variables.variableValue] })
-            val name = playerRow[PlayerSaves.name]
-            Clan(
-                owner = name,
-                ownerDisplayName = variables["display_name"] ?: name,
-                name = variables["clan_name"] ?: "",
-                friends = loadFriends(playerId).mapValues { ClanRank.of(it.value) },
-                ignores = playerRow[PlayerSaves.ignores],
-                joinRank = ClanRank.valueOf(variables["clan_join_rank"] ?: "Anyone"),
-                talkRank = ClanRank.valueOf(variables["clan_talk_rank"] ?: "Anyone"),
-                kickRank = ClanRank.valueOf(variables["clan_kick_rank"] ?: "Corporeal"),
-                lootRank = ClanRank.valueOf(variables["clan_loot_rank"] ?: "None"),
-                coinShare = variables["coin_share_setting"]?.toBoolean() ?: false
-            )
-        }
+    val transaction = transaction {
+        val variableNames = setOf("clan_name", "display_name", "clan_join_rank", "clan_talk_rank", "clan_kick_rank", "clan_loot_rank", "coin_share_setting")
+        val allFriends = Friends.selectAll().groupBy { it[Friends.playerId] }
+        PlayerSaves.select(PlayerSaves.id, PlayerSaves.name)
+            .adjustColumnSet { leftJoin(Variables, { PlayerSaves.id }, { playerId }, { Variables.variableName inList variableNames }) }
+            .adjustSelect { select(fields + Variables.columns) }
+            .groupBy { it[PlayerSaves.id] }
+            .mapNotNull { (playerId, rows) ->
+                val playerName = rows.firstOrNull()?.get(PlayerSaves.name) ?: return@mapNotNull null
+                val variablesMap = rows.associate { it[Variables.variableName] to it[Variables.variableValue] }
+                val playerFriends = allFriends[playerId]?.associate { it[Friends.friendName] to ClanRank.of(it[Friends.friendRank]) } ?: emptyMap()
+                Clan(
+                    owner = playerName,
+                    ownerDisplayName = variablesMap["display_name"] ?: playerName,
+                    name = variablesMap["clan_name"] ?: "",
+                    friends = playerFriends,
+                    ignores = variablesMap["ignores"]?.split(",") ?: emptyList(),
+                    joinRank = ClanRank.valueOf(variablesMap["clan_join_rank"] ?: "Anyone"),
+                    talkRank = ClanRank.valueOf(variablesMap["clan_talk_rank"] ?: "Anyone"),
+                    kickRank = ClanRank.valueOf(variablesMap["clan_kick_rank"] ?: "Corporeal"),
+                    lootRank = ClanRank.valueOf(variablesMap["clan_loot_rank"] ?: "None"),
+                    coinShare = variablesMap["coin_share_setting"]?.toBoolean() ?: false
+                )
+            }
     }
+    return transaction
 }
 
 
