@@ -59,7 +59,7 @@ jobs:
           AWS_DEFAULT_REGION: eu-west-2
         run: aws s3 cp --recursive s3://void-rsps/caches/${{ env.CACHE_VERSION }}/ data/cache/
       - name: Run distribution assembly
-        run: ./gradlew assembleBundleDist --debug
+        run: ./gradlew assembleBundleDist
       - name: Upload distribution
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
