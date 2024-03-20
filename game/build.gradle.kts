@@ -53,7 +53,9 @@ tasks {
         archiveVersion.set("")
     }
     register("buildScripts") {
+        println("Build scripts")
         var file = layout.buildDirectory.get().file("scripts/run-server.bat").asFile
+        println("Writing script file to: ${file.absolutePath}")
         file.parentFile.mkdirs()
         file.writeText("""
             @echo off
@@ -85,10 +87,14 @@ tasks {
 val scriptsDir = layout.buildDirectory.dir("scripts").get()
 val resourcesDir = layout.projectDirectory.dir("src/main/resources")
 
+println("Scripts dir: ${scriptsDir.asFile.absoluteFile}")
+
 distributions {
     create("bundle") {
+        println("Create bundle")
         distributionBaseName = "void"
         contents {
+            println("Bundle contents")
             from(tasks["shadowJar"])
             from(tasks["buildScripts"])
             from("../data/definitions/") {
@@ -108,6 +114,8 @@ distributions {
             from(layout.buildDirectory.dir("tmp/empty/")) {
                 into("data")
             }
+            println("Bundle scripts ${scriptsDir.asFile.list()}")
+            println("Project dir: ${layout.buildDirectory.asFile.get().absolutePath}")
             from(resourcesDir.file("game.properties"))
             from(scriptsDir.file("run-server.bat"))
             from(scriptsDir.file("run-server.sh"))
