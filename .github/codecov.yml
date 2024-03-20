@@ -8,8 +8,9 @@ coverage:
         if_ci_failed: success
         flag_coverage_not_uploaded_behavior: pass
 comment:
-  layout: "condensed_header, condensed_files, condensed_footer, components"
+  layout: "condensed_header, files, diff, components"
   hide_project_coverage: false
+  behavior: default
 component_management:
   individual_components:
     - component_id: game_module
