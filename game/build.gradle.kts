@@ -53,7 +53,6 @@ tasks {
     }
 }
 
-
 distributions {
     create("bundle") {
         distributionBaseName = "void"
