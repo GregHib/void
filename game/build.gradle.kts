@@ -59,7 +59,6 @@ distributions {
         distributionBaseName = "void"
         contents {
             from(tasks["shadowJar"])
-            from(tasks["buildScripts"])
             from("../data/definitions/") {
                 into("data/definitions")
             }
