@@ -82,6 +82,9 @@ tasks {
     }
 }
 
+val scriptsDir = layout.buildDirectory.dir("scripts").get()
+val resourcesDir = layout.projectDirectory.dir("src/main/resources")
+
 distributions {
     create("bundle") {
         distributionBaseName = "void"
@@ -105,9 +108,9 @@ distributions {
             from(layout.buildDirectory.dir("tmp/empty/")) {
                 into("data")
             }
-            from(layout.projectDirectory.dir("src/main/resources/game.properties"))
-            from(layout.buildDirectory.dir("scripts/run-server.bat"))
-            from(layout.buildDirectory.dir("scripts/run-server.sh"))
+            from(resourcesDir.file("game.properties"))
+            from(scriptsDir.file("run-server.bat"))
+            from(scriptsDir.file("run-server.sh"))
         }
     }
 }
