@@ -87,13 +87,12 @@ tasks {
 val scriptsDir = layout.buildDirectory.dir("scripts").get()
 val resourcesDir = layout.projectDirectory.dir("src/main/resources")
 
-println("Scripts dir: ${scriptsDir.asFile.absoluteFile}")
 
 distributions {
     create("bundle") {
-        println("Create bundle")
         distributionBaseName = "void"
         contents {
+            println("Scripts dir: ${scriptsDir.asFile.absoluteFile}")
             println("Bundle contents")
             from(tasks["shadowJar"])
             from(tasks["buildScripts"])
