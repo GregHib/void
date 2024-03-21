@@ -48,7 +48,7 @@ internal class PlayerYamlReaderConfig(
             super.set(map, key, value.toIntArray(), indent, parentMap)
         } else if (key == "friends") {
             value as Map<String, Any>
-            super.set(map, key, value.mapValues { ClanRank.from(it.value as String) }, indent, parentMap)
+            super.set(map, key, value.mapValues { ClanRank.valueOf(it.value as String) }, indent, parentMap)
         } else {
             super.set(map, key, value, indent, parentMap)
         }

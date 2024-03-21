@@ -66,7 +66,7 @@ class ExplicitCollectionReader(
             reader.skip() // skip colon
             reader.nextLine()
             reader.indentation = indent + 1
-            config.setMapValue(this, map, key, indent, indentOffset = 0, withinMap = null, parentMap = key)
+            config.setMapValue(this, map, key, indent, indentOffset = 0, withinMap = key, parentMap = key)
             reader.nextLine()
             val char = reader.char
             reader.skip()// skip comma/closing char
