@@ -4,8 +4,7 @@ import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SchemaUtils.create
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
-import org.jetbrains.exposed.sql.statements.UpdateBuilder
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.inList
 import org.jetbrains.exposed.sql.transactions.transaction
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
@@ -23,67 +22,69 @@ object PlayerSaves : Table("players") {
     val male = bool("male")
     val looks = array<Int>("looks")
     val colours = array<Int>("colours")
+    val friends = array<String>("friends")
+    val ranks = array<String>("ranks")
     val ignores = array<String>("ignores")
 
     override val primaryKey = PrimaryKey(id, name = "pk_player_name")
 }
 
 object Experience : Table() {
-    val playerId = integer("player_id").references(PlayerSaves.id)
-    val attack = double("attack")
-    val defence = double("defence")
-    val strength = double("strength")
-    val constitution = double("constitution")
-    val ranged = double("ranged")
-    val prayer = double("prayer")
-    val magic = double("magic")
-    val cooking = double("cooking")
-    val woodcutting = double("woodcutting")
-    val fletching = double("fletching")
-    val fishing = double("fishing")
-    val firemaking = double("firemaking")
-    val crafting = double("crafting")
-    val smithing = double("smithing")
-    val mining = double("mining")
-    val herblore = double("herblore")
-    val agility = double("agility")
-    val thieving = double("thieving")
-    val slayer = double("slayer")
-    val farming = double("farming")
-    val runecrafting = double("runecrafting")
-    val hunter = double("hunter")
-    val construction = double("construction")
-    val summoning = double("summoning")
-    val dungeoneering = double("dungeoneering")
+    val playerId = integer("player_id").references(PlayerSaves.id).uniqueIndex()
+    val attack = double("attack").default(0.0)
+    val defence = double("defence").default(0.0)
+    val strength = double("strength").default(0.0)
+    val constitution = double("constitution").default(0.0)
+    val ranged = double("ranged").default(0.0)
+    val prayer = double("prayer").default(0.0)
+    val magic = double("magic").default(0.0)
+    val cooking = double("cooking").default(0.0)
+    val woodcutting = double("woodcutting").default(0.0)
+    val fletching = double("fletching").default(0.0)
+    val fishing = double("fishing").default(0.0)
+    val firemaking = double("firemaking").default(0.0)
+    val crafting = double("crafting").default(0.0)
+    val smithing = double("smithing").default(0.0)
+    val mining = double("mining").default(0.0)
+    val herblore = double("herblore").default(0.0)
+    val agility = double("agility").default(0.0)
+    val thieving = double("thieving").default(0.0)
+    val slayer = double("slayer").default(0.0)
+    val farming = double("farming").default(0.0)
+    val runecrafting = double("runecrafting").default(0.0)
+    val hunter = double("hunter").default(0.0)
+    val construction = double("construction").default(0.0)
+    val summoning = double("summoning").default(0.0)
+    val dungeoneering = double("dungeoneering").default(0.0)
 }
 
 object Levels : Table() {
-    val playerId = integer("player_id").references(PlayerSaves.id)
-    val attack = integer("attack")
-    val defence = integer("defence")
-    val strength = integer("strength")
-    val constitution = integer("constitution")
-    val ranged = integer("ranged")
-    val prayer = integer("prayer")
-    val magic = integer("magic")
-    val cooking = integer("cooking")
-    val woodcutting = integer("woodcutting")
-    val fletching = integer("fletching")
-    val fishing = integer("fishing")
-    val firemaking = integer("firemaking")
-    val crafting = integer("crafting")
-    val smithing = integer("smithing")
-    val mining = integer("mining")
-    val herblore = integer("herblore")
-    val agility = integer("agility")
-    val thieving = integer("thieving")
-    val slayer = integer("slayer")
-    val farming = integer("farming")
-    val runecrafting = integer("runecrafting")
-    val hunter = integer("hunter")
-    val construction = integer("construction")
-    val summoning = integer("summoning")
-    val dungeoneering = integer("dungeoneering")
+    val playerId = integer("player_id").references(PlayerSaves.id).uniqueIndex()
+    val attack = integer("attack").default(1)
+    val defence = integer("defence").default(1)
+    val strength = integer("strength").default(1)
+    val constitution = integer("constitution").default(1)
+    val ranged = integer("ranged").default(1)
+    val prayer = integer("prayer").default(1)
+    val magic = integer("magic").default(1)
+    val cooking = integer("cooking").default(1)
+    val woodcutting = integer("woodcutting").default(1)
+    val fletching = integer("fletching").default(1)
+    val fishing = integer("fishing").default(1)
+    val firemaking = integer("firemaking").default(1)
+    val crafting = integer("crafting").default(1)
+    val smithing = integer("smithing").default(1)
+    val mining = integer("mining").default(1)
+    val herblore = integer("herblore").default(1)
+    val agility = integer("agility").default(1)
+    val thieving = integer("thieving").default(1)
+    val slayer = integer("slayer").default(1)
+    val farming = integer("farming").default(1)
+    val runecrafting = integer("runecrafting").default(1)
+    val hunter = integer("hunter").default(1)
+    val construction = integer("construction").default(1)
+    val summoning = integer("summoning").default(1)
+    val dungeoneering = integer("dungeoneering").default(1)
 }
 
 object Variables : Table() {
@@ -91,6 +92,10 @@ object Variables : Table() {
     val variableName = varchar("variable_name", 100)
     val variableType = varchar("variable_type", 20)
     val variableValue = varchar("variable_value", 100)
+
+    init {
+        index(true, playerId, variableName)
+    }
 }
 
 object Inventories : Table() {
@@ -98,17 +103,15 @@ object Inventories : Table() {
     val inventoryName = varchar("inventory_name", 100)
     val items = array<String>("items")
     val amounts = array<Int>("amounts")
-}
 
-object Friends : Table() {
-    val playerId = integer("player_id").references(PlayerSaves.id)
-    val friendName = varchar("friend_name", 100)
-    val friendRank = varchar("friend_rank", 100)
+    init {
+        index(true, playerId, inventoryName)
+    }
 }
 
 fun main() {
     val config = HikariConfig().apply {
-        jdbcUrl = "jdbc:postgresql://localhost:5432/testDB"
+        jdbcUrl = "jdbc:postgresql://localhost:5432/testDB?reWriteBatchedInserts=true"
         driverClassName = "org.postgresql.Driver"
         username = "postgres"
         password = "password"
@@ -124,13 +127,13 @@ fun main() {
 
     // Create tables if they don't exist
     transaction {
-        create(PlayerSaves, Experience, Levels, Variables, Inventories, Friends)
+        create(PlayerSaves, Experience, Levels, Variables, Inventories, inBatch = true)
     }
 
 
     // Example of saving PlayerSave object to the database
-    val playerSaves = mapOf("John" to PlayerSave(
-        name = "John",
+    val playerSaves = listOf(PlayerSave(
+        name = "John2",
         password = "123",
         tile = Tile(123, 456, 1),
         experience = DoubleArray(25).apply {
@@ -149,191 +152,157 @@ fun main() {
         colours = intArrayOf(1, 2, 3),
         variables = mapOf("clan_name" to "value1", "display_name" to "test", "variable2" to 123, "variable3" to true, "variable4" to listOf(1, 2, 3), "variable5" to listOf("one", "two", "three")),
         inventories = mapOf("inventory1" to arrayOf(Item("item1", 5, def = ItemDefinition.EMPTY), Item.EMPTY, Item("item2", 3, def = ItemDefinition.EMPTY))),
-        friends = mapOf("friend1" to "12345", "friend2" to "54321"),
+        friends = mapOf("friend1" to ClanRank.Friend, "friend2" to ClanRank.None),
         ignores = listOf()
     ))
 
     var start = System.currentTimeMillis()
     val clans = loadClans() // 2000 - 5s
-    println(clans.first())
     println("${clans.size} clans took: ${System.currentTimeMillis() - start}ms")
+    println(clans.firstOrNull())
     start = System.currentTimeMillis()
-//    savePlayers(Array(2000) { playerSaves["John"]!!.copy(name = "John${it}") }.associateBy { it.name })
-//    println("Save 2000 took: ${System.currentTimeMillis() - start}ms")
+    savePlayers(Array(2000) { playerSaves.first().copy(name = "John${it}") }.toList())
+    println("Save 2000 took: ${System.currentTimeMillis() - start}ms")
     // insert - 22.6s, update - 22.7s
-//    repeat(50) {
+    repeat(50) {
         start = System.currentTimeMillis()
         savePlayers(playerSaves)
         println("Save took: ${System.currentTimeMillis() - start}ms")
-//    }
+    }
 
     // Example of loading PlayerSave object from the database
 //    repeat(50) {
-        start = System.currentTimeMillis()
-        val loadedPlayer = loadPlayer("John5")
-        println("Load took: ${System.currentTimeMillis() - start}ms")
+    start = System.currentTimeMillis()
+    val loadedPlayer = loadPlayer("John5")
+    println("Load took: ${System.currentTimeMillis() - start}ms")
 //    println(loadedPlayer)
 //    }
 }
 
-fun savePlayers(playerSaves: Map<String, PlayerSave>) {
+fun savePlayers(playerSaves: List<PlayerSave>) {
     transaction {
-        // Update existing players
-        val updated = PlayerSaves.select(PlayerSaves.id, PlayerSaves.name).where {
-            PlayerSaves.name inList playerSaves.keys
-        }.mapNotNull { result ->
-            val name = result[PlayerSaves.name]
-            val playerSave = playerSaves[name] ?: return@mapNotNull null
-            val playerId = result[PlayerSaves.id]
-            PlayerSaves.update({ PlayerSaves.id eq playerId }) {
-                updatePlayer(it, playerSave)
+        PlayerSaves.batchUpsert(playerSaves, PlayerSaves.name) { playerSave ->
+            this[PlayerSaves.name] = playerSave.name
+            this[PlayerSaves.passwordHash] = playerSave.password
+            this[PlayerSaves.tile] = playerSave.tile.id
+            this[PlayerSaves.blockedSkills] = playerSave.blocked.map { skill -> skill.ordinal }
+            this[PlayerSaves.male] = playerSave.male
+            this[PlayerSaves.looks] = playerSave.looks.toList()
+            this[PlayerSaves.colours] = playerSave.colours.toList()
+            this[PlayerSaves.ignores] = playerSave.ignores
+            val friends = playerSave.friends.toList()
+            this[PlayerSaves.friends] = friends.map { it.first }
+            this[PlayerSaves.ranks] = friends.map { it.second.name }
+        }
+        val names = playerSaves.map { it.name }
+        val playerIds = PlayerSaves
+            .select(PlayerSaves.id, PlayerSaves.name)
+            .where { PlayerSaves.name inList names }
+            .associate { it[PlayerSaves.name] to it[PlayerSaves.id] }
+        Experience.batchUpsert(playerSaves, Experience.playerId) { playerSave ->
+            this[Experience.playerId] = playerIds.getValue(playerSave.name)
+            val experience = playerSave.experience
+            this[Experience.attack] = experience[0]
+            this[Experience.defence] = experience[1]
+            this[Experience.strength] = experience[2]
+            this[Experience.constitution] = experience[3]
+            this[Experience.ranged] = experience[4]
+            this[Experience.prayer] = experience[5]
+            this[Experience.magic] = experience[6]
+            this[Experience.cooking] = experience[7]
+            this[Experience.woodcutting] = experience[8]
+            this[Experience.fletching] = experience[9]
+            this[Experience.fishing] = experience[10]
+            this[Experience.firemaking] = experience[11]
+            this[Experience.crafting] = experience[12]
+            this[Experience.smithing] = experience[13]
+            this[Experience.mining] = experience[14]
+            this[Experience.herblore] = experience[15]
+            this[Experience.agility] = experience[16]
+            this[Experience.thieving] = experience[17]
+            this[Experience.slayer] = experience[18]
+            this[Experience.farming] = experience[19]
+            this[Experience.runecrafting] = experience[20]
+            this[Experience.hunter] = experience[21]
+            this[Experience.construction] = experience[22]
+            this[Experience.summoning] = experience[23]
+            this[Experience.dungeoneering] = experience[24]
+        }
+        Levels.batchUpsert(playerSaves, Levels.playerId) { playerSave ->
+            this[Levels.playerId] = playerIds.getValue(playerSave.name)
+            val levels = playerSave.levels
+            this[Levels.attack] = levels[0]
+            this[Levels.defence] = levels[1]
+            this[Levels.strength] = levels[2]
+            this[Levels.constitution] = levels[3]
+            this[Levels.ranged] = levels[4]
+            this[Levels.prayer] = levels[5]
+            this[Levels.magic] = levels[6]
+            this[Levels.cooking] = levels[7]
+            this[Levels.woodcutting] = levels[8]
+            this[Levels.fletching] = levels[9]
+            this[Levels.fishing] = levels[10]
+            this[Levels.firemaking] = levels[11]
+            this[Levels.crafting] = levels[12]
+            this[Levels.smithing] = levels[13]
+            this[Levels.mining] = levels[14]
+            this[Levels.herblore] = levels[15]
+            this[Levels.agility] = levels[16]
+            this[Levels.thieving] = levels[17]
+            this[Levels.slayer] = levels[18]
+            this[Levels.farming] = levels[19]
+            this[Levels.runecrafting] = levels[20]
+            this[Levels.hunter] = levels[21]
+            this[Levels.construction] = levels[22]
+            this[Levels.summoning] = levels[23]
+            this[Levels.dungeoneering] = levels[24]
+        }
+        Variables.deleteWhere { playerId inList playerIds.values }
+        val varData = playerSaves.flatMap { save -> save.variables.toList().map { Triple(save.name, it.first, it.second) } }
+        Variables.batchUpsert(varData, Variables.playerId, Variables.variableName) { (id, name, value) ->
+            val type = when (value) {
+                is String -> "String"
+                is Int -> "Integer"
+                is Boolean -> "Boolean"
+                is List<*> -> if (value.all { it is Int }) "IntList" else "StringList"
+                else -> throw IllegalArgumentException("Unsupported variable type: ${value::class.simpleName}")
             }
-            saveExperience(playerId, playerSave.experience)
-            saveLevels(playerId, playerSave.levels)
-            saveVariables(playerId, playerSave.variables)
-            saveInventories(playerId, playerSave.inventories)
-            saveFriends(playerId, playerSave.friends)
-            name
-        }.toSet()
-        // Insert new players
-        playerSaves.keys.subtract(updated).forEach { name ->
-            val playerSave = playerSaves[name] ?: return@forEach
-            val playerId = PlayerSaves.insert {
-                it[this.name] = playerSave.name
-                updatePlayer(it, playerSave)
-            } get PlayerSaves.id
-            saveExperience(playerId, playerSave.experience)
-            saveLevels(playerId, playerSave.levels)
-            saveVariables(playerId, playerSave.variables)
-            saveInventories(playerId, playerSave.inventories)
-            saveFriends(playerId, playerSave.friends)
+            this[Variables.playerId] = playerIds.getValue(id)
+            this[Variables.variableName] = name
+            this[Variables.variableType] = type
+            this[Variables.variableValue] = value.toString()
         }
-    }
-}
-
-private fun PlayerSaves.updatePlayer(builder: UpdateBuilder<Number>, playerSave: PlayerSave) {
-    builder[passwordHash] = playerSave.password
-    builder[tile] = playerSave.tile.id
-    builder[blockedSkills] = playerSave.blocked.map { skill -> skill.ordinal }
-    builder[male] = playerSave.male
-    builder[looks] = playerSave.looks.toList()
-    builder[colours] = playerSave.colours.toList()
-    builder[ignores] = playerSave.ignores
-}
-
-fun saveVariables(playerId: Int, variables: Map<String, Any>) {
-    Variables.deleteWhere { Variables.playerId eq playerId }
-    Variables.batchInsert(variables.toList()) { (name, value) ->
-        val type = when (value) {
-            is String -> "String"
-            is Int -> "Integer"
-            is Boolean -> "Boolean"
-            is List<*> -> if (value.all { it is Int }) "IntList" else "StringList"
-            else -> throw IllegalArgumentException("Unsupported variable type: ${value::class.simpleName}")
+        Inventories.deleteWhere { playerId inList playerIds.values }
+        val invData = playerSaves.flatMap { save -> save.inventories.toList().map { Triple(save.name, it.first, it.second) } }
+        Inventories.batchUpsert(invData, Inventories.playerId, Inventories.inventoryName) { (id, inventory, items) ->
+            this[Inventories.playerId] = playerIds.getValue(id)
+            this[Inventories.inventoryName] = inventory
+            this[Inventories.items] = items.map { it.id }
+            this[Inventories.amounts] = items.map { it.amount }
         }
-        this[Variables.playerId] = playerId
-        this[Variables.variableName] = name
-        this[Variables.variableType] = type
-        this[Variables.variableValue] = value.toString()
-    }
-}
-
-fun saveExperience(playerId: Int, experience: DoubleArray) {
-    Experience.update({ Experience.playerId eq playerId }) {
-        it[this.attack] = experience[0]
-        it[this.defence] = experience[1]
-        it[this.strength] = experience[2]
-        it[this.constitution] = experience[3]
-        it[this.ranged] = experience[4]
-        it[this.prayer] = experience[5]
-        it[this.magic] = experience[6]
-        it[this.cooking] = experience[7]
-        it[this.woodcutting] = experience[8]
-        it[this.fletching] = experience[9]
-        it[this.fishing] = experience[10]
-        it[this.firemaking] = experience[11]
-        it[this.crafting] = experience[12]
-        it[this.smithing] = experience[13]
-        it[this.mining] = experience[14]
-        it[this.herblore] = experience[15]
-        it[this.agility] = experience[16]
-        it[this.thieving] = experience[17]
-        it[this.slayer] = experience[18]
-        it[this.farming] = experience[19]
-        it[this.runecrafting] = experience[20]
-        it[this.hunter] = experience[21]
-        it[this.construction] = experience[22]
-        it[this.summoning] = experience[23]
-        it[this.dungeoneering] = experience[24]
-    }
-}
-
-fun saveLevels(playerId: Int, levels: IntArray) {
-    Levels.update({ Levels.playerId eq playerId }) {
-        it[this.attack] = levels[0]
-        it[this.defence] = levels[1]
-        it[this.strength] = levels[2]
-        it[this.constitution] = levels[3]
-        it[this.ranged] = levels[4]
-        it[this.prayer] = levels[5]
-        it[this.magic] = levels[6]
-        it[this.cooking] = levels[7]
-        it[this.woodcutting] = levels[8]
-        it[this.fletching] = levels[9]
-        it[this.fishing] = levels[10]
-        it[this.firemaking] = levels[11]
-        it[this.crafting] = levels[12]
-        it[this.smithing] = levels[13]
-        it[this.mining] = levels[14]
-        it[this.herblore] = levels[15]
-        it[this.agility] = levels[16]
-        it[this.thieving] = levels[17]
-        it[this.slayer] = levels[18]
-        it[this.farming] = levels[19]
-        it[this.runecrafting] = levels[20]
-        it[this.hunter] = levels[21]
-        it[this.construction] = levels[22]
-        it[this.summoning] = levels[23]
-        it[this.dungeoneering] = levels[24]
-    }
-}
-
-fun saveInventories(playerId: Int, inventories: Map<String, Array<Item>>) {
-    Inventories.deleteWhere { Inventories.playerId eq playerId }
-    Inventories.batchInsert(inventories.toList()) { (inventory, items) ->
-        this[Inventories.playerId] = playerId
-        this[Inventories.inventoryName] = inventory
-        this[Inventories.items] = items.map { it.id }
-        this[Inventories.amounts] = items.map { it.amount }
-    }
-}
-
-fun saveFriends(playerId: Int, friends: Map<String, String>) {
-    Friends.deleteWhere { Friends.playerId eq playerId }
-    Friends.batchInsert(friends.toList()) { (friend, rank) ->
-        this[Friends.playerId] = playerId
-        this[Friends.friendName] = friend
-        this[Friends.friendRank] = rank
     }
 }
 
 fun loadClans(): List<Clan> {
     val transaction = transaction {
-        val variableNames = setOf("clan_name", "display_name", "clan_join_rank", "clan_talk_rank", "clan_kick_rank", "clan_loot_rank", "coin_share_setting")
-        val allFriends = Friends.selectAll().groupBy { it[Friends.playerId] }
-        PlayerSaves.select(PlayerSaves.id, PlayerSaves.name)
-            .adjustColumnSet { leftJoin(Variables, { PlayerSaves.id }, { playerId }, { Variables.variableName inList variableNames }) }
-            .adjustSelect { select(fields + Variables.columns) }
-            .groupBy { it[PlayerSaves.id] }
-            .mapNotNull { (playerId, rows) ->
-                val playerName = rows.firstOrNull()?.get(PlayerSaves.name) ?: return@mapNotNull null
-                val variablesMap = rows.associate { it[Variables.variableName] to it[Variables.variableValue] }
-                val playerFriends = allFriends[playerId]?.associate { it[Friends.friendName] to ClanRank.of(it[Friends.friendRank]) } ?: emptyMap()
+        val variableNamesSet = setOf("clan_name", "display_name", "clan_join_rank", "clan_talk_rank", "clan_kick_rank", "clan_loot_rank", "coin_share_setting")
+        val variableNames = CustomFunction<List<String>>("ARRAY_AGG", ArrayColumnType(VarCharColumnType()), Variables.variableName).alias("variable_names")
+        val variableValues = CustomFunction<List<String>>("ARRAY_AGG", ArrayColumnType(VarCharColumnType()), Variables.variableValue).alias("variable_values")
+        (PlayerSaves innerJoin Variables)
+            .select(PlayerSaves.id, PlayerSaves.name, PlayerSaves.friends, PlayerSaves.ranks, variableNames, variableValues)
+            .where { (PlayerSaves.id eq Variables.playerId) and (Variables.variableName inList variableNamesSet) }
+            .groupBy(PlayerSaves.id)
+            .map {
+                val values = it[variableValues]
+                val variablesMap = it[variableNames].mapIndexed { index, s -> s to values[index]  }.toMap()
+                val playerName = it[PlayerSaves.name]
+                val playerFriends = it[PlayerSaves.friends]
+                val playerRanks = it[PlayerSaves.ranks]
                 Clan(
                     owner = playerName,
                     ownerDisplayName = variablesMap["display_name"] ?: playerName,
                     name = variablesMap["clan_name"] ?: "",
-                    friends = playerFriends,
+                    friends = playerFriends.mapIndexed { index, s -> s to ClanRank.valueOf(playerRanks[index]) }.toMap(),
                     ignores = variablesMap["ignores"]?.split(",") ?: emptyList(),
                     joinRank = ClanRank.valueOf(variablesMap["clan_join_rank"] ?: "Anyone"),
                     talkRank = ClanRank.valueOf(variablesMap["clan_talk_rank"] ?: "Anyone"),
@@ -358,7 +327,8 @@ fun loadPlayer(name: String): PlayerSave? {
             val colours = playerRow[PlayerSaves.colours]
             val variables = loadVariables(playerId)
             val inventories = loadInventories(playerId)
-            val friends = loadFriends(playerId)
+            val friends = playerRow[PlayerSaves.friends]
+            val ranks = playerRow[PlayerSaves.ranks]
             PlayerSave(
                 name = playerRow[PlayerSaves.name],
                 password = playerRow[PlayerSaves.passwordHash],
@@ -371,7 +341,7 @@ fun loadPlayer(name: String): PlayerSave? {
                 colours = colours.toIntArray(),
                 variables = variables,
                 inventories = inventories,
-                friends = friends,
+                friends = friends.mapIndexed { index, s -> s to ClanRank.of(ranks[index]) }.toMap(),
                 ignores = playerRow[PlayerSaves.ignores]
             )
         }.singleOrNull()
@@ -467,11 +437,5 @@ fun loadInventories(playerId: Int): Map<String, Array<Item>> {
         }.toTypedArray()
 
         inventoryName to items
-    }
-}
-
-fun loadFriends(playerId: Int): Map<String, String> {
-    return Friends.selectAll().where { Friends.playerId eq playerId }.associate { row ->
-        row[Friends.friendName] to row[Friends.friendRank]
     }
 }

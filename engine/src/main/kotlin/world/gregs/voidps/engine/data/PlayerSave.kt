@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.data
 
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.type.Tile
@@ -17,7 +18,7 @@ data class PlayerSave(
     val colours: IntArray,
     val variables: Map<String, Any>,
     val inventories: Map<String, Array<Item>>,
-    val friends: Map<String, String>,
+    val friends: Map<String, ClanRank>,
     val ignores: List<String>
 ) {
     override fun equals(other: Any?): Boolean {
@@ -73,6 +74,6 @@ internal fun Player.copy() = PlayerSave(
     colours = body.colours.copyOf(),
     variables = variables.data.toMap(),
     inventories = inventories.inventories.mapValues { (inventories.instances[it.key]?.items ?: it.value).map { itm -> itm.copy() }.toTypedArray() },
-    friends = friends.mapValues { it.value.name },
+    friends = friends,
     ignores = ignores.toList()
 )
