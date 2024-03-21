@@ -53,7 +53,12 @@ object Main : CoroutineScope {
         val job = server.start(properties.getProperty("port").toInt())
 
         // Content
-        preload(cache, properties)
+        try {
+            preload(cache, properties)
+        } catch (ex: Exception) {
+            logger.error(ex) { "Error loading files." }
+            job.cancel()
+        }
 
         // Login server
         val protocol = protocol(get<Huffman>())
