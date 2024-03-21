@@ -175,7 +175,7 @@ fun main() {
     start = System.currentTimeMillis()
     val loadedPlayer = loadPlayer("John5")
     println("Load took: ${System.currentTimeMillis() - start}ms")
-//    println(loadedPlayer)
+    println(loadedPlayer)
 //    }
 }
 
@@ -289,12 +289,11 @@ fun loadClans(): List<Clan> {
         val variableNames = CustomFunction<List<String>>("ARRAY_AGG", ArrayColumnType(VarCharColumnType()), Variables.variableName).alias("variable_names")
         val variableValues = CustomFunction<List<String>>("ARRAY_AGG", ArrayColumnType(VarCharColumnType()), Variables.variableValue).alias("variable_values")
         (PlayerSaves innerJoin Variables)
-            .select(PlayerSaves.id, PlayerSaves.name, PlayerSaves.friends, PlayerSaves.ranks, variableNames, variableValues)
+            .select(PlayerSaves.id, PlayerSaves.name, PlayerSaves.friends, PlayerSaves.ignores, PlayerSaves.ranks, variableNames, variableValues)
             .where { (PlayerSaves.id eq Variables.playerId) and (Variables.variableName inList variableNamesSet) }
             .groupBy(PlayerSaves.id)
             .map {
-                val values = it[variableValues]
-                val variablesMap = it[variableNames].mapIndexed { index, s -> s to values[index]  }.toMap()
+                val variablesMap = it[variableNames].zip(it[variableValues]).toMap()
                 val playerName = it[PlayerSaves.name]
                 val playerFriends = it[PlayerSaves.friends]
                 val playerRanks = it[PlayerSaves.ranks]
@@ -302,8 +301,8 @@ fun loadClans(): List<Clan> {
                     owner = playerName,
                     ownerDisplayName = variablesMap["display_name"] ?: playerName,
                     name = variablesMap["clan_name"] ?: "",
-                    friends = playerFriends.mapIndexed { index, s -> s to ClanRank.valueOf(playerRanks[index]) }.toMap(),
-                    ignores = variablesMap["ignores"]?.split(",") ?: emptyList(),
+                    friends = playerFriends.zip(playerRanks) { friend, rank -> friend to ClanRank.valueOf(rank) }.toMap(),
+                    ignores = it[PlayerSaves.ignores],
                     joinRank = ClanRank.valueOf(variablesMap["clan_join_rank"] ?: "Anyone"),
                     talkRank = ClanRank.valueOf(variablesMap["clan_talk_rank"] ?: "Anyone"),
                     kickRank = ClanRank.valueOf(variablesMap["clan_kick_rank"] ?: "Corporeal"),
@@ -314,7 +313,6 @@ fun loadClans(): List<Clan> {
     }
     return transaction
 }
-
 
 fun loadPlayer(name: String): PlayerSave? {
     return transaction {
@@ -350,63 +348,65 @@ fun loadPlayer(name: String): PlayerSave? {
 
 
 fun loadExperience(playerId: Int): DoubleArray {
-    return Experience.selectAll().where { Experience.playerId eq playerId }.map {
-        it[Experience.attack]
-        it[Experience.defence]
-        it[Experience.strength]
-        it[Experience.constitution]
-        it[Experience.ranged]
-        it[Experience.prayer]
-        it[Experience.magic]
-        it[Experience.cooking]
-        it[Experience.woodcutting]
-        it[Experience.fletching]
-        it[Experience.fishing]
-        it[Experience.firemaking]
-        it[Experience.crafting]
-        it[Experience.smithing]
-        it[Experience.mining]
-        it[Experience.herblore]
-        it[Experience.agility]
-        it[Experience.thieving]
-        it[Experience.slayer]
-        it[Experience.farming]
-        it[Experience.runecrafting]
-        it[Experience.hunter]
-        it[Experience.construction]
-        it[Experience.summoning]
+    val it = Experience.selectAll().where { Experience.playerId eq playerId }.first()
+    return doubleArrayOf(
+        it[Experience.attack],
+        it[Experience.defence],
+        it[Experience.strength],
+        it[Experience.constitution],
+        it[Experience.ranged],
+        it[Experience.prayer],
+        it[Experience.magic],
+        it[Experience.cooking],
+        it[Experience.woodcutting],
+        it[Experience.fletching],
+        it[Experience.fishing],
+        it[Experience.firemaking],
+        it[Experience.crafting],
+        it[Experience.smithing],
+        it[Experience.mining],
+        it[Experience.herblore],
+        it[Experience.agility],
+        it[Experience.thieving],
+        it[Experience.slayer],
+        it[Experience.farming],
+        it[Experience.runecrafting],
+        it[Experience.hunter],
+        it[Experience.construction],
+        it[Experience.summoning],
         it[Experience.dungeoneering]
-    }.toDoubleArray()
+    )
 }
 
 fun loadLevels(playerId: Int): IntArray {
-    return Levels.selectAll().where { Levels.playerId eq playerId }.map {
-        it[Levels.attack]
-        it[Levels.defence]
-        it[Levels.strength]
-        it[Levels.constitution]
-        it[Levels.ranged]
-        it[Levels.prayer]
-        it[Levels.magic]
-        it[Levels.cooking]
-        it[Levels.woodcutting]
-        it[Levels.fletching]
-        it[Levels.fishing]
-        it[Levels.firemaking]
-        it[Levels.crafting]
-        it[Levels.smithing]
-        it[Levels.mining]
-        it[Levels.herblore]
-        it[Levels.agility]
-        it[Levels.thieving]
-        it[Levels.slayer]
-        it[Levels.farming]
-        it[Levels.runecrafting]
-        it[Levels.hunter]
-        it[Levels.construction]
-        it[Levels.summoning]
+    val it = Levels.selectAll().where { Levels.playerId eq playerId }.first()
+    return intArrayOf(
+        it[Levels.attack],
+        it[Levels.defence],
+        it[Levels.strength],
+        it[Levels.constitution],
+        it[Levels.ranged],
+        it[Levels.prayer],
+        it[Levels.magic],
+        it[Levels.cooking],
+        it[Levels.woodcutting],
+        it[Levels.fletching],
+        it[Levels.fishing],
+        it[Levels.firemaking],
+        it[Levels.crafting],
+        it[Levels.smithing],
+        it[Levels.mining],
+        it[Levels.herblore],
+        it[Levels.agility],
+        it[Levels.thieving],
+        it[Levels.slayer],
+        it[Levels.farming],
+        it[Levels.runecrafting],
+        it[Levels.hunter],
+        it[Levels.construction],
+        it[Levels.summoning],
         it[Levels.dungeoneering]
-    }.toIntArray()
+    )
 }
 
 fun loadVariables(playerId: Int): Map<String, Any> {
