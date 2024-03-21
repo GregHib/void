@@ -7,7 +7,7 @@ services:
     ports:
       - "43594:43594"
   db:
-    image: postgres:alpine
+    image: postgres:16.2-alpine3.19
     environment:
       POSTGRES_DB: testDB
       POSTGRES_USER: postgres

@@ -14,7 +14,7 @@ enum class ClanRank(val value: Int, val string: String) {
     Admin(127, "");
 
     companion object {
-        fun of(option: String) : ClanRank {
+        fun from(option: String) : ClanRank {
             return entries.firstOrNull { it.string == option } ?: None
         }
     }

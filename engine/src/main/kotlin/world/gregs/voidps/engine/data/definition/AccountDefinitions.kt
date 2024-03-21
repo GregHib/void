@@ -98,7 +98,7 @@ class AccountDefinitions {
                 override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                     if (parentMap == "friends") {
                         value as Map<String, Any>
-                        super.set(map, key, value.mapValues { ClanRank.of(it.value as String) }, indent, parentMap)
+                        super.set(map, key, value.mapValues { ClanRank.valueOf(it.value as String) }, indent, parentMap)
                     } else {
                         super.set(map, key, value, indent, parentMap)
                     }

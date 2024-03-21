@@ -32,7 +32,8 @@ dependencies {
 
     testImplementation("org.testcontainers:junit-jupiter:${findProperty("testcontainersVersion")}")
     testImplementation("org.testcontainers:postgresql:${findProperty("testcontainersVersion")}")
-    testImplementation("com.h2database:h2:${findProperty("h2databaseVersion")}")
+    testImplementation(enforcedPlatform("io.zonky.test.postgres:embedded-postgres-binaries-bom:${findProperty("postgresVersion")}"))
+    testImplementation("io.zonky.test:embedded-postgres:${findProperty("embeddedPostgresVersion")}")
 }
 
 tasks.withType<Test> {

@@ -44,7 +44,7 @@ interfaceOption(component = "enter", id = "clan_chat_setup") {
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
         return@interfaceOption
     }
-    val rank = ClanRank.of(option)
+    val rank = ClanRank.from(option)
     if (rank == ClanRank.None) {
         return@interfaceOption
     }
@@ -64,7 +64,7 @@ interfaceOption(component = "talk", id = "clan_chat_setup") {
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
         return@interfaceOption
     }
-    val rank = ClanRank.of(option)
+    val rank = ClanRank.from(option)
     if (rank == ClanRank.None) {
         return@interfaceOption
     }
@@ -79,7 +79,7 @@ interfaceOption(component = "kick", id = "clan_chat_setup") {
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
         return@interfaceOption
     }
-    val rank = ClanRank.of(option)
+    val rank = ClanRank.from(option)
     if (rank.value <= ClanRank.Recruit.value) {
         return@interfaceOption
     }
@@ -95,7 +95,7 @@ interfaceOption(component = "loot", id = "clan_chat_setup") {
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
         return@interfaceOption
     }
-    val rank = ClanRank.of(option)
+    val rank = ClanRank.from(option)
     if (rank == ClanRank.Anyone || rank == ClanRank.Owner) {
         return@interfaceOption
     }
