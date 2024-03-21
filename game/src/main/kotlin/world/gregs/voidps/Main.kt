@@ -97,10 +97,6 @@ object Main : CoroutineScope {
             properties(properties.toMap() as Map<String, Any>)
             modules(engineModule, gameModule, module)
         }
-        val saves = File(getProperty("savePath"))
-        if (!saves.exists()) {
-            saves.mkdir()
-        }
         loadScripts()
     }
 

@@ -7,4 +7,8 @@
     <root level="trace">
         <appender-ref ref="console"/>
     </root>
+    <logger name="com.zaxxer.hikari.pool" level="WARN"/>
+    <logger name="com.zaxxer.hikari.HikariConfig" level="WARN"/>
+    <logger name="Exposed" level="WARN">
+    </logger>
 </configuration>

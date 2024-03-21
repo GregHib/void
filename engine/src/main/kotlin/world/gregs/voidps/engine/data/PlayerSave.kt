@@ -2,8 +2,12 @@ package world.gregs.voidps.engine.data
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
+import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
+import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.Inventories
 import world.gregs.voidps.type.Tile
 
 data class PlayerSave(
@@ -21,6 +25,22 @@ data class PlayerSave(
     val friends: Map<String, ClanRank>,
     val ignores: List<String>
 ) {
+
+    fun toPlayer(): Player {
+        return Player(
+            accountName = name,
+            passwordHash = password,
+            tile = tile,
+            experience = Experience(experience, blocked.toMutableSet()),
+            levels = Levels(levels),
+            body = BodyParts(male, looks, colours),
+            variables = variables.toMutableMap(),
+            inventories = Inventories(inventories.toMutableMap()),
+            friends = friends.toMutableMap(),
+            ignores = ignores.toMutableList(),
+        )
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

@@ -66,10 +66,9 @@ interface DatabaseTest {
                 PostgresStorage.connect(
                     username = "root",
                     password = "password",
-                    database = "test",
-                    driver = "tc:postgresql",
-                    port = TEST_PORT,
-                    driverClass = "org.testcontainers.jdbc.ContainerDatabaseDriver"
+                    driver = "org.testcontainers.jdbc.ContainerDatabaseDriver",
+                    url = "jdbc:tc:postgresql://localhost:$TEST_PORT/test?reWriteBatchedInserts=true",
+                    poolSize = 2
                 )
                 this.postgres = postgres
             } catch (e: IllegalStateException) {
@@ -80,8 +79,9 @@ interface DatabaseTest {
                 PostgresStorage.connect(
                     username = "postgres",
                     password = "password",
-                    database = "",
-                    port = TEST_PORT
+                    driver = "org.postgresql.Driver",
+                    url = "jdbc:postgresql://localhost:$TEST_PORT/",
+                    poolSize = 2,
                 )
             }
         }

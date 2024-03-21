@@ -10,6 +10,8 @@ import world.gregs.voidps.engine.client.LoginManager
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
+import world.gregs.voidps.engine.data.json.FileStorage
+import world.gregs.voidps.engine.data.sql.PostgresStorage
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -24,6 +26,7 @@ import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.type.Tile
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
+import java.io.File
 
 val engineModule = module {
     // Entities
@@ -34,12 +37,29 @@ val engineModule = module {
     single { FloorItemTracking(get(), get(), get()) }
     single { Hunting(get(), get(), get(), get(), get(), get()) }
     single {
-        PlayerAccounts(get(), get(), get(), get(), get(), getProperty("savePath"), get(), get(), Tile(
+        PlayerAccounts(get(), get(), get(), get(), get(), get(), Tile(
             getIntProperty("homeX", 0), getIntProperty("homeY", 0), getIntProperty("homeLevel", 0)
-        ), getProperty("experienceRate", "1.0").toDouble())
+        ), get())
     }
     // IO
     single { Yaml(YamlReaderConfiguration(2, 8, VERY_FAST_LOAD_FACTOR)) }
+    single { if (getProperty("storage", "") == "database") {
+        PostgresStorage.connect(
+            getProperty("database_username"),
+            getProperty("database_password"),
+            getProperty("database_driver"),
+            getProperty("database_jdbc_url"),
+            getProperty("database_pool", "2").toInt(),
+        )
+        val definitions: ItemDefinitions = get()
+        PostgresStorage { definitions.get(it) }
+    } else {
+        val saves = File(getProperty<String>("savePath"))
+        if (!saves.exists()) {
+            saves.mkdir()
+        }
+        FileStorage(get(), saves, get(), getProperty("experienceRate", "1.0").toDouble())
+    } }
     // Map
     single { ZoneBatchUpdates() }
     single { DynamicZones(get(), get(), get()) }
