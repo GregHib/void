@@ -145,6 +145,10 @@ class PostgresStorage(
                     this[VariablesTable.type] = TYPE_DOUBLE
                     this[VariablesTable.double] = value
                 }
+                is Long -> {
+                    this[VariablesTable.type] = TYPE_LONG
+                    this[VariablesTable.long] = value
+                }
                 is List<*> -> {
                     if (value.isNotEmpty() && value.all { it is Int }) {
                         this[VariablesTable.type] = TYPE_INT_LIST
@@ -310,6 +314,7 @@ class PostgresStorage(
                 TYPE_INT -> row[VariablesTable.int]!!
                 TYPE_BOOLEAN -> row[VariablesTable.boolean]!!
                 TYPE_DOUBLE -> row[VariablesTable.double]!!
+                TYPE_LONG -> row[VariablesTable.long]!!
                 TYPE_STRING_LIST -> row[VariablesTable.stringList]!!
                 TYPE_INT_LIST -> row[VariablesTable.intList]!!
                 else -> throw IllegalArgumentException("Unsupported variable type: $variableType")
@@ -333,23 +338,13 @@ class PostgresStorage(
 
     companion object {
 
-        fun connect(
-            username: String,
-            password: String,
-            database: String = "game?reWriteBatchedInserts=true",
-            address: String = "localhost",
-            port: Int = 5432,
-            pool: Int = 6,
-            driver: String = "postgresql",
-            driverClass: String = "org.postgresql.Driver",
-            url: String = "jdbc:$driver://$address:$port/$database"
-        ) {
+        fun connect(username: String, password: String, driver: String, url: String, poolSize: Int) {
             val config = HikariConfig().apply {
                 jdbcUrl = url
-                driverClassName = driverClass
+                driverClassName = driver
                 this.username = username
                 this.password = password
-                maximumPoolSize = pool
+                maximumPoolSize = poolSize
                 isReadOnly = false
                 transactionIsolation = "TRANSACTION_SERIALIZABLE"
             }
@@ -365,7 +360,8 @@ class PostgresStorage(
         private const val TYPE_INT = 1.toByte()
         private const val TYPE_BOOLEAN = 2.toByte()
         private const val TYPE_DOUBLE = 3.toByte()
-        private const val TYPE_INT_LIST = 4.toByte()
-        private const val TYPE_STRING_LIST = 5.toByte()
+        private const val TYPE_LONG = 4.toByte()
+        private const val TYPE_INT_LIST = 5.toByte()
+        private const val TYPE_STRING_LIST = 6.toByte()
     }
 }

@@ -84,6 +84,7 @@ internal object VariablesTable : Table("variables") {
     val int = integer("int_value").nullable().default(null)
     val boolean = bool("boolean_value").nullable().default(null)
     val double = double("double_value").nullable().default(null)
+    val long = long("long_value").nullable().default(null)
     val stringList = array<String>("string_list_value").nullable().default(null)
     val intList = array<Int>("int_list_value").nullable().default(null)
 
