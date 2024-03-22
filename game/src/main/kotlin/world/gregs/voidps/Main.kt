@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
-import world.gregs.voidps.network.protocol
+import world.gregs.voidps.network.protocol.decoders
 import world.gregs.voidps.script.loadScripts
 import java.io.File
 import java.util.*
@@ -60,9 +60,9 @@ object Main : CoroutineScope {
         }
 
         // Login server
-        val protocol = protocol(get<Huffman>())
+        val decoders = decoders(get<Huffman>())
         val accountLoader = PlayerAccountLoader(get<ConnectionQueue>(), get(), get(), get<Players>().indexer, Contexts.Game)
-        val loginServer = LoginServer.load(properties, protocol, accountLoader)
+        val loginServer = LoginServer.load(properties, decoders, accountLoader)
 
         // Game world
         val stages = getTickStages()

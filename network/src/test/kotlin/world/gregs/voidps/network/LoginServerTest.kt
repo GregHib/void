@@ -13,6 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.AccountLoader
+import world.gregs.voidps.network.protocol.decoders
 import java.math.BigInteger
 
 @ExtendWith(MockKExtension::class)
@@ -33,7 +34,7 @@ internal class LoginServerTest {
     @BeforeEach
     fun setup() {
         network = spyk(
-            LoginServer(protocol(mockk()), 123, BigInteger.ONE, BigInteger.valueOf(2), loader)
+            LoginServer(decoders(mockk()), 123, BigInteger.ONE, BigInteger.valueOf(2), loader)
         )
     }
 
