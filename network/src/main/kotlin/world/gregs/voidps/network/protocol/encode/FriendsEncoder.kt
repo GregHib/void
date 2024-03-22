@@ -4,8 +4,8 @@ import io.ktor.utils.io.*
 import world.gregs.voidps.network.Protocol.UPDATE_FRIENDS
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.string
-import world.gregs.voidps.network.writeByte
-import world.gregs.voidps.network.writeString
+import world.gregs.voidps.network.protocol.writeByte
+import world.gregs.voidps.network.protocol.writeString
 
 data class Friend(
     val name: String,

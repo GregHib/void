@@ -6,8 +6,8 @@ import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.ChatPrivate
 import world.gregs.voidps.network.protocol.Decoder
-import world.gregs.voidps.network.readSmart
-import world.gregs.voidps.network.readString
+import world.gregs.voidps.network.protocol.readSmart
+import world.gregs.voidps.network.protocol.readString
 
 class PrivateDecoder(private val huffman: Huffman) : Decoder(BYTE) {
 

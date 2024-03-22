@@ -1,7 +1,6 @@
 package world.gregs.voidps.network.protocol.encode
 
 import io.ktor.utils.io.*
-import world.gregs.voidps.network.*
 import world.gregs.voidps.network.Protocol.GAME_MESSAGE
 import world.gregs.voidps.network.Protocol.PRIVATE_CHAT_FROM
 import world.gregs.voidps.network.Protocol.PRIVATE_CHAT_TO
@@ -13,6 +12,7 @@ import world.gregs.voidps.network.client.Client.Companion.BYTE
 import world.gregs.voidps.network.client.Client.Companion.name
 import world.gregs.voidps.network.client.Client.Companion.smart
 import world.gregs.voidps.network.client.Client.Companion.string
+import world.gregs.voidps.network.protocol.*
 
 /**
  * A chat box message to display

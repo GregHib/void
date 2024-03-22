@@ -5,8 +5,8 @@ import world.gregs.voidps.network.Protocol.UNLOCK_IGNORES
 import world.gregs.voidps.network.Protocol.UPDATE_IGNORE
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.string
-import world.gregs.voidps.network.writeByte
-import world.gregs.voidps.network.writeString
+import world.gregs.voidps.network.protocol.writeByte
+import world.gregs.voidps.network.protocol.writeString
 
 fun Client.updateIgnoreList(name: String, previous: String, renamed: Boolean) {
     send(UPDATE_IGNORE, 1 + count(name, previous), Client.BYTE) {

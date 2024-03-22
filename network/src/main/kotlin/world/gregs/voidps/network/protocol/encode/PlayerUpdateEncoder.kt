@@ -4,7 +4,7 @@ import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.network.Protocol.PLAYER_UPDATING
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.SHORT
-import world.gregs.voidps.network.writeBytes
+import world.gregs.voidps.network.protocol.writeBytes
 
 fun Client.updatePlayers(
     changes: BufferWriter,

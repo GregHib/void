@@ -1,12 +1,12 @@
 package world.gregs.voidps.network.protocol.encode
 
 import io.ktor.utils.io.*
-import world.gregs.voidps.network.*
 import world.gregs.voidps.network.Protocol.CAMERA_MOVE
 import world.gregs.voidps.network.Protocol.CAMERA_RESET
 import world.gregs.voidps.network.Protocol.CAMERA_SHAKE
 import world.gregs.voidps.network.Protocol.CAMERA_TURN
 import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.protocol.*
 
 /**
  * @param localX localX

@@ -5,8 +5,8 @@ import world.gregs.voidps.network.Protocol.TILE_TEXT
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.BYTE
 import world.gregs.voidps.network.client.Client.Companion.string
-import world.gregs.voidps.network.writeMedium
-import world.gregs.voidps.network.writeString
+import world.gregs.voidps.network.protocol.writeMedium
+import world.gregs.voidps.network.protocol.writeString
 
 fun Client.tileText(
     tile: Int,

@@ -5,9 +5,9 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.protocol.Decoder
-import world.gregs.voidps.network.readBooleanInverse
-import world.gregs.voidps.network.readShortAddLittle
-import world.gregs.voidps.network.readUnsignedIntInverseMiddle
+import world.gregs.voidps.network.protocol.readBooleanInverse
+import world.gregs.voidps.network.protocol.readShortAddLittle
+import world.gregs.voidps.network.protocol.readUnsignedIntInverseMiddle
 
 class InterfaceOnPlayerDecoder : Decoder(11) {
 

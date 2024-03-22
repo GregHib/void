@@ -4,10 +4,10 @@ import world.gregs.voidps.network.Protocol.PLAYER_OPTION
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.BYTE
 import world.gregs.voidps.network.client.Client.Companion.string
-import world.gregs.voidps.network.writeByteAdd
-import world.gregs.voidps.network.writeByteSubtract
-import world.gregs.voidps.network.writeShortAddLittle
-import world.gregs.voidps.network.writeString
+import world.gregs.voidps.network.protocol.writeByteAdd
+import world.gregs.voidps.network.protocol.writeByteSubtract
+import world.gregs.voidps.network.protocol.writeShortAddLittle
+import world.gregs.voidps.network.protocol.writeString
 
 /**
  * Sends a player right click option

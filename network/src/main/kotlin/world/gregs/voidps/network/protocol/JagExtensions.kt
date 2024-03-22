@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalUnsignedTypes::class)
 
-package world.gregs.voidps.network
+package world.gregs.voidps.network.protocol
 
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*

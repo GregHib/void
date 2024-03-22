@@ -3,8 +3,8 @@ package world.gregs.voidps.network.protocol.encode
 import world.gregs.voidps.network.Protocol
 import world.gregs.voidps.network.Protocol.CLEAR_ZONE
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.writeByteAdd
-import world.gregs.voidps.network.writeByteInverse
+import world.gregs.voidps.network.protocol.writeByteAdd
+import world.gregs.voidps.network.protocol.writeByteInverse
 
 /**
  * @param xOffset The zone x coordinate relative to viewport

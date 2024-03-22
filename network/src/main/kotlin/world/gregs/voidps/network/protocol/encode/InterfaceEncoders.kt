@@ -1,12 +1,13 @@
 package world.gregs.voidps.network.protocol.encode
 
 import io.ktor.utils.io.*
-import world.gregs.voidps.network.*
+import world.gregs.voidps.network.Protocol
 import world.gregs.voidps.network.Protocol.INTERFACE_ANIMATION
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.SHORT
 import world.gregs.voidps.network.client.Client.Companion.smart
 import world.gregs.voidps.network.client.Client.Companion.string
+import world.gregs.voidps.network.protocol.*
 
 /**
  * Sends an animation to an interface component

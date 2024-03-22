@@ -6,9 +6,9 @@ import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.InteractInterfaceNPC
 import world.gregs.voidps.network.protocol.Decoder
-import world.gregs.voidps.network.readBooleanAdd
-import world.gregs.voidps.network.readShortAddLittle
-import world.gregs.voidps.network.readUnsignedShortAdd
+import world.gregs.voidps.network.protocol.readBooleanAdd
+import world.gregs.voidps.network.protocol.readShortAddLittle
+import world.gregs.voidps.network.protocol.readUnsignedShortAdd
 
 class InterfaceOnNpcDecoder : Decoder(11) {
 

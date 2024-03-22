@@ -4,10 +4,10 @@ import io.ktor.utils.io.*
 import world.gregs.voidps.network.Protocol.INTERFACE_ITEMS
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.SHORT
-import world.gregs.voidps.network.writeByte
-import world.gregs.voidps.network.writeByteAdd
-import world.gregs.voidps.network.writeIntMiddle
-import world.gregs.voidps.network.writeShortAdd
+import world.gregs.voidps.network.protocol.writeByte
+import world.gregs.voidps.network.protocol.writeByteAdd
+import world.gregs.voidps.network.protocol.writeIntMiddle
+import world.gregs.voidps.network.protocol.writeShortAdd
 
 /**
  * Sends a list of items to display on an interface item group component

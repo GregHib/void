@@ -6,9 +6,9 @@ import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.BYTE
 import world.gregs.voidps.network.client.Client.Companion.SHORT
 import world.gregs.voidps.network.client.Client.Companion.string
-import world.gregs.voidps.network.writeShortAdd
-import world.gregs.voidps.network.writeShortAddLittle
-import world.gregs.voidps.network.writeString
+import world.gregs.voidps.network.protocol.writeShortAdd
+import world.gregs.voidps.network.protocol.writeShortAddLittle
+import world.gregs.voidps.network.protocol.writeString
 
 /**
  * Client variable; also known as "GlobalString"

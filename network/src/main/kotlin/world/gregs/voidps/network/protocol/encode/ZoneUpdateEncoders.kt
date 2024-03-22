@@ -2,8 +2,9 @@ package world.gregs.voidps.network.protocol.encode
 
 import io.ktor.utils.io.*
 import kotlinx.coroutines.runBlocking
-import world.gregs.voidps.network.*
+import world.gregs.voidps.network.Protocol
 import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.protocol.*
 import world.gregs.voidps.network.protocol.encode.zone.*
 
 fun encodeBatch(messages: Collection<ZoneUpdate>): ByteArray {

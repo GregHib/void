@@ -5,8 +5,8 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.InteractFloorItem
 import world.gregs.voidps.network.protocol.Decoder
-import world.gregs.voidps.network.readBooleanInverse
-import world.gregs.voidps.network.readShortAdd
+import world.gregs.voidps.network.protocol.readBooleanInverse
+import world.gregs.voidps.network.protocol.readShortAdd
 
 class FloorItemOption2Decoder : Decoder(7) {
 

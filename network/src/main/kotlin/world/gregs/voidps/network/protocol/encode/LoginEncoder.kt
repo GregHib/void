@@ -3,9 +3,9 @@ package world.gregs.voidps.network.protocol.encode
 import io.ktor.utils.io.*
 import world.gregs.voidps.network.Response
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.writeByte
-import world.gregs.voidps.network.writeMedium
-import world.gregs.voidps.network.writeString
+import world.gregs.voidps.network.protocol.writeByte
+import world.gregs.voidps.network.protocol.writeMedium
+import world.gregs.voidps.network.protocol.writeString
 
 fun Client.login(username: String, index: Int, rights: Int, member: Boolean = true, membersWorld: Boolean = true) = send(-1) {
     writeByte(Response.SUCCESS)

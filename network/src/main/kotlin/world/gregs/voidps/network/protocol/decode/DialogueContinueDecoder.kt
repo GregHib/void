@@ -6,8 +6,8 @@ import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.InteractDialogue
 import world.gregs.voidps.network.protocol.Decoder
-import world.gregs.voidps.network.readShortAdd
-import world.gregs.voidps.network.readUnsignedIntMiddle
+import world.gregs.voidps.network.protocol.readShortAdd
+import world.gregs.voidps.network.protocol.readUnsignedIntMiddle
 
 class DialogueContinueDecoder : Decoder(6) {
 

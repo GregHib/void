@@ -4,9 +4,9 @@ import io.ktor.utils.io.*
 import world.gregs.voidps.network.Protocol.CLIENT_VARC
 import world.gregs.voidps.network.Protocol.CLIENT_VARC_LARGE
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.writeIntLittle
-import world.gregs.voidps.network.writeShortAddLittle
-import world.gregs.voidps.network.writeShortLittle
+import world.gregs.voidps.network.protocol.writeIntLittle
+import world.gregs.voidps.network.protocol.writeShortAddLittle
+import world.gregs.voidps.network.protocol.writeShortLittle
 
 /**
  * Client variable; also known as "ConfigGlobal"

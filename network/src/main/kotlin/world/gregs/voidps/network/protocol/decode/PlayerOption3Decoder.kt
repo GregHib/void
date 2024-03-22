@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.InteractPlayer
 import world.gregs.voidps.network.protocol.Decoder
-import world.gregs.voidps.network.readByteSubtract
+import world.gregs.voidps.network.protocol.readByteSubtract
 
 class PlayerOption3Decoder : Decoder(3) {
 

@@ -5,11 +5,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.InteractInterfaceObject
-import world.gregs.voidps.network.protocol.Decoder
-import world.gregs.voidps.network.readBooleanSubtract
-import world.gregs.voidps.network.readShortAddLittle
-import world.gregs.voidps.network.readUnsignedShortAdd
-import world.gregs.voidps.network.readUnsignedShortLittle
+import world.gregs.voidps.network.protocol.*
 
 class InterfaceOnObjectDecoder : Decoder(15) {
 

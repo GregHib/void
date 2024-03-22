@@ -3,10 +3,10 @@ package world.gregs.voidps.network.protocol.encode
 import world.gregs.voidps.network.Protocol.CLIENT_VARBIT
 import world.gregs.voidps.network.Protocol.CLIENT_VARBIT_LARGE
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.writeByteAdd
-import world.gregs.voidps.network.writeIntInverseMiddle
-import world.gregs.voidps.network.writeShortAdd
-import world.gregs.voidps.network.writeShortLittle
+import world.gregs.voidps.network.protocol.writeByteAdd
+import world.gregs.voidps.network.protocol.writeIntInverseMiddle
+import world.gregs.voidps.network.protocol.writeShortAdd
+import world.gregs.voidps.network.protocol.writeShortLittle
 
 /**
  * A variable bit; also known as "ConfigFile", known in the client as "clientvarpbit"

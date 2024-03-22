@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.InteractNPC
 import world.gregs.voidps.network.protocol.Decoder
-import world.gregs.voidps.network.readBooleanAdd
+import world.gregs.voidps.network.protocol.readBooleanAdd
 
 class NPCOption4Decoder : Decoder(3) {
 

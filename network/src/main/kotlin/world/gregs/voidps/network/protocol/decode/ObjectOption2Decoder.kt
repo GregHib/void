@@ -4,11 +4,7 @@ import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.InteractObject
-import world.gregs.voidps.network.protocol.Decoder
-import world.gregs.voidps.network.readBooleanSubtract
-import world.gregs.voidps.network.readShortAddLittle
-import world.gregs.voidps.network.readUnsignedShortAdd
-import world.gregs.voidps.network.readUnsignedShortAddLittle
+import world.gregs.voidps.network.protocol.*
 
 class ObjectOption2Decoder : Decoder(7) {
 

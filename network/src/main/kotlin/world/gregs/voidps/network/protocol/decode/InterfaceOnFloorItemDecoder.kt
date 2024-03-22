@@ -6,9 +6,9 @@ import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.InteractInterfaceFloorItem
 import world.gregs.voidps.network.protocol.Decoder
-import world.gregs.voidps.network.readBoolean
-import world.gregs.voidps.network.readUnsignedIntMiddle
-import world.gregs.voidps.network.readUnsignedShortAdd
+import world.gregs.voidps.network.protocol.readBoolean
+import world.gregs.voidps.network.protocol.readUnsignedIntMiddle
+import world.gregs.voidps.network.protocol.readUnsignedShortAdd
 
 class InterfaceOnFloorItemDecoder : Decoder(15) {
 

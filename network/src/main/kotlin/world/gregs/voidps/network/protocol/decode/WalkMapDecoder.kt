@@ -5,8 +5,8 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.network.protocol.Decoder
-import world.gregs.voidps.network.readBooleanAdd
-import world.gregs.voidps.network.readUnsignedShortAdd
+import world.gregs.voidps.network.protocol.readBooleanAdd
+import world.gregs.voidps.network.protocol.readUnsignedShortAdd
 
 class WalkMapDecoder : Decoder(5) {
 

@@ -4,7 +4,7 @@ import world.gregs.voidps.network.Protocol.SCRIPT
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.SHORT
 import world.gregs.voidps.network.client.Client.Companion.string
-import world.gregs.voidps.network.writeString
+import world.gregs.voidps.network.protocol.writeString
 
 /**
  * Sends a client script to run

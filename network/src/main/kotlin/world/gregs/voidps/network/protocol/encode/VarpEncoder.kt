@@ -4,8 +4,8 @@ import io.ktor.utils.io.*
 import world.gregs.voidps.network.Protocol.CLIENT_VARP
 import world.gregs.voidps.network.Protocol.CLIENT_VARP_LARGE
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.writeIntInverseMiddle
-import world.gregs.voidps.network.writeShortAdd
+import world.gregs.voidps.network.protocol.writeIntInverseMiddle
+import world.gregs.voidps.network.protocol.writeShortAdd
 
 /**
  * A variable player config; also known as "Config", known in the client as "clientvarp"

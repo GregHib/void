@@ -6,10 +6,10 @@ import world.gregs.voidps.network.Protocol.MIDI_SOUND
 import world.gregs.voidps.network.Protocol.PLAY_MUSIC
 import world.gregs.voidps.network.Protocol.SOUND_EFFECT
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.writeByteInverse
-import world.gregs.voidps.network.writeByteSubtract
-import world.gregs.voidps.network.writeMedium
-import world.gregs.voidps.network.writeShortAddLittle
+import world.gregs.voidps.network.protocol.writeByteInverse
+import world.gregs.voidps.network.protocol.writeByteSubtract
+import world.gregs.voidps.network.protocol.writeMedium
+import world.gregs.voidps.network.protocol.writeShortAddLittle
 
 fun Client.playMusicTrack(
     music: Int,

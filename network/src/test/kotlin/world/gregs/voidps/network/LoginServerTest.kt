@@ -14,6 +14,7 @@ import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.AccountLoader
 import world.gregs.voidps.network.protocol.decoders
+import world.gregs.voidps.network.protocol.readString
 import java.math.BigInteger
 
 @ExtendWith(MockKExtension::class)
