@@ -10,12 +10,11 @@ import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import world.gregs.voidps.engine.getIntProperty
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.network.NetworkQueue
 
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class ConnectionQueueTest : KoinMock() {
 
-    private lateinit var queue: NetworkQueue
+    private lateinit var queue: ConnectionQueue
 
     override val modules = listOf(
         module {

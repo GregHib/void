@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.network.NetworkQueue
 import world.gregs.voidps.network.Response
 import world.gregs.voidps.network.client.Client
 
@@ -27,7 +26,7 @@ import world.gregs.voidps.network.client.Client
 internal class PlayerAccountLoaderTest : KoinMock() {
 
     @RelaxedMockK
-    private lateinit var queue: NetworkQueue
+    private lateinit var queue: ConnectionQueue
 
     @RelaxedMockK
     private lateinit var factory: PlayerAccounts

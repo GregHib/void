@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.client
 
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
-import world.gregs.voidps.network.NetworkQueue
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.coroutines.resume
 
@@ -11,7 +10,7 @@ import kotlin.coroutines.resume
  */
 class ConnectionQueue(
     private val connectionsPerTickCap: Int,
-) : NetworkQueue {
+) : Runnable {
     private val waiting = ConcurrentHashMap.newKeySet<CancellableContinuation<Unit>>()
     private val disconnect = ConcurrentHashMap.newKeySet<() -> Unit>()
 
@@ -19,7 +18,7 @@ class ConnectionQueue(
         disconnect.add(block)
     }
 
-    override suspend fun await(): Unit = suspendCancellableCoroutine {
+    suspend fun await(): Unit = suspendCancellableCoroutine {
         waiting.add(it)
     }
 

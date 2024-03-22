@@ -50,7 +50,7 @@ fun getTickStages(
     items: FloorItems = get(),
     floorItems: FloorItemTracking = get(),
     objects: GameObjects = get(),
-    queue: ConnectionQueue = get<ConnectionQueue>(),
+    queue: ConnectionQueue = get(),
     accountSave: PlayerAccounts = get(),
     batches: ZoneBatchUpdates = get(),
     itemDefinitions: ItemDefinitions = get(),

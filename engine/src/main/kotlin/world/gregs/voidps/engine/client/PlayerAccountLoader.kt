@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.network.AccountLoader
 import world.gregs.voidps.network.Instruction
-import world.gregs.voidps.network.NetworkQueue
 import world.gregs.voidps.network.Response
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.encode.login
@@ -23,7 +22,7 @@ import world.gregs.voidps.network.encode.login
  * Keeps track of the players online, prevents duplicate login attempts
  */
 class PlayerAccountLoader(
-    private val queue: NetworkQueue,
+    private val queue: ConnectionQueue,
     private val accounts: PlayerAccounts,
     private val accountDefinitions: AccountDefinitions,
     private val indices: IndexAllocator,
