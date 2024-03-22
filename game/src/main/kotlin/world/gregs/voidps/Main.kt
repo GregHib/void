@@ -91,6 +91,7 @@ object Main : CoroutineScope {
             logger.debug { "Property file not found; defaulting to internal." }
             properties.load(Main::class.java.getResourceAsStream("/$PROPERTY_FILE_NAME"))
         }
+        properties.putAll(System.getenv())
         return@timed properties
     }
 

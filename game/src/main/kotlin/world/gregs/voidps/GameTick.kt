@@ -31,7 +31,6 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.network.NetworkQueue
 import world.gregs.voidps.network.visual.NPCVisuals
 import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.voidps.network.visual.VisualEncoder
@@ -51,7 +50,7 @@ fun getTickStages(
     items: FloorItems = get(),
     floorItems: FloorItemTracking = get(),
     objects: GameObjects = get(),
-    queue: NetworkQueue = get<ConnectionQueue>(),
+    queue: ConnectionQueue = get<ConnectionQueue>(),
     accountSave: PlayerAccounts = get(),
     batches: ZoneBatchUpdates = get(),
     itemDefinitions: ItemDefinitions = get(),
