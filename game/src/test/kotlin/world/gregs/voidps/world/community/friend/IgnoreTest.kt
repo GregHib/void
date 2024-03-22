@@ -34,7 +34,7 @@ internal class IgnoreTest : WorldTest() {
         val (player, client) = createClient("player")
         createPlayer("nuisance")
 
-        player.instructions.emit(IgnoreAdd("nuisance"))
+        player.instructions.emit(world.gregs.voidps.network.client.instruct.IgnoreAdd("nuisance"))
         tick()
 
         verify {
@@ -51,7 +51,7 @@ internal class IgnoreTest : WorldTest() {
         }
         createPlayer("nuisance")
 
-        player.instructions.emit(IgnoreAdd("nuisance"))
+        player.instructions.emit(world.gregs.voidps.network.client.instruct.IgnoreAdd("nuisance"))
         tick()
 
         verify {
@@ -63,7 +63,7 @@ internal class IgnoreTest : WorldTest() {
     fun `Add non-existent player`() = runTest {
         val (player, client) = createClient("player")
 
-        player.instructions.emit(IgnoreAdd("random"))
+        player.instructions.emit(world.gregs.voidps.network.client.instruct.IgnoreAdd("random"))
         tick()
 
         verify {
@@ -77,7 +77,7 @@ internal class IgnoreTest : WorldTest() {
         createPlayer("nuisance")
         player.ignores.add("nuisance")
 
-        player.instructions.emit(IgnoreAdd("nuisance"))
+        player.instructions.emit(world.gregs.voidps.network.client.instruct.IgnoreAdd("nuisance"))
         tick()
 
         verify {
@@ -91,7 +91,7 @@ internal class IgnoreTest : WorldTest() {
         createPlayer("friend")
         player.friends["friend"] = ClanRank.Friend
 
-        player.instructions.emit(IgnoreAdd("friend"))
+        player.instructions.emit(world.gregs.voidps.network.client.instruct.IgnoreAdd("friend"))
         tick()
 
         verify {

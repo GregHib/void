@@ -6,14 +6,13 @@ import world.gregs.voidps.engine.client.ui.interact.ItemOnPlayer
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.network.instruct.InteractInterfacePlayer
 
 class InterfaceOnPlayerOptionHandler(
     private val players: Players,
     private val handler: InterfaceHandler
-) : InstructionHandler<InteractInterfacePlayer>() {
+) : InstructionHandler<world.gregs.voidps.network.client.instruct.InteractInterfacePlayer>() {
 
-    override fun validate(player: Player, instruction: InteractInterfacePlayer) {
+    override fun validate(player: Player, instruction: world.gregs.voidps.network.client.instruct.InteractInterfacePlayer) {
         val (playerIndex, interfaceId, componentId, itemId, itemSlot) = instruction
         val target = players.indexed(playerIndex) ?: return
 

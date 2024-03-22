@@ -4,7 +4,6 @@ import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.network.*
-import world.gregs.voidps.network.instruct.InteractInterfacePlayer
 
 class InterfaceOnPlayerDecoder : Decoder(11) {
 
@@ -14,7 +13,7 @@ class InterfaceOnPlayerDecoder : Decoder(11) {
         val itemId = packet.readShortLittleEndian().toInt()
         val packed = packet.readUnsignedIntInverseMiddle()
         val run = packet.readBooleanInverse()
-        instructions.emit(InteractInterfacePlayer(
+        instructions.emit(world.gregs.voidps.network.client.instruct.InteractInterfacePlayer(
             index,
             InterfaceDefinition.id(packed),
             InterfaceDefinition.componentId(packed),
