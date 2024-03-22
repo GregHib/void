@@ -1,6 +1,6 @@
-package world.gregs.voidps.engine.client
+package world.gregs.voidps.network
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 

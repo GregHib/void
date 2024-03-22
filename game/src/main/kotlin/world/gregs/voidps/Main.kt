@@ -14,7 +14,6 @@ import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
-import world.gregs.voidps.engine.client.ClientManager
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.LoginManager
 import world.gregs.voidps.engine.client.PlayerAccountLoader
@@ -49,7 +48,7 @@ object Main : CoroutineScope {
 
         // File server
         val cache = timed("cache") { Cache.load(properties) }
-        val server = GameServer.load(cache, properties, ClientManager())
+        val server = GameServer.load(cache, properties)
         val job = server.start(properties.getProperty("port").toInt())
 
         // Content

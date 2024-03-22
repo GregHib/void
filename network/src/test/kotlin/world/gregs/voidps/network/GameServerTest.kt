@@ -28,13 +28,7 @@ internal class GameServerTest {
     @BeforeEach
     fun setup() {
         manager = mockk(relaxed = true)
-        server = spyk(
-            GameServer(
-                manager,
-                2,
-                mockk(relaxed = true)
-            )
-        )
+        server = spyk(GameServer(2, mockk(relaxed = true)))
         server.loginServer = mockk(relaxed = true)
     }
 

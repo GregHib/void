@@ -18,11 +18,10 @@ import kotlin.concurrent.thread
  * A network server for client's to connect to the game with
  */
 class GameServer(
-    private val clients: SessionManager,
     private val loginLimit: Int,
     private val fileServer: Server
 ) {
-
+    private val clients = ClientManager()
     private lateinit var dispatcher: ExecutorCoroutineDispatcher
     private var running = false
     var loginServer: Server? = null
@@ -98,10 +97,10 @@ class GameServer(
     companion object {
 
         @ExperimentalUnsignedTypes
-        fun load(cache: Cache, properties: Properties, clients: SessionManager): GameServer {
+        fun load(cache: Cache, properties: Properties): GameServer {
             val limit = properties.getProperty("loginLimit").toInt()
             val fileServer = FileServer.load(cache, properties)
-            return GameServer(clients, limit, fileServer)
+            return GameServer(limit, fileServer)
         }
 
         private val logger = InlineLogger()

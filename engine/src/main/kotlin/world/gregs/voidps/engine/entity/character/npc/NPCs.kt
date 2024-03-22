@@ -96,6 +96,7 @@ data class NPCs(
             logger.warn { "No npc found for name $id" }
             return null
         }
+        val index = indexer.obtain() ?: return null
         val npc = NPC(id, tile)
         npc.def = def
         npc.levels.link(npc, NPCLevels(def))
@@ -110,7 +111,7 @@ data class NPCs(
             npc.mode = Wander(npc, tile)
         }
         val dir = if (direction == Direction.NONE) Direction.all.random() else direction
-        npc.index = indexer.obtain() ?: return null
+        npc.index = index
         npc.face(dir)
         npc.collision = collision.get(npc)
         add(npc)
