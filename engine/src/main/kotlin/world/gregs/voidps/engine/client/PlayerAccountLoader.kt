@@ -43,7 +43,7 @@ class PlayerAccountLoader(
             withContext(gameContext) {
                 queue.await()
                 logger.info { "Player logged in $username index $index." }
-                player.login(client, displayMode)
+                accounts.login(player, client, displayMode)
             }
             return player.instructions
         } catch (e: IllegalStateException) {

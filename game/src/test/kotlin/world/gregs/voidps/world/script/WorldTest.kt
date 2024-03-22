@@ -106,7 +106,7 @@ abstract class WorldTest : KoinTest {
         tick()
         player["creation"] = -1
         player["skip_level_up"] = true
-        player.login(null, 0)
+        accounts.login(player, null, 0)
         player.softTimers.clear("restore_stats")
         player.softTimers.clear("restore_hitpoints")
         tick()

@@ -124,7 +124,7 @@ adminCommand("npc") {
 
 modCommand("save") {
     val account: PlayerAccounts = get()
-    players.forEach(account::queueSave)
+    players.forEach(account::save)
 }
 
 val definitions: ItemDefinitions by inject()

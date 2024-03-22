@@ -98,7 +98,8 @@ fun spawn() {
     GlobalScope.launch(Contexts.Game) {
         val name = "Bot ${++counter}"
         val index = manager.add(name)!!
-        val bot = accounts.getOrElse(name, index) { Player(index = index, tile = lumbridge.random(), accountName = name) }
+        val bot = Player(index = index, tile = lumbridge.random(), accountName = name)
+        accounts.initPlayer(bot, index)
         setAppearance(bot)
         queue.await()
         if (bot.inventory.isEmpty()) {
@@ -106,7 +107,7 @@ fun spawn() {
         }
         val client = if (TaskManager.DEBUG) DummyClient() else null
         bot.initBot()
-        bot.login(client, 0)
+        accounts.login(bot, client, 0)
         bot.emit(StartBot)
         bot.viewport?.loaded = true
         delay(3)
