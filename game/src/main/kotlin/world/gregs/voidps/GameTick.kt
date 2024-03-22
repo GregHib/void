@@ -52,7 +52,7 @@ fun getTickStages(
     floorItems: FloorItemTracking = get(),
     objects: GameObjects = get(),
     queue: NetworkQueue = get<ConnectionQueue>(),
-    factory: PlayerAccounts = get(),
+    accountSave: PlayerAccounts = get(),
     batches: ZoneBatchUpdates = get(),
     itemDefinitions: ItemDefinitions = get(),
     objectDefinitions: ObjectDefinitions = get(),
@@ -71,7 +71,6 @@ fun getTickStages(
         hunting,
         // Connections/Tick Input
         queue,
-        factory,
         // Tick
         InstructionTask(players, npcs, items, objects, itemDefinitions, objectDefinitions, npcDefinitions, interfaceDefinitions, handler),
         World,
@@ -88,7 +87,8 @@ fun getTickStages(
             NPCUpdateTask(npcs, npcVisualEncoders()),
             batches
         ),
-        AiTick()
+        AiTick(),
+        accountSave
     )
 }
 

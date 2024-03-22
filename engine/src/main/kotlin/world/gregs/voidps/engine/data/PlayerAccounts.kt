@@ -1,5 +1,9 @@
 package world.gregs.voidps.engine.data
 
+import com.github.michaelbull.logging.InlineLogger
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
@@ -18,6 +22,7 @@ import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
+import kotlin.coroutines.CoroutineContext
 
 class PlayerAccounts(
     private val interfaceDefinitions: InterfaceDefinitions,
@@ -28,17 +33,25 @@ class PlayerAccounts(
     private val variableDefinitions: VariableDefinitions,
     private val homeTile: Tile,
     private val storage: AccountStorage
-) : Runnable {
-
+) : Runnable, CoroutineScope {
+    override val coroutineContext: CoroutineContext = Dispatchers.IO
     private val validItems = ValidItemRestriction(itemDefinitions)
     private val saveQueue = mutableMapOf<String, PlayerSave>()
+    private val logger = InlineLogger()
 
     override fun run() {
         if (saveQueue.isEmpty()) {
             return
         }
-        storage.save(saveQueue.values.toList())
+        val accounts = saveQueue.values.toList()
         saveQueue.clear()
+        launch {
+            try {
+                storage.save(accounts)
+            } catch (e: Exception) {
+                logger.error(e) { "Error saving players!" }
+            }
+        }
     }
 
     fun queueSave(player: Player) {
