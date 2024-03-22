@@ -55,6 +55,9 @@ class PlayerAccounts(
     }
 
     fun queueSave(player: Player) {
+        if (player.contains("bot")) {
+            return
+        }
         saveQueue[player.accountName] = player.copy()
     }
 
