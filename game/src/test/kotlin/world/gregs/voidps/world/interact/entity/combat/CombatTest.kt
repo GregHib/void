@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractPlayer
-import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.network.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import world.gregs.voidps.world.interact.entity.combat.hit.npcCombatHit

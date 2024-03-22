@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.timer.Timers
-import world.gregs.voidps.network.visual.Visuals
+import world.gregs.voidps.network.protocol.visual.Visuals
 import kotlin.coroutines.Continuation
 
 interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {

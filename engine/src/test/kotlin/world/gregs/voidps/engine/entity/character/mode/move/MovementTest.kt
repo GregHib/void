@@ -24,8 +24,8 @@ import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.network.visual.PlayerVisuals
-import world.gregs.voidps.network.visual.update.player.MoveType
+import world.gregs.voidps.network.protocol.visual.PlayerVisuals
+import world.gregs.voidps.network.protocol.visual.update.player.MoveType
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone

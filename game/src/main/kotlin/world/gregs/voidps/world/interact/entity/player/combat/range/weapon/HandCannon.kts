@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.network.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.combat.combatSwing

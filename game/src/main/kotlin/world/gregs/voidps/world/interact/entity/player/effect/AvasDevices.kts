@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.network.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.player.equip.inventoryItem
 import java.util.concurrent.TimeUnit
 

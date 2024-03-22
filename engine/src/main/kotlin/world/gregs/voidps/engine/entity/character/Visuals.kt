@@ -11,10 +11,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.network.visual.VisualMask
-import world.gregs.voidps.network.visual.Visuals
-import world.gregs.voidps.network.visual.update.Hitsplat
-import world.gregs.voidps.network.visual.update.Turn
+import world.gregs.voidps.network.protocol.visual.VisualMask
+import world.gregs.voidps.network.protocol.visual.Visuals
+import world.gregs.voidps.network.protocol.visual.update.Hitsplat
+import world.gregs.voidps.network.protocol.visual.update.Turn
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance

@@ -15,8 +15,8 @@ import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.network.visual.update.player.BodyColour
-import world.gregs.voidps.network.visual.update.player.BodyPart
+import world.gregs.voidps.network.protocol.visual.update.player.BodyColour
+import world.gregs.voidps.network.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Unsure

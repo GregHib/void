@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.protocol.encode.updateNPCs
-import world.gregs.voidps.network.visual.NPCVisuals
-import world.gregs.voidps.network.visual.VisualEncoder
+import world.gregs.voidps.network.protocol.visual.NPCVisuals
+import world.gregs.voidps.network.protocol.visual.VisualEncoder
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.RegionLevel
 

@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.network.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.script.WorldTest

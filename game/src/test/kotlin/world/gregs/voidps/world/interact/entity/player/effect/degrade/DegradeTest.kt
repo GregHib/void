@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.move
 import world.gregs.voidps.engine.inv.swap
-import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.network.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.world.script.WorldTest
 
 class DegradeTest : WorldTest() {

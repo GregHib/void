@@ -31,18 +31,18 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.network.visual.NPCVisuals
-import world.gregs.voidps.network.visual.PlayerVisuals
-import world.gregs.voidps.network.visual.VisualEncoder
-import world.gregs.voidps.network.visual.VisualMask.NPC_FORCE_CHAT_MASK
-import world.gregs.voidps.network.visual.VisualMask.NPC_WATCH_MASK
-import world.gregs.voidps.network.visual.VisualMask.PLAYER_FORCE_CHAT_MASK
-import world.gregs.voidps.network.visual.VisualMask.PLAYER_WATCH_MASK
-import world.gregs.voidps.network.visual.Visuals
-import world.gregs.voidps.network.visual.encode.ForceChatEncoder
-import world.gregs.voidps.network.visual.encode.WatchEncoder
-import world.gregs.voidps.network.visual.encode.npc.*
-import world.gregs.voidps.network.visual.encode.player.*
+import world.gregs.voidps.network.protocol.visual.NPCVisuals
+import world.gregs.voidps.network.protocol.visual.PlayerVisuals
+import world.gregs.voidps.network.protocol.visual.VisualEncoder
+import world.gregs.voidps.network.protocol.visual.VisualMask.NPC_FORCE_CHAT_MASK
+import world.gregs.voidps.network.protocol.visual.VisualMask.NPC_WATCH_MASK
+import world.gregs.voidps.network.protocol.visual.VisualMask.PLAYER_FORCE_CHAT_MASK
+import world.gregs.voidps.network.protocol.visual.VisualMask.PLAYER_WATCH_MASK
+import world.gregs.voidps.network.protocol.visual.Visuals
+import world.gregs.voidps.network.protocol.visual.encode.ForceChatEncoder
+import world.gregs.voidps.network.protocol.visual.encode.WatchEncoder
+import world.gregs.voidps.network.protocol.visual.encode.npc.*
+import world.gregs.voidps.network.protocol.visual.encode.player.*
 
 fun getTickStages(
     players: Players = get(),
@@ -117,7 +117,7 @@ private fun npcVisualEncoders() = castOf<NPCVisuals>(
     TransformEncoder(),
     NPCAnimationEncoder(),
     NPCPrimaryGraphicEncoder(),
-    NPCTurnEncoder(),
+    world.gregs.voidps.network.protocol.visual.encode.npc.NPCTurnEncoder(),
     NPCExactMovementEncoder(),
     NPCColourOverlayEncoder(),
     NPCHitsEncoder(),

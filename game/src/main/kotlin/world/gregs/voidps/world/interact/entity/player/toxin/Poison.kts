@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.timer.characterTimerStart
 import world.gregs.voidps.engine.timer.characterTimerStop
 import world.gregs.voidps.engine.timer.characterTimerTick
-import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.network.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.entity.combat.hit.characterCombatAttack
 import world.gregs.voidps.world.interact.entity.combat.hit.directHit

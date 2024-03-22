@@ -3,7 +3,7 @@ package world.gregs.voidps.tools.definition.item.pipe.extra
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
-import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.network.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.convert.ItemDecoder718
 import world.gregs.voidps.tools.definition.item.Extras

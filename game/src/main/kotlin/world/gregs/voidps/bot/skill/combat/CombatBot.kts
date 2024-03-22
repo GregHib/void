@@ -29,7 +29,7 @@ import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.network.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.skill.slayer.race

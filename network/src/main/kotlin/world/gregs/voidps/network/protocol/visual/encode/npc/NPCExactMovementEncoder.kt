@@ -1,0 +1,23 @@
+package world.gregs.voidps.network.protocol.visual.encode.npc
+
+import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.network.protocol.visual.NPCVisuals
+import world.gregs.voidps.network.protocol.visual.VisualEncoder
+import world.gregs.voidps.network.protocol.visual.VisualMask.NPC_EXACT_MOVEMENT_MASK
+
+class NPCExactMovementEncoder : VisualEncoder<NPCVisuals>(NPC_EXACT_MOVEMENT_MASK) {
+
+    override fun encode(writer: Writer, visuals: NPCVisuals) {
+        val (tile1X, tile1Y, delay1, tile2X, tile2Y, delay2, direction) = visuals.exactMovement
+        writer.apply {
+            writeByteSubtract(tile1X)
+            writeByteSubtract(tile1Y)
+            writeByte(tile2X)
+            writeByteSubtract(tile2Y)
+            writeShortLittle(delay1)
+            writeShortAdd(delay2)
+            writeByteSubtract(direction / 2)
+        }
+    }
+
+}

@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.itemChange
-import world.gregs.voidps.network.visual.VisualMask.APPEARANCE_MASK
+import world.gregs.voidps.network.protocol.visual.VisualMask.APPEARANCE_MASK
 import world.gregs.voidps.world.interact.entity.player.equip.EquipBonuses.names
 import java.math.RoundingMode
 import java.text.DecimalFormat

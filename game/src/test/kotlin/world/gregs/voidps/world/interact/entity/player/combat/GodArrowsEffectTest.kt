@@ -7,10 +7,10 @@ import world.gregs.voidps.FakeRandom
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.network.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.setRandom
-import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.combat.hit.hit
+import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import kotlin.test.assertNotEquals
 
 internal class GodArrowsEffectTest : CombatFormulaTest() {

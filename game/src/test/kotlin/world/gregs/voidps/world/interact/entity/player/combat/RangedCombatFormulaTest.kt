@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.network.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.player.combat.prayer.PrayerConfigs
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 import world.gregs.voidps.world.interact.entity.player.equip.InventoryOption

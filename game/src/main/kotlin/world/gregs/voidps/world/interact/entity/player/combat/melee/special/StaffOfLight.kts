@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.network.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit.combatHit
 import world.gregs.voidps.world.interact.entity.player.combat.special.SpecialAttack
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackPrepare
