@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.NetworkQueue
@@ -38,7 +39,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        loader = spyk(PlayerAccountLoader(queue, factory, accounts, UnconfinedTestDispatcher()))
+        loader = spyk(PlayerAccountLoader(queue, factory, accounts, IndexAllocator(10), UnconfinedTestDispatcher()))
     }
 
     @Test

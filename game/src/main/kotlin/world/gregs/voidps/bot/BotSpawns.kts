@@ -2,11 +2,8 @@ package world.gregs.voidps.bot
 
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.Contexts
-import world.gregs.voidps.engine.client.ConnectionQueue
-import world.gregs.voidps.engine.client.LoginManager
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.ui.event.adminCommand
-import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
@@ -38,9 +35,6 @@ val lumbridge = areas["lumbridge_teleport"]
 val botCount = getIntProperty("bots", 0)
 
 val bots = mutableListOf<Player>()
-val queue: ConnectionQueue by inject()
-val manager: LoginManager by inject()
-val accounts: PlayerAccounts by inject()
 val enums: EnumDefinitions by inject()
 val structs: StructDefinitions by inject()
 
@@ -100,7 +94,7 @@ val loader: PlayerAccountLoader by inject()
 fun spawn() {
     GlobalScope.launch(Contexts.Game) {
         val name = "Bot ${++counter}"
-        val index = manager.add(name)!!
+        val index = loader.assign(name) ?: return@launch
         val bot = Player(index = index, tile = lumbridge.random(), accountName = name)
         setAppearance(bot)
         bot.initBot()

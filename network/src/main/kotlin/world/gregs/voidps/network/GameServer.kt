@@ -19,9 +19,9 @@ import kotlin.concurrent.thread
  */
 class GameServer(
     private val loginLimit: Int,
-    private val fileServer: Server
+    private val fileServer: Server,
+    private val clients: ClientManager = ClientManager()
 ) {
-    private val clients = ClientManager()
     private lateinit var dispatcher: ExecutorCoroutineDispatcher
     private var running = false
     var loginServer: Server? = null

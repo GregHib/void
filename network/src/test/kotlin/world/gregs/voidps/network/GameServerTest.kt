@@ -17,7 +17,7 @@ internal class GameServerTest {
     lateinit var server: GameServer
 
     @RelaxedMockK
-    lateinit var manager: SessionManager
+    lateinit var manager: ClientManager
 
     @RelaxedMockK
     lateinit var read: ByteReadChannel
@@ -28,7 +28,7 @@ internal class GameServerTest {
     @BeforeEach
     fun setup() {
         manager = mockk(relaxed = true)
-        server = spyk(GameServer(2, mockk(relaxed = true)))
+        server = spyk(GameServer(2, mockk(relaxed = true), manager))
         server.loginServer = mockk(relaxed = true)
     }
 

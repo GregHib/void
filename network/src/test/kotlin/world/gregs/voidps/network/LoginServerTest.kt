@@ -21,9 +21,6 @@ internal class LoginServerTest {
     lateinit var network: LoginServer
 
     @RelaxedMockK
-    lateinit var manager: SessionManager
-
-    @RelaxedMockK
     lateinit var loader: AccountLoader
 
     @RelaxedMockK
@@ -34,9 +31,8 @@ internal class LoginServerTest {
 
     @BeforeEach
     fun setup() {
-        manager = mockk(relaxed = true)
         network = spyk(
-            LoginServer(protocol(mockk()), 123, BigInteger.ONE, BigInteger.valueOf(2), manager, loader)
+            LoginServer(protocol(mockk()), 123, BigInteger.ONE, BigInteger.valueOf(2), loader)
         )
     }
 
@@ -152,7 +148,7 @@ internal class LoginServerTest {
         every { rsa.readString() } returns "pass"
         every { packet.remaining } returns 1
         every { packet.readBytes(1) } returns byteArrayOf(0)
-        every { manager.count("") } returns 1
+        every { loader.assign("") } returns 1
 
         network.validateSession(read, rsa, packet, write, "")
 
@@ -165,9 +161,9 @@ internal class LoginServerTest {
     @Test
     fun `World full`() = runTest {
         val client: Client = mockk(relaxed = true)
-        every { manager.add("name") } returns null
+        every { loader.assign("name") } returns null
 
-        network.login(read, client, "name", "password", 1)
+        network.login(read, client, "name", "password", 0, 1)
 
         coVerify {
             client.disconnect(Response.WORLD_FULL)
@@ -177,10 +173,10 @@ internal class LoginServerTest {
     @Test
     fun `Read packet instructions`() = runTest {
         val client: Client = mockk(relaxed = true)
-        every { manager.add("name") } returns 123
+        every { loader.assign("name") } returns 123
         coEvery { loader.load(client, any(), any(), any(), any()) } returns null
 
-        network.login(read, client, "name", "password", 1)
+        network.login(read, client, "name", "password", 123, 1)
 
         coVerify {
             loader.load(client, "name", "password", 123, 1)

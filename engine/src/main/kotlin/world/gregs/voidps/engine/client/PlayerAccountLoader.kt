@@ -7,6 +7,7 @@ import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
@@ -16,17 +17,38 @@ import world.gregs.voidps.network.NetworkQueue
 import world.gregs.voidps.network.Response
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.encode.login
+import java.util.concurrent.ConcurrentHashMap
 
 /**
  * Checks password is valid for a player account before logging in
+ * Keeps track of the players online, prevents duplicate login attempts
  */
 class PlayerAccountLoader(
     private val queue: NetworkQueue,
     private val accounts: PlayerAccounts,
     private val accountDefinitions: AccountDefinitions,
+    private val indices: IndexAllocator,
     private val gameContext: CoroutineDispatcher
 ) : AccountLoader {
     private val logger = InlineLogger()
+
+    private val online = ConcurrentHashMap.newKeySet<String>()
+
+    override fun assign(username: String): Int? {
+        if (online.contains(username)) {
+            return -1
+        }
+        return indices.obtain()
+    }
+
+    override fun remove(key: String) {
+        online.remove(key)
+    }
+
+    override fun clear() {
+        indices.clear()
+        online.clear()
+    }
 
     override fun password(username: String): String? {
         return accountDefinitions.get(username)?.passwordHash

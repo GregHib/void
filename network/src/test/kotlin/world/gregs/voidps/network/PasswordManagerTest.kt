@@ -96,5 +96,15 @@ class PasswordManagerTest {
         override suspend fun load(client: Client, username: String, passwordHash: String, index: Int, displayMode: Int): MutableSharedFlow<Instruction>? {
             return null
         }
+
+        override fun remove(key: String) {
+        }
+
+        override fun assign(username: String): Int? {
+            return null
+        }
+
+        override fun clear() {
+        }
     }
 }

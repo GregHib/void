@@ -20,7 +20,6 @@ import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.ConnectionQueue
-import world.gregs.voidps.engine.client.LoginManager
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
@@ -44,6 +43,7 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.gameModule
 import world.gregs.voidps.getTickStages
+import world.gregs.voidps.network.AccountLoader
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.script.loadScripts
 import world.gregs.voidps.type.Tile
@@ -62,7 +62,7 @@ abstract class WorldTest : KoinTest {
     private val logger = InlineLogger()
     private lateinit var engine: GameLoop
     lateinit var players: Players
-    private lateinit var manager: LoginManager
+    private lateinit var loader: AccountLoader
     lateinit var npcs: NPCs
     lateinit var floorItems: FloorItems
     lateinit var objects: GameObjects
@@ -187,7 +187,7 @@ abstract class WorldTest : KoinTest {
             engine = GameLoop(tickStages, mockk(relaxed = true))
             World.start(true)
         }
-        manager = get()
+        loader = get()
         players = get()
         npcs = get()
         floorItems = get()
@@ -209,7 +209,7 @@ abstract class WorldTest : KoinTest {
 
     @AfterEach
     fun afterEach() {
-        manager.clear()
+        loader.clear()
         players.clear()
         npcs.clear()
         floorItems.clear()

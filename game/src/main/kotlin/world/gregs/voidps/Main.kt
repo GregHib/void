@@ -15,10 +15,10 @@ import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.ConnectionQueue
-import world.gregs.voidps.engine.client.LoginManager
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
@@ -61,9 +61,8 @@ object Main : CoroutineScope {
 
         // Login server
         val protocol = protocol(get<Huffman>())
-        val accounts: LoginManager = get()
-        val accountLoader = PlayerAccountLoader(get<ConnectionQueue>(), get(), get(), Contexts.Game)
-        val loginServer = LoginServer.load(properties, protocol, accounts, accountLoader)
+        val accountLoader = PlayerAccountLoader(get<ConnectionQueue>(), get(), get(), get<Players>().indexer, Contexts.Game)
+        val loginServer = LoginServer.load(properties, protocol, accountLoader)
 
         // Game world
         val stages = getTickStages()
