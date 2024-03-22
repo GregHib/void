@@ -209,7 +209,6 @@ abstract class WorldTest : KoinTest {
 
     @AfterEach
     fun afterEach() {
-        loader.clear()
         players.clear()
         npcs.clear()
         floorItems.clear()

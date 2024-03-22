@@ -97,14 +97,8 @@ class PasswordManagerTest {
             return null
         }
 
-        override fun remove(key: String) {
-        }
-
-        override fun assign(username: String): Int? {
+        override fun assignIndex(username: String): Int? {
             return null
-        }
-
-        override fun clear() {
         }
     }
 }

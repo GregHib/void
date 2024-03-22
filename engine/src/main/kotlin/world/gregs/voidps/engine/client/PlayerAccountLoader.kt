@@ -17,7 +17,6 @@ import world.gregs.voidps.network.NetworkQueue
 import world.gregs.voidps.network.Response
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.encode.login
-import java.util.concurrent.ConcurrentHashMap
 
 /**
  * Checks password is valid for a player account before logging in
@@ -32,22 +31,8 @@ class PlayerAccountLoader(
 ) : AccountLoader {
     private val logger = InlineLogger()
 
-    private val online = ConcurrentHashMap.newKeySet<String>()
-
-    override fun assign(username: String): Int? {
-        if (online.contains(username)) {
-            return -1
-        }
+    override fun assignIndex(username: String): Int? {
         return indices.obtain()
-    }
-
-    override fun remove(key: String) {
-        online.remove(key)
-    }
-
-    override fun clear() {
-        indices.clear()
-        online.clear()
     }
 
     override fun password(username: String): String? {

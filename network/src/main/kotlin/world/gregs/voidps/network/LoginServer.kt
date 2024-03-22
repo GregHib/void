@@ -10,6 +10,7 @@ import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.IsaacCipher
 import java.math.BigInteger
 import java.util.*
+import java.util.concurrent.ConcurrentHashMap
 
 /**
  * Connects a client to their account in the game world
@@ -20,10 +21,11 @@ class LoginServer(
     private val revision: Int,
     private val modulus: BigInteger,
     private val private: BigInteger,
-    private val loader: AccountLoader
+    private val accounts: AccountLoader
 ) : Server {
 
-    private val passwordManager = PasswordManager(loader)
+    private val passwordManager = PasswordManager(accounts)
+    private val online = ConcurrentHashMap.newKeySet<String>()
 
     override suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
         write.respond(Response.DATA_CHANGE)
@@ -81,7 +83,7 @@ class LoginServer(
         val index = validate(write, username, password) ?: return
         val client = createClient(write, isaacKeys, hostname)
         client.onDisconnected {
-            loader.remove(username)
+            online.remove(username)
         }
         val passwordHash = passwordManager.encrypt(username, password)
         xtea.readUByte() // social login
@@ -95,14 +97,13 @@ class LoginServer(
             write.finish(response)
             return null
         }
-
-        val index = loader.assign(username)
-        if (index == null) {
-            write.finish(Response.WORLD_FULL)
+        if (!online.add(username)) {
+            write.finish(Response.ACCOUNT_ONLINE)
             return null
         }
-        if (index < 0) {
-            write.finish(Response.ACCOUNT_ONLINE)
+        val index = accounts.assignIndex(username)
+        if (index == null) {
+            write.finish(Response.WORLD_FULL)
             return null
         }
         return index
@@ -124,7 +125,7 @@ class LoginServer(
     }
 
     suspend fun login(read: ByteReadChannel, client: Client, username: String, passwordHash: String, index: Int, displayMode: Int) {
-        val instructions = loader.load(client, username, passwordHash, index, displayMode) ?: return
+        val instructions = accounts.load(client, username, passwordHash, index, displayMode) ?: return
         try {
             readPackets(client, instructions, read)
         } finally {

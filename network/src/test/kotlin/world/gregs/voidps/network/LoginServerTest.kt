@@ -148,7 +148,7 @@ internal class LoginServerTest {
         every { rsa.readString() } returns "pass"
         every { packet.remaining } returns 1
         every { packet.readBytes(1) } returns byteArrayOf(0)
-        every { loader.assign("") } returns 1
+        every { loader.assignIndex("") } returns 1
 
         network.validateSession(read, rsa, packet, write, "")
 
@@ -161,7 +161,7 @@ internal class LoginServerTest {
     @Test
     fun `World full`() = runTest {
         val client: Client = mockk(relaxed = true)
-        every { loader.assign("name") } returns null
+        every { loader.assignIndex("name") } returns null
 
         network.login(read, client, "name", "password", 0, 1)
 
@@ -173,7 +173,7 @@ internal class LoginServerTest {
     @Test
     fun `Read packet instructions`() = runTest {
         val client: Client = mockk(relaxed = true)
-        every { loader.assign("name") } returns 123
+        every { loader.assignIndex("name") } returns 123
         coEvery { loader.load(client, any(), any(), any(), any()) } returns null
 
         network.login(read, client, "name", "password", 123, 1)
