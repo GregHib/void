@@ -51,7 +51,7 @@ abstract class AccountStorageTest {
             "clan_kick_rank" to "Owner",
             "clan_join_rank" to "Owner",
             "meaning" to 42,
-            "life" to 42L,
+            "life" to 4124700000L,
             "favourite_numbers" to listOf(11, 42, 64)
         ),
         inventories = mapOf(
