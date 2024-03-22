@@ -1,7 +1,8 @@
-package world.gregs.voidps.network.file
+package world.gregs.voidps.network.file.type
 
 import io.ktor.utils.io.*
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.network.file.FileProvider
 import world.gregs.voidps.network.file.FileProvider.Companion.LARGEST_BLOCK
 import world.gregs.voidps.network.file.FileProvider.Companion.OFFSET
 import world.gregs.voidps.network.file.FileProvider.Companion.SEPARATOR

@@ -1,7 +1,8 @@
-package world.gregs.voidps.network.file
+package world.gregs.voidps.network.file.type
 
 import io.ktor.utils.io.*
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.network.file.FileProvider
 
 /**
  * Reads all [Cache] sectors into memory
