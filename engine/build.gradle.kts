@@ -18,7 +18,6 @@ dependencies {
     implementation("net.pearx.kasechange:kasechange:${findProperty("kaseChangeVersion")}")
 
     implementation("io.insert-koin:koin-core:${findProperty("koinVersion")}")
-    implementation("org.mindrot:jbcrypt:${findProperty("jbcryptVersion")}")
     implementation("org.rsmod:rsmod-pathfinder:${findProperty("pathfinderVersion")}")
 
     implementation("io.insert-koin:koin-logger-slf4j:${findProperty("koinLogVersion")}")

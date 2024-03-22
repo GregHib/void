@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.withContext
-import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.World
@@ -29,23 +28,8 @@ class PlayerAccountLoader(
 ) : AccountLoader {
     private val logger = InlineLogger()
 
-    override fun validate(username: String, password: String): Int {
-        if (username.length > 12) {
-            return Response.LOGIN_SERVER_REJECTED_SESSION
-        }
-        val names = accountDefinitions.get(username)
-        if (names != null && !BCrypt.checkpw(password, names.passwordHash)) {
-            return Response.INVALID_CREDENTIALS
-        }
-        return Response.SUCCESS
-    }
-
-    override fun encrypt(username: String, password: String): String {
-        val names = accountDefinitions.get(username)
-        if (names != null) {
-            return names.passwordHash
-        }
-        return BCrypt.hashpw(password, BCrypt.gensalt())
+    override fun password(username: String): String? {
+        return accountDefinitions.get(username)?.passwordHash
     }
 
     /**

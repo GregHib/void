@@ -24,6 +24,8 @@ class LoginServer(
     private val loader: AccountLoader
 ) : Server {
 
+    private val passwordManager = PasswordManager(loader)
+
     override suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
         write.respond(Response.DATA_CHANGE)
         val opcode = read.readByte().toInt()
@@ -79,7 +81,7 @@ class LoginServer(
 
         val username = xtea.readString()
 
-        val response = loader.validate(username, password)
+        val response = passwordManager.validate(username, password)
         if (response != Response.SUCCESS) {
             write.finish(response)
             return
@@ -90,7 +92,7 @@ class LoginServer(
             return
         }
 
-        val passwordHash = loader.encrypt(username, password)
+        val passwordHash = passwordManager.encrypt(username, password)
 
         xtea.readUByte() // social login
         val displayMode = xtea.readUByte().toInt()
