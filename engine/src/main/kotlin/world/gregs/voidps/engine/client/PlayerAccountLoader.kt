@@ -6,12 +6,16 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.withContext
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.data.PlayerAccounts
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.network.AccountLoader
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.NetworkQueue
 import world.gregs.voidps.network.Response
 import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.encode.login
 
 /**
  * Checks password is valid for a player account before logging in
@@ -43,6 +47,7 @@ class PlayerAccountLoader(
             withContext(gameContext) {
                 queue.await()
                 logger.info { "Player logged in $username index $index." }
+                client.login(player.name, index, player.rights.ordinal, membersWorld = World.members)
                 accounts.login(player, client, displayMode)
             }
             return player.instructions

@@ -28,7 +28,6 @@ import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.zone.RegionLoad
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.encode.login
 import world.gregs.voidps.network.encode.logout
 import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.voidps.type.Direction
@@ -124,7 +123,6 @@ class PlayerAccounts(
         player.interfaces.displayMode = displayMode
         if (client != null) {
             player.viewport = Viewport()
-            client.login(player.name, player.index, player.rights.ordinal, membersWorld = World.members)
             player.client = client
             player.interfaces.client = client
             (player.variables as PlayerVariables).client = client
