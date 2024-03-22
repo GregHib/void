@@ -13,8 +13,12 @@ class PasswordManager(private val loader: AccountLoader) {
             return Response.LOGIN_SERVER_REJECTED_SESSION
         }
         val passwordHash = loader.password(username)
-        if (passwordHash != null && !BCrypt.checkpw(password, passwordHash)) {
-            return Response.INVALID_CREDENTIALS
+        try {
+            if (passwordHash != null && !BCrypt.checkpw(password, passwordHash)) {
+                return Response.INVALID_CREDENTIALS
+            }
+        } catch (e: IllegalArgumentException) {
+            return Response.COULD_NOT_COMPLETE_LOGIN
         }
         return Response.SUCCESS
     }

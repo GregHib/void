@@ -25,10 +25,10 @@ class LoginServer(
     private val revision: Int,
     private val modulus: BigInteger,
     private val private: BigInteger,
-    private val accounts: AccountLoader
+    private val accounts: AccountLoader,
+    private val passwordManager: PasswordManager = PasswordManager(accounts)
 ) : Server {
 
-    private val passwordManager = PasswordManager(accounts)
     private val online = ConcurrentHashMap.newKeySet<String>()
 
     override suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {

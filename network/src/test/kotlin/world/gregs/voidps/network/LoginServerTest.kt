@@ -7,12 +7,15 @@ import io.mockk.impl.annotations.MockK
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit5.MockKExtension
 import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.AccountLoader
+import world.gregs.voidps.network.login.PasswordManager
 import world.gregs.voidps.network.login.protocol.decoders
 import world.gregs.voidps.network.login.protocol.readString
 import java.math.BigInteger
@@ -32,10 +35,13 @@ internal class LoginServerTest {
     @RelaxedMockK
     lateinit var write: ByteWriteChannel
 
+    private lateinit var passwordManager: PasswordManager
+
     @BeforeEach
     fun setup() {
+        passwordManager = PasswordManager(loader)
         network = spyk(
-            LoginServer(decoders(mockk()), 123, BigInteger.ONE, BigInteger.valueOf(2), loader)
+            LoginServer(decoders(mockk()), 123, BigInteger.ONE, BigInteger.valueOf(2), loader, passwordManager)
         )
     }
 
@@ -72,7 +78,7 @@ internal class LoginServerTest {
     fun `Login server rejected username`() = runTest {
         mockkStatic("io.ktor.utils.io.core.InputPrimitivesKt")
         mockkStatic("io.ktor.utils.io.core.StringsKt")
-        mockkStatic("world.gregs.voidps.network.JagExtensionsKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.JagExtensionsKt")
         val rsa: ByteReadPacket = mockk()
         val packet: ByteReadPacket = mockk()
         every { rsa.readUByte() } returns 10.toUByte()
@@ -138,22 +144,17 @@ internal class LoginServerTest {
         }
     }
 
+    private val passwordHash = "\$2a\$10${"$"}b6AHMNNHed/zUC/CMl3AnudrMwPvy/td..Ke3O2RcFg0jyLtLED5e"
+
     @Test
     fun `Account already online`() = runTest {
-        mockkStatic("io.ktor.utils.io.core.InputPrimitivesKt")
-        mockkStatic("io.ktor.utils.io.core.StringsKt")
-        mockkStatic("world.gregs.voidps.network.JagExtensionsKt")
-        val rsa: ByteReadPacket = mockk()
-        val packet: ByteReadPacket = mockk()
-        every { rsa.readUByte() } returns 10.toUByte()
-        every { rsa.readInt() } returns 0
-        every { rsa.readLong() } returns 0L
-        every { rsa.readString() } returns "pass"
-        every { packet.remaining } returns 1
-        every { packet.readBytes(1) } returns byteArrayOf(0)
+        every { loader.password(any()) } returns passwordHash
         every { loader.assignIndex("") } returns 1
 
-        network.validateSession(read, rsa, packet, write, "")
+        val index = network.validate(write, "name", "password")
+        assertEquals(0, index)
+        val result = network.validate(write, "name", "password")
+        assertNull(result)
 
         coVerify {
             write.writeByte(Response.ACCOUNT_ONLINE)
@@ -163,13 +164,16 @@ internal class LoginServerTest {
 
     @Test
     fun `World full`() = runTest {
-        val client: Client = mockk(relaxed = true)
+        every { loader.password(any()) } returns passwordHash
         every { loader.assignIndex("name") } returns null
 
-        network.login(read, client, "name", "password", 0, 1)
+        val result = network.validate(write, "name", "password")
+
+        assertNull(result)
 
         coVerify {
-            client.disconnect(Response.WORLD_FULL)
+            write.writeByte(Response.WORLD_FULL)
+            write.close()
         }
     }
 
