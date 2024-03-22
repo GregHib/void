@@ -10,6 +10,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.network.client.Client
 import java.math.BigInteger
 
@@ -63,6 +64,30 @@ internal class LoginServerTest {
 
         coVerify {
             write.writeByte(0)
+            write.writeByte(Response.LOGIN_SERVER_REJECTED_SESSION)
+            write.close()
+        }
+    }
+
+    @Test
+    fun `Login server rejected username`() = runTest {
+        mockkStatic("io.ktor.utils.io.core.InputPrimitivesKt")
+        mockkStatic("io.ktor.utils.io.core.StringsKt")
+        mockkStatic("world.gregs.voidps.network.JagExtensionsKt")
+        val rsa: ByteReadPacket = mockk()
+        val packet: ByteReadPacket = mockk()
+        every { rsa.readUByte() } returns 10.toUByte()
+        every { rsa.readInt() } returns 0
+        every { rsa.readLong() } returns 0L
+        every { rsa.readString() } returns "password"
+        val data = "A username that is too long".toByteArray()
+        Xtea.encipher(data, 0,  data.size, intArrayOf(0, 0, 0, 0))
+        every { packet.remaining } returns data.size.toLong()
+        every { packet.readBytes(data.size) } returns data
+
+        network.validateSession(read, rsa, packet, write, "")
+
+        coVerify {
             write.writeByte(Response.LOGIN_SERVER_REJECTED_SESSION)
             write.close()
         }
