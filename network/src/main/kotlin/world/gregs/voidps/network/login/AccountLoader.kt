@@ -1,4 +1,4 @@
-package world.gregs.voidps.network
+package world.gregs.voidps.network.login
 
 import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.client.Client

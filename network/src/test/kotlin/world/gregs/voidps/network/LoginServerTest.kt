@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.login.AccountLoader
 import java.math.BigInteger
 
 @ExtendWith(MockKExtension::class)

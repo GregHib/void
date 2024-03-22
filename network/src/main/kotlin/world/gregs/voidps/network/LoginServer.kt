@@ -9,6 +9,8 @@ import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.IsaacCipher
+import world.gregs.voidps.network.login.AccountLoader
+import world.gregs.voidps.network.login.PasswordManager
 import java.math.BigInteger
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap

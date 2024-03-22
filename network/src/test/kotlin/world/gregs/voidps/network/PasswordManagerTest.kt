@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Instruction
+import world.gregs.voidps.network.login.AccountLoader
+import world.gregs.voidps.network.login.PasswordManager
 
 class PasswordManagerTest {
 

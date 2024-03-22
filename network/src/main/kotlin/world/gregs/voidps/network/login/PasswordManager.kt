@@ -1,6 +1,7 @@
-package world.gregs.voidps.network
+package world.gregs.voidps.network.login
 
 import org.mindrot.jbcrypt.BCrypt
+import world.gregs.voidps.network.Response
 
 /**
  * Checks account credentials are valid
