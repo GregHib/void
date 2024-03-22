@@ -5,8 +5,9 @@ import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.SHORT
 import world.gregs.voidps.network.client.Client.Companion.smart
 import world.gregs.voidps.network.client.Client.Companion.string
+import world.gregs.voidps.network.login.Protocol
+import world.gregs.voidps.network.login.Protocol.INTERFACE_ANIMATION
 import world.gregs.voidps.network.login.protocol.*
-import world.gregs.voidps.network.login.protocol.Protocol.INTERFACE_ANIMATION
 
 /**
  * Sends an animation to an interface component

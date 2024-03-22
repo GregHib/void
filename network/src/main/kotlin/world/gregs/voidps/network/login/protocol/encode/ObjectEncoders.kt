@@ -2,7 +2,7 @@ package world.gregs.voidps.network.login.protocol.encode
 
 import io.ktor.utils.io.*
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.login.protocol.Protocol
+import world.gregs.voidps.network.login.Protocol
 import world.gregs.voidps.network.login.protocol.writeByteAdd
 import world.gregs.voidps.network.login.protocol.writeIntInverseMiddle
 import world.gregs.voidps.network.login.protocol.writeShortAddLittle

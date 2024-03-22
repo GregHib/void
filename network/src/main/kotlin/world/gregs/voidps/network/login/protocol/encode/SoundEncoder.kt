@@ -2,10 +2,10 @@ package world.gregs.voidps.network.login.protocol.encode
 
 import io.ktor.utils.io.*
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.login.protocol.Protocol.JINGLE
-import world.gregs.voidps.network.login.protocol.Protocol.MIDI_SOUND
-import world.gregs.voidps.network.login.protocol.Protocol.PLAY_MUSIC
-import world.gregs.voidps.network.login.protocol.SOUND_EFFECT
+import world.gregs.voidps.network.login.Protocol.JINGLE
+import world.gregs.voidps.network.login.Protocol.MIDI_SOUND
+import world.gregs.voidps.network.login.Protocol.PLAY_MUSIC
+import world.gregs.voidps.network.login.Protocol.SOUND_EFFECT
 import world.gregs.voidps.network.login.protocol.writeByteInverse
 import world.gregs.voidps.network.login.protocol.writeByteSubtract
 import world.gregs.voidps.network.login.protocol.writeMedium

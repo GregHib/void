@@ -1,6 +1,6 @@
 package world.gregs.voidps.network.login.protocol.encode.zone
 
-import world.gregs.voidps.network.login.protocol.Protocol
+import world.gregs.voidps.network.login.Protocol
 
 /**
  * @param stack Previous item stack size

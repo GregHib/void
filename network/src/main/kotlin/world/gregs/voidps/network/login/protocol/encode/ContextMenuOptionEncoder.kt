@@ -3,7 +3,7 @@ package world.gregs.voidps.network.login.protocol.encode
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.BYTE
 import world.gregs.voidps.network.client.Client.Companion.string
-import world.gregs.voidps.network.login.protocol.Protocol.PLAYER_OPTION
+import world.gregs.voidps.network.login.Protocol.PLAYER_OPTION
 import world.gregs.voidps.network.login.protocol.writeByteAdd
 import world.gregs.voidps.network.login.protocol.writeByteSubtract
 import world.gregs.voidps.network.login.protocol.writeShortAddLittle

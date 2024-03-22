@@ -1,9 +1,8 @@
-package world.gregs.voidps.network
+package world.gregs.voidps.network.client
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.network.client.ConnectionTracker
 
 class ConnectionTrackerTest {
 

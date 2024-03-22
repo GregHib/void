@@ -107,7 +107,7 @@ private fun playerVisualEncoders() = castOf<PlayerVisuals>(
     PlayerColourOverlayEncoder(),
     TemporaryMoveTypeEncoder(),
     PlayerPrimaryGraphicEncoder(),
-    world.gregs.voidps.network.login.protocol.visual.encode.player.PlayerAnimationEncoder(),
+    PlayerAnimationEncoder(),
     AppearanceEncoder(),
     MovementTypeEncoder()
 )
@@ -116,7 +116,7 @@ private fun npcVisualEncoders() = castOf<NPCVisuals>(
     TransformEncoder(),
     NPCAnimationEncoder(),
     NPCPrimaryGraphicEncoder(),
-    world.gregs.voidps.network.protocol.visual.encode.npc.NPCTurnEncoder(),
+    NPCTurnEncoder(),
     NPCExactMovementEncoder(),
     NPCColourOverlayEncoder(),
     NPCHitsEncoder(),

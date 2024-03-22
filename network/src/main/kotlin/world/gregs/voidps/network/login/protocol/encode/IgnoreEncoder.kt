@@ -3,8 +3,8 @@ package world.gregs.voidps.network.login.protocol.encode
 import io.ktor.utils.io.*
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.string
-import world.gregs.voidps.network.login.protocol.Protocol.UNLOCK_IGNORES
-import world.gregs.voidps.network.login.protocol.Protocol.UPDATE_IGNORE
+import world.gregs.voidps.network.login.Protocol.UNLOCK_IGNORES
+import world.gregs.voidps.network.login.Protocol.UPDATE_IGNORE
 import world.gregs.voidps.network.login.protocol.writeByte
 import world.gregs.voidps.network.login.protocol.writeString
 

@@ -4,8 +4,8 @@ import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.BYTE
 import world.gregs.voidps.network.client.Client.Companion.SHORT
 import world.gregs.voidps.network.client.Client.Companion.string
-import world.gregs.voidps.network.login.protocol.Protocol.CLIENT_VARC_STR
-import world.gregs.voidps.network.login.protocol.Protocol.CLIENT_VARC_STR_LARGE
+import world.gregs.voidps.network.login.Protocol.CLIENT_VARC_STR
+import world.gregs.voidps.network.login.Protocol.CLIENT_VARC_STR_LARGE
 import world.gregs.voidps.network.login.protocol.writeShortAdd
 import world.gregs.voidps.network.login.protocol.writeShortAddLittle
 import world.gregs.voidps.network.login.protocol.writeString

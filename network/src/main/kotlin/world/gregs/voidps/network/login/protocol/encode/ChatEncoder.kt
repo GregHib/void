@@ -6,13 +6,13 @@ import world.gregs.voidps.network.client.Client.Companion.BYTE
 import world.gregs.voidps.network.client.Client.Companion.name
 import world.gregs.voidps.network.client.Client.Companion.smart
 import world.gregs.voidps.network.client.Client.Companion.string
+import world.gregs.voidps.network.login.Protocol.GAME_MESSAGE
+import world.gregs.voidps.network.login.Protocol.PRIVATE_CHAT_FROM
+import world.gregs.voidps.network.login.Protocol.PRIVATE_CHAT_TO
+import world.gregs.voidps.network.login.Protocol.PRIVATE_QUICK_CHAT_FROM
+import world.gregs.voidps.network.login.Protocol.PRIVATE_QUICK_CHAT_TO
+import world.gregs.voidps.network.login.Protocol.PUBLIC_CHAT
 import world.gregs.voidps.network.login.protocol.*
-import world.gregs.voidps.network.login.protocol.Protocol.GAME_MESSAGE
-import world.gregs.voidps.network.login.protocol.Protocol.PRIVATE_CHAT_FROM
-import world.gregs.voidps.network.login.protocol.Protocol.PRIVATE_CHAT_TO
-import world.gregs.voidps.network.login.protocol.Protocol.PRIVATE_QUICK_CHAT_FROM
-import world.gregs.voidps.network.login.protocol.Protocol.PRIVATE_QUICK_CHAT_TO
-import world.gregs.voidps.network.login.protocol.Protocol.PUBLIC_CHAT
 
 /**
  * A chat box message to display

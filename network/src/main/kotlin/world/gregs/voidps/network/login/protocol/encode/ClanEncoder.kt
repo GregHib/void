@@ -6,11 +6,11 @@ import world.gregs.voidps.network.client.Client.Companion.BYTE
 import world.gregs.voidps.network.client.Client.Companion.SHORT
 import world.gregs.voidps.network.client.Client.Companion.name
 import world.gregs.voidps.network.client.Client.Companion.string
+import world.gregs.voidps.network.login.Protocol.APPEND_CLAN_CHAT
+import world.gregs.voidps.network.login.Protocol.CLAN_CHAT
+import world.gregs.voidps.network.login.Protocol.CLAN_QUICK_CHAT
+import world.gregs.voidps.network.login.Protocol.UPDATE_CLAN_CHAT
 import world.gregs.voidps.network.login.protocol.*
-import world.gregs.voidps.network.login.protocol.Protocol.APPEND_CLAN_CHAT
-import world.gregs.voidps.network.login.protocol.Protocol.CLAN_CHAT
-import world.gregs.voidps.network.login.protocol.Protocol.CLAN_QUICK_CHAT
-import world.gregs.voidps.network.login.protocol.Protocol.UPDATE_CLAN_CHAT
 
 fun Client.clanChat(displayName: String, clan: String, rights: Int, data: ByteArray, responseName: String = displayName) {
     send(CLAN_CHAT, name(displayName, responseName) + 14 + data.size, BYTE) {

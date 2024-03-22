@@ -1,4 +1,4 @@
-package world.gregs.voidps.network.visual
+package world.gregs.voidps.network.login.protocol.visual
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach

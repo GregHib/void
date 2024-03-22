@@ -1,4 +1,4 @@
-package world.gregs.voidps.network.login.protocol
+package world.gregs.voidps.network.login
 
 object Protocol {
     const val PLAYER_OPTION = 0

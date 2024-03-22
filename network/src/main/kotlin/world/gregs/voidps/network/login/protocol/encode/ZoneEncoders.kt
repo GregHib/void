@@ -1,8 +1,8 @@
 package world.gregs.voidps.network.login.protocol.encode
 
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.login.protocol.Protocol
-import world.gregs.voidps.network.login.protocol.Protocol.CLEAR_ZONE
+import world.gregs.voidps.network.login.Protocol
+import world.gregs.voidps.network.login.Protocol.CLEAR_ZONE
 import world.gregs.voidps.network.login.protocol.writeByteAdd
 import world.gregs.voidps.network.login.protocol.writeByteInverse
 

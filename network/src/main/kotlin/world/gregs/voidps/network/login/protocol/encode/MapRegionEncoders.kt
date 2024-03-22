@@ -4,8 +4,9 @@ import io.ktor.utils.io.*
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.SHORT
 import world.gregs.voidps.network.client.Client.Companion.bits
+import world.gregs.voidps.network.login.Protocol
+import world.gregs.voidps.network.login.Protocol.REGION
 import world.gregs.voidps.network.login.protocol.*
-import world.gregs.voidps.network.login.protocol.Protocol.REGION
 
 fun Client.mapRegion(
     zoneX: Int,
