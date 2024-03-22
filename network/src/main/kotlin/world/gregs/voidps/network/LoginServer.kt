@@ -29,7 +29,7 @@ class LoginServer(
     private val passwordManager: PasswordManager = PasswordManager(accounts)
 ) : Server {
 
-    private val online = ConcurrentHashMap.newKeySet<String>()
+    internal val online: MutableSet<String> = ConcurrentHashMap.newKeySet()
 
     override suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
         write.respond(Response.DATA_CHANGE)
@@ -51,18 +51,18 @@ class LoginServer(
             write.finish(Response.GAME_UPDATE)
             return
         }
-        val rsa = decryptRSA(packet)
-        validateSession(read, rsa, packet, write, hostname)
-    }
-
-    private fun decryptRSA(packet: ByteReadPacket): ByteReadPacket {
         val rsaBlockSize = packet.readUShort().toInt()
+        if (rsaBlockSize == 0) {
+            logger.debug { "Invalid rsa block size." }
+            write.finish(Response.COULD_NOT_COMPLETE_LOGIN)
+            return
+        }
         val data = packet.readBytes(rsaBlockSize)
         val rsa = RSA.crypt(data, modulus, private)
-        return ByteReadPacket(rsa)
+        validateSession(read, ByteReadPacket(rsa), packet, write, hostname)
     }
 
-    suspend fun validateSession(read: ByteReadChannel, rsa: ByteReadPacket, packet: ByteReadPacket, write: ByteWriteChannel, hostname: String) {
+    private suspend fun validateSession(read: ByteReadChannel, rsa: ByteReadPacket, packet: ByteReadPacket, write: ByteWriteChannel, hostname: String) {
         val sessionId = rsa.readUByte().toInt()
         if (sessionId != Request.SESSION) {
             logger.debug { "Bad session id $sessionId" }
@@ -129,11 +129,12 @@ class LoginServer(
     }
 
     suspend fun login(read: ByteReadChannel, client: Client, username: String, passwordHash: String, index: Int, displayMode: Int) {
-        val instructions = accounts.load(client, username, passwordHash, index, displayMode) ?: return
         try {
+            val instructions = accounts.load(client, username, passwordHash, index, displayMode) ?: return
             readPackets(client, instructions, read)
         } finally {
             client.exit()
+            client.disconnect()
         }
     }
 

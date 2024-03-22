@@ -84,6 +84,7 @@ class FileServer(
                     Request.ENCRYPTION_KEY_UPDATE -> read.readUByte()
                     else -> {
                         logger.warn { "Unknown file-server request $opcode." }
+                        read.cancel()
                         write.close()
                     }
                 }
@@ -92,8 +93,6 @@ class FileServer(
             logger.trace { "Client disconnected: ${hostname}." }
         }
     }
-
-
 
     /**
      * Confirm a session value send by the client is as the server [expected]

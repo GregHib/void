@@ -1,6 +1,7 @@
 package world.gregs.voidps.network.client
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -10,61 +11,53 @@ class ConnectionTrackerTest {
 
     @BeforeEach
     fun setup() {
-        connections = ConnectionTracker()
+        connections = ConnectionTracker(3)
     }
 
     @Test
-    fun `Same addresses are counted`() {
+    fun `Add counting connections`() {
         val address = "123.456.789"
-        assertEquals(0, connections.count(address))
-        connections.add(address)
-        assertEquals(1, connections.count(address))
-        connections.add(address)
-        assertEquals(2, connections.count(address))
-        connections.add(address)
-        assertEquals(3, connections.count(address))
+        assertTrue(connections.add(address))
+        assertTrue(connections.add(address))
+        assertTrue(connections.add(address))
+
+        assertFalse(connections.add(address))
     }
 
     @Test
-    fun `Different addresses are separate`() {
-        assertEquals(0, connections.count("123.456.789"))
-        connections.add("123.456.789")
-        assertEquals(0, connections.count("100.000.000"))
-        connections.add("100.000.000")
-
-        assertEquals(1, connections.count("100.000.000"))
-        assertEquals(1, connections.count("123.456.789"))
+    fun `Different addresses don't count against one another`() {
+        repeat(3) {
+            assertTrue(connections.add("123.456.789"))
+        }
+        assertTrue(connections.add("100.000.000"))
+        assertTrue(connections.add("192.168.1.1"))
     }
 
     @Test
-    fun `Disconnections aren't counted`() {
+    fun `Remove connections`() {
         val address = "123.456.789"
-        assertEquals(0, connections.count(address))
-        connections.add(address)
-        connections.add(address)
-        assertEquals(2, connections.count(address))
         connections.remove(address)
-        assertEquals(1, connections.count(address))
-    }
 
-    @Test
-    fun `Too many disconnections isn't negative`() {
-        val address = "123.456.789"
-        assertEquals(0, connections.count(address))
-        connections.add(address)
-        assertEquals(1, connections.count(address))
+        assertTrue(connections.add(address))
+        assertTrue(connections.add(address))
+        assertTrue(connections.add(address))
         connections.remove(address)
-        assertEquals(0, connections.count(address))
-        connections.remove(address)
-        assertEquals(0, connections.count(address))
+        assertTrue(connections.add(address))
+        assertFalse(connections.add(address))
     }
 
     @Test
     fun `Clearing removes all counts`() {
-        val address = "123.456.789"
-        connections.add(address)
-        assertEquals(1, connections.count(address))
+        repeat(3) {
+            assertTrue(connections.add("123.456.789"))
+        }
+        assertTrue(connections.add("192.168.1.1"))
+
         connections.clear()
-        assertEquals(0, connections.count(address))
+
+        assertTrue(connections.add("123.456.789"))
+        repeat(3) {
+            assertTrue(connections.add("192.168.1.1"))
+        }
     }
 }

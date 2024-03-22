@@ -11,4 +11,6 @@ dependencies {
 
     testImplementation("io.mockk:mockk:${findProperty("mockkVersion")}")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${findProperty("kotlinCoroutinesVersion")}")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-params:${findProperty("junitVersion")}")
 }

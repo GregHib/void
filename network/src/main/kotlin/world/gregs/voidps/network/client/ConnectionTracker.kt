@@ -5,22 +5,24 @@ import java.util.concurrent.ConcurrentHashMap
 /**
  * Tracks the number of clients per ip address
  */
-class ConnectionTracker {
+class ConnectionTracker(private val limit: Int) {
     private val connections = ConcurrentHashMap<String, Int>()
 
-    fun count(address: String) = connections[address] ?: 0
-
-    fun add(address: String): Int? {
-        connections[address] = count(address) + 1
-        return null
+    fun add(address: String): Boolean {
+        val current = connections[address] ?: 0
+        if (current >= limit) {
+            return false
+        }
+        connections[address] = current + 1
+        return true
     }
 
     fun remove(address: String) {
-        val count = count(address) - 1
-        if (count <= 0) {
+        val count = connections[address] ?: 0
+        if (count <= 1) {
             connections.remove(address)
         } else {
-            connections[address] = count
+            connections[address] = count - 1
         }
     }
 

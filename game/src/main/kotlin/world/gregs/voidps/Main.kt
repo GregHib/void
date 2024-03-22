@@ -56,7 +56,7 @@ object Main : CoroutineScope {
             preload(cache, properties)
         } catch (ex: Exception) {
             logger.error(ex) { "Error loading files." }
-            job.cancel()
+            server.stop()
         }
 
         // Login server
@@ -76,6 +76,7 @@ object Main : CoroutineScope {
                 job.join()
             } finally {
                 engine.stop()
+                server.stop()
             }
         }
     }
