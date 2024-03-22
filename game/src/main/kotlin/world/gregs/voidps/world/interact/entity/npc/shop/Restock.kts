@@ -30,8 +30,7 @@ timerStart("shop_restock") {
 }
 
 timerTick("shop_restock") { player ->
-    for (name in player.inventories.keys) {
-        val inventory = player.inventories.inventory(name)
+    for ((name, inventory) in player.inventories.instances) {
         val def = inventoryDefinitions.get(name)
         if (!def["shop", false]) {
             continue
@@ -42,6 +41,7 @@ timerTick("shop_restock") { player ->
 
 // Remove restocked shops to save space
 playerDespawn { player ->
+    val removal = mutableListOf<String>()
     for ((name, inventory) in player.inventories.instances) {
         val def = inventoryDefinitions.get(name)
         if (!def["shop", false]) {
@@ -49,8 +49,11 @@ playerDespawn { player ->
         }
         val amounts = def.amounts ?: continue
         if (inventory.items.withIndex().all { (index, item) -> item.amount == amounts.getOrNull(index) }) {
-            player.inventories.remove(name)
+            removal.add(name)
         }
+    }
+    for (name in removal) {
+        player.inventories.instances.remove(name)
     }
 }
 

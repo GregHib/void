@@ -54,7 +54,7 @@ class InterfaceHandler(
             return null
         }
         val inventory = componentDefinition["inventory", ""]
-        if (!player.inventories.containsKey(inventory)) {
+        if (!player.inventories.contains(inventory)) {
             logger.info { "Player doesn't have interface inventory [$player, interface=$id, inventory=$inventory]" }
             return null
         }

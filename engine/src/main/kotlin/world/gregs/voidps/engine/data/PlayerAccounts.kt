@@ -89,6 +89,7 @@ class PlayerAccounts(
         player.inventories.validItemRule = validItems
         player.inventories.normalStack = DependentOnItem(itemDefinitions)
         player.inventories.events = player
+        player.inventories.start()
         player.previousTile = player.tile.add(Direction.WEST.delta)
         player.experience.events = player
         player.levels.link(player, PlayerLevels(player.experience))
