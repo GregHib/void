@@ -1,6 +1,6 @@
 package world.gregs.voidps.network.client.instruction
 
-import world.gregs.voidps.network.Instruction
+import world.gregs.voidps.network.client.Instruction
 
 /**
  * Notified the type of message before a message is sent

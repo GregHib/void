@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.Instruction
 
 class PasswordManagerTest {
 

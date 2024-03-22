@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.cache.secure.RSA
 import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.IsaacCipher
 import java.math.BigInteger
 import java.util.*

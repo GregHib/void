@@ -3,7 +3,7 @@ package world.gregs.voidps.network.decode
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.Decoder
-import world.gregs.voidps.network.Instruction
+import world.gregs.voidps.network.client.Instruction
 
 /**
  * Client has requested the lobby world list be refreshed

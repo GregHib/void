@@ -20,8 +20,8 @@ import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.Timers
-import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.voidps.type.Tile
 import kotlin.coroutines.Continuation

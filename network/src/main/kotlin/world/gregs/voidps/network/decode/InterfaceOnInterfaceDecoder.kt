@@ -4,7 +4,7 @@ import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.network.Decoder
-import world.gregs.voidps.network.Instruction
+import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.InteractInterfaceItem
 import world.gregs.voidps.network.readShortAdd
 import world.gregs.voidps.network.readUnsignedIntInverseMiddle

@@ -3,8 +3,12 @@ package world.gregs.voidps.network.decode
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
-import world.gregs.voidps.network.*
+import world.gregs.voidps.network.Decoder
+import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.InteractInterfaceNPC
+import world.gregs.voidps.network.readBooleanAdd
+import world.gregs.voidps.network.readShortAddLittle
+import world.gregs.voidps.network.readUnsignedShortAdd
 
 class InterfaceOnNpcDecoder : Decoder(11) {
 

@@ -2,6 +2,7 @@ package world.gregs.voidps.network
 
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow
+import world.gregs.voidps.network.client.Instruction
 
 abstract class Decoder(val length: Int) {
 
