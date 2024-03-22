@@ -43,20 +43,20 @@ class PostgresStorage(
             .select(AccountsTable.id, AccountsTable.name, AccountsTable.friends, AccountsTable.ignores, AccountsTable.ranks, names, strings, booleans)
             .where { (AccountsTable.id eq VariablesTable.playerId) and (VariablesTable.name inList variableNames) }
             .groupBy(AccountsTable.id)
-            .associate {
-                val variables: Map<String, Any> = it[names].mapIndexed { index, s -> s to if (s == "coin_share_setting") it[booleans][index] else it[strings][index] }.toMap()
-                val playerName = it[AccountsTable.name]
+            .associate { row ->
+                val variables: Map<String, Any> = row[names].mapIndexed { index, s -> s to if (s == "coin_share_setting") row[booleans][index] else row[strings][index] }.toMap()
+                val playerName = row[AccountsTable.name]
                 val displayName = variables["display_name"] as? String ?: playerName
                 displayName to Clan(
                     owner = playerName,
                     ownerDisplayName = displayName,
                     name = variables["clan_name"] as? String ?: "",
-                    friends = it[AccountsTable.friends].zip(it[AccountsTable.ranks]) { friend, rank -> friend to ClanRank.valueOf(rank) }.toMap(),
-                    ignores = it[AccountsTable.ignores],
-                    joinRank = ClanRank.valueOf(variables["clan_join_rank"] as? String ?: "Anyone"),
-                    talkRank = ClanRank.valueOf(variables["clan_talk_rank"] as? String ?: "Anyone"),
-                    kickRank = ClanRank.valueOf(variables["clan_kick_rank"] as? String ?: "Corporeal"),
-                    lootRank = ClanRank.valueOf(variables["clan_loot_rank"] as? String ?: "None"),
+                    friends = row[AccountsTable.friends].zip(row[AccountsTable.ranks]) { friend, rank -> friend to ClanRank.valueOf(rank) }.toMap(),
+                    ignores = row[AccountsTable.ignores],
+                    joinRank = (variables["clan_join_rank"] as? String)?.let { ClanRank.valueOf(it) } ?: ClanRank.Anyone,
+                    talkRank = (variables["clan_talk_rank"] as? String)?.let { ClanRank.valueOf(it) } ?: ClanRank.Anyone,
+                    kickRank = (variables["clan_kick_rank"] as? String)?.let { ClanRank.valueOf(it) } ?: ClanRank.Corporeal,
+                    lootRank = (variables["clan_loot_rank"] as? String)?.let { ClanRank.valueOf(it) } ?: ClanRank.None,
                     coinShare = variables["coin_share_setting"] as? Boolean ?: false
                 )
             }
