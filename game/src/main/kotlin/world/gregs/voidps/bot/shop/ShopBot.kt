@@ -11,8 +11,8 @@ import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.network.instruct.InteractInterface
-import world.gregs.voidps.network.instruct.InteractNPC
+import world.gregs.voidps.network.client.instruction.InteractInterface
+import world.gregs.voidps.network.client.instruction.InteractNPC
 import world.gregs.voidps.world.interact.entity.npc.shop.shopInventory
 
 suspend fun Bot.openShop(id: String): NPC {

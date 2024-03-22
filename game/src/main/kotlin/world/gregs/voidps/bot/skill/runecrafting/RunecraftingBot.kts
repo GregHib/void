@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.network.instruct.InteractObject
+import world.gregs.voidps.network.client.instruction.InteractObject
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()

@@ -9,7 +9,7 @@ class IntegerEntryDecoder : Decoder(4) {
 
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         val integer = packet.readInt()
-        instructions.emit(world.gregs.voidps.network.client.instruct.EnterInt(integer))
+        instructions.emit(world.gregs.voidps.network.client.instruction.EnterInt(integer))
     }
 
 }

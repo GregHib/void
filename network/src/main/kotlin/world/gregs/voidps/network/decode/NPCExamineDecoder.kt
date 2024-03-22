@@ -4,7 +4,7 @@ import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.Decoder
 import world.gregs.voidps.network.Instruction
-import world.gregs.voidps.network.instruct.ExamineNpc
+import world.gregs.voidps.network.client.instruction.ExamineNpc
 
 class NPCExamineDecoder : Decoder(2) {
 

@@ -11,8 +11,8 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.network.client.instruction.ClanChatJoin
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.network.instruct.ClanChatJoin
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.type.setRandom
 import world.gregs.voidps.world.interact.entity.combat.damageDealers

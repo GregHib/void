@@ -8,9 +8,9 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 
 class ItemExamineHandler(
     private val definitions: ItemDefinitions
-) : InstructionHandler<world.gregs.voidps.network.client.instruct.ExamineItem>() {
+) : InstructionHandler<world.gregs.voidps.network.client.instruction.ExamineItem>() {
 
-    override fun validate(player: Player, instruction: world.gregs.voidps.network.client.instruct.ExamineItem) {
+    override fun validate(player: Player, instruction: world.gregs.voidps.network.client.instruction.ExamineItem) {
         val definition = definitions.get(instruction.itemId)
         if (definition.contains("examine")) {
             player.message(definition["examine"], ChatType.Game)

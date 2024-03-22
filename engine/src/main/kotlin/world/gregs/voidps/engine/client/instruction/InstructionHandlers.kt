@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.network.Instruction
-import world.gregs.voidps.network.instruct.*
+import world.gregs.voidps.network.client.instruction.*
 
 class InstructionHandlers(
     players: Players,
@@ -64,7 +64,7 @@ class InstructionHandlers(
         when (instruction) {
             is Event -> player.emit(instruction)
             is InteractInterfaceItem -> interactInterfaceItem.validate(player, instruction)
-            is world.gregs.voidps.network.client.instruct.InteractInterfacePlayer -> interactInterfacePlayer.validate(player, instruction)
+            is world.gregs.voidps.network.client.instruction.InteractInterfacePlayer -> interactInterfacePlayer.validate(player, instruction)
             is InteractInterfaceObject -> interactInterfaceObject.validate(player, instruction)
             is InteractInterfaceNPC -> interactInterfaceNPC.validate(player, instruction)
             is InteractInterfaceFloorItem -> interactInterfaceFloorItem.validate(player, instruction)
@@ -76,22 +76,22 @@ class InstructionHandlers(
             is InteractNPC -> interactNPC.validate(player, instruction)
             is InteractObject -> interactObject.validate(player, instruction)
             is InteractPlayer -> interactPlayer.validate(player, instruction)
-            is world.gregs.voidps.network.client.instruct.ExamineItem -> examineItem.validate(player, instruction)
+            is world.gregs.voidps.network.client.instruction.ExamineItem -> examineItem.validate(player, instruction)
             is ExamineNpc -> examineNPC.validate(player, instruction)
             is ExamineObject -> examineObject.validate(player, instruction)
             is ChangeDisplayMode -> changeDisplayMode.validate(player, instruction)
             is Walk -> walk.validate(player, instruction)
-            is world.gregs.voidps.network.client.instruct.FinishRegionLoad -> finishRegionLoad.validate(player, instruction)
+            is world.gregs.voidps.network.client.instruction.FinishRegionLoad -> finishRegionLoad.validate(player, instruction)
             is ExecuteCommand -> executeCommand.validate(player, instruction)
             is EnterString -> enterString.validate(player, instruction)
-            is world.gregs.voidps.network.client.instruct.EnterInt -> enterInt.validate(player, instruction)
+            is world.gregs.voidps.network.client.instruction.EnterInt -> enterInt.validate(player, instruction)
             is FriendAdd -> friendAddHandler.validate(player, instruction)
             is FriendDelete -> friendDeleteHandler.validate(player, instruction)
-            is world.gregs.voidps.network.client.instruct.IgnoreAdd -> ignoreAddHandler.validate(player, instruction)
+            is world.gregs.voidps.network.client.instruction.IgnoreAdd -> ignoreAddHandler.validate(player, instruction)
             is IgnoreDelete -> ignoreDeleteHandler.validate(player, instruction)
             is ChatPublic -> chatPublicHandler.validate(player, instruction)
             is ChatPrivate -> chatPrivateHandler.validate(player, instruction)
-            is world.gregs.voidps.network.client.instruct.QuickChatPublic -> quickChatPublicHandler.validate(player, instruction)
+            is world.gregs.voidps.network.client.instruction.QuickChatPublic -> quickChatPublicHandler.validate(player, instruction)
             is QuickChatPrivate -> quickChatPrivateHandler.validate(player, instruction)
             is ClanChatJoin -> clanChatJoinHandler.validate(player, instruction)
             is ChatTypeChange -> chatTypeChangeHandler.validate(player, instruction)

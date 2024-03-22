@@ -4,7 +4,7 @@ import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.Decoder
 import world.gregs.voidps.network.Instruction
-import world.gregs.voidps.network.instruct.InteractFloorItem
+import world.gregs.voidps.network.client.instruction.InteractFloorItem
 import world.gregs.voidps.network.readBooleanSubtract
 
 class FloorItemOption1Decoder : Decoder(7) {

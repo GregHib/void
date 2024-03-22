@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
+import world.gregs.voidps.network.client.instruction.FriendAdd
+import world.gregs.voidps.network.client.instruction.FriendDelete
 import world.gregs.voidps.network.encode.Friend
 import world.gregs.voidps.network.encode.sendFriendsList
-import world.gregs.voidps.network.instruct.FriendAdd
-import world.gregs.voidps.network.instruct.FriendDelete
 import world.gregs.voidps.world.script.WorldTest
 import kotlin.test.assertContains
 import kotlin.test.assertTrue

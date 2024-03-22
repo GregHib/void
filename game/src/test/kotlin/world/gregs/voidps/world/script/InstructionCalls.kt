@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.network.instruct.*
+import world.gregs.voidps.network.client.instruction.*
 import world.gregs.voidps.type.Tile
 
 /**

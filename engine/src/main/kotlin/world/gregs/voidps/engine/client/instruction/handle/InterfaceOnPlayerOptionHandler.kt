@@ -10,9 +10,9 @@ import world.gregs.voidps.engine.entity.character.player.Players
 class InterfaceOnPlayerOptionHandler(
     private val players: Players,
     private val handler: InterfaceHandler
-) : InstructionHandler<world.gregs.voidps.network.client.instruct.InteractInterfacePlayer>() {
+) : InstructionHandler<world.gregs.voidps.network.client.instruction.InteractInterfacePlayer>() {
 
-    override fun validate(player: Player, instruction: world.gregs.voidps.network.client.instruct.InteractInterfacePlayer) {
+    override fun validate(player: Player, instruction: world.gregs.voidps.network.client.instruction.InteractInterfacePlayer) {
         val (playerIndex, interfaceId, componentId, itemId, itemSlot) = instruction
         val target = players.indexed(playerIndex) ?: return
 

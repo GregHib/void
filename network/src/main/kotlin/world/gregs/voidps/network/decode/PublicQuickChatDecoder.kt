@@ -12,7 +12,7 @@ class PublicQuickChatDecoder : Decoder(BYTE) {
         val script = packet.readByte().toInt()
         val file = packet.readUShort().toInt()
         val data = packet.readBytes(packet.remaining.toInt())
-        instructions.emit(world.gregs.voidps.network.client.instruct.QuickChatPublic(script, file, data))
+        instructions.emit(world.gregs.voidps.network.client.instruction.QuickChatPublic(script, file, data))
     }
 
 }

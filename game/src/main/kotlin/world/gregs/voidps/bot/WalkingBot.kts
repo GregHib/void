@@ -3,7 +3,7 @@ package world.gregs.voidps.bot
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.network.instruct.Walk
+import world.gregs.voidps.network.client.instruction.Walk
 
 val tasks: TaskManager by inject()
 

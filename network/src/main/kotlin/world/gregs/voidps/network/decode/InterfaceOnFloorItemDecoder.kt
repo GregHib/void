@@ -4,7 +4,7 @@ import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.network.*
-import world.gregs.voidps.network.instruct.InteractInterfaceFloorItem
+import world.gregs.voidps.network.client.instruction.InteractInterfaceFloorItem
 
 class InterfaceOnFloorItemDecoder : Decoder(15) {
 

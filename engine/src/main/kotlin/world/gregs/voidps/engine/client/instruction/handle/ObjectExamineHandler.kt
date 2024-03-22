@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.network.instruct.ExamineObject
+import world.gregs.voidps.network.client.instruction.ExamineObject
 
 class ObjectExamineHandler(
     private val definitions: ObjectDefinitions

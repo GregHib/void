@@ -4,7 +4,7 @@ import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.Decoder
 import world.gregs.voidps.network.Instruction
-import world.gregs.voidps.network.instruct.QuickChatPrivate
+import world.gregs.voidps.network.client.instruction.QuickChatPrivate
 import world.gregs.voidps.network.readString
 
 class PrivateQuickChatDecoder : Decoder(BYTE) {

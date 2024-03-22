@@ -9,7 +9,7 @@ class FloorItemExamineDecoder : Decoder(2) {
 
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         val itemId = packet.readShort().toInt()
-        instructions.emit(world.gregs.voidps.network.client.instruct.ExamineItem(itemId))
+        instructions.emit(world.gregs.voidps.network.client.instruction.ExamineItem(itemId))
     }
 
 }

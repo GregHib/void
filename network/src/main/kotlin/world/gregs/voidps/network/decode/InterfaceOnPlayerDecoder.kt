@@ -13,7 +13,7 @@ class InterfaceOnPlayerDecoder : Decoder(11) {
         val itemId = packet.readShortLittleEndian().toInt()
         val packed = packet.readUnsignedIntInverseMiddle()
         val run = packet.readBooleanInverse()
-        instructions.emit(world.gregs.voidps.network.client.instruct.InteractInterfacePlayer(
+        instructions.emit(world.gregs.voidps.network.client.instruction.InteractInterfacePlayer(
             index,
             InterfaceDefinition.id(packed),
             InterfaceDefinition.componentId(packed),

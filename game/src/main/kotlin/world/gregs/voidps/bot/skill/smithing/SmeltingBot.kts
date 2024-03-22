@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.timerStop
-import world.gregs.voidps.network.instruct.InteractDialogue
+import world.gregs.voidps.network.client.instruction.InteractDialogue
 import world.gregs.voidps.world.activity.skill.smithing.oreToBar
 
 val areas: AreaDefinitions by inject()

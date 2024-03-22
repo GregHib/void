@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.network.instruct.ExamineNpc
+import world.gregs.voidps.network.client.instruction.ExamineNpc
 
 class NPCExamineHandler(
     private val definitions: NPCDefinitions

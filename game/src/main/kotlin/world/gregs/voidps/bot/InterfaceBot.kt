@@ -3,9 +3,9 @@ package world.gregs.voidps.bot
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.network.instruct.InteractInterface
-import world.gregs.voidps.network.instruct.InteractInterfaceObject
-import world.gregs.voidps.network.instruct.InterfaceClosedInstruction
+import world.gregs.voidps.network.client.instruction.InteractInterface
+import world.gregs.voidps.network.client.instruction.InteractInterfaceObject
+import world.gregs.voidps.network.client.instruction.InterfaceClosedInstruction
 
 suspend fun Bot.closeInterface(id: Int, component: Int) {
     player.instructions.emit(InterfaceClosedInstruction)

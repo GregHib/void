@@ -3,7 +3,7 @@ package world.gregs.voidps.network.decode
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.*
-import world.gregs.voidps.network.instruct.InteractFloorItem
+import world.gregs.voidps.network.client.instruction.InteractFloorItem
 
 class FloorItemOption3Decoder : Decoder(7) {
 

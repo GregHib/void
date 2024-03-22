@@ -3,7 +3,7 @@ package world.gregs.voidps.network.decode
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.*
-import world.gregs.voidps.network.instruct.InteractObject
+import world.gregs.voidps.network.client.instruction.InteractObject
 
 class ObjectOption5Decoder : Decoder(7) {
 

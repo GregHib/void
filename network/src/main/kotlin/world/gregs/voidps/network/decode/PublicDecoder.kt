@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.network.Decoder
 import world.gregs.voidps.network.Instruction
-import world.gregs.voidps.network.instruct.ChatPublic
+import world.gregs.voidps.network.client.instruction.ChatPublic
 import world.gregs.voidps.network.readSmart
 
 class PublicDecoder(private val huffman: Huffman) : Decoder(BYTE) {
