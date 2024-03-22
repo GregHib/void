@@ -78,20 +78,24 @@ class LoginServer(
         val xtea = decryptXtea(packet, isaacKeys)
 
         val username = xtea.readString()
+
+        val response = loader.validate(username, password)
+        if (response != Response.SUCCESS) {
+            write.finish(response)
+            return
+        }
+
         if (accounts.count(username) > 0) {
             write.finish(Response.ACCOUNT_ONLINE)
             return
         }
 
-        if (username.length > 12) {
-            write.finish(Response.LOGIN_SERVER_REJECTED_SESSION)
-            return
-        }
+        val passwordHash = loader.encrypt(username, password)
 
         xtea.readUByte() // social login
         val displayMode = xtea.readUByte().toInt()
         val client = createClient(write, isaacKeys, hostname)
-        login(read, client, username, password, displayMode)
+        login(read, client, username, passwordHash, displayMode)
     }
 
     private fun createClient(write: ByteWriteChannel, isaacKeys: IntArray, hostname: String): Client {
@@ -109,7 +113,7 @@ class LoginServer(
         return ByteReadPacket(remaining)
     }
 
-    suspend fun login(read: ByteReadChannel, client: Client, username: String, password: String, displayMode: Int) {
+    suspend fun login(read: ByteReadChannel, client: Client, username: String, passwordHash: String, displayMode: Int) {
         val index = accounts.add(username)
         client.onDisconnected {
             accounts.remove(username)
@@ -118,7 +122,7 @@ class LoginServer(
             client.disconnect(Response.WORLD_FULL)
             return
         }
-        val instructions = loader.load(client, username, password, index, displayMode) ?: return
+        val instructions = loader.load(client, username, passwordHash, index, displayMode) ?: return
         try {
             readPackets(client, instructions, read)
         } finally {

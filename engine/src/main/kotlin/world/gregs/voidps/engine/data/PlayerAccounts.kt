@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
@@ -86,9 +85,8 @@ class PlayerAccounts(
         return player
     }
 
-    fun create(name: String, password: String): Player {
-        val hash = BCrypt.hashpw(password, BCrypt.gensalt())
-        return Player(tile = homeTile, accountName = name, passwordHash = hash).apply {
+    fun create(name: String, passwordHash: String): Player {
+        return Player(tile = homeTile, accountName = name, passwordHash = passwordHash).apply {
             this["creation"] = System.currentTimeMillis()
             this["new_player"] = true
         }

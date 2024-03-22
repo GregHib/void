@@ -47,6 +47,7 @@ class FileStorage(
                 accountName = accountName,
                 displayName = displayName,
                 previousName = (variables.getOrDefault("name_history", emptyList<String>()) as List<String>).lastOrNull() ?: "",
+                passwordHash = data["passwordHash"] as String
             )
         }
         return definitions

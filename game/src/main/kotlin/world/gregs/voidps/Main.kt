@@ -63,7 +63,7 @@ object Main : CoroutineScope {
         // Login server
         val protocol = protocol(get<Huffman>())
         val accounts: LoginManager = get()
-        val accountLoader = PlayerAccountLoader(get<ConnectionQueue>(), get(), Contexts.Game)
+        val accountLoader = PlayerAccountLoader(get<ConnectionQueue>(), get(), get(), Contexts.Game)
         val loginServer = LoginServer.load(properties, protocol, accounts, accountLoader)
 
         // Game world

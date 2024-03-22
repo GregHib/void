@@ -25,12 +25,18 @@ class PostgresStorage(
         AccountsTable
             .leftJoin(display) { (AccountsTable.id eq display[VariablesTable.playerId]) and (display[VariablesTable.name] eq display.alias) }
             .leftJoin(history) { (AccountsTable.id eq history[VariablesTable.playerId]) and (history[VariablesTable.name] eq history.alias) }
-            .select(AccountsTable.name, AccountsTable.friends, AccountsTable.ranks, AccountsTable.ignores, display[VariablesTable.string], history[VariablesTable.stringList])
+            .select(AccountsTable.name,
+                AccountsTable.passwordHash,
+                AccountsTable.friends,
+                AccountsTable.ranks,
+                AccountsTable.ignores,
+                display[VariablesTable.string],
+                history[VariablesTable.stringList])
             .associate { row ->
                 val accountName = row[AccountsTable.name]
                 val displayName = row.getOrNull(display[VariablesTable.string]) ?: accountName
                 val previousName = row.getOrNull(history[VariablesTable.stringList])?.lastOrNull() ?: ""
-                displayName to AccountDefinition(accountName, displayName, previousName)
+                displayName to AccountDefinition(accountName, displayName, previousName, row[AccountsTable.passwordHash])
             }
     }
 

@@ -6,8 +6,8 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.withContext
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.data.PlayerAccounts
+import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.network.AccountLoader
@@ -23,26 +23,41 @@ import world.gregs.voidps.network.encode.login
 class PlayerAccountLoader(
     private val queue: NetworkQueue,
     private val accounts: PlayerAccounts,
+    private val accountDefinitions: AccountDefinitions,
     private val gameContext: CoroutineDispatcher
 ) : AccountLoader {
     private val logger = InlineLogger()
 
+    override fun validate(username: String, password: String): Int {
+        if (username.length > 12) {
+            return Response.LOGIN_SERVER_REJECTED_SESSION
+        }
+        val names = accountDefinitions.get(username)
+        if (names != null && !BCrypt.checkpw(password, names.passwordHash)) {
+            return Response.INVALID_CREDENTIALS
+        }
+        return Response.SUCCESS
+    }
+
+    override fun encrypt(username: String, password: String): String {
+        val names = accountDefinitions.get(username)
+        if (names != null) {
+            return names.passwordHash
+        }
+        return BCrypt.hashpw(password, BCrypt.gensalt())
+    }
+
     /**
      * @return flow of instructions for the player to be controlled with
      */
-    override suspend fun load(client: Client, username: String, password: String, index: Int, displayMode: Int): MutableSharedFlow<Instruction>? {
+    override suspend fun load(client: Client, username: String, passwordHash: String, index: Int, displayMode: Int): MutableSharedFlow<Instruction>? {
         try {
             val saving = accounts.saving(username)
             if (saving) {
                 client.disconnect(Response.ACCOUNT_ONLINE)
                 return null
             }
-            val player = accounts.getOrElse(username, index) { accounts.create(username, password) }
-            if (validPassword(player, password)) {
-                client.disconnect(Response.INVALID_CREDENTIALS)
-                return null
-            }
-
+            val player = accounts.getOrElse(username, index) { accounts.create(username, passwordHash) }
             logger.info { "Player $username loaded and queued for login." }
             withContext(gameContext) {
                 queue.await()
@@ -57,6 +72,4 @@ class PlayerAccountLoader(
             return null
         }
     }
-
-    private fun validPassword(player: Player, password: String) = player.passwordHash.isBlank() || !BCrypt.checkpw(password, player.passwordHash)
 }

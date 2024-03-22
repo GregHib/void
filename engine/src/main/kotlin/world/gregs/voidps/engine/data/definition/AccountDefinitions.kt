@@ -22,7 +22,7 @@ class AccountDefinitions {
 
     fun add(player: Player) {
         displayNames[player.accountName] = player.name
-        definitions[player.name] = AccountDefinition(player.accountName, player.name, player.previousName)
+        definitions[player.name] = AccountDefinition(player.accountName, player.name, player.previousName, player.passwordHash)
         clans[player.name] = Clan(
             owner = player.accountName,
             ownerDisplayName = player.name,
@@ -37,35 +37,6 @@ class AccountDefinitions {
         )
     }
 
-    fun add(
-        accountName: String,
-        displayName: String,
-        previousName: String,
-        friends: Map<String, ClanRank>,
-        ignores: List<String>,
-        clanName: String,
-        joinRank: ClanRank,
-        talkRank: ClanRank,
-        kickRank: ClanRank,
-        lootRank: ClanRank,
-        coinShare: Boolean
-    ) {
-        displayNames[accountName] = displayName
-        definitions[displayName] = AccountDefinition(accountName, displayName, previousName)
-        clans[displayName] = Clan(
-            owner = accountName,
-            ownerDisplayName = displayName,
-            name = clanName,
-            friends = friends,
-            ignores = ignores,
-            joinRank = joinRank,
-            talkRank = talkRank,
-            kickRank = kickRank,
-            lootRank = lootRank,
-            coinShare = coinShare,
-        )
-    }
-
     fun update(accountName: String, newName: String, previousDisplayName: String) {
         val definition = definitions.remove(previousDisplayName) ?: return
         definitions[newName] = definition
@@ -75,6 +46,8 @@ class AccountDefinitions {
     }
 
     fun account(display: String) = getValue(display).accountName
+
+    fun password(display: String) = getValue(display).passwordHash
 
     fun display(account: String) = displayNames[account]
 
