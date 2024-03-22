@@ -4,5 +4,26 @@ services:
     image: greghib/void
     volumes:
       - ./data/saves/:/app/data/saves
+    environment:
+      storage: database
+      database_username: postgres
+      database_password: password
+      database_driver: org.postgresql.Driver
+      database_jdbc_url: jdbc:postgresql://db:5432/game?reWriteBatchedInserts=true
     ports:
       - "43594:43594"
+    depends_on:
+      - db
+    networks:
+      - internal_network
+  db:
+    image: postgres:16.2-alpine3.19
+    environment:
+      POSTGRES_DB: game
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    networks:
+      - internal_network
+networks:
+  internal_network:
+    driver: bridge

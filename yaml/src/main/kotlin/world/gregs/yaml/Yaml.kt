@@ -35,8 +35,12 @@ class Yaml(
     }
 
     fun save(path: String, value: Any, config: YamlWriterConfiguration = defaultWriter) {
+        save(File(path), value, config)
+    }
+
+    fun save(file: File, value: Any, config: YamlWriterConfiguration = defaultWriter) {
         val array = write(value, config)
-        File(path).writer().use {
+        file.writer().use {
             it.write(array)
         }
     }

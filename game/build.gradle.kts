@@ -45,6 +45,8 @@ application {
 tasks {
     named<ShadowJar>("shadowJar") {
         minimize {
+            exclude(dependency("org.postgresql:postgresql:.*"))
+            exclude(dependency("org.jetbrains.exposed:exposed-jdbc:.*"))
             exclude(dependency("ch.qos.logback:logback-classic:.*"))
         }
         archiveBaseName.set("void-server-${version}")

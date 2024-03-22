@@ -83,7 +83,12 @@ class LoginServer(
             return
         }
 
-        xtea.readUByte()// social login
+        if (username.length > 12) {
+            write.finish(Response.LOGIN_SERVER_REJECTED_SESSION)
+            return
+        }
+
+        xtea.readUByte() // social login
         val displayMode = xtea.readUByte().toInt()
         val client = createClient(write, isaacKeys, hostname)
         login(read, client, username, password, displayMode)

@@ -53,7 +53,12 @@ object Main : CoroutineScope {
         val job = server.start(properties.getProperty("port").toInt())
 
         // Content
-        preload(cache, properties)
+        try {
+            preload(cache, properties)
+        } catch (ex: Exception) {
+            logger.error(ex) { "Error loading files." }
+            job.cancel()
+        }
 
         // Login server
         val protocol = protocol(get<Huffman>())
@@ -86,6 +91,7 @@ object Main : CoroutineScope {
             logger.debug { "Property file not found; defaulting to internal." }
             properties.load(Main::class.java.getResourceAsStream("/$PROPERTY_FILE_NAME"))
         }
+        properties.putAll(System.getenv())
         return@timed properties
     }
 
@@ -96,10 +102,6 @@ object Main : CoroutineScope {
             slf4jLogger(level = Level.ERROR)
             properties(properties.toMap() as Map<String, Any>)
             modules(engineModule, gameModule, module)
-        }
-        val saves = File(getProperty("savePath"))
-        if (!saves.exists()) {
-            saves.mkdir()
         }
         loadScripts()
     }

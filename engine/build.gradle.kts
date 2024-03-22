@@ -9,6 +9,11 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:${findProperty("kotlinIoVersion")}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${findProperty("kotlinCoroutinesVersion")}")
 
+    implementation("org.jetbrains.exposed:exposed-core:${findProperty("exposedVersion")}")
+    implementation("org.jetbrains.exposed:exposed-jdbc:${findProperty("exposedVersion")}")
+    implementation("org.postgresql:postgresql:${findProperty("postgresqlVersion")}")
+    implementation("com.zaxxer:HikariCP:${findProperty("hikariVersion")}")
+
     implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
     implementation("net.pearx.kasechange:kasechange:${findProperty("kaseChangeVersion")}")
 
@@ -24,7 +29,13 @@ dependencies {
     testImplementation("io.mockk:mockk:${findProperty("mockkVersion")}")
     testImplementation("org.junit.jupiter:junit-jupiter-params:${findProperty("junitVersion")}")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${findProperty("kotlinCoroutinesVersion")}")
+
+    testImplementation("org.testcontainers:junit-jupiter:${findProperty("testcontainersVersion")}")
+    testImplementation("org.testcontainers:postgresql:${findProperty("testcontainersVersion")}")
+    testImplementation(enforcedPlatform("io.zonky.test.postgres:embedded-postgres-binaries-bom:${findProperty("postgresVersion")}"))
+    testImplementation("io.zonky.test:embedded-postgres:${findProperty("embeddedPostgresVersion")}")
 }
+
 tasks.withType<Test> {
     jvmArgs("-XX:-OmitStackTraceInFastThrow")
 }
