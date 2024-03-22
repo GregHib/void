@@ -3,8 +3,8 @@ package world.gregs.voidps.network.protocol.decode
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
-import world.gregs.voidps.network.Decoder
 import world.gregs.voidps.network.client.Instruction
+import world.gregs.voidps.network.protocol.Decoder
 import world.gregs.voidps.network.readBooleanInverse
 import world.gregs.voidps.network.readShortAddLittle
 import world.gregs.voidps.network.readUnsignedIntInverseMiddle

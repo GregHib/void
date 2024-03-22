@@ -1,4 +1,4 @@
-package world.gregs.voidps.network
+package world.gregs.voidps.network.protocol
 
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow

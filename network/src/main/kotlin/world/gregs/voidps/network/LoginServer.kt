@@ -11,6 +11,7 @@ import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.IsaacCipher
 import world.gregs.voidps.network.login.AccountLoader
 import world.gregs.voidps.network.login.PasswordManager
+import world.gregs.voidps.network.protocol.Decoder
 import java.math.BigInteger
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap

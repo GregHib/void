@@ -1,7 +1,6 @@
 package world.gregs.voidps.network.protocol
 
 import world.gregs.voidps.cache.secure.Huffman
-import world.gregs.voidps.network.Decoder
 import world.gregs.voidps.network.protocol.decode.*
 
 fun decoders(huffman: Huffman): Array<Decoder?> {
