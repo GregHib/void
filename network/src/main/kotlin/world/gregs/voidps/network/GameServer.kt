@@ -8,7 +8,7 @@ import io.ktor.utils.io.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.ClosedReceiveChannelException
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.network.game.ConnectionTracker
+import world.gregs.voidps.network.client.ConnectionTracker
 import world.gregs.voidps.network.protocol.finish
 import world.gregs.voidps.network.protocol.respond
 import java.net.BindException

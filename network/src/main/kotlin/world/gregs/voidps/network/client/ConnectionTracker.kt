@@ -1,4 +1,4 @@
-package world.gregs.voidps.network.game
+package world.gregs.voidps.network.client
 
 import java.util.concurrent.ConcurrentHashMap
 

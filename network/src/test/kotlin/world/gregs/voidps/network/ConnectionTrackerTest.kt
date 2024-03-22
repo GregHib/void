@@ -3,7 +3,7 @@ package world.gregs.voidps.network
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.network.game.ConnectionTracker
+import world.gregs.voidps.network.client.ConnectionTracker
 
 class ConnectionTrackerTest {
 
