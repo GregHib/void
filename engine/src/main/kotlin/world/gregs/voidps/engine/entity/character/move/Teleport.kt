@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
-import world.gregs.voidps.network.protocol.visual.update.player.MoveType
+import world.gregs.voidps.network.login.protocol.visual.update.player.MoveType
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction

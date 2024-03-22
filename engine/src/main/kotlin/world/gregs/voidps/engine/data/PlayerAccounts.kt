@@ -27,8 +27,8 @@ import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.zone.RegionLoad
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.protocol.encode.logout
-import world.gregs.voidps.network.protocol.visual.PlayerVisuals
+import world.gregs.voidps.network.login.protocol.encode.logout
+import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.ConcurrentHashMap

@@ -31,7 +31,7 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.network.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.dnd.shootingstar.ShootingStarHandler

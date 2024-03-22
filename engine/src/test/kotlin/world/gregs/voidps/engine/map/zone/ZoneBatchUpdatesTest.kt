@@ -18,12 +18,12 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.protocol.encode.clearZone
-import world.gregs.voidps.network.protocol.encode.send
-import world.gregs.voidps.network.protocol.encode.sendBatch
-import world.gregs.voidps.network.protocol.encode.zone.ObjectAddition
-import world.gregs.voidps.network.protocol.encode.zone.ObjectRemoval
-import world.gregs.voidps.network.protocol.encode.zone.ZoneUpdate
+import world.gregs.voidps.network.login.protocol.encode.clearZone
+import world.gregs.voidps.network.login.protocol.encode.send
+import world.gregs.voidps.network.login.protocol.encode.sendBatch
+import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAddition
+import world.gregs.voidps.network.login.protocol.encode.zone.ObjectRemoval
+import world.gregs.voidps.network.login.protocol.encode.zone.ZoneUpdate
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 

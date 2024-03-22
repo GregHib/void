@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.network.protocol.visual.update.Hitsplat
+import world.gregs.voidps.network.login.protocol.visual.update.Hitsplat
 import world.gregs.voidps.world.interact.entity.effect.transform
 
 val npcs: NPCs by inject()

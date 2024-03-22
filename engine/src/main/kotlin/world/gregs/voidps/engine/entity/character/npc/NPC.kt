@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.timer.TimerSlot
 import world.gregs.voidps.engine.timer.Timers
-import world.gregs.voidps.network.protocol.visual.NPCVisuals
+import world.gregs.voidps.network.login.protocol.visual.NPCVisuals
 import world.gregs.voidps.type.Tile
 import kotlin.coroutines.Continuation
 

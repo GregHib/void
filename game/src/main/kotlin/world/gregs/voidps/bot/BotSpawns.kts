@@ -23,8 +23,8 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.engine.timer.worldTimerStart
 import world.gregs.voidps.engine.timer.worldTimerTick
 import world.gregs.voidps.network.client.DummyClient
-import world.gregs.voidps.network.protocol.visual.update.player.BodyColour
-import world.gregs.voidps.network.protocol.visual.update.player.BodyPart
+import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
+import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume

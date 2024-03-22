@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.inv.itemChange
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.playAnimation
-import world.gregs.voidps.network.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
 import world.gregs.voidps.world.interact.dialogue.type.statement

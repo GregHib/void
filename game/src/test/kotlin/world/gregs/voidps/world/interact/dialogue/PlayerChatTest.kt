@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.protocol.encode.playerDialogueHead
+import world.gregs.voidps.network.login.protocol.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.type.player
 import kotlin.test.assertTrue
 

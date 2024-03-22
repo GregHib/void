@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.protocol.encode.contextMenuOption
+import world.gregs.voidps.network.login.protocol.encode.contextMenuOption
 
 internal class PlayerOptionsTest {
 

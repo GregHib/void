@@ -20,9 +20,8 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.protocol.encode.updatePlayers
-import world.gregs.voidps.network.protocol.visual.PlayerVisuals
-import world.gregs.voidps.network.protocol.visual.VisualEncoder
+import world.gregs.voidps.network.login.protocol.encode.updatePlayers
+import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Tile
 
@@ -30,7 +29,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
     private lateinit var task: PlayerUpdateTask
     private lateinit var players: Players
-    private lateinit var encoder: VisualEncoder<PlayerVisuals>
+    private lateinit var encoder: world.gregs.voidps.network.login.protocol.visual.VisualEncoder<PlayerVisuals>
     override val modules = listOf(
         module {
             single { Players() }

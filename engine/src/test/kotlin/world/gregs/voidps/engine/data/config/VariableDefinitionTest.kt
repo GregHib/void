@@ -6,10 +6,10 @@ import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.protocol.encode.sendVarbit
-import world.gregs.voidps.network.protocol.encode.sendVarc
-import world.gregs.voidps.network.protocol.encode.sendVarcStr
-import world.gregs.voidps.network.protocol.encode.sendVarp
+import world.gregs.voidps.network.login.protocol.encode.sendVarbit
+import world.gregs.voidps.network.login.protocol.encode.sendVarc
+import world.gregs.voidps.network.login.protocol.encode.sendVarcStr
+import world.gregs.voidps.network.login.protocol.encode.sendVarp
 
 internal class VariableDefinitionTest {
 

@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Instruction
-import world.gregs.voidps.network.protocol.visual.PlayerVisuals
+import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
 import world.gregs.voidps.type.Tile
 import kotlin.coroutines.Continuation
 

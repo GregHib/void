@@ -7,9 +7,9 @@ import kotlinx.coroutines.isActive
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.network.file.FileProvider
 import world.gregs.voidps.network.file.prefetchKeys
-import world.gregs.voidps.network.protocol.readMedium
-import world.gregs.voidps.network.protocol.readUByte
-import world.gregs.voidps.network.protocol.readUMedium
+import world.gregs.voidps.network.login.protocol.readMedium
+import world.gregs.voidps.network.login.protocol.readUByte
+import world.gregs.voidps.network.login.protocol.readUMedium
 import java.util.*
 
 /**

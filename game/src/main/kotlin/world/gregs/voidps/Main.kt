@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
-import world.gregs.voidps.network.protocol.decoders
+import world.gregs.voidps.network.login.protocol.decoders
 import world.gregs.voidps.script.loadScripts
 import java.io.File
 import java.util.*

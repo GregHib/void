@@ -31,18 +31,17 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.network.protocol.visual.NPCVisuals
-import world.gregs.voidps.network.protocol.visual.PlayerVisuals
-import world.gregs.voidps.network.protocol.visual.VisualEncoder
-import world.gregs.voidps.network.protocol.visual.VisualMask.NPC_FORCE_CHAT_MASK
-import world.gregs.voidps.network.protocol.visual.VisualMask.NPC_WATCH_MASK
-import world.gregs.voidps.network.protocol.visual.VisualMask.PLAYER_FORCE_CHAT_MASK
-import world.gregs.voidps.network.protocol.visual.VisualMask.PLAYER_WATCH_MASK
-import world.gregs.voidps.network.protocol.visual.Visuals
-import world.gregs.voidps.network.protocol.visual.encode.ForceChatEncoder
-import world.gregs.voidps.network.protocol.visual.encode.WatchEncoder
-import world.gregs.voidps.network.protocol.visual.encode.npc.*
-import world.gregs.voidps.network.protocol.visual.encode.player.*
+import world.gregs.voidps.network.login.protocol.visual.NPCVisuals
+import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
+import world.gregs.voidps.network.login.protocol.visual.VisualMask.NPC_FORCE_CHAT_MASK
+import world.gregs.voidps.network.login.protocol.visual.VisualMask.NPC_WATCH_MASK
+import world.gregs.voidps.network.login.protocol.visual.VisualMask.PLAYER_FORCE_CHAT_MASK
+import world.gregs.voidps.network.login.protocol.visual.VisualMask.PLAYER_WATCH_MASK
+import world.gregs.voidps.network.login.protocol.visual.Visuals
+import world.gregs.voidps.network.login.protocol.visual.encode.ForceChatEncoder
+import world.gregs.voidps.network.login.protocol.visual.encode.WatchEncoder
+import world.gregs.voidps.network.login.protocol.visual.encode.npc.*
+import world.gregs.voidps.network.login.protocol.visual.encode.player.*
 
 fun getTickStages(
     players: Players = get(),
@@ -108,7 +107,7 @@ private fun playerVisualEncoders() = castOf<PlayerVisuals>(
     PlayerColourOverlayEncoder(),
     TemporaryMoveTypeEncoder(),
     PlayerPrimaryGraphicEncoder(),
-    PlayerAnimationEncoder(),
+    world.gregs.voidps.network.login.protocol.visual.encode.player.PlayerAnimationEncoder(),
     AppearanceEncoder(),
     MovementTypeEncoder()
 )
@@ -128,5 +127,5 @@ private fun npcVisualEncoders() = castOf<NPCVisuals>(
 )
 
 @Suppress("UNCHECKED_CAST")
-private fun <T : Visuals> castOf(vararg encoders: VisualEncoder<out Visuals>) = encoders
-    .map { it as VisualEncoder<T> }
+private fun <T : Visuals> castOf(vararg encoders: world.gregs.voidps.network.login.protocol.visual.VisualEncoder<out Visuals>) = encoders
+    .map { it as world.gregs.voidps.network.login.protocol.visual.VisualEncoder<T> }

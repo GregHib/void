@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.runBlocking
-import world.gregs.voidps.network.protocol.writeSmart
+import world.gregs.voidps.network.login.protocol.writeSmart
 
 open class Client(
     private val write: ByteWriteChannel,

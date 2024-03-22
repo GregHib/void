@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.entity.character.size
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.region.RegionRetry
-import world.gregs.voidps.network.protocol.visual.update.player.MoveType
+import world.gregs.voidps.network.login.protocol.visual.update.player.MoveType
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile

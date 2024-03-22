@@ -13,9 +13,9 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.network.protocol.encode.Member
-import world.gregs.voidps.network.protocol.encode.leaveClanChat
-import world.gregs.voidps.network.protocol.encode.updateClanChat
+import world.gregs.voidps.network.login.protocol.encode.Member
+import world.gregs.voidps.network.login.protocol.encode.leaveClanChat
+import world.gregs.voidps.network.login.protocol.encode.updateClanChat
 import world.gregs.voidps.world.interact.dialogue.type.stringEntry
 
 interfaceOption("Clan Setup", "settings", "clan_chat") {

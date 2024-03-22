@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.skill.slayer
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.network.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.player.combat.CombatFormulaTest
 import kotlin.test.assertEquals
 

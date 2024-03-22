@@ -44,9 +44,9 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.network.protocol.encode.playJingle
-import world.gregs.voidps.network.protocol.encode.playMIDI
-import world.gregs.voidps.network.protocol.encode.playSoundEffect
+import world.gregs.voidps.network.login.protocol.encode.playJingle
+import world.gregs.voidps.network.login.protocol.encode.playMIDI
+import world.gregs.voidps.network.login.protocol.encode.playSoundEffect
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.world.activity.quest.Books

@@ -15,7 +15,7 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.type
 import world.gregs.voidps.engine.inv.Inventory
-import world.gregs.voidps.network.protocol.visual.update.player.BodyPart
+import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import kotlin.test.assertFalse
 
 @ExtendWith(MockKExtension::class)

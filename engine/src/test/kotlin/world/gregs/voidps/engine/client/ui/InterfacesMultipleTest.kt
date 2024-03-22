@@ -12,9 +12,9 @@ import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_ID
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_INDEX
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.network.protocol.encode.closeInterface
-import world.gregs.voidps.network.protocol.encode.openInterface
-import world.gregs.voidps.network.protocol.encode.updateInterface
+import world.gregs.voidps.network.login.protocol.encode.closeInterface
+import world.gregs.voidps.network.login.protocol.encode.openInterface
+import world.gregs.voidps.network.login.protocol.encode.updateInterface
 
 internal class InterfacesMultipleTest : InterfaceTest() {
 
