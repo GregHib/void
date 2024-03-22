@@ -17,7 +17,7 @@ internal class GameServerTest {
     lateinit var server: GameServer
 
     @RelaxedMockK
-    lateinit var manager: ClientManager
+    lateinit var connections: ConnectionTracker
 
     @RelaxedMockK
     lateinit var read: ByteReadChannel
@@ -27,14 +27,14 @@ internal class GameServerTest {
 
     @BeforeEach
     fun setup() {
-        manager = mockk(relaxed = true)
-        server = spyk(GameServer(2, mockk(relaxed = true), manager))
+        connections = mockk(relaxed = true)
+        server = spyk(GameServer(2, mockk(relaxed = true), connections))
         server.loginServer = mockk(relaxed = true)
     }
 
     @Test
     fun `Login limit exceeded`() = runTest {
-        every { manager.count("") } returns 1000
+        every { connections.count("") } returns 1000
 
         server.connect(read, write, "")
 
@@ -58,16 +58,16 @@ internal class GameServerTest {
 
     @Test
     fun `No login server response`() = runTest {
-        every { manager.count("") } returns 1000
+        every { connections.count("") } returns 1000
         coEvery { read.readByte() } returns 14
         server.loginServer = null
 
         server.connect(read, write, "123")
 
         coVerify {
-            manager.add("123")
+            connections.add("123")
             write.writeByte(Response.LOGIN_SERVER_OFFLINE)
-            manager.remove("123")
+            connections.remove("123")
         }
     }
 }

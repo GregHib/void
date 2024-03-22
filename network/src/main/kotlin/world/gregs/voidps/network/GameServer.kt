@@ -20,7 +20,7 @@ import kotlin.concurrent.thread
 class GameServer(
     private val loginLimit: Int,
     private val fileServer: Server,
-    private val clients: ClientManager = ClientManager()
+    private val connections: ConnectionTracker = ConnectionTracker()
 ) {
     private lateinit var dispatcher: ExecutorCoroutineDispatcher
     private var running = false
@@ -69,12 +69,12 @@ class GameServer(
     }
 
     suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
-        if (clients.count(hostname) >= loginLimit) {
+        if (connections.count(hostname) >= loginLimit) {
             write.finish(Response.LOGIN_LIMIT_EXCEEDED)
             return
         }
         try {
-            clients.add(hostname)
+            connections.add(hostname)
             when (val opcode = read.readByte().toInt()) {
                 Request.CONNECT_LOGIN -> loginServer?.connect(read, write, hostname)
                     ?: write.respond(Response.LOGIN_SERVER_OFFLINE)
@@ -85,7 +85,7 @@ class GameServer(
                 }
             }
         } finally {
-            clients.remove(hostname)
+            connections.remove(hostname)
         }
     }
 

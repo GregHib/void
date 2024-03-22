@@ -2,6 +2,9 @@ package world.gregs.voidps.network
 
 import org.mindrot.jbcrypt.BCrypt
 
+/**
+ * Checks account credentials are valid
+ */
 class PasswordManager(private val loader: AccountLoader) {
 
     fun validate(username: String, password: String): Int {

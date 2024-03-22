@@ -3,9 +3,9 @@ package world.gregs.voidps.network
 import java.util.concurrent.ConcurrentHashMap
 
 /**
- * Keeps track of number of clients per ip address
+ * Tracks the number of clients per ip address
  */
-class ClientManager {
+class ConnectionTracker {
     private val connections = ConcurrentHashMap<String, Int>()
 
     fun count(address: String) = connections[address] ?: 0
