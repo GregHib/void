@@ -100,13 +100,13 @@ abstract class WorldTest : KoinTest {
     fun createPlayer(name: String, tile: Tile = Tile.EMPTY): Player {
         val accounts: PlayerAccounts = get()
         val index = players.indexer.obtain()!!
-        val player = Player(tile = tile, accountName = name, passwordHash = "")
-        accounts.initPlayer(player, index)
+        val player = Player(index = index, tile = tile, accountName = name, passwordHash = "")
+        accounts.initPlayer(player)
         accountDefs.add(player)
         tick()
         player["creation"] = -1
         player["skip_level_up"] = true
-        accounts.login(player, null, 0)
+        accounts.spawn(player, null, 0)
         player.softTimers.clear("restore_stats")
         player.softTimers.clear("restore_hitpoints")
         tick()

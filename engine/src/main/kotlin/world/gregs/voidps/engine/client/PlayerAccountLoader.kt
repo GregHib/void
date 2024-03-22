@@ -8,6 +8,7 @@ import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.network.AccountLoader
@@ -57,19 +58,25 @@ class PlayerAccountLoader(
                 client.disconnect(Response.ACCOUNT_ONLINE)
                 return null
             }
-            val player = accounts.getOrElse(username, index) { accounts.create(username, passwordHash) }
+            val player = accounts.get(username) ?: accounts.create(username, passwordHash)
+            player.index = index
             logger.info { "Player $username loaded and queued for login." }
-            withContext(gameContext) {
-                queue.await()
-                logger.info { "Player logged in $username index $index." }
-                client.login(player.name, index, player.rights.ordinal, membersWorld = World.members)
-                accounts.login(player, client, displayMode)
-            }
+            connect(player, client, displayMode)
             return player.instructions
         } catch (e: IllegalStateException) {
             logger.trace(e) { "Error loading player account" }
             client.disconnect(Response.COULD_NOT_COMPLETE_LOGIN)
             return null
+        }
+    }
+
+    suspend fun connect(player: Player, client: Client? = null, displayMode: Int = 0) {
+        accounts.initPlayer(player)
+        withContext(gameContext) {
+            queue.await()
+            logger.info { "${if (client != null) "Player" else "Bot"} logged in ${player.accountName} index ${player.index}." }
+            client?.login(player.name, player.index, player.rights.ordinal, membersWorld = World.members)
+            accounts.spawn(player, client, displayMode)
         }
     }
 }

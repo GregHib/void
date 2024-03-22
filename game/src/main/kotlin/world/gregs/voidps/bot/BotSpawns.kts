@@ -4,6 +4,7 @@ import kotlinx.coroutines.*
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.LoginManager
+import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -94,20 +95,19 @@ adminCommand("bot") {
     }
 }
 
+val loader: PlayerAccountLoader by inject()
+
 fun spawn() {
     GlobalScope.launch(Contexts.Game) {
         val name = "Bot ${++counter}"
         val index = manager.add(name)!!
         val bot = Player(index = index, tile = lumbridge.random(), accountName = name)
-        accounts.initPlayer(bot, index)
         setAppearance(bot)
-        queue.await()
+        bot.initBot()
+        loader.connect(bot, if (TaskManager.DEBUG) DummyClient() else null)
         if (bot.inventory.isEmpty()) {
             bot.inventory.add("coins", 10000)
         }
-        val client = if (TaskManager.DEBUG) DummyClient() else null
-        bot.initBot()
-        accounts.login(bot, client, 0)
         bot.emit(StartBot)
         bot.viewport?.loaded = true
         delay(3)

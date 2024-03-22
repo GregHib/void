@@ -79,10 +79,8 @@ class PlayerAccounts(
 
     fun saving(name: String) = pending.containsKey(name)
 
-    fun getOrElse(name: String, index: Int, block: () -> Player): Player {
-        val player = storage.load(name)?.toPlayer() ?: block()
-        initPlayer(player, index)
-        return player
+    fun get(name: String): Player? {
+        return storage.load(name)?.toPlayer()
     }
 
     fun create(name: String, passwordHash: String): Player {
@@ -92,9 +90,8 @@ class PlayerAccounts(
         }
     }
 
-    fun initPlayer(player: Player, index: Int) {
-        player.index = index
-        player.visuals = PlayerVisuals(index, player.body)
+    fun initPlayer(player: Player) {
+        player.visuals = PlayerVisuals(player.index, player.body)
         player.interfaces = Interfaces(player, player.client, interfaceDefinitions)
         player.interfaceOptions = InterfaceOptions(player, interfaceDefinitions, inventoryDefinitions)
         player.options = PlayerOptions(player)
@@ -117,7 +114,7 @@ class PlayerAccounts(
         player.collision = collisionStrategyProvider.get(character = player)
     }
 
-    fun login(player: Player, client: Client? = null, displayMode: Int = 0) {
+    fun spawn(player: Player, client: Client? = null, displayMode: Int = 0) {
         player.interfaces.displayMode = displayMode
         if (client != null) {
             player.viewport = Viewport()

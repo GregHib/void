@@ -46,7 +46,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
         val client: Client = mockk(relaxed = true)
         val player: Player = mockk()
         every { player.passwordHash } returns ""
-        every { factory.getOrElse("name", 2, any()) } returns player
+        every { factory.get("name") } returns player
 
         loader.load(client, "name", "pass", 2, 3)
 
@@ -75,12 +75,12 @@ internal class PlayerAccountLoaderTest : KoinMock() {
         val player: Player = mockk(relaxed = true)
         every { player.passwordHash } returns "\$2a\$10\$cPB7bqICWrOILrWnXuYNDu1EsbZal9AjxYMbmpMOtI1kwruazGiby"
         every { player.instructions } returns MutableSharedFlow()
-        every { factory.getOrElse("name", 2, any()) } returns player
+        every { factory.get("name") } returns player
 
         loader.load(client, "name", "pass", 2, 3)
 
         coVerify {
-            factory.login(player, client, 3)
+            factory.spawn(player, client, 3)
         }
     }
 
