@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.update.view.PlayerTrackingSet
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.encode.updatePlayers
+import world.gregs.voidps.network.protocol.encode.updatePlayers
 import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.voidps.network.visual.VisualEncoder
 import world.gregs.voidps.network.visual.VisualMask.APPEARANCE_MASK

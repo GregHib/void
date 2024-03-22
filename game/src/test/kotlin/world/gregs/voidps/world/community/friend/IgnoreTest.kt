@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.network.client.instruction.*
-import world.gregs.voidps.network.encode.*
+import world.gregs.voidps.network.protocol.encode.*
 import world.gregs.voidps.world.community.chat.privateStatus
 import world.gregs.voidps.world.community.clan.ownClan
 import world.gregs.voidps.world.script.WorldTest

@@ -6,9 +6,9 @@ import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.network.encode.playJingle
-import world.gregs.voidps.network.encode.playMIDI
-import world.gregs.voidps.network.encode.playSoundEffect
+import world.gregs.voidps.network.protocol.encode.playJingle
+import world.gregs.voidps.network.protocol.encode.playMIDI
+import world.gregs.voidps.network.protocol.encode.playSoundEffect
 
 fun Character.playSound(
     id: String,

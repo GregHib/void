@@ -22,9 +22,9 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.network.encode.clearCamera
-import world.gregs.voidps.network.encode.npcDialogueHead
-import world.gregs.voidps.network.encode.playerDialogueHead
+import world.gregs.voidps.network.protocol.encode.clearCamera
+import world.gregs.voidps.network.protocol.encode.npcDialogueHead
+import world.gregs.voidps.network.protocol.encode.playerDialogueHead
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.world.interact.dialogue.sendLines

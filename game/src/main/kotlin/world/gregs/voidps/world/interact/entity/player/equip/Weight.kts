@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.itemChange
-import world.gregs.voidps.network.encode.weight
+import world.gregs.voidps.network.protocol.encode.weight
 
 itemChange("worn_equipment", "inventory") { player ->
     updateWeight(player)

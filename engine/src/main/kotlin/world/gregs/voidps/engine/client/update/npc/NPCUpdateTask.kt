@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.update.view.Viewport.Companion.LOCAL_NPC
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.encode.updateNPCs
+import world.gregs.voidps.network.protocol.encode.updateNPCs
 import world.gregs.voidps.network.visual.NPCVisuals
 import world.gregs.voidps.network.visual.VisualEncoder
 import world.gregs.voidps.type.Direction

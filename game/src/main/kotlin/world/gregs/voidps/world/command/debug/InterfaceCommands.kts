@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.network.encode.*
+import world.gregs.voidps.network.protocol.encode.*
 
 val definitions: InterfaceDefinitions by inject()
 

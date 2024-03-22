@@ -15,10 +15,10 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.network.encode.clanChat
-import world.gregs.voidps.network.encode.privateChatFrom
-import world.gregs.voidps.network.encode.privateChatTo
-import world.gregs.voidps.network.encode.publicChat
+import world.gregs.voidps.network.protocol.encode.clanChat
+import world.gregs.voidps.network.protocol.encode.privateChatFrom
+import world.gregs.voidps.network.protocol.encode.privateChatTo
+import world.gregs.voidps.network.protocol.encode.publicChat
 import world.gregs.voidps.world.community.clan.chatType
 import world.gregs.voidps.world.community.clan.clan
 import world.gregs.voidps.world.community.ignore.ignores

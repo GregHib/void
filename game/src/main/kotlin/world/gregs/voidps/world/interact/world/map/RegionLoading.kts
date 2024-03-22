@@ -14,8 +14,8 @@ import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.engine.map.zone.RegionLoad
 import world.gregs.voidps.engine.map.zone.ReloadZone
-import world.gregs.voidps.network.encode.dynamicMapRegion
-import world.gregs.voidps.network.encode.mapRegion
+import world.gregs.voidps.network.protocol.encode.dynamicMapRegion
+import world.gregs.voidps.network.protocol.encode.mapRegion
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Zone
 

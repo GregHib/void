@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.network.encode.zone.ObjectAnimation
+import world.gregs.voidps.network.protocol.encode.zone.ObjectAnimation
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 

@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.levelChange
 import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.network.encode.skillLevel
+import world.gregs.voidps.network.protocol.encode.skillLevel
 
 playerSpawn { player ->
     player.sendVariable("xp_counter")

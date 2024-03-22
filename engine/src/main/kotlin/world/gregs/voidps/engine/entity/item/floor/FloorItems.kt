@@ -11,10 +11,9 @@ import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems.Companion.MAX_TILE_ITEMS
-import world.gregs.voidps.network.encode.send
-import world.gregs.voidps.network.encode.zone.FloorItemAddition
-import world.gregs.voidps.network.encode.zone.FloorItemRemoval
-import world.gregs.voidps.network.encode.zone.FloorItemUpdate
+import world.gregs.voidps.network.protocol.encode.send
+import world.gregs.voidps.network.protocol.encode.zone.FloorItemAddition
+import world.gregs.voidps.network.protocol.encode.zone.FloorItemUpdate
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
@@ -105,7 +104,7 @@ class FloorItems(
         val zone = data.get(item.tile.zone.id) ?: return false
         val list = zone[item.tile.id] ?: return false
         if (list.remove(item)) {
-            batches.add(item.tile.zone, FloorItemRemoval(item.tile.id, item.def.id, item.owner))
+            batches.add(item.tile.zone, world.gregs.voidps.network.protocol.encode.zone.FloorItemRemoval(item.tile.id, item.def.id, item.owner))
             if (list.isEmpty() && zone.remove(item.tile.id, list)) {
                 tilePool.recycle(list)
                 if (zone.isEmpty() && data.remove(item.tile.zone.id) != null) {
@@ -122,7 +121,7 @@ class FloorItems(
         for ((_, zone) in data) {
             for ((_, items) in zone) {
                 for (item in items) {
-                    batches.add(item.tile.zone, FloorItemRemoval(item.tile.id, item.def.id, item.owner))
+                    batches.add(item.tile.zone, world.gregs.voidps.network.protocol.encode.zone.FloorItemRemoval(item.tile.id, item.def.id, item.owner))
                     item.emit(Despawn)
                 }
                 tilePool.recycle(items)

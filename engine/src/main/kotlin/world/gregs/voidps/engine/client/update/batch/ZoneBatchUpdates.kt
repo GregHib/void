@@ -7,11 +7,11 @@ import kotlinx.io.pool.ObjectPool
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.network.encode.clearZone
-import world.gregs.voidps.network.encode.encodeBatch
-import world.gregs.voidps.network.encode.send
-import world.gregs.voidps.network.encode.sendBatch
-import world.gregs.voidps.network.encode.zone.ZoneUpdate
+import world.gregs.voidps.network.protocol.encode.clearZone
+import world.gregs.voidps.network.protocol.encode.encodeBatch
+import world.gregs.voidps.network.protocol.encode.send
+import world.gregs.voidps.network.protocol.encode.sendBatch
+import world.gregs.voidps.network.protocol.encode.zone.ZoneUpdate
 import world.gregs.voidps.type.Zone
 
 /**

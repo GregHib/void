@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
-import world.gregs.voidps.network.encode.Friend
+import world.gregs.voidps.network.protocol.encode.Friend
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.stringEntry
 import java.util.concurrent.TimeUnit

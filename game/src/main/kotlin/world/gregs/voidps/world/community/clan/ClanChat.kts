@@ -20,10 +20,10 @@ import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.network.encode.Member
-import world.gregs.voidps.network.encode.appendClanChat
-import world.gregs.voidps.network.encode.leaveClanChat
-import world.gregs.voidps.network.encode.updateClanChat
+import world.gregs.voidps.network.protocol.encode.Member
+import world.gregs.voidps.network.protocol.encode.appendClanChat
+import world.gregs.voidps.network.protocol.encode.leaveClanChat
+import world.gregs.voidps.network.protocol.encode.updateClanChat
 import java.util.concurrent.TimeUnit
 
 val accounts: AccountDefinitions by inject()
