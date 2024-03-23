@@ -44,7 +44,6 @@ import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.gameModule
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.client.Client
-import world.gregs.voidps.network.login.AccountLoader
 import world.gregs.voidps.script.loadScripts
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
@@ -62,7 +61,6 @@ abstract class WorldTest : KoinTest {
     private val logger = InlineLogger()
     private lateinit var engine: GameLoop
     lateinit var players: Players
-    private lateinit var loader: AccountLoader
     lateinit var npcs: NPCs
     lateinit var floorItems: FloorItems
     lateinit var objects: GameObjects
@@ -187,7 +185,6 @@ abstract class WorldTest : KoinTest {
             engine = GameLoop(tickStages, mockk(relaxed = true))
             World.start(true)
         }
-        loader = get()
         players = get()
         npcs = get()
         floorItems = get()

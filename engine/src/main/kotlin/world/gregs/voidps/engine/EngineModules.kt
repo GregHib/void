@@ -6,6 +6,7 @@ import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.client.ConnectionQueue
+import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.PlayerAccounts
 import world.gregs.voidps.engine.data.definition.*
@@ -59,6 +60,7 @@ val engineModule = module {
         }
         FileStorage(get(), saves, get(), getProperty("experienceRate", "1.0").toDouble())
     } }
+    single { PlayerAccountLoader(get(), get(), get(), get<Players>().indexer, Contexts.Game) }
     // Map
     single { ZoneBatchUpdates() }
     single { DynamicZones(get(), get(), get()) }
