@@ -2,9 +2,10 @@ package world.gregs.voidps.network.login.protocol.visual.encode.player
 
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
+import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
 import world.gregs.voidps.network.login.protocol.visual.VisualMask.PLAYER_TIME_BAR_MASK
 
-class PlayerTimeBarEncoder : world.gregs.voidps.network.login.protocol.visual.VisualEncoder<PlayerVisuals>(PLAYER_TIME_BAR_MASK) {
+class PlayerTimeBarEncoder : VisualEncoder<PlayerVisuals>(PLAYER_TIME_BAR_MASK) {
 
     override fun encode(writer: Writer, visuals: PlayerVisuals) {
         val (full, exponentialDelay, delay, increment) = visuals.timeBar

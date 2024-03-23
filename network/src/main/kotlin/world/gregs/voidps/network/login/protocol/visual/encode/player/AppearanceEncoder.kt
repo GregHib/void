@@ -2,10 +2,11 @@ package world.gregs.voidps.network.login.protocol.visual.encode.player
 
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
+import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
 import world.gregs.voidps.network.login.protocol.visual.VisualMask.APPEARANCE_MASK
 import world.gregs.voidps.network.login.protocol.visual.update.player.Appearance
 
-class AppearanceEncoder : world.gregs.voidps.network.login.protocol.visual.VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial = true) {
+class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial = true) {
 
     override fun encode(writer: Writer, visuals: PlayerVisuals) {
         val (showSkillLevel,

@@ -9,12 +9,13 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.login.protocol.encode.updateNPCs
 import world.gregs.voidps.network.login.protocol.visual.NPCVisuals
+import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.RegionLevel
 
 class NPCUpdateTask(
     private val npcs: NPCs,
-    private val encoders: List<world.gregs.voidps.network.login.protocol.visual.VisualEncoder<NPCVisuals>>
+    private val encoders: List<VisualEncoder<NPCVisuals>>
 ) {
 
     fun run(player: Player) {

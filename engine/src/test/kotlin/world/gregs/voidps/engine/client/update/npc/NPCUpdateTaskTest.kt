@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.login.protocol.visual.NPCVisuals
+import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
 import world.gregs.voidps.network.login.protocol.visual.update.Animation
 import world.gregs.voidps.network.login.protocol.visual.update.Turn
 import world.gregs.voidps.type.Tile
@@ -34,8 +35,8 @@ internal class NPCUpdateTaskTest : KoinMock() {
             single { NPCs(get(), get(), get()) }
         }
     )
-    private lateinit var encoder: world.gregs.voidps.network.login.protocol.visual.VisualEncoder<NPCVisuals>
-    private lateinit var initialEncoder: world.gregs.voidps.network.login.protocol.visual.VisualEncoder<NPCVisuals>
+    private lateinit var encoder: VisualEncoder<NPCVisuals>
+    private lateinit var initialEncoder: VisualEncoder<NPCVisuals>
 
     @BeforeEach
     fun setup() {

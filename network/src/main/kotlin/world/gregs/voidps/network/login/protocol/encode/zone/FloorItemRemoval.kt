@@ -6,7 +6,7 @@ data class FloorItemRemoval(
     val tile: Int,
     val id: Int,
     val owner: String?
-) : world.gregs.voidps.network.login.protocol.encode.zone.ZoneUpdate(
+) : ZoneUpdate(
     Protocol.FLOOR_ITEM_REMOVE,
     Protocol.Batch.FLOOR_ITEM_REMOVE,
     3

@@ -2,9 +2,10 @@ package world.gregs.voidps.network.login.protocol.visual.encode.npc
 
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.network.login.protocol.visual.NPCVisuals
+import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
 import world.gregs.voidps.network.login.protocol.visual.VisualMask.NPC_TIME_BAR_MASK
 
-class NPCTimeBarEncoder : world.gregs.voidps.network.login.protocol.visual.VisualEncoder<NPCVisuals>(NPC_TIME_BAR_MASK) {
+class NPCTimeBarEncoder : VisualEncoder<NPCVisuals>(NPC_TIME_BAR_MASK) {
 
     override fun encode(writer: Writer, visuals: NPCVisuals) {
         val (full, exponentialDelay, delay, increment) = visuals.timeBar

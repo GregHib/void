@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemAddition
+import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemRemoval
 import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemUpdate
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
@@ -124,7 +125,7 @@ class FloorItemsTest {
         assertFalse(items.contains(first))
         assertTrue(items.contains(second))
         verify {
-            batches.add(Zone.EMPTY, world.gregs.voidps.network.login.protocol.encode.zone.FloorItemRemoval(tile = 0, id = -1, owner = null))
+            batches.add(Zone.EMPTY, FloorItemRemoval(tile = 0, id = -1, owner = null))
         }
     }
 
@@ -167,7 +168,7 @@ class FloorItemsTest {
         val items = items[Tile.EMPTY]
         assertTrue(items.isEmpty())
         verify {
-            batches.add(Zone.EMPTY, world.gregs.voidps.network.login.protocol.encode.zone.FloorItemRemoval(tile = 0, id = -1, owner = null))
+            batches.add(Zone.EMPTY, FloorItemRemoval(tile = 0, id = -1, owner = null))
         }
     }
 

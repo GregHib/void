@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.network.client.instruction.EnterInt
 import world.gregs.voidps.network.client.instruction.InteractInterface
 import world.gregs.voidps.world.activity.bank.bank
 
@@ -63,7 +64,7 @@ suspend fun Bot.deposit(item: String, slot: Int = player.inventory.indexOf(item)
     player.instructions.emit(InteractInterface(interfaceId = 763, componentId = 0, itemId = getItemId(item) ?: return, itemSlot = slot, option = option))
     if (option == 4) {
         await("tick")
-        player.instructions.emit(world.gregs.voidps.network.client.instruction.EnterInt(value = amount))
+        player.instructions.emit(EnterInt(value = amount))
     }
     await("tick")
 }
@@ -81,7 +82,7 @@ suspend fun Bot.withdraw(item: String, slot: Int = player.bank.indexOf(item), am
     player.instructions.emit(InteractInterface(interfaceId = 762, componentId = 93, itemId = getItemId(item) ?: return, itemSlot = slot, option = option))
     if (option == 4) {
         await("tick")
-        player.instructions.emit(world.gregs.voidps.network.client.instruction.EnterInt(value = amount))
+        player.instructions.emit(EnterInt(value = amount))
     }
     await("tick")
 }

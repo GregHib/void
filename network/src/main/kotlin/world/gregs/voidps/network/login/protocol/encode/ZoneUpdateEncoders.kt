@@ -36,7 +36,7 @@ fun Client.send(update: ZoneUpdate) {
 suspend fun ByteWriteChannel.encode(update: ZoneUpdate) {
     when (update) {
         is FloorItemAddition -> floorItemAddition(update)
-        is world.gregs.voidps.network.login.protocol.encode.zone.FloorItemRemoval -> floorItemRemoval(update) // update
+        is FloorItemRemoval -> floorItemRemoval(update) // update
         is FloorItemReveal -> floorItemReveal(update) // update
         is FloorItemUpdate -> floorItemUpdate(update) // update
         is GraphicAddition -> graphicAddition(update)
@@ -55,7 +55,7 @@ private suspend fun ByteWriteChannel.floorItemAddition(update: FloorItemAddition
     writeByte(offset(update.tile))
 }
 
-private suspend fun ByteWriteChannel.floorItemRemoval(update: world.gregs.voidps.network.login.protocol.encode.zone.FloorItemRemoval) {
+private suspend fun ByteWriteChannel.floorItemRemoval(update: FloorItemRemoval) {
     writeShortAddLittle(update.id)
     writeByteSubtract(offset(update.tile))
 }

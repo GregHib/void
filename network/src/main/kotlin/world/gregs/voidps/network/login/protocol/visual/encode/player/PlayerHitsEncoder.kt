@@ -2,9 +2,10 @@ package world.gregs.voidps.network.login.protocol.visual.encode.player
 
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
+import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
 import world.gregs.voidps.network.login.protocol.visual.VisualMask.PLAYER_HITS_MASK
 
-class PlayerHitsEncoder : world.gregs.voidps.network.login.protocol.visual.VisualEncoder<PlayerVisuals>(PLAYER_HITS_MASK) {
+class PlayerHitsEncoder : VisualEncoder<PlayerVisuals>(PLAYER_HITS_MASK) {
 
     override fun encode(writer: Writer, visuals: PlayerVisuals, index: Int) {
         val (damage, player, other) = visuals.hits

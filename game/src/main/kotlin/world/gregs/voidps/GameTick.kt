@@ -33,6 +33,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.visual.NPCVisuals
 import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
+import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
 import world.gregs.voidps.network.login.protocol.visual.VisualMask.NPC_FORCE_CHAT_MASK
 import world.gregs.voidps.network.login.protocol.visual.VisualMask.NPC_WATCH_MASK
 import world.gregs.voidps.network.login.protocol.visual.VisualMask.PLAYER_FORCE_CHAT_MASK
@@ -127,5 +128,5 @@ private fun npcVisualEncoders() = castOf<NPCVisuals>(
 )
 
 @Suppress("UNCHECKED_CAST")
-private fun <T : Visuals> castOf(vararg encoders: world.gregs.voidps.network.login.protocol.visual.VisualEncoder<out Visuals>) = encoders
-    .map { it as world.gregs.voidps.network.login.protocol.visual.VisualEncoder<T> }
+private fun <T : Visuals> castOf(vararg encoders: VisualEncoder<out Visuals>) = encoders
+    .map { it as VisualEncoder<T> }

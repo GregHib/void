@@ -11,7 +11,7 @@ data class QuickChatPublic(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as world.gregs.voidps.network.client.instruction.QuickChatPublic
+        other as QuickChatPublic
 
         if (script != other.script) return false
         if (file != other.file) return false
