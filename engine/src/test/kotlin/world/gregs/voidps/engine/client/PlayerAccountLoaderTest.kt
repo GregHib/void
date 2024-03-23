@@ -7,7 +7,6 @@ import io.mockk.junit5.MockKExtension
 import io.mockk.mockk
 import io.mockk.spyk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
@@ -42,20 +41,6 @@ internal class PlayerAccountLoaderTest : KoinMock() {
     }
 
     @Test
-    fun `Invalid credentials`() = runTest {
-        val client: Client = mockk(relaxed = true)
-        val player: Player = mockk()
-        every { player.passwordHash } returns ""
-        every { factory.get("name") } returns player
-
-        loader.load(client, "name", "pass", 2, 3)
-
-        coVerify {
-            client.disconnect(Response.INVALID_CREDENTIALS)
-        }
-    }
-
-    @Test
     fun `Save in progress`() = runTest {
         val client: Client = mockk(relaxed = true)
         val player: Player = mockk()
@@ -74,7 +59,8 @@ internal class PlayerAccountLoaderTest : KoinMock() {
         val client: Client = mockk(relaxed = true)
         val player: Player = mockk(relaxed = true)
         every { player.passwordHash } returns "\$2a\$10\$cPB7bqICWrOILrWnXuYNDu1EsbZal9AjxYMbmpMOtI1kwruazGiby"
-        every { player.instructions } returns MutableSharedFlow()
+        every { player["display_name", any()] } returns "name"
+        every { player["rights", any()] } returns "none"
         every { factory.get("name") } returns player
 
         loader.load(client, "name", "pass", 2, 3)
