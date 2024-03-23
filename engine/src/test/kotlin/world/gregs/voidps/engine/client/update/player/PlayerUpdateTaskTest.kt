@@ -54,7 +54,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val entities = mockk<PlayerTrackingSet>(relaxed = true)
         every { player.viewport } returns viewport
         every { viewport.players } returns entities
-        mockkStatic("world.gregs.voidps.network.encode.PlayerUpdateEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.PlayerUpdateEncoderKt")
         val client: Client = mockk(relaxed = true)
         every { player.client } returns client
         every { client.updatePlayers(any(), any()) } just Runs

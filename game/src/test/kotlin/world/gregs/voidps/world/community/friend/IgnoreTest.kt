@@ -22,10 +22,10 @@ internal class IgnoreTest : WorldTest() {
 
     @BeforeAll
     fun start() {
-        mockkStatic("world.gregs.voidps.network.encode.IgnoreEncoderKt")
-        mockkStatic("world.gregs.voidps.network.encode.ChatEncoderKt")
-        mockkStatic("world.gregs.voidps.network.encode.ClanEncoderKt")
-        mockkStatic("world.gregs.voidps.network.encode.FriendsEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.IgnoreEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ChatEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ClanEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.FriendsEncoderKt")
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
     }
 

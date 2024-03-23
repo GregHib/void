@@ -30,8 +30,8 @@ internal class ClanTest : WorldTest() {
     @BeforeEach
     fun start() {
         huffman = get()
-        mockkStatic("world.gregs.voidps.network.encode.ChatEncoderKt")
-        mockkStatic("world.gregs.voidps.network.encode.ClanEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ChatEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ClanEncoderKt")
     }
 
     @Test

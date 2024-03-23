@@ -21,7 +21,7 @@ internal class FriendTest : WorldTest() {
     @BeforeAll
     fun start() {
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
-        mockkStatic("world.gregs.voidps.network.encode.FriendsEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.FriendsEncoderKt")
     }
 
     @Test

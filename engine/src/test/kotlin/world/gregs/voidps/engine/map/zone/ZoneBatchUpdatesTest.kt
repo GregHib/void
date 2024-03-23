@@ -39,8 +39,8 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
         player = Player()
         client = mockk(relaxed = true)
         update = mockk(relaxed = true)
-        mockkStatic("world.gregs.voidps.network.encode.ZoneEncodersKt")
-        mockkStatic("world.gregs.voidps.network.encode.ZoneUpdateEncodersKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ZoneEncodersKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ZoneUpdateEncodersKt")
         mockkStatic("world.gregs.voidps.engine.entity.character.player.PlayerVisualsKt")
         every { update.size } returns 2
         player.client = client

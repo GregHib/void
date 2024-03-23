@@ -31,8 +31,8 @@ internal class LootShareTest : WorldTest() {
     fun start() {
         setRandom(Random)
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
-        mockkStatic("world.gregs.voidps.network.encode.ChatEncoderKt")
-        mockkStatic("world.gregs.voidps.network.encode.ClanEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ChatEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ClanEncoderKt")
     }
 
     @Test

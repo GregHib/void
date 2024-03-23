@@ -27,7 +27,7 @@ internal class PrivateChatStatusTest : WorldTest() {
 
     @BeforeEach
     fun start() {
-        mockkStatic("world.gregs.voidps.network.encode.FriendsEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.FriendsEncoderKt")
         runBlocking(Dispatchers.Default) {
             player = createClient("player")
             friend = createClient("friend")

@@ -19,7 +19,7 @@ internal class PlayerOptionsTest {
         client = mockk(relaxed = true)
         every { player.client } returns client
         options = PlayerOptions(player)
-        mockkStatic("world.gregs.voidps.network.encode.ContextMenuOptionEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ContextMenuOptionEncoderKt")
         every { client.contextMenuOption(any(), any(), any(), any()) } just Runs
     }
 

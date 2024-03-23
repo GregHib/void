@@ -26,10 +26,10 @@ internal class VariableDefinitionTest {
             "values" to listOf("First", "Second")
         )
         client = mockk(relaxed = true)
-        mockkStatic("world.gregs.voidps.network.encode.VarpEncoderKt")
-        mockkStatic("world.gregs.voidps.network.encode.VarbitEncoderKt")
-        mockkStatic("world.gregs.voidps.network.encode.VarcEncoderKt")
-        mockkStatic("world.gregs.voidps.network.encode.VarcStrEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.VarpEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.VarbitEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.VarcEncoderKt")
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.VarcStrEncoderKt")
     }
 
     @Test
