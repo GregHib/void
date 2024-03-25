@@ -21,5 +21,9 @@ component_management:
       name: Engine
       paths:
         - engine/
+    - component_id: network_module
+      name: Network
+      paths:
+        - network/
 github_checks:
   annotations: false
