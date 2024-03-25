@@ -4,7 +4,9 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.withContext
-import world.gregs.voidps.engine.data.PlayerAccounts
+import world.gregs.voidps.engine.data.AccountManager
+import world.gregs.voidps.engine.data.AccountStorage
+import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.IndexAllocator
@@ -23,7 +25,9 @@ import world.gregs.voidps.network.login.protocol.encode.login
  */
 class PlayerAccountLoader(
     private val queue: ConnectionQueue,
-    private val accounts: PlayerAccounts,
+    private val storage: AccountStorage,
+    private val accounts: AccountManager,
+    private val saveQueue: SaveQueue,
     private val accountDefinitions: AccountDefinitions,
     private val indices: IndexAllocator,
     private val gameContext: CoroutineDispatcher
@@ -43,12 +47,12 @@ class PlayerAccountLoader(
      */
     override suspend fun load(client: Client, username: String, passwordHash: String, index: Int, displayMode: Int): MutableSharedFlow<Instruction>? {
         try {
-            val saving = accounts.saving(username)
+            val saving = saveQueue.saving(username)
             if (saving) {
                 client.disconnect(Response.ACCOUNT_ONLINE)
                 return null
             }
-            val player = accounts.get(username) ?: accounts.create(username, passwordHash)
+            val player = storage.load(username)?.toPlayer() ?: accounts.create(username, passwordHash)
             player.index = index
             logger.info { "Player $username loaded and queued for login." }
             connect(player, client, displayMode)

@@ -14,11 +14,12 @@ import world.gregs.voidps.engine.timedLoad
 /**
  * Stores data about player accounts whether they're online or offline
  */
-class AccountDefinitions {
-
-    private val definitions: MutableMap<String, AccountDefinition> = Object2ObjectOpenHashMap()
-    private val displayNames: MutableMap<String, String> = Object2ObjectOpenHashMap()
+class AccountDefinitions(
+    private val definitions: MutableMap<String, AccountDefinition> = Object2ObjectOpenHashMap(),
+    private val displayNames: MutableMap<String, String> = Object2ObjectOpenHashMap(),
     private val clans: MutableMap<String, Clan> = Object2ObjectOpenHashMap()
+) {
+
 
     fun add(player: Player) {
         displayNames[player.accountName] = player.name
@@ -44,12 +45,6 @@ class AccountDefinitions {
         definition.previousName = previousDisplayName
         displayNames[accountName] = newName
     }
-
-    fun account(display: String) = getValue(display).accountName
-
-    fun password(display: String) = getValue(display).passwordHash
-
-    fun display(account: String) = displayNames[account]
 
     fun clan(displayName: String) = clans[displayName]
 

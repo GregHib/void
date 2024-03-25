@@ -23,7 +23,7 @@ import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.data.PlayerAccounts
+import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -96,7 +96,7 @@ abstract class WorldTest : KoinTest {
     }
 
     fun createPlayer(name: String, tile: Tile = Tile.EMPTY): Player {
-        val accounts: PlayerAccounts = get()
+        val accounts: AccountManager = get()
         val index = players.indexer.obtain()!!
         val player = Player(index = index, tile = tile, accountName = name, passwordHash = "")
         accounts.initPlayer(player)

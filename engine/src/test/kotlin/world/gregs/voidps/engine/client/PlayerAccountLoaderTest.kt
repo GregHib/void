@@ -2,58 +2,103 @@ package world.gregs.voidps.engine.client
 
 import io.mockk.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.data.PlayerAccounts
+import world.gregs.voidps.engine.data.AccountManager
+import world.gregs.voidps.engine.data.AccountStorage
+import world.gregs.voidps.engine.data.PlayerSave
+import world.gregs.voidps.engine.data.SaveQueue
+import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.network.Response
 import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.login.protocol.encode.login
+import world.gregs.voidps.type.Tile
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class PlayerAccountLoaderTest : KoinMock() {
 
     private lateinit var queue: ConnectionQueue
-    private lateinit var accounts: PlayerAccounts
+    private lateinit var storage: AccountStorage
+    private lateinit var saveQueue: SaveQueue
+    private lateinit var accounts: AccountManager
     private lateinit var definitions: AccountDefinitions
     private lateinit var loader: PlayerAccountLoader
+    private var playerSave: PlayerSave? = null
 
     @BeforeEach
     fun setup() {
+        playerSave = null
         queue = mockk(relaxed = true)
-        accounts = mockk(relaxed = true)
-        definitions = AccountDefinitions()
+        storage = object : AccountStorage {
+            override fun names(): Map<String, AccountDefinition> = emptyMap()
+
+            override fun clans(): Map<String, Clan> = emptyMap()
+
+            override fun save(accounts: List<PlayerSave>) {
+            }
+
+            override fun exists(accountName: String): Boolean {
+                return false
+            }
+
+            override fun load(accountName: String): PlayerSave? {
+                return playerSave
+            }
+        }
+        saveQueue = SaveQueue(storage, TestCoroutineDispatcher())
+        definitions = AccountDefinitions(mutableMapOf("name" to AccountDefinition("name", "oldName", "", "hash")))
         val indexer = IndexAllocator(10)
-        loader = PlayerAccountLoader(queue, accounts, definitions, indexer, UnconfinedTestDispatcher())
+        accounts = mockk(relaxed = true)
+        loader = PlayerAccountLoader(queue, storage, accounts, saveQueue, definitions, indexer, UnconfinedTestDispatcher())
     }
 
     @Test
-    fun `Save in progress`() = runTest {
-        val client: Client = mockk(relaxed = true)
-        every { accounts.saving("name") } returns true
-
-        loader.load(client, "name", "pass", 2, 3)
-
-        coVerify {
-            client.disconnect(Response.ACCOUNT_ONLINE)
+    fun `Obtain index`() {
+        repeat(10) {
+            assertEquals(it + 1, loader.assignIndex("name"))
         }
+        assertNull(loader.assignIndex("name"))
+    }
+
+    @Test
+    fun `Get password`() {
+        assertEquals("hash", loader.password("name"))
+        assertNull(loader.password("name2"))
     }
 
     @Test
     fun `Successful login`() = runTest {
         val client: Client = mockk(relaxed = true)
-        val player = Player(accountName = "name", passwordHash = "\$2a\$10\$cPB7bqICWrOILrWnXuYNDu1EsbZal9AjxYMbmpMOtI1kwruazGiby", variables = mutableMapOf("display_name" to "name"))
-        every { accounts.get("name") } returns player
+        playerSave = PlayerSave("name", "hash", Tile.EMPTY, doubleArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), emptyMap(), emptyMap(), emptyMap(), emptyList())
         coEvery { queue.await() } just Runs
 
-        loader.load(client, "name", "pass", 2, 3)
+        val instructions = loader.load(client, "name", "pass", 2, 3)
+        assertNotNull(instructions)
+    }
+
+    @Test
+    fun `Connect initiates and awaits spawn`() = runTest {
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.LoginEncoderKt")
+        val client: Client = mockk(relaxed = true)
+        val player = Player(index = 4, accountName = "name", passwordHash = "\$2a\$10\$cPB7bqICWrOILrWnXuYNDu1EsbZal9AjxYMbmpMOtI1kwruazGiby", variables = mutableMapOf("display_name" to "name"))
+        coEvery { queue.await() } just Runs
+
+        loader.connect(player, client, 2)
 
         coVerify {
-            accounts.spawn(player, client, 3)
+            queue.await()
+            client.login("name", 4, 0, membersWorld = false)
+            accounts.spawn(player, client, 2)
         }
     }
 

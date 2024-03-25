@@ -8,7 +8,8 @@ import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
-import world.gregs.voidps.engine.data.PlayerAccounts
+import world.gregs.voidps.engine.data.AccountManager
+import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.data.json.FileStorage
 import world.gregs.voidps.engine.data.sql.PostgresStorage
@@ -37,9 +38,15 @@ val engineModule = module {
     single { FloorItemTracking(get(), get(), get()) }
     single { Hunting(get(), get(), get(), get(), get(), get()) }
     single {
-        PlayerAccounts(get(), get(), get(), get(), get(), get(), Tile(
-            getIntProperty("homeX", 0), getIntProperty("homeY", 0), getIntProperty("homeLevel", 0)
-        ), get())
+        SaveQueue(get())
+    }
+    single {
+        val homeTile = Tile(
+            x = getIntProperty("homeX", 0),
+            y = getIntProperty("homeY", 0),
+            level = getIntProperty("homeLevel", 0)
+        )
+        AccountManager(get(), get(), get(), get(), get(), get(), homeTile, get(), get())
     }
     // IO
     single { Yaml(YamlReaderConfiguration(2, 8, VERY_FAST_LOAD_FACTOR)) }
@@ -60,7 +67,7 @@ val engineModule = module {
         }
         FileStorage(get(), saves, get(), getProperty("experienceRate", "1.0").toDouble())
     } }
-    single { PlayerAccountLoader(get(), get(), get(), get<Players>().indexer, Contexts.Game) }
+    single { PlayerAccountLoader(get(), get(), get(), get(), get(), get<Players>().indexer, Contexts.Game) }
     // Map
     single { ZoneBatchUpdates() }
     single { DynamicZones(get(), get(), get()) }

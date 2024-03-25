@@ -1,13 +1,8 @@
 package world.gregs.voidps.engine.data
 
-import com.github.michaelbull.logging.InlineLogger
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
-import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.data.definition.*
@@ -31,11 +26,8 @@ import world.gregs.voidps.network.login.protocol.encode.logout
 import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import java.util.concurrent.ConcurrentHashMap
-import kotlin.coroutines.CoroutineContext
-import kotlin.system.measureTimeMillis
 
-class PlayerAccounts(
+class AccountManager(
     private val interfaceDefinitions: InterfaceDefinitions,
     private val inventoryDefinitions: InventoryDefinitions,
     private val itemDefinitions: ItemDefinitions,
@@ -43,45 +35,10 @@ class PlayerAccounts(
     private val collisionStrategyProvider: CollisionStrategyProvider,
     private val variableDefinitions: VariableDefinitions,
     private val homeTile: Tile,
-    private val storage: AccountStorage
-) : Runnable, CoroutineScope {
-    override val coroutineContext: CoroutineContext = Dispatchers.IO
+    private val saveQueue: SaveQueue,
+    private val connectionQueue: ConnectionQueue
+) {
     private val validItems = ValidItemRestriction(itemDefinitions)
-    private val pending = ConcurrentHashMap<String, PlayerSave>()
-    private val logger = InlineLogger()
-
-    override fun run() {
-        if (pending.isEmpty()) {
-            return
-        }
-        val accounts = pending.values.toList()
-        launch {
-            try {
-                val took = measureTimeMillis {
-                    storage.save(accounts)
-                    for (account in accounts) {
-                        pending.remove(account.name)
-                    }
-                }
-                logger.info { "Saved ${accounts.size} ${"account".plural(accounts.size)} in ${took}ms" }
-            } catch (e: Exception) {
-                logger.error(e) { "Error saving players!" }
-            }
-        }
-    }
-
-    fun save(player: Player) {
-        if (player.contains("bot")) {
-            return
-        }
-        pending[player.accountName] = player.copy()
-    }
-
-    fun saving(name: String) = pending.containsKey(name)
-
-    fun get(name: String): Player? {
-        return storage.load(name)?.toPlayer()
-    }
 
     fun create(name: String, passwordHash: String): Player {
         return Player(tile = homeTile, accountName = name, passwordHash = passwordHash).apply {
@@ -147,8 +104,7 @@ class PlayerAccounts(
             }
         }
         player.client?.disconnect()
-        val queue: ConnectionQueue = get()
-        queue.disconnect {
+        connectionQueue.disconnect {
             val players: Players = get()
             World.queue("logout", 1) {
                 players.remove(player)
@@ -165,7 +121,7 @@ class PlayerAccounts(
             player.queue.logout()
             player.softTimers.stopAll()
             player.timers.stopAll()
-            save(player)
+            saveQueue.save(player)
         }
     }
 }
