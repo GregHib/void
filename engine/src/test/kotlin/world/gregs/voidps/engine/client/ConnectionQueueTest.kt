@@ -1,39 +1,75 @@
 package world.gregs.voidps.engine.client
 
-import io.mockk.spyk
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.koin.dsl.module
-import world.gregs.voidps.engine.getIntProperty
-import world.gregs.voidps.engine.script.KoinMock
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
-@OptIn(ExperimentalCoroutinesApi::class)
-internal class ConnectionQueueTest : KoinMock() {
+internal class ConnectionQueueTest {
 
     private lateinit var queue: ConnectionQueue
 
-    override val modules = listOf(
-        module {
-            single {
-                ConnectionQueue(getIntProperty("connectionPerTickCap", 1))
-            }
-        }
-    )
-
     @BeforeEach
     fun setup() {
-        queue = spyk(ConnectionQueue(25))
+        queue = ConnectionQueue(2)
     }
 
     @Test
-    fun `Await login`() = runTest(UnconfinedTestDispatcher()) {
-        launch {
+    fun `Disconnect on next run`() = runTest {
+        var called = false
+        queue.disconnect {
+            called = true
+        }
+
+        queue.run()
+
+        assertTrue(called)
+    }
+
+    @Test
+    fun `Await for next run`() = runTest {
+        var called = false
+        val job = launch(Dispatchers.Unconfined) {
             queue.await()
+            called = true
         }
         queue.run()
+        assertTrue(called)
+        assertTrue(job.isCompleted)
+    }
+
+    @Test
+    fun `Awaits resumed are limited`() = runTest {
+        val coroutines = (0 until 3).map {
+            launch(Dispatchers.Unconfined) {
+                queue.await()
+            }
+        }
+        queue.run()
+        assertEquals(2, coroutines.count { it.isCompleted })
+        coroutines.forEach { it.cancelAndJoin() }
+    }
+
+    @Test
+    fun `Disconnections execute before await`() = runTest {
+        var calls = 0
+        queue.disconnect {
+            assertEquals(0, calls)
+            calls++
+        }
+        val job = launch(Dispatchers.Unconfined) {
+            queue.await()
+            assertEquals(1, calls)
+            calls++
+        }
+
+        queue.run()
+
+        assertEquals(2, calls)
+        assertTrue(job.isCompleted)
     }
 }

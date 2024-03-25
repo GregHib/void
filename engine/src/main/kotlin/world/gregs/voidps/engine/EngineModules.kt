@@ -46,7 +46,7 @@ val engineModule = module {
             y = getIntProperty("homeY", 0),
             level = getIntProperty("homeLevel", 0)
         )
-        AccountManager(get(), get(), get(), get(), get(), get(), homeTile, get(), get())
+        AccountManager(get(), get(), get(), get(), get(), get(), homeTile, get(), get(), get(), get())
     }
     // IO
     single { Yaml(YamlReaderConfiguration(2, 8, VERY_FAST_LOAD_FACTOR)) }

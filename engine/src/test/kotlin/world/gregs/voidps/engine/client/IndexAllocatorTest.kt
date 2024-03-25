@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.IndexAllocator
 
 internal class IndexAllocatorTest {
 
-    lateinit var allocator: IndexAllocator
+    private lateinit var allocator: IndexAllocator
 
     @BeforeEach
     fun setup() {

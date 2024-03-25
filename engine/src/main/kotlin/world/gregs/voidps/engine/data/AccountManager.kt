@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.mode.move.AreaExited
 import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.restrict.ValidItemRestriction
 import world.gregs.voidps.engine.inv.stack.DependentOnItem
@@ -36,7 +35,9 @@ class AccountManager(
     private val variableDefinitions: VariableDefinitions,
     private val homeTile: Tile,
     private val saveQueue: SaveQueue,
-    private val connectionQueue: ConnectionQueue
+    private val connectionQueue: ConnectionQueue,
+    private val players: Players,
+    private val areaDefinitions: AreaDefinitions
 ) {
     private val validItems = ValidItemRestriction(itemDefinitions)
 
@@ -84,8 +85,7 @@ class AccountManager(
         }
         player.emit(RegionLoad)
         player.emit(Spawn)
-        val definitions = get<AreaDefinitions>()
-        for (def in definitions.get(player.tile.zone)) {
+        for (def in areaDefinitions.get(player.tile.zone)) {
             if (player.tile in def.area) {
                 player.emit(AreaEntered(player, def.name, def.tags, def.area))
             }
@@ -99,20 +99,18 @@ class AccountManager(
         player["logged_out"] = true
         if (safely) {
             player.client?.logout()
-            player.strongQueue("logout") {
+            player.strongQueue("logout", onCancel = null) {
                 // Make sure nothing else starts
             }
         }
         player.client?.disconnect()
         connectionQueue.disconnect {
-            val players: Players = get()
             World.queue("logout", 1) {
                 players.remove(player)
                 players.removeIndex(player)
                 players.releaseIndex(player)
             }
-            val definitions = get<AreaDefinitions>()
-            for (def in definitions.get(player.tile.zone)) {
+            for (def in areaDefinitions.get(player.tile.zone)) {
                 if (player.tile in def.area) {
                     player.emit(AreaExited(player, def.name, def.tags, def.area))
                 }

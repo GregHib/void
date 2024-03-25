@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.network.Response
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.encode.login
 import world.gregs.voidps.type.Tile
@@ -84,6 +85,16 @@ internal class PlayerAccountLoaderTest : KoinMock() {
 
         val instructions = loader.load(client, "name", "pass", 2, 3)
         assertNotNull(instructions)
+    }
+
+    @Test
+    fun `Can't login if account is being saved`() = runTest {
+        saveQueue.save(Player(accountName = "name"))
+        val client: Client = mockk(relaxed = true)
+
+        val instructions = loader.load(client, "name", "pass", 2, 3)
+        assertNull(instructions)
+        coVerify { client.disconnect(Response.ACCOUNT_ONLINE) }
     }
 
     @Test
