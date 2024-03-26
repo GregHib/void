@@ -82,11 +82,11 @@ internal class CharacterListTest {
 
     @Test
     fun `Allocate index`() {
-        repeat(10) {
+        repeat(9) {
             val character: Character = mockk(relaxed = true)
-            every { character.index } returns it
+            every { character.index } returns it + 1
             list.add(character)
-            assertEquals(it, list.index())
+            assertEquals(it + 1, list.index())
         }
         val character: Character = mockk(relaxed = true)
         every { character.index } returns 6

@@ -8,7 +8,7 @@ abstract class CharacterList<C : Character>(
 ) : MutableList<C> by delegate {
 
     abstract val indexArray: Array<C?>
-    private var indexer = 0
+    private var indexer = 1
 
     override fun add(element: C): Boolean {
         if (indexArray[element.index] != null) {
@@ -30,7 +30,7 @@ abstract class CharacterList<C : Character>(
         if (indexer < indexArray.size) {
             return indexer++
         }
-        for (i in indexArray.indices) {
+        for (i in 1 until indexArray.size) {
             if (indexArray[i] == null) {
                 return i
             }
