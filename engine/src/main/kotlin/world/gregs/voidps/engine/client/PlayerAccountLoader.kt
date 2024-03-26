@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.network.Response
 import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.login.AccountLoader
 import world.gregs.voidps.network.login.protocol.encode.login
@@ -65,7 +66,7 @@ class PlayerAccountLoader(
     }
 
     suspend fun connect(player: Player, client: Client? = null, displayMode: Int = 0) {
-        accounts.initPlayer(player)
+        accounts.setup(player)
         withContext(gameContext) {
             queue.await()
             logger.info { "${if (client != null) "Player" else "Bot"} logged in ${player.accountName} index ${player.index}." }

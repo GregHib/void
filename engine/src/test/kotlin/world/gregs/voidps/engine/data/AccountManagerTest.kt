@@ -10,7 +10,6 @@ import org.koin.dsl.module
 import org.koin.test.get
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.definition.*
@@ -21,6 +20,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.network.login.protocol.encode.logout
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
@@ -79,7 +79,7 @@ class AccountManagerTest : KoinMock() {
     @Test
     fun `Initialise player`() {
         val player = Player(0)
-        manager.initPlayer(player)
+        manager.setup(player)
         assertNotNull(player.visuals)
         assertNotNull(player.interfaces)
         assertNotNull(player.interfaceOptions)

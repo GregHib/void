@@ -1,6 +1,5 @@
 package world.gregs.voidps
 
-import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.CharacterTask
@@ -31,6 +30,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.network.login.protocol.npcVisualEncoders
 import world.gregs.voidps.network.login.protocol.playerVisualEncoders
 

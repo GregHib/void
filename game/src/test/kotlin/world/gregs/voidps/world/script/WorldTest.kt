@@ -19,7 +19,6 @@ import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
-import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
@@ -44,6 +43,7 @@ import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.gameModule
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.script.loadScripts
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
@@ -99,7 +99,7 @@ abstract class WorldTest : KoinTest {
         val accounts: AccountManager = get()
         val index = players.indexer.obtain()!!
         val player = Player(index = index, tile = tile, accountName = name, passwordHash = "")
-        accounts.initPlayer(player)
+        accounts.setup(player)
         accountDefs.add(player)
         tick()
         player["creation"] = -1

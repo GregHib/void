@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.data
 
-import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.update.view.Viewport
@@ -21,6 +20,7 @@ import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.zone.RegionLoad
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.network.login.protocol.encode.logout
 import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
 import world.gregs.voidps.type.Direction
@@ -48,7 +48,7 @@ class AccountManager(
         }
     }
 
-    fun initPlayer(player: Player) {
+    fun setup(player: Player) {
         player.visuals = PlayerVisuals(player.index, player.body)
         player.interfaces = Interfaces(player, player.client, interfaceDefinitions)
         player.interfaceOptions = InterfaceOptions(player, interfaceDefinitions, inventoryDefinitions)

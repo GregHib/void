@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.client
+package world.gregs.voidps.network.client
 
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine

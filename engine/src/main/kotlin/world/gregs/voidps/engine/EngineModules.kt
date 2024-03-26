@@ -5,7 +5,6 @@ import org.koin.dsl.module
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
-import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.AccountManager
@@ -24,6 +23,7 @@ import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.zone.DynamicZones
+import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.type.Tile
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
