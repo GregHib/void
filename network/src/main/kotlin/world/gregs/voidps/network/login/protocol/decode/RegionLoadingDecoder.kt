@@ -8,7 +8,7 @@ import world.gregs.voidps.network.login.protocol.Decoder
 class RegionLoadingDecoder : Decoder(4) {
 
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
-        packet.readInt()//1057001181
+        packet.readInt() // 1057001181
     }
 
 }

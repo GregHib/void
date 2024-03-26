@@ -14,16 +14,16 @@ class InterfaceOnInterfaceDecoder : Decoder(16) {
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         val toPacked = packet.readInt()
         val fromPacked = packet.readUnsignedIntInverseMiddle()
-        val fromItem = packet.readShortAdd()
-        val from = packet.readShort().toInt()
-        val toItem = packet.readShortAdd()
-        val to = packet.readShort().toInt()
+        val fromSlot = packet.readShortAdd()
+        val fromItem = packet.readShort().toInt()
+        val toSlot = packet.readShortAdd()
+        val toItem = packet.readShort().toInt()
         instructions.emit(
             InteractInterfaceItem(
-                from,
-                to,
                 fromItem,
                 toItem,
+                fromSlot,
+                toSlot,
                 InterfaceDefinition.id(fromPacked),
                 InterfaceDefinition.componentId(fromPacked),
                 InterfaceDefinition.id(toPacked),

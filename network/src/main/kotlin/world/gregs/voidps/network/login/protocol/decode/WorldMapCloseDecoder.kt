@@ -8,6 +8,7 @@ import world.gregs.voidps.network.login.protocol.Decoder
 class WorldMapCloseDecoder : Decoder(4) {
 
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
+        packet.readInt()
     }
 
 }

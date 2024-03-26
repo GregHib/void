@@ -95,9 +95,9 @@ fun spawn() {
     GlobalScope.launch(Contexts.Game) {
         val name = "Bot ${++counter}"
         val bot = Player(tile = lumbridge.random(), accountName = name)
+        loader.connect(bot, if (TaskManager.DEBUG) DummyClient() else null)
         setAppearance(bot)
         bot.initBot()
-        loader.connect(bot, if (TaskManager.DEBUG) DummyClient() else null)
         if (bot.inventory.isEmpty()) {
             bot.inventory.add("coins", 10000)
         }

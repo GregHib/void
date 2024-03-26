@@ -9,7 +9,6 @@ import world.gregs.voidps.network.login.protocol.Decoder
 
 class InterfaceOptionDecoder(private val index: Int) : Decoder(8) {
 
-
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         val packed = packet.readInt()
         instructions.emit(InteractInterface(
