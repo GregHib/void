@@ -207,10 +207,12 @@ suspend fun ByteWriteChannel.writeName(displayName: String, responseName: String
     }
 }
 
+internal var random: Random = Random.Default
+
 suspend fun ByteWriteChannel.writeRandom() {
     // TODO shouldn't this be a hash? Of the username and message?
-    writeShort(Random.nextInt())
-    writeMedium(Random.nextInt())
+    writeShort(random.nextInt())
+    writeMedium(random.nextInt())
 }
 
 /**
