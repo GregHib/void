@@ -4,12 +4,15 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.buffer.read.BufferReader
+import java.io.File
 
 internal class HuffmanTest {
 
     private lateinit var huffman: Huffman
     private lateinit var result: ByteArray
     private lateinit var message: String
+    private val data = File("./src/test/resources/huffman.csv").readText()
+        .split(", ").map { it.toByte() }.toByteArray()
 
     @BeforeEach
     fun setup() {
@@ -73,25 +76,5 @@ internal class HuffmanTest {
 
     private fun assertDecompressed(offset: Int = 0) {
         assertEquals(message, decompress(offset))
-    }
-
-    companion object {
-        val data = ByteArray(256) { 22 }
-
-        init {
-            val array = byteArrayOf(16, 17, 7, 13, 13, 13, 16, 7, 10, 6, 16, 10, 11, 12, 12, 12, 12, 13, 13, 14, 14, 11, 14, 19, 15, 17, 8, 11, 9, 10, 10, 10, 10, 11, 10, 9, 7, 12, 11, 10, 10, 9, 10, 10, 12, 10, 9, 8, 12, 12, 9, 14, 8, 12, 17, 16, 17, 22, 13, 21, 4, 7, 6, 5, 3, 6, 6, 5, 4, 10, 7, 5, 6, 4, 4, 6, 10, 5, 4, 4, 5, 7, 6, 10, 6, 10, 22, 19, 22, 14)
-            for (i in array.indices) {
-                data[i + 37] = array[i]
-            }
-            data[6] = 21
-            data[9] = 20
-            data[13] = 21
-            data[32] = 3
-            data[33] = 8
-            data[35] = 16
-            data[247] = 21
-            data[249] = 21
-            data[253] = 21
-        }
     }
 }
