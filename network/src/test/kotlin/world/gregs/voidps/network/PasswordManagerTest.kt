@@ -96,11 +96,7 @@ class PasswordManagerTest {
             return accountMap[username]
         }
 
-        override suspend fun load(client: Client, username: String, passwordHash: String, index: Int, displayMode: Int): MutableSharedFlow<Instruction>? {
-            return null
-        }
-
-        override fun assignIndex(username: String): Int? {
+        override suspend fun load(client: Client, username: String, passwordHash: String, displayMode: Int): MutableSharedFlow<Instruction>? {
             return null
         }
     }

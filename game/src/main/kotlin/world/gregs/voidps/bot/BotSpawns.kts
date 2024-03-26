@@ -94,8 +94,7 @@ val loader: PlayerAccountLoader by inject()
 fun spawn() {
     GlobalScope.launch(Contexts.Game) {
         val name = "Bot ${++counter}"
-        val index = loader.assignIndex(name) ?: return@launch
-        val bot = Player(index = index, tile = lumbridge.random(), accountName = name)
+        val bot = Player(tile = lumbridge.random(), accountName = name)
         setAppearance(bot)
         bot.initBot()
         loader.connect(bot, if (TaskManager.DEBUG) DummyClient() else null)

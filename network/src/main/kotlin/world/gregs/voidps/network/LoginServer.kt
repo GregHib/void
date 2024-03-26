@@ -23,6 +23,7 @@ import java.util.concurrent.ConcurrentHashMap
 class LoginServer(
     private val protocol: Array<Decoder?>,
     private val revision: Int,
+    private val loginLimit: Int,
     private val modulus: BigInteger,
     private val private: BigInteger,
     private val accounts: AccountLoader,
@@ -84,7 +85,9 @@ class LoginServer(
         val password: String = rsa.readString()
         val xtea = decryptXtea(packet, isaacKeys)
         val username = xtea.readString()
-        val index = validate(write, username, password) ?: return
+        if (!validate(write, username, password)) {
+            return
+        }
         val client = createClient(write, isaacKeys, hostname)
         client.onDisconnected {
             online.remove(username)
@@ -92,25 +95,24 @@ class LoginServer(
         val passwordHash = passwordManager.encrypt(username, password)
         xtea.readUByte() // social login
         val displayMode = xtea.readUByte().toInt()
-        login(read, client, username, passwordHash, index, displayMode)
+        login(read, client, username, passwordHash, displayMode)
     }
 
-    suspend fun validate(write: ByteWriteChannel, username: String, password: String): Int? {
+    suspend fun validate(write: ByteWriteChannel, username: String, password: String): Boolean {
         val response = passwordManager.validate(username, password)
         if (response != Response.SUCCESS) {
             write.finish(response)
-            return null
+            return false
         }
         if (!online.add(username)) {
             write.finish(Response.ACCOUNT_ONLINE)
-            return null
+            return false
         }
-        val index = accounts.assignIndex(username)
-        if (index == null) {
+        if (online.size >= loginLimit) {
             write.finish(Response.WORLD_FULL)
-            return null
+            return false
         }
-        return index
+        return true
     }
 
     private fun createClient(write: ByteWriteChannel, isaacKeys: IntArray, hostname: String): Client {
@@ -128,9 +130,9 @@ class LoginServer(
         return ByteReadPacket(remaining)
     }
 
-    suspend fun login(read: ByteReadChannel, client: Client, username: String, passwordHash: String, index: Int, displayMode: Int) {
+    suspend fun login(read: ByteReadChannel, client: Client, username: String, passwordHash: String, displayMode: Int) {
         try {
-            val instructions = accounts.load(client, username, passwordHash, index, displayMode) ?: return
+            val instructions = accounts.load(client, username, passwordHash, displayMode) ?: return
             readPackets(client, instructions, read)
         } finally {
             client.exit()
@@ -156,7 +158,7 @@ class LoginServer(
             decoder.decode(instructions, packet)
         }
     }
-    
+
     companion object {
         private val logger = InlineLogger()
 
@@ -164,7 +166,8 @@ class LoginServer(
             val gameModulus = BigInteger(properties.getProperty("gameModulus"), 16)
             val gamePrivate = BigInteger(properties.getProperty("gamePrivate"), 16)
             val revision = properties.getProperty("revision").toInt()
-            return LoginServer(protocol, revision, gameModulus, gamePrivate, loader)
+            val maxPlayers = properties.getProperty("maxPlayers").toInt()
+            return LoginServer(protocol, revision, maxPlayers, gameModulus, gamePrivate, loader)
         }
     }
 }

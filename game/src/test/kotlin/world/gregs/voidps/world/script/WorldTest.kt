@@ -97,8 +97,7 @@ abstract class WorldTest : KoinTest {
 
     fun createPlayer(name: String, tile: Tile = Tile.EMPTY): Player {
         val accounts: AccountManager = get()
-        val index = players.indexer.obtain()!!
-        val player = Player(index = index, tile = tile, accountName = name, passwordHash = "")
+        val player = Player(tile = tile, accountName = name, passwordHash = "")
         accounts.setup(player)
         accountDefs.add(player)
         tick()

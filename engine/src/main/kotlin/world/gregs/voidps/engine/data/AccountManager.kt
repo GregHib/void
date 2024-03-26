@@ -48,7 +48,8 @@ class AccountManager(
         }
     }
 
-    fun setup(player: Player) {
+    fun setup(player: Player): Boolean {
+        player.index = players.index() ?: return false
         player.visuals = PlayerVisuals(player.index, player.body)
         player.interfaces = Interfaces(player, player.client, interfaceDefinitions)
         player.interfaceOptions = InterfaceOptions(player, interfaceDefinitions, inventoryDefinitions)
@@ -70,6 +71,7 @@ class AccountManager(
             accountDefinitions.add(player)
         }
         player.collision = collisionStrategyProvider.get(character = player)
+        return true
     }
 
     fun spawn(player: Player, client: Client? = null, displayMode: Int = 0) {

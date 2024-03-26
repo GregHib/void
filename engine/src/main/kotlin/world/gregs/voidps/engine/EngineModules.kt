@@ -67,7 +67,7 @@ val engineModule = module {
         }
         FileStorage(get(), saves, get(), getProperty("experienceRate", "1.0").toDouble())
     } }
-    single { PlayerAccountLoader(get(), get(), get(), get(), get(), get<Players>().indexer, Contexts.Game) }
+    single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
     // Map
     single { ZoneBatchUpdates() }
     single { DynamicZones(get(), get(), get()) }

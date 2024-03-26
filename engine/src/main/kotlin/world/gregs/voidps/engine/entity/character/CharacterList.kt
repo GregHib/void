@@ -9,7 +9,7 @@ abstract class CharacterList<C : Character>(
 ) : MutableList<C> by delegate {
 
     abstract val indexArray: Array<C?>
-    val indexer = IndexAllocator(capacity)
+    internal val indexer = IndexAllocator(capacity)
 
     override fun add(element: C): Boolean {
         if (indexArray[element.index] != null) {
@@ -25,6 +25,10 @@ abstract class CharacterList<C : Character>(
 
     fun index(element: C) {
         indexArray[element.index] = element
+    }
+
+    fun index(): Int? {
+        return indexer.obtain()
     }
 
     fun removeIndex(element: C) {

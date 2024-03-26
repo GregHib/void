@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
-import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.script.KoinMock
@@ -59,17 +58,8 @@ internal class PlayerAccountLoaderTest : KoinMock() {
         }
         saveQueue = SaveQueue(storage, TestCoroutineDispatcher())
         definitions = AccountDefinitions(mutableMapOf("name" to AccountDefinition("name", "oldName", "", "hash")))
-        val indexer = IndexAllocator(10)
         accounts = mockk(relaxed = true)
-        loader = PlayerAccountLoader(queue, storage, accounts, saveQueue, definitions, indexer, UnconfinedTestDispatcher())
-    }
-
-    @Test
-    fun `Obtain index`() {
-        repeat(10) {
-            assertEquals(it + 1, loader.assignIndex("name"))
-        }
-        assertNull(loader.assignIndex("name"))
+        loader = PlayerAccountLoader(queue, storage, accounts, saveQueue, definitions, UnconfinedTestDispatcher())
     }
 
     @Test
@@ -84,7 +74,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
         playerSave = PlayerSave("name", "hash", Tile.EMPTY, doubleArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), emptyMap(), emptyMap(), emptyMap(), emptyList())
         coEvery { queue.await() } just Runs
 
-        val instructions = loader.load(client, "name", "pass", 2, 3)
+        val instructions = loader.load(client, "name", "pass", 2)
         assertNotNull(instructions)
     }
 
@@ -93,7 +83,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
         saveQueue.save(Player(accountName = "name"))
         val client: Client = mockk(relaxed = true)
 
-        val instructions = loader.load(client, "name", "pass", 2, 3)
+        val instructions = loader.load(client, "name", "pass", 2)
         assertNull(instructions)
         coVerify { client.disconnect(Response.ACCOUNT_ONLINE) }
     }

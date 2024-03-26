@@ -33,7 +33,6 @@ internal class LoginServerTest {
     private lateinit var passwordManager: PasswordManager
     private lateinit var instructions: MutableSharedFlow<Instruction>
     private var client: Client? = null
-    private var index: Int? = 0
     private var password: String? = null
 
     private data class TestInstruction(val value: Int) : Instruction
@@ -41,15 +40,12 @@ internal class LoginServerTest {
     @BeforeEach
     fun setup() {
         client = null
-        index = 0
         password = null
         instructions = MutableSharedFlow(replay = 1)
         accounts = object : AccountLoader {
-            override fun assignIndex(username: String) = index
-
             override fun password(username: String) = password
 
-            override suspend fun load(client: Client, username: String, passwordHash: String, index: Int, displayMode: Int): MutableSharedFlow<Instruction>? {
+            override suspend fun load(client: Client, username: String, passwordHash: String, displayMode: Int): MutableSharedFlow<Instruction>? {
                 this@LoginServerTest.client = client
                 client.send(0) {
                     writeByte(Response.SUCCESS)
@@ -64,7 +60,7 @@ internal class LoginServerTest {
             }
         }
         passwordManager = PasswordManager(accounts)
-        server = LoginServer(protocol, 123, modulus, BigInteger("10001", 16), accounts, passwordManager)
+        server = LoginServer(protocol, 123, 10, modulus, BigInteger("10001", 16), accounts, passwordManager)
     }
 
     @TestFactory
@@ -219,6 +215,7 @@ internal class LoginServerTest {
         readChannel.close()
         delay(10)
         assertFalse(server.online.contains("username"))
+
     }
 
     @Test
@@ -226,16 +223,14 @@ internal class LoginServerTest {
         val readChannel = ByteChannel(autoFlush = true)
         val writeChannel = ByteChannel(autoFlush = true)
         accounts = object : AccountLoader {
-            override fun assignIndex(username: String) = 0
-
             override fun password(username: String) = null
 
-            override suspend fun load(client: Client, username: String, passwordHash: String, index: Int, displayMode: Int): MutableSharedFlow<Instruction>? {
+            override suspend fun load(client: Client, username: String, passwordHash: String, displayMode: Int): MutableSharedFlow<Instruction>? {
                 client.disconnect(Response.ACCOUNT_ONLINE)
                 return null
             }
         }
-        server = LoginServer(protocol, 123, modulus, BigInteger("10001", 16), accounts, passwordManager)
+        server = LoginServer(protocol, 123, 10, modulus, BigInteger("10001", 16), accounts, passwordManager)
         launch {
             server.connect(readChannel, writeChannel, "localhost")
         }
@@ -249,7 +244,7 @@ internal class LoginServerTest {
     fun `Disconnect client after first packet`() = runTest {
         val readChannel = ByteChannel(autoFlush = true)
         val writeChannel = ByteChannel(autoFlush = true)
-        server = LoginServer(protocol, 123, modulus, BigInteger("10001", 16), accounts, passwordManager)
+        server = LoginServer(protocol, 123, 10, modulus, BigInteger("10001", 16), accounts, passwordManager)
 
         launch {
             server.connect(readChannel, writeChannel, "localhost")
@@ -303,7 +298,7 @@ internal class LoginServerTest {
     fun `World full no index`() = runTest {
         val readChannel = ByteChannel(autoFlush = true)
         val writeChannel = ByteChannel(autoFlush = true)
-        index = null
+        server.online.addAll((0..10).map { it.toString() })
         launch {
             server.connect(readChannel, writeChannel, "localhost")
         }
@@ -349,6 +344,7 @@ internal class LoginServerTest {
         properties.setProperty("gameModulus", modulus.toString(16))
         properties.setProperty("gamePrivate", "10001")
         properties.setProperty("revision", "123")
+        properties.setProperty("maxPlayers", "10")
         server = LoginServer.load(properties, protocol, accounts)
         val readChannel = ByteChannel(autoFlush = true)
         val writeChannel = ByteChannel(autoFlush = true)
