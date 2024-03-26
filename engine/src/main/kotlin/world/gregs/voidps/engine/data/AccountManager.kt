@@ -110,7 +110,6 @@ class AccountManager(
             World.queue("logout", 1) {
                 players.remove(player)
                 players.removeIndex(player)
-                players.releaseIndex(player)
             }
             for (def in areaDefinitions.get(player.tile.zone)) {
                 if (player.tile in def.area) {

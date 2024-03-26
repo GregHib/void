@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
-class Players : CharacterList<Player>(MAX_PLAYERS) {
+class Players : CharacterList<Player>() {
 
     override val indexArray: Array<Player?> = arrayOfNulls(MAX_PLAYERS)
 

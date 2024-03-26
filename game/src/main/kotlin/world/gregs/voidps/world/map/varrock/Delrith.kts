@@ -258,7 +258,6 @@ npcOperate("*", "delrith") {
                 correct = false
                 npcs.remove(target)
                 npcs.removeIndex(target)
-                npcs.releaseIndex(target)
                 delay(2)
             } else {
                 delay(3)
@@ -271,7 +270,6 @@ npcOperate("*", "delrith") {
             delay(14)
             npcs.remove(target)
             npcs.removeIndex(target)
-            npcs.releaseIndex(target)
             statement("...back into the dark dimension from which he came.")
             destroyInstance(player)
             questComplete()

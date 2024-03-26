@@ -4,12 +4,11 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
 abstract class CharacterList<C : Character>(
-    capacity: Int,
     private val delegate: MutableList<C> = mutableListOf()
 ) : MutableList<C> by delegate {
 
     abstract val indexArray: Array<C?>
-    internal val indexer = IndexAllocator(capacity)
+    private var indexer = 0
 
     override fun add(element: C): Boolean {
         if (indexArray[element.index] != null) {
@@ -27,8 +26,16 @@ abstract class CharacterList<C : Character>(
         indexArray[element.index] = element
     }
 
-    fun index(): Int? {
-        return indexer.obtain()
+    internal fun index(): Int? {
+        if (indexer < indexArray.size) {
+            return indexer++
+        }
+        for (i in indexArray.indices) {
+            if (indexArray[i] == null) {
+                return i
+            }
+        }
+        return null
     }
 
     fun removeIndex(element: C) {
@@ -41,15 +48,8 @@ abstract class CharacterList<C : Character>(
 
     fun indexed(index: Int): C? = indexArray[index]
 
-    fun releaseIndex(character: C) {
-        if (character.index > 0) {
-            indexer.release(character.index)
-        }
-    }
-
     override fun clear() {
         indexArray.fill(null)
         delegate.clear()
-        indexer.clear()
     }
 }

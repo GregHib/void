@@ -19,7 +19,7 @@ internal class CharacterListTest {
     @BeforeEach
     fun setup() {
         characterMap = mockk(relaxed = true)
-        list = object : CharacterList<Character>(10) {
+        list = object : CharacterList<Character>() {
             override val indexArray: Array<Character?> = arrayOfNulls(10)
             override fun get(tile: Tile): List<Character> {
                 return emptyList()
@@ -78,6 +78,23 @@ internal class CharacterListTest {
         list.clear()
 
         assertEquals(0, list.size)
+    }
+
+    @Test
+    fun `Allocate index`() {
+        repeat(10) {
+            val character: Character = mockk(relaxed = true)
+            every { character.index } returns it
+            list.add(character)
+            assertEquals(it, list.index())
+        }
+        val character: Character = mockk(relaxed = true)
+        every { character.index } returns 6
+        every { character.tile } returns Tile(1)
+        list.removeIndex(character)
+        assertEquals(6, list.index())
+        list.add(character)
+        assertNull(list.index())
     }
 
 }
