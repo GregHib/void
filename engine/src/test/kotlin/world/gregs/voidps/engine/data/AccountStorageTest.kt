@@ -12,73 +12,6 @@ abstract class AccountStorageTest {
 
     abstract val storage: AccountStorage
 
-    protected val save = PlayerSave(
-        name = "durial_321",
-        password = "abcdefghijklmnopqrstuvwxyz0123456789",
-        tile = Tile(2967, 3383, 0),
-        experience = DoubleArray(25) { 14000000.0 }.apply {
-            this[0] = 8771558.75
-            this[1] = 4385776.5
-            this[2] = 11805606.5
-            this[3] = 8771558.75
-            this[4] = 1986068.0
-            this[6] = 7944614.25
-        },
-        blocked = listOf(Skill.Prayer),
-        levels = IntArray(25) { 99 }.apply {
-            this[0] = 95
-            this[1] = 88
-            this[2] = 98
-            this[3] = 950
-            this[4] = 80
-            this[6] = 94
-        },
-        male = true,
-        looks = intArrayOf(2, 14, 460, 592, 368, 624, 437),
-        colours = intArrayOf(1, 93, 94, 4, 0),
-        variables = mapOf(
-            "display_name" to "Durial321",
-            "in_pvp" to true,
-            "in_wilderness" to true,
-            "unlocked_music_0" to listOf("scape_summon", "scape_theme"),
-            "unlocked_music_1" to listOf("harmony", "fanfare"),
-            "xp_counter" to 309664028.75,
-            "name_history" to emptyList<String>(),
-            "clan_name" to "falador fun",
-            "clan_talk_rank" to "Friend",
-            "coin_share_setting" to true,
-            "clan_loot_rank" to "Friend",
-            "clan_kick_rank" to "Owner",
-            "clan_join_rank" to "Owner",
-            "meaning" to 42,
-            "life" to 4124700000L,
-            "favourite_numbers" to listOf(11, 42, 64)
-        ),
-        inventories = mapOf(
-            "worn_equipment" to Array(14) { Item.EMPTY }.apply {
-                this[0] = Item("green_partyhat", 1, def = ItemDefinition.EMPTY)
-                this[1] = Item("fire_cape", 1, def = ItemDefinition.EMPTY)
-                this[2] = Item("amulet_of_fury", 1, def = ItemDefinition.EMPTY)
-                this[3] = Item("abyssal_whip", 1, def = ItemDefinition.EMPTY)
-                this[4] = Item("ahrims_robe_top", 1, def = ItemDefinition.EMPTY)
-                this[5] = Item("toktz_ket_xil", 1, def = ItemDefinition.EMPTY)
-                this[7] = Item("ahrims_robe_skirt", 1, def = ItemDefinition.EMPTY)
-                this[9] = Item("culinaromancers_gloves_10", 1, def = ItemDefinition.EMPTY)
-                this[10] = Item("rock_climbing_boots", 1, def = ItemDefinition.EMPTY)
-                this[12] = Item("berserker_ring", 1, def = ItemDefinition.EMPTY)
-            },
-            "inventory" to Array(28) { Item.EMPTY }.apply {
-                this[0] = Item("armadyl_godsword", def = ItemDefinition.EMPTY)
-                this[1] = Item("prayer_potion_4", def = ItemDefinition.EMPTY)
-            },
-            "bank" to Array(516) { Item.EMPTY }.apply {
-                this[0] = Item("coins", 420000000, def = ItemDefinition.EMPTY)
-            }
-        ),
-        friends = mapOf("Greg" to ClanRank.Friend),
-        ignores = listOf("Mod Murdoch")
-    )
-
     @Test
     fun `Store an account`() {
         storage.save(listOf(save))
@@ -260,5 +193,74 @@ abstract class AccountStorageTest {
     @Test
     fun `No accounts gives empty clans`() {
         assertTrue(storage.clans().isEmpty())
+    }
+
+    companion object {
+        val save = PlayerSave(
+            name = "durial_321",
+            password = "abcdefghijklmnopqrstuvwxyz0123456789",
+            tile = Tile(2967, 3383, 0),
+            experience = DoubleArray(25) { 14000000.0 }.apply {
+                this[0] = 8771558.75
+                this[1] = 4385776.5
+                this[2] = 11805606.5
+                this[3] = 8771558.75
+                this[4] = 1986068.0
+                this[6] = 7944614.25
+            },
+            blocked = listOf(Skill.Prayer),
+            levels = IntArray(25) { 99 }.apply {
+                this[0] = 95
+                this[1] = 88
+                this[2] = 98
+                this[3] = 950
+                this[4] = 80
+                this[6] = 94
+            },
+            male = true,
+            looks = intArrayOf(2, 14, 460, 592, 368, 624, 437),
+            colours = intArrayOf(1, 93, 94, 4, 0),
+            variables = mapOf(
+                "display_name" to "Durial321",
+                "in_pvp" to true,
+                "in_wilderness" to true,
+                "unlocked_music_0" to listOf("scape_summon", "scape_theme"),
+                "unlocked_music_1" to listOf("harmony", "fanfare"),
+                "xp_counter" to 309664028.75,
+                "name_history" to emptyList<String>(),
+                "clan_name" to "falador fun",
+                "clan_talk_rank" to "Friend",
+                "coin_share_setting" to true,
+                "clan_loot_rank" to "Friend",
+                "clan_kick_rank" to "Owner",
+                "clan_join_rank" to "Owner",
+                "meaning" to 42,
+                "life" to 4124700000L,
+                "favourite_numbers" to listOf(11, 42, 64)
+            ),
+            inventories = mapOf(
+                "worn_equipment" to Array(14) { Item.EMPTY }.apply {
+                    this[0] = Item("green_partyhat", 1, def = ItemDefinition.EMPTY)
+                    this[1] = Item("fire_cape", 1, def = ItemDefinition.EMPTY)
+                    this[2] = Item("amulet_of_fury", 1, def = ItemDefinition.EMPTY)
+                    this[3] = Item("abyssal_whip", 1, def = ItemDefinition.EMPTY)
+                    this[4] = Item("ahrims_robe_top", 1, def = ItemDefinition.EMPTY)
+                    this[5] = Item("toktz_ket_xil", 1, def = ItemDefinition.EMPTY)
+                    this[7] = Item("ahrims_robe_skirt", 1, def = ItemDefinition.EMPTY)
+                    this[9] = Item("culinaromancers_gloves_10", 1, def = ItemDefinition.EMPTY)
+                    this[10] = Item("rock_climbing_boots", 1, def = ItemDefinition.EMPTY)
+                    this[12] = Item("berserker_ring", 1, def = ItemDefinition.EMPTY)
+                },
+                "inventory" to Array(28) { Item.EMPTY }.apply {
+                    this[0] = Item("armadyl_godsword", def = ItemDefinition.EMPTY)
+                    this[1] = Item("prayer_potion_4", def = ItemDefinition.EMPTY)
+                },
+                "bank" to Array(516) { Item.EMPTY }.apply {
+                    this[0] = Item("coins", 420000000, def = ItemDefinition.EMPTY)
+                }
+            ),
+            friends = mapOf("Greg" to ClanRank.Friend),
+            ignores = listOf("Mod Murdoch")
+        )
     }
 }

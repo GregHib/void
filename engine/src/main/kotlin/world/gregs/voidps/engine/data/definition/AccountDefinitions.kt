@@ -20,7 +20,6 @@ class AccountDefinitions(
     private val clans: MutableMap<String, Clan> = Object2ObjectOpenHashMap()
 ) {
 
-
     fun add(player: Player) {
         displayNames[player.accountName] = player.name
         definitions[player.name] = AccountDefinition(player.accountName, player.name, player.previousName, player.passwordHash)

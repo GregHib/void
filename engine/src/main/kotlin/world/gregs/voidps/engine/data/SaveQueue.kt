@@ -12,6 +12,7 @@ import kotlin.system.measureTimeMillis
 
 class SaveQueue(
     private val storage: AccountStorage,
+    private val fallback: AccountStorage = storage,
     override val coroutineContext: CoroutineContext = Dispatchers.IO
 ) : Runnable, CoroutineScope {
     private val pending = ConcurrentHashMap<String, PlayerSave>()
@@ -33,6 +34,10 @@ class SaveQueue(
                 logger.info { "Saved ${accounts.size} ${"account".plural(accounts.size)} in ${took}ms" }
             } catch (e: Exception) {
                 logger.error(e) { "Error saving players!" }
+                fallback.save(accounts)
+                for (account in accounts) {
+                    pending.remove(account.name)
+                }
             }
         }
     }
@@ -45,5 +50,6 @@ class SaveQueue(
     }
 
     fun saving(name: String) = pending.containsKey(name)
+
 
 }

@@ -41,6 +41,18 @@ class AccountManagerTest : KoinMock() {
         val inventoryDefinitions = InventoryDefinitions(arrayOf(InventoryDefinition.EMPTY))
         inventoryDefinitions.ids = mapOf("worn_equipment" to 0)
         connectionQueue = ConnectionQueue(1)
+        val storage = object : AccountStorage {
+            override fun names(): Map<String, AccountDefinition> = emptyMap()
+
+            override fun clans(): Map<String, Clan> = emptyMap()
+
+            override fun save(accounts: List<PlayerSave>) {
+            }
+
+            override fun exists(accountName: String): Boolean = false
+
+            override fun load(accountName: String): PlayerSave? = null
+        }
         manager = AccountManager(
             interfaceDefinitions = get(),
             inventoryDefinitions = inventoryDefinitions,
@@ -49,18 +61,7 @@ class AccountManagerTest : KoinMock() {
             collisionStrategyProvider = CollisionStrategyProvider(),
             variableDefinitions = VariableDefinitions(),
             homeTile = Tile(1234, 5432),
-            saveQueue = SaveQueue(object : AccountStorage {
-                override fun names(): Map<String, AccountDefinition> = emptyMap()
-
-                override fun clans(): Map<String, Clan> = emptyMap()
-
-                override fun save(accounts: List<PlayerSave>) {
-                }
-
-                override fun exists(accountName: String): Boolean = false
-
-                override fun load(accountName: String): PlayerSave? = null
-            }),
+            saveQueue = SaveQueue(storage),
             connectionQueue = connectionQueue,
             areaDefinitions = get(),
             players = Players()

@@ -56,7 +56,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
                 return playerSave
             }
         }
-        saveQueue = SaveQueue(storage, TestCoroutineDispatcher())
+        saveQueue = SaveQueue(storage, coroutineContext = TestCoroutineDispatcher())
         definitions = AccountDefinitions(mutableMapOf("name" to AccountDefinition("name", "oldName", "", "hash")))
         accounts = mockk(relaxed = true)
         loader = PlayerAccountLoader(queue, storage, accounts, saveQueue, definitions, UnconfinedTestDispatcher())

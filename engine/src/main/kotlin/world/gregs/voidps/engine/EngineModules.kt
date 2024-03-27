@@ -8,6 +8,7 @@ import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.AccountManager
+import world.gregs.voidps.engine.data.SafeStorage
 import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.data.json.FileStorage
@@ -38,7 +39,7 @@ val engineModule = module {
     single { FloorItemTracking(get(), get(), get()) }
     single { Hunting(get(), get(), get(), get(), get(), get()) }
     single {
-        SaveQueue(get())
+        SaveQueue(get(), SafeStorage(getProperty("storageFailDirectory")))
     }
     single {
         val homeTile = Tile(
