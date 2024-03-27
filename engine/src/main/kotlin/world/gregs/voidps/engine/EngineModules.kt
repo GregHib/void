@@ -39,7 +39,7 @@ val engineModule = module {
     single { FloorItemTracking(get(), get(), get()) }
     single { Hunting(get(), get(), get(), get(), get(), get()) }
     single {
-        SaveQueue(get(), SafeStorage(getProperty("storageFailDirectory")))
+        SaveQueue(get(), SafeStorage(File(getProperty<String>("storageFailDirectory"))))
     }
     single {
         val homeTile = Tile(
