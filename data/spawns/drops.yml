@@ -465,6 +465,9 @@ cow_drop_table:
       drops:
         - id: clue_scroll_easy
           chance: 1
+          variable: easy_clue
+          equals: false
+          default: false
 chicken_drop_table:
   type: all
   drops:
@@ -484,6 +487,9 @@ chicken_drop_table:
       drops:
         - id: clue_scroll_easy
           chance: 1
+          variable: easy_clue
+          equals: false
+          default: false
 rat_drop_table:
   type: all
   drops:
@@ -642,9 +648,15 @@ king_black_dragon_drop_table:
           drops:
           - id: clue_scroll_elite
             chance: 4
+            variable: elite_clue
+            equals: false
+            default: false
           - type: all
             drops:
             - id: clue_scroll_hard
+              variable: hard_clue
+              equals: false
+              default: false
 haakon_the_champion_drop_table:
   type: all
   drops:
@@ -668,6 +680,9 @@ haakon_the_champion_drop_table:
           chance: 8
         - id: clue_scroll_easy
           chance: 2
+          variable: easy_clue
+          equals: false
+          default: false
         - id: uncut_sapphire
           chance: 2
         - id: uncut_emerald
