@@ -40,16 +40,25 @@ data class ItemDrop(
             if (map.containsKey("variable")) {
                 val variable = map["variable"] as String
                 if (map.containsKey("equals")) {
-                    when (val value = map["equals"]) {
-                        is Int -> predicate = { it.get<Int>(variable) == value }
-                        is String -> predicate = { it.get<String>(variable) == value }
-                        is Double -> predicate = { it.get<Double>(variable) == value }
-                        is Long -> predicate = { it.get<Long>(variable) == value }
-                        is Boolean -> predicate = { it.get<Boolean>(variable) == value }
+                    val value = map["equals"]
+                    when (val default = map["default"]) {
+                        is Int -> predicate = { it.get(variable, default) == value }
+                        is String -> predicate = { it.get(variable, default) == value }
+                        is Double -> predicate = { it.get(variable, default) == value }
+                        is Long -> predicate = { it.get(variable, default) == value }
+                        is Boolean -> predicate = { it.get(variable, default) == value }
+                        else -> when (value) {
+                            is Int -> predicate = { it.get<Int>(variable) == value }
+                            is String -> predicate = { it.get<String>(variable) == value }
+                            is Double -> predicate = { it.get<Double>(variable) == value }
+                            is Long -> predicate = { it.get<Long>(variable) == value }
+                            is Boolean -> predicate = { it.get<Boolean>(variable) == value }
+                        }
                     }
                 } else if (map.containsKey("within")) {
                     val range = (map["within"] as String).toIntRange(inclusive = true)
-                    predicate = { it.get(variable, -1) in range }
+                    val default = map.getOrDefault("default", -1)
+                    predicate = { it.get(variable, default) in range }
                 }
             }
             return ItemDrop(
